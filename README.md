@@ -8,3 +8,5 @@ Sitespeed.io - how speedy is your site?
 ./sitespeed.io http://peterhedenskog.com
 </code>
 </li>
+
+More info: http//sitespeed.io
