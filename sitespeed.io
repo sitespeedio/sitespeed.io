@@ -61,7 +61,7 @@ echo "Will create result file: $RESULT_DIR/sitespeed-$HOST-$NOW.txt"
 for i in "${result[@]}"
 do
     echo "Analyzing $i"
-    phantomjs yslow.js $i >> $RESULT_DIR/sitespeed-$HOST-$NOW.txt
+    phantomjs dependencies/yslow.js $i >> $RESULT_DIR/sitespeed-$HOST-$NOW.txt
 done
 
 echo "Finished"
