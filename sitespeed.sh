@@ -1,7 +1,7 @@
 #! /bin/bash
 
 #******************************************************
-# Image resize servlet
+# Sitespeed.io - How speedy is your site?
 # 
 # Copyright (C) 2012 by Peter Hedenskog (http://peterhedenskog.com)
 #
