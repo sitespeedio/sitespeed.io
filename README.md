@@ -11,6 +11,7 @@ How to use
 ./sitespeed.io http://peterhedenskog.com
 </code>
 </li>
+</ol>
 
 More info: http://sitespeed.io
 
