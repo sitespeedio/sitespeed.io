@@ -40,7 +40,7 @@ URL="$1"
 USER=""
 PASSWORD=""
 
-if ["$3" != ""]
+if [[ "$3" != "" && "$4" != "" ]]
 then
 	USER="--http-user=$3"
 	PASSWORD="--http-password=$4"
