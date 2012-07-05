@@ -24,7 +24,7 @@ if (!command -v phantomjs &> /dev/null) ; then
 fi
 
 if [ -z "$1" ]; then
-   echo "Missing url. USAGE: ${0} http[s]://host[:port][/path/] [crawl-depth]"
+   echo "Missing url. USAGE: ${0} http[s]://host[:port][/path/] [crawl-depth] [username] [password]"
    exit 1;
 fi
 
@@ -36,6 +36,16 @@ else
 fi
 
 URL="$1"
+
+USER=""
+PASSWORD=""
+
+if ["$3" != ""]
+then
+	USER="--http-user=$3"
+	PASSWORD="--http-password=$4"
+fi
+
 NOW=$(date +"%Y-%m-%d-%H-%M-%S")
 echo "Will crawl from start point $URL with depth $DEPTH ... this can take a while"
 
@@ -45,7 +55,7 @@ HOST=${NOPROTOCOL%%/*}
 RETRIES=1
 index=0
 
-links=$(wget -r -l $DEPTH -nd -t $RETRIES -e robots=off --no-check-certificate --follow-tags=a --spider $URL 2>&1 | while read line
+links=$(wget -r -l $DEPTH -nd -t $RETRIES -e robots=off --no-check-certificate --follow-tags=a --spider $USER $PASSWORD $URL 2>&1 | while read line
 do
      echo "$line" | grep -P "\-\-\d{4}" | cut -d " " -f 4
 done)
