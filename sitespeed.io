@@ -62,16 +62,35 @@ done)
 
 result=($(printf '%s\n' "${links[@]}"|sort|uniq))
 
-RESULT_DIR="sitespeed-result"
-if [ ! -d $RESULT_DIR ]; then
-    mkdir $RESULT_DIR
-fi
+REPORT_DIR="sitespeed-result/sitespeed-$HOST-$NOW"
+REPORT_DATA_DIR="$REPORT_DIR/data"
+mkdir -p $REPORT_DIR
+mkdir $REPORT_DATA_DIR
 
-echo "Will create result file: $RESULT_DIR/sitespeed-$HOST-$NOW.txt"
+echo "Will create result file: $REPORT_DATA_DIR/result.xml"
+
+echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" url="'$URL'">' >> $REPORT_DATA_DIR/result.xml
+
 for i in "${result[@]}"
 do
     echo "Analyzing $i"
-    phantomjs dependencies/yslow.js $i >> $RESULT_DIR/sitespeed-$HOST-$NOW.txt
+    phantomjs dependencies/yslow.js -f xml $i | cut -c39- >> $REPORT_DATA_DIR/result.xml
 done
 
-echo "Finished"
+echo '</document>'>> $REPORT_DATA_DIR/result.xml
+
+echo 'Create the HTML'
+
+java -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_DIR/result.xml report/velocity/pages.vm pages.properties $REPORT_DIR/report.html
+
+
+#copy the rest of the files
+mkdir $REPORT_DIR/css
+mkdir $REPORT_DIR/js
+mkdir $REPORT_DIR/img
+
+cp report/css/* $REPORT_DIR/css
+cp report/js/* $REPORT_DIR/js
+cp report/img/* $REPORT_DIR/img
+
+echo "Finished, see the report $REPORT_DIR/report.html"
