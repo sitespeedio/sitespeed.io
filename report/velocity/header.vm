@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>$document.getRootElement().getAttribute("host").getValue()</title>
+        <meta name="description" content="$pageDescription">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+      
+    	<link rel="shortcut icon" href="img/favicon.png">
+ 
+      <style type="text/css">
+      body {
+        padding-top: 55px;
+        padding-bottom: 40px;
+      }
+    
+    .navbar .brand {
+    padding: 2px 20px 2px;
+    }  
+      
+    footer p {
+    text-align: center;
+}  
+      
+    </style>
+    
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    </head>
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+        
+        <!--
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          -->
+         <a href="http://sitespeed.io"><img class="brand" src="img/logo.png"/></a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li #if( $pageMenu == "summary" ) class="active" #end><a href="index.html">Summary</a></li>
+              <li #if( $pageMenu == "pages" ) class="active" #end><a href="report.html">All pages</a></li>
+              <!--<li #if( $pageMenu == "errors" ) class="active" #end><a href="#contact">Errors</a></li>-->
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+            <div class="well">

@@ -1,0 +1,127 @@
+
+#parse("report/velocity/header.vm")
+
+<h2>Pages ($document.getRootElement().getChildren().size()) - $document.getRootElement().getAttribute("url").getValue()</h2>
+		<div>
+        <table class="table table-condensed table-striped table-bordered" id="pagesTable" >
+            <thead>
+                <tr>
+                    <th>
+                    <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The url to the page">URL</i></a>
+                    </th>
+                    <th>
+                    
+                    <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The number of javascript files used in this page">JS</a>
+                    </th>
+
+                    <th>
+                    
+                     <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The number of stylesheet files used in this page">CSS</a>
+                    
+                    </th>
+                    <th>
+                    
+                     <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The number of image files used in this page">IMG</a>
+                    
+                    </th>
+                	
+                	<th>                    
+                     <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The number of css images used on this page">CSS image</a>
+                
+                    </th>
+                    
+                    <th>                    
+                     <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The number of fonts used on this page">Fonts</a>
+                
+                    </th>
+                    
+                    <th>                    
+                     <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The favicon">Fav</a>
+                
+                    </th>
+                	
+                	<th>
+                    
+                     <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The total number of requests for this page">Total requests</a>
+                    
+                    </th>
+                
+                    <th>
+                    <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The Yslow grade for this page, 100 is perfect, 0 is incredible bad">Yslow grade</a>
+                    </th>
+                
+                </tr>
+            </thead>
+            
+            <tbody>
+            	#foreach ($results in $document.getRootElement().getChildren())   
+              
+                <tr>
+                    <td>
+                     <a href="$results.getChild("u").getValue()" target="_blank">$results.getChild("u").getValue()</a> 
+                     
+                     <a rel="tooltip" target="_blank" data-placement="right" data-html="true" href="$results.getChild("u").getValue()" data-original-title="Response headers: <br/>
+                        #foreach ($response in $results.getChild("comps").getChild("item").getChild("headers").getChild("response").getChildren())
+                     		$esc.html($response.getName()) : $esc.html($response.getValue()) <br/>
+                     	#end 
+                        "><i class="icon-info-sign"></i></a>     
+ 	                </td>
+                    <td>
+                     #if($!{results.getChild("stats").getChild("js").getChild("r")})
+                   	 	$results.getChild("stats").getChild("js").getChild("r").getValue()
+                   	 #else
+                   	 0
+                   	 #end	
+                    </td>
+                    <td>
+                    #if($!{results.getChild("stats").getChild("css").getChild("r")})	
+                    	$results.getChild("stats").getChild("css").getChild("r").getValue()
+                    #else
+                    0
+                    #end
+                    </td>
+                    <td>
+                    #if($!{results.getChild("stats").getChild("image").getChild("r")})
+                    	$results.getChild("stats").getChild("image").getChild("r").getValue()
+                    #else
+                    	0
+                    #end
+                    </td>
+                    <td>
+                       #if($!{results.getChild("stats").getChild("cssimage").getChild("r")})
+                    	$results.getChild("stats").getChild("cssimage").getChild("r").getValue()
+                    	#else
+                    	0
+                    #end
+                    </td>
+                     <td>
+                       #if($!{results.getChild("stats").getChild("font").getChild("r")})
+                    	$results.getChild("stats").getChild("font").getChild("r").getValue()
+                    	#else
+                    	0
+                    #end
+                    </td>
+                    
+                    <td>
+                       #if($!{results.getChild("stats").getChild("favicon").getChild("r")})
+                    	$results.getChild("stats").getChild("favicon").getChild("r").getValue()
+                    	#else
+                    	0
+                    #end
+                    </td>
+                    
+                    	<td>
+                    		$results.getChild("r").getValue() 
+           	        	</td>
+                    <td> 
+                    		$results.getChild("o").getValue() 
+                    </td>
+                </tr>    
+                #end
+            </tbody>
+        </table>
+        </div>    
+        
+#parse("report/velocity/footer.vm")       
+        
+        
