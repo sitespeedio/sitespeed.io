@@ -81,7 +81,7 @@ echo '</document>'>> $REPORT_DATA_DIR/result.xml
 
 echo 'Create the HTML'
 
-java -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_DIR/result.xml report/velocity/pages.vm pages.properties $REPORT_DIR/report.html
+java -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_DIR/result.xml report/velocity/pages.vm report/properties/pages.properties $REPORT_DIR/report.html
 
 
 #copy the rest of the files
