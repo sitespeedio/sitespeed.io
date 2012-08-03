@@ -57,7 +57,7 @@ index=0
 
 links=$(wget -r -l $DEPTH -nd -t $RETRIES -e robots=off --no-check-certificate --follow-tags=a --spider $USER $PASSWORD $URL 2>&1 | while read line
 do
-     echo "$line" | grep -P "\-\-\d{4}" | cut -d " " -f 4
+     echo "$line" | grep -E "\-\-\d{4}" | cut -d " " -f 4
 done)
 
 result=($(printf '%s\n' "${links[@]}"|sort|uniq))
