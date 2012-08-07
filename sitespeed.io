@@ -88,14 +88,14 @@ do
 done
 echo '</document>'>> "$REPORT_DATA_DIR/result.xml"
 
-echo 'Create the result HTML'
+echo 'Create the page report  HTML'
 java -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_DIR/result.xml report/velocity/pages.vm report/properties/pages.properties $REPORT_DIR/report.html
 
 echo 'Create the summary HTML'
 java -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_DIR/result.xml report/velocity/summary.vm report/properties/summary.properties $REPORT_DIR/index.html
 
 
-echo 'Create page  HTML'
+echo 'Create individual page HTML'
 for file in $REPORT_DATA_PAGES_DIR/*
 do
  filename=$(basename $file)
