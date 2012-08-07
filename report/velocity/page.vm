@@ -1,0 +1,113 @@
+
+#parse("report/velocity/header.vm")
+
+<h2>Page <a href="$document.getRootElement().getChild("u").getValue()" target="_blank">$document.getRootElement().getChild("u").getValue()</a>  </h2>
+	<div>
+
+	<h3>Yslow scores below 100</h3>
+	<table class="table table-condensed table-striped table-bordered" >
+            <thead>
+                <tr>
+                    <th>
+		    Rule
+		    </th>
+		    <th>
+		    Score
+		    </th>
+		    <th>
+		    Message
+		    </th>
+		    <th>
+		    Extra
+		    </th>
+		 </tr>
+	    <tbody>
+			 
+
+	 #foreach ($message in $document.getRootElement().getChild("g").getChildren())
+	 
+		#if($!{message.getChild("score").getValue()})    	 
+	  
+			#if($message.getChild("score").getValue()!="100") 							 	 
+																	 
+				<tr>													 
+	  			<td>$message.getName()</td>
+				<td>$message.getChild("score").getValue()</td>
+				<td>$message.getChild("message").getValue()</td>
+	  	 		<td>
+				#foreach ($item in $message.getChild("components").getChildren("item"))
+          	 	  		 <p>$item.getValue()</p>
+                 		#end
+				</td>
+				</tr>
+	  		#end	 
+	 	#end	 
+	 #end
+	 </tbody>
+	 </table>
+
+	 <h3>Page assets</h3>	 
+	 <table class="table table-condensed table-striped table-bordered">
+	 <thead>
+	 <tr>
+	 <th>
+	 url
+	 </th>
+	 <th>
+	 type
+	 </th>
+	 <th>
+	 size
+	 </th>
+	 <th>
+	 expires
+	 </th>
+	 <th>
+	 gzip
+	 </th>	 
+	 </tr>
+	 </thead>
+	 <tbody>
+	 
+	 #foreach ($asset in $document.getRootElement().getChild("comps").getChildren())
+         <tr>
+
+	 <td>         
+		  <a href="$asset.getChild("url").getValue()" target="_blank">$asset.getChild("url").getValue()</a>
+		   <a rel="tooltip" target="_blank" data-placement="right" data-html="true" href="$asset.getChild("url").getValue()" data-original-title="Response headers: <br/>
+                        #foreach ($response in $asset.getChild("headers").getChild("response").getChildren())
+                                $esc.html($response.getName()) : $esc.html($response.getValue()) <br/>
+                        #end 
+                        "><i class="icon-info-sign"></i></a>
+
+	 </td>
+	 <td>
+                  $asset.getChild("type").getValue()
+	 </td>	
+	 <td>
+                  $asset.getChild("size").getValue()
+	 </td>
+	 <td>
+	  #if($!{asset.getChild("expires")})
+                  $asset.getChild("expires").getValue()
+	#else
+	0
+	#end	  
+         </td>
+<td>
+          #if($!{asset.getChild("gzip")})
+                  $asset.getChild("gzip").getValue()
+        #else
+       
+        #end
+         </td>
+	</tr>	     
+         #end
+
+	 </tbody>
+	 </table>
+        </div>    
+        
+#parse("report/velocity/footer.vm")       
+        
+        

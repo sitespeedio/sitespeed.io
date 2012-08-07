@@ -41,10 +41,15 @@
                     </th>
                 	
                 	<th>
-                    
-                     <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The total number of requests for this page">Total requests</a>
-                    
+                     <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The total number of requests for this page">Total request</a>
                     </th>
+		       <th>
+                     <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="">Total primed cache request</a>
+                    </th>
+   <th>
+                     <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="">Page load time</a>
+                    </th>
+
                 
                     <th>
                     <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The Yslow grade for this page, 100 is perfect, 0 is incredible bad">Yslow grade</a>
@@ -58,9 +63,15 @@
               
                 <tr>
                     <td>
-                     <a href="$results.getChild("u").getValue()" target="_blank">$results.getChild("u").getValue()</a> 
-                     
-                     <a rel="tooltip" target="_blank" data-placement="right" data-html="true" href="$results.getChild("u").getValue()" data-original-title="Response headers: <br/>
+		    #*
+		    TODO: The creation of the file link needs to be cleaned up
+		    *#
+		     #set($file = $results.getChild("u").getValue().replaceAll("\/", ""))
+                     #set($file = $file.replaceAll("http:", ""))
+                     #set($file = $file.replaceAll("https:", ""))
+                     #set($file = $file.concat(".html"))
+                     <a href="$file">$results.getChild("u").getValue()</a> 
+                     <a rel="tooltip" data-placement="right" data-html="true" href="$file" data-original-title="Response headers: <br/>
                         #foreach ($response in $results.getChild("comps").getChild("item").getChild("headers").getChild("response").getChildren())
                      		$esc.html($response.getName()) : $esc.html($response.getValue()) <br/>
                      	#end 
@@ -112,7 +123,14 @@
                     
                     	<td>
                     		$results.getChild("r").getValue() 
-           	        	</td>
+           	        </td>
+			 <td>
+                                $results.getChild("r_c").getValue()
+                        </td>
+			 <td>
+                                $results.getChild("lt").getValue()
+                        </td>
+
                     <td> 
                     		$results.getChild("o").getValue() 
                     </td>

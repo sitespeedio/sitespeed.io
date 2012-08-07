@@ -62,26 +62,45 @@ done)
 
 result=($(printf '%s\n' "${links[@]}"|sort|uniq))
 
+# Setup dirs
 REPORT_DIR="sitespeed-result/sitespeed-$HOST-$NOW"
 REPORT_DATA_DIR="$REPORT_DIR/data"
+REPORT_DATA_PAGES_DIR="$REPORT_DATA_DIR/pages"
 mkdir -p $REPORT_DIR
 mkdir $REPORT_DATA_DIR
+mkdir $REPORT_DATA_PAGES_DIR
 
-echo "Will create result file: $REPORT_DATA_DIR/result.xml"
 
 echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" url="'$URL'">' >> $REPORT_DATA_DIR/result.xml
 
 for i in "${result[@]}"
 do
     echo "Analyzing $i"
-    phantomjs dependencies/yslow.js -f xml $i | cut -c39- >> $REPORT_DATA_DIR/result.xml
+    pagefilename=${i#*//}
+    pagefilename=$(echo $pagefilename | sed 's/\///g')
+
+    # Striping names from / will make sure urls/files are the same with or without / ending                                                                                                    
+    if [ ! -f "$REPORT_DATA_PAGES_DIR/$pagefilename" ]
+    then
+    phantomjs dependencies/yslow.js -f xml $i >> "$REPORT_DATA_PAGES_DIR/$pagefilename"
+    cat "$REPORT_DATA_PAGES_DIR/$pagefilename" | cut -c39- >> "$REPORT_DATA_DIR/result.xml"
+    fi
 done
+echo '</document>'>> "$REPORT_DATA_DIR/result.xml"
 
-echo '</document>'>> $REPORT_DATA_DIR/result.xml
-
-echo 'Create the HTML'
-
+echo 'Create the result HTML'
 java -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_DIR/result.xml report/velocity/pages.vm report/properties/pages.properties $REPORT_DIR/report.html
+
+echo 'Create the summary HTML'
+java -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_DIR/result.xml report/velocity/summary.vm report/properties/summary.properties $REPORT_DIR/index.html
+
+
+echo 'Create page  HTML'
+for file in $REPORT_DATA_PAGES_DIR/*
+do
+ filename=$(basename $file)
+ java -jar dependencies/xml-velocity-1.0-full.jar $file report/velocity/page.vm report/properties/page.properties $REPORT_DIR/$filename.html    
+done
 
 
 #copy the rest of the files
@@ -93,4 +112,5 @@ cp report/css/* $REPORT_DIR/css
 cp report/js/* $REPORT_DIR/js
 cp report/img/* $REPORT_DIR/img
 
-echo "Finished, see the report $REPORT_DIR/report.html"
+echo "Finished, see the report $REPORT_DIR/index.html"
+exit 0

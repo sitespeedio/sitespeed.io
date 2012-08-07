@@ -1,0 +1,125 @@
+
+#parse("report/velocity/header.vm")
+	<div>
+	<h2>Executive summary for $document.getRootElement().getAttribute("url").getValue() </h2>
+	
+	<p>
+	#set($nrOfPages = $document.getRootElement().getChildren().size())
+	$nrOfPages pages has been analyzed
+	
+  	 #set($nrOfDecimals = 0)
+	 #set($nrOfJs = 0)
+	 #set($nrOfCss = 0)
+	 #set($nrOfCssImages = 0)
+	 #set($nrOfImages = 0)
+	 #set($nrOfTotalRequests = 0)
+	 #set($nrOfTotalRequestsPrimedCache = 0)
+	 #set($totalPageWeight = 0)
+	 #set($totalLoadTime = 0)
+	 #set($totalScore = 0)	 
+
+	 #foreach ($results in $document.getRootElement().getChildren())
+	
+	  #if($!{results.getChild("stats").getChild("js").getChild("r")})
+             #set ($nrOfJs = $math.add($nrOfJs, $results.getChild("stats").getChild("js").getChild("r").getValue()))
+          #end   
+	  
+	  #if($!{results.getChild("stats").getChild("css").getChild("r")})
+             #set ($nrOfCss = $math.add($nrOfCss,$results.getChild("stats").getChild("css").getChild("r").getValue()))
+          #end
+
+ 	  #if($!{results.getChild("stats").getChild("cssimage").getChild("r")})
+             #set ($nrOfCssImages = $math.add($nrOfCssImages, $results.getChild("stats").getChild("cssimage").getChild("r").getValue()))
+          #end
+
+	   #if($!{results.getChild("stats").getChild("image").getChild("r")})
+             #set ($nrOfImages = $math.add($nrOfImages, $results.getChild("stats").getChild("image").getChild("r").getValue()))
+          #end
+
+	  #if($!{results.getChild("r")})
+             #set ($nrOfTotalRequests = $math.add($nrOfTotalRequests, $results.getChild("r").getValue()))
+          #end
+
+	  #if($!{results.getChild("r_c")})
+             #set ($nrOfTotalRequestsPrimedCache = $math.add($nrOfTotalRequestsPrimedCache, $results.getChild("r_c").getValue()))
+          #end
+	  
+	  #if($!{results.getChild("w")})
+             #set ($totalPageWeight = $math.add($totalPageWeight, $results.getChild("w").getValue()))
+          #end
+
+         #if($!{results.getChild("lt")})
+             #set ($totalLoadTime = $math.add($totalLoadTime, $results.getChild("lt").getValue()))
+          #end
+
+	  #if($!{results.getChild("o")})
+             #set ($totalScore = $math.add($totalScore, $results.getChild("o").getValue()))
+          #end
+
+	  #end
+	</p>
+
+	<table class="table table-condensed table-striped table-bordered" id="pagesTable" >
+	<thead>
+	<tr>
+	<th>Type</th>
+	<th>Total number</th>
+	<th>Average</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+	<td>JS</td>
+	<td>$nrOfJs</td>
+	<td>$math.roundTo($nrOfDecimals,$math.div($nrOfJs,$nrOfPages))</td>
+	</tr>
+	<tr>
+        <td>CSS</td>
+        <td>$nrOfCss</td>
+        <td>$math.roundTo($nrOfDecimals,$math.div($nrOfCss,$nrOfPages))</td>
+        </tr>
+	<tr>
+        <td>CSS images</td>
+        <td>$nrOfCssImages</td>
+        <td>$math.roundTo($nrOfDecimals,$math.div($nrOfCssImages,$nrOfPages))</td>
+        </tr>
+	<tr>
+        <td>Image</td>
+        <td>$nrOfImages</td>
+        <td>$math.roundTo($nrOfDecimals,$math.div($nrOfImages,$nrOfPages))</td>	
+        </tr>
+	<tr>
+	<td>Requests</td>
+	<td>$nrOfTotalRequests</td>
+	<td>$math.roundTo($nrOfDecimals,$math.div($nrOfTotalRequests,$nrOfPages))</td>
+	</tr>
+	<tr>
+        <td>Requests primed cache</td>
+        <td>$nrOfTotalRequestsPrimedCache</td>
+        <td>$math.roundTo($nrOfDecimals,$math.div($nrOfTotalRequestsPrimedCache,$nrOfPages))</td>
+        </tr>
+        <tr>
+    	<td>Page weight</td>
+        <td>$totalPageWeight</td>
+        <td>$math.roundTo($nrOfDecimals,$math.div($totalPageWeight,$nrOfPages))</td>
+        </tr>
+	<tr>
+        <td>Load time</td>
+        <td>$totalLoadTime</td>
+	<td>$math.roundTo($nrOfDecimals,$math.div($totalLoadTime,$nrOfPages))</td>
+        </tr>
+	 <tr>
+        <td>Score</td>
+        <td>$totalScore</td>
+	<td>$math.roundTo($nrOfDecimals,$math.div($totalScore,$nrOfPages))</td>
+        </tr>	
+
+
+	</tbody>
+	</table>
+
+        </div>    
+        
+#parse("report/velocity/footer.vm")       
+        
+        
