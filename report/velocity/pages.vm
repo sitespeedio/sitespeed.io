@@ -44,10 +44,10 @@
                      <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The total number of requests for this page">Total request</a>
                     </th>
 		       <th>
-                     <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="">Total primed cache request</a>
+                     <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The total number of requests for this page with primed cache">Total primed cache request</a>
                     </th>
    <th>
-                     <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="">Page load time</a>
+                     <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The page load time in ms">Page load time</a>
                     </th>
 
                 
