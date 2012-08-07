@@ -61,14 +61,17 @@
 	
 	#if ($totalScore>90)
 	    #set ($scoreType = "success")
+	    #set ($scoreMessage = "Executive summary: Your site has good WPO")
 	#elseif ($totalScore>80)
-	    #set ($scoreType = "warning")	     
+	    #set ($scoreType = "warning")
+	    #set ($scoreMessage	= "Executive summary: You need to lock into your site performance")	     
 	#else
 	    #set ($scoreType = "error")	
+	    #set ($scoreMessage = "Executive summary: You need to improve perfomance for your site")
 	#end
 	
 	<div class="alert alert-$scoreType">
-	     Alert type ...
+	     $scoreMessage
 	</div>
 
 
