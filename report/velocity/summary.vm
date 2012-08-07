@@ -58,6 +58,19 @@
 
 	  #end
 	</p>
+	
+	#if ($totalScore>90)
+	    #set ($scoreType = "success")
+	#elseif ($totalScore>80)
+	    #set ($scoreType = "warning")	     
+	#else
+	    #set ($scoreType = "error")	
+	#end
+	
+	<div class="alert alert-$scoreType">
+	     Alert type ...
+	</div>
+
 
 	<table class="table table-condensed table-striped table-bordered" id="pagesTable" >
 	<thead>
