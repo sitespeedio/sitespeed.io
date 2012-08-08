@@ -1,7 +1,5 @@
-</div> <!-- /well -->
-  <hr/>
-
   <footer>
+  <hr/>
     <p>
 		  <a href="http://sitespeed.io">Sitespeed.io</a>
             written by
@@ -11,8 +9,6 @@
     </p>
   </footer>
 
-</div> <!-- /span12 -->
-</div> <!-- /row -->
 </div> <!-- /container -->
 
 <script src="js/jquery-1.7.2.min.js"></script>

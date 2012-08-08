@@ -2,32 +2,40 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>$document.getRootElement().getAttribute("host").getValue()</title>
+        <title>
+	  #if($!{document.getRootElement().getAttribute("host")})
+	  $document.getRootElement().getAttribute("host").getValue() - 
+	  #end
+	  $pageTitle
+	</title>
         <meta name="description" content="$pageDescription">
         <link rel="stylesheet" href="css/bootstrap.min.css">
-      
-    	<link rel="shortcut icon" href="img/favicon.png">
- 
-      <style type="text/css">
+
+	   <style type="text/css">
       body {
         padding-top: 55px;
         padding-bottom: 40px;
       }
-    
+
     .navbar .brand {
     padding: 2px 20px 2px;
-    }  
-      
+    }
+
     footer p {
     text-align: center;
-}  
+}
 
       .large {
+      font-family: Tahoma,Impact,Verdana,sans-serif;
       font-size: 32px;
       line-height: 38px;
+      font-weight:bold;
       }
-      
+
     </style>
+      
+    	<link rel="shortcut icon" href="img/favicon.png">
+ 
     
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -50,9 +58,6 @@
           </div><!--/.nav-collapse -->
         </div>
       </div>
-    </div>
+    </div><!--/.navbar -->
 
     <div class="container">
-      <div class="row">
-	<div class="span12">
-            <div class="well">

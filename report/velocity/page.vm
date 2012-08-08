@@ -1,5 +1,7 @@
 
 #parse("report/velocity/header.vm")
+ <div class="row">
+ <div class="span12">
 
 <h2>Page <a href="$document.getRootElement().getChild("u").getValue()" target="_blank">$document.getRootElement().getChild("u").getValue()</a>  </h2>
 
@@ -59,12 +61,6 @@
 	 <th>
 	 size
 	 </th>
-	 <th>
-	 expires
-	 </th>
-	 <th>
-	 gzip
-	 </th>	 
 	 </tr>
 	 </thead>
 	 <tbody>
@@ -87,26 +83,14 @@
 	 <td>
                   $asset.getChild("size").getValue()
 	 </td>
-	 <td>
-	  #if($!{asset.getChild("expires")})
-                  $asset.getChild("expires").getValue()
-	#else
-	0
-	#end	  
-         </td>
-<td>
-          #if($!{asset.getChild("gzip")})
-                  $asset.getChild("gzip").getValue()
-        #else
-       
-        #end
-         </td>
+
 	</tr>	     
          #end
 
 	 </tbody>
 	 </table>
-
+	 </div> <!-- span 12 -->
+	 </div> <!-- row -->
         
 #parse("report/velocity/footer.vm")       
         
