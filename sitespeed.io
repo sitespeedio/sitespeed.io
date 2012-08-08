@@ -62,6 +62,8 @@ done)
 
 result=($(printf '%s\n' "${links[@]}"|sort|uniq))
 
+echo "Fetched ${#result[@]} pages" 
+
 # Setup dirs
 REPORT_DIR="sitespeed-result/sitespeed-$HOST-$NOW"
 REPORT_DATA_DIR="$REPORT_DIR/data"
@@ -88,7 +90,7 @@ do
 done
 echo '</document>'>> "$REPORT_DATA_DIR/result.xml"
 
-echo 'Create the page report  HTML'
+echo 'Create the page report HTML'
 java -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_DIR/result.xml report/velocity/pages.vm report/properties/pages.properties $REPORT_DIR/report.html
 
 echo 'Create the summary HTML'
