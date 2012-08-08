@@ -2,7 +2,7 @@
 #parse("report/velocity/header.vm")
 
 <h2>Pages ($document.getRootElement().getChildren().size()) - $document.getRootElement().getAttribute("url").getValue()</h2>
-		<div>
+	
         <table class="table table-condensed table-striped table-bordered" id="pagesTable" >
             <thead>
                 <tr>
@@ -138,7 +138,6 @@
                 #end
             </tbody>
         </table>
-        </div>    
         
 #parse("report/velocity/footer.vm")       
         

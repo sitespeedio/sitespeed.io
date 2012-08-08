@@ -2,7 +2,7 @@
 #parse("report/velocity/header.vm")
 
 <h2>Page <a href="$document.getRootElement().getChild("u").getValue()" target="_blank">$document.getRootElement().getChild("u").getValue()</a>  </h2>
-	<div>
+
 
 	<h3>Yslow scores below 100</h3>
 	<table class="table table-condensed table-striped table-bordered" >
@@ -106,7 +106,7 @@
 
 	 </tbody>
 	 </table>
-        </div>    
+
         
 #parse("report/velocity/footer.vm")       
         

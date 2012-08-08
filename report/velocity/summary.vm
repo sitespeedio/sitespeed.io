@@ -1,9 +1,9 @@
 
 #parse("report/velocity/header.vm")
-	<div>
+
 	<h2>Executive summary for $document.getRootElement().getAttribute("url").getValue() </h2>
 	
-	<p>
+
 	#set($nrOfPages = $document.getRootElement().getChildren().size())
 	$nrOfPages pages has been analyzed
 	
@@ -57,23 +57,22 @@
           #end
 
 	  #end
-	</p>
+
 	
 	#if ($totalScore>90)
 	    #set ($scoreType = "success")
-	    #set ($scoreMessage = "Executive summary: Your site has good WPO")
+	    #set ($scoreMessage = "Executive summary: Your site has good WPO <p class='large'>$totalScore</p>")
 	#elseif ($totalScore>80)
 	    #set ($scoreType = "warning")
-	    #set ($scoreMessage	= "Executive summary: You need to lock into your site performance")	     
+	    #set ($scoreMessage	= "Executive summary: You need to lock into your site performance <p class='large'>$totalScore</p>")	     
 	#else
 	    #set ($scoreType = "error")	
-	    #set ($scoreMessage = "Executive summary: You need to improve perfomance for your site")
+	    #set ($scoreMessage = "Executive summary: You need to improve perfomance for your site <p class='large'>$totalScore</p>")
 	#end
 	
 	<div class="alert alert-$scoreType">
 	     $scoreMessage
 	</div>
-
 
 	<table class="table table-condensed table-striped table-bordered" id="pagesTable" >
 	<thead>
@@ -134,7 +133,7 @@
 	</tbody>
 	</table>
 
-        </div>    
+
         
 #parse("report/velocity/footer.vm")       
         
