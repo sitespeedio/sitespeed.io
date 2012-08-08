@@ -33,22 +33,22 @@
 
 	<div class="row">
         <div class="span3">
-             <div class="">
-             Average number of css images <div class='large'>$cssImageAverage</div>
+             <div class="alert alert-$cssImageType">
+             Css images <div class='large'>$cssImageAverage</div>
              </div>
         </div>
         <div class="span3">
-             <div class="">
+             <div class="alert alert-$imageType">
              Average number of images <div class='large'>$imageAverage</div>
              </div>
         </div>
         <div class="span3">
-             <div class="">
-              Average number of requests primed  <div class='large'>$requestPrimedAverage</div>
+             <div class="alert alert-$requestPrimedType">
+              Requests primed cache  <div class='large'>$requestPrimedAverage</div>
              </div>
         </div>
         <div class="span3">
-             <div class="">
+             <div class="alert alert-$loadTimeType">
               Average load time <div class='large'>$loadTimeAverage</div>
              </div>
         </div>

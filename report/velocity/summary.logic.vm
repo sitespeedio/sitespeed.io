@@ -99,4 +99,39 @@
 #else
 	#set ($requestType = "error")
 #end
+
+#if ($cssImageAverage<2)
+        #set ($cssImageType = "success")
+#elseif ($cssImageAverage<5)
+        #set ($cssImageType = "warning")
+#else
+        #set ($cssImageType = "error")
+#end
+
+#if ($imageAverage<25)
+    #set ($imageType = "success")
+#elseif ($imageAverage<40)
+	#set ($imageType = "warning")
+#else
+	#set ($imageType = "error")
+#end
+
+#if ($loadTimeAverage<3000)
+    #set ($loadTimeType = "success")
+#elseif ($loadTimeAverage<4000)
+    #set ($loadTimeType = "warning")
+#else
+    #set ($loadTimeType = "error")
+#end
+
+#if ($requestPrimedAverage<25)
+    #set ($requestPrimedType = "success")
+#elseif ($loadTimeAverage<50)
+	#set ($requestPrimedType = "warning")
+#else
+	#set ($requestPrimedType = "error")
+#end
+
+
+
         
