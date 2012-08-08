@@ -124,9 +124,10 @@
     #set ($loadTimeType = "error")
 #end
 
-#if ($requestPrimedAverage<25)
+#if ($requestPrimedAverage<3)
     #set ($requestPrimedType = "success")
-#elseif ($loadTimeAverage<50)
+## TODO should be percantage of the nr of request uncached
+#elseif ($loadTimeAverage<20)
 	#set ($requestPrimedType = "warning")
 #else
 	#set ($requestPrimedType = "error")
