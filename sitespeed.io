@@ -47,6 +47,7 @@ then
 fi
 
 NOW=$(date +"%Y-%m-%d-%H-%M-%S")
+DATE=$(date) 
 echo "Will crawl from start point $URL with depth $DEPTH ... this can take a while"
 
 # remove the protocol
@@ -73,34 +74,34 @@ mkdir $REPORT_DATA_DIR
 mkdir $REPORT_DATA_PAGES_DIR
 
 
-echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" url="'$URL'">' >> $REPORT_DATA_DIR/result.xml
+echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" url="'$URL'" date="'$DATE'">' >> $REPORT_DATA_DIR/result.xml
 
+pagefilename=1
 for i in "${result[@]}"
 do
     echo "Analyzing $i"
-    pagefilename=${i#*//}
-    pagefilename=$(echo $pagefilename | sed 's/\///g')
-
-    # Striping names from / will make sure urls/files are the same with or without / ending                                                                                                    
-    if [ ! -f "$REPORT_DATA_PAGES_DIR/$pagefilename" ]
-    then
-    phantomjs dependencies/yslow.js -f xml $i >> "$REPORT_DATA_PAGES_DIR/$pagefilename"
-    cat "$REPORT_DATA_PAGES_DIR/$pagefilename" | cut -c39- >> "$REPORT_DATA_DIR/result.xml"
-    fi
+    phantomjs dependencies/yslow.js -f xml "$i" >>"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"
+    # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
+    ## sed -i "" 's/^.*<?xml/<?xml/' $REPORT_DATA_PAGES_DIR/$pagefilename.xml
+     
+    # Hack for adding link to the output file name
+    sed -i "" 's/<results>/<results filename="'$pagefilename'">/g' $REPORT_DATA_PAGES_DIR/$pagefilename.xml 
+    cat "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" | cut -c39- >> "$REPORT_DATA_DIR/result.xml"
+    pagefilename=$[$pagefilename+1]
 done
 echo '</document>'>> "$REPORT_DATA_DIR/result.xml"
 
-echo 'Create the page report HTML'
-java -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_DIR/result.xml report/velocity/pages.vm report/properties/pages.properties $REPORT_DIR/report.html
+echo 'Create the pages.html'
+java -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_DIR/result.xml report/velocity/pages.vm report/properties/pages.properties $REPORT_DIR/pages.html
 
-echo 'Create the summary HTML'
+echo 'Create the summary: index.html'
 java -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_DIR/result.xml report/velocity/summary.vm report/properties/summary.properties $REPORT_DIR/index.html
 
 
-echo 'Create individual page HTML'
+echo 'Create individual pages'
 for file in $REPORT_DATA_PAGES_DIR/*
 do
- filename=$(basename $file)
+ filename=$(basename -s .xml $file)
  java -jar dependencies/xml-velocity-1.0-full.jar $file report/velocity/page.vm report/properties/page.properties $REPORT_DIR/$filename.html    
 done
 
