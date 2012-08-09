@@ -1,31 +1,65 @@
 ## Limits & rules macros
 ##
-## TODO need to return generic values
 
+## Verify the Yslow score, over 90 is good
 #macro( scoreType $score )
-#if ($score>90)success#elseif ($score>80)warning#elseerror#end#end
-		
+#if ($score>90)success#elseif ($score>80)
+warning#else
+error#end#end
+
+## Verify number of JS, 2 is ok (analythics & one combined :)		
 #macro ( jsType $js )
-#if ($js<3)success#elseif ($js<5)warning#elseerror#end#end
+#if ($js<3)success#elseif ($js<5)
+warning#else
+error#end#end
 
+## Verify number of CSS, yes have one combined
 #macro ( cssType $css )
-#if ($css==1)success#elseif ($css<3)warning#elseerror#end#end
+#if ($css==1)success#elseif ($css<3)
+warning#else
+error#end#end
 
+## Verify number of requests for a page, below 25 is ok
 #macro ( requestType $r )
-#if ($r<25)success#elseif ($r<50)warning#elseerror#end#end	
+#if ($r<25)success#elseif ($r<50)
+warning#else
+error#end#end	
 
+## Verify the number of CSS images, 1 is like perfect
 #macro ( cssImageType $cssImage )
-#if ($cssImage<2)success#elseif ($cssImage<5)warning#elseerror#end#end	
+#if ($cssImage<2)success#elseif ($cssImage<5)
+warning#else
+error#end#end	
 
+## Verify number of images on page, below 25 is ok for now
 #macro ( imageType $image )
-#if ($image<25)success#elseif ($image<40)warning#elseerror#end#end
+#if ($image<25)success#elseif ($image<40)
+warning#else
+error#end#end
 
+## Verify the load time, not a good measure, below 3 sek is ok ..
 #macro ( loadTimeType $lt )
-#if ($lt<3000)success#elseif ($lt<4000)warning#elseerror#end#end
+#if ($lt<3000)success#elseif ($lt<4000)
+warning#else
+error#end#end
 
-#macro ( requestPrimedType $rp )
-#if ($rp<3)success#elseif ($rp<8)warning#elseerror#end#end
+## Verify the how many requests that are cached, perfect world only the page & 
+## analythics should not be cached, else if 90% are primed, thats ok
+#macro ( requestPrimedType $requests $requestPrimed )
+#if ($requestPrimed<3)success#elseif ($math.div($math.sub($requests,$requestPrimed),$requests)>0.90)
+warning#else
+error#end#end
 
+## Verify the total page wight (including all assets). Below 1 mb is ok
+#macro ( weightType $weight )
+#if ($weight<1000000)success#elseif ($weight<1500000)
+warning#else
+error#end#end
 
-
+## Verify the doc weight, needs to be small for mobile, should also 
+## take inconcideration total weight. 
+#macro ( weightMobileType $weight )
+#if ($weight<10000)success#elseif ($weight<15000)
+warning#else
+error#end#end
         
