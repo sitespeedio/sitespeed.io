@@ -50,7 +50,7 @@
           <div class="nav-collapse">
             <ul class="nav">
               <li #if( $pageMenu == "summary" ) class="active" #end><a href="index.html">Summary</a></li>
-              <li #if( $pageMenu == "pages" ) class="active" #end><a href="report.html">All pages</a></li>
+              <li #if( $pageMenu == "pages" ) class="active" #end><a href="pages.html">All pages</a></li>
 	      #if( $pageMenu == "page" )
 	          <li class="active"><a href="#">Page</a></li>
               #end
