@@ -17,6 +17,9 @@
         padding-bottom: 40px;
       }
 
+      .navbar .nav > li > a {
+      font-weight: bold;
+      }
 
     footer p {
     text-align: center;
