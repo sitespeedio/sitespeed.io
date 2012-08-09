@@ -66,32 +66,6 @@
 #set ($pageWeightAverage = $math.roundTo($nrOfDecimals,$math.div($totalPageWeight,$nrOfPages)))
 #set ($loadTimeAverage = $math.roundTo($nrOfDecimals,$math.div($totalLoadTime,$nrOfPages)))
 
-## Limits & rules macros, move them to another file 
-
-#macro( scoreType $score )
-#if ($score>90)success#elseif ($score>80)warning#elseerror#end#end
-		
-#macro ( jsType $js )
-#if ($js<3)success#elseif ($js<5)warning#elseerror#end#end
-
-#macro ( cssType $css )
-#if ($css==1)success#elseif ($css<3)warning#elseerror#end#end
-
-#macro ( requestType $r )
-#if ($r<25)success#elseif ($r<50)warning#elseerror#end#end	
-
-#macro ( cssImageType $cssImage )
-#if ($cssImage<2)success#elseif ($cssImage<5)warning#elseerror#end#end	
-
-#macro ( imageType $image )
-#if ($image<25)success#elseif ($image<40)warning#elseerror#end#end
-
-#macro ( loadTimeType $lt )
-#if ($lt<3000)success#elseif ($lt<4000)warning#elseerror#end#end
-
-#macro ( requestPrimedType $rp )
-#if ($rp<3)success#elseif ($rp<8)warning#elseerror#end#end
-
 
 
         

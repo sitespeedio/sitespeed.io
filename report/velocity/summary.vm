@@ -1,5 +1,6 @@
 
 #parse("report/velocity/header.vm")
+#parse("report/velocity/macros.vm")
 #parse("report/velocity/summary.logic.vm")
 
  <div class="row">
