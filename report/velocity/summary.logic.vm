@@ -66,72 +66,31 @@
 #set ($pageWeightAverage = $math.roundTo($nrOfDecimals,$math.div($totalPageWeight,$nrOfPages)))
 #set ($loadTimeAverage = $math.roundTo($nrOfDecimals,$math.div($totalLoadTime,$nrOfPages)))
 
-## Limits and messages, should be made cleaner
+## Limits & rules macros, move them to another file 
 
-#if ($scoreAverage>90)
-	#set ($scoreType = "success")
-#elseif ($scoreAverage>80)
-	#set ($scoreType = "warning")
-#else
-	#set ($scoreType = "error")	
-#end
+#macro( scoreType $score )
+#if ($score>90)success#elseif ($score>80)warning#elseerror#end#end
 		
-#if ($jsAverage<3)
-	#set ($jsType = "success")
-#elseif ($jsAverage<5)
-	#set ($jsType = "warning")
-#else
-	#set ($jsType = "error")
-#end
-	
-#if ($cssAverage==1)
-	#set ($cssType = "success")
-#elseif ($cssAverage<3)
-	#set ($cssType = "warning")
-#else
-	#set ($cssType = "error")
-#end
-	
-#if ($requestAverage<25)
-	#set ($requestType = "success")
-#elseif ($requestAverage<50)
-	#set ($requestType = "warning")
-#else
-	#set ($requestType = "error")
-#end
+#macro ( jsType $js )
+#if ($js<3)success#elseif ($js<5)warning#elseerror#end#end
 
-#if ($cssImageAverage<2)
-        #set ($cssImageType = "success")
-#elseif ($cssImageAverage<5)
-        #set ($cssImageType = "warning")
-#else
-        #set ($cssImageType = "error")
-#end
+#macro ( cssType $css )
+#if ($css==1)success#elseif ($css<3)warning#elseerror#end#end
 
-#if ($imageAverage<25)
-    #set ($imageType = "success")
-#elseif ($imageAverage<40)
-	#set ($imageType = "warning")
-#else
-	#set ($imageType = "error")
-#end
+#macro ( requestType $r )
+#if ($r<25)success#elseif ($r<50)warning#elseerror#end#end	
 
-#if ($loadTimeAverage<3000)
-    #set ($loadTimeType = "success")
-#elseif ($loadTimeAverage<4000)
-    #set ($loadTimeType = "warning")
-#else
-    #set ($loadTimeType = "error")
-#end
+#macro ( cssImageType $cssImage )
+#if ($cssImage<2)success#elseif ($cssImage<5)warning#elseerror#end#end	
 
-#if ($requestPrimedAverage<3)
-    #set ($requestPrimedType = "success")
-## TODO should be percantage of the nr of request uncached
-#elseif ($loadTimeAverage<20)
-	#set ($requestPrimedType = "warning")
-#else
-	#set ($requestPrimedType = "error")
-#end
+#macro ( imageType $image )
+#if ($image<25)success#elseif ($image<40)warning#elseerror#end#end
+
+#macro ( loadTimeType $lt )
+#if ($lt<3000)success#elseif ($lt<4000)warning#elseerror#end#end
+
+#macro ( requestPrimedType $rp )
+#if ($rp<3)success#elseif ($rp<8)warning#elseerror#end#end
 
 
 

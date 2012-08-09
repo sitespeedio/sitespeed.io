@@ -9,22 +9,22 @@
 
 	<div class="row">
       	<div class="span3">
-	     <div class="alert alert-$scoreType">
+	     <div class="alert alert-#scoreType($scoreAverage)">
 	     Average Yslow score is <div class='large'>$scoreAverage</div>
 	     </div>
 	</div>
       	<div class="span3">
-	     <div class="alert alert-$requestType">
+	     <div class="alert alert-#requestType($requestAverage)">
              Average number of requests <div class='large'>$requestAverage</div>
              </div>
 	</div>
 	<div class="span3">
-	     <div class="alert alert-$jsType">
+	     <div class="alert alert-#jsType($jsAverage)">
               Average number of js <div class='large'>$jsAverage</div>
              </div>
 	</div>
 	<div class="span3">
-             <div class="alert alert-$cssType">
+             <div class="alert alert-#cssType($cssAverage)">
               Average number of css <div class='large'>$cssAverage</div>
              </div>
         </div>
@@ -33,22 +33,22 @@
 
 	<div class="row">
         <div class="span3">
-             <div class="alert alert-$cssImageType">
+             <div class="alert alert-#cssImageType($cssImageAverage)">
              Css images <div class='large'>$cssImageAverage</div>
              </div>
         </div>
         <div class="span3">
-             <div class="alert alert-$imageType">
+             <div class="alert alert-#imageType($imageAverage)">
              Average number of images <div class='large'>$imageAverage</div>
              </div>
         </div>
         <div class="span3">
-             <div class="alert alert-$requestPrimedType">
+             <div class="alert alert-#requestPrimedType($requestPrimedAverage)">
               Requests primed cache  <div class='large'>$requestPrimedAverage</div>
              </div>
         </div>
         <div class="span3">
-             <div class="alert alert-$loadTimeType">
+             <div class="alert alert-#loadTimeType($loadTimeAverage)">
               Average load time <div class='large'>$loadTimeAverage</div>
              </div>
         </div>
