@@ -38,11 +38,6 @@
                 
                     </th>
                     
-                    <th>                    
-                     <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The favicon">Fav</a>
-                
-                    </th>
-                	
                 	<th>
                      <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The total number of requests for this page">Total request</a>
                     </th>
@@ -114,14 +109,6 @@
                      <td>
                        #if($!{results.getChild("stats").getChild("font").getChild("r")})
                     	$results.getChild("stats").getChild("font").getChild("r").getValue()
-                    	#else
-                    	0
-                    #end
-                    </td>
-                    
-                    <td>
-                       #if($!{results.getChild("stats").getChild("favicon").getChild("r")})
-                    	$results.getChild("stats").getChild("favicon").getChild("r").getValue()
                     	#else
                     	0
                     #end
