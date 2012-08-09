@@ -17,9 +17,6 @@
         padding-bottom: 40px;
       }
 
-    .navbar .brand {
-    padding: 2px 20px 2px;
-    }
 
     footer p {
     text-align: center;
@@ -46,7 +43,7 @@
       <div class="navbar-inner">
         <div class="container">
         
-         <a href="http://sitespeed.io"><img class="brand" src="img/logo.png"/></a>
+         <a class="brand" href="http://sitespeed.io">sitespeed.io</a>
           <div class="nav-collapse">
             <ul class="nav">
               <li #if( $pageMenu == "summary" ) class="active" #end><a href="index.html">Summary</a></li>
