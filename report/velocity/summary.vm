@@ -5,18 +5,33 @@
 
  <div class="row">
  <div class="span12">
- 
-	<h2>$nrOfPages pages analyzed for $document.getRootElement().getAttribute("url").getValue() </h2>
+
+	<h2>$nrOfPages pages analyzed for $document.getRootElement().getAttribute("url").getValue()</h2>
+	<p>Test performed: $document.getRootElement().getAttribute("date").getValue()</p>
+
+	<div class="row">
+        <div class="span6">
+	     <div class="alert alert-#scoreType($scoreAverage)">
+             Average Yslow score <div class='large'>$scoreAverage</div>
+             </div> 
+
+        </div>
+        <div class="span6">
+             <div class="alert alert-#requestType($requestAverage)">
+             Average number of requests <div class='large'>$requestAverage</div>
+             </div>
+        </div>
+        </div>
 
 	<div class="row">
       	<div class="span3">
-	     <div class="alert alert-#scoreType($scoreAverage)">
-	     Average Yslow score is <div class='large'>$scoreAverage</div>
-	     </div>
+            <div class="alert alert-#weightType($pageWeightAverage)">
+             Total page weight (b) <div class='large'>$pageWeightAverage</div>
+             </div>
 	</div>
       	<div class="span3">
-	     <div class="alert alert-#requestType($requestAverage)">
-             Average number of requests <div class='large'>$requestAverage</div>
+	     <div class="alert alert-#weightMobileType($totalDocumentWeightAverage)">
+             Document page weight (b) <div class='large'>$totalDocumentWeightAverage</div>
              </div>
 	</div>
 	<div class="span3">
@@ -44,19 +59,17 @@
              </div>
         </div>
         <div class="span3">
-             <div class="alert alert-#requestPrimedType($requestPrimedAverage)">
+             <div class="alert alert-#requestPrimedType($requestAverage $requestPrimedAverage)">
               Requests primed cache  <div class='large'>$requestPrimedAverage</div>
              </div>
         </div>
         <div class="span3">
              <div class="alert alert-#loadTimeType($loadTimeAverage)">
-              Average load time <div class='large'>$loadTimeAverage</div>
+              Average load time (ms) <div class='large'>$loadTimeAverage</div>
              </div>
         </div>
 
         </div>
-
-
 
 	<table class="table table-condensed table-striped table-bordered" id="pagesTable" >
 	<thead>

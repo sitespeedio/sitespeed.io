@@ -13,6 +13,7 @@
 #set($nrOfTotalRequests = 0)
 #set($nrOfTotalRequestsPrimedCache = 0)
 #set($totalPageWeight = 0)
+#set($totalDocumentWeight = 0)
 #set($totalLoadTime = 0)
 #set($totalScore = 0)	 
 
@@ -53,6 +54,11 @@
 	#if($!{results.getChild("o")})
      	#set ($totalScore = $math.add($totalScore, $results.getChild("o").getValue()))
 	#end
+
+	#if($!{results.getChild("stats").getChild("doc").getChild("w")})
+        #set ($totalDocumentWeight = $math.add($totalDocumentWeight, $results.getChild("stats").getChild("doc").getChild("w").getValue()))
+    	#end
+
 #end
 	  
 ##	Create averages	  
@@ -64,6 +70,7 @@
 #set ($imageAverage = $math.roundTo($nrOfDecimals,$math.div($nrOfImages,$nrOfPages)))
 #set ($requestPrimedAverage = $math.roundTo($nrOfDecimals,$math.div($nrOfTotalRequestsPrimedCache,$nrOfPages)))
 #set ($pageWeightAverage = $math.roundTo($nrOfDecimals,$math.div($totalPageWeight,$nrOfPages)))
+#set ($totalDocumentWeightAverage = $math.roundTo($nrOfDecimals,$math.div($totalDocumentWeight,$nrOfPages)))
 #set ($loadTimeAverage = $math.roundTo($nrOfDecimals,$math.div($totalLoadTime,$nrOfPages)))
 
 
