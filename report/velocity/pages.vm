@@ -84,7 +84,7 @@
                         #foreach ($response in $results.getChild("comps").getChild("item").getChild("headers").getChild("response").getChildren())
                      		$esc.html($response.getName()) : $esc.html($response.getValue()) <br/>
                      	#end 
-                        "><i class="icon-info-sign"></i></a>     
+                        "><i class="icon-zoom-in"></i></a>     
  	                </td>
                     <td>
                      #if($!{results.getChild("stats").getChild("js").getChild("r")})
