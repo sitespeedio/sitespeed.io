@@ -82,7 +82,7 @@ do
     echo "Analyzing $i"
     phantomjs dependencies/yslow.js -f xml "$i" >>"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"
     # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
-    ## sed -i "" 's/^.*<?xml/<?xml/' $REPORT_DATA_PAGES_DIR/$pagefilename.xml
+    sed -i "" '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml
      
     # Hack for adding link to the output file name
     sed -i "" 's/<results>/<results filename="'$pagefilename'">/g' $REPORT_DATA_PAGES_DIR/$pagefilename.xml 
