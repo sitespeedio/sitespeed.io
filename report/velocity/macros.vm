@@ -15,7 +15,7 @@ error#end#end
 
 ## Verify number of CSS, yes have one combined
 #macro ( cssType $css )
-#if ($css==1)success#elseif ($css<3)
+#if ($css<2)success#elseif ($css<3)
 warning#else
 error#end#end
 
