@@ -71,6 +71,21 @@
 
         </div>
 
+
+	<div class="row">
+        <div class="span12">
+	<h3>Rule definition</h3>
+	<p>The rules are simple: <b>Green</b> light you don't need to do anything (of course there could still be things you can do to get better perfomance). <b>Yellow</b> means that you should look into this, and guess what, <b>red</b> means that something is bad.</p>
+	<ul>
+	<li><a href="http://developer.yahoo.com/performance/rules.html/" target="_blank"><b>Yslow</b></a> standard rules. Over <span class="badge badge-success">90</span> is good, between <span class="badge badge-warning">80-90</span> is not so good, and below <span class="badge badge-important">80</span> is bad, really bad.</li>
+	<li><b>The number of javascripts</b> Two or less is good, up to 4 means you should look into it and more than 4 means you need to fix it.</li>
+	</ul>
+	</div>
+	</div>	
+
+
+
+	<!--
 	<table class="table table-condensed table-striped table-bordered" id="pagesTable" >
 	<thead>
 	<tr>
@@ -129,7 +144,7 @@
 
 	</tbody>
 	</table>
-
+	-->
 	</div>
 	</div>
 
