@@ -46,7 +46,7 @@
       <div class="navbar-inner">
         <div class="container">
         
-         <a class="brand" href="http://sitespeed.io">sitespeed.io</a>
+         <a class="brand" href="http://sitespeed.io" title="How speedy is your site?">sitespeed.io</a>
           <div class="nav-collapse">
             <ul class="nav">
               <li #if( $pageMenu == "summary" ) class="active" #end><a href="index.html">Summary</a></li>
