@@ -75,76 +75,21 @@
 	<div class="row">
         <div class="span12">
 	<h3>Rule definition</h3>
-	<p>The rules are simple: <b>Green</b> light you don't need to do anything (of course there could still be things you can do to get better perfomance). <b>Yellow</b> means that you should look into this, and guess what, <b>red</b> means that something is bad.</p>
+	<p>The rules are simple: <span class="badge badge-success">Green</span> light you don't need to do anything (of course there could still be things you can do to get better perfomance). <span class="badge badge-warning">Yellow</span> means that you should look into this, and guess what, <span class="badge badge-important">red</span> means that something is bad.</p>
 	<ul>
-	<li><a href="http://developer.yahoo.com/performance/rules.html/" target="_blank"><b>Yslow</b></a> standard rules. Over <span class="badge badge-success">90</span> is good, between <span class="badge badge-warning">80-90</span> is not so good, and below <span class="badge badge-important">80</span> is bad, really bad.</li>
-	<li><b>The number of javascripts</b> Two or less is good, up to 4 means you should look into it and more than 4 means you need to fix it.</li>
+	<li><b><a href="http://developer.yahoo.com/performance/rules.html/" target="_blank">Yslow</a> standard rules</b>: Over 90 is good, between 80-90 is not so good, and below 80 is bad, really bad.</li>
+	<li><b>The number of requests</b>:Below 25 is good, between 25-50 is something you should look into and above 50 is bad.</li>
+	<li><b>The weight of a page</b>:Below 1 mb is ok (but really to large for mobile), between 1-1.5 mb is something you should investigate & heavier is bad.</li>
+	<li><b>The documnet weight</b>:Below 10 kb is good (gzipped), between 10-15 is ok (but can be better) and above is bad.A small document is good for mobile.</li> 
+	<li><b>The number of javascripts</b>: Two or less is good, up to 4 means you should look into it and more than 4 means you need to fix it.</li>
+	<li><b>The number of stylesheets</b>: One is good, more than five is really bad.</li>
+	<li><b>The number of stylesheet images</b>:One is good, above four is bad.</li>
+	<li><b>The number of requests for a primed cache</b>:2 requests is good, else if not 90% of the request are cached, it is bad </li>
+	<li><b>The load time</b>:Below 3000 ms is ok, more than 4000 ms is bad.</li>
 	</ul>
 	</div>
 	</div>	
 
-
-
-	<!--
-	<table class="table table-condensed table-striped table-bordered" id="pagesTable" >
-	<thead>
-	<tr>
-	<th>Type</th>
-	<th>Total number</th>
-	<th>Average</th>
-	</tr>
-	</thead>
-	<tbody>
-	<tr>
-	<td>JS</td>
-	<td>$nrOfJs</td>
-	<td>$jsAverage</td>
-	</tr>
-	<tr>
-        <td>CSS</td>
-        <td>$nrOfCss</td>
-        <td>$cssAverage</td>
-        </tr>
-	<tr>
-        <td>CSS images</td>
-        <td>$nrOfCssImages</td>
-        <td>$cssImageAverage</td>
-        </tr>
-	<tr>
-        <td>Image</td>
-        <td>$nrOfImages</td>
-        <td>$imageAverage</td>	
-        </tr>
-	<tr>
-	<td>Requests</td>
-	<td>$nrOfTotalRequests</td>
-	<td>$requestAverage</td>
-	</tr>
-	<tr>
-        <td>Requests primed cache</td>
-        <td>$nrOfTotalRequestsPrimedCache</td>
-        <td>$requestPrimedAverage</td>
-        </tr>
-        <tr>
-    	<td>Page weight</td>
-        <td>$totalPageWeight</td>
-        <td>$pageWeightAverage</td>
-        </tr>
-	<tr>
-        <td>Load time</td>
-        <td>$totalLoadTime</td>
-	<td>$loadTimeAverage</td>
-        </tr>
-	 <tr>
-        <td>Score</td>
-        <td>$totalScore</td>
-	<td>$scoreAverage</td>
-        </tr>	
-
-
-	</tbody>
-	</table>
-	-->
 	</div>
 	</div>
 
