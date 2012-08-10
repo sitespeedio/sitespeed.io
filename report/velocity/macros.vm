@@ -3,7 +3,7 @@
 
 ## Verify the Yslow score, over 90 is good
 #macro( scoreType $score )
-#if ($score>90)success#elseif ($score>80)
+#if ($score>89.99)success#elseif ($score>80)
 warning#else
 error#end#end
 
