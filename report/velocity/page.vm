@@ -3,9 +3,8 @@
  <div class="row">
  <div class="span12">
 
-<h2>Page <a href="$document.getRootElement().getChild("u").getValue()" target="_blank">$document.getRootElement().getChild("u").getValue()</a>  </h2>
-
-
+<h2>Page <a href="$document.getRootElement().getChild("u").getValue()" target="_blank">$document.getRootElement().getChild("u").getValue()</a></h2>
+ 
 	<h3>Yslow scores below 100</h3>
 	<table class="table table-condensed table-striped table-bordered" >
             <thead>
