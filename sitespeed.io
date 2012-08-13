@@ -96,10 +96,12 @@ done
 cat $REPORT_DATA_DIR/urls.txt | sort -u > $REPORT_DATA_DIR/urls-uniq.txt
 mv $REPORT_DATA_DIR/urls-uniq.txt $REPORT_DATA_DIR/urls.txt
 
-result=( )
+declare result=( )
 while read txt ; do
    result[${#result[@]}]=$txt
 done < $REPORT_DATA_DIR/urls.txt
+
+cat $REPORT_DATA_DIR/urls.txt
 
 echo "Fetched ${#result[@]} pages" 
 
