@@ -70,9 +70,14 @@ index=0
 isPageVerified=false
 
 echo "Will start fetching all a links ..."
+
+wget -V
+
 wget -r -l $DEPTH -nd -t $RETRIES -e robots=off --no-check-certificate --follow-tags=a --spider $USER $PASSWORD $URL 2>&1 | while read line
 do
  
+   echo "$line" 
+
    ## Depends on the output message of the wget, not so clean
    if [[ "$line" == *Spider* ]]
     then
@@ -91,9 +96,6 @@ do
     fi
 
 done
-
-echo "Check url:s $REPORT_DATA_DIR/urls.txt"
-cat $REPORT_DATA_DIR/urls.txt
 
 ## Remove duplicates
 cat $REPORT_DATA_DIR/urls.txt | sort -u > $REPORT_DATA_DIR/urls-uniq.txt
