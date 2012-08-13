@@ -71,16 +71,13 @@ echo "Will start fetching all a links ..."
 wget -r -l $DEPTH -nd -t $RETRIES -e robots=off --no-check-certificate --follow-tags=a --spider $USER $PASSWORD $URL 2>&1 | while read line
 do
 
-    ## More debuggung for travis
+
     if [[ $line == --* ]]  
     then
-    echo "$line" | cut -d " " -f 4
+       ## We are hitting the same url twice since spider mode, however, we should only use it when it's verified                                                                                
+       echo "$line" | grep -E "\-\-\d{4}" | cut -d " " -f 4
+       echo "$line" | grep -E "\-\-\d{4}" | cut -d " " -f 4 >> $REPORT_DATA_DIR/urls.txt	
     fi
- 
-   ## We are hitting the same url twice since spider mode, however, we should only use it when it's verified 
-    echo "$line" | grep -E "\-\-\d{4}" | cut -d " " -f 4
-    echo "$line" | grep -E "\-\-\d{4}" | cut -d " " -f 4 >> $REPORT_DATA_DIR/urls.txt
-
 done
 
 ## Remove duplicates, always needing if we have same resources on multiple pages
