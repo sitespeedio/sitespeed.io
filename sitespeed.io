@@ -123,7 +123,7 @@ echo '</document>'>> "$REPORT_DATA_DIR/result.xml"
 echo 'Create individual pages'
 for file in $REPORT_DATA_PAGES_DIR/*
 do
- filename=$(basename -s .xml $file)
+ filename=$(basename $file .xml)
  java -jar dependencies/xml-velocity-1.0-full.jar $file report/velocity/page.vm report/properties/page.properties $REPORT_DIR/$filename.html || exit 1    
 done
 
