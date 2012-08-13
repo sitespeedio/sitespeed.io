@@ -1,3 +1,3 @@
-The node statit server used is:
+The node static server used is:
 https://github.com/cloudhead/node-static/
 
