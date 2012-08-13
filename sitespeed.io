@@ -92,16 +92,17 @@ do
 
 done
 
+echo "Check url:s $REPORT_DATA_DIR/urls.txt"
+cat $REPORT_DATA_DIR/urls.txt
+
 ## Remove duplicates
 cat $REPORT_DATA_DIR/urls.txt | sort -u > $REPORT_DATA_DIR/urls-uniq.txt
 mv $REPORT_DATA_DIR/urls-uniq.txt $REPORT_DATA_DIR/urls.txt
 
-declare result=( )
+result=( )
 while read txt ; do
    result[${#result[@]}]=$txt
 done < $REPORT_DATA_DIR/urls.txt
-
-cat $REPORT_DATA_DIR/urls.txt
 
 echo "Fetched ${#result[@]} pages" 
 
