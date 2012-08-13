@@ -50,22 +50,12 @@ NOW=$(date +"%Y-%m-%d-%H-%M-%S")
 DATE=$(date) 
 echo "Will crawl from start point $URL with depth $DEPTH ... this can take a while"
 
-# remove the protocol
+
+# remove the protocol                                                                                                                                                            
 NOPROTOCOL=${URL#*//}
 HOST=${NOPROTOCOL%%/*}
-RETRIES=1
-index=0
 
-links=$(wget -r -l $DEPTH -nd -t $RETRIES -e robots=off --no-check-certificate --follow-tags=a --spider $USER $PASSWORD $URL 2>&1 | while read line
-do
-     echo "$line" | grep -E "\-\-\d{4}" | cut -d " " -f 4
-done)
-
-result=($(printf '%s\n' "${links[@]}"|sort|uniq))
-
-echo "Fetched ${#result[@]} pages" 
-
-# Setup dirs
+# Setup dirs                                                                                                                                                                    
 REPORT_DIR="sitespeed-result/sitespeed-$HOST-$NOW"
 REPORT_DATA_DIR="$REPORT_DIR/data"
 REPORT_DATA_PAGES_DIR="$REPORT_DATA_DIR/pages"
@@ -73,6 +63,45 @@ mkdir -p $REPORT_DIR
 mkdir $REPORT_DATA_DIR
 mkdir $REPORT_DATA_PAGES_DIR
 
+RETRIES=1
+index=0
+
+## Make sure we fetch pages that really exist
+isPageVerified=false
+
+echo "Will start fetching all a links ..."
+wget -r -l $DEPTH -nd -t $RETRIES -e robots=off --no-check-certificate --follow-tags=a --spider $USER $PASSWORD $URL 2>&1 | while read line
+do
+ 
+   ## Depends on the output message of the wget, not so clean
+   if [[ "$line" == *Spider* ]]
+    then
+        isPageVerified=true
+   fi
+
+   ## Only take care if urls that exist
+   if $isPageVerified
+   then
+       if [[ "$line" == *http* ]]
+       then
+	   echo "$line" | grep -E "\-\-\d{4}" | cut -d " " -f 4
+	   echo "$line" | grep -E "\-\-\d{4}" | cut -d " " -f 4 >> $REPORT_DATA_DIR/urls.txt
+	   isPageVerified=false
+       fi
+    fi
+
+done
+
+## Remove duplicates
+cat $REPORT_DATA_DIR/urls.txt | sort -u > $REPORT_DATA_DIR/urls-uniq.txt
+mv $REPORT_DATA_DIR/urls-uniq.txt $REPORT_DATA_DIR/urls.txt
+
+result=( )
+while read txt ; do
+   result[${#result[@]}]=$txt
+done < $REPORT_DATA_DIR/urls.txt
+
+echo "Fetched ${#result[@]} pages" 
 
 echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" url="'$URL'" date="'$DATE'">' >> $REPORT_DATA_DIR/result.xml
 
@@ -91,19 +120,19 @@ do
 done
 echo '</document>'>> "$REPORT_DATA_DIR/result.xml"
 
-echo 'Create the pages.html'
-java -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_DIR/result.xml report/velocity/pages.vm report/properties/pages.properties $REPORT_DIR/pages.html
-
-echo 'Create the summary: index.html'
-java -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_DIR/result.xml report/velocity/summary.vm report/properties/summary.properties $REPORT_DIR/index.html
-
-
 echo 'Create individual pages'
 for file in $REPORT_DATA_PAGES_DIR/*
 do
  filename=$(basename -s .xml $file)
  java -jar dependencies/xml-velocity-1.0-full.jar $file report/velocity/page.vm report/properties/page.properties $REPORT_DIR/$filename.html    
 done
+
+echo 'Create the pages.html'
+java -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_DIR/result.xml report/velocity/pages.vm report/properties/pages.properties $REPORT_DIR/pages.html
+
+echo 'Create the summary: index.html'
+java -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_DIR/result.xml report/velocity/summary.vm report/properties/summary.properties $REPORT_DIR/index.html
+
 
 
 #copy the rest of the files
