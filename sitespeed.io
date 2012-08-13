@@ -75,8 +75,8 @@ do
     if [[ $line == --* ]]  
     then
        ## We are hitting the same url twice since spider mode, however, we should only use it when it's verified                                                                                
-       echo "$line" | grep -E "\-\-\d{4}" | cut -d " " -f 4
-       echo "$line" | grep -E "\-\-\d{4}" | cut -d " " -f 4 >> $REPORT_DATA_DIR/urls.txt	
+       echo "$line" | cut -d " " -f 4
+       echo "$line" | cut -d " " -f 4 >> $REPORT_DATA_DIR/urls.txt	
     fi
 done
 
