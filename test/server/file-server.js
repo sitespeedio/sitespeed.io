@@ -3,7 +3,7 @@ var static = require('../server/lib/node-static');
 //
 // Create a node-static server to serve the current directory
 //
-var file = new(static.Server)('www');
+var file = new(static.Server)('test/server/www');
 
 require('http').createServer(function (request, response) {
     request.addListener('end', function () {
