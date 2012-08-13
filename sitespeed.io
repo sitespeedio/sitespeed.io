@@ -115,7 +115,7 @@ do
      
     # Hack for adding link to the output file name
     sed -i "" 's/<results>/<results filename="'$pagefilename'">/g' $REPORT_DATA_PAGES_DIR/$pagefilename.xml 
-    cat "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" | cut -c39- >> "$REPORT_DATA_DIR/result.xml"
+    sed 's/<?xml version="1.0" encoding="UTF-8"?>//g' "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" >> "$REPORT_DATA_DIR/result.xml"
     pagefilename=$[$pagefilename+1]
 done
 echo '</document>'>> "$REPORT_DATA_DIR/result.xml"
