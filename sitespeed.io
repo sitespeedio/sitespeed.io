@@ -66,42 +66,22 @@ mkdir $REPORT_DATA_PAGES_DIR
 RETRIES=1
 index=0
 
-## Make sure we fetch pages that really exist
-isPageVerified=false
-
 echo "Will start fetching all a links ..."
-
-wget -V
 
 wget -r -l $DEPTH -nd -t $RETRIES -e robots=off --no-check-certificate --follow-tags=a --spider $USER $PASSWORD $URL 2>&1 | while read line
 do
- 
-   echo "$line" 
 
-   ## Depends on the output message of the wget, not so clean
-   if [[ "$line" == *Spider* ]]
-    then
-        isPageVerified=true
-   fi
-
-   ## Only take care if urls that exist
-   if $isPageVerified
-   then
-       if [[ "$line" == *http* ]]
-       then
-	   echo "$line" | grep -E "\-\-\d{4}" | cut -d " " -f 4
-	   echo "$line" | grep -E "\-\-\d{4}" | cut -d " " -f 4 >> $REPORT_DATA_DIR/urls.txt
-	   isPageVerified=false
-       fi
-    fi
+   ## We are hitting the same url twice since spider mode, however, we should only use it when it's verified 
+    echo "$line" | grep -E "\-\-\d{4}" | cut -d " " -f 4
+    echo "$line" | grep -E "\-\-\d{4}" | cut -d " " -f 4 >> $REPORT_DATA_DIR/urls.txt
 
 done
 
-## Remove duplicates
-cat $REPORT_DATA_DIR/urls.txt | sort -u > $REPORT_DATA_DIR/urls-uniq.txt
+## Remove duplicates, always needing if we have same resources on multiple pages
+sed '/^$/d' $REPORT_DATA_DIR/urls.txt | sort -u > $REPORT_DATA_DIR/urls-uniq.txt
 mv $REPORT_DATA_DIR/urls-uniq.txt $REPORT_DATA_DIR/urls.txt
 
-result=( )
+result=()
 while read txt ; do
    result[${#result[@]}]=$txt
 done < $REPORT_DATA_DIR/urls.txt
