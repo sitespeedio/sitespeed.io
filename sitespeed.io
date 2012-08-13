@@ -124,14 +124,14 @@ echo 'Create individual pages'
 for file in $REPORT_DATA_PAGES_DIR/*
 do
  filename=$(basename -s .xml $file)
- java -jar dependencies/xml-velocity-1.0-full.jar $file report/velocity/page.vm report/properties/page.properties $REPORT_DIR/$filename.html    
+ java -jar dependencies/xml-velocity-1.0-full.jar $file report/velocity/page.vm report/properties/page.properties $REPORT_DIR/$filename.html || exit 1    
 done
 
 echo 'Create the pages.html'
-java -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_DIR/result.xml report/velocity/pages.vm report/properties/pages.properties $REPORT_DIR/pages.html
+java -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_DIR/result.xml report/velocity/pages.vm report/properties/pages.properties $REPORT_DIR/pages.html || exit 1
 
 echo 'Create the summary: index.html'
-java -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_DIR/result.xml report/velocity/summary.vm report/properties/summary.properties $REPORT_DIR/index.html
+java -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_DIR/result.xml report/velocity/summary.vm report/properties/summary.properties $REPORT_DIR/index.html || exit 1
 
 
 
