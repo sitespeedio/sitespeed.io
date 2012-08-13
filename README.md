@@ -10,6 +10,9 @@ What do sitespeed.io do?
 You give sitespeed a start point, the first page on your site, where you want it to start crawl. By default, one level will be crawled, meaning all links (on the same domain as the main page), will be fetched & later analyzed. 
 
 The output is by default HTML. One summary page, that on high level will give you input about your speed of your site. You can also see all the individual pages and their assets.
+
+The flow looks something like this:
+<img src="http://sitespeed.io/sitespeed.io-flow.jpg">
  
 Prerequisites
 -------
