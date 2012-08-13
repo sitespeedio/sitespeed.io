@@ -1,4 +1,4 @@
-Sitespeed.io - how speedy is your site?
+Sitespeed.io - how speedy is your site? [![Build Status](https://secure.travis-ci.org/soulgalore/sitespeed.io.png?branch=master)](http://travis-ci.org/soulgalore/sitespeed.io)
 =============
 
 Under construction :)
