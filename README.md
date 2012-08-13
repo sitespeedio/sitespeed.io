@@ -12,6 +12,7 @@ You give sitespeed a start point, the first page on your site, where you want it
 The output is by default HTML. One summary page, that on high level will give you input about your speed of your site. You can also see all the individual pages and their assets.
 
 The flow looks something like this:
+
 <img src="http://sitespeed.io/sitespeed.io-flow.jpg">
  
 Prerequisites
