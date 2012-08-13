@@ -99,10 +99,10 @@ do
     echo "Analyzing $i"
     phantomjs dependencies/yslow.js -f xml "$i" >>"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"
     # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
-    sed -i bak '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1
+    sed -ibak '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1
      
     # Hack for adding link to the output file name
-    sed -i bak 's/<results>/<results filename="'$pagefilename'">/g' $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1 
+    sed -ibak 's/<results>/<results filename="'$pagefilename'">/g' $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1 
     sed 's/<?xml version="1.0" encoding="UTF-8"?>//g' "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" >> "$REPORT_DATA_DIR/result.xml" || exit 1
     pagefilename=$[$pagefilename+1]
 done
