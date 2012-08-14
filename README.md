@@ -1,4 +1,4 @@
-Sitespeed.io - how speedy is your site? [![Build Status](https://secure.travis-ci.org/soulgalore/sitespeed.io.png?branch=master)](http://travis-ci.org/soulgalore/sitespeed.io)
+<a href="http://sitespeed.io" target="_blank">Sitespeed.io</a> - how speedy is your site? [![Build Status](https://secure.travis-ci.org/soulgalore/sitespeed.io.png?branch=master)](http://travis-ci.org/soulgalore/sitespeed.io)
 =============
 
 Under construction :)
@@ -20,7 +20,7 @@ Prerequisites
 <ol>
 <li>Install PhantomJs http://code.google.com/p/phantomjs/wiki/Installation</li>
 <li>Install Java 1.7</li>
-<li>Checkout this repository</li>
+<li>Checkout this repository <code>git clone git@github.com:soulgalore/sitespeed.io.git</code></li>
 </ol>
 
 How to run
