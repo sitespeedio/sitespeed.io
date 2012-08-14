@@ -9,7 +9,7 @@
 	  $pageTitle
 	</title>
         <meta name="description" content="$pageDescription">
-        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="$!{pathToIncludes}css/bootstrap.min.css">
 
 	   <style type="text/css">
       body {
@@ -49,8 +49,8 @@
          <a class="brand" href="http://sitespeed.io" title="How speedy is your site?">sitespeed.io</a>
           <div class="nav-collapse">
             <ul class="nav">
-              <li #if( $pageMenu == "summary" ) class="active" #end><a href="index.html">Summary</a></li>
-              <li #if( $pageMenu == "pages" ) class="active" #end><a href="pages.html">All pages</a></li>
+              <li #if( $pageMenu == "summary" ) class="active" #end><a href="$!{pathToIncludes}index.html">Summary</a></li>
+              <li #if( $pageMenu == "pages" ) class="active" #end><a href="$!{pathToIncludes}pages.html">All pages</a></li>
 	      #if( $pageMenu == "page" )
 	          <li class="active"><a href="#">Page</a></li>
               #end
