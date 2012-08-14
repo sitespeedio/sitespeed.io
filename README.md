@@ -15,7 +15,7 @@ The flow looks something like this:
 
 <img src="http://sitespeed.io/sitespeed.io-flow.jpg">
  
-Prerequisites
+Install
 -------
 <ol>
 <li>Install PhantomJs http://code.google.com/p/phantomjs/wiki/Installation</li>
