@@ -13,7 +13,7 @@ The output is by default HTML. One summary page, that on high level will give yo
 
 The flow looks something like this:
 
-<img src="http://sitespeed.io/sitespeed.io-flow.jpg">
+<img src="http://sitespeed.io/img/sitespeed.io-workflow.jpg">
  
 Install
 -------
