@@ -3,7 +3,7 @@
 
 Under construction :)
 
-Sitespeed.io is a tool that analyzes web sites and give you information of why they are slow or at least, how they could be faster. Today yslow rules are used in combination with other best practices. 
+Sitespeed.io is a tool that analyzes web sites and give you information of why they are slow and how you can optimize the web prformance. Today yslow rules are used in combination with other best practices. 
 
 What do sitespeed.io do?   
 -------
@@ -14,7 +14,9 @@ The output is by default HTML. One summary page, that on high level will give yo
 The flow looks something like this:
 
 <img src="http://sitespeed.io/img/sitespeed.io-workflow.png">
- 
+
+More information: <a href="http://sitespeed.io">http://sitespeed.io</a>
+
 Install
 -------
 <ol>
