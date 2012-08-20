@@ -4,7 +4,7 @@
 
 
 ## Get the total objects
-	
+    
 #set($nrOfDecimals = 0)
 #set($nrOfJs = 0)
 #set($nrOfCss = 0)
@@ -15,53 +15,53 @@
 #set($totalPageWeight = 0)
 #set($totalDocumentWeight = 0)
 #set($totalLoadTime = 0)
-#set($totalScore = 0)	 
+#set($totalScore = 0)    
 
 #foreach ($results in $document.getRootElement().getChildren())
-	
-	#if($!{results.getChild("stats").getChild("js").getChild("r")})
-    	#set ($nrOfJs = $math.add($nrOfJs, $results.getChild("stats").getChild("js").getChild("r").getValue()))
+    
+    #if($!{results.getChild("stats").getChild("js").getChild("r")})
+        #set ($nrOfJs = $math.add($nrOfJs, $results.getChild("stats").getChild("js").getChild("r").getValue()))
     #end   
-	  
-	#if($!{results.getChild("stats").getChild("css").getChild("r")})
-    	#set ($nrOfCss = $math.add($nrOfCss,$results.getChild("stats").getChild("css").getChild("r").getValue()))
+      
+    #if($!{results.getChild("stats").getChild("css").getChild("r")})
+        #set ($nrOfCss = $math.add($nrOfCss,$results.getChild("stats").getChild("css").getChild("r").getValue()))
     #end
 
- 	#if($!{results.getChild("stats").getChild("cssimage").getChild("r")})
-    	#set ($nrOfCssImages = $math.add($nrOfCssImages, $results.getChild("stats").getChild("cssimage").getChild("r").getValue()))
+    #if($!{results.getChild("stats").getChild("cssimage").getChild("r")})
+        #set ($nrOfCssImages = $math.add($nrOfCssImages, $results.getChild("stats").getChild("cssimage").getChild("r").getValue()))
     #end
 
-	#if($!{results.getChild("stats").getChild("image").getChild("r")})
-    	#set ($nrOfImages = $math.add($nrOfImages, $results.getChild("stats").getChild("image").getChild("r").getValue()))
+    #if($!{results.getChild("stats").getChild("image").getChild("r")})
+        #set ($nrOfImages = $math.add($nrOfImages, $results.getChild("stats").getChild("image").getChild("r").getValue()))
     #end
 
-	#if($!{results.getChild("r")})
-    	#set ($nrOfTotalRequests = $math.add($nrOfTotalRequests, $results.getChild("r").getValue()))
+    #if($!{results.getChild("r")})
+        #set ($nrOfTotalRequests = $math.add($nrOfTotalRequests, $results.getChild("r").getValue()))
     #end
 
-	#if($!{results.getChild("r_c")})
-    	#set ($nrOfTotalRequestsPrimedCache = $math.add($nrOfTotalRequestsPrimedCache, $results.getChild("r_c").getValue()))
+    #if($!{results.getChild("r_c")})
+        #set ($nrOfTotalRequestsPrimedCache = $math.add($nrOfTotalRequestsPrimedCache, $results.getChild("r_c").getValue()))
     #end
-	  
-	#if($!{results.getChild("w")})
-    	#set ($totalPageWeight = $math.add($totalPageWeight, $results.getChild("w").getValue()))
+      
+    #if($!{results.getChild("w")})
+        #set ($totalPageWeight = $math.add($totalPageWeight, $results.getChild("w").getValue()))
     #end
 
     #if($!{results.getChild("lt")})
-    	#set ($totalLoadTime = $math.add($totalLoadTime, $results.getChild("lt").getValue()))
-   	#end
+        #set ($totalLoadTime = $math.add($totalLoadTime, $results.getChild("lt").getValue()))
+    #end
 
-	#if($!{results.getChild("o")})
-     	#set ($totalScore = $math.add($totalScore, $results.getChild("o").getValue()))
-	#end
+    #if($!{results.getChild("o")})
+        #set ($totalScore = $math.add($totalScore, $results.getChild("o").getValue()))
+    #end
 
-	#if($!{results.getChild("stats").getChild("doc").getChild("w")})
+    #if($!{results.getChild("stats").getChild("doc").getChild("w")})
         #set ($totalDocumentWeight = $math.add($totalDocumentWeight, $results.getChild("stats").getChild("doc").getChild("w").getValue()))
-    	#end
+        #end
 
 #end
-	  
-##	Create averages	  
+      
+##  Create averages   
 #set ($scoreAverage = $math.roundTo($nrOfDecimals,$math.div($totalScore,$nrOfPages)))   
 #set ($jsAverage = $math.roundTo($nrOfDecimals,$math.div($nrOfJs,$nrOfPages)))
 #set ($requestAverage = $math.roundTo($nrOfDecimals,$math.div($nrOfTotalRequests,$nrOfPages)))
@@ -72,7 +72,3 @@
 #set ($pageWeightAverage = $math.roundTo($nrOfDecimals,$math.div($totalPageWeight,$nrOfPages)))
 #set ($totalDocumentWeightAverage = $math.roundTo($nrOfDecimals,$math.div($totalDocumentWeight,$nrOfPages)))
 #set ($loadTimeAverage = $math.roundTo($nrOfDecimals,$math.div($totalLoadTime,$nrOfPages)))
-
-
-
-        

@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>
-	  #if($!{document.getRootElement().getAttribute("host")})
-	  $document.getRootElement().getAttribute("host").getValue() - 
-	  #end
-	  $pageTitle
-	</title>
-        <meta name="description" content="$pageDescription">
-        <link rel="stylesheet" href="$!{pathToIncludes}css/bootstrap.min.css">
+<head>
+  <meta charset="utf-8">
+  <title>#if($!{document.getRootElement().getAttribute("host")})
+    $document.getRootElement().getAttribute("host").getValue() - 
+    #end
+    $pageTitle</title> 
+  <meta name="description" content="$pageDescription">
+  <link rel="stylesheet" href="$!{pathToIncludes}css/bootstrap.min.css">
 
-	   <style type="text/css">
+  <style type="text/css">
       body {
         padding-top: 55px;
         padding-bottom: 40px;
@@ -33,31 +31,37 @@
       }
 
     </style>
-      
-    	<link rel="shortcut icon" href="img/favicon.png">
- 
-    
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
 
-    </head>
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-        
-         <a class="brand" href="http://sitespeed.io" title="How speedy is your site?">sitespeed.io</a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li #if( $pageMenu == "summary" ) class="active" #end><a href="$!{pathToIncludes}index.html">Summary</a></li>
-              <li #if( $pageMenu == "pages" ) class="active" #end><a href="$!{pathToIncludes}pages.html">All pages</a></li>
-	      #if( $pageMenu == "page" )
-	          <li class="active"><a href="#">Page</a></li>
-              #end
+  <link rel="shortcut icon" href="img/favicon.png">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+</head>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+
+        <a class="brand" href="http://sitespeed.io" title="How speedy is your site?">sitespeed.io</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li #if( $pageMenu == "summary" ) class="active" #end>
+              <a href="$!{pathToIncludes}index.html">Summary</a>
+            </li>
+            <li #if( $pageMenu == "pages" ) class="active" #end>
+              <a href="$!{pathToIncludes}pages.html">All pages</a>
+            </li>
+            #if( $pageMenu == "page" )
+            <li class="active">
+              <a href="#">Page</a>
+            </li>
+            #end
           </ul>
-          </div><!--/.nav-collapse -->
         </div>
-      </div>
-    </div><!--/.navbar -->
+        <!--/.nav-collapse --> </div>
+    </div>
+  </div>
+  <!--/.navbar -->
 
-    <div class="container">
+  <div class="container">

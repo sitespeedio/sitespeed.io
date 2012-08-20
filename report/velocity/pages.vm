@@ -1,169 +1,152 @@
 
 #parse("report/velocity/header.vm")
+<div class="row">
+    <div class="span12">
 
- <div class="row">
-        <div class="span12">
+        <h2>
+            Pages ($document.getRootElement().getChildren().size()) - $document.getRootElement().getAttribute("url").getValue()
+        </h2>
 
-<h2>Pages ($document.getRootElement().getChildren().size()) - $document.getRootElement().getAttribute("url").getValue()</h2>
-	
         <table class="table table-condensed table-striped table-bordered" id="pagesTable" >
             <thead>
                 <tr>
                     <th>
-                    <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The url to the page">url</i></a>
-                    </th>
-                    <th>
-                    
+                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The url to the page">url</i>
+                    </a>
+                </th>
+                <th>
+
                     <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The number of javascript files used in this page">js</a>
-                    </th>
+                </th>
 
-                    <th>
-                    
-                     <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The number of stylesheet files used in this page">css</a>
-                    
-                    </th>
-                    <th>
-                    
-                     <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The number of image files used in this page">img</a>
-                    
-                    </th>
-                	
-                	<th>                    
-                     <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The number of css images used on this page">css img</a>
-                
-                    </th>
-                    
-                    <th>                    
-                     <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The number of fonts used on this page">font</a>
-                
-                    </th>
-                    
-                	<th>
-                     <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The total number of requests for this page">total request</a>
-                    </th>
-		       <th>
-                     <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The total number of requests for this page with primed cache">total request (cached)</a>
-                    </th>
+                <th>
 
+                    <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The number of stylesheet files used in this page">css</a>
 
-		    <th>
-                     <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The document size (b)">doc size</a>
-                    </th>   		    
+                </th>
+                <th>
 
-		    <th>
-                     <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The page total size when no assets are cached (b)">page size</a>
-                    </th>
+                    <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The number of image files used in this page">img</a>
 
-		    <th>
-                     <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The page total size, including everything in the page with a primed cache (b)">page size (cached)</a>
-                    </th>
+                </th>
 
-		    
-		    <th>
-                     <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The page load time in ms">page load time</a>
-                    </th>
+                <th>
+                    <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The number of css images used on this page">css img</a>
 
-                
-                    <th>
+                </th>
+
+                <th>
+                    <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The number of fonts used on this page">font</a>
+
+                </th>
+
+                <th>
+                    <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The total number of requests for this page">total request</a>
+                </th>
+                <th>
+                    <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The total number of requests for this page with primed cache">total request (cached)</a>
+                </th>
+
+                <th>
+                    <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The document size (b)">doc size</a>
+                </th>
+
+                <th>
+                    <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The page total size when no assets are cached (b)">page size</a>
+                </th>
+
+                <th>
+                    <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The page total size, including everything in the page with a primed cache (b)">page size (cached)</a>
+                </th>
+
+                <th>
+                    <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The page load time in ms">page load time</a>
+                </th>
+
+                <th>
                     <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The Yslow grade for this page, 100 is perfect, 0 is incredible bad">Yslow grade</a>
-                    </th>
+                </th>
 
-		    <th>
-		    <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="Test this page on http://webpagetest.org">wpt</a>
-		    </th>
-        
-        
-                </tr>
-            </thead>
-            
-            <tbody>
-            	#foreach ($results in $document.getRootElement().getChildren())   
-              
-                <tr>
-                    <td>
+                <th>
+                    <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="Test this page on http://webpagetest.org">wpt</a>
+                </th>
 
-		     #set($file = $results.getAttribute("filename").getValue())
+            </tr>
+        </thead>
+
+        <tbody>
+            #foreach ($results in $document.getRootElement().getChildren())
+            <tr>
+                <td>
+                    #set($file = $results.getAttribute("filename").getValue())
                      #set($file = $file.concat(".html"))
-
-                     <a href="pages/$file" title="See all page data ">$results.getChild("u").getValue()</a>
-		     <a rel="tooltip" data-placement="right" data-html="true" href="pages/$file" data-original-title="Response headers: <br/>
-                        #foreach ($response in $results.getChild("comps").getChild("item").getChild("headers").getChild("response").getChildren())
-                     		$esc.html($response.getName()) : $esc.html($response.getValue()) <br/>
-                     	#end 
-                        "><i class="icon-zoom-in"></i></a>   
- 	                </td>
-                    <td>
-                     #if($!{results.getChild("stats").getChild("js").getChild("r")})
-                   	 	$results.getChild("stats").getChild("js").getChild("r").getValue()
-                   	 #else
-                   	 0
-                   	 #end	
-                    </td>
-                    <td>
-                    #if($!{results.getChild("stats").getChild("css").getChild("r")})	
-                    	$results.getChild("stats").getChild("css").getChild("r").getValue()
+                    <a href="pages/$file" title="See all page data ">$results.getChild("u").getValue()</a>
+                    <a rel="tooltip" data-placement="right" data-html="true" href="pages/$file" data-original-title="Response headers: <br/>
+                    #foreach ($response in $results.getChild("comps").getChild("item").getChild("headers").getChild("response").getChildren())
+                            $esc.html($response.getName()) : $esc.html($response.getValue())
+                    <br/>
+                    #end 
+                        "> <i class="icon-zoom-in"></i>
+                </a>
+            </td>
+            <td>
+                #if($!{results.getChild("stats").getChild("js").getChild("r")})
+                        $results.getChild("stats").getChild("js").getChild("r").getValue()
+                     #else
+                     0
+                     #end
+            </td>
+            <td>
+                #if($!{results.getChild("stats").getChild("css").getChild("r")})    
+                        $results.getChild("stats").getChild("css").getChild("r").getValue()
                     #else
                     0
                     #end
-                    </td>
-                    <td>
-                    #if($!{results.getChild("stats").getChild("image").getChild("r")})
-                    	$results.getChild("stats").getChild("image").getChild("r").getValue()
+            </td>
+            <td>
+                #if($!{results.getChild("stats").getChild("image").getChild("r")})
+                        $results.getChild("stats").getChild("image").getChild("r").getValue()
                     #else
-                    	0
+                        0
                     #end
-                    </td>
-                    <td>
-                       #if($!{results.getChild("stats").getChild("cssimage").getChild("r")})
-                    	$results.getChild("stats").getChild("cssimage").getChild("r").getValue()
-                    	#else
-                    	0
+            </td>
+            <td>
+                #if($!{results.getChild("stats").getChild("cssimage").getChild("r")})
+                        $results.getChild("stats").getChild("cssimage").getChild("r").getValue()
+                        #else
+                        0
                     #end
-                    </td>
-                     <td>
-                       #if($!{results.getChild("stats").getChild("font").getChild("r")})
-                    	$results.getChild("stats").getChild("font").getChild("r").getValue()
-                    	#else
-                    	0
+            </td>
+            <td>
+                #if($!{results.getChild("stats").getChild("font").getChild("r")})
+                        $results.getChild("stats").getChild("font").getChild("r").getValue()
+                        #else
+                        0
                     #end
-                    </td>
-                    
-                    	<td>
-                    		$results.getChild("r").getValue() 
-           	        </td>
-			 <td>
-                                $results.getChild("r_c").getValue()
-                        </td>
-			
-			<td>
-                                $results.getChild("stats").getChild("doc").getChild("w").getValue()
-                        </td>			
+            </td>
 
-			<td>
-                                $results.getChild("w").getValue()
-                        </td>
-			
-			<td>
-                                $results.getChild("w_c").getValue()
-                        </td>
+            <td>$results.getChild("r").getValue()</td>
+            <td>$results.getChild("r_c").getValue()</td>
 
-			 <td>
-                                $results.getChild("lt").getValue()
-                        </td>
+            <td>
+                $results.getChild("stats").getChild("doc").getChild("w").getValue()
+            </td>
 
-                    <td> 
-                    		$results.getChild("o").getValue() 
-                    </td>
-		    <td>
-		    <a href="http://www.webpagetest.org/?url=$results.getChild("u").getValue()" target="_blank" title="Check this page on webpagetest.org">
-		    <i class="icon-time"></i></a>
-   </td>
-                </tr>    
-                #end
-            </tbody>
-        </table>
+            <td>$results.getChild("w").getValue()</td>
+
+            <td>$results.getChild("w_c").getValue()</td>
+
+            <td>$results.getChild("lt").getValue()</td>
+
+            <td>$results.getChild("o").getValue()</td>
+            <td>
+                <a href="http://www.webpagetest.org/?url=$results.getChild("u").getValue()" target="_blank" title="Check this page on webpagetest.org"> <i class="icon-time"></i>
+                </a>
+            </td>
+        </tr>
+        #end
+    </tbody>
+</table>
 </div>
-</div>	        
-#parse("report/velocity/footer.vm")       
-        
-        
+</div>
+#parse("report/velocity/footer.vm")

@@ -1,29 +1,31 @@
   <footer>
-  <hr/>
+    <hr/>  
     <p>
-		  <a href="http://sitespeed.io">Sitespeed.io</a>
-            written by
-            <a href="https://twitter.com/soulislove">@soulislove</a>
-            design and layout created with
-            <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>.
+      <a href="http://sitespeed.io">Sitespeed.io</a>
+      written by
+      <a href="https://twitter.com/soulislove">@soulislove</a>
+      design and layout created with
+      <a href="http://twitter.github.com/bootstrap/" target="_blank">Bootstrap</a>
+      .
     </p>
   </footer>
 
-</div> <!-- /container -->
+  </div>
+  <!-- /container -->  
 
-<script src="$!{pathToIncludes}js/jquery-1.7.2.min.js"></script>
-<script src="$!{pathToIncludes}js/bootstrap.min.js"></script>
-<script src="$!{pathToIncludes}js/jquery.tablesorter.min.js"></script>
-    
-<script>
+  <script src="$!{pathToIncludes}js/jquery-1.7.2.min.js"></script>
+  <script src="$!{pathToIncludes}js/bootstrap.min.js"></script>
+  <script src="$!{pathToIncludes}js/jquery.tablesorter.min.js"></script>
+
+  <script>
   $(document).ready(function() 
     { 
         $("#pagesTable").tablesorter(); 
     } 
-	);
+  );
 </script>
-   
-<script>
+
+  <script>
 
    $(function () {
     $('.container').tooltip({
@@ -32,5 +34,5 @@
 }) 
 </script>
 
-</body>
-</html>
+  </body>
+  </html>

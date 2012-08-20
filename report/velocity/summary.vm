@@ -2,98 +2,140 @@
 #parse("report/velocity/header.vm")
 #parse("report/velocity/macros.vm")
 #parse("report/velocity/summary.logic.vm")
+<div class="row">
+    <div class="span12">
 
- <div class="row">
- <div class="span12">
+        <h2>
+            $nrOfPages pages analyzed for $document.getRootElement().getAttribute("url").getValue()
+        </h2>
+        <p>
+            Test performed: $document.getRootElement().getAttribute("date").getValue()
+        </p>
 
-	<h2>$nrOfPages pages analyzed for $document.getRootElement().getAttribute("url").getValue()</h2>
-	<p>Test performed: $document.getRootElement().getAttribute("date").getValue()</p>
+        <div class="row">
+            <div class="span6">
+                <div class="alert alert-#scoreType($scoreAverage)">
+                    Average Yslow score
+                    <div class='large'>$scoreAverage</div>
+                </div>
 
-	<div class="row">
-        <div class="span6">
-	     <div class="alert alert-#scoreType($scoreAverage)">
-             Average Yslow score <div class='large'>$scoreAverage</div>
-             </div> 
-
-        </div>
-        <div class="span6">
-             <div class="alert alert-#requestType($requestAverage)">
-             Average number of requests <div class='large'>$requestAverage</div>
-             </div>
-        </div>
+            </div>
+            <div class="span6">
+                <div class="alert alert-#requestType($requestAverage)">
+                    Average number of requests
+                    <div class='large'>$requestAverage</div>
+                </div>
+            </div>
         </div>
 
-	<div class="row">
-      	<div class="span3">
-            <div class="alert alert-#weightType($pageWeightAverage)">
-             Total page weight (b) <div class='large'>$pageWeightAverage</div>
-             </div>
-	</div>
-      	<div class="span3">
-	     <div class="alert alert-#weightMobileType($totalDocumentWeightAverage)">
-             Document page weight (b) <div class='large'>$totalDocumentWeightAverage</div>
-             </div>
-	</div>
-	<div class="span3">
-	     <div class="alert alert-#jsType($jsAverage)">
-              Average number of js <div class='large'>$jsAverage</div>
-             </div>
-	</div>
-	<div class="span3">
-             <div class="alert alert-#cssType($cssAverage)">
-              Average number of css <div class='large'>$cssAverage</div>
-             </div>
-        </div>
-	
-    	</div>
-
-	<div class="row">
-        <div class="span3">
-             <div class="alert alert-#cssImageType($cssImageAverage)">
-             Css images <div class='large'>$cssImageAverage</div>
-             </div>
-        </div>
-        <div class="span3">
-             <div class="alert alert-#imageType($imageAverage)">
-             Average number of images <div class='large'>$imageAverage</div>
-             </div>
-        </div>
-        <div class="span3">
-             <div class="alert alert-#requestPrimedType($requestAverage $requestPrimedAverage)">
-              Requests primed cache  <div class='large'>$requestPrimedAverage</div>
-             </div>
-        </div>
-        <div class="span3">
-             <div class="alert alert-#loadTimeType($loadTimeAverage)">
-              Average load time (ms) <div class='large'>$loadTimeAverage</div>
-             </div>
-        </div>
+        <div class="row">
+            <div class="span3">
+                <div class="alert alert-#weightType($pageWeightAverage)">
+                    Total page weight (b)
+                    <div class='large'>$pageWeightAverage</div>
+                </div>
+            </div>
+            <div class="span3">
+                <div class="alert alert-#weightMobileType($totalDocumentWeightAverage)">
+                    Document page weight (b)
+                    <div class='large'>$totalDocumentWeightAverage</div>
+                </div>
+            </div>
+            <div class="span3">
+                <div class="alert alert-#jsType($jsAverage)">
+                    Average number of js
+                    <div class='large'>$jsAverage</div>
+                </div>
+            </div>
+            <div class="span3">
+                <div class="alert alert-#cssType($cssAverage)">
+                    Average number of css
+                    <div class='large'>$cssAverage</div>
+                </div>
+            </div>
 
         </div>
 
+        <div class="row">
+            <div class="span3">
+                <div class="alert alert-#cssImageType($cssImageAverage)">
+                    Css images
+                    <div class='large'>$cssImageAverage</div>
+                </div>
+            </div>
+            <div class="span3">
+                <div class="alert alert-#imageType($imageAverage)">
+                    Average number of images
+                    <div class='large'>$imageAverage</div>
+                </div>
+            </div>
+            <div class="span3">
+                <div class="alert alert-#requestPrimedType($requestAverage $requestPrimedAverage)">
+                    Requests primed cache
+                    <div class='large'>$requestPrimedAverage</div>
+                </div>
+            </div>
+            <div class="span3">
+                <div class="alert alert-#loadTimeType($loadTimeAverage)">
+                    Average load time (ms)
+                    <div class='large'>$loadTimeAverage</div>
+                </div>
+            </div>
 
-	<div class="row">
-        <div class="span12">
-	<h3>Rule definition</h3>
-	<p>The rules are simple: <span class="badge badge-success">Green</span> light you don't need to do anything (of course there could still be things you can do to get better perfomance). <span class="badge badge-warning">Yellow</span> means that you should look into this, and guess what, <span class="badge badge-important">red</span> means that something is bad.</p>
-	<ul>
-	<li><b><a href="http://developer.yahoo.com/performance/rules.html/" target="_blank">Yslow</a> standard rules</b>: Over 90 is good, between 80-90 is not so good, and below 80 is bad, really bad.</li>
-	<li><b>The number of requests</b>:Below 25 is good, between 25-50 is something you should look into and above 50 is bad.</li>
-	<li><b>The weight of a page</b>:Below 1 mb is ok (but really to large for mobile), between 1-1.5 mb is something you should investigate & heavier is bad.</li>
-	<li><b>The documnet weight</b>:Below 10 kb is good (gzipped), between 10-15 is ok (but can be better) and above is bad.A small document is good for mobile.</li> 
-	<li><b>The number of javascripts</b>: Two or less is good, up to 4 means you should look into it and more than 4 means you need to fix it.</li>
-	<li><b>The number of stylesheets</b>: One is good, more than five is really bad.</li>
-	<li><b>The number of stylesheet images</b>:One is good, above four is bad.</li>
-	<li><b>The number of requests for a primed cache</b>:2 requests is good, else if not 90% of the request are cached, it is bad </li>
-	<li><b>The load time</b>:Below 3000 ms is ok, more than 4000 ms is bad.</li>
-	</ul>
-	</div>
-	</div>	
+        </div>
 
-	</div>
-	</div>
+        <div class="row">
+            <div class="span12">
+                <h3>Rule definition</h3>
+                <p>
+                    The rules are simple:
+                    <span class="badge badge-success">Green</span>
+                    light you don't need to do anything (of course there could still be things you can do to get better perfomance).
+                    <span class="badge badge-warning">Yellow</span>
+                    means that you should look into this, and guess what,
+                    <span class="badge badge-important">red</span>
+                    means that something is bad.
+                </p>
+                <ul>
+                    <li> <b><a href="http://developer.yahoo.com/performance/rules.html/" target="_blank">Yslow</a>
+                            standard rules</b> 
+                        : Over 90 is good, between 80-90 is not so good, and below 80 is bad, really bad.
+                    </li>
+                    <li> <b>The number of requests</b>
+                        :Below 25 is good, between 25-50 is something you should look into and above 50 is bad.
+                    </li>
+                    <li>
+                        <b>The weight of a page</b>
+                        :Below 1 mb is ok (but really to large for mobile), between 1-1.5 mb is something you should investigate & heavier is bad.
+                    </li>
+                    <li>
+                        <b>The documnet weight</b>
+                        :Below 10 kb is good (gzipped), between 10-15 is ok (but can be better) and above is bad.A small document is good for mobile.
+                    </li>
+                    <li>
+                        <b>The number of javascripts</b>
+                        : Two or less is good, up to 4 means you should look into it and more than 4 means you need to fix it.
+                    </li>
+                    <li>
+                        <b>The number of stylesheets</b>
+                        : One is good, more than five is really bad.
+                    </li>
+                    <li>
+                        <b>The number of stylesheet images</b>
+                        :One is good, above four is bad.
+                    </li>
+                    <li>
+                        <b>The number of requests for a primed cache</b>
+                        :2 requests is good, else if not 90% of the request are cached, it is bad
+                    </li>
+                    <li>
+                        <b>The load time</b>
+                        :Below 3000 ms is ok, more than 4000 ms is bad.
+                    </li>
+                </ul>
+            </div>
+        </div>
 
-        
-#parse("report/velocity/footer.vm")       
-        
-        
+    </div>
+</div>
+#parse("report/velocity/footer.vm")
