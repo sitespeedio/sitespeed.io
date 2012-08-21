@@ -10,18 +10,33 @@
   <link rel="stylesheet" href="$!{pathToIncludes}css/bootstrap.min.css">
 
   <style type="text/css">
-      body {
+    body {
         padding-top: 55px;
         padding-bottom: 40px;
       }
 
       .navbar .nav > li > a {
       font-weight: bold;
+    color:white;
       }
+
+/* hacks because bug in bootstrap customize*/
+.navbar .nav>li>a:focus,.navbar .nav>li>a:hover {
+color:white;
+}
+
+.navbar .brand {
+color:white;
+}
+
+.navbar .nav>.active>a,.navbar .nav>.active>a:hover,.navbar .nav>.active>a:focus{
+color:white;
+}
+
 
     footer p {
     text-align: center;
-}
+    }
 
       .large {
       font-family: Tahoma,Impact,Verdana,sans-serif;
@@ -29,6 +44,7 @@
       line-height: 38px;
       font-weight:bold;
       }
+
 
     </style>
 
