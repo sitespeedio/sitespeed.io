@@ -1,5 +1,5 @@
-
 #parse("report/velocity/header.vm")
+#parse("report/velocity/macros.vm")
 <div class="row">
     <div class="span12">
 
@@ -76,7 +76,9 @@
 
         <tbody>
             #foreach ($results in $document.getRootElement().getChildren())
-            <tr>
+	    #set($yslow = $results.getChild("o").getValue())
+
+            <tr class="#scoreType($math.toInteger($yslow))">
                 <td>
                     #set($file = $results.getAttribute("filename").getValue())
                      #set($file = $file.concat(".html"))
