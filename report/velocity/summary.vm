@@ -109,7 +109,7 @@
                         :Below 1 mb is ok (but really to large for mobile), between 1-1.5 mb is something you should investigate & heavier is bad.
                     </li>
                     <li>
-                        <b>The documnet weight</b>
+                        <b>The document weight</b>
                         :Below 10 kb is good (gzipped), between 10-15 is ok (but can be better) and above is bad.A small document is good for mobile.
                     </li>
                     <li>
