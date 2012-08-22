@@ -7,6 +7,15 @@
 warning#else
 error#end#end
 
+## Verify the Yslow score, over 90 is good
+## Fix for bootrrap, different class names, different areas
+## this is for the badge
+#macro( scoreTypeBadge $score )
+#if ($score>89.99)success#elseif ($score>80)
+warning#else
+important#end#end
+
+
 ## Verify number of JS, 2 is ok (analythics & one combined :)		
 #macro ( jsType $js )
 #if ($js<3)success#elseif ($js<5)
