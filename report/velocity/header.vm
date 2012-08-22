@@ -13,39 +13,20 @@
     body {
         padding-top: 55px;
         padding-bottom: 40px;
-      }
-
-      .navbar .nav > li > a {
+    }
+    .navbar .nav > li > a {
       font-weight: bold;
-    color:white;
-      }
-
-/* hacks because bug in bootstrap customize*/
-.navbar .nav>li>a:focus,.navbar .nav>li>a:hover {
-color:white;
-}
-
-.navbar .brand {
-color:white;
-}
-
-.navbar .nav>.active>a,.navbar .nav>.active>a:hover,.navbar .nav>.active>a:focus{
-color:white;
-}
-
-
+      color:white;
+    }
     footer p {
     text-align: center;
     }
-
-      .large {
+    .large {
       font-family: Tahoma,Impact,Verdana,sans-serif;
       font-size: 32px;
       line-height: 38px;
       font-weight:bold;
-      }
-
-
+    }
     </style>
 
   <link rel="shortcut icon" href="img/favicon.png">
