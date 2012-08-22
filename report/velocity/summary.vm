@@ -43,13 +43,13 @@
             </div>
             <div class="span3">
                 <div class="alert alert-#jsType($jsAverage)">
-                    Average number of js
+                    Average js
                     <div class='large'>$jsAverage</div>
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#cssType($cssAverage)">
-                    Average number of css
+                    Average css
                     <div class='large'>$cssAverage</div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
             </div>
             <div class="span3">
                 <div class="alert alert-#imageType($imageAverage)">
-                    Average number of images
+                    Average images
                     <div class='large'>$imageAverage</div>
                 </div>
             </div>
