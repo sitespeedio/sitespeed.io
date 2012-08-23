@@ -27,6 +27,11 @@
       line-height: 38px;
       font-weight:bold;
     }
+    .nobreak {
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    }
     </style>
 
   <link rel="shortcut icon" href="img/favicon.png">

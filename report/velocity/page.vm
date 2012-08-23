@@ -1,4 +1,3 @@
-
 #parse("report/velocity/header.vm")
 <div class="row">
 	<div class="span12">
@@ -9,6 +8,7 @@
 		</h2>
 
 		<h3>Yslow scores below 100</h3>
+
 		<table class="table table-condensed table-striped table-bordered" >
 			<thead>
 				<tr>
@@ -27,7 +27,7 @@
 		    				<td>$message.getName()</td>
 		    				<td>$message.getChild("score").getValue()</td>
 		    				<td>$message.getChild("message").getValue()</td>
-		    				<td>
+		    				<td class="nobreak" style="max-width: 450px;">
 		    					#foreach ($item in $message.getChild("components").getChildren("item"))
 		    					<p>$item.getValue()</p>
 		    					#end
@@ -38,6 +38,7 @@
 	 #end
 				</tbody>
 			</table>
+
 
 			<h3>Page assets</h3>
 			<table class="table table-condensed table-striped table-bordered">
@@ -52,17 +53,16 @@
 					#foreach ($asset in $document.getRootElement().getChild("comps").getChildren())
 					<tr>
 
-						<td>
-							<a href="$asset.getChild("url").getValue()" target="_blank">$asset.getChild("url").getValue()</a>
-							<a rel="tooltip" target="_blank" data-placement="right" data-html="true" href="$asset.getChild("url").getValue()" data-original-title="Response headers: <br/>
-							#foreach ($response in $asset.getChild("headers").getChild("response").getChildren())
+						<td class="nobreak" style="max-width: 500px;">
+							
+<a rel="tooltip" target="_blank" data-placement="right" data-html="true" href="$asset.getChild("url").getValue()" data-original-title="Response headers: <br/>
+                                                        #foreach ($response in $asset.getChild("headers").getChild("response").getChildren())
                                 $esc.html($response.getName()) : $esc.html($response.getValue())
-							<br/>
-							#end 
-                        "> <i class="icon-info-sign"></i>
-						</a>
+                                                        <br/>
+                                                        #end
+                        "><i class="icon-zoom-in"></i></a>
 
-					</td>
+<a href="$asset.getChild("url").getValue()" title="$asset.getChild("url").getValue()" target="_blank">$asset.getChild("url").getValue()</a></td>
 					<td>$asset.getChild("type").getValue()</td>
 					<td>$asset.getChild("size").getValue()</td>
 

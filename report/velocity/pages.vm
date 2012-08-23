@@ -79,18 +79,20 @@
 	    #set($yslow = $results.getChild("o").getValue())
 
             <tr>
-                <td>
+                <td class="nobreak" style="max-width: 280px;">
                     #set($file = $results.getAttribute("filename").getValue())
                      #set($file = $file.concat(".html"))
-                    <a href="pages/$file" title="See all page data ">$results.getChild("u").getValue()</a>
-                    <a rel="tooltip" data-placement="right" data-html="true" href="pages/$file" data-original-title="Response headers: <br/>
+
+		     <a rel="tooltip" data-placement="right" data-html="true" href="pages/$file" data-original-title="Response headers: <br/>
                     #foreach ($response in $results.getChild("comps").getChild("item").getChild("headers").getChild("response").getChildren())
                             $esc.html($response.getName()) : $esc.html($response.getValue())
                     <br/>
-                    #end 
+                    #end
                         "> <i class="icon-zoom-in"></i>
-                </a>
-            </td>
+                    </a>
+
+                    <a href="pages/$file" title="$results.getChild("u").getValue()">$results.getChild("u").getValue()</a>
+                </td>
             <td>
                 #if($!{results.getChild("stats").getChild("js").getChild("r")})
                         $results.getChild("stats").getChild("js").getChild("r").getValue()
