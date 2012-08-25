@@ -34,7 +34,7 @@
     }
     </style>
 
-  <link rel="shortcut icon" href="img/favicon.png">
+  <link rel="shortcut icon" href="$!{pathToIncludes}img/favicon.png">
 
   <!--[if lt IE 9]>
   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
