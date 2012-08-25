@@ -1,0 +1,18 @@
+Sitespeed.io 0.8
+------------------------
+
+
+Sitespeed.io 0.7
+------------------------
+
+Enhancements:
+* Upgraded to jquery 1.8
+* Upgraded Twitter Bootstrap to 2.1
+* Better title tag on result pages
+
+Defects:
+* Fixed so that long url:s don't break
+* Sometimes output xml was broken
+* Only fetch content of type html
+
+

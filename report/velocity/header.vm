@@ -34,7 +34,7 @@
     }
     </style>
 
-  <link rel="shortcut icon" href="img/favicon.png">
+  <link rel="shortcut icon" href="$!{pathToIncludes}img/favicon.png">
 
   <!--[if lt IE 9]>
   <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -45,7 +45,7 @@
     <div class="navbar-inner">
       <div class="container">
 
-        <a class="brand" href="http://sitespeed.io" title="How speedy is your site?">sitespeed.io</a>
+        <a class="brand" href="#" title="How speedy is your site?">sitespeed.io</a>
         <div class="nav-collapse">
           <ul class="nav">
             <li #if( $pageMenu == "summary" ) class="active" #end>

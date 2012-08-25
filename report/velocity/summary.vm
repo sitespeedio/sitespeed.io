@@ -15,7 +15,7 @@
         <div class="row">
             <div class="span6">
                 <div class="alert alert-#scoreType($scoreAverage)">
-                    Average Yslow score
+                    Average Yslow/sitespeed score
                     <div class='large'>$scoreAverage</div>
                 </div>
 
@@ -97,8 +97,8 @@
                     means that something is bad.
                 </p>
                 <ul>
-                    <li> <b><a href="http://developer.yahoo.com/performance/rules.html/" target="_blank">Yslow</a>
-                            standard rules</b>:  
+                    <li> <b><a href="http://sitespeed.io/rules/" target="_blank">Modified</a> Yslow
+                            rules</b>:  
                         Over 90 is good, between 80-90 is not so good, and below 80 is bad, really bad.
                     </li>
                     <li> <b>The number of requests</b>: 

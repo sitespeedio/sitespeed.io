@@ -111,7 +111,7 @@ pagefilename=1
 for i in "${result[@]}"
 do
     echo "Analyzing $i"
-    phantomjs dependencies/yslow-3.1.1.js -f xml "$i" >>"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"
+    phantomjs dependencies/yslow-3.1.4-sitespeed.js -r sitespeed -f xml "$i" >>"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"
     # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
     sed '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml >> $REPORT_DATA_PAGES_DIR/bup || exit 1
     mv $REPORT_DATA_PAGES_DIR/bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml
