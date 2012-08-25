@@ -5920,6 +5920,33 @@ YSLOW.registerRule({
   }
 });
 
+YSLOW.registerRule({
+  id: 'avoidfont',
+  name: 'Try to avoid fonts',
+  info: "Fonts slow down the page load, try to avoid them",
+  category: ['css'],
+  config: {points: 10},
+  url: 'http://sitespeed.io/rules/#avoidfonts',
+
+  lint: function (doc, cset, config) {
+
+    var comps = cset.getComponentsByType('font'),
+    score;
+
+    score = 100 - comps.length * parseInt(config.points, 10);
+
+    var message = comps.length === 0 ? '' :
+      'The following ' + YSLOW.util.plural('%num% font%s%', comps.length) +
+        ' will add extra overhead.';    
+
+    return {
+      score: score,
+      message: message,
+      components: comps
+    };
+  }
+});
+
 
 YSLOW.registerRuleset({ 
     id: 'sitespeed',
@@ -5959,7 +5986,8 @@ YSLOW.registerRuleset({
 	      _3po_jsonce: {},
         cssprint: {},
         cssinheaddomain: {},
-        syncjsinhead: {}
+        syncjsinhead: {},
+        avoidfont: {}
     },
     weights: {
         ynumreq: 8,
@@ -5988,7 +6016,8 @@ YSLOW.registerRuleset({
 		    _3po_jsonce: 10,
         cssprint: 1,
         cssinheaddomain: 8,
-        syncjsinhead: 10	
+        syncjsinhead: 10,
+        avoidfont: 1	
     }
 
 });/**
