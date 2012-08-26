@@ -7,7 +7,7 @@
             Pages ($document.getRootElement().getChildren().size()) - $document.getRootElement().getAttribute("url").getValue()
         </h2>
 
-        <table class="table table-condensed table-striped table-bordered" id="pagesTable" >
+        <table class="table table-hover table-condensed table-striped table-bordered" id="pagesTable" >
             <thead>
                 <tr>
                     <th>
