@@ -40,6 +40,16 @@ If your site is behind basic auth, you can fetch it by
 ./sitespeed.io http://github.com/hidden/ 1 login password
 </code>
 
+Roadmap
+-------
+Quite much work to do:
+
+* Each page tested should also genreate a HAR file, and each HAR-file should be parsed to HTML, so you can see access flow.
+* The analyze of the page, should be threaded, so it can be done faster (a.k.a running yslow.js)
+* The bash script should be moved to java, hate testing in bash
+* Add test:s
+
+
 Mad props
 -------
 * Marcel Duran for Yslow https://github.com/marcelduran/yslow/  without it sitespeed would be nothing :)
