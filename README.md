@@ -44,10 +44,11 @@ Roadmap
 -------
 Quite much work to do:
 
-* Each page tested should also genreate a HAR file, and each HAR-file should be parsed to HTML, so you can see access flow.
 * The analyze of the page, should be threaded, so it can be done faster (a.k.a running yslow.js)
 * The bash script should be moved to java, hate testing in bash
 * Add test:s
+* Each page tested should also generate a HAR file, and each HAR-file should be parsed to HTML, so you can see access flow.
+
 
 
 Mad props
