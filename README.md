@@ -1,13 +1,13 @@
 <a href="http://sitespeed.io" target="_blank">Sitespeed.io</a> - how speedy is your site? [![Build Status](https://secure.travis-ci.org/soulgalore/sitespeed.io.png?branch=master)](http://travis-ci.org/soulgalore/sitespeed.io)
 =============
 
-Sitespeed.io is a tool that analyzes web sites and give you information of why they are slow and how you can optimize the web prformance. Today yslow rules are used in combination with other best practices. 
+Sitespeed.io is a tool that analyzes web sites and give you information of why they are slow and how you can optimize the web performance. Today yslow rules are used in combination with other best practices. 
 
 What do sitespeed.io do?   
 -------
 You give sitespeed a start point, the first page on your site, where you want it to start crawl. By default, one level will be crawled, meaning all links (on the same domain as the main page), will be fetched & later analyzed. 
 
-The output is by default HTML. One summary page, that on high level will give you input about your speed of your site. You can also see all the individual pages and their assets.
+The output is by default HTML. One summary page, that on high level will give you input about your speed of your site. Sitespeed uses modified Yslow rules to evaluate the page, the rules can be found here: https://github.com/soulgalore/yslow/blob/master/src/common/rulesets/ruleset_sitespeed.js
 
 The flow looks something like this:
 
@@ -42,13 +42,7 @@ If your site is behind basic auth, you can fetch it by
 
 Roadmap
 -------
-Quite much work to do:
-
-* The analyze of the page, should be threaded, so it can be done faster (a.k.a running yslow.js)
-* The bash script should be moved to java, hate testing in bash
-* Add test:s
-* Each page tested should also generate a HAR file, and each HAR-file should be parsed to HTML, so you can see access flow.
-
+See the issue list.
 
 
 Mad props
