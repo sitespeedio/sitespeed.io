@@ -122,7 +122,7 @@
                     </li>
                     <li>
                         <b>The number of stylesheet images</b>: 
-                        One is good, above four is bad.
+                        Two is good, above four is bad.
                     </li>
                     <li>
                         <b>The number of requests for a primed cache</b>: 
