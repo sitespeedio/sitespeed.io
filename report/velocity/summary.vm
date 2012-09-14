@@ -128,11 +128,7 @@
                         <b>The number of requests for a primed cache</b>: 
                         2 requests is good, else if not 90% of the request are cached, it is bad
                     </li>
-                    <li>
-                        <b>The load time</b>: 
-                        Below 3000 ms is ok, more than 4000 ms is bad.
-                    </li>
-                </ul>
+                 </ul>
             </div>
         </div>
 
