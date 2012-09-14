@@ -8,7 +8,7 @@ warning#else
 error#end#end
 
 ## Verify the Yslow score, over 90 is good
-## Fix for bootrrap, different class names, different areas
+## Fix for bootstrap, different class names, different areas
 ## this is for the badge
 #macro( scoreTypeBadge $score )
 #if ($score>89.99)success#elseif ($score>80)
@@ -24,7 +24,7 @@ error#end#end
 
 ## Verify number of CSS, yes have one combined
 #macro ( cssType $css )
-#if ($css<2)success#elseif ($css<3)
+#if ($css<3)success#elseif ($css<4)
 warning#else
 error#end#end
 
@@ -43,12 +43,6 @@ error#end#end
 ## Verify number of images on page, below 25 is ok for now
 #macro ( imageType $image )
 #if ($image<25)success#elseif ($image<40)
-warning#else
-error#end#end
-
-## Verify the load time, not a good measure, below 3 sek is ok ..
-#macro ( loadTimeType $lt )
-#if ($lt<3000)success#elseif ($lt<4000)
 warning#else
 error#end#end
 
