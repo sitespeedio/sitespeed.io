@@ -76,7 +76,7 @@
                 </div>
             </div>
             <div class="span3">
-                <div class="alert alert-#loadTimeType($loadTimeAverage)">
+                <div class="">
                     Average load time (ms)
                     <div class='large'>$loadTimeAverage</div>
                 </div>
