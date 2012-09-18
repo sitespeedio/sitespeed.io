@@ -67,6 +67,10 @@
                     <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The Yslow grade for this page, 100 is perfect, 0 is incredible bad">Yslow grade</a>
                 </th>
 
+		<th>
+                    <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="Frontend single point of failure">Spof</a>
+                </th>
+
                 <th>
                     <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="Test this page on http://webpagetest.org">wpt</a>
                 </th>
@@ -143,10 +147,16 @@
             <td>$results.getChild("lt").getValue()</td>
 
             <td><span class="badge badge-#scoreTypeBadge($math.toInteger($yslow))">$yslow</span></td>
-            <td>
+            
+	    <td>
+		$results.getChild("g").getChild("spof").getChild("components").getChildren("item").size()
+            </td>
+
+	    <td>
                 <a href="http://www.webpagetest.org/?url=$results.getChild("u").getValue()" target="_blank" title="Check this page on webpagetest.org"> <i class="icon-time"></i>
                 </a>
             </td>
+
         </tr>
         #end
     </tbody>
