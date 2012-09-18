@@ -71,7 +71,7 @@ error#end#end
 #if ($spof<1)success#else
 error#end#end
 
-# Verify the js loaded sync in head, if one or more, error!
+## Verify the js loaded sync in head, if one or more, error!
 #macro ( totalJsSyncInHeadType $js )
 #if ($js<1)success#else
 error#end#end        
