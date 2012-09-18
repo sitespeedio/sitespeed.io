@@ -63,12 +63,16 @@
                     <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The page load time in ms">page load time</a>
                 </th>
 
-                <th>
-                    <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The Yslow grade for this page, 100 is perfect, 0 is incredible bad">Yslow grade</a>
-                </th>
-
 		<th>
-                    <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="Frontend single point of failure">Spof</a>
+                    <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="Frontend single point of failure">spof</a>
+		 </th>
+
+		 <th>
+                    <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The number of js loaded sync inside of head">sync js</a>
+		 </th>
+
+                <th>
+                    <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The Yslow/Sitespeed grade for this page, 100 is perfect, 0 is incredible bad">grade</a>
                 </th>
 
                 <th>
@@ -146,12 +150,39 @@
 
             <td>$results.getChild("lt").getValue()</td>
 
-            <td><span class="badge badge-#scoreTypeBadge($math.toInteger($yslow))">$yslow</span></td>
-            
 	    <td>
+		#if ($results.getChild("g").getChild("spof").getChild("components").getChildren("item").size() > 0)
+		<a rel="tooltip" data-placement="right" data-html="true" href="#" data-original-title="Spof in head: <br/>
+                    #foreach ($spof in $results.getChild("g").getChild("spof").getChild("components").getChildren("item"))
+                            $esc.html($response.getValue())
+                    <br/>
+                    #end
+                        "> 
+			$results.getChild("g").getChild("spof").getChild("components").getChildren("item").size()
+                    </a>
+		#else
 		$results.getChild("g").getChild("spof").getChild("components").getChildren("item").size()
+		#end    
             </td>
 
+	    <td>
+		#if ($results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size() >0)
+		<a rel="tooltip" data-placement="right" data-html="true" href="#" data-original-title="Js sync in head: <br/>
+                    #foreach ($spof in $results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item"))
+                            $esc.html($response.getValue())
+                    <br/>
+                    #end
+                        ">
+			$results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()
+                    </a>
+		#else
+		$results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()
+		#end    
+
+	    </td>
+
+            <td><span class="badge badge-#scoreTypeBadge($math.toInteger($yslow))">$yslow</span></td>
+            
 	    <td>
                 <a href="http://www.webpagetest.org/?url=$results.getChild("u").getValue()" target="_blank" title="Check this page on webpagetest.org"> <i class="icon-time"></i>
                 </a>
