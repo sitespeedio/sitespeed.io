@@ -5650,6 +5650,7 @@ YSLOW.registerRuleset({
 });
 /*
 Rule borrowed from Stoyan Stefanov
+https://github.com/stoyan/yslow
 */
 
 var YSLOW3PO = {};
@@ -5676,6 +5677,7 @@ YSLOW3PO.is3p = function (url) {
   }
   return false;
 }
+
 
 
 YSLOW.registerRule({
@@ -5777,6 +5779,31 @@ YSLOW.registerRule({
   }
 });
 
+/* End of loan */
+
+
+var SITESPEEDHELP = {};
+  
+// Borrowed from https://github.com/pmeenan/spof-o-matic/blob/master/src/background.js  
+// Determining the top-level-domain for a given host is way too complex to do right
+// (you need a full list of them basically)
+// We are going to simplify it and assume anything that is .co.xx will have 3 parts
+// and everything else will have 2
+
+SITESPEEDHELP.getTLD =  function (host){
+  var tld = host;
+  var noSecondaries = /\.(gov|ac|mil|net|org|co)\.\w\w$/i;
+  if (host.match(noSecondaries)) {
+    var threePart = /[\w]+\.[\w]+\.[\w]+$/i;
+    tld = host.match(threePart).toString();
+  } else {
+    var twoPart = /[\w]+\.[\w]+$/i;
+    tld = host.match(twoPart).toString();
+  }
+  return tld;
+};
+
+/* End of loan*/
 
 YSLOW.registerRule({
   id: 'cssprint',
@@ -5832,7 +5859,7 @@ YSLOW.registerRule({
 
   lint: function (doc, cset, config) {
  
-  var scripts = doc.getElementsByTagName('link'), 
+  var css = doc.getElementsByTagName('link'), 
     comps = cset.getComponentsByType('css'),
     comp, docdomain, src, offenders = {}, 
     offender_comps = [],  
@@ -5840,8 +5867,8 @@ YSLOW.registerRule({
   
     docdomain = YSLOW.util.getHostname(cset.doc_comp.url);
 
-    for (i = 0, len = scripts.length; i < len; i++) {
-      comp = scripts[i];
+    for (i = 0, len = css.length; i < len; i++) {
+      comp = css[i];
             src = comp.href || comp.getAttribute('href');
             if (src && (comp.rel === 'stylesheet' || comp.type === 'text/css')) {
                if (comp.parentNode.tagName === 'HEAD') {
@@ -5873,6 +5900,9 @@ YSLOW.registerRule({
 });
 
 
+/** Alternative to yjsbottom rule that doesn't seems to work right now 
+with phantomjs 
+*/
 YSLOW.registerRule({
   id: 'syncjsinhead',
   name: 'Never load JS synchronously in head',
@@ -5946,10 +5976,126 @@ YSLOW.registerRule({
   }
 });
 
+YSLOW.registerRule({
+  id: 'totalrequests',
+  name: 'Low number of total requests is good',
+  info: "The more number of requests, the slower the page",
+  category: ['misc'],
+  config: {points: 5},
+  url: 'http://sitespeed.io/rules/#totalrequests',
+
+  lint: function (doc, cset, config) {
+
+
+    var types = ['js', 'css', 'image', 'cssimage', 'font', 'flash', 'favicon', 'doc','iframe'];
+    var comps = cset.getComponentsByType(types);
+    var score;
+
+    if (comps.length < 26) {
+      score = 100;
+    }
+    else {
+      score = score + 26 - comps.length;
+    }
+
+    if (score<0) score = 0;
+    
+    var message = score === 100 ? '' :
+      'The total number of requests:' + comps.length + 
+        ' are too many';    
+    var offenders = score === 100 ? '' : comps;    
+
+    return {
+      score: score,
+      message: message,
+      components: offenders
+    };
+  }
+});
+
+
+YSLOW.registerRule({
+  id: 'spof',
+  name: 'Frontend single point of failure',
+  info: "A page should not have a single point of failure, meaning not load thingss in head that you are not responsible for",
+  category: ['misc'],
+  config: {points: 10},
+  url: 'http://sitespeed.io/rules/#spof',
+
+  lint: function (doc, cset, config) {
+
+    var css = doc.getElementsByTagName('link'), 
+    csscomps = cset.getComponentsByType('css'),
+    comp, docdomaintld, src, offenders = {}, 
+    offender_comps = [],  
+    scripts = doc.getElementsByTagName('script'), 
+    jscomps = cset.getComponentsByType('js'),
+    // fontcomps = cset.getComponentsByType('font'),
+    score = 100;
+  
+    docdomaintld = SITESPEEDHELP.getTLD(YSLOW.util.getHostname(cset.doc_comp.url));
+
+    // check for js & css loaded in head, from another domain (not subdomain)
+    // start with css
+    for (i = 0, len = css.length; i < len; i++) {
+      csscomp = css[i];
+            src = csscomp.href || csscomp.getAttribute('href');
+            if (src && (csscomp.rel === 'stylesheet' || csscomp.type === 'text/css')) {
+               if (csscomp.parentNode.tagName === 'HEAD') {
+                offenders[src] = 1;
+               }
+
+            }
+        }
+
+    for (var i = 0; i < csscomps.length; i++) {
+      if (offenders[csscomps[i].url]) {
+        if (docdomaintld !== SITESPEEDHELP.getTLD(YSLOW.util.getHostname(csscomps[i].url))) {
+          offender_comps.push(csscomps[i]);
+        }
+      }
+    }
+
+    // now the js
+  for (i = 0, len = scripts.length; i < len; i++) {
+      jscomp = scripts[i];
+      if (jscomp.parentNode.tagName === 'HEAD') {
+        if (jscomp.src) {
+          if (!jscomp.async && !jscomp.defer) {
+            offenders[jscomp.src] = 1;
+          }
+        }
+      }
+    }
+
+    for (var i = 0; i < jscomps.length; i++) {
+      if (offenders[jscomps[i].url]) {
+         if (docdomaintld !== SITESPEEDHELP.getTLD(YSLOW.util.getHostname(jscomps[i].url))) {
+          offender_comps.push(jscomps[i]);
+        }
+      }
+    }
+
+    var message = offender_comps.length === 0 ? '' :
+      'The following ' + YSLOW.util.plural('%num% assets', offender_comps.length) +
+        ' are loaded from a different domain inside head and could be a single point of failure. ';
+    score -= offender_comps.length * parseInt(config.points, 10);
+
+
+    return {
+      score: score,
+      message: message,
+      components: offender_comps
+    };
+  }
+});
+
+
+
 
 YSLOW.registerRuleset({ 
-    id: 'sitespeed',
-    name: 'Sitespeed.io rules v0.8',
+    id: 'sitespeed.io',
+    name: 'Sitespeed.io rules v0.9',
     rules: {
         ynumreq: {
 	         // We are a little harder than standard yslow
@@ -5958,7 +6104,7 @@ YSLOW.registerRuleset({
 	         // number of external stylesheets allowed before we start penalizing
 	         max_css: 2,
 	         // number of background images allowed before we start penalizing
-	         max_cssimages: 3
+	         max_cssimages: 2
         },
         yemptysrc: {},
         yexpires: {},
@@ -5986,7 +6132,9 @@ YSLOW.registerRuleset({
         cssprint: {},
         cssinheaddomain: {},
         syncjsinhead: {},
-        avoidfont: {}
+        avoidfont: {},
+        totalrequests: {},
+        spof: {}
     },
     weights: {
         ynumreq: 8,
@@ -6016,7 +6164,9 @@ YSLOW.registerRuleset({
         cssprint: 1,
         cssinheaddomain: 8,
         syncjsinhead: 10,
-        avoidfont: 1	
+        avoidfont: 1,
+        totalrequests: 5,
+        spof: 15
     }
 
 });/**
