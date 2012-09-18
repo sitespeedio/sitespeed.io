@@ -14,8 +14,9 @@
 #set($nrOfTotalRequestsPrimedCache = 0)
 #set($totalPageWeight = 0)
 #set($totalDocumentWeight = 0)
-#set($totalLoadTime = 0)
 #set($totalScore = 0)    
+#set($totalSpof = 0)
+#set($totalJsSyncInHead = 0)
 
 #foreach ($results in $document.getRootElement().getChildren())
     
@@ -47,18 +48,23 @@
         #set ($totalPageWeight = $math.add($totalPageWeight, $results.getChild("w").getValue()))
     #end
 
-    #if($!{results.getChild("lt")})
-        #set ($totalLoadTime = $math.add($totalLoadTime, $results.getChild("lt").getValue()))
-    #end
-
     #if($!{results.getChild("o")})
         #set ($totalScore = $math.add($totalScore, $results.getChild("o").getValue()))
     #end
 
     #if($!{results.getChild("stats").getChild("doc").getChild("w")})
         #set ($totalDocumentWeight = $math.add($totalDocumentWeight, $results.getChild("stats").getChild("doc").getChild("w").getValue()))
-        #end
+    #end
 
+    #if($!{results.getChild("g").getChild("spof").getChild("score")})
+	#if ($results.getChild("g").getChild("spof").getChild("score").getValue() != 100)
+ 	       #set ($totalSpof = $math.add($totalSpof, 1))
+	#end       
+    #end
+
+    #if($!{results.getChild("g").getChild("syncjsinhead").getChild("components")})
+	 #set ($totalJsSyncInHead = $math.add($totalJsSyncInHead, $results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()))
+    #end
 #end
       
 ##  Create averages   
@@ -71,4 +77,4 @@
 #set ($requestPrimedAverage = $math.roundTo($nrOfDecimals,$math.div($nrOfTotalRequestsPrimedCache,$nrOfPages)))
 #set ($pageWeightAverage = $math.roundTo($nrOfDecimals,$math.div($totalPageWeight,$nrOfPages)))
 #set ($totalDocumentWeightAverage = $math.roundTo($nrOfDecimals,$math.div($totalDocumentWeight,$nrOfPages)))
-#set ($loadTimeAverage = $math.roundTo($nrOfDecimals,$math.div($totalLoadTime,$nrOfPages)))
+#set ($totalJsSyncInHeadAverage = $math.roundTo($nrOfDecimals,$math.div($totalJsSyncInHead,$nrOfPages)))

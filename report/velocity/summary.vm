@@ -76,13 +76,24 @@
                 </div>
             </div>
             <div class="span3">
-                <div class="">
-                    Average load time (ms)
-                    <div class='large'>$loadTimeAverage</div>
+                <div class="alert alert-#spofType($totalSpof)">
+                    Pages with SPOF
+                    <div class='large'>$totalSpof</div>
                 </div>
             </div>
-
         </div>
+	
+	 <div class="row">
+            <div class="span3">
+	     	 Average js loaded sync in head
+	    	 <div class='large'>$totalJsSyncInHeadAverage</div>	    
+	    </div>
+	    <div class="span3">
+            
+	    </div>
+	    <div class="span3">
+            </div>
+	</div>    
 
         <div class="row">
             <div class="span12">
