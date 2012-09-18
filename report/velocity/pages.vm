@@ -154,7 +154,7 @@
 		#if ($results.getChild("g").getChild("spof").getChild("components").getChildren("item").size() > 0)
 		<a rel="tooltip" data-placement="right" data-html="true" href="#" data-original-title="Spof in head: <br/>
                     #foreach ($spof in $results.getChild("g").getChild("spof").getChild("components").getChildren("item"))
-                            $esc.html($response.getValue())
+                            $esc.html($spof.getValue())
                     <br/>
                     #end
                         "> 
@@ -168,8 +168,8 @@
 	    <td>
 		#if ($results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size() >0)
 		<a rel="tooltip" data-placement="right" data-html="true" href="#" data-original-title="Js sync in head: <br/>
-                    #foreach ($spof in $results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item"))
-                            $esc.html($response.getValue())
+                    #foreach ($jssync in $results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item"))
+                            $esc.html($jssync.getValue())
                     <br/>
                     #end
                         ">
