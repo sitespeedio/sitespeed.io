@@ -65,4 +65,9 @@ error#end#end
 #if ($weight<10000)success#elseif ($weight<15000)
 warning#else
 error#end#end
+
+## Verify the spof, if one or more, error!
+#macro ( spofType $spof )
+#if ($spof<1)success#else
+error#end#end
         
