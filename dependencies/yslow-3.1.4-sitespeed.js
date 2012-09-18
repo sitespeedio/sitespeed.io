@@ -5839,7 +5839,7 @@ YSLOW.registerRule({
       return {
       score: score,
       message: (offenders.length > 0) ? YSLOW.util.plural(
-          'There %are% %num% print css files included on the page',
+          'There %are% %num% print css files included on the page, that should be @media query instead',
           offenders.length
       ) : '',
       components: offenders
@@ -5989,7 +5989,7 @@ YSLOW.registerRule({
 
     var types = ['js', 'css', 'image', 'cssimage', 'font', 'flash', 'favicon', 'doc','iframe'];
     var comps = cset.getComponentsByType(types);
-    var score;
+    var score = 100;
 
     if (comps.length < 26) {
       score = 100;
@@ -5999,7 +5999,7 @@ YSLOW.registerRule({
     }
 
     if (score<0) score = 0;
-    
+
     var message = score === 100 ? '' :
       'The total number of requests:' + comps.length + 
         ' are too many';    
