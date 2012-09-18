@@ -15,14 +15,14 @@
         <div class="row">
             <div class="span6">
                 <div class="alert alert-#scoreType($scoreAverage)">
-                    Average Yslow/sitespeed score
+                     Yslow/Sitespeed score (avg)
                     <div class='large'>$scoreAverage</div>
                 </div>
 
             </div>
             <div class="span6">
                 <div class="alert alert-#requestType($requestAverage)">
-                    Average number of requests
+                    Number of requests (avg)
                     <div class='large'>$requestAverage</div>
                 </div>
             </div>
@@ -31,25 +31,25 @@
         <div class="row">
             <div class="span3">
                 <div class="alert alert-#weightType($pageWeightAverage)">
-                    Total page weight (b)
+                    Total page weight (avg)
                     <div class='large'>$pageWeightAverage</div>
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#weightMobileType($totalDocumentWeightAverage)">
-                    Document page weight (b)
+                    Document page weight (avg)
                     <div class='large'>$totalDocumentWeightAverage</div>
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#jsType($jsAverage)">
-                    Average js
+                    JS (avg)
                     <div class='large'>$jsAverage</div>
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#cssType($cssAverage)">
-                    Average css
+                    CSS (avg)
                     <div class='large'>$cssAverage</div>
                 </div>
             </div>
@@ -59,19 +59,19 @@
         <div class="row">
             <div class="span3">
                 <div class="alert alert-#cssImageType($cssImageAverage)">
-                    Css images
+                    CSS images (avg)
                     <div class='large'>$cssImageAverage</div>
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#imageType($imageAverage)">
-                    Average images
+                    Images (avg)
                     <div class='large'>$imageAverage</div>
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#requestPrimedType($requestAverage $requestPrimedAverage)">
-                    Requests primed cache
+                    Requests primed cache (avg)
                     <div class='large'>$requestPrimedAverage</div>
                 </div>
             </div>
@@ -85,14 +85,17 @@
 	
 	 <div class="row">
             <div class="span3">
-	     	 Average js loaded sync in head
-	    	 <div class='large'>$totalJsSyncInHeadAverage</div>	    
+ 	    	 <div class="alert alert-#totalJsSyncInHeadType($totalJsSyncInHeadAverage)">
+	     	      JS loaded sync in head (avg)
+	    	      <div class='large'>$totalJsSyncInHeadAverage</div>	
+		  </div>    
 	    </div>
 	    <div class="span3">
             
 	    </div>
 	    <div class="span3">
-            </div>
+          
+	    </div>
 	</div>    
 
         <div class="row">
