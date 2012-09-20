@@ -23,7 +23,7 @@ if (!command -v phantomjs &> /dev/null) ; then
 fi
 
 if [ -z "$1" ]; then
-   echo "Missing url. USAGE: ${0} http[s]://host[:port][/path/] [crawl-depth] [username] [password]"
+   echo "Missing url. USAGE: ${0} http[s]://host[:port][/path/] [crawl-depth]"
    exit 1;
 fi
 
@@ -38,12 +38,6 @@ URL="$1"
 
 USER=""
 PASSWORD=""
-
-if [[ "$3" != "" && "$4" != "" ]]
-then
-	USER="--http-user=$3"
-	PASSWORD="--http-password=$4"
-fi
 
 NOW=$(date +"%Y-%m-%d-%H-%M-%S")
 DATE=$(date) 
@@ -71,7 +65,7 @@ isHTML=false
 
 echo "Will start fetching all a links ..."
 
-wget -r -l $DEPTH -nd -t $RETRIES -e robots=off --no-check-certificate --follow-tags=a --spider $USER $PASSWORD $URL 2>&1 | while read line
+wget -r -l $DEPTH -nd -t $RETRIES -e robots=off --no-check-certificate --follow-tags=a --spider $URL 2>&1 | while read line
 do
 
     # The spider option checks if a file exist, only fetch only existing
