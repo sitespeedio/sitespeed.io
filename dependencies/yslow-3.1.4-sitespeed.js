@@ -5679,7 +5679,6 @@ YSLOW3PO.is3p = function (url) {
 }
 
 
-
 YSLOW.registerRule({
   id: '_3po_asyncjs',
   name: 'Load 3rd party JS asynchronously',
@@ -5779,7 +5778,7 @@ YSLOW.registerRule({
   }
 });
 
-/* End of loan */
+/* End */
 
 
 var SITESPEEDHELP = {};
@@ -5803,11 +5802,11 @@ SITESPEEDHELP.getTLD =  function (host){
   return tld;
 };
 
-/* End of loan*/
+/* End */
 
 YSLOW.registerRule({
   id: 'cssprint',
-  name: 'Do not load print stylesheets, use @media',
+  name: 'Do not load print stylesheets, use @media type print instead',
   info: 'Loading a specific stylesheet for printing slows down the page, ' +
         'even though it is not used',
   category: ['css'],
