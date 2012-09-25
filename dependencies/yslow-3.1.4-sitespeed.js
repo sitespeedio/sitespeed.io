@@ -5905,8 +5905,8 @@ with phantomjs
 YSLOW.registerRule({
   id: 'syncjsinhead',
   name: 'Never load JS synchronously in head',
-  info: "Use the JavaScript snippets that load the JS files asynchronously in head " +
-        "in order to speed up the user experience.",
+  info: 'Use the JavaScript snippets that load the JS files asynchronously in head ' +
+        'in order to speed up the user experience.',
   category: ['js'],
   config: {points: 10},
   url: 'http://sitespeed.io/rules/#syncjsinhead',
@@ -5951,7 +5951,7 @@ YSLOW.registerRule({
 YSLOW.registerRule({
   id: 'avoidfont',
   name: 'Try to avoid fonts',
-  info: "Fonts slow down the page load, try to avoid them",
+  info: 'Fonts slow down the page load, try to avoid them',
   category: ['css'],
   config: {points: 10},
   url: 'http://sitespeed.io/rules/#avoidfonts',
@@ -5978,7 +5978,7 @@ YSLOW.registerRule({
 YSLOW.registerRule({
   id: 'totalrequests',
   name: 'Low number of total requests is good',
-  info: "The more number of requests, the slower the page",
+  info: 'The more number of requests, the slower the page',
   category: ['misc'],
   config: {points: 5},
   url: 'http://sitespeed.io/rules/#totalrequests',
@@ -6016,7 +6016,7 @@ YSLOW.registerRule({
 YSLOW.registerRule({
   id: 'spof',
   name: 'Frontend single point of failure',
-  info: "A page should not have a single point of failure, meaning not load thingss in head that you are not responsible for",
+  info: 'A page should not have a single point of failure, meaning not load thingss in head that you are not responsible for',
   category: ['misc'],
   config: {points: 10},
   url: 'http://sitespeed.io/rules/#spof',
@@ -6090,6 +6090,74 @@ YSLOW.registerRule({
 });
 
 
+/**
+Modified version of yexpires, skip standard analythics scripts that you couldn't fix yourself (not 100% but ...)
+*/
+
+
+YSLOW.registerRule({
+    id: 'expiresmod',
+    name: 'Check for expires headers',
+    info: 'All static components of a page should have a far future expire headers. However, analythics scripts will not give you bad points.',
+    url: 'http://sitespeed.io/rules/#expires',
+    category: ['server'],
+
+    config: {
+        // how many points to take for each component without Expires header
+        points: 11,
+        // 2 days = 2 * 24 * 60 * 60 seconds, how far is far enough
+        howfar: 172800,
+        // component types to be inspected for expires headers
+        types: ['css', 'js', 'image', 'cssimage', 'flash', 'favicon'],
+        skip: ['https://secure.gaug.es/track.js','https://ssl.google-analytics.com/ga.js','http://www.google-analytics.com/ga.js']
+    },
+
+    lint: function (doc, cset, config) {
+        var ts, i, expiration, score, len, message, 
+            // far-ness in milliseconds
+            far = parseInt(config.howfar, 10) * 1000,
+            offenders = [],
+            skipped = [],
+            report = [],
+            comps = cset.getComponentsByType(config.types);
+
+        for (i = 0, len = comps.length; i < len; i += 1) {
+            expiration = comps[i].expires;
+            if (typeof expiration === 'object' &&
+                    typeof expiration.getTime === 'function') {
+                // looks like a Date object
+                ts = new Date().getTime();
+                if (expiration.getTime() > ts + far) {
+                    continue;
+                }
+                  // if in the ok list, just skip it
+                 else if (config.skip.indexOf(comps[i].url) > 1 ) {
+                 skipped.push(comps[i]);
+                 continue;
+                }
+
+            }
+
+              offenders.push(comps[i]);
+        }
+
+        score = 100 - offenders.length * parseInt(config.points, 10);
+        report = offenders.concat(skipped);
+        message = (offenders.length > 0) ? YSLOW.util.plural(
+                'There %are% %num% static component%s%',
+                offenders.length
+            ) + ' without a far-future expiration date.' : '';
+
+         message += (skipped.length > 0) ? YSLOW.util.plural(' There %are% %num% static component%s% that are skipped form the score', skipped.length) : '';
+
+        return {
+            score: score,
+            message: message,
+            components: report
+        };
+    }
+});
+
 
 
 YSLOW.registerRuleset({ 
@@ -6106,7 +6174,6 @@ YSLOW.registerRuleset({
 	         max_cssimages: 2
         },
         yemptysrc: {},
-        yexpires: {},
         ycompress: {},
         ycsstop: {},
         yjsbottom: {},
@@ -6133,12 +6200,12 @@ YSLOW.registerRuleset({
         syncjsinhead: {},
         avoidfont: {},
         totalrequests: {},
+        expiresmod: {},
         spof: {}
     },
     weights: {
         ynumreq: 8,
         yemptysrc: 30,
-        yexpires: 10,
         ycompress: 8,
         ycsstop: 4,
         yjsbottom: 4,
@@ -6165,6 +6232,7 @@ YSLOW.registerRuleset({
         syncjsinhead: 10,
         avoidfont: 1,
         totalrequests: 5,
+        expiresmod: 10,
         spof: 15
     }
 
