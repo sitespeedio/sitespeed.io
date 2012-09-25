@@ -5714,7 +5714,7 @@ YSLOW.registerRule({
 
     // final sweep
     var message = offender_comps.length === 0 ? '' :
-      'The following ' + YSLOW.util.plural('%num% script%s%', offender_comps.length) +
+      'The following ' + YSLOW.util.plural('%num% 3rd party script%s%', offender_comps.length) +
         ' not loaded asynchronously:';
     score -= offender_comps.length * 21;
 
