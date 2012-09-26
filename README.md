@@ -36,11 +36,6 @@ If you want to crawl deeper than one level, that is the next parameter.
 ./sitespeed.io http://github.com/ 2
 </code>
 
-If your site is behind basic auth, you can fetch it by
-<code>
-./sitespeed.io http://github.com/hidden/ 1 login password
-</code>
-
 Roadmap
 -------
 See the issue list.
