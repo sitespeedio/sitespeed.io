@@ -1,4 +1,4 @@
-<a href="http://sitespeed.io" target="_blank">Sitespeed.io</a> - how speedy is your site? [![Build Status](https://secure.travis-ci.org/soulgalore/sitespeed.io.png?branch=0.9-wip)](http://travis-ci.org/soulgalore/sitespeed.io)
+<a href="http://sitespeed.io" target="_blank">Sitespeed.io</a> - how speedy is your site? [![Build Status](https://secure.travis-ci.org/soulgalore/sitespeed.io.png?branch=master)](http://travis-ci.org/soulgalore/sitespeed.io)
 =============
 
 Sitespeed.io is a tool that analyzes web sites and give you information of why they are slow and how you can optimize the web performance. Today yslow rules are used in combination with other best practices. 
