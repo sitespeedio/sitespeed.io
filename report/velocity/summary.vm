@@ -111,8 +111,8 @@
                     means that something is bad.
                 </p>
                 <ul>
-                    <li> <b><a href="http://sitespeed.io/rules/" target="_blank">Modified</a> Yslow
-                            rules</b>:  
+                    <li> <b><a href="http://sitespeed.io/rules/" target="_blank">Sitespeed</a> score (modified and enhanced Yslow
+                            rules)</b>:  
                         Over 90 is good, between 80-90 is not so good, and below 80 is bad, really bad.
                     </li>
                     <li> <b>The number of requests</b>: 
@@ -142,6 +142,15 @@
                         <b>The number of requests for a primed cache</b>: 
                         2 requests is good, else if not 90% of the request are cached, it is bad
                     </li>
+                     <li>
+                        <b>The number of pages with the possibility of frontend single point of failure</b>: 
+                        0 pages is good, everyhing else is bad.
+                    </li>
+                     <li>
+                        <b>Average number of javascripts loaded synchronously inside of the head tag</b>: 
+                        0 is good, 1 or more is bad and not OK.
+                    </li>
+
                  </ul>
             </div>
         </div>
