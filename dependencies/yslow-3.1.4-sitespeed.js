@@ -6148,7 +6148,7 @@ YSLOW.registerRule({
                 offenders.length
             ) + ' without a far-future expiration date.' : '';
 
-         message += (skipped.length > 0) ? YSLOW.util.plural(' There %are% %num% static component%s% that are skipped form the score', skipped.length) : '';
+         message += (skipped.length > 0) ? YSLOW.util.plural(' There %are% %num% static component%s% that are skipped from the score calculation.', skipped.length) : '';
 
         return {
             score: score,
