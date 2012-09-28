@@ -32,6 +32,14 @@
     text-overflow:ellipsis;
     white-space: nowrap;
     }
+
+    .logo {
+      padding: 0px; 
+      float: left; 
+      margin-left: -20px; 
+      border:0px;
+    }
+
     </style>
 
   <link rel="shortcut icon" href="$!{pathToIncludes}img/favicon.png">
@@ -45,7 +53,8 @@
     <div class="navbar-inner">
       <div class="container">
 
-        <a class="brand" href="#" title="How speedy is your site?">sitespeed.io</a>
+        <img src="$!{pathToIncludes}img/sitespeed-logo.gif" class="logo"/>
+         <!-- <a class="brand" href="#" title="How speedy is your site?">sitespeed.io</a>-->
         <div class="nav-collapse">
           <ul class="nav">
             <li #if( $pageMenu == "summary" ) class="active" #end>
