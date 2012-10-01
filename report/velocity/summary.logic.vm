@@ -16,6 +16,7 @@
 #set($totalDocumentWeight = 0)
 #set($totalScore = 0)    
 #set($totalSpof = 0)
+#set($totalSpofPages = 0)
 #set($totalJsSyncInHead = 0)
 
 #foreach ($results in $document.getRootElement().getChildren())
@@ -58,7 +59,8 @@
 
     #if($!{results.getChild("g").getChild("spof").getChild("score")})
 	#if ($results.getChild("g").getChild("spof").getChild("score").getValue() != 100)
- 	       #set ($totalSpof = $math.add($totalSpof, 1))
+ 	       #set ($totalSpofPages = $math.add($totalSpofPages, 1))
+	       #set ($totalSpof = $math.add($totalSpof, $results.getChild("g").getChild("spof").getChild("components").getChildren("item").size()))
 	#end       
     #end
 
@@ -78,3 +80,4 @@
 #set ($pageWeightAverage = $math.roundTo($nrOfDecimals,$math.div($totalPageWeight,$nrOfPages)))
 #set ($totalDocumentWeightAverage = $math.roundTo($nrOfDecimals,$math.div($totalDocumentWeight,$nrOfPages)))
 #set ($totalJsSyncInHeadAverage = $math.roundTo($nrOfDecimals,$math.div($totalJsSyncInHead,$nrOfPages)))
+#set ($totalSpofAverage = $math.roundTo($nrOfDecimals,$math.div($totalSpof,$nrOfPages)))

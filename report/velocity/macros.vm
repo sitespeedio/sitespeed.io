@@ -68,8 +68,8 @@ error#end#end
 
 ## Verify the spof, if one or more, error!
 #macro ( spofType $spof )
-#if ($spof<1)success#else
-error#end#end
+#if ($spof>0)error#else
+success#end#end
 
 ## Verify the js loaded sync in head, if one or more, error!
 #macro ( totalJsSyncInHeadType $js )

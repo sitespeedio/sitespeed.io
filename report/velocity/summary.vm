@@ -76,9 +76,9 @@
                 </div>
             </div>
             <div class="span3">
-                <div class="alert alert-#spofType($totalSpof)">
+                <div class="alert alert-#spofType($totalSpofPages)">
                     Pages with SPOF
-                    <div class='large'>$totalSpof</div>
+                    <div class='large'>$totalSpofPages</div>
                 </div>
             </div>
         </div>
@@ -91,7 +91,11 @@
 		  </div>    
 	    </div>
 	    <div class="span3">
-            
+	    	 <div class="alert alert-#spofType($totalSpofAverage)">
+                    SPOF per page
+                <div class='large'>$totalSpofAverage</div>
+            </div>
+
 	    </div>
 	    <div class="span3">
           
