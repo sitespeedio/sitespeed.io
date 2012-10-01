@@ -1,3 +1,8 @@
+Sitespeed.io 1.0
+------------------------
+* Show full urls in pages & page to easier understand which url that is analyzed
+* Show extra data in modals to make it clearer
+
 Sitespeed.io 0.9
 ------------------------
 * New rules: Loading js async and finding single point of failure
