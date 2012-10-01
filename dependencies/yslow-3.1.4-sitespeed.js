@@ -5964,7 +5964,7 @@ YSLOW.registerRule({
     score = 100 - comps.length * parseInt(config.points, 10);
 
     var message = comps.length === 0 ? '' :
-      'There are' + YSLOW.util.plural('%num% font%s%', comps.length) +
+      'There are ' + YSLOW.util.plural('%num% font%s%', comps.length) +
         ' that will add extra overhead.';    
 
     return {
