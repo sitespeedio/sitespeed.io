@@ -100,13 +100,13 @@
         </div>
 	
 	 <div class="row">
-            <div class="span3">
+            <div class="span6">
 		 <div class="alert alert-#totalJsSyncInHeadType($totalJsSyncInHeadAverage)">
 		      JS synchronously in head (avg)
                     <div class='large'><a href="#" rel="popover" class="alert-#totalJsSyncInHeadType($totalJsSyncInHeadAverage)" data-trigger="hover" title="<h4>Average number of javascripts loaded synchronously inside of the head tag</h4>" data-content="$jsSyncInHeadText">$totalJsSyncInHeadAverage</a></div>	
 		  </div>    
 	    </div>
-	    <div class="span3">
+	    <div class="span6">
 		 <div class="alert alert-#spofType($totalSpofAverage)">
                     SPOF per page
                       <div class='large'><a href="#" rel="popover" class="alert-#spofType($totalSpofAverage)" data-trigger="hover" title="<h4>Number of single point of failures per page</h4>" data-content="$spofPerPageText">$totalSpofAverage</a></div>
