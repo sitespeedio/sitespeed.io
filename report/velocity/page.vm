@@ -10,6 +10,8 @@
 
 		<h3>Yslow scores below 100</h3>
 
+		<p><a href="#assets">See all the assets on this page</a></p>	
+
 		<table class="table table-condensed table-striped table-bordered" >
 			<thead>
 				<tr>
@@ -41,7 +43,7 @@
 			</table>
 
 
-			<h3>Page assets</h3>
+			<h3 id="assets">Page assets</h3>
 			<table class="table table-condensed table-striped table-bordered">
 				<thead>
 					<tr>
