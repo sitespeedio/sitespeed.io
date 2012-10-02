@@ -55,15 +55,37 @@
 					<tr>
 
 						<td class="nobreak" style="max-width: 500px;">
-							
-<a rel="tooltip" target="_blank" data-placement="right" data-html="true" href="$asset.getChild("url").getValue()" data-original-title="Response headers: <br/>
-                                                        #foreach ($response in $asset.getChild("headers").getChild("response").getChildren())
-                                $esc.html($response.getName()) : $esc.html($response.getValue())
-                                                        <br/>
-                                                        #end
-                        "><i class="icon-zoom-in"></i></a>
+						<a href="#headers-$foreach.count" data-toggle="modal"><i class="icon-zoom-in"></i></a>
 
-<a href="$asset.getChild("url").getValue()" title="$asset.getChild("url").getValue()" target="_blank">$asset.getChild("url").getValue()</a></td>
+                        <div class="modal hide fade" id="headers-$foreach.count" show="false" aria-labelledby="headersModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-header">
+                                <h3 id="headersModalLabel-$foreach.count">Response headers</h3>
+                            </div>
+                            <div class="modal-body">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        #foreach ($response in $asset.getChild("headers").getChild("response").getChildren())
+                                        <tr>
+                                            <td>$esc.html($response.getName())</td>
+                                            <td>$esc.html($response.getValue())</td>
+                                        </tr>
+                                        #end
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                            </div>
+                        </div>
+
+
+					<a href="$asset.getChild("url").getValue()" title="$asset.getChild("url").getValue()" target="_blank">$asset.getChild("url").getValue()</a></td>
 					<td>$asset.getChild("type").getValue()</td>
 					<td>$asset.getChild("size").getValue()</td>
 
