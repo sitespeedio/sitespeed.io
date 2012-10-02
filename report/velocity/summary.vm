@@ -53,20 +53,20 @@
             </div>
             <div class="span3">
                 <div class="alert alert-#weightMobileType($totalDocumentWeightAverage)">
-                    Document page weight (avg)
+                    Doc page weight (avg)
                     <div class='large'><a href="#" rel="popover" class="alert-#weightMobileType($totalDocumentWeightAverage)" data-trigger="hover" title="<h4>Document weight</h4>" data-content="$pageWeightText">$totalDocumentWeightAverage</a></div>
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#jsType($jsAverage)">
                     JS (avg)
-                      <div class='large'><a href="#" rel="popover" class="alert-#jsType($jsAverage)" data-trigger="hover" title="<h4>The number of javascripts</h4>" data-content="$nrOfJsText">$jsAverage</a></div>
+                      <div class='large'><a href="#" rel="popover" class="alert-#jsType($jsAverage)" data-trigger="hover" title="<h4>Average number of javascripts</h4>" data-content="$nrOfJsText">$jsAverage</a></div>
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#cssType($cssAverage)">
                     CSS (avg)
-                      <div class='large'><a href="#" rel="popover" class="alert-#cssType($cssAverage)" data-trigger="hover" title="<h4>The number of stylesheets</h4>" data-content="$nrOfCssText">$cssAverage</a></div>
+                      <div class='large'><a href="#" rel="popover" class="alert-#cssType($cssAverage)" data-trigger="hover" title="<h4>Average number of stylesheets</h4>" data-content="$nrOfCssText">$cssAverage</a></div>
                 </div>
             </div>
 
@@ -76,18 +76,18 @@
             <div class="span3">
                 <div class="alert alert-#cssImageType($cssImageAverage)">
                     CSS images (avg)
-                      <div class='large'><a href="#" rel="popover" class="alert-#cssImageType($cssImageAverage)" data-trigger="hover" title="<h4>The number of stylesheet images</h4>" data-content="$nrOfCssImageText">$cssImageAverage</a></div>
+                      <div class='large'><a href="#" rel="popover" class="alert-#cssImageType($cssImageAverage)" data-trigger="hover" title="<h4>Average number of stylesheet images</h4>" data-content="$nrOfCssImageText">$cssImageAverage</a></div>
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#imageType($imageAverage)">
                     Images (avg)
-                      <div class='large'><a href="#" rel="popover" class="alert-#imageType($imageAverage)" data-trigger="hover" title="<h4>Nr of images</h4>" data-content="$nrOfImagesText">$imageAverage</a></div>
+                      <div class='large'><a href="#" rel="popover" class="alert-#imageType($imageAverage)" data-trigger="hover" title="<h4>Average number of images</h4>" data-content="$nrOfImagesText">$imageAverage</a></div>
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#requestPrimedType($requestAverage $requestPrimedAverage)">
-                    Requests primed cache (avg)
+                    Primed cache (avg)
                       <div class='large'><a href="#" rel="popover" class="alert-#requestPrimedType($requestAverage $requestPrimedAverage)" data-trigger="hover" title="<h4>The number of requests for a primed cache</h4>" data-content="$nrOfRequestPrimedText">$requestPrimedAverage</a></div>
                 </div>
             </div>
@@ -102,7 +102,7 @@
 	 <div class="row">
             <div class="span3">
 		 <div class="alert alert-#totalJsSyncInHeadType($totalJsSyncInHeadAverage)">
-		      JS loaded sync in head (avg)
+		      JS synchronously in head (avg)
                     <div class='large'><a href="#" rel="popover" class="alert-#totalJsSyncInHeadType($totalJsSyncInHeadAverage)" data-trigger="hover" title="<h4>Average number of javascripts loaded synchronously inside of the head tag</h4>" data-content="$jsSyncInHeadText">$totalJsSyncInHeadAverage</a></div>	
 		  </div>    
 	    </div>
