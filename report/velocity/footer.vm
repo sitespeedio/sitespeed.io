@@ -14,23 +14,3 @@
   <script src="$!{pathToIncludes}js/jquery-1.8.2.min.js"></script>
   <script src="$!{pathToIncludes}js/bootstrap.min.js"></script>
   <script src="$!{pathToIncludes}js/jquery.tablesorter.min.js"></script>
-
-  <script>
-  $(document).ready(function() 
-    { 
-        $("#pagesTable").tablesorter(); 
-    } 
-  );
-</script>
-
-  <script>
-
-   $(function () {
-    $('.container').tooltip({
-      selector: "a[rel=tooltip]"
-    })
-}) 
-</script>
-
-  </body>
-  </html>

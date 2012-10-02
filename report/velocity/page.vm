@@ -76,3 +76,5 @@
 </div>
 <!-- row -->
 #parse("report/velocity/footer.vm")
+</body>
+</html>

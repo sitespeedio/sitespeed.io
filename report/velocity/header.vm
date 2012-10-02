@@ -38,6 +38,10 @@
       border:0px;
     }
 
+    .alerts-success > a:hover {
+text-decoration: none;
+}
+
     </style>
 
   <link rel="shortcut icon" href="$!{pathToIncludes}img/favicon.png">

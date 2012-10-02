@@ -239,3 +239,22 @@
     </div>
     </div>
     #parse("report/velocity/footer.vm")
+  <script>
+  $(document).ready(function() 
+    { 
+        $("#pagesTable").tablesorter(); 
+    } 
+  );
+</script>
+
+  <script>
+
+   $(function () {
+    $('.container').tooltip({
+      selector: "a[rel=tooltip]"
+    })
+}) 
+</script>
+
+</body>
+</html>
