@@ -38,9 +38,29 @@
       border:0px;
     }
 
-    .alerts-success > a:hover {
-text-decoration: none;
-}
+  a.alert-success:hover {
+  text-decoration: none;
+  color: #468847;
+  cursor:pointer;
+  }
+
+  a.alert-error:hover {
+  text-decoration: none;
+  color: #B94A48;
+  cursor:pointer;
+  }
+
+    a.alert-warning:hover {
+  text-decoration: none;
+  color: #C09853;
+  cursor:pointer;
+  }
+
+  a.alert-warning {
+  text-decoration: none;
+  color: #C09853;
+  cursor:pointer;
+  }
 
     </style>
 
