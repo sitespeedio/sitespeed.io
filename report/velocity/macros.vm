@@ -75,3 +75,9 @@ success#end#end
 #macro ( totalJsSyncInHeadType $js )
 #if ($js<1)success#else
 error#end#end        
+
+## Verify assets without far expires date
+#macro ( expiresType $expires )
+#if ($expires<1)success#elseif ($expires<5)
+warning#else
+error#end#end

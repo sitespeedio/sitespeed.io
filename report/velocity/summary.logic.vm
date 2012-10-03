@@ -18,6 +18,7 @@
 #set($totalSpof = 0)
 #set($totalSpofPages = 0)
 #set($totalJsSyncInHead = 0)
+#set($totalAssetsWithoutFarExpires = 0)
 
 #foreach ($results in $document.getRootElement().getChildren())
     
@@ -58,17 +59,23 @@
     #end
 
     #if($!{results.getChild("g").getChild("spof").getChild("score")})
-	#if ($results.getChild("g").getChild("spof").getChild("score").getValue() != 100)
- 	       #set ($totalSpofPages = $math.add($totalSpofPages, 1))
+	   #if ($results.getChild("g").getChild("spof").getChild("score").getValue() != 100)
+	       #set ($totalSpofPages = $math.add($totalSpofPages, 1))
 	       #set ($totalSpof = $math.add($totalSpof, $results.getChild("g").getChild("spof").getChild("components").getChildren("item").size()))
-	#end       
+	   #end       
     #end
 
     #if($!{results.getChild("g").getChild("syncjsinhead").getChild("components")})
 	 #set ($totalJsSyncInHead = $math.add($totalJsSyncInHead, $results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()))
     #end
+
+
+    #if($!{results.getChild("g").getChild("expiresmod").getChild("components")})
+     #set ($totalAssetsWithoutFarExpires  = $math.add($totalAssetsWithoutFarExpires, $results.getChild("g").getChild("expiresmod").getChild("components").getChildren("item").size()))
+    #end
+
 #end
-      
+
 ##  Create averages   
 #set ($scoreAverage = $math.roundTo($nrOfDecimals,$math.div($totalScore,$nrOfPages)))   
 #set ($jsAverage = $math.roundTo($nrOfDecimals,$math.div($nrOfJs,$nrOfPages)))
@@ -81,3 +88,4 @@
 #set ($totalDocumentWeightAverage = $math.roundTo($nrOfDecimals,$math.div($totalDocumentWeight,$nrOfPages)))
 #set ($totalJsSyncInHeadAverage = $math.roundTo($nrOfDecimals,$math.div($totalJsSyncInHead,$nrOfPages)))
 #set ($totalSpofAverage = $math.roundTo($nrOfDecimals,$math.div($totalSpof,$nrOfPages)))
+#set ($totalAssetsWithoutFarExpiresAverage = $math.roundTo($nrOfDecimals,$math.div($totalAssetsWithoutFarExpires,$nrOfPages)))

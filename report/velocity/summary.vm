@@ -5,8 +5,8 @@
 
 #set($scoreText = "Over 90 is good, between 80-90 is not so good, and below 80 is bad, really bad.")
 #set($requestText = "Below 25 is good, between 25-50 is something you should look into and above 50 is bad.")
-#set($pageWeightText = "Below 1 mb is ok (but really to large for mobile), between 1-1.5 mb is something you should investigate & heavier is bad.")
-#set($documentWeightText = "Below 10 kb is good (gzipped), between 10-15 is ok (but can be better) and above is bad.A small document is good for mobile.")
+#set($pageWeightText = "Below 1 mb is ok (but really too large for mobile), between 1-1.5 mb is something you should investigate & heavier is bad.")
+#set($documentWeightText = "Below 10 kb is good (gzipped), between 10-15 is ok (but can be better) and above is bad. A small document is good for mobile.")
 #set($nrOfJsText = "Two or less is good, up to 4 means you should look into it and more than 4 means you need to fix it.")
 #set($nrOfCssText = "One is good, more than five is really bad.")
 #set($nrOfCssImageText = "Two is good, above four is bad.")
@@ -15,6 +15,7 @@
 #set($spofText = "0 pages is good, everyhing else is bad.")
 #set($jsSyncInHeadText = "0 is good, 1 or more is bad and not OK.")
 #set($spofPerPageText = "Everything above 0 is bad!")
+#set($assetsWithoutFarExpiresText = "")
 
 
 
@@ -37,26 +38,16 @@
 
             </div>
             <div class="span6">
-                <div class="alert alert-#requestType($requestAverage)">
-                    Number of requests
-                    <div class='large'><a href="#" rel="popover" class="alert-#requestType($requestAverage)" data-trigger="hover" title="<strong>Average number of requests</strong>" data-content="$requestText">$requestAverage</a></div>
-                </div>
+            <div class="alert alert-#totalJsSyncInHeadType($totalJsSyncInHeadAverage)">
+              Number of JS synchronously in head 
+                    <div class='large'><a href="#" rel="popover" class="alert-#totalJsSyncInHeadType($totalJsSyncInHeadAverage)" data-trigger="hover" title="<strong>Average number of javascripts loaded synchronously inside of the head tag</strong>" data-content="$jsSyncInHeadText">$totalJsSyncInHeadAverage</a></div>   
+          </div>    
+               
             </div>
         </div>
 
-        <div class="row">
-            <div class="span3">
-                <div class="alert alert-#weightType($pageWeightAverage)">
-                    Total page weight
-                    <div class='large'><a href="#" rel="popover" class="alert-#weightType($pageWeightAverage)" data-trigger="hover" title="<strong>Average page weight</strong>" data-content="$pageWeightText">$pageWeightAverage</a></div>
-                </div>
-            </div>
-            <div class="span3">
-                <div class="alert alert-#weightMobileType($totalDocumentWeightAverage)">
-                    Document page weight
-                    <div class='large'><a href="#" rel="popover" class="alert-#weightMobileType($totalDocumentWeightAverage)" data-trigger="hover" title="<strong>Average document weight</strong>" data-content="$pageWeightText">$totalDocumentWeightAverage</a></div>
-                </div>
-            </div>
+        
+    <div class="row">
             <div class="span3">
                 <div class="alert alert-#jsType($jsAverage)">
                     Number of JS
@@ -69,11 +60,7 @@
                       <div class='large'><a href="#" rel="popover" class="alert-#cssType($cssAverage)" data-trigger="hover" title="<strong>Average number of stylesheets</strong>" data-content="$nrOfCssText">$cssAverage</a></div>
                 </div>
             </div>
-
-        </div>
-
-        <div class="row">
-            <div class="span3">
+<div class="span3">
                 <div class="alert alert-#cssImageType($cssImageAverage)">
                     Number of CSS images
                       <div class='large'><a href="#" rel="popover" class="alert-#cssImageType($cssImageAverage)" data-trigger="hover" title="<strong>Average number of stylesheet images</strong>" data-content="$nrOfCssImageText">$cssImageAverage</a></div>
@@ -85,38 +72,64 @@
                       <div class='large'><a href="#" rel="popover" class="alert-#imageType($imageAverage)" data-trigger="hover" title="<strong>Average number of images</strong>" data-content="$nrOfImagesText">$imageAverage</a></div>
                 </div>
             </div>
-            <div class="span3">
+        </div>
+
+        <div class="row">
+             <div class="span4">
+                <div class="alert alert-#requestType($requestAverage)">
+                    Number of requests
+                    <div class='large'><a href="#" rel="popover" class="alert-#requestType($requestAverage)" data-trigger="hover" title="<strong>Average number of requests</strong>" data-content="$requestText">$requestAverage</a></div>
+                </div>
+            </div>
+            <div class="span4">
                 <div class="alert alert-#requestPrimedType($requestAverage $requestPrimedAverage)">
                     Number of requests with primed cache
                       <div class='large'><a href="#" rel="popover" class="alert-#requestPrimedType($requestAverage $requestPrimedAverage)" data-trigger="hover" title="<strong>Average number of requests with a primed cache</strong>" data-content="$nrOfRequestPrimedText">$requestPrimedAverage</a></div>
                 </div>
             </div>
-            <div class="span3">
-                <div class="alert alert-#spofType($totalSpofPages)">
+             <div class="span4">
+                    <div class="alert alert-#expiresType($totalAssetsWithoutFarExpiresAverage)">
+                    Requests without far expires
+                      <div class='large'><a href="#" rel="popover" class="alert-#expiresType($totalAssetsWithoutFarExpiresAverage)" data-trigger="hover" title="<strong>Average number of requests without a far expires date</strong>" data-content="$assetsWithoutFarExpiresText">$totalAssetsWithoutFarExpiresAverage</a></div>
+                </div>
+             </div>
+           
+        </div>
+	
+	 <div class="row">
+           
+	    <div class="span6">
+
+        <div class="alert alert-#spofType($totalSpofPages)">
                     Pages with SPOF
                       <div class='large'><a href="#" rel="popover" class="alert-#spofType($totalSpofPages)" data-trigger="hover" title="<strong>The number of pages with frontend single point of failure</strong>" data-content="$spofText">$totalSpofPages</a></div>
                 </div>
             </div>
-        </div>
-	
-	 <div class="row">
-            <div class="span6">
-		 <div class="alert alert-#totalJsSyncInHeadType($totalJsSyncInHeadAverage)">
-		      Number of JS synchronously in head 
-                    <div class='large'><a href="#" rel="popover" class="alert-#totalJsSyncInHeadType($totalJsSyncInHeadAverage)" data-trigger="hover" title="<strong>Average number of javascripts loaded synchronously inside of the head tag</strong>" data-content="$jsSyncInHeadText">$totalJsSyncInHeadAverage</a></div>	
-		  </div>    
-	    </div>
-	    <div class="span6">
+
+                <div class="span6">
 		 <div class="alert alert-#spofType($totalSpofAverage)">
                     Number of SPOF per page
                       <div class='large'><a href="#" rel="popover" class="alert-#spofType($totalSpofAverage)" data-trigger="hover" title="<strong>Number of single point of failures per page</strong>" data-content="$spofPerPageText">$totalSpofAverage</a></div>
             </div>
+             
+	    </div>
+	   
+		</div>    
 
-	    </div>
-	    <div class="span3">
-          
-	    </div>
-	</div>    
+    <div class="row">
+            <div class="span6">
+                <div class="alert alert-#weightType($pageWeightAverage)">
+                    Total page weight
+                    <div class='large'><a href="#" rel="popover" class="alert-#weightType($pageWeightAverage)" data-trigger="hover" title="<strong>Average page weight</strong>" data-content="$pageWeightText">$pageWeightAverage</a></div>
+                </div>
+            </div>
+            <div class="span6">
+                <div class="alert alert-#weightMobileType($totalDocumentWeightAverage)">
+                    Document page weight
+                    <div class='large'><a href="#" rel="popover" class="alert-#weightMobileType($totalDocumentWeightAverage)" data-trigger="hover" title="<strong>Average document weight</strong>" data-content="$pageWeightText">$totalDocumentWeightAverage</a></div>
+                </div>
+            </div>
+        </div>
 
         <div class="row">
             <div class="span12">
