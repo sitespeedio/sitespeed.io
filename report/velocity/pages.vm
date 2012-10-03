@@ -86,7 +86,7 @@
                 #foreach ($results in $document.getRootElement().getChildren())
         #set($yslow = $results.getChild("o").getValue())
                 <tr>
-                    <td class="nobreak" style="max-width: 280px;">
+                    <td class="nobreak" style="max-width: 290px;">
                         #set($file = $results.getAttribute("filename").getValue())
                          #set($file = $file.concat(".html"))
                         <a href="#headers-$foreach.count" data-toggle="modal"><i class="icon-zoom-in"></i></a> <a href="pages/$file" title="$results.getChild("u").getValue()">$results.getChild("u").getValue()</a>
