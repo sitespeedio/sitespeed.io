@@ -8,7 +8,7 @@
  			(score: $document.getRootElement().getChild("o").getValue())
 		</h2>
 
-		<h3>Yslow scores below 100</h3>
+		<h3>Scores below 100</h3>
 
 		<p><a href="#assets">See all the assets on this page.</a></p>	
 
