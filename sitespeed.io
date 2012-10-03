@@ -27,6 +27,9 @@ if [ -z "$1" ]; then
    exit 1;
 fi
 
+# Switch to my dir
+cd "$(dirname ${BASH_SOURCE[0]})"
+
 if [ "$2" != "" ]
 then
     DEPTH="$2"
