@@ -31,15 +31,15 @@
         <div class="row">
             <div class="span6">
                 <div class="alert alert-#scoreType($scoreAverage)">
-                     Score (avg)
-                    <div class='large'><a href="#" class="alert-#scoreType($scoreAverage)" rel="popover" data-trigger="hover" title="<h4>Score</h4>" data-content="$scoreText">$scoreAverage</a></div>
+                     Score
+                    <div class='large'><a href="#" class="alert-#scoreType($scoreAverage)" rel="popover" data-trigger="hover" title="<strong>Average score</strong>" data-content="$scoreText">$scoreAverage</a></div>
                 </div>
 
             </div>
             <div class="span6">
                 <div class="alert alert-#requestType($requestAverage)">
-                    Number of requests (avg)
-                    <div class='large'><a href="#" rel="popover" class="alert-#requestType($requestAverage)" data-trigger="hover" title="<h4>The number of requests</h4>" data-content="$requestText">$requestAverage</a></div>
+                    Number of requests
+                    <div class='large'><a href="#" rel="popover" class="alert-#requestType($requestAverage)" data-trigger="hover" title="<strong>Average number of requests</strong>" data-content="$requestText">$requestAverage</a></div>
                 </div>
             </div>
         </div>
@@ -47,26 +47,26 @@
         <div class="row">
             <div class="span3">
                 <div class="alert alert-#weightType($pageWeightAverage)">
-                    Total page weight (avg)
-                    <div class='large'><a href="#" rel="popover" class="alert-#weightType($pageWeightAverage)" data-trigger="hover" title="<h4>Page weight</h4>" data-content="$pageWeightText">$pageWeightAverage</a></div>
+                    Total page weight
+                    <div class='large'><a href="#" rel="popover" class="alert-#weightType($pageWeightAverage)" data-trigger="hover" title="<strong>Average page weight</strong>" data-content="$pageWeightText">$pageWeightAverage</a></div>
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#weightMobileType($totalDocumentWeightAverage)">
-                    Doc page weight (avg)
-                    <div class='large'><a href="#" rel="popover" class="alert-#weightMobileType($totalDocumentWeightAverage)" data-trigger="hover" title="<h4>Document weight</h4>" data-content="$pageWeightText">$totalDocumentWeightAverage</a></div>
+                    Document page weight
+                    <div class='large'><a href="#" rel="popover" class="alert-#weightMobileType($totalDocumentWeightAverage)" data-trigger="hover" title="<strong>Average document weight</strong>" data-content="$pageWeightText">$totalDocumentWeightAverage</a></div>
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#jsType($jsAverage)">
-                    JS (avg)
-                      <div class='large'><a href="#" rel="popover" class="alert-#jsType($jsAverage)" data-trigger="hover" title="<h4>Average number of javascripts</h4>" data-content="$nrOfJsText">$jsAverage</a></div>
+                    Number of JS
+                      <div class='large'><a href="#" rel="popover" class="alert-#jsType($jsAverage)" data-trigger="hover" title="<strong>Average number of javascripts</strong>" data-content="$nrOfJsText">$jsAverage</a></div>
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#cssType($cssAverage)">
-                    CSS (avg)
-                      <div class='large'><a href="#" rel="popover" class="alert-#cssType($cssAverage)" data-trigger="hover" title="<h4>Average number of stylesheets</h4>" data-content="$nrOfCssText">$cssAverage</a></div>
+                    Number of CSS 
+                      <div class='large'><a href="#" rel="popover" class="alert-#cssType($cssAverage)" data-trigger="hover" title="<strong>Average number of stylesheets</strong>" data-content="$nrOfCssText">$cssAverage</a></div>
                 </div>
             </div>
 
@@ -75,26 +75,26 @@
         <div class="row">
             <div class="span3">
                 <div class="alert alert-#cssImageType($cssImageAverage)">
-                    CSS images (avg)
-                      <div class='large'><a href="#" rel="popover" class="alert-#cssImageType($cssImageAverage)" data-trigger="hover" title="<h4>Average number of stylesheet images</h4>" data-content="$nrOfCssImageText">$cssImageAverage</a></div>
+                    Number of CSS images
+                      <div class='large'><a href="#" rel="popover" class="alert-#cssImageType($cssImageAverage)" data-trigger="hover" title="<strong>Average number of stylesheet images</strong>" data-content="$nrOfCssImageText">$cssImageAverage</a></div>
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#imageType($imageAverage)">
-                    Images (avg)
-                      <div class='large'><a href="#" rel="popover" class="alert-#imageType($imageAverage)" data-trigger="hover" title="<h4>Average number of images</h4>" data-content="$nrOfImagesText">$imageAverage</a></div>
+                    Number of images 
+                      <div class='large'><a href="#" rel="popover" class="alert-#imageType($imageAverage)" data-trigger="hover" title="<strong>Average number of images</strong>" data-content="$nrOfImagesText">$imageAverage</a></div>
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#requestPrimedType($requestAverage $requestPrimedAverage)">
-                    Primed cache (avg)
-                      <div class='large'><a href="#" rel="popover" class="alert-#requestPrimedType($requestAverage $requestPrimedAverage)" data-trigger="hover" title="<h4>The number of requests for a primed cache</h4>" data-content="$nrOfRequestPrimedText">$requestPrimedAverage</a></div>
+                    Number of requests with primed cache
+                      <div class='large'><a href="#" rel="popover" class="alert-#requestPrimedType($requestAverage $requestPrimedAverage)" data-trigger="hover" title="<strong>Average number of requests with a primed cache</strong>" data-content="$nrOfRequestPrimedText">$requestPrimedAverage</a></div>
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#spofType($totalSpofPages)">
                     Pages with SPOF
-                      <div class='large'><a href="#" rel="popover" class="alert-#spofType($totalSpofPages)" data-trigger="hover" title="<h4>The number of pages with the possibility of frontend single point of failure</h4>" data-content="$spofText">$totalSpofPages</a></div>
+                      <div class='large'><a href="#" rel="popover" class="alert-#spofType($totalSpofPages)" data-trigger="hover" title="<strong>The number of pages with frontend single point of failure</strong>" data-content="$spofText">$totalSpofPages</a></div>
                 </div>
             </div>
         </div>
@@ -102,14 +102,14 @@
 	 <div class="row">
             <div class="span6">
 		 <div class="alert alert-#totalJsSyncInHeadType($totalJsSyncInHeadAverage)">
-		      JS synchronously in head (avg)
-                    <div class='large'><a href="#" rel="popover" class="alert-#totalJsSyncInHeadType($totalJsSyncInHeadAverage)" data-trigger="hover" title="<h4>Average number of javascripts loaded synchronously inside of the head tag</h4>" data-content="$jsSyncInHeadText">$totalJsSyncInHeadAverage</a></div>	
+		      Number of JS synchronously in head 
+                    <div class='large'><a href="#" rel="popover" class="alert-#totalJsSyncInHeadType($totalJsSyncInHeadAverage)" data-trigger="hover" title="<strong>Average number of javascripts loaded synchronously inside of the head tag</strong>" data-content="$jsSyncInHeadText">$totalJsSyncInHeadAverage</a></div>	
 		  </div>    
 	    </div>
 	    <div class="span6">
 		 <div class="alert alert-#spofType($totalSpofAverage)">
-                    SPOF per page
-                      <div class='large'><a href="#" rel="popover" class="alert-#spofType($totalSpofAverage)" data-trigger="hover" title="<h4>Number of single point of failures per page</h4>" data-content="$spofPerPageText">$totalSpofAverage</a></div>
+                    Number of SPOF per page
+                      <div class='large'><a href="#" rel="popover" class="alert-#spofType($totalSpofAverage)" data-trigger="hover" title="<strong>Number of single point of failures per page</strong>" data-content="$spofPerPageText">$totalSpofAverage</a></div>
             </div>
 
 	    </div>
