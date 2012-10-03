@@ -7,7 +7,7 @@ if (phantom.args.length < 2 || phantom.args.length > 3) {
 } else {
     address = phantom.args[0];
     output = phantom.args[1];
-    page.viewportSize = { width: 1440, height: 900 };
+    page.viewportSize = { width: 1440 , height: 600};
     page.open(address, function (status) {
 	    if (status !== 'success') {
 		console.log('Unable to load the address!');
