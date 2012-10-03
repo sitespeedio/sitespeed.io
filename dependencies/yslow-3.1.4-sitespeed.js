@@ -6108,7 +6108,8 @@ YSLOW.registerRule({
         // 2 days = 2 * 24 * 60 * 60 seconds, how far is far enough
         howfar: 172800,
         // component types to be inspected for expires headers
-        types: ['css', 'js', 'image', 'cssimage', 'flash', 'favicon'],
+        // Skipping favicon right now because of a bug somewhere that never even fetch it
+        types: ['css', 'js', 'image', 'cssimage', 'flash'], // , 'favicon'],
         skip: ['https://secure.gaug.es/track.js','https://ssl.google-analytics.com/ga.js','http://www.google-analytics.com/ga.js']
     },
 
@@ -6118,7 +6119,6 @@ YSLOW.registerRule({
             far = parseInt(config.howfar, 10) * 1000,
             offenders = [],
             skipped = [],
-            report = [],
             comps = cset.getComponentsByType(config.types);
 
         for (i = 0, len = comps.length; i < len; i += 1) {
@@ -6142,18 +6142,18 @@ YSLOW.registerRule({
         }
 
         score = 100 - offenders.length * parseInt(config.points, 10);
-        report = offenders.concat(skipped);
+       
         message = (offenders.length > 0) ? YSLOW.util.plural(
                 'There %are% %num% static component%s%',
                 offenders.length
             ) + ' without a far-future expiration date.' : '';
 
-         message += (skipped.length > 0) ? YSLOW.util.plural(' There %are% %num% static component%s% that are skipped from the score calculation.', skipped.length) : '';
+         message += (skipped.length > 0) ? YSLOW.util.plural(' There %are% %num% static component%s% that are skipped from the score calculation', skipped.length) + ":" + skipped.valueOf() : '';
 
         return {
             score: score,
             message: message,
-            components: report
+            components: offenders
         };
     }
 });
