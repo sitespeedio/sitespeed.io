@@ -102,39 +102,37 @@ done < $REPORT_DATA_DIR/urls.txt
 
 echo "Fetched ${#result[@]} pages" 
 
-echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" url="'$URL'" date="'$DATE'">' >> $REPORT_DATA_DIR/result.xml
+echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" url="'$URL'" date="'$DATE'">' > $REPORT_DATA_DIR/result.xml
 
 pagefilename=1
 for i in "${result[@]}"
 do
     echo "Analyzing $i"
-    phantomjs dependencies/yslow-3.1.4-sitespeed.js -r sitespeed.io -f xml "$i" >>"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"
+    phantomjs dependencies/yslow-3.1.4-sitespeed.js -r sitespeed.io -f xml "$i" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"
+ 
     # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
-    sed '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml >> $REPORT_DATA_PAGES_DIR/bup || exit 1
-    mv $REPORT_DATA_PAGES_DIR/bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml
+    sed '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/bup || exit 1
+  
+    # And crazy enough, sometimes we get things after the end of the xml
+    sed -n '1,/<\/results>/p' $REPORT_DATA_PAGES_DIR/bup > $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1
  
     # Hack for adding link to the output file name
-    sed 's/<results>/<results filename="'$pagefilename'">/g' $REPORT_DATA_PAGES_DIR/$pagefilename.xml >> $REPORT_DATA_PAGES_DIR/bup || exit 1
+    sed 's/<results>/<results filename="'$pagefilename'">/g' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/bup || exit 1
     mv $REPORT_DATA_PAGES_DIR/bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml
+ 
     sed 's/<?xml version="1.0" encoding="UTF-8"?>//g' "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" >> "$REPORT_DATA_DIR/result.xml" || exit 1
+
+    java -Xmx256m -Xms256m -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_PAGES_DIR/$pagefilename.xml report/velocity/page.vm report/properties/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1    
+
     pagefilename=$[$pagefilename+1]
 done
 echo '</document>'>> "$REPORT_DATA_DIR/result.xml"
-
-echo 'Create individual pages'
-for file in $REPORT_DATA_PAGES_DIR/*
-do
- filename=$(basename $file .xml)
- java -Xmx256m -Xms256m -jar dependencies/xml-velocity-1.0-full.jar $file report/velocity/page.vm report/properties/page.properties $REPORT_PAGES_DIR/$filename.html || exit 1    
-done
 
 echo 'Create the pages.html'
 java -Xmx1024m -Xms1024m -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_DIR/result.xml report/velocity/pages.vm report/properties/pages.properties $REPORT_DIR/pages.html || exit 1
 
 echo 'Create the summary: index.html'
 java -Xmx1024m -Xms1024m -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_DIR/result.xml report/velocity/summary.vm report/properties/summary.properties $REPORT_DIR/index.html || exit 1
-
-
 
 #copy the rest of the files
 mkdir $REPORT_DIR/css
