@@ -108,10 +108,10 @@ pagefilename=1
 for i in "${result[@]}"
 do
     echo "Analyzing $i"
-    phantomjs dependencies/yslow-3.1.4-sitespeed.js -r sitespeed.io -f xml "$i" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"
+    phantomjs dependencies/yslow-3.1.4-sitespeed.js -r sitespeed.io -f xml "$i" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
  
     # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
-    sed '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/bup || exit 1
+    sed '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/bup  ||exit 1
   
     # And crazy enough, sometimes we get things after the end of the xml
     sed -n '1,/<\/results>/p' $REPORT_DATA_PAGES_DIR/bup > $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1
