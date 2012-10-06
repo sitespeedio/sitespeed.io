@@ -2,6 +2,8 @@ Sitespeed.io 1.0
 ------------------------
 * Show full urls in pages & page to easier understand which url that is analyzed
 * Show extra data in modals to make it clearer
+* Popover & better texts on summary page
+* Cleanup & bug fixes in the bash script, it sometimes failed on some sites when yslow outputted content after the xml
 
 Sitespeed.io 0.9
 ------------------------
