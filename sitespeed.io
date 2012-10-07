@@ -131,7 +131,7 @@ echo '</document>'>> "$REPORT_DATA_DIR/result.xml"
 echo 'Create the pages.html'
 java -Xmx1024m -Xms1024m -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_DIR/result.xml report/velocity/pages.vm report/properties/pages.properties $REPORT_DIR/pages.html || exit 1
 
-echo 'Create the summary: index.html'
+echo 'Create the summary index.html'
 java -Xmx1024m -Xms1024m -jar dependencies/xml-velocity-1.0-full.jar $REPORT_DATA_DIR/result.xml report/velocity/summary.vm report/properties/summary.properties $REPORT_DIR/index.html || exit 1
 
 #copy the rest of the files
@@ -142,6 +142,12 @@ mkdir $REPORT_DIR/img
 cp report/css/* $REPORT_DIR/css
 cp report/js/* $REPORT_DIR/js
 cp report/img/* $REPORT_DIR/img
+
+echo 'Create summary png:s'
+# create images, easy to use in reports etc
+phantomjs dependencies/rasterize.js $REPORT_DIR/index.html $REPORT_DIR/summary.png
+phantomjs dependencies/rasterize.js $REPORT_DIR/pages.html $REPORT_DIR/pages.png
+
 
 echo "Finished, see the report $REPORT_DIR/index.html"
 exit 0

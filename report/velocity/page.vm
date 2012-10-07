@@ -5,7 +5,7 @@
 		<h2>
 			Page
 			<a href="$document.getRootElement().getChild("u").getValue()" target="_blank">$document.getRootElement().getChild("u").getValue()</a>
- 			(score: $document.getRootElement().getChild("o").getValue())
+			(score: $document.getRootElement().getChild("o").getValue())
 		</h2>
 
 		<h3>Scores below 100</h3>
