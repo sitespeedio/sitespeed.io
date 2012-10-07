@@ -81,10 +81,10 @@
          <!-- <a class="brand" href="#" title="How speedy is your site?">sitespeed.io</a>-->
         <div class="nav-collapse">
           <ul class="nav">
-            <li #if( $pageMenu == "summary" ) class="active" #end>
+            <li#if( $pageMenu == "summary" ) class="active" #end>
               <a href="$!{pathToIncludes}index.html">Summary</a>
             </li>
-            <li #if( $pageMenu == "pages" ) class="active" #end>
+            <li#if( $pageMenu == "pages" ) class="active" #end>
               <a href="$!{pathToIncludes}pages.html">All pages</a>
             </li>
             #if( $pageMenu == "page" )

@@ -4,6 +4,7 @@ Sitespeed.io 1.0
 * Show extra data in modals to make it clearer
 * Popover & better texts on summary page
 * Cleanup & bug fixes in the bash script, it sometimes failed on some sites when yslow outputted content after the xml
+* Added ouput png:s that can be used on documents
 
 Sitespeed.io 0.9
 ------------------------
