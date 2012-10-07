@@ -6114,7 +6114,7 @@ YSLOW.registerRule({
     },
 
     lint: function (doc, cset, config) {
-        var ts, i, expiration, score, len, message, 
+        var ts, i, expiration, score, len, message, skip = '',
             // far-ness in milliseconds
             far = parseInt(config.howfar, 10) * 1000,
             offenders = [],
@@ -6133,6 +6133,7 @@ YSLOW.registerRule({
                   // if in the ok list, just skip it
                  else if (config.skip.indexOf(comps[i].url) > 1 ) {
                  skipped.push(comps[i]);
+                 skip = skip + ' ' + comps[i].url;
                  continue;
                 }
 
@@ -6148,7 +6149,7 @@ YSLOW.registerRule({
                 offenders.length
             ) + ' without a far-future expiration date.' : '';
 
-         message += (skipped.length > 0) ? YSLOW.util.plural(' There %are% %num% static component%s% that are skipped from the score calculation', skipped.length) + ":" + skipped.valueOf() : '';
+         message += (skipped.length > 0) ? YSLOW.util.plural(' There %are% %num% static component%s% that are skipped from the score calculation', skipped.length) + ":" + skip : '';
 
         return {
             score: score,
@@ -6192,7 +6193,8 @@ YSLOW.registerRuleset({
         ycookiefree: {},
         ynofilter: {},
         yimgnoscale: {},
-        yfavicon: {},
+        // skipping favicon for now, since it don't seems to work with phantomjs, always get size 0 and no cache header
+        // yfavicon: {},
         _3po_asyncjs: {},
 	      _3po_jsonce: {},
         cssprint: {},
@@ -6224,16 +6226,16 @@ YSLOW.registerRuleset({
         ycookiefree: 3,
         ynofilter: 4,
         yimgnoscale: 3,
-        yfavicon: 2,
+        // yfavicon: 2,
         _3po_asyncjs: 10,
 		    _3po_jsonce: 10,
-        cssprint: 1,
+        cssprint: 3,
         cssinheaddomain: 8,
-        syncjsinhead: 10,
+        syncjsinhead: 20,
         avoidfont: 1,
-        totalrequests: 5,
+        totalrequests: 10,
         expiresmod: 10,
-        spof: 15
+        spof: 20
     }
 
 });/**
