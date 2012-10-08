@@ -3,9 +3,13 @@
 <head>
   <meta charset="utf-8">
   <title>#if($!{document.getRootElement().getAttribute("host")})
-    $document.getRootElement().getAttribute("host").getValue() - 
+    $document.getRootElement().getAttribute("host").getValue()
+    - $pageTitle
+    #else
+    $pageTitle - 
+    $document.getRootElement().getChild("u").getValue()
     #end
-    $pageTitle</title> 
+    </title> 
   <meta name="description" content="$pageDescription">
   <link rel="stylesheet" href="$!{pathToIncludes}css/bootstrap.min.css">
 
