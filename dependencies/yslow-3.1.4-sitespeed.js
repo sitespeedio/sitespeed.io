@@ -6114,7 +6114,7 @@ YSLOW.registerRule({
     },
 
     lint: function (doc, cset, config) {
-        var ts, i, expiration, score, len, message, skip = '',
+        var ts, i, expiration, score, len, message,
             // far-ness in milliseconds
             far = parseInt(config.howfar, 10) * 1000,
             offenders = [],
@@ -6132,8 +6132,7 @@ YSLOW.registerRule({
                 }
                   // if in the ok list, just skip it
                  else if (config.skip.indexOf(comps[i].url) > 1 ) {
-                 skipped.push(comps[i]);
-                 skip = skip + ' ' + comps[i].url;
+                 skipped.push(comps[i].url);
                  continue;
                 }
 
@@ -6149,7 +6148,7 @@ YSLOW.registerRule({
                 offenders.length
             ) + ' without a far-future expiration date.' : '';
 
-         message += (skipped.length > 0) ? YSLOW.util.plural(' There %are% %num% static component%s% that are skipped from the score calculation', skipped.length) + ":" + skip : '';
+         message += (skipped.length > 0) ? YSLOW.util.plural(' There %are% %num% static component%s% that are skipped from the score calculation', skipped.length) + ":" + skipped : '';
 
         return {
             score: score,
