@@ -67,7 +67,7 @@
                     </th>
 
                     <th>
-                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="Frontend single point of failure">spof</a>
+                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The numbert of possible frontend single point of failures">spof</a>
                     </th>
 
                     <th>
@@ -99,7 +99,7 @@
                                 <h3 id="headersModalLabel-$foreach.count">Response headers</h3>
                             </div>
                             <div class="modal-body">
-                                <table>
+                                <table class="table-hover table-condensed table-striped table-bordered">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
