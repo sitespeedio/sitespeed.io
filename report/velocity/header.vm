@@ -11,7 +11,7 @@
     #end
     </title> 
   <meta name="description" content="$pageDescription">
-  <meta name="robots" content="noindex, nofollow" />
+  <meta name="robots" content="noindex" />
   <link rel="stylesheet" href="$!{pathToIncludes}css/bootstrap.min.css">
 
   <style type="text/css">
