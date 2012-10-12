@@ -70,13 +70,13 @@ USERAGENT='Mozilla/5.0 (Windows NT 6.1; rv:15.0) Gecko/20120716 Firefox/15.0a2'
 
 echo "Will start fetching all a links ..."
 
-wget -r -l $DEPTH -nd -t $RETRIES -e robots=off --no-check-certificate --follow-tags=a --spider -U $USERAGENT $URL 2>&1 | while read line
+wget -r -l $DEPTH -nd -t $RETRIES -e robots=off --no-check-certificate --follow-tags=a --spider $URL 2>&1 | while read line
 do
 
     # The spider option checks if a file exist, only fetch only existing
     if [[ $line == "Remote file exists"* ]]
     then
-	isVerified=true	
+	 isVerified=true	
     # And only of content type html
     elif [[ $line = Length* ]] && [[ $line = *html* ]]
 	then
@@ -84,7 +84,7 @@ do
     elif [[ $line = Length* ]]
 	then
 	isHTML=false
-    elif ([[ $line == --* ]] && $isVerified && $isHTML)
+    elif ([[ $line == --* ]] && $isVerified && $isHTML && [[ "$line" == *$HOST* ]])
     then
        echo "$line" | cut -d " " -f 4
        echo "$line" | cut -d " " -f 4 >> $REPORT_DATA_DIR/urls.txt
