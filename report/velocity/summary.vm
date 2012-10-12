@@ -23,7 +23,7 @@
     <div class="span12">
 
         <h2>
-            $nrOfPages pages analyzed for $document.getRootElement().getAttribute("url").getValue()
+            $nrOfPages pages analyzed for <a href="$document.getRootElement().getAttribute("url").getValue()" target="_blank">$document.getRootElement().getAttribute("url").getValue()</a>
         </h2>
         <p>
             Test performed: $document.getRootElement().getAttribute("date").getValue()
