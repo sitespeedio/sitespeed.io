@@ -4,7 +4,7 @@
         <div class="span12">
 
             <h2>
-                Pages ($document.getRootElement().getChildren().size()) - <a href="$document.getRootElement().getAttribute("url").getValue()" target="_blank"><$document.getRootElement().getAttribute("url").getValue()</a>
+                Pages ($document.getRootElement().getChildren().size()) - <a href="$document.getRootElement().getAttribute("url").getValue()" target="_blank">$document.getRootElement().getAttribute("url").getValue()</a>
             </h2>
             <p>
             Test performed: $document.getRootElement().getAttribute("date").getValue()
@@ -173,14 +173,20 @@
 
                     <td>
                         #if ($results.getChild("g").getChild("spof").getChild("components").getChildren("item").size() > 0)
+
+                        #set($spofDomains = "")
+
+                        #foreach ($spofUrl in $results.getChild("g").getChild("spof").getChild("components").getChildren("item"))
+                            #set($spofDomains = $spofDomains + $host.getHost($spofUrl.getValue()) + ",")
+                        #end
+
                         <a href="#spof-$foreach.count" data-toggle="modal">
                             $results.getChild("g").getChild("spof").getChild("components").getChildren("item").size()
                         </a>
-                        <!--
-                        // TODO add the domains
-                        <a href="http://www.webpagetest.org/?url=$esc.url($results.getChild("u").getValue())&video=1&runs=3&spof=" target="_blank" title="Check this page on webpagetest.org with the spof domains"> <i class="icon-time"></i>
+                        
+                        <a href="http://www.webpagetest.org/?url=$esc.url($results.getChild("u").getValue())&video=1&runs=3&spof=$esc.url($spofDomains)" target="_blank" title="Record a video at webpagetest.org with the spof domains down"> <i class="icon-facetime-video"></i>
                         </a>
-                        -->
+                        
                         <div class="modal hide fade" id="spof-$foreach.count" show="false" aria-labelledby="jsModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-header">
                                 <h3 id="spofModalLabel-$foreach.count">
@@ -189,6 +195,7 @@
                             </div>
                             <div class="modal-body">
                                 #foreach ($spof in $results.getChild("g").getChild("spof").getChild("components").getChildren("item"))
+
                                 <a href="$esc.html($spof.getValue())" target="_blank">$esc.html($spof.getValue())</a>
                                 <br/>    
                                 #end
@@ -234,7 +241,7 @@
                     </td>
 
                     <td>
-                        <a href="http://www.webpagetest.org/?url=$esc.url($results.getChild("u").getValue())&video=1&runs=3" target="_blank" title="Check this page on webpagetest.org"> <i class="icon-time"></i>
+                        <a href="http://www.webpagetest.org/?url=$esc.url($results.getChild("u").getValue())&runs=3" target="_blank" title="Check this page on webpagetest.org"> <i class="icon-time"></i>
                         </a>
                     </td>
 
