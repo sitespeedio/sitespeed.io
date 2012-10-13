@@ -2,7 +2,8 @@ Sitespeed.io 1.0.1
 ------------------------
 * Fixed bug that sometimes url:s was fetched from different domains than the main domain
 * Added links to tested start url on both summary and page page
-* Added parameters to webpagetest so that record video is by default
+* Added parameters to webpagetest run three times by default
+* When a SPOF is found, link to webpagetest with SPOF domains activated is used by default
 
 Sitespeed.io 1.0
 ------------------------
