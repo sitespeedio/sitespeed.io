@@ -184,7 +184,7 @@
                             $results.getChild("g").getChild("spof").getChild("components").getChildren("item").size()
                         </a>
                         
-                        <a href="http://www.webpagetest.org/?url=$esc.url($results.getChild("u").getValue())&video=1&runs=3&spof=$spofDomains" target="_blank" title="Record a video at webpagetest.org with the spof domains down"> <i class="icon-facetime-video"></i>
+                        <a href="http://www.webpagetest.org/?url=$esc.url($results.getChild("u").getValue())&video=1&fvonly=1&runs=3&spof=$spofDomains" target="_blank" title="Record a video at webpagetest.org with the spof domains down"> <i class="icon-facetime-video"></i>
                         </a>
                         
                         <div class="modal hide fade" id="spof-$foreach.count" show="false" aria-labelledby="jsModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
