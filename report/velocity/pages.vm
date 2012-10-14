@@ -194,11 +194,13 @@
                                 </h3>
                             </div>
                             <div class="modal-body">
+                                <ul>
                                 #foreach ($spof in $results.getChild("g").getChild("spof").getChild("components").getChildren("item"))
 
-                                <a href="$esc.html($spof.getValue())" target="_blank">$esc.html($spof.getValue())</a>
-                                <br/>    
+                                <li><a href="$esc.html($spof.getValue())" target="_blank">$esc.html($spof.getValue())</a></li>
+                                   
                                 #end
+                                </ul>
                             </div>
                             <div class="modal-footer">
                                 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
@@ -222,10 +224,11 @@
                                 </h3>
                             </div>
                             <div class="modal-body">
+                                <ul>
                                 #foreach ($jssync in $results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item"))
-                                <a href="$esc.html($jssync.getValue())" target="_blank">$esc.html($jssync.getValue())</a>
-                                <br/>    
+                                <li><a href="$esc.html($jssync.getValue())" target="_blank">$esc.html($jssync.getValue())</a></li>    
                                 #end
+                                </ul>
                             </div>
                             <div class="modal-footer">
                                 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
