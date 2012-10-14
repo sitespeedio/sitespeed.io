@@ -23,7 +23,7 @@ if (!command -v phantomjs &> /dev/null) ; then
 fi
 
 if [ -z "$1" ]; then
-   echo "Missing url. USAGE: ${0} http[s]://host[:port][/path/] [crawl-depth]"
+   echo "Missing url. USAGE: ${0} http[s]://host[:port][/path/] [crawl-depth] [follow-path]"
    exit 1;
 fi
 
@@ -37,6 +37,14 @@ else
     DEPTH="1"
 fi
 
+# Check if we should follow a specific path
+if [ "$3" != "" ]
+then
+    FOLLOW_PATH="-p $3"
+else
+    FOLLOW_PATH=""
+fi
+
 URL="$1"
 
 USER=""
@@ -44,7 +52,7 @@ PASSWORD=""
 
 NOW=$(date +"%Y-%m-%d-%H-%M-%S")
 DATE=$(date) 
-echo "Will crawl from start point $URL with depth $DEPTH ... this can take a while"
+echo "Will crawl from start point $URL with depth $DEPTH $FOLLOW_PATH ... this can take a while"
 
 
 # remove the protocol                                                                                                                                                            
@@ -61,7 +69,7 @@ mkdir $REPORT_DATA_DIR
 mkdir $REPORT_PAGES_DIR
 mkdir $REPORT_DATA_PAGES_DIR
 
-java -Xmx256m -Xms256m -cp dependencies/crawler-0.9-full.jar com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/nonworkingurls.txt
+java -Xmx256m -Xms256m -cp dependencies/crawler-0.9-full.jar com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/nonworkingurls.txt
 
 # read the urls
 result=()
@@ -70,6 +78,12 @@ while read txt ; do
 done < $REPORT_DATA_DIR/urls.txt
 
 echo "Fetched ${#result[@]} pages" 
+
+if  [ ${#result[@]} == 0 ]
+then
+exit 0
+fi
+
 
 echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" url="'$URL'" date="'$DATE'">' > $REPORT_DATA_DIR/result.xml
 
