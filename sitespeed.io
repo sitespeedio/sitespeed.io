@@ -61,42 +61,9 @@ mkdir $REPORT_DATA_DIR
 mkdir $REPORT_PAGES_DIR
 mkdir $REPORT_DATA_PAGES_DIR
 
-RETRIES=1
-index=0
-isVerified=false
-isHTML=false
-#Faking firefox as useragent
-USERAGENT='Mozilla/5.0 (Windows NT 6.1; rv:15.0) Gecko/20120716 Firefox/15.0a2'
+java -Xmx256m -Xms256m -cp dependencies/crawler-0.9-full.jar com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/nonworkingurls.txt
 
-echo "Will start fetching all a links ..."
-
-wget -r -l $DEPTH -nd -t $RETRIES -e robots=off --no-check-certificate --follow-tags=a --spider $URL 2>&1 | while read line
-do
-
-    # The spider option checks if a file exist, only fetch only existing
-    if [[ $line == "Remote file exists"* ]]
-    then
-	 isVerified=true	
-    # And only of content type html
-    elif [[ $line = Length* ]] && [[ $line = *html* ]]
-	then
-	isHTML=true
-    elif [[ $line = Length* ]]
-	then
-	isHTML=false
-    elif ([[ $line == --* ]] && $isVerified && $isHTML && [[ "$line" == *$HOST* ]])
-    then
-       echo "$line" | cut -d " " -f 4
-       echo "$line" | cut -d " " -f 4 >> $REPORT_DATA_DIR/urls.txt
-       isVerified=false
-       isHTML=false
-    fi
-done
-
-## Remove duplicates, always needing if we have same resources on multiple pages
-sed '/^$/d' $REPORT_DATA_DIR/urls.txt | sort -u > $REPORT_DATA_DIR/urls-uniq.txt
-mv $REPORT_DATA_DIR/urls-uniq.txt $REPORT_DATA_DIR/urls.txt
-
+# read the urls
 result=()
 while read txt ; do
    result[${#result[@]}]=$txt
