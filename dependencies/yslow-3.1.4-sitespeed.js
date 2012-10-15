@@ -5861,7 +5861,7 @@ YSLOW.registerRule({
   var css = doc.getElementsByTagName('link'), 
     comps = cset.getComponentsByType('css'),
     comp, docdomain, src, offenders = {}, 
-    offender_comps = [],  
+    offendercomponents = [], uniquedns = [], 
     score = 100;
   
     docdomain = YSLOW.util.getHostname(cset.doc_comp.url);
@@ -5880,20 +5880,23 @@ YSLOW.registerRule({
     for (var i = 0; i < comps.length; i++) {
       if (offenders[comps[i].url]) {
         if (docdomain !== YSLOW.util.getHostname(comps[i].url)) {
-          offender_comps.push(comps[i]);
+          offendercomponents.push(comps[i]);
         }
       }
     }
 
-    var message = offender_comps.length === 0 ? '' :
-      'The following ' + YSLOW.util.plural('%num% css', offender_comps.length) +
-        ' are loaded from a different domain inside head, causing DNS lookups before page is rendered.';
-    score -= offender_comps.length * parseInt(config.points, 10)
+    uniquedns = YSLOW.util.getUniqueDomains(offendercomponents, true);
+
+    var message = offendercomponents.length === 0 ? '' :
+      'The following ' + YSLOW.util.plural('%num% css', offendercomponents.length) +
+        ' are loaded from a different domain inside head, causing DNS lookups before page is rendered. Unique DNS in head that decreases the score:' + uniquedns.length + ".";
+    // only punish dns lookups    
+    score -= uniquedns.length * parseInt(config.points, 10)
   
     return {
       score: score,
       message: message,
-      components: offender_comps
+      components: offendercomponents
     };
     }
 });
