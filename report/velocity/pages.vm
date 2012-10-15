@@ -67,7 +67,7 @@
                     </th>
 
                     <th>
-                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The numbert of possible frontend single point of failures">spof</a>
+                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The numbert of possible frontend single point of failures, be sure to avoid 3rd party assets">spof</a>
                     </th>
 
                     <th>
