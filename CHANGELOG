@@ -1,3 +1,10 @@
+Sitespeed.io 1.1
+------------------------
+* New crawler instead of wget that didn't work on some sites with spider options (amazon etc) 
+* Fix for css in head rule, now only dns lookups are punished, not the number of css
+* Crawl by follow a specific path, meaning you can analyze parts of sites
+
+
 Sitespeed.io 1.0.1
 ------------------------
 * Fixed bug that sometimes url:s was fetched from different domains than the main domain
