@@ -69,7 +69,7 @@ mkdir $REPORT_DATA_DIR
 mkdir $REPORT_PAGES_DIR
 mkdir $REPORT_DATA_PAGES_DIR
 
-java -Xmx256m -Xms256m -cp dependencies/crawler-0.9-full.jar com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/nonworkingurls.txt
+java -Xmx256m -Xms256m -cp dependencies/crawler-0.9.1-full.jar com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/nonworkingurls.txt
 
 # read the urls
 result=()
