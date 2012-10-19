@@ -18,41 +18,82 @@
 #*******************************************************
 
 if (!command -v phantomjs &> /dev/null) ; then
-   echo 'Missing phantomjs, please install it to be able to run sitespeed'
+   echo 'Missing phantomjs, please install it to be able to run sitespeed.io'
    exit 1;
 fi
 
-if [ -z "$1" ]; then
-   echo "Missing url. USAGE: ${0} http[s]://host[:port][/path/] [crawl-depth] [follow-path]"
-   exit 1;
+help()
+{
+cat << EOF
+usage: $0 options
+
+Sitespeed is a tool that helps you analyze your sites web performance and show you what you should optimize, more info at http://sitespeed.io
+
+OPTIONS:
+   -h      Get help.
+   -u      The start url to test: http[s]://host[:port][/path/]
+   -d      The crawl depth, default is 1
+   -f      Crawl only on this path
+   -s      Skip urls that contains this in the path
+EOF
+}
+
+URL=
+DEPTH=
+FOLLOW_PATH=
+NOT_IN_URL=
+
+while getopts “hu:d:f:s:” OPTION
+do
+     case $OPTION in
+         h)
+             help
+             exit 1
+             ;;
+         u)URL=$OPTARG;;
+         d)DEPTH=$OPTARG;;
+         f)FOLLOW_PATH=$OPTARG;;
+         s)NOT_IN_URL=$OPTARG;;    
+         ?)
+             help
+             exit
+             ;;
+     esac
+done
+
+if [[ -z $URL ]] 
+then
+     help
+     exit 1
+fi
+
+if [[ -z $DEPTH ]] 
+then
+     DEPTH="1"
+fi
+
+# Check if we should follow a specific path
+if [ "$FOLLOW_PATH" != "" ]
+then
+    FOLLOW_PATH="-p $FOLLOW_PATH"
+else
+    FOLLOW_PATH=""
+fi
+
+# Check for specific path in url that shouldn't be crawled
+if [ "$NOT_IN_URL" != "" ]
+then
+    NOT_IN_URL="-np $NOT_IN_URL"
+else
+    NOT_IN_URL=""
 fi
 
 # Switch to my dir
 cd "$(dirname ${BASH_SOURCE[0]})"
 
-if [ "$2" != "" ]
-then
-    DEPTH="$2"
-else
-    DEPTH="1"
-fi
-
-# Check if we should follow a specific path
-if [ "$3" != "" ]
-then
-    FOLLOW_PATH="-p $3"
-else
-    FOLLOW_PATH=""
-fi
-
-URL="$1"
-
-USER=""
-PASSWORD=""
-
 NOW=$(date +"%Y-%m-%d-%H-%M-%S")
 DATE=$(date) 
-echo "Will crawl from start point $URL with depth $DEPTH $FOLLOW_PATH ... this can take a while"
+echo "Will crawl from start point $URL with depth $DEPTH $FOLLOW_PATH $NOT_IN_URL ... this can take a while"
 
 
 # remove the protocol                                                                                                                                                            
@@ -69,7 +110,7 @@ mkdir $REPORT_DATA_DIR
 mkdir $REPORT_PAGES_DIR
 mkdir $REPORT_DATA_PAGES_DIR
 
-java -Xmx256m -Xms256m -cp dependencies/crawler-0.9.1-full.jar com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/nonworkingurls.txt
+java -Xmx256m -Xms256m -cp dependencies/crawler-0.9.1-full.jar com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/nonworkingurls.txt
 
 # read the urls
 result=()
