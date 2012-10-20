@@ -22,6 +22,11 @@ if (!command -v phantomjs &> /dev/null) ; then
    exit 1;
 fi
 
+
+#####
+# Help function, call it to print all different usages.
+#
+#####
 help()
 {
 cat << EOF
@@ -32,18 +37,54 @@ Sitespeed is a tool that helps you analyze your sites web performance and show y
 OPTIONS:
    -h      Get help.
    -u      The start url to test: http[s]://host[:port][/path/]
-   -d      The crawl depth, default is 1
-   -f      Crawl only on this path
-   -s      Skip urls that contains this in the path
+   -d      The crawl depth, default is 1 [optional]
+   -f      Crawl only on this path [optional]
+   -s      Skip urls that contains this in the path [optional]
+   -p      The number of processes that will analyze pages, default is 2 [optional]
 EOF
 }
 
+#####
+# Analyze function, call it to analyze a page
+# $1 the url to analyze
+# $2 the filename of that tested page
+# $3 the directory of where to put the data files
+# $4 the directory for the final page reports
+#####
+analyze() {
+    # setup the parameters, same names maybe makes it easier
+    url=$1
+    pagefilename=$2
+    REPORT_DATA_PAGES_DIR=$3
+    REPORT_PAGES_DIR=$4
+
+    echo "Analyzing $url"
+    phantomjs dependencies/yslow-3.1.4-sitespeed.js -r sitespeed.io -f xml "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
+ 
+    # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
+    sed '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup  || exit 1
+  
+    # And crazy enough, sometimes we get things after the end of the xml
+    sed -n '1,/<\/results>/p' $REPORT_DATA_PAGES_DIR/$pagefilename-bup > $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1
+ 
+    # Hack for adding link to the output file name
+    sed 's/<results>/<results filename="'$pagefilename'">/g' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
+    mv $REPORT_DATA_PAGES_DIR/$pagefilename-bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml
+ 
+    java -Xmx256m -Xms256m -jar dependencies/xml-velocity-1.1-full.jar $REPORT_DATA_PAGES_DIR/$pagefilename.xml report/velocity/page.vm report/properties/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1    
+
+}
+
+
+# All the options
 URL=
 DEPTH=
 FOLLOW_PATH=
 NOT_IN_URL=
+MAX_PROCESSES=
 
-while getopts “hu:d:f:s:” OPTION
+# Set options
+while getopts “hu:d:f:s:p:” OPTION
 do
      case $OPTION in
          h)
@@ -54,6 +95,7 @@ do
          d)DEPTH=$OPTARG;;
          f)FOLLOW_PATH=$OPTARG;;
          s)NOT_IN_URL=$OPTARG;;    
+         p)MAX_PROCESSES=$OPTARG;; 
          ?)
              help
              exit
@@ -61,6 +103,7 @@ do
      esac
 done
 
+# Verify that all options needed exists & set default values for missing ones
 if [[ -z $URL ]] 
 then
      help
@@ -72,7 +115,11 @@ then
      DEPTH="1"
 fi
 
-# Check if we should follow a specific path
+if [[ -z $MAX_PROCESSES ]] 
+then
+     MAX_PROCESSES="2"
+fi
+
 if [ "$FOLLOW_PATH" != "" ]
 then
     FOLLOW_PATH="-p $FOLLOW_PATH"
@@ -80,7 +127,6 @@ else
     FOLLOW_PATH=""
 fi
 
-# Check for specific path in url that shouldn't be crawled
 if [ "$NOT_IN_URL" != "" ]
 then
     NOT_IN_URL="-np $NOT_IN_URL"
@@ -93,8 +139,8 @@ cd "$(dirname ${BASH_SOURCE[0]})"
 
 NOW=$(date +"%Y-%m-%d-%H-%M-%S")
 DATE=$(date) 
-echo "Will crawl from start point $URL with depth $DEPTH $FOLLOW_PATH $NOT_IN_URL ... this can take a while"
 
+echo "Will crawl from start point $URL with depth $DEPTH $FOLLOW_PATH $NOT_IN_URL ... this can take a while"
 
 # remove the protocol                                                                                                                                                            
 NOPROTOCOL=${URL#*//}
@@ -112,6 +158,12 @@ mkdir $REPORT_DATA_PAGES_DIR
 
 java -Xmx256m -Xms256m -cp dependencies/crawler-0.9.1-full.jar com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/nonworkingurls.txt
 
+if [ ! -e $REPORT_DATA_DIR/urls.txt ];
+then
+echo "No url:s was fetched"
+exit 0
+fi
+
 # read the urls
 result=()
 while read txt ; do
@@ -120,36 +172,31 @@ done < $REPORT_DATA_DIR/urls.txt
 
 echo "Fetched ${#result[@]} pages" 
 
-if  [ ${#result[@]} == 0 ]
-then
-exit 0
-fi
+# Setup start parameters, 0 jobs are running and the first file name
+JOBS=0
+PAGEFILENAME=1
 
+for page in "${result[@]}"
+do analyze $page $PAGEFILENAME $REPORT_DATA_PAGES_DIR $REPORT_PAGES_DIR  &
+    PAGEFILENAME=$[$PAGEFILENAME+1]
+    JOBS=$[$JOBS+1]
+    if [ "$JOBS" -ge "$MAX_PROCESSES" ]
+	   then
+	   wait
+	   JOBS=0
+    fi
+done
+
+# make sure all processes has finished
+wait
+
+echo "Create result.xml"
 
 echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" url="'$URL'" date="'$DATE'">' > $REPORT_DATA_DIR/result.xml
-
-pagefilename=1
-for i in "${result[@]}"
+for file in $REPORT_DATA_PAGES_DIR/*
 do
-    echo "Analyzing $i"
-    phantomjs dependencies/yslow-3.1.4-sitespeed.js -r sitespeed.io -f xml "$i" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
- 
-    # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
-    sed '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/bup  || exit 1
-  
-    # And crazy enough, sometimes we get things after the end of the xml
-    sed -n '1,/<\/results>/p' $REPORT_DATA_PAGES_DIR/bup > $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1
- 
-    # Hack for adding link to the output file name
-    sed 's/<results>/<results filename="'$pagefilename'">/g' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/bup || exit 1
-    mv $REPORT_DATA_PAGES_DIR/bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml
- 
-    sed 's/<?xml version="1.0" encoding="UTF-8"?>//g' "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" >> "$REPORT_DATA_DIR/result.xml" || exit 1
-
-    java -Xmx256m -Xms256m -jar dependencies/xml-velocity-1.1-full.jar $REPORT_DATA_PAGES_DIR/$pagefilename.xml report/velocity/page.vm report/properties/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1    
-
-    pagefilename=$[$pagefilename+1]
-done
+ sed 's/<?xml version="1.0" encoding="UTF-8"?>//g' "$file" >> "$REPORT_DATA_DIR/result.xml" || exit 1
+done 
 echo '</document>'>> "$REPORT_DATA_DIR/result.xml"
 
 echo 'Create the pages.html'
@@ -171,7 +218,6 @@ echo 'Create summary png:s'
 # create images, easy to use in reports etc
 phantomjs dependencies/rasterize.js $REPORT_DIR/index.html $REPORT_DIR/summary.png
 phantomjs dependencies/rasterize.js $REPORT_DIR/pages.html $REPORT_DIR/pages.png
-
 
 echo "Finished, see the report $REPORT_DIR/index.html"
 exit 0
