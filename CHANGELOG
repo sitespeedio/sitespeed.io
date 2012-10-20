@@ -1,3 +1,11 @@
+
+Sitespeed.io 1.2
+------------------------
+* Better handling of input parameters, now you specify them in the order you like
+* Possibility to not crawl specifis path segments in urls
+* Run multiple processes when analyzing pages (to make it faster)
+* More doc in the sitespeed.io script
+
 Sitespeed.io 1.1
 ------------------------
 * New crawler instead of wget that didn't work on some sites with spider options (amazon etc) 
