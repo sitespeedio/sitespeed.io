@@ -12,7 +12,7 @@
 #set($nrOfCssImageText = "Two is good, above four is bad.")
 #set($nrOfImagesText = "25 or less images is OK, below 40 is ok, and above is bad.")
 #set($nrOfRequestPrimedText = "2 requests is good, else if not 90% of the request are cached, it is bad.")
-#set($spofText = "0 pages is good, everyhing else is bad. Excludes subdomains on the documnet domain from the spof.")
+#set($spofText = "0 pages is good, everyhing else is bad. Excludes subdomains on the document domain from the spof.")
 #set($jsSyncInHeadText = "0 is good, 1 or more is bad and not OK.")
 #set($spofPerPageText = "Everything above 0 is bad!")
 #set($assetsWithoutFarExpiresText = "0 is good. More than 4 is bad. Google Analythics & Gaug.es is excluded from this.")
@@ -126,7 +126,7 @@
             <div class="span6">
                 <div class="alert alert-#weightMobileType($totalDocumentWeightAverage)">
                     Document page weight
-                    <div class='large'><a href="#" rel="popover" class="alert-#weightMobileType($totalDocumentWeightAverage)" data-trigger="hover" title="<strong>Average document weight</strong>" data-content="$pageWeightText">$totalDocumentWeightAverage</a></div>
+                    <div class='large'><a href="#" rel="popover" class="alert-#weightMobileType($totalDocumentWeightAverage)" data-trigger="hover" title="<strong>Average document weight</strong>" data-content="$documentWeightTex">$totalDocumentWeightAverage</a></div>
                 </div>
             </div>
         </div>
