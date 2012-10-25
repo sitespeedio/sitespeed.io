@@ -1,26 +1,27 @@
+CHANGELOG sitespeed.io
 
-Sitespeed.io 1.2
+version 1.2
 ------------------------
 * Better handling of input parameters, now you specify them in the order you like
 * Possibility to not crawl specifis path segments in urls
 * Run multiple processes when analyzing pages (to make it faster)
-* More doc in the sitespeed.io script
+* More documentation in the sitespeed.io script
 
-Sitespeed.io 1.1
+version 1.1
 ------------------------
 * New crawler instead of wget that didn't work on some sites with spider options (amazon etc) 
 * Fix for css in head rule, now only dns lookups are punished, not the number of css
 * Crawl by follow a specific path, meaning you can analyze parts of sites
 
 
-Sitespeed.io 1.0.1
+version 1.0.1
 ------------------------
 * Fixed bug that sometimes url:s was fetched from different domains than the main domain
 * Added links to tested start url on both summary and page page
 * Added parameters to webpagetest run three times by default
 * When a SPOF is found, link to webpagetest with SPOF domains activated is used by default
 
-Sitespeed.io 1.0
+version 1.0
 ------------------------
 * Show full urls in pages & page to easier understand which url that is analyzed
 * Show extra data in modals to make it clearer
@@ -28,26 +29,22 @@ Sitespeed.io 1.0
 * Cleanup & bug fixes in the bash script, it sometimes failed on some sites when yslow outputted content after the xml
 * Added ouput png:s that can be used on documents
 
-Sitespeed.io 0.9
+version 0.9
 ------------------------
 * New rules: Loading js async and finding single point of failure
 * Modified expires to skip analythics scripts
 * Updated rules texts
 
-Sitespeed.io 0.8
+version 0.8
 ------------------------
 * Added new custom rules and modified existing yslow rules.
 * Favicon added :)
 
-Sitespeed.io 0.7
+version  0.7
 ------------------------
-
-Enhancements:
 * Upgraded to jquery 1.8
 * Upgraded Twitter Bootstrap to 2.1
 * Better title tag on result pages
-
-Defects:
 * Fixed so that long url:s don't break
 * Sometimes output xml was broken
 * Only fetch content of type html
