@@ -126,7 +126,7 @@
             <div class="span6">
                 <div class="alert alert-#weightMobileType($totalDocumentWeightAverage)">
                     Document page weight
-                    <div class='large'><a href="#" rel="popover" class="alert-#weightMobileType($totalDocumentWeightAverage)" data-trigger="hover" title="<strong>Average document weight</strong>" data-content="$documentWeightTex">$totalDocumentWeightAverage</a></div>
+                    <div class='large'><a href="#" rel="popover" class="alert-#weightMobileType($totalDocumentWeightAverage)" data-trigger="hover" title="<strong>Average document weight</strong>" data-content="$documentWeightText">$totalDocumentWeightAverage</a></div>
                 </div>
             </div>
         </div>
