@@ -167,7 +167,7 @@
 
                     <td>$math.roundTo(1,$math.div($results.getChild("w").getValue(),1000))</td>
 
-                    <td>$math.roundTo(1,$math.div($$results.getChild("w_c").getValue(),1000))</td>
+                    <td>$math.roundTo(1,$math.div($results.getChild("w_c").getValue(),1000))</td>
 
                     <td>$results.getChild("lt").getValue()</td>
 
