@@ -167,7 +167,14 @@
 
                     <td>$math.roundTo(1,$math.div($results.getChild("w").getValue(),1000))</td>
 
-                    <td>$math.roundTo(1,$math.div($results.getChild("w_c").getValue(),1000))</td>
+                    <td>
+			## sometimes it seems like yslow can't fetch this value. when this happens output an sign
+			#if($math.toInteger($results.getChild("w_c").getValue()) > 0)
+			$math.roundTo(1,$math.div($results.getChild("w_c").getValue(),1000))
+			#else
+			<a href="#" alt="Couldn't fetch the value" title="Couldn't fetch the value"><i class="icon-question-sign"></i></a>
+			#end
+		    </td>
 
                     <td>$results.getChild("lt").getValue()</td>
 
