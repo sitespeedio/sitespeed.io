@@ -4146,6 +4146,17 @@ YSLOW.doc.addRuleInfo('yfavicon', 'Make favicon small and cacheable', 'A favicon
 
 YSLOW.doc.addRuleInfo('yemptysrc', 'Avoid empty src or href', 'You may expect a browser to do nothing when it encounters an empty image src.  However, it is not the case in most browsers. IE makes a request to the directory in which the page is located; Safari, Chrome, Firefox 3 and earlier make a request to the actual page itself. This behavior could possibly corrupt user data, waste server computing cycles generating a page that will never be viewed, and in the worst case, cripple your servers by sending a large amount of unexpected traffic.');
 
+YSLOW.doc.addRuleInfo('_3po_asyncjs','','');
+YSLOW.doc.addRuleInfo('_3po_jsonce','','');
+YSLOW.doc.addRuleInfo('cssprint','','');
+YSLOW.doc.addRuleInfo('cssinheaddomain','','');
+YSLOW.doc.addRuleInfo('syncjsinhead','','');
+YSLOW.doc.addRuleInfo('avoidfont','','');
+YSLOW.doc.addRuleInfo('totalrequests','','');
+YSLOW.doc.addRuleInfo('expiresmod','','');
+YSLOW.doc.addRuleInfo('spof','','');
+
+
 //
 // Tools text
 //
@@ -6197,8 +6208,8 @@ YSLOW.registerRuleset({
         yimgnoscale: {},
         // skipping favicon for now, since it don't seems to work with phantomjs, always get size 0 and no cache header
         // yfavicon: {},
-        _3po_asyncjs: {},
-	      _3po_jsonce: {},
+         /*_3po_asyncjs: {},
+	      _3po_jsonce: {}*/
         cssprint: {},
         cssinheaddomain: {},
         syncjsinhead: {},
@@ -6229,9 +6240,9 @@ YSLOW.registerRuleset({
         ynofilter: 4,
         yimgnoscale: 3,
         // yfavicon: 2,
-        _3po_asyncjs: 10,
-		    _3po_jsonce: 10,
-        cssprint: 3,
+        /*_3po_asyncjs: 10,
+		    _3po_jsonce: 10
+        */cssprint: 3,
         cssinheaddomain: 8,
         syncjsinhead: 20,
         avoidfont: 1,
