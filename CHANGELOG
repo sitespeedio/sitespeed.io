@@ -6,6 +6,8 @@ version 1.2
 * Possibility to not crawl specifis path segments in urls
 * Run multiple processes when analyzing pages (to make it faster)
 * More documentation in the sitespeed.io script
+* Include rules dictionary when using yslow, always update the doc.js in yslow when adding new rule
+* Show the full rule name when showing broken rules
 
 version 1.1
 ------------------------
