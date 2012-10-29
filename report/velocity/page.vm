@@ -25,9 +25,13 @@
 	 
 		#if($!{message.getChild("score").getValue()})	 
 	  
-		    	#if($message.getChild("score").getValue()!="100")
-		    			<tr>
-		    				<td>$message.getName()</td>
+			#if($message.getChild("score").getValue()!="100")
+					<tr>
+						<td>
+								$document.getRootElement().getChild("dictionary").getChild("rules").getChild($message.getName()).getChild("name").getValue()
+						</td>
+
+
 		    				<td>$message.getChild("score").getValue()</td>
 		    				<td>$message.getChild("message").getValue()</td>
 		    				<td class="nobreak" style="max-width: 450px;">
