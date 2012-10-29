@@ -23,10 +23,10 @@ if (!command -v phantomjs &> /dev/null) ; then
 fi
 
 
-#####
+#*******************************************************
 # Help function, call it to print all different usages.
 #
-#####
+#*******************************************************
 help()
 {
 cat << EOF
@@ -36,21 +36,21 @@ Sitespeed is a tool that helps you analyze your sites web performance and show y
 
 OPTIONS:
    -h      Get help.
-   -u      The start url to test: http[s]://host[:port][/path/]
+   -u      The start url for the test: http[s]://host[:port][/path/]
    -d      The crawl depth, default is 1 [optional]
    -f      Crawl only on this path [optional]
    -s      Skip urls that contains this in the path [optional]
-   -p      The number of processes that will analyze pages, default is 2 [optional]
+   -p      The number of processes that will analyze pages, default is 5 [optional]
 EOF
 }
 
-#####
+#*******************************************************
 # Analyze function, call it to analyze a page
 # $1 the url to analyze
 # $2 the filename of that tested page
 # $3 the directory of where to put the data files
 # $4 the directory for the final page reports
-#####
+#*******************************************************
 analyze() {
     # setup the parameters, same names maybe makes it easier
     url=$1
@@ -59,7 +59,7 @@ analyze() {
     REPORT_PAGES_DIR=$4
 
     echo "Analyzing $url"
-    phantomjs dependencies/yslow-3.1.4-sitespeed.js -r sitespeed.io -f xml "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
+    phantomjs dependencies/yslow-3.1.4-sitespeed.js -d -r sitespeed.io -f xml "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
  
     # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
     sed '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup  || exit 1
@@ -117,7 +117,7 @@ fi
 
 if [[ -z $MAX_PROCESSES ]] 
 then
-     MAX_PROCESSES="2"
+     MAX_PROCESSES="5"
 fi
 
 if [ "$FOLLOW_PATH" != "" ]
@@ -195,7 +195,12 @@ echo "Create result.xml"
 echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" url="'$URL'" date="'$DATE'">' > $REPORT_DATA_DIR/result.xml
 for file in $REPORT_DATA_PAGES_DIR/*
 do
- sed 's/<?xml version="1.0" encoding="UTF-8"?>//g' "$file" >> "$REPORT_DATA_DIR/result.xml" || exit 1
+  # Hack for removing dictonaries in the result file
+  sed 's#<dictionary>.*##' "$file" > $REPORT_DATA_DIR/tmp.txt || exit 1
+  echo '</results>' >> $REPORT_DATA_DIR/tmp.txt 
+  sed 's/<?xml version="1.0" encoding="UTF-8"?>//g' "$REPORT_DATA_DIR/tmp.txt" >> "$REPORT_DATA_DIR/result.xml" || exit 1
+  rm "$REPORT_DATA_DIR/tmp.txt"
+
 done 
 echo '</document>'>> "$REPORT_DATA_DIR/result.xml"
 
