@@ -1,0 +1,35 @@
+#parse("report/velocity/header.vm")
+<div class="row">
+	<div class="span12">
+
+		<h2>
+			The rules
+		</h2>
+
+		<table class="table table-condensed table-striped table-bordered" >
+			<thead>
+				<tr>
+					<th>Rule</th>
+					<th>Info</th>
+					<th>Weight</th>
+				</tr>
+				<tbody>
+					#foreach ($rule in $document.getRootElement().getChild("dictionary").getChild("rules").getChildren())
+	 
+					<tr>
+						<td>$rule.getChild("name").getValue()</td>
+		    				<td>$rule.getChild("info").getValue()</td>
+		    				<td>$rule.getChild("weight").getValue()</td>
+
+					</tr>
+					#end
+				</tbody>
+			</table>
+
+	</div>
+	<!-- span 12 -->
+</div>
+<!-- row -->
+#parse("report/velocity/footer.vm")
+</body>
+</html>

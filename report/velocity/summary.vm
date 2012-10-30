@@ -144,7 +144,7 @@
                     means that something is bad.
                 </p>
                 <ul>
-                    <li> <b><a href="http://sitespeed.io/rules/" target="_blank">Sitespeed</a> score (modified and enhanced Yslow
+                    <li> <b>Sitespeed score are based on the <a href="rules.html">rules</a> (modified and enhanced Yslow
                             rules)</b>:  
                         $scoreText
                     </li>
