@@ -196,8 +196,7 @@ echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" url="'$URL'
 for file in $REPORT_DATA_PAGES_DIR/*
 do
   # Hack for removing dictonaries in the result file
-  sed 's#<dictionary>.*##' "$file" > $REPORT_DATA_DIR/tmp.txt || exit 1
-  echo '</results>' >> $REPORT_DATA_DIR/tmp.txt 
+  sed 's#<dictionary>.*#</results>#' "$file" > $REPORT_DATA_DIR/tmp.txt || exit 1
   sed 's/<?xml version="1.0" encoding="UTF-8"?>//g' "$REPORT_DATA_DIR/tmp.txt" >> "$REPORT_DATA_DIR/result.xml" || exit 1
   rm "$REPORT_DATA_DIR/tmp.txt"
 
