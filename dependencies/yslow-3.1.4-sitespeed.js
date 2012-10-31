@@ -6175,8 +6175,8 @@ YSLOW.registerRule({
 
 
 YSLOW.registerRuleset({ 
-    id: 'sitespeed.io',
-    name: 'Sitespeed.io rules v1.0',
+    id: 'sitespeed.io-1.2',
+    name: 'Sitespeed.io rules v1.2',
     rules: {
         ynumreq: {
 	         // We are a little harder than standard yslow
@@ -6208,8 +6208,8 @@ YSLOW.registerRuleset({
         yimgnoscale: {},
         // skipping favicon for now, since it don't seems to work with phantomjs, always get size 0 and no cache header
         // yfavicon: {},
-         /*_3po_asyncjs: {},
-	      _3po_jsonce: {}*/
+        _3po_asyncjs: {},
+	      _3po_jsonce: {},
         cssprint: {},
         cssinheaddomain: {},
         syncjsinhead: {},
@@ -6240,9 +6240,9 @@ YSLOW.registerRuleset({
         ynofilter: 4,
         yimgnoscale: 3,
         // yfavicon: 2,
-        /*_3po_asyncjs: 10,
-		    _3po_jsonce: 10
-        */cssprint: 3,
+        _3po_asyncjs: 10,
+		    _3po_jsonce: 10,
+        cssprint: 3,
         cssinheaddomain: 8,
         syncjsinhead: 20,
         avoidfont: 1,
