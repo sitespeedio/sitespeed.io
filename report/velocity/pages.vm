@@ -7,7 +7,7 @@
                 Pages ($document.getRootElement().getChildren().size()) - <a href="$document.getRootElement().getAttribute("url").getValue()" target="_blank">$document.getRootElement().getAttribute("url").getValue()</a>
             </h2>
             <p>
-            Test performed: $document.getRootElement().getAttribute("date").getValue()
+            Test performed: $document.getRootElement().getAttribute("date").getValue() with rules $document.getRootElement().getChild("results").getChild("i").getValue()
             </p>
 
             <table class="table table-hover table-condensed table-striped table-bordered" id="pagesTable" >
