@@ -8,6 +8,8 @@ version 1.2
 * More documentation in the sitespeed.io script
 * Include rules dictionary when using yslow, always update the doc.js in yslow when adding new rule
 * Show the full rule name when showing broken rules
+* Show explanation for all rules used, linked from summary page
+* Show exact rule number, for easier trackback
 
 version 1.1
 ------------------------
