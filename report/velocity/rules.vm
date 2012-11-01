@@ -6,6 +6,10 @@
 			The rules
 		</h2>
 
+		<p>
+			The rules are a mashup between classic Yslow rules & new sitespeed.io rules, all are based on performance best practices. The current version of the rules is $document.getRootElement().getChild("i").getValue()
+		</p>
+
 		<table class="table table-condensed table-striped table-bordered" >
 			<thead>
 				<tr>
