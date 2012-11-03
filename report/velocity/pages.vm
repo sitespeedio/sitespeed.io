@@ -184,7 +184,10 @@
                         #set($spofDomains = "")
 
                         #foreach ($spofUrl in $results.getChild("g").getChild("spof").getChild("components").getChildren("item"))
-                            #set($spofDomains = $spofDomains + $host.getHost($spofUrl.getValue()) + ",")
+                            ## only add unique ones
+			    #if ($spofDomains.indexOf($host.getHost($spofUrl.getValue())) < 0)
+			    	#set($spofDomains = $spofDomains + $host.getHost($spofUrl.getValue()) + ",")
+			    #end
                         #end
 
                         <a href="#spof-$foreach.count" data-toggle="modal">
