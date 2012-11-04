@@ -19,7 +19,7 @@
 
 
 
-<div class="row">
+<div class="row-fluid">
     <div class="span12">
 
         <h2>
@@ -29,74 +29,74 @@
             Test performed: $document.getRootElement().getAttribute("date").getValue() with rules $document.getRootElement().getChild("results").getChild("i").getValue()
         </p>
 
-        <div class="row">
+        <div class="row-fluid">
             <div class="span6">
                 <div class="alert alert-#scoreType($scoreAverage)">
                      Score
-                    <div class='large'><a href="#" class="alert-#scoreType($scoreAverage)" rel="popover" data-trigger="hover" title="<strong>Average score</strong>" data-content="$scoreText">$scoreAverage</a></div>
+                    <div class='large'><a href="#" class="alert-#scoreType($scoreAverage)" rel="popover" data-trigger="hover" html="true" title="Average score" data-content="$scoreText">$scoreAverage</a></div>
                 </div>
 
             </div>
             <div class="span6">
             <div class="alert alert-#totalJsSyncInHeadType($totalJsSyncInHeadAverage)">
               Number of JS synchronously in head 
-                    <div class='large'><a href="#" rel="popover" class="alert-#totalJsSyncInHeadType($totalJsSyncInHeadAverage)" data-trigger="hover" title="<strong>Average number of javascripts loaded synchronously inside of the head tag</strong>" data-content="$jsSyncInHeadText">$totalJsSyncInHeadAverage</a></div>   
+                    <div class='large'><a href="#" rel="popover" class="alert-#totalJsSyncInHeadType($totalJsSyncInHeadAverage)" data-trigger="hover" title="Average number of javascripts loaded synchronously inside of the head tag" data-content="$jsSyncInHeadText">$totalJsSyncInHeadAverage</a></div>   
           </div>    
                
             </div>
         </div>
 
         
-    <div class="row">
+    <div class="row-fluid">
             <div class="span3">
                 <div class="alert alert-#jsType($jsAverage)">
                     Number of JS
-                      <div class='large'><a href="#" rel="popover" class="alert-#jsType($jsAverage)" data-trigger="hover" title="<strong>Average number of javascripts</strong>" data-content="$nrOfJsText">$jsAverage</a></div>
+                      <div class='large'><a href="#" rel="popover" class="alert-#jsType($jsAverage)" data-trigger="hover" title="Average number of javascripts" data-content="$nrOfJsText">$jsAverage</a></div>
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#cssType($cssAverage)">
                     Number of CSS 
-                      <div class='large'><a href="#" rel="popover" class="alert-#cssType($cssAverage)" data-trigger="hover" title="<strong>Average number of stylesheets</strong>" data-content="$nrOfCssText">$cssAverage</a></div>
+                      <div class='large'><a href="#" rel="popover" class="alert-#cssType($cssAverage)" data-trigger="hover" title="Average number of stylesheets" data-content="$nrOfCssText">$cssAverage</a></div>
                 </div>
             </div>
 <div class="span3">
                 <div class="alert alert-#cssImageType($cssImageAverage)">
                     Number of CSS images
-                      <div class='large'><a href="#" rel="popover" class="alert-#cssImageType($cssImageAverage)" data-trigger="hover" title="<strong>Average number of stylesheet images</strong>" data-content="$nrOfCssImageText">$cssImageAverage</a></div>
+                      <div class='large'><a href="#" rel="popover" class="alert-#cssImageType($cssImageAverage)" data-trigger="hover" title="Average number of stylesheet images" data-content="$nrOfCssImageText">$cssImageAverage</a></div>
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#imageType($imageAverage)">
                     Number of images 
-                      <div class='large'><a href="#" rel="popover" class="alert-#imageType($imageAverage)" data-trigger="hover" title="<strong>Average number of images</strong>" data-content="$nrOfImagesText">$imageAverage</a></div>
+                      <div class='large'><a href="#" rel="popover" class="alert-#imageType($imageAverage)" data-trigger="hover" title="Average number of images" data-content="$nrOfImagesText">$imageAverage</a></div>
                 </div>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row-fluid">
              <div class="span4">
                 <div class="alert alert-#requestType($requestAverage)">
                     Number of requests
-                    <div class='large'><a href="#" rel="popover" class="alert-#requestType($requestAverage)" data-trigger="hover" title="<strong>Average number of requests</strong>" data-content="$requestText">$requestAverage</a></div>
+                    <div class='large'><a href="#" rel="popover" class="alert-#requestType($requestAverage)" data-trigger="hover" title="Average number of requests" data-content="$requestText">$requestAverage</a></div>
                 </div>
             </div>
             <div class="span4">
                 <div class="alert alert-#requestPrimedType($requestAverage $requestPrimedAverage)">
                     Number of requests with primed cache
-                      <div class='large'><a href="#" rel="popover" class="alert-#requestPrimedType($requestAverage $requestPrimedAverage)" data-trigger="hover" title="<strong>Average number of requests with a primed cache</strong>" data-content="$nrOfRequestPrimedText">$requestPrimedAverage</a></div>
+                      <div class='large'><a href="#" rel="popover" class="alert-#requestPrimedType($requestAverage $requestPrimedAverage)" data-trigger="hover" title="Average number of requests with a primed cache" data-content="$nrOfRequestPrimedText">$requestPrimedAverage</a></div>
                 </div>
             </div>
              <div class="span4">
                     <div class="alert alert-#expiresType($totalAssetsWithoutFarExpiresAverage)">
                     Requests without far expires
-                      <div class='large'><a href="#" rel="popover" class="alert-#expiresType($totalAssetsWithoutFarExpiresAverage)" data-trigger="hover" title="<strong>Average number of requests for static content without a far-future expiration date</strong>" data-content="$assetsWithoutFarExpiresText">$totalAssetsWithoutFarExpiresAverage</a></div>
+                      <div class='large'><a href="#" rel="popover" class="alert-#expiresType($totalAssetsWithoutFarExpiresAverage)" data-trigger="hover" title="Average number of requests for static content without a far-future expiration date" data-content="$assetsWithoutFarExpiresText">$totalAssetsWithoutFarExpiresAverage</a></div>
                 </div>
              </div>
            
         </div>
 	
-	 <div class="row">
+	 <div class="row-fluid">
            
 	    <div class="span6">
 
@@ -116,7 +116,7 @@
 	   
 		</div>    
 
-    <div class="row">
+    <div class="row-fluid">
             <div class="span6">
                 <div class="alert alert-#weightType($pageWeightAverage)">
                     Total page weight
@@ -131,7 +131,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row-fluid">
             <div class="span12">
                 <h3>Rules definition</h3>
                 <p>

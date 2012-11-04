@@ -1,5 +1,5 @@
 #parse("report/velocity/header.vm")
-<div class="row">
+<div class="row-fluid">
 	<div class="span12">
 
 		<h2>
@@ -12,6 +12,7 @@
 
 		<p><a href="#assets">See all the assets on this page.</a></p>	
 
+		<div class="hidden-phone">
 		<table class="table table-condensed table-striped table-bordered" >
 			<thead>
 				<tr>
@@ -34,7 +35,7 @@
 
 		    				<td>$message.getChild("score").getValue()</td>
 		    				<td>$message.getChild("message").getValue()</td>
-		    				<td class="nobreak" style="max-width: 450px;">
+		    				<td class="nobreak-page">
 		    					#foreach ($item in $message.getChild("components").getChildren("item"))
 		    					<p>$item.getValue()</p>
 		    					#end
@@ -45,6 +46,39 @@
 	 #end
 				</tbody>
 			</table>
+			</div> <!-- hidden phone -->
+
+			<div class="visible-phone">
+
+			<table class="table table-condensed table-striped table-bordered" >
+			<thead>
+				<tr>
+					<th>Rule</th>
+					<th>Score</th>
+					<th>Message</th>
+				</tr>
+				<tbody>
+					#foreach ($message in $document.getRootElement().getChild("g").getChildren())
+	 
+		#if($!{message.getChild("score").getValue()})	 
+	  
+		    	#if($message.getChild("score").getValue()!="100")
+		    			<tr>
+		    				<td>
+		    						$document.getRootElement().getChild("dictionary").getChild("rules").getChild($message.getName()).getChild("name").getValue()
+		    				</td>
+		    				<td>$message.getChild("score").getValue()</td>
+		    				<td>$message.getChild("message").getValue()</td>
+		    			</tr>
+		    			#end	 
+		#end	 
+	 #end
+				</tbody>
+			</table>
+
+
+
+			</div> <!-- visible phone -->
 
 
 			<h3 id="assets">Page assets</h3>
@@ -60,10 +94,10 @@
 					#foreach ($asset in $document.getRootElement().getChild("comps").getChildren())
 					<tr>
 
-						<td class="nobreak" style="max-width: 500px;">
+						<td class="nobreak-page-url">
 						<a href="#headers-$foreach.count" data-toggle="modal"><i class="icon-zoom-in"></i></a>
 
-                        <div class="modal hide fade" id="headers-$foreach.count" show="false" aria-labelledby="headersModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal hide fade" id="headers-$foreach.count" data-show="false" aria-labelledby="headersModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-header">
                                 <h3 id="headersModalLabel-$foreach.count">Response headers</h3>
                             </div>

@@ -10,6 +10,7 @@
     $document.getRootElement().getChild("u").getValue()
     #end
     </title> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="$pageDescription">
   <meta name="robots" content="noindex" />
   <link rel="stylesheet" href="$!{pathToIncludes}css/bootstrap.min.css">
@@ -32,8 +33,19 @@
       line-height: 38px;
       font-weight:bold;
     }
-    .nobreak {
+    .nobreak-pages {
     word-wrap: break-word;
+    max-width: 290px;
+    }
+
+    .nobreak-page {
+    word-wrap: break-word;
+    max-width: 450px;
+    }
+
+    .nobreak-page-url {
+    word-wrap: break-word;
+    max-width: 500px;
     }
 
     .logo {
@@ -42,6 +54,28 @@
       margin-left: -20px; 
       border:0px;
     }
+
+    .popover-content {
+    color: black;
+    font-size: 16px;
+    line-height: 18px;
+    font-weight:normal;
+    }
+    
+    .popover-title {
+    color: black;
+    font-weight:bold;
+    }
+
+.navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus {
+color: white;
+background-color: #0073b0;
+}
+
+.navbar .nav > li > a:focus, .navbar .nav > li > a:hover {
+color: white;
+background-color: #0095d2;
+}
 
   a.alert-success:hover {
   text-decoration: none;
@@ -67,6 +101,33 @@
   cursor:pointer;
   }
 
+@media (max-width:767px) {
+
+.logo {
+margin-left: 20px;
+}
+
+h2 {
+font-size: 20px;
+}
+
+h3 {
+font-size: 18px;
+}
+
+.nobreak-pages {
+max-width: 150px;
+}
+
+ .nobreak-page {
+     max-width: 200px;
+    }
+
+    .nobreak-page-url {
+    max-width: 200px;
+    }
+
+}
     </style>
 
   <link rel="shortcut icon" href="$!{pathToIncludes}img/favicon.png">
@@ -78,9 +139,16 @@
   <![endif]-->
 
 </head>
+ <body>
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
+
+	<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
 
         <img src="$!{pathToIncludes}img/sitespeed-logo.gif" class="logo"/>
          <!-- <a class="brand" href="#" title="How speedy is your site?">sitespeed.io</a>-->

@@ -1,6 +1,6 @@
     #parse("report/velocity/header.vm")
     #parse("report/velocity/macros.vm")
-    <div class="row">
+    <div class="row-fluid">
         <div class="span12">
 
             <h2>
@@ -10,6 +10,7 @@
             Test performed: $document.getRootElement().getAttribute("date").getValue() with rules $document.getRootElement().getChild("results").getChild("i").getValue()
             </p>
 
+            <div class="hidden-phone">
             <table class="table table-hover table-condensed table-striped table-bordered" id="pagesTable" >
                 <thead>
                     <tr>
@@ -44,10 +45,10 @@
                     </th>
 
                     <th>
-                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The total number of requests for this page">total request</a>
+                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The total number of requests for this page">total requests</a>
                     </th>
                     <th>
-                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The total number of requests for this page with primed cache">total request (cached)</a>
+                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The total number of requests for this page with primed cache">total requests (cached)</a>
                     </th>
 
                     <th>
@@ -67,7 +68,7 @@
                     </th>
 
                     <th>
-                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The numbert of possible frontend single point of failures, be sure to avoid 3rd party assets">spof</a>
+                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The number of possible frontend single point of failures, be sure to avoid 3rd party assets">spof</a>
                     </th>
 
                     <th>
@@ -89,12 +90,12 @@
                 #foreach ($results in $document.getRootElement().getChildren())
         #set($yslow = $results.getChild("o").getValue())
                 <tr>
-                    <td class="nobreak" style="max-width: 290px;">
+                    <td class="nobreak-pages">
                         #set($file = $results.getAttribute("filename").getValue())
                          #set($file = $file.concat(".html"))
                         <a href="#headers-$foreach.count" data-toggle="modal"><i class="icon-zoom-in"></i></a> <a href="pages/$file" title="$results.getChild("u").getValue()">$results.getChild("u").getValue()</a>
 
-                        <div class="modal hide fade" id="headers-$foreach.count" show="false" aria-labelledby="headersModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal hide fade" id="headers-$foreach.count" aria-labelledby="headersModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-header">
                                 <h3 id="headersModalLabel-$foreach.count">Response headers</h3>
                             </div>
@@ -197,7 +198,7 @@
                         <a href="http://www.webpagetest.org/?url=$esc.url($results.getChild("u").getValue())&video=1&fvonly=1&runs=3&spof=$spofDomains" target="_blank" title="Record a video at webpagetest.org with the spof domains down"> <i class="icon-facetime-video"></i>
                         </a>
                         
-                        <div class="modal hide fade" id="spof-$foreach.count" show="false" aria-labelledby="jsModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal hide fade" id="spof-$foreach.count" aria-labelledby="spofModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-header">
                                 <h3 id="spofModalLabel-$foreach.count">
                                     Single point of failures ($results.getChild("g").getChild("spof").getChild("components").getChildren("item").size())
@@ -227,7 +228,7 @@
                             $results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()
                         </a>
 
-                        <div class="modal hide fade" id="js-sync-$foreach.count" show="false" aria-labelledby="jsModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal hide fade" id="js-sync-$foreach.count" aria-labelledby="jsModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-header">
                                 <h3 id="jsModalLabel-$foreach.count">
                                     Javascript loaded synchronously in head ($results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size())
@@ -262,6 +263,92 @@
                 #end
             </tbody>
         </table>
+        </div> <!-- hidden phone -->
+
+        <div class="visible-phone">
+                    <table class="table table-hover table-condensed table-striped table-bordered" id="phonesPagesTable" >
+                <thead>
+                    <tr>
+                        <th>
+                            <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The url to the page">url</i>
+                        </a>
+                    </th>
+                
+                    <th>
+                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The total number of requests for this page">total requests</a>
+                    </th>
+                
+                    <th>
+                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The number of possible frontend single point of failures, be sure to avoid 3rd party assets">spof</a>
+                    </th>
+
+                    <th>
+                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The number of js loaded synchronously inside of head">sync js</a>
+                    </th>
+
+                    <th>
+                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The Yslow/Sitespeed grade for this page, 100 is perfect, 0 is incredible bad">grade</a>
+                    </th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                #foreach ($results in $document.getRootElement().getChildren())
+        #set($yslow = $results.getChild("o").getValue())
+                <tr>
+                    <td class="nobreak-pages">
+                        #set($file = $results.getAttribute("filename").getValue())
+                         #set($file = $file.concat(".html"))
+                        <a href="pages/$file" title="$results.getChild("u").getValue()">$results.getChild("u").getValue()</a>
+                    </td>
+                    
+                    <td>$results.getChild("r").getValue()</td>
+                    
+                    <td>
+                        #if ($results.getChild("g").getChild("spof").getChild("components").getChildren("item").size() > 0)
+
+                        #set($spofDomains = "")
+
+                        #foreach ($spofUrl in $results.getChild("g").getChild("spof").getChild("components").getChildren("item"))
+                            ## only add unique ones
+                #if ($spofDomains.indexOf($host.getHost($spofUrl.getValue())) < 0)
+                    #set($spofDomains = $spofDomains + $host.getHost($spofUrl.getValue()) + ",")
+                #end
+                        #end
+
+                    
+                            $results.getChild("g").getChild("spof").getChild("components").getChildren("item").size()
+                        
+                        <a href="http://www.webpagetest.org/?url=$esc.url($results.getChild("u").getValue())&video=1&fvonly=1&runs=3&spof=$spofDomains" target="_blank" title="Record a video at webpagetest.org with the spof domains down"> <i class="icon-facetime-video"></i>
+                        </a>
+                        
+                    
+                        #else
+                            $results.getChild("g").getChild("spof").getChild("components").getChildren("item").size()
+                        #end
+                    </td>
+
+                    <td>
+                        #if ($results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size() >0)
+                            $results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()
+                    
+                        #else
+                            $results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()
+                        #end
+                    </td>
+
+                    <td>
+                        <span class="badge badge-#scoreTypeBadge($math.toInteger($yslow))">$yslow</span>
+                    </td>
+
+                </tr>
+                #end
+            </tbody>
+        </table>
+
+
+        </div> <!-- visible phone -->
 
     </div>
     </div>
@@ -270,6 +357,7 @@
   $(document).ready(function() 
     { 
         $("#pagesTable").tablesorter(); 
+        $("#phonesPagesTable").tablesorter(); 
     } 
   );
 </script>

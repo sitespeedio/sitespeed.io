@@ -1,5 +1,5 @@
 #parse("report/velocity/header.vm")
-<div class="row">
+<div class="row-fluid">
 	<div class="span12">
 
 		<h2>
