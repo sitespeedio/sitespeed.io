@@ -10,7 +10,7 @@
     $document.getRootElement().getChild("u").getValue()
     #end
     </title> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
   <meta name="description" content="$pageDescription">
   <meta name="robots" content="noindex" />
   <link rel="stylesheet" href="$!{pathToIncludes}css/bootstrap.min.css">
@@ -53,6 +53,10 @@
       float: left; 
       margin-left: -20px; 
       border:0px;
+    }
+
+    .url {
+    word-wrap: break-word;
     }
 
     .popover-content {
@@ -159,11 +163,6 @@ max-width: 150px;
             <li#if( $pageMenu == "pages" ) class="active" #end>
               <a href="$!{pathToIncludes}pages.html">All pages</a>
             </li>
-            #if( $pageMenu == "page" )
-            <li class="active">
-              <a href="#">Page</a>
-            </li>
-            #end
           </ul>
         </div>
         <!--/.nav-collapse --> </div>
