@@ -15,7 +15,7 @@
                 <thead>
                     <tr>
                         <th>
-                            <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The url to the page">url</i>
+                            <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The url to the page">url
                         </a>
                     </th>
                     <th>
@@ -173,7 +173,7 @@
 			#if($math.toInteger($results.getChild("w_c").getValue()) > 0)
 			$math.roundTo(1,$math.div($results.getChild("w_c").getValue(),1000))
 			#else
-			<a href="#" alt="Couldn't fetch the value" title="Couldn't fetch the value"><i class="icon-question-sign"></i></a>
+			<a href="#" title="Couldn't fetch the value"><i class="icon-question-sign"></i></a>
 			#end
 		    </td>
 
@@ -195,7 +195,7 @@
                             $results.getChild("g").getChild("spof").getChild("components").getChildren("item").size()
                         </a>
                         
-                        <a href="http://www.webpagetest.org/?url=$esc.url($results.getChild("u").getValue())&video=1&fvonly=1&runs=3&spof=$spofDomains" target="_blank" title="Record a video at webpagetest.org with the spof domains down"> <i class="icon-facetime-video"></i>
+                        <a href="http://www.webpagetest.org/?url=$esc.url($results.getChild("u").getValue())&video=1fvonly=1&runs=3&spof=$spofDomains" target="_blank" title="Record a video at webpagetest.org with the spof domains down"> <i class="icon-facetime-video"></i>
                         </a>
                         
                         <div class="modal hide fade" id="spof-$foreach.count" aria-labelledby="spofModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
@@ -255,7 +255,7 @@
                     </td>
 
                     <td>
-                        <a href="http://www.webpagetest.org/?url=$esc.url($results.getChild("u").getValue())&runs=3" target="_blank" title="Check this page on webpagetest.org"> <i class="icon-time"></i>
+                        <a href="http://www.webpagetest.org/?url=$esc.url($results.getChild("u").getValue())&ampruns=3" target="_blank" title="Check this page on webpagetest.org"> <i class="icon-time"></i>
                         </a>
                     </td>
 
