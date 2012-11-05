@@ -22,7 +22,7 @@
 <div class="row-fluid">
     <div class="span12">
 
-        <h2>
+        <h2 class="url">
             $nrOfPages pages analyzed for <a href="$document.getRootElement().getAttribute("url").getValue()" target="_blank">$document.getRootElement().getAttribute("url").getValue()</a>
         </h2>
         <p>

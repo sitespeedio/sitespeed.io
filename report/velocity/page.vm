@@ -2,7 +2,7 @@
 <div class="row-fluid">
 	<div class="span12">
 
-		<h2>
+		<h2 class="url">
 			Page
 			<a href="$document.getRootElement().getChild("u").getValue()" target="_blank">$document.getRootElement().getChild("u").getValue()</a>
 			(score: $document.getRootElement().getChild("o").getValue())
