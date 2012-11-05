@@ -102,14 +102,14 @@
 
         <div class="alert alert-#spofType($totalSpofPages)">
                     Pages with SPOF
-                      <div class='large'><a href="#" rel="popover" class="alert-#spofType($totalSpofPages)" data-trigger="hover" title="<strong>The number of pages with frontend single point of failure</strong>" data-content="$spofText">$totalSpofPages</a></div>
+                      <div class='large'><a href="#" rel="popover" class="alert-#spofType($totalSpofPages)" data-trigger="hover" title="The number of pages with frontend single point of failure" data-content="$spofText">$totalSpofPages</a></div>
                 </div>
             </div>
 
                 <div class="span6">
 		 <div class="alert alert-#spofType($totalSpofAverage)">
                     Number of SPOF per page
-                      <div class='large'><a href="#" rel="popover" class="alert-#spofType($totalSpofAverage)" data-trigger="hover" title="<strong>Number of single point of failures per page</strong>" data-content="$spofPerPageText">$totalSpofAverage</a></div>
+                      <div class='large'><a href="#" rel="popover" class="alert-#spofType($totalSpofAverage)" data-trigger="hover" title="Number of single point of failures per page" data-content="$spofPerPageText">$totalSpofAverage</a></div>
             </div>
              
 	    </div>
@@ -120,13 +120,13 @@
             <div class="span6">
                 <div class="alert alert-#weightType($pageWeightAverage)">
                     Total page weight
-                    <div class='large'><a href="#" rel="popover" class="alert-#weightType($pageWeightAverage)" data-trigger="hover" title="<strong>Average page weight</strong>" data-content="$pageWeightText">$math.roundTo(1,$math.div($pageWeightAverage,1000)) kb</a></div>
+                    <div class='large'><a href="#" rel="popover" class="alert-#weightType($pageWeightAverage)" data-trigger="hover" title="Average page weight" data-content="$pageWeightText">$math.roundTo(1,$math.div($pageWeightAverage,1000)) kb</a></div>
                 </div>
             </div>
             <div class="span6">
                 <div class="alert alert-#weightMobileType($totalDocumentWeightAverage)">
                     Document page weight
-                    <div class='large'><a href="#" rel="popover" class="alert-#weightMobileType($totalDocumentWeightAverage)" data-trigger="hover" title="<strong>Average document weight</strong>" data-content="$documentWeightText">$math.roundTo(1,$math.div($totalDocumentWeightAverage,1000)) kb</a></div>
+                    <div class='large'><a href="#" rel="popover" class="alert-#weightMobileType($totalDocumentWeightAverage)" data-trigger="hover" title="Average document weight" data-content="$documentWeightText">$math.roundTo(1,$math.div($totalDocumentWeightAverage,1000)) kb</a></div>
                 </div>
             </div>
         </div>
