@@ -12,6 +12,7 @@
 
 		<p><a href="#assets">See all the assets on this page.</a></p>	
 
+		## special table for phone 
 		<div class="hidden-phone">
 		<table class="table table-condensed table-striped table-bordered" >
 			<thead>
@@ -23,27 +24,27 @@
 				</tr>
 				<tbody>
 					#foreach ($message in $document.getRootElement().getChild("g").getChildren())
-	 
-		#if($!{message.getChild("score").getValue()})	 
-	  
-			#if($message.getChild("score").getValue()!="100")
-					<tr>
-						<td>
-								$document.getRootElement().getChild("dictionary").getChild("rules").getChild($message.getName()).getChild("name").getValue()
-						</td>
-
-
-		    				<td>$message.getChild("score").getValue()</td>
-		    				<td>$message.getChild("message").getValue()</td>
-		    				<td class="nobreak-page">
-		    					#foreach ($item in $message.getChild("components").getChildren("item"))
-		    					<p>$item.getValue()</p>
-		    					#end
-		    				</td>
-		    			</tr>
-		    			#end	 
-		#end	 
-	 #end
+						#if($!{message.getChild("score").getValue()})	 
+						     #if($message.getChild("score").getValue()!="100")
+						    	<tr>
+						    		<td>
+						    			$document.getRootElement().getChild("dictionary").getChild("rules").getChild($message.getName()).getChild("name").getValue()
+						    		</td>
+						    		<td>
+						    			$message.getChild("score").getValue()
+						    		</td>
+						    		<td>
+						    			$message.getChild("message").getValue()
+						    		</td>
+						    		<td class="nobreak-page">
+						    			#foreach ($item in $message.getChild("components").getChildren("item"))
+						    				<p>$item.getValue()</p>
+						    			#end
+						    		</td>
+						    	</tr>
+						    	#end	 
+						#end	 
+					#end
 				</tbody>
 			</table>
 			</div> <!-- hidden phone -->
@@ -60,22 +61,21 @@
 				<tbody>
 					#foreach ($message in $document.getRootElement().getChild("g").getChildren())
 	 
-		#if($!{message.getChild("score").getValue()})	 
+						#if($!{message.getChild("score").getValue()})	 
 	  
-		    	#if($message.getChild("score").getValue()!="100")
-		    			<tr>
-		    				<td>
-		    						$document.getRootElement().getChild("dictionary").getChild("rules").getChild($message.getName()).getChild("name").getValue()
-		    				</td>
-		    				<td>$message.getChild("score").getValue()</td>
-		    				<td>$message.getChild("message").getValue()</td>
-		    			</tr>
-		    			#end	 
-		#end	 
-	 #end
+						    #if($message.getChild("score").getValue()!="100")
+						        	<tr>
+						        		<td>
+						        			$document.getRootElement().getChild("dictionary").getChild("rules").getChild($message.getName()).getChild("name").getValue()
+						        		</td>
+						        		<td>$message.getChild("score").getValue()</td>
+						        		<td class="nobreak-page">$message.getChild("message").getValue()</td>
+						        	</tr>
+						    #end	 
+						#end    	 
+					#end
 				</tbody>
 			</table>
-
 
 
 			</div> <!-- visible phone -->
@@ -95,7 +95,7 @@
 					<tr>
 
 						<td class="nobreak-page-url">
-						<a href="#headers-$foreach.count" data-toggle="modal"><i class="icon-zoom-in"></i></a>
+						<a href="#headers-$foreach.count" data-toggle="modal"><i class="icon-zoom-in hidden-phone"></i></a>
 
                         <div class="modal hide fade" id="headers-$foreach.count" data-show="false" aria-labelledby="headersModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-header">

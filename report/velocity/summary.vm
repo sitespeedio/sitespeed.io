@@ -137,11 +137,11 @@
                 <p>
                     The rules are simple:
                     <span class="badge badge-success">Green</span>
-                    light you don't need to do anything (of course there could still be things you can do to get better performance).
+                    color means you don't need to do anything (of course there could still be things you can do to get better performance).
                     <span class="badge badge-warning">Yellow</span>
-                    means that you should look into this, and guess what,
+                    tells you that you should look into this, and guess what,
                     <span class="badge badge-important">red</span>
-                    means that something is bad.
+                    means that something is really bad.
                 </p>
                 <ul>
                     <li> <b>Sitespeed score are based on the <a href="rules.html">rules</a> (modified and enhanced Yslow
