@@ -33,7 +33,7 @@
             <div class="span6">
                 <div class="alert alert-#scoreType($scoreAverage)">
                      Score
-                    <div class='large'><a href="#" class="alert-#scoreType($scoreAverage)" rel="popover" data-trigger="hover" html="true" title="Average score" data-content="$scoreText">$scoreAverage</a></div>
+                    <div class='large'><a href="#" class="alert-#scoreType($scoreAverage)" rel="popover" data-trigger="hover" title="Average score" data-content="$scoreText">$scoreAverage</a></div>
                 </div>
 
             </div>
