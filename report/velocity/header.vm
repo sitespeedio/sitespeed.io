@@ -150,7 +150,7 @@ max-width: 150px;
               <span class="icon-bar"></span>
             </a>
 
-        <img src="$!{pathToIncludes}img/sitespeed-logo.gif" class="logo" alt="Sitespeed.io - How speedy is your site?"/>
+        <img src="$!{pathToIncludes}img/sitespeed-logo.gif" class="logo" width="90" height="40" alt="Sitespeed.io - How speedy is your site?"/>
         <div class="nav-collapse">
           <ul class="nav">
             <li#if( $pageMenu == "summary" ) class="active" #end>
