@@ -157,6 +157,11 @@
     ## Phones
     @media (max-width:767px) {
 
+    .table th {
+    font-size: 10px;
+    line-height: 12px;
+    }  
+
     .logo {
     margin-left: 20px;
     }

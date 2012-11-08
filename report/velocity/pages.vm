@@ -308,19 +308,19 @@
                     </th>
 
                     <th>
-                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipTotalRequestsText">r</a>
+                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipTotalRequestsText">req</a>
                     </th>
                 
                     <th>
-                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipSpofText">s</a>
+                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipSpofText">spof</a>
                     </th>
 
                     <th>
-                        <a rel="tooltip"  data-placement="left" data-html="false" href="#" data-original-title="$tooltipJsSyncText">s js</a>
+                        <a rel="tooltip"  data-placement="left" data-html="false" href="#" data-original-title="$tooltipJsSyncText">sync js</a>
                     </th>
 
                     <th>
-                        <a rel="tooltip"  data-placement="left" data-html="false" href="#" data-original-title="$tooltipGradeText">g</a>
+                        <a rel="tooltip"  data-placement="left" data-html="false" href="#" data-original-title="$tooltipGradeText">grade</a>
                     </th>
 
                 </tr>
