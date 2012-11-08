@@ -10,10 +10,13 @@
 
 		<h3>Scores below 100</h3>
 
-		<p><a href="#assets">See all the assets on this page.</a></p>	
+		<p><a href="#assets">See all the assets on this page.</a> </p>	
+		<p><a href="#summary">See a summary if this page</a> </p>     	
+		 ## The link to webpagetest
+		<p><a href="http://www.webpagetest.org/?url=$esc.url($document.getRootElement().getChild("u").getValue())&ampruns=3" target="_blank" title="Check this page on webpagetest.org">Test</a> this page on webpagetest.org</p>
+
 
 		## special table for phone 
-		<div class="hidden-phone">
 		<table class="table table-condensed table-striped table-bordered" >
 			<thead>
 				<tr>
@@ -37,9 +40,12 @@
 						    			$message.getChild("message").getValue()
 						    		</td>
 						    		<td class="nobreak-page">
+						    			## This is just too much information to show on a phone
+						    			<span class="hidden-phone">
 						    			#foreach ($item in $message.getChild("components").getChildren("item"))
 						    				<p>$item.getValue()</p>
 						    			#end
+						    			</span>
 						    		</td>
 						    	</tr>
 						    	#end	 
@@ -47,38 +53,123 @@
 					#end
 				</tbody>
 			</table>
-			</div> <!-- hidden phone -->
-
-			<div class="visible-phone">
-
-			<table class="table table-condensed table-striped table-bordered" >
+		
+			<h3 id="summary">Page summary</h3>
+			<table class="table table-condensed table-striped table-bordered">
 			<thead>
 				<tr>
-					<th>Rule</th>
-					<th>Score</th>
-					<th>Message</th>
+					<th>type</th>
+					<th>value</th>
 				</tr>
-				<tbody>
-					#foreach ($message in $document.getRootElement().getChild("g").getChildren())
-	 
-						#if($!{message.getChild("score").getValue()})	 
-	  
-						    #if($message.getChild("score").getValue()!="100")
-						        	<tr>
-						        		<td>
-						        			$document.getRootElement().getChild("dictionary").getChild("rules").getChild($message.getName()).getChild("name").getValue()
-						        		</td>
-						        		<td>$message.getChild("score").getValue()</td>
-						        		<td class="nobreak-page">$message.getChild("message").getValue()</td>
-						        	</tr>
-						    #end	 
-						#end    	 
-					#end
-				</tbody>
-			</table>
+			</thead>
+			<tbody>
+				<tr>
+					<td>javascript</td>
+					<td>
+						## The number of javascripts
+                #if($!{document.getRootElement().getChild("stats").getChild("js").getChild("r")})
+					$document.getRootElement().getChild("stats").getChild("js").getChild("r").getValue()
+                #else
+                0
+                #end
+					</td>
+				</tr>
+				<tr>
+					<td>css</td>
+					<td>
+						## The number of css
+                #if($!{document.getRootElement().getChild("stats").getChild("css").getChild("r")})    
+					$document.getRootElement().getChild("stats").getChild("css").getChild("r").getValue()
+                #else
+				0
+                #end
+					</td>
+				</tr>
+				<tr>
+					<td>images</td>
+					<td>
+						#if($!{document.getRootElement().getChild("stats").getChild("image").getChild("r")})
+                 $document.getRootElement().getChild("stats").getChild("image").getChild("r").getValue()
+                #else
+                0
+                #end
+					</td>
+				</tr>
+				<tr>
+					<td>css images</td>
+					<td>
+						## The numbeer of css images
+				#if($!{document.getRootElement().getChild("stats").getChild("cssimage").getChild("r")})
+					$document.getRootElement().getChild("stats").getChild("cssimage").getChild("r").getValue()
+                #else
+                0
+                #end
+					</td>
+				</tr>
+				<tr>
+					<td>font</td>
+					<td>
+						## The number of fonts
+                 #if($!{document.getRootElement().getChild("stats").getChild("font").getChild("r")})
+                 $document.getRootElement().getChild("stats").getChild("font").getChild("r").getValue()
+                 #else
+                 0
+                 #end
+			        		</td>
+			        	</tr>
+			        	<tr>
+			        		<tr>
+			        			<td>requests</td>
+			        			<td>$document.getRootElement().getChild("r").getValue()</td>
+			        		</tr>
+			        		<tr>
+			        			<td>request cached</td>
+			        			<td>$document.getRootElement().getChild("r_c").getValue()</td>
+			        		</tr>
+			        		<tr>
+			        			<td>doc size</td>
+			        			<td>
+			        				$math.roundTo(1,$math.div($document.getRootElement().getChild("stats").getChild("doc").getChild("w").getValue(),1000)) kb
+			        			</td>
+			        		</tr>
+			        		<tr>
+			        			<td>page size</td>
+			        			<td>
+			        				$math.roundTo(1,$math.div($document.getRootElement().getChild("w").getValue(),1000)) kb
+			        			</td>
+			        		</tr>
+			        		<tr>
+			        			<td>page weight cached</td>
+			        			<td>
+			        				## The weight cached
+			        				## sometimes it seems like yslow can't fetch this value. when this happens output an sign
+			        				#if($math.toInteger($document.getRootElement().getChild("w_c").getValue()) > 0)
+			        					$math.roundTo(1,$math.div($document.getRootElement().getChild("w_c").getValue(),1000)) kb
+			        				#else
+			        				<a href="#" title="Couldn't fetch the value"> <i class="icon-question-sign"></i>
+			        				</a>
+			        				#end
+			        			</td>
+			        		</tr>
+			        		<tr>
+			        			<td>load time</td>
+			        			<td>$document.getRootElement().getChild("lt").getValue() ms</td>
+			        		</tr>
+			        		<tr>
+			        			<td>spof</td>
+			        			<td>
+			        				$document.getRootElement().getChild("g").getChild("spof").getChild("components").getChildren("item").size()
+			        			</td>
+			        		</tr>
+			        		<tr>
+			        			<td>sync js in head</td>
+			        			<td>
+			        				$document.getRootElement().getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()
+			        			</td>
+			        		</tr>
+			        	</tbody>
+			</table>	
 
-
-			</div> <!-- visible phone -->
 
 
 			<h3 id="assets">Page assets</h3>
@@ -95,7 +186,7 @@
 					<tr>
 
 						<td class="nobreak-page-url">
-						<a href="#headers-$foreach.count" data-toggle="modal"><i class="icon-zoom-in hidden-phone"></i></a>
+						<a href="#headers-$foreach.count" data-toggle="modal"><i class="icon-zoom-in"></i></a>
 
                         <div class="modal hide fade" id="headers-$foreach.count" data-show="false" aria-labelledby="headersModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-header">
