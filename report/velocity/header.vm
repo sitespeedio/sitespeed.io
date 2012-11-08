@@ -139,6 +139,18 @@
     line-height: 16px;
     }
 
+    ## Popovers on summary page
+    .popover-content {
+    font-size: 12px;
+    line-height: 16px;
+    }
+    
+     ## Popovers on summary page
+    .popover-title {
+    font-size: 12px;
+    line-height: 16px;
+    }
+
      .table th {
     font-size: 10px;
     line-height: 12px;
