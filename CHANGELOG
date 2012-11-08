@@ -2,6 +2,9 @@ CHANGELOG sitespeed.io
 
 version 1.3
 ------------------------
+* Made all pages responsive, standard stuff except the table in pages.vm, two different tables, one for phones, one for the rest
+* Moved webpagetest link from pages.vm to page, to make more space
+* Added the summary data also on page.vm
 
 version 1.2
 ------------------------
