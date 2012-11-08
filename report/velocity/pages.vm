@@ -16,7 +16,6 @@
     #set($tooltipSpofText = "The number of possible frontend single point of failures, be sure to avoid 3rd party assets")
     #set($tooltipJsSyncText = "The number of js loaded synchronously inside of head")
     #set($tooltipGradeText = "The Yslow/Sitespeed grade for this page, 100 is perfect, 0 is incredible bad")
-    #set($tooltipWptText = "Test this page on http://webpagetest.org")
 
     <div class="row-fluid">
         <div class="span12">
@@ -29,7 +28,8 @@
             </p>
 
             <div class="hidden-phone">
-            <table class="table table-hover table-condensed table-striped table-bordered" id="pagesTable" >
+            <table class="table table-hover table-condensed table-striped table-bordered" id="pagesTable">
+                <caption></caption>
                 <thead>
                     <tr>
                         <th>
@@ -88,11 +88,6 @@
                     <th>
                         <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipGradeText">grade</a>
                     </th>
-
-                    <th>
-                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipWptText">wpt</a>
-                    </th>
-
                 </tr>
             </thead>
 
@@ -106,7 +101,7 @@
                         #set($file = $results.getAttribute("filename").getValue())
                          #set($file = $file.concat(".html"))
                         <a href="#headers-$foreach.count" data-toggle="modal"><i class="icon-zoom-in"></i></a> <a href="pages/$file" title="$results.getChild("u").getValue()">$results.getChild("u").getValue()</a>
-
+                       
                         <div class="modal hide fade" id="headers-$foreach.count" aria-labelledby="headersModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-header">
                                 <h3 id="headersModalLabel-$foreach.count">Response headers</h3>
@@ -287,12 +282,6 @@
                         ## The sitespeed/yslow score
                         <span class="badge badge-#scoreTypeBadge($math.toInteger($sitespeed))">$sitespeed</span>
                     </td>
-
-                    <td>
-                        ## The link to webpagetest
-                        <a href="http://www.webpagetest.org/?url=$esc.url($results.getChild("u").getValue())&ampruns=3" target="_blank" title="Check this page on webpagetest.org"> <i class="icon-time"></i></a>
-                    </td>
-
                 </tr>
                 #end
             </tbody>
@@ -383,7 +372,7 @@
 
                     <td>
                         ## The sitespeed/yslow score
-                        <span class="badge badge-#scoreTypeBadge($math.toInteger($sitespeed))">$sitespeed</span>
+                        <span class="badge badge-#scoreTypeBadge($math.toInteger($sitespeed))">$sitespeed</span>           
                     </td>
 
                 </tr>
