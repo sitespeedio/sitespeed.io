@@ -15,8 +15,6 @@
 		 ## The link to webpagetest
 		<p><a href="http://www.webpagetest.org/?url=$esc.url($document.getRootElement().getChild("u").getValue())&ampruns=3" target="_blank" title="Check this page on webpagetest.org">Test</a> this page on webpagetest.org</p>
 
-
-		## special table for phone 
 		<table class="table table-condensed table-striped table-bordered" >
 			<thead>
 				<tr>
@@ -171,7 +169,7 @@
 			</table>	
 
 
-
+			
 			<h3 id="assets">Page assets</h3>
 			<table class="table table-condensed table-striped table-bordered">
 				<thead>
@@ -186,9 +184,13 @@
 					<tr>
 
 						<td class="nobreak-page-url">
+						
+						## Hide this form phones & tables, there is some kind of bug here that make navigations not work if used
+						<div class="hidden-phone hidden-tablet">
 						<a href="#headers-$foreach.count" data-toggle="modal"><i class="icon-zoom-in"></i></a>
+						
 
-                        <div class="modal hide fade" id="headers-$foreach.count" data-show="false" aria-labelledby="headersModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal hide fade" id="headers-$foreach.count" aria-labelledby="headersModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-header">
                                 <h3 id="headersModalLabel-$foreach.count">Response headers</h3>
                             </div>
@@ -209,12 +211,18 @@
                                         #end
                                     </tbody>
                                 </table>
+
+
                             </div>
                             <div class="modal-footer">
                                 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
                             </div>
                         </div>
 
+                        </div>
+
+						</div>
+                        <!-- -->
 
 					<a href="$asset.getChild("url").getValue()" title="$asset.getChild("url").getValue()" target="_blank">$asset.getChild("url").getValue()</a></td>
 					<td>$asset.getChild("type").getValue()</td>
@@ -224,6 +232,7 @@
 				#end
 			</tbody>
 		</table>
+		
 	</div>
 	<!-- span 12 -->
 </div>
