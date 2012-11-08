@@ -10,10 +10,18 @@
 
 		<h3>Scores below 100</h3>
 
-		<p><a href="#assets">See all the assets on this page.</a> </p>	
-		<p><a href="#summary">See a summary if this page</a> </p>     	
+		<div class="row-fluid">
+		<div class="span4">
+		<a href="#assets">See all the assets on this page.</a>
+		</div>
+		<div class="span4">
+		<a href="#summary">See a summary if this page</a>
+		</div>
+		<div class="span4">
 		 ## The link to webpagetest
-		<p><a href="http://www.webpagetest.org/?url=$esc.url($document.getRootElement().getChild("u").getValue())&ampruns=3" target="_blank" title="Check this page on webpagetest.org">Test</a> this page on webpagetest.org</p>
+		<a href="http://www.webpagetest.org/?url=$esc.url($document.getRootElement().getChild("u").getValue())&ampruns=3" target="_blank" title="Check this page on webpagetest.org">Test</a> this page with http://webpagetest.org
+		</div>
+		</div>
 
 		<table class="table table-condensed table-striped table-bordered" >
 			<thead>
