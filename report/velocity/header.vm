@@ -194,8 +194,16 @@
     line-height: 12px;
     }
 
+    .badge {
+    padding-left: 5px;
+    padding-right: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    }
+
     .nobreak-pages {
-    max-width: 80px;
+    max-width: 70px;
     }
 
     .nobreak-page {
@@ -226,13 +234,6 @@
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
-
-	<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </a>
-
         <img src="$!{pathToIncludes}img/sitespeed-logo.gif" class="logo" width="90" height="40" alt="Sitespeed.io - How speedy is your site?"/>
         <div class="nav-collapse">
           <ul class="nav">
