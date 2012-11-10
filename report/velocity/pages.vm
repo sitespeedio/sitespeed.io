@@ -58,23 +58,23 @@
                         <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipTotalRequestsText">total requests</a>
                     </th>
                     <th>
-                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipTotalRequestsPrimedText">total requests (cached)</a>
+                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipTotalRequestsPrimedText">total requests cached</a>
                     </th>
 
                     <th>
-                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipDocSizeText">doc size</a>
+                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipDocSizeText">doc size (kb)</a>
                     </th>
 
                     <th>
-                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipPageSizeText">page size</a>
+                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipPageSizeText">page size (kb)</a>
                     </th>
 
                     <th>
-                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipPageSizePrimedText">page size (cached)</a>
+                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipPageSizePrimedText">page size cached (kb)</a>
                     </th>
 
                     <th>
-                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipLoadTimeText">page load time</a>
+                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipLoadTimeText">page load time (ms)</a>
                     </th>
 
                     <th>
