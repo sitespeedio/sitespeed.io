@@ -5,4 +5,4 @@ before_script:
 - node test/server/file-server.js &
 - sleep 3
 
-script: ./build/sitespeed.io -u http://127.0.0.1:8080/
+script: ./build/sitespeed.io -u http://127.0.0.1:8080/ -o img,csv
