@@ -1,0 +1,55 @@
+#set ($output = 'url,js,css,images,cssimages,fonts,requests,request cached,doc size,page size,page size cached,load time,spof,js sync, score\n')
+#foreach ($results in $document.getRootElement().getChildren())
+#set($sitespeed = $results.getChild("o").getValue())
+## The url
+#set ( $output = $output + $results.getChild("u").getValue() + ',') 
+## The number of javascripts
+#if($!{results.getChild("stats").getChild("js").getChild("r")})
+#set ( $output = $output + $results.getChild("stats").getChild("js").getChild("r").getValue() + ',')                     
+#else
+#set ( $output = $output +  '0,') 
+#end
+## The number of css
+#if($!{results.getChild("stats").getChild("css").getChild("r")})    
+#set ( $output = $output + $results.getChild("stats").getChild("css").getChild("r").getValue() + ',')
+#else
+#set ( $output = $output +  '0,')                
+#end
+## The number of images
+#if($!{results.getChild("stats").getChild("image").getChild("r")})
+#set ( $output = $output +$results.getChild("stats").getChild("image").getChild("r").getValue() + ',')
+#else
+ #set ( $output = $output +  '0,') 
+#end
+## The numbeer of css images
+#if($!{results.getChild("stats").getChild("cssimage").getChild("r")})
+#set ( $output = $output + $results.getChild("stats").getChild("cssimage").getChild("r").getValue() + ',')
+#else
+#set ( $output = $output +  '0,') 
+#end
+## The number of fonts
+#if($!{results.getChild("stats").getChild("font").getChild("r")})
+#set ( $output = $output + $results.getChild("stats").getChild("font").getChild("r").getValue() + ',')
+#else
+#set ( $output = $output +  '0,') 
+#end
+## The number of requests
+#set ( $output = $output + $results.getChild("r").getValue() + ',')
+## The number of requests cached
+#set ( $output = $output + $results.getChild("r_c").getValue() + ',')
+## The size of the document
+#set ( $output = $output + $math.roundTo(1,$math.div($results.getChild("stats").getChild("doc").getChild("w").getValue(),1000)) + ',')
+## The size of the page
+#set ( $output = $output + $math.roundTo(1,$math.div($results.getChild("w").getValue(),1000)) + ',')
+## The weight cached
+#set ( $output = $output + $math.roundTo(1,$math.div($results.getChild("w_c").getValue(),1000)) + ',')
+## The load time
+#set ( $output = $output + $results.getChild("lt").getValue() + ',')
+## The number of components that can create a SPOF
+#set ( $output = $output + $results.getChild("g").getChild("spof").getChild("components").getChildren("item").size() + ',')
+## The number of javascripts loaded sync in head
+#set ( $output = $output + $results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size() + ',')
+## The sitespeed/yslow score
+#set ( $output = $output +$sitespeed + '\n')
+#end
+${output}
