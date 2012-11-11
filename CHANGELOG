@@ -5,6 +5,8 @@ version 1.3
 * Made all pages responsive, standard stuff except the table in pages.vm, two different tables, one for phones, one for the rest
 * Moved webpagetest link from pages.vm to page, to make more space
 * Added the summary data also on page.vm
+* Added possibility to output all page data as csv file (yes that old thing)
+* Added possibility to output every html file as png, for easy include in documents/web etc
 
 version 1.2
 ------------------------
