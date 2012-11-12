@@ -74,6 +74,7 @@ analyze() {
  
     java -Xmx256m -Xms256m -jar dependencies/xml-velocity-1.1-full.jar $REPORT_DATA_PAGES_DIR/$pagefilename.xml report/velocity/page.vm report/properties/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1    
 
+    java -jar dependencies/htmlcompressor-1.5.3.jar --type html --compress-css --compress-js -o $REPORT_PAGES_DIR/$pagefilename.html $REPORT_PAGES_DIR/$pagefilename.html
 }
 
 
@@ -229,13 +230,16 @@ echo '</document>'>> "$REPORT_DATA_DIR/result.xml"
 
 echo 'Create the pages.html'
 java -Xmx1024m -Xms1024m -jar dependencies/xml-velocity-1.1-full.jar $REPORT_DATA_DIR/result.xml report/velocity/pages.vm report/properties/pages.properties $REPORT_DIR/pages.html || exit 1
+java -jar dependencies/htmlcompressor-1.5.3.jar --type html --compress-css --compress-js -o $REPORT_DIR/pages.html $REPORT_DIR/pages.html
+
 
 echo 'Create the summary index.html'
 java -Xmx1024m -Xms1024m -jar dependencies/xml-velocity-1.1-full.jar $REPORT_DATA_DIR/result.xml report/velocity/summary.vm report/properties/summary.properties $REPORT_DIR/index.html || exit 1
+java -jar dependencies/htmlcompressor-1.5.3.jar --type html --compress-css --compress-js -o $REPORT_DIR/index.html $REPORT_DIR/index.html
 
 echo 'Create the rules.html'
 java -Xmx1024m -Xms1024m -jar dependencies/xml-velocity-1.1-full.jar $REPORT_DATA_PAGES_DIR/1.xml report/velocity/rules.vm report/properties/rules.properties $REPORT_DIR/rules.html || exit 1
-
+java -jar dependencies/htmlcompressor-1.5.3.jar --type html --compress-css --compress-js -o $REPORT_DIR/rules.html $REPORT_DIR/rules.html
 
 #copy the rest of the files
 mkdir $REPORT_DIR/css
