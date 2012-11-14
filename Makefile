@@ -25,9 +25,11 @@ package:
 
 	@cp sitespeed.io CHANGELOG $(BUILD)/
 	@cp $(DEP)/LICENSE.txt $(BUILD)/$(DEP)/
-	@cp $(DEP)/crawler-0.9.1-full.jar $(BUILD)/$(DEP)/
+	@cp $(DEP)/crawler-0.9.3-full.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/xml-velocity-1.1-full.jar $(BUILD)/$(DEP)/	
 	@cp $(DEP)/rasterize.js $(BUILD)/$(DEP)/
+	@cp $(DEP)/htmlcompressor-1.5.3.jar $(BUILD)/$(DEP)/
+	@cp $(DEP)/yuicompressor-2.4.6.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/yslow-3.1.4-sitespeed.js $(BUILD)/$(DEP)/
 	@cp $(REPORT)/$(CSS)/bootstrap.min.css $(BUILD)/$(REPORT)/$(CSS)/
 	@cp $(REPORT)/$(IMG)/apple-touch-icon-114-precomposed.png $(BUILD)/$(REPORT)/$(IMG)/
@@ -50,5 +52,6 @@ package:
 	@cp $(REPORT)/$(VELOCITY)/header.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/page.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/rules.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
+	@cp $(REPORT)/$(VELOCITY)/pages-csv.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/summary.logic.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@echo "finished!"

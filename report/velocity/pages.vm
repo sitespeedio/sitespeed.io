@@ -1,100 +1,108 @@
     #parse("report/velocity/header.vm")
     #parse("report/velocity/macros.vm")
-    <div class="row">
+    
+    #set($tooltipUrlText = "The url to the page.")
+    #set($tooltipJsText = "The number of javascript files used in this page")
+    #set($tooltipImgText = "The number of image files used in this page")
+    #set($tooltipCssText = "The number of stylesheet files used in this page")
+    #set($tooltipCssImgText = "The number of css images used on this page")
+    #set($tooltipFontText = "The number of fonts used on this page")
+    #set($tooltipTotalRequestsText = "The total number of requests for this page")    
+    #set($tooltipTotalRequestsPrimedText = "The total number of requests for this page with primed cache")
+    #set($tooltipPageSizeText = "The page total size when no assets are cached (kb)")
+    #set($tooltipDocSizeText = "The document size (kb)")
+    #set($tooltipPageSizePrimedText = "The page total size, including everything in the page with a primed cache (kb)")
+    #set($tooltipLoadTimeText = "The page load time in ms")
+    #set($tooltipSpofText = "The number of possible frontend single point of failures, be sure to avoid 3rd party assets")
+    #set($tooltipJsSyncText = "The number of js loaded synchronously inside of head")
+    #set($tooltipGradeText = "The Yslow/Sitespeed grade for this page, 100 is perfect, 0 is incredible bad")
+
+    <div class="row-fluid">
         <div class="span12">
 
-            <h2>
+            <h2 class="url">
                 Pages ($document.getRootElement().getChildren().size()) - <a href="$document.getRootElement().getAttribute("url").getValue()" target="_blank">$document.getRootElement().getAttribute("url").getValue()</a>
             </h2>
             <p>
             Test performed: $document.getRootElement().getAttribute("date").getValue() with rules $document.getRootElement().getChild("results").getChild("i").getValue()
             </p>
 
-            <table class="table table-hover table-condensed table-striped table-bordered" id="pagesTable" >
+            <div class="hidden-phone">
+            <table class="table table-hover table-condensed table-striped table-bordered" id="pagesTable">
+                <caption></caption>
                 <thead>
                     <tr>
                         <th>
-                            <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The url to the page">url</i>
-                        </a>
+                            <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipUrlText">url</a>
                     </th>
                     <th>
-
-                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The number of javascript files used in this page">js</a>
+                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipJsText">js</a>
                     </th>
 
                     <th>
-
-                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The number of stylesheet files used in this page">css</a>
-
+                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipCssText">css</a>
                     </th>
                     <th>
-
-                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The number of image files used in this page">img</a>
-
+                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipImgText">img</a>
                     </th>
 
                     <th>
-                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The number of css images used on this page">css img</a>
-
+                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipCssImgText">css img</a>
                     </th>
 
                     <th>
-                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The number of fonts used on this page">font</a>
-
+                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipFontText">font</a>
                     </th>
 
                     <th>
-                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The total number of requests for this page">total request</a>
+                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipTotalRequestsText">total requests</a>
                     </th>
                     <th>
-                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The total number of requests for this page with primed cache">total request (cached)</a>
+                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipTotalRequestsPrimedText">total requests cached</a>
                     </th>
 
                     <th>
-                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The document size (kb)">doc size</a>
+                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipDocSizeText">doc size (kb)</a>
                     </th>
 
                     <th>
-                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The page total size when no assets are cached (kb)">page size</a>
+                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipPageSizeText">page size (kb)</a>
                     </th>
 
                     <th>
-                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The page total size, including everything in the page with a primed cache (kb)">page size (cached)</a>
+                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipPageSizePrimedText">page size cached (kb)</a>
                     </th>
 
                     <th>
-                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="The page load time in ms">page load time</a>
+                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipLoadTimeText">page load time (ms)</a>
                     </th>
 
                     <th>
-                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The numbert of possible frontend single point of failures, be sure to avoid 3rd party assets">spof</a>
+                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipSpofText">spof</a>
                     </th>
 
                     <th>
-                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The number of js loaded synchronously inside of head">sync js</a>
+                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipJsSyncText">sync js</a>
                     </th>
 
                     <th>
-                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The Yslow/Sitespeed grade for this page, 100 is perfect, 0 is incredible bad">grade</a>
+                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipGradeText">grade</a>
                     </th>
-
-                    <th>
-                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="Test this page on http://webpagetest.org">wpt</a>
-                    </th>
-
                 </tr>
             </thead>
 
             <tbody>
                 #foreach ($results in $document.getRootElement().getChildren())
-        #set($yslow = $results.getChild("o").getValue())
+                #set($sitespeed = $results.getChild("o").getValue())
                 <tr>
-                    <td class="nobreak" style="max-width: 290px;">
+                    <td class="nobreak-pages">
+                        ## The link to the full page info
+
                         #set($file = $results.getAttribute("filename").getValue())
                          #set($file = $file.concat(".html"))
                         <a href="#headers-$foreach.count" data-toggle="modal"><i class="icon-zoom-in"></i></a> <a href="pages/$file" title="$results.getChild("u").getValue()">$results.getChild("u").getValue()</a>
-
-                        <div class="modal hide fade" id="headers-$foreach.count" show="false" aria-labelledby="headersModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
+                       
+                        <div class="modal hide fade" id="headers-$foreach.count" aria-labelledby="headersModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-header">
                                 <h3 id="headersModalLabel-$foreach.count">Response headers</h3>
                             </div>
@@ -123,6 +131,7 @@
 
                     </td>
                     <td>
+                        ## The number of javascripts
                         #if($!{results.getChild("stats").getChild("js").getChild("r")})
                             $results.getChild("stats").getChild("js").getChild("r").getValue()
                          #else
@@ -130,6 +139,7 @@
                          #end
                     </td>
                     <td>
+                        ## The number of css
                         #if($!{results.getChild("stats").getChild("css").getChild("r")})    
                             $results.getChild("stats").getChild("css").getChild("r").getValue()
                         #else
@@ -137,6 +147,7 @@
                         #end
                     </td>
                     <td>
+                        ## The number of images
                         #if($!{results.getChild("stats").getChild("image").getChild("r")})
                             $results.getChild("stats").getChild("image").getChild("r").getValue()
                         #else
@@ -144,6 +155,7 @@
                         #end
                     </td>
                     <td>
+                        ## The numbeer of css images
                         #if($!{results.getChild("stats").getChild("cssimage").getChild("r")})
                             $results.getChild("stats").getChild("cssimage").getChild("r").getValue()
                             #else
@@ -151,6 +163,7 @@
                         #end
                     </td>
                     <td>
+                        ## The number of fonts
                         #if($!{results.getChild("stats").getChild("font").getChild("r")})
                             $results.getChild("stats").getChild("font").getChild("r").getValue()
                             #else
@@ -158,43 +171,61 @@
                         #end
                     </td>
 
-                    <td>$results.getChild("r").getValue()</td>
-                    <td>$results.getChild("r_c").getValue()</td>
-
                     <td>
-		    $math.roundTo(1,$math.div($results.getChild("stats").getChild("doc").getChild("w").getValue(),1000))
+                        ## The number of requests
+                        $results.getChild("r").getValue()
+                    </td>
+                    <td>
+                        ## The number of requests cached
+                        $results.getChild("r_c").getValue()
                     </td>
 
-                    <td>$math.roundTo(1,$math.div($results.getChild("w").getValue(),1000))</td>
+                    <td>
+                        ## The size of the document
+		                  $math.roundTo(1,$math.div($results.getChild("stats").getChild("doc").getChild("w").getValue(),1000))
+                    </td>
 
                     <td>
-			## sometimes it seems like yslow can't fetch this value. when this happens output an sign
-			#if($math.toInteger($results.getChild("w_c").getValue()) > 0)
-			$math.roundTo(1,$math.div($results.getChild("w_c").getValue(),1000))
-			#else
-			<a href="#" alt="Couldn't fetch the value" title="Couldn't fetch the value"><i class="icon-question-sign"></i></a>
-			#end
-		    </td>
-
-                    <td>$results.getChild("lt").getValue()</td>
+                        ## The size of the page
+                        $math.roundTo(1,$math.div($results.getChild("w").getValue(),1000))
+                    </td>
 
                     <td>
+                         ## The weight cached
+			             ## sometimes it seems like yslow can't fetch this value. when this happens output an sign
+			             #if($math.toInteger($results.getChild("w_c").getValue()) > 0)
+			                 $math.roundTo(1,$math.div($results.getChild("w_c").getValue(),1000))
+			             #else
+			                 <a href="#" title="Couldn't fetch the value"><i class="icon-question-sign"></i></a>
+			             #end
+		             </td>
+
+                    <td>
+                        ## The load time
+                        $results.getChild("lt").getValue()
+                    </td>
+
+                    <td>
+                        ## The number of components that can create a SPOF
                         #if ($results.getChild("g").getChild("spof").getChild("components").getChildren("item").size() > 0)
 
                         #set($spofDomains = "")
 
                         #foreach ($spofUrl in $results.getChild("g").getChild("spof").getChild("components").getChildren("item"))
-                            #set($spofDomains = $spofDomains + $host.getHost($spofUrl.getValue()) + ",")
+                        ## only add unique ones
+			             #if ($spofDomains.indexOf($host.getHost($spofUrl.getValue())) < 0)
+				            #set($spofDomains = $spofDomains + $host.getHost($spofUrl.getValue()) + ",")
+			             #end
                         #end
 
                         <a href="#spof-$foreach.count" data-toggle="modal">
                             $results.getChild("g").getChild("spof").getChild("components").getChildren("item").size()
                         </a>
                         
-                        <a href="http://www.webpagetest.org/?url=$esc.url($results.getChild("u").getValue())&video=1&fvonly=1&runs=3&spof=$spofDomains" target="_blank" title="Record a video at webpagetest.org with the spof domains down"> <i class="icon-facetime-video"></i>
+                        <a href="http://www.webpagetest.org/?url=$esc.url($results.getChild("u").getValue())&video=1fvonly=1&runs=3&spof=$spofDomains" target="_blank" title="Record a video at webpagetest.org with the spof domains down"> <i class="icon-facetime-video"></i>
                         </a>
                         
-                        <div class="modal hide fade" id="spof-$foreach.count" show="false" aria-labelledby="jsModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal hide fade" id="spof-$foreach.count" aria-labelledby="spofModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-header">
                                 <h3 id="spofModalLabel-$foreach.count">
                                     Single point of failures ($results.getChild("g").getChild("spof").getChild("components").getChildren("item").size())
@@ -219,12 +250,13 @@
                     </td>
 
                     <td>
+                        ## The number of javascripts loaded sync in head
                         #if ($results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size() >0)
                         <a href="#js-sync-$foreach.count" data-toggle="modal">
                             $results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()
                         </a>
 
-                        <div class="modal hide fade" id="js-sync-$foreach.count" show="false" aria-labelledby="jsModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal hide fade" id="js-sync-$foreach.count" aria-labelledby="jsModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-header">
                                 <h3 id="jsModalLabel-$foreach.count">
                                     Javascript loaded synchronously in head ($results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size())
@@ -247,18 +279,109 @@
                     </td>
 
                     <td>
-                        <span class="badge badge-#scoreTypeBadge($math.toInteger($yslow))">$yslow</span>
+                        ## The sitespeed/yslow score
+                        <span class="badge badge-#scoreTypeBadge($math.toInteger($sitespeed))">$sitespeed</span>
+                    </td>
+                </tr>
+                #end
+            </tbody>
+        </table>
+        </div> <!-- hidden phone -->
+
+
+        ## special handling for phones, because tables aren't perfect for responsive
+        <div class="visible-phone">
+                    <table class="table table-hover table-condensed table-striped table-bordered" id="phonesPagesTable" >
+                <thead>
+                    <tr>
+                        <th>
+                            <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipUrlText">url</i>
+                        </a>
+                    </th>
+
+                    <th>
+                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipJsText">js</a>
+                    </th>
+                
+                    <th>
+                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipCssText">css</a>
+                    </th>
+
+                    <th>
+                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipTotalRequestsText">req</a>
+                    </th>
+                
+                    <th>
+                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipSpofText">spof</a>
+                    </th>
+
+                    <th>
+                        <a rel="tooltip"  data-placement="left" data-html="false" href="#" data-original-title="$tooltipJsSyncText">sync js</a>
+                    </th>
+
+                    <th>
+                        <a rel="tooltip"  data-placement="left" data-html="false" href="#" data-original-title="$tooltipGradeText">grade</a>
+                    </th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                #foreach ($results in $document.getRootElement().getChildren())
+                #set($sitespeed = $results.getChild("o").getValue())
+                <tr>
+                    <td class="nobreak-pages">
+                        ## the link to the full page information
+                        #set($file = $results.getAttribute("filename").getValue())
+                        #set($file = $file.concat(".html"))
+                        <a href="pages/$file" title="$results.getChild("u").getValue()">$results.getChild("u").getValue()</a>
+                    </td>
+                    
+                    <td>
+                        ## The number of javascripts
+                        #if($!{results.getChild("stats").getChild("js").getChild("r")})
+                            $results.getChild("stats").getChild("js").getChild("r").getValue()
+                         #else
+                         0
+                         #end
+                    </td>
+
+                     <td>
+                        ## The number of css
+                        #if($!{results.getChild("stats").getChild("css").getChild("r")})    
+                            $results.getChild("stats").getChild("css").getChild("r").getValue()
+                        #else
+                        0
+                        #end
                     </td>
 
                     <td>
-                        <a href="http://www.webpagetest.org/?url=$esc.url($results.getChild("u").getValue())&runs=3" target="_blank" title="Check this page on webpagetest.org"> <i class="icon-time"></i>
-                        </a>
+                        ## The number of total requests
+                        $results.getChild("r").getValue()
+                    </td>
+                    
+                    <td>
+                        ## The number of spofs
+                        $results.getChild("g").getChild("spof").getChild("components").getChildren("item").size()
+                    </td>
+
+                    <td>
+                        ## The number of js loaded in head
+                        $results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()
+                    </td>
+
+                    <td>
+                        ## The sitespeed/yslow score
+                        <span class="badge badge-#scoreTypeBadge($math.toInteger($sitespeed))">$sitespeed</span>           
                     </td>
 
                 </tr>
                 #end
             </tbody>
         </table>
+
+
+        </div> <!-- visible phone -->
 
     </div>
     </div>
@@ -267,9 +390,10 @@
   $(document).ready(function() 
     { 
         $("#pagesTable").tablesorter(); 
+        $("#phonesPagesTable").tablesorter(); 
     } 
   );
-</script>
+  </script>
 
   <script>
 

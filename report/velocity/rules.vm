@@ -1,5 +1,5 @@
 #parse("report/velocity/header.vm")
-<div class="row">
+<div class="row-fluid">
 	<div class="span12">
 
 		<h2>
@@ -19,11 +19,10 @@
 				</tr>
 				<tbody>
 					#foreach ($rule in $document.getRootElement().getChild("dictionary").getChild("rules").getChildren())
-	 
 					<tr>
-						<td>$rule.getChild("name").getValue()</td>
-		    				<td>$rule.getChild("info").getValue()</td>
-		    				<td>$rule.getChild("weight").getValue()</td>
+						<td class="nobreak-rules">$rule.getChild("name").getValue()</td>
+						<td class="nobreak-rules">$rule.getChild("info").getValue()</td>
+						<td> $rule.getChild("weight").getValue()</td>
 
 					</tr>
 					#end

@@ -32,7 +32,7 @@ help()
 cat << EOF
 usage: $0 options
 
-Sitespeed is a tool that helps you analyze your sites web performance and show you what you should optimize, more info at http://sitespeed.io
+Sitespeed is a tool that helps you analyze your web site performance and show you what you should optimize, more info at http://sitespeed.io
 
 OPTIONS:
    -h      Get help.
@@ -41,6 +41,7 @@ OPTIONS:
    -f      Crawl only on this path [optional]
    -s      Skip urls that contains this in the path [optional]
    -p      The number of processes that will analyze pages, default is 5 [optional]
+   -o      The output format, always output as html but you can add images and/or csv (img,csv) [optional]
 EOF
 }
 
@@ -59,7 +60,7 @@ analyze() {
     REPORT_PAGES_DIR=$4
 
     echo "Analyzing $url"
-    phantomjs dependencies/yslow-3.1.4-sitespeed.js -d -r sitespeed.io-1.2 -f xml "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
+    phantomjs dependencies/yslow-3.1.4-sitespeed.js -d -r sitespeed.io-1.3 -f xml "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
  
     # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
     sed '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup  || exit 1
@@ -73,6 +74,7 @@ analyze() {
  
     java -Xmx256m -Xms256m -jar dependencies/xml-velocity-1.1-full.jar $REPORT_DATA_PAGES_DIR/$pagefilename.xml report/velocity/page.vm report/properties/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1    
 
+    java -jar dependencies/htmlcompressor-1.5.3.jar --type html --compress-css --compress-js -o $REPORT_PAGES_DIR/$pagefilename.html $REPORT_PAGES_DIR/$pagefilename.html
 }
 
 
@@ -82,9 +84,10 @@ DEPTH=
 FOLLOW_PATH=
 NOT_IN_URL=
 MAX_PROCESSES=
+OUTPUT_FORMAT=
 
 # Set options
-while getopts “hu:d:f:s:p:” OPTION
+while getopts “hu:d:f:s:o:p:” OPTION
 do
      case $OPTION in
          h)
@@ -94,8 +97,10 @@ do
          u)URL=$OPTARG;;
          d)DEPTH=$OPTARG;;
          f)FOLLOW_PATH=$OPTARG;;
-         s)NOT_IN_URL=$OPTARG;;    
+         s)NOT_IN_URL=$OPTARG;;   
+         o)OUTPUT_FORMAT=$OPTARG;;  
          p)MAX_PROCESSES=$OPTARG;; 
+  
          ?)
              help
              exit
@@ -134,6 +139,20 @@ else
     NOT_IN_URL=""
 fi
 
+if [[ "$OUTPUT_FORMAT" == *csv* ]]
+  then 
+  OUTPUT_CSV=true
+else
+   OUTPUT_CSV=false
+fi  
+
+if [[ "$OUTPUT_FORMAT" == *img* ]]
+  then 
+  OUTPUT_IMAGES=true
+else
+   OUTPUT_IMAGES=false
+fi  
+
 # Switch to my dir
 cd "$(dirname ${BASH_SOURCE[0]})"
 
@@ -151,12 +170,18 @@ REPORT_DIR="sitespeed-result/sitespeed-$HOST-$NOW"
 REPORT_DATA_DIR="$REPORT_DIR/data"
 REPORT_PAGES_DIR="$REPORT_DIR/pages"
 REPORT_DATA_PAGES_DIR="$REPORT_DATA_DIR/pages"
+REPORT_IMAGE_PAGES_DIR="$REPORT_DIR/images"
+
 mkdir -p $REPORT_DIR
 mkdir $REPORT_DATA_DIR
 mkdir $REPORT_PAGES_DIR
 mkdir $REPORT_DATA_PAGES_DIR
+if $OUTPUT_IMAGES 
+  then
+  mkdir $REPORT_IMAGE_PAGES_DIR
+fi
 
-java -Xmx256m -Xms256m -cp dependencies/crawler-0.9.1-full.jar com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/nonworkingurls.txt
+java -Xmx256m -Xms256m -cp dependencies/crawler-0.9.3-full.jar com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/nonworkingurls.txt
 
 if [ ! -e $REPORT_DATA_DIR/urls.txt ];
 then
@@ -205,13 +230,16 @@ echo '</document>'>> "$REPORT_DATA_DIR/result.xml"
 
 echo 'Create the pages.html'
 java -Xmx1024m -Xms1024m -jar dependencies/xml-velocity-1.1-full.jar $REPORT_DATA_DIR/result.xml report/velocity/pages.vm report/properties/pages.properties $REPORT_DIR/pages.html || exit 1
+java -jar dependencies/htmlcompressor-1.5.3.jar --type html --compress-css --compress-js -o $REPORT_DIR/pages.html $REPORT_DIR/pages.html
+
 
 echo 'Create the summary index.html'
 java -Xmx1024m -Xms1024m -jar dependencies/xml-velocity-1.1-full.jar $REPORT_DATA_DIR/result.xml report/velocity/summary.vm report/properties/summary.properties $REPORT_DIR/index.html || exit 1
+java -jar dependencies/htmlcompressor-1.5.3.jar --type html --compress-css --compress-js -o $REPORT_DIR/index.html $REPORT_DIR/index.html
 
 echo 'Create the rules.html'
 java -Xmx1024m -Xms1024m -jar dependencies/xml-velocity-1.1-full.jar $REPORT_DATA_PAGES_DIR/1.xml report/velocity/rules.vm report/properties/rules.properties $REPORT_DIR/rules.html || exit 1
-
+java -jar dependencies/htmlcompressor-1.5.3.jar --type html --compress-css --compress-js -o $REPORT_DIR/rules.html $REPORT_DIR/rules.html
 
 #copy the rest of the files
 mkdir $REPORT_DIR/css
@@ -222,10 +250,25 @@ cp report/css/* $REPORT_DIR/css
 cp report/js/* $REPORT_DIR/js
 cp report/img/* $REPORT_DIR/img
 
-echo 'Create summary png:s'
-# create images, easy to use in reports etc
-phantomjs dependencies/rasterize.js $REPORT_DIR/index.html $REPORT_DIR/summary.png
-phantomjs dependencies/rasterize.js $REPORT_DIR/pages.html $REPORT_DIR/pages.png
+if $OUTPUT_CSV
+  then
+   echo 'Create csv file' 
+  java -Xmx1024m -Xms1024m -jar dependencies/xml-velocity-1.1-full.jar $REPORT_DATA_DIR/result.xml report/velocity/pages-csv.vm report/properties/pages.properties $REPORT_DIR/pages.csv || exit 1
+fi
+
+if $OUTPUT_IMAGES 
+  then
+  echo 'Create all png:s'
+ 
+  phantomjs dependencies/rasterize.js $REPORT_DIR/index.html $REPORT_IMAGE_PAGES_DIR/summary.png
+  phantomjs dependencies/rasterize.js $REPORT_DIR/pages.html $REPORT_IMAGE_PAGES_DIR/pages.png
+
+  for file in $REPORT_PAGES_DIR/*
+  do
+    filename=$(basename $file .html)
+    phantomjs dependencies/rasterize.js $file $REPORT_IMAGE_PAGES_DIR/$filename.png
+  done
+fi
 
 echo "Finished, see the report $REPORT_DIR/index.html"
 exit 0
