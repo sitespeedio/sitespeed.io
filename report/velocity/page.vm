@@ -8,20 +8,15 @@
 			(score: $document.getRootElement().getChild("o").getValue())
 		</h2>
 
-		<h3>Scores below 100</h3>
+		<ul class="nav nav-tabs nav-stacked">
+			<li><a href="#score">Scores below 100</a></li>
+			<li><a href="#assets">Page assets</a></li>
+			<li><a href="#summary">Page summary</a></li>
+			<li><a href="http://www.webpagetest.org/?url=$esc.url($document.getRootElement().getChild("u").getValue())&runs=3" target="_blank" title="Test this page on http://webpagetest.org">Test on webpagetest.org</a></li>
 
-		<div class="row-fluid">
-		<div class="span4">
-		<a href="#assets">See all the assets on this page.</a>
-		</div>
-		<div class="span4">
-		<a href="#summary">See a summary if this page</a>
-		</div>
-		<div class="span4">
-		 ## The link to webpagetest
-		<a href="http://www.webpagetest.org/?url=$esc.url($document.getRootElement().getChild("u").getValue())&ampruns=3" target="_blank" title="Check this page on webpagetest.org">Test</a> this page with http://webpagetest.org
-		</div>
-		</div>
+		</ul>
+	
+		<h3 id="score">Scores below 100</h3>
 
 		<table class="table table-condensed table-striped table-bordered" >
 			<thead>
@@ -193,7 +188,7 @@
 
 						<td class="nobreak-page-url">
 						
-						## Hide this form phones & tables, there is some kind of bug here that make navigations not work if used
+						## Hide this from phones & tables, there is some kind of bug here that make navigations not work if used
 						<div class="hidden-phone hidden-tablet">
 						<a href="#headers-$foreach.count" data-toggle="modal"><i class="icon-zoom-in"></i></a>
 						
