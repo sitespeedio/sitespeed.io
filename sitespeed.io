@@ -77,6 +77,30 @@ analyze() {
     java -jar dependencies/htmlcompressor-1.5.3.jar --type html --compress-css --compress-js -o $REPORT_PAGES_DIR/$pagefilename.html $REPORT_PAGES_DIR/$pagefilename.html
 }
 
+#*******************************************************
+# Estimate the time to analyze
+# $1 the number of pages to analyze
+# $2 the number of processes that will analyze
+# $3 create images or not [true|false]
+#*******************************************************
+estimateAnalyzeTime() {
+
+analyzeTimePerPageInSeconds=22
+imageTimePerPageInSeconds=2
+
+analyzeTime=$(( $1 / $2 * analyzeTimePerPageInSeconds ))
+imageTime=0
+extraTime=$(( $1 * 0,5))
+
+if $3 
+  then
+  imageTime=$(($1*imageTimePerPageInSeconds))
+fi
+
+echo "Estimated time for analyze: $((analyzeTime + imageTime + extraTime)) seconds"
+}
+
+T="$(date +%s)"
 
 # All the options
 URL=
@@ -153,6 +177,12 @@ else
    OUTPUT_IMAGES=false
 fi  
 
+if [[ -z $OUTPUT_IMAGES ]] 
+  then
+  OUTPUT_IMAGES=false
+fi
+
+
 # Switch to my dir
 cd "$(dirname ${BASH_SOURCE[0]})"
 
@@ -196,6 +226,8 @@ while read txt ; do
 done < $REPORT_DATA_DIR/urls.txt
 
 echo "Fetched ${#result[@]} pages" 
+
+estimateAnalyzeTime ${#result[@]} $MAX_PROCESSES $OUTPUT_IMAGES
 
 # Setup start parameters, 0 jobs are running and the first file name
 JOBS=0
@@ -271,4 +303,6 @@ if $OUTPUT_IMAGES
 fi
 
 echo "Finished, see the report $REPORT_DIR/index.html"
+T="$(($(date +%s)-T))"
+echo "Time in seconds: ${T}"
 exit 0
