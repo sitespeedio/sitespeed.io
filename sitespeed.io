@@ -100,7 +100,7 @@ fi
 echo "Estimated time for analyze: $((analyzeTime + imageTime + extraTime)) seconds"
 }
 
-T="$(date +%s)"
+START_TIME="$(date +%s)"
 
 # All the options
 URL=
@@ -303,6 +303,5 @@ if $OUTPUT_IMAGES
 fi
 
 echo "Finished, see the report $REPORT_DIR/index.html"
-T="$(($(date +%s)-T))"
-echo "Time in seconds: ${T}"
+echo "Time for the analyze in seconds: $(($(date +%s)-START_TIME))"
 exit 0
