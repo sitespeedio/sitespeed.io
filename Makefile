@@ -23,7 +23,7 @@ package:
 	@if [ ! -d $(BUILD)/$(REPORT)/$(PROPERTIES) ]; then mkdir -p $(BUILD)/$(REPORT)/$(PROPERTIES); fi
 	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY); fi
 
-	@cp sitespeed.io CHANGELOG $(BUILD)/
+	@cp sitespeed.io CHANGELOG LICENSE $(BUILD)/
 	@cp $(DEP)/LICENSE.txt $(BUILD)/$(DEP)/
 	@cp $(DEP)/crawler-0.9.3-full.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/xml-velocity-1.1-full.jar $(BUILD)/$(DEP)/	
