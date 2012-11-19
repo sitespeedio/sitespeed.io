@@ -1,4 +1,8 @@
 CHANGELOG sitespeed.io
+version 1.4
+------------------------
+* Changed the limit value for doc size on the summary page, vas 10 kb but gzip is taken inconcideration, changed to 100 kb!
+* Concatenating css & js in the results to one file each
 
 version 1.3
 ------------------------
