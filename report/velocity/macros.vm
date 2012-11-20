@@ -1,6 +1,14 @@
 ## Limits & rules macros
 ##
 
+## These classes are lining in the velocity universe
+## $math org.apache.velocity.tools.generic.MathTool
+## $esc org.apache.velocity.tools.generic.EscapeTool
+## $host com.soulgalore.velocity.HostTool
+## $stats org.apache.commons.math3.stat.descriptive.DescriptiveStatistics
+## $document org.jdom2.Document
+
+
 ## Verify the Sitespeed/Yslow score, over 90 is good
 #macro( scoreType $score )
 #if ($score>89.99)success#elseif ($score>80)
@@ -76,6 +84,12 @@ success#end#end
 #macro ( totalJsSyncInHeadType $js )
 #if ($js<1)success#else
 error#end#end        
+
+## The percent of javascript with HTML
+#macro ( weightDocumentDividedWithJavascriptType $averagePercent )
+#if ($averagePercent>0.1)success#elseif ($averagePercent<0.01)
+error#else
+warning#end#end
 
 ## Verify assets without far expires date
 #macro ( expiresType $expires )
