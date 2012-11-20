@@ -6,86 +6,115 @@
 ## Get the total objects
     
 #set($nrOfDecimals = 0)
-#set($nrOfJs = 0)
-#set($nrOfCss = 0)
-#set($nrOfCssImages = 0)
-#set($nrOfImages = 0)
-#set($nrOfTotalRequests = 0)
-#set($nrOfTotalRequestsPrimedCache = 0)
-#set($totalPageWeight = 0)
-#set($totalDocumentWeight = 0)
-#set($totalScore = 0)    
-#set($totalSpof = 0)
 #set($totalSpofPages = 0)
-#set($totalJsSyncInHead = 0)
-#set($totalAssetsWithoutFarExpires = 0)
+
+
+## Creating all statistics objects
+#set($statsJs = $stats.copy())
+#set($statsCss = $stats.copy())
+#set($statsImages = $stats.copy())
+#set($statsCssImages = $stats.copy())
+#set($statsRequests = $stats.copy())
+#set($statsRequestsCached = $stats.copy())
+#set($statsPageWeight = $stats.copy())
+#set($statsScore = $stats.copy())
+#set($statsDocumentWeight = $stats.copy())
+#set($statsJsWeight = $stats.copy())
+#set($statsSpof = $stats.copy())
+#set($statsJsSyncInHead = $stats.copy())
+#set($statsAssetsWithoutFarExpires = $stats.copy())
 
 #foreach ($results in $document.getRootElement().getChildren())
     
     #if($!{results.getChild("stats").getChild("js").getChild("r")})
-        #set ($nrOfJs = $math.add($nrOfJs, $results.getChild("stats").getChild("js").getChild("r").getValue()))
+        $statsJs.addValue($math.toInteger($results.getChild("stats").getChild("js").getChild("r").getValue()))
     #end   
       
     #if($!{results.getChild("stats").getChild("css").getChild("r")})
-        #set ($nrOfCss = $math.add($nrOfCss,$results.getChild("stats").getChild("css").getChild("r").getValue()))
+        $statsCss.addValue($math.toInteger($results.getChild("stats").getChild("css").getChild("r").getValue()))
     #end
 
     #if($!{results.getChild("stats").getChild("cssimage").getChild("r")})
-        #set ($nrOfCssImages = $math.add($nrOfCssImages, $results.getChild("stats").getChild("cssimage").getChild("r").getValue()))
+        $statsCssImages.addValue($math.toInteger($results.getChild("stats").getChild("cssimage").getChild("r").getValue()))
     #end
 
     #if($!{results.getChild("stats").getChild("image").getChild("r")})
-        #set ($nrOfImages = $math.add($nrOfImages, $results.getChild("stats").getChild("image").getChild("r").getValue()))
+        $statsImages.addValue($math.toInteger($results.getChild("stats").getChild("image").getChild("r").getValue()))
     #end
 
     #if($!{results.getChild("r")})
-        #set ($nrOfTotalRequests = $math.add($nrOfTotalRequests, $results.getChild("r").getValue()))
+         $statsRequests.addValue($math.toInteger($results.getChild("r").getValue()))
     #end
 
     #if($!{results.getChild("r_c")})
-        #set ($nrOfTotalRequestsPrimedCache = $math.add($nrOfTotalRequestsPrimedCache, $results.getChild("r_c").getValue()))
+        $statsRequestsCached.addValue($math.toInteger($results.getChild("r_c").getValue()))
     #end
       
     #if($!{results.getChild("w")})
-        #set ($totalPageWeight = $math.add($totalPageWeight, $results.getChild("w").getValue()))
+        $statsPageWeight.addValue($math.toInteger($results.getChild("w").getValue()))
     #end
 
     #if($!{results.getChild("o")})
-        #set ($totalScore = $math.add($totalScore, $results.getChild("o").getValue()))
+        $statsScore.addValue($math.toInteger($results.getChild("o").getValue()))
     #end
 
     #if($!{results.getChild("stats").getChild("doc").getChild("w")})
-        #set ($totalDocumentWeight = $math.add($totalDocumentWeight, $results.getChild("stats").getChild("doc").getChild("w").getValue()))
+        $statsDocumentWeight.addValue($math.toInteger($results.getChild("stats").getChild("doc").getChild("w").getValue()))
+    #end
+
+    #if($!{results.getChild("stats").getChild("js").getChild("w")})  
+         $statsJsWeight.addValue($math.toInteger($results.getChild("stats").getChild("js").getChild("w").getValue()))
     #end
 
     #if($!{results.getChild("g").getChild("spof").getChild("score")})
 	   #if ($results.getChild("g").getChild("spof").getChild("score").getValue() != 100)
 	       #set ($totalSpofPages = $math.add($totalSpofPages, 1))
-	       #set ($totalSpof = $math.add($totalSpof, $results.getChild("g").getChild("spof").getChild("components").getChildren("item").size()))
+           $statsSpof.addValue($math.toInteger($results.getChild("g").getChild("spof").getChild("components").getChildren("item").size()))
 	   #end       
     #end
 
     #if($!{results.getChild("g").getChild("syncjsinhead").getChild("components")})
-	 #set ($totalJsSyncInHead = $math.add($totalJsSyncInHead, $results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()))
+     $statsJsSyncInHead.addValue($math.toInteger($results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()))
     #end
 
 
     #if($!{results.getChild("g").getChild("expiresmod").getChild("components")})
-     #set ($totalAssetsWithoutFarExpires  = $math.add($totalAssetsWithoutFarExpires, $results.getChild("g").getChild("expiresmod").getChild("components").getChildren("item").size()))
+     $statsAssetsWithoutFarExpires.addValue($math.toInteger($results.getChild("g").getChild("expiresmod").getChild("components").getChildren("item").size()))
     #end
 
 #end
 
 ##  Create averages   
-#set ($scoreAverage = $math.roundTo($nrOfDecimals,$math.div($totalScore,$nrOfPages)))   
-#set ($jsAverage = $math.roundTo($nrOfDecimals,$math.div($nrOfJs,$nrOfPages)))
-#set ($requestAverage = $math.roundTo($nrOfDecimals,$math.div($nrOfTotalRequests,$nrOfPages)))
-#set ($cssAverage = $math.roundTo($nrOfDecimals,$math.div($nrOfCss,$nrOfPages)))
-#set ($cssImageAverage = $math.roundTo($nrOfDecimals,$math.div($nrOfCssImages,$nrOfPages)))
-#set ($imageAverage = $math.roundTo($nrOfDecimals,$math.div($nrOfImages,$nrOfPages)))
-#set ($requestPrimedAverage = $math.roundTo($nrOfDecimals,$math.div($nrOfTotalRequestsPrimedCache,$nrOfPages)))
-#set ($pageWeightAverage = $math.roundTo($nrOfDecimals,$math.div($totalPageWeight,$nrOfPages)))
-#set ($totalDocumentWeightAverage = $math.roundTo($nrOfDecimals,$math.div($totalDocumentWeight,$nrOfPages)))
-#set ($totalJsSyncInHeadAverage = $math.roundTo($nrOfDecimals,$math.div($totalJsSyncInHead,$nrOfPages)))
-#set ($totalSpofAverage = $math.roundTo($nrOfDecimals,$math.div($totalSpof,$nrOfPages)))
-#set ($totalAssetsWithoutFarExpiresAverage = $math.roundTo($nrOfDecimals,$math.div($totalAssetsWithoutFarExpires,$nrOfPages)))
+#set ($scoreAverage = $math.roundTo($nrOfDecimals,$statsScore.getMean()))   
+#set ($jsAverage = $math.roundTo($nrOfDecimals,$statsJs.getMean()))  
+#set ($requestAverage = $math.roundTo($nrOfDecimals,$statsRequests.getMean()))  
+#set ($cssAverage = $math.roundTo($nrOfDecimals,$statsCss.getMean()))  
+#set ($cssImageAverage = $math.roundTo($nrOfDecimals,$statsCssImages.getMean()))  
+#set ($imageAverage = $math.roundTo($nrOfDecimals,$statsImages.getMean()))
+#set ($requestPrimedAverage = $math.roundTo($nrOfDecimals,$statsRequestsCached.getMean()))  
+#set ($pageWeightAverage = $math.roundTo($nrOfDecimals,$statsPageWeight.getMean()))  
+#set ($totalDocumentWeightAverage = $math.roundTo($nrOfDecimals,$statsDocumentWeight.getMean()))  
+#set ($totalJsSyncInHeadAverage = $math.roundTo($nrOfDecimals,$statsJsSyncInHead.getMean()))  
+#set ($totalJsWeightAverage = $math.roundTo($nrOfDecimals,$statsJsWeight.getMean()))  
+#set ($totalSpofAverage = $math.roundTo($nrOfDecimals,$statsSpof.getMean()))  
+#set ($totalAssetsWithoutFarExpiresAverage = $math.roundTo($nrOfDecimals,$statsAssetsWithoutFarExpires.getMean())) 
+#set ($documentDividedWithJavascriptAverage = $math.roundTo(4,$math.div($math.div($pageWeightAverage,$totalJsWeightAverage),$nrOfPages)))
+
+## Create median
+#set ($scoreMedian = $math.toInteger($statsScore.getPercentile(50)))   
+#set ($jsMedian = $math.toInteger($statsJs.getPercentile(50)))  
+#set ($requestMedian = $math.toInteger($statsRequests.getPercentile(50))) 
+#set ($cssMedian = $math.toInteger($statsCss.getPercentile(50))) 
+#set ($cssImageMedian = $math.toInteger($statsCssImages.getPercentile(50))) 
+#set ($imageMedian = $math.toInteger($statsImages.getPercentile(50))) 
+#set ($requestPrimedMedian = $math.toInteger($statsRequestsCached.getPercentile(50))) 
+#set ($pageWeightMedian = $math.toInteger($statsPageWeight.getPercentile(50))) 
+#set ($documentWeightMedian = $math.toInteger($statsDocumentWeight.getPercentile(50))) 
+#set ($jsSyncInHeadMedian = $math.toInteger($statsJsSyncInHead.getPercentile(50))) 
+#set ($jsWeightMedian = $math.toInteger($statsJsWeight.getPercentile(50))) 
+#set ($spofMedian = $math.toInteger($statsSpof.getPercentile(50))) 
+#set ($assetsWithoutFarExpiresMedian = $math.toInteger($statsAssetsWithoutFarExpires.getPercentile(50))) 
+
+
+
+
