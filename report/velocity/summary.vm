@@ -16,7 +16,7 @@
 #set($jsSyncInHeadText = "0 is good, 1 or more is bad and not OK.")
 #set($spofPerPageText = "Everything above 0 is bad!")
 #set($assetsWithoutFarExpiresText = "0 is good. More than 4 is bad. Google Analythics & Gaug.es is excluded from this.")
-#set($percentageJsText = "Less than 40% is good (that is what modern site has, incredible amount right?), Above 50 % is really bad.")
+#set($percentageJsText = "Less than 40% is good (that is what modern site has, incredible amount right?), above 50 % is really bad.")
 
 
 
@@ -210,7 +210,11 @@
                     <li>
                         <b>Average number of requests for static content without a far-future expiration date</b>: 
                         $assetsWithoutFarExpiresText
-                        
+                       
+                    </li>
+                    <li>
+                    <b>The amount of javascript loaded/used in one page</b>:
+                    $percentageJsText
                     </li>
 
                  </ul>
