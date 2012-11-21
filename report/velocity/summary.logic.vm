@@ -98,7 +98,7 @@
 #set ($totalJsWeightAverage = $math.roundTo($nrOfDecimals,$statsJsWeight.getMean()))  
 #set ($totalSpofAverage = $math.roundTo($nrOfDecimals,$statsSpof.getMean()))  
 #set ($totalAssetsWithoutFarExpiresAverage = $math.roundTo($nrOfDecimals,$statsAssetsWithoutFarExpires.getMean())) 
-#set ($documentDividedWithJavascriptAverage = $math.roundTo(4,$math.div($math.div($pageWeightAverage,$totalJsWeightAverage),$nrOfPages)))
+#set ($javascriptDividedWithDocumentAverage = $math.roundTo(4,$math.div($totalJsWeightAverage,$math.add($pageWeightAverage,$totalJsWeightAverage))))
 
 ## Create median
 #set ($scoreMedian = $math.toInteger($statsScore.getPercentile(50)))   

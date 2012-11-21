@@ -16,7 +16,7 @@
 #set($jsSyncInHeadText = "0 is good, 1 or more is bad and not OK.")
 #set($spofPerPageText = "Everything above 0 is bad!")
 #set($assetsWithoutFarExpiresText = "0 is good. More than 4 is bad. Google Analythics & Gaug.es is excluded from this.")
-#set($documentDividedWithJavascriptText = "More than 0.1 is good, below ...")
+#set($percentageJsText = "Less than 40% is good (that is what modern site has, incredible amount right?), Above 50 % is really bad.")
 
 
 
@@ -116,9 +116,10 @@
                 </div>
             </div>
               <div class="span4">
-                <div class="alert alert-#weightDocumentDividedWithJavascriptType($documentDividedWithJavascriptAverage)">
-                    Doc / Js
-                    <div><a href="#" rel="popover" class="alert-#weightDocumentDividedWithJavascriptType($documentDividedWithJavascriptAverage) large" data-trigger="hover" title="Docement size divided with javascript size in kb" data-content="$documentDividedWithJavascriptText">$documentDividedWithJavascriptAverage %</a></div>
+                #set ($percentageJs = $math.roundTo(1,$math.mul($javascriptDividedWithDocumentAverage,100)))
+                <div class="alert alert-#percentageJavascriptOnPageType($percentageJs)">
+                    Js % of page
+                    <div><a href="#" rel="popover" class="alert-#percentageJavascriptOnPageType($percentageJs) large" data-trigger="hover" title="The average percentage javascript on a page" data-content="$percentageJsText">$percentageJs %</a></div>
                 </div>
             </div>
 
@@ -143,6 +144,12 @@
         </div>
        
         </div>    
+
+        <div class="row-fluid">
+            <div class="span12">
+            <i>* The value inside of the parentheses are the median value (median)</i>
+            </div>
+        </div>
 
         <div class="row-fluid">
             <div class="span12">

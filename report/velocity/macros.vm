@@ -86,8 +86,8 @@ success#end#end
 error#end#end        
 
 ## The percent of javascript with HTML
-#macro ( weightDocumentDividedWithJavascriptType $averagePercent )
-#if ($averagePercent>0.1)success#elseif ($averagePercent<0.01)
+#macro ( percentageJavascriptOnPageType $averagePercent )
+#if ($averagePercent<40)success#elseif ($averagePercent>50)
 error#else
 warning#end#end
 
