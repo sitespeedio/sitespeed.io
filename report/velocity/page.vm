@@ -188,14 +188,14 @@
 						</td>
 					</tr>
 					<tr>
-						<td>Content weight that are js files</td>
+						<td>content weight that are js files</td>
 						<td>
 						$jsPercentage %
 			   
 			        			</td>
 			        		</tr>
 			        		<tr>
-			        			<td>Content weight that are css files</td>
+			        			<td>content weight that are css files</td>
 			        			<td>
 			        			$cssPercentage %
 			        			</td>
