@@ -1,4 +1,23 @@
 #parse("report/velocity/header.vm")
+
+## setting up some base values
+
+#set($jsWeight = $math.max($math.roundTo(3,$math.div($document.getRootElement().getChild("stats").getChild("js").getChild("w").getValue(),1000)),0))
+#set($cssWeight = $math.max($math.roundTo(3,$math.div($document.getRootElement().getChild("stats").getChild("css").getChild("w").getValue(),1000)),0))
+#set($docWeight = $math.roundTo(3,$math.div($document.getRootElement().getChild("stats").getChild("doc").getChild("w").getValue(),1000)))
+
+
+#if(!$jsWeight) #set($jsWeight=0) #end 
+#if(!$cssWeight) #set($cssWeight=0) #end
+#set($contentWeight = $math.add($jsWeight,$math.add($cssWeight,$docWeight)))
+#if(!$contentWeight) #set($contentWeight=0) #end
+
+#set($cssPercentage = $math.roundTo(1,$math.mul($math.div($cssWeight,$contentWeight),100)))
+#set($jsPercentage = $math.roundTo(1,$math.mul($math.div($jsWeight,$contentWeight),100)))
+
+#if(!$cssPercentage) #set($cssPercentage=0) #end
+#if(!$jsPercentage) #set($jsPercentage=0) #end
+
 <div class="row-fluid">
 	<div class="span12">
 
@@ -116,58 +135,70 @@
                  #else
                  0
                  #end
-			        		</td>
-			        	</tr>
-			        	<tr>
-			        		<tr>
-			        			<td>requests</td>
-			        			<td>$document.getRootElement().getChild("r").getValue()</td>
-			        		</tr>
-			        		<tr>
-			        			<td>request cached</td>
-			        			<td>$document.getRootElement().getChild("r_c").getValue()</td>
-			        		</tr>
-			        		<tr>
-			        			<td>doc size</td>
-			        			<td>
-			        				$math.roundTo(1,$math.div($document.getRootElement().getChild("stats").getChild("doc").getChild("w").getValue(),1000)) kb
+					</td>
+				</tr>
+				<tr>
+					<tr>
+						<td>requests</td>
+						<td>$document.getRootElement().getChild("r").getValue()</td>
+					</tr>
+					<tr>
+						<td>request cached</td>
+						<td>$document.getRootElement().getChild("r_c").getValue()</td>
+					</tr>
+					<tr>
+						<td>doc size</td>
+						<td>
+							$math.roundTo(1,$math.div($document.getRootElement().getChild("stats").getChild("doc").getChild("w").getValue(),1000)) kb
+						</td>
+					</tr>
+					<tr>
+						<td>page size</td>
+						<td>
+							$math.roundTo(1,$math.div($document.getRootElement().getChild("w").getValue(),1000)) kb
+						</td>
+					</tr>
+					<tr>
+						<td>page weight cached</td>
+						<td>
+							## The weight cached
+							## sometimes it seems like yslow can't fetch this value. when this happens output an sign
+							#if($math.toInteger($document.getRootElement().getChild("w_c").getValue()) > 0)
+								$math.roundTo(1,$math.div($document.getRootElement().getChild("w_c").getValue(),1000)) kb
+							#else
+							<a href="#" title="Couldn't fetch the value"> <i class="icon-question-sign"></i>
+							</a>
+							#end
+						</td>
+					</tr>
+					<tr>
+						<td>load time</td>
+						<td>$document.getRootElement().getChild("lt").getValue() ms</td>
+					</tr>
+					<tr>
+						<td>spof</td>
+						<td>
+							$document.getRootElement().getChild("g").getChild("spof").getChild("components").getChildren("item").size()
+						</td>
+					</tr>
+					<tr>
+						<td>sync js in head</td>
+						<td>
+							$document.getRootElement().getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()
+						</td>
+					</tr>
+					<tr>
+						<td>Content weight that are js</td>
+						<td>
+						$jsPercentage %
+			   
 			        			</td>
 			        		</tr>
 			        		<tr>
-			        			<td>page size</td>
+			        			<td>Content weight that are css</td>
 			        			<td>
-			        				$math.roundTo(1,$math.div($document.getRootElement().getChild("w").getValue(),1000)) kb
+			        			$cssPercentage %
 			        			</td>
-			        		</tr>
-			        		<tr>
-			        			<td>page weight cached</td>
-			        			<td>
-			        				## The weight cached
-			        				## sometimes it seems like yslow can't fetch this value. when this happens output an sign
-			        				#if($math.toInteger($document.getRootElement().getChild("w_c").getValue()) > 0)
-			        					$math.roundTo(1,$math.div($document.getRootElement().getChild("w_c").getValue(),1000)) kb
-			        				#else
-			        				<a href="#" title="Couldn't fetch the value"> <i class="icon-question-sign"></i>
-			        				</a>
-			        				#end
-			        			</td>
-			        		</tr>
-			        		<tr>
-			        			<td>load time</td>
-			        			<td>$document.getRootElement().getChild("lt").getValue() ms</td>
-			        		</tr>
-			        		<tr>
-			        			<td>spof</td>
-			        			<td>
-			        				$document.getRootElement().getChild("g").getChild("spof").getChild("components").getChildren("item").size()
-			        			</td>
-			        		</tr>
-			        		<tr>
-			        			<td>sync js in head</td>
-			        			<td>
-			        				$document.getRootElement().getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()
-			        			</td>
-			        		</tr>
 			        	</tbody>
 			</table>	
 
