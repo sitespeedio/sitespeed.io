@@ -1,22 +1,5 @@
 #parse("report/velocity/header.vm")
-
-## setting up some base values
-
-#set($jsWeight = $math.max($math.roundTo(3,$math.div($document.getRootElement().getChild("stats").getChild("js").getChild("w").getValue(),1000)),0))
-#set($cssWeight = $math.max($math.roundTo(3,$math.div($document.getRootElement().getChild("stats").getChild("css").getChild("w").getValue(),1000)),0))
-#set($docWeight = $math.roundTo(3,$math.div($document.getRootElement().getChild("stats").getChild("doc").getChild("w").getValue(),1000)))
-
-
-#if(!$jsWeight) #set($jsWeight=0) #end 
-#if(!$cssWeight) #set($cssWeight=0) #end
-#set($contentWeight = $math.add($jsWeight,$math.add($cssWeight,$docWeight)))
-#if(!$contentWeight) #set($contentWeight=0) #end
-
-#set($cssPercentage = $math.roundTo(1,$math.mul($math.div($cssWeight,$contentWeight),100)))
-#set($jsPercentage = $math.roundTo(1,$math.mul($math.div($jsWeight,$contentWeight),100)))
-
-#if(!$cssPercentage) #set($cssPercentage=0) #end
-#if(!$jsPercentage) #set($jsPercentage=0) #end
+#parse("report/velocity/page.logic.vm")
 
 <div class="row-fluid">
 	<div class="span12">
