@@ -35,7 +35,7 @@ usage: $0 options
 Sitespeed is a tool that helps you analyze your web site performance and show you what you should optimize, more info at http://sitespeed.io
 
 OPTIONS:
-   -h      Get help.
+   -h      Help
    -u      The start url for the test: http[s]://host[:port][/path/]
    -d      The crawl depth, default is 1 [optional]
    -f      Crawl only on this path [optional]
@@ -43,6 +43,7 @@ OPTIONS:
    -p      The number of processes that will analyze pages, default is 5 [optional]
    -m      The memory heap size for the java applications, defaukt is 1024 kb [optional]
    -o      The output format, always output as html but you can add images and/or csv (img,csv) [optional]
+   -r      The result base directory, default is sitespeed-result [optional]
 EOF
 }
 
@@ -90,7 +91,7 @@ OUTPUT_FORMAT=
 JAVA_HEAP=
 
 # Set options
-while getopts “hu:d:f:s:o:m:p:” OPTION
+while getopts “hu:d:f:s:o:m:p:r:” OPTION
 do
      case $OPTION in
          h)
@@ -103,7 +104,8 @@ do
          s)NOT_IN_URL=$OPTARG;;   
          o)OUTPUT_FORMAT=$OPTARG;;  
          m)JAVA_HEAP==$OPTARG;;  
-         p)MAX_PROCESSES=$OPTARG;; 
+         p)MAX_PROCESSES=$OPTARG;;
+         r)REPORT_BASE_DIR=$OPTARG;;
   
          ?)
              help
@@ -167,6 +169,11 @@ if [[ -z $OUTPUT_IMAGES ]]
   OUTPUT_IMAGES=false
 fi
 
+if [[ -z $REPORT_BASE_DIR ]] 
+then
+     REPORT_BASE_DIR="sitespeed-result"
+fi
+
 # Switch to my dir
 cd "$(dirname ${BASH_SOURCE[0]})"
 
@@ -179,8 +186,8 @@ echo "Will crawl from start point $URL with depth $DEPTH $FOLLOW_PATH $NOT_IN_UR
 NOPROTOCOL=${URL#*//}
 HOST=${NOPROTOCOL%%/*}
 
-# Setup dirs                                                                                                                                                                    
-REPORT_DIR="sitespeed-result/sitespeed-$HOST-$NOW"
+# Setup dirs                                                                                                                                                                  
+REPORT_DIR="$REPORT_BASE_DIR/sitespeed-$HOST-$NOW"
 REPORT_DATA_DIR="$REPORT_DIR/data"
 REPORT_PAGES_DIR="$REPORT_DIR/pages"
 REPORT_DATA_PAGES_DIR="$REPORT_DATA_DIR/pages"
