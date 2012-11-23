@@ -41,6 +41,7 @@ OPTIONS:
    -f      Crawl only on this path [optional]
    -s      Skip urls that contains this in the path [optional]
    -p      The number of processes that will analyze pages, default is 5 [optional]
+   -m      The memory heap size for the java applications, defaukt is 1024 kb [optional]
    -o      The output format, always output as html but you can add images and/or csv (img,csv) [optional]
 EOF
 }
@@ -51,6 +52,7 @@ EOF
 # $2 the filename of that tested page
 # $3 the directory of where to put the data files
 # $4 the directory for the final page reports
+# $5 the java heap size
 #*******************************************************
 analyze() {
     # setup the parameters, same names maybe makes it easier
@@ -58,6 +60,7 @@ analyze() {
     pagefilename=$2
     REPORT_DATA_PAGES_DIR=$3
     REPORT_PAGES_DIR=$4
+    JAVA_HEAP=$5
 
     echo "Analyzing $url"
     phantomjs dependencies/yslow-3.1.4-sitespeed.js -d -r sitespeed.io-1.4 -f xml "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
@@ -72,7 +75,7 @@ analyze() {
     sed 's/<results>/<results filename="'$pagefilename'">/g' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
     mv $REPORT_DATA_PAGES_DIR/$pagefilename-bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml
  
-    java -Xmx256m -Xms256m -jar dependencies/xml-velocity-1.2-full.jar $REPORT_DATA_PAGES_DIR/$pagefilename.xml report/velocity/page.vm report/properties/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1    
+    java -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar dependencies/xml-velocity-1.2-full.jar $REPORT_DATA_PAGES_DIR/$pagefilename.xml report/velocity/page.vm report/properties/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1    
 
     java -jar dependencies/htmlcompressor-1.5.3.jar --type html --compress-css --compress-js -o $REPORT_PAGES_DIR/$pagefilename.html $REPORT_PAGES_DIR/$pagefilename.html
 }
@@ -84,9 +87,10 @@ FOLLOW_PATH=
 NOT_IN_URL=
 MAX_PROCESSES=
 OUTPUT_FORMAT=
+JAVA_HEAP=
 
 # Set options
-while getopts “hu:d:f:s:o:p:” OPTION
+while getopts “hu:d:f:s:o:m:p:” OPTION
 do
      case $OPTION in
          h)
@@ -98,6 +102,7 @@ do
          f)FOLLOW_PATH=$OPTARG;;
          s)NOT_IN_URL=$OPTARG;;   
          o)OUTPUT_FORMAT=$OPTARG;;  
+         m)JAVA_HEAP==$OPTARG;;  
          p)MAX_PROCESSES=$OPTARG;; 
   
          ?)
@@ -117,6 +122,11 @@ fi
 if [[ -z $DEPTH ]] 
 then
      DEPTH="1"
+fi
+
+if [[ -z $JAVA_HEAP ]] 
+then
+     JAVA_HEAP="1024"
 fi
 
 if [[ -z $MAX_PROCESSES ]] 
@@ -157,7 +167,6 @@ if [[ -z $OUTPUT_IMAGES ]]
   OUTPUT_IMAGES=false
 fi
 
-
 # Switch to my dir
 cd "$(dirname ${BASH_SOURCE[0]})"
 
@@ -186,7 +195,7 @@ if $OUTPUT_IMAGES
   mkdir $REPORT_IMAGE_PAGES_DIR
 fi
 
-java -Xmx256m -Xms256m -cp dependencies/crawler-0.9.3-full.jar com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/nonworkingurls.txt
+java -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -cp dependencies/crawler-0.9.3-full.jar com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/nonworkingurls.txt
 
 if [ ! -e $REPORT_DATA_DIR/urls.txt ];
 then
@@ -207,7 +216,7 @@ JOBS=0
 PAGEFILENAME=1
 
 for page in "${result[@]}"
-do analyze $page $PAGEFILENAME $REPORT_DATA_PAGES_DIR $REPORT_PAGES_DIR  &
+do analyze $page $PAGEFILENAME $REPORT_DATA_PAGES_DIR $REPORT_PAGES_DIR $JAVA_HEAP &
     PAGEFILENAME=$[$PAGEFILENAME+1]
     JOBS=$[$JOBS+1]
     if [ "$JOBS" -ge "$MAX_PROCESSES" ]
@@ -234,16 +243,16 @@ done
 echo '</document>'>> "$REPORT_DATA_DIR/result.xml"
 
 echo 'Create the pages.html'
-java -Xmx1024m -Xms1024m -jar dependencies/xml-velocity-1.2-full.jar $REPORT_DATA_DIR/result.xml report/velocity/pages.vm report/properties/pages.properties $REPORT_DIR/pages.html || exit 1
+java -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar dependencies/xml-velocity-1.2-full.jar $REPORT_DATA_DIR/result.xml report/velocity/pages.vm report/properties/pages.properties $REPORT_DIR/pages.html || exit 1
 java -jar dependencies/htmlcompressor-1.5.3.jar --type html --compress-css --compress-js -o $REPORT_DIR/pages.html $REPORT_DIR/pages.html
 
 
 echo 'Create the summary index.html'
-java -Xmx1024m -Xms1024m -jar dependencies/xml-velocity-1.2-full.jar $REPORT_DATA_DIR/result.xml report/velocity/summary.vm report/properties/summary.properties $REPORT_DIR/index.html || exit 1
+java -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar dependencies/xml-velocity-1.2-full.jar $REPORT_DATA_DIR/result.xml report/velocity/summary.vm report/properties/summary.properties $REPORT_DIR/index.html || exit 1
 java -jar dependencies/htmlcompressor-1.5.3.jar --type html --compress-css --compress-js -o $REPORT_DIR/index.html $REPORT_DIR/index.html
 
 echo 'Create the rules.html'
-java -Xmx1024m -Xms1024m -jar dependencies/xml-velocity-1.2-full.jar $REPORT_DATA_PAGES_DIR/1.xml report/velocity/rules.vm report/properties/rules.properties $REPORT_DIR/rules.html || exit 1
+java -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar dependencies/xml-velocity-1.2-full.jar $REPORT_DATA_PAGES_DIR/1.xml report/velocity/rules.vm report/properties/rules.properties $REPORT_DIR/rules.html || exit 1
 java -jar dependencies/htmlcompressor-1.5.3.jar --type html --compress-css --compress-js -o $REPORT_DIR/rules.html $REPORT_DIR/rules.html
 
 #copy the rest of the files
@@ -258,7 +267,7 @@ cp report/img/* $REPORT_DIR/img
 if $OUTPUT_CSV
   then
    echo 'Create csv file' 
-  java -Xmx1024m -Xms1024m -jar dependencies/xml-velocity-1.2-full.jar $REPORT_DATA_DIR/result.xml report/velocity/pages-csv.vm report/properties/pages.properties $REPORT_DIR/pages.csv || exit 1
+  java -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar dependencies/xml-velocity-1.2-full.jar $REPORT_DATA_DIR/result.xml report/velocity/pages-csv.vm report/properties/pages.properties $REPORT_DIR/pages.csv || exit 1
 fi
 
 if $OUTPUT_IMAGES 
