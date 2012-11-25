@@ -110,6 +110,7 @@ do
 done
 
 # Verify that all options needed exists & set default values for missing ones
+
 if [[ -z $URL ]] 
 then
      help
@@ -182,7 +183,7 @@ NOPROTOCOL=${URL#*//}
 HOST=${NOPROTOCOL%%/*}
 
 # Jar files
-CRAWLER_JAR=crawler-0.9.3-full.jar
+CRAWLER_JAR=crawler-0.9.4-full.jar
 VELOCITY_JAR=xml-velocity-1.2-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 
