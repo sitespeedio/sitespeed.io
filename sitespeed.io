@@ -44,6 +44,7 @@ OPTIONS:
    -m      The memory heap size for the java applications, defaukt is 1024 kb [optional]
    -o      The output format, always output as html but you can add images and/or csv (img,csv) [optional]
    -r      The result base directory, default is sitespeed-result [optional]
+   -z      Create a tar zip file of the results, default is false [optional]
 EOF
 }
 
@@ -76,7 +77,7 @@ analyze() {
    
 }
 
-# All the options
+# All the options that you can configure when you run the script
 URL=
 DEPTH=
 FOLLOW_PATH=
@@ -84,9 +85,11 @@ NOT_IN_URL=
 MAX_PROCESSES=
 OUTPUT_FORMAT=
 JAVA_HEAP=
+REPORT_BASE_DIR=
+CREATE_TAR_ZIP=false
 
 # Set options
-while getopts “hu:d:f:s:o:m:p:r:” OPTION
+while getopts “hu:d:f:s:o:m:p:r:z:” OPTION
 do
      case $OPTION in
          h)
@@ -101,7 +104,7 @@ do
          m)JAVA_HEAP==$OPTARG;;  
          p)MAX_PROCESSES=$OPTARG;;
          r)REPORT_BASE_DIR=$OPTARG;;
-  
+         z)CREATE_TAR_ZIP=$OPTARG;;
          ?)
              help
              exit
@@ -170,6 +173,8 @@ then
      REPORT_BASE_DIR="sitespeed-result"
 fi
 
+# FInished verify the input
+
 # Switch to my dir
 cd "$(dirname ${BASH_SOURCE[0]})"
 
@@ -189,13 +194,14 @@ HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 
 # Setup dirs                                                                                                                                                             
 DEPENDENCIES_DIR="dependencies"
-REPORT_DIR="$REPORT_BASE_DIR/sitespeed-$HOST-$NOW"
-REPORT_DATA_DIR="$REPORT_DIR/data"
-REPORT_PAGES_DIR="$REPORT_DIR/pages"
-REPORT_DATA_PAGES_DIR="$REPORT_DATA_DIR/pages"
-REPORT_IMAGE_PAGES_DIR="$REPORT_DIR/images"
-VELOCITY_DIR="report/velocity"
-PROPERTIES_DIR="report/properties"
+REPORT_DIR_NAME=sitespeed-$HOST-$NOW
+REPORT_DIR=$REPORT_BASE_DIR/$REPORT_DIR_NAME
+REPORT_DATA_DIR=$REPORT_DIR/data
+REPORT_PAGES_DIR=$REPORT_DIR/pages
+REPORT_DATA_PAGES_DIR=$REPORT_DATA_DIR/pages
+REPORT_IMAGE_PAGES_DIR=$REPORT_DIR/images
+VELOCITY_DIR=report/velocity
+PROPERTIES_DIR=report/properties
 
 mkdir -p $REPORT_DIR
 mkdir $REPORT_DATA_DIR
@@ -295,5 +301,12 @@ if $OUTPUT_IMAGES
   done
 fi
 
-echo "Finished, see the report $REPORT_DIR/index.html"
+if $CREATE_TAR_ZIP
+    then
+      echo "Creating zip file"
+      tar -cf $REPORT_DIR_NAME.tar $REPORT_DIR 
+      gzip $REPORT_DIR_NAME.tar
+    fi
+
+echo "Finished"
 exit 0

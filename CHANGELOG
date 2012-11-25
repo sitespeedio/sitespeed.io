@@ -8,6 +8,7 @@ version 1.4
 * Show how much of a page that is js & css on a page in percent, according to content
 * Made java heap size & result directory configurable from the sitespeed script
 * Cleanup if the sitespeed.io script, removed unused code and made it easier to update
+* You can now zip the output result by calling the script
 
 version 1.3
 ------------------------
