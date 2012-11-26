@@ -25,8 +25,8 @@ package:
 
 	@cp sitespeed.io CHANGELOG LICENSE $(BUILD)/
 	@cp $(DEP)/LICENSE.txt $(BUILD)/$(DEP)/
-	@cp $(DEP)/crawler-0.9.4-full.jar $(BUILD)/$(DEP)/
-	@cp $(DEP)/xml-velocity-1.2-full.jar $(BUILD)/$(DEP)/	
+	@cp $(DEP)/crawler-1.0-full.jar $(BUILD)/$(DEP)/
+	@cp $(DEP)/xml-velocity-1.3-full.jar $(BUILD)/$(DEP)/	
 	@cp $(DEP)/rasterize.js $(BUILD)/$(DEP)/
 	@cp $(DEP)/htmlcompressor-1.5.3.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/yuicompressor-2.4.6.jar $(BUILD)/$(DEP)/

@@ -188,8 +188,8 @@ NOPROTOCOL=${URL#*//}
 HOST=${NOPROTOCOL%%/*}
 
 # Jar files
-CRAWLER_JAR=crawler-0.9.4-full.jar
-VELOCITY_JAR=xml-velocity-1.2-full.jar
+CRAWLER_JAR=crawler-1.0-full.jar
+VELOCITY_JAR=xml-velocity-1.3-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 
 # Setup dirs                                                                                                                                                             
@@ -216,7 +216,7 @@ java -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -cp $DEPENDENCIES_DIR/$CRAWLER_JAR com.
 
 if [ ! -e $REPORT_DATA_DIR/urls.txt ];
 then
-echo "No url:s was fetched"
+echo "No url:s were fetched"
 exit 0
 fi
 
