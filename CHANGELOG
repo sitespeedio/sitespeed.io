@@ -9,6 +9,7 @@ version 1.4
 * Made java heap size & result directory configurable from the sitespeed script
 * Cleanup if the sitespeed.io script, removed unused code and made it easier to update
 * You can now zip the output result by calling the script
+* Upgraded to latest crawler & xml-velocity jar
 
 version 1.3
 ------------------------
