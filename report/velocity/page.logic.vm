@@ -3,8 +3,11 @@
 #set($jsWeight = $math.max($math.roundTo(3,$math.div($document.getRootElement().getChild("stats").getChild("js").getChild("w").getValue(),1000)),0))
 #set($cssWeight = $math.max($math.roundTo(3,$math.div($document.getRootElement().getChild("stats").getChild("css").getChild("w").getValue(),1000)),0))
 #set($docWeight = $math.roundTo(3,$math.div($document.getRootElement().getChild("stats").getChild("doc").getChild("w").getValue(),1000)))
+#set($imageWeight = $math.roundTo(3,$math.div($document.getRootElement().getChild("stats").getChild("image").getChild("w").getValue(),1000)))
+#set($cssImageWeight = $math.roundTo(3,$math.div($document.getRootElement().getChild("stats").getChild("cssimage").getChild("w").getValue(),1000)))
 
-
+#if(!$cssImageWeight) #set($cssImageWeight=0) #end 
+#if(!$imageWeight) #set($imageWeight=0) #end 
 #if(!$jsWeight) #set($jsWeight=0) #end 
 #if(!$cssWeight) #set($cssWeight=0) #end
 #set($contentWeight = $math.add($jsWeight,$math.add($cssWeight,$docWeight)))

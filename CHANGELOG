@@ -10,6 +10,7 @@ version 1.4
 * Cleanup if the sitespeed.io script, removed unused code and made it easier to update
 * You can now zip the output result by calling the script
 * Upgraded to latest crawler & xml-velocity jar
+* Added image, css, js and css image total weight/size on page view
 
 version 1.3
 ------------------------

@@ -142,6 +142,35 @@
 						</td>
 					</tr>
 					<tr>
+						<td>js size</td>
+						<td>$math.roundTo(1,$jsWeight) kb</td>
+					</tr>
+					<tr>
+						<td>css size</td>
+						<td>$math.roundTo(1,$cssWeight) kb</td>
+					</tr>
+					<tr>
+						<td>image size</td>
+						<td>$math.roundTo(1,$imageWeight) kb</td>
+					</tr>
+					<tr>
+						<td>css image size</td>
+						<td>$math.roundTo(1,$cssImageWeight) kb</td>
+					</tr>
+					<tr>
+						<td>content weight that are js files</td>
+						<td>
+						$jsPercentage %
+			   
+						</td>
+					</tr>
+					<tr>
+						<td>content weight that are css files</td>
+						<td>
+						$cssPercentage %
+						</td>
+					</tr>
+					<tr>
 						<td>page weight cached</td>
 						<td>
 							## The weight cached
@@ -170,18 +199,8 @@
 							$document.getRootElement().getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()
 						</td>
 					</tr>
-					<tr>
-						<td>content weight that are js files</td>
-						<td>
-						$jsPercentage %
-			   
-			        			</td>
-			        		</tr>
-			        		<tr>
-			        			<td>content weight that are css files</td>
-			        			<td>
-			        			$cssPercentage %
-			        			</td>
+					
+			       
 			        	</tbody>
 			</table>	
 
@@ -243,7 +262,7 @@
 
 					<a href="$asset.getChild("url").getValue()" title="$asset.getChild("url").getValue()" target="_blank">$asset.getChild("url").getValue()</a></td>
 					<td>$asset.getChild("type").getValue()</td>
-					<td>$asset.getChild("size").getValue()</td>
+					<td>$math.roundTo(3,$math.div($asset.getChild("size").getValue(),1000)) kb</td>
 
 				</tr>
 				#end
