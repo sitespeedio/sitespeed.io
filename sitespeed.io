@@ -41,10 +41,10 @@ OPTIONS:
    -f      Crawl only on this path [optional]
    -s      Skip urls that contains this in the path [optional]
    -p      The number of processes that will analyze pages, default is 5 [optional]
-   -m      The memory heap size for the java applications, defaukt is 1024 kb [optional]
+   -m      The memory heap size for the java applications, default is 1024 kb [optional]
    -o      The output format, always output as html but you can add images and/or csv (img,csv) [optional]
    -r      The result base directory, default is sitespeed-result [optional]
-   -z      Create a tar zip file of the results, default is false [optional]
+   -z      Create a tar zip file of the result files, default is false [optional]
 EOF
 }
 
