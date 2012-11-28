@@ -3,7 +3,7 @@ version 1.4
 ------------------------
 * Changed the limit value for doc size on the summary page, vas 10 kb but gzip is taken inconcideration, changed to 100 kb!
 * Concatenating css & js in the results to one file each
-* Show average of how much of a page that concist og javascript in percent, on the summary page
+* Show average of how much of a page that concist of javascript in percent, on the summary page
 * Show median values where applicable on the summary page (now show both average & median value)
 * Show how much of a page that is js & css on a page in percent, according to content
 * Made java heap size & result directory configurable from the sitespeed script
