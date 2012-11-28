@@ -32,7 +32,7 @@ help()
 cat << EOF
 usage: $0 options
 
-Sitespeed is a tool that helps you analyze your web site performance and show you what you should optimize, more info at http://sitespeed.io
+Sitespeed is a tool that helps you analyze your website performance and show you what you should optimize, more info at http://sitespeed.io
 
 OPTIONS:
    -h      Help
