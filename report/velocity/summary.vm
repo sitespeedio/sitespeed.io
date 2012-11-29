@@ -116,10 +116,9 @@
                 </div>
             </div>
               <div class="span4">
-                #set ($percentageJs = $math.roundTo(1,$math.mul($javascriptDividedWithDocumentAverage,100)))
-                <div class="alert alert-#percentageJavascriptOnPageType($percentageJs)">
+                <div class="alert alert-#percentageJavascriptOnPageType($javascriptDividedWithDocumentAverage)">
                     Js % of page
-                    <div><a href="#" rel="popover" class="alert-#percentageJavascriptOnPageType($percentageJs) large" data-trigger="hover" title="The average percentage javascript on a page" data-content="$percentageJsText">$percentageJs %</a></div>
+                    <div><a href="#" rel="popover" class="alert-#percentageJavascriptOnPageType($javascriptDividedWithDocumentAverage) large" data-trigger="hover" title="The average percentage javascript on a page" data-content="$percentageJsText">$javascriptDividedWithDocumentAverage %</a> ($javascriptDividedWithDocumentMedian)</div>
                 </div>
             </div>
 

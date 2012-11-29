@@ -19,10 +19,10 @@
 #set($statsPageWeight = $stats.copy())
 #set($statsScore = $stats.copy())
 #set($statsDocumentWeight = $stats.copy())
-#set($statsJsWeight = $stats.copy())
 #set($statsSpof = $stats.copy())
 #set($statsJsSyncInHead = $stats.copy())
 #set($statsAssetsWithoutFarExpires = $stats.copy())
+#set($statsJsPercentageWeight = $stats.copy())
 
 #foreach ($results in $document.getRootElement().getChildren())
     
@@ -63,8 +63,12 @@
     #end
 
     #if($!{results.getChild("stats").getChild("js").getChild("w")})  
-         $statsJsWeight.addValue($math.toInteger($results.getChild("stats").getChild("js").getChild("w").getValue()))
+         #set ($percentageJs = $math.roundTo(1,$math.mul($math.div($results.getChild("stats").getChild("js").getChild("w").getValue(),$math.add($results.getChild("w").getValue(),$results.getChild("stats").getChild("js").getChild("w").getValue())),100)))
+         $statsJsPercentageWeight.addValue($percentageJs)
+    #else
+        $statsJsPercentageWeight.addValue(0)
     #end
+
 
     #if($!{results.getChild("g").getChild("spof").getChild("score")})
 	   #if ($results.getChild("g").getChild("spof").getChild("score").getValue() != 100)
@@ -95,10 +99,9 @@
 #set ($pageWeightAverage = $math.roundTo($nrOfDecimals,$statsPageWeight.getMean()))  
 #set ($totalDocumentWeightAverage = $math.roundTo($nrOfDecimals,$statsDocumentWeight.getMean()))  
 #set ($totalJsSyncInHeadAverage = $math.roundTo($nrOfDecimals,$statsJsSyncInHead.getMean()))  
-#set ($totalJsWeightAverage = $math.roundTo($nrOfDecimals,$statsJsWeight.getMean()))  
 #set ($totalSpofAverage = $math.roundTo($nrOfDecimals,$statsSpof.getMean()))  
 #set ($totalAssetsWithoutFarExpiresAverage = $math.roundTo($nrOfDecimals,$statsAssetsWithoutFarExpires.getMean())) 
-#set ($javascriptDividedWithDocumentAverage = $math.roundTo(4,$math.div($totalJsWeightAverage,$math.add($pageWeightAverage,$totalJsWeightAverage))))
+#set ($javascriptDividedWithDocumentAverage = $math.roundTo($nrOfDecimals,$statsJsPercentageWeight.getMean()))
 
 ## Create median
 #set ($scoreMedian = $math.toInteger($statsScore.getPercentile(50)))   
@@ -111,10 +114,9 @@
 #set ($pageWeightMedian = $math.toInteger($statsPageWeight.getPercentile(50))) 
 #set ($documentWeightMedian = $math.toInteger($statsDocumentWeight.getPercentile(50))) 
 #set ($jsSyncInHeadMedian = $math.toInteger($statsJsSyncInHead.getPercentile(50))) 
-#set ($jsWeightMedian = $math.toInteger($statsJsWeight.getPercentile(50))) 
 #set ($spofMedian = $math.toInteger($statsSpof.getPercentile(50))) 
 #set ($assetsWithoutFarExpiresMedian = $math.toInteger($statsAssetsWithoutFarExpires.getPercentile(50))) 
-
+#set ($javascriptDividedWithDocumentMedian = $math.roundTo($nrOfDecimals,$statsJsPercentageWeight.getPercentile(50)))
 
 
 
