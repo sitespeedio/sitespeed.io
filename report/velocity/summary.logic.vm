@@ -63,7 +63,18 @@
     #end
 
     #if($!{results.getChild("stats").getChild("js").getChild("w")})  
-         #set ($percentageJs = $math.roundTo(1,$math.mul($math.div($results.getChild("stats").getChild("js").getChild("w").getValue(),$math.add($results.getChild("w").getValue(),$results.getChild("stats").getChild("js").getChild("w").getValue())),100)))
+
+        ## Sometimes getting the js directly from the stats object gives wrong values, so
+        ## let's calculate them one by one
+        
+        #set($jsWeightCounted = 0)
+        #foreach ($asset in $results.getChild("comps").getChildren())
+            #if ($asset.getChild("type").getValue() == "js")
+            #set($jsWeightCounted = $math.add($jsWeightCounted,$asset.getChild("size").getValue()))
+            #end
+        #end
+
+         #set ($percentageJs = $math.roundTo(1,$math.mul($math.div($jsWeightCounted,$math.add($results.getChild("stats").getChild("doc").getChild("w").getValue(),$jsWeightCounted)),100)))
          $statsJsPercentageWeight.addValue($percentageJs)
     #else
         $statsJsPercentageWeight.addValue(0)

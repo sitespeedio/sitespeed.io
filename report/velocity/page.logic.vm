@@ -1,6 +1,16 @@
 ## setting up some base values
 
-#set($jsWeight = $math.max($math.roundTo(3,$math.div($document.getRootElement().getChild("stats").getChild("js").getChild("w").getValue(),1000)),0))
+## Sometimes getting the js directly from the stats object gives wrong values, so
+## let's calculate them one by one
+#set($jsWeightCounted = 0)
+#foreach ($asset in $document.getRootElement().getChild("comps").getChildren())
+	#if ($asset.getChild("type").getValue() == "js")
+		#set($jsWeightCounted = $math.add($jsWeightCounted,$asset.getChild("size").getValue()))
+	#end
+#end
+
+
+#set($jsWeight = $math.max($math.roundTo(3,$math.div($jsWeightCounted,1000)),0))
 #set($cssWeight = $math.max($math.roundTo(3,$math.div($document.getRootElement().getChild("stats").getChild("css").getChild("w").getValue(),1000)),0))
 #set($docWeight = $math.roundTo(3,$math.div($document.getRootElement().getChild("stats").getChild("doc").getChild("w").getValue(),1000)))
 #set($imageWeight = $math.roundTo(3,$math.div($document.getRootElement().getChild("stats").getChild("image").getChild("w").getValue(),1000)))
