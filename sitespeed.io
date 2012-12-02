@@ -278,7 +278,7 @@ mkdir $REPORT_DIR/js
 mkdir $REPORT_DIR/img
 
 cat "$BASE_DIR"report/css/bootstrap.min.css > $REPORT_DIR/css/styles.css
-cat "$BASE_DIR"report/js/jquery-1.8.2.min.js report/js/bootstrap.min.js report/js/jquery.tablesorter.min.js > $REPORT_DIR/js/all.js
+cat "$BASE_DIR"report/js/jquery-1.8.3.min.js report/js/bootstrap.min.js report/js/jquery.tablesorter.min.js > $REPORT_DIR/js/all.js
 cp "$BASE_DIR"report/img/* $REPORT_DIR/img
 
 if $OUTPUT_CSV
