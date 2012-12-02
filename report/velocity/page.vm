@@ -262,7 +262,7 @@
 
 					<a href="$asset.getChild("url").getValue()" title="$asset.getChild("url").getValue()" target="_blank">$asset.getChild("url").getValue()</a></td>
 					<td>$asset.getChild("type").getValue()</td>
-					<td>$math.roundTo(3,$math.div($asset.getChild("size").getValue(),1000)) kb</td>
+					<td>$math.roundTo(1,$math.div($asset.getChild("size").getValue(),1000)) kb</td>
 
 				</tr>
 				#end
