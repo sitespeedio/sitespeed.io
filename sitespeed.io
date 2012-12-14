@@ -188,7 +188,7 @@ NOPROTOCOL=${URL#*//}
 HOST=${NOPROTOCOL%%/*}
 
 # Jar files
-CRAWLER_JAR=crawler-1.0-full.jar
+CRAWLER_JAR=crawler-1.1-full.jar
 VELOCITY_JAR=xml-velocity-1.3-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 
@@ -212,7 +212,7 @@ if $OUTPUT_IMAGES
   mkdir $REPORT_IMAGE_PAGES_DIR
 fi
 
-java -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -cp $DEPENDENCIES_DIR/$CRAWLER_JAR com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/nonworkingurls.txt
+java -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -Dcom.soulgalore.crawler.propertydir=$DEPENDENCIES_DIR/ -cp $DEPENDENCIES_DIR/$CRAWLER_JAR com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/nonworkingurls.txt
 
 if [ ! -e $REPORT_DATA_DIR/urls.txt ];
 then
