@@ -45,6 +45,8 @@ OPTIONS:
    -o      The output format, always output as html but you can add images and/or csv (img,csv) [optional]
    -r      The result base directory, default is sitespeed-result [optional]
    -z      Create a tar zip file of the result files, default is false [optional]
+   -a      The proxy host & protocol: proxy.soulgalore.com:80 [optional] 
+   -b      The proxy type, default is http [optional]
 EOF
 }
 
@@ -59,7 +61,7 @@ analyze() {
     pagefilename=$2
   
     echo "Analyzing $url"
-    phantomjs dependencies/yslow-3.1.4-sitespeed.js -d -r sitespeed.io-1.4 -f xml "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
+    phantomjs $PROXY_PHANTOMJS dependencies/yslow-3.1.4-sitespeed.js -d -r sitespeed.io-1.4 -f xml "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
  
     # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
     sed '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup  || exit 1
@@ -87,9 +89,14 @@ OUTPUT_FORMAT=
 JAVA_HEAP=
 REPORT_BASE_DIR=
 CREATE_TAR_ZIP=false
+PROXY_HOST=
+PROXY_TYPE="http"
+
+PROXY_PHANTOMJS=
+PROXY_CRAWLER=
 
 # Set options
-while getopts “hu:d:f:s:o:m:p:r:z:” OPTION
+while getopts “hu:d:f:s:o:m:p:r:z:a:b:” OPTION
 do
      case $OPTION in
          h)
@@ -105,6 +112,8 @@ do
          p)MAX_PROCESSES=$OPTARG;;
          r)REPORT_BASE_DIR=$OPTARG;;
          z)CREATE_TAR_ZIP=$OPTARG;;
+         a)PROXY_HOST=$OPTARG;;
+         b)PROXY_TYPE=$OPTARG;;
          ?)
              help
              exit
@@ -173,7 +182,13 @@ then
      REPORT_BASE_DIR="sitespeed-result"
 fi
 
-# FInished verify the input
+if [ "$PROXY_HOST" != "" ]
+then
+    PROXY_PHANTOMJS="--proxy=$PROXY_HOST --proxy-type=$PROXY_TYPE"
+    PROXY_CRAWLER="-Dcom.soulgalore.crawler.proxy=$PROXY_TYPE":"$PROXY_HOST"
+fi
+
+# Finished verify the input
 
 # Switch to my dir
 cd "$(dirname ${BASH_SOURCE[0]})"
@@ -212,7 +227,7 @@ if $OUTPUT_IMAGES
   mkdir $REPORT_IMAGE_PAGES_DIR
 fi
 
-java -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -Dcom.soulgalore.crawler.propertydir=$DEPENDENCIES_DIR/ -cp $DEPENDENCIES_DIR/$CRAWLER_JAR com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/nonworkingurls.txt
+java -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -Dcom.soulgalore.crawler.propertydir=$DEPENDENCIES_DIR/ $PROXY_CRAWLER -cp $DEPENDENCIES_DIR/$CRAWLER_JAR com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/nonworkingurls.txt
 
 if [ ! -e $REPORT_DATA_DIR/urls.txt ];
 then
