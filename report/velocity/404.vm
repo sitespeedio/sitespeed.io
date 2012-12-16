@@ -1,0 +1,20 @@
+#parse("report/velocity/header.vm")
+
+<div class="row-fluid">
+	<div class="span12">
+
+		<h2>
+			These pages returned 404 from the crawl
+		</h2>
+				
+		 #foreach ($url in $document.getRootElement().getChildren())
+	 	 <p><a href="$url.getValue()" target="_blank">$url.getValue()</a></p>
+		 #end
+		
+	</div>
+	<!-- span 12 -->
+</div>
+<!-- row -->
+#parse("report/velocity/footer.vm")
+</body>
+</html>
