@@ -43,6 +43,9 @@
             <div class="span6">
             <div class="alert alert-#totalJsSyncInHeadType($totalJsSyncInHeadAverage)">
               Number of JS synchronously in head 
+               #if($math.toInteger($jsInHeadPercentage) > 0)
+              ($jsInHeadPercentage % of the javascripts)
+              #end
                     <div><a href="#" rel="popover" class="alert-#totalJsSyncInHeadType($totalJsSyncInHeadAverage) large" data-trigger="hover" title="Average number of javascripts loaded synchronously inside of the head tag" data-content="$jsSyncInHeadText">$totalJsSyncInHeadAverage</a> ($jsSyncInHeadMedian)</div>   
           </div>    
                
@@ -53,26 +56,26 @@
     <div class="row-fluid">
             <div class="span3">
                 <div class="alert alert-#jsType($jsAverage)">
-                    Number of JS
+                    Number of JS ($jsPercentage % of the requests)
                       <div><a href="#" rel="popover" class="alert-#jsType($jsAverage) large" data-trigger="hover" title="Average number of javascripts" data-content="$nrOfJsText">$jsAverage</a> ($jsMedian)</div>
                     
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#cssType($cssAverage)">
-                    Number of CSS 
+                    Number of CSS ($cssPercentage % of the requests)
                       <div><a href="#" rel="popover" class="alert-#cssType($cssAverage) large" data-trigger="hover" title="Average number of stylesheets" data-content="$nrOfCssText">$cssAverage</a> ($cssMedian)</div>
                 </div>
             </div>
 <div class="span3">
                 <div class="alert alert-#cssImageType($cssImageAverage)">
-                    Number of CSS images
+                    Number of CSS images ($cssImagesPercentage % of the requests)
                       <div><a href="#" rel="popover" class="alert-#cssImageType($cssImageAverage) large" data-trigger="hover" title="Average number of stylesheet images" data-content="$nrOfCssImageText">$cssImageAverage</a> ($cssImageMedian)</div>
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#imageType($imageAverage)">
-                    Number of images 
+                    Number of images ($imagesPercentage % of the requests)
                       <div><a href="#" rel="popover" class="alert-#imageType($imageAverage) large" data-trigger="hover" title="Average number of images" data-content="$nrOfImagesText">$imageAverage</a> ($imageMedian)</div>
                 </div>
             </div>
@@ -87,14 +90,18 @@
             </div>
             <div class="span4">
                 <div class="alert alert-#requestPrimedType($requestAverage $requestPrimedAverage)">
-                    Number of requests with primed cache
+                    Number of requests with primed cache ($requestWithPrimedCachePercentage % of the requests)
                       <div><a href="#" rel="popover" class="alert-#requestPrimedType($requestAverage $requestPrimedAverage) large" data-trigger="hover" title="Average number of requests with a primed cache" data-content="$nrOfRequestPrimedText">$requestPrimedAverage</a> ($requestPrimedMedian)</div>
                 </div>
             </div>
              <div class="span4">
                     <div class="alert alert-#expiresType($totalAssetsWithoutFarExpiresAverage)">
-                    Requests without far expires
-                      <div><a href="#" rel="popover" class="alert-#expiresType($totalAssetsWithoutFarExpiresAverage) large" data-trigger="hover" title="Average number of requests for static content without a far-future expiration date" data-content="$assetsWithoutFarExpiresText">$totalAssetsWithoutFarExpiresAverage</a> ($assetsWithoutFarExpiresMedian)</div>
+                    Requests without far expires 
+		    #if($math.toInteger($requestWithoutFarExpirePercentage) > 0)
+		     ($requestWithoutFarExpirePercentage %)
+		    #end
+                      <div><a href="#" rel="popover" class="alert-#expiresType($totalAssetsWithoutFarExpiresAverage) large" data-trigger="hover" title="Average number of requests for static content without a far-future expiration date" data-content="$assetsWithoutFarExpiresText">$totalAssetsWithoutFarExpiresAverage</a> ($assetsWithoutFarExpiresMedian) 
+		      </div>
                 </div>
              </div>
            
@@ -129,14 +136,13 @@
         <div class="span6">
 
         <div class="alert alert-#spofType($totalSpofPages)">
-                    Pages with SPOF
-                      <div><a href="#" rel="popover" class="alert-#spofType($totalSpofPages) large" data-trigger="hover" title="The number of pages with frontend single point of failure" data-content="$spofText">$totalSpofPages</a> 
-		      #if($math.toInteger($pagesWithSpofPercentage) > 0)
-		         ($pagesWithSpofPercentage % of the pages)</div>
-		      #end
-                </div>
+                    Pages with SPOF 
+		    #if($math.toInteger($pagesWithSpofPercentage) > 0)
+                         ($pagesWithSpofPercentage % of the pages)
+                    #end
+                      <div><a href="#" rel="popover" class="alert-#spofType($totalSpofPages) large" data-trigger="hover" title="The number of pages with frontend single point of failure" data-content="$spofText">$totalSpofPages</a>                   </div>
             </div>
-
+	    </div>
                 <div class="span6">
          <div class="alert alert-#spofType($totalSpofAverage)">
                     Number of SPOF per page
