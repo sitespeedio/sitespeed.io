@@ -129,5 +129,6 @@
 #set ($assetsWithoutFarExpiresMedian = $math.toInteger($statsAssetsWithoutFarExpires.getPercentile(50))) 
 #set ($javascriptDividedWithDocumentMedian = $math.roundTo($nrOfDecimals,$statsJsPercentageWeight.getPercentile(50)))
 
-
+## Set percentage
+#set ($pagesWithSpofPercentage = $math.roundTo($nrOfDecimals, $math.mul($math.div($totalSpofPages,$nrOfPages),100)))
 

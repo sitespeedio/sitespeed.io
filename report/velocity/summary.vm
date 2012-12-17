@@ -130,7 +130,10 @@
 
         <div class="alert alert-#spofType($totalSpofPages)">
                     Pages with SPOF
-                      <div><a href="#" rel="popover" class="alert-#spofType($totalSpofPages) large" data-trigger="hover" title="The number of pages with frontend single point of failure" data-content="$spofText">$totalSpofPages</a></div>
+                      <div><a href="#" rel="popover" class="alert-#spofType($totalSpofPages) large" data-trigger="hover" title="The number of pages with frontend single point of failure" data-content="$spofText">$totalSpofPages</a> 
+		      #if($math.toInteger($pagesWithSpofPercentage) > 0)
+		         ($pagesWithSpofPercentage % of the pages)</div>
+		      #end
                 </div>
             </div>
 
