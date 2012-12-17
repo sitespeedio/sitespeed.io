@@ -3,6 +3,7 @@ CHANGELOG sitespeed.io
 version 1.5
 ------------------------
 * Added support for configuring the crawler (see the dependencies/crawler.properties file). 
+* Added support for analyze behind proxy (thanks https://github.com/rhulse and https://github.com/samteeeee for reporting and testing it)
 * Added html page that shows url:s that returned 404 from the crawl
 
 version 1.4
