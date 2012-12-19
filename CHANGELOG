@@ -6,6 +6,7 @@ version 1.5
 * Added support for analyze behind proxy (thanks https://github.com/rhulse and https://github.com/samteeeee for reporting and testing it)
 * Added html page that shows url:s that returned 404 from the crawl
 * Added how many pages have spof (in percentage) on the summary page
+* Added support for setting User-Agent
 
 version 1.4
 ------------------------
