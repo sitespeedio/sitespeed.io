@@ -47,6 +47,7 @@ OPTIONS:
    -z      Create a tar zip file of the result files, default is false [optional]
    -a      The proxy host & protocol: proxy.soulgalore.com:80 [optional] 
    -b      The proxy type, default is http [optional]
+   -g      The user agent, default is empty [optional]
 EOF
 }
 
@@ -61,7 +62,7 @@ analyze() {
     pagefilename=$2
   
     echo "Analyzing $url"
-    phantomjs $PROXY_PHANTOMJS dependencies/yslow-3.1.4-sitespeed.js -d -r sitespeed.io-1.4 -f xml "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
+    phantomjs $PROXY_PHANTOMJS dependencies/yslow-3.1.4-sitespeed.js -d -r sitespeed.io-1.4 -f xml $USER_AGENT_YSLOW "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
  
     # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
     sed '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup  || exit 1
@@ -95,8 +96,12 @@ PROXY_TYPE="http"
 PROXY_PHANTOMJS=
 PROXY_CRAWLER=
 
+USER_AGENT=
+USER_AGENT_YSLOW=
+USER_AGENT_CRAWLER=
+
 # Set options
-while getopts “hu:d:f:s:o:m:p:r:z:a:b:” OPTION
+while getopts “hu:d:f:s:o:m:p:r:z:a:b:g:” OPTION
 do
      case $OPTION in
          h)
@@ -114,6 +119,7 @@ do
          z)CREATE_TAR_ZIP=$OPTARG;;
          a)PROXY_HOST=$OPTARG;;
          b)PROXY_TYPE=$OPTARG;;
+         g)USER_AGENT=$OPTARG;;
          ?)
              help
              exit
@@ -188,6 +194,12 @@ then
     PROXY_CRAWLER="-Dcom.soulgalore.crawler.proxy=$PROXY_TYPE":"$PROXY_HOST"
 fi
 
+if [ "$USER_AGENT" != "" ]
+then
+    USER_AGENT_YSLOW="-u $USER_AGENT"
+    USER_AGENT_CRAWLER="-Dcom.soulgalore.crawler.useragent=$USER_AGENT"
+fi
+
 # Finished verify the input
 
 # Switch to my dir
@@ -203,7 +215,7 @@ NOPROTOCOL=${URL#*//}
 HOST=${NOPROTOCOL%%/*}
 
 # Jar files
-CRAWLER_JAR=crawler-1.1.1-full.jar
+CRAWLER_JAR=crawler-1.1.2-full.jar
 VELOCITY_JAR=xml-velocity-1.3-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 
@@ -227,7 +239,7 @@ if $OUTPUT_IMAGES
   mkdir $REPORT_IMAGE_PAGES_DIR
 fi
 
-java -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -Dcom.soulgalore.crawler.propertydir=$DEPENDENCIES_DIR/ $PROXY_CRAWLER -cp $DEPENDENCIES_DIR/$CRAWLER_JAR com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/404.txt
+java -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -Dcom.soulgalore.crawler.propertydir=$DEPENDENCIES_DIR/ $PROXY_CRAWLER $USER_AGENT_CRAWLER -cp $DEPENDENCIES_DIR/$CRAWLER_JAR com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/404.txt
 
 if [ ! -e $REPORT_DATA_DIR/urls.txt ];
 then
@@ -282,7 +294,7 @@ fi
 
 echo "Create result.xml"
 
-echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" url="'$URL'" date="'$DATE'">' > $REPORT_DATA_DIR/result.xml
+echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" url="'$URL'" date="'$DATE'" useragent="'$USER_AGENT'">' > $REPORT_DATA_DIR/result.xml
 for file in $REPORT_DATA_PAGES_DIR/*
 do
   # Hack for removing dictonaries in the result file

@@ -27,7 +27,9 @@
             $nrOfPages pages analyzed for <a href="$document.getRootElement().getAttribute("url").getValue()" target="_blank">$document.getRootElement().getAttribute("url").getValue()</a>
         </h2>
         <p>
-            Test performed: $document.getRootElement().getAttribute("date").getValue() with rules $document.getRootElement().getChild("results").getChild("i").getValue()
+            Test performed: $document.getRootElement().getAttribute("date").getValue() with rules $document.getRootElement().getChild("results").getChild("i").getValue() 
+	    	 with User-Agent: $document.getRootElement().getAttribute("useragent").getValue()
+
         </p>
 
         <div class="row-fluid">
