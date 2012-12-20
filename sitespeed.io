@@ -48,6 +48,7 @@ OPTIONS:
    -a      The proxy host & protocol: proxy.soulgalore.com:80 [optional] 
    -b      The proxy type, default is http [optional]
    -g      The user agent, default is empty [optional]
+   -v      The view port, the page viewport size WidthxHeight, like 400x300, default is none [optional]
 EOF
 }
 
@@ -62,7 +63,7 @@ analyze() {
     pagefilename=$2
   
     echo "Analyzing $url"
-    phantomjs $PROXY_PHANTOMJS dependencies/yslow-3.1.4-sitespeed.js -d -r sitespeed.io-1.4 -f xml $USER_AGENT_YSLOW "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
+    phantomjs $PROXY_PHANTOMJS dependencies/yslow-3.1.4-sitespeed.js -d -r sitespeed.io-1.4 -f xml $USER_AGENT_YSLOW $VIEWPORT_YSLOW "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
  
     # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
     sed '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup  || exit 1
@@ -100,8 +101,11 @@ USER_AGENT=
 USER_AGENT_YSLOW=
 USER_AGENT_CRAWLER=
 
+VIEWPORT=
+VIEWPORT_YSLOW=
+
 # Set options
-while getopts “hu:d:f:s:o:m:p:r:z:a:b:g:” OPTION
+while getopts “hu:d:f:s:o:m:p:r:z:a:b:g:v:” OPTION
 do
      case $OPTION in
          h)
@@ -120,6 +124,7 @@ do
          a)PROXY_HOST=$OPTARG;;
          b)PROXY_TYPE=$OPTARG;;
          g)USER_AGENT=$OPTARG;;
+         v)VIEWPORT=$OPTARG;;
          ?)
              help
              exit
@@ -199,6 +204,12 @@ then
     USER_AGENT_YSLOW="-u $USER_AGENT"
     USER_AGENT_CRAWLER="-Dcom.soulgalore.crawler.useragent=$USER_AGENT"
 fi
+
+if [ "$VIEWPORT" != "" ]
+then
+    VIEWPORT_YSLOW="-vp $VIEWPORT"
+fi
+
 
 # Finished verify the input
 
