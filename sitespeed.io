@@ -278,7 +278,7 @@ if [ -e $REPORT_DATA_DIR/404.txt ];
 then
   result404=()
   while read txt ; do
-    result404[${#result[@]}]=$txt
+    result404[${#result404[@]}]=$txt
   done < $REPORT_DATA_DIR/404.txt
 
   echo '<?xml version="1.0" encoding="UTF-8"?><results>'  > $REPORT_DATA_DIR/404.xml
