@@ -215,7 +215,7 @@ NOPROTOCOL=${URL#*//}
 HOST=${NOPROTOCOL%%/*}
 
 # Jar files
-CRAWLER_JAR=crawler-1.1.2-full.jar
+CRAWLER_JAR=crawler-1.2-full.jar
 VELOCITY_JAR=xml-velocity-1.3-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 
@@ -239,7 +239,7 @@ if $OUTPUT_IMAGES
   mkdir $REPORT_IMAGE_PAGES_DIR
 fi
 
-java -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -Dcom.soulgalore.crawler.propertydir=$DEPENDENCIES_DIR/ $PROXY_CRAWLER $USER_AGENT_CRAWLER -cp $DEPENDENCIES_DIR/$CRAWLER_JAR com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/404.txt
+java -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -Dcom.soulgalore.crawler.propertydir=$DEPENDENCIES_DIR/ $PROXY_CRAWLER $USER_AGENT_CRAWLER -cp $DEPENDENCIES_DIR/$CRAWLER_JAR com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/errorurls.txt
 
 if [ ! -e $REPORT_DATA_DIR/urls.txt ];
 then
@@ -273,22 +273,22 @@ done
 # make sure all processes has finished
 wait
 
-# take care of 404:s
-if [ -e $REPORT_DATA_DIR/404.txt ];
+# take care of error urls
+if [ -e $REPORT_DATA_DIR/errorurls.txt ];
 then
-  result404=()
+  resultError=()
   while read txt ; do
-    result404[${#result404[@]}]=$txt
-  done < $REPORT_DATA_DIR/404.txt
+    resultError[${#resultError[@]}]=$txt
+  done < $REPORT_DATA_DIR/errorurls.txt
 
-  echo '<?xml version="1.0" encoding="UTF-8"?><results>'  > $REPORT_DATA_DIR/404.xml
-  for url in "${result404[@]}"
-    do echo "<url>$url</url>" >> $REPORT_DATA_DIR/404.xml
+  echo '<?xml version="1.0" encoding="UTF-8"?><results>'  > $REPORT_DATA_DIR/errorurls.xml
+  for url in "${resultError[@]}"
+    do echo "<url reason='${url/,*/ }'>${url/*,/ }</url>" >> $REPORT_DATA_DIR/errorurls.xml
   done
-  echo '</results>' >> $REPORT_DATA_DIR/404.xml
-  echo 'Create the 404.html'
-  java -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/404.xml $VELOCITY_DIR/404.vm $PROPERTIES_DIR/404.properties $REPORT_DIR/404.html || exit 1
-  java -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/404.html $REPORT_DIR/404.html
+  echo '</results>' >> $REPORT_DATA_DIR/errorurls.xml
+  echo 'Create the errorurls.html'
+  java -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/errorurls.xml $VELOCITY_DIR/errorurls.vm $PROPERTIES_DIR/errorurls.properties $REPORT_DIR/errorurls.html || exit 1
+  java -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/errorurls.html $REPORT_DIR/errorurls.html
 
 fi
 

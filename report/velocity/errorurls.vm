@@ -4,11 +4,11 @@
 	<div class="span12">
 
 		<h2>
-			These pages returned 404 from the crawl
+			These pages returned errors from the crawl
 		</h2>
 				
 		 #foreach ($url in $document.getRootElement().getChildren())
-	 	 <p><a href="$url.getValue()" target="_blank">$url.getValue()</a></p>
+	 	 <p>$url.getAttribute("reason").getValue() : <a href="$url.getValue()" target="_blank">$url.getValue()</a></p>
 		 #end
 		
 	</div>
