@@ -29,7 +29,7 @@
         <p>
             Test performed: $document.getRootElement().getAttribute("date").getValue() with rules $document.getRootElement().getChild("results").getChild("i").getValue() 
 		    #if ($document.getRootElement().getAttribute("useragent").getValue() != "")
-            with User agent: $document.getRootElement().getAttribute("useragent").getValue()
+            with user agent: $document.getRootElement().getAttribute("useragent").getValue()
             #end
         </p>
 
@@ -37,7 +37,7 @@
             <div class="span6">
                 <div class="alert alert-#scoreType($scoreAverage)">
                      Score
-                    <div><a href="#" class="alert-#scoreType($scoreAverage) large" rel="popover" data-trigger="hover" title="Average score" data-content="$scoreText">$scoreAverage</a> 
+                    <div><a href="#" class="alert-#scoreType($scoreAverage) large" rel="popover" data-trigger="hover" title="Average score $scoreAverage" data-content="$scoreText">$scoreAverage</a> 
                   ($scoreMedian)
                     </div>
                 </div>
@@ -46,10 +46,7 @@
             <div class="span6">
             <div class="alert alert-#totalJsSyncInHeadType($totalJsSyncInHeadAverage)">
               Number of JS synchronously in head 
-               #if($math.toInteger($jsInHeadPercentage) > 0)
-              ($jsInHeadPercentage % of the javascripts)
-              #end
-                    <div><a href="#" rel="popover" class="alert-#totalJsSyncInHeadType($totalJsSyncInHeadAverage) large" data-trigger="hover" title="Average number of javascripts loaded synchronously inside of the head tag" data-content="$jsSyncInHeadText">$totalJsSyncInHeadAverage</a> ($jsSyncInHeadMedian)</div>   
+                    <div><a href="#" rel="popover" class="alert-#totalJsSyncInHeadType($totalJsSyncInHeadAverage) large" data-trigger="hover" title="Average number of $totalJsSyncInHeadAverage javascripts are loaded synchronously inside of the head tag #if($math.toInteger($jsInHeadPercentage) > 0) ($jsInHeadPercentage % of the javascript files) #end" data-content="$jsSyncInHeadText">$totalJsSyncInHeadAverage</a> ($jsSyncInHeadMedian)</div>   
           </div>    
                
             </div>
@@ -59,27 +56,27 @@
     <div class="row-fluid">
             <div class="span3">
                 <div class="alert alert-#jsType($jsAverage)">
-                    Number of JS ($jsPercentage % of the requests)
-                      <div><a href="#" rel="popover" class="alert-#jsType($jsAverage) large" data-trigger="hover" title="Average number of javascripts" data-content="$nrOfJsText">$jsAverage</a> ($jsMedian)</div>
+                    Number of JS 
+                      <div><a href="#" rel="popover" class="alert-#jsType($jsAverage) large" data-trigger="hover" title="Average number of $jsAverage javascripts ($jsPercentage % of the requests) " data-content="$nrOfJsText">$jsAverage</a> ($jsMedian)</div>
                     
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#cssType($cssAverage)">
-                    Number of CSS ($cssPercentage % of the requests)
-                      <div><a href="#" rel="popover" class="alert-#cssType($cssAverage) large" data-trigger="hover" title="Average number of stylesheets" data-content="$nrOfCssText">$cssAverage</a> ($cssMedian)</div>
+                    Number of CSS 
+                      <div><a href="#" rel="popover" class="alert-#cssType($cssAverage) large" data-trigger="hover" title="Average number of $cssAverage stylesheets ($cssPercentage % of the requests)" data-content="$nrOfCssText">$cssAverage</a> ($cssMedian)</div>
                 </div>
             </div>
 <div class="span3">
                 <div class="alert alert-#cssImageType($cssImageAverage)">
-                    Number of CSS images ($cssImagesPercentage % of the requests)
-                      <div><a href="#" rel="popover" class="alert-#cssImageType($cssImageAverage) large" data-trigger="hover" title="Average number of stylesheet images" data-content="$nrOfCssImageText">$cssImageAverage</a> ($cssImageMedian)</div>
+                    Number of CSS images 
+                      <div><a href="#" rel="popover" class="alert-#cssImageType($cssImageAverage) large" data-trigger="hover" title="Average number of $cssImageAverage stylesheet images ($cssImagesPercentage % of the requests)" data-content="$nrOfCssImageText">$cssImageAverage</a> ($cssImageMedian)</div>
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#imageType($imageAverage)">
-                    Number of images ($imagesPercentage % of the requests)
-                      <div><a href="#" rel="popover" class="alert-#imageType($imageAverage) large" data-trigger="hover" title="Average number of images" data-content="$nrOfImagesText">$imageAverage</a> ($imageMedian)</div>
+                    Number of images 
+                      <div><a href="#" rel="popover" class="alert-#imageType($imageAverage) large" data-trigger="hover" title="Average number of $imageAverage images ($imagesPercentage % of the requests)" data-content="$nrOfImagesText">$imageAverage</a> ($imageMedian)</div>
                 </div>
             </div>
         </div>
@@ -88,22 +85,19 @@
              <div class="span4">
                 <div class="alert alert-#requestType($requestAverage)">
                     Number of requests
-                    <div><a href="#" rel="popover" class="alert-#requestType($requestAverage) large" data-trigger="hover" title="Average number of requests" data-content="$requestText">$requestAverage</a> ($requestMedian)</div>
+                    <div><a href="#" rel="popover" class="alert-#requestType($requestAverage) large" data-trigger="hover" title="Average number of $requestAverage requests" data-content="$requestText">$requestAverage</a> ($requestMedian)</div>
                 </div>
             </div>
             <div class="span4">
                 <div class="alert alert-#requestPrimedType($requestAverage $requestPrimedAverage)">
-                    Number of requests with primed cache ($requestWithPrimedCachePercentage % of the requests)
-                      <div><a href="#" rel="popover" class="alert-#requestPrimedType($requestAverage $requestPrimedAverage) large" data-trigger="hover" title="Average number of requests with a primed cache" data-content="$nrOfRequestPrimedText">$requestPrimedAverage</a> ($requestPrimedMedian)</div>
+                    Number of requests with primed cache 
+                      <div><a href="#" rel="popover" class="alert-#requestPrimedType($requestAverage $requestPrimedAverage) large" data-trigger="hover" title="Average number of $requestPrimedAverage requests with a primed cache ($requestWithPrimedCachePercentage % of the requests)" data-content="$nrOfRequestPrimedText">$requestPrimedAverage</a> ($requestPrimedMedian)</div>
                 </div>
             </div>
              <div class="span4">
                     <div class="alert alert-#expiresType($totalAssetsWithoutFarExpiresAverage)">
                     Requests without far expires 
-		    #if($math.toInteger($requestWithoutFarExpirePercentage) > 0)
-		     ($requestWithoutFarExpirePercentage %)
-		    #end
-                      <div><a href="#" rel="popover" class="alert-#expiresType($totalAssetsWithoutFarExpiresAverage) large" data-trigger="hover" title="Average number of requests for static content without a far-future expiration date" data-content="$assetsWithoutFarExpiresText">$totalAssetsWithoutFarExpiresAverage</a> ($assetsWithoutFarExpiresMedian) 
+                      <div><a href="#" rel="popover" class="alert-#expiresType($totalAssetsWithoutFarExpiresAverage) large" data-trigger="hover" title="Average number of $totalAssetsWithoutFarExpiresAverage requests for static content without a far-future expiration date #if($math.toInteger($requestWithoutFarExpirePercentage) > 0) ($requestWithoutFarExpirePercentage % of the requests) #end" data-content="$assetsWithoutFarExpiresText">$totalAssetsWithoutFarExpiresAverage</a> ($assetsWithoutFarExpiresMedian) 
 		      </div>
                 </div>
              </div>
@@ -116,19 +110,21 @@
             <div class="span4">
                 <div class="alert alert-#weightType($pageWeightAverage)">
                     Total page weight
-                    <div><a href="#" rel="popover" class="alert-#weightType($pageWeightAverage) large" data-trigger="hover" title="Average page weight" data-content="$pageWeightText">$math.roundTo(1,$math.div($pageWeightAverage,1000)) kb</a> ($math.roundTo(1,$math.div($pageWeightMedian,1000)))</div>
+                    #set($pwa = $math.roundTo(1,$math.div($pageWeightAverage,1000)))
+                    <div><a href="#" rel="popover" class="alert-#weightType($pageWeightAverage) large" data-trigger="hover" title="Average page weight $pwa kb" data-content="$pageWeightText">$pwa kb</a> ($math.roundTo(1,$math.div($pageWeightMedian,1000)))</div>
                 </div>
             </div>
             <div class="span4">
                 <div class="alert alert-#weightMobileType($totalDocumentWeightAverage)">
                     Document page weight
-                    <div><a href="#" rel="popover" class="alert-#weightMobileType($totalDocumentWeightAverage) large" data-trigger="hover" title="Average document weight" data-content="$documentWeightText">$math.roundTo(1,$math.div($totalDocumentWeightAverage,1000)) kb</a> ($math.roundTo(1,$math.div($documentWeightMedian,1000)))</div>
+                    #set ($dwa = $math.roundTo(1,$math.div($totalDocumentWeightAverage,1000)))
+                    <div><a href="#" rel="popover" class="alert-#weightMobileType($totalDocumentWeightAverage) large" data-trigger="hover" title="Average document weight $dwa kb" data-content="$documentWeightText">$dwa kb</a> ($math.roundTo(1,$math.div($documentWeightMedian,1000)))</div>
                 </div>
             </div>
               <div class="span4">
                 <div class="alert alert-#percentageJavascriptOnPageType($javascriptDividedWithDocumentAverage)">
-                    Js % of page
-                    <div><a href="#" rel="popover" class="alert-#percentageJavascriptOnPageType($javascriptDividedWithDocumentAverage) large" data-trigger="hover" title="The average percentage javascript on a page" data-content="$percentageJsText">$javascriptDividedWithDocumentAverage %</a> ($javascriptDividedWithDocumentMedian)</div>
+                    Js % of a page
+                    <div><a href="#" rel="popover" class="alert-#percentageJavascriptOnPageType($javascriptDividedWithDocumentAverage) large" data-trigger="hover" title="The average of $javascriptDividedWithDocumentAverage % javascript on a page " data-content="$percentageJsText">$javascriptDividedWithDocumentAverage %</a> ($javascriptDividedWithDocumentMedian)</div>
                 </div>
             </div>
 
@@ -140,16 +136,13 @@
 
         <div class="alert alert-#spofType($totalSpofPages)">
                     Pages with SPOF 
-		    #if($math.toInteger($pagesWithSpofPercentage) > 0)
-                         ($pagesWithSpofPercentage % of the pages)
-                    #end
-                      <div><a href="#" rel="popover" class="alert-#spofType($totalSpofPages) large" data-trigger="hover" title="The number of pages with frontend single point of failure" data-content="$spofText">$totalSpofPages</a>                   </div>
+                      <div><a href="#" rel="popover" class="alert-#spofType($totalSpofPages) large" data-trigger="hover" title="The number of $totalSpofPages pages with frontend single point of failure  #if($math.toInteger($pagesWithSpofPercentage) > 0) ($pagesWithSpofPercentage % of the pages)  #end" data-content="$spofText">$totalSpofPages</a>                   </div>
             </div>
 	    </div>
                 <div class="span6">
          <div class="alert alert-#spofType($totalSpofAverage)">
                     Number of SPOF per page
-                      <div><a href="#" rel="popover" class="alert-#spofType($totalSpofAverage) large" data-trigger="hover" title="Number of single point of failures per page" data-content="$spofPerPageText">$totalSpofAverage</a> ($spofMedian)</div>
+                      <div><a href="#" rel="popover" class="alert-#spofType($totalSpofAverage) large" data-trigger="hover" title="The average of $totalSpofAverage single point of failures per page" data-content="$spofPerPageText">$totalSpofAverage</a> ($spofMedian)</div>
             </div>
              
         </div>
@@ -224,7 +217,7 @@
                        
                     </li>
                     <li>
-                    <b>The amount of javascript loaded/used in one page</b>:
+                    <b>The amount of javascript in one page (the javascript weight compared to the weight of the document)</b>:
                     $percentageJsText
                     </li>
 
