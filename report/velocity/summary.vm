@@ -28,8 +28,9 @@
         </h2>
         <p>
             Test performed: $document.getRootElement().getAttribute("date").getValue() with rules $document.getRootElement().getChild("results").getChild("i").getValue() 
-	    	 with User-Agent: $document.getRootElement().getAttribute("useragent").getValue()
-
+		    #if ($document.getRootElement().getAttribute("useragent").getValue() != "")
+            with User agent: $document.getRootElement().getAttribute("useragent").getValue()
+            #end
         </p>
 
         <div class="row-fluid">
