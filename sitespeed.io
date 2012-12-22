@@ -63,7 +63,7 @@ analyze() {
     pagefilename=$2
   
     echo "Analyzing $url"
-    phantomjs $PROXY_PHANTOMJS dependencies/yslow-3.1.4-sitespeed.js -d -r sitespeed.io-1.4 -f xml $USER_AGENT_YSLOW $VIEWPORT_YSLOW "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
+    phantomjs $PROXY_PHANTOMJS dependencies/yslow-3.1.4-sitespeed.js -d -r sitespeed.io-1.5 -f xml $USER_AGENT_YSLOW $VIEWPORT_YSLOW "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
  
     # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
     sed '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup  || exit 1
