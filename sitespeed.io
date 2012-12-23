@@ -101,7 +101,7 @@ USER_AGENT=
 USER_AGENT_YSLOW=
 USER_AGENT_CRAWLER=
 
-VIEWPORT=
+VIEWPORT="1280x800"
 VIEWPORT_YSLOW=
 
 # Set options
@@ -305,7 +305,7 @@ fi
 
 echo "Create result.xml"
 
-echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" url="'$URL'" date="'$DATE'" useragent="'$USER_AGENT'">' > $REPORT_DATA_DIR/result.xml
+echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" url="'$URL'" date="'$DATE'" useragent="'$USER_AGENT'" viewport="'$VIEWPORT'">' > $REPORT_DATA_DIR/result.xml
 for file in $REPORT_DATA_PAGES_DIR/*
 do
   # Hack for removing dictonaries in the result file
