@@ -4,5 +4,6 @@ before_script:
 - "make package"
 - node test/server/file-server.js &
 - sleep 3
+- "./build/sitespeed.io -u http://127.0.0.1:8080/ -o img,csv"
 
-script: ./build/sitespeed.io -u http://127.0.0.1:8080/ -o img,csv
+script: ./test/test.sh
