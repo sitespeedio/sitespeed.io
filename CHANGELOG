@@ -8,6 +8,7 @@ version 1.5
 * Added percentage on summary page
 * Added support for setting user agent
 * Added support for setting view port
+* Bugfix: The check for phantomjs wasn't working, works now
 
 version 1.4
 ------------------------
