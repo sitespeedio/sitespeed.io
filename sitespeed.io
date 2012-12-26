@@ -17,10 +17,8 @@
 #
 #*******************************************************
 
-if (!command -v phantomjs &> /dev/null) ; then
-   echo 'Missing phantomjs, please install it to be able to run sitespeed.io'
-   exit 1;
-fi
+command -v phantomjs >/dev/null 2>&1 || { echo >&2 "Missing phantomjs, please install it to be able to run sitespeed.io"; exit 1; }
+
 
 
 #*******************************************************
