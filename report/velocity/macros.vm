@@ -85,11 +85,11 @@ success#end#end
 #if ($js<1)success#else
 error#end#end        
 
-## The percent of javascript with HTML
-#macro ( percentageJavascriptOnPageType $averagePercent )
-#if ($averagePercent<50)success#elseif ($averagePercent>75)
-error#else
-warning#end#end
+## The critical path
+#macro ( criticalPathType $score )
+#if ($score<95)error#elseif ($score<96)
+warning#else
+success#end#end
 
 ## Verify assets without far expires date
 #macro ( expiresType $expires )

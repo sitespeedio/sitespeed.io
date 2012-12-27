@@ -22,7 +22,7 @@
 #set($statsSpof = $stats.copy())
 #set($statsJsSyncInHead = $stats.copy())
 #set($statsAssetsWithoutFarExpires = $stats.copy())
-#set($statsJsPercentageWeight = $stats.copy())
+#set($statsCriticalPath = $stats.copy())
 
 #foreach ($results in $document.getRootElement().getChildren())
     
@@ -62,30 +62,17 @@
         $statsDocumentWeight.addValue($math.toInteger($results.getChild("stats").getChild("doc").getChild("w").getValue()))
     #end
 
-    #if($!{results.getChild("stats").getChild("js").getChild("w")})  
-
-        ## Sometimes getting the js directly from the stats object gives wrong values, so
-        ## let's calculate them one by one
-        
-        #set($jsWeightCounted = 0)
-        #foreach ($asset in $results.getChild("comps").getChildren())
-            #if ($asset.getChild("type").getValue() == "js")
-            #set($jsWeightCounted = $math.add($jsWeightCounted,$asset.getChild("size").getValue()))
-            #end
-        #end
-
-         #set ($percentageJs = $math.roundTo(1,$math.mul($math.div($jsWeightCounted,$math.add($results.getChild("stats").getChild("doc").getChild("w").getValue(),$jsWeightCounted)),100)))
-         $statsJsPercentageWeight.addValue($percentageJs)
-    #else
-        $statsJsPercentageWeight.addValue(0)
-    #end
-
 
     #if($!{results.getChild("g").getChild("spof").getChild("score")})
 	   #if ($results.getChild("g").getChild("spof").getChild("score").getValue() != 100)
 	       #set ($totalSpofPages = $math.add($totalSpofPages, 1))
            $statsSpof.addValue($math.toInteger($results.getChild("g").getChild("spof").getChild("components").getChildren("item").size()))
 	   #end       
+    #end
+
+
+    #if($!{results.getChild("g").getChild("criticalpath").getChild("score")})
+           $statsCriticalPath.addValue($math.toInteger($results.getChild("g").getChild("criticalpath").getChild("score").getValue()))
     #end
 
     #if($!{results.getChild("g").getChild("syncjsinhead").getChild("components")})
@@ -112,7 +99,7 @@
 #set ($totalJsSyncInHeadAverage = $math.roundTo($nrOfDecimals,$statsJsSyncInHead.getMean()))  
 #set ($totalSpofAverage = $math.roundTo($nrOfDecimals,$statsSpof.getMean()))  
 #set ($totalAssetsWithoutFarExpiresAverage = $math.roundTo($nrOfDecimals,$statsAssetsWithoutFarExpires.getMean())) 
-#set ($javascriptDividedWithDocumentAverage = $math.roundTo($nrOfDecimals,$statsJsPercentageWeight.getMean()))
+#set ($totalCriticalPathAverage = $math.roundTo($nrOfDecimals,$statsCriticalPath.getMean())) 
 
 ## Create median
 #set ($scoreMedian = $math.toInteger($statsScore.getPercentile(50)))   
@@ -127,7 +114,7 @@
 #set ($jsSyncInHeadMedian = $math.toInteger($statsJsSyncInHead.getPercentile(50))) 
 #set ($spofMedian = $math.toInteger($statsSpof.getPercentile(50))) 
 #set ($assetsWithoutFarExpiresMedian = $math.toInteger($statsAssetsWithoutFarExpires.getPercentile(50))) 
-#set ($javascriptDividedWithDocumentMedian = $math.roundTo($nrOfDecimals,$statsJsPercentageWeight.getPercentile(50)))
+#set ($criticalPathMedian = $math.toInteger($statsCriticalPath.getPercentile(50))) 
 
 ## Set percentage
 #set ($pagesWithSpofPercentage = $math.roundTo($nrOfDecimals, $math.mul($math.div($totalSpofPages,$nrOfPages),100)))
