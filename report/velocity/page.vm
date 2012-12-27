@@ -179,7 +179,7 @@
 					<table class="table table-condensed table-striped table-bordered">
 						<tbody>
 							<tr>
-								<td>request cached</td>
+								<td>request with primed cache</td>
 								<td>$document.getRootElement().getChild("r_c").getValue()</td>
 							</tr>
 
