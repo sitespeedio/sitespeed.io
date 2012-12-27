@@ -9,12 +9,22 @@
 	#end
 #end
 
+## calculate the total page weight
+#set($totalWeight = 0)
+#foreach ($asset in $document.getRootElement().getChild("comps").getChildren())
+		#set($totalWeight = $math.add($totalWeight,$asset.getChild("size").getValue()))
+#end
 
-#set($jsWeight = $math.max($math.roundTo(3,$math.div($jsWeightCounted,1000)),0))
-#set($cssWeight = $math.max($math.roundTo(3,$math.div($document.getRootElement().getChild("stats").getChild("css").getChild("w").getValue(),1000)),0))
-#set($docWeight = $math.roundTo(3,$math.div($document.getRootElement().getChild("stats").getChild("doc").getChild("w").getValue(),1000)))
-#set($imageWeight = $math.roundTo(3,$math.div($document.getRootElement().getChild("stats").getChild("image").getChild("w").getValue(),1000)))
-#set($cssImageWeight = $math.roundTo(3,$math.div($document.getRootElement().getChild("stats").getChild("cssimage").getChild("w").getValue(),1000)))
+## Setting up the weight
+#set($jsWeight = $math.max($math.roundTo(1,$math.div($jsWeightCounted,1000)),0))
+#set($cssWeight = $math.max($math.roundTo(1,$math.div($document.getRootElement().getChild("stats").getChild("css").getChild("w").getValue(),1000)),0))
+#set($docWeight = $math.roundTo(1,$math.div($document.getRootElement().getChild("stats").getChild("doc").getChild("w").getValue(),1000)))
+#set($imageWeight = $math.roundTo(1,$math.div($document.getRootElement().getChild("stats").getChild("image").getChild("w").getValue(),1000)))
+#set($cssImageWeight = $math.roundTo(1,$math.div($document.getRootElement().getChild("stats").getChild("cssimage").getChild("w").getValue(),1000)))
+#set($flashWeight = $math.roundTo(1,$math.div($document.getRootElement().getChild("stats").getChild("flash").getChild("w").getValue(),1000)))
+#set($docWeight = $math.roundTo(1,$math.div($document.getRootElement().getChild("stats").getChild("doc").getChild("w").getValue(),1000)))
+#set($totalWeight = $math.roundTo(1,$math.div($totalWeight,1000)))
+
 
 #if(!$cssImageWeight) #set($cssImageWeight=0) #end 
 #if(!$imageWeight) #set($imageWeight=0) #end 
@@ -22,9 +32,34 @@
 #if(!$cssWeight) #set($cssWeight=0) #end
 #set($contentWeight = $math.add($jsWeight,$math.add($cssWeight,$docWeight)))
 #if(!$contentWeight) #set($contentWeight=0) #end
+#if(!$flashWeight) #set($flashWeight=0) #end
+#set($requestWeight= $jsWeight + $cssWeight + $imageWeight + $cssImageWeight +$docWeight)
+#set($otherWeight = $math.roundTo(1,$math.sub($totalWeight,$requestWeight)))
 
+## Setting up the number of requests
+#set($nrOfJs = $document.getRootElement().getChild("stats").getChild("js").getChild("r").getValue())
+#set($nrOfCss = $document.getRootElement().getChild("stats").getChild("css").getChild("r").getValue())
+#set($nrOfImages = $document.getRootElement().getChild("stats").getChild("image").getChild("r").getValue())
+#set($nrOfCssImages = $document.getRootElement().getChild("stats").getChild("cssimage").getChild("r").getValue())
+#set($nrOfFonts = $document.getRootElement().getChild("stats").getChild("font").getChild("r").getValue())
+#set($nrOfFavicons = $document.getRootElement().getChild("stats").getChild("favicon").getChild("r").getValue())
+
+#if(!$nrOfJs) #set($nrOfJs=0) #end 
+#if(!$nrOfCss) #set($nrOfCss=0) #end 
+#if(!$nrOfCssImages) #set($nrOfCssImages=0) #end 
+#if(!$nrOfImages) #set($nrOfImages=0) #end 
+#if(!$nrOfFonts) #set($nrOfFonts=0) #end 
+#if(!$nrOfFavicons) #set($nrOfFavicons=0) #end 
+#if(!$nrOfFlash) #set($nrOfFlash=0) #end 
+
+#set($requests = $math.add($math.add($math.add($math.add($math.add($math.add($nrOfJs,$nrOfCss),$nrOfCssImages),$nrOfImages),$nrOfFonts),$nrOfFavicons),$nrOfFlash))
+#set($otherRequests = $math.sub($document.getRootElement().getChild("r").getValue(),$requests))
+## remove the actual document
+#set($totalRequests =  $math.sub($document.getRootElement().getChild("r").getValue(),1))
+
+
+## Calculating percentages
 #set($cssPercentage = $math.roundTo(1,$math.mul($math.div($cssWeight,$contentWeight),100)))
 #set($jsPercentage = $math.roundTo(1,$math.mul($math.div($jsWeight,$contentWeight),100)))
-
 #if(!$cssPercentage) #set($cssPercentage=0) #end
 #if(!$jsPercentage) #set($jsPercentage=0) #end

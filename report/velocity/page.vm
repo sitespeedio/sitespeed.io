@@ -1,6 +1,5 @@
 #parse("report/velocity/header.vm")
 #parse("report/velocity/page.logic.vm")
-
 <div class="row-fluid">
 	<div class="span12">
 
@@ -11,13 +10,21 @@
 		</h2>
 
 		<ul class="nav nav-tabs nav-stacked">
-			<li><a href="#score">Scores below 100</a></li>
-			<li><a href="#assets">Page assets</a></li>
-			<li><a href="#summary">Page summary</a></li>
-			<li><a href="http://www.webpagetest.org/?url=$esc.url($document.getRootElement().getChild("u").getValue())&runs=3" target="_blank" title="Test this page on http://webpagetest.org">Test on webpagetest.org</a></li>
+			<li>
+				<a href="#score">Scores below 100</a>
+			</li>
+			<li>
+				<a href="#assets">Page assets</a>
+			</li>
+			<li>
+				<a href="#summary">Page summary</a>
+			</li>
+			<li>
+				<a href="http://www.webpagetest.org/?url=$esc.url($document.getRootElement().getChild("u").getValue())&runs=3" target="_blank" title="Test this page on http://webpagetest.org">Test on webpagetest.org</a>
+			</li>
 
 		</ul>
-	
+
 		<h3 id="score">Scores below 100</h3>
 
 		<table class="table table-condensed table-striped table-bordered" >
@@ -32,247 +39,255 @@
 					#foreach ($message in $document.getRootElement().getChild("g").getChildren())
 						#if($!{message.getChild("score").getValue()})	 
 						     #if($message.getChild("score").getValue()!="100")
-						    	<tr>
-						    		<td>
-						    			$document.getRootElement().getChild("dictionary").getChild("rules").getChild($message.getName()).getChild("name").getValue()
-						    		</td>
-						    		<td>
-						    			$message.getChild("score").getValue()
-						    		</td>
-						    		<td>
-						    			$message.getChild("message").getValue()
-						    		</td>
-						    		<td class="nobreak-page">
-						    			## This is just too much information to show on a phone
-						    			<span class="hidden-phone">
-						    			#foreach ($item in $message.getChild("components").getChildren("item"))
-						    				<p>$item.getValue()</p>
-						    			#end
-						    			</span>
-						    		</td>
-						    	</tr>
-						    	#end	 
-						#end	 
+					<tr>
+						<td>
+							$document.getRootElement().getChild("dictionary").getChild("rules").getChild($message.getName()).getChild("name").getValue()
+						</td>
+						<td>$message.getChild("score").getValue()</td>
+						<td>$message.getChild("message").getValue()</td>
+						<td class="nobreak-page">
+							## This is just too much information to show on a phone
+							<span class="hidden-phone">
+								#foreach ($item in $message.getChild("components").getChildren("item"))
+								<p>$item.getValue()</p>
+								#end
+							</span>
+						</td>
+					</tr>
+					#end	 
+					    	#end	 
 					#end
 				</tbody>
 			</table>
-		
+
 			<h3 id="summary">Page summary</h3>
-			<table class="table table-condensed table-striped table-bordered">
-			<thead>
-				<tr>
-					<th>type</th>
-					<th>value</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>javascript</td>
-					<td>
-						## The number of javascripts
-                #if($!{document.getRootElement().getChild("stats").getChild("js").getChild("r")})
-					$document.getRootElement().getChild("stats").getChild("js").getChild("r").getValue()
-                #else
-                0
-                #end
-					</td>
-				</tr>
-				<tr>
-					<td>css</td>
-					<td>
-						## The number of css
-                #if($!{document.getRootElement().getChild("stats").getChild("css").getChild("r")})    
-					$document.getRootElement().getChild("stats").getChild("css").getChild("r").getValue()
-                #else
-				0
-                #end
-					</td>
-				</tr>
-				<tr>
-					<td>images</td>
-					<td>
-						#if($!{document.getRootElement().getChild("stats").getChild("image").getChild("r")})
-                 $document.getRootElement().getChild("stats").getChild("image").getChild("r").getValue()
-                #else
-                0
-                #end
-					</td>
-				</tr>
-				<tr>
-					<td>css images</td>
-					<td>
-						## The numbeer of css images
-				#if($!{document.getRootElement().getChild("stats").getChild("cssimage").getChild("r")})
-					$document.getRootElement().getChild("stats").getChild("cssimage").getChild("r").getValue()
-                #else
-                0
-                #end
-					</td>
-				</tr>
-				<tr>
-					<td>font</td>
-					<td>
-						## The number of fonts
-                 #if($!{document.getRootElement().getChild("stats").getChild("font").getChild("r")})
-                 $document.getRootElement().getChild("stats").getChild("font").getChild("r").getValue()
-                 #else
-                 0
-                 #end
-					</td>
-				</tr>
-				<tr>
-					<tr>
-						<td>requests</td>
-						<td>$document.getRootElement().getChild("r").getValue()</td>
-					</tr>
-					<tr>
-						<td>request cached</td>
-						<td>$document.getRootElement().getChild("r_c").getValue()</td>
-					</tr>
-					<tr>
-						<td>doc size</td>
-						<td>
-							$math.roundTo(1,$math.div($document.getRootElement().getChild("stats").getChild("doc").getChild("w").getValue(),1000)) kb
-						</td>
-					</tr>
-					<tr>
-						<td>page size</td>
-						<td>
-							$math.roundTo(1,$math.div($document.getRootElement().getChild("w").getValue(),1000)) kb
-						</td>
-					</tr>
-					<tr>
-						<td>js size</td>
-						<td>$math.roundTo(1,$jsWeight) kb</td>
-					</tr>
-					<tr>
-						<td>css size</td>
-						<td>$math.roundTo(1,$cssWeight) kb</td>
-					</tr>
-					<tr>
-						<td>image size</td>
-						<td>$math.roundTo(1,$imageWeight) kb</td>
-					</tr>
-					<tr>
-						<td>css image size</td>
-						<td>$math.roundTo(1,$cssImageWeight) kb</td>
-					</tr>
-					<tr>
-						<td>content weight that are js files</td>
-						<td>
-						$jsPercentage %
-			   
-						</td>
-					</tr>
-					<tr>
-						<td>content weight that are css files</td>
-						<td>
-						$cssPercentage %
-						</td>
-					</tr>
-					<tr>
-						<td>page weight cached</td>
-						<td>
-							## The weight cached
-							## sometimes it seems like yslow can't fetch this value. when this happens output an sign
-							#if($math.toInteger($document.getRootElement().getChild("w_c").getValue()) > 0)
-								$math.roundTo(1,$math.div($document.getRootElement().getChild("w_c").getValue(),1000)) kb
-							#else
-							<a href="#" title="Couldn't fetch the value"> <i class="icon-question-sign"></i>
-							</a>
+			<div class="row-fluid">
+				<div class="span6">
+
+					<h4>Requests per Content-Type</h4>
+					<table class="table table-condensed table-striped table-bordered">
+						<tbody>
+							#if ($math.toInteger($nrOfJs)>0)
+							<tr>
+								<td>javascript</td>
+								<td>$nrOfJs</td>
+							</tr>
 							#end
-						</td>
-					</tr>
-					<tr>
-						<td>load time</td>
-						<td>$document.getRootElement().getChild("lt").getValue() ms</td>
-					</tr>
-					<tr>
-						<td>spof</td>
-						<td>
-							$document.getRootElement().getChild("g").getChild("spof").getChild("components").getChildren("item").size()
-						</td>
-					</tr>
-					<tr>
-						<td>sync js in head</td>
-						<td>
-							$document.getRootElement().getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()
-						</td>
-					</tr>
-					
-			       
-			        	</tbody>
-			</table>	
+							#if ($math.toInteger($nrOfCss)>0)
+							<tr>
+								<td>css</td>
+								<td>$nrOfCss</td>
+							</tr>
+							#end
+							#if ($math.toInteger($nrOfImages)>0)
+							<tr>
+								<td>images</td>
+								<td>$nrOfImages</td>
+							</tr>
+							#end
+							#if ($math.toInteger($nrOfCssImages)>0)
+							<tr>
+								<td>css images</td>
+								<td>$nrOfCssImages</td>
+							</tr>
+							#end
+							#if ($math.toInteger($nrOfFonts)>0)
+							<tr>
+								<td>font</td>
+								<td>$nrOfFonts</td>
+							</tr>
+							#end
+							#if ($math.toInteger($nrOfFavicons)>0)
+							<tr>
+								<td>favicon</td>
+								<td>$nrOfFavicons</td>
+							</tr>
+							#end
+							#if ($math.toInteger($nrOfFlash)>0)
+							<tr>
+								<td>flash</td>
+								<td>$nrOfFlash</td>
+							</tr>
+							#end
+							<tr>
+								<td>other</td>
+								<td>$otherRequests</td>
+							</tr>
+							<tr>
+								<td> <strong>total</strong>
+								</td>
+								<td>$totalRequests</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 
+				<div class="span6">
+					<h4>Size per Content-Type</h4>
+					<table class="table table-condensed table-striped table-bordered">
+						<tbody>
+							<tr>
+								<td>doc</td>
+								<td>$docWeight kb</td>
+							</tr>
+							#if ($jsWeight>0)
+							<tr>
+								<td>js</td>
+								<td>$jsWeight kb</td>
+							</tr>
+							#end
+							#if ($cssWeight>0)
+							<tr>
+								<td>css</td>
+								<td>$cssWeight kb</td>
+							<tr>
+							#end
+							#if ($imageWeight>0)
+							<tr>
+								<td>images</td>
+								<td>$imageWeight kb</td>
+							</tr>
+							#end
+							#if ($cssImageWeight>0)
+							<tr>
+								<td>css images</td>
+								<td>$cssImageWeight kb</td>
+							</tr>
+							#end
+							#if ($flashWeight>0)
+							<tr>
+								<td>flash</td>
+								<td>$flashWeight kb</td>
+							</tr>
+							#end
+							#if ($otherWeight>0)
+							<tr>
+								<td>other</td>
+								<td>$otherWeight kb</td>
+							</tr>
+							#end
+							<tr>
+								<td> <strong>total</strong></td>
+								<td>$totalWeight kb</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 
-			
-			<h3 id="assets">Page assets</h3>
-			<table class="table table-condensed table-striped table-bordered">
-				<thead>
-					<tr>
-						<th>url</th>
-						<th>type</th>
-						<th>size</th>
-					</tr>
-				</thead>
-				<tbody>
-					#foreach ($asset in $document.getRootElement().getChild("comps").getChildren())
-					<tr>
+					<h4>Special</h4>
+					<table class="table table-condensed table-striped table-bordered">
+						<tbody>
+							<tr>
+								<td>request cached</td>
+								<td>$document.getRootElement().getChild("r_c").getValue()</td>
+							</tr>
 
-						<td class="nobreak-page-url">
-						
-						## Hide this from phones & tables, there is some kind of bug here that make navigations not work if used
-						<div class="hidden-phone hidden-tablet">
-						<a href="#headers-$foreach.count" data-toggle="modal"><i class="icon-zoom-in"></i></a>
-						
+							<tr>
+								<td>content weight that are js files</td>
+								<td>$jsPercentage %</td>
+							</tr>
+							<tr>
+								<td>content weight that are css files</td>
+								<td>$cssPercentage %</td>
+							</tr>
+							<tr>
+								<td>page weight cached</td>
+								<td>
+								## The weight cached
+								## sometimes it seems like yslow can't fetch this value. when this happens output an sign
+								#if($math.toInteger($document.getRootElement().getChild("w_c").getValue()) > 0)
+									$math.roundTo(1,$math.div($document.getRootElement().getChild("w_c").getValue(),1000)) kb
+								#else
+									<a href="#" title="Couldn't fetch the value"> <i class="icon-question-sign"></i>
+									</a>
+								#end
+								</td>
+							</tr>
+							<tr>
+								<td>load time</td>
+								<td>$document.getRootElement().getChild("lt").getValue() ms</td>
+							</tr>
+							<tr>
+								<td>spof</td>
+								<td>
+									$document.getRootElement().getChild("g").getChild("spof").getChild("components").getChildren("item").size()
+								</td>
+							</tr>
+							<tr>
+								<td>sync js in head</td>
+								<td>
+									$document.getRootElement().getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()
+								</td>
+							</tr>
 
-                        <div class="modal hide fade" id="headers-$foreach.count" aria-labelledby="headersModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
-                            <div class="modal-header">
-                                <h3 id="headersModalLabel-$foreach.count">Response headers</h3>
-                            </div>
-                            <div class="modal-body">
-                                <table class="table-hover table-condensed table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Value</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        #foreach ($response in $asset.getChild("headers").getChild("response").getChildren())
-                                        <tr>
-                                            <td>$esc.html($response.getName())</td>
-                                            <td>$esc.html($response.getValue())</td>
-                                        </tr>
-                                        #end
-                                    </tbody>
-                                </table>
+						</tbody>
+					</table>
 
+					<h3 id="assets">Page assets</h3>
+					<table class="table table-condensed table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>url</th>
+								<th>type</th>
+								<th>size</th>
+							</tr>
+						</thead>
+						<tbody>
+							#foreach ($asset in $document.getRootElement().getChild("comps").getChildren())
+							<tr>
 
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                            </div>
-                        </div>
+								<td class="nobreak-page-url">
+									## Hide this from phones & tables, there is some kind of bug here that make navigations not work if used
+									<div class="hidden-phone hidden-tablet">
+										<a href="#headers-$foreach.count" data-toggle="modal"> <i class="icon-zoom-in"></i>
+										</a>
 
-                        </div>
+										<div class="modal hide fade" id="headers-$foreach.count" aria-labelledby="headersModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
+											<div class="modal-header">
+												<h3 id="headersModalLabel-$foreach.count">Response headers</h3>
+											</div>
+											<div class="modal-body">
+												<table class="table-hover table-condensed table-striped table-bordered">
+													<thead>
+														<tr>
+															<th>Name</th>
+															<th>Value</th>
+														</tr>
+													</thead>
+													<tbody>
+														#foreach ($response in $asset.getChild("headers").getChild("response").getChildren())
+														<tr>
+															<td>$esc.html($response.getName())</td>
+															<td>$esc.html($response.getValue())</td>
+														</tr>
+														#end
+													</tbody>
+												</table>
 
-						</div>
-                        <!-- -->
+											</div>
+											<div class="modal-footer">
+												<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+											</div>
+										</div>
 
-					<a href="$asset.getChild("url").getValue()" title="$asset.getChild("url").getValue()" target="_blank">$asset.getChild("url").getValue()</a></td>
-					<td>$asset.getChild("type").getValue()</td>
-					<td>$math.roundTo(1,$math.div($asset.getChild("size").getValue(),1000)) kb</td>
+									</div>
 
-				</tr>
-				#end
-			</tbody>
-		</table>
-		
-	</div>
-	<!-- span 12 -->
-</div>
-<!-- row -->
-#parse("report/velocity/footer.vm")
-</body>
-</html>
+								</div>
+								<a href="$asset.getChild("url").getValue()" title="$asset.getChild("url").getValue()" target="_blank">$asset.getChild("url").getValue()</a>
+							</td>
+							<td>$asset.getChild("type").getValue()</td>
+							<td>
+								$math.roundTo(1,$math.div($asset.getChild("size").getValue(),1000)) kb
+							</td>
+
+						</tr>
+						#end
+					</tbody>
+				</table>
+
+			</div>
+			<!-- span 12 -->
+		</div>
+		<!-- row -->#parse("report/velocity/footer.vm")</body>
+	</html>
