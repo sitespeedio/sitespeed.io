@@ -10,6 +10,7 @@ version 1.5
 * Added support for setting view port
 * Removed exprimental rule for the amount of JS used
 * Added new rule: Critical Path
+* FInetuned the SPOF rule: Now also check font face
 * Bugfix: The check for phantomjs wasn't working, works now
 * Bugfix: Now using JAVA_HOME in a correct way (thanks Rob-m)
 
