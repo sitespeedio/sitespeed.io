@@ -126,8 +126,8 @@
             </div>
               <div class="span4">
                 <div class="alert alert-#criticalPathType($totalCriticalPathAverage)">
-                    Critical path
-                    <div><a href="#" rel="popover" class="alert-#criticalPathType($totalCriticalPathAverage) large" data-trigger="hover" title="The average of the critical path score " data-content="$criticalPathText">$totalCriticalPathAverage </a> ($criticalPathMedian)</div>
+                    Rendering Critical Path
+                    <div><a href="#" rel="popover" class="alert-#criticalPathType($totalCriticalPathAverage) large" data-trigger="hover" title="The average of the rendering critical path score " data-content="$criticalPathText">$totalCriticalPathAverage </a> ($criticalPathMedian)</div>
                 </div>
             </div>
 
