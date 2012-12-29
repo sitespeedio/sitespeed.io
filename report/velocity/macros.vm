@@ -96,3 +96,9 @@ success#end#end
 #if ($expires<1)success#elseif ($expires<5)
 warning#else
 error#end#end
+
+## The amount of text content on a page in percentage
+#macro ( textContentType $amount )
+#if ($amount>49)success#elseif ($amount>25)
+warning#else
+error#end#end

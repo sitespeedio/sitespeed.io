@@ -179,7 +179,7 @@
 					<table class="table table-condensed table-striped table-bordered">
 						<tbody>
 							<tr>
-								<td>request with primed cache</td>
+								<td>requests with primed cache</td>
 								<td>$document.getRootElement().getChild("r_c").getValue()</td>
 							</tr>
 
@@ -208,6 +208,12 @@
 								<td>load time</td>
 								<td>$document.getRootElement().getChild("lt").getValue() ms</td>
 							</tr>
+							<tr>
+								<td>content percentage of the page</td>
+								<td>
+								    $document.getRootElement().getChild("g").getChild("textcontent").getChild("components").getChildText("item") %
+								</td>
+							</tr>    
 							<tr>
 								<td>spof</td>
 								<td>

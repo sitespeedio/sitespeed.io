@@ -18,6 +18,7 @@
 #set($assetsWithoutFarExpiresText = "0 is good. More than 4 is bad. Google Analythics & Gaug.es is excluded from this.")
 #set($percentageJsText = "Less than 50% is good, above 75 % is bad.")
 #set($criticalPathText = "You should always aim for score 100, above 95 is OK.")
+#set($textContentText = "Above 50% is good, below 25% is bad.")
 
 
 <div class="row-fluid">
@@ -37,14 +38,23 @@
         </p>
 
         <div class="row-fluid">
-            <div class="span6">
-                <div class="alert alert-#scoreType($scoreAverage)">
+            <div class="span12">
+              <div class="alert alert-#scoreType($scoreAverage)">
                      Score
                     <div><a href="#" class="alert-#scoreType($scoreAverage) large" rel="popover" data-trigger="hover" title="Average score $scoreAverage" data-content="$scoreText">$scoreAverage</a> 
                   ($scoreMedian)
                     </div>
                 </div>
+            </div>
+        </div>
 
+
+        <div class="row-fluid">
+            <div class="span6">
+                  <div class="alert alert-#criticalPathType($totalCriticalPathAverage)">
+                    Rendering Critical Path Score
+                    <div><a href="#" rel="popover" class="alert-#criticalPathType($totalCriticalPathAverage) large" data-trigger="hover" title="The average of the rendering critical path score " data-content="$criticalPathText">$totalCriticalPathAverage </a> ($criticalPathMedian)</div>
+                </div>
             </div>
             <div class="span6">
             <div class="alert alert-#totalJsSyncInHeadType($totalJsSyncInHeadAverage)">
@@ -125,9 +135,9 @@
                 </div>
             </div>
               <div class="span4">
-                <div class="alert alert-#criticalPathType($totalCriticalPathAverage)">
-                    Rendering Critical Path
-                    <div><a href="#" rel="popover" class="alert-#criticalPathType($totalCriticalPathAverage) large" data-trigger="hover" title="The average of the rendering critical path score " data-content="$criticalPathText">$totalCriticalPathAverage </a> ($criticalPathMedian)</div>
+                <div class="alert alert-#textContentType($textContentAverage)">
+                    Amount of text content
+                    <div><a href="#" rel="popover" class="alert-#textContentType($textContentAverage) large" data-trigger="hover" title="The average amount of text content on a page" data-content="$textContentText">$textContentAverage %</a> ($textContentMedian %)</div>
                 </div>
             </div>
 

@@ -23,6 +23,7 @@
 #set($statsJsSyncInHead = $stats.copy())
 #set($statsAssetsWithoutFarExpires = $stats.copy())
 #set($statsCriticalPath = $stats.copy())
+#set($statsTextContent = $stats.copy())
 
 #foreach ($results in $document.getRootElement().getChildren())
     
@@ -75,6 +76,10 @@
            $statsCriticalPath.addValue($math.toInteger($results.getChild("g").getChild("criticalpath").getChild("score").getValue()))
     #end
 
+    #if($!{results.getChild("g").getChild("textcontent").getChild("score")})
+           $statsTextContent.addValue($math.toDouble($results.getChild("g").getChild("textcontent").getChild("components").getChildText("item")))
+    #end
+
     #if($!{results.getChild("g").getChild("syncjsinhead").getChild("components")})
      $statsJsSyncInHead.addValue($math.toInteger($results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()))
     #end
@@ -100,6 +105,7 @@
 #set ($totalSpofAverage = $math.roundTo($nrOfDecimals,$statsSpof.getMean()))  
 #set ($totalAssetsWithoutFarExpiresAverage = $math.roundTo($nrOfDecimals,$statsAssetsWithoutFarExpires.getMean())) 
 #set ($totalCriticalPathAverage = $math.roundTo($nrOfDecimals,$statsCriticalPath.getMean())) 
+#set ($textContentAverage = $math.roundTo($nrOfDecimals,$statsTextContent.getMean())) 
 
 ## Create median
 #set ($scoreMedian = $math.toInteger($statsScore.getPercentile(50)))   
@@ -115,6 +121,7 @@
 #set ($spofMedian = $math.toInteger($statsSpof.getPercentile(50))) 
 #set ($assetsWithoutFarExpiresMedian = $math.toInteger($statsAssetsWithoutFarExpires.getPercentile(50))) 
 #set ($criticalPathMedian = $math.toInteger($statsCriticalPath.getPercentile(50))) 
+#set ($textContentMedian = $statsTextContent.getPercentile(50))
 
 ## Set percentage
 #set ($pagesWithSpofPercentage = $math.roundTo($nrOfDecimals, $math.mul($math.div($totalSpofPages,$nrOfPages),100)))
