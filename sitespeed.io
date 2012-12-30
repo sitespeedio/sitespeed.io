@@ -92,16 +92,16 @@ analyze() {
 
 # All the options that you can configure when you run the script
 URL=
-DEPTH=
+DEPTH=1
 FOLLOW_PATH=
 NOT_IN_URL=
 MAX_PROCESSES=5
 OUTPUT_FORMAT=
-JAVA_HEAP=
+JAVA_HEAP=1024
 REPORT_BASE_DIR=
 CREATE_TAR_ZIP=false
 PROXY_HOST=
-PROXY_TYPE="http"
+PROXY_TYPE=http
 
 PROXY_PHANTOMJS=
 PROXY_CRAWLER=
@@ -111,9 +111,9 @@ USER_AGENT_YSLOW=
 USER_AGENT_CRAWLER=
 USER_AGENT_CURL=
 
-VIEWPORT="1280x800"
+VIEWPORT=1280x800
 VIEWPORT_YSLOW=
-TIMES_TTFB="5"
+TIMES_TTFB=5
 
 # Set options
 while getopts “hu:d:f:s:o:m:p:r:z:x:t:u:v:b:” OPTION
@@ -151,21 +151,6 @@ then
      help
      exit 1
 fi
-
-if [[ -z $DEPTH ]] 
-then
-     DEPTH="1"
-fi
-
-if [[ -z $JAVA_HEAP ]] 
-then
-     JAVA_HEAP="1024"
-fi
-
-#if [[ -z $MAX_PROCESSES ]] 
-#then
-#     MAX_PROCESSES="5"
-#fi
 
 if [ "$FOLLOW_PATH" != "" ]
 then
