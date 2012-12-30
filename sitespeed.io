@@ -45,8 +45,8 @@ OPTIONS:
    -z      Create a tar zip file of the result files, default is false [optional]
    -a      The proxy host & protocol: proxy.soulgalore.com:80 [optional] 
    -b      The proxy type, default is http [optional]
-   -g      The user agent, default is empty [optional]
-   -v      The view port, the page viewport size WidthxHeight, like 400x300, default is none [optional]
+   -g      The user agent, default is empty/none [optional]
+   -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional]
 EOF
 }
 
