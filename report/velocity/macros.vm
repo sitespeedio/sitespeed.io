@@ -105,6 +105,6 @@ error#end#end
 
 ## The time to first byte
 #macro ( ttfbType $time )
-#if ($time<0.5)success#elseif ($time<0.8)
+#if ($time<0.3)success#elseif ($time<0.5)
 warning#else
 error#end#end

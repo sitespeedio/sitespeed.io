@@ -19,7 +19,7 @@
 #set($percentageJsText = "Less than 50% is good, above 75 % is bad.")
 #set($criticalPathText = "You should always aim for score 100, above 95 is OK.")
 #set($textContentText = "Above 50% is good, below 25% is bad.")
-#set($ttfbText = "Faster than 0.5 seconds is good, more than 0.8 s is really bad.")
+#set($ttfbText = "Faster than 0.3 seconds is good, more than 0.5 s is really bad.")
 
 <div class="row-fluid">
     <div class="span12">
