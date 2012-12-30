@@ -210,7 +210,7 @@
 							</tr>
 							<tr>
 								<td>load time</td>
-								<td>$document.getRootElement().getChild("lt").getValue() ms</td>
+								<td>$math.div($document.getRootElement().getChild("lt").getValue(), 1000) s</td>
 							</tr>
 							<tr>
 								<td>content percentage of the page</td>
