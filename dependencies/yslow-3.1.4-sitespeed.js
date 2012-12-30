@@ -6182,7 +6182,7 @@ YSLOW.registerRule({
     urlPattern = /url\s*\(\s*['"]?([^'"]*)['"]?\s*\)/gim,
     score = 100;
   
-    docDomainTld = SITESPEEDHELP.getTLD(YSLOW.util.getHostname(cset.doc_comp.url));
+    docDomainTLD = SITESPEEDHELP.getTLD(YSLOW.util.getHostname(cset.doc_comp.url));
 
     // Check for css loaded in head, from another domain (not subdomain)  
     for (i = 0, len = css.length; i < len; i++) {
