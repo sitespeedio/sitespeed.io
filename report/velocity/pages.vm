@@ -85,7 +85,7 @@
                     </th>
 
                     <th>
-                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipLoadTimeText">page load time (ms)</a>
+                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipLoadTimeText">page load time (s)</a>
                     </th>
 
                     <th>
@@ -97,7 +97,7 @@
                     </th>
 
                     <th>
-                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipJsTTFBText">ttfb (ms)</a>
+                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipJsTTFBText">ttfb (s)</a>
                     </th>
 
                     <th>
@@ -212,7 +212,7 @@
 
                     <td>
                         ## The load time
-                        $results.getChild("lt").getValue()
+                        $math.div($results.getChild("lt").getValue(),1000)
                     </td>
 
                     <td>
@@ -289,6 +289,7 @@
                     </td>
 
                     <td>
+                        ## The time to first byte 
                         $results.getAttribute("ttfb").getValue()
                     </td>
 
