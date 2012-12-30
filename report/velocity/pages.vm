@@ -11,11 +11,12 @@
     #set($tooltipTotalRequestsPrimedText = "The total number of requests for this page with primed cache")
     #set($tooltipPageSizeText = "The page total size when no assets are cached (kb)")
     #set($tooltipDocSizeText = "The document size (kb)")
-    #set($tooltipPageSizePrimedText = "The page total size, including everything in the page with a primed cache (kb)")
+    #set($tooltipCriticalPathText = "The score for the rendering critical path")
     #set($tooltipLoadTimeText = "The page load time in ms")
     #set($tooltipSpofText = "The number of possible frontend single point of failures, be sure to avoid 3rd party assets")
     #set($tooltipJsSyncText = "The number of js loaded synchronously inside of head")
     #set($tooltipGradeText = "The Yslow/Sitespeed grade for this page, 100 is perfect, 0 is incredible bad")
+    #set($tooltipTTFBText = "The time to first byte (s)")
 
     <div class="row-fluid">
         <div class="span12">
@@ -80,7 +81,7 @@
                     </th>
 
                     <th>
-                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipPageSizePrimedText">page size cached (kb)</a>
+                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipCriticalPathText">critical path score</a>
                     </th>
 
                     <th>
@@ -93,6 +94,10 @@
 
                     <th>
                         <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipJsSyncText">sync js</a>
+                    </th>
+
+                    <th>
+                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipJsTTFBText">ttfb (ms)</a>
                     </th>
 
                     <th>
@@ -201,13 +206,8 @@
                     </td>
 
                     <td>
-                         ## The weight cached
-			             ## sometimes it seems like yslow can't fetch this value. when this happens output an sign
-			             #if($math.toInteger($results.getChild("w_c").getValue()) > 0)
-			                 $math.roundTo(1,$math.div($results.getChild("w_c").getValue(),1000))
-			             #else
-			                 <a href="#" title="Couldn't fetch the value"><i class="icon-question-sign"></i></a>
-			             #end
+                         ## The critical path score
+			             $results.getChild("g").getChild("criticalpath").getChild("score").getValue()
 		             </td>
 
                     <td>
@@ -286,6 +286,10 @@
                         #else
                             $results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()
                         #end
+                    </td>
+
+                    <td>
+                        $results.getAttribute("ttfb").getValue()
                     </td>
 
                     <td>
