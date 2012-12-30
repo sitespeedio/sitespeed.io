@@ -18,8 +18,9 @@
 #*******************************************************
 
 command -v phantomjs >/dev/null 2>&1 || { echo >&2 "Missing phantomjs, please install it to be able to run sitespeed.io"; exit 1; }
-
-
+command -v curl >/dev/null 2>&1 || { echo >&2 "Missing curl, please install it to be able to run sitespeed.io"; exit 1; }
+## TODO add version check for Java
+command -v java >/dev/null 2>&1 || { echo >&2 "Missing java, please install it to be able to run sitespeed.io"; exit 1; }
 
 #*******************************************************
 # Help function, call it to print all different usages.
@@ -43,10 +44,11 @@ OPTIONS:
    -o      The output format, always output as html but you can add images and/or csv (img,csv) [optional]
    -r      The result base directory, default is sitespeed-result [optional]
    -z      Create a tar zip file of the result files, default is false [optional]
-   -a      The proxy host & protocol: proxy.soulgalore.com:80 [optional] 
-   -b      The proxy type, default is http [optional]
-   -g      The user agent, default is empty/none [optional]
+   -x      The proxy host & protocol: proxy.soulgalore.com:80 [optional] 
+   -t      The proxy type, default is http [optional]
+   -a      The user agent, default is empty/none [optional]
    -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional]
+   -b      The number of times to fetch the time to first byte (ttfb), default is 5 [optional]      
 EOF
 }
 
@@ -69,8 +71,17 @@ analyze() {
     # And crazy enough, sometimes we get things after the end of the xml
     sed -n '1,/<\/results>/p' $REPORT_DATA_PAGES_DIR/$pagefilename-bup > $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1
  
+    # ttfb
+    for i in `seq $TIMES_TTFB`; do curl $USER_AGENT_CURL -o /dev/null -w "%{time_starttransfer}\n" -s $url ; done > "$REPORT_DATA_PAGES_DIR/$pagefilename.ttfb"
+    cat "$REPORT_DATA_PAGES_DIR/$pagefilename.ttfb" | head -$TIMES_TTFB | tr " " "\t" | cut -f13 |awk 'ttt += $1  {print ttt/NR}'| tail -1 > "$REPORT_DATA_PAGES_DIR/$pagefilename.ttfb-1"
+    #TTFB='head -n 1 "$REPORT_DATA_PAGES_DIR/$pagefilename.ttfb-1"'
+
+    read -r TTFB < $REPORT_DATA_PAGES_DIR/$pagefilename.ttfb-1
+    rm "$REPORT_DATA_PAGES_DIR/$pagefilename.ttfb"
+    rm "$REPORT_DATA_PAGES_DIR/$pagefilename.ttfb-1"
+
     # Hack for adding link to the output file name
-    sed 's/<results>/<results filename="'$pagefilename'">/g' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
+    sed 's/<results>/<results filename="'$pagefilename'" ttfb="'$TTFB'">/g' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
     mv $REPORT_DATA_PAGES_DIR/$pagefilename-bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml
    
     $JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml $VELOCITY_DIR/page.vm $PROPERTIES_DIR/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1
@@ -84,7 +95,7 @@ URL=
 DEPTH=
 FOLLOW_PATH=
 NOT_IN_URL=
-MAX_PROCESSES=
+MAX_PROCESSES=5
 OUTPUT_FORMAT=
 JAVA_HEAP=
 REPORT_BASE_DIR=
@@ -98,12 +109,14 @@ PROXY_CRAWLER=
 USER_AGENT=
 USER_AGENT_YSLOW=
 USER_AGENT_CRAWLER=
+USER_AGENT_CURL=
 
 VIEWPORT="1280x800"
 VIEWPORT_YSLOW=
+TIMES_TTFB="5"
 
 # Set options
-while getopts “hu:d:f:s:o:m:p:r:z:a:b:g:v:” OPTION
+while getopts “hu:d:f:s:o:m:p:r:z:x:t:u:v:b:” OPTION
 do
      case $OPTION in
          h)
@@ -119,10 +132,11 @@ do
          p)MAX_PROCESSES=$OPTARG;;
          r)REPORT_BASE_DIR=$OPTARG;;
          z)CREATE_TAR_ZIP=$OPTARG;;
-         a)PROXY_HOST=$OPTARG;;
-         b)PROXY_TYPE=$OPTARG;;
-         g)USER_AGENT=$OPTARG;;
+         x)PROXY_HOST=$OPTARG;;
+         t)PROXY_TYPE=$OPTARG;;
+         u)USER_AGENT=$OPTARG;;
          v)VIEWPORT=$OPTARG;;
+         b)TIMES_TTFB=$OPTARG;;
          ?)
              help
              exit
@@ -148,10 +162,10 @@ then
      JAVA_HEAP="1024"
 fi
 
-if [[ -z $MAX_PROCESSES ]] 
-then
-     MAX_PROCESSES="5"
-fi
+#if [[ -z $MAX_PROCESSES ]] 
+#then
+#     MAX_PROCESSES="5"
+#fi
 
 if [ "$FOLLOW_PATH" != "" ]
 then
@@ -201,6 +215,7 @@ if [ "$USER_AGENT" != "" ]
 then
     USER_AGENT_YSLOW="-u $USER_AGENT"
     USER_AGENT_CRAWLER="-Dcom.soulgalore.crawler.useragent=$USER_AGENT"
+    USER_AGENT_CURL="--user-agent $USER_AGENT"
 fi
 
 if [ "$VIEWPORT" != "" ]

@@ -24,6 +24,7 @@
 #set($statsAssetsWithoutFarExpires = $stats.copy())
 #set($statsCriticalPath = $stats.copy())
 #set($statsTextContent = $stats.copy())
+#set($statsTTFB = $stats.copy())
 
 #foreach ($results in $document.getRootElement().getChildren())
     
@@ -89,6 +90,10 @@
      $statsAssetsWithoutFarExpires.addValue($math.toInteger($results.getChild("g").getChild("expiresmod").getChild("components").getChildren("item").size()))
     #end
 
+    #if($!{results.getAttribute("ttfb")})
+     $statsTTFB.addValue($math.toDouble($results.getAttribute("ttfb").getValue()))
+    #end
+
 #end
 
 ##  Create averages   
@@ -106,6 +111,7 @@
 #set ($totalAssetsWithoutFarExpiresAverage = $math.roundTo($nrOfDecimals,$statsAssetsWithoutFarExpires.getMean())) 
 #set ($totalCriticalPathAverage = $math.roundTo($nrOfDecimals,$statsCriticalPath.getMean())) 
 #set ($textContentAverage = $math.roundTo($nrOfDecimals,$statsTextContent.getMean())) 
+#set ($ttfbAverage = $math.roundTo(3,$statsTTFB.getMean()))
 
 ## Create median
 #set ($scoreMedian = $math.toInteger($statsScore.getPercentile(50)))   
@@ -122,6 +128,7 @@
 #set ($assetsWithoutFarExpiresMedian = $math.toInteger($statsAssetsWithoutFarExpires.getPercentile(50))) 
 #set ($criticalPathMedian = $math.toInteger($statsCriticalPath.getPercentile(50))) 
 #set ($textContentMedian = $statsTextContent.getPercentile(50))
+#set ($ttfbMedian = $math.roundTo(3,$statsTTFB.getPercentile(50)))
 
 ## Set percentage
 #set ($pagesWithSpofPercentage = $math.roundTo($nrOfDecimals, $math.mul($math.div($totalSpofPages,$nrOfPages),100)))

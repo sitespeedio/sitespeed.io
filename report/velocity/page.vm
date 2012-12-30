@@ -205,6 +205,10 @@
 								</td>
 							</tr>
 							<tr>
+								<td>ttfb</td>
+								<td>$document.getRootElement().getAttribute("ttfb").getValue() s</td>
+							</tr>
+							<tr>
 								<td>load time</td>
 								<td>$document.getRootElement().getChild("lt").getValue() ms</td>
 							</tr>
