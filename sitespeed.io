@@ -72,11 +72,11 @@ analyze() {
     sed -n '1,/<\/results>/p' $REPORT_DATA_PAGES_DIR/$pagefilename-bup > $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1
  
     # ttfb
-    for i in `seq $TIMES_TTFB`; do curl $USER_AGENT_CURL -o /dev/null -w "%{time_starttransfer}\n" -s $url ; done > "$REPORT_DATA_PAGES_DIR/$pagefilename.ttfb"
-    cat "$REPORT_DATA_PAGES_DIR/$pagefilename.ttfb" | head -$TIMES_TTFB | tr " " "\t" | cut -f13 |awk 'ttt += $1  {print ttt/NR}'| tail -1 > "$REPORT_DATA_PAGES_DIR/$pagefilename.ttfb-1"
-    #TTFB='head -n 1 "$REPORT_DATA_PAGES_DIR/$pagefilename.ttfb-1"'
-
-    read -r TTFB < $REPORT_DATA_PAGES_DIR/$pagefilename.ttfb-1
+    for i in `seq $TIMES_TTFB`; do curl $USER_AGENT_CURL -o /dev/null -w "%{time_starttransfer}\n" -s $url ; done >  "$REPORT_DATA_PAGES_DIR/$pagefilename.ttfb"
+    cat "$REPORT_DATA_PAGES_DIR/$pagefilename.ttfb" | head -$TIMES_TTFB | tr " " "\t" | cut -f13 |awk 'ttt += $1  {print ttt/NR}'| tail -1  > "$REPORT_DATA_PAGES_DIR/$pagefilename.ttfb-1"
+    
+    read -r TTFB <  $REPORT_DATA_PAGES_DIR/$pagefilename.ttfb-1
+    TTFB="$(printf "%.3f" $TTFB)"
     rm "$REPORT_DATA_PAGES_DIR/$pagefilename.ttfb"
     rm "$REPORT_DATA_PAGES_DIR/$pagefilename.ttfb-1"
 
