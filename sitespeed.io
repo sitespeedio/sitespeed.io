@@ -79,7 +79,7 @@ analyze() {
     
     rm "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
     
-    # Hack for adding link to the output file name
+    # Hack for adding link and other data to the xml file
     sed 's/<results>/<results filename="'$pagefilename'" ttfb="'$TTFB'" size="'$SIZE'">/g' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
     mv $REPORT_DATA_PAGES_DIR/$pagefilename-bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml
    
@@ -105,7 +105,7 @@ PROXY_TYPE=http
 PROXY_PHANTOMJS=
 PROXY_CRAWLER=
 
-USER_AGENT="Mozilla/5.0"
+USER_AGENT=
 USER_AGENT_YSLOW=
 USER_AGENT_CRAWLER=
 USER_AGENT_CURL=
