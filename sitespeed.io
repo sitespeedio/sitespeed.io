@@ -47,7 +47,7 @@ OPTIONS:
    -t      The proxy type, default is http [optional]
    -a      The user agent, default is empty/none [optional]
    -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional]
-   -b      The number of times to fetch the time to first byte (ttfb), default is 5 [optional]      
+   -b      The number of times to fetch the time to first byte (ttfb), default is 1 [optional]      
 EOF
 }
 
@@ -112,7 +112,7 @@ USER_AGENT_CURL=
 
 VIEWPORT=1280x800
 VIEWPORT_YSLOW=
-TIMES_TTFB=5
+TIMES_TTFB=1
 
 # Set options
 while getopts “hu:d:f:s:o:m:p:r:z:x:t:u:v:b:” OPTION
