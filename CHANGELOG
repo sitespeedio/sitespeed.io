@@ -11,10 +11,11 @@ version 1.5
 * Removed exprimental rule for the amount of JS used
 * Added new rule: Critical Path
 * Finetuned the SPOF rule: Now also check font face
-* Added time to first byte
+* Added time to first byte (using curl, new requirement)
 * Fixed so document weight is fetched from curl aka the right sized if gzipped
 * Bugfix: The check for phantomjs wasn't working, works now
 * Bugfix: Now using JAVA_HOME in a correct way (thanks Rob-m)
+* Bugfix: Upgraded the crawler to 1.3, now only fetched text/html links
 
 version 1.4
 ------------------------
