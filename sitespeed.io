@@ -116,7 +116,7 @@ VIEWPORT_YSLOW=
 TIMES_TTFB=1
 
 # Set options
-while getopts “hu:d:f:s:o:m:p:r:z:x:t:u:v:b:” OPTION
+while getopts “hu:d:f:s:o:m:p:r:z:x:t:a:v:b:” OPTION
 do
      case $OPTION in
          h)
@@ -134,7 +134,7 @@ do
          z)CREATE_TAR_ZIP=$OPTARG;;
          x)PROXY_HOST=$OPTARG;;
          t)PROXY_TYPE=$OPTARG;;
-         u)USER_AGENT=$OPTARG;;
+         a)USER_AGENT=$OPTARG;;
          v)VIEWPORT=$OPTARG;;
          b)TIMES_TTFB=$OPTARG;;
          ?)
