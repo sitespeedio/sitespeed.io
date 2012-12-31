@@ -46,8 +46,7 @@ OPTIONS:
    -x      The proxy host & protocol: proxy.soulgalore.com:80 [optional] 
    -t      The proxy type, default is http [optional]
    -a      The user agent, default is empty/none [optional]
-   -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional]
-   -b      The number of times to fetch the time to first byte (ttfb), default is 1 [optional]      
+   -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional]  
 EOF
 }
 
@@ -106,17 +105,16 @@ PROXY_TYPE=http
 PROXY_PHANTOMJS=
 PROXY_CRAWLER=
 
-USER_AGENT=
+USER_AGENT="Mozilla/5.0"
 USER_AGENT_YSLOW=
 USER_AGENT_CRAWLER=
 USER_AGENT_CURL=
 
 VIEWPORT=1280x800
 VIEWPORT_YSLOW=
-TIMES_TTFB=1
 
 # Set options
-while getopts “hu:d:f:s:o:m:p:r:z:x:t:a:v:b:” OPTION
+while getopts “hu:d:f:s:o:m:p:r:z:x:t:a:v:” OPTION
 do
      case $OPTION in
          h)
@@ -136,7 +134,6 @@ do
          t)PROXY_TYPE=$OPTARG;;
          a)USER_AGENT=$OPTARG;;
          v)VIEWPORT=$OPTARG;;
-         b)TIMES_TTFB=$OPTARG;;
          ?)
              help
              exit
@@ -232,7 +229,7 @@ NOPROTOCOL=${URL#*//}
 HOST=${NOPROTOCOL%%/*}
 
 # Jar files
-CRAWLER_JAR=crawler-1.2-full.jar
+CRAWLER_JAR=crawler-1.3-full.jar
 VELOCITY_JAR=xml-velocity-1.3-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 
