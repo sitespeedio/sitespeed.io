@@ -128,7 +128,7 @@
 						<tbody>
 							<tr>
 								<td>doc</td>
-								<td>$docWeight kb</td>
+								<td>$docWeightCurl ($docWeight) kb</td>
 							</tr>
 							#if ($jsWeight>0)
 							<tr>

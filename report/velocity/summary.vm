@@ -145,7 +145,7 @@
               <div class="span4">
                 <div class="alert alert-#textContentType($textContentAverage)">
                     Amount of text content
-                    <div><a href="#" rel="popover" class="alert-#textContentType($textContentAverage) large" data-trigger="hover" title="The average amount of text content on a page" data-content="$textContentText">$textContentAverage %</a> ($textContentMedian %)</div>
+                    <div><a href="#" rel="popover" class="alert-#textContentType($textContentAverage) large" data-trigger="hover" title="The average amount of text content on a page" data-content="$textContentText">$textContentAverage %</a> ($textContentMedian)</div>
                 </div>
             </div>
 

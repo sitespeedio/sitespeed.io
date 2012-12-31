@@ -69,9 +69,8 @@ error#end#end
 
 ## Verify the doc weight, needs to be small for mobile, should also 
 ## take inconcideration total weight.
-## in the future when we can check gzip, these values should be smaller 
 #macro ( weightMobileType $weight )
-#if ($weight<100000)success#elseif ($weight<150000)
+#if ($weight<10000)success#elseif ($weight<15000)
 warning#else
 error#end#end
 

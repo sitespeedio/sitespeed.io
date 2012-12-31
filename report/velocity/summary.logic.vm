@@ -61,7 +61,7 @@
     #end
 
     #if($!{results.getChild("stats").getChild("doc").getChild("w")})
-        $statsDocumentWeight.addValue($math.toInteger($results.getChild("stats").getChild("doc").getChild("w").getValue()))
+        $statsDocumentWeight.addValue($math.toInteger($results.getAttribute("size").getValue()))
     #end
 
 

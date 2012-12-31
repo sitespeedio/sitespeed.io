@@ -197,7 +197,7 @@
 
                     <td>
                         ## The size of the document
-		                  $math.roundTo(1,$math.div($results.getChild("stats").getChild("doc").getChild("w").getValue(),1000))
+		                  $math.roundTo(1,$math.div($results.getAttribute("size").getValue(),1000))
                     </td>
 
                     <td>

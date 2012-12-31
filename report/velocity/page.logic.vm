@@ -22,8 +22,8 @@
 #set($imageWeight = $math.roundTo(1,$math.div($document.getRootElement().getChild("stats").getChild("image").getChild("w").getValue(),1000)))
 #set($cssImageWeight = $math.roundTo(1,$math.div($document.getRootElement().getChild("stats").getChild("cssimage").getChild("w").getValue(),1000)))
 #set($flashWeight = $math.roundTo(1,$math.div($document.getRootElement().getChild("stats").getChild("flash").getChild("w").getValue(),1000)))
-#set($docWeight = $math.roundTo(1,$math.div($document.getRootElement().getChild("stats").getChild("doc").getChild("w").getValue(),1000)))
 #set($totalWeight = $math.roundTo(1,$math.div($totalWeight,1000)))
+#set($docWeightCurl = $math.roundTo(1,$math.div($document.getRootElement().getAttribute("size").getValue(),1000)))
 
 
 #if(!$cssImageWeight) #set($cssImageWeight=0) #end 

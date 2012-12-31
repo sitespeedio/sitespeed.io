@@ -70,17 +70,18 @@ analyze() {
     # And crazy enough, sometimes we get things after the end of the xml
     sed -n '1,/<\/results>/p' $REPORT_DATA_PAGES_DIR/$pagefilename-bup > $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1
  
-    # ttfb
-    for i in `seq $TIMES_TTFB`; do curl $USER_AGENT_CURL --compressed -o /dev/null -w "%{time_starttransfer}\n" -s $url ; done >  "$REPORT_DATA_PAGES_DIR/$pagefilename.ttfb"
-    cat "$REPORT_DATA_PAGES_DIR/$pagefilename.ttfb" | head -$TIMES_TTFB | tr " " "\t" | cut -f13 |awk 'ttt += $1  {print ttt/NR}'| tail -1  > "$REPORT_DATA_PAGES_DIR/$pagefilename.ttfb-1"
+    # ttfb & page size
+    curl $USER_AGENT_CURL --compressed -o /dev/null -w "%{time_starttransfer};%{size_download}\n" -s $url >  "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
     
-    read -r TTFB <  $REPORT_DATA_PAGES_DIR/$pagefilename.ttfb-1
+    read -r TTFB_SIZE <  $REPORT_DATA_PAGES_DIR/$pagefilename.info
+    TTFB="$(echo $TTFB_SIZE  | cut -d \; -f 1)"
+    SIZE="$(echo $TTFB_SIZE  | cut -d \; -f 2)"
     TTFB="$(printf "%.3f" $TTFB)"
-    rm "$REPORT_DATA_PAGES_DIR/$pagefilename.ttfb"
-    rm "$REPORT_DATA_PAGES_DIR/$pagefilename.ttfb-1"
-
+    
+    rm "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
+    
     # Hack for adding link to the output file name
-    sed 's/<results>/<results filename="'$pagefilename'" ttfb="'$TTFB'">/g' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
+    sed 's/<results>/<results filename="'$pagefilename'" ttfb="'$TTFB'" size="'$SIZE'">/g' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
     mv $REPORT_DATA_PAGES_DIR/$pagefilename-bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml
    
     $JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml $VELOCITY_DIR/page.vm $PROPERTIES_DIR/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1
