@@ -19,8 +19,7 @@
 
 command -v phantomjs >/dev/null 2>&1 || { echo >&2 "Missing phantomjs, please install it to be able to run sitespeed.io"; exit 1; }
 command -v curl >/dev/null 2>&1 || { echo >&2 "Missing curl, please install it to be able to run sitespeed.io"; exit 1; }
-## TODO add version check for Java
-command -v java >/dev/null 2>&1 || { echo >&2 "Missing java, please install it to be able to run sitespeed.io"; exit 1; }
+
 
 #*******************************************************
 # Help function, call it to print all different usages.
