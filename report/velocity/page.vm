@@ -133,13 +133,13 @@
 							#if ($jsWeight>0)
 							<tr>
 								<td>js</td>
-								<td>$jsWeight kb</td>
+								<td>$jsWeight kb (gzip unknown)</td>
 							</tr>
 							#end
 							#if ($cssWeight>0)
 							<tr>
 								<td>css</td>
-								<td>$cssWeight kb</td>
+								<td>$cssWeight kb (gzip unknown)</td>
 							<tr>
 							#end
 							#if ($imageWeight>0)
