@@ -45,7 +45,7 @@ OPTIONS:
    -z      Create a tar zip file of the result files, default is false [optional]
    -x      The proxy host & protocol: proxy.soulgalore.com:80 [optional] 
    -t      The proxy type, default is http [optional]
-   -a      The user agent, default is empty/none [optional]
+   -a      The user agent, default is "Mozilla/6.0" [optional]
    -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional]  
 EOF
 }
@@ -105,7 +105,7 @@ PROXY_TYPE=http
 PROXY_PHANTOMJS=
 PROXY_CRAWLER=
 
-USER_AGENT=
+USER_AGENT="Mozilla/6.0"
 USER_AGENT_YSLOW=
 USER_AGENT_CRAWLER=
 USER_AGENT_CURL=
@@ -195,9 +195,9 @@ fi
 
 if [ "$USER_AGENT" != "" ]
 then
-    USER_AGENT_YSLOW="-u $USER_AGENT"
-    USER_AGENT_CRAWLER="-Dcom.soulgalore.crawler.useragent=$USER_AGENT"
-    USER_AGENT_CURL="--user-agent $USER_AGENT"
+    USER_AGENT_YSLOW="--ua \"$USER_AGENT\""
+    USER_AGENT_CRAWLER="-rh User-Agent:\"$USER_AGENT\""
+    USER_AGENT_CURL="--user-agent \"$USER_AGENT\""
 fi
 
 if [ "$VIEWPORT" != "" ]
@@ -253,7 +253,7 @@ if $OUTPUT_IMAGES
   mkdir $REPORT_IMAGE_PAGES_DIR
 fi
 
-$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -Dcom.soulgalore.crawler.propertydir=$DEPENDENCIES_DIR/ $PROXY_CRAWLER $USER_AGENT_CRAWLER -cp $DEPENDENCIES_DIR/$CRAWLER_JAR com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/errorurls.txt
+$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -Dcom.soulgalore.crawler.propertydir=$DEPENDENCIES_DIR/ $PROXY_CRAWLER -cp $DEPENDENCIES_DIR/$CRAWLER_JAR com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL $USER_AGENT_CRAWLER -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/errorurls.txt
 
 if [ ! -e $REPORT_DATA_DIR/urls.txt ];
 then
