@@ -22,7 +22,7 @@
         <div class="span12">
 
             <h2 class="url">
-                Pages ($document.getRootElement().getChildren().size()) - <a href="$document.getRootElement().getAttribute("curl").getValue()" target="_blank">$document.getRootElement().getAttribute("curl").getValue()</a>
+                Pages ($document.getRootElement().getChildren("results").size()) - <a href="$document.getRootElement().getChild("url").getValue()" target="_blank">$document.getRootElement().getChild("url").getValue()</a>
             </h2>
             <p>
             Test performed: $document.getRootElement().getAttribute("date").getValue() with rules $document.getRootElement().getChild("results").getChild("i").getValue() 
@@ -43,8 +43,8 @@
                 <caption></caption>
                 <thead>
                     <tr>
-                        <th>
-                            <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipUrlText">url</a>
+                    <th>
+                        <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipUrlText">url</a>
                     </th>
                     <th>
                         <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipJsText">js</a>
@@ -107,7 +107,7 @@
             </thead>
 
             <tbody>
-                #foreach ($results in $document.getRootElement().getChildren())
+                #foreach ($results in $document.getRootElement().getChildren("results"))
                 #set($sitespeed = $results.getChild("o").getValue())
                 <tr>
                     <td class="nobreak-pages">
@@ -115,7 +115,7 @@
 
                         #set($file = $results.getAttribute("filename").getValue())
                          #set($file = $file.concat(".html"))
-                        <a href="#headers-$foreach.count" data-toggle="modal"><i class="icon-zoom-in"></i></a> <a href="pages/$file" title="$results.getChild("url").getValue()">$results.getChild("url").getValue()</a>
+                        <a href="#headers-$foreach.count" data-toggle="modal"><i class="icon-zoom-in"></i></a> <a href="pages/$file" title="$results.getChild("curl").getValue()">$results.getChild("curl").getValue()</a>
                        
                         <div class="modal hide fade" id="headers-$foreach.count" aria-labelledby="headersModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-header">
@@ -342,14 +342,14 @@
             </thead>
 
             <tbody>
-                #foreach ($results in $document.getRootElement().getChildren())
+                #foreach ($results in $document.getRootElement().getChildren("results"))
                 #set($sitespeed = $results.getChild("o").getValue())
                 <tr>
                     <td class="nobreak-pages">
                         ## the link to the full page information
                         #set($file = $results.getAttribute("filename").getValue())
                         #set($file = $file.concat(".html"))
-                        <a href="pages/$file" title="$results.getChild("u").getValue()">$results.getChild("u").getValue()</a>
+                        <a href="pages/$file" title="$results.getChild("curl").getValue()">$results.getChild("curl").getValue()</a>
                     </td>
                     
                     <td>

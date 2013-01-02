@@ -1,6 +1,6 @@
 ## Collecting data needed for the summary page
 
-#set($nrOfPages = $document.getRootElement().getChildren().size())
+#set($nrOfPages = $document.getRootElement().getChildren("results").size())
 
 
 ## Get the total objects
@@ -128,7 +128,7 @@
 #set ($assetsWithoutFarExpiresMedian = $math.toInteger($statsAssetsWithoutFarExpires.getPercentile(50))) 
 #set ($criticalPathMedian = $math.toInteger($statsCriticalPath.getPercentile(50))) 
 #set ($textContentMedian = $statsTextContent.getPercentile(50))
-#set ($ttfbMedian = $statsTTFB.getPercentile(50))
+#set ($ttfbMedian = $math.roundTo(3,$statsTTFB.getPercentile(50)))
 
 ## Set percentage
 #set ($pagesWithSpofPercentage = $math.roundTo($nrOfDecimals, $math.mul($math.div($totalSpofPages,$nrOfPages),100)))

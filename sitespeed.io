@@ -76,15 +76,15 @@ analyze() {
     TTFB="$(echo $TTFB_SIZE  | cut -d \; -f 1)"
     SIZE="$(echo $TTFB_SIZE  | cut -d \; -f 2)"
     TTFB="$(printf "%.3f" $TTFB)"
-    
+  
     rm "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
-    
     # Hack for adding link and other data to the xml file
-    sed 's@<results>@<results filename="'$pagefilename'" ttfb="'$TTFB'" size="'$SIZE'"><curl><![CDATA['$url']]></curl>@g' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
-    mv $REPORT_DATA_PAGES_DIR/$pagefilename-bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml
+    XML_URL=$(echo "$url" | sed 's/&/\\&/g') 
+  
+    sed 's@<results>@<results filename="'$pagefilename'" ttfb="'$TTFB'" size="'$SIZE'"><curl><![CDATA['$XML_URL']]></curl>@' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
+    mv $REPORT_DATA_PAGES_DIR/$pagefilename-bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml 
    
     $JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml $VELOCITY_DIR/page.vm $PROPERTIES_DIR/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1
-
     $JAVA -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_PAGES_DIR/$pagefilename.html $REPORT_PAGES_DIR/$pagefilename.html
    
 }
@@ -307,8 +307,8 @@ then
 fi
 
 echo "Create result.xml"
-
-echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" url="'$URL'" date="'$DATE'" useragent="'$USER_AGENT'" viewport="'$VIEWPORT'">' > $REPORT_DATA_DIR/result.xml
+ 
+echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" date="'$DATE'" useragent="'$USER_AGENT'" viewport="'$VIEWPORT'"><url><![CDATA['$URL']]></url>' > $REPORT_DATA_DIR/result.xml
 for file in $REPORT_DATA_PAGES_DIR/*
 do
   # Hack for removing dictonaries in the result file
