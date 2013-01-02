@@ -22,7 +22,7 @@
         <div class="span12">
 
             <h2 class="url">
-                Pages ($document.getRootElement().getChildren().size()) - <a href="$document.getRootElement().getAttribute("url").getValue()" target="_blank">$document.getRootElement().getAttribute("url").getValue()</a>
+                Pages ($document.getRootElement().getChildren().size()) - <a href="$document.getRootElement().getAttribute("curl").getValue()" target="_blank">$document.getRootElement().getAttribute("curl").getValue()</a>
             </h2>
             <p>
             Test performed: $document.getRootElement().getAttribute("date").getValue() with rules $document.getRootElement().getChild("results").getChild("i").getValue() 
@@ -115,7 +115,7 @@
 
                         #set($file = $results.getAttribute("filename").getValue())
                          #set($file = $file.concat(".html"))
-                        <a href="#headers-$foreach.count" data-toggle="modal"><i class="icon-zoom-in"></i></a> <a href="pages/$file" title="$results.getChild("u").getValue()">$results.getChild("u").getValue()</a>
+                        <a href="#headers-$foreach.count" data-toggle="modal"><i class="icon-zoom-in"></i></a> <a href="pages/$file" title="$results.getChild("url").getValue()">$results.getChild("url").getValue()</a>
                        
                         <div class="modal hide fade" id="headers-$foreach.count" aria-labelledby="headersModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
                             <div class="modal-header">
@@ -217,7 +217,7 @@
 
                     <td>
                         ## The number of components that can create a SPOF
-                        #if ($results.getChild("g").getChild("spof").getChild("components").getChildren("item").size() > 0)
+                        #if($!{results.getChild("g").getChild("spof")})
 
                         #set($spofDomains = "")
 

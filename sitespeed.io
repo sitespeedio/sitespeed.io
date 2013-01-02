@@ -80,7 +80,7 @@ analyze() {
     rm "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
     
     # Hack for adding link and other data to the xml file
-    sed 's/<results>/<results filename="'$pagefilename'" ttfb="'$TTFB'" size="'$SIZE'">/g' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
+    sed 's#<results>#<results filename="'$pagefilename'" ttfb="'$TTFB'" size="'$SIZE'"><url>'$url'</url>#g' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
     mv $REPORT_DATA_PAGES_DIR/$pagefilename-bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml
    
     $JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml $VELOCITY_DIR/page.vm $PROPERTIES_DIR/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1
@@ -195,9 +195,9 @@ fi
 
 if [ "$USER_AGENT" != "" ]
 then
-    USER_AGENT_YSLOW="--ua \"$USER_AGENT\""
-    USER_AGENT_CRAWLER="-rh User-Agent:\"$USER_AGENT\""
-    USER_AGENT_CURL="--user-agent \"$USER_AGENT\""
+    USER_AGENT_YSLOW="--ua $USER_AGENT"
+    USER_AGENT_CRAWLER="-rh User-Agent:$USER_AGENT"
+    USER_AGENT_CURL="--user-agent $USER_AGENT"
 fi
 
 if [ "$VIEWPORT" != "" ]
