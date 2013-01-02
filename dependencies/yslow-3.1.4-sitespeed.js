@@ -4154,14 +4154,12 @@ YSLOW.doc.addRuleInfo('syncjsinhead','Never load JS synchronously in head','Java
 YSLOW.doc.addRuleInfo('avoidfont','Avoid use of web fonts','Avoid use of webfonts because they will decrease the performance of the page.');
 YSLOW.doc.addRuleInfo('totalrequests','Reduce number of total requests','Avoid to have too many requests on your page. The more requests, the slower the page will be for the end user.');
 YSLOW.doc.addRuleInfo('expiresmod','Have long expire headers for static components','By adding long HTTP expires headers to your static files, the files will be cached in the end users browser. This is the standard expires Yslow rule with the twist that you do not get penalized using Google Analythics or Gaug.es.');
-YSLOW.doc.addRuleInfo('spof','Frontend single point of failure','A page can be stopped to be loaded in the browser, if a single script or css could not be fetched (the white screen of death), and that is something you really want to avoid. Never load 3rd party components inside of HEAD!');
+YSLOW.doc.addRuleInfo('spof','Frontend single point of failure','A page can be stopped to be loaded in the browser, if a single script, css or font could not be fetched or is loading slow (the white screen of death), and that is something you really want to avoid. Never load 3rd party components inside of HEAD!');
 
-YSLOW.doc.addRuleInfo('toomuchjs','Too much javascript compared to text content','This is an exprimental rule: The javascript you have, need to actually add functionality to your page, if you load too much javascript in the browser, the page will be slow, so make sure you have an ok ratio between javascript and content.');
-
-YSLOW.doc.addRuleInfo('nodnslookupswhenfewrequests','Avoid DNS lookups when a page has few requests','If you have few prequest on a page, they should all be on the same domain to avoid DNS lookups, because the lookup will take extra time.');
-YSLOW.doc.addRuleInfo('inlinecsswhenfewrequest','Do not load css stylesheet files when the page has few request','When a page has few requests (or actually maybe always if you dont have a massive amount of css), it is better to inline the css, to make the page to start render as early as possible');
+YSLOW.doc.addRuleInfo('nodnslookupswhenfewrequests','Avoid DNS lookups when a page has few requests','If you have few requests on a page, they should all be on the same domain to avoid DNS lookups, because the lookups will cost much.');
+YSLOW.doc.addRuleInfo('inlinecsswhenfewrequest','Do not load css stylesheet files when the page has few request','When a page has few requests (or actually maybe always if you dont have a massive amount of css), it is better to inline the css, to make the page to start render as early as possible.');
 YSLOW.doc.addRuleInfo('criticalpath', 'Avoid slowing down the rendering critical path','Every file loaded inside of head, will postpone the rendering of the page, try to avoid loading javascript synchronously, load files from the same domain as the main document, and inline css for really fast critical path.');
-YSLOW.doc.addRuleInfo('textcontent','Have a reasonable percentage of textual content compared to the rest of the page','Make sure you dont have too much styling etc that hides the text you want to deliver');
+YSLOW.doc.addRuleInfo('textcontent','Have a reasonable percentage of textual content compared to the rest of the page','Make sure the amount of HTML elements are too many compared to text content.');
 
 //
 // Tools text
@@ -6194,7 +6192,7 @@ YSLOW.registerRule({
 
 YSLOW.registerRule({
   id: 'inlinecsswhenfewrequest',
-  name: 'Do not load css stylesheet files when the page has few request',
+  name: 'Do not load css files when the page has few request',
   info: 'When a page has few requests, it is better to inline the css, to make the page to start render as early as possible',
   category: ['css'],
   config: {points: 20, limit: 15,  types: ['css', 'js', 'image', 'cssimage', 'flash', 'favicon']},
