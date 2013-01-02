@@ -127,7 +127,7 @@
 #set ($spofMedian = $math.toInteger($statsSpof.getPercentile(50))) 
 #set ($assetsWithoutFarExpiresMedian = $math.toInteger($statsAssetsWithoutFarExpires.getPercentile(50))) 
 #set ($criticalPathMedian = $math.toInteger($statsCriticalPath.getPercentile(50))) 
-#set ($textContentMedian = $math.roundTo(3,$statsTextContent.getPercentile(50)))
+#set ($textContentMedian = $math.roundTo(1,$statsTextContent.getPercentile(50)))
 #set ($ttfbMedian = $math.roundTo(3,$statsTTFB.getPercentile(50)))
 
 ## Set percentage
