@@ -205,7 +205,7 @@ cd "$(dirname ${BASH_SOURCE[0]})"
 NOW=$(date +"%Y-%m-%d-%H-%M-%S")
 DATE=$(date) 
 
-echo "Will crawl from start point $URL with depth $DEPTH $FOLLOW_PATH $NOT_IN_URL ... this can take a while"
+echo "Will crawl from start point $URL with User-Agent $USER_AGENT and viewport $VIEWPORT with crawl depth $DEPTH ... this can take a while"
 
 # remove the protocol                                                                                                                                                            
 NOPROTOCOL=${URL#*//}
