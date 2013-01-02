@@ -5,7 +5,7 @@
 
 		<h2 class="url">
 			Page
-			<a href="$document.getRootElement().getChild("url").getValue()" target="_blank">$document.getRootElement().getChild("url").getValue()</a>
+			<a href="$document.getRootElement().getChild("curl").getValue()" target="_blank">$document.getRootElement().getChild("curl").getValue()</a>
 			(score: $document.getRootElement().getChild("o").getValue())
 		</h2>
 
