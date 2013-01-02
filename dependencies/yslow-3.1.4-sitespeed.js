@@ -5665,144 +5665,7 @@ YSLOW.registerRuleset({
         yfavicon: 2
     }
 });
-/*
-Rule borrowed from Stoyan Stefanov
-https://github.com/stoyan/yslow
-*/
-
-var YSLOW3PO = {};
-YSLOW3PO.is3p = function (url) {
-  
-  var patterns = [
-    'ajax.googleapis.com',
-    'apis.google.com',
-    '.google-analytics.com',
-    'connect.facebook.net',
-    'platform.twitter.com',
-    'code.jquery.com',
-    'platform.linkedin.com',
-    '.disqus.com',
-    'assets.pinterest.com',
-    'widgets.digg.com',
-    '.addthis.com',
-    'code.jquery.com',
-    'ad.doubleclick.net',
-    '.lognormal.com', 
-    'embed.spotify.com'    
-  ];
-  var hostname = YSLOW.util.getHostname(url);
-  var re;
-  for (var i = 0; i < patterns.length; i++) {
-    re = new RegExp(patterns[i]);
-    if (re.test(hostname)) {
-      return true;
-    }
-  }
-  return false;
-}
-
-
-YSLOW.registerRule({
-  id: '_3po_asyncjs',
-  name: 'Load 3rd party JS asynchronously',
-  info: "Use the JavaScript snippets that load the JS files asynchronously " +
-        "in order to speed up the user experience.",
-  category: ['js'],
-  config: {},
-  url: 'http://www.phpied.com/3PO#async',
-
-  lint: function (doc, cset, config) {
-    var scripts = doc.getElementsByTagName('script'), 
-    comps = cset.getComponentsByType('js'),
-    comp, offenders = {}, 
-    offender_comps = [], 
-    score = 100;
-    
-    // find offenders
-    for (i = 0, len = scripts.length; i < len; i++) {
-      comp = scripts[i];
-      if (comp.src && YSLOW3PO.is3p(comp.src)) {
-        if (!comp.async && !comp.defer) {
-          offenders[comp.src] = 1;
-        }
-      }
-    }
-
-    // match offenders to YSLOW components
-    for (var i = 0; i < comps.length; i++) {
-      if (offenders[comps[i].url]) {
-        offender_comps.push(comps[i]);
-      }
-    }
-
-    // final sweep
-    var message = offender_comps.length === 0 ? '' :
-      'The following ' + YSLOW.util.plural('%num% 3rd party script%s%', offender_comps.length) +
-        ' not loaded asynchronously:';
-    score -= offender_comps.length * 21;
-
-    return {
-      score: score,
-      message: message,
-      components: offender_comps
-    };
-  }
-});
-
-
-
-YSLOW.registerRule({
-  id: '_3po_jsonce',
-  name: 'Load the 3rd party JS only once',
-  info: 'Loading the 3rd party JS files more than once per page is not ' +
-        'necessary and slows down the user experience',
-  category: ['js'],
-  config: {},
-  url: 'http://www.phpied.com/3PO#once',
-  
-
-  lint: function (doc, cset, config) {
-    var i, url, score, len,
-        hash = {},
-        offenders = [],
-        comps = cset.getComponentsByType('js'),
-        scripts = doc.getElementsByTagName('script');
-
-    for (i = 0, len = scripts.length; i < len; i += 1) {
-      url = scripts[i].src;
-      if (!url || !YSLOW3PO.is3p(url) || scripts[i].async || scripts[i].defer) {
-        continue;
-      }
-      if (typeof hash[url] === 'undefined') {
-        hash[url] = 1;
-      } else {
-        hash[url] += 1;
-      }
-    }
-
-    // match offenders to YSLOW components
-    var offenders = [];
-    for (var i = 0; i < comps.length; i++) {
-      if (hash[comps[i].url] && hash[comps[i].url] > 1) {
-        offenders.push(comps[i]);
-      }
-    }
-
-    score = 100 - offenders.length * 11;
-
-    return {
-      score: score,
-      message: (offenders.length > 0) ? YSLOW.util.plural(
-          'There %are% %num% 3rd party JS file%s% included more than once on the page',
-          offenders.length
-      ) : '',
-      components: offenders
-    };
-  }
-});
-
-/* End */
-
+// Rule file for sitespeed.io
 
 var SITESPEEDHELP = {};
   
@@ -5824,6 +5687,8 @@ SITESPEEDHELP.getTLD =  function (host){
   }
   return tld;
 };
+
+// end of borrow :)
 
 SITESPEEDHELP.getSynchronouslyJavascripts =  function (js){
 var syncJs = [];
@@ -6431,6 +6296,144 @@ YSLOW.registerRule({
         };
   }
 });
+
+/*
+Rule borrowed from Stoyan Stefanov
+https://github.com/stoyan/yslow
+*/
+
+var YSLOW3PO = {};
+YSLOW3PO.is3p = function (url) {
+  
+  var patterns = [
+    'ajax.googleapis.com',
+    'apis.google.com',
+    '.google-analytics.com',
+    'connect.facebook.net',
+    'platform.twitter.com',
+    'code.jquery.com',
+    'platform.linkedin.com',
+    '.disqus.com',
+    'assets.pinterest.com',
+    'widgets.digg.com',
+    '.addthis.com',
+    'code.jquery.com',
+    'ad.doubleclick.net',
+    '.lognormal.com', 
+    'embed.spotify.com'    
+  ];
+  var hostname = YSLOW.util.getHostname(url);
+  var re;
+  for (var i = 0; i < patterns.length; i++) {
+    re = new RegExp(patterns[i]);
+    if (re.test(hostname)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+
+YSLOW.registerRule({
+  id: '_3po_asyncjs',
+  name: 'Load 3rd party JS asynchronously',
+  info: "Use the JavaScript snippets that load the JS files asynchronously " +
+        "in order to speed up the user experience.",
+  category: ['js'],
+  config: {},
+  url: 'http://www.phpied.com/3PO#async',
+
+  lint: function (doc, cset, config) {
+    var scripts = doc.getElementsByTagName('script'), 
+    comps = cset.getComponentsByType('js'),
+    comp, offenders = {}, 
+    offender_comps = [], 
+    score = 100;
+    
+    // find offenders
+    for (i = 0, len = scripts.length; i < len; i++) {
+      comp = scripts[i];
+      if (comp.src && YSLOW3PO.is3p(comp.src)) {
+        if (!comp.async && !comp.defer) {
+          offenders[comp.src] = 1;
+        }
+      }
+    }
+
+    // match offenders to YSLOW components
+    for (var i = 0; i < comps.length; i++) {
+      if (offenders[comps[i].url]) {
+        offender_comps.push(comps[i]);
+      }
+    }
+
+    // final sweep
+    var message = offender_comps.length === 0 ? '' :
+      'The following ' + YSLOW.util.plural('%num% 3rd party script%s%', offender_comps.length) +
+        ' not loaded asynchronously:';
+    score -= offender_comps.length * 21;
+
+    return {
+      score: score,
+      message: message,
+      components: offender_comps
+    };
+  }
+});
+
+
+
+YSLOW.registerRule({
+  id: '_3po_jsonce',
+  name: 'Load the 3rd party JS only once',
+  info: 'Loading the 3rd party JS files more than once per page is not ' +
+        'necessary and slows down the user experience',
+  category: ['js'],
+  config: {},
+  url: 'http://www.phpied.com/3PO#once',
+  
+
+  lint: function (doc, cset, config) {
+    var i, url, score, len,
+        hash = {},
+        offenders = [],
+        comps = cset.getComponentsByType('js'),
+        scripts = doc.getElementsByTagName('script');
+
+    for (i = 0, len = scripts.length; i < len; i += 1) {
+      url = scripts[i].src;
+      if (!url || !YSLOW3PO.is3p(url) || scripts[i].async || scripts[i].defer) {
+        continue;
+      }
+      if (typeof hash[url] === 'undefined') {
+        hash[url] = 1;
+      } else {
+        hash[url] += 1;
+      }
+    }
+
+    // match offenders to YSLOW components
+    var offenders = [];
+    for (var i = 0; i < comps.length; i++) {
+      if (hash[comps[i].url] && hash[comps[i].url] > 1) {
+        offenders.push(comps[i]);
+      }
+    }
+
+    score = 100 - offenders.length * 11;
+
+    return {
+      score: score,
+      message: (offenders.length > 0) ? YSLOW.util.plural(
+          'There %are% %num% 3rd party JS file%s% included more than once on the page',
+          offenders.length
+      ) : '',
+      components: offenders
+    };
+  }
+});
+
+/* End */
 
 
 YSLOW.registerRuleset({ 
