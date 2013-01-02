@@ -40,7 +40,7 @@ OPTIONS:
    -s      Skip urls that contains this in the path [optional]
    -p      The number of processes that will analyze pages, default is 5 [optional]
    -m      The memory heap size for the java applications, default is 1024 kb [optional]
-   -o      The output format, always output as html but you can add images and/or csv (img,csv) [optional]
+   -o      The output format, always output as html but you can add images (img) [optional]
    -r      The result base directory, default is sitespeed-result [optional]
    -z      Create a tar zip file of the result files, default is false [optional]
    -x      The proxy host & protocol: proxy.soulgalore.com:80 [optional] 
@@ -97,7 +97,7 @@ NOT_IN_URL=
 MAX_PROCESSES=5
 OUTPUT_FORMAT=
 JAVA_HEAP=1024
-REPORT_BASE_DIR=
+REPORT_BASE_DIR=sitespeed-result
 CREATE_TAR_ZIP=false
 PROXY_HOST=
 PROXY_TYPE=http
@@ -163,29 +163,12 @@ else
     NOT_IN_URL=""
 fi
 
-if [[ "$OUTPUT_FORMAT" == *csv* ]]
-  then 
-  OUTPUT_CSV=true
-else
-   OUTPUT_CSV=false
-fi  
-
 if [[ "$OUTPUT_FORMAT" == *img* ]]
   then 
   OUTPUT_IMAGES=true
 else
    OUTPUT_IMAGES=false
 fi  
-
-if [[ -z $OUTPUT_IMAGES ]] 
-  then
-  OUTPUT_IMAGES=false
-fi
-
-if [[ -z $REPORT_BASE_DIR ]] 
-then
-     REPORT_BASE_DIR="sitespeed-result"
-fi
 
 if [ "$PROXY_HOST" != "" ]
 then
@@ -248,10 +231,6 @@ mkdir -p $REPORT_DIR
 mkdir $REPORT_DATA_DIR
 mkdir $REPORT_PAGES_DIR
 mkdir $REPORT_DATA_PAGES_DIR
-if $OUTPUT_IMAGES 
-  then
-  mkdir $REPORT_IMAGE_PAGES_DIR
-fi
 
 $JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -Dcom.soulgalore.crawler.propertydir=$DEPENDENCIES_DIR/ $PROXY_CRAWLER -cp $DEPENDENCIES_DIR/$CRAWLER_JAR com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL $USER_AGENT_CRAWLER -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/errorurls.txt
 
@@ -341,16 +320,11 @@ cat "$BASE_DIR"report/css/bootstrap.min.css > $REPORT_DIR/css/styles.css
 cat "$BASE_DIR"report/js/jquery-1.8.3.min.js report/js/bootstrap.min.js report/js/jquery.tablesorter.min.js > $REPORT_DIR/js/all.js
 cp "$BASE_DIR"report/img/* $REPORT_DIR/img
 
-if $OUTPUT_CSV
-  then
-   echo 'Create csv file' 
-  $JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/pages-csv.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.csv || exit 1
-fi
 
 if $OUTPUT_IMAGES 
   then
   echo 'Create all png:s'
- 
+  mkdir $REPORT_IMAGE_PAGES_DIR
   phantomjs $DEPENDENCIES_DIR/rasterize.js $REPORT_DIR/index.html $REPORT_IMAGE_PAGES_DIR/summary.png
   phantomjs $DEPENDENCIES_DIR/rasterize.js $REPORT_DIR/pages.html $REPORT_IMAGE_PAGES_DIR/pages.png
 

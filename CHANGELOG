@@ -16,6 +16,7 @@ version 1.5
 * Bugfix: The check for phantomjs wasn't working, works now
 * Bugfix: Now using JAVA_HOME in a correct way (thanks Rob-m)
 * Bugfix: Upgraded the crawler to 1.3, now only fetched text/html links
+* Removed csv as output format
 
 version 1.4
 ------------------------
