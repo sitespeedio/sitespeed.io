@@ -276,7 +276,7 @@ then
 
   echo '<?xml version="1.0" encoding="UTF-8"?><results>'  > $REPORT_DATA_DIR/errorurls.xml
   for url in "${resultError[@]}"
-    do echo "<url reason='${url/,*/ }'>${url/*,/ }</url>" >> $REPORT_DATA_DIR/errorurls.xml
+    do echo "<url reason='${url/,*/ }'><![CDATA[${url/*,/ }]]</url>" >> $REPORT_DATA_DIR/errorurls.xml
   done
   echo '</results>' >> $REPORT_DATA_DIR/errorurls.xml
   echo 'Create the errorurls.html'
