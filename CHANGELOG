@@ -17,6 +17,9 @@ version 1.5
 * Bugfix: Now using JAVA_HOME in a correct way (thanks Rob-m)
 * Bugfix: Upgraded the crawler to 1.3, now only fetched text/html links
 * Removed csv as output format
+* New rule: Avoid CDN lookups when your page has few rewquests
+* New rule: Do not load stylesheet files when the page has few request
+* New rule: Have a reasonable percentage of textual content compared to the rest of the page 
 
 version 1.4
 ------------------------
