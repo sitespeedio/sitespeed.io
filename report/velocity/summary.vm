@@ -49,8 +49,8 @@
 
             <div class="span6">
                   <div class="alert alert-#criticalPathType($totalCriticalPathAverage)">
-                    Rendering Critical Path Score
-                    <div><a href="#" rel="popover" class="alert-#criticalPathType($totalCriticalPathAverage) large" data-trigger="hover" title="The average of the rendering critical path score " data-content="$criticalPathText">$totalCriticalPathAverage </a> ($criticalPathMedian)</div>
+                    Critical Rendering Path Score
+                    <div><a href="#" rel="popover" class="alert-#criticalPathType($totalCriticalPathAverage) large" data-trigger="hover" title="The average of the rendering path score " data-content="$criticalPathText">$totalCriticalPathAverage </a> ($criticalPathMedian)</div>
                 </div>
             </div>
 
@@ -112,13 +112,13 @@
             <div class="span4">
                 <div class="alert alert-#requestPrimedType($requestAverage $requestPrimedAverage)">
                     Number of requests with primed cache 
-                      <div><a href="#" rel="popover" class="alert-#requestPrimedType($requestAverage $requestPrimedAverage) large" data-trigger="hover" title="Average number of $requestPrimedAverage requests with a primed cache ($requestWithPrimedCachePercentage % of the requests)" data-content="$nrOfRequestPrimedText">$requestPrimedAverage</a> ($requestPrimedMedian)</div>
+                      <div><a href="#" rel="popover" class="alert-#requestPrimedType($requestAverage $requestPrimedAverage) large" data-trigger="hover" title="Average number of $requestPrimedAverage requests with a primed cache ($requestWithPrimedCachePercentage % of the requests is not cached at all in the browser cache)" data-content="$nrOfRequestPrimedText">$requestPrimedAverage</a> ($requestPrimedMedian)</div>
                 </div>
             </div>
              <div class="span4">
                     <div class="alert alert-#expiresType($totalAssetsWithoutFarExpiresAverage)">
                     Requests without far expires 
-                      <div><a href="#" rel="popover" class="alert-#expiresType($totalAssetsWithoutFarExpiresAverage) large" data-trigger="hover" title="Average number of $totalAssetsWithoutFarExpiresAverage requests for static content without a far-future expiration date #if($math.toInteger($requestWithoutFarExpirePercentage) > 0) ($requestWithoutFarExpirePercentage % of the requests) #end" data-content="$assetsWithoutFarExpiresText">$totalAssetsWithoutFarExpiresAverage</a> ($assetsWithoutFarExpiresMedian) 
+                      <div><a href="#" rel="popover" class="alert-#expiresType($totalAssetsWithoutFarExpiresAverage) large" data-trigger="hover" title="Average number of $totalAssetsWithoutFarExpiresAverage requests for static content without a far-future expiration date #if($math.toInteger($requestWithoutFarExpirePercentage) > 0) ($requestWithoutFarExpirePercentage % of the requests is lacking a far expiration date) #end" data-content="$assetsWithoutFarExpiresText">$totalAssetsWithoutFarExpiresAverage</a> ($assetsWithoutFarExpiresMedian) 
 		      </div>
                 </div>
              </div>
