@@ -75,6 +75,8 @@
 	   #if ($results.getChild("g").getChild("spof").getChild("score").getValue() != 100)
 	       #set ($totalSpofPages = $math.add($totalSpofPages, 1))
            $statsSpof.addValue($math.toInteger($results.getChild("g").getChild("spof").getChild("components").getChildren("item").size()))
+        #else
+            $statsSpof.addValue(0)    
 	   #end       
     #end
 
