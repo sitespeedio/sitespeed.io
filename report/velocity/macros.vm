@@ -15,7 +15,7 @@
 warning#else
 error#end#end
 
-## Verify the Yslow score, over 90 is good
+## Verify the Sitespeed/Yslow score, over 90 is good
 ## Fix for bootstrap, different class names, different areas
 ## this is for the badge
 #macro( scoreTypeBadge $score )
