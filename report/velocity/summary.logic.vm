@@ -49,7 +49,13 @@
     #end
 
     #if($!{results.getChild("r_c")})
-        $statsRequestsCached.addValue($math.toInteger($results.getChild("r_c").getValue()))
+        #set ($requestsCached = $math.toInteger($results.getChild("r_c").getValue()))
+        ## If one is favicon, remove it because of the favicon cache bug
+        #if ($math.toInteger($results.getChild("stats").getChild("favicon").getChild("r").getValue()) > 0)
+            #set ($requestsCached = $math.sub($requestsCached, $results.getChild("stats").getChild("favicon").getChild("r").getValue()))
+        #end
+        $statsRequestsCached.addValue($requestsCached)
+
     #end
       
     #if($!{results.getChild("w")})
