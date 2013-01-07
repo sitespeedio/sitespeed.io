@@ -77,7 +77,7 @@
            $statsSpof.addValue($math.toInteger($results.getChild("g").getChild("spof").getChild("components").getChildren("item").size()))
        #else
         $statsSpof.addValue(0)    
-	   #end       
+       #end       
     #end
 
 
