@@ -1,5 +1,9 @@
 CHANGELOG sitespeed.io
 
+version 1.5.2
+------------------------
+* Bugfix: The SPOF rule reported CSS & JS as SPOF:s wrongly
+
 version 1.5.1
 ------------------------
 * Bugfix: The crawler reported links returning 200 with another content type then text/html as error url:s
