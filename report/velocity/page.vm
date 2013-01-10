@@ -240,19 +240,6 @@
 								    $document.getRootElement().getChild("g").getChild("textcontent").getChild("components").getChildText("item") %
 								</td>
 							</tr>    
-							<tr>
-								<td>spof</td>
-								<td>
-									$document.getRootElement().getChild("g").getChild("spof").getChild("components").getChildren("item").size()
-								</td>
-							</tr>
-							<tr>
-								<td>sync js in head</td>
-								<td>
-									$document.getRootElement().getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()
-								</td>
-							</tr>
-
 						</tbody>
 					</table>
 					</div>
