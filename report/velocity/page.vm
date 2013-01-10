@@ -59,10 +59,14 @@
 					#end
 				</tbody>
 			</table>
+			</div>
+			</div>
 
 			<h3 id="summary">Page summary</h3>
+			
 			<div class="row-fluid">
 				<div class="span6">
+				
 
 					<h4>Requests per Content-Type</h4>
 					<table class="table table-condensed table-striped table-bordered">
@@ -173,7 +177,25 @@
 						</tbody>
 					</table>
 				</div>
-			</div>
+				</div>
+
+
+			<div class="row-fluid">
+				
+						<div class="span6">
+							<h4>Requests per Domain</h4>
+								<table class="table table-condensed table-striped table-bordered">
+								<tbody>
+								#foreach ($entry in $hostAndRequests.entrySet())							
+								<tr>
+									<td>$entry.getKey()</td>
+									<td>$entry.getValue()</td>
+								</tr>
+								#end
+							</tbody>
+					</table>
+					</div>
+					<div class="span6">
 
 					<h4>Special</h4>
 					<table class="table table-condensed table-striped table-bordered">
@@ -233,6 +255,11 @@
 
 						</tbody>
 					</table>
+					</div>
+					</div>
+
+					<div class="row-fluid">
+					<div class="span12">
 
 					<h3 id="assets">Page assets</h3>
 					<table class="table table-condensed table-striped table-bordered">
