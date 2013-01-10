@@ -57,6 +57,18 @@
 ## remove the actual document
 #set($totalRequests =  $math.sub($document.getRootElement().getChild("r").getValue(),1))
 
+## the number of request per host
+#set($hostAndRequests = $map.clone())
+#foreach ($asset in $document.getRootElement().getChild("comps").getChildren())
+		#set($theHost = $host.getHost($asset.getChild("url").getValue()))
+		#set($nrOfRequests = $hostAndRequests.get($theHost))
+		#if(!$nrOfRequests) 
+			#set($nrOfRequests = 1) 
+		#else
+			#set($nrOfRequests = $math.add($nrOfRequests, 1))
+		#end	
+		#set($swallow = $hostAndRequests.put($theHost, $nrOfRequests))
+#end
 
 ## Calculating percentages
 #set($cssPercentage = $math.roundTo(1,$math.mul($math.div($cssWeight,$contentWeight),100)))
