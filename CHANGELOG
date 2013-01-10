@@ -3,7 +3,7 @@ CHANGELOG sitespeed.io
 version 1.6
 ------------------------
 * The SPOF rule now only report font face that are loaded from another top level domain. Also the actual font file is reported.
-
+* Show requests per domain on individual page
 
 version 1.5.2
 ------------------------
