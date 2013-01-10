@@ -60,12 +60,13 @@
 ## the number of request per host
 #set($hostAndRequests = $map.clone())
 #foreach ($asset in $document.getRootElement().getChild("comps").getChildren())
+		#set($nrOfRequests = 0)
 		#set($theHost = $host.getHost($asset.getChild("url").getValue()))
 		#set($nrOfRequests = $hostAndRequests.get($theHost))
 		#if(!$nrOfRequests) 
 			#set($nrOfRequests = 1) 
 		#else
-			#set($nrOfRequests = $math.add($nrOfRequests, 1))
+		    	#set($nrOfRequests = $math.add($nrOfRequests, 1))
 		#end	
 		#set($swallow = $hostAndRequests.put($theHost, $nrOfRequests))
 #end
