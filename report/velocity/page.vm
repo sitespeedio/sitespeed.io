@@ -319,7 +319,7 @@
 								
 								#set ($delta = $header.pretty($header.getDelta($lastMod,$date)))
 								#if ($delta=="")
-									not set
+									last modified not set
 								#else
 								    $delta
 								#end	
