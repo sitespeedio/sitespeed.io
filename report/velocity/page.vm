@@ -249,14 +249,14 @@
 					<div class="span12">
 
 					<h3 id="assets">Page assets</h3>
-					<table class="table table-condensed table-striped table-bordered">
+					<table class="table table-condensed table-striped table-bordered" id="assetsTable">
 						<thead>
 							<tr>
-								<th>url</th>
-								<th>type</th>
-								<th>time since last modification</th>
-								<th>cache time</th>
-								<th>size</th>
+								<th><a href="#">url</a></th>
+								<th><a href="#">type</a></th>
+								<th><a href="#">time since last modification</a></th>
+								<th><a href="#">cache time</a></th>
+								<th><a href="#">size</a></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -322,7 +322,9 @@
 									last modified not set
 								#else
 								    $delta
-								#end	
+								#end
+							#else
+							unknown		
 							#end
 							</td>
 							<td>
@@ -334,6 +336,8 @@
 								#else
 								    $cacheTime
 								#end
+							#else
+								unknown
 							#end
 
 							</td>
@@ -349,5 +353,14 @@
 			</div>
 			<!-- span 12 -->
 		</div>
-		<!-- row -->#parse("report/velocity/footer.vm")</body>
+		<!-- row -->
+		#parse("report/velocity/footer.vm")
+		<script>
+		  $(document).ready(function() 
+		    { 
+		        $("#assetsTable").tablesorter(); 
+		    } 
+		  );
+		</script>
+		</body>
 	</html>
