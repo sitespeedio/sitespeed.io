@@ -253,9 +253,9 @@
 					<table class="table table-condensed table-striped table-bordered" id="assetsTable">
 						<thead>
 							<tr>
-								<th><a href="#">url</a></th>
+								<th>url</th>
 								<th><a href="#">type</a></th>
-								<th><a href="#">time since last modificatio (days)</a></th>
+								<th><a href="#">time since last modification (days)</a></th>
 								<th><a href="#">cache time (s)</a></th>
 								<th><a href="#">size</a></th>
 							</tr>
@@ -325,7 +325,6 @@
 								#else	
 								    #displayLastModDelta($delta)
 								#end
-
 							#else
 							unknown		
 							#end
@@ -334,7 +333,7 @@
 							## Special hack since favicon not working
 							#if ($asset.getChild("type").getValue() != "favicon")
 								#set ($cacheTime = $header.getCacheTime($cacheControl, $expires, $date))
-								#if ($cacheTime=="")
+								#if ($cacheTime=="" || !$cacheTime)
 									0
 								#else
 								    $cacheTime.getSeconds()
@@ -368,5 +367,6 @@
 		    } 
 		  );
 		</script>
+
 		</body>
 	</html>
