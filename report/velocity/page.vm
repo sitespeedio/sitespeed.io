@@ -1,4 +1,5 @@
 #parse("report/velocity/header.vm")
+#parse("report/velocity/date-macros.vm")
 #parse("report/velocity/page.logic.vm")
 <div class="row-fluid">
 	<div class="span12">
@@ -254,8 +255,8 @@
 							<tr>
 								<th><a href="#">url</a></th>
 								<th><a href="#">type</a></th>
-								<th><a href="#">time since last modification</a></th>
-								<th><a href="#">cache time</a></th>
+								<th><a href="#">time since last modificatio (days)</a></th>
+								<th><a href="#">cache time (s)</a></th>
 								<th><a href="#">size</a></th>
 							</tr>
 						</thead>
@@ -317,12 +318,14 @@
 								#set ($cacheControl = $asset.getChild("headers").getChild("response").getChild("Cache-Control").getValue())
 								#set ($expires = $asset.getChild("headers").getChild("response").getChild("Expires").getValue())
 								
-								#set ($delta = $header.pretty($header.getDelta($lastMod,$date)))
-								#if ($delta=="")
-									last modified not set
-								#else
-								    $delta
+								#set ($delta = $header.getDelta($lastMod,$date))
+
+								#if ($delta=="" || ! $delta)
+								     	last modified not set
+								#else	
+								    #displayLastModDelta($delta)
 								#end
+
 							#else
 							unknown		
 							#end
@@ -330,11 +333,14 @@
 							<td>
 							## Special hack since favicon not working
 							#if ($asset.getChild("type").getValue() != "favicon")
-								#set ($cacheTime = $header.pretty($header.getCacheTime($cacheControl, $expires, $date)))
+								#set ($cacheTime = $header.getCacheTime($cacheControl, $expires, $date))
 								#if ($cacheTime=="")
 									0
 								#else
-								    $cacheTime
+								    $cacheTime.getSeconds()
+								    #if ($cacheTime.getSeconds()>60)
+									    (#prettyPrint($cacheTime))
+									#end    
 								#end
 							#else
 								unknown

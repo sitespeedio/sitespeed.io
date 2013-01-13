@@ -1,0 +1,31 @@
+## Displaying the time since last modification date
+## all input are in org.joda.time.Seconds
+
+## add class hedaer! todo
+
+#macro ( displayLastModDelta $seconds )
+	#if ($seconds.toStandardDays().getDays()==0)
+		$header.getDays($seconds) (#prettyPrint($seconds))
+	#elseif ($seconds.toStandardDays().getDays()>365)
+	     $seconds.toStandardDays().getDays() (#prettyPrint($seconds))
+	#else	
+	     $seconds.toStandardDays().getDays()
+	#end	    
+#end
+
+## crazy velcoity style
+#macro ( prettyPrint $seconds )
+#if (!$seconds)##
+#elseif ($seconds.getSeconds() == 0)##
+0 s##
+#elseif ($seconds.toStandardWeeks().getWeeks() > 52 )##
+$math.roundTo(2,$math.div($seconds.toStandardWeeks().getWeeks(),52)) y##
+#elseif ($seconds.toStandardDays().getDays() > 0)##
+$seconds.toStandardDays().getDays()  d##
+#elseif ($seconds.toStandardHours().getHours() > 0)##
+$seconds.toStandardHours().getHours()  h##
+#elseif ($seconds.toStandardMinutes().getMinutes() > 0)##
+$seconds.toStandardMinutes().getMinutes()  m##
+#else##
+$seconds.getSeconds() s##
+#end#end##
