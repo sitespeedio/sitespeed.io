@@ -323,9 +323,9 @@
 								#if ($delta=="" || ! $delta)
 								     	last modified not set
 								#else	
-									#if ($delta.toStandardDays().getDays()==0 || $delta.toStandardDays().getDays()>365)
-									<a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="#prettyPrint($delta)" class="clean">$delta.toStandardDays().getDays()</a>
-									#else
+								     	#if ($delta.toStandardDays().getDays()==0 || $delta.toStandardDays().getDays()>365)
+								     	<a rel="tooltip"  data-placement="right" data-html="false" href="#" data-original-title="#prettyPrint($delta)" class="clean">$delta.toStandardDays().getDays()</a>
+								     	#else
 								    $delta.toStandardDays().getDays()
 								    #end
 								#end
@@ -341,7 +341,7 @@
 									0
 								#else
 								    #if ($cacheTime.getSeconds()>60)
-								    	<a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="#prettyPrint($cacheTime)" class="clean">$cacheTime.getSeconds()</a>
+									<a rel="tooltip"  data-placement="right" data-html="false" href="#" data-original-title="#prettyPrint($cacheTime)" class="clean">$cacheTime.getSeconds()</a>
 									#else
 									 $cacheTime.getSeconds()
 									#end    
