@@ -323,7 +323,11 @@
 								#if ($delta=="" || ! $delta)
 								     	last modified not set
 								#else	
-								    #displayLastModDelta($delta)
+									#if ($delta.toStandardDays().getDays()==0 || $delta.toStandardDays().getDays()>365)
+									<a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="#prettyPrint($delta)" class="clean">$delta.toStandardDays().getDays()</a>
+									#else
+								    $delta.toStandardDays().getDays()
+								    #end
 								#end
 							#else
 							unknown		
@@ -336,9 +340,10 @@
 								#if ($cacheTime=="" || !$cacheTime)
 									0
 								#else
-								    $cacheTime.getSeconds()
 								    #if ($cacheTime.getSeconds()>60)
-									    (#prettyPrint($cacheTime))
+								    	<a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="#prettyPrint($cacheTime)" class="clean">$cacheTime.getSeconds()</a>
+									#else
+									 $cacheTime.getSeconds()
 									#end    
 								#end
 							#else
@@ -367,6 +372,14 @@
 		    } 
 		  );
 		</script>
+		  <script>
+
+   $(function () {
+    $('.container').tooltip({
+      selector: "a[rel=tooltip]"
+    })
+}) 
+</script>
 
 		</body>
 	</html>

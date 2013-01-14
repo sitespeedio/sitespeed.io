@@ -3,17 +3,6 @@
 
 ## These classes are lining in the velocity universe
 ## $math org.apache.velocity.tools.generic.MathTool
-## $header com.soulgalore.velocity.HeaderTool
-
-#macro ( displayLastModDelta $seconds )
-#if ($seconds.toStandardDays().getDays()==0)##
-$header.getDays($seconds) (#prettyPrint($seconds))##
-#elseif ($seconds.toStandardDays().getDays()>365)##
-$seconds.toStandardDays().getDays() (#prettyPrint($seconds))##
-#else##	
-$seconds.toStandardDays().getDays()##
-#end##	    
-#end##
 
 ## crazy velocity style to avoid spaces
 #macro ( prettyPrint $seconds )
