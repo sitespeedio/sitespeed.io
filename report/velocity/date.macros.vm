@@ -10,13 +10,13 @@
 #elseif ($seconds.getSeconds() == 0)##
 0 s##
 #elseif ($seconds.toStandardWeeks().getWeeks() > 52 )##
-$math.roundTo(1,$math.div($seconds.toStandardWeeks().getWeeks(),52)) y##
+$math.roundTo(1,$math.div($seconds.toStandardWeeks().getWeeks(),52)) years##
 #elseif ($seconds.toStandardDays().getDays() > 0)##
-$seconds.toStandardDays().getDays()  d##
+$seconds.toStandardDays().getDays()  days##
 #elseif ($seconds.toStandardHours().getHours() > 0)##
-$seconds.toStandardHours().getHours()  h##
+$seconds.toStandardHours().getHours()  hours##
 #elseif ($seconds.toStandardMinutes().getMinutes() > 0)##
-$seconds.toStandardMinutes().getMinutes()  m##
+$seconds.toStandardMinutes().getMinutes()  minutes##
 #else##
-$seconds.getSeconds() s##
+$seconds.getSeconds() seconds##
 #end#end##
