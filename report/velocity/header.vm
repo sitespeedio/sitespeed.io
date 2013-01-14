@@ -58,6 +58,16 @@
     max-width: 500px;
     }
 
+   a.clean:hover{
+    color: #000000;
+    text-decoration: none;
+    }
+
+    a.clean {
+    color: #000000;
+    text-decoration: none;
+    }
+
 
     .logo {
       padding: 0px; 
