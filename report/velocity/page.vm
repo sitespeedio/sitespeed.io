@@ -253,11 +253,11 @@
 					<table class="table table-condensed table-striped table-bordered" id="assetsTable">
 						<thead>
 							<tr>
-								<th>url</th>
-								<th><a href="#">type</a></th>
-								<th><a href="#">time since last modification (days)</a></th>
-								<th><a href="#">cache time (s)</a></th>
-								<th><a href="#">size</a></th>
+								<th data-sort="string">url</th>
+								<th data-sort="string">type</th>
+								<th data-sort="int">time since last modification</th>
+								<th data-sort="int">cache time</th>
+								<th data-sort="float">size</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -310,49 +310,43 @@
 								<a href="$asset.getChild("url").getValue()" title="$asset.getChild("url").getValue()" target="_blank">$asset.getChild("url").getValue()</a>
 							</td>
 							<td>$asset.getChild("type").getValue()</td>
-							<td>
-							## Special hack since favicon not working
-							#if ($asset.getChild("type").getValue() != "favicon")
-								#set ($lastMod = $asset.getChild("headers").getChild("response").getChild("Last-Modified").getValue())
-								#set ($date = $asset.getChild("headers").getChild("response").getChild("Date").getValue())
-								#set ($cacheControl = $asset.getChild("headers").getChild("response").getChild("Cache-Control").getValue())
-								#set ($expires = $asset.getChild("headers").getChild("response").getChild("Expires").getValue())
+							
+							#set ($lastMod = $asset.getChild("headers").getChild("response").getChild("Last-Modified").getValue())
+							#set ($date = $asset.getChild("headers").getChild("response").getChild("Date").getValue())
+							#set ($cacheControl = $asset.getChild("headers").getChild("response").getChild("Cache-Control").getValue())
+							#set ($expires = $asset.getChild("headers").getChild("response").getChild("Expires").getValue())
 								
-								#set ($delta = $header.getDelta($lastMod,$date))
-
-								#if ($delta=="" || ! $delta)
-								     	last modified not set
-								#else	
-								     	#if ($delta.toStandardDays().getDays()==0 || $delta.toStandardDays().getDays()>365)
-								     	<a rel="tooltip"  data-placement="right" data-html="false" href="#" data-original-title="#prettyPrint($delta)" class="clean">$delta.toStandardDays().getDays()</a>
-								     	#else
-								    $delta.toStandardDays().getDays()
-								    #end
-								#end
+							#set ($delta = $header.getDelta($lastMod,$date))
+							#if ($delta=="" || ! $delta)
+								#set ($sort=0)
 							#else
-							unknown		
+								#set ($sort=$delta.getSeconds())
+							#end	
+								
+							<td data-sort-value="$sort">
+						
+							#if ($delta=="" || ! $delta)
+								last modified not set
+							#else	
+								#prettyPrint($delta)
 							#end
 							</td>
-							<td>
-							## Special hack since favicon not working
-							#if ($asset.getChild("type").getValue() != "favicon")
-								#set ($cacheTime = $header.getCacheTime($cacheControl, $expires, $date))
-								#if ($cacheTime=="" || !$cacheTime)
-									0
-								#else
-								    #if ($cacheTime.getSeconds()>60)
-									<a rel="tooltip"  data-placement="right" data-html="false" href="#" data-original-title="#prettyPrint($cacheTime)" class="clean">$cacheTime.getSeconds()</a>
-									#else
-									 $cacheTime.getSeconds()
-									#end    
-								#end
-							#else
-								unknown
+							#set ($cacheTime = $header.getCacheTime($cacheControl, $expires, $date))
+							#if ($cacheTime=="" || !$cacheTime)
+								#set ($sort=0)
+							#else 	
+								#set ($sort=$cacheTime.getSeconds())
+							#end	
+							<td data-sort-value="$sort">
+							#if ($cacheTime=="" || !$cacheTime)
+								0
+							#else								   
+								#prettyPrint($cacheTime)  
 							#end
-
 							</td>
-							<td>
-								$math.roundTo(1,$math.div($asset.getChild("size").getValue(),1000)) kb
+							#set ($size=$math.roundTo(1,$math.div($asset.getChild("size").getValue(),1000)))
+							<td data-sort-value="$size">
+								$size kb
 							</td>
 
 						</tr>
@@ -366,11 +360,9 @@
 		<!-- row -->
 		#parse("report/velocity/footer.vm")
 		<script>
-		  $(document).ready(function() 
-		    { 
-		        $("#assetsTable").tablesorter(); 
-		    } 
-		  );
+		   $(function(){
+        $("#assetsTable").stupidtable();
+   		 });
 		</script>
 		  <script>
 
