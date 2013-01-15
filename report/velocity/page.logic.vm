@@ -76,3 +76,10 @@
 #set($jsPercentage = $math.roundTo(1,$math.mul($math.div($jsWeight,$contentWeight),100)))
 #if(!$cssPercentage) #set($cssPercentage=0) #end
 #if(!$jsPercentage) #set($jsPercentage=0) #end
+
+
+## Set up stats for last modified & cache time
+#set($statsTimeSinceLastModificationInSeconds = $stats.copy())
+#set($statsAssetCacheTimeInSeconds= $stats.copy())
+
+
