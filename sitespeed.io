@@ -46,7 +46,9 @@ OPTIONS:
    -x      The proxy host & protocol: proxy.soulgalore.com:80 [optional] 
    -t      The proxy type, default is http [optional]
    -a      The user agent, default is "Mozilla/6.0" [optional]
-   -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional]  
+   -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional] 
+   -y 	   The compiled yslow file, default is dependencies/yslow-3.1.4-sitespeed.js [optional]
+   -l 	   Which ruleset to use, default is the latest sitespeed.io version [optional]  
 EOF
 }
 
@@ -61,7 +63,7 @@ analyze() {
     pagefilename=$2
   
     echo "Analyzing $url"
-    phantomjs $PROXY_PHANTOMJS dependencies/yslow-3.1.4-sitespeed.js -d -r sitespeed.io-1.5 -f xml $USER_AGENT_YSLOW $VIEWPORT_YSLOW "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
+    phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml $USER_AGENT_YSLOW $VIEWPORT_YSLOW "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
  
     # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
     sed '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup  || exit 1
@@ -113,8 +115,11 @@ USER_AGENT_CURL=
 VIEWPORT=1280x800
 VIEWPORT_YSLOW=
 
+YSLOW_FILE=dependencies/yslow-3.1.4-sitespeed.js
+RULESET=sitespeed.io-1.5
+
 # Set options
-while getopts “hu:d:f:s:o:m:p:r:z:x:t:a:v:” OPTION
+while getopts “hu:d:f:s:o:m:p:r:z:x:t:a:v:y:l:” OPTION
 do
      case $OPTION in
          h)
@@ -134,6 +139,8 @@ do
          t)PROXY_TYPE=$OPTARG;;
          a)USER_AGENT=$OPTARG;;
          v)VIEWPORT=$OPTARG;;
+         y)YSLOW_FILE=$OPTARG;;
+         l)RULESET=$OPTARG;;
          ?)
              help
              exit
@@ -205,7 +212,7 @@ cd "$(dirname ${BASH_SOURCE[0]})"
 NOW=$(date +"%Y-%m-%d-%H-%M-%S")
 DATE=$(date) 
 
-echo "Will crawl from start point $URL with User-Agent $USER_AGENT and viewport $VIEWPORT with crawl depth $DEPTH ... this can take a while"
+echo "Will crawl from start point $URL with User-Agent $USER_AGENT and viewport $VIEWPORT with crawl depth $DEPTH using ruleset $RULESET ... this can take a while"
 
 # remove the protocol                                                                                                                                                            
 NOPROTOCOL=${URL#*//}
