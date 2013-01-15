@@ -311,37 +311,46 @@
 							</td>
 							<td>$asset.getChild("type").getValue()</td>
 							
-							#set ($lastMod = $asset.getChild("headers").getChild("response").getChild("Last-Modified").getValue())
-							#set ($date = $asset.getChild("headers").getChild("response").getChild("Date").getValue())
-							#set ($cacheControl = $asset.getChild("headers").getChild("response").getChild("Cache-Control").getValue())
-							#set ($expires = $asset.getChild("headers").getChild("response").getChild("Expires").getValue())
+							## Special hack since favicon not working
+							#if ($asset.getChild("type").getValue() != "favicon")
+								#set ($lastMod = $asset.getChild("headers").getChild("response").getChild("Last-Modified").getValue())
+								#set ($date = $asset.getChild("headers").getChild("response").getChild("Date").getValue())
+								#set ($cacheControl = $asset.getChild("headers").getChild("response").getChild("Cache-Control").getValue())
+								#set ($expires = $asset.getChild("headers").getChild("response").getChild("Expires").getValue())
 								
-							#set ($delta = $header.getDelta($lastMod,$date))
-							#if ($delta=="" || ! $delta)
-								#set ($sort=0)
-							#else
+								#set ($delta = $header.getDelta($lastMod,$date))
+								#if ($delta=="" || ! $delta)
+									#set ($sort=0)
+								#else
 								#set ($sort=$delta.getSeconds())
-							#end	
-								
+								#end	
+							#else
+							#set ($sort=-1)
+							#end
 							<td data-sort-value="$sort">
-						
-							#if ($delta=="" || ! $delta)
-								last modified not set
+							#if ($asset.getChild("type").getValue() == "favicon")
+							unknown
+							#elseif ($delta=="" || ! $delta)
+							     last modified not set
 							#else	
-								#prettyPrint($delta)
+							     #prettyPrint($delta)
 							#end
 							</td>
 							#set ($cacheTime = $header.getCacheTime($cacheControl, $expires, $date))
-							#if ($cacheTime=="" || !$cacheTime)
-								#set ($sort=0)
-							#else 	
-								#set ($sort=$cacheTime.getSeconds())
+							#if ($asset.getChild("type").getValue() == "favicon")
+								#set ($sort=-1)
+							#elseif ($cacheTime=="" || !$cacheTime)
+							     #set ($sort=0)
+							#else	
+							     #set ($sort=$cacheTime.getSeconds())
 							#end	
 							<td data-sort-value="$sort">
-							#if ($cacheTime=="" || !$cacheTime)
-								0
+							#if ($asset.getChild("type").getValue() == "favicon")
+								unknown
+							#elseif ($cacheTime=="" || !$cacheTime)
+							     0
 							#else								   
-								#prettyPrint($cacheTime)  
+							     #prettyPrint($cacheTime)  
 							#end
 							</td>
 							#set ($size=$math.roundTo(1,$math.div($asset.getChild("size").getValue(),1000)))
