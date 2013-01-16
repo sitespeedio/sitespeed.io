@@ -371,21 +371,9 @@
 							</td>
 						</tr>
 						<tr>
-							<td>time since last modification median</td>
-							<td>
-								#prettyPrint($header.getSeconds($math.toInteger($statsTimeSinceLastModificationInSeconds.getPercentile(50))))
-							</td>
-						</tr>
-						<tr>
 							<td>cache time average</td>
 							<td>
 								#prettyPrint($header.getSeconds($math.toInteger($statsAssetCacheTimeInSeconds.getMean())))
-							</td>
-						</tr>
-						<tr>
-							<td>cache time median</td>
-							<td>
-								#prettyPrint($header.getSeconds($math.toInteger($statsAssetCacheTimeInSeconds.getPercentile(50))))
 							</td>
 						</tr>
 					</tbody>
