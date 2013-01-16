@@ -365,13 +365,13 @@
 							</td>
 						</tr>
 						<tr>
-							<td>time since last modification average</td>
+							<td>average time since last modification</td>
 							<td>
 								#prettyPrint($header.getSeconds($math.toInteger($statsTimeSinceLastModificationInSeconds.getMean())))
 							</td>
 						</tr>
 						<tr>
-							<td>cache time average</td>
+							<td>average cache time</td>
 							<td>
 								#prettyPrint($header.getSeconds($math.toInteger($statsAssetCacheTimeInSeconds.getMean())))
 							</td>
