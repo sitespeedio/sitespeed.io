@@ -376,6 +376,14 @@
 								#prettyPrint($header.getSeconds($math.toInteger($statsAssetCacheTimeInSeconds.getMean())))
 							</td>
 						</tr>
+						<tr>
+							<td>time spent in backend</td>
+							<td>$backendPercentage %</td>
+						</tr>
+						<tr>
+							<td>time spent in frontend</td>
+							<td>$frontendPercentage %</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>

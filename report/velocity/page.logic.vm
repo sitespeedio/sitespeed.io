@@ -82,3 +82,9 @@
 #set($statsTimeSinceLastModificationInSeconds = $stats.copy())
 #set($statsAssetCacheTimeInSeconds= $stats.copy())
 
+## Define backend & frontend time
+#set($backendPercentage =  $math.roundTo(1,$math.mul($math.div($math.toDouble($document.getRootElement().getAttribute("ttfb").getValue()),$math.div($math.toDouble($document.getRootElement().getChild("lt").getValue()),1000)),100)))
+
+#set($frontendPercentage =  $math.roundTo(1,$math.mul($math.div($math.sub($math.div($math.toDouble($document.getRootElement().getChild("lt").getValue()),1000),$math.toDouble($document.getRootElement().getAttribute("ttfb").getValue())),$math.div($math.toDouble($document.getRootElement().getChild("lt").getValue()),1000)),100)))
+
+

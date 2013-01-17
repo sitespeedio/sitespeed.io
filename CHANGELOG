@@ -6,6 +6,7 @@ version 1.6
 * Show requests per domain on individual page.
 * Show cache time for each asset & delta between last modified & delivered + average.
 * Configure which yslow file to sue and which ruleset, when you run.
+* Show time spent in frontend vs backend per page
 
 version 1.5.2
 ------------------------
