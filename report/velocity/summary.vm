@@ -1,5 +1,6 @@
 
 #parse("report/velocity/header.vm")
+#parse("report/velocity/date.macros.vm")
 #parse("report/velocity/macros.vm")
 #parse("report/velocity/summary.logic.vm")
 
@@ -169,12 +170,36 @@
         </div>
        
         </div>    
-
-        <div class="row-fluid">
+        
+         <div class="row-fluid">
+             <div class="span3">
+        		<div class="alert alert-info">
+        		Time spent in backend: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The average time spent in backend" data-content="Research done by Google shows that for the top 300 000 sites, average of 14% of the time is spent in backend.">$backendMedianPercentage</a> %</div>
+        		</div>
+        	</div>
+        	 <div class="span3">
+        		<div class="alert alert-info">
+        		Time spent in frontend: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The average time spent in frontend" data-content="Research done by Google shows that for the top 300 000 sites, average of 86% of the time is spent in frontend.">$frontendMedianPercentage</a> %</div>
+        		</div>
+        	</div>
+        	<div class="span3">
+        		<div class="alert alert-info">
+        		Cache time: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The average cache time for all assets of the pages" data-content="Compare the cache time with when an asset was modified, if the last change time was long ago, and the cache time is low, please change it.">#prettyPrint($cacheTimeAverage)</a> (#prettyPrint($cacheTimeMedian))</div>
+        		</div>
+        	</div>
+        	<div class="span3">
+        		<div class="alert alert-info">
+        		Time since last modification: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The average time since an asset was modified" data-content="Compare the cache time with when an asset was modified, if the last change time was long ago, and the cache time is low, please change it.">#prettyPrint($modifiedSinceAverage)</a> (#prettyPrint($modifiedSinceMedian))</div>
+        		</div>
+        	</div>
+        </div>			
+        
+    	<div class="row-fluid">
             <div class="span12">
             <i>* The value inside of the parentheses are the median value (median)</i>
             </div>
         </div>
+        
 
         <div class="row-fluid">
             <div class="span12">
@@ -186,7 +211,7 @@
                     <span class="badge badge-warning">Yellow</span>
                     tells you that you should look into this, and guess what,
                     <span class="badge badge-important">red</span>
-                    means that something is really bad.
+                    means that something is really bad. The <span class="badge badge-info">Blue</span> color are things for your information, no rules but things that will be good to know.
                 </p>
                 <ul>
                     <li> <b>Sitespeed score are based on the <a href="rules.html">rules</a> (modified and enhanced Yslow

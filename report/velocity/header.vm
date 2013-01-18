@@ -51,6 +51,8 @@
     word-wrap: break-word;
     max-width: 450px;
     }
+    
+
 
 	th[data-sort]{
       cursor:pointer;
@@ -141,6 +143,19 @@
     color: #C09853;
     cursor:pointer;
     }
+
+	a.alert-info {
+    text-decoration: none;
+    color: #3A87AD;
+    cursor:pointer;
+    }
+
+	.alert-info {
+  	background-color:#D9EDF7;
+  	border-color:#BCE8F1;
+  	color:#3A87AD;
+	}
+
 
     @media (min-width: 980px) and (max-width: 1199px) {
 

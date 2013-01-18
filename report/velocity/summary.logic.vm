@@ -1,3 +1,4 @@
+
 ## Collecting data needed for the summary page
 
 #set($nrOfPages = $document.getRootElement().getChildren("results").size())
@@ -25,6 +26,10 @@
 #set($statsCriticalPath = $stats.copy())
 #set($statsTextContent = $stats.copy())
 #set($statsTTFB = $stats.copy())
+#set($statsBackend = $stats.copy())
+#set($statsFrontend = $stats.copy())
+#set($statsTimeSinceLastModificationInSeconds = $stats.copy())
+#set($statsAssetCacheTimeInSeconds = $stats.copy())
 
 #foreach ($results in $document.getRootElement().getChildren())
     
@@ -99,9 +104,42 @@
     #end
 
     #if($!{results.getAttribute("ttfb")})
-     $statsTTFB.addValue($math.toDouble($results.getAttribute("ttfb").getValue()))
+     	$statsTTFB.addValue($math.toDouble($results.getAttribute("ttfb").getValue()))
+		$statsBackend.addValue($math.roundTo(3,$math.mul($math.div($math.toDouble($results.getAttribute("ttfb").getValue()),$math.div($math.toDouble($results.getChild("lt").getValue()),1000)),100)))
+		$statsFrontend.addValue($math.roundTo(3,$math.mul($math.div($math.sub($math.div($math.toDouble($results.getChild("lt").getValue()),1000),$math.toDouble($results.getAttribute("ttfb").getValue())),$math.div($math.toDouble($results.getChild("lt").getValue()),1000)),100)))
     #end
 
+	## also fetch the modified since & cache time
+	#foreach ($asset in $results.getChild("comps").getChildren())
+		
+		## set default values
+		#set ($lastMod = "")
+		#set ($date = "")
+		#set ($cacheControl = 0)
+		#set ($expires = "")
+		
+		## fetch the real once
+		#set ($lastMod = $asset.getChild("headers").getChild("response").getChild("Last-Modified").getValue())
+		#set ($date = $asset.getChild("headers").getChild("response").getChild("Date").getValue())
+		#set ($cacheControl = $asset.getChild("headers").getChild("response").getChild("Cache-Control").getValue())
+		#set ($expires = $asset.getChild("headers").getChild("response").getChild("Expires").getValue())
+					
+		#set ($delta = $header.getDelta($lastMod,$date))
+		#if ($delta=="" || ! $delta)
+			## unknown skip it for now
+		#else
+			$statsTimeSinceLastModificationInSeconds.addValue($delta.getSeconds())
+		#end	
+		
+		#set ($cacheTime = $header.getCacheTime($cacheControl, $expires, $date))
+		#if ($cacheTime=="" || !$cacheTime)
+			$statsAssetCacheTimeInSeconds.addValue(0)
+		#else	
+			$statsAssetCacheTimeInSeconds.addValue($cacheTime.getSeconds())
+		#end
+		
+	#end
+	
 #end
 
 ##  Create averages   
@@ -120,6 +158,8 @@
 #set ($totalCriticalPathAverage = $math.roundTo($nrOfDecimals,$statsCriticalPath.getMean())) 
 #set ($textContentAverage = $math.roundTo($nrOfDecimals,$statsTextContent.getMean())) 
 #set ($ttfbAverage = $math.roundTo(3,$statsTTFB.getMean()))
+#set ($frontendAveragePercentage = $math.roundTo(1,$statsFrontend.getMean()))
+#set ($backendAveragePercentage = $math.roundTo(1,$statsBackend.getMean()))
 
 ## Create median
 #set ($scoreMedian = $math.toInteger($statsScore.getPercentile(50)))   
@@ -137,6 +177,8 @@
 #set ($criticalPathMedian = $math.toInteger($statsCriticalPath.getPercentile(50))) 
 #set ($textContentMedian = $math.roundTo(1,$statsTextContent.getPercentile(50)))
 #set ($ttfbMedian = $math.roundTo(3,$statsTTFB.getPercentile(50)))
+#set ($backendMedianPercentage = $math.roundTo(1,$statsBackend.getPercentile(50)))
+#set ($frontendMedianPercentage = $math.roundTo(1,$statsFrontend.getPercentile(50)))
 
 ## Set percentage
 #set ($pagesWithSpofPercentage = $math.roundTo($nrOfDecimals, $math.mul($math.div($totalSpofPages,$nrOfPages),100)))
@@ -148,3 +190,9 @@
 #set ($jsPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($jsAverage,$requestAverage),100)))
 #set ($jsInHeadPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($totalJsSyncInHeadAverage,$jsAverage),100))) 
 
+#set ($cacheTimeAverage = $header.getSeconds($math.toInteger($statsAssetCacheTimeInSeconds.getMean())))
+#set ($cacheTimeMedian = $header.getSeconds($math.toInteger($statsAssetCacheTimeInSeconds.getPercentile(50))))
+#set ($modifiedSinceAverage = $header.getSeconds($math.toInteger($statsTimeSinceLastModificationInSeconds.getMean())))
+#set ($modifiedSinceMedian = $header.getSeconds($math.toInteger($statsTimeSinceLastModificationInSeconds.getPercentile(50))))
+
+							
