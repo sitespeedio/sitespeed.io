@@ -211,7 +211,7 @@
                     <span class="badge badge-warning">Yellow</span>
                     tells you that you should look into this, and guess what,
                     <span class="badge badge-important">red</span>
-                    means that something is really bad. The <span class="badge badge-info">Blue</span> color are things for your information, no rules but things that will be good to know.
+                    means that something is really bad. The <span class="badge badge-info">blue</span> color are things for your information, no rules but things that will be good to know.
                 </p>
                 <ul>
                     <li> <b>Sitespeed score are based on the <a href="rules.html">rules</a> (modified and enhanced Yslow
