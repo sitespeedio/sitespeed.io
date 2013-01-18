@@ -7,6 +7,7 @@ version 1.6
 * Show cache time for each asset & delta between last modified & delivered + average.
 * Configure which yslow file to sue and which ruleset, when you run.
 * Show time spent in frontend vs backend per page
+* On the summary page, now show info blocks: time spent in frontend/backend and cachetime/last modified average
 
 version 1.5.2
 ------------------------
