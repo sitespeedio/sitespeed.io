@@ -5,9 +5,9 @@ version 1.6
 * The SPOF rule now only report font face that are loaded from another top level domain. Also the actual font file is reported.
 * Show requests per domain on individual page.
 * Show cache time for each asset & delta between last modified & delivered + average.
-* Configure which yslow file to sue and which ruleset, when you run.
-* Show time spent in frontend vs backend per page
-* On the summary page, now show info blocks: time spent in frontend/backend and cachetime/last modified average
+* Configure which yslow file to use and which ruleset.
+* Show time spent in frontend vs backend per page.
+* On the summary page, now show info blocks: time spent in frontend/backend and cachetime/last modified average.
 
 version 1.5.2
 ------------------------
