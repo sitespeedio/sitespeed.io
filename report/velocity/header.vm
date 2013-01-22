@@ -278,6 +278,9 @@
             <li#if( $pageMenu == "pages" ) class="active" #end>
               <a href="$!{pathToIncludes}pages.html">All pages</a>
             </li>
+            <li#if( $pageMenu == "assets" ) class="active" #end>
+              <a href="$!{pathToIncludes}assets.html">All assets</a>
+            </li>
           </ul>
         </div>
         <!--/.nav-collapse --> </div>

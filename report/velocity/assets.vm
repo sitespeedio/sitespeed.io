@@ -1,0 +1,75 @@
+#parse("report/velocity/header.vm")
+#parse("report/velocity/assets.logic.vm")
+#parse("report/velocity/date.macros.vm")
+<div class="row-fluid">
+	<div class="span12">
+
+		<h2 class="url">
+            The most popular assets for <a href="$document.getRootElement().getChild("url").getValue()" target="_blank">$document.getRootElement().getChild("url").getValue()</a> ($document.getRootElement().getChildren("results").size() pages)
+        </h2>
+   
+
+		<table class="table table-condensed table-striped table-bordered" id="assetsTable">
+			<thead>
+				<tr>
+					<th data-sort="string">asset</th>
+					<th data-sort="string">type</th>
+					<th data-sort="int">time since last modification</th>
+					<th data-sort="int">cache time</th>
+					<th data-sort="float">size (kb)</th>
+					<th data-sort="int">nr of requests</th>
+				</tr>
+			</thead>
+			<tbody>
+				#foreach ($entry in $assetsAndUseage.entrySet())
+				<tr>
+					<td class="nobreak-page-url"><a href="$entry.getKey()" target="_blank">$entry.getKey()</a></td>
+					<td>$assetAndType.get($entry.getKey())</td>
+					#set ($delta = $assetAndNotModifiedSince.get($entry.getKey()))
+					#if ($delta=="" || ! $delta)
+						#set ($sort=0)
+					#else
+					    	#set ($sort=$delta.getSeconds())
+					#end	
+					<td data-sort-value="$sort">
+						#if ($assetAndType.get($entry.getKey()) == "favicon")
+							unknown
+						#elseif ($delta=="" || ! $delta)
+						     last modified not set
+						#else	
+						     #prettyPrint($delta)
+						#end
+					</td>
+					#set ($cacheTime = $assetAndCacheTime.get($entry.getKey()))
+					#if ($assetAndType.get($entry.getKey()) == "favicon")
+						#set ($sort=-1)
+					#elseif ($cacheTime=="" || !$cacheTime)
+					     #set ($sort=0)
+					#else	
+					     #set ($sort=$cacheTime.getSeconds())
+					#end     
+					<td  data-sort-value="$sort">
+					#if ($assetAndType.get($entry.getKey()) == "favicon")
+						unknown
+					#elseif ($cacheTime=="" || !$cacheTime)
+					     0
+					#else								   
+					     #prettyPrint($cacheTime)  
+					#end
+					</td>
+					<td>$assetAndSize.get($entry.getKey())</td>
+					<td>$entry.getValue()</td>
+				</tr>
+				#end
+			</tbody>
+		</table>
+	</div>
+</div>
+#parse("report/velocity/footer.vm")
+<script>
+		   $(function(){
+        $("#assetsTable").stupidtable();
+		 });
+		</script>
+</body>
+</html>
