@@ -25,20 +25,23 @@ important#end#end
 
 
 ## Verify number of JS, 2 is ok (analythics & one combined :)		
+## The warning is the number from httparchive, most common number of js
 #macro ( jsType $js )
-#if ($js<3)success#elseif ($js<5)
+#if ($js<3)success#elseif ($js<15)
 warning#else
 error#end#end
 
 ## Verify number of CSS, yes have one combined
+## The warning (5) is the number from httparchive, most common number of css
 #macro ( cssType $css )
-#if ($css<3)success#elseif ($css<4)
+#if ($css<3)success#elseif ($css<5)
 warning#else
 error#end#end
 
 ## Verify number of requests for a page, below 25 is ok
+## 88 is the avreage amount from http archive
 #macro ( requestType $r )
-#if ($r<25)success#elseif ($r<50)
+#if ($r<25)success#elseif ($r<88)
 warning#else
 error#end#end	
 
@@ -49,8 +52,9 @@ warning#else
 error#end#end	
 
 ## Verify number of images on page, below 25 is ok for now
+## 54 is the average value according to httparchive
 #macro ( imageType $image )
-#if ($image<25)success#elseif ($image<40)
+#if ($image<25)success#elseif ($image<54)
 warning#else
 error#end#end
 
@@ -62,13 +66,14 @@ warning#else
 error#end#end
 
 ## Verify the total page wight (including all assets). Below 1 mb is ok
+## 1280000 is average from http archive
 #macro ( weightType $weight )
-#if ($weight<1000000)success#elseif ($weight<1500000)
+#if ($weight<1000000)success#elseif ($weight<1280000)
 warning#else
 error#end#end
 
 ## Verify the doc weight, needs to be small for mobile, should also 
-## take inconcideration total weight.
+## take inconcideration total weight. 
 #macro ( weightMobileType $weight )
 #if ($weight<10000)success#elseif ($weight<15000)
 warning#else
