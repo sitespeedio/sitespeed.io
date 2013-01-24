@@ -54,6 +54,8 @@
 			#set($file = $page.getAttribute("filename").getValue())
             #set($file = $file.concat(".html"))
 			#set($swallow = $assetAnPage.put($theUrl,$file))
+			
+			$toplisttool.push($theUrl)
 		#end
 	#end
 #end
