@@ -8,6 +8,8 @@ version 1.6
 * Configure which yslow file to use and which ruleset.
 * Show time spent in frontend vs backend per page.
 * On the summary page, now show info blocks: time spent in frontend/backend and cachetime/last modified average.
+* New page: The assets page, show the most used assets for the site
+* Adjusted the warning rules on the summary page, now a warning is up to the average number collected from httparchive (where applicable)
 
 version 1.5.2
 ------------------------
