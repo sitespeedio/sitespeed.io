@@ -39,7 +39,7 @@ OPTIONS:
    -f      Crawl only on this path [optional]
    -s      Skip urls that contains this in the path [optional]
    -p      The number of processes that will analyze pages, default is 5 [optional]
-   -m      The memory heap size for the java applications, default is 1024 kb [optional]
+   -m      The memory heap size for the java applications, default is 1024 Mb [optional]
    -o      The output format, always output as html but you can add images (img) [optional]
    -r      The result base directory, default is sitespeed-result [optional]
    -z      Create a tar zip file of the result files, default is false [optional]
@@ -131,7 +131,7 @@ do
          f)FOLLOW_PATH=$OPTARG;;
          s)NOT_IN_URL=$OPTARG;;   
          o)OUTPUT_FORMAT=$OPTARG;;  
-         m)JAVA_HEAP==$OPTARG;;  
+         m)JAVA_HEAP=$OPTARG;;  
          p)MAX_PROCESSES=$OPTARG;;
          r)REPORT_BASE_DIR=$OPTARG;;
          z)CREATE_TAR_ZIP=$OPTARG;;
