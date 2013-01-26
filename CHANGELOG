@@ -10,6 +10,7 @@ version 1.6
 * On the summary page, now show info blocks: time spent in frontend/backend and cachetime/last modified average.
 * New page: The assets page, show the most used assets for the site
 * Adjusted the warning rules on the summary page, now a warning is up to the average number collected from httparchive (where applicable)
+* Java jar dependencies now compiled for java 1.6 and higher
 
 version 1.5.2
 ------------------------
