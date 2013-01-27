@@ -11,6 +11,7 @@ version 1.6
 * New page: The assets page, show the most used assets for the site
 * Adjusted the warning rules on the summary page, now a warning is up to the average number collected from httparchive (where applicable)
 * Java jar dependencies now compiled for java 1.6 and higher
+* Upgraded Yslow to 3.1.5
 
 version 1.5.2
 ------------------------
