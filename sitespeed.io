@@ -47,7 +47,7 @@ OPTIONS:
    -t      The proxy type, default is http [optional]
    -a      The user agent, default is "Mozilla/6.0" [optional]
    -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional] 
-   -y 	   The compiled yslow file, default is dependencies/yslow-3.1.4-sitespeed.js [optional]
+   -y 	   The compiled yslow file, default is dependencies/yslow-3.1.5-sitespeed.js [optional]
    -l 	   Which ruleset to use, default is the latest sitespeed.io version [optional]  
 EOF
 }
@@ -115,7 +115,7 @@ USER_AGENT_CURL=
 VIEWPORT=1280x800
 VIEWPORT_YSLOW=
 
-YSLOW_FILE=dependencies/yslow-3.1.4-sitespeed.js
+YSLOW_FILE=dependencies/yslow-3.1.5-sitespeed.js
 RULESET=sitespeed.io-1.6
 
 # Set options

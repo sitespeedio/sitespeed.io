@@ -31,7 +31,7 @@ package:
 	@cp $(DEP)/rasterize.js $(BUILD)/$(DEP)/
 	@cp $(DEP)/htmlcompressor-1.5.3.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/yuicompressor-2.4.6.jar $(BUILD)/$(DEP)/
-	@cp $(DEP)/yslow-3.1.4-sitespeed.js $(BUILD)/$(DEP)/
+	@cp $(DEP)/yslow-3.1.5-sitespeed.js $(BUILD)/$(DEP)/
 	@cp $(REPORT)/$(CSS)/bootstrap.min.css $(BUILD)/$(REPORT)/$(CSS)/
 	@cp $(REPORT)/$(IMG)/apple-touch-icon-114-precomposed.png $(BUILD)/$(REPORT)/$(IMG)/
 	@cp $(REPORT)/$(IMG)/apple-touch-icon-144-precomposed.png $(BUILD)/$(REPORT)/$(IMG)/
