@@ -276,7 +276,7 @@
               <a href="$!{pathToIncludes}index.html">Summary</a>
             </li>
             <li#if( $pageMenu == "pages" ) class="active" #end>
-              <a href="$!{pathToIncludes}pages.html">All pages</a>
+              <a href="$!{pathToIncludes}pages.html">Pages</a>
             </li>
             <li#if( $pageMenu == "assets" ) class="active" #end>
               <a href="$!{pathToIncludes}assets.html">Assets</a>
