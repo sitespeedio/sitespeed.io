@@ -15,18 +15,18 @@
 			<thead>
 				<tr>
 					<th data-sort="string">asset</th>
-					<th data-sort="string">type</th>
-					<th data-sort="int">time since last modification</th>
+					<th data-sort="string"><span class="visible-desktop visible-tablet">type</span></th>
+					<th data-sort="int"><span class="visible-desktop visible-tablet">time since last modification</span><span class="visible-phone">last mod</span></th>
 					<th data-sort="int">cache time</th>
 					<th data-sort="float">size (kb)</th>
-					<th data-sort="int">nr of requests</th>
+					<th data-sort="int"><span class="visible-desktop visible-tablet">nr of requests</span><span class="visible-phone">r</span></th>
 				</tr>
 			</thead>
 			<tbody>
 				#foreach ($entry in $toplist)
 				<tr>
 					<td class="nobreak-asset-url"><a href="$entry.getUrl()" target="_blank">$entry.getUrl()</a></td>
-					<td>$assetAndType.get($entry.getUrl())</td>
+					<td><span class="visible-desktop visible-tablet">$assetAndType.get($entry.getUrl())</span></td>
 					#set ($delta = $assetAndNotModifiedSince.get($entry.getUrl()))
 					#if ($delta=="" || ! $delta)
 						#set ($sort=0)

@@ -270,6 +270,15 @@
 
 
 }
+    ## Small phones
+    @media (max-width:480px) {
+    
+    .nobreak-asset-url {
+       max-width: 50px;
+    }
+
+  }
+
   </style>
 
   <link rel="shortcut icon" href="$!{pathToIncludes}img/favicon.png">
