@@ -70,6 +70,13 @@
     max-width: 500px;
     }
 
+    ## Taking care of urls not breaking the table in assets
+    .nobreak-asset-url {
+    word-wrap: break-word;
+    max-width: 500px;
+    }
+
+
    a.clean:hover{
     color: #000000;
     text-decoration: none;
@@ -199,6 +206,10 @@
     font-size: 12px;
     line-height: 16px;
     }
+
+    .nobreak-asset-url {
+    max-width: 400px;
+    }
 }
 
     ## Phones
@@ -249,9 +260,14 @@
     max-width: 100px;
     }
 
+     .nobreak-asset-url {
+       max-width: 100px;
+    }
+
     .nobreak-rules {
      max-width: 100px;
     }
+
 
 }
   </style>

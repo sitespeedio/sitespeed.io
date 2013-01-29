@@ -25,7 +25,7 @@
 			<tbody>
 				#foreach ($entry in $toplist)
 				<tr>
-					<td class="nobreak-page-url"><a href="$entry.getUrl()" target="_blank">$entry.getUrl()</a></td>
+					<td class="nobreak-asset-url"><a href="$entry.getUrl()" target="_blank">$entry.getUrl()</a></td>
 					<td>$assetAndType.get($entry.getUrl())</td>
 					#set ($delta = $assetAndNotModifiedSince.get($entry.getUrl()))
 					#if ($delta=="" || ! $delta)
