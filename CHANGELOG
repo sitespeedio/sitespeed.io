@@ -1,5 +1,10 @@
 CHANGELOG sitespeed.io
 
+version 1.7
+------------------------
+* Added check that Java exists before the analyze
+* Feed sitespeed with either a url to crawl or a plain text file with a list of URL:s
+
 version 1.6
 ------------------------
 * The SPOF rule now only report font face that are loaded from another top level domain. Also the actual font file is reported.
