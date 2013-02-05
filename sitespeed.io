@@ -45,7 +45,7 @@ Sitespeed is a tool that helps you analyze your website performance and show you
 
 OPTIONS:
    -h      Help
-   -u      The start url for the test: http[s]://host[:port][/path/]
+   -u      The start url for the test: http[s]://host[:port][/path/] or the path to a plain text file with each url to test on one row each
    -d      The crawl depth, default is 1 [optional]
    -f      Crawl only on this path [optional]
    -s      Skip urls that contains this in the path [optional]
@@ -58,8 +58,8 @@ OPTIONS:
    -t      The proxy type, default is http [optional]
    -a      The user agent, default is "Mozilla/6.0" [optional]
    -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional] 
-   -y 	   The compiled yslow file, default is dependencies/yslow-3.1.5-sitespeed.js [optional]
-   -l 	   Which ruleset to use, default is the latest sitespeed.io version [optional]  
+   -y      The compiled yslow file, default is dependencies/yslow-3.1.5-sitespeed.js [optional]
+   -l	     Which ruleset to use, default is the latest sitespeed.io version [optional]  
 EOF
 }
 
@@ -129,6 +129,8 @@ VIEWPORT_YSLOW=
 YSLOW_FILE=dependencies/yslow-3.1.5-sitespeed.js
 RULESET=sitespeed.io-1.6
 
+URL_FILE=
+
 # Set options
 while getopts “hu:d:f:s:o:m:p:r:z:x:t:a:v:y:l:” OPTION
 do
@@ -161,10 +163,15 @@ done
 
 # Verify that all options needed exists & set default values for missing ones
 
-if [[ -z $URL ]] 
+if [[ -z $URL ]]
 then
      help
      exit 1
+fi
+
+if [[ "$URL" != http* ]]
+  then 
+  URL_FILE="$URL"
 fi
 
 if [ "$FOLLOW_PATH" != "" ]
@@ -215,7 +222,12 @@ cd "$(dirname ${BASH_SOURCE[0]})"
 NOW=$(date +"%Y-%m-%d-%H-%M-%S")
 DATE=$(date) 
 
-echo "Will crawl from start point $URL with User-Agent $USER_AGENT and viewport $VIEWPORT with crawl depth $DEPTH using ruleset $RULESET ... this can take a while"
+if [[ -z $URL_FILE ]] 
+  then
+  echo "Will crawl from start point $URL with User-Agent $USER_AGENT and viewport $VIEWPORT with crawl depth $DEPTH using ruleset $RULESET ... this can take a while"
+else
+ echo "Will fetch urls from the file $URL_FILE with User-Agent $USER_AGENT and viewport $VIEWPORT using ruleset $RULESET ... this can take a while"
+fi
 
 # remove the protocol                                                                                                                                                            
 NOPROTOCOL=${URL#*//}
@@ -242,7 +254,12 @@ mkdir $REPORT_DATA_DIR
 mkdir $REPORT_PAGES_DIR
 mkdir $REPORT_DATA_PAGES_DIR
 
-$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -Dcom.soulgalore.crawler.propertydir=$DEPENDENCIES_DIR/ $PROXY_CRAWLER -cp $DEPENDENCIES_DIR/$CRAWLER_JAR com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL $USER_AGENT_CRAWLER -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/errorurls.txt
+if [[ -z $URL_FILE ]]
+then 
+  $JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -Dcom.soulgalore.crawler.propertydir=$DEPENDENCIES_DIR/ $PROXY_CRAWLER -cp $DEPENDENCIES_DIR/$CRAWLER_JAR com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL $USER_AGENT_CRAWLER -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/errorurls.txt
+else
+  cp $URL_FILE $REPORT_DATA_DIR/urls.txt
+fi
 
 if [ ! -e $REPORT_DATA_DIR/urls.txt ];
 then
@@ -256,7 +273,7 @@ while read txt ; do
    result[${#result[@]}]=$txt
 done < $REPORT_DATA_DIR/urls.txt
 
-echo "Fetched ${#result[@]} pages" 
+echo "Will analyze ${#result[@]} pages" 
 
 # Setup start parameters, 0 jobs are running and the first file name
 JOBS=0
