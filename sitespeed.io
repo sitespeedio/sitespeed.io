@@ -20,6 +20,17 @@
 command -v phantomjs >/dev/null 2>&1 || { echo >&2 "Missing phantomjs, please install it to be able to run sitespeed.io"; exit 1; }
 command -v curl >/dev/null 2>&1 || { echo >&2 "Missing curl, please install it to be able to run sitespeed.io"; exit 1; }
 
+# Respect JAVA_HOME if set
+if [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/java" ]]
+then
+    JAVA="$JAVA_HOME/bin/java"
+else
+    JAVA="java"
+fi
+
+JAVA_VER=$($JAVA -version 2>&1 | sed 's/java version "\(.*\)\.\(.*\)\..*"/\1\2/; 1q')
+[ "$JAVA_VER" -ge 16 ] || { echo "Java version $JAVA_VER is too old, you will need at least Java 1.6 to run sitespeed.io"; exit 1;}
+
 
 #*******************************************************
 # Help function, call it to print all different usages.
@@ -197,14 +208,6 @@ fi
 
 
 # Finished verify the input
-
-# Respect JAVA_HOME if set
-if [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/java" ]]
-then
-    JAVA="$JAVA_HOME/bin/java"
-else
-    JAVA="java"
-fi
 
 # Switch to my dir
 cd "$(dirname ${BASH_SOURCE[0]})"
