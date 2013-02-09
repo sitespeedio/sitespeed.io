@@ -3,10 +3,12 @@
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output method="xml" indent="yes" />
 	
-	<xsl:param name="failure-limit" />
+	<xsl:param name="page-limit" />
+	<xsl:param name="avg-limit" />
 	<xsl:param name="skip" />
 	<xsl:param name="rules-file" />
 	<xsl:param name="dictionary" select="document($rules-file,/)"/>
+
 	<xsl:template match="/">
 		<testsuites>
 			<xsl:apply-templates />
@@ -16,10 +18,29 @@
 	<xsl:template name="results" match="results">
 		<xsl:variable name="url" select="substring-before(concat(curl, '?'), '?')" />
 		<xsl:variable name="tests" select="count(g/*)" />
-		<xsl:variable name="failures" select="count(g/*[score&lt;$failure-limit])" />
+		<xsl:variable name="failures" select="count(g/*[score&lt;$page-limit])" />
 		<xsl:variable name="skipped" select="count(g/*[contains($skip,name(.))])" />
-		<testsuite name="sitespeed.io-{$url}" tests="{$tests}"
-			failures="{$failures}" skipped="{$skipped}">
+
+		<xsl:variable name="sum" select="sum(g/*/score)"/>
+		<xsl:variable name="avg-score" select="$sum div $tests"/>
+		<xsl:variable name="avg-score-decimals" select="format-number($avg-score, '0.00')" />		
+
+		<!--Taking care of the case when the overall fails -->
+        <xsl:variable name="avg-fail">
+		   <xsl:choose>
+		        <xsl:when test="$avg-score-decimals&lt;$avg-limit">1</xsl:when>
+		        <xsl:otherwise>0</xsl:otherwise>
+		    </xsl:choose>
+		</xsl:variable>	
+
+		<!-- Adding one extra test for the overall score -->
+		<testsuite name="sitespeed.io-{$url}" tests="{$tests+1}"
+			failures="{$failures+$avg-fail}" skipped="{$skipped}">
+			<testcase name="Overall average score" status="{$avg-score-decimals}">
+			    <xsl:if test="$avg-score-decimals&lt;$avg-limit">
+			        <failure message="The average overall score is below your limit of {$avg-limit}"/>
+			    </xsl:if>
+			</testcase>	
 			<xsl:apply-templates />
 		</testsuite>
 	</xsl:template>
@@ -33,7 +54,7 @@
 			<xsl:if test="contains($skip,$testkey)">
 				<skipped></skipped>
 			</xsl:if>
-			<xsl:if test="$score&lt;$failure-limit">
+			<xsl:if test="$score&lt;$page-limit">
 				<xsl:variable name="message" select="message" />
 
 				<failure message="{$message}">
