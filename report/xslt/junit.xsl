@@ -13,7 +13,7 @@
 		</testsuites>
 	</xsl:template>
 
-	<xsl:template match="results">
+	<xsl:template name="results" match="results">
 		<xsl:variable name="url" select="substring-before(concat(curl, '?'), '?')" />
 		<xsl:variable name="tests" select="count(g/*)" />
 		<xsl:variable name="failures" select="count(g/*[score&lt;$failure-limit])" />
@@ -46,7 +46,7 @@
 		</testcase>
 	</xsl:template>
 
-	<xsl:template match="stats|comps|w_c|r_c|stats_c">
+	<xsl:template match="w|o|u|i|r|lt|url|curl|stats|comps|w_c|r_c|stats_c">
 	<!-- skip these -->
 	</xsl:template>
 	
