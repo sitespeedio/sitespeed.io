@@ -45,9 +45,10 @@ Sitespeed is a tool that helps you analyze your website performance and show you
 
 OPTIONS:
    -h      Help
-   -u      The start url for the test: http[s]://host[:port][/path/] or the path to a plain text file with each url to test on one row each
+   -u      The start url of the crawl with the format of http[s]://host[:port][/path/]. Use this or use the -f file option.
+   -f      The path to a plain text file with one url on each row. These URL:s will be used instead crawling.
    -d      The crawl depth, default is 1 [optional]
-   -f      Crawl only on this path [optional]
+   -c      Crawl only on this path [optional]
    -s      Skip urls that contains this in the path [optional]
    -p      The number of processes that will analyze pages, default is 5 [optional]
    -m      The memory heap size for the java applications, default is 1024 Mb [optional]
@@ -59,7 +60,7 @@ OPTIONS:
    -a      The user agent, default is "Mozilla/6.0" [optional]
    -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional] 
    -y      The compiled yslow file, default is dependencies/yslow-3.1.5-sitespeed.js [optional]
-   -l	     Which ruleset to use, default is the latest sitespeed.io version [optional]  
+   -l      Which ruleset to use, default is the latest sitespeed.io version [optional]  
 EOF
 }
 
@@ -104,6 +105,7 @@ analyze() {
 
 # All the options that you can configure when you run the script
 URL=
+FILE=
 DEPTH=1
 FOLLOW_PATH=
 NOT_IN_URL=
@@ -129,10 +131,8 @@ VIEWPORT_YSLOW=
 YSLOW_FILE=dependencies/yslow-3.1.5-sitespeed.js
 RULESET=sitespeed.io-1.6
 
-URL_FILE=
-
 # Set options
-while getopts “hu:d:f:s:o:m:p:r:z:x:t:a:v:y:l:” OPTION
+while getopts “hu:d:f:s:o:m:p:r:z:x:t:a:v:y:l:c:” OPTION
 do
      case $OPTION in
          h)
@@ -141,7 +141,7 @@ do
              ;;
          u)URL=$OPTARG;;
          d)DEPTH=$OPTARG;;
-         f)FOLLOW_PATH=$OPTARG;;
+         c)FOLLOW_PATH=$OPTARG;;
          s)NOT_IN_URL=$OPTARG;;   
          o)OUTPUT_FORMAT=$OPTARG;;  
          m)JAVA_HEAP=$OPTARG;;  
@@ -154,6 +154,7 @@ do
          v)VIEWPORT=$OPTARG;;
          y)YSLOW_FILE=$OPTARG;;
          l)RULESET=$OPTARG;;
+         f)FILE=$OPTARG;;
          ?)
              help
              exit
@@ -163,15 +164,17 @@ done
 
 # Verify that all options needed exists & set default values for missing ones
 
-if [[ -z $URL ]]
+if [[ -z $URL ]] && [[ -z $FILE ]]
 then
      help
      exit 1
 fi
 
-if [[ "$URL" != http* ]]
-  then 
-  URL_FILE="$URL"
+if [ "$URL" != "" ] && [ "$FILE" != "" ]
+  then
+  echo 'You must either choose supply a start url for the crawl or supply a file with the url:s, not both at the same time'
+  help
+  exit 1
 fi
 
 if [ "$FOLLOW_PATH" != "" ]
@@ -222,11 +225,11 @@ cd "$(dirname ${BASH_SOURCE[0]})"
 NOW=$(date +"%Y-%m-%d-%H-%M-%S")
 DATE=$(date) 
 
-if [[ -z $URL_FILE ]] 
+if [[ -z $FILE ]] 
   then
   echo "Will crawl from start point $URL with User-Agent $USER_AGENT and viewport $VIEWPORT with crawl depth $DEPTH using ruleset $RULESET ... this can take a while"
 else
- echo "Will fetch urls from the file $URL_FILE with User-Agent $USER_AGENT and viewport $VIEWPORT using ruleset $RULESET ... this can take a while"
+ echo "Will fetch urls from the file $FILE with User-Agent $USER_AGENT and viewport $VIEWPORT using ruleset $RULESET ... this can take a while"
 fi
 
 # remove the protocol                                                                                                                                                            
@@ -254,11 +257,11 @@ mkdir $REPORT_DATA_DIR
 mkdir $REPORT_PAGES_DIR
 mkdir $REPORT_DATA_PAGES_DIR
 
-if [[ -z $URL_FILE ]]
+if [[ -z $FILE ]]
 then 
   $JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -Dcom.soulgalore.crawler.propertydir=$DEPENDENCIES_DIR/ $PROXY_CRAWLER -cp $DEPENDENCIES_DIR/$CRAWLER_JAR com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL $USER_AGENT_CRAWLER -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/errorurls.txt
 else
-  cp $URL_FILE $REPORT_DATA_DIR/urls.txt
+  cp $FILE $REPORT_DATA_DIR/urls.txt
 fi
 
 if [ ! -e $REPORT_DATA_DIR/urls.txt ];
