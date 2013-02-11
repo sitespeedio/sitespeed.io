@@ -59,7 +59,7 @@
 		<xsl:variable name="testkey" select="name(.)" />
 		<xsl:variable name="testname" select="$dictionary/results/dictionary/rules/*[contains($testkey,name(.))]/name" />
 		<xsl:variable name="score" select="score" />
-		<testcase name="{$testkey}: {$testname}" status="{$score}" time="0.1">
+		<testcase name="{$testkey}: {$testname}" status="{$score}">
 			<!-- Checked if skipped -->
 			<xsl:if test="contains($skip,$testkey)">
 				<skipped></skipped>
