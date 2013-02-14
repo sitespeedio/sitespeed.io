@@ -252,10 +252,10 @@ REPORT_IMAGE_PAGES_DIR=$REPORT_DIR/images
 VELOCITY_DIR=report/velocity
 PROPERTIES_DIR=report/properties
 
-mkdir -p $REPORT_DIR
-mkdir $REPORT_DATA_DIR
-mkdir $REPORT_PAGES_DIR
-mkdir $REPORT_DATA_PAGES_DIR
+mkdir -p $REPORT_DIR || exit 1
+mkdir $REPORT_DATA_DIR || exit 1
+mkdir $REPORT_PAGES_DIR || exit 1
+mkdir $REPORT_DATA_PAGES_DIR || exit 1
 
 if [[ -z $FILE ]]
 then 
