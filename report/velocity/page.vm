@@ -349,6 +349,12 @@
 							</td>
 						</tr>
 						<tr>
+							<td>domains</td>
+							<td>$hostAndRequests.size()</td>
+						</tr>							
+
+	
+						<tr>
 							<td>ttfb</td>
 							<td>$document.getRootElement().getAttribute("ttfb").getValue() s</td>
 						</tr>
