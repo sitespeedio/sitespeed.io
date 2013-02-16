@@ -73,9 +73,9 @@ warning#else
 error#end#end
 
 ## Verify the doc weight, needs to be small for mobile, should also 
-## take inconcideration total weight. 
+## take inconcideration total weight. 26000 kb is the average from http archive
 #macro ( weightMobileType $weight )
-#if ($weight<10000)success#elseif ($weight<15000)
+#if ($weight<10000)success#elseif ($weight<26000)
 warning#else
 error#end#end
 
