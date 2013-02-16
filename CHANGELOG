@@ -6,6 +6,7 @@ version 1.7
 * Feed sitespeed with either a url to crawl or a plain text file with a list of URL:s (NOTE: the -f argument is now used for the file, the -c is the new for follow a specific path when crawling)
 * Create a junit xml file from the test, new script & new xsl file 
 * Added new max size of a document, using stats from http archive
+* Showing the number of domains on page summary
 
 version 1.6
 ------------------------
