@@ -385,7 +385,7 @@
 						<tr>
 							<td>cacheable assets</td>
 							<td>
-								$math.mul($math.div($math.sub($totalRequests,$math.toInteger($document.getRootElement().getChild("g").getChild("expiresmod").getChild("components").getChildren("item").size())),$totalRequests),100) %
+								$math.roundTo(2,$math.mul($math.div($math.sub($totalRequests,$math.toInteger($document.getRootElement().getChild("g").getChild("expiresmod").getChild("components").getChildren("item").size())),$totalRequests),100)) %
 							</td>
 						</tr>
 						<tr>
