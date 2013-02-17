@@ -7,6 +7,9 @@ version 1.7
 * Create a junit xml file from the test, new script & new xsl file 
 * Added new max size of a document, using stats from http archive
 * Showing the number of domains on page summary
+* Showing the percantage of assets that are cacheable on page summary
+* Show the amount of assets that don't have an exipre header om site summary & pages summary
+* Removed prime cache valyes from site summary & page summary (was not always correct)
 
 version 1.6
 ------------------------
