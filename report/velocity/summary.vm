@@ -16,7 +16,7 @@
 #set($spofText = "0 pages is good, everything else is bad. Excludes subdomains on the document domain from the spof.")
 #set($jsSyncInHeadText = "0 is good, 1 or more is bad and not OK.")
 #set($spofPerPageText = "Everything above 0 is bad!")
-#set($assetsWithoutFarExpiresText = "0 is good. More than 4 is bad. Google Analytics & Gaug.es is excluded from this.")
+#set($assetsWithoutExpiresText = "0 is good. More than 4 is bad.")
 #set($percentageJsText = "Less than 50% is good, above 75 % is bad.")
 #set($criticalPathText = "You should always aim for score 100, above 95 is OK.")
 #set($textContentText = "Above 50% is good, below 25% is bad.")
@@ -104,22 +104,17 @@
         </div>
 
         <div class="row-fluid">
-             <div class="span4">
+             <div class="span6">
                 <div class="alert alert-#requestType($requestAverage)">
                     Number of requests
                     <div><a href="#" rel="popover" class="alert-#requestType($requestAverage) large" data-trigger="hover" title="Average number of $requestAverage requests" data-content="$requestText">$requestAverage</a> ($requestMedian)</div>
                 </div>
             </div>
-            <div class="span4">
-                <div class="alert alert-#requestPrimedType($requestAverage $requestPrimedAverage)">
-                    Number of requests with primed cache 
-                      <div><a href="#" rel="popover" class="alert-#requestPrimedType($requestAverage $requestPrimedAverage) large" data-trigger="hover" title="Average number of $requestPrimedAverage requests with a primed cache ($requestWithPrimedCachePercentage % of the requests is not cached at all in the browser cache)" data-content="$nrOfRequestPrimedText">$requestPrimedAverage</a> ($requestPrimedMedian)</div>
-                </div>
-            </div>
-             <div class="span4">
-                    <div class="alert alert-#expiresType($totalAssetsWithoutFarExpiresAverage)">
-                    Requests without far expires 
-                      <div><a href="#" rel="popover" class="alert-#expiresType($totalAssetsWithoutFarExpiresAverage) large" data-trigger="hover" title="Average number of $totalAssetsWithoutFarExpiresAverage requests for static content without a far-future expiration date #if($math.toInteger($requestWithoutFarExpirePercentage) > 0) ($requestWithoutFarExpirePercentage % of the requests is lacking a far expiration date) #end" data-content="$assetsWithoutFarExpiresText">$totalAssetsWithoutFarExpiresAverage</a> ($assetsWithoutFarExpiresMedian) 
+    
+             <div class="span6">
+                    <div class="alert alert-#expiresType($totalAssetsWithoutExpiresAverage)">
+                    Requests without expires 
+                      <div><a href="#" rel="popover" class="alert-#expiresType($totalAssetsWithoutExpiresAverage) large" data-trigger="hover" title="Average number of $totalAssetsWithoutExpiresAverage requests for static content without a future expiration date #if($math.toInteger($requestWithoutExpirePercentage) > 0) ($requestWithoutExpirePercentage % of the requests is lacking a expiration date) #end" data-content="$assetsWithoutExpiresText">$totalAssetsWithoutExpiresAverage</a> ($assetsWithoutExpiresMedian) 
 		      </div>
                 </div>
              </div>
@@ -245,10 +240,7 @@
                         <b>The number of images</b>: 
                         $nrOfImagesText 
                     </li>
-                    <li>
-                        <b>The number of requests for a primed cache</b>:
-                        $nrOfRequestPrimedText 
-                    </li>
+            
                      <li>
                         <b>The number of pages with the possibility of frontend single point of failure</b>: 
                         $spofText
@@ -258,8 +250,8 @@
                         $jsSyncInHeadText
                     </li>
                     <li>
-                        <b>Average number of requests for static content without a far-future expiration date</b>: 
-                        $assetsWithoutFarExpiresText
+                        <b>Average number of requests for static content without a future expiration date</b>: 
+                        $assetsWithoutExpiresText
                        
                     </li>
                     <li>

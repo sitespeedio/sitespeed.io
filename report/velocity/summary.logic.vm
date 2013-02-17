@@ -16,13 +16,12 @@
 #set($statsImages = $stats.copy())
 #set($statsCssImages = $stats.copy())
 #set($statsRequests = $stats.copy())
-#set($statsRequestsCached = $stats.copy())
 #set($statsPageWeight = $stats.copy())
 #set($statsScore = $stats.copy())
 #set($statsDocumentWeight = $stats.copy())
 #set($statsSpof = $stats.copy())
 #set($statsJsSyncInHead = $stats.copy())
-#set($statsAssetsWithoutFarExpires = $stats.copy())
+#set($statsAssetsWithoutExpires = $stats.copy())
 #set($statsCriticalPath = $stats.copy())
 #set($statsTextContent = $stats.copy())
 #set($statsTTFB = $stats.copy())
@@ -51,16 +50,6 @@
 
     #if($!{results.getChild("r")})
          $statsRequests.addValue($math.toInteger($results.getChild("r").getValue()))
-    #end
-
-    #if($!{results.getChild("r_c")})
-        #set ($requestsCached = $math.toInteger($results.getChild("r_c").getValue()))
-        ## If one is favicon, remove it because of the favicon cache bug
-        #if ($math.toInteger($results.getChild("stats").getChild("favicon").getChild("r").getValue()) > 0)
-            #set ($requestsCached = $math.sub($requestsCached, $results.getChild("stats").getChild("favicon").getChild("r").getValue()))
-        #end
-        $statsRequestsCached.addValue($requestsCached)
-
     #end
       
     #if($!{results.getChild("w")})
@@ -100,7 +89,7 @@
 
 
     #if($!{results.getChild("g").getChild("expiresmod").getChild("components")})
-     $statsAssetsWithoutFarExpires.addValue($math.toInteger($results.getChild("g").getChild("expiresmod").getChild("components").getChildren("item").size()))
+     $statsAssetsWithoutExpires.addValue($math.toInteger($results.getChild("g").getChild("expiresmod").getChild("components").getChildren("item").size()))
     #end
 
     #if($!{results.getAttribute("ttfb")})
@@ -149,12 +138,11 @@
 #set ($cssAverage = $math.roundTo($nrOfDecimals,$statsCss.getMean()))  
 #set ($cssImageAverage = $math.roundTo($nrOfDecimals,$statsCssImages.getMean()))  
 #set ($imageAverage = $math.roundTo($nrOfDecimals,$statsImages.getMean()))
-#set ($requestPrimedAverage = $math.roundTo($nrOfDecimals,$statsRequestsCached.getMean()))  
 #set ($pageWeightAverage = $math.roundTo($nrOfDecimals,$statsPageWeight.getMean()))  
 #set ($totalDocumentWeightAverage = $math.roundTo($nrOfDecimals,$statsDocumentWeight.getMean()))  
 #set ($totalJsSyncInHeadAverage = $math.roundTo($nrOfDecimals,$statsJsSyncInHead.getMean()))  
 #set ($totalSpofAverage = $math.roundTo($nrOfDecimals,$statsSpof.getMean()))  
-#set ($totalAssetsWithoutFarExpiresAverage = $math.roundTo($nrOfDecimals,$statsAssetsWithoutFarExpires.getMean())) 
+#set ($totalAssetsWithoutExpiresAverage = $math.roundTo($nrOfDecimals,$statsAssetsWithoutExpires.getMean())) 
 #set ($totalCriticalPathAverage = $math.roundTo($nrOfDecimals,$statsCriticalPath.getMean())) 
 #set ($textContentAverage = $math.roundTo($nrOfDecimals,$statsTextContent.getMean())) 
 #set ($ttfbAverage = $math.roundTo(3,$statsTTFB.getMean()))
@@ -168,12 +156,11 @@
 #set ($cssMedian = $math.toInteger($statsCss.getPercentile(50))) 
 #set ($cssImageMedian = $math.toInteger($statsCssImages.getPercentile(50))) 
 #set ($imageMedian = $math.toInteger($statsImages.getPercentile(50))) 
-#set ($requestPrimedMedian = $math.toInteger($statsRequestsCached.getPercentile(50))) 
 #set ($pageWeightMedian = $math.toInteger($statsPageWeight.getPercentile(50))) 
 #set ($documentWeightMedian = $math.toInteger($statsDocumentWeight.getPercentile(50))) 
 #set ($jsSyncInHeadMedian = $math.toInteger($statsJsSyncInHead.getPercentile(50))) 
 #set ($spofMedian = $math.toInteger($statsSpof.getPercentile(50))) 
-#set ($assetsWithoutFarExpiresMedian = $math.toInteger($statsAssetsWithoutFarExpires.getPercentile(50))) 
+#set ($assetsWithoutExpiresMedian = $math.toInteger($statsAssetsWithoutExpires.getPercentile(50))) 
 #set ($criticalPathMedian = $math.toInteger($statsCriticalPath.getPercentile(50))) 
 #set ($textContentMedian = $math.roundTo(1,$statsTextContent.getPercentile(50)))
 #set ($ttfbMedian = $math.roundTo(3,$statsTTFB.getPercentile(50)))
@@ -182,8 +169,7 @@
 
 ## Set percentage
 #set ($pagesWithSpofPercentage = $math.roundTo($nrOfDecimals, $math.mul($math.div($totalSpofPages,$nrOfPages),100)))
-#set ($requestWithoutFarExpirePercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($totalAssetsWithoutFarExpiresAverage,$requestAverage),100)))
-#set ($requestWithPrimedCachePercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($requestPrimedAverage,$requestAverage),100)))
+#set ($requestWithoutExpirePercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($totalAssetsWithoutExpiresAverage,$requestAverage),100)))
 #set ($imagesPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($imageAverage,$requestAverage),100)))
 #set ($cssImagesPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($cssImageAverage,$requestAverage),100)))
 #set ($cssPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($cssAverage,$requestAverage),100)))

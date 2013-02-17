@@ -8,7 +8,7 @@
     #set($tooltipCssImgText = "The number of css images used on this page")
     #set($tooltipFontText = "The number of fonts used on this page")
     #set($tooltipTotalRequestsText = "The total number of requests for this page")    
-    #set($tooltipTotalRequestsPrimedText = "The total number of requests for this page with primed cache")
+    #set($tooltipTotalRequestsWithoutExpireText = "The total number of requests without an expire header")
     #set($tooltipPageSizeText = "The page total size when no assets are cached (kb)")
     #set($tooltipDocSizeText = "The document size (kb)")
     #set($tooltipCriticalPathText = "The score for the rendering critical path")
@@ -69,7 +69,7 @@
                         <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipTotalRequestsText">total requests</a>
                     </th>
                     <th>
-                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipTotalRequestsPrimedText">total requests cached</a>
+                        <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipTotalRequestsWithoutExpireText">requests missing expire</a>
                     </th>
 
                     <th>
@@ -191,8 +191,8 @@
                         $results.getChild("r").getValue()
                     </td>
                     <td>
-                        ## The number of requests cached
-                        $results.getChild("r_c").getValue()
+                        ## The number of requests missing expire value
+                        $math.toInteger($results.getChild("g").getChild("expiresmod").getChild("components").getChildren("item").size())
                     </td>
 
                     <td>
