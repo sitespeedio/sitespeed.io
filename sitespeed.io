@@ -238,7 +238,7 @@ HOST=${NOPROTOCOL%%/*}
 
 # Jar files
 CRAWLER_JAR=crawler-1.3-full.jar
-VELOCITY_JAR=xml-velocity-1.4-full.jar
+VELOCITY_JAR=xml-velocity-1.5-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 
 # Setup dirs                                                                                                                                                             
