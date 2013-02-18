@@ -85,6 +85,8 @@
 							#set ($date = "")
 							#set ($cacheControl = 0)
 							#set ($expires = "")
+							#set ($delta = "")
+							#set ($cacheTime = "")    
 					<tr>
 
 						<td class="nobreak-page-url">

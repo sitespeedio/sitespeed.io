@@ -30,6 +30,8 @@
 			#set ($date = "")
 			#set ($cacheControl = 0)
 			#set ($expires = "")
+			#set ($delta = "")
+                        #set ($cacheTime = "")
 			#set ($lastMod = $asset.getChild("headers").getChild("response").getChild("Last-Modified").getValue())
 			#set ($date = $asset.getChild("headers").getChild("response").getChild("Date").getValue())
 			#set ($cacheControl = $asset.getChild("headers").getChild("response").getChild("Cache-Control").getValue())
