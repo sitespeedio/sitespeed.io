@@ -7,13 +7,14 @@
 ## crazy velocity style to avoid spaces
 #macro ( prettyPrint $seconds )
 #if (!$seconds)##
+#set ($compare = $seconds.seconds(0))##
 #elseif ($seconds.getSeconds() < 0)##
 #set ($compare = $seconds.negated())
 #elseif ($seconds.getSeconds() > 0)##
 #set ($compare = $seconds)
 #end##
-#if (!$compare)##
-#elseif ($compare.getSeconds() == 0)##
+
+#if ($compare.getSeconds() == 0)##
 0 s##
 #elseif ($compare.toStandardWeeks().getWeeks() > 52 )##
 $math.roundTo(1,$math.div($seconds.toStandardWeeks().getWeeks(),52)) years##
