@@ -10,6 +10,7 @@ version 1.7
 * Showing the percantage of assets that are cacheable on page summary
 * Show the amount of assets that don't have an exipre header om site summary & pages summary
 * Removed prime cache valyes from site summary & page summary (was not always correct)
+* Defect fix: If a max age HTTP cache header was missing the cache time, the cache time was set to 0, not litening to Expires header.
 
 version 1.6
 ------------------------
