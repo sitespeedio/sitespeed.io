@@ -86,7 +86,7 @@
 							#set ($cacheControl = 0)
 							#set ($expires = "")
 							#set ($delta = "")
-							#set ($cacheTime = "")    
+							#set ($cacheTime = "")
 					<tr>
 
 						<td class="nobreak-page-url">
@@ -320,22 +320,42 @@
 				</table>
 			</div>
 			<div class="span6">
+				<h4>Time</h4>
+				<table class="table table-condensed table-striped table-bordered">
+					<tbody>
+						<tr>
+							<td>ttfb</td>
+							<td>$document.getRootElement().getAttribute("ttfb").getValue() s</td>
+						</tr>
+						<tr>
+							<td>load time</td>
+							<td>
+								$math.div($document.getRootElement().getChild("lt").getValue(), 1000) s
+							</td>
+						</tr>
 
-				<h4>Special</h4>
+						<tr>
+							<td>time spent in backend</td>
+							<td>$backendPercentage %</td>
+						</tr>
+						<tr>
+							<td>time spent in frontend</td>
+							<td>$frontendPercentage %</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+
+		<div class="row-fluid">
+			<div class="span6">
+				<h4>Cache</h4>
 				<table class="table table-condensed table-striped table-bordered">
 					<tbody>
 						<tr>
 							<td>requests with primed cache</td>
 							<td>$document.getRootElement().getChild("r_c").getValue()</td>
-						</tr>
-
-						<tr>
-							<td>content weight that are js files</td>
-							<td>$jsPercentage %</td>
-						</tr>
-						<tr>
-							<td>content weight that are css files</td>
-							<td>$cssPercentage %</td>
 						</tr>
 						<tr>
 							<td>page weight cached</td>
@@ -348,28 +368,6 @@
 								<a href="#" title="Couldn't fetch the value"> <i class="icon-question-sign"></i>
 								</a>
 								#end
-							</td>
-						</tr>
-						<tr>
-							<td>domains</td>
-							<td>$hostAndRequests.size()</td>
-						</tr>							
-
-	
-						<tr>
-							<td>ttfb</td>
-							<td>$document.getRootElement().getAttribute("ttfb").getValue() s</td>
-						</tr>
-						<tr>
-							<td>load time</td>
-							<td>
-								$math.div($document.getRootElement().getChild("lt").getValue(), 1000) s
-							</td>
-						</tr>
-						<tr>
-							<td>content percentage of the page</td>
-							<td>
-								$document.getRootElement().getChild("g").getChild("textcontent").getChild("components").getChildText("item") %
 							</td>
 						</tr>
 						<tr>
@@ -390,14 +388,36 @@
 								$math.roundTo(2,$math.mul($math.div($math.sub($totalRequests,$math.toInteger($document.getRootElement().getChild("g").getChild("expiresmod").getChild("components").getChildren("item").size())),$totalRequests),100)) %
 							</td>
 						</tr>
+					</tbody>
+				</table>
+
+			</div>
+			<div class="span6">
+				<h4>Special</h4>
+				<table class="table table-condensed table-striped table-bordered">
+					<tbody>
+
 						<tr>
-							<td>time spent in backend</td>
-							<td>$backendPercentage %</td>
+							<td>content weight that are js files</td>
+							<td>$jsPercentage %</td>
 						</tr>
 						<tr>
-							<td>time spent in frontend</td>
-							<td>$frontendPercentage %</td>
+							<td>content weight that are css files</td>
+							<td>$cssPercentage %</td>
 						</tr>
+
+						<tr>
+							<td>domains</td>
+							<td>$hostAndRequests.size()</td>
+						</tr>
+
+						<tr>
+							<td>content percentage of the page</td>
+							<td>
+								$document.getRootElement().getChild("g").getChild("textcontent").getChild("components").getChildText("item") %
+							</td>
+						</tr>
+
 					</tbody>
 				</table>
 			</div>
@@ -418,4 +438,4 @@
 </script>
 
 </body>
-	</html>
+</html>
