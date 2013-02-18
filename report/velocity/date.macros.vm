@@ -7,21 +7,27 @@
 ## crazy velocity style to avoid spaces
 #macro ( prettyPrint $seconds )
 #if (!$seconds)##
-#elseif ($seconds.getSeconds() == 0)##
+#elseif ($seconds.getSeconds() < 0)##
+#set ($compare = $seconds.negated())
+#elseif ($seconds.getSeconds() > 0)##
+#set ($compare = $seconds)
+#end##
+#if (!$compare)##
+#elseif ($compare.getSeconds() == 0)##
 0 s##
-#elseif ($seconds.toStandardWeeks().getWeeks() > 52 )##
+#elseif ($compare.toStandardWeeks().getWeeks() > 52 )##
 $math.roundTo(1,$math.div($seconds.toStandardWeeks().getWeeks(),52)) years##
-#elseif ($seconds.toStandardDays().getDays() > 1)##
+#elseif ($compare.toStandardDays().getDays() > 1)##
 $seconds.toStandardDays().getDays()  days##
-#elseif ($seconds.toStandardDays().getDays() > 0)##
+#elseif ($compare.toStandardDays().getDays() > 0)##
 $seconds.toStandardDays().getDays()  day##
-#elseif ($seconds.toStandardHours().getHours() > 1)##
+#elseif ($compare.toStandardHours().getHours() > 1)##
 $seconds.toStandardHours().getHours()  hours##
-#elseif ($seconds.toStandardHours().getHours() > 0)##
+#elseif ($compare.toStandardHours().getHours() > 0)##
 $seconds.toStandardHours().getHours()  hour##
-#elseif ($seconds.toStandardMinutes().getMinutes() > 1)##
+#elseif ($compare.toStandardMinutes().getMinutes() > 1)##
 $seconds.toStandardMinutes().getMinutes()  minutes##
-#elseif ($seconds.toStandardMinutes().getMinutes() > 0)##
+#elseif ($compare.toStandardMinutes().getMinutes() > 0)##
 $seconds.toStandardMinutes().getMinutes()  minute##
 #else##
 $seconds.getSeconds() seconds##
