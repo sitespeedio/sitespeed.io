@@ -11,6 +11,7 @@ version 1.7
 * Show the amount of assets that don't have an exipre header om site summary & pages summary
 * Removed prime cache valyes from site summary & page summary (was not always correct)
 * Refactored page summary
+* Removed rule ynumreq and created three new ones in order to get clearer junit xml result (and also only check for sync js): cssnumreq, cssimagesnumreq & jsnumreq  
 * Bug fix: If a max age HTTP cache header was missing the cache time, the cache time was set to 0, not listening to Expires header.
 * Bug fix: If a asset was missing expire header, the last one before that expire was inherited
 
