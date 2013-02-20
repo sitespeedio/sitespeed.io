@@ -48,7 +48,7 @@
 			failures="{$failures+$avg-fail}" skipped="{$skipped}">
 			<testcase name="Overall average score" status="{$avg-score-decimals}">
 			    <xsl:if test="$avg-score-decimals&lt;$avg-limit">
-			        <failure message="The average overall score is below your limit of {$avg-limit}"/>
+			        <failure message="The average overall score {$avg-score-decimals} is below your limit of {$avg-limit}"/>
 			    </xsl:if>
 			</testcase>	
 			<xsl:apply-templates />
@@ -67,7 +67,7 @@
 			<xsl:if test="$score&lt;$page-limit">
 				<xsl:variable name="message" select="message" />
 
-				<failure message="{$message}">
+				<failure message="Score: {$score} - {$message}">
 					<xsl:for-each select="components/item">
 						<xsl:text>&#xa;</xsl:text>
 						<xsl:value-of select="." />
