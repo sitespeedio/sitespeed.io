@@ -1,4 +1,4 @@
-## Displaying the time since last modification date
+# Displaying the time since last modification date
 ## all input are in org.joda.time.Seconds
 
 ## These classes are lining in the velocity universe
@@ -7,28 +7,21 @@
 ## crazy velocity style to avoid spaces
 #macro ( prettyPrint $seconds )
 #if (!$seconds)##
-#set ($compare = $seconds.seconds(0))##
-#elseif ($seconds.getSeconds() < 0)##
-#set ($compare = $seconds.negated())
-#elseif ($seconds.getSeconds() > 0)##
-#set ($compare = $seconds)
-#end##
-
-#if ($compare.getSeconds() == 0)##
+#elseif ($seconds.getSeconds() == 0)##
 0 s##
-#elseif ($compare.toStandardWeeks().getWeeks() > 52 )##
+#elseif ($seconds.toStandardWeeks().getWeeks() > 52 )##
 $math.roundTo(1,$math.div($seconds.toStandardWeeks().getWeeks(),52)) years##
-#elseif ($compare.toStandardDays().getDays() > 1)##
+#elseif ($seconds.toStandardDays().getDays() > 1)##
 $seconds.toStandardDays().getDays()  days##
-#elseif ($compare.toStandardDays().getDays() > 0)##
+#elseif ($seconds.toStandardDays().getDays() > 0)##
 $seconds.toStandardDays().getDays()  day##
-#elseif ($compare.toStandardHours().getHours() > 1)##
+#elseif ($seconds.toStandardHours().getHours() > 1)##
 $seconds.toStandardHours().getHours()  hours##
-#elseif ($compare.toStandardHours().getHours() > 0)##
+#elseif ($seconds.toStandardHours().getHours() > 0)##
 $seconds.toStandardHours().getHours()  hour##
-#elseif ($compare.toStandardMinutes().getMinutes() > 1)##
+#elseif ($seconds.toStandardMinutes().getMinutes() > 1)##
 $seconds.toStandardMinutes().getMinutes()  minutes##
-#elseif ($compare.toStandardMinutes().getMinutes() > 0)##
+#elseif ($seconds.toStandardMinutes().getMinutes() > 0)##
 $seconds.toStandardMinutes().getMinutes()  minute##
 #else##
 $seconds.getSeconds() seconds##
