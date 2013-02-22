@@ -29,7 +29,7 @@ package:
 	@cp $(DEP)/LICENSE.txt $(BUILD)/$(DEP)/
 	@cp $(DEP)/crawler-1.3-full.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/crawler.properties $(BUILD)/$(DEP)/
-	@cp $(DEP)/xml-velocity-1.5-full.jar $(BUILD)/$(DEP)/	
+	@cp $(DEP)/xml-velocity-1.5.1-full.jar $(BUILD)/$(DEP)/	
 	@cp $(DEP)/rasterize.js $(BUILD)/$(DEP)/
 	@cp $(DEP)/htmlcompressor-1.5.3.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/yuicompressor-2.4.6.jar $(BUILD)/$(DEP)/
