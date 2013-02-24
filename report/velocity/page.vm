@@ -417,6 +417,13 @@
 								$document.getRootElement().getChild("g").getChild("textcontent").getChild("components").getChildText("item") %
 							</td>
 						</tr>
+						<tr>
+							<td>DOM elements</td>
+							<td>
+								$document.getRootElement().getChild("g").getChild("mindom").getChild("components").getChildText("item")
+							</td>
+						</tr>
+
 
 					</tbody>
 				</table>

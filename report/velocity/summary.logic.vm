@@ -29,6 +29,7 @@
 #set($statsFrontend = $stats.copy())
 #set($statsTimeSinceLastModificationInSeconds = $stats.copy())
 #set($statsAssetCacheTimeInSeconds = $stats.copy())
+#set($statsDomElements = $stats.copy())
 
 #foreach ($results in $document.getRootElement().getChildren())
     
@@ -64,6 +65,9 @@
         $statsDocumentWeight.addValue($math.toInteger($results.getAttribute("size").getValue()))
     #end
 
+    #if($!{results.getChild("g").getChild("mindom").getChild("score")})
+           $statsDomElements.addValue($math.toInteger($results.getChild("g").getChild("mindom").getChild("components").getChildText("item")))
+    #end
 
     #if($!{results.getChild("g").getChild("spof").getChild("score")})
 	   #if ($results.getChild("g").getChild("spof").getChild("score").getValue() != 100)
@@ -148,6 +152,8 @@
 #set ($ttfbAverage = $math.roundTo(3,$statsTTFB.getMean()))
 #set ($frontendAveragePercentage = $math.roundTo(1,$statsFrontend.getMean()))
 #set ($backendAveragePercentage = $math.roundTo(1,$statsBackend.getMean()))
+#set ($totalDomElementsAverage = $math.roundTo(1,$statsDomElements.getMean()))
+
 
 ## Create median
 #set ($scoreMedian = $math.toInteger($statsScore.getPercentile(50)))   
@@ -164,6 +170,7 @@
 #set ($criticalPathMedian = $math.toInteger($statsCriticalPath.getPercentile(50))) 
 #set ($textContentMedian = $math.roundTo(1,$statsTextContent.getPercentile(50)))
 #set ($ttfbMedian = $math.roundTo(3,$statsTTFB.getPercentile(50)))
+#set ($domElementsMedian = $math.toInteger($statsDomElements.getPercentile(50)))
 #set ($backendMedianPercentage = $math.roundTo(1,$statsBackend.getPercentile(50)))
 #set ($frontendMedianPercentage = $math.roundTo(1,$statsFrontend.getPercentile(50)))
 

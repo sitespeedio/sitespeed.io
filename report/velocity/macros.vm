@@ -112,3 +112,9 @@ error#end#end
 #if ($time<0.3)success#elseif ($time<0.5)
 warning#else
 error#end#end
+
+## The number of DOM elements
+#macro ( domElementsType $el )
+#if ($el<901)success#elseif ($time<1008)
+warning#else
+error#end#end

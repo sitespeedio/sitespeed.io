@@ -21,6 +21,7 @@
 #set($criticalPathText = "You should always aim for score 100, above 95 is OK.")
 #set($textContentText = "Above 50% is good, below 25% is bad.")
 #set($ttfbText = "Faster than 0.3 seconds is good, more than 0.5 s is really bad.")
+#set($domElementsText = "Less than 900 elements is ok, above 1008 is bad (and the average from http://httparchive.org)")
 
 <div class="row-fluid">
     <div class="span12">
@@ -149,20 +150,29 @@
 
         <div class="row-fluid">
            
-        <div class="span6">
+        <div class="span4">
 
         <div class="alert alert-#spofType($totalSpofPages)">
                     Pages with SPOF 
                       <div><a href="#" rel="popover" class="alert-#spofType($totalSpofPages) large" data-trigger="hover" title="The number of $totalSpofPages pages with frontend single point of failure  #if($math.toInteger($pagesWithSpofPercentage) > 0) ($pagesWithSpofPercentage % of the pages)  #end" data-content="$spofText">$totalSpofPages</a>                   </div>
             </div>
 	    </div>
-                <div class="span6">
+        <div class="span4">
          <div class="alert alert-#spofType($totalSpofAverage)">
                     Number of SPOF per page
                       <div><a href="#" rel="popover" class="alert-#spofType($totalSpofAverage) large" data-trigger="hover" title="The average of $totalSpofAverage single point of failures per page" data-content="$spofPerPageText">$totalSpofAverage</a> ($spofMedian)</div>
             </div>
              
         </div>
+
+        <div class="span4">
+         <div class="alert alert-#domElementsType($totalDomElementsAverage)">
+                    Number of DOM elements
+                      <div><a href="#" rel="popover" class="alert-#domElementsType($totalDomElementsAverage) large" data-trigger="hover" title="The average number of DOM elements per page" data-content="$domElementsText">$totalDomElementsAverage</a> ($domElementsMedian)</div>
+            </div>
+             
+        </div>
+
        
         </div>    
         
@@ -257,6 +267,10 @@
                     <li>
                     <b>The critical path (every file loaded inside of head, will postpone the rendering of the page, try to avoid loading javascript synchronously, load files from the same domain as the main document, and inline css for really fast critical path)</b>:
                     $criticalPathText
+                    </li>
+                    <li>
+                        <b>Average number DOM elements</b>: 
+                        $domElementsText
                     </li>
 
                  </ul>
