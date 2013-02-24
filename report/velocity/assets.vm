@@ -25,7 +25,47 @@
 			<tbody>
 				#foreach ($entry in $toplist)
 				<tr>
-					<td class="nobreak-asset-url"><a href="$entry.getUrl()" target="_blank">$entry.getUrl()</a></td>
+					<td class="nobreak-asset-url">
+
+						## Hide this from phones & tables, there is some kind of bug here that make navigations not work if used
+							<div class="hidden-phone hidden-tablet">
+								<a href="#headers-$foreach.count" data-toggle="modal"> <i class="icon-zoom-in"></i>
+								</a>
+
+								<div class="modal hide fade" id="headers-$foreach.count" aria-labelledby="headersModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
+									<div class="modal-header">
+										<h3 id="headersModalLabel-$foreach.count">Response headers</h3>
+									</div>
+									<div class="modal-body">
+										<table class="table-hover table-condensed table-striped table-bordered">
+											<thead>
+												<tr>
+													<th>Name</th>
+													<th>Value</th>
+												</tr>
+											</thead>
+											<tbody>
+												#foreach ($response in $assetAndHeaders.get($entry.getUrl()))
+												<tr>
+													<td>$esc.html($response.getName())</td>
+													<td>$esc.html($response.getValue())</td>
+												</tr>
+												#end
+											</tbody>
+										</table>
+
+									</div>
+									<div class="modal-footer">
+										<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+									</div>
+								</div>
+
+							</div>
+
+						</div>	
+
+
+					<a href="$entry.getUrl()" target="_blank">$entry.getUrl()</a></td>
 					<td><span class="visible-desktop visible-tablet">$assetAndType.get($entry.getUrl())</span></td>
 					#set ($delta = $assetAndNotModifiedSince.get($entry.getUrl()))
 					#if ($delta=="" || ! $delta)

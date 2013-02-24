@@ -13,6 +13,7 @@ version 1.7
 * Refactored page summary
 * Removed rule ynumreq and created three new ones in order to get clearer junit xml result (and also only check for sync js): cssnumreq, cssimagesnumreq & jsnumreq  
 * Added average & median nr of DOM elements on site summary and specific nr on page
+* Added response headers info on assets page
 * Bug fix: If a max age HTTP cache header was missing the cache time, the cache time was set to 0, not listening to Expires header.
 * Bug fix: If a asset was missing expire header, the last one before that expire was inherited
 

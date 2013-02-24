@@ -8,6 +8,7 @@
 #set($assetAndCacheTime = $map.clone())
 #set($assetAndNotModifiedSince = $map.clone())
 #set($assetAndPage = $map.clone())
+#set($assetAndHeaders = $map.clone())
 
 #foreach ($page in $document.getRootElement().getChildren())
 
@@ -55,7 +56,10 @@
 			## the belonging page
 			#set($file = $page.getAttribute("filename").getValue())
             #set($file = $file.concat(".html"))
-			#set($swallow = $assetAnPage.put($theUrl,$file))
+			#set($swallow = $assetAndPage.put($theUrl,$file))
+
+
+			#set($swallow = $assetAndHeaders.put($theUrl,$asset.getChild("headers").getChild("response").getChildren()))
 			
 			$toplisttool.push($theUrl)
 		#end
