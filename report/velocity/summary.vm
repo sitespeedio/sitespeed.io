@@ -21,7 +21,7 @@
 #set($criticalPathText = "You should always aim for score 100, above 95 is OK.")
 #set($textContentText = "Above 50% is good, below 25% is bad.")
 #set($ttfbText = "Faster than 0.3 seconds is good, more than 0.5 s is really bad.")
-#set($domElementsText = "Less than 900 elements is ok, above 1008 is bad (and the average from http://httparchive.org)")
+#set($domElementsText = "Less than 900 elements is ok, above 1007 is bad (the average from http://httparchive.org)")
 
 <div class="row-fluid">
     <div class="span12">
