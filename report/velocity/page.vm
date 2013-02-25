@@ -307,7 +307,7 @@
 		<div class="row-fluid">
 
 			<div class="span6">
-				<h4>Requests per Domain</h4>
+				<h4>Requests per Domain ($hostAndRequests.size())</h4>
 				<table class="table table-condensed table-striped table-bordered">
 					<tbody>
 						#foreach ($entry in $hostAndRequests.entrySet())
@@ -393,7 +393,7 @@
 
 			</div>
 			<div class="span6">
-				<h4>Special</h4>
+				<h4>Content</h4>
 				<table class="table table-condensed table-striped table-bordered">
 					<tbody>
 
@@ -404,11 +404,6 @@
 						<tr>
 							<td>content weight that are css files</td>
 							<td>$cssPercentage %</td>
-						</tr>
-
-						<tr>
-							<td>domains</td>
-							<td>$hostAndRequests.size()</td>
 						</tr>
 
 						<tr>
