@@ -8,6 +8,7 @@ The branches: *master* is the latest release, the *wip-branch* is the coming rel
 Related projects:
  * https://github.com/soulgalore/crawler - Crawler used to fetch the URL:s that will be analyzed
  * https://github.com/soulgalore/xml-velocity - Used to convert the XML from Yslow to HTML
+ * https://github.com/soulgalore/doc.sitespeed.io - The documentation site
  * https://github.com/soulgalore/delay - Delay your assets. Project used for testing if the sitespeed rules are working
 
 See <a href="http://sitespeed.io">http://sitespeed.io</a> for documentation.
