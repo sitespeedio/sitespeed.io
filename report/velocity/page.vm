@@ -45,7 +45,7 @@
 							$document.getRootElement().getChild("dictionary").getChild("rules").getChild($message.getName()).getChild("name").getValue()
 						</td>
 						<td>$message.getChild("score").getValue()</td>
-						<td>$message.getChild("message").getValue()</td>
+						<td class="nobreak-page">$message.getChild("message").getValue()</td>
 						<td class="nobreak-page">
 							## This is just too much information to show on a phone
 							<span class="hidden-phone">
