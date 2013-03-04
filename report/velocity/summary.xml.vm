@@ -1,0 +1,24 @@
+#parse("report/velocity/date.macros.vm")
+#parse("report/velocity/macros.vm")
+#parse("report/velocity/summary.logic.vm")
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+<url><![CDATA[$document.getRootElement().getChild("url").getValue()>]]></url>
+<pages>$nrOfPages</pages>
+<date>$document.getRootElement().getAttribute("date").getValue()</date>
+<rules>$document.getRootElement().getChild("results").getChild("i").getValue()</rules>
+<userAgent>$document.getRootElement().getAttribute("useragent").getValue()</userAgent>
+<viewPort>$document.getRootElement().getAttribute("viewport").getValue()</viewPort>
+<metrics>
+#foreach ($stats in $allStats)
+<metric name="$stats.getName()" friendlyName="$stats.getFriendlyName()">
+<avg>#getNumber($stats.getMean())</avg>
+<median>#getNumber($stats.getPercentile(50))</median>
+<max>#getNumber($stats.getMax())</max>
+<min>#getNumber($stats.getMin())</min>
+<standardDev>#getNumber($stats.getStandardDeviation())</standardDev>
+<percentil95>#getNumber($stats.getPercentile(95))</percentil95>
+</metric>
+#end
+</metrics>
+</site>

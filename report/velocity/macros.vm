@@ -118,3 +118,7 @@ error#end#end
 #if ($el<901)success#elseif ($time<1008)
 warning#else
 error#end#end
+
+## If the input is null, zero i## The number of DOM elements
+#macro ( getNumber $number )
+#if ($number=="NaN")0#else$number#end#end

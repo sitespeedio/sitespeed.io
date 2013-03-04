@@ -238,7 +238,7 @@ HOST=${NOPROTOCOL%%/*}
 
 # Jar files
 CRAWLER_JAR=crawler-1.3-full.jar
-VELOCITY_JAR=xml-velocity-1.5.1-full.jar
+VELOCITY_JAR=xml-velocity-1.6-SNAPSHOT-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 
 # Setup dirs                                                                                                                                                             
@@ -327,6 +327,12 @@ do
 
 done 
 echo '</document>'>> "$REPORT_DATA_DIR/result.xml"
+
+
+echo 'Create the summary.xml'
+$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/summary.xml.vm $PROPERTIES_DIR/summary.properties $REPORT_DATA_DIR/summary.xml || exit 1
+#$JAVA -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type xml  -o $REPORT_DATA_DIR/summary.xml $REPORT_DATA_DIR/summary.xml
+
 
 echo 'Create the pages.html'
 $JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/pages.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.html || exit 1
