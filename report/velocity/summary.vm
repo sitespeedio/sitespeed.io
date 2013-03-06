@@ -1,8 +1,61 @@
-
 #parse("report/velocity/header.vm")
 #parse("report/velocity/date.macros.vm")
 #parse("report/velocity/macros.vm")
 #parse("report/velocity/summary.logic.vm")
+
+##  Create averages   
+#set ($scoreAverage = $math.roundTo($nrOfDecimals,$statsScore.getMean()))   
+#set ($jsAverage = $math.roundTo($nrOfDecimals,$statsJs.getMean()))  
+#set ($requestAverage = $math.roundTo($nrOfDecimals,$statsRequests.getMean()))  
+#set ($cssAverage = $math.roundTo($nrOfDecimals,$statsCss.getMean()))  
+#set ($cssImageAverage = $math.roundTo($nrOfDecimals,$statsCssImages.getMean()))  
+#set ($imageAverage = $math.roundTo($nrOfDecimals,$statsImages.getMean()))
+#set ($pageWeightAverage = $math.roundTo($nrOfDecimals,$statsPageWeight.getMean()))  
+#set ($totalDocumentWeightAverage = $math.roundTo($nrOfDecimals,$statsDocumentWeight.getMean()))  
+#set ($totalJsSyncInHeadAverage = $math.roundTo($nrOfDecimals,$statsJsSyncInHead.getMean()))  
+#set ($totalSpofAverage = $math.roundTo($nrOfDecimals,$statsSpof.getMean()))  
+#set ($totalAssetsWithoutExpiresAverage = $math.roundTo($nrOfDecimals,$statsAssetsWithoutExpires.getMean())) 
+#set ($totalCriticalPathAverage = $math.roundTo($nrOfDecimals,$statsCriticalPath.getMean())) 
+#set ($textContentAverage = $math.roundTo($nrOfDecimals,$statsTextContent.getMean())) 
+#set ($ttfbAverage = $math.roundTo(3,$statsTTFB.getMean()))
+#set ($frontendAveragePercentage = $math.roundTo(1,$statsFrontend.getMean()))
+#set ($backendAveragePercentage = $math.roundTo(1,$statsBackend.getMean()))
+#set ($totalDomElementsAverage = $math.roundTo(1,$statsDomElements.getMean()))
+
+
+## Create median
+#set ($scoreMedian = $math.toInteger($statsScore.getPercentile(50)))   
+#set ($jsMedian = $math.toInteger($statsJs.getPercentile(50)))  
+#set ($requestMedian = $math.toInteger($statsRequests.getPercentile(50))) 
+#set ($cssMedian = $math.toInteger($statsCss.getPercentile(50))) 
+#set ($cssImageMedian = $math.toInteger($statsCssImages.getPercentile(50))) 
+#set ($imageMedian = $math.toInteger($statsImages.getPercentile(50))) 
+#set ($pageWeightMedian = $math.toInteger($statsPageWeight.getPercentile(50))) 
+#set ($documentWeightMedian = $math.toInteger($statsDocumentWeight.getPercentile(50))) 
+#set ($jsSyncInHeadMedian = $math.toInteger($statsJsSyncInHead.getPercentile(50))) 
+#set ($spofMedian = $math.toInteger($statsSpof.getPercentile(50))) 
+#set ($assetsWithoutExpiresMedian = $math.toInteger($statsAssetsWithoutExpires.getPercentile(50))) 
+#set ($criticalPathMedian = $math.toInteger($statsCriticalPath.getPercentile(50))) 
+#set ($textContentMedian = $math.roundTo(1,$statsTextContent.getPercentile(50)))
+#set ($ttfbMedian = $math.roundTo(3,$statsTTFB.getPercentile(50)))
+#set ($domElementsMedian = $math.toInteger($statsDomElements.getPercentile(50)))
+#set ($backendMedianPercentage = $math.roundTo(1,$statsBackend.getPercentile(50)))
+#set ($frontendMedianPercentage = $math.roundTo(1,$statsFrontend.getPercentile(50)))
+
+## Set percentage
+#set ($pagesWithSpofPercentage = $math.roundTo($nrOfDecimals, $math.mul($math.div($totalSpofPages,$nrOfPages),100)))
+#set ($requestWithoutExpirePercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($totalAssetsWithoutExpiresAverage,$requestAverage),100)))
+#set ($imagesPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($imageAverage,$requestAverage),100)))
+#set ($cssImagesPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($cssImageAverage,$requestAverage),100)))
+#set ($cssPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($cssAverage,$requestAverage),100)))
+#set ($jsPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($jsAverage,$requestAverage),100)))
+#set ($jsInHeadPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($totalJsSyncInHeadAverage,$jsAverage),100))) 
+
+#set ($cacheTimeAverage = $header.getSeconds($math.toInteger($statsAssetCacheTimeInSeconds.getMean())))
+#set ($cacheTimeMedian = $header.getSeconds($math.toInteger($statsAssetCacheTimeInSeconds.getPercentile(50))))
+#set ($modifiedSinceAverage = $header.getSeconds($math.toInteger($statsTimeSinceLastModificationInSeconds.getMean())))
+#set ($modifiedSinceMedian = $header.getSeconds($math.toInteger($statsTimeSinceLastModificationInSeconds.getPercentile(50))))
+
 
 #set($scoreText = "Over 90 is good, between 80-90 is not so good, and below 80 is bad, really bad.")
 #set($requestText = "Below 25 is good, between 25-88 is something you should look into (88 is the average amount of requests a site has, collected from http://httparchive.org) and above 88 is really bad.")
