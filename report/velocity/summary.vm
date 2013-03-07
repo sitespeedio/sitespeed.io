@@ -3,47 +3,50 @@
 #parse("report/velocity/macros.vm")
 #parse("report/velocity/summary.logic.vm")
 
+#set ($siteElement = $document.getRootElement())
+#set ($metricsElement = $siteElement.getChild("metrics"))
+
 ##  Create averages   
-#set ($scoreAverage = $math.roundTo($nrOfDecimals,$statsScore.getMean()))   
-#set ($jsAverage = $math.roundTo($nrOfDecimals,$statsJs.getMean()))  
-#set ($requestAverage = $math.roundTo($nrOfDecimals,$statsRequests.getMean()))  
-#set ($cssAverage = $math.roundTo($nrOfDecimals,$statsCss.getMean()))  
-#set ($cssImageAverage = $math.roundTo($nrOfDecimals,$statsCssImages.getMean()))  
-#set ($imageAverage = $math.roundTo($nrOfDecimals,$statsImages.getMean()))
-#set ($pageWeightAverage = $math.roundTo($nrOfDecimals,$statsPageWeight.getMean()))  
-#set ($totalDocumentWeightAverage = $math.roundTo($nrOfDecimals,$statsDocumentWeight.getMean()))  
-#set ($totalJsSyncInHeadAverage = $math.roundTo($nrOfDecimals,$statsJsSyncInHead.getMean()))  
-#set ($totalSpofAverage = $math.roundTo($nrOfDecimals,$statsSpof.getMean()))  
-#set ($totalAssetsWithoutExpiresAverage = $math.roundTo($nrOfDecimals,$statsAssetsWithoutExpires.getMean())) 
-#set ($totalCriticalPathAverage = $math.roundTo($nrOfDecimals,$statsCriticalPath.getMean())) 
-#set ($textContentAverage = $math.roundTo($nrOfDecimals,$statsTextContent.getMean())) 
-#set ($ttfbAverage = $math.roundTo(3,$statsTTFB.getMean()))
-#set ($frontendAveragePercentage = $math.roundTo(1,$statsFrontend.getMean()))
-#set ($backendAveragePercentage = $math.roundTo(1,$statsBackend.getMean()))
-#set ($totalDomElementsAverage = $math.roundTo(1,$statsDomElements.getMean()))
+#set ($scoreAverage = $math.roundTo($nrOfDecimals,$metricsElement.getChild("score").getChild("avg").getValue()))   
+#set ($jsAverage = $math.roundTo($nrOfDecimals,$metricsElement.getChild("js").getChild("avg").getValue()))  
+#set ($requestAverage = $math.roundTo($nrOfDecimals,$metricsElement.getChild("requests").getChild("avg").getValue()))  
+#set ($cssAverage = $math.roundTo($nrOfDecimals,$metricsElement.getChild("css").getChild("avg").getValue()))  
+#set ($cssImageAverage = $math.roundTo($nrOfDecimals,$metricsElement.getChild("cssimages").getChild("avg").getValue()))  
+#set ($imageAverage = $math.roundTo($nrOfDecimals,$metricsElement.getChild("images").getChild("avg").getValue()))
+#set ($pageWeightAverage = $math.roundTo($nrOfDecimals,$metricsElement.getChild("pageweight").getChild("avg").getValue()))  
+#set ($totalDocumentWeightAverage = $math.roundTo($nrOfDecimals,$metricsElement.getChild("documentweight").getChild("avg").getValue()))  
+#set ($totalJsSyncInHeadAverage = $math.roundTo($nrOfDecimals,$metricsElement.getChild("jssyncinhead").getChild("avg").getValue()))  
+#set ($totalSpofAverage = $math.roundTo($nrOfDecimals,$metricsElement.getChild("spof").getChild("avg").getValue()))  
+#set ($totalAssetsWithoutExpiresAverage = $math.roundTo($nrOfDecimals,$metricsElement.getChild("assetswithoutexpires").getChild("avg").getValue())) 
+#set ($totalCriticalPathAverage = $math.roundTo($nrOfDecimals,$metricsElement.getChild("criticalpath").getChild("avg").getValue())) 
+#set ($textContentAverage = $math.roundTo($nrOfDecimals,$metricsElement.getChild("textcontent").getChild("avg").getValue())) 
+#set ($ttfbAverage = $math.roundTo(3,$metricsElement.getChild("ttfb").getChild("avg").getValue()))
+#set ($frontendAveragePercentage = $math.roundTo(1,$metricsElement.getChild("frontend").getChild("avg").getValue()))
+#set ($backendAveragePercentage = $math.roundTo(1,$metricsElement.getChild("backend").getChild("avg").getValue()))
+#set ($totalDomElementsAverage = $math.roundTo(1,$metricsElement.getChild("domelements").getChild("avg").getValue()))
 
 
 ## Create median
-#set ($scoreMedian = $math.toInteger($statsScore.getPercentile(50)))   
-#set ($jsMedian = $math.toInteger($statsJs.getPercentile(50)))  
-#set ($requestMedian = $math.toInteger($statsRequests.getPercentile(50))) 
-#set ($cssMedian = $math.toInteger($statsCss.getPercentile(50))) 
-#set ($cssImageMedian = $math.toInteger($statsCssImages.getPercentile(50))) 
-#set ($imageMedian = $math.toInteger($statsImages.getPercentile(50))) 
-#set ($pageWeightMedian = $math.toInteger($statsPageWeight.getPercentile(50))) 
-#set ($documentWeightMedian = $math.toInteger($statsDocumentWeight.getPercentile(50))) 
-#set ($jsSyncInHeadMedian = $math.toInteger($statsJsSyncInHead.getPercentile(50))) 
-#set ($spofMedian = $math.toInteger($statsSpof.getPercentile(50))) 
-#set ($assetsWithoutExpiresMedian = $math.toInteger($statsAssetsWithoutExpires.getPercentile(50))) 
-#set ($criticalPathMedian = $math.toInteger($statsCriticalPath.getPercentile(50))) 
-#set ($textContentMedian = $math.roundTo(1,$statsTextContent.getPercentile(50)))
-#set ($ttfbMedian = $math.roundTo(3,$statsTTFB.getPercentile(50)))
-#set ($domElementsMedian = $math.toInteger($statsDomElements.getPercentile(50)))
-#set ($backendMedianPercentage = $math.roundTo(1,$statsBackend.getPercentile(50)))
-#set ($frontendMedianPercentage = $math.roundTo(1,$statsFrontend.getPercentile(50)))
+#set ($scoreMedian = $math.toInteger($metricsElement.getChild("score").getChild("median").getValue()))   
+#set ($jsMedian = $math.toInteger($metricsElement.getChild("js").getChild("median").getValue()))  
+#set ($requestMedian = $math.toInteger($metricsElement.getChild("requests").getChild("median").getValue())) 
+#set ($cssMedian = $math.toInteger($metricsElement.getChild("css").getChild("median").getValue())) 
+#set ($cssImageMedian = $math.toInteger($metricsElement.getChild("cssimages").getChild("median").getValue())) 
+#set ($imageMedian = $math.toInteger($metricsElement.getChild("images").getChild("median").getValue())) 
+#set ($pageWeightMedian = $math.toInteger($metricsElement.getChild("pageweight").getChild("median").getValue())) 
+#set ($documentWeightMedian = $math.toInteger($metricsElement.getChild("documentweight").getChild("median").getValue())) 
+#set ($jsSyncInHeadMedian = $math.toInteger($metricsElement.getChild("jssyncinhead").getChild("median").getValue())) 
+#set ($spofMedian = $math.toInteger($metricsElement.getChild("spof").getChild("median").getValue())) 
+#set ($assetsWithoutExpiresMedian = $math.toInteger($metricsElement.getChild("assetswithoutexpires").getChild("median").getValue())) 
+#set ($criticalPathMedian = $math.toInteger($metricsElement.getChild("criticalpath").getChild("median").getValue())) 
+#set ($textContentMedian = $math.roundTo(1,$metricsElement.getChild("textcontent").getChild("median").getValue()))
+#set ($ttfbMedian = $math.roundTo(3,$metricsElement.getChild("ttfb").getChild("median").getValue()))
+#set ($domElementsMedian = $math.toInteger($metricsElement.getChild("domelements").getChild("median").getValue()))
+#set ($backendMedianPercentage = $math.roundTo(1,$metricsElement.getChild("backend").getChild("median").getValue()))
+#set ($frontendMedianPercentage = $math.roundTo(1,$metricsElement.getChild("frontend").getChild("median").getValue()))
 
 ## Set percentage
-#set ($pagesWithSpofPercentage = $math.roundTo($nrOfDecimals, $math.mul($math.div($totalSpofPages,$nrOfPages),100)))
+#set ($pagesWithSpofPercentage = $math.roundTo($nrOfDecimals, $math.mul($math.div($totalSpofPages,$siteElement.getChild("pages").getValue()),100)))
 #set ($requestWithoutExpirePercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($totalAssetsWithoutExpiresAverage,$requestAverage),100)))
 #set ($imagesPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($imageAverage,$requestAverage),100)))
 #set ($cssImagesPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($cssImageAverage,$requestAverage),100)))
@@ -51,10 +54,10 @@
 #set ($jsPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($jsAverage,$requestAverage),100)))
 #set ($jsInHeadPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($totalJsSyncInHeadAverage,$jsAverage),100))) 
 
-#set ($cacheTimeAverage = $header.getSeconds($math.toInteger($statsAssetCacheTimeInSeconds.getMean())))
-#set ($cacheTimeMedian = $header.getSeconds($math.toInteger($statsAssetCacheTimeInSeconds.getPercentile(50))))
-#set ($modifiedSinceAverage = $header.getSeconds($math.toInteger($statsTimeSinceLastModificationInSeconds.getMean())))
-#set ($modifiedSinceMedian = $header.getSeconds($math.toInteger($statsTimeSinceLastModificationInSeconds.getPercentile(50))))
+#set ($cacheTimeAverage = $header.getSeconds($math.toInteger($metricsElement.getChild("assetcachetimeinseconds").getChild("avg").getValue())))
+#set ($cacheTimeMedian = $header.getSeconds($math.toInteger($metricsElement.getChild("assetcachetimeinseconds").getChild("median").getValue())))
+#set ($modifiedSinceAverage = $header.getSeconds($math.toInteger($metricsElement.getChild("timesincelastmodificationinseconds").getChild("avg").getValue())))
+#set ($modifiedSinceMedian = $header.getSeconds($math.toInteger($metricsElement.getChild("timesincelastmodificationinseconds").getChild("median").getValue())))
 
 
 #set($scoreText = "Over 90 is good, between 80-90 is not so good, and below 80 is bad, really bad.")
@@ -76,19 +79,21 @@
 #set($ttfbText = "Faster than 0.3 seconds is good, more than 0.5 s is really bad.")
 #set($domElementsText = "Less than 900 elements is ok, above 1007 is bad (the average from http://httparchive.org)")
 
+#set($totalSpofPages = $math.toInteger($metricsElement.getChild("spofpages").getChild("values").getValue()))
+
 <div class="row-fluid">
     <div class="span12">
 
         <h2 class="url">
-            $nrOfPages pages analyzed for <a href="$document.getRootElement().getChild("url").getValue()" target="_blank">$document.getRootElement().getChild("url").getValue()</a>
+            $siteElement.getChild("pages").getValue() pages analyzed for <a href="$siteElement.getChild("url").getValue()" target="_blank">$siteElement.getChild("url").getValue()</a>
         </h2>
         <p>
-            Test performed: $document.getRootElement().getAttribute("date").getValue() with rules $document.getRootElement().getChild("results").getChild("i").getValue() 
-	    #if ($document.getRootElement().getAttribute("useragent").getValue() != "")
-            with user agent: $document.getRootElement().getAttribute("useragent").getValue()
+            Test performed: $siteElement.getChild("date").getValue() with rules $siteElement.getChild("rules").getValue()
+	    #if ($siteElement.getChild("userAgent").getValue().getValue() != "")
+            with user agent: $siteElement.getChild("userAgent").getValue()
             #end
-	    #if ($document.getRootElement().getAttribute("viewport").getValue() != "")
-            viewport: $document.getRootElement().getAttribute("viewport").getValue()
+	    #if ($siteElement.getChild("viewPort").getValue() != "")
+            viewport: $siteElement.getChild("viewPort").getValue()
             #end
         </p>
 

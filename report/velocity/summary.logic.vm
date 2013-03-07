@@ -20,6 +20,7 @@
 #set($statsScore = $stats.newInstance("score","Score"))
 #set($statsDocumentWeight = $stats.newInstance("documentweight","Document page weight"))
 #set($statsSpof = $stats.newInstance("spof","Number of SPOF per page"))
+#set($statsSpofPages = $stats.newInstance("spofpages","Pages with SPOF"))
 #set($statsJsSyncInHead = $stats.newInstance("jssyncinhead","Number of JS synchronously in head"))
 #set($statsAssetsWithoutExpires = $stats.newInstance("assetswithoutexpires","Requests without expires"))
 #set($statsCriticalPath = $stats.newInstance("criticalpath","Critical Rendering Path Score"))
@@ -50,7 +51,7 @@
 #set($hide = $allStats.add($statsTimeSinceLastModificationInSeconds))
 #set($hide = $allStats.add($statsAssetCacheTimeInSeconds))
 #set($hide = $allStats.add($statsDomElements))
-
+#set($hide = $allStats.add($statsSpofPages))
 
 #foreach ($results in $document.getRootElement().getChildren())
     
@@ -92,7 +93,7 @@
 
     #if($!{results.getChild("g").getChild("spof").getChild("score")})
 	   #if ($results.getChild("g").getChild("spof").getChild("score").getValue() != 100)
-	       #set ($totalSpofPages = $math.add($totalSpofPages, 1))
+	       $statsSpofPages.addValue(1)
            $statsSpof.addValue($math.toInteger($results.getChild("g").getChild("spof").getChild("components").getChildren("item").size()))
        #else
         $statsSpof.addValue(0)    

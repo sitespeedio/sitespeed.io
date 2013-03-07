@@ -330,16 +330,20 @@ echo '</document>'>> "$REPORT_DATA_DIR/result.xml"
 
 
 echo 'Create the summary.xml'
-$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/summary.xml.vm $PROPERTIES_DIR/summary.properties $REPORT_DATA_DIR/summary.xml || exit 1
-#$JAVA -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type xml  -o $REPORT_DATA_DIR/summary.xml $REPORT_DATA_DIR/summary.xml
-
+$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/summary.xml.vm $PROPERTIES_DIR/summary.properties $REPORT_DATA_DIR/summary.xml.tmp || exit 1
+# Velocity adds a lot of garbage spaces and new lines, need to be removed before the xml is cleaned up
+# because of performance reasons
+echo '<?xml version="1.0" encoding="UTF-8"?>' > $REPORT_DATA_DIR/summary.xml
+sed '1,/xml/d' $REPORT_DATA_DIR/summary.xml.tmp >> $REPORT_DATA_DIR/summary.xml
+rm $REPORT_DATA_DIR/summary.xml.tmp
+$JAVA -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type xml  -o $REPORT_DATA_DIR/summary.xml $REPORT_DATA_DIR/summary.xml
 
 echo 'Create the pages.html'
 $JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/pages.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.html || exit 1
 $JAVA -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/pages.html $REPORT_DIR/pages.html
 
 echo 'Create the summary index.html'
-$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/summary.vm $PROPERTIES_DIR/summary.properties $REPORT_DIR/index.html || exit 1
+$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/summary.vm $PROPERTIES_DIR/summary.properties $REPORT_DIR/index.html || exit 1
 $JAVA -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/index.html $REPORT_DIR/index.html
 
 echo 'Create the assets.html'
