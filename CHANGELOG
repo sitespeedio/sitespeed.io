@@ -2,6 +2,7 @@ CHANGELOG sitespeed.io
 
 version 1.8
 ------------------------
+* Bug fix: The check for number of DOM elements where wrong when checking for warning 
 
 version 1.7
 ------------------------
