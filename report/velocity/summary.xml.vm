@@ -17,6 +17,7 @@
 <max>#getNumber($stats.getMax())</max>
 <min>#getNumber($stats.getMin())</min>
 <standardDev>#getNumber($stats.getStandardDeviation())</standardDev>
+<variance>#getNumber($stats.getPopulationVariance())</variance>
 <percentil95>#getNumber($stats.getPercentile(95))</percentil95>
 <values>#getNumber($stats.getN())</values>
 </$stats.getName()>
