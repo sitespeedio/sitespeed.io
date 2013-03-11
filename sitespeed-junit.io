@@ -57,8 +57,10 @@ cd "$(dirname ${BASH_SOURCE[0]})"
 HOME="$(pwd)"
 
 cd $REPORT_BASE_DIR
-ANALYZE_DIR="$(\ls -1dt */ | head -n 1)"
-cd $ANALYZE_DIR
+HOST_DIR="$(\ls -1dt */ | head -n 1)"
+cd $HOST_DIR
+DATE_DIR="$(\ls -1dt */ | head -n 1)"
+cd $DATE_DIR
 ABSOLUTE_ANALYZE_DIR=$(pwd)
 
 RULES_FILE="$ABSOLUTE_ANALYZE_DIR/data/pages/1.xml"
