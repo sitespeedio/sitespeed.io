@@ -243,7 +243,7 @@ HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 
 # Setup dirs                                                                                                                                                             
 DEPENDENCIES_DIR="dependencies"
-REPORT_DIR_NAME=sitespeed-$HOST-$NOW
+REPORT_DIR_NAME=$HOST/$NOW
 REPORT_DIR=$REPORT_BASE_DIR/$REPORT_DIR_NAME
 REPORT_DATA_DIR=$REPORT_DIR/data
 REPORT_PAGES_DIR=$REPORT_DIR/pages
