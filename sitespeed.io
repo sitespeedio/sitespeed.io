@@ -129,7 +129,7 @@ VIEWPORT=1280x800
 VIEWPORT_YSLOW=
 
 YSLOW_FILE=dependencies/yslow-3.1.5-sitespeed.js
-RULESET=sitespeed.io-1.7
+RULESET=sitespeed.io-1.8
 
 # Set options
 while getopts “hu:d:f:s:o:m:p:r:z:x:t:a:v:y:l:c:” OPTION
