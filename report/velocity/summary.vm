@@ -46,7 +46,7 @@
 #set ($frontendMedianPercentage = $math.roundTo(1,$metricsElement.getChild("frontend").getChild("median").getValue()))
 
 ## Set percentage
-#set ($pagesWithSpofPercentage = $math.roundTo($nrOfDecimals, $math.mul($math.div($totalSpofPages,$siteElement.getChild("pages").getValue()),100)))
+#set ($pagesWithSpofPercentage = $math.roundTo($nrOfDecimals, $math.mul($math.div($statsSpofPages.getN(),$siteElement.getChild("pages").getValue()),100)))
 #set ($requestWithoutExpirePercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($totalAssetsWithoutExpiresAverage,$requestAverage),100)))
 #set ($imagesPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($imageAverage,$requestAverage),100)))
 #set ($cssImagesPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($cssImageAverage,$requestAverage),100)))
