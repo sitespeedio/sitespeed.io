@@ -32,8 +32,8 @@
                     <th>name</th>
                     <th>avg</th>
                     <th>median</th>
-                    <th>max</th>
                     <th>min</th>
+                    <th>max</th>
                     <th>sDev</th>
                     <th>95%</th>
                 </tr>
@@ -49,8 +49,8 @@
                     <td>
                         $math.roundTo($nrOfDecimals,$metric.getChild("median").getValue())
                     </td>
-                    <td>$metric.getChild("max").getValue()</td>
                     <td>$metric.getChild("min").getValue()</td>
+                    <td>$metric.getChild("max").getValue()</td>
                     <td>
                         $math.roundTo($nrOfDecimals,$metric.getChild("standardDev").getValue())
                     </td>
