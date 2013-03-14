@@ -40,22 +40,53 @@
             </thead>
             <tbody>
                 #foreach ($metric in $metrics.getChildren())
+                #set ($nrOfDecimals = $metric.getAttribute("decimals").getValue())
+                #set ($type = $metric.getAttribute("type").getValue())
+                #set ($unit = $metric.getAttribute("unit").getValue())
                 <tr>
-                    <td> <em>$metric.getAttribute("friendlyName").getValue()</em>
+                    <td> <em>$metric.getAttribute("friendlyName").getValue()</em> 
                     </td>
                     <td>
-                        $math.roundTo($nrOfDecimals,$metric.getChild("avg").getValue())
+                        #if ($type.equals("cachetime"))
+                            #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("avg").getValue())))
+                        #else    
+                            $math.roundTo($nrOfDecimals,$metric.getChild("avg").getValue()) $unit
+                        #end
                     </td>
                     <td>
-                        $math.roundTo($nrOfDecimals,$metric.getChild("median").getValue())
+                        #if ($type.equals("cachetime"))
+                            #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("median").getValue())))
+                        #else  
+                            $math.roundTo($nrOfDecimals,$metric.getChild("median").getValue()) $unit
+                        #end
                     </td>
-                    <td>$metric.getChild("min").getValue()</td>
-                    <td>$metric.getChild("max").getValue()</td>
                     <td>
-                        $math.roundTo($nrOfDecimals,$metric.getChild("standardDev").getValue())
+                        #if ($type.equals("cachetime"))
+                            #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("min").getValue())))
+                        #else  
+                            $math.roundTo($nrOfDecimals,$metric.getChild("min").getValue()) $unit
+                        #end
                     </td>
                     <td>
-                        $math.roundTo($nrOfDecimals,$metric.getChild("percentil95").getValue())
+                        #if ($type.equals("cachetime"))
+                            #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("max").getValue())))
+                        #else  
+                            $math.roundTo($nrOfDecimals,$metric.getChild("max").getValue()) $unit
+                        #end
+                    </td>
+                    <td>
+                        #if ($type.equals("cachetime"))
+                            #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("standardDev").getValue())))
+                        #else  
+                            $math.roundTo($nrOfDecimals,$metric.getChild("standardDev").getValue()) $unit
+                        #end
+                    </td>
+                    <td>
+                        #if ($type.equals("cachetime"))
+                            #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("percentil95").getValue())))
+                        #else  
+                            $math.roundTo($nrOfDecimals,$metric.getChild("percentil95").getValue()) $unit
+                        #end
                     </td>
                 </tr>
                 #end

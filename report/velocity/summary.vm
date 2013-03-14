@@ -186,15 +186,13 @@
             <div class="span4">
                 <div class="alert alert-#weightType($pageWeightAverage)">
                     Total page weight
-                    #set($pwa = $math.roundTo(1,$math.div($pageWeightAverage,1000)))
-                    <div><a href="#" rel="popover" class="alert-#weightType($pageWeightAverage) large" data-trigger="hover" title="Average page weight $pwa kb" data-content="$pageWeightText">$pwa kb</a> ($math.roundTo(1,$math.div($pageWeightMedian,1000)))</div>
+                    <div><a href="#" rel="popover" class="alert-#weightType($pageWeightAverage) large" data-trigger="hover" title="Average page weight $pwa kb" data-content="$pageWeightText">$pageWeightAverage kb</a> ($math.roundTo(1,$pageWeightMedian))</div>
                 </div>
             </div>
             <div class="span4">
                 <div class="alert alert-#weightMobileType($totalDocumentWeightAverage)">
                     Document page weight
-                    #set ($dwa = $math.roundTo(1,$math.div($totalDocumentWeightAverage,1000)))
-                    <div><a href="#" rel="popover" class="alert-#weightMobileType($totalDocumentWeightAverage) large" data-trigger="hover" title="Average document weight $dwa kb" data-content="$documentWeightText">$dwa kb</a> ($math.roundTo(1,$math.div($documentWeightMedian,1000)))</div>
+                    <div><a href="#" rel="popover" class="alert-#weightMobileType($totalDocumentWeightAverage) large" data-trigger="hover" title="Average document weight $dwa kb" data-content="$documentWeightText">$totalDocumentWeightAverage kb</a> ($math.roundTo(1,$documentWeightMedian))</div>
                 </div>
             </div>
               <div class="span4">

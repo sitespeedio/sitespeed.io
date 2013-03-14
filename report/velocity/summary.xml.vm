@@ -11,7 +11,7 @@
 <viewPort>$document.getRootElement().getAttribute("viewport").getValue()</viewPort>
 <metrics>
 #foreach ($stats in $allStats)
-<$stats.getName() friendlyName="$stats.getFriendlyName()">
+<$stats.getName() friendlyName="$stats.getFriendlyName()" type="$stats.getType()" unit="$stats.getUnit()" decimals="$stats.getDecimals()">
 <avg>#getNumber($stats.getMean())</avg>
 <median>#getNumber($stats.getPercentile(50))</median>
 <max>#getNumber($stats.getMax())</max>
