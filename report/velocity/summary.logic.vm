@@ -7,8 +7,6 @@
 ## Get the total objects
     
 #set($nrOfDecimals = 0)
-#set($totalSpofPages = 0)
-
 
 ## Creating all statistics objects
 #set($statsJs = $stats.newInstance("js","Number of JS"))
@@ -32,26 +30,28 @@
 #set($statsAssetCacheTimeInSeconds = $stats.newInstance("assetcachetimeinseconds","Cache time"))
 #set($statsDomElements = $stats.newInstance("domelements","Number of DOM elements"))
 
+#set($hide = $allStats.add($statsScore))
+#set($hide = $allStats.add($statsCriticalPath))
+#set($hide = $allStats.add($statsJsSyncInHead))
 #set($hide = $allStats.add($statsJs))
 #set($hide = $allStats.add($statsCss))
 #set($hide = $allStats.add($statsImages))
 #set($hide = $allStats.add($statsCssImages))
 #set($hide = $allStats.add($statsRequests))
 #set($hide = $allStats.add($statsPageWeight))
-#set($hide = $allStats.add($statsScore))
 #set($hide = $allStats.add($statsDocumentWeight))
+#set($hide = $allStats.add($statsDomElements))
 #set($hide = $allStats.add($statsSpof))
-#set($hide = $allStats.add($statsJsSyncInHead))
+#set($hide = $allStats.add($statsSpofPages))
 #set($hide = $allStats.add($statsAssetsWithoutExpires))
-#set($hide = $allStats.add($statsCriticalPath))
 #set($hide = $allStats.add($statsTextContent))
 #set($hide = $allStats.add($statsTTFB))
 #set($hide = $allStats.add($statsBackend))
 #set($hide = $allStats.add($statsFrontend))
 #set($hide = $allStats.add($statsTimeSinceLastModificationInSeconds))
 #set($hide = $allStats.add($statsAssetCacheTimeInSeconds))
-#set($hide = $allStats.add($statsDomElements))
-#set($hide = $allStats.add($statsSpofPages))
+
+
 
 #foreach ($results in $document.getRootElement().getChildren())
     
