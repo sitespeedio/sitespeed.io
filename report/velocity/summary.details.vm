@@ -41,7 +41,7 @@
             <tbody>
                 #foreach ($metric in $metrics.getChildren())
                 <tr>
-                    <td> <strong>$metric.getAttribute("friendlyName").getValue()</strong>
+                    <td> <em>$metric.getAttribute("friendlyName").getValue()</em>
                     </td>
                     <td>
                         $math.roundTo($nrOfDecimals,$metric.getChild("avg").getValue())
