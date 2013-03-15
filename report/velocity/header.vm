@@ -7,7 +7,7 @@
     - $pageTitle
     #else
     $pageTitle - 
-    $document.getRootElement().getChild("u").getValue()
+    $document.getRootElement().getChild("url").getValue()
     #end
     </title> 
   <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
