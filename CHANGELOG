@@ -4,6 +4,7 @@ version 1.8
 ------------------------
 * Changed report dir name. Before it was sitespeed-HOST-NOWDATE, now it is HOST/NOWDATE, to make it easier to compare runs over time
 * Added new XML format for the summary page.
+* Output the result of the sitespeed-junit.io to a file if wanted
 * Bug fix: The check for number of DOM elements where wrong when checking for warning 
 
 version 1.7
