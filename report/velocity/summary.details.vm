@@ -21,6 +21,9 @@
             viewport: $siteElement.getChild("viewPort").getValue()
             #end
         </p>
+
+	<h2>Detailed summary</h2>
+
     </div>
 </div>
 
@@ -31,11 +34,13 @@
                 <tr>
                     <th>name</th>
                     <th>avg</th>
+                    <th>10%</th>
                     <th>median</th>
+                    <th>90%</th>
                     <th>min</th>
                     <th>max</th>
                     <th>sDev</th>
-                    <th>95%</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -52,12 +57,26 @@
                         #else    
                             $math.roundTo($nrOfDecimals,$metric.getChild("avg").getValue()) $unit
                         #end
+                    </td>             
+                    <td>
+                        #if ($type.equals("cachetime"))
+                            #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("percentil10").getValue())))
+                        #else  
+                            $math.roundTo($nrOfDecimals,$metric.getChild("percentil10").getValue()) $unit
+                        #end
                     </td>
                     <td>
                         #if ($type.equals("cachetime"))
                             #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("median").getValue())))
                         #else  
                             $math.roundTo($nrOfDecimals,$metric.getChild("median").getValue()) $unit
+                        #end
+                    </td>
+                    <td>
+                        #if ($type.equals("cachetime"))
+                            #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("percentil90").getValue())))
+                        #else  
+                            $math.roundTo($nrOfDecimals,$metric.getChild("percentil90").getValue()) $unit
                         #end
                     </td>
                     <td>
@@ -79,13 +98,6 @@
                             #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("standardDev").getValue())))
                         #else  
                             $math.roundTo($nrOfDecimals,$metric.getChild("standardDev").getValue()) $unit
-                        #end
-                    </td>
-                    <td>
-                        #if ($type.equals("cachetime"))
-                            #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("percentil95").getValue())))
-                        #else  
-                            $math.roundTo($nrOfDecimals,$metric.getChild("percentil95").getValue()) $unit
                         #end
                     </td>
                 </tr>
