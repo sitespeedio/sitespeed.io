@@ -264,8 +264,10 @@
 
         <div class="row-fluid">
             <div class="span12">
-                <h3>Rules definition</h3>
-                <p>
+                <h3>The rules</h3>
+                <p> 
+                <b>Sitespeed.io</b> score are based on the <a href="rules.html">rules</a>. Click <a href="summary-details.html">here</a> to see a detailed version of the summary.
+
                     The rules are simple:
                     <span class="badge badge-success">Green</span>
                     color means you don't need to do anything (of course there could still be things you can do to get better performance).
@@ -274,62 +276,7 @@
                     <span class="badge badge-important">red</span>
                     means that something is really bad. The <span class="badge badge-info">blue</span> color are things for your information, no rules but things that will be good to know.
                 </p>
-                <ul>
-                    <li> <b>Sitespeed score are based on the <a href="rules.html">rules</a> (modified and enhanced Yslow
-                            rules)</b>:  
-                        $scoreText
-                    </li>
-                    <li> <b>The number of requests</b>: 
-                       $requestText
-                    </li>
-                    <li>
-                        <b>The weight of a page</b>: 
-                       $pageWeightText 
-                    </li>
-                    <li>
-                        <b>The document weight</b>: 
-                        $documentWeightText
-                    </li>
-                    <li>
-                        <b>The number of javascripts</b>: 
-                        $nrOfJsText 
-                    </li>
-                    <li>
-                        <b>The number of stylesheets</b>: 
-                        $nrOfCssText 
-                    </li>
-                    <li>
-                        <b>The number of stylesheet images</b>: 
-                        $nrOfCssImageText 
-                    </li>
-                     <li>
-                        <b>The number of images</b>: 
-                        $nrOfImagesText 
-                    </li>
-            
-                     <li>
-                        <b>The number of pages with the possibility of frontend single point of failure</b>: 
-                        $spofText
-                    </li>
-                     <li>
-                        <b>Average number of javascripts loaded synchronously inside of the head tag</b>: 
-                        $jsSyncInHeadText
-                    </li>
-                    <li>
-                        <b>Average number of requests for static content without a future expiration date</b>: 
-                        $assetsWithoutExpiresText
-                       
-                    </li>
-                    <li>
-                    <b>The critical path (every file loaded inside of head, will postpone the rendering of the page, try to avoid loading javascript synchronously, load files from the same domain as the main document, and inline css for really fast critical path)</b>:
-                    $criticalPathText
-                    </li>
-                    <li>
-                        <b>Average number DOM elements</b>: 
-                        $domElementsText
-                    </li>
-
-                 </ul>
+    
             </div>
         </div>
 
@@ -341,13 +288,6 @@
 
 $(function ()
 { $("a[rel=popover]").popover();
-});
-
-
-   $(function () {
-    $('.container').tooltip({
-      selector: "a[rel=tooltip]"
-    })
 });
 
 </script>
