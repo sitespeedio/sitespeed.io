@@ -266,8 +266,10 @@
             <div class="span12">
                 <h3>The rules</h3>
                 <p> 
-                <b>Sitespeed.io</b> score are based on the <a href="rules.html">rules</a>. Click <a href="summary-details.html">here</a> to see a detailed version of the summary.
-
+                <b>Sitespeed.io</b> score are based on the <a href="rules.html">rules</a>. 
+		<span class="hidden-phone">
+		Click <a href="summary-details.html">here</a> to see a detailed version of the summary.
+		</span>
                     The rules are simple:
                     <span class="badge badge-success">Green</span>
                     color means you don't need to do anything (of course there could still be things you can do to get better performance).
