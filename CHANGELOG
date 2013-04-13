@@ -5,6 +5,7 @@ version 1.8
 * Changed report dir name. Before it was sitespeed-HOST-NOWDATE, now it is HOST/NOWDATE, to make it easier to compare runs over time
 * Added new XML format for the summary page.
 * Output the result of the sitespeed-junit.io to a file if wanted
+* Changed summary page: Before showed average & median, now median & 95 percentil
 * New rule for checking if old versions of plugins is used. Right now only chekc JQuery.
 * Bug fix: The check for number of DOM elements where wrong when checking for warning 
 
