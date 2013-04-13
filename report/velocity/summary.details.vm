@@ -36,7 +36,7 @@
                     <th>avg</th>
                     <th>10%</th>
                     <th>median</th>
-                    <th>90%</th>
+                    <th>95%</th>
                     <th>min</th>
                     <th>max</th>
                     <th>sDev</th>
@@ -74,9 +74,9 @@
                     </td>
                     <td>
                         #if ($type.equals("cachetime"))
-                            #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("percentil90").getValue())))
+                            #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("percentil95").getValue())))
                         #else  
-                            $math.roundTo($nrOfDecimals,$metric.getChild("percentil90").getValue()) $unit
+                            $math.roundTo($nrOfDecimals,$metric.getChild("percentil95").getValue()) $unit
                         #end
                     </td>
                     <td>
