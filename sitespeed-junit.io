@@ -19,8 +19,6 @@ OPTIONS:
    -l      The page score limit. Below this page score it will be a failure. Default is 90. [optional]
    -a      The average score limit for all tested pages, below this score it will be a failure. Default is 90. [optional]	
    -s      Skip these tests. A comma separeted list of the key name of the tests, for example "ycsstop,yjsbottom" [optional]   
-   -o      Outputs to the given file instead of outputting to stdout [optional]
-   -c      Copy the summary.xml file to this given dir
  
 EOF
 }
@@ -29,12 +27,9 @@ REPORT_BASE_DIR=sitespeed-result
 PAGE_LIMIT=90
 AVERAGE_LIMIT=90
 SKIP_TESTS=
-OUTPUT_FILENAME=
-OUTPUT=
-SUMMARY_XML_DIR=
 
 # Set options
-while getopts “hr:l:s:o:a:c:” OPTION
+while getopts “hr:l:s:a:” OPTION
 do
      case $OPTION in
          h)
@@ -44,9 +39,7 @@ do
          r)REPORT_BASE_DIR=$OPTARG;;
          l)PAGE_LIMIT=$OPTARG;;
          s)SKIP=$OPTARG;;
-         o)OUTPUT_FILENAME=$OPTARG;;
          a)AVERAGE_LIMIT=$OPTARG;;
-	 c)SUMMARY_XML_DIR=$OPTARG;;
          ?)
              help
              exit
@@ -59,10 +52,7 @@ then
     SKIP_TESTS="--stringparam skip $SKIP"
 fi
 
-if [ "$OUTPUT_FILENAME" != "" ]
-then
-    OUTPUT="--output $OUTPUT_FILENAME"
-fi
+
 
 
 # Switch to my dir
@@ -76,11 +66,7 @@ DATE_DIR="$(\ls -1dt */ | head -n 1)"
 cd $DATE_DIR
 ABSOLUTE_ANALYZE_DIR=$(pwd)
 
-if [ "$" != "SUMMARY_XML_DIR"  ]
-then
-    cp "$ABSOLUTE_ANALYZE_DIR/data/summary.xml" $SUMMARY_XML_DIR/summary.xml
-fi
-
+OUTPUT="--output $ABSOLUTE_ANALYZE_DIR/data/sitespeed.io-junit.xml"
 
 ## TODO the dependency of the file name is not so good!
 RULES_FILE="$ABSOLUTE_ANALYZE_DIR/data/pages/1.xml"
