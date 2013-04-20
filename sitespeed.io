@@ -30,10 +30,8 @@ fi
 
 if [[ "$JAVA" ]]; then
     version=$("$JAVA" -version 2>&1 | awk -F '"' '/version/ {print $2}')
-    if [[ "$version" > "1.6" ]]; then
-        echo "Java version is more than 1.5 which is ok"
-    else         
-        echo "Java version is less than 1.6 which is too old, you will need at least Java 1.6 to run sitespeed.io"; exit 1;
+    if [[ "$version" < "1.6" ]]; then
+         echo "Java version is less than 1.6 which is too old, you will need at least Java 1.6 to run sitespeed.io"; exit 1;
     fi
 fi
 
