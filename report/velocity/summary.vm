@@ -198,7 +198,7 @@
               <div class="span4">
                 <div class="alert alert-#textContentType($textContentMedian)">
                     Amount of text content
-                    <div><a href="#" rel="popover" class="alert-#textContentType($textContentMedian) large" data-trigger="hover" title="The average amount of text content on a page" data-content="$textContentText">$textContentMedian %</a> ($textContentPercentil)</div>
+                    <div><a href="#" rel="popover" class="alert-#textContentType($textContentMedian) large" data-trigger="hover" title="The median amount of text content on a page" data-content="$textContentText">$textContentMedian %</a> ($textContentPercentil)</div>
                 </div>
             </div>
 
@@ -216,7 +216,7 @@
         <div class="span4">
          <div class="alert alert-#spofType($totalSpofMedian)">
                     Number of SPOF per page
-                      <div><a href="#" rel="popover" class="alert-#spofType($totalSpofMedian) large" data-trigger="hover" title="The average of $totalSpofMedian single point of failures per page" data-content="$spofPerPageText">$totalSpofMedian</a> ($spofPercentil)</div>
+                      <div><a href="#" rel="popover" class="alert-#spofType($totalSpofMedian) large" data-trigger="hover" title="The median of $totalSpofMedian single point of failures per page" data-content="$spofPerPageText">$totalSpofMedian</a> ($spofPercentil)</div>
             </div>
              
         </div>
@@ -224,7 +224,7 @@
         <div class="span4">
          <div class="alert alert-#domElementsType($totalDomElementsMedian)">
                     Number of DOM elements
-                      <div><a href="#" rel="popover" class="alert-#domElementsType($totalDomElementsMedian) large" data-trigger="hover" title="The average number of DOM elements per page" data-content="$domElementsText">$totalDomElementsMedian</a> ($domElementsPercentil)</div>
+                      <div><a href="#" rel="popover" class="alert-#domElementsType($totalDomElementsMedian) large" data-trigger="hover" title="The median number of DOM elements per page" data-content="$domElementsText">$totalDomElementsMedian</a> ($domElementsPercentil)</div>
             </div>
              
         </div>
@@ -235,22 +235,22 @@
          <div class="row-fluid">
              <div class="span3">
         		<div class="alert alert-info">
-        		Time spent in backend: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The average time spent in backend" data-content="Research done by Google shows that for the top 300 000 sites, average of 14% of the time is spent in backend.">$backendPercentilPercentage</a> %</div>
+        		Time spent in backend: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The median time spent in backend" data-content="Research done by Google shows that for the top 300 000 sites, average of 14% of the time is spent in backend.">$backendPercentilPercentage</a> %</div>
         		</div>
         	</div>
         	 <div class="span3">
         		<div class="alert alert-info">
-        		Time spent in frontend: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The average time spent in frontend" data-content="Research done by Google shows that for the top 300 000 sites, average of 86% of the time is spent in frontend.">$frontendPercentilPercentage</a> %</div>
+        		Time spent in frontend: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The median time spent in frontend" data-content="Research done by Google shows that for the top 300 000 sites, average of 86% of the time is spent in frontend.">$frontendPercentilPercentage</a> %</div>
         		</div>
         	</div>
         	<div class="span3">
         		<div class="alert alert-info">
-        		Cache time: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The average cache time for all assets of the pages" data-content="Compare the cache time with when an asset was modified, if the last change time was long ago, and the cache time is low, please change it.">#prettyPrint($cacheTimeMedian)</a> (#prettyPrint($cacheTimePercentil))</div>
+        		Cache time: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The median cache time for all assets of the pages" data-content="Compare the cache time with when an asset was modified, if the last change time was long ago, and the cache time is low, please change it.">#prettyPrint($cacheTimeMedian)</a> (#prettyPrint($cacheTimePercentil))</div>
         		</div>
         	</div>
         	<div class="span3">
         		<div class="alert alert-info">
-        		Time since last modification: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The average time since an asset was modified" data-content="Compare the cache time with when an asset was modified, if the last change time was long ago, and the cache time is low, please change it.">#prettyPrint($modifiedSinceMedian)</a> (#prettyPrint($modifiedSincePercentil))</div>
+        		Time since last modification: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The median time since an asset was modified" data-content="Compare the cache time with when an asset was modified, if the last change time was long ago, and the cache time is low, please change it.">#prettyPrint($modifiedSinceMedian)</a> (#prettyPrint($modifiedSincePercentil))</div>
         		</div>
         	</div>
         </div>			
