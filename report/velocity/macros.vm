@@ -68,14 +68,14 @@ error#end#end
 ## Verify the total page wight (including all assets). Below 1 mb is ok
 ## 1280000 is average from http archive
 #macro ( weightType $weight )
-#if ($weight<1000000)success#elseif ($weight<1280000)
+#if ($weight<1000)success#elseif ($weight<1280)
 warning#else
 error#end#end
 
 ## Verify the doc weight, needs to be small for mobile, should also 
 ## take inconcideration total weight. 26000 kb is the average from http archive
 #macro ( weightMobileType $weight )
-#if ($weight<10000)success#elseif ($weight<26000)
+#if ($weight<10)success#elseif ($weight<26)
 warning#else
 error#end#end
 

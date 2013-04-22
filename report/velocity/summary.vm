@@ -186,13 +186,13 @@
             <div class="span4">
                 <div class="alert alert-#weightType($pageWeightMedian)">
                     Total page weight
-                    <div><a href="#" rel="popover" class="alert-#weightType($pageWeightMedian) large" data-trigger="hover" title="Median page weight $pwa kb" data-content="$pageWeightText">$pageWeightMedian kb</a> ($math.roundTo(1,$pageWeightPercentil))</div>
+                    <div><a href="#" rel="popover" class="alert-#weightType($pageWeightMedian) large" data-trigger="hover" title="Median page weight $pageWeightMedian kb" data-content="$pageWeightText">$pageWeightMedian kb</a> ($math.roundTo(1,$pageWeightPercentil))</div>
                 </div>
             </div>
             <div class="span4">
                 <div class="alert alert-#weightMobileType($totalDocumentWeightMedian)">
                     Document page weight
-                    <div><a href="#" rel="popover" class="alert-#weightMobileType($totalDocumentWeightMedian) large" data-trigger="hover" title="Median document weight $dwa kb" data-content="$documentWeightText">$totalDocumentWeightMedian kb</a> ($math.roundTo(1,$documentWeightPercentil))</div>
+                    <div><a href="#" rel="popover" class="alert-#weightMobileType($totalDocumentWeightMedian) large" data-trigger="hover" title="Median document weight $totalDocumentWeightMedian kb" data-content="$documentWeightText">$totalDocumentWeightMedian kb</a> ($math.roundTo(1,$documentWeightPercentil))</div>
                 </div>
             </div>
               <div class="span4">
