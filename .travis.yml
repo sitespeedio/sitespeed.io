@@ -9,6 +9,6 @@ before_script:
 - node test/server/file-server.js &
 - sleep 3
 - "./build/sitespeed.io -u http://127.0.0.1:8080/ -o img"
-- "./build/sitespeed-junit.io -o build
+- "./build/sitespeed-junit.io -o build"
 
 script: ./test/test.sh
