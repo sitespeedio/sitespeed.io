@@ -89,6 +89,13 @@ success#end#end
 #if ($js<1)success#else
 error#end#end        
 
+
+## The total image size of a page
+#macro ( totalImageType $weight )
+#if ($weight<500)success#elseif ($weight<850)
+warning#else
+error#end#end
+
 ## The critical path
 #macro ( criticalPathType $score )
 #if ($score<95)error#elseif ($score<96)
@@ -122,3 +129,4 @@ error#end#end
 ## If the input is null, zero i## The number of DOM elements
 #macro ( getNumber $number )
 #if ($number=="NaN")0#else$number#end#end
+

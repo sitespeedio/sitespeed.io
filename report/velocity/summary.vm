@@ -81,6 +81,7 @@
 #set($textContentText = "Above 50% is good, below 25% is bad.")
 #set($ttfbText = "Faster than 0.3 seconds is good, more than 0.5 s is really bad.")
 #set($domElementsText = "Less than 900 elements is ok, above 1007 is bad (the average from http://httparchive.org)")
+#set($totalImageWeightText = "Less than 500 kb is ok, above 850 is bad.")
 
 #set($totalSpofPages = $math.toInteger($metricsElement.getChild("spofpages").getChild("values").getValue()))
 
@@ -183,43 +184,29 @@
            
         </div>
 
-
-
-    <div class="row-fluid">
-             <div class="span6">
-                <div class="alert alert-#requestType($imageWeightMedian)">
-                    Image weight
-                    <div><a href="#" rel="popover" class="alert-#requestType($imageWeightMedian) large" data-trigger="hover" title="Median size of the imnages" data-content="$imageWeightText">$imageWeightMedian</a> ($imageWeightPercentil)</div>
-                </div>
-            </div>
-    
-             <div class="span6">
-                    <div class="alert alert-#expiresType($totalImageWeightMedian)">
-                    Total images weight
-                      <div><a href="#" rel="popover" class="alert-#expiresType($totalImageWeightMedian) large" data-trigger="hover" title="Median total image size per page" data-content="$totalImageWeightText">$totalImageWeightMedian</a> ($totalImageWeightPercentil) 
-              </div>
-                </div>
-             </div>
-           
-        </div>
-
-	
 	 
-
     <div class="row-fluid">
-            <div class="span4">
+            <div class="span3">
                 <div class="alert alert-#weightType($pageWeightMedian)">
                     Total page weight
                     <div><a href="#" rel="popover" class="alert-#weightType($pageWeightMedian) large" data-trigger="hover" title="Median page weight $pageWeightMedian kb" data-content="$pageWeightText">$pageWeightMedian kb</a> ($math.roundTo(1,$pageWeightPercentil))</div>
                 </div>
             </div>
-            <div class="span4">
+            <div class="span3">
                 <div class="alert alert-#weightMobileType($totalDocumentWeightMedian)">
                     Document page weight
                     <div><a href="#" rel="popover" class="alert-#weightMobileType($totalDocumentWeightMedian) large" data-trigger="hover" title="Median document weight $totalDocumentWeightMedian kb" data-content="$documentWeightText">$totalDocumentWeightMedian kb</a> ($math.roundTo(1,$documentWeightPercentil))</div>
                 </div>
             </div>
-              <div class="span4">
+             <div class="span3">
+                    <div class="alert alert-#totalImageType($totalImageWeightMedian)">
+                    Total image weight
+                      <div><a href="#" rel="popover" class="alert-#totalImageType($totalImageWeightMedian) large" data-trigger="hover" title="Median total image size per page (images & css images)" data-content="$totalImageWeightText">$totalImageWeightMedian kb</a> ($totalImageWeightPercentil) 
+              </div>
+                </div>
+             </div> 
+
+              <div class="span3">
                 <div class="alert alert-#textContentType($textContentMedian)">
                     Amount of text content
                     <div><a href="#" rel="popover" class="alert-#textContentType($textContentMedian) large" data-trigger="hover" title="The median amount of text content on a page" data-content="$textContentText">$textContentMedian %</a> ($textContentPercentil)</div>
