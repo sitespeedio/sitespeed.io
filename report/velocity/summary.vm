@@ -113,7 +113,7 @@
             <div class="span6">
                   <div class="alert alert-#criticalPathType($totalCriticalPathMedian)">
                     Critical Rendering Path Score
-                    <div><a href="#" rel="popover" class="alert-#criticalPathType($totalCriticalPathMedian) large" data-trigger="hover" title="The average of the rendering path score " data-content="$criticalPathText">$totalCriticalPathMedian </a> ($criticalPathPercentil)</div>
+                    <div><a href="#" rel="popover" class="alert-#criticalPathType($totalCriticalPathMedian) large" data-trigger="hover" title="The median of the rendering path score " data-content="$criticalPathText">$totalCriticalPathMedian </a> ($criticalPathPercentil)</div>
                 </div>
             </div>
 
@@ -124,7 +124,7 @@
             <div class="span6">
                   <div class="alert alert-#ttfbType($ttfbMedian)">
                     Time to first byte
-                    <div><a href="#" rel="popover" class="alert-#ttfbType($ttfbMedian) large" data-trigger="hover" title="The average time to first byte" data-content="$ttfbText">$ttfbMedian s</a> ($ttfbPercentil)</div>
+                    <div><a href="#" rel="popover" class="alert-#ttfbType($ttfbMedian) large" data-trigger="hover" title="The median time to first byte" data-content="$ttfbText">$ttfbMedian s</a> ($ttfbPercentil)</div>
                 </div>
             </div>
             <div class="span6">
