@@ -3,7 +3,6 @@
 
 #set($nrOfPages = $document.getRootElement().getChildren("results").size())
 
-
 ## Get the total objects
     
 #set($nrOfDecimals = 0)
@@ -15,6 +14,8 @@
 #set($statsCssImages = $stats.newInstance("cssimages","Number of CSS images","","",1))
 #set($statsRequests = $stats.newInstance("requests","Number of requests","","",1))
 #set($statsPageWeight = $stats.newInstance("pageweight","Total page weight","weight","kb",1))
+#set($statsImageWeight = $stats.newInstance("imageweight","Image weight","weight","kb",1))
+#set($statsTotalImageWeight = $stats.newInstance("totalimageweight","Total image weight","weight","kb",1))
 #set($statsScore = $stats.newInstance("score","Score","","",1))
 #set($statsDocumentWeight = $stats.newInstance("documentweight","Document page weight","weight","kb",1))
 #set($statsSpof = $stats.newInstance("spof","Number of SPOF per page","","",1))
@@ -40,6 +41,8 @@
 #set($hide = $allStats.add($statsRequests))
 #set($hide = $allStats.add($statsPageWeight))
 #set($hide = $allStats.add($statsDocumentWeight))
+#set($hide = $allStats.add($statsImageWeight))
+#set($hide = $allStats.add($statsTotalImageWeight))
 #set($hide = $allStats.add($statsDomElements))
 #set($hide = $allStats.add($statsSpof))
 #set($hide = $allStats.add($statsSpofPages))
@@ -52,9 +55,8 @@
 #set($hide = $allStats.add($statsAssetCacheTimeInSeconds))
 
 
-
 #foreach ($results in $document.getRootElement().getChildren())
-    
+
     #if($!{results.getChild("stats").getChild("js").getChild("r")})
         $statsJs.addValue($math.toInteger($results.getChild("stats").getChild("js").getChild("r").getValue()))
     #end   
@@ -88,6 +90,7 @@
    
         $statsDocumentWeight.addValue($math.toDouble($math.roundTo(3,$math.div($results.getAttribute("size").getValue(),1000))))
     #end
+
 
     #if($!{results.getChild("g").getChild("mindom").getChild("score")})
            $statsDomElements.addValue($math.toInteger($results.getChild("g").getChild("mindom").getChild("components").getChildText("item")))
@@ -130,9 +133,13 @@
     	#end 
     #end
 
+    #set ($totalImagePageSize = 0)
+
 	## also fetch the modified since & cache time
 	#foreach ($asset in $results.getChild("comps").getChildren())
-		
+
+        THIS IS A ASSET
+
 		## set default values
 		#set ($lastMod = "")
 		#set ($date = "")
@@ -149,17 +156,26 @@
 		#if ($delta=="" || ! $delta)
 			## unknown skip it for now
 		#else
-			$statsTimeSinceLastModificationInSeconds.addValue($delta.getSeconds())
+		    $statsTimeSinceLastModificationInSeconds.addValue($delta.getSeconds())
 		#end	
 		
 		#set ($cacheTime = $header.getCacheTime($cacheControl, $expires, $date))
 		#if ($cacheTime=="" || !$cacheTime)
-			$statsAssetCacheTimeInSeconds.addValue(0)
+		     	$statsAssetCacheTimeInSeconds.addValue(0)
 		#else	
-			$statsAssetCacheTimeInSeconds.addValue($cacheTime.getSeconds())
+		     	$statsAssetCacheTimeInSeconds.addValue($cacheTime.getSeconds())
 		#end
+
+        #if (($asset.getChild("type").getValue() == "image") || ($asset.getChild("type").getValue() == "cssimage"))
+           $statsImageWeight.addValue($math.toDouble($math.roundTo(3,$math.div($asset.getChild("size").getValue(),1000))))
+           #set($totalImagePageSize = $math.add($totalImagePageSize,$math.toDouble($math.roundTo(3,$math.div($asset.getChild("size").getValue(),1000)))))
+        #end
 		
 	#end
+
+    #if($totalImagePageSize>0)
+        $statsTotalImageWeight.addValue($totalImagePageSize)
+    #end
 	
 #end
 
