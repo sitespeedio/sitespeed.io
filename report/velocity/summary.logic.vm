@@ -15,7 +15,7 @@
 #set($statsRequests = $stats.newInstance("requests","Number of requests","","",1))
 #set($statsPageWeight = $stats.newInstance("pageweight","Total page weight","weight","kb",1))
 #set($statsImageWeight = $stats.newInstance("imageweight","Image weight","weight","kb",1))
-#set($statsTotalImageWeight = $stats.newInstance("totalimageweight","Total image weight","weight","kb",1))
+#set($statsTotalImageWeight = $stats.newInstance("totalimageweight","Page image weight","weight","kb",1))
 #set($statsScore = $stats.newInstance("score","Score","","",1))
 #set($statsDocumentWeight = $stats.newInstance("documentweight","Document page weight","weight","kb",1))
 #set($statsSpof = $stats.newInstance("spof","Number of SPOF per page","","",1))
