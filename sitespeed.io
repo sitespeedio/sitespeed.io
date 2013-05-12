@@ -376,6 +376,7 @@ if $OUTPUT_IMAGES
   phantomjs $DEPENDENCIES_DIR/rasterize.js $REPORT_DIR/index.html $REPORT_IMAGE_PAGES_DIR/summary.png
   phantomjs $DEPENDENCIES_DIR/rasterize.js $REPORT_DIR/pages.html $REPORT_IMAGE_PAGES_DIR/pages.png
   phantomjs $DEPENDENCIES_DIR/rasterize.js $REPORT_DIR/assets.html $REPORT_IMAGE_PAGES_DIR/assets.png
+  phantomjs $DEPENDENCIES_DIR/rasterize.js $REPORT_DIR/summary-details.html $REPORT_IMAGE_PAGES_DIR/summary-details.png
 
   for file in $REPORT_PAGES_DIR/*
   do
