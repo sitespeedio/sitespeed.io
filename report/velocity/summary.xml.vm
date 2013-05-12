@@ -18,9 +18,9 @@
 <min>#getNumber($stats.getMin())</min>
 <standardDev>#getNumber($stats.getStandardDeviation())</standardDev>
 <variance>#getNumber($stats.getPopulationVariance())</variance>
-<percentil10>#getNumber($stats.getPercentile(10))</percentil10>
-<percentil90>#getNumber($stats.getPercentile(90))</percentil90>
-<percentil95>#getNumber($stats.getPercentile(95))</percentil95>
+<percentile10>#getNumber($stats.getPercentile(10))</percentile10>
+<percentile90>#getNumber($stats.getPercentile(90))</percentile90>
+<percentile95>#getNumber($stats.getPercentile(95))</percentile95>
 <values>#getNumber($stats.getN())</values>
 </$stats.getName()>
 #end

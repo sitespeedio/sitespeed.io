@@ -27,26 +27,26 @@
 #set ($imageWeightMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("imageweight").getChild("median").getValue())) 
 #set ($totalImageWeightMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("totalimageweight").getChild("median").getValue())) 
 
-## Create percentil95
-#set ($scorePercentil = $math.toInteger($metricsElement.getChild("score").getChild("percentil95").getValue()))   
-#set ($jsPercentil = $math.toInteger($metricsElement.getChild("js").getChild("percentil95").getValue()))  
-#set ($requestPercentil = $math.toInteger($metricsElement.getChild("requests").getChild("percentil95").getValue())) 
-#set ($cssPercentil = $math.toInteger($metricsElement.getChild("css").getChild("percentil95").getValue())) 
-#set ($cssImagePercentil = $math.toInteger($metricsElement.getChild("cssimages").getChild("percentil95").getValue())) 
-#set ($imagePercentil = $math.toInteger($metricsElement.getChild("images").getChild("percentil95").getValue())) 
-#set ($pageWeightPercentil = $math.toInteger($metricsElement.getChild("pageweight").getChild("percentil95").getValue())) 
-#set ($documentWeightPercentil = $math.toInteger($metricsElement.getChild("documentweight").getChild("percentil95").getValue())) 
-#set ($jsSyncInHeadPercentil = $math.toInteger($metricsElement.getChild("jssyncinhead").getChild("percentil95").getValue())) 
-#set ($spofPercentil = $math.toInteger($metricsElement.getChild("spof").getChild("percentil95").getValue())) 
-#set ($assetsWithoutExpiresPercentil = $math.toInteger($metricsElement.getChild("assetswithoutexpires").getChild("percentil95").getValue())) 
-#set ($criticalPathPercentil = $math.toInteger($metricsElement.getChild("criticalpath").getChild("percentil95").getValue())) 
-#set ($textContentPercentil = $math.roundTo(1,$metricsElement.getChild("textcontent").getChild("percentil95").getValue()))
-#set ($ttfbPercentil = $math.roundTo(3,$metricsElement.getChild("ttfb").getChild("percentil95").getValue()))
-#set ($domElementsPercentil = $math.toInteger($metricsElement.getChild("domelements").getChild("percentil95").getValue()))
-#set ($backendPercentilPercentage = $math.roundTo(1,$metricsElement.getChild("backend").getChild("percentil95").getValue()))
-#set ($frontendPercentilPercentage = $math.roundTo(1,$metricsElement.getChild("frontend").getChild("percentil95").getValue()))
-#set ($imageWeightPercentil = $math.roundTo($nrOfDecimals,$metricsElement.getChild("imageweight").getChild("percentil95").getValue())) 
-#set ($totalImageWeightPercentil = $math.roundTo($nrOfDecimals,$metricsElement.getChild("totalimageweight").getChild("percentil95").getValue())) 
+## Create percentilee95
+#set ($scorePercentile = $math.toInteger($metricsElement.getChild("score").getChild("percentile95").getValue()))   
+#set ($jsPercentile = $math.toInteger($metricsElement.getChild("js").getChild("percentile95").getValue()))  
+#set ($requestPercentile = $math.toInteger($metricsElement.getChild("requests").getChild("percentile95").getValue())) 
+#set ($cssPercentile = $math.toInteger($metricsElement.getChild("css").getChild("percentile95").getValue())) 
+#set ($cssImagePercentile = $math.toInteger($metricsElement.getChild("cssimages").getChild("percentile95").getValue())) 
+#set ($imagePercentile = $math.toInteger($metricsElement.getChild("images").getChild("percentile95").getValue())) 
+#set ($pageWeightPercentile = $math.toInteger($metricsElement.getChild("pageweight").getChild("percentile95").getValue())) 
+#set ($documentWeightPercentile = $math.toInteger($metricsElement.getChild("documentweight").getChild("percentile95").getValue())) 
+#set ($jsSyncInHeadPercentile = $math.toInteger($metricsElement.getChild("jssyncinhead").getChild("percentile95").getValue())) 
+#set ($spofPercentile = $math.toInteger($metricsElement.getChild("spof").getChild("percentile95").getValue())) 
+#set ($assetsWithoutExpiresPercentile = $math.toInteger($metricsElement.getChild("assetswithoutexpires").getChild("percentile95").getValue())) 
+#set ($criticalPathPercentile = $math.toInteger($metricsElement.getChild("criticalpath").getChild("percentile95").getValue())) 
+#set ($textContentPercentile = $math.roundTo(1,$metricsElement.getChild("textcontent").getChild("percentile95").getValue()))
+#set ($ttfbPercentile = $math.roundTo(3,$metricsElement.getChild("ttfb").getChild("percentile95").getValue()))
+#set ($domElementsPercentile = $math.toInteger($metricsElement.getChild("domelements").getChild("percentile95").getValue()))
+#set ($backendPercentilePercentage = $math.roundTo(1,$metricsElement.getChild("backend").getChild("percentile95").getValue()))
+#set ($frontendPercentilePercentage = $math.roundTo(1,$metricsElement.getChild("frontend").getChild("percentile95").getValue()))
+#set ($imageWeightPercentile = $math.roundTo($nrOfDecimals,$metricsElement.getChild("imageweight").getChild("percentile95").getValue())) 
+#set ($totalImageWeightPercentile = $math.roundTo($nrOfDecimals,$metricsElement.getChild("totalimageweight").getChild("percentile95").getValue())) 
 
 ## Set percentage
 #set ($pagesWithSpofPercentage = $math.roundTo($nrOfDecimals, $math.mul($math.div($statsSpofPages.getN(),$siteElement.getChild("pages").getValue()),100)))
@@ -58,9 +58,9 @@
 #set ($jsInHeadPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($totalJsSyncInHeadMedian,$jsMedian),100))) 
 
 #set ($cacheTimeMedian = $header.getSeconds($math.toInteger($metricsElement.getChild("assetcachetimeinseconds").getChild("median").getValue())))
-#set ($cacheTimePercentil = $header.getSeconds($math.toInteger($metricsElement.getChild("assetcachetimeinseconds").getChild("percentil95").getValue())))
+#set ($cacheTimePercentile = $header.getSeconds($math.toInteger($metricsElement.getChild("assetcachetimeinseconds").getChild("percentile95").getValue())))
 #set ($modifiedSinceMedian = $header.getSeconds($math.toInteger($metricsElement.getChild("timesincelastmodificationinseconds").getChild("median").getValue())))
-#set ($modifiedSincePercentil = $header.getSeconds($math.toInteger($metricsElement.getChild("timesincelastmodificationinseconds").getChild("percentil95").getValue())))
+#set ($modifiedSincePercentile = $header.getSeconds($math.toInteger($metricsElement.getChild("timesincelastmodificationinseconds").getChild("percentile95").getValue())))
 
 
 #set($scoreText = "Over 90 is good, between 80-90 is not so good, and below 80 is bad, really bad.")
@@ -106,7 +106,7 @@
               <div class="alert alert-#scoreType($scoreMedian)">
                      Score
                     <div><a href="#" class="alert-#scoreType($scoreMedian) large" rel="popover" data-trigger="hover" title="Median score $scoreMedian" data-content="$scoreText">$scoreMedian</a> 
-                  ($scorePercentil)
+                  ($scorePercentile)
                     </div>
                 </div>
             </div>
@@ -114,7 +114,7 @@
             <div class="span6">
                   <div class="alert alert-#criticalPathType($totalCriticalPathMedian)">
                     Critical Rendering Path Score
-                    <div><a href="#" rel="popover" class="alert-#criticalPathType($totalCriticalPathMedian) large" data-trigger="hover" title="The median of the rendering path score " data-content="$criticalPathText">$totalCriticalPathMedian </a> ($criticalPathPercentil)</div>
+                    <div><a href="#" rel="popover" class="alert-#criticalPathType($totalCriticalPathMedian) large" data-trigger="hover" title="The median of the rendering path score " data-content="$criticalPathText">$totalCriticalPathMedian </a> ($criticalPathPercentile)</div>
                 </div>
             </div>
 
@@ -125,13 +125,13 @@
             <div class="span6">
                   <div class="alert alert-#ttfbType($ttfbMedian)">
                     Time to first byte
-                    <div><a href="#" rel="popover" class="alert-#ttfbType($ttfbMedian) large" data-trigger="hover" title="The median time to first byte" data-content="$ttfbText">$ttfbMedian s</a> ($ttfbPercentil)</div>
+                    <div><a href="#" rel="popover" class="alert-#ttfbType($ttfbMedian) large" data-trigger="hover" title="The median time to first byte" data-content="$ttfbText">$ttfbMedian s</a> ($ttfbPercentile)</div>
                 </div>
             </div>
             <div class="span6">
             <div class="alert alert-#totalJsSyncInHeadType($totalJsSyncInHeadMedian)">
               Number of JS synchronously in head 
-                    <div><a href="#" rel="popover" class="alert-#totalJsSyncInHeadType($totalJsSyncInHeadMedian) large" data-trigger="hover" title="Median number of $totalJsSyncInHeadMedian javascripts are loaded synchronously inside of the head tag #if($math.toInteger($jsInHeadPercentage) > 0) ($jsInHeadPercentage % of the javascript files) #end" data-content="$jsSyncInHeadText">$totalJsSyncInHeadMedian</a> ($jsSyncInHeadPercentil)</div>   
+                    <div><a href="#" rel="popover" class="alert-#totalJsSyncInHeadType($totalJsSyncInHeadMedian) large" data-trigger="hover" title="Median number of $totalJsSyncInHeadMedian javascripts are loaded synchronously inside of the head tag #if($math.toInteger($jsInHeadPercentage) > 0) ($jsInHeadPercentage % of the javascript files) #end" data-content="$jsSyncInHeadText">$totalJsSyncInHeadMedian</a> ($jsSyncInHeadPercentile)</div>   
           </div>    
                
             </div>
@@ -142,26 +142,26 @@
             <div class="span3">
                 <div class="alert alert-#jsType($jsMedian)">
                     Number of JS 
-                      <div><a href="#" rel="popover" class="alert-#jsType($jsMedian) large" data-trigger="hover" title="Median number of $jsMedian javascripts ($jsPercentage % of the requests) " data-content="$nrOfJsText">$jsMedian</a> ($jsPercentil)</div>
+                      <div><a href="#" rel="popover" class="alert-#jsType($jsMedian) large" data-trigger="hover" title="Median number of $jsMedian javascripts ($jsPercentage % of the requests) " data-content="$nrOfJsText">$jsMedian</a> ($jsPercentile)</div>
                     
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#cssType($cssMedian)">
                     Number of CSS 
-                      <div><a href="#" rel="popover" class="alert-#cssType($cssMedian) large" data-trigger="hover" title="Median number of $cssMedian stylesheets ($cssPercentage % of the requests)" data-content="$nrOfCssText">$cssMedian</a> ($cssPercentil)</div>
+                      <div><a href="#" rel="popover" class="alert-#cssType($cssMedian) large" data-trigger="hover" title="Median number of $cssMedian stylesheets ($cssPercentage % of the requests)" data-content="$nrOfCssText">$cssMedian</a> ($cssPercentile)</div>
                 </div>
             </div>
 <div class="span3">
                 <div class="alert alert-#cssImageType($cssImageMedian)">
                     Number of CSS images 
-                      <div><a href="#" rel="popover" class="alert-#cssImageType($cssImageMedian) large" data-trigger="hover" title="Median number of $cssImageMedian stylesheet images ($cssImagesPercentage % of the requests)" data-content="$nrOfCssImageText">$cssImageMedian</a> ($cssImagePercentil)</div>
+                      <div><a href="#" rel="popover" class="alert-#cssImageType($cssImageMedian) large" data-trigger="hover" title="Median number of $cssImageMedian stylesheet images ($cssImagesPercentage % of the requests)" data-content="$nrOfCssImageText">$cssImageMedian</a> ($cssImagePercentile)</div>
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#imageType($imageMedian)">
                     Number of images 
-                      <div><a href="#" rel="popover" class="alert-#imageType($imageMedian) large" data-trigger="hover" title="Median number of $imageMedian images ($imagesPercentage % of the requests)" data-content="$nrOfImagesText">$imageMedian</a> ($imagePercentil)</div>
+                      <div><a href="#" rel="popover" class="alert-#imageType($imageMedian) large" data-trigger="hover" title="Median number of $imageMedian images ($imagesPercentage % of the requests)" data-content="$nrOfImagesText">$imageMedian</a> ($imagePercentile)</div>
                 </div>
             </div>
         </div>
@@ -170,14 +170,14 @@
              <div class="span6">
                 <div class="alert alert-#requestType($requestMedian)">
                     Number of requests
-                    <div><a href="#" rel="popover" class="alert-#requestType($requestMedian) large" data-trigger="hover" title="Median number of $requestMedian requests" data-content="$requestText">$requestMedian</a> ($requestPercentil)</div>
+                    <div><a href="#" rel="popover" class="alert-#requestType($requestMedian) large" data-trigger="hover" title="Median number of $requestMedian requests" data-content="$requestText">$requestMedian</a> ($requestPercentile)</div>
                 </div>
             </div>
     
              <div class="span6">
                     <div class="alert alert-#expiresType($totalAssetsWithoutExpiresMedian)">
                     Requests without expires 
-                      <div><a href="#" rel="popover" class="alert-#expiresType($totalAssetsWithoutExpiresMedian) large" data-trigger="hover" title="Median number of $totalAssetsWithoutExpiresMedian requests for static content without a future expiration date #if($math.toInteger($requestWithoutExpirePercentage) > 0) ($requestWithoutExpirePercentage % of the requests is lacking a expiration date) #end" data-content="$assetsWithoutExpiresText">$totalAssetsWithoutExpiresMedian</a> ($assetsWithoutExpiresPercentil) 
+                      <div><a href="#" rel="popover" class="alert-#expiresType($totalAssetsWithoutExpiresMedian) large" data-trigger="hover" title="Median number of $totalAssetsWithoutExpiresMedian requests for static content without a future expiration date #if($math.toInteger($requestWithoutExpirePercentage) > 0) ($requestWithoutExpirePercentage % of the requests is lacking a expiration date) #end" data-content="$assetsWithoutExpiresText">$totalAssetsWithoutExpiresMedian</a> ($assetsWithoutExpiresPercentile) 
 		      </div>
                 </div>
              </div>
@@ -189,19 +189,19 @@
             <div class="span3">
                 <div class="alert alert-#weightType($pageWeightMedian)">
                     Total page weight
-                    <div><a href="#" rel="popover" class="alert-#weightType($pageWeightMedian) large" data-trigger="hover" title="Median page weight $pageWeightMedian kb" data-content="$pageWeightText">$pageWeightMedian kb</a> ($math.roundTo(1,$pageWeightPercentil))</div>
+                    <div><a href="#" rel="popover" class="alert-#weightType($pageWeightMedian) large" data-trigger="hover" title="Median page weight $pageWeightMedian kb" data-content="$pageWeightText">$pageWeightMedian kb</a> ($math.roundTo(1,$pageWeightPercentile))</div>
                 </div>
             </div>
             <div class="span3">
                 <div class="alert alert-#weightMobileType($totalDocumentWeightMedian)">
                     Document page weight
-                    <div><a href="#" rel="popover" class="alert-#weightMobileType($totalDocumentWeightMedian) large" data-trigger="hover" title="Median document weight $totalDocumentWeightMedian kb" data-content="$documentWeightText">$totalDocumentWeightMedian kb</a> ($math.roundTo(1,$documentWeightPercentil))</div>
+                    <div><a href="#" rel="popover" class="alert-#weightMobileType($totalDocumentWeightMedian) large" data-trigger="hover" title="Median document weight $totalDocumentWeightMedian kb" data-content="$documentWeightText">$totalDocumentWeightMedian kb</a> ($math.roundTo(1,$documentWeightPercentile))</div>
                 </div>
             </div>
              <div class="span3">
                     <div class="alert alert-#totalImageType($totalImageWeightMedian)">
                     Total image weight
-                      <div><a href="#" rel="popover" class="alert-#totalImageType($totalImageWeightMedian) large" data-trigger="hover" title="Median total image size per page (images & css images)" data-content="$totalImageWeightText">$totalImageWeightMedian kb</a> ($totalImageWeightPercentil) 
+                      <div><a href="#" rel="popover" class="alert-#totalImageType($totalImageWeightMedian) large" data-trigger="hover" title="Median total image size per page (images & css images)" data-content="$totalImageWeightText">$totalImageWeightMedian kb</a> ($totalImageWeightPercentile) 
               </div>
                 </div>
              </div> 
@@ -209,7 +209,7 @@
               <div class="span3">
                 <div class="alert alert-#textContentType($textContentMedian)">
                     Amount of text content
-                    <div><a href="#" rel="popover" class="alert-#textContentType($textContentMedian) large" data-trigger="hover" title="The median amount of text content on a page" data-content="$textContentText">$textContentMedian %</a> ($textContentPercentil)</div>
+                    <div><a href="#" rel="popover" class="alert-#textContentType($textContentMedian) large" data-trigger="hover" title="The median amount of text content on a page" data-content="$textContentText">$textContentMedian %</a> ($textContentPercentile)</div>
                 </div>
             </div>
 
@@ -227,7 +227,7 @@
         <div class="span4">
          <div class="alert alert-#spofType($totalSpofMedian)">
                     Number of SPOF per page
-                      <div><a href="#" rel="popover" class="alert-#spofType($totalSpofMedian) large" data-trigger="hover" title="The median of $totalSpofMedian single point of failures per page" data-content="$spofPerPageText">$totalSpofMedian</a> ($spofPercentil)</div>
+                      <div><a href="#" rel="popover" class="alert-#spofType($totalSpofMedian) large" data-trigger="hover" title="The median of $totalSpofMedian single point of failures per page" data-content="$spofPerPageText">$totalSpofMedian</a> ($spofPercentile)</div>
             </div>
              
         </div>
@@ -235,7 +235,7 @@
         <div class="span4">
          <div class="alert alert-#domElementsType($totalDomElementsMedian)">
                     Number of DOM elements
-                      <div><a href="#" rel="popover" class="alert-#domElementsType($totalDomElementsMedian) large" data-trigger="hover" title="The median number of DOM elements per page" data-content="$domElementsText">$totalDomElementsMedian</a> ($domElementsPercentil)</div>
+                      <div><a href="#" rel="popover" class="alert-#domElementsType($totalDomElementsMedian) large" data-trigger="hover" title="The median number of DOM elements per page" data-content="$domElementsText">$totalDomElementsMedian</a> ($domElementsPercentile)</div>
             </div>
              
         </div>
@@ -246,29 +246,29 @@
          <div class="row-fluid">
              <div class="span3">
         		<div class="alert alert-info">
-        		Time spent in backend: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The median time spent in backend" data-content="Research done by Google shows that for the top 300 000 sites, average of 14% of the time is spent in backend.">$backendPercentilPercentage</a> %</div>
+        		Time spent in backend: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The median time spent in backend" data-content="Research done by Google shows that for the top 300 000 sites, average of 14% of the time is spent in backend.">$backendPercentilePercentage</a> %</div>
         		</div>
         	</div>
         	 <div class="span3">
         		<div class="alert alert-info">
-        		Time spent in frontend: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The median time spent in frontend" data-content="Research done by Google shows that for the top 300 000 sites, average of 86% of the time is spent in frontend.">$frontendPercentilPercentage</a> %</div>
+        		Time spent in frontend: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The median time spent in frontend" data-content="Research done by Google shows that for the top 300 000 sites, average of 86% of the time is spent in frontend.">$frontendPercentilePercentage</a> %</div>
         		</div>
         	</div>
         	<div class="span3">
         		<div class="alert alert-info">
-        		Cache time: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The median cache time for all assets of the pages" data-content="Compare the cache time with when an asset was modified, if the last change time was long ago, and the cache time is low, please change it.">#prettyPrint($cacheTimeMedian)</a> (#prettyPrint($cacheTimePercentil))</div>
+        		Cache time: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The median cache time for all assets of the pages" data-content="Compare the cache time with when an asset was modified, if the last change time was long ago, and the cache time is low, please change it.">#prettyPrint($cacheTimeMedian)</a> (#prettyPrint($cacheTimePercentile))</div>
         		</div>
         	</div>
         	<div class="span3">
         		<div class="alert alert-info">
-        		Time since last modification: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The median time since an asset was modified" data-content="Compare the cache time with when an asset was modified, if the last change time was long ago, and the cache time is low, please change it.">#prettyPrint($modifiedSinceMedian)</a> (#prettyPrint($modifiedSincePercentil))</div>
+        		Time since last modification: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The median time since an asset was modified" data-content="Compare the cache time with when an asset was modified, if the last change time was long ago, and the cache time is low, please change it.">#prettyPrint($modifiedSinceMedian)</a> (#prettyPrint($modifiedSincePercentile))</div>
         		</div>
         	</div>
         </div>			
         
     	<div class="row-fluid">
             <div class="span12">
-            <i>* The value inside of the parentheses are the 95th percentil (95% of the time, the number is below this amount)</i>
+            <i>* The value inside of the parentheses are the 95th percentile (95% of the time, the number is below this amount)</i>
             </div>
         </div>
         

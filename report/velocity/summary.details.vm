@@ -60,9 +60,9 @@
                     </td>             
                     <td>
                         #if ($type.equals("cachetime"))
-                            #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("percentil10").getValue())))
+                            #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("percentile10").getValue())))
                         #else  
-                            $math.roundTo($nrOfDecimals,$metric.getChild("percentil10").getValue()) $unit
+                            $math.roundTo($nrOfDecimals,$metric.getChild("percentile10").getValue()) $unit
                         #end
                     </td>
                     <td>
@@ -74,9 +74,9 @@
                     </td>
                     <td>
                         #if ($type.equals("cachetime"))
-                            #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("percentil95").getValue())))
+                            #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("percentile95").getValue())))
                         #else  
-                            $math.roundTo($nrOfDecimals,$metric.getChild("percentil95").getValue()) $unit
+                            $math.roundTo($nrOfDecimals,$metric.getChild("percentile95").getValue()) $unit
                         #end
                     </td>
                     <td>
