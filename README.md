@@ -2,6 +2,13 @@
 =============
 
 Sitespeed.io is an open source tool that helps you analyze and optimize your website speed and performance, based on performance best practices rules.
+Sitespeed.io will create five different result pages:
+ * Site summary page
+ * Detailed site summary page
+ * Detailed site report
+ * Full page analyzis
+ * >Most used assets report
+
 
 The branches: *master* is the latest release, the *wip-branch* is the coming release.
 
