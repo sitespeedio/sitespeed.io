@@ -2,13 +2,14 @@
 =============
 
 Sitespeed.io is an open source tool that helps you analyze and optimize your website speed and performance, based on performance best practices rules.
-Sitespeed.io will create five different result pages:
+Sitespeed.io will create five different type of result pages:
  * Site summary page
  * Detailed site summary page
  * Detailed site report
- * Full page analyzis
- * >Most used assets report
-
+ * Full page analyzis per page
+ * Most used assets report
+ 
+See <a href="http://sitespeed.io">http://sitespeed.io</a> for documentation.  
 
 The branches: *master* is the latest release, the *wip-branch* is the coming release.
 
@@ -18,4 +19,4 @@ Related projects:
  * https://github.com/soulgalore/doc.sitespeed.io - The documentation site
  * https://github.com/soulgalore/delay - Delay your assets. Project used for testing if the sitespeed rules are working
 
-See <a href="http://sitespeed.io">http://sitespeed.io</a> for documentation.
+
