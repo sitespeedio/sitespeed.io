@@ -20,6 +20,9 @@
 		<xsl:variable name="tests" select="count(g/*)" />
 		<xsl:variable name="failures" select="count(g/*[score&lt;$page-limit])" />
 		<xsl:variable name="skipped" select="count(g/*[contains($skip,name(.))])" />
+		<xsl:variable name="time" select="lt" />
+		<xsl:variable name="time-in-seconds" select="$time div 1000"/>
+		<xsl:variable name="time-per-testcase" select="$time-in-seconds div $tests"/>
 
 		<xsl:variable name="sum" select="sum(g/*/score)"/>
 		<xsl:variable name="avg-score" select="$sum div $tests"/>
@@ -45,13 +48,13 @@
 
 		<!-- Adding one extra test for the overall score -->
 		<testsuite name="sitespeed&#46;io.{$junit-url}" tests="{$tests+1}"
-			failures="{$failures+$avg-fail}" skipped="{$skipped}">
-			<testcase name="Overall average score" status="{$avg-score-decimals}">
+			failures="{$failures+$avg-fail}" skipped="{$skipped}" time="{$time-in-seconds}">
+			<testcase name="Overall average score" status="{$avg-score-decimals}" time="0">
 			    <xsl:if test="$avg-score-decimals&lt;$avg-limit">
 			        <failure message="The average overall score {$avg-score-decimals} is below your limit of {$avg-limit}"/>
 			    </xsl:if>
 			</testcase>	
-			<xsl:apply-templates />
+			<xsl:apply-templates/>
 		</testsuite>
 	</xsl:template>
 
@@ -59,7 +62,12 @@
 		<xsl:variable name="testkey" select="name(.)" />
 		<xsl:variable name="testname" select="$dictionary/results/dictionary/rules/*[contains($testkey,name(.))]/name" />
 		<xsl:variable name="score" select="score" />
-		<testcase name="{$testkey}: {$testname}" status="{$score}">
+
+		<xsl:variable name="time" select="../../lt" />
+		<xsl:variable name="time-in-seconds" select="$time div 1000"/>
+		<xsl:variable name="tests" select="count(../../g/*)" />
+		<xsl:variable name="time-per-testcase" select="$time-in-seconds div $tests"/>
+		<testcase name="{$testkey}: {$testname}" status="{$score}" time="{$time-per-testcase}">
 			<!-- Checked if skipped -->
 			<xsl:if test="contains($skip,$testkey)">
 				<skipped></skipped>

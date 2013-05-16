@@ -68,14 +68,14 @@ error#end#end
 ## Verify the total page wight (including all assets). Below 1 mb is ok
 ## 1280000 is average from http archive
 #macro ( weightType $weight )
-#if ($weight<1000000)success#elseif ($weight<1280000)
+#if ($weight<1000)success#elseif ($weight<1280)
 warning#else
 error#end#end
 
 ## Verify the doc weight, needs to be small for mobile, should also 
 ## take inconcideration total weight. 26000 kb is the average from http archive
 #macro ( weightMobileType $weight )
-#if ($weight<10000)success#elseif ($weight<26000)
+#if ($weight<10)success#elseif ($weight<26)
 warning#else
 error#end#end
 
@@ -88,6 +88,13 @@ success#end#end
 #macro ( totalJsSyncInHeadType $js )
 #if ($js<1)success#else
 error#end#end        
+
+
+## The total image size of a page
+#macro ( totalImageType $weight )
+#if ($weight<500)success#elseif ($weight<850)
+warning#else
+error#end#end
 
 ## The critical path
 #macro ( criticalPathType $score )
@@ -115,6 +122,11 @@ error#end#end
 
 ## The number of DOM elements
 #macro ( domElementsType $el )
-#if ($el<901)success#elseif ($time<1008)
+#if ($el<901)success#elseif ($el<1008)
 warning#else
 error#end#end
+
+## If the input is null, zero i## The number of DOM elements
+#macro ( getNumber $number )
+#if ($number=="NaN")0#else$number#end#end
+

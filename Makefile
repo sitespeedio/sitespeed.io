@@ -29,7 +29,7 @@ package:
 	@cp $(DEP)/LICENSE.txt $(BUILD)/$(DEP)/
 	@cp $(DEP)/crawler-1.3-full.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/crawler.properties $(BUILD)/$(DEP)/
-	@cp $(DEP)/xml-velocity-1.5.1-full.jar $(BUILD)/$(DEP)/	
+	@cp $(DEP)/xml-velocity-1.6-full.jar $(BUILD)/$(DEP)/	
 	@cp $(DEP)/rasterize.js $(BUILD)/$(DEP)/
 	@cp $(DEP)/htmlcompressor-1.5.3.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/yuicompressor-2.4.6.jar $(BUILD)/$(DEP)/
@@ -48,6 +48,7 @@ package:
 	@cp $(REPORT)/$(PROPERTIES)/page.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/pages.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/summary.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
+	@cp $(REPORT)/$(PROPERTIES)/summary.details.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/	
 	@cp $(REPORT)/$(PROPERTIES)/rules.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/assets.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/errorurls.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
@@ -64,5 +65,7 @@ package:
 	@cp $(REPORT)/$(VELOCITY)/rules.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/errorurls.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/summary.logic.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
+	@cp $(REPORT)/$(VELOCITY)/summary.xml.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
+	@cp $(REPORT)/$(VELOCITY)/summary.details.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(XSLT)/junit.xsl $(BUILD)/$(REPORT)/$(XSLT)/
 	@echo "finished!"

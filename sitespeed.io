@@ -132,7 +132,7 @@ VIEWPORT=1280x800
 VIEWPORT_YSLOW=
 
 YSLOW_FILE=dependencies/yslow-3.1.5-sitespeed.js
-RULESET=sitespeed.io-1.7
+RULESET=sitespeed.io-1.8
 
 # Set options
 while getopts “hu:d:f:s:o:m:p:r:z:x:t:a:v:y:l:c:” OPTION
@@ -241,12 +241,12 @@ HOST=${NOPROTOCOL%%/*}
 
 # Jar files
 CRAWLER_JAR=crawler-1.3-full.jar
-VELOCITY_JAR=xml-velocity-1.5.1-full.jar
+VELOCITY_JAR=xml-velocity-1.6-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 
 # Setup dirs                                                                                                                                                             
 DEPENDENCIES_DIR="dependencies"
-REPORT_DIR_NAME=sitespeed-$HOST-$NOW
+REPORT_DIR_NAME=$HOST/$NOW
 REPORT_DIR=$REPORT_BASE_DIR/$REPORT_DIR_NAME
 REPORT_DATA_DIR=$REPORT_DIR/data
 REPORT_PAGES_DIR=$REPORT_DIR/pages
@@ -331,12 +331,27 @@ do
 done 
 echo '</document>'>> "$REPORT_DATA_DIR/result.xml"
 
+
+echo 'Create the summary.xml'
+$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/summary.xml.vm $PROPERTIES_DIR/summary.properties $REPORT_DATA_DIR/summary.xml.tmp || exit 1
+
+# Velocity adds a lot of garbage spaces and new lines, need to be removed before the xml is cleaned up
+# because of performance reasons
+echo '<?xml version="1.0" encoding="UTF-8"?>' > $REPORT_DATA_DIR/summary.xml
+sed '1,/xml/d' $REPORT_DATA_DIR/summary.xml.tmp >> $REPORT_DATA_DIR/summary.xml
+rm $REPORT_DATA_DIR/summary.xml.tmp
+$JAVA -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type xml  -o $REPORT_DATA_DIR/summary.xml $REPORT_DATA_DIR/summary.xml
+
+echo 'Create the summary-details.html'
+$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/summary.details.vm $PROPERTIES_DIR/summary.details.properties $REPORT_DIR/summary-details.html || exit 1
+$JAVA -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/summary-details.html $REPORT_DIR/summary-details.html
+
 echo 'Create the pages.html'
 $JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/pages.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.html || exit 1
 $JAVA -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/pages.html $REPORT_DIR/pages.html
 
 echo 'Create the summary index.html'
-$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/summary.vm $PROPERTIES_DIR/summary.properties $REPORT_DIR/index.html || exit 1
+$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/summary.vm $PROPERTIES_DIR/summary.properties $REPORT_DIR/index.html || exit 1
 $JAVA -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/index.html $REPORT_DIR/index.html
 
 echo 'Create the assets.html'
@@ -364,6 +379,7 @@ if $OUTPUT_IMAGES
   phantomjs $DEPENDENCIES_DIR/rasterize.js $REPORT_DIR/index.html $REPORT_IMAGE_PAGES_DIR/summary.png
   phantomjs $DEPENDENCIES_DIR/rasterize.js $REPORT_DIR/pages.html $REPORT_IMAGE_PAGES_DIR/pages.png
   phantomjs $DEPENDENCIES_DIR/rasterize.js $REPORT_DIR/assets.html $REPORT_IMAGE_PAGES_DIR/assets.png
+  phantomjs $DEPENDENCIES_DIR/rasterize.js $REPORT_DIR/summary-details.html $REPORT_IMAGE_PAGES_DIR/summary-details.png
 
   for file in $REPORT_PAGES_DIR/*
   do
