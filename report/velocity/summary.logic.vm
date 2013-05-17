@@ -28,7 +28,7 @@
 #set($statsAssetsWithoutExpires = $stats.newInstance("assetswithoutexpires","Requests without expires","","",1))
 #set($statsCriticalPath = $stats.newInstance("criticalpath","Critical Rendering Path Score","","",1))
 #set($statsTextContent = $stats.newInstance("textcontent","Amount of text content","","%",1))
-#set($statsTTFB = $stats.newInstance("ttfb","Time to first byte","time","ms",3))
+#set($statsTTFB = $stats.newInstance("ttfb","Time to first byte","time","s",3))
 #set($statsBackend = $stats.newInstance("backend","Time spent in backend","time","%",1))
 #set($statsFrontend = $stats.newInstance("frontend","Time spent in frontend","time","%",1))
 #set($statsTimeSinceLastModificationInSeconds = $stats.newInstance("timesincelastmodificationinseconds","Time since last modification","cachetime","s",1))
