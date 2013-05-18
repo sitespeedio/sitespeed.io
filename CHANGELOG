@@ -4,6 +4,7 @@ version 1.8.1
 ------------------------
 * Bug fix: Show unknown for expire time for fonts, seems that headers aren't fetched for fonts, need to follow up on that
 * Bug fix: TTFB on detailed page said ms but the value is s
+* Bug fix: Yslow didn't honour max-age before expires (following 1.1 spec), now fixed
 
 version 1.8
 ------------------------
