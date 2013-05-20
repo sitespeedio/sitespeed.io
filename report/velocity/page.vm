@@ -129,8 +129,8 @@
 						<a href="$asset.getChild("url").getValue()" title="$asset.getChild("url").getValue()" target="_blank">$asset.getChild("url").getValue()</a>
 					</td>
 					<td>$asset.getChild("type").getValue()</td>
-					## Special hack since favicon & font not working
-							#if ($asset.getChild("type").getValue() != "favicon" || $asset.getChild("type").getValue() != "font")
+					## Special hack since favicon
+							#if ($asset.getChild("type").getValue() != "favicon")
 								#set ($lastMod = $asset.getChild("headers").getChild("response").getChild("Last-Modified").getValue())
 								#set ($date = $asset.getChild("headers").getChild("response").getChild("Date").getValue())
 								#set ($cacheControl = $asset.getChild("headers").getChild("response").getChild("Cache-Control").getValue())
@@ -147,7 +147,7 @@
 							#set ($sort=-1)
 							#end
 					<td data-sort-value="$sort">
-						#if ($asset.getChild("type").getValue() == "favicon" || $asset.getChild("type").getValue() == "font")
+						#if ($asset.getChild("type").getValue() == "favicon")
 							unknown
 							#elseif ($delta=="" || ! $delta)
 							     last modified not set
@@ -156,7 +156,7 @@
 							#end
 					</td>
 					#set ($cacheTime = $header.getCacheTime($cacheControl, $expires, $date))
-							#if ($asset.getChild("type").getValue() == "favicon" || $asset.getChild("type").getValue() == "font")
+							#if ($asset.getChild("type").getValue() == "favicon")
 								#set ($sort=-1)
 							#elseif ($cacheTime=="" || !$cacheTime)
 							     #set ($sort=0)
@@ -166,7 +166,7 @@
 							     $statsAssetCacheTimeInSeconds.addValue($cacheTime.getSeconds())
 							#end
 					<td data-sort-value="$sort">
-						#if ($asset.getChild("type").getValue() == "favicon" || $asset.getChild("type").getValue() == "font")
+						#if ($asset.getChild("type").getValue() == "favicon")
 								unknown
 							#elseif ($cacheTime=="" || !$cacheTime)
 							     0
