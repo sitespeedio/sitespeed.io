@@ -4,7 +4,7 @@ version 1.8.1
 ------------------------
 * Bug fix: TTFB on detailed page said ms but the value is s
 * Bug fix: Yslow didn't honour max-age before expires (following 1.1 spec), now fixed
-* Bug fix: Yslow couldnät fetch headers/weight for @import relative css, fixed
+* Bug fix: Yslow couldn't fetch headers/weight for @import relative css, fixed
 
 version 1.8
 ------------------------
