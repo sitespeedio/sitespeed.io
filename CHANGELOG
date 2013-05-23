@@ -9,7 +9,6 @@ version 1.8.1
 * Added the original favicon rule from Yslow since it works now with the bug fix
 * Added favicon to the expire rules
 
-
 version 1.8
 ------------------------
 * Changed report dir name. Before it was sitespeed-HOST-NOWDATE, now it is HOST/NOWDATE, to make it easier to compare runs over time
