@@ -14,6 +14,7 @@ See <a href="http://sitespeed.io">http://sitespeed.io</a> for documentation.
 The branches: *master* is the latest release, the *wip-branch* is the coming release.
 
 Related projects:
+ * https://github.com/soulgalore/yslow - The YSlow fork holding the sitespeed.io specific rules
  * https://github.com/soulgalore/crawler - Crawler used to fetch the URL:s that will be analyzed
  * https://github.com/soulgalore/xml-velocity - Used to convert the XML from Yslow to HTML
  * https://github.com/soulgalore/doc.sitespeed.io - The documentation site
