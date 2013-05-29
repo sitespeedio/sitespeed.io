@@ -9,6 +9,8 @@ Sitespeed.io will create five different type of result pages:
  * Full page analyzis per page
  * Most used assets report
  
+![The site summary page](https://raw.github.com/soulgalore/sitespeed.io/master/doc/summary-1.8.jpg)
+
 See <a href="http://sitespeed.io">http://sitespeed.io</a> for documentation.  
 
 The branches: *master* is the latest release, the *wip-branch* is the coming release.
