@@ -190,52 +190,60 @@
 				<tr>
 					<td>javascript</td>
 					<td>$nrOfJs</td>
+					<td>$math.roundTo(1,$math.mul($math.div($nrOfJs,$totalRequests),100))%</td>
 				</tr>
 				#end
 							#if ($math.toInteger($nrOfCss)>0)
 				<tr>
 					<td>css</td>
 					<td>$nrOfCss</td>
+					<td>$math.roundTo(1,$math.mul($math.div($nrOfCss,$totalRequests),100))%</td>
 				</tr>
 				#end
 							#if ($math.toInteger($nrOfImages)>0)
 				<tr>
 					<td>images</td>
 					<td>$nrOfImages</td>
+					<td>$math.roundTo(1,$math.mul($math.div($nrOfImages,$totalRequests),100))%</td>
 				</tr>
 				#end
 							#if ($math.toInteger($nrOfCssImages)>0)
 				<tr>
 					<td>css images</td>
 					<td>$nrOfCssImages</td>
+					<td>$math.roundTo(1,$math.mul($math.div($nrOfCssImages,$totalRequests),100))%</td>
 				</tr>
 				#end
 							#if ($math.toInteger($nrOfFonts)>0)
 				<tr>
 					<td>font</td>
 					<td>$nrOfFonts</td>
+					<td>$math.roundTo(1,$math.mul($math.div($nrOfFonts,$totalRequests),100))%</td>
 				</tr>
 				#end
 							#if ($math.toInteger($nrOfFavicons)>0)
 				<tr>
 					<td>favicon</td>
 					<td>$nrOfFavicons</td>
+					<td>$math.roundTo(1,$math.mul($math.div($nrOfFavicons,$totalRequests),100))%</td>
 				</tr>
 				#end
 							#if ($math.toInteger($nrOfFlash)>0)
 				<tr>
 					<td>flash</td>
 					<td>$nrOfFlash</td>
+					<td>$math.roundTo(1,$math.mul($math.div($nrOfFlash,$totalRequests),100))%</td>
 				</tr>
 				#end
 				<tr>
 					<td>other</td>
 					<td>$otherRequests</td>
+					<td>$math.roundTo(1,$math.mul($math.div($otherRequests,$totalRequests),100))%</td>
 				</tr>
 				<tr>
 					<td> <strong>total</strong>
 					</td>
-					<td>$totalRequests</td>
+					<td colspan="2">$totalRequests</td>
 				</tr>
 			</tbody>
 		</table>
@@ -248,47 +256,54 @@
 				<tr>
 					<td>doc</td>
 					<td>$docWeightCurl ($docWeight) kb</td>
+					<td>$math.roundTo(1,$math.mul($math.div($docWeight,$totalWeight),100))%</td>	
 				</tr>
 				#if ($jsWeight>0)
 				<tr>
 					<td>js</td>
 					<td>$jsWeight kb (gzip unknown)</td>
+					<td>$math.roundTo(1,$math.mul($math.div($jsWeight,$totalWeight),100))%</td>
 				</tr>
 				#end
 							#if ($cssWeight>0)
 				<tr>
 					<td>css</td>
 					<td>$cssWeight kb (gzip unknown)</td>
+					<td>$math.roundTo(1,$math.mul($math.div($cssWeight,$totalWeight),100))%</td>
 					<tr>
 						#end
 							#if ($imageWeight>0)
 						<tr>
 							<td>images</td>
 							<td>$imageWeight kb</td>
+							<td>$math.roundTo(1,$math.mul($math.div($imageWeight,$totalWeight),100))%</td>
 						</tr>
 						#end
 							#if ($cssImageWeight>0)
 						<tr>
 							<td>css images</td>
 							<td>$cssImageWeight kb</td>
+							<td>$math.roundTo(1,$math.mul($math.div($cssImageWeight,$totalWeight),100))%</td>
 						</tr>
 						#end
 							#if ($flashWeight>0)
 						<tr>
 							<td>flash</td>
 							<td>$flashWeight kb</td>
+							<td>$math.roundTo(1,$math.mul($math.div($flashWeight,$totalWeight),100))%</td>
 						</tr>
 						#end
 							#if ($otherWeight>0)
 						<tr>
 							<td>other</td>
 							<td>$otherWeight kb</td>
+							<td>$math.roundTo(1,$math.mul($math.div($otherWeight,$totalWeight),100))%</td>
 						</tr>
 						#end
 						<tr>
 							<td> <strong>total</strong>
 							</td>
-							<td>$totalWeight kb</td>
+							<td colspan="2">$totalWeight kb</td>
 						</tr>
 					</tbody>
 				</table>
@@ -387,16 +402,6 @@
 				<h4>Content</h4>
 				<table class="table table-condensed table-striped table-bordered">
 					<tbody>
-
-						<tr>
-							<td>content weight that are js files</td>
-							<td>$jsPercentage %</td>
-						</tr>
-						<tr>
-							<td>content weight that are css files</td>
-							<td>$cssPercentage %</td>
-						</tr>
-
 						<tr>
 							<td>content percentage of the page</td>
 							<td>
@@ -409,7 +414,6 @@
 								$document.getRootElement().getChild("g").getChild("mindom").getChild("components").getChildText("item")
 							</td>
 						</tr>
-
 
 					</tbody>
 				</table>

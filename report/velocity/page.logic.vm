@@ -71,13 +71,6 @@
 		#set($swallow = $hostAndRequests.put($theHost, $nrOfRequests))
 #end
 
-## Calculating percentages
-#set($cssPercentage = $math.roundTo(1,$math.mul($math.div($cssWeight,$contentWeight),100)))
-#set($jsPercentage = $math.roundTo(1,$math.mul($math.div($jsWeight,$contentWeight),100)))
-#if(!$cssPercentage) #set($cssPercentage=0) #end
-#if(!$jsPercentage) #set($jsPercentage=0) #end
-
-
 ## Set up stats for last modified & cache time
 #set($statsTimeSinceLastModificationInSeconds = $stats.copy())
 #set($statsAssetCacheTimeInSeconds= $stats.copy())
