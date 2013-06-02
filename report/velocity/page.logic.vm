@@ -54,8 +54,7 @@
 
 #set($requests = $math.add($math.add($math.add($math.add($math.add($math.add($nrOfJs,$nrOfCss),$nrOfCssImages),$nrOfImages),$nrOfFonts),$nrOfFavicons),$nrOfFlash))
 #set($otherRequests = $math.sub($document.getRootElement().getChild("r").getValue(),$requests))
-## remove the actual document
-#set($totalRequests =  $math.sub($document.getRootElement().getChild("r").getValue(),1))
+#set($totalRequests =  $document.getRootElement().getChild("r").getValue())
 
 ## the number of request per host
 #set($hostAndRequests = $map.clone())
