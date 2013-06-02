@@ -27,7 +27,7 @@ package:
 
 	@cp sitespeed.io sitespeed-junit.io CHANGELOG LICENSE $(BUILD)/
 	@cp $(DEP)/LICENSE.txt $(BUILD)/$(DEP)/
-	@cp $(DEP)/crawler-1.3-full.jar $(BUILD)/$(DEP)/
+	@cp $(DEP)/crawler-1.5.3-full.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/crawler.properties $(BUILD)/$(DEP)/
 	@cp $(DEP)/xml-velocity-1.6-full.jar $(BUILD)/$(DEP)/	
 	@cp $(DEP)/rasterize.js $(BUILD)/$(DEP)/
