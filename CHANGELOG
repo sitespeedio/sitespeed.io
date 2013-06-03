@@ -1,5 +1,11 @@
 CHANGELOG sitespeed.io
 
+version 1.9
+------------------------
+* Show percentage of requests & size per content type
+* Upgraded the crawler: Better closing of connections, URL:s that not following RFC 2396 gave null pointers & when a cookie is not following the spec, the url of the page setting the cookie, is now logged to system error
+* On detailes page summary: Categorize favicon as favicon instead of others
+
 version 1.8.1
 ------------------------
 * Bug fix: TTFB on detailed page said ms but the value is s
