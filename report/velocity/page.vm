@@ -186,6 +186,14 @@
 		<h4>Requests per Content-Type</h4>
 		<table class="table table-condensed table-striped table-bordered">
 			<tbody>
+				#if ($math.toInteger($nrOfHTML)>0)
+                                <tr>
+				        <td>doc</td>
+                                        <td>$nrOfHTML</td>
+                                        <td>$math.roundTo(1,$math.mul($math.div($nrOfHTML,$totalRequests),100))%</td>
+                                </tr>
+				#end
+
 				#if ($math.toInteger($nrOfJs)>0)
 				<tr>
 					<td>javascript</td>
@@ -235,11 +243,13 @@
 					<td>$math.roundTo(1,$math.mul($math.div($nrOfFlash,$totalRequests),100))%</td>
 				</tr>
 				#end
+				#if ($math.toInteger($otherRequests)>0)
 				<tr>
 					<td>other</td>
 					<td>$otherRequests</td>
 					<td>$math.roundTo(1,$math.mul($math.div($otherRequests,$totalRequests),100))%</td>
 				</tr>
+				#end
 				<tr>
 					<td> <strong>total</strong>
 					</td>
@@ -293,6 +303,13 @@
 							<td>$math.roundTo(1,$math.mul($math.div($flashWeight,$totalWeight),100))%</td>
 						</tr>
 						#end
+						       #if ($faviconWeight>0)
+                                                <tr>
+                                                        <td>favicon</td>
+                                                        <td>$faviconWeight kb</td>
+                                                        <td>$math.roundTo(1,$math.mul($math.div($faviconWeight,$totalWeight),100))%</td>
+                                                </tr>
+                                                #end
 							#if ($otherWeight>0)
 						<tr>
 							<td>other</td>

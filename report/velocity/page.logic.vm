@@ -1,19 +1,21 @@
 ## setting up some base values
 
 ## Sometimes getting the js directly from the stats object gives wrong values, so
-## let's calculate them one by one
+## let's calculate them one by one and fetch favicon & totalweight
+
 #set($jsWeightCounted = 0)
+#set($faviconWeight = 0)
+#set($totalWeight = 0)
 #foreach ($asset in $document.getRootElement().getChild("comps").getChildren())
+	#set($totalWeight = $math.add($totalWeight,$asset.getChild("size").getValue()))
+
 	#if ($asset.getChild("type").getValue() == "js")
 		#set($jsWeightCounted = $math.add($jsWeightCounted,$asset.getChild("size").getValue()))
+	#elseif ($asset.getChild("type").getValue() == "favicon")
+		#set($faviconWeight = $math.roundTo(1,$math.div($asset.getChild("size").getValue(),1000)))	
 	#end
 #end
 
-## calculate the total page weight
-#set($totalWeight = 0)
-#foreach ($asset in $document.getRootElement().getChild("comps").getChildren())
-		#set($totalWeight = $math.add($totalWeight,$asset.getChild("size").getValue()))
-#end
 
 ## Setting up the weight
 #set($jsWeight = $math.max($math.roundTo(1,$math.div($jsWeightCounted,1000)),0))
@@ -33,8 +35,10 @@
 #set($contentWeight = $math.add($jsWeight,$math.add($cssWeight,$docWeight)))
 #if(!$contentWeight) #set($contentWeight=0) #end
 #if(!$flashWeight) #set($flashWeight=0) #end
-#set($requestWeight= $jsWeight + $cssWeight + $imageWeight + $cssImageWeight +$docWeight)
+#if(!$faviconWeight) #set($faviconWeight=0) #end
+#set($requestWeight= $jsWeight + $cssWeight + $imageWeight + $cssImageWeight +$docWeight + $faviconWeight)
 #set($otherWeight = $math.roundTo(1,$math.sub($totalWeight,$requestWeight)))
+#if(!$otherWeight) #set($otherWeight=0) #end
 
 ## Setting up the number of requests
 #set($nrOfJs = $document.getRootElement().getChild("stats").getChild("js").getChild("r").getValue())
@@ -43,6 +47,7 @@
 #set($nrOfCssImages = $document.getRootElement().getChild("stats").getChild("cssimage").getChild("r").getValue())
 #set($nrOfFonts = $document.getRootElement().getChild("stats").getChild("font").getChild("r").getValue())
 #set($nrOfFavicons = $document.getRootElement().getChild("stats").getChild("favicon").getChild("r").getValue())
+#set($nrOfHTML = $document.getRootElement().getChild("stats").getChild("doc").getChild("r").getValue())
 
 #if(!$nrOfJs) #set($nrOfJs=0) #end 
 #if(!$nrOfCss) #set($nrOfCss=0) #end 
@@ -51,8 +56,9 @@
 #if(!$nrOfFonts) #set($nrOfFonts=0) #end 
 #if(!$nrOfFavicons) #set($nrOfFavicons=0) #end 
 #if(!$nrOfFlash) #set($nrOfFlash=0) #end 
+#if(!$nrOfHTML) #set($nrOfHTML=0) #end
 
-#set($requests = $math.add($math.add($math.add($math.add($math.add($math.add($nrOfJs,$nrOfCss),$nrOfCssImages),$nrOfImages),$nrOfFonts),$nrOfFavicons),$nrOfFlash))
+#set($requests = $math.add($math.add($math.add($math.add($math.add($math.add($math.add($nrOfJs,$nrOfCss),$nrOfCssImages),$nrOfImages),$nrOfFonts),$nrOfFavicons),$nrOfFlash),$nrOfHTML))
 #set($otherRequests = $math.sub($document.getRootElement().getChild("r").getValue(),$requests))
 #set($totalRequests =  $document.getRootElement().getChild("r").getValue())
 
