@@ -9,7 +9,7 @@
     <div class="span12">
 
         <h2 class="url">
-            $siteElement.getChild("pages").getValue() pages analyzed for
+            $siteElement.getChild("pages").getValue() page#plural($math.toInteger($siteElement.getChild("pages").getValue())) analyzed for
             <a href="$siteElement.getChild("url").getValue()" target="_blank">$siteElement.getChild("url").getValue()</a>
         </h2>
         <p>
