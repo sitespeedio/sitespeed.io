@@ -130,3 +130,7 @@ error#end#end
 #macro ( getNumber $number )
 #if ($number=="NaN")0#else$number#end#end
 
+##Add an s if plural
+#macro ( plural $number)
+#if ($number>1)s#end#end 
+

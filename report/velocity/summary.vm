@@ -89,7 +89,13 @@
     <div class="span12">
 
         <h2 class="url">
-            $siteElement.getChild("pages").getValue() pages analyzed for <a href="$siteElement.getChild("url").getValue()" target="_blank">$siteElement.getChild("url").getValue()</a>
+
+            $siteElement.getChild("pages").getValue() page#plural($math.toInteger($siteElement.getChild("pages").getValue())) analyzed
+                #if (!$siteElement.getChild("url").getValue())  
+
+                #else
+                    for <a href="$siteElement.getChild("url").getValue()" target="_blank">$siteElement.getChild("url").getValue()</a>
+                #end    
         </h2>
         <p>
             Test performed: $siteElement.getChild("date").getValue() with rules $siteElement.getChild("rules").getValue()
