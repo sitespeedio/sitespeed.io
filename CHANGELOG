@@ -5,6 +5,8 @@ version 1.9
 * Show percentage of requests & size per content type
 * Upgraded the crawler: Better closing of connections, URL:s that not following RFC 2396 gave null pointers & when a cookie is not following the spec, the url of the page setting the cookie, is now logged to system error
 * On detailes page summary: Categorize favicon as favicon instead of others
+* Bug fix: If a page was redirected, the gzipped size was fetched as 0, now fixed
+* Bug fix: For some sites (example www.bike.se) the total weight was fetched wrong by YSlow, now the weight is calculated from each assets on the pages info page.
 
 version 1.8.1
 ------------------------
