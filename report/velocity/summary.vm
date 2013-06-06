@@ -91,9 +91,7 @@
         <h2 class="url">
 
             $siteElement.getChild("pages").getValue() page#plural($math.toInteger($siteElement.getChild("pages").getValue())) analyzed
-                #if (!$siteElement.getChild("url").getValue())  
-
-                #else
+                #if ($siteElement.getChild("url").getValue().length()>0)  
                     for <a href="$siteElement.getChild("url").getValue()" target="_blank">$siteElement.getChild("url").getValue()</a>
                 #end    
         </h2>

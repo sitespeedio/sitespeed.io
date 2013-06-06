@@ -22,7 +22,10 @@
         <div class="span12">
 
             <h2 class="url">
-                Page#plural($math.toInteger($document.getRootElement().getChildren("results").size())) ($document.getRootElement().getChildren("results").size()) - <a href="$document.getRootElement().getChild("url").getValue()" target="_blank">$document.getRootElement().getChild("url").getValue()</a>
+                Page#plural($math.toInteger($document.getRootElement().getChildren("results").size())) ($document.getRootElement().getChildren("results").size()) 
+                 #if ($document.getRootElement().getChild("url").getValue().length()>0) 
+                    - <a href="$document.getRootElement().getChild("url").getValue()" target="_blank">$document.getRootElement().getChild("url").getValue()</a>
+                 #end   
             </h2>
             <p>
             Test performed: $document.getRootElement().getAttribute("date").getValue() with rules $document.getRootElement().getChild("results").getChild("i").getValue() 
