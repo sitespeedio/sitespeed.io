@@ -43,7 +43,6 @@ package:
 	@cp $(REPORT)/$(IMG)/sitespeed-logo.gif $(BUILD)/$(REPORT)/$(IMG)/
 	@cp $(REPORT)/$(JS)/bootstrap.min.js $(BUILD)/$(REPORT)/$(JS)/
 	@cp $(REPORT)/$(JS)/jquery-1.8.3.min.js $(BUILD)/$(REPORT)/$(JS)/
-	@cp $(REPORT)/$(JS)/jquery.tablesorter.min.js $(BUILD)/$(REPORT)/$(JS)/
 	@cp $(REPORT)/$(JS)/stupidtable.min.js $(BUILD)/$(REPORT)/$(JS)/
 	@cp $(REPORT)/$(PROPERTIES)/page.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/pages.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
