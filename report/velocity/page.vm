@@ -386,7 +386,12 @@
 								## The weight cached
 								## sometimes it seems like yslow can't fetch this value. when this happens output an sign
 								#if($math.toInteger($document.getRootElement().getChild("w_c").getValue()) > 0)
-									$math.roundTo(1,$math.div($document.getRootElement().getChild("w_c").getValue(),1000)) kb
+									## and sometimes the cached size is bigger than the uncached size, check for that also
+									#if ($math.roundTo(1,$math.div($math.toInteger($document.getRootElement().getChild("w_c").getValue()),1000)) > $totalWeight)
+										<a href="#" title="Couldn't fetch the value"> <i class="icon-question-sign"></i>
+									#else
+										$math.roundTo(1,$math.div($document.getRootElement().getChild("w_c").getValue(),1000)) kb
+									#end
 								#else
 								<a href="#" title="Couldn't fetch the value"> <i class="icon-question-sign"></i>
 								</a>
