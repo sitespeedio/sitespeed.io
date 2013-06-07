@@ -98,7 +98,7 @@ analyze() {
     # Hack for adding link and other data to the xml file
     XML_URL=$(echo "$url" | sed 's/&/\\&/g') 
   
-    sed 's{<results>{<results filename="'$pagefilename'" ttfb="'$TTFB'" size="'$SIZE'"><curl><![CDATA['$XML_URL']]></curl>{' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
+    sed 's{<results>{<results filename="'$pagefilename'" ttfb="'$TTFB'" size="'$SIZE'"><curl><![CDATA['"$XML_URL"']]></curl>{' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
     mv $REPORT_DATA_PAGES_DIR/$pagefilename-bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml 
    
     $JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml $VELOCITY_DIR/page.vm $PROPERTIES_DIR/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1
@@ -293,7 +293,8 @@ JOBS=0
 PAGEFILENAME=1
 
 for page in "${result[@]}"
-do analyze $page $PAGEFILENAME &
+
+do analyze "$page" $PAGEFILENAME &
     PAGEFILENAME=$[$PAGEFILENAME+1]
     JOBS=$[$JOBS+1]
     if [ "$JOBS" -ge "$MAX_PROCESSES" ]
