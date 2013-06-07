@@ -55,7 +55,7 @@ OPTIONS:
    -s      Skip urls that contains this in the path [optional]
    -p      The number of processes that will analyze pages, default is 5 [optional]
    -m      The memory heap size for the java applications, default is 1024 Mb [optional]
-   -o      The output format, always output as html but you can add images (img) [optional]
+   -o      The output format, always output as html but you can add images and a csv file for the detailed site summary page  (img|csv) [optional]
    -r      The result base directory, default is sitespeed-result [optional]
    -z      Create a tar zip file of the result files, default is false [optional]
    -x      The proxy host & protocol: proxy.soulgalore.com:80 [optional] 
@@ -199,6 +199,13 @@ if [[ "$OUTPUT_FORMAT" == *img* ]]
   OUTPUT_IMAGES=true
 else
    OUTPUT_IMAGES=false
+fi  
+
+if [[ "$OUTPUT_FORMAT" == *csv* ]]
+  then 
+  OUTPUT_CSV=true
+else
+   OUTPUT_CSV=false
 fi  
 
 if [ "$PROXY_HOST" != "" ]
@@ -349,6 +356,12 @@ $JAVA -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --co
 echo 'Create the pages.html'
 $JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/pages.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.html || exit 1
 $JAVA -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/pages.html $REPORT_DIR/pages.html
+
+if $OUTPUT_CSV 
+  then
+  echo 'Create the pages.csv'
+  $JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/pages-csv.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.csv || exit 1
+fi
 
 echo 'Create the summary index.html'
 $JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/summary.vm $PROPERTIES_DIR/summary.properties $REPORT_DIR/index.html || exit 1
