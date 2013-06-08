@@ -89,7 +89,7 @@ analyze() {
       ## do the same thing again but setting console to log the error to output
       phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml $USER_AGENT_YSLOW $VIEWPORT_YSLOW "$url" -c 2  
       ## write the error url to the list
-      echo "$url,frontend-error" >> $REPORT_DATA_DIR/errorurls.txt    
+      echo "frontend-error,$url" >> $REPORT_DATA_DIR/errorurls.txt    
     fi
 
     # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
