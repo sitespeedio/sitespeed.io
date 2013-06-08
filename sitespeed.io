@@ -250,6 +250,10 @@ else
  echo "Will fetch urls from the file $FILE with User-Agent $USER_AGENT and viewport $VIEWPORT using ruleset $RULESET ... this can take a while"
 fi
 
+# Logging versions
+pVersion=$(phantomjs --version) 
+echo "Using PhantomJS version $pVersion" 
+echo "Using Java version $jVersion" 
 
 # remove the protocol                                                                                                                                                            
 NOPROTOCOL=${URL#*//}
