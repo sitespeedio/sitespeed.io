@@ -97,7 +97,7 @@ analyze() {
     sed -n '1,/<\/results>/p' $REPORT_DATA_PAGES_DIR/$pagefilename-bup > $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1
  
     # ttfb & page size
-    curl $USER_AGENT_CURL --compressed -o /dev/null -w "%{time_starttransfer};%{size_download}\n" -L -s $url >  "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
+    curl $USER_AGENT_CURL --compressed -o /dev/null -w "%{time_starttransfer};%{size_download}\n" -L -s "$url" >  "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
     
     read -r TTFB_SIZE <  $REPORT_DATA_PAGES_DIR/$pagefilename.info
     TTFB="$(echo $TTFB_SIZE  | cut -d \; -f 1)"
