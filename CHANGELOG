@@ -1,12 +1,19 @@
 CHANGELOG sitespeed.io
 
-version 1.9
+version 1.8.2
 ------------------------
 * Show percentage of requests & size per content type
-* Upgraded the crawler: Better closing of connections, URL:s that not following RFC 2396 gave null pointers & when a cookie is not following the spec, the url of the page setting the cookie, is now logged to system error
-* On detailes page summary: Categorize favicon as favicon instead of others
+* You can now export the pages data to csv (again) with the switch "-o csv"
+* Upgraded the crawler: Better closing of connections, URL:s that not following RFC 2396 gave null pointers & when a cookie is not following the spec, the url of the page setting the cookie is now logged 
+* On detailes page summary: Categorize favicon as favicon instead of others, and doc type has now an own category
+* If an analyze failes, the url and the error from YSlow is now logged
+* Cleanup: When you feed sitespeed.io with a list of urls from a file, the text messages is cleaner in the HTML
+* Cleanup: Removed old JS table sorter on pages summary, works better now
 * Bug fix: If a page was redirected, the gzipped size was fetched as 0, now fixed
 * Bug fix: For some sites (example www.bike.se) the total weight was fetched wrong by YSlow, now the weight is calculated from each assets on the pages info page.
+* Bug fix: Urls containing & broke some tests
+* Bug fix: In very rare cases, YSlow reports a larger cache weight than the page weight. The bug is not fixed but when it happens, an error mesage is displayed
+* Bug fix: Page weight was sometimes wrongly calculated, now each asset weight is used to calculate
 
 version 1.8.1
 ------------------------
