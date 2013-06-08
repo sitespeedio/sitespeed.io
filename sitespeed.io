@@ -85,7 +85,9 @@ analyze() {
     # Check that the size is bigger than 0
     if [ $s -lt 10 ]
       then
-      echo "Could not analyze $url Sitespeed/YSlow thrown an error"      
+      echo "Could not analyze $url Sitespeed/YSlow thrown an error:"
+      ## do the same thing again but setting console to log the error to output
+      phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml $USER_AGENT_YSLOW $VIEWPORT_YSLOW "$url" -c 2      
     fi
 
     # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
