@@ -29,11 +29,12 @@ else
 fi
 
 if [[ "$JAVA" ]]; then
-    version=$("$JAVA" -version 2>&1 | awk -F '"' '/version/ {print $2}')
-    if [[ "$version" < "1.6" ]]; then
+    jVersion=$("$JAVA" -version 2>&1 | awk -F '"' '/version/ {print $2}')
+    if [[ "$jVersion" < "1.6" ]]; then
          echo "Java version is less than 1.6 which is too old, you will need at least Java 1.6 to run sitespeed.io"; exit 1;
     fi
 fi
+
 
 #*******************************************************
 # Help function, call it to print all different usages.
@@ -80,6 +81,13 @@ analyze() {
     echo "Analyzing $url"
     phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml $USER_AGENT_YSLOW $VIEWPORT_YSLOW "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
  
+    s=$(du -k "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" | cut -f1)
+    # Check that the size is bigger than 0
+    if [ $s -lt 10 ]
+      then
+      echo "Could not analyze $url Sitespeed/YSlow thrown an error"      
+    fi
+
     # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
     sed '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup  || exit 1
   
@@ -241,6 +249,7 @@ if [[ -z $FILE ]]
 else
  echo "Will fetch urls from the file $FILE with User-Agent $USER_AGENT and viewport $VIEWPORT using ruleset $RULESET ... this can take a while"
 fi
+
 
 # remove the protocol                                                                                                                                                            
 NOPROTOCOL=${URL#*//}
