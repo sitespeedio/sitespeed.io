@@ -27,7 +27,7 @@ package:
 
 	@cp sitespeed.io sitespeed-junit.io CHANGELOG LICENSE $(BUILD)/
 	@cp $(DEP)/LICENSE.txt $(BUILD)/$(DEP)/
-	@cp $(DEP)/crawler-1.3-full.jar $(BUILD)/$(DEP)/
+	@cp $(DEP)/crawler-1.5.3-full.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/crawler.properties $(BUILD)/$(DEP)/
 	@cp $(DEP)/xml-velocity-1.6-full.jar $(BUILD)/$(DEP)/	
 	@cp $(DEP)/rasterize.js $(BUILD)/$(DEP)/
@@ -43,7 +43,6 @@ package:
 	@cp $(REPORT)/$(IMG)/sitespeed-logo.gif $(BUILD)/$(REPORT)/$(IMG)/
 	@cp $(REPORT)/$(JS)/bootstrap.min.js $(BUILD)/$(REPORT)/$(JS)/
 	@cp $(REPORT)/$(JS)/jquery-1.8.3.min.js $(BUILD)/$(REPORT)/$(JS)/
-	@cp $(REPORT)/$(JS)/jquery.tablesorter.min.js $(BUILD)/$(REPORT)/$(JS)/
 	@cp $(REPORT)/$(JS)/stupidtable.min.js $(BUILD)/$(REPORT)/$(JS)/
 	@cp $(REPORT)/$(PROPERTIES)/page.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/pages.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
@@ -56,6 +55,7 @@ package:
 	@cp $(REPORT)/$(VELOCITY)/macros.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/date.macros.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/pages.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
+	@cp $(REPORT)/$(VELOCITY)/pages-csv.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/summary.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/header.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/page.vm $(BUILD)/$(REPORT)/$(VELOCITY)/

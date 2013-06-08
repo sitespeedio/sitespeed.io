@@ -7,7 +7,11 @@
 		#set ($maxNrOfUrls = 200)
 		#set ($toplist=$toplisttool.getMostPopularUrls($maxNrOfUrls)) 
 		<h2 class="url">
-            The $toplist.size() most used assets for <a href="$document.getRootElement().getChild("url").getValue()" target="_blank">$document.getRootElement().getChild("url").getValue()</a> ($document.getRootElement().getChildren("results").size() pages)
+            The $toplist.size() most used assets 
+            #if ($document.getRootElement().getChild("url").getValue().length()>0) 
+			    for <a href="$document.getRootElement().getChild("url").getValue()" target="_blank">$document.getRootElement().getChild("url").getValue()</a> 
+			#end	
+            ($document.getRootElement().getChildren("results").size() pages)
         </h2>
    
 

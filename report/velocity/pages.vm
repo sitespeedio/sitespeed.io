@@ -22,7 +22,10 @@
         <div class="span12">
 
             <h2 class="url">
-                Pages ($document.getRootElement().getChildren("results").size()) - <a href="$document.getRootElement().getChild("url").getValue()" target="_blank">$document.getRootElement().getChild("url").getValue()</a>
+                Page#plural($math.toInteger($document.getRootElement().getChildren("results").size())) ($document.getRootElement().getChildren("results").size()) 
+                 #if ($document.getRootElement().getChild("url").getValue().length()>0) 
+                    - <a href="$document.getRootElement().getChild("url").getValue()" target="_blank">$document.getRootElement().getChild("url").getValue()</a>
+                 #end   
             </h2>
             <p>
             Test performed: $document.getRootElement().getAttribute("date").getValue() with rules $document.getRootElement().getChild("results").getChild("i").getValue() 
@@ -43,64 +46,64 @@
                 <caption></caption>
                 <thead>
                     <tr>
-                    <th>
+                    <th data-sort="string">
                         <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipUrlText">url</a>
                     </th>
-                    <th>
+                    <th data-sort="int">
                         <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipJsText">js</a>
                     </th>
 
-                    <th>
+                    <th data-sort="int">
                         <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipCssText">css</a>
                     </th>
-                    <th>
+                    <th data-sort="int">
                         <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipImgText">img</a>
                     </th>
 
-                    <th>
+                    <th data-sort="int">
                         <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipCssImgText">css img</a>
                     </th>
 
-                    <th>
+                    <th data-sort="int">
                         <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipFontText">font</a>
                     </th>
 
-                    <th>
+                    <th data-sort="int">
                         <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipTotalRequestsText">total requests</a>
                     </th>
-                    <th>
+                    <th data-sort="int">
                         <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipTotalRequestsWithoutExpireText">requests missing expire</a>
                     </th>
 
-                    <th>
+                    <th data-sort="float">
                         <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipDocSizeText">doc size (kb)</a>
                     </th>
 
-                    <th>
+                    <th data-sort="float">
                         <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipPageSizeText">page size (kb)</a>
                     </th>
 
-                    <th>
+                    <th data-sort="int">
                         <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipCriticalPathText">critical path score</a>
                     </th>
 
-                    <th>
+                    <th data-sort="float">
                         <a rel="tooltip" data-placement="top" data-html="false" href="#" data-original-title="$tooltipLoadTimeText">load time (s)</a>
                     </th>
 
-                    <th>
+                    <th data-sort="int">
                         <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipSpofText">spof</a>
                     </th>
 
-                    <th>
+                    <th data-sort="int">
                         <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipJsSyncText">sync js</a>
                     </th>
 
-                    <th>
+                    <th data-sort="float">
                         <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipTTFBText">ttfb (s)</a>
                     </th>
 
-                    <th>
+                    <th data-sort="int">
                         <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipGradeText">grade</a>
                     </th>
                 </tr>
@@ -202,7 +205,15 @@
 
                     <td>
                         ## The size of the page
-                        $math.roundTo(1,$math.div($results.getChild("w").getValue(),1000))
+                        ## Sometimes this bugs in YSlow and have an enourmus big value in the phantomjs version
+                        ## I will file a defect to YSlow later
+                        ## $math.roundTo(1,$math.div($results.getChild("w").getValue(),1000))
+                        ## For now fetch the values individually
+                        #set($totalWeight = 0)
+                        #foreach ($asset in $results.getChild("comps").getChildren())
+                            #set($totalWeight = $math.add($totalWeight,$asset.getChild("size").getValue()))
+                        #end
+                        $math.roundTo(1,$math.div($totalWeight,1000))
                     </td>
 
                     <td>
@@ -401,15 +412,12 @@
     </div>
     </div>
     #parse("report/velocity/footer.vm")
-  <script>
-  $(document).ready(function() 
-    { 
-        $("#pagesTable").tablesorter(); 
-        $("#phonesPagesTable").tablesorter(); 
-    } 
-  );
-  </script>
-
+    <script>
+           $(function(){
+        $("#pagesTable").stupidtable();
+        $("#phonesPagesTable").stupidtable();
+         });
+        </script>
   <script>
 
    $(function () {

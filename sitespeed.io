@@ -29,11 +29,12 @@ else
 fi
 
 if [[ "$JAVA" ]]; then
-    version=$("$JAVA" -version 2>&1 | awk -F '"' '/version/ {print $2}')
-    if [[ "$version" < "1.6" ]]; then
+    jVersion=$("$JAVA" -version 2>&1 | awk -F '"' '/version/ {print $2}')
+    if [[ "$jVersion" < "1.6" ]]; then
          echo "Java version is less than 1.6 which is too old, you will need at least Java 1.6 to run sitespeed.io"; exit 1;
     fi
 fi
+
 
 #*******************************************************
 # Help function, call it to print all different usages.
@@ -55,7 +56,7 @@ OPTIONS:
    -s      Skip urls that contains this in the path [optional]
    -p      The number of processes that will analyze pages, default is 5 [optional]
    -m      The memory heap size for the java applications, default is 1024 Mb [optional]
-   -o      The output format, always output as html but you can add images (img) [optional]
+   -o      The output format, always output as html but you can add images and a csv file for the detailed site summary page  (img|csv) [optional]
    -r      The result base directory, default is sitespeed-result [optional]
    -z      Create a tar zip file of the result files, default is false [optional]
    -x      The proxy host & protocol: proxy.soulgalore.com:80 [optional] 
@@ -80,6 +81,15 @@ analyze() {
     echo "Analyzing $url"
     phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml $USER_AGENT_YSLOW $VIEWPORT_YSLOW "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
  
+    s=$(du -k "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" | cut -f1)
+    # Check that the size is bigger than 0
+    if [ $s -lt 10 ]
+      then
+      echo "Could not analyze $url Sitespeed/YSlow thrown an error:"
+      ## do the same thing again but setting console to log the error to output
+      phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml $USER_AGENT_YSLOW $VIEWPORT_YSLOW "$url" -c 2      
+    fi
+
     # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
     sed '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup  || exit 1
   
@@ -87,7 +97,7 @@ analyze() {
     sed -n '1,/<\/results>/p' $REPORT_DATA_PAGES_DIR/$pagefilename-bup > $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1
  
     # ttfb & page size
-    curl $USER_AGENT_CURL --compressed -o /dev/null -w "%{time_starttransfer};%{size_download}\n" -s $url >  "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
+    curl $USER_AGENT_CURL --compressed -o /dev/null -w "%{time_starttransfer};%{size_download}\n" -L -s "$url" >  "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
     
     read -r TTFB_SIZE <  $REPORT_DATA_PAGES_DIR/$pagefilename.info
     TTFB="$(echo $TTFB_SIZE  | cut -d \; -f 1)"
@@ -98,7 +108,7 @@ analyze() {
     # Hack for adding link and other data to the xml file
     XML_URL=$(echo "$url" | sed 's/&/\\&/g') 
   
-    sed 's{<results>{<results filename="'$pagefilename'" ttfb="'$TTFB'" size="'$SIZE'"><curl><![CDATA['$XML_URL']]></curl>{' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
+    sed 's{<results>{<results filename="'$pagefilename'" ttfb="'$TTFB'" size="'$SIZE'"><curl><![CDATA['"$XML_URL"']]></curl>{' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
     mv $REPORT_DATA_PAGES_DIR/$pagefilename-bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml 
    
     $JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml $VELOCITY_DIR/page.vm $PROPERTIES_DIR/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1
@@ -132,7 +142,7 @@ VIEWPORT=1280x800
 VIEWPORT_YSLOW=
 
 YSLOW_FILE=dependencies/yslow-3.1.5-sitespeed.js
-RULESET=sitespeed.io-1.8.1
+RULESET=sitespeed.io-1.9
 
 # Set options
 while getopts “hu:d:f:s:o:m:p:r:z:x:t:a:v:y:l:c:” OPTION
@@ -201,6 +211,13 @@ else
    OUTPUT_IMAGES=false
 fi  
 
+if [[ "$OUTPUT_FORMAT" == *csv* ]]
+  then 
+  OUTPUT_CSV=true
+else
+   OUTPUT_CSV=false
+fi  
+
 if [ "$PROXY_HOST" != "" ]
 then
     PROXY_PHANTOMJS="--proxy=$PROXY_HOST --proxy-type=$PROXY_TYPE"
@@ -235,12 +252,17 @@ else
  echo "Will fetch urls from the file $FILE with User-Agent $USER_AGENT and viewport $VIEWPORT using ruleset $RULESET ... this can take a while"
 fi
 
+# Logging versions
+pVersion=$(phantomjs --version) 
+echo "Using PhantomJS version $pVersion" 
+echo "Using Java version $jVersion" 
+
 # remove the protocol                                                                                                                                                            
 NOPROTOCOL=${URL#*//}
 HOST=${NOPROTOCOL%%/*}
 
 # Jar files
-CRAWLER_JAR=crawler-1.3-full.jar
+CRAWLER_JAR=crawler-1.5.3-full.jar
 VELOCITY_JAR=xml-velocity-1.6-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 
@@ -286,7 +308,8 @@ JOBS=0
 PAGEFILENAME=1
 
 for page in "${result[@]}"
-do analyze $page $PAGEFILENAME &
+
+do analyze "$page" $PAGEFILENAME &
     PAGEFILENAME=$[$PAGEFILENAME+1]
     JOBS=$[$JOBS+1]
     if [ "$JOBS" -ge "$MAX_PROCESSES" ]
@@ -350,6 +373,12 @@ echo 'Create the pages.html'
 $JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/pages.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.html || exit 1
 $JAVA -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/pages.html $REPORT_DIR/pages.html
 
+if $OUTPUT_CSV 
+  then
+  echo 'Create the pages.csv'
+  $JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/pages-csv.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.csv || exit 1
+fi
+
 echo 'Create the summary index.html'
 $JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/summary.vm $PROPERTIES_DIR/summary.properties $REPORT_DIR/index.html || exit 1
 $JAVA -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/index.html $REPORT_DIR/index.html
@@ -368,7 +397,7 @@ mkdir $REPORT_DIR/js
 mkdir $REPORT_DIR/img
 
 cat "$BASE_DIR"report/css/bootstrap.min.css > $REPORT_DIR/css/styles.css
-cat "$BASE_DIR"report/js/jquery-1.8.3.min.js report/js/bootstrap.min.js report/js/stupidtable.min.js report/js/jquery.tablesorter.min.js > $REPORT_DIR/js/all.js
+cat "$BASE_DIR"report/js/jquery-1.8.3.min.js report/js/bootstrap.min.js report/js/stupidtable.min.js > $REPORT_DIR/js/all.js
 cp "$BASE_DIR"report/img/* $REPORT_DIR/img
 
 
