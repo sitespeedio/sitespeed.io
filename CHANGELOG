@@ -1,5 +1,9 @@
 CHANGELOG sitespeed.io
 
+version 1.9
+------------------------
+* Supply a test name that will be shown on all pages, with the parameter -n
+
 version 1.8.2
 ------------------------
 * Show percentage of requests & size per content type

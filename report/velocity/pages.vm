@@ -27,6 +27,9 @@
                     - <a href="$document.getRootElement().getChild("url").getValue()" target="_blank">$document.getRootElement().getChild("url").getValue()</a>
                  #end   
             </h2>
+            #if ($testname)
+                <h3>$testname</h3>
+            #end
             <p>
             Test performed: $document.getRootElement().getAttribute("date").getValue() with rules $document.getRootElement().getChild("results").getChild("i").getValue() 
 

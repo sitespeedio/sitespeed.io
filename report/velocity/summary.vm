@@ -95,6 +95,9 @@
                     for <a href="$siteElement.getChild("url").getValue()" target="_blank">$siteElement.getChild("url").getValue()</a>
                 #end    
         </h2>
+        #if ($testname)
+            <h3>$testname</h3>
+        #end
         <p>
             Test performed: $siteElement.getChild("date").getValue() with rules $siteElement.getChild("rules").getValue()
 	    #if ($siteElement.getChild("userAgent").getValue().getValue() != "")

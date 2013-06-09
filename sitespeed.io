@@ -56,6 +56,7 @@ OPTIONS:
    -s      Skip urls that contains this in the path [optional]
    -p      The number of processes that will analyze pages, default is 5 [optional]
    -m      The memory heap size for the java applications, default is 1024 Mb [optional]
+   -n      Give your test a name, it will be added to all HTML pages [optional]
    -o      The output format, always output as html but you can add images and a csv file for the detailed site summary page  (img|csv) [optional]
    -r      The result base directory, default is sitespeed-result [optional]
    -z      Create a tar zip file of the result files, default is false [optional]
@@ -143,11 +144,13 @@ USER_AGENT_CURL=
 VIEWPORT=1280x800
 VIEWPORT_YSLOW=
 
+TEST_NAME=
+
 YSLOW_FILE=dependencies/yslow-3.1.5-sitespeed.js
 RULESET=sitespeed.io-1.9
 
 # Set options
-while getopts “hu:d:f:s:o:m:p:r:z:x:t:a:v:y:l:c:” OPTION
+while getopts “hu:d:f:s:o:m:n:p:r:z:x:t:a:v:y:l:c:” OPTION
 do
      case $OPTION in
          h)
@@ -160,6 +163,7 @@ do
          s)NOT_IN_URL=$OPTARG;;   
          o)OUTPUT_FORMAT=$OPTARG;;  
          m)JAVA_HEAP=$OPTARG;;  
+         n)TEST_NAME=$OPTARG;;           
          p)MAX_PROCESSES=$OPTARG;;
          r)REPORT_BASE_DIR=$OPTARG;;
          z)CREATE_TAR_ZIP=$OPTARG;;
@@ -220,6 +224,14 @@ else
    OUTPUT_CSV=false
 fi  
 
+if [ "$TEST_NAME" != "" ]
+  then
+    TEST_NAME="-Dcom.soulgalore.velocity.key.testname=$TEST_NAME"
+  else
+    TEST_NAME="-Dcom.soulgalore.velocity.key.testname= "
+fi
+
+
 if [ "$PROXY_HOST" != "" ]
 then
     PROXY_PHANTOMJS="--proxy=$PROXY_HOST --proxy-type=$PROXY_TYPE"
@@ -265,7 +277,7 @@ HOST=${NOPROTOCOL%%/*}
 
 # Jar files
 CRAWLER_JAR=crawler-1.5.3-full.jar
-VELOCITY_JAR=xml-velocity-1.6-full.jar
+VELOCITY_JAR=xml-velocity-1.7-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 
 # Setup dirs                                                                                                                                                             
@@ -338,7 +350,7 @@ then
   done
   echo '</results>' >> $REPORT_DATA_DIR/errorurls.xml
   echo 'Create the errorurls.html'
-  $JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/errorurls.xml $VELOCITY_DIR/errorurls.vm $PROPERTIES_DIR/errorurls.properties $REPORT_DIR/errorurls.html || exit 1
+  $JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/errorurls.xml $VELOCITY_DIR/errorurls.vm $PROPERTIES_DIR/errorurls.properties $REPORT_DIR/errorurls.html || exit 1
   $JAVA -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/errorurls.html $REPORT_DIR/errorurls.html
 
 fi
@@ -358,7 +370,7 @@ echo '</document>'>> "$REPORT_DATA_DIR/result.xml"
 
 
 echo 'Create the summary.xml'
-$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/summary.xml.vm $PROPERTIES_DIR/summary.properties $REPORT_DATA_DIR/summary.xml.tmp || exit 1
+$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR  $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/summary.xml.vm $PROPERTIES_DIR/summary.properties $REPORT_DATA_DIR/summary.xml.tmp || exit 1
 
 # Velocity adds a lot of garbage spaces and new lines, need to be removed before the xml is cleaned up
 # because of performance reasons
@@ -368,11 +380,11 @@ rm $REPORT_DATA_DIR/summary.xml.tmp
 $JAVA -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type xml  -o $REPORT_DATA_DIR/summary.xml $REPORT_DATA_DIR/summary.xml
 
 echo 'Create the summary-details.html'
-$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/summary.details.vm $PROPERTIES_DIR/summary.details.properties $REPORT_DIR/summary-details.html || exit 1
+$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/summary.details.vm $PROPERTIES_DIR/summary.details.properties $REPORT_DIR/summary-details.html || exit 1
 $JAVA -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/summary-details.html $REPORT_DIR/summary-details.html
 
 echo 'Create the pages.html'
-$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/pages.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.html || exit 1
+$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/pages.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.html || exit 1
 $JAVA -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/pages.html $REPORT_DIR/pages.html
 
 if $OUTPUT_CSV 
@@ -382,15 +394,15 @@ if $OUTPUT_CSV
 fi
 
 echo 'Create the summary index.html'
-$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/summary.vm $PROPERTIES_DIR/summary.properties $REPORT_DIR/index.html || exit 1
+$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/summary.vm $PROPERTIES_DIR/summary.properties $REPORT_DIR/index.html || exit 1
 $JAVA -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/index.html $REPORT_DIR/index.html
 
 echo 'Create the assets.html'
-$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/assets.vm $PROPERTIES_DIR/assets.properties $REPORT_DIR/assets.html || exit 1
+$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/assets.vm $PROPERTIES_DIR/assets.properties $REPORT_DIR/assets.html || exit 1
 $JAVA -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/assets.html $REPORT_DIR/assets.html
 
 echo 'Create the rules.html'
-$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/1.xml $VELOCITY_DIR/rules.vm $PROPERTIES_DIR/rules.properties $REPORT_DIR/rules.html || exit 1
+$JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/1.xml $VELOCITY_DIR/rules.vm $PROPERTIES_DIR/rules.properties $REPORT_DIR/rules.html || exit 1
 $JAVA -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/rules.html $REPORT_DIR/rules.html
 
 #copy the rest of the files

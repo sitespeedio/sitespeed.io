@@ -13,7 +13,9 @@
 			#end	
             ($document.getRootElement().getChildren("results").size() pages)
         </h2>
-   
+		#if ($testname)
+			<h3>$testname</h3>
+        #end
 
 		<table class="table table-condensed table-striped table-bordered" id="assetsTable">
 			<thead>
