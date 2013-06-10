@@ -3,6 +3,7 @@ CHANGELOG sitespeed.io
 version 1.9
 ------------------------
 * Supply a test name that will be shown on all pages, with the parameter -n
+* Bug fix: show median front/back end time instead of percentile on summary page 
 
 version 1.8.2
 ------------------------
