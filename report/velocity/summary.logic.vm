@@ -132,13 +132,13 @@
     #end
 
     #if($!{results.getAttribute("ttfb")})
-     	$statsTTFB.addValue($math.toDouble($results.getAttribute("ttfb").getValue()))
+	$statsTTFB.addValue($math.toDouble($results.getAttribute("ttfb").getValue()))
 	
 	## It can happen that the frontend value is smaller that the ttfb, that is a defect, then skip adding the result
-	#if ($math.toDouble($results.getChild("lt").getValue()) > ($math.toDouble($results.getAttribute("ttfb").getValue())))	
+	#if ($math.div($math.toDouble($results.getChild("lt").getValue()),1000) > ($math.toDouble($results.getAttribute("ttfb").getValue())))	
 	$statsBackend.addValue($math.roundTo(3,$math.mul($math.div($math.toDouble($results.getAttribute("ttfb").getValue()),$math.div($math.toDouble($results.getChild("lt").getValue()),1000)),100)))
 	$statsFrontend.addValue($math.roundTo(3,$math.mul($math.div($math.sub($math.div($math.toDouble($results.getChild("lt").getValue()),1000),$math.toDouble($results.getAttribute("ttfb").getValue())),$math.div($math.toDouble($results.getChild("lt").getValue()),1000)),100)))
-    	#end 
+	#end 
     #end
 
     #set ($totalImagePageSize = 0)
