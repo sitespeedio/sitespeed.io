@@ -86,7 +86,7 @@ analyze() {
     # Check that the size is bigger than 0
     if [ $s -lt 10 ]
       then
-      echo "Could not analyze $url Sitespeed/YSlow thrown an error:"
+      echo "Could not analyze $url unrecoverable error when parsing the page:"
       ## do the same thing again but setting console to log the error to output
       phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml $USER_AGENT_YSLOW $VIEWPORT_YSLOW "$url" -c 2  
       ## write the error url to the list
@@ -320,12 +320,17 @@ echo "Will analyze ${#result[@]} pages"
 # Setup start parameters, 0 jobs are running and the first file name
 JOBS=0
 PAGEFILENAME=1
+RUNS=0
 
 for page in "${result[@]}"
 
 do analyze "$page" $PAGEFILENAME &
     PAGEFILENAME=$[$PAGEFILENAME+1]
     JOBS=$[$JOBS+1]
+    RUNS=$[$RUNS+1]
+    if [ $(($RUNS%20)) == 0 ]; then
+      ECHO "Analyzed $RUNS pages out of ${#result[@]}"
+    fi
     if [ "$JOBS" -ge "$MAX_PROCESSES" ]
 	   then
 	   wait

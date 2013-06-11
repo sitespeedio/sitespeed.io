@@ -86,8 +86,13 @@
     #end
       
     #if($!{results.getChild("w")})
-
-        $statsPageWeight.addValue($math.toDouble($math.roundTo(3,$math.div($results.getChild("w").getValue(),1000))))
+        ## sometimes the page weight is wrongly calculated by YSlow, so lets do it manually
+        #set($totalWeight = 0)
+        #foreach ($asset in $results.getChild("comps").getChildren())
+            #set($totalWeight = $math.add($totalWeight,$asset.getChild("size").getValue()))
+        #end
+        #set($totalWeight = $math.roundTo(1,$math.div($totalWeight,1000)))
+        $statsPageWeight.addValue($totalWeight)
     #end
 
     #if($!{results.getChild("o")})
@@ -154,7 +159,7 @@
 		#set ($cacheControl = 0)
 		#set ($expires = "")
 		
-		## fetch the real once
+		## fetch the real ones
 		#set ($lastMod = $asset.getChild("headers").getChild("response").getChild("Last-Modified").getValue())
 		#set ($date = $asset.getChild("headers").getChild("response").getChild("Date").getValue())
 		#set ($cacheControl = $asset.getChild("headers").getChild("response").getChild("Cache-Control").getValue())
