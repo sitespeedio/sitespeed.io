@@ -148,8 +148,6 @@
 	## also fetch the modified since & cache time
 	#foreach ($asset in $results.getChild("comps").getChildren())
 
-        THIS IS A ASSET
-
 		## set default values
 		#set ($lastMod = "")
 		#set ($date = "")
