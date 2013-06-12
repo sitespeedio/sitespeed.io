@@ -1,12 +1,12 @@
 CHANGELOG sitespeed.io
 
-version 1.9
+version 1.8.3
 ------------------------
-* Supply a test name that will be shown on all pages, with the parameter -n
+* Supply a test name that will be shown on all pages. Use the the parameter -n 
 * Well the problem is like this: Today there is no way to get the ttfb from PhantomJS so it is fetched by a extra request using curl. Some sites that don't cache internally (and are slow) can differ quite much for ttfb, meaning ttfb can be higher the next request than the load time the first time. If this happens it is now highlighted.
 * Bug fix: show median front/back end time instead of percentile on summary page 
-* Bug fix: don't added ttfb > pageload to summary stats (fix)
-* Bug fix: for some sites (very rarely) teh total weight was fetched wrong by YSlow, fixed last release for all pages except summary & summary details.
+* Bug fix: dwhen the ttfb is larger than pageload, don't add it to summary stats
+* Bug fix: for some sites (very rarely) the total weight was fetched wrong by YSlow, fixed last release for all pages except summary & summary details.
 
 version 1.8.2
 ------------------------
