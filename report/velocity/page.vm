@@ -346,25 +346,56 @@
 				<h4>Time</h4>
 				<table class="table table-condensed table-striped table-bordered">
 					<tbody>
-						<tr>
+						
+							## Well the problem is like this: Today there is no way to get the ttfb from PhantomJS so it is fetched by a extra request 
+							## using curl. Some sites that don't cache internally (and are slow) can differ quite much for ttfb, meaning ttfb can be higher the
+							## next request than the load time the first time. That needs to be signaled.
+
+							## The diff between ttfb and load time
+							#set($diff = $math.roundTo(3,$math.sub($math.toDouble($document.getRootElement().getAttribute("ttfb").getValue()),$math.div($math.toDouble($document.getRootElement().getChild("lt").getValue()),1000))))
+
+							## normal behaviour
+							#if ($diff<0)
+							<tr>
 							<td>ttfb</td>
-							<td>$document.getRootElement().getAttribute("ttfb").getValue() s</td>
-						</tr>
-						<tr>
+							<td>	
+							    	$document.getRootElement().getAttribute("ttfb").getValue() s
+							</td>
+							</tr>
+							<tr>
 							<td>load time</td>
 							<td>
 								$math.div($document.getRootElement().getChild("lt").getValue(), 1000) s
 							</td>
-						</tr>
-
-						<tr>
+							</tr>
+							<tr>
 							<td>time spent in backend</td>
-							<td>$backendPercentage %</td>
-						</tr>
-						<tr>
+							<td>
+								$backendPercentage %
+							</td>
+							</tr>
+							<tr>
 							<td>time spent in frontend</td>
-							<td>$frontendPercentage %</td>
-						</tr>
+							<td>
+								$frontendPercentage %
+								</td>
+							</tr>
+							## something is really wrong
+							#elseif ($diff > 1.0)
+							<tr>
+							<td>
+							The second fetch by curl took $document.getRootElement().getAttribute("ttfb").getValue() s, that is $diff slower than the load time ($math.div($math.toDouble($document.getRootElement().getChild("lt").getValue()),1000)) the first request, probably the backend doesn't cache so good, check it out by measuring the ttfb in in bash (the value should be constant over multiple requests):
+							<em>curl -o /dev/null -w "%{time_starttransfer}\n" -L -s "$document.getRootElement().getChild("curl").getValue()"</em>
+							</td>
+							</tr>
+							## something is wrong	
+							#else
+							<tr>
+							<td>
+							The second fetch by curl took $document.getRootElement().getAttribute("ttfb").getValue() s, that is $diff slower than the load time ($math.div($math.toDouble($document.getRootElement().getChild("lt").getValue()),1000)) the first request, you should check if this happens often.
+							</td>
+							</tr>
+							#end
 					</tbody>
 				</table>
 
