@@ -147,7 +147,7 @@ VIEWPORT_YSLOW=
 TEST_NAME=
 
 YSLOW_FILE=dependencies/yslow-3.1.5-sitespeed.js
-RULESET=sitespeed.io-1.8.3
+RULESET=sitespeed.io-1.9
 
 # Set options
 while getopts “hu:d:f:s:o:m:n:p:r:z:x:t:a:v:y:l:c:” OPTION
