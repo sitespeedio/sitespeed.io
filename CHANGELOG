@@ -1,5 +1,9 @@
 CHANGELOG sitespeed.io
 
+version 1.9
+------------------------
+* New modifued rule: the YSlow rule yimgnoscale doesn't work with PhantomJS. The new rule comapare the image browser width and the real image width.
+
 version 1.8.3
 ------------------------
 * Supply a test name that will be shown on all pages. Use the the parameter -n 
