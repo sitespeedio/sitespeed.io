@@ -90,7 +90,7 @@ analyze() {
       ## do the same thing again but setting console to log the error to output
       phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml $USER_AGENT_YSLOW $VIEWPORT_YSLOW "$url" -c 2  
       ## write the error url to the list
-      echo "frontend-error,$url" >> $REPORT_DATA_DIR/errorurls.txt    
+      echo "sitespeed.io got an unrecoverable error when parsing the page,$url" >> $REPORT_DATA_DIR/errorurls.txt    
     fi
 
     # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
@@ -351,13 +351,15 @@ then
 
   echo '<?xml version="1.0" encoding="UTF-8"?><results>'  > $REPORT_DATA_DIR/errorurls.xml
   for url in "${resultError[@]}"
-    do echo "<url reason='${url/,*/ }'><![CDATA[${url/*,/ }]]></url>" >> $REPORT_DATA_DIR/errorurls.xml
+    do echo "<url reason='${url/,*/}'><![CDATA[${url/*,/}]]></url>" >> $REPORT_DATA_DIR/errorurls.xml
   done
   echo '</results>' >> $REPORT_DATA_DIR/errorurls.xml
   echo 'Create the errorurls.html'
   $JAVA -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/errorurls.xml $VELOCITY_DIR/errorurls.vm $PROPERTIES_DIR/errorurls.properties $REPORT_DIR/errorurls.html || exit 1
   $JAVA -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/errorurls.html $REPORT_DIR/errorurls.html
-
+else
+  # create an empty xml file
+  echo '<?xml version="1.0" encoding="UTF-8"?><results></results>'  > $REPORT_DATA_DIR/errorurls.xml
 fi
 
 echo "Create result.xml"
