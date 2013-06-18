@@ -3,6 +3,8 @@ CHANGELOG sitespeed.io
 version 1.9
 ------------------------
 * New modifued rule: the YSlow rule yimgnoscale doesn't work with PhantomJS. The new rule comapare the image browser width and the real image width.
+* Bug fix: URL:s that returns error (4XX-5XX and that sitespeed can't analyze) is now included in the JUnit xml
+* Bug fix: The JUnit script can now output files to a relative path
 
 version 1.8.3
 ------------------------
