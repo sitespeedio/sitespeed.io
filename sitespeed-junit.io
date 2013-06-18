@@ -50,10 +50,23 @@ do
      esac
 done
 
+# Switch to my dir
+cd "$(dirname ${BASH_SOURCE[0]})"
+HOME="$(pwd)"
+
 if [[ -z $OUTPUT_DIR ]]
 then
      help
      exit 1
+fi
+
+# absolute path
+if [[ "$1" = /* ]]
+then
+OUTPUT_DIR=$OUTPUT_DIR
+else
+#relative
+OUTPUT_DIR=$HOME/$OUTPUT_DIR
 fi
 
 if [ "$SKIP" != "" ]
@@ -61,9 +74,6 @@ then
     SKIP_TESTS="--stringparam skip $SKIP"
 fi
 
-# Switch to my dir
-cd "$(dirname ${BASH_SOURCE[0]})"
-HOME="$(pwd)"
 
 cd $REPORT_BASE_DIR
 HOST_DIR="$(\ls -1dt */ | head -n 1)"
