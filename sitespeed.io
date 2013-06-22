@@ -329,7 +329,7 @@ do analyze "$page" $PAGEFILENAME &
     JOBS=$[$JOBS+1]
     RUNS=$[$RUNS+1]
     if [ $(($RUNS%20)) == 0 ]; then
-      ECHO "Analyzed $RUNS pages out of ${#result[@]}"
+      echo "Analyzed $RUNS pages out of ${#result[@]}"
     fi
     if [ "$JOBS" -ge "$MAX_PROCESSES" ]
 	   then
