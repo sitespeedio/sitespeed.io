@@ -409,7 +409,7 @@
 					<tbody>
 						<tr>
 							<td>requests with primed cache</td>
-							<td>$document.getRootElement().getChild("r_c").getValue()</td>
+							<td>$document.getRootElement().getChild("g").getChild("expiresmod").getChild("components").getChildren("item").size()</td>
 						</tr>
 						<tr>
 							<td>page weight cached</td>
