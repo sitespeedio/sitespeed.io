@@ -17,11 +17,11 @@
             <p>
             Test performed: $document.getRootElement().getAttribute("date").getValue() with rules $document.getRootElement().getChild("results").getChild("i").getValue() 
 
-	    #if ($document.getRootElement().getAttribute("useragent").getValue() != "")
+	        #if ($document.getRootElement().getAttribute("useragent").getValue() != "")
             with user agent: $document.getRootElement().getAttribute("useragent").getValue()
             #end
 	    
-	    #if ($document.getRootElement().getAttribute("viewport").getValue() != "")
+	        #if ($document.getRootElement().getAttribute("viewport").getValue() != "")
             viewport: $document.getRootElement().getAttribute("viewport").getValue()
             #end
 
@@ -32,65 +32,64 @@
             <table class="table table-hover table-condensed table-striped table-bordered" id="pagesTable">
                 <caption></caption>
                 <thead>
-                #set($columns = "url,js,css,img,cssimg,font,requests,requestswithoutexpires,docsize,pagesize,criticalpath,loadtime,spof,syncjs,ttfb,grade")   
-                <tr>
-                #foreach ($column in $columns.split(","))
-                    #columnHeader($column)
-                #end
-                </tr>
-            </thead>
-
-            <tbody>
-                #foreach ($results in $document.getRootElement().getChildren("results"))
-                #set($sitespeed = $results.getChild("o").getValue())
-                <tr>
-                #foreach ($column in $columns.split(","))
-                    #columnValue($column,$results)
-                #end
-                </tr>
-                #end
-            </tbody>
-        </table>
-        </div> <!-- hidden phone -->
-
-
-        ## special handling for phones, because tables aren't perfect for responsive
-        <div class="visible-phone">
-                    <table class="table table-hover table-condensed table-striped table-bordered" id="phonesPagesTable" >
-                <thead>
+                    ## TODO make this configurable
+                    #set($columns = "url,js,css,img,cssimg,font,requests,requestswithoutexpires,docsize,pagesize,criticalpath,loadtime,spof,syncjs,ttfb,grade")   
                     <tr>
-                        <th data-sort="string">
-                            <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipUrlText">url</i>
-                        </a>
-                    </th>
+                    #foreach ($column in $columns.split(","))
+                        #columnHeader($column)
+                    #end
+                    </tr>
+                </thead>
 
-                    <th data-sort="int">
-                        <a rel="tooltip"  data-placement="left" data-html="false" href="#" data-original-title="$tooltipGradeText">grade</a>
-                    </th>
+                <tbody>
+                    #foreach ($results in $document.getRootElement().getChildren("results"))
+                    #set($sitespeed = $results.getChild("o").getValue())
+                    <tr>
+                    #foreach ($column in $columns.split(","))
+                        #columnValue($column,$results)
+                    #end
+                    </tr>
+                    #end
+                </tbody>
+            </table>
+            </div> <!-- hidden phone -->
 
-                </tr>
-            </thead>
 
-            <tbody>
-                #foreach ($results in $document.getRootElement().getChildren("results"))
-                #set($sitespeed = $results.getChild("o").getValue())
-                <tr>
-                    <td class="nobreak-pages">
-                        ## the link to the full page information
-                        #set($file = $results.getAttribute("filename").getValue())
-                        #set($file = $file.concat(".html"))
-                        <a href="pages/$file" title="$results.getChild("curl").getValue()">$results.getChild("curl").getValue()</a>
-                    </td>
-                    
-                    <td>
-                        ## The sitespeed/yslow score
-                        <span class="badge badge-#scoreTypeBadge($math.toInteger($sitespeed))">$sitespeed</span>           
-                    </td>
+            ## special handling for phones, because tables aren't perfect for responsive
+            <div class="visible-phone">
+                <table class="table table-hover table-condensed table-striped table-bordered" id="phonesPagesTable" >
+                    <thead>
+                        <tr>
+                            <th data-sort="string">
+                                <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltipUrlText">url</i></a>
+                            </th>
 
-                </tr>
-                #end
-            </tbody>
-        </table>
+                            <th data-sort="int">
+                            <a rel="tooltip"  data-placement="left" data-html="false" href="#" data-original-title="$tooltipGradeText">grade</a>
+                            </th>    
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    #foreach ($results in $document.getRootElement().getChildren("results"))
+                    #set($sitespeed = $results.getChild("o").getValue())
+                    <tr>
+                        <td class="nobreak-pages">
+                            ## the link to the full page information
+                                        #set($file = $results.getAttribute("filename").getValue())
+                                        #set($file = $file.concat(".html"))
+                            <a href="pages/$file" title="$results.getChild("curl").getValue()">$results.getChild("curl").getValue()</a>
+                        </td>
+
+                        <td>
+                            ## The sitespeed/yslow score
+                            <span class="badge badge-#scoreTypeBadge($math.toInteger($sitespeed))">$sitespeed</span>
+                        </td>
+
+                    </tr>
+                    #end
+                    </tbody>
+                </table>
 
 
         </div> <!-- visible phone -->
