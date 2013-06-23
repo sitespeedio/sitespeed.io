@@ -1,0 +1,16 @@
+<td>
+## TODO cleanup
+#set($hostAndRequests = $map.clone())
+#foreach ($asset in $results.getChild("comps").getChildren())
+		#set($nrOfRequests = 0)
+		#set($theHost = $host.getHost($asset.getChild("url").getValue()))
+		#set($nrOfRequests = $hostAndRequests.get($theHost))
+		#if(!$nrOfRequests) 
+			#set($nrOfRequests = 1) 
+		#else
+		    	#set($nrOfRequests = $math.add($nrOfRequests, 1))
+		#end	
+		#set($swallow = $hostAndRequests.put($theHost, $nrOfRequests))
+#end
+$hostAndRequests.size()
+</td>

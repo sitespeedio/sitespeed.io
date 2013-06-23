@@ -16,7 +16,8 @@
 #set($tooltipJsSyncText = "The number of js loaded synchronously inside of head")
 #set($tooltipGradeText = "The Yslow/Sitespeed grade for this page, 100 is perfect, 0 is incredible bad")
 #set($tooltipTTFBText = "The time to first byte (s)")
-
+#set($tooltipKBPSText = "The kb per second")
+#set($tooltipDomainsText = "The number of domains used on the page")
 
 ## Set the right table header  
 #macro (columnHeader $columnName)
@@ -50,6 +51,10 @@
 #columnHeaderHTML("sync js","int",$tooltipJsSyncText)##
 #elseif ($columnName == "ttfb")##
 #columnHeaderHTML("ttfb (s)","float",$tooltipTTFBText)##
+#elseif ($columnName == "kbps")##
+#columnHeaderHTML("kbps","float",$tooltipKBPSText)##
+#elseif ($columnName == "domains")##
+#columnHeaderHTML("domains","int",$tooltipDomainsText)##
 #elseif ($columnName == "grade")##
 #columnHeaderHTML("grade","int",$tooltipGradeText)##
 #else
@@ -119,6 +124,10 @@ $math.div($results.getChild("lt").getValue(),1000)##
 #parse("report/velocity/macros/pages/syncjs.vm")##
 #elseif ($columnName == "ttfb")##
 #parse("report/velocity/macros/pages/ttfb.vm")##
+#elseif ($columnName == "kbps")##
+#parse("report/velocity/macros/pages/kbps.vm")##
+#elseif ($columnName == "domains")##
+#parse("report/velocity/macros/pages/domains.vm")##
 #elseif ($columnName == "grade")##
 <td>##
 ## The sitespeed/yslow score##
