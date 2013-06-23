@@ -1,0 +1,134 @@
+## Definition of tooltip textz
+
+#set($tooltipUrlText = "The url to the page.")
+#set($tooltipJsText = "The number of javascript files used in this page")
+#set($tooltipImgText = "The number of image files used in this page")
+#set($tooltipCssText = "The number of stylesheet files used in this page")
+#set($tooltipCssImgText = "The number of css images used on this page")
+#set($tooltipFontText = "The number of fonts used on this page")
+#set($tooltipTotalRequestsText = "The total number of requests for this page")    
+#set($tooltipTotalRequestsWithoutExpireText = "The total number of requests without an expire header")
+#set($tooltipPageSizeText = "The page total size when no assets are cached (kb)")
+#set($tooltipDocSizeText = "The document size (kb)")
+#set($tooltipCriticalPathText = "The score for the rendering critical path")
+#set($tooltipLoadTimeText = "The page load time in ms")
+#set($tooltipSpofText = "The number of possible frontend single point of failures, be sure to avoid 3rd party assets")
+#set($tooltipJsSyncText = "The number of js loaded synchronously inside of head")
+#set($tooltipGradeText = "The Yslow/Sitespeed grade for this page, 100 is perfect, 0 is incredible bad")
+#set($tooltipTTFBText = "The time to first byte (s)")
+
+
+## Set the right table header  
+#macro (columnHeader $columnName)
+#if ($columnName == "url")##
+#columnHeaderHTML("url","string",$tooltipUrlText)##
+#elseif ($columnName == "js")##
+#columnHeaderHTML("js","int",$tooltipJsText)##
+#elseif ($columnName == "css")##
+#columnHeaderHTML("css","int",$tooltipCssText)##
+#elseif ($columnName == "img")##
+#columnHeaderHTML("img","int",$tooltipImgText)##
+#elseif ($columnName == "cssimg")##
+#columnHeaderHTML("css img","int",$tooltipCssImgText)##
+#elseif ($columnName == "font")##
+#columnHeaderHTML("font","int",$tooltipFontText)##
+#elseif ($columnName == "requests")##
+#columnHeaderHTML("total requests","int",$tooltipTotalRequestsText)##
+#elseif ($columnName == "requestswithoutexpires")##
+#columnHeaderHTML("requests missing expire","int",$tooltipTotalRequestsWithoutExpireText)##
+#elseif ($columnName == "docsize")##
+#columnHeaderHTML("doc size (kb)","float",$tooltipDocSizeText)##
+#elseif ($columnName == "pagesize")##
+#columnHeaderHTML("page size (kb)","float",$tooltipPageSizeText)##
+#elseif ($columnName == "criticalpath")##
+#columnHeaderHTML("critical path score","int",$tooltipCriticalPathText)##
+#elseif ($columnName == "loadtime")##
+#columnHeaderHTML("load time (s)","float",$tooltipLoadTimeText)##
+#elseif ($columnName == "spof")##
+#columnHeaderHTML("spof","int",$tooltipSpofText)##
+#elseif ($columnName == "syncjs")##
+#columnHeaderHTML("sync js","int",$tooltipJsSyncText)##
+#elseif ($columnName == "ttfb")##
+#columnHeaderHTML("ttfb (s)","float",$tooltipTTFBText)##
+#elseif ($columnName == "grade")##
+#columnHeaderHTML("grade","int",$tooltipGradeText)##
+#else
+#columnHeaderHTML("non existing column name: $columnName","string","")##
+#end#end##
+
+## Header HTML
+#macro ( columnHeaderHTML $columName, $dataSort, $tooltip )
+<th data-sort="$dataSort">
+	<a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltip">$columName</a>
+</th>
+#end
+
+#macro ( columnHTML $element )
+<td>
+#if($!{element})##
+	$element.getValue()##
+#else##
+0##
+#end##
+</td>
+#end
+
+#macro (columnValue $columnName, $results)
+#if ($columnName == "url")##
+#parse("report/velocity/macros/pages/url.vm")##
+#elseif ($columnName == "js")##
+#columnHTML($results.getChild("stats").getChild("js").getChild("r"))##
+#elseif ($columnName == "css")##
+#columnHTML($results.getChild("stats").getChild("css").getChild("r"))##
+#elseif ($columnName == "img")##
+#columnHTML($results.getChild("stats").getChild("image").getChild("r"))##
+#elseif ($columnName == "cssimg")##
+#columnHTML($results.getChild("stats").getChild("cssimage").getChild("r"))##
+#elseif ($columnName == "font")##
+#columnHTML($results.getChild("stats").getChild("font").getChild("r"))##
+#elseif ($columnName == "requests")##
+<td>##
+## The number of requests##
+$results.getChild("r").getValue()##
+</td>##
+#elseif ($columnName == "requestswithoutexpires")##
+<td>##
+## The number of requests missing expire value##
+$math.toInteger($results.getChild("g").getChild("expiresmod").getChild("components").getChildren("item").size())##
+</td>##
+#elseif ($columnName == "docsize")##
+<td>##
+## The size of the document##
+$math.roundTo(1,$math.div($results.getAttribute("size").getValue(),1000))##
+</td>##
+#elseif ($columnName == "pagesize")##
+#parse("report/velocity/macros/pages/pagesize.vm")##
+#elseif ($columnName == "criticalpath")##
+<td>##
+## The critical path score##
+$results.getChild("g").getChild("criticalpath").getChild("score").getValue()##
+</td>##
+#elseif ($columnName == "loadtime")##
+<td>##
+## The load time##
+$math.div($results.getChild("lt").getValue(),1000)##
+</td>##
+#elseif ($columnName == "spof")##
+#parse("report/velocity/macros/pages/spof.vm")##
+#elseif ($columnName == "syncjs")##
+#parse("report/velocity/macros/pages/syncjs.vm")##
+#elseif ($columnName == "ttfb")##
+#parse("report/velocity/macros/pages/ttfb.vm")##
+#elseif ($columnName == "grade")##
+<td>##
+## The sitespeed/yslow score##
+#set($sitespeed = $results.getChild("o").getValue())##
+<span class="badge badge-#scoreTypeBadge($math.toInteger($sitespeed))">$sitespeed</span>##
+</td>##
+#else##
+<td>##
+non existing column value: $columnName##
+</td>##
+#end#end##
+
+

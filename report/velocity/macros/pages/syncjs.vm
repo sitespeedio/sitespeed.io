@@ -1,0 +1,47 @@
+<td>
+    ##
+    ## The number of javascripts loaded sync in head##
+    #if ($results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size() >0)##
+    <a href="#js-sync-$foreach.count" data-toggle="modal">
+        ##
+        $results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()##
+    </a>
+    ##
+    <div class="modal hide fade" id="js-sync-$foreach.count" aria-labelledby="jsModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
+        ##
+        <div class="modal-header">
+            ##
+            <h3 id="jsModalLabel-$foreach.count">
+                ##
+                Javascript loaded synchronously in head ($results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size())##
+            </h3>
+            ##
+        </div>
+        ##
+        <div class="modal-body">
+            ##
+            <ul>
+                ##
+                #foreach ($jssync in $results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item"))##
+                <li>
+                    <a href="$esc.html($jssync.getValue())" target="_blank">$esc.html($jssync.getValue())</a>
+                </li>
+                ##    
+                #end##
+            </ul>
+            ##
+        </div>
+        ##
+        <div class="modal-footer">
+            ##
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            ##
+        </div>
+        ##
+    </div>
+    ##
+    #else##
+        $results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()##
+    #end##
+</td>
+##
