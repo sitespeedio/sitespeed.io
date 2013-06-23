@@ -80,9 +80,7 @@
 					    	#set ($sort=$delta.getSeconds())
 					#end	
 					<td data-sort-value="$sort">
-						#if ($assetAndType.get($entry.getUrl()) == "favicon")
-							unknown
-						#elseif ($delta=="" || ! $delta)
+						#if ($delta=="" || ! $delta)
 						     last modified not set
 						#else	
 						     #prettyPrint($delta)
@@ -97,9 +95,7 @@
 					     #set ($sort=$cacheTime.getSeconds())
 					#end     
 					<td  data-sort-value="$sort">
-					#if ($assetAndType.get($entry.getUrl()) == "favicon")
-						unknown
-					#elseif ($cacheTime=="" || !$cacheTime)
+					#if ($cacheTime=="" || !$cacheTime)
 					     0
 					#else								   
 					     #prettyPrint($cacheTime)  
