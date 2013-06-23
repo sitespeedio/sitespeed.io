@@ -23,6 +23,7 @@ package:
 	@if [ ! -d $(BUILD)/$(REPORT)/$(JS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(JS); fi
 	@if [ ! -d $(BUILD)/$(REPORT)/$(PROPERTIES) ]; then mkdir -p $(BUILD)/$(REPORT)/$(PROPERTIES); fi
 	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY); fi
+	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages; fi	
 	@if [ ! -d $(BUILD)/$(REPORT)/$(XSLT) ]; then mkdir -p $(BUILD)/$(REPORT)/$(XSLT); fi
 
 	@cp sitespeed.io sitespeed-junit.io CHANGELOG LICENSE $(BUILD)/
@@ -67,5 +68,13 @@ package:
 	@cp $(REPORT)/$(VELOCITY)/summary.logic.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/summary.xml.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/summary.details.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
+	@cp $(REPORT)/$(VELOCITY)/macros/pages/domains.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
+	@cp $(REPORT)/$(VELOCITY)/macros/pages/kbps.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
+	@cp $(REPORT)/$(VELOCITY)/macros/pages/pages.macros.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
+	@cp $(REPORT)/$(VELOCITY)/macros/pages/pagesize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/        
+	@cp $(REPORT)/$(VELOCITY)/macros/pages/url.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
+	@cp $(REPORT)/$(VELOCITY)/macros/pages/spof.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
+	@cp $(REPORT)/$(VELOCITY)/macros/pages/syncjs.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
+	@cp $(REPORT)/$(VELOCITY)/macros/pages/ttfb.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
 	@cp $(REPORT)/$(XSLT)/junit.xsl $(BUILD)/$(REPORT)/$(XSLT)/
 	@echo "finished!"
