@@ -65,7 +65,8 @@ OPTIONS:
    -a      The user agent, default is "Mozilla/6.0" [optional]
    -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional] 
    -y      The compiled yslow file, default is dependencies/yslow-3.1.5-sitespeed.js [optional]
-   -l      Which ruleset to use, default is the latest sitespeed.io version [optional]  
+   -l      Which ruleset to use, default is the latest sitespeed.io version [optional]
+   -b      The columns showed on detailes page summary table, see http://sitespeed.io/documentation/#pagescolumns for more info [optional]     
 EOF
 }
 
@@ -145,12 +146,13 @@ VIEWPORT=1280x800
 VIEWPORT_YSLOW=
 
 TEST_NAME=
+PAGES_COLUMNS=
 
 YSLOW_FILE=dependencies/yslow-3.1.5-sitespeed.js
 RULESET=sitespeed.io-1.9
 
 # Set options
-while getopts “hu:d:f:s:o:m:n:p:r:z:x:t:a:v:y:l:c:” OPTION
+while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:t:a:v:y:l:c:” OPTION
 do
      case $OPTION in
          h)
@@ -174,6 +176,7 @@ do
          y)YSLOW_FILE=$OPTARG;;
          l)RULESET=$OPTARG;;
          f)FILE=$OPTARG;;
+         b)PAGES_COLUMNS=$OPTARG;;
          ?)
              help
              exit
@@ -230,6 +233,16 @@ if [ "$TEST_NAME" != "" ]
   else
     TEST_NAME="-Dcom.soulgalore.velocity.key.testname= "
 fi
+
+
+if [ "$PAGES_COLUMNS" != "" ]
+  then
+    PAGES_COLUMNS="-Dcom.soulgalore.velocity.key.columns=$PAGES_COLUMNS"
+  else
+    # Default colums
+    PAGES_COLUMNS="-Dcom.soulgalore.velocity.key.columns=url,js,css,img,cssimg,font,requests,requestswithoutexpires,docsize,pagesize,criticalpath,loadtime,spof,syncjs,ttfb,domains,kbps,grade"
+fi
+
 
 
 if [ "$PROXY_HOST" != "" ]
@@ -375,7 +388,6 @@ do
 done 
 echo '</document>'>> "$REPORT_DATA_DIR/result.xml"
 
-
 echo 'Create the summary.xml'
 "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR  $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/summary.xml.vm $PROPERTIES_DIR/summary.properties $REPORT_DATA_DIR/summary.xml.tmp || exit 1
 
@@ -391,7 +403,7 @@ echo 'Create the summary-details.html'
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/summary-details.html $REPORT_DIR/summary-details.html
 
 echo 'Create the pages.html'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/pages.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.html || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$PAGES_COLUMNS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/pages.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.html || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/pages.html $REPORT_DIR/pages.html
 
 if $OUTPUT_CSV 
