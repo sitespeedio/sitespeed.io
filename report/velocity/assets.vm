@@ -1,6 +1,6 @@
 #parse("report/velocity/header.vm")
 #parse("report/velocity/assets.logic.vm")
-#parse("report/velocity/date.macros.vm")
+#parse("report/velocity/macros/date.macros.vm")
 <div class="row-fluid">
 	<div class="span12">
 
