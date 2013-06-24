@@ -11,6 +11,6 @@
 	 #set($totalWeight = $math.add($totalWeight,$asset.getChild("size").getValue()))##
 #end##
 
-$math.roundTo(3,$math.div($math.div($totalWeight,1000),$math.div($results.getChild("lt").getValue(),1000)))
+$math.roundTo(1,$math.div($math.div($totalWeight,1000),$math.div($results.getChild("lt").getValue(),1000)))
 
 </td>
