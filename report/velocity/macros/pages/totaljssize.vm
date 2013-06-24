@@ -1,0 +1,9 @@
+#set ($totalJSSize = 0)
+#foreach ($asset in $results.getChild("comps").getChildren())
+#if ($asset.getChild("type").getValue() == "js")
+	#set($totalJSSize = $math.add($totalJSSize,$math.toDouble($math.roundTo(3,$math.div($asset.getChild("size").getValue(),1000)))))
+#end
+#end           
+<td>
+$math.roundTo(3,$totalJSSize)
+</td>

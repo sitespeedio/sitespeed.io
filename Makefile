@@ -76,5 +76,9 @@ package:
 	@cp $(REPORT)/$(VELOCITY)/macros/pages/spof.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
 	@cp $(REPORT)/$(VELOCITY)/macros/pages/syncjs.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
 	@cp $(REPORT)/$(VELOCITY)/macros/pages/ttfb.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
+	@cp $(REPORT)/$(VELOCITY)/macros/pages/maximagesize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
+	@cp $(REPORT)/$(VELOCITY)/macros/pages/totalimagesize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
+	@cp $(REPORT)/$(VELOCITY)/macros/pages/totaljssize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
+	@cp $(REPORT)/$(VELOCITY)/macros/pages/scaledimages.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
 	@cp $(REPORT)/$(XSLT)/junit.xsl $(BUILD)/$(REPORT)/$(XSLT)/
 	@echo "finished!"
