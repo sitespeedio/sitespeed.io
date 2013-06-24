@@ -17,110 +17,12 @@
 #
 #*******************************************************
 
-command -v phantomjs >/dev/null 2>&1 || { echo >&2 "Missing phantomjs, please install it to be able to run sitespeed.io"; exit 1; }
-command -v curl >/dev/null 2>&1 || { echo >&2 "Missing curl, please install it to be able to run sitespeed.io"; exit 1; }
-
-# Respect JAVA_HOME if set
-if [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/java" ]]
-then
-    JAVA="$JAVA_HOME/bin/java"
-else
-    JAVA="java"
-fi
-
-if [[ "$JAVA" ]]; then
-    jVersion=$("$JAVA" -version 2>&1 | awk -F '"' '/version/ {print $2}')
-    if [[ "$jVersion" < "1.6" ]]; then
-         echo "Java version is less than 1.6 which is too old, you will need at least Java 1.6 to run sitespeed.io"; exit 1;
-    fi
-fi
 
 
 #*******************************************************
-# Help function, call it to print all different usages.
+# All the options that you can configure when you run the script
 #
 #*******************************************************
-help()
-{
-cat << EOF
-usage: $0 options
-
-Sitespeed is a tool that helps you analyze your website performance and show you what you should optimize, more info at http://sitespeed.io
-
-OPTIONS:
-   -h      Help
-   -u      The start url of the crawl with the format of http[s]://host[:port][/path/]. Use this or use the -f file option.
-   -f      The path to a plain text file with one url on each row. These URL:s will be used instead crawling.
-   -d      The crawl depth, default is 1 [optional]
-   -c      Crawl only on this path [optional]
-   -s      Skip urls that contains this in the path [optional]
-   -p      The number of processes that will analyze pages, default is 5 [optional]
-   -m      The memory heap size for the java applications, default is 1024 Mb [optional]
-   -n      Give your test a name, it will be added to all HTML pages [optional]
-   -o      The output format, always output as html but you can add images and a csv file for the detailed site summary page  (img|csv) [optional]
-   -r      The result base directory, default is sitespeed-result [optional]
-   -z      Create a tar zip file of the result files, default is false [optional]
-   -x      The proxy host & protocol: proxy.soulgalore.com:80 [optional] 
-   -t      The proxy type, default is http [optional]
-   -a      The user agent, default is "Mozilla/6.0" [optional]
-   -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional] 
-   -y      The compiled yslow file, default is dependencies/yslow-3.1.5-sitespeed.js [optional]
-   -l      Which ruleset to use, default is the latest sitespeed.io version [optional]
-   -b      The columns showed on detailes page summary table, see http://sitespeed.io/documentation/#pagescolumns for more info [optional]     
-EOF
-}
-
-#*******************************************************
-# Analyze function, call it to analyze a page
-# $1 the url to analyze
-# $2 the filename of that tested page
-#*******************************************************
-analyze() {
-    # setup the parameters, same names maybe makes it easier
-    url=$1
-    pagefilename=$2
-  
-    echo "Analyzing $url"
-    phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml $USER_AGENT_YSLOW $VIEWPORT_YSLOW "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
- 
-    s=$(du -k "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" | cut -f1)
-    # Check that the size is bigger than 0
-    if [ $s -lt 10 ]
-      then
-      echo "Could not analyze $url unrecoverable error when parsing the page:"
-      ## do the same thing again but setting console to log the error to output
-      phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml $USER_AGENT_YSLOW $VIEWPORT_YSLOW "$url" -c 2  
-      ## write the error url to the list
-      echo "sitespeed.io got an unrecoverable error when parsing the page,$url" >> $REPORT_DATA_DIR/errorurls.txt    
-    fi
-
-    # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
-    sed '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup  || exit 1
-  
-    # And crazy enough, sometimes we get things after the end of the xml
-    sed -n '1,/<\/results>/p' $REPORT_DATA_PAGES_DIR/$pagefilename-bup > $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1
- 
-    # ttfb & page size
-    curl $USER_AGENT_CURL --compressed -o /dev/null -w "%{time_starttransfer};%{size_download}\n" -L -s "$url" >  "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
-    
-    read -r TTFB_SIZE <  $REPORT_DATA_PAGES_DIR/$pagefilename.info
-    TTFB="$(echo $TTFB_SIZE  | cut -d \; -f 1)"
-    SIZE="$(echo $TTFB_SIZE  | cut -d \; -f 2)"
-    TTFB="$(printf "%.3f" $TTFB)"
-  
-    rm "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
-    # Hack for adding link and other data to the xml file
-    XML_URL=$(echo "$url" | sed 's/&/\\&/g') 
-  
-    sed 's{<results>{<results filename="'$pagefilename'" ttfb="'$TTFB'" size="'$SIZE'"><curl><![CDATA['"$XML_URL"']]></curl>{' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
-    mv $REPORT_DATA_PAGES_DIR/$pagefilename-bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml 
-   
-    "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml $VELOCITY_DIR/page.vm $PROPERTIES_DIR/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1
-    "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_PAGES_DIR/$pagefilename.html $REPORT_PAGES_DIR/$pagefilename.html
-   
-}
-
-# All the options that you can configure when you run the script
 URL=
 FILE=
 DEPTH=1
@@ -151,6 +53,49 @@ PAGES_COLUMNS=
 YSLOW_FILE=dependencies/yslow-3.1.5-sitespeed.js
 RULESET=sitespeed.io-1.9
 
+#*******************************************************
+# Main program
+#
+#*******************************************************
+main() {
+        verify_environment 
+        get_input "$@"
+        verify_input 
+        setup_dirs_and_dependencies
+        fetch_urls
+        analyze_pages
+        generate_output_files  
+}
+
+
+#*******************************************************
+# Check that we have what is needed to run
+# Will check for PhantomJS, cURL and right Java version
+#*******************************************************
+function verify_environment {
+command -v phantomjs >/dev/null 2>&1 || { echo >&2 "Missing phantomjs, please install it to be able to run sitespeed.io"; exit 1; }
+command -v curl >/dev/null 2>&1 || { echo >&2 "Missing curl, please install it to be able to run sitespeed.io"; exit 1; }
+
+# Respect JAVA_HOME if set
+if [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/java" ]]
+then
+    JAVA="$JAVA_HOME/bin/java"
+else
+    JAVA="java"
+fi
+
+if [[ "$JAVA" ]]; then
+    jVersion=$("$JAVA" -version 2>&1 | awk -F '"' '/version/ {print $2}')
+    if [[ "$jVersion" < "1.6" ]]; then
+         echo "Java version is less than 1.6 which is too old, you will need at least Java 1.6 to run sitespeed.io"; exit 1;
+    fi
+fi
+}
+
+#*******************************************************
+# Fetch the input from the user
+#*******************************************************
+function get_input {
 # Set options
 while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:t:a:v:y:l:c:” OPTION
 do
@@ -183,9 +128,14 @@ do
              ;;
      esac
 done
+}
 
-# Verify that all options needed exists & set default values for missing ones
 
+#*******************************************************
+# Verify that all options needed exists & set default 
+# values for missing onesFetch the input from the user
+#*******************************************************
+function verify_input {
 if [[ -z $URL ]] && [[ -z $FILE ]]
 then
      help
@@ -234,8 +184,6 @@ if [ "$TEST_NAME" != "" ]
     TEST_NAME="-Dcom.soulgalore.velocity.key.testname= "
 fi
 
-
-
 ## Avalaible columns
 ## url,js,css,img,cssimg,font,requests,requestswithoutexpires,docsize,pagesize,criticalpath,loadtime,spof,syncjs,ttfb,domains,kbps,maximgsize,totalimgsize,totaljssize,totalcsssize,browserscaledimg,grade
 if [ "$PAGES_COLUMNS" != "" ]
@@ -265,10 +213,14 @@ if [ "$VIEWPORT" != "" ]
 then
     VIEWPORT_YSLOW="-vp $VIEWPORT"
 fi
-
-
 # Finished verify the input
+}
 
+#*******************************************************
+# Setup the dirs needed and set versions needed for 
+# doing the analyze
+#*******************************************************
+function setup_dirs_and_dependencies {
 # Switch to my dir
 cd "$(dirname ${BASH_SOURCE[0]})"
 
@@ -311,7 +263,12 @@ mkdir -p $REPORT_DIR || exit 1
 mkdir $REPORT_DATA_DIR || exit 1
 mkdir $REPORT_PAGES_DIR || exit 1
 mkdir $REPORT_DATA_PAGES_DIR || exit 1
+}
 
+#*******************************************************
+# Fetch the urls, either by crawling or from file
+#*******************************************************
+function fetch_urls {
 if [[ -z $FILE ]]
 then 
   "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -Dcom.soulgalore.crawler.propertydir=$DEPENDENCIES_DIR/ $PROXY_CRAWLER -cp $DEPENDENCIES_DIR/$CRAWLER_JAR com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL $USER_AGENT_CRAWLER -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/errorurls.txt
@@ -330,7 +287,13 @@ result=()
 while read txt ; do
    result[${#result[@]}]=$txt
 done < $REPORT_DATA_DIR/urls.txt
+}
 
+
+#*******************************************************
+# Analyze the pages
+#*******************************************************
+function analyze_pages {
 echo "Will analyze ${#result[@]} pages" 
 
 # Setup start parameters, 0 jobs are running and the first file name
@@ -356,7 +319,12 @@ done
 
 # make sure all processes has finished
 wait
+}
 
+#*******************************************************
+# Genereate result output files
+#*******************************************************
+function generate_output_files {
 # take care of error urls
 if [ -e $REPORT_DATA_DIR/errorurls.txt ];
 then
@@ -462,3 +430,90 @@ if $CREATE_TAR_ZIP
 
 echo "Finished"
 exit 0
+}
+
+#*******************************************************
+# Help function, call it to print all different usages.
+#
+#*******************************************************
+function help() {
+cat << EOF
+usage: $0 options
+
+Sitespeed is a tool that helps you analyze your website performance and show you what you should optimize, more info at http://sitespeed.io
+
+OPTIONS:
+   -h      Help
+   -u      The start url of the crawl with the format of http[s]://host[:port][/path/]. Use this or use the -f file option.
+   -f      The path to a plain text file with one url on each row. These URL:s will be used instead crawling.
+   -d      The crawl depth, default is 1 [optional]
+   -c      Crawl only on this path [optional]
+   -s      Skip urls that contains this in the path [optional]
+   -p      The number of processes that will analyze pages, default is 5 [optional]
+   -m      The memory heap size for the java applications, default is 1024 Mb [optional]
+   -n      Give your test a name, it will be added to all HTML pages [optional]
+   -o      The output format, always output as html but you can add images and a csv file for the detailed site summary page  (img|csv) [optional]
+   -r      The result base directory, default is sitespeed-result [optional]
+   -z      Create a tar zip file of the result files, default is false [optional]
+   -x      The proxy host & protocol: proxy.soulgalore.com:80 [optional] 
+   -t      The proxy type, default is http [optional]
+   -a      The user agent, default is "Mozilla/6.0" [optional]
+   -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional] 
+   -y      The compiled yslow file, default is dependencies/yslow-3.1.5-sitespeed.js [optional]
+   -l      Which ruleset to use, default is the latest sitespeed.io version [optional]
+   -b      The columns showed on detailes page summary table, see http://sitespeed.io/documentation/#pagescolumns for more info [optional]     
+EOF
+}
+
+#*******************************************************
+# Analyze function, call it to analyze a page
+# $1 the url to analyze
+# $2 the filename of that tested page
+#*******************************************************
+function analyze() {
+    # setup the parameters, same names maybe makes it easier
+    url=$1
+    pagefilename=$2
+  
+    echo "Analyzing $url"
+    phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml $USER_AGENT_YSLOW $VIEWPORT_YSLOW "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
+ 
+    s=$(du -k "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" | cut -f1)
+    # Check that the size is bigger than 0
+    if [ $s -lt 10 ]
+      then
+      echo "Could not analyze $url unrecoverable error when parsing the page:"
+      ## do the same thing again but setting console to log the error to output
+      phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml $USER_AGENT_YSLOW $VIEWPORT_YSLOW "$url" -c 2  
+      ## write the error url to the list
+      echo "sitespeed.io got an unrecoverable error when parsing the page,$url" >> $REPORT_DATA_DIR/errorurls.txt    
+    fi
+
+    # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
+    sed '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup  || exit 1
+  
+    # And crazy enough, sometimes we get things after the end of the xml
+    sed -n '1,/<\/results>/p' $REPORT_DATA_PAGES_DIR/$pagefilename-bup > $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1
+ 
+    # ttfb & page size
+    curl $USER_AGENT_CURL --compressed -o /dev/null -w "%{time_starttransfer};%{size_download}\n" -L -s "$url" >  "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
+    
+    read -r TTFB_SIZE <  $REPORT_DATA_PAGES_DIR/$pagefilename.info
+    TTFB="$(echo $TTFB_SIZE  | cut -d \; -f 1)"
+    SIZE="$(echo $TTFB_SIZE  | cut -d \; -f 2)"
+    TTFB="$(printf "%.3f" $TTFB)"
+  
+    rm "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
+    # Hack for adding link and other data to the xml file
+    XML_URL=$(echo "$url" | sed 's/&/\\&/g') 
+  
+    sed 's{<results>{<results filename="'$pagefilename'" ttfb="'$TTFB'" size="'$SIZE'"><curl><![CDATA['"$XML_URL"']]></curl>{' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
+    mv $REPORT_DATA_PAGES_DIR/$pagefilename-bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml 
+   
+    "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml $VELOCITY_DIR/page.vm $PROPERTIES_DIR/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1
+    "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_PAGES_DIR/$pagefilename.html $REPORT_PAGES_DIR/$pagefilename.html
+   
+}
+
+# launch
+main "$@"
