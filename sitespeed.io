@@ -235,12 +235,15 @@ if [ "$TEST_NAME" != "" ]
 fi
 
 
+
+## Avalaible columns
+## url,js,css,img,cssimg,font,requests,requestswithoutexpires,docsize,pagesize,criticalpath,loadtime,spof,syncjs,ttfb,domains,kbps,maximgsize,totalimgsize,totaljssize,totalcsssize,browserscaledimg,grade
 if [ "$PAGES_COLUMNS" != "" ]
   then
     PAGES_COLUMNS="-Dcom.soulgalore.velocity.key.columns=$PAGES_COLUMNS"
   else
     # Default colums
-    PAGES_COLUMNS="-Dcom.soulgalore.velocity.key.columns=url,js,css,img,cssimg,font,requests,requestswithoutexpires,docsize,pagesize,criticalpath,loadtime,spof,syncjs,ttfb,domains,kbps,grade"
+    PAGES_COLUMNS="-Dcom.soulgalore.velocity.key.columns=url,js,css,img,cssimg,font,requests,requestswithoutexpires,docsize,pagesize,criticalpath,loadtime,spof,syncjs,ttfb,grade"
 fi
 
 

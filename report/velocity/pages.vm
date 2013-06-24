@@ -30,11 +30,9 @@
 
             <div class="hidden-phone">
             <table class="table table-hover table-condensed table-striped table-bordered" id="pagesTable">
-                <caption></caption>
                 <thead>
-                    ## TODO make this configurable
-                    #set($columns = "url,js,css,img,cssimg,font,requests,requestswithoutexpires,docsize,pagesize,criticalpath,loadtime,spof,syncjs,ttfb,grade")   
                     <tr>
+                    ## The columns are feed from the merger
                     #foreach ($column in $columns.split(","))
                         #columnHeader($column)
                     #end
