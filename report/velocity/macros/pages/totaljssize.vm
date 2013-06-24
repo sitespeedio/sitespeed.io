@@ -5,5 +5,5 @@
 #end
 #end           
 <td>
-$totalJSSize
+$math.roundTo(1,$totalJSSize)
 </td>

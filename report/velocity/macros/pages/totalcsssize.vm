@@ -5,5 +5,5 @@
 #end
 #end           
 <td>
-$totalCSSSize
+$math.roundTo(1,$totalCSSSize)
 </td>
