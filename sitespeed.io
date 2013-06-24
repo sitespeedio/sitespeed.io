@@ -18,39 +18,46 @@
 #*******************************************************
 
 
+#*******************************************************
+# All the options that you can configure when you run 
+# the script
+#*******************************************************
 
-#*******************************************************
-# All the options that you can configure when you run the script
-#
-#*******************************************************
+## The URL to crawl
 URL=
-FILE=
+## The depth of the crawl, default is 1
 DEPTH=1
+## Crawl only on this path
 FOLLOW_PATH=
+## Crawl not pages with this in the URL
 NOT_IN_URL=
+## File containing URL:s to test when not crawling
+FILE=
+## The number of processes when analyzing, default is five
 MAX_PROCESSES=5
+## Hold the output format, always HTML, can also be IMG & CSV
 OUTPUT_FORMAT=
+## The heap size for the Java processes
 JAVA_HEAP=1024
+## Where to put the result files
 REPORT_BASE_DIR=sitespeed-result
+## Create a tar.gzip of the result files
 CREATE_TAR_ZIP=false
+## The host name if proxy is used
 PROXY_HOST=
+## The type of proxy
 PROXY_TYPE=http
-
-PROXY_PHANTOMJS=
-PROXY_CRAWLER=
-
-USER_AGENT="Mozilla/6.0"
-USER_AGENT_YSLOW=
-USER_AGENT_CRAWLER=
-USER_AGENT_CURL=
-
+## The viewport of the browser, default is 1280*800
 VIEWPORT=1280x800
-VIEWPORT_YSLOW=
-
+## The name of the analyze
 TEST_NAME=
+## The colums showed in the table on the detailed summary page 
 PAGES_COLUMNS=
-
+## The default user agent
+USER_AGENT="Mozilla/6.0"
+## The YSlow file to use
 YSLOW_FILE=dependencies/yslow-3.1.5-sitespeed.js
+## The ruleset 
 RULESET=sitespeed.io-1.9
 
 #*******************************************************
@@ -136,6 +143,7 @@ done
 # values for missing onesFetch the input from the user
 #*******************************************************
 function verify_input {
+
 if [[ -z $URL ]] && [[ -z $FILE ]]
 then
      help
