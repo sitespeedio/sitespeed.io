@@ -53,8 +53,8 @@ package:
 	@cp $(REPORT)/$(PROPERTIES)/assets.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/errorurls.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(VELOCITY)/footer.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
-	@cp $(REPORT)/$(VELOCITY)/macros.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
-	@cp $(REPORT)/$(VELOCITY)/date.macros.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
+	@cp $(REPORT)/$(VELOCITY)/macros/summary.macros.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/
+	@cp $(REPORT)/$(VELOCITY)/macros/date.macros.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/
 	@cp $(REPORT)/$(VELOCITY)/pages.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/pages-csv.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/summary.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
@@ -70,7 +70,7 @@ package:
 	@cp $(REPORT)/$(VELOCITY)/summary.details.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/macros/pages/domains.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
 	@cp $(REPORT)/$(VELOCITY)/macros/pages/kbps.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
-	@cp $(REPORT)/$(VELOCITY)/macros/pages/pages.macros.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
+	@cp $(REPORT)/$(VELOCITY)/macros/pages.macros.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/
 	@cp $(REPORT)/$(VELOCITY)/macros/pages/pagesize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/        
 	@cp $(REPORT)/$(VELOCITY)/macros/pages/url.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
 	@cp $(REPORT)/$(VELOCITY)/macros/pages/spof.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
@@ -80,6 +80,6 @@ package:
 	@cp $(REPORT)/$(VELOCITY)/macros/pages/totalimagesize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
 	@cp $(REPORT)/$(VELOCITY)/macros/pages/totaljssize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
 	@cp $(REPORT)/$(VELOCITY)/macros/pages/totalcsssize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
-	@cp $(REPORT)/$(VELOCITY)/macros/pages/scaledimages.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
+	@cp $(REPORT)/$(VELOCITY)/macros/pages/browserscaledimages.vm $(BUILD)/$(REPORT)/$(VELOCITY)/macros/pages/
 	@cp $(REPORT)/$(XSLT)/junit.xsl $(BUILD)/$(REPORT)/$(XSLT)/
 	@echo "finished!"
