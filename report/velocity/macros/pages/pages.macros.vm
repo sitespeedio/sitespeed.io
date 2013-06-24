@@ -1,6 +1,6 @@
 ## Definition of tooltip textz
 
-#set($tooltipUrlText = "The url to the page.")
+#set($tooltipUrlText = "The url to the page")
 #set($tooltipJsText = "The number of javascript files used in this page")
 #set($tooltipImgText = "The number of image files used in this page")
 #set($tooltipCssText = "The number of stylesheet files used in this page")
