@@ -20,9 +20,9 @@
 #set($tooltipDomainsText = "The number of domains used on the page")
 #set($tooltipImgMaxSizeText = "The lagest size of an image on the page (kb)")
 #set($tooltipTotalImgSizeText = "The total size of images on the page (kb)")
-#set($tooltipScaledImgText = "The number of images that are scaled in the browser")
+#set($tooltipBrowserScaledImgText = "The number of images that are scaled in the browser")
 #set($tooltipTotalJSSizeText = "The total size of JS files on the page (kb)")
-#set($tooltipTotalCSSizeText = "The total size of CSS files on the page (kb)")
+#set($tooltipTotalCSSSizeText = "The total size of CSS files on the page (kb)")
 
 ## Set the right table header  
 #macro (columnHeader $columnName)
@@ -63,13 +63,13 @@
 #elseif ($columnName == "maximgsize")##
 #columnHeaderHTML("largest img","float",$tooltipImgMaxSizeText)##
 #elseif ($columnName == "totalimgsize")##
-#columnHeaderHTML("total img size","float",$tooltipImgSizeText)##
-#elseif ($columnName == "scaledimg")##
-#columnHeaderHTML("browser scaled images","int",$tooltipScaledImgText)##
+#columnHeaderHTML("total img size","float",$tooltipTotalImgSizeText)##
+#elseif ($columnName == "browserscaledimg")##
+#columnHeaderHTML("browser scaled images","int",$tooltipBrowserScaledImgText)##
 #elseif ($columnName == "totaljssize")##
-#columnHeaderHTML("total js size","double",$tooltipJSSizeText)##
+#columnHeaderHTML("total js size","double",$tooltipTotalJSSizeText)##
 #elseif ($columnName == "totalcsssize")##
-#columnHeaderHTML("total css size","double",$tooltipCSSSizeText)##
+#columnHeaderHTML("total css size","double",$tooltipTotalCSSSizeText)##
 #elseif ($columnName == "grade")##
 #columnHeaderHTML("grade","int",$tooltipGradeText)##
 #else
@@ -151,8 +151,8 @@ $math.div($results.getChild("lt").getValue(),1000)##
 #parse("report/velocity/macros/pages/totaljssize.vm")##
 #elseif ($columnName == "totalcsssize")##
 #parse("report/velocity/macros/pages/totalcsssize.vm")##
-#elseif ($columnName == "scaledimg")##
-#parse("report/velocity/macros/pages/scaledimages.vm")##
+#elseif ($columnName == "browserscaledimg")##
+#parse("report/velocity/macros/pages/browserscaledimages.vm")##
 #elseif ($columnName == "grade")##
 <td>##
 ## The sitespeed/yslow score##
