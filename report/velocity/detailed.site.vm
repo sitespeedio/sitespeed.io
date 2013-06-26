@@ -41,7 +41,6 @@
 
                 <tbody>
                     #foreach ($results in $document.getRootElement().getChildren("results"))
-                    #set($sitespeed = $results.getChild("o").getValue())
                     <tr>
                     #foreach ($column in $columns.split(","))
                         #columnValue($column,$results)
