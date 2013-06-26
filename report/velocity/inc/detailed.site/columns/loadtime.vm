@@ -1,0 +1,4 @@
+<td>
+## The load time##
+$math.div($results.getChild("lt").getValue(),1000)##
+</td>

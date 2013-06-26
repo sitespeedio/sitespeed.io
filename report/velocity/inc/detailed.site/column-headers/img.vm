@@ -1,0 +1,2 @@
+#set($tooltipImgText = "The number of image files used in this page")
+#columnHeaderHTML("img","int",$tooltipImgText)##

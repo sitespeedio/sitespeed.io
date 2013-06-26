@@ -1,7 +1,7 @@
 #parse("report/velocity/header.vm")
 #parse("report/velocity/macros/date.macros.vm")
-#parse("report/velocity/macros/summary.macros.vm")
-#parse("report/velocity/summary.logic.vm")
+#parse("report/velocity/macros/site.summary.macros.vm")
+#parse("report/velocity/site.summary.logic.vm")
 
 #set ($siteElement = $document.getRootElement())
 #set ($metricsElement = $siteElement.getChild("metrics"))
@@ -286,7 +286,7 @@
                 <p> 
                 <b>Sitespeed.io</b> score are based on the <a href="rules.html">rules</a>. 
 		<span class="hidden-phone">
-		Click <a href="summary-details.html">here</a> to see a detailed version of the summary.
+		Click <a href="summary.details.html">here</a> to see a detailed version of the summary.
 		</span>
                     The rules are simple:
                     <span class="badge badge-success">Green</span>
