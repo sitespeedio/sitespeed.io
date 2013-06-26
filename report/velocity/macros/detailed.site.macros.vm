@@ -1,6 +1,12 @@
 ## Set the right table header  
 #macro (columnHeader $columnName)
-	#parse("report/velocity/inc/detailed.site/column-headers/${columnName}.vm")
+	#if ($filetool.doFileExist("report/velocity/inc/detailed.site/column-headers/${columnName}.vm"))
+		#parse("report/velocity/inc/detailed.site/column-headers/${columnName}.vm")
+	#elseif ($filetool.doFileExist("report/velocity/inc/detailed.site/column-headers/user/${columnName}.vm"))
+		#parse("report/velocity/inc/detailed.site/column-headers/user/${columnName}.vm")
+	#else
+		#columnHeaderHTML("Non existing header vm file: ${columnName}.vm","string","")##
+	#end
 #end
 
 ## Header HTML
@@ -12,7 +18,13 @@
 
 ## TODO add check if file exist and check another user dir
 #macro (columnValue $columnName, $results)
-	#parse("report/velocity/inc/detailed.site/columns/${columnName}.vm")
+    #if ($filetool.doFileExist("report/velocity/inc/detailed.site/columns/${columnName}.vm")) 
+		#parse("report/velocity/inc/detailed.site/columns/${columnName}.vm")
+	#elseif ($filetool.doFileExist("report/velocity/inc/detailed.site/columns/user/${columnName}.vm"))
+		#parse("report/velocity/inc/detailed.site/columns/user/${columnName}.vm")
+	#else
+	<td>Non existing vm file: ${columnName}.vm</td>
+	#end	
 #end
 
 
