@@ -7,7 +7,9 @@ version 1.9
 * Made column in detailed summary page configurable
 * Phone view on detailed summary page now only contains url & score to make it simplier to maintain
 * You can now configure to show the following colums on page summary: KBPS, nr of domain, largest image, total image size, browser scaled images, total js size and total css size
+* You can now add your own data to be showed in the columns on page summary!
 * Tech: Cleanup of the sitespeed.io script, making it a little easier to follow
+* Tech: Renaming & restructuring of templates to follow doc naming
 * Bug fix: URL:s that returns error (4XX-5XX and that sitespeed can't analyze) is now included in the JUnit xml
 * Bug fix: The JUnit script can now output files to a relative path
 * Bug fix: Calculating "requests with primed cache" sometimes showed wrong value
