@@ -1,0 +1,27 @@
+#parse("report/velocity/header.vm")
+<div class="row-fluid">
+	<div class="span12">
+
+		<h2>
+			The screenshots for viewport $viewport
+		</h2>
+
+		#foreach ($i in [1..$math.sub($math.toInteger($totalscreenshots),1)])
+			<p>
+			## TODO add URL
+			#set($image = "$i")
+			#set($image = $image.concat(".png"))
+			#set($html = "$i")
+			#set($html = $html.concat(".html"))
+			<a href="pages/$html"><img src="screenshots/$image"/></a>
+			</p>
+			<hr/>
+		#end
+	
+	</div>
+	<!-- span 12 -->
+</div>
+<!-- row -->
+#parse("report/velocity/footer.vm")
+</body>
+</html>

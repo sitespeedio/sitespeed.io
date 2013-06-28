@@ -178,6 +178,8 @@ else
    OUTPUT_IMAGES=false
 fi  
 
+SCREENSHOT="-Dcom.soulgalore.velocity.key.showscreenshots=$OUTPUT_IMAGES"
+
 if [[ "$OUTPUT_FORMAT" == *csv* ]]
   then 
   OUTPUT_CSV=true
@@ -221,6 +223,7 @@ if [ "$VIEWPORT" != "" ]
 then
     VIEWPORT_YSLOW="-vp $VIEWPORT"
 fi
+
 # Finished verify the input
 }
 
@@ -382,7 +385,7 @@ echo 'Create the summary.details.html'
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/summary.details.html $REPORT_DIR/summary.details.html
 
 echo 'Create the pages.html'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$PAGES_COLUMNS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/detailed.site.vm $PROPERTIES_DIR/detailed.site.properties $REPORT_DIR/detailed.site.html || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$PAGES_COLUMNS" "$SCREENSHOT" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/detailed.site.vm $PROPERTIES_DIR/detailed.site.properties $REPORT_DIR/detailed.site.html || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/detailed.site.html $REPORT_DIR/detailed.site.html
 
 if $OUTPUT_CSV 
@@ -422,10 +425,17 @@ if $OUTPUT_IMAGES
   HEIGHT=$(echo $VIEWPORT | cut -d'x' -f2)
   for page in "${result[@]}"
     do 
-      echo "Creating image for $page $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png "
+      echo "Creating screenshot for $page $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png "
       phantomjs $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js $page $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png $WIDTH $HEIGHT "$USER_AGENT" 
       PAGEFILENAME=$[$PAGEFILENAME+1]
   done  
+
+  VP="-Dcom.soulgalore.velocity.key.viewport=$VIEWPORT"
+  TOTAL_SCREENSHOTS="-Dcom.soulgalore.velocity.key.totalscreenshots=$PAGEFILENAME"
+  echo 'Create the screenshots.html'
+  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$VP" "$TOTAL_SCREENSHOTS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/1.xml $VELOCITY_DIR/screenshots.vm $PROPERTIES_DIR/screenshots.properties $REPORT_DIR/screenshots.html || exit 1
+  "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/screenshots.html $REPORT_DIR/screenshots.html
+
 fi
 
 if $CREATE_TAR_ZIP
@@ -516,8 +526,6 @@ function analyze() {
   
     sed 's{<results>{<results filename="'$pagefilename'" ttfb="'$TTFB'" size="'$SIZE'"><curl><![CDATA['"$XML_URL"']]></curl>{' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
     mv $REPORT_DATA_PAGES_DIR/$pagefilename-bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml 
-   
-    SCREENSHOT="-Dcom.soulgalore.velocity.key.showscreenshots=$OUTPUT_IMAGES"
 
     "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$SCREENSHOT" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml $VELOCITY_DIR/full.page.vm $PROPERTIES_DIR/full.page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1
     "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_PAGES_DIR/$pagefilename.html $REPORT_PAGES_DIR/$pagefilename.html

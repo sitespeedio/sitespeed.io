@@ -2,9 +2,11 @@
     ## The link to the full page info
     #set($file = $results.getAttribute("filename").getValue())
     #set($file = $file.concat(".html"))
-    <a href="#headers-$foreach.count" data-toggle="modal"> <i class="icon-zoom-in"></i>
-    </a>
-    <a href="pages/$file" title="$results.getChild("curl").getValue()">$results.getChild("curl").getValue()</a>
+    #if ($showscreenshots==true)
+        #set($image = $results.getAttribute("filename").getValue())
+        #set($image = $image.concat(".png"))
+    #end
+    <a href="#headers-$foreach.count" data-toggle="modal" title="See the HTTP Headers"><i class="icon-zoom-in"></i></a>#if($showscreenshots==true)<a href="screenshots/$image" target="_blank" title="See the screenshot"><i class="icon-picture"></i></a>#end<a href="pages/$file" title="$results.getChild("curl").getValue()">$results.getChild("curl").getValue()</a>
 
     <div class="modal hide fade" id="headers-$foreach.count" aria-labelledby="headersModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-header">
