@@ -263,7 +263,7 @@ REPORT_DIR=$REPORT_BASE_DIR/$REPORT_DIR_NAME
 REPORT_DATA_DIR=$REPORT_DIR/data
 REPORT_PAGES_DIR=$REPORT_DIR/pages
 REPORT_DATA_PAGES_DIR=$REPORT_DATA_DIR/pages
-REPORT_IMAGE_PAGES_DIR=$REPORT_DIR/images
+REPORT_IMAGE_PAGES_DIR=$REPORT_DIR/screenshots
 VELOCITY_DIR=report/velocity
 PROPERTIES_DIR=report/properties
 
@@ -417,16 +417,15 @@ if $OUTPUT_IMAGES
   then
   echo 'Create all png:s'
   mkdir $REPORT_IMAGE_PAGES_DIR
-  phantomjs $DEPENDENCIES_DIR/rasterize.js $REPORT_DIR/index.html $REPORT_IMAGE_PAGES_DIR/summary.png
-  phantomjs $DEPENDENCIES_DIR/rasterize.js $REPORT_DIR/detailed.site.html $REPORT_IMAGE_PAGES_DIR/detailed.site.png
-  phantomjs $DEPENDENCIES_DIR/rasterize.js $REPORT_DIR/assets.html $REPORT_IMAGE_PAGES_DIR/assets.png
-  phantomjs $DEPENDENCIES_DIR/rasterize.js $REPORT_DIR/summary.details.html $REPORT_IMAGE_PAGES_DIR/summary.details.png
-
-  for file in $REPORT_PAGES_DIR/*
-  do
-    filename=$(basename $file .html)
-    phantomjs $DEPENDENCIES_DIR/rasterize.js $file $REPORT_IMAGE_PAGES_DIR/$filename.png
-  done
+  PAGEFILENAME=1
+  WIDTH=$(echo $VIEWPORT | cut -d'x' -f1)
+  HEIGHT=$(echo $VIEWPORT | cut -d'x' -f2)
+  for page in "${result[@]}"
+    do 
+      echo "Creating image for $page $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png "
+      phantomjs $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js $page $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png $WIDTH $HEIGHT "$USER_AGENT" 
+      PAGEFILENAME=$[$PAGEFILENAME+1]
+  done  
 fi
 
 if $CREATE_TAR_ZIP
