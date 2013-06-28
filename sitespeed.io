@@ -330,7 +330,7 @@ wait
 }
 
 #*******************************************************
-# Genereate result output files
+# Generate result output files
 #*******************************************************
 function generate_output_files {
 # take care of error urls
@@ -517,7 +517,9 @@ function analyze() {
     sed 's{<results>{<results filename="'$pagefilename'" ttfb="'$TTFB'" size="'$SIZE'"><curl><![CDATA['"$XML_URL"']]></curl>{' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
     mv $REPORT_DATA_PAGES_DIR/$pagefilename-bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml 
    
-    "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml $VELOCITY_DIR/full.page.vm $PROPERTIES_DIR/full.page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1
+    SCREENSHOT="-Dcom.soulgalore.velocity.key.showscreenshots=$OUTPUT_IMAGES"
+
+    "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$SCREENSHOT" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml $VELOCITY_DIR/full.page.vm $PROPERTIES_DIR/full.page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1
     "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_PAGES_DIR/$pagefilename.html $REPORT_PAGES_DIR/$pagefilename.html
    
 }
