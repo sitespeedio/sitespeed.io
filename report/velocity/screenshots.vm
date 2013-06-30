@@ -6,18 +6,20 @@
 			The screenshots for viewport $viewport
 		</h2>
 
-		#foreach ($i in [1..$math.sub($math.toInteger($totalscreenshots),1)])
-			<p>
-			## TODO add URL
-			#set($image = "$i")
+		#set ($file = 1)
+		#foreach ($url in $urls.split("@"))
+		    
+		    <h3><a href="$url" target="_blank">$url</a></h3>
+		    <p>
+		    #set($image = "$file")
 			#set($image = $image.concat(".png"))
-			#set($html = "$i")
+			#set($html = "$file")
 			#set($html = $html.concat(".html"))
 			<a href="pages/$html"><img src="screenshots/$image"/></a>
-			</p>
-			<hr/>
-		#end
-	
+		    #set ($file = $math.add(1,$file))
+		    </p>
+		    <hr/>	
+		#end     			
 	</div>
 	<!-- span 12 -->
 </div>

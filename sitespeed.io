@@ -294,9 +294,9 @@ exit 0
 fi
 
 # read the urls
-result=()
+urls=()
 while read txt ; do
-   result[${#result[@]}]=$txt
+   urls[${#urls[@]}]=$txt
 done < $REPORT_DATA_DIR/urls.txt
 }
 
@@ -305,21 +305,22 @@ done < $REPORT_DATA_DIR/urls.txt
 # Analyze the pages
 #*******************************************************
 function analyze_pages {
-echo "Will analyze ${#result[@]} pages" 
+
+echo "Will analyze ${#urls[@]} pages" 
 
 # Setup start parameters, 0 jobs are running and the first file name
 JOBS=0
 PAGEFILENAME=1
 RUNS=0
 
-for page in "${result[@]}"
+for url in "${urls[@]}"
 
-do analyze "$page" $PAGEFILENAME &
+do analyze "$url" $PAGEFILENAME &
     PAGEFILENAME=$[$PAGEFILENAME+1]
     JOBS=$[$JOBS+1]
     RUNS=$[$RUNS+1]
     if [ $(($RUNS%20)) == 0 ]; then
-      echo "Analyzed $RUNS pages out of ${#result[@]}"
+      echo "Analyzed $RUNS pages out of ${#urls[@]}"
     fi
     if [ "$JOBS" -ge "$MAX_PROCESSES" ]
 	   then
@@ -423,17 +424,22 @@ if $OUTPUT_IMAGES
   PAGEFILENAME=1
   WIDTH=$(echo $VIEWPORT | cut -d'x' -f1)
   HEIGHT=$(echo $VIEWPORT | cut -d'x' -f2)
-  for page in "${result[@]}"
+  URL_LIST=
+  for url in "${urls[@]}"
     do 
-      echo "Creating screenshot for $page $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png "
-      phantomjs $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js $page $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png $WIDTH $HEIGHT "$USER_AGENT" 
+      echo "Creating screenshot for $url $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png "
+      phantomjs $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js "$url" $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png $WIDTH $HEIGHT "$USER_AGENT" 
       PAGEFILENAME=$[$PAGEFILENAME+1]
+      URL_LIST+="$url"
+      URL_LIST+="@"
+      ## If pngcrush exist, use it to crush the images
+      #pngcrush -q $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png
   done  
-
   VP="-Dcom.soulgalore.velocity.key.viewport=$VIEWPORT"
   TOTAL_SCREENSHOTS="-Dcom.soulgalore.velocity.key.totalscreenshots=$PAGEFILENAME"
+  URL_LIST="-Dcom.soulgalore.velocity.key.urls=$URL_LIST"
   echo 'Create the screenshots.html'
-  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$VP" "$TOTAL_SCREENSHOTS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/1.xml $VELOCITY_DIR/screenshots.vm $PROPERTIES_DIR/screenshots.properties $REPORT_DIR/screenshots.html || exit 1
+  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$VP" "$TOTAL_SCREENSHOTS" "$URL_LIST" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/1.xml $VELOCITY_DIR/screenshots.vm $PROPERTIES_DIR/screenshots.properties $REPORT_DIR/screenshots.html || exit 1
   "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/screenshots.html $REPORT_DIR/screenshots.html
 
 fi
