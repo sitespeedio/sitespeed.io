@@ -425,15 +425,21 @@ if $OUTPUT_IMAGES
   WIDTH=$(echo $VIEWPORT | cut -d'x' -f1)
   HEIGHT=$(echo $VIEWPORT | cut -d'x' -f2)
   URL_LIST=
+  ## If pngcrush exist, use it to crush the images
+  command -v pngcrush >/dev/null && PNGCRUSH_EXIST=true || PNGCRUSH_EXIST=false
+  
   for url in "${urls[@]}"
     do 
       echo "Creating screenshot for $url $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png "
       phantomjs $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js "$url" $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png $WIDTH $HEIGHT "$USER_AGENT" 
+      if $PNGCRUSH_EXIST
+        then
+        pngcrush -q $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME-c.png
+        mv $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME-c.png $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png
+      fi 
       PAGEFILENAME=$[$PAGEFILENAME+1]
       URL_LIST+="$url"
       URL_LIST+="@"
-      ## If pngcrush exist, use it to crush the images
-      #pngcrush -q $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png
   done  
   VP="-Dcom.soulgalore.velocity.key.viewport=$VIEWPORT"
   TOTAL_SCREENSHOTS="-Dcom.soulgalore.velocity.key.totalscreenshots=$PAGEFILENAME"
