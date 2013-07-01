@@ -3,7 +3,7 @@ var page = require('webpage').create(),
 
 
 if (phantom.args.length < 4 || phantom.args.length > 5) {
-    console.log('Usage: rasterize.js URL filename');
+    console.log('Usage: screenshot.js URL filename width height user-agent');
     phantom.exit();
 } else {
     address = phantom.args[0];
