@@ -1,4 +1,6 @@
 language: java
+jdk:
+  - openjdk6
 
 before_install:
   - sudo apt-get update
