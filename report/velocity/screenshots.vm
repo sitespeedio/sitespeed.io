@@ -9,13 +9,13 @@
 		#set ($file = 1)
 		#foreach ($url in $urls.split("@"))
 		    
-		    <h3><a href="$url" target="_blank">$url</a></h3>
+		    <h3 id="$file"><a href="$url" target="_blank">$url</a></h3>
 		    <p>
 		    #set($image = "$file")
 			#set($image = $image.concat(".png"))
 			#set($html = "$file")
 			#set($html = $html.concat(".html"))
-			<a href="pages/$html"><img src="screenshots/$image"/></a>
+			<a href="pages/$html" title="The analyze"><img src="screenshots/$image"/></a>
 		    #set ($file = $math.add(1,$file))
 		    </p>
 		    <hr/>	
