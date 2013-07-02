@@ -419,35 +419,7 @@ cp "$BASE_DIR"report/img/* $REPORT_DIR/img
 
 if $OUTPUT_IMAGES 
   then
-  echo 'Create all png:s'
-  mkdir $REPORT_IMAGE_PAGES_DIR
-  PAGEFILENAME=1
-  WIDTH=$(echo $VIEWPORT | cut -d'x' -f1)
-  HEIGHT=$(echo $VIEWPORT | cut -d'x' -f2)
-  URL_LIST=
-  ## If pngcrush exist, use it to crush the images
-  command -v pngcrush >/dev/null && PNGCRUSH_EXIST=true || PNGCRUSH_EXIST=false
-  
-  for url in "${urls[@]}"
-    do 
-      echo "Creating screenshot for $url $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png "
-      phantomjs $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js "$url" $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png $WIDTH $HEIGHT "$USER_AGENT" true
-      if $PNGCRUSH_EXIST
-        then
-        pngcrush -q $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME-c.png
-        mv $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME-c.png $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png
-      fi 
-      PAGEFILENAME=$[$PAGEFILENAME+1]
-      URL_LIST+="$url"
-      URL_LIST+="@"
-  done  
-  VP="-Dcom.soulgalore.velocity.key.viewport=$VIEWPORT"
-  TOTAL_SCREENSHOTS="-Dcom.soulgalore.velocity.key.totalscreenshots=$PAGEFILENAME"
-  URL_LIST="-Dcom.soulgalore.velocity.key.urls=$URL_LIST"
-  echo 'Create the screenshots.html'
-  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$VP" "$TOTAL_SCREENSHOTS" "$URL_LIST" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/1.xml $VELOCITY_DIR/screenshots.vm $PROPERTIES_DIR/screenshots.properties $REPORT_DIR/screenshots.html || exit 1
-  "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/screenshots.html $REPORT_DIR/screenshots.html
-
+  take_screenshots
 fi
 
 if $CREATE_TAR_ZIP
@@ -459,6 +431,44 @@ if $CREATE_TAR_ZIP
 
 echo "Finished"
 exit 0
+}
+
+#*******************************************************
+# Create screenshots of the pages
+#
+#*******************************************************
+function take_screenshots() {
+
+echo 'Create all png:s'
+mkdir $REPORT_IMAGE_PAGES_DIR
+PAGEFILENAME=1
+WIDTH=$(echo $VIEWPORT | cut -d'x' -f1)
+HEIGHT=$(echo $VIEWPORT | cut -d'x' -f2)
+URL_LIST=
+
+## If pngcrush exist, use it to crush the images
+command -v pngcrush >/dev/null && PNGCRUSH_EXIST=true || PNGCRUSH_EXIST=false
+  
+for url in "${urls[@]}"
+  do 
+    echo "Creating screenshot for $url $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png "
+    phantomjs $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js "$url" $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png $WIDTH $HEIGHT "$USER_AGENT" true
+    if $PNGCRUSH_EXIST
+      then
+        pngcrush -q $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME-c.png
+        mv $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME-c.png $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png
+    fi 
+    PAGEFILENAME=$[$PAGEFILENAME+1]
+    URL_LIST+="$url"
+    URL_LIST+="@"
+  done  
+VP="-Dcom.soulgalore.velocity.key.viewport=$VIEWPORT"
+TOTAL_SCREENSHOTS="-Dcom.soulgalore.velocity.key.totalscreenshots=$PAGEFILENAME"
+URL_LIST="-Dcom.soulgalore.velocity.key.urls=$URL_LIST"
+echo 'Create the screenshots.html'
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$VP" "$TOTAL_SCREENSHOTS" "$URL_LIST" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/1.xml $VELOCITY_DIR/screenshots.vm $PROPERTIES_DIR/screenshots.properties $REPORT_DIR/screenshots.html || exit 1
+"$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/screenshots.html $REPORT_DIR/screenshots.html
+
 }
 
 #*******************************************************
