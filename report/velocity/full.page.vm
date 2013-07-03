@@ -11,11 +11,13 @@
 		</h2>
 
 		<ul class="nav nav-tabs nav-stacked">
+			<!--
 			#if ($showscreenshots==true)
 			<li>
 				<a href="#screenshot">Screenshot</a>
 			</li>
 			#end 
+			-->
 			<li>
 				<a href="#score">Scores below 100</a>
 			</li>
@@ -31,13 +33,15 @@
 
 		</ul>
 
+		<!--
 		#if ($showscreenshots==true) 
 		<h3 id="screenshot">Screenshot</h3>
 		#set($file = $document.getRootElement().getAttribute("filename").getValue())
-		#set($file = $file.concat(".png"))
-		<p><img src="../screenshots/$file"/>
+		#set($image = $file.concat(".png"))
+		<p><a href="../screenshots/#$file"><img src="../screenshots/$image" height="300"/></a>
 		</p>
 		#end
+		-->
 
 		<h3 id="score">Scores below 100</h3>
 
