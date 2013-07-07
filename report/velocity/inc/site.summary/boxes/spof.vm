@@ -1,0 +1,8 @@
+ <div class="alert alert-#spofType($totalSpofPages)">
+	Pages with SPOF
+	<div>
+		<a href="#" rel="popover" class="alert-#spofType($totalSpofPages) large" data-trigger="hover" title="The number of $totalSpofPages pages with frontend single point of failure  #if($math.toInteger($pagesWithSpofPercentage) >
+			0) ($pagesWithSpofPercentage % of the pages)  #end" data-content="$spofText">$totalSpofPages
+		</a>
+	</div>
+ </div>

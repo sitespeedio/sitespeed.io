@@ -1,0 +1,8 @@
+#set($scoreText = "Over 90 is good, between 80-90 is not so good, and below 80 is bad, really bad.")
+<div class="alert alert-#scoreType($scoreMedian)">
+	Score
+	<div>
+		<a href="#" class="alert-#scoreType($scoreMedian) large" rel="popover" data-trigger="hover" title="Median score $scoreMedian" data-content="$scoreText">$scoreMedian</a>
+		($scorePercentile)
+	</div>
+</div>

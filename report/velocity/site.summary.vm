@@ -62,28 +62,8 @@
 #set ($modifiedSinceMedian = $header.getSeconds($math.toInteger($metricsElement.getChild("timesincelastmodificationinseconds").getChild("median").getValue())))
 #set ($modifiedSincePercentile = $header.getSeconds($math.toInteger($metricsElement.getChild("timesincelastmodificationinseconds").getChild("percentile95").getValue())))
 
-
-#set($scoreText = "Over 90 is good, between 80-90 is not so good, and below 80 is bad, really bad.")
-#set($requestText = "Below 25 is good, between 25-88 is something you should look into (88 is the average amount of requests a site has, collected from http://httparchive.org) and above 88 is really bad.")
-#set($pageWeightText = "Below 1 mb is ok (but really too large for mobile), between 1-1.2 mb is something you should investigate & heavier is bad. 1.2 mb is the average site weight, statistics from http://httparchive.org.")
-#set($documentWeightText = "Below 10 kb is good (gzipped), between 10-26 is ok (but can be better) and above is bad. A small document is good for mobile.")
-#set($nrOfJsText = "Two or less is good, up to 15 means you should look into it and more than 4 means you need to fix it. 15 is the average amount js request, statistics from http://httparchive.org.")
-#set($nrOfCssText = "One is good, more than five is really bad. Five is the average amount of CSS files, data from http://httparchive.org.")
-#set($nrOfCssImageText = "Two is good, above four is bad.")
-#set($nrOfImagesText = "25 or less images is OK, below 54 (the average from http://httparchive.org) is ok, and above is bad.")
-#set($nrOfRequestPrimedText = "2 requests is OK else if not 90% of the request are cached, it is bad.")
-#set($spofText = "0 pages is good, everything else is bad. Excludes subdomains on the document domain from the spof.")
-#set($jsSyncInHeadText = "0 is good, 1 or more is bad and not OK.")
-#set($spofPerPageText = "Everything above 0 is bad!")
-#set($assetsWithoutExpiresText = "0 is good. More than 4 is bad.")
-#set($percentageJsText = "Less than 50% is good, above 75 % is bad.")
-#set($criticalPathText = "You should always aim for score 100, above 95 is OK.")
-#set($textContentText = "Above 50% is good, below 25% is bad.")
-#set($ttfbText = "Faster than 0.3 seconds is good, more than 0.5 s is really bad.")
-#set($domElementsText = "Less than 900 elements is ok, above 1007 is bad (the average from http://httparchive.org)")
-#set($totalImageWeightText = "Less than 500 kb is ok, above 850 is bad.")
-
 #set($totalSpofPages = $math.toInteger($metricsElement.getChild("spofpages").getChild("values").getValue()))
+
 
 <div class="row-fluid">
     <div class="span12">
@@ -100,180 +80,63 @@
         #end
         <p>
             Test performed: $siteElement.getChild("date").getValue() with rules $siteElement.getChild("rules").getValue()
-	    #if ($siteElement.getChild("userAgent").getValue().getValue() != "")
+        #if ($siteElement.getChild("userAgent").getValue().getValue() != "")
             with user agent: $siteElement.getChild("userAgent").getValue()
             #end
-	    #if ($siteElement.getChild("viewPort").getValue() != "")
+        #if ($siteElement.getChild("viewPort").getValue() != "")
             viewport: $siteElement.getChild("viewPort").getValue()
             #end
         </p>
 
-        <div class="row-fluid">
-            <div class="span6">
-              <div class="alert alert-#scoreType($scoreMedian)">
-                     Score
-                    <div><a href="#" class="alert-#scoreType($scoreMedian) large" rel="popover" data-trigger="hover" title="Median score $scoreMedian" data-content="$scoreText">$scoreMedian</a> 
-                  ($scorePercentile)
-                    </div>
-                </div>
-            </div>
 
-            <div class="span6">
-                  <div class="alert alert-#criticalPathType($totalCriticalPathMedian)">
-                    Critical Rendering Path Score
-                    <div><a href="#" rel="popover" class="alert-#criticalPathType($totalCriticalPathMedian) large" data-trigger="hover" title="The median of the rendering path score " data-content="$criticalPathText">$totalCriticalPathMedian </a> ($criticalPathPercentile)</div>
-                </div>
-            </div>
+#set ($fields = "score,criticalpath,ttfb,syncjs,js,css,cssimages,images,requests,requestswithoutexpires,pagesize,docsize,totalimgsize,textcontent,spof,spofperpage,dom,backend,frontend,cachetime,lastmodification")
+#set ($nrOfFields = $fields.split(",").size())
 
-        </div>
+#set($itemsLastRow = $nrOfFields % 3)
 
+## extra new: domains,maximgsize,totaljssize,totalcsssize,browserscaledimg
 
-        <div class="row-fluid">
-            <div class="span6">
-                  <div class="alert alert-#ttfbType($ttfbMedian)">
-                    Time to first byte
-                    <div><a href="#" rel="popover" class="alert-#ttfbType($ttfbMedian) large" data-trigger="hover" title="The median time to first byte" data-content="$ttfbText">$ttfbMedian s</a> ($ttfbPercentile)</div>
-                </div>
-            </div>
-            <div class="span6">
-            <div class="alert alert-#totalJsSyncInHeadType($totalJsSyncInHeadMedian)">
-              Number of JS synchronously in head 
-                    <div><a href="#" rel="popover" class="alert-#totalJsSyncInHeadType($totalJsSyncInHeadMedian) large" data-trigger="hover" title="Median number of $totalJsSyncInHeadMedian javascripts are loaded synchronously inside of the head tag #if($math.toInteger($jsInHeadPercentage) > 0) ($jsInHeadPercentage % of the javascript files) #end" data-content="$jsSyncInHeadText">$totalJsSyncInHeadMedian</a> ($jsSyncInHeadPercentile)</div>   
-          </div>    
-               
-            </div>
-        </div>
-
-        
+ #set ($i = 0)  
+ #foreach ($field in $fields.split(","))
+    ## If it is time to start a new row
+    #if ($i % 3 == 0)
     <div class="row-fluid">
-            <div class="span3">
-                <div class="alert alert-#jsType($jsMedian)">
-                    Number of JS 
-                      <div><a href="#" rel="popover" class="alert-#jsType($jsMedian) large" data-trigger="hover" title="Median number of $jsMedian javascripts ($jsPercentage % of the requests) " data-content="$nrOfJsText">$jsMedian</a> ($jsPercentile)</div>
-                    
-                </div>
-            </div>
-            <div class="span3">
-                <div class="alert alert-#cssType($cssMedian)">
-                    Number of CSS 
-                      <div><a href="#" rel="popover" class="alert-#cssType($cssMedian) large" data-trigger="hover" title="Median number of $cssMedian stylesheets ($cssPercentage % of the requests)" data-content="$nrOfCssText">$cssMedian</a> ($cssPercentile)</div>
-                </div>
-            </div>
-<div class="span3">
-                <div class="alert alert-#cssImageType($cssImageMedian)">
-                    Number of CSS images 
-                      <div><a href="#" rel="popover" class="alert-#cssImageType($cssImageMedian) large" data-trigger="hover" title="Median number of $cssImageMedian stylesheet images ($cssImagesPercentage % of the requests)" data-content="$nrOfCssImageText">$cssImageMedian</a> ($cssImagePercentile)</div>
-                </div>
-            </div>
-            <div class="span3">
-                <div class="alert alert-#imageType($imageMedian)">
-                    Number of images 
-                      <div><a href="#" rel="popover" class="alert-#imageType($imageMedian) large" data-trigger="hover" title="Median number of $imageMedian images ($imagesPercentage % of the requests)" data-content="$nrOfImagesText">$imageMedian</a> ($imagePercentile)</div>
-                </div>
-            </div>
-        </div>
+    #end
 
-        <div class="row-fluid">
-             <div class="span6">
-                <div class="alert alert-#requestType($requestMedian)">
-                    Number of requests
-                    <div><a href="#" rel="popover" class="alert-#requestType($requestMedian) large" data-trigger="hover" title="Median number of $requestMedian requests" data-content="$requestText">$requestMedian</a> ($requestPercentile)</div>
-                </div>
-            </div>
-    
-             <div class="span6">
-                    <div class="alert alert-#expiresType($totalAssetsWithoutExpiresMedian)">
-                    Requests without expires 
-                      <div><a href="#" rel="popover" class="alert-#expiresType($totalAssetsWithoutExpiresMedian) large" data-trigger="hover" title="Median number of $totalAssetsWithoutExpiresMedian requests for static content without a future expiration date #if($math.toInteger($requestWithoutExpirePercentage) > 0) ($requestWithoutExpirePercentage % of the requests is lacking a expiration date) #end" data-content="$assetsWithoutExpiresText">$totalAssetsWithoutExpiresMedian</a> ($assetsWithoutExpiresPercentile) 
-		      </div>
-                </div>
-             </div>
-           
-        </div>
+    ## identify last row
+    ## and set the right amount of spans
+    #if ($nrOfFields - $i <= $itemsLastRow)
+        #if ($itemsLastRow == 2)
+            #set ($span = 6)
+        #else
+            #set ($span = 12)
+        #end
+    #else
+        #set ($span = 4)
+    #end
 
-	 
-    <div class="row-fluid">
-            <div class="span3">
-                <div class="alert alert-#weightType($pageWeightMedian)">
-                    Total page weight
-                    <div><a href="#" rel="popover" class="alert-#weightType($pageWeightMedian) large" data-trigger="hover" title="Median page weight $pageWeightMedian kb" data-content="$pageWeightText">$pageWeightMedian kb</a> ($math.roundTo(1,$pageWeightPercentile))</div>
-                </div>
-            </div>
-            <div class="span3">
-                <div class="alert alert-#weightMobileType($totalDocumentWeightMedian)">
-                    Document page weight
-                    <div><a href="#" rel="popover" class="alert-#weightMobileType($totalDocumentWeightMedian) large" data-trigger="hover" title="Median document weight $totalDocumentWeightMedian kb" data-content="$documentWeightText">$totalDocumentWeightMedian kb</a> ($math.roundTo(1,$documentWeightPercentile))</div>
-                </div>
-            </div>
-             <div class="span3">
-                    <div class="alert alert-#totalImageType($totalImageWeightMedian)">
-                    Total image weight
-                      <div><a href="#" rel="popover" class="alert-#totalImageType($totalImageWeightMedian) large" data-trigger="hover" title="Median total image size per page (images & css images)" data-content="$totalImageWeightText">$totalImageWeightMedian kb</a> ($totalImageWeightPercentile) 
-              </div>
-                </div>
-             </div> 
+ <div class="span$span">
+ #getBox($field)
+ </div>
+ 
+#set ($i =$math.add($i,1))
 
-              <div class="span3">
-                <div class="alert alert-#textContentType($textContentMedian)">
-                    Amount of text content
-                    <div><a href="#" rel="popover" class="alert-#textContentType($textContentMedian) large" data-trigger="hover" title="The median amount of text content on a page" data-content="$textContentText">$textContentMedian %</a> ($textContentPercentile)</div>
-                </div>
-            </div>
+ ## End the row
+ #if ($i % 3 == 0)
+    </div>
+ ## or if we are on the last row & don't show three   
+ #elseif ($nrOfFields - $i == 0)
+     </div>
+ #end
 
-        </div>
 
-        <div class="row-fluid">
-           
-        <div class="span4">
+ #end
 
-        <div class="alert alert-#spofType($totalSpofPages)">
-                    Pages with SPOF 
-                      <div><a href="#" rel="popover" class="alert-#spofType($totalSpofPages) large" data-trigger="hover" title="The number of $totalSpofPages pages with frontend single point of failure  #if($math.toInteger($pagesWithSpofPercentage) > 0) ($pagesWithSpofPercentage % of the pages)  #end" data-content="$spofText">$totalSpofPages</a>                   </div>
-            </div>
-	    </div>
-        <div class="span4">
-         <div class="alert alert-#spofType($totalSpofMedian)">
-                    Number of SPOF per page
-                      <div><a href="#" rel="popover" class="alert-#spofType($totalSpofMedian) large" data-trigger="hover" title="The median of $totalSpofMedian single point of failures per page" data-content="$spofPerPageText">$totalSpofMedian</a> ($spofPercentile)</div>
-            </div>
-             
-        </div>
 
-        <div class="span4">
-         <div class="alert alert-#domElementsType($totalDomElementsMedian)">
-                    Number of DOM elements
-                      <div><a href="#" rel="popover" class="alert-#domElementsType($totalDomElementsMedian) large" data-trigger="hover" title="The median number of DOM elements per page" data-content="$domElementsText">$totalDomElementsMedian</a> ($domElementsPercentile)</div>
-            </div>
-             
-        </div>
 
-       
-        </div>    
+
         
-         <div class="row-fluid">
-             <div class="span3">
-              		<div class="alert alert-info">
-              		Time spent in backend: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The median time spent in backend" data-content="Research done by Google shows that for the top 300 000 sites, average of 14% of the time is spent in backend.">$backendMedianPercentage</a> %</div>
-              		</div>
-              	</div>
-              	 <div class="span3">
-              		<div class="alert alert-info">
-              		Time spent in frontend: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The median time spent in frontend" data-content="Research done by Google shows that for the top 300 000 sites, average of 86% of the time is spent in frontend.">$frontendMedianPercentage</a> %</div>
-              		</div>
-              	</div>
-              	<div class="span3">
-              		<div class="alert alert-info">
-              		Cache time: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The median cache time for all assets of the pages" data-content="Compare the cache time with when an asset was modified, if the last change time was long ago, and the cache time is low, please change it.">#prettyPrint($cacheTimeMedian)</a> (#prettyPrint($cacheTimePercentile))</div>
-              		</div>
-              	</div>
-              	<div class="span3">
-              		<div class="alert alert-info">
-              		Time since last modification: <div><a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The median time since an asset was modified" data-content="Compare the cache time with when an asset was modified, if the last change time was long ago, and the cache time is low, please change it.">#prettyPrint($modifiedSinceMedian)</a> (#prettyPrint($modifiedSincePercentile))</div>
-              		</div>
-              	</div>
-        </div>			
-        
-    	<div class="row-fluid">
+	<div class="row-fluid">
             <div class="span12">
             <i>* The value inside of the parentheses are the 95th percentile (95% of the time, the number is below this amount)</i>
             </div>

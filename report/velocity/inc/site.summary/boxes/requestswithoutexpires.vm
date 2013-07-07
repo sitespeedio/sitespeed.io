@@ -1,0 +1,10 @@
+#set($assetsWithoutExpiresText = "0 is good. More than 4 is bad.")
+<div class="alert alert-#expiresType($totalAssetsWithoutExpiresMedian)">
+	Requests without expires
+	<div>
+		<a href="#" rel="popover" class="alert-#expiresType($totalAssetsWithoutExpiresMedian) large" data-trigger="hover" title="Median number of $totalAssetsWithoutExpiresMedian requests for static content without a future expiration date #if($math.toInteger($requestWithoutExpirePercentage) >
+			0) ($requestWithoutExpirePercentage % of the requests is lacking a expiration date) #end" data-content="$assetsWithoutExpiresText">$totalAssetsWithoutExpiresMedian
+		</a>
+		($assetsWithoutExpiresPercentile)
+	</div>
+</div>

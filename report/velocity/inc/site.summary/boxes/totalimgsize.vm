@@ -1,0 +1,8 @@
+#set($totalImageWeightText = "Less than 500 kb is ok, above 850 is bad.")
+<div class="alert alert-#totalImageType($totalImageWeightMedian)">
+	Total image weight
+	<div>
+		<a href="#" rel="popover" class="alert-#totalImageType($totalImageWeightMedian) large" data-trigger="hover" title="Median total image size per page (images & css images)" data-content="$totalImageWeightText">$totalImageWeightMedian kb</a>
+		($totalImageWeightPercentile)
+	</div>
+</div>

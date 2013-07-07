@@ -1,0 +1,8 @@
+#set($nrOfImagesText = "25 or less images is OK, below 54 (the average from http://httparchive.org) is ok, and above is bad.")
+<div class="alert alert-#imageType($imageMedian)">
+	Number of images
+	<div>
+		<a href="#" rel="popover" class="alert-#imageType($imageMedian) large" data-trigger="hover" title="Median number of $imageMedian images ($imagesPercentage % of the requests)" data-content="$nrOfImagesText">$imageMedian</a>
+		($imagePercentile)
+	</div>
+</div>

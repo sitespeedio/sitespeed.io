@@ -1,0 +1,7 @@
+ <div class="alert alert-#spofType($totalSpofMedian)">
+	Number of SPOF per page
+	<div>
+		<a href="#" rel="popover" class="alert-#spofType($totalSpofMedian) large" data-trigger="hover" title="The median of $totalSpofMedian single point of failures per page" data-content="$spofPerPageText">$totalSpofMedian</a>
+		($spofPercentile)
+	</div>
+ </div>

@@ -1,0 +1,7 @@
+<div class="alert alert-#domElementsType($totalDomElementsMedian)">
+	Number of DOM elements
+	<div>
+		<a href="#" rel="popover" class="alert-#domElementsType($totalDomElementsMedian) large" data-trigger="hover" title="The median number of DOM elements per page" data-content="$domElementsText">$totalDomElementsMedian</a>
+		($domElementsPercentile)
+	</div>
+</div>
