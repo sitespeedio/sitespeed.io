@@ -88,24 +88,23 @@
             #end
         </p>
 
+### $boxes fed from start script
+#set ($nrOfBoxes = $boxes.split(",").size())
 
-#set ($fields = "score,criticalpath,ttfb,syncjs,js,css,cssimages,images,requests,requestswithoutexpires,pagesize,docsize,totalimgsize,textcontent,spof,spofperpage,dom,backend,frontend,cachetime,lastmodification")
-#set ($nrOfFields = $fields.split(",").size())
-
-#set($itemsLastRow = $nrOfFields % 3)
+#set($itemsLastRow = $nrOfBoxes % 3)
 
 ## extra new: domains,maximgsize,totaljssize,totalcsssize,browserscaledimg
 
  #set ($i = 0)  
- #foreach ($field in $fields.split(","))
+ #foreach ($box in $boxes.split(","))
     ## If it is time to start a new row
     #if ($i % 3 == 0)
-    <div class="row-fluid">
+<div class="row-fluid">
     #end
 
     ## identify last row
     ## and set the right amount of spans
-    #if ($nrOfFields - $i <= $itemsLastRow)
+    #if ($nrOfBoxes - $i <= $itemsLastRow)
         #if ($itemsLastRow == 2)
             #set ($span = 6)
         #else
@@ -115,23 +114,19 @@
         #set ($span = 4)
     #end
 
- <div class="span$span">
- #getBox($field)
- </div>
- 
-#set ($i =$math.add($i,1))
+ <div class="span$span">#getBox($box)</div>
+    #set ($i =$math.add($i,1))
 
  ## End the row
  #if ($i % 3 == 0)
-    </div>
- ## or if we are on the last row & don't show three   
- #elseif ($nrOfFields - $i == 0)
-     </div>
- #end
+</div>
+## or if we are on the last row & don't show three   
+ #elseif ($nrOfBoxes - $i == 0)
+</div>
+#end
 
 
  #end
-
 
 
 

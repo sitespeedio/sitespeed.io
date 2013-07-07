@@ -104,7 +104,7 @@ fi
 #*******************************************************
 function get_input {
 # Set options
-while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:t:a:v:y:l:c:” OPTION
+while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:” OPTION
 do
      case $OPTION in
          h)
@@ -128,7 +128,8 @@ do
          y)YSLOW_FILE=$OPTARG;;
          l)RULESET=$OPTARG;;
          f)FILE=$OPTARG;;
-         b)PAGES_COLUMNS=$OPTARG;;
+         g)PAGES_COLUMNS=$OPTARG;;
+         b)SUMMARY_BOXES=$OPTARG;;
          ?)
              help
              exit
@@ -194,7 +195,7 @@ if [ "$TEST_NAME" != "" ]
     TEST_NAME="-Dcom.soulgalore.velocity.key.testname= "
 fi
 
-## Avalaible columns
+## Avalaible pages columns
 ## url,js,css,img,cssimg,font,requests,requestswithoutexpires,docsize,pagesize,criticalpath,loadtime,spof,syncjs,ttfb,domains,kbps,maximgsize,totalimgsize,totaljssize,totalcsssize,browserscaledimg,score
 if [ "$PAGES_COLUMNS" != "" ]
   then
@@ -204,6 +205,16 @@ if [ "$PAGES_COLUMNS" != "" ]
     PAGES_COLUMNS="-Dcom.soulgalore.velocity.key.columns=url,js,css,img,cssimg,font,requests,requestswithoutexpires,docsize,pagesize,criticalpath,loadtime,spof,syncjs,ttfb,score"
 fi
 
+
+## Avalaible summary boxes
+## score,criticalpath,ttfb,syncjs,js,css,cssimages,images,requests,requestswithoutexpires,pagesize,docsize,totalimgsize,textcontent,spof,spofperpage,dom,backend,frontend,cachetime,lastmodification
+if [ "$SUMMARY_BOXES" != "" ]
+  then
+    SUMMARY_BOXES="-Dcom.soulgalore.velocity.key.boxes=$SUMMARY_BOXES"
+  else
+    # Default colums
+    SUMMARY_BOXES="-Dcom.soulgalore.velocity.key.boxes=score,criticalpath,ttfb,syncjs,js,css,cssimages,images,requests,requestswithoutexpires,pagesize,docsize,totalimgsize,textcontent,spof,spofperpage,dom,backend,frontend,cachetime,lastmodification"
+fi
 
 
 if [ "$PROXY_HOST" != "" ]
@@ -396,7 +407,7 @@ if $OUTPUT_CSV
 fi
 
 echo 'Create the summary index.html'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/site.summary.vm $PROPERTIES_DIR/site.summary.properties $REPORT_DIR/index.html || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SUMMARY_BOXES" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/site.summary.vm $PROPERTIES_DIR/site.summary.properties $REPORT_DIR/index.html || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/index.html $REPORT_DIR/index.html
 
 echo 'Create the assets.html'
@@ -500,7 +511,8 @@ OPTIONS:
    -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional] 
    -y      The compiled yslow file, default is dependencies/yslow-3.1.5-sitespeed.js [optional]
    -l      Which ruleset to use, default is the latest sitespeed.io version [optional]
-   -b      The columns showed on detailes page summary table, see http://sitespeed.io/documentation/#pagescolumns for more info [optional]     
+   -g      The columns showed on detailes page summary table, see http://sitespeed.io/documentation/#pagescolumns for more info [optional] 
+   -b      The boxes showed on site summary page, see http://sitespeed.io/documentation/#sitesummaryboxes for more info [optional]    
 EOF
 }
 
