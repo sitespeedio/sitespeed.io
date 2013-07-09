@@ -34,6 +34,7 @@
 #set($statsTimeSinceLastModificationInSeconds = $stats.newInstance("timesincelastmodificationinseconds","Time since last modification","cachetime","s",1))
 #set($statsAssetCacheTimeInSeconds = $stats.newInstance("assetcachetimeinseconds","Cache time","cachetime","s",1))
 #set($statsDomElements = $stats.newInstance("domelements","Number of DOM elements","","",1))
+#set($statsDomains = $stats.newInstance("domains","Number of domains","","",1))
 
 #set($hide = $allStats.add($statsScore))
 #set($hide = $allStats.add($statsCriticalPath))
@@ -61,6 +62,7 @@
 #set($hide = $allStats.add($statsFrontend))
 #set($hide = $allStats.add($statsTimeSinceLastModificationInSeconds))
 #set($hide = $allStats.add($statsAssetCacheTimeInSeconds))
+#set($hide = $allStats.add($statsDomains))
 
 
 #foreach ($results in $document.getRootElement().getChildren())
@@ -151,6 +153,8 @@
     #set ($totalJsPageSize = 0)
 
 	## also fetch the modified since & cache time
+    #set($hostAndRequests = $map.clone())
+
 	#foreach ($asset in $results.getChild("comps").getChildren())
 
 		## set default values
@@ -189,8 +193,23 @@
              $statsJsWeight.addValue($math.toDouble($math.roundTo(3,$math.div($asset.getChild("size").getValue(),1000))))
              #set($totalJsPageSize = $math.add($totalJsPageSize,$math.toDouble($math.roundTo(3,$math.div($asset.getChild("size").getValue(),1000)))))
         #end
+
+        ## count the nr of domains
+        #set($nrOfRequests = 0)
+        #set($theHost = $host.getHost($asset.getChild("url").getValue()))
+        #set($nrOfRequests = $hostAndRequests.get($theHost))
+        #if(!$nrOfRequests) 
+            #set($nrOfRequests = 1) 
+        #else
+            #set($nrOfRequests = $math.add($nrOfRequests, 1))
+        #end    
+        #set($swallow = $hostAndRequests.put($theHost, $nrOfRequests))
 		
 	#end
+
+    #if($!{hostAndRequests} && $hostAndRequests.size()>0)
+        $statsDomains.addValue($hostAndRequests.size())
+    #end
 
     #if($totalImagePageSize>0)
         $statsTotalImageWeight.addValue($totalImagePageSize)

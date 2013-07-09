@@ -126,6 +126,12 @@ error#end#end
 warning#else
 error#end#end
 
+## The number of domains
+#macro ( domainsType $domains )
+#if ($domains<3)success#elseif ($domains<7)
+warning#else
+error#end#end
+
 ## If the input is null, zero i## The number of DOM elements
 #macro ( getNumber $number )
 #if ($number=="NaN")0#else$number#end#end
