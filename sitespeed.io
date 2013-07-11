@@ -285,6 +285,13 @@ mkdir -p $REPORT_DIR || exit 1
 mkdir $REPORT_DATA_DIR || exit 1
 mkdir $REPORT_PAGES_DIR || exit 1
 mkdir $REPORT_DATA_PAGES_DIR || exit 1
+
+MY_IP=$(curl -L -s  http://api.exip.org/?call=ip)
+if [ -z "$MY_IP" ]
+then
+  MY_IP='unknown'
+fi  
+
 }
 
 #*******************************************************
@@ -371,7 +378,7 @@ fi
 
 echo "Create result.xml"
  
-echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" date="'$DATE'" useragent="'$USER_AGENT'" viewport="'$VIEWPORT'"><url><![CDATA['$URL']]></url>' > $REPORT_DATA_DIR/result.xml
+echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" date="'$DATE'" useragent="'$USER_AGENT'" viewport="'$VIEWPORT'" ip="'$MY_IP'"><url><![CDATA['$URL']]></url>' > $REPORT_DATA_DIR/result.xml
 for file in $REPORT_DATA_PAGES_DIR/*
 do
   # Hack for removing dictonaries in the result file
