@@ -18,13 +18,15 @@
 
 ## TODO add check if file exist and check another user dir
 #macro (columnValue $columnName, $results)
+<td>
     #if ($filetool.doFileExist("report/velocity/inc/detailed.site/columns/${columnName}.vm")) 
-		#parse("report/velocity/inc/detailed.site/columns/${columnName}.vm")
-	#elseif ($filetool.doFileExist("report/velocity/inc/detailed.site/columns/user/${columnName}.vm"))
-		#parse("report/velocity/inc/detailed.site/columns/user/${columnName}.vm")
-	#else
-	<td>Non existing vm file: ${columnName}.vm</td>
-	#end	
+     		#parse("report/velocity/inc/detailed.site/columns/${columnName}.vm")
+     	#elseif ($filetool.doFileExist("report/velocity/inc/detailed.site/columns/user/${columnName}.vm"))
+     		#parse("report/velocity/inc/detailed.site/columns/user/${columnName}.vm")
+     	#else
+     	Non existing vm file: ${columnName}.vm<
+     	#end	
+</td>	
 #end
 
 
