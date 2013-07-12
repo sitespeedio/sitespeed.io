@@ -4,6 +4,4 @@
 	#set($totalCSSSize = $math.add($totalCSSSize,$math.toDouble($math.roundTo(1,$math.div($asset.getChild("size").getValue(),1000)))))
 #end
 #end           
-<td>
 $math.roundTo(1,$totalCSSSize)
-</td>

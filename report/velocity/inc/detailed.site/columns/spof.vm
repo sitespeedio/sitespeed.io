@@ -1,4 +1,4 @@
-    <td>
+
         ##
         ## The number of components that can create a SPOF##
         #if($!{results.getChild("g").getChild("spof")})##
@@ -57,5 +57,3 @@
         #else##
         0##
         #end##
-    </td>
-    ##

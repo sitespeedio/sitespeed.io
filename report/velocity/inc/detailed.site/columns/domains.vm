@@ -1,4 +1,3 @@
-<td>
 ## TODO cleanup
 #set($hostAndRequests = $map.clone())
 #foreach ($asset in $results.getChild("comps").getChildren())
@@ -13,4 +12,3 @@
 		#set($swallow = $hostAndRequests.put($theHost, $nrOfRequests))
 #end
 $hostAndRequests.size()
-</td>

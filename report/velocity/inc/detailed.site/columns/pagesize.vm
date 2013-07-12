@@ -1,4 +1,3 @@
-<td>
 ##
 ## The size of the page##
 ## Sometimes this bugs in YSlow and have an enourmus big value in the phantomjs version##
@@ -10,5 +9,5 @@
 	 #set($totalWeight = $math.add($totalWeight,$asset.getChild("size").getValue()))##
 #end##
 $math.roundTo(1,$math.div($totalWeight,1000))##
-</td>
+
 ##

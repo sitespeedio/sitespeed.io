@@ -1,4 +1,4 @@
-<td class="nobreak-pages">
+<span class="nobreak-pages">
     ## The link to the full page info
     #set($file = $results.getAttribute("filename").getValue())
     #set($file = $file.concat(".html"))
@@ -35,4 +35,4 @@
         </div>
     </div>
 
-</td>
+</span>

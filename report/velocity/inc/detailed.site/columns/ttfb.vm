@@ -1,4 +1,4 @@
-<td>
+
     ##
     ## Well the problem is like this: Today there is no way to get the ttfb from PhantomJS so it is fetched by a extra request##
     ## using curl. Some sites that don't cache internally (and are slow) can differ quite much for ttfb, meaning ttfb can be higher the##
@@ -18,5 +18,3 @@
     </a>
     ##
     #end##
-</td>
-##

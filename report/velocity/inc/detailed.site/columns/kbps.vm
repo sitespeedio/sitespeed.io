@@ -1,4 +1,3 @@
-<td>
 ## TODO define elsewhere
 ##
 ## The size of the page##
@@ -12,5 +11,3 @@
 #end##
 
 $math.roundTo(1,$math.div($math.div($totalWeight,1000),$math.div($results.getChild("lt").getValue(),1000)))
-
-</td>

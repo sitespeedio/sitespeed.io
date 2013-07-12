@@ -4,6 +4,4 @@
 	#set($totalImagePageSize = $math.add($totalImagePageSize,$math.toDouble($math.roundTo(3,$math.div($asset.getChild("size").getValue(),1000)))))
 #end
 #end           
-<td>
 $math.roundTo(1,$totalImagePageSize)
-</td>

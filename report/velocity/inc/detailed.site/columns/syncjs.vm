@@ -1,4 +1,3 @@
-<td>
     ##
     ## The number of javascripts loaded sync in head##
     #if ($results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size() >0)##
@@ -43,5 +42,3 @@
     #else##
         $results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()##
     #end##
-</td>
-##
