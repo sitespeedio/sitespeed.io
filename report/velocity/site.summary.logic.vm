@@ -36,6 +36,7 @@
 #set($statsDomElements = $stats.newInstance("domelements","Number of DOM elements","","",1))
 #set($statsDomains = $stats.newInstance("domains","Number of domains","","",1))
 
+
 #set($hide = $allStats.add($statsScore))
 #set($hide = $allStats.add($statsCriticalPath))
 #set($hide = $allStats.add($statsJsSyncInHead))
@@ -153,7 +154,7 @@
     #set ($totalJsPageSize = 0)
 
 	## also fetch the modified since & cache time
-    #set($hostAndRequests = $map.clone())
+    #set($hosts = [])
 
 	#foreach ($asset in $results.getChild("comps").getChildren())
 
@@ -195,20 +196,15 @@
         #end
 
         ## count the nr of domains
-        #set($nrOfRequests = 0)
         #set($theHost = $host.getHost($asset.getChild("url").getValue()))
-        #set($nrOfRequests = $hostAndRequests.get($theHost))
-        #if(!$nrOfRequests) 
-            #set($nrOfRequests = 1) 
-        #else
-            #set($nrOfRequests = $math.add($nrOfRequests, 1))
-        #end    
-        #set($swallow = $hostAndRequests.put($theHost, $nrOfRequests))
+        #if (!$hosts.contains($theHost))
+            #set($swallow = $hosts.add($theHost))
+        #end
 		
 	#end
 
-    #if($!{hostAndRequests} && $hostAndRequests.size()>0)
-        $statsDomains.addValue($hostAndRequests.size())
+    #if($!{hosts} && $hosts.size()>0)
+        $statsDomains.addValue($hosts.size())
     #end
 
     #if($totalImagePageSize>0)
