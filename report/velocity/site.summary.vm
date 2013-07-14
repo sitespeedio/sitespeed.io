@@ -84,6 +84,11 @@
         #end
         <p>
             Test performed: $siteElement.getChild("date").getValue() with rules $siteElement.getChild("rules").getValue()
+        
+        #if ($siteElement.getChild("ip").getValue() != "unknown")
+            from IP: $siteElement.getChild("ip").getValue()
+            #end   
+
         #if ($siteElement.getChild("userAgent").getValue().getValue() != "")
             with user agent: $siteElement.getChild("userAgent").getValue()
             #end
