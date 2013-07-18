@@ -17,8 +17,8 @@
             <p>
             Test performed: $document.getRootElement().getAttribute("date").getValue() with rules $document.getRootElement().getChild("results").getChild("i").getValue() 
 
-            #if ($document.getRootElement().getChild("ip").getValue() != "unknown")
-            from IP: $document.getRootElement().getChild("ip").getValue()
+            #if ($document.getRootElement().getAttribute("ip").getValue() != "unknown")
+            from IP: $document.getRootElement().getAttribute("ip").getValue()
             #end
 
 	        #if ($document.getRootElement().getAttribute("useragent").getValue() != "")
