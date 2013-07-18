@@ -6,8 +6,6 @@
 ## For now fetch the values individually##
 #set($totalWeight = 0)##
 #foreach ($asset in $results.getChild("comps").getChildren())##
-	 #set($totalWeight = $math.add($totalWeight,$asset.getChild("size").getValue()))##
+#set($totalWeight = $math.add($totalWeight,$asset.getChild("size").getValue()))##
 #end##
 $math.roundTo(1,$math.div($totalWeight,1000))##
-
-##

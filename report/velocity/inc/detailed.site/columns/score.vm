@@ -1,1 +1,1 @@
-<span class="badge badge-#scoreTypeBadge($math.toInteger($results.getChild("o").getValue()))">$results.getChild("o").getValue()</span>##
+$math.toInteger($results.getChild("o").getValue())##
