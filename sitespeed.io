@@ -54,7 +54,7 @@ TEST_NAME=
 ## The colums showed in the table on the detailed summary page 
 PAGES_COLUMNS=
 ## The default user agent
-USER_AGENT="Mozilla/6.0"
+USER_AGENT="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36"
 ## The YSlow file to use
 YSLOW_FILE=dependencies/yslow-3.1.5-sitespeed.js
 ## The ruleset 
@@ -225,9 +225,9 @@ fi
 
 if [ "$USER_AGENT" != "" ]
 then
-    USER_AGENT_YSLOW="--ua $USER_AGENT"
-    USER_AGENT_CRAWLER="-rh User-Agent:$USER_AGENT"
-    USER_AGENT_CURL="--user-agent $USER_AGENT"
+    USER_AGENT_YSLOW="$USER_AGENT"
+    USER_AGENT_CRAWLER="User-Agent:$USER_AGENT"
+    USER_AGENT_CURL="-A $USER_AGENT"
 fi
 
 if [ "$VIEWPORT" != "" ]
@@ -300,7 +300,7 @@ fi
 function fetch_urls {
 if [[ -z $FILE ]]
 then 
-  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -Dcom.soulgalore.crawler.propertydir=$DEPENDENCIES_DIR/ $PROXY_CRAWLER -cp $DEPENDENCIES_DIR/$CRAWLER_JAR com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL $USER_AGENT_CRAWLER -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/errorurls.txt
+  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -Dcom.soulgalore.crawler.propertydir=$DEPENDENCIES_DIR/ $PROXY_CRAWLER -cp $DEPENDENCIES_DIR/$CRAWLER_JAR com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL -rh "\"$USER_AGENT_CRAWLER\"" -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/errorurls.txt
 else
   cp $FILE $REPORT_DATA_DIR/urls.txt
 fi
@@ -534,7 +534,7 @@ function analyze() {
     pagefilename=$2
   
     echo "Analyzing $url"
-    phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml $USER_AGENT_YSLOW $VIEWPORT_YSLOW "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
+    phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
  
     s=$(du -k "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" | cut -f1)
     # Check that the size is bigger than 0
@@ -542,7 +542,7 @@ function analyze() {
       then
       echo "Could not analyze $url unrecoverable error when parsing the page:"
       ## do the same thing again but setting console to log the error to output
-      phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml $USER_AGENT_YSLOW $VIEWPORT_YSLOW "$url" -c 2  
+      phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url" -c 2  
       ## write the error url to the list
       echo "sitespeed.io got an unrecoverable error when parsing the page,$url" >> $REPORT_DATA_DIR/errorurls.txt    
     fi
@@ -554,7 +554,7 @@ function analyze() {
     sed -n '1,/<\/results>/p' $REPORT_DATA_PAGES_DIR/$pagefilename-bup > $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1
  
     # ttfb & page size
-    curl $USER_AGENT_CURL --compressed -o /dev/null -w "%{time_starttransfer};%{size_download}\n" -L -s "$url" >  "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
+    curl "$USER_AGENT_CURL" --compressed -o /dev/null -w "%{time_starttransfer};%{size_download}\n" -L -s "$url" >  "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
     
     read -r TTFB_SIZE <  $REPORT_DATA_PAGES_DIR/$pagefilename.info
     TTFB="$(echo $TTFB_SIZE  | cut -d \; -f 1)"
