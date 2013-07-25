@@ -101,6 +101,11 @@ package:
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/totaljssize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/ttfb.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/url.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/score-html-wrapper.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/spof-html-wrapper.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/syncjs-html-wrapper.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/url-html-wrapper.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/ttfb-html-wrapper.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/browserscaledimg.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/criticalpath.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/css.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
