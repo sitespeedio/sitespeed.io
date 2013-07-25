@@ -266,7 +266,7 @@ NOPROTOCOL=${URL#*//}
 HOST=${NOPROTOCOL%%/*}
 
 # Jar files
-CRAWLER_JAR=crawler-1.5.3-full.jar
+CRAWLER_JAR=crawler-1.5.4-SNAPSHOT-full.jar
 VELOCITY_JAR=xml-velocity-1.8-SNAPSHOT-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 
