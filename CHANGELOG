@@ -17,6 +17,7 @@ version 1.9
 * Bug fix: URL:s that returns error (4XX-5XX and that sitespeed can't analyze) is now included in the JUnit xml
 * Bug fix: The JUnit script can now output files to a relative path
 * Bug fix: Calculating "requests with primed cache" sometimes showed wrong value
+* Bug fix: User Agent now gets correctly set
 
 version 1.8.3
 ------------------------
