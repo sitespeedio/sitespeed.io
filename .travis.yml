@@ -1,4 +1,4 @@
-language: java
+language: python
 
 before_install:
   - sudo apt-get update
@@ -6,9 +6,9 @@ before_install:
 
 before_script:
 - "make package"
-- node test/server/file-server.js &
+- python -m SimpleHTTPServer &
 - sleep 3
-- "./build/sitespeed.io -u http://127.0.0.1:8080/ -o img-csv -b url,js,css,img,cssimg,font,requests,requestswithoutexpires,docsize,pagesize,criticalpath,loadtime,spof,syncjs,ttfb,domains,kbps,maximgsize,totalimgsize,totaljssize,totalcsssize,browserscaledimg,score"
+- "./build/sitespeed.io -u http://0.0.0.0:8000/test/server/www/ -o img-csv -b url,js,css,img,cssimg,font,requests,requestswithoutexpires,docsize,pagesize,criticalpath,loadtime,spof,syncjs,ttfb,domains,kbps,maximgsize,totalimgsize,totaljssize,totalcsssize,browserscaledimg,score"
 - "./build/sitespeed-junit.io -o build"
 
 script: ./test/test.sh
