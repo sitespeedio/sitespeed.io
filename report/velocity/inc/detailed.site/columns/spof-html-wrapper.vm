@@ -1,6 +1,8 @@
-        ##
-        ## The number of components that can create a SPOF##
+
         #if($!{results.getChild("g").getChild("spof")})##
+
+        ## Hack just to get the nr of SPOFs
+        #if($results.getChild("g").getChild("spof").getChild("components").getChildren("item").size()>0)
 
             #set($spofDomains = "")##
 
@@ -55,4 +57,7 @@
         ##
         #else##
         0##
+        #end##
+        #else##
+        0
         #end##
