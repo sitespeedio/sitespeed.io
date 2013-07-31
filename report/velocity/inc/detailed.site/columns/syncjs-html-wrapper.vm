@@ -6,8 +6,10 @@
         #parse("report/velocity/inc/detailed.site/columns/${columnName}.vm")
     </a>
     ##
-    <div class="modal hide fade" id="js-sync-$foreach.count" aria-labelledby="jsModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="js-sync-$foreach.count">
         ##
+        <div class="modal-dialog">
+        <div class="modal-content">
         <div class="modal-header">
             ##
             <h3 id="jsModalLabel-$foreach.count">
@@ -23,7 +25,7 @@
                 ##
                 #foreach ($jssync in $results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item"))##
                 <li>
-                    <a href="$esc.html($jssync.getValue())" target="_blank">$esc.html($jssync.getValue())</a>
+                    <a href="$esc.html($jssync.getValue())" target="_blank" class="url">$esc.html($jssync.getValue())</a>
                 </li>
                 ##    
                 #end##
@@ -35,6 +37,8 @@
             ##
             <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
             ##
+        </div>
+        </div>
         </div>
         ##
     </div>

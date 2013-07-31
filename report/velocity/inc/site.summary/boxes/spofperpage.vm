@@ -1,3 +1,4 @@
+ #set($spofPerPageText = "Everything above 0 is bad!")
  <div class="alert alert-#spofType($totalSpofMedian)">
 	Number of SPOF per page
 	<div>

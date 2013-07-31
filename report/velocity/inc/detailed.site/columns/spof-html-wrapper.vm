@@ -9,7 +9,8 @@
             #foreach ($spofUrl in $results.getChild("g").getChild("spof").getChild("components").getChildren("item"))##
                 ## only add unique ones##
                 #if ($spofDomains.indexOf($host.getHost($spofUrl.getValue())) < 0)##
-                    #set($spofDomains = $spofDomains + $host.getHost($spofUrl.getValue()) + ",")##
+                    #set($spofDomains = $spofDomains + $host.getHost($spofUrl.getValue()))##
+                    #if( $foreach.hasNext ) #set($spofDomains = $spofDomains + ",")#end##
                 #end##
             #end##
 
@@ -18,12 +19,14 @@
             #parse("report/velocity/inc/detailed.site/columns/${columnName}.vm")
         </a>
         ##
-        <a href="http://www.webpagetest.org/?url=$esc.url($results.getChild("u").getValue())&video=1fvonly=1&runs=3&spof=$spofDomains" target="_blank" title="Record a video at webpagetest.org with the spof domains down"> <i class="icon-facetime-video"></i>
+        <a href="http://www.webpagetest.org/?url=$esc.url($results.getChild("u").getValue())&video=1fvonly=1&runs=3&spof=$spofDomains" target="_blank" title="Record a video at webpagetest.org with the spof domains down"> <i class="glyphicon glyphicon-facetime-video"></i>
         ##
         </a>
         ##
-        <div class="modal hide fade" id="spof-$foreach.count" aria-labelledby="spofModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="spof-$foreach.count">
             ##
+            <div class="modal-dialog">
+            <div class="modal-content">
             <div class="modal-header">
                 ##
                 <h3 id="spofModalLabel-$foreach.count">
@@ -39,7 +42,7 @@
                     ##
                      #foreach ($spof in $results.getChild("g").getChild("spof").getChild("components").getChildren("item"))##
                     <li>
-                        <a href="$esc.html($spof.getValue())" target="_blank">$esc.html($spof.getValue())</a>
+                        <a href="$esc.html($spof.getValue())" target="_blank" class="url">$esc.html($spof.getValue())</a>
                     </li>
                     ##
                     #end##
@@ -51,6 +54,8 @@
                 ##
                 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
                 ##
+            </div>
+            </div>
             </div>
             ##
         </div>

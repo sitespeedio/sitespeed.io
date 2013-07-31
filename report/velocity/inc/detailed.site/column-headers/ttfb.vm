@@ -1,2 +1,2 @@
 #set($tooltipTTFBText = "The time to first byte (s)")
-#columnHeaderHTML("ttfb (s)","float",$tooltipTTFBText)##
+#columnHeaderHTML("ttfb (s)","float",$tooltipTTFBText,"hidden-sm")##

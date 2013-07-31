@@ -69,8 +69,8 @@
 #set($totalSpofPages = $math.toInteger($metricsElement.getChild("spofpages").getChild("values").getValue()))
 
 
-<div class="row-fluid">
-    <div class="span12">
+<div class="row">
+    <div class="col-lg-12">
 
         <h2 class="url">
 
@@ -108,7 +108,7 @@
  #foreach ($box in $boxes.split(","))
     ## If it is time to start a new row
     #if ($i % 3 == 0)
-<div class="row-fluid">
+<div class="row">
     #end
 
     ## identify last row
@@ -123,7 +123,7 @@
         #set ($span = 4)
     #end
 
- <div class="span$span">#getBox($box)</div>
+ <div class="col-lg-$span">#getBox($box)</div>
     #set ($i =$math.add($i,1))
 
  ## End the row
@@ -138,15 +138,15 @@
  #end
 
         
-	<div class="row-fluid">
-            <div class="span12">
+	<div class="row">
+            <div class="col-lg-12">
             <i>* The value inside of the parentheses are the 95th percentile (95% of the time, the number is below this amount)</i>
             </div>
         </div>
         
 
-        <div class="row-fluid">
-            <div class="span12">
+        <div class="row">
+            <div class="col-lg-12">
                 <h3>The rules</h3>
                 <p> 
                 <b>Sitespeed.io</b> score are based on the <a href="rules.html">rules</a>. 
@@ -154,12 +154,12 @@
 		Click <a href="summary.details.html">here</a> to see a detailed version of the summary.
 		</span>
                     The rules are simple:
-                    <span class="badge badge-success">Green</span>
+                    <span class="label label-success">Green</span>
                     color means you don't need to do anything (of course there could still be things you can do to get better performance).
-                    <span class="badge badge-warning">Yellow</span>
+                    <span class="label label-warning">Yellow</span>
                     tells you that you should look into this, and guess what,
-                    <span class="badge badge-important">red</span>
-                    means that something is really bad. The <span class="badge badge-info">blue</span> color are things for your information, no rules but things that will be good to know.
+                    <span class="label label-danger">red</span>
+                    means that something is really bad. The <span class="label label-info">blue</span> color are things for your information, no rules but things that will be good to know.
                 </p>
     
             </div>

@@ -16,19 +16,9 @@
   <link rel="stylesheet" href="$!{pathToIncludes}css/styles.css">
 
   <style type="text/css">
-   
-    body {
-        padding-top: 55px;
-        padding-bottom: 40px;
-    }
 
-    ## Overridding the links in navigation, defect in bootstrap if I remember correctly
-    .navbar .nav > li > a {
-      font-weight: bold;
-      color:white;
-    }
-
-    footer p {
+ ## Align the footer to the center
+  footer p {
     text-align: center;
     }
 
@@ -40,11 +30,162 @@
       font-weight:bold;
     }
 
+    ## Popovers on summary page
+    .popover-content {
+    color: black;
+    font-size: 16px;
+    line-height: 18px;
+    font-weight:normal;
+    }
+    
+     ## Popovers on summary page
+    .popover-title {
+    color: black;
+    font-weight:bold;
+    font-size: 16px;
+    line-height: 18px;
+    }
+
+    a.clean:hover{
+    color: #000000;
+    text-decoration: none;
+    }
+
+    a.clean {
+    color: #000000;
+    text-decoration: none;
+    }
+
+    ## Font used in the number in summary
+    body {
+      font-family: Tahoma,Verdana,sans-serif;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: Tahoma,Verdana,sans-serif;
+    }
+
+    ## fix for the logo
+    .navbar-brand {
+      padding: 0px 10px;
+      max-width: 250px;
+    }
+
+    .navbar {
+      color: white;
+      background-color: #0095d2;
+    }
+
+    .navbar-nav>.active>a, .navbar-nav>.active>a:hover, .navbar-nav>.active>a:focus {
+      color: white;
+      background-color: #0073b0;
+    }
+
+    .navbar-nav>li>a:hover, .navbar-nav>li>a:focus {
+    color: white;
+    }
+
+    .navbar-nav>li>a  {
+      color: white;
+    }
+
+    ##  When displaying urls, making sure they don't break pages
+    .url {
+    word-wrap: break-word;
+    }
+
+    .navbar-toggle {
+      border: 1px solid #fff;
+    }
+
+    .navbar-toggle .icon-bar {
+      background-color: #fff;
+    }
+
+    .navbar-toggle:hover, .navbar-toggle:focus {
+      background-color: #0073b0;
+    }
+
     ## Taking care of urls not breaking the table in pages
     .nobreak-pages {
     word-wrap: break-word;
     max-width: 290px;
     }
+
+    ## Taking care of urls not breaking the table in pages
+    .nobreak-page-url {
+    word-wrap: break-word;
+    max-width: 500px;
+    }
+
+    ## Taking care of assets not breaking 
+    .nobreak-page {
+    word-wrap: break-word;
+    max-width: 450px;
+    }
+
+    ## Taking care of urls not breaking the table in assets
+    .nobreak-asset-url {
+    word-wrap: break-word;
+    max-width: 500px;
+    }
+
+
+    ## Fixes for the summary boxes
+
+    a.alert-success:hover {
+    text-decoration: none;
+    color: #468847;
+    cursor:pointer;
+    }
+
+    a.alert-danger:hover {
+    text-decoration: none;
+    color: #B94A48;
+    cursor:pointer;
+    }
+
+    a.alert-warning:hover {
+    text-decoration: none;
+    color: #C09853;
+    cursor:pointer;
+    }
+
+    a.alert-warning {
+    text-decoration: none;
+    color: #C09853;
+    cursor:pointer;
+    }
+
+    a.alert-info {
+    text-decoration: none;
+    color: #3A87AD;
+    cursor:pointer;
+    }
+
+  .alert-info {
+    background-color:#D9EDF7;
+    border-color:#BCE8F1;
+    color:#3A87AD;
+  }
+
+   /*
+    body {
+        padding-top: 55px;
+        padding-bottom: 40px;
+    }
+
+    ## Overridding the links in navigation, defect in bootstrap if I remember correctly
+    .navbar .nav > li > a {
+      font-weight: bold;
+      color:white;
+    }
+
+    
+
+    
+
+    
 
     ## Taking care of assets not breaking 
     .nobreak-page {
@@ -64,29 +205,13 @@
       text-decoration:underline;
     }
 
-    ## Taking care of urls not breaking the table in pages
-    .nobreak-page-url {
-    word-wrap: break-word;
-    max-width: 500px;
-    }
+    
 
     ## Taking care of urls not breaking the table in assets
     .nobreak-asset-url {
     word-wrap: break-word;
     max-width: 500px;
     }
-
-
-   a.clean:hover{
-    color: #000000;
-    text-decoration: none;
-    }
-
-    a.clean {
-    color: #000000;
-    text-decoration: none;
-    }
-
 
     .logo {
       padding: 0px; 
@@ -100,21 +225,7 @@
     word-wrap: break-word;
     }
 
-    ## Popovers on summary page
-    .popover-content {
-    color: black;
-    font-size: 16px;
-    line-height: 18px;
-    font-weight:normal;
-    }
     
-     ## Popovers on summary page
-    .popover-title {
-    color: black;
-    font-weight:bold;
-    font-size: 16px;
-    line-height: 18px;
-    }
 
     ## Overiding bootstrap
     .navbar .nav > .active > a, .navbar .nav > .active > a:hover, .navbar .nav > .active > a:focus {
@@ -278,27 +389,41 @@
     }
 
   }
-
+  */
   </style>
 
-  <link rel="shortcut icon" href="$!{pathToIncludes}img/favicon.png">
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="$!{pathToIncludes}img/apple-touch-icon-144-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="$!{pathToIncludes}img/apple-touch-icon-114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="$!{pathToIncludes}img/apple-touch-icon-72-precomposed.png">
-  <!--[if lt IE 9]>
-  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="$!{pathToIncludes}img/ico/sitespeed.io-144.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="$!{pathToIncludes}img/ico/sitespeed.io-114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="$!{pathToIncludes}img/ico/sitespeed.io-72.png">
+<link rel="apple-touch-icon-precomposed" href="$!{pathToIncludes}img/ico/sitespeed.io-57.png">
+<link rel="shortcut icon" href="$!{pathToIncludes}img/ico/sitespeed.io.ico">
 
 </head>
  <body>
-  <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container">
-        <img src="$!{pathToIncludes}img/sitespeed-logo.gif" class="logo" width="90" height="40" alt="Sitespeed.io - How speedy is your site?"/>
-        <div class="nav-collapse">
-          <ul class="nav">
+
+
+<div class="navbar">
+  <div class="container">
+
+    <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+
+    <!-- Be sure to leave the brand out there if you want it shown -->
+    <!--<a class="navbar-brand" href="#">sitespeed.io</a>-->
+    <img src="$!{pathToIncludes}img/sitespeed-logo.png" class="navbar-brand" alt="Sitespeed.io - How speedy is your site?"/>
+
+    <!-- Place everything within .navbar-collapse to hide it until above 768px -->
+    <div class="nav-collapse collapse navbar-responsive-collapse">
+       <ul class="nav navbar-nav">
             <li#if( $pageMenu == "summary" ) class="active" #end>
               <a href="$!{pathToIncludes}index.html">Summary</a>
+            </li>
+            <li#if( $pageMenu == "detailedsummary" ) class="active" #end>
+              <a href="$!{pathToIncludes}summary.details.html">Detailed summary</a>
             </li>
             <li#if( $pageMenu == "pages" ) class="active" #end>
               <a href="$!{pathToIncludes}detailed.site.html">Pages</a>
@@ -306,11 +431,15 @@
             <li#if( $pageMenu == "assets" ) class="active" #end>
               <a href="$!{pathToIncludes}assets.html">Assets</a>
             </li>
+            #if ($showscreenshots==true)
+            <li#if( $pageMenu == "screenshots" ) class="active" #end>
+              <a href="$!{pathToIncludes}screenshots.html">Screenshots</a>
+            </li>
+            #end
           </ul>
-        </div>
-        <!--/.nav-collapse --> </div>
-    </div>
-  </div>
-  <!--/.navbar -->
+    </div><!-- /.nav-collapse -->
+  </div><!-- /.container -->
+</div><!-- /.navbar -->
+
 
   <div class="container">

@@ -1,2 +1,2 @@
 #set($tooltipTotalJSSizeText = "The total size of JS files on the page (kb)")
-#columnHeaderHTML("total js size","double",$tooltipTotalJSSizeText)##
+#columnHeaderHTML("total js size","double",$tooltipTotalJSSizeText,"hidden-sm")##

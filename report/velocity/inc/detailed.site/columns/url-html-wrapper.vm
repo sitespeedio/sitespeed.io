@@ -6,11 +6,15 @@
         #set($image = $results.getAttribute("filename").getValue())
         #set($image = $image.concat(".png"))
     #end
-    <a href="#headers-$foreach.count" data-toggle="modal" title="See the HTTP Headers"><i class="icon-zoom-in"></i></a>#if($showscreenshots==true)<a href="screenshots/$image" target="_blank" title="See the screenshot"><i class="icon-picture"></i></a>#end<a href="pages/$file" title="#parse("report/velocity/inc/detailed.site/columns/${columnName}.vm")">#parse("report/velocity/inc/detailed.site/columns/${columnName}.vm")</a>
+    <a data-toggle="modal" href="#headers-$foreach.count" title="See the HTTP Headers"> <i class="glyphicon glyphicon-zoom-in"></i></a>#if($showscreenshots==true)
+    <a href="screenshots.html#${results.getAttribute("filename").getValue()}">
+    <i class="glyphicon glyphicon-picture"></i></a>#end <a href="pages/$file" title="#parse("report/velocity/inc/detailed.site/columns/${columnName}.vm")">#parse("report/velocity/inc/detailed.site/columns/${columnName}.vm")</a>
 
-    <div class="modal hide fade" id="headers-$foreach.count" aria-labelledby="headersModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade" id="headers-$foreach.count">
+    <div class="modal-dialog">
+      <div class="modal-content">
         <div class="modal-header">
-            <h3 id="headersModalLabel-$foreach.count">Response headers</h3>
+            <h3>Response headers</h3>
         </div>
         <div class="modal-body">
             <table class="table-hover table-condensed table-striped table-bordered">
@@ -33,6 +37,23 @@
         <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
         </div>
-    </div>
+        </div>
+        </div>
+        </div>
+
+        <div class="modal fade" id="screenshot-$results.getAttribute("filename").getValue()">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+        Screenshot
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+        </div>
+        </div>
+        </div>
 
 </span>

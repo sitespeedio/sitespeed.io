@@ -1,8 +1,8 @@
 #parse("report/velocity/header.vm")
 #parse("report/velocity/assets.logic.vm")
 #parse("report/velocity/macros/date.macros.vm")
-<div class="row-fluid">
-	<div class="span12">
+<div class="row">
+	<div class="col-lg-12">
 
 		#set ($maxNrOfUrls = 200)
 		#set ($toplist=$toplisttool.getMostPopularUrls($maxNrOfUrls)) 
@@ -21,24 +21,23 @@
 			<thead>
 				<tr>
 					<th data-sort="string">asset</th>
-					<th data-sort="string"><span class="visible-desktop visible-tablet">type</span></th>
-					<th data-sort="int"><span class="visible-desktop visible-tablet">time since last modification</span><span class="visible-phone">last mod</span></th>
+					<th data-sort="string" class="visible-lg visible-md">type</th>
+					<th data-sort="int" class="visible-lg visible-md">time since last modification</th>
 					<th data-sort="int">cache time</th>
 					<th data-sort="float">size (kb)</th>
-					<th data-sort="int"><span class="visible-desktop visible-tablet">nr of requests</span><span class="visible-phone">r</span></th>
+					<th data-sort="int" class="visible-lg visible-md">nr of requests</th>
 				</tr>
 			</thead>
 			<tbody>
 				#foreach ($entry in $toplist)
 				<tr>
 					<td class="nobreak-asset-url">
-
-						## Hide this from phones & tables, there is some kind of bug here that make navigations not work if used
-							<div class="hidden-phone hidden-tablet">
-								<a href="#headers-$foreach.count" data-toggle="modal"> <i class="icon-zoom-in"></i>
+								<a href="#headers-$foreach.count" data-toggle="modal"> <i class="glyphicon glyphicon-zoom-in"></i>
 								</a>
 
-								<div class="modal hide fade" id="headers-$foreach.count" aria-labelledby="headersModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
+								<div class="modal fade" id="headers-$foreach.count">
+								 <div class="modal-dialog">
+									<div class="modal-content">
 									<div class="modal-header">
 										<h3 id="headersModalLabel-$foreach.count">Response headers</h3>
 									</div>
@@ -65,21 +64,18 @@
 										<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 									</div>
 								</div>
-
-							</div>
-
-						</div>	
-
+								</div>
+								</div>
 
 					<a href="$entry.getUrl()" target="_blank">$entry.getUrl()</a></td>
-					<td><span class="visible-desktop visible-tablet">$assetAndType.get($entry.getUrl())</span></td>
+					<td class="visible-lg visible-md">$assetAndType.get($entry.getUrl())</td>
 					#set ($delta = $assetAndNotModifiedSince.get($entry.getUrl()))
 					#if ($delta=="" || ! $delta)
 						#set ($sort=0)
 					#else
 					    	#set ($sort=$delta.getSeconds())
 					#end	
-					<td data-sort-value="$sort">
+					<td data-sort-value="$sort" class="visible-lg visible-md">
 						#if ($delta=="" || ! $delta)
 						     last modified not set
 						#else	
@@ -102,7 +98,7 @@
 					#end
 					</td>
 					<td>$assetAndSize.get($entry.getUrl())</td>
-					<td>$entry.getNrOfTimes()</td>
+					<td class="visible-lg visible-md">$entry.getNrOfTimes()</td>
 				</tr>
 				#end
 			</tbody>

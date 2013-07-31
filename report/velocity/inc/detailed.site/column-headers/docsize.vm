@@ -1,2 +1,2 @@
 #set($tooltipDocSizeText = "The document size (kb)")
-#columnHeaderHTML("doc size (kb)","float",$tooltipDocSizeText)##
+#columnHeaderHTML("doc size (kb)","float",$tooltipDocSizeText,"hidden-sm")##

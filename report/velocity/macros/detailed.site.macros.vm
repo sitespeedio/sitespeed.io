@@ -5,13 +5,13 @@
 	#elseif ($filetool.doFileExist("report/velocity/inc/detailed.site/column-headers/user/${columnName}.vm"))
 		#parse("report/velocity/inc/detailed.site/column-headers/user/${columnName}.vm")
 	#else
-		#columnHeaderHTML("Non existing header vm file: ${columnName}.vm","string","")##
+		#columnHeaderHTML("Non existing header vm file: ${columnName}.vm","string","","")##
 	#end
 #end
 
 ## Header HTML
-#macro ( columnHeaderHTML $columName, $dataSort, $tooltip )
-<th data-sort="$dataSort">
+#macro ( columnHeaderHTML $columName, $dataSort, $tooltip,$class)
+<th data-sort="$dataSort" class="$class">
 	<a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltip">$columName</a>
 </th>
 #end
@@ -19,8 +19,13 @@
 #macro (columnValue $columnName, $results)
 ## specific columns that have extra HTML
 #set( $specialColumns  = ["score", "syncjs","spof","url","ttfb"])
+#set( $showOnPhone  = ["score", "url"])
 
+#if ($showOnPhone.contains($columnName))
 <td>
+#else
+<td class="hidden-sm">
+#end
 	#if ($specialColumns.contains($columnName))
 		#parse("report/velocity/inc/detailed.site/columns/${columnName}-html-wrapper.vm")		
     #elseif ($filetool.doFileExist("report/velocity/inc/detailed.site/columns/${columnName}.vm")) 

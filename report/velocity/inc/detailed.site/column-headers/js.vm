@@ -1,2 +1,2 @@
 #set($tooltipJsText = "The number of javascript files used in this page")
-#columnHeaderHTML("js","int",$tooltipJsText)##
+#columnHeaderHTML("js","int",$tooltipJsText,"hidden-sm")##
