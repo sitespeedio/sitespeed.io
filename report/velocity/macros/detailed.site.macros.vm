@@ -18,7 +18,7 @@
 
 #macro (columnValue $columnName, $results)
 ## specific columns that have extra HTML
-#set( $specialColumns  = ["score", "syncjs","spof","url","ttfb"])
+#set( $specialColumns  = ["score", "syncjs","spof","url"])
 #set( $showOnPhone  = ["score", "url"])
 
 #if ($showOnPhone.contains($columnName))

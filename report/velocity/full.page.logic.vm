@@ -81,8 +81,9 @@
 #set($statsAssetCacheTimeInSeconds= $stats.copy())
 
 ## Define backend & frontend time
-#set($backendPercentage =  $math.roundTo(1,$math.mul($math.div($math.toDouble($document.getRootElement().getAttribute("ttfb").getValue()),$math.div($math.toDouble($document.getRootElement().getChild("lt").getValue()),1000)),100)))
 
-#set($frontendPercentage =  $math.roundTo(1,$math.mul($math.div($math.sub($math.div($math.toDouble($document.getRootElement().getChild("lt").getValue()),1000),$math.toDouble($document.getRootElement().getAttribute("ttfb").getValue())),$math.div($math.toDouble($document.getRootElement().getChild("lt").getValue()),1000)),100)))
+#set($backendPercentage =  $math.roundTo(1,$math.mul($math.div($math.toDouble($math.div($math.toInteger($document.getRootElement().getChild("g").getChild("ttfb").getChild("components").getChildText("item")),1000)),$math.div($math.toDouble($document.getRootElement().getChild("lt").getValue()),1000)),100)))
+
+#set($frontendPercentage =  $math.roundTo(1,$math.mul($math.div($math.sub($math.div($math.toDouble($document.getRootElement().getChild("lt").getValue()),1000),$math.toDouble($math.div($math.toInteger($document.getRootElement().getChild("g").getChild("ttfb").getChild("components").getChildText("item")),1000))),$math.div($math.toDouble($document.getRootElement().getChild("lt").getValue()),1000)),100)))
 
 

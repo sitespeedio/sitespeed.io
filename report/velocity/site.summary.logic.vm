@@ -139,14 +139,12 @@
      $statsAssetsWithoutExpires.addValue($math.toInteger($results.getChild("g").getChild("expiresmod").getChild("components").getChildren("item").size()))
     #end
 
-    #if($!{results.getAttribute("ttfb")})
-	$statsTTFB.addValue($math.toDouble($results.getAttribute("ttfb").getValue()))
+    #if($!{results.getChild("g").getChild("ttfb").getChild("components").getChildText("item")})
+	$statsTTFB.addValue($math.toDouble($math.div($math.toInteger($results.getChild("g").getChild("ttfb").getChild("components").getChildText("item")),1000)))
 	
-	## It can happen that the frontend value is smaller that the ttfb, that is a defect, then skip adding the result
-	#if ($math.div($math.toDouble($results.getChild("lt").getValue()),1000) > ($math.toDouble($results.getAttribute("ttfb").getValue())))	
-	$statsBackend.addValue($math.roundTo(3,$math.mul($math.div($math.toDouble($results.getAttribute("ttfb").getValue()),$math.div($math.toDouble($results.getChild("lt").getValue()),1000)),100)))
-	$statsFrontend.addValue($math.roundTo(3,$math.mul($math.div($math.sub($math.div($math.toDouble($results.getChild("lt").getValue()),1000),$math.toDouble($results.getAttribute("ttfb").getValue())),$math.div($math.toDouble($results.getChild("lt").getValue()),1000)),100)))
-	#end 
+	$statsBackend.addValue($math.roundTo(3,$math.mul($math.div($math.toDouble($math.div($math.toInteger($results.getChild("g").getChild("ttfb").getChild("components").getChildText("item")),1000)),$math.div($math.toDouble($results.getChild("lt").getValue()),1000)),100)))
+	$statsFrontend.addValue($math.roundTo(3,$math.mul($math.div($math.sub($math.div($math.toDouble($results.getChild("lt").getValue()),1000),$math.toDouble($math.div($math.toInteger($results.getChild("g").getChild("ttfb").getChild("components").getChildText("item")),1000))),$math.div($math.toDouble($results.getChild("lt").getValue()),1000)),100)))
+
     #end
 
     #set ($totalImagePageSize = 0)
