@@ -276,6 +276,7 @@ DEPENDENCIES_DIR="dependencies"
 REPORT_DIR_NAME=$HOST/$NOW
 REPORT_DIR=$REPORT_BASE_DIR/$REPORT_DIR_NAME
 REPORT_DATA_DIR=$REPORT_DIR/data
+REPORT_DATA_HAR_DIR=$REPORT_DATA_DIR/har
 REPORT_PAGES_DIR=$REPORT_DIR/pages
 REPORT_DATA_PAGES_DIR=$REPORT_DATA_DIR/pages
 REPORT_IMAGE_PAGES_DIR=$REPORT_DIR/screenshots
@@ -286,6 +287,7 @@ mkdir -p $REPORT_DIR || exit 1
 mkdir $REPORT_DATA_DIR || exit 1
 mkdir $REPORT_PAGES_DIR || exit 1
 mkdir $REPORT_DATA_PAGES_DIR || exit 1
+mkdir $REPORT_DATA_HAR_DIR || exit 1
 
 MY_IP=$(curl -L -s  http://api.exip.org/?call=ip)
 if [ -z "$MY_IP" ]
@@ -541,8 +543,11 @@ function analyze() {
     pagefilename=$(echo ${pagefilename//[^a-zA-Z0-9]/'-'})
 
     echo "Analyzing $url"
-    phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
- 
+    phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW -n "$pagefilename.har" "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
+  
+    #move the HAR-file to the HAR dir
+    mv "$pagefilename.har" $REPORT_DATA_HAR_DIR/
+
     s=$(du -k "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" | cut -f1)
     # Check that the size is bigger than 0
     if [ $s -lt 10 ]
