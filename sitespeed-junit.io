@@ -84,11 +84,10 @@ ABSOLUTE_ANALYZE_DIR=$(pwd)
 
 OUTPUT="--output $OUTPUT_DIR/sitespeed.io-junit.xml"
 
-## TODO the dependency of the file name is not so good!
-RULES_FILE="$ABSOLUTE_ANALYZE_DIR/data/pages/1.xml"
+RULES_FILE=$(ls $ABSOLUTE_ANALYZE_DIR/data/pages/ | head -n 1)
 ERROR_URLS_FILE="$ABSOLUTE_ANALYZE_DIR/data/errorurls.xml"
 XSL_FILE=$HOME/report/xslt/junit.xsl
 RESULT_XML=$ABSOLUTE_ANALYZE_DIR/data/result.xml
 
-xsltproc --stringparam page-limit $PAGE_LIMIT --stringparam avg-limit $AVERAGE_LIMIT $OUTPUT --stringparam rules-file $RULES_FILE --stringparam error-urls-file $ERROR_URLS_FILE $SKIP_TESTS $XSL_FILE $RESULT_XML 
+xsltproc --stringparam page-limit $PAGE_LIMIT --stringparam avg-limit $AVERAGE_LIMIT $OUTPUT --stringparam rules-file $ABSOLUTE_ANALYZE_DIR/data/pages/$RULES_FILE --stringparam error-urls-file $ERROR_URLS_FILE $SKIP_TESTS $XSL_FILE $RESULT_XML 
 cp $ABSOLUTE_ANALYZE_DIR/data/summary.xml $OUTPUT_DIR/summary.xml

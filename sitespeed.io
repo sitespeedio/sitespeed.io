@@ -203,7 +203,7 @@ if [ "$PAGES_COLUMNS" != "" ]
     PAGES_COLUMNS="-Dcom.soulgalore.velocity.key.columns=url,$PAGES_COLUMNS,score"
   else
     # Default colums
-    PAGES_COLUMNS="-Dcom.soulgalore.velocity.key.columns=url,js,css,img,cssimg,font,requests,requestswithoutexpires,docsize,pagesize,criticalpath,loadtime,spof,syncjs,ttfb,score"
+    PAGES_COLUMNS="-Dcom.soulgalore.velocity.key.columns=url,js,css,img,cssimg,requests,requestswithoutexpires,docsize,pagesize,browserscaledimg,criticalpath,loadtime,spof,syncjs,ttfb,score"
 fi
 
 
@@ -329,13 +329,11 @@ echo "Will analyze ${#urls[@]} pages"
 
 # Setup start parameters, 0 jobs are running and the first file name
 JOBS=0
-PAGEFILENAME=1
 RUNS=0
 
 for url in "${urls[@]}"
 
-do analyze "$url" $PAGEFILENAME &
-    PAGEFILENAME=$[$PAGEFILENAME+1]
+do analyze "$url" &
     JOBS=$[$JOBS+1]
     RUNS=$[$RUNS+1]
     if [ $(($RUNS%20)) == 0 ]; then
@@ -423,7 +421,9 @@ echo 'Create the assets.html'
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/assets.html $REPORT_DIR/assets.html
 
 echo 'Create the rules.html'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/1.xml $VELOCITY_DIR/rules.vm $PROPERTIES_DIR/rules.properties $REPORT_DIR/rules.html || exit 1
+## hack for just getting one file with the rules, take the first one in the dir!
+FILE_WITH_RULES=$(ls $REPORT_DATA_PAGES_DIR | head -n 1)
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$FILE_WITH_RULES $VELOCITY_DIR/rules.vm $PROPERTIES_DIR/rules.properties $REPORT_DIR/rules.html || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/rules.html $REPORT_DIR/rules.html
 
 #copy the rest of the files
@@ -463,7 +463,6 @@ function take_screenshots() {
 
 echo 'Create all png:s'
 mkdir $REPORT_IMAGE_PAGES_DIR
-PAGEFILENAME=1
 WIDTH=$(echo $VIEWPORT | cut -d'x' -f1)
 HEIGHT=$(echo $VIEWPORT | cut -d'x' -f2)
 URL_LIST=
@@ -473,6 +472,8 @@ command -v pngcrush >/dev/null && PNGCRUSH_EXIST=true || PNGCRUSH_EXIST=false
   
 for url in "${urls[@]}"
   do 
+    PAGEFILENAME=$(echo ${url#*//})
+    PAGEFILENAME=$(echo ${PAGEFILENAME//[^a-zA-Z0-9]/'-'})
     echo "Creating screenshot for $url $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png "
     phantomjs $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js "$url" $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png $WIDTH $HEIGHT "$USER_AGENT" true  > /dev/null 2>&1
     if $PNGCRUSH_EXIST
@@ -489,7 +490,7 @@ VP="-Dcom.soulgalore.velocity.key.viewport=$VIEWPORT"
 TOTAL_SCREENSHOTS="-Dcom.soulgalore.velocity.key.totalscreenshots=$PAGEFILENAME"
 URL_LIST="-Dcom.soulgalore.velocity.key.urls=$URL_LIST"
 echo 'Create the screenshots.html'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$VP" "$TOTAL_SCREENSHOTS" "$URL_LIST" "$SCREENSHOT" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/1.xml $VELOCITY_DIR/screenshots.vm $PROPERTIES_DIR/screenshots.properties $REPORT_DIR/screenshots.html || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$VP" "$TOTAL_SCREENSHOTS" "$URL_LIST" "$SCREENSHOT" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/screenshots.vm $PROPERTIES_DIR/screenshots.properties $REPORT_DIR/screenshots.html || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/screenshots.html $REPORT_DIR/screenshots.html
 
 }
@@ -536,8 +537,9 @@ EOF
 function analyze() {
     # setup the parameters, same names maybe makes it easier
     url=$1
-    pagefilename=$2
-  
+    pagefilename=$(echo ${url#*//})
+    pagefilename=$(echo ${pagefilename//[^a-zA-Z0-9]/'-'})
+
     echo "Analyzing $url"
     phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url" >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
  

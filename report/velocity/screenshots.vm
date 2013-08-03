@@ -6,17 +6,13 @@
 			The screenshots for viewport $viewport
 		</h2>
 
-		#set ($file = 1)
 		#foreach ($url in $urls.split("@"))
-		    
-		    <h3 id="$file"><a href="$url" target="_blank">$url</a></h3>
-		    <p>
-		    #set($image = "$file")
-			#set($image = $image.concat(".png"))
-			#set($html = "$file")
-			#set($html = $html.concat(".html"))
-			<a href="pages/$html" title="The analyze"><img src="screenshots/$image" class="img-thumbnail"></a>
-		    #set ($file = $math.add(1,$file))
+		     #set($name = $url.replaceAll('http://','').replaceAll('https://','').replaceAll('[^a-zA-Z0-9]','-'))
+		    <h3 id="$name"><a href="$url" target="_blank">$url</a></h3>
+		    <p>		   
+		       	#set($image = $name.concat(".png"))
+		       	#set($html = $name.concat(".html"))
+		       	<a href="pages/$html" title="The analyze"><img src="screenshots/$image" class="img-thumbnail"></a>
 		    </p>
 		    #if( $foreach.hasNext )<hr/>#end##	
 		#end                                  			
