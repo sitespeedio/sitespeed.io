@@ -10,6 +10,7 @@
 <userAgent>$document.getRootElement().getAttribute("useragent").getValue()</userAgent>
 <viewPort>$document.getRootElement().getAttribute("viewport").getValue()</viewPort>
 <ip>$document.getRootElement().getAttribute("ip").getValue()</ip>
+<path>$document.getRootElement().getAttribute("path").getValue()</path>
 <metrics>
 #foreach ($stats in $allStats)
 <$stats.getName() friendlyName="$stats.getFriendlyName()" type="$stats.getType()" unit="$stats.getUnit()" decimals="$stats.getDecimals()">

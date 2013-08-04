@@ -379,7 +379,7 @@ fi
 
 echo "Create result.xml"
  
-echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" date="'$DATE'" useragent="'$USER_AGENT'" viewport="'$VIEWPORT'" ip="'$MY_IP'"><url><![CDATA['$URL']]></url>' > $REPORT_DATA_DIR/result.xml
+echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" date="'$DATE'" useragent="'$USER_AGENT'" viewport="'$VIEWPORT'" ip="'$MY_IP'" path="'$REPORT_DIR_NAME'"><url><![CDATA['$URL']]></url>' > $REPORT_DATA_DIR/result.xml
 for file in $REPORT_DATA_PAGES_DIR/*
 do
   # Hack for removing dictonaries in the result file
