@@ -104,7 +104,7 @@ fi
 #*******************************************************
 function get_input {
 # Set options
-while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:” OPTION
+while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:e:” OPTION
 do
      case $OPTION in
          h)
@@ -130,8 +130,11 @@ do
          f)FILE=$OPTARG;;
          g)PAGES_COLUMNS=$OPTARG;;
          b)SUMMARY_BOXES=$OPTARG;;
+         e);;
          ?)
-            ;;
+             help
+             exit
+             ;;
      esac
 done
 }
