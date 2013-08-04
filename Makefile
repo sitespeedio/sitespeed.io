@@ -46,6 +46,8 @@ package:
 	@cp $(DEP)/yuicompressor-2.4.6.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/yslow-3.1.5-sitespeed.js $(BUILD)/$(DEP)/
 	@cp $(REPORT)/$(CSS)/bootstrap.min.css $(BUILD)/$(REPORT)/$(CSS)/
+	@cp $(REPORT)/$(CSS)/bootstrap-overrides.css $(BUILD)/$(REPORT)/$(CSS)/
+	@cp $(REPORT)/$(CSS)/bootstrap-glyphicons.css $(BUILD)/$(REPORT)/$(CSS)/
 	@cp $(REPORT)/$(IMG)/$(ICO)/sitespeed.io-114.png $(BUILD)/$(REPORT)/$(IMG)/$(ICO)/
 	@cp $(REPORT)/$(IMG)/$(ICO)/sitespeed.io-144.png $(BUILD)/$(REPORT)/$(IMG)/$(ICO)/
 	@cp $(REPORT)/$(IMG)/$(ICO)/sitespeed.io-72.png $(BUILD)/$(REPORT)/$(IMG)/$(ICO)/	
