@@ -131,9 +131,7 @@ do
          g)PAGES_COLUMNS=$OPTARG;;
          b)SUMMARY_BOXES=$OPTARG;;
          ?)
-             help
-             exit
-             ;;
+            ;;
      esac
 done
 }
