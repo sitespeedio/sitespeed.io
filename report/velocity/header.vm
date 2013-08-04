@@ -46,6 +46,8 @@
     <!-- Place everything within .navbar-collapse to hide it until above 768px -->
     <div class="nav-collapse collapse navbar-responsive-collapse">
        <ul class="nav navbar-nav">
+            #if ($hide)
+            #else
             <li#if( $pageMenu == "summary" ) class="active" #end>
               <a href="$!{pathToIncludes}index.html">Summary</a>
             </li>
@@ -62,6 +64,7 @@
             <li#if( $pageMenu == "screenshots" ) class="active" #end>
               <a href="$!{pathToIncludes}screenshots.html">Screenshots</a>
             </li>
+            #end
             #end
           </ul>
     </div><!-- /.nav-collapse -->
