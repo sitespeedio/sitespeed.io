@@ -21,6 +21,9 @@
 <standardDev>#getNumber($stats.getStandardDeviation())</standardDev>
 <variance>#getNumber($stats.getPopulationVariance())</variance>
 <percentile10>#getNumber($stats.getPercentile(10))</percentile10>
+<percentile60>#getNumber($stats.getPercentile(60))</percentile60>
+<percentile70>#getNumber($stats.getPercentile(70))</percentile70>
+<percentile80>#getNumber($stats.getPercentile(80))</percentile80>
 <percentile90>#getNumber($stats.getPercentile(90))</percentile90>
 <percentile95>#getNumber($stats.getPercentile(95))</percentile95>
 <values>#getNumber($stats.getN())</values>
