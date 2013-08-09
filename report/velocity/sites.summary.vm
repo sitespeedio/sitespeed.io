@@ -1,0 +1,70 @@
+#parse("report/velocity/macros/date.macros.vm")
+#parse("report/velocity/header.vm")
+<div class="row">
+  <div class="col-lg-12">
+    <h2>Sites analyzed</h2>
+    #if ($testname)
+    <h3>$testname</h3>
+    #end
+    <table class="table table-hover table-condensed table-striped table-bordered" id="sitesTable">
+      <thead>
+        <tr>
+          <th data-sort="string">
+            <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The start url of the analyze">url</a>
+          </th>
+          <th data-sort="float">
+            <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The number of tested pages">pages</a>
+          </th>
+          #foreach ($column in $columns.split(","))
+          <th data-sort="float">
+            #set ($value = $column.split("-"))
+            #set ($tooltip = $document.getRootElement().getChild("site").getChild("metrics").getChild($value.get(1)).getAttribute("friendlyName").getValue())
+            <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltip">$tooltip ($value.get(0))</a>
+
+          </th>
+          #end
+        </tr>
+      </thead>
+
+      <tbody>
+        #foreach ($site in $document.getRootElement().getChildren("site"))
+        <tr>
+          <td>
+            <a href="$site.getChild("path").getValue()/index.html">$site.getChild("url").getValue()</a>
+          </td>
+          <td>$site.getChild("pages").getValue()</td>
+          #foreach ($column in $columns.split(","))
+          <td>
+            #set ($value = $column.split("-"))
+            #set ($nrOfDecimals = $site.getChild("metrics").getChild($value.get(1)).getAttribute("decimals").getValue())
+            #set ($type = $site.getChild("metrics").getChild($value.get(1)).getAttribute("type").getValue())
+            #set ($unit = $site.getChild("metrics").getChild($value.get(1)).getAttribute("unit").getValue())
+            #if ($type.equals("cachetime"))
+              #prettyPrint($header.getSeconds($math.toInteger($site.getChild("metrics").getChild($value.get(1)).getChild($value.get(0)).getValue())))
+            #else    
+              $math.roundTo($nrOfDecimals,$site.getChild("metrics").getChild($value.get(1)).getChild($value.get(0)).getValue()) $unit
+            #end
+          </td>
+          #end
+        </tr>
+        #end
+      </tbody>
+    </table>
+  </div>
+</div>
+#parse("report/velocity/footer.vm")
+<script>
+$(function(){
+$("#sitesTable").stupidtable();
+});
+</script>
+
+<script>
+$(function () {
+$('.container').tooltip({
+  selector: "a[rel=tooltip]"
+  })
+}) 
+</script>
+</body>
+</html>
