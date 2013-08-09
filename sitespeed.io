@@ -104,7 +104,7 @@ fi
 #*******************************************************
 function get_input {
 # Set options
-while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:e:” OPTION
+while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:e:i:” OPTION
 do
      case $OPTION in
          h)
@@ -130,7 +130,9 @@ do
          f)FILE=$OPTARG;;
          g)PAGES_COLUMNS=$OPTARG;;
          b)SUMMARY_BOXES=$OPTARG;;
+         # Note: The e & i are uses in the script that analyzes multiple sites
          e);;
+         i);;  
          ?)
              help
              exit
@@ -142,7 +144,7 @@ done
 
 #*******************************************************
 # Verify that all options needed exists & set default 
-# values for missing onesFetch the input from the user
+# values for missing ones
 #*******************************************************
 function verify_input {
 
