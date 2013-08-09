@@ -20,7 +20,7 @@ clean:
 	@echo "done"
 
 package: 
-	@echo "Packaging sitespeed"
+	@echo "Packaging sitespeed.io"
 	@if [ ! -d $(BUILD) ]; then mkdir -p $(BUILD); fi
 	@if [ ! -d $(BUILD)/$(DEP) ]; then mkdir -p $(BUILD)/$(DEP); fi
 	@if [ ! -d $(BUILD)/$(REPORT) ]; then mkdir -p $(BUILD)/$(REPORT); fi
@@ -36,7 +36,7 @@ package:
 	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS); fi	
 	@if [ ! -d $(BUILD)/$(REPORT)/$(XSLT) ]; then mkdir -p $(BUILD)/$(REPORT)/$(XSLT); fi
 
-	@cp sitespeed.io sitespeed-junit.io CHANGELOG LICENSE $(BUILD)/
+	@cp sitespeed.io sitespeed-junit.io sitespeed-sites.io CHANGELOG LICENSE $(BUILD)/
 	@cp $(DEP)/LICENSE.txt $(BUILD)/$(DEP)/
 	@cp $(DEP)/crawler-1.5.4-full.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/crawler.properties $(BUILD)/$(DEP)/
@@ -65,6 +65,7 @@ package:
 	@cp $(REPORT)/$(PROPERTIES)/detailed.site.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/full.page.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/site.summary.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
+	@cp $(REPORT)/$(PROPERTIES)/sites.summary.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/summary.details.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/	
 	@cp $(REPORT)/$(PROPERTIES)/rules.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/assets.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
@@ -88,6 +89,7 @@ package:
 	@cp $(REPORT)/$(VELOCITY)/site.summary.xml.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/detailed.site.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/screenshots.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
+	@cp $(REPORT)/$(VELOCITY)/sites.summary.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(XSLT)/junit.xsl $(BUILD)/$(REPORT)/$(XSLT)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/browserscaledimg.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/criticalpath.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
