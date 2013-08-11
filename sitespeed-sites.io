@@ -68,7 +68,7 @@ OPTIONS:
    -h      Help
    -r      The result base directory, default is sitespeed-result/sites [optional]
    -e      The colums to display in the result table [optional]
-   -e      The path to a plain text file with one url on each row. Default name is urls.txt [optional]
+   -i      The path to a plain text file with one url on each row. Default name is urls.txt [optional]
 EOF
 }
 
