@@ -130,15 +130,23 @@ fi
 
 function analyze {
 
+RUNS=0
+
 # read the urls
 urls=()
 while read txt ; do
    urls[${#urls[@]}]=$txt
 done < $FILE_NAME
 
+echo "Will analyze ${#urls[@]} sites" 
+
 for url in "${urls[@]}" 
-do 
+do   
     sh ./sitespeed.io -u $url "$@" -r $REPORT_BASE_DIR/$NOW
+    RUNS=$[$RUNS+1]
+    if [ $(($RUNS%20)) == 0 ]; then
+      echo "Analyzed $RUNS sites out of ${#urls[@]}"
+    fi
 done
 
 }
