@@ -59,6 +59,8 @@ USER_AGENT="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (K
 YSLOW_FILE=dependencies/yslow-3.1.5-sitespeed.js
 ## The ruleset 
 RULESET=sitespeed.io-1.9
+## Maximum pages to test
+MAX_PAGES=999999
 
 #*******************************************************
 # Main program
@@ -104,7 +106,7 @@ fi
 #*******************************************************
 function get_input {
 # Set options
-while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:e:i:” OPTION
+while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:” OPTION
 do
      case $OPTION in
          h)
@@ -130,6 +132,7 @@ do
          f)FILE=$OPTARG;;
          g)PAGES_COLUMNS=$OPTARG;;
          b)SUMMARY_BOXES=$OPTARG;;
+         j)MAX_PAGES=$OPTARG;;  
          # Note: The e & i are uses in the script that analyzes multiple sites
          e);;
          i);;  
@@ -322,6 +325,16 @@ urls=()
 while read txt ; do
    urls[${#urls[@]}]=$txt
 done < $REPORT_DATA_DIR/urls.txt
+
+## If we have a max size of URL:s to test, only use the first MAX_PAGES
+NR_OF_URLS=${#urls[@]}
+if [ "$NR_OF_URLS" -gt "$MAX_PAGES" ]
+  then
+    for (( c=$MAX_PAGES; c<=$NR_OF_URLS; c++ ))
+    do
+      unset urls[$c] 
+    done
+fi
 }
 
 
@@ -530,7 +543,8 @@ OPTIONS:
    -y      The compiled yslow file, default is dependencies/yslow-3.1.5-sitespeed.js [optional]
    -l      Which ruleset to use, default is the latest sitespeed.io version [optional]
    -g      The columns showed on detailes page summary table, see http://sitespeed.io/documentation/#pagescolumns for more info [optional] 
-   -b      The boxes showed on site summary page, see http://sitespeed.io/documentation/#sitesummaryboxes for more info [optional]    
+   -b      The boxes showed on site summary page, see http://sitespeed.io/documentation/#sitesummaryboxes for more info [optional]
+   -j      The max number of pages to test [optional]   
 EOF
 }
 

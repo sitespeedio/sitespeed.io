@@ -79,7 +79,7 @@ EOF
 function get_input {
 
 # Set options, the sames as for sitespeed.io
-while getopts “hud:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:e:i:” OPTION
+while getopts “hud:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:” OPTION
 do
      case $OPTION in
          h)
