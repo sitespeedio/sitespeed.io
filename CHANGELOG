@@ -13,6 +13,8 @@ version 1.9
 * Tech: Cleanup of the sitespeed.io script, making it a little easier to follow
 * Tech: Renaming & restructuring of templates to follow doc naming
 * Added IP of the computer running the test in the result.xml
+* Set the max pages to test
+* TODO: Test multiple sites at once
 * CSV: Choose which column to add and always output ip, start url & date
 * Bug fix: URL:s that returns error (4XX-5XX and that sitespeed can't analyze) is now included in the JUnit xml
 * Bug fix: The JUnit script can now output files to a relative path
