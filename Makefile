@@ -12,6 +12,9 @@ MACROS := macros
 INC := inc
 COLUMNS := detailed.site/columns
 COLUMN-HEADERS := detailed.site/column-headers
+BOXES := site.summary/boxes
+SITES-COLUMNS := sites.summary/columns
+SITES-COLUMN-HEADERS := sites.summary/column-headers
 XSLT := xslt
 
 clean:
@@ -34,6 +37,9 @@ package:
 	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS); fi	
 	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS); fi
 	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS); fi	
+	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES); fi 
+	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(SITES-COLUMN-HEADERS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(SITES-COLUMN-HEADERS); fi 
+	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(SITES-COLUMNS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(SITES-COLUMNS); fi 	
 	@if [ ! -d $(BUILD)/$(REPORT)/$(XSLT) ]; then mkdir -p $(BUILD)/$(REPORT)/$(XSLT); fi
 
 	@cp sitespeed.io sitespeed-junit.io sitespeed-sites.io CHANGELOG LICENSE $(BUILD)/
