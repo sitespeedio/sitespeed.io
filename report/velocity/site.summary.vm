@@ -27,6 +27,7 @@
 #set ($imageWeightMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("imageweight").getChild("median").getValue())) 
 #set ($totalImageWeightMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("totalimageweight").getChild("median").getValue())) 
 #set ($totalDomainsMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("domains").getChild("median").getValue())) 
+#set ($scaledImagesMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("scaledimages").getChild("median").getValue())) 
 
 
 ## Create percentile95
@@ -50,7 +51,7 @@
 #set ($imageWeightPercentile = $math.roundTo($nrOfDecimals,$metricsElement.getChild("imageweight").getChild("percentile95").getValue())) 
 #set ($totalImageWeightPercentile = $math.roundTo($nrOfDecimals,$metricsElement.getChild("totalimageweight").getChild("percentile95").getValue())) 
 #set ($domainsPercentile = $math.roundTo($nrOfDecimals,$metricsElement.getChild("domains").getChild("percentile95").getValue())) 
-
+#set ($scaledImagesPercentile = $math.roundTo($nrOfDecimals,$metricsElement.getChild("scaledimages").getChild("percentile95").getValue())) 
 
 ## Set percentage
 #set ($pagesWithSpofPercentage = $math.roundTo($nrOfDecimals, $math.mul($math.div($statsSpofPages.getN(),$siteElement.getChild("pages").getValue()),100)))

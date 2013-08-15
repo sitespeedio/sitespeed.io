@@ -132,6 +132,11 @@ danger#end#end
 warning#else
 danger#end#end
 
+## The number of browser scaled images
+#macro ( scaledType $nr )
+#if ($nr<1)success#else 
+danger#end#end
+
 ## If the input is null, zero i## The number of DOM elements
 #macro ( getNumber $number )
 #if ($number=="NaN")0#else$number#end#end

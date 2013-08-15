@@ -24,6 +24,7 @@
 #set($statsDocumentWeight = $stats.newInstance("documentweight","Document page weight","weight","kb",1))
 #set($statsSpof = $stats.newInstance("spof","Number of SPOF per page","","",1))
 #set($statsSpofPages = $stats.newInstance("spofpages","Pages with SPOF","","",1))
+#set($statsScaledImages = $stats.newInstance("scaledimages","Images scaled by the browser","","",1))
 #set($statsJsSyncInHead = $stats.newInstance("jssyncinhead","Number of JS synchronously in head","","",1))
 #set($statsAssetsWithoutExpires = $stats.newInstance("assetswithoutexpires","Requests without expires","","",1))
 #set($statsCriticalPath = $stats.newInstance("criticalpath","Critical Rendering Path Score","","",1))
@@ -64,6 +65,8 @@
 #set($hide = $allStats.add($statsTimeSinceLastModificationInSeconds))
 #set($hide = $allStats.add($statsAssetCacheTimeInSeconds))
 #set($hide = $allStats.add($statsDomains))
+#set($hide = $allStats.add($statsScaledImages))
+
 
 
 #foreach ($results in $document.getRootElement().getChildren())
@@ -132,6 +135,10 @@
 
     #if($!{results.getChild("g").getChild("syncjsinhead").getChild("components")})
      $statsJsSyncInHead.addValue($math.toInteger($results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()))
+    #end
+
+    #if($!{results.getChild("g").getChild("avoidscalingimages").getChild("components")})
+     $statsScaledImages.addValue($math.toInteger($results.getChild("g").getChild("avoidscalingimages").getChild("components").getChildren("item").size()))
     #end
 
 

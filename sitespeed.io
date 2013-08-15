@@ -214,13 +214,13 @@ fi
 
 
 ## Avalaible summary boxes
-## score,criticalpath,ttfb,syncjs,js,css,cssimages,images,requests,requestswithoutexpires,pagesize,docsize,totalimgsize,textcontent,spof,spofperpage,dom,backend,frontend,cachetime,lastmodification
+## score,criticalpath,ttfb,syncjs,js,css,cssimages,images,requests,requestswithoutexpires,pagesize,docsize,totalimgsize,textcontent,spof,spofperpage,dom,backend,frontend,cachetime,lastmodification,scaledimages
 if [ "$SUMMARY_BOXES" != "" ]
   then
     SUMMARY_BOXES="-Dcom.soulgalore.velocity.key.boxes=$SUMMARY_BOXES"
   else
     # Default colums
-    SUMMARY_BOXES="-Dcom.soulgalore.velocity.key.boxes=score,criticalpath,ttfb,syncjs,js,css,cssimages,images,requests,requestswithoutexpires,pagesize,docsize,totalimgsize,textcontent,spof,spofperpage,dom,backend,frontend,cachetime,lastmodification"
+    SUMMARY_BOXES="-Dcom.soulgalore.velocity.key.boxes=score,criticalpath,ttfb,syncjs,js,css,cssimages,images,requests,requestswithoutexpires,pagesize,docsize,totalimgsize,scaledimages,spof,spofperpage,dom,backend,frontend,cachetime,lastmodification"
 fi
 
 
