@@ -34,17 +34,19 @@
           </td>
           <td>$site.getChild("pages").getValue()</td>
           #foreach ($column in $columns.split(","))
-          <td>
             #set ($value = $column.split("-"))
             #set ($nrOfDecimals = $site.getChild("metrics").getChild($value.get(1)).getAttribute("decimals").getValue())
             #set ($type = $site.getChild("metrics").getChild($value.get(1)).getAttribute("type").getValue())
             #set ($unit = $site.getChild("metrics").getChild($value.get(1)).getAttribute("unit").getValue())
             #if ($type.equals("cachetime"))
+             <td data-sort-value="$math.toInteger($site.getChild("metrics").getChild($value.get(1)).getChild($value.get(0)).getValue())"> 
               #prettyPrint($header.getSeconds($math.toInteger($site.getChild("metrics").getChild($value.get(1)).getChild($value.get(0)).getValue())))
+              </td>
             #else    
+            <td>
               $math.roundTo($nrOfDecimals,$site.getChild("metrics").getChild($value.get(1)).getChild($value.get(0)).getValue()) $unit
+            </td>
             #end
-          </td>
           #end
         </tr>
         #end
