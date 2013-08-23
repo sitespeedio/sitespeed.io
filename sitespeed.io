@@ -451,7 +451,7 @@ mkdir $REPORT_DIR/img
 mkdir $REPORT_DIR/img/ico
 mkdir $REPORT_DIR/fonts
 
-cat "$BASE_DIR"report/css/bootstrap.min.css "$BASE_DIR"report/css/bootstrap-glyphicons.css > $REPORT_DIR/css/styles.css
+cat "$BASE_DIR"report/css/bootstrap.min.css  > $REPORT_DIR/css/styles.css
 cat "$BASE_DIR"report/js/jquery-1.10.2.min.js report/js/bootstrap.min.js report/js/stupidtable.min.js > $REPORT_DIR/js/all.js
 cp "$BASE_DIR"report/img/*.* $REPORT_DIR/img
 cp "$BASE_DIR"report/img/ico/* $REPORT_DIR/img/ico

@@ -29,22 +29,24 @@
  <body>
 
 
-<div class="navbar">
+<div class="navbar navbar-default" role="navigation">
   <div class="container">
 
+<div class="navbar-header">
     <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sitespeed-collapse">
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
 
+
     <!-- Be sure to leave the brand out there if you want it shown -->
     <!--<a class="navbar-brand" href="#">sitespeed.io</a>-->
     <img src="$!{pathToIncludes}img/sitespeed-logo.png" class="navbar-brand" alt="Sitespeed.io - How speedy is your site?"/>
-
+  </div>
     <!-- Place everything within .navbar-collapse to hide it until above 768px -->
-    <div class="nav-collapse collapse navbar-responsive-collapse">
+    <nav class="collapse navbar-collapse sitespeed-collapse">
        <ul class="nav navbar-nav">
             #if ($hide)
             #else
@@ -67,7 +69,7 @@
             #end
             #end
           </ul>
-    </div><!-- /.nav-collapse -->
+    </nav><!-- /.nav-collapse -->
   </div><!-- /.container -->
 </div><!-- /.navbar -->
 

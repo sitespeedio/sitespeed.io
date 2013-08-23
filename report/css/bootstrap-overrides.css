@@ -46,27 +46,37 @@
       font-family: Tahoma,Verdana,sans-serif;
     }
 
+    .navbar {
+        border: 0;
+        border-radius: 0;
+    }
+
+    .navbar-collapse {
+        border: 0;
+        box-shadow: none;
+    }
+
     ## fix for the logo
     .navbar-brand {
       padding: 0px 10px;
       max-width: 250px;
     }
 
-    .navbar {
+    .navbar-default {
       color: white;
       background-color: #0095d2;
     }
 
-    .navbar-nav>.active>a, .navbar-nav>.active>a:hover, .navbar-nav>.active>a:focus {
+    .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
       color: white;
       background-color: #0073b0;
     }
 
-    .navbar-nav>li>a:hover, .navbar-nav>li>a:focus {
+    .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
     color: white;
     }
 
-    .navbar-nav>li>a  {
+    .navbar-default .navbar-nav>li>a  {
       color: white;
     }
 
@@ -75,15 +85,15 @@
     word-wrap: break-word;
     }
 
-    .navbar-toggle {
+    .navbar-default .navbar-toggle {
       border: 1px solid #fff;
     }
 
-    .navbar-toggle .icon-bar {
+    .navbar-default .navbar-toggle .icon-bar {
       background-color: #fff;
     }
 
-    .navbar-toggle:hover, .navbar-toggle:focus {
+    .navbar-default .navbar-toggle:hover, .navbar-toggle:focus {
       background-color: #0073b0;
     }
 
