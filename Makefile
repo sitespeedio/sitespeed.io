@@ -53,21 +53,18 @@ package:
 	@cp $(DEP)/yslow-3.1.5-sitespeed.js $(BUILD)/$(DEP)/
 	@cp $(REPORT)/$(CSS)/bootstrap.min.css $(BUILD)/$(REPORT)/$(CSS)/
 	@cp $(REPORT)/$(CSS)/bootstrap-overrides.css $(BUILD)/$(REPORT)/$(CSS)/
-	@cp $(REPORT)/$(CSS)/bootstrap-glyphicons.css $(BUILD)/$(REPORT)/$(CSS)/
 	@cp $(REPORT)/$(IMG)/$(ICO)/sitespeed.io-114.png $(BUILD)/$(REPORT)/$(IMG)/$(ICO)/
 	@cp $(REPORT)/$(IMG)/$(ICO)/sitespeed.io-144.png $(BUILD)/$(REPORT)/$(IMG)/$(ICO)/
 	@cp $(REPORT)/$(IMG)/$(ICO)/sitespeed.io-72.png $(BUILD)/$(REPORT)/$(IMG)/$(ICO)/	
 	@cp $(REPORT)/$(IMG)/$(ICO)/sitespeed.io.ico $(BUILD)/$(REPORT)/$(IMG)/$(ICO)/
-	@cp $(REPORT)/$(IMG)/glyphicons-halflings.png $(BUILD)/$(REPORT)/$(IMG)/
 	@cp $(REPORT)/$(IMG)/sitespeed-logo.png $(BUILD)/$(REPORT)/$(IMG)/
 	@cp $(REPORT)/$(JS)/bootstrap.min.js $(BUILD)/$(REPORT)/$(JS)/
 	@cp $(REPORT)/$(JS)/jquery-1.10.2.min.js $(BUILD)/$(REPORT)/$(JS)/
 	@cp $(REPORT)/$(JS)/stupidtable.min.js $(BUILD)/$(REPORT)/$(JS)/
-	@cp $(REPORT)/$(FONTS)/glyphiconshalflings-regular.eot $(BUILD)/$(REPORT)/$(FONTS)/
-	@cp $(REPORT)/$(FONTS)/glyphiconshalflings-regular.otf $(BUILD)/$(REPORT)/$(FONTS)/
-	@cp $(REPORT)/$(FONTS)/glyphiconshalflings-regular.svg $(BUILD)/$(REPORT)/$(FONTS)/
-	@cp $(REPORT)/$(FONTS)/glyphiconshalflings-regular.ttf $(BUILD)/$(REPORT)/$(FONTS)/
-	@cp $(REPORT)/$(FONTS)/glyphiconshalflings-regular.woff $(BUILD)/$(REPORT)/$(FONTS)/
+	@cp $(REPORT)/$(FONTS)/glyphicons-halflings-regular.eot $(BUILD)/$(REPORT)/$(FONTS)/
+	@cp $(REPORT)/$(FONTS)/glyphicons-halflings-regular.svg $(BUILD)/$(REPORT)/$(FONTS)/
+	@cp $(REPORT)/$(FONTS)/glyphicons-halflings-regular.ttf $(BUILD)/$(REPORT)/$(FONTS)/
+	@cp $(REPORT)/$(FONTS)/glyphicons-halflings-regular.woff $(BUILD)/$(REPORT)/$(FONTS)/
 	@cp $(REPORT)/$(PROPERTIES)/detailed.site.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/full.page.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/site.summary.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
