@@ -1,6 +1,6 @@
 CHANGELOG sitespeed.io
 
-version 1.9
+version 2.0
 ------------------------
 * New modified rule: the YSlow rule yimgnoscale doesn't work with PhantomJS. The new rule comapare the image browser width and the real image width.
 * Fix for Windows users having spaces in their path to Java
