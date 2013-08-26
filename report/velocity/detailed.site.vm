@@ -1,4 +1,4 @@
-    #parse("report/velocity/header.vm")
+    #parse("report/velocity/inc/header.vm")
     #parse("report/velocity/macros/site.summary.macros.vm")
     #parse("report/velocity/macros/detailed.site.macros.vm")
 
@@ -54,7 +54,7 @@
             </table>
     </div>
     </div>
-    #parse("report/velocity/footer.vm")
+    #parse("report/velocity/inc/footer.vm")
     <script>
            $(function(){
         $("#pagesTable").stupidtable();

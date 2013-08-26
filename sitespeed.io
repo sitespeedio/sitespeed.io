@@ -407,7 +407,7 @@ done
 echo '</document>'>> "$REPORT_DATA_DIR/result.xml"
 
 echo 'Create the summary.xml'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR  $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/site.summary.xml.vm $PROPERTIES_DIR/site.summary.properties $REPORT_DATA_DIR/summary.xml.tmp || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$VELOCITY_JAR  $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/xml/site.summary.xml.vm $PROPERTIES_DIR/site.summary.properties $REPORT_DATA_DIR/summary.xml.tmp || exit 1
 
 # Velocity adds a lot of garbage spaces and new lines, need to be removed before the xml is cleaned up
 # because of performance reasons
@@ -427,7 +427,7 @@ echo 'Create the pages.html'
 if $OUTPUT_CSV 
   then
   echo 'Create the detailed.site.csv'
-  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$PAGES_COLUMNS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/detailed.site.csv.vm $PROPERTIES_DIR/detailed.site.properties $REPORT_DIR/detailed.site.csv || exit 1
+  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$PAGES_COLUMNS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/csv/detailed.site.csv.vm $PROPERTIES_DIR/detailed.site.properties $REPORT_DIR/detailed.site.csv || exit 1
 fi
 
 echo 'Create the summary index.html'

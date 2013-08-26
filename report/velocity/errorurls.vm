@@ -1,4 +1,4 @@
-#parse("report/velocity/header.vm")
+#parse("report/velocity/inc/header.vm")
 
 <div class="row">
 	<div class="col-lg-12">
@@ -15,6 +15,6 @@
 	<!-- span 12 -->
 </div>
 <!-- row -->
-#parse("report/velocity/footer.vm")
+#parse("report/velocity/inc/footer.vm")
 </body>
 </html>

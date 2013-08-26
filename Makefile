@@ -10,6 +10,9 @@ PROPERTIES := properties
 VELOCITY := velocity
 MACROS := macros
 INC := inc
+XML := xml
+CSV := csv
+LOGIC := logic
 COLUMNS := detailed.site/columns
 COLUMN-HEADERS := detailed.site/column-headers
 BOXES := site.summary/boxes
@@ -34,6 +37,9 @@ package:
 	@if [ ! -d $(BUILD)/$(REPORT)/$(JS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(JS); fi
 	@if [ ! -d $(BUILD)/$(REPORT)/$(PROPERTIES) ]; then mkdir -p $(BUILD)/$(REPORT)/$(PROPERTIES); fi
 	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY); fi
+	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(LOGIC) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(LOGIC); fi
+	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(XML) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(XML); fi
+	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(CSV) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(CSV); fi
 	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS); fi	
 	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS); fi
 	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS); fi	
@@ -74,22 +80,22 @@ package:
 	@cp $(REPORT)/$(PROPERTIES)/assets.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/errorurls.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/screenshots.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
-	@cp $(REPORT)/$(VELOCITY)/footer.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/footer.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/
 	@cp $(REPORT)/$(VELOCITY)/$(MACROS)/site.summary.macros.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS)
 	@cp $(REPORT)/$(VELOCITY)/$(MACROS)/date.macros.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS)
 	@cp $(REPORT)/$(VELOCITY)/$(MACROS)/detailed.site.macros.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS)
-	@cp $(REPORT)/$(VELOCITY)/detailed.site.csv.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
+	@cp $(REPORT)/$(VELOCITY)/$(CSV)/detailed.site.csv.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(CSV)
 	@cp $(REPORT)/$(VELOCITY)/detailed.site.summary.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/site.summary.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
-	@cp $(REPORT)/$(VELOCITY)/header.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/header.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/
 	@cp $(REPORT)/$(VELOCITY)/full.page.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
-	@cp $(REPORT)/$(VELOCITY)/full.page.logic.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
-	@cp $(REPORT)/$(VELOCITY)/assets.logic.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
+	@cp $(REPORT)/$(VELOCITY)/$(LOGIC)/full.page.logic.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(LOGIC)/
+	@cp $(REPORT)/$(VELOCITY)/$(LOGIC)/assets.logic.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(LOGIC)/
 	@cp $(REPORT)/$(VELOCITY)/assets.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/rules.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/errorurls.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
-	@cp $(REPORT)/$(VELOCITY)/site.summary.logic.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
-	@cp $(REPORT)/$(VELOCITY)/site.summary.xml.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
+	@cp $(REPORT)/$(VELOCITY)/$(LOGIC)/site.summary.logic.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(LOGIC)/
+	@cp $(REPORT)/$(VELOCITY)/$(XML)/site.summary.xml.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(XML)/
 	@cp $(REPORT)/$(VELOCITY)/detailed.site.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/screenshots.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/sites.summary.vm $(BUILD)/$(REPORT)/$(VELOCITY)/

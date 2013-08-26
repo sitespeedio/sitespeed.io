@@ -1,5 +1,5 @@
-#parse("report/velocity/header.vm")
-#parse("report/velocity/assets.logic.vm")
+#parse("report/velocity/inc/header.vm")
+#parse("report/velocity/logic/assets.logic.vm")
 #parse("report/velocity/macros/date.macros.vm")
 <div class="row">
 	<div class="col-lg-12">
@@ -105,7 +105,7 @@
 		</table>
 	</div>
 </div>
-#parse("report/velocity/footer.vm")
+#parse("report/velocity/inc/footer.vm")
 <script>
 		   $(function(){
         $("#assetsTable").stupidtable();

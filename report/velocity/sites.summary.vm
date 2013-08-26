@@ -1,5 +1,5 @@
 #parse("report/velocity/macros/date.macros.vm")
-#parse("report/velocity/header.vm")
+#parse("report/velocity/inc/header.vm")
 <div class="row">
   <div class="col-lg-12">
     <h2>Sites analyzed</h2>
@@ -54,7 +54,7 @@
     </table>
   </div>
 </div>
-#parse("report/velocity/footer.vm")
+#parse("report/velocity/inc/footer.vm")
 <script>
 $(function(){
 $("#sitesTable").stupidtable();

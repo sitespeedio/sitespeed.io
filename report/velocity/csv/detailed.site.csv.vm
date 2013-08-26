@@ -1,4 +1,5 @@
-## The columns are feed from the merger##
+## Generate the detailed site data as CSV
+## The columns are feed from the sitespeed.io script
 ## First add the column names##
 $columns,date,fromip,starturl##
 ## add a new line##

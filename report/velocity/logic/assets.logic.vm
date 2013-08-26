@@ -1,5 +1,4 @@
-## setting up some base values
-
+## Logic file for showing the most used assets
 
 ## the number of pages that use one asset
 #set($assetsAndUseage = $map.clone())
