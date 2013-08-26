@@ -13,8 +13,8 @@ INC := inc
 XML := xml
 CSV := csv
 LOGIC := logic
-COLUMNS := detailed.site/columns
-COLUMN-HEADERS := detailed.site/column-headers
+COLUMNS := pages/columns
+COLUMN-HEADERS := pages/column-headers
 BOXES := site.summary/boxes
 SITES-COLUMNS := sites.summary/columns
 SITES-COLUMN-HEADERS := sites.summary/column-headers
@@ -71,8 +71,8 @@ package:
 	@cp $(REPORT)/$(FONTS)/glyphicons-halflings-regular.svg $(BUILD)/$(REPORT)/$(FONTS)/
 	@cp $(REPORT)/$(FONTS)/glyphicons-halflings-regular.ttf $(BUILD)/$(REPORT)/$(FONTS)/
 	@cp $(REPORT)/$(FONTS)/glyphicons-halflings-regular.woff $(BUILD)/$(REPORT)/$(FONTS)/
-	@cp $(REPORT)/$(PROPERTIES)/detailed.site.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
-	@cp $(REPORT)/$(PROPERTIES)/full.page.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
+	@cp $(REPORT)/$(PROPERTIES)/pages.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
+	@cp $(REPORT)/$(PROPERTIES)/page.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/site.summary.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/sites.summary.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/summary.details.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/	
@@ -83,20 +83,20 @@ package:
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/footer.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/
 	@cp $(REPORT)/$(VELOCITY)/$(MACROS)/site.summary.macros.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS)
 	@cp $(REPORT)/$(VELOCITY)/$(MACROS)/date.macros.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS)
-	@cp $(REPORT)/$(VELOCITY)/$(MACROS)/detailed.site.macros.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS)
+	@cp $(REPORT)/$(VELOCITY)/$(MACROS)/pages.macros.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS)
 	@cp $(REPORT)/$(VELOCITY)/$(CSV)/detailed.site.csv.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(CSV)
 	@cp $(REPORT)/$(VELOCITY)/detailed.site.summary.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/site.summary.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/header.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/
-	@cp $(REPORT)/$(VELOCITY)/full.page.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
-	@cp $(REPORT)/$(VELOCITY)/$(LOGIC)/full.page.logic.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(LOGIC)/
+	@cp $(REPORT)/$(VELOCITY)/page.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
+	@cp $(REPORT)/$(VELOCITY)/$(LOGIC)/page.logic.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(LOGIC)/
 	@cp $(REPORT)/$(VELOCITY)/$(LOGIC)/assets.logic.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(LOGIC)/
 	@cp $(REPORT)/$(VELOCITY)/assets.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/rules.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/errorurls.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/$(LOGIC)/site.summary.logic.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(LOGIC)/
 	@cp $(REPORT)/$(VELOCITY)/$(XML)/site.summary.xml.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(XML)/
-	@cp $(REPORT)/$(VELOCITY)/detailed.site.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
+	@cp $(REPORT)/$(VELOCITY)/pages.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/screenshots.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/sites.summary.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(XSLT)/junit.xsl $(BUILD)/$(REPORT)/$(XSLT)/

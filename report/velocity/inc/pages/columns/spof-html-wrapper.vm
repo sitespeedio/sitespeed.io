@@ -16,7 +16,7 @@
 
             <a href="#spof-$foreach.count" data-toggle="modal">
             ##
-            #parse("report/velocity/inc/detailed.site/columns/${columnName}.vm")
+            #parse("report/velocity/inc/pages/columns/${columnName}.vm")
         </a>
         ##
         <a href="http://www.webpagetest.org/?url=$esc.url($results.getChild("u").getValue())&video=1fvonly=1&runs=3&spof=$spofDomains" target="_blank" title="Record a video at webpagetest.org with the spof domains down"> <i class="glyphicon glyphicon-facetime-video"></i>
@@ -31,7 +31,7 @@
                 ##
                 <h3 id="spofModalLabel-$foreach.count">
                     ##
-                    Single point of failures (#parse("report/velocity/inc/detailed.site/columns/${columnName}.vm"))##
+                    Single point of failures (#parse("report/velocity/inc/pages/columns/${columnName}.vm"))##
                 </h3>
                 ##
             </div>

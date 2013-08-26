@@ -3,7 +3,7 @@
     #if ($results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size() >0)##
     <a href="#js-sync-$foreach.count" data-toggle="modal">
         ##
-        #parse("report/velocity/inc/detailed.site/columns/${columnName}.vm")
+        #parse("report/velocity/inc/pages/columns/${columnName}.vm")
     </a>
     ##
     <div class="modal fade" id="js-sync-$foreach.count">

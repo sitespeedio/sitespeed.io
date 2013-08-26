@@ -1,6 +1,6 @@
     #parse("report/velocity/inc/header.vm")
     #parse("report/velocity/macros/site.summary.macros.vm")
-    #parse("report/velocity/macros/detailed.site.macros.vm")
+    #parse("report/velocity/macros/pages.macros.vm")
 
     <div class="row">
         <div class="col-lg-12">

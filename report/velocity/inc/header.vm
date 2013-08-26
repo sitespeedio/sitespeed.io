@@ -57,7 +57,7 @@
               <a href="$!{pathToIncludes}summary.details.html">Detailed summary</a>
             </li>
             <li#if( $pageMenu == "pages" ) class="active" #end>
-              <a href="$!{pathToIncludes}detailed.site.html">Pages</a>
+              <a href="$!{pathToIncludes}pages.html">Pages</a>
             </li>
             <li#if( $pageMenu == "assets" ) class="active" #end>
               <a href="$!{pathToIncludes}assets.html">Assets</a>

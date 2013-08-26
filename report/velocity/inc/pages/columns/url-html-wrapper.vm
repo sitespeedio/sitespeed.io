@@ -8,7 +8,7 @@
     #end
     <a data-toggle="modal" href="#headers-$foreach.count" title="See the HTTP Headers"> <i class="glyphicon glyphicon-zoom-in"></i></a>#if($showscreenshots==true)
     <a href="screenshots.html#${results.getAttribute("filename").getValue()}">
-    <i class="glyphicon glyphicon-picture"></i></a>#end <a href="pages/$file" title="#parse("report/velocity/inc/detailed.site/columns/${columnName}.vm")">#parse("report/velocity/inc/detailed.site/columns/${columnName}.vm")</a>
+    <i class="glyphicon glyphicon-picture"></i></a>#end <a href="pages/$file" title="#parse("report/velocity/inc/pages/columns/${columnName}.vm")">#parse("report/velocity/inc/pages/columns/${columnName}.vm")</a>
 
     <div class="modal fade" id="headers-$foreach.count">
     <div class="modal-dialog">
