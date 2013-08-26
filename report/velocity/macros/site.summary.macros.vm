@@ -149,8 +149,8 @@ danger#end#end
 #macro (getBox $name)
 	#if ($filetool.doFileExist("report/velocity/inc/site.summary/boxes/${name}.vm"))
 		#parse("report/velocity/inc/site.summary/boxes/${name}.vm")
-	#elseif ($filetool.doFileExist("report/velocity/inc/site.summary/boxes/user/${name}.vm"))
-		#parse("report/velocity/inc/site.summary/boxes/user/${name}.vm")
+	#elseif ($filetool.doFileExist("report/velocity/inc/site.summary/boxes/custom/${name}.vm"))
+		#parse("report/velocity/inc/site.summary/boxes/custom/${name}.vm")
 	#else
 		Non existing box vm file: ${name}.vm##
 	#end

@@ -2,8 +2,8 @@
 #macro (columnHeader $columnName)
 	#if ($filetool.doFileExist("report/velocity/inc/detailed.site/column-headers/${columnName}.vm"))
 		#parse("report/velocity/inc/detailed.site/column-headers/${columnName}.vm")
-	#elseif ($filetool.doFileExist("report/velocity/inc/detailed.site/column-headers/user/${columnName}.vm"))
-		#parse("report/velocity/inc/detailed.site/column-headers/user/${columnName}.vm")
+	#elseif ($filetool.doFileExist("report/velocity/inc/detailed.site/column-headers/custom/${columnName}.vm"))
+		#parse("report/velocity/inc/detailed.site/column-headers/custom/${columnName}.vm")
 	#else
 		#columnHeaderHTML("Non existing header vm file: ${columnName}.vm","string","","")##
 	#end
@@ -30,8 +30,8 @@
 		#parse("report/velocity/inc/detailed.site/columns/${columnName}-html-wrapper.vm")		
     #elseif ($filetool.doFileExist("report/velocity/inc/detailed.site/columns/${columnName}.vm")) 
      		#parse("report/velocity/inc/detailed.site/columns/${columnName}.vm")
-     	#elseif ($filetool.doFileExist("report/velocity/inc/detailed.site/columns/user/${columnName}.vm"))
-     		#parse("report/velocity/inc/detailed.site/columns/user/${columnName}.vm")
+     	#elseif ($filetool.doFileExist("report/velocity/inc/detailed.site/columns/custom/${columnName}.vm"))
+     		#parse("report/velocity/inc/detailed.site/columns/custom/${columnName}.vm")
      	#else
      	Non existing vm file: ${columnName}.vm
      	#end	
