@@ -9,7 +9,7 @@ DATE_DIR=$(ls -1 ../build/sitespeed-result/$DOMAIN_DIR | head -n1);
 RESULT_DIR=$( cd ../build/sitespeed-result/$DOMAIN_DIR/$DATE_DIR && pwd)
 
 
-files=( index.html errorurls.html detailed.site.html detailed.site.csv rules.html summary.details.html )
+files=( index.html errorurls.html pages.html pages.csv rules.html summary.details.html )
 
 for i in "${files[@]}"
 do
