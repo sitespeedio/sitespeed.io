@@ -39,7 +39,7 @@ VELOCITY_DIR=report/velocity
 PROPERTIES_DIR=report/properties
 
 # The menu in the header of the result file is hidden
-HIDE_MENU="-Dcom.soulgalore.velocity.key.hide=true"
+HIDE_MENU="-Dcom.soulgalore.velocity.key.hidemenu=true"
 
 #*******************************************************
 # Main program
