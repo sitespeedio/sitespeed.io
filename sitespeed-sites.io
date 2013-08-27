@@ -203,7 +203,7 @@ mkdir $REPORT_BASE_DIR/$NOW/img
 mkdir $REPORT_BASE_DIR/$NOW/img/ico
 mkdir $REPORT_BASE_DIR/$NOW/fonts
 
-cat "$BASE_DIR"report/css/bootstrap.min.css "$BASE_DIR"report/css/bootstrap-glyphicons.css > $REPORT_BASE_DIR/$NOW/css/styles.css
+cat "$BASE_DIR"report/css/bootstrap.min.css > $REPORT_BASE_DIR/$NOW/css/styles.css
 cat "$BASE_DIR"report/js/jquery-1.10.2.min.js report/js/bootstrap.min.js report/js/stupidtable.min.js > $REPORT_BASE_DIR/$NOW/js/all.js
 cp "$BASE_DIR"report/img/*.* $REPORT_BASE_DIR/$NOW/img
 cp "$BASE_DIR"report/img/ico/* $REPORT_BASE_DIR/$NOW/img/ico
