@@ -39,17 +39,11 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-
-
-    <!-- Be sure to leave the brand out there if you want it shown -->
-    <!--<a class="navbar-brand" href="#">sitespeed.io</a>-->
     <img src="$!{pathToIncludes}img/sitespeed-logo.png" class="navbar-brand" alt="Sitespeed.io - How speedy is your site?"/>
   </div>
     <!-- Place everything within .navbar-collapse to hide it until above 768px -->
     <nav class="collapse navbar-collapse sitespeed-collapse">
        <ul class="nav navbar-nav">
-            #if ($hide)
-            #else
             <li#if( $pageMenu == "summary" ) class="active" #end>
               <a href="$!{pathToIncludes}index.html">Summary</a>
             </li>
@@ -66,7 +60,6 @@
             <li#if( $pageMenu == "screenshots" ) class="active" #end>
               <a href="$!{pathToIncludes}screenshots.html">Screenshots</a>
             </li>
-            #end
             #end
           </ul>
     </nav><!-- /.nav-collapse -->
