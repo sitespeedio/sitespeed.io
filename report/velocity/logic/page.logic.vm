@@ -1,4 +1,6 @@
-## setting up some base values
+## logic file for page.vm, showing in detail information about a page
+## lets go ...
+
 
 ## Sometimes getting the js directly from the stats object gives wrong values, so
 ## let's calculate them one by one and fetch favicon & totalweight
@@ -27,7 +29,7 @@
 #set($totalWeight = $math.roundTo(1,$math.div($totalWeight,1000)))
 #set($docWeightCurl = $math.roundTo(1,$math.div($document.getRootElement().getAttribute("size").getValue(),1000)))
 
-
+## Take care of the cases when they are not defined
 #if(!$cssImageWeight) #set($cssImageWeight=0) #end 
 #if(!$imageWeight) #set($imageWeight=0) #end 
 #if(!$jsWeight) #set($jsWeight=0) #end 
@@ -49,6 +51,7 @@
 #set($nrOfFavicons = $document.getRootElement().getChild("stats").getChild("favicon").getChild("r").getValue())
 #set($nrOfHTML = $document.getRootElement().getChild("stats").getChild("doc").getChild("r").getValue())
 
+## Take care of the cases when they are not defined
 #if(!$nrOfJs) #set($nrOfJs=0) #end 
 #if(!$nrOfCss) #set($nrOfCss=0) #end 
 #if(!$nrOfCssImages) #set($nrOfCssImages=0) #end 

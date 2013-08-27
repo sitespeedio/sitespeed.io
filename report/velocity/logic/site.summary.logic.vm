@@ -1,5 +1,4 @@
-
-## Collecting data needed for the summary page
+## Setting up the data needed in the site.summary.vm
 
 #set($nrOfPages = $document.getRootElement().getChildren("results").size())
 
@@ -37,7 +36,7 @@
 #set($statsDomElements = $stats.newInstance("domelements","Number of DOM elements","","",1))
 #set($statsDomains = $stats.newInstance("domains","Number of domains","","",1))
 
-
+## And add them to the list of statistics
 #set($hide = $allStats.add($statsScore))
 #set($hide = $allStats.add($statsCriticalPath))
 #set($hide = $allStats.add($statsJsSyncInHead))
@@ -68,7 +67,7 @@
 #set($hide = $allStats.add($statsScaledImages))
 
 
-
+## Fetch all statistics used by the boxes
 #foreach ($results in $document.getRootElement().getChildren())
 
     #if($!{results.getChild("stats").getChild("js").getChild("r")})

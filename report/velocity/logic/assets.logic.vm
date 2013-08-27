@@ -9,6 +9,7 @@
 #set($assetAndPage = $map.clone())
 #set($assetAndHeaders = $map.clone())
 
+## Create the top list of all the most used assets
 #foreach ($page in $document.getRootElement().getChildren())
 
 	#foreach ($asset in $page.getChild("comps").getChildren())
