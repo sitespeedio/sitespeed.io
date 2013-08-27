@@ -7,7 +7,7 @@ $columns,date,fromip,starturl##
 ## Then add each column##
 #foreach ($results in $document.getRootElement().getChildren("results"))##               
 #foreach ($column in $columns.split(","))##
-#parse("report/velocity/inc/detailed.site/columns/${column}.vm")##
+#parse("report/velocity/inc/pages/columns/${column}.vm")##
 #if( $foreach.hasNext ),#end##
 #end##
 ,$document.getRootElement().getAttribute("date").getValue(),$document.getRootElement().getAttribute("ip").getValue(),$document.getRootElement().getChild("url").getValue()##

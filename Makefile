@@ -84,7 +84,7 @@ package:
 	@cp $(REPORT)/$(VELOCITY)/$(MACROS)/site.summary.macros.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS)
 	@cp $(REPORT)/$(VELOCITY)/$(MACROS)/date.macros.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS)
 	@cp $(REPORT)/$(VELOCITY)/$(MACROS)/pages.macros.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS)
-	@cp $(REPORT)/$(VELOCITY)/$(CSV)/detailed.site.csv.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(CSV)
+	@cp $(REPORT)/$(VELOCITY)/$(CSV)/pages.csv.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(CSV)
 	@cp $(REPORT)/$(VELOCITY)/detailed.site.summary.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/site.summary.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/header.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/

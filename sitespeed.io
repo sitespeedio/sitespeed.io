@@ -426,8 +426,8 @@ echo 'Create the pages.html'
 
 if $OUTPUT_CSV 
   then
-  echo 'Create the detailed.site.csv'
-  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$PAGES_COLUMNS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/csv/detailed.site.csv.vm $PROPERTIES_DIR/detailed.site.properties $REPORT_DIR/detailed.site.csv || exit 1
+  echo 'Create the pages.csv'
+  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$PAGES_COLUMNS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/csv/pages.csv.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.csv || exit 1
 fi
 
 echo 'Create the summary index.html'
