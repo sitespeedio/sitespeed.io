@@ -72,6 +72,7 @@
 					<tr>
 						<td>
 							$document.getRootElement().getChild("dictionary").getChild("rules").getChild($message.getName()).getChild("name").getValue()
+							<em>($message.getName())</em>
 						</td>
 						<td>$message.getChild("score").getValue()</td>
 						<td class="nobreak-page">$message.getChild("message").getValue()</td>
