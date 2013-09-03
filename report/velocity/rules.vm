@@ -7,28 +7,15 @@
 		</h2>
 
 		<p>
-			The rules are a mashup between classic Yslow rules & new sitespeed.io rules, all are based on performance best practices. The current version of the rules is $document.getRootElement().getChild("i").getValue()
+			The rules are a mashup between classic YSlow rules & new sitespeed.io rules, all are based on performance best practices. The current version of the rules is $document.getRootElement().getChild("i").getValue()
 		</p>
 
-		<table class="table table-condensed table-striped table-bordered" >
-			<thead>
-				<tr>
-					<th>Rule</th>
-					<th>Info</th>
-					<th>Weight</th>
-				</tr>
-				</thead>
-				<tbody>
+		
 					#foreach ($rule in $document.getRootElement().getChild("dictionary").getChild("rules").getChildren())
-					<tr>
-						<td class="nobreak-rules">$rule.getChild("name").getValue()</td>
-						<td class="nobreak-rules">$rule.getChild("info").getValue()</td>
-						<td> $rule.getChild("weight").getValue()</td>
-
-					</tr>
+						<h3>$rule.getChild("name").getValue() <em>($rule.getName())</em></h3>
+						<p>$rule.getChild("info").getValue() <em>Weigth: $rule.getChild("weight").getValue()</em><p>
 					#end
-				</tbody>
-			</table>
+		
 
 	</div>
 	<!-- span 12 -->
