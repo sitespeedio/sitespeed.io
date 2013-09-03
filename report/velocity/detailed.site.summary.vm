@@ -38,11 +38,11 @@
             <thead>
                 <tr>
                     <th>name</th>
-                    <th class="hidden-sm">avg</th>
+                    <th class="hidden-sm">min</th>
                     <th class="hidden-sm">10%</th>
+                    <th class="hidden-sm">avg</th>
                     <th>median</th>
                     <th>95%</th>
-                    <th class="hidden-sm">min</th>
                     <th>max</th>
                     <th class="hidden-sm">sDev</th>
                     
@@ -56,13 +56,13 @@
                 <tr>
                     <td> <em>$metric.getAttribute("friendlyName").getValue()</em> 
                     </td>
-                    <td class="hidden-sm">
+                     <td class="hidden-sm">
                         #if ($type.equals("cachetime"))
-                            #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("avg").getValue())))
-                        #else    
-                            $math.roundTo($nrOfDecimals,$metric.getChild("avg").getValue()) $unit
+                            #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("min").getValue())))
+                        #else  
+                            $math.roundTo($nrOfDecimals,$metric.getChild("min").getValue()) $unit
                         #end
-                    </td>             
+                    </td>
                     <td class="hidden-sm">
                         #if ($type.equals("cachetime"))
                             #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("percentile10").getValue())))
@@ -70,6 +70,13 @@
                             $math.roundTo($nrOfDecimals,$metric.getChild("percentile10").getValue()) $unit
                         #end
                     </td>
+                    <td class="hidden-sm">
+                        #if ($type.equals("cachetime"))
+                            #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("avg").getValue())))
+                        #else    
+                            $math.roundTo($nrOfDecimals,$metric.getChild("avg").getValue()) $unit
+                        #end
+                    </td>             
                     <td>
                         #if ($type.equals("cachetime"))
                             #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("median").getValue())))
@@ -82,13 +89,6 @@
                             #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("percentile95").getValue())))
                         #else  
                             $math.roundTo($nrOfDecimals,$metric.getChild("percentile95").getValue()) $unit
-                        #end
-                    </td>
-                    <td class="hidden-sm">
-                        #if ($type.equals("cachetime"))
-                            #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("min").getValue())))
-                        #else  
-                            $math.roundTo($nrOfDecimals,$metric.getChild("min").getValue()) $unit
                         #end
                     </td>
                     <td>
