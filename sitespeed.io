@@ -83,7 +83,9 @@ main() {
         setup_dirs_and_dependencies
         fetch_urls
         analyze_pages
-        generate_output_files  
+        copy_assets  
+        generate_error_file  
+        generate_result_files  
 }
 
 
@@ -389,31 +391,31 @@ done
 wait
 }
 
+
+#*******************************************************
+# Copy all assets used for creating the HTML files
+#*******************************************************
+function copy_assets {
+
+#copy the rest of the files
+mkdir $REPORT_DIR/css
+mkdir $REPORT_DIR/js
+mkdir $REPORT_DIR/img
+mkdir $REPORT_DIR/img/ico
+mkdir $REPORT_DIR/fonts
+
+cat "$BASE_DIR"report/css/bootstrap.min.css  > $REPORT_DIR/css/styles.css
+cat "$BASE_DIR"report/js/jquery-1.10.2.min.js report/js/bootstrap.min.js report/js/stupidtable.min.js > $REPORT_DIR/js/all.js
+cp "$BASE_DIR"report/img/*.* $REPORT_DIR/img
+cp "$BASE_DIR"report/img/ico/* $REPORT_DIR/img/ico
+cp "$BASE_DIR"report/fonts/* $REPORT_DIR/fonts
+
+}
+
 #*******************************************************
 # Generate result output files
 #*******************************************************
-function generate_output_files {
-# take care of error urls
-if [ -e $REPORT_DATA_DIR/errorurls.txt ];
-then
-  resultError=()
-  while read txt ; do
-    resultError[${#resultError[@]}]=$txt
-  done < $REPORT_DATA_DIR/errorurls.txt
-
-  echo '<?xml version="1.0" encoding="UTF-8"?><results>'  > $REPORT_DATA_DIR/errorurls.xml
-  for url in "${resultError[@]}"
-    do echo "<url reason='${url/,*/}'><![CDATA[${url/*,/}]]></url>" >> $REPORT_DATA_DIR/errorurls.xml
-  done
-  echo '</results>' >> $REPORT_DATA_DIR/errorurls.xml
-  echo 'Create the errorurls.html'
-  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/errorurls.xml $VELOCITY_DIR/errorurls.vm $PROPERTIES_DIR/errorurls.properties $REPORT_DIR/errorurls.html || exit 1
-  "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/errorurls.html $REPORT_DIR/errorurls.html
-  HAS_ERROR_URLS=true
-else
-  # create an empty xml file
-  echo '<?xml version="1.0" encoding="UTF-8"?><results></results>'  > $REPORT_DATA_DIR/errorurls.xml
-fi
+function generate_result_files {
 
 echo "Create result.xml"
  
@@ -466,19 +468,6 @@ FILE_WITH_RULES=$(ls $REPORT_DATA_PAGES_DIR | head -n 1)
 "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$FILE_WITH_RULES $VELOCITY_DIR/rules.vm $PROPERTIES_DIR/rules.properties $REPORT_DIR/rules.html || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/rules.html $REPORT_DIR/rules.html
 
-#copy the rest of the files
-mkdir $REPORT_DIR/css
-mkdir $REPORT_DIR/js
-mkdir $REPORT_DIR/img
-mkdir $REPORT_DIR/img/ico
-mkdir $REPORT_DIR/fonts
-
-cat "$BASE_DIR"report/css/bootstrap.min.css  > $REPORT_DIR/css/styles.css
-cat "$BASE_DIR"report/js/jquery-1.10.2.min.js report/js/bootstrap.min.js report/js/stupidtable.min.js > $REPORT_DIR/js/all.js
-cp "$BASE_DIR"report/img/*.* $REPORT_DIR/img
-cp "$BASE_DIR"report/img/ico/* $REPORT_DIR/img/ico
-cp "$BASE_DIR"report/fonts/* $REPORT_DIR/fonts
-
 if $OUTPUT_IMAGES 
   then
   take_screenshots
@@ -493,6 +482,35 @@ if $CREATE_TAR_ZIP
 
 echo "Finished"
 exit 0
+}
+
+#*******************************************************
+# Create page that show URLs that returned error
+#
+#*******************************************************
+function generate_error_file {
+
+# take care of error urls
+if [ -e $REPORT_DATA_DIR/errorurls.txt ];
+then
+  resultError=()
+  while read txt ; do
+    resultError[${#resultError[@]}]=$txt
+  done < $REPORT_DATA_DIR/errorurls.txt
+
+  echo '<?xml version="1.0" encoding="UTF-8"?><results>'  > $REPORT_DATA_DIR/errorurls.xml
+  for url in "${resultError[@]}"
+    do echo "<url reason='${url/,*/}'><![CDATA[${url/*,/}]]></url>" >> $REPORT_DATA_DIR/errorurls.xml
+  done
+  echo '</results>' >> $REPORT_DATA_DIR/errorurls.xml
+  echo 'Create the errorurls.html'
+  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/errorurls.xml $VELOCITY_DIR/errorurls.vm $PROPERTIES_DIR/errorurls.properties $REPORT_DIR/errorurls.html || exit 1
+  "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/errorurls.html $REPORT_DIR/errorurls.html
+  HAS_ERROR_URLS=true
+else
+  # create an empty xml file
+  echo '<?xml version="1.0" encoding="UTF-8"?><results></results>'  > $REPORT_DATA_DIR/errorurls.xml
+fi
 }
 
 #*******************************************************
