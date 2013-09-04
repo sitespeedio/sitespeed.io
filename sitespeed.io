@@ -61,6 +61,8 @@ YSLOW_FILE=dependencies/yslow-3.1.5-sitespeed.js
 RULESET=sitespeed.io-2.0
 ## Maximum pages to test
 MAX_PAGES=999999
+## Do we have any urls hat doesn't return 2XX?
+HAS_ERROR_URLS=false
 
 ## Easy way to set your user agent as an Iphone
 IPHONE_IO6_AGENT="Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25"
@@ -407,6 +409,7 @@ then
   echo 'Create the errorurls.html'
   "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/errorurls.xml $VELOCITY_DIR/errorurls.vm $PROPERTIES_DIR/errorurls.properties $REPORT_DIR/errorurls.html || exit 1
   "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/errorurls.html $REPORT_DIR/errorurls.html
+  HAS_ERROR_URLS=true
 else
   # create an empty xml file
   echo '<?xml version="1.0" encoding="UTF-8"?><results></results>'  > $REPORT_DATA_DIR/errorurls.xml
