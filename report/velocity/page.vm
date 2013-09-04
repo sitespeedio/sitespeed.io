@@ -439,15 +439,15 @@
 							</td>
 						</tr>
 						<tr>
-							<td>average time since last modification</td>
+							<td>median time since last modification</td>
 							<td>
-								#prettyPrint($header.getSeconds($math.toInteger($statsTimeSinceLastModificationInSeconds.getMean())))
+								#prettyPrint($header.getSeconds($math.toInteger($statsTimeSinceLastModificationInSeconds.getPercentile(50))))
 							</td>
 						</tr>
 						<tr>
-							<td>average cache time</td>
+							<td>median cache time</td>
 							<td>
-								#prettyPrint($header.getSeconds($math.toInteger($statsAssetCacheTimeInSeconds.getMean())))
+								#prettyPrint($header.getSeconds($math.toInteger($statsAssetCacheTimeInSeconds.getPercentile(50))))
 							</td>
 						</tr>
 						<tr>
