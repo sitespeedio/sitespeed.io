@@ -511,6 +511,12 @@ for url in "${urls[@]}"
   do 
     PAGEFILENAME=$(echo ${url#*//})
     PAGEFILENAME=$(echo ${PAGEFILENAME//[^a-zA-Z0-9]/'-'})
+    # take care of too long names
+    if [ ${#PAGEFILENAME} -gt 250 ]
+      then
+      PAGEFILENAME=$(echo $PAGEFILENAME | cut -c1-250)
+    fi
+
     echo "Creating screenshot for $url $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png "
     phantomjs $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js "$url" $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png $WIDTH $HEIGHT "$USER_AGENT" true  > /dev/null 2>&1
     if $PNGCRUSH_EXIST
@@ -568,13 +574,18 @@ EOF
 #*******************************************************
 # Analyze function, call it to analyze a page
 # $1 the url to analyze
-# $2 the filename of that tested page
 #*******************************************************
 function analyze() {
     # setup the parameters, same names maybe makes it easier
     url=$1
     pagefilename=$(echo ${url#*//})
     pagefilename=$(echo ${pagefilename//[^a-zA-Z0-9]/'-'})
+
+    # take care of too long names
+    if [ ${#pagefilename} -gt 250 ]
+      then
+      pagefilename=$(echo $pagefilename | cut -c1-250)
+    fi
 
     echo "Analyzing $url"
     phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW -n "$pagefilename.har" "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
