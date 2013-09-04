@@ -499,8 +499,6 @@ for url in "${urls[@]}"
         pngcrush -q $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME-c.png
         mv $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME-c.png $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png
     fi 
-    
-    PAGEFILENAME=$[$PAGEFILENAME+1]
     URL_LIST+="$url"
     URL_LIST+="@"
   done  
