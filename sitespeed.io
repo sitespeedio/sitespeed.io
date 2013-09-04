@@ -62,6 +62,14 @@ RULESET=sitespeed.io-2.0
 ## Maximum pages to test
 MAX_PAGES=999999
 
+## Easy way to set your user agent as an Iphone
+IPHONE_IO6_AGENT="Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25"
+IPHONE5_VIEWPORT="320x444"
+
+## Easy way to set your user agent as an Ipad
+IPAD_IO6_AGENT="Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25"
+IPAD_VIEWPORT="768x1024"
+
 #*******************************************************
 # Main program
 #
@@ -230,7 +238,16 @@ then
     PROXY_CRAWLER="-Dcom.soulgalore.crawler.proxy=$PROXY_TYPE":"$PROXY_HOST"
 fi
 
-if [ "$USER_AGENT" != "" ]
+if [[ "$USER_AGENT" == "iphone" ]]
+then
+USER_AGENT=$IPHONE_IO6_AGENT
+VIEWPORT=$IPHONE5_VIEWPORT
+elif [[ "$USER_AGENT" == "ipad" ]]
+then
+USER_AGENT=$IPAD_IO6_AGENT
+VIEWPORT=$IPAD_VIEWPORT
+
+elif [ "$USER_AGENT" != "" ]
 then
     USER_AGENT_YSLOW="$USER_AGENT"
     USER_AGENT_CRAWLER="User-Agent:$USER_AGENT"
@@ -241,6 +258,8 @@ if [ "$VIEWPORT" != "" ]
 then
     VIEWPORT_YSLOW="-vp $VIEWPORT"
 fi
+
+
 
 # Finished verify the input
 }
@@ -536,7 +555,7 @@ OPTIONS:
    -z      Create a tar zip file of the result files, default is false [optional]
    -x      The proxy host & protocol: proxy.soulgalore.com:80 [optional] 
    -t      The proxy type, default is http [optional]
-   -a      The user agent, default is "Mozilla/6.0" [optional]
+   -a      The full user agent String, default is Chrome for MacOSX. You can also set the value as iphone or ipad, that automatically also sets the viewport [optional]
    -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional] 
    -y      The compiled yslow file, default is dependencies/yslow-3.1.5-sitespeed.js [optional]
    -l      Which ruleset to use, default is the latest sitespeed.io version [optional]

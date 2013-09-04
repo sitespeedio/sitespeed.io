@@ -9,12 +9,12 @@ version 2.0
 * You can now configure to show the following colums on page summary: KBPS, nr of domain, largest image, total image size, browser scaled images, total js size and total css size
 * You can now add your own data to be showed in the columns on page summary!
 * You can now configure which boxes to show on the site summary page. 
-* TODO: add new summary boxes
 * Tech: Cleanup of the sitespeed.io script, making it a little easier to follow
 * Tech: Renaming & restructuring of templates to follow doc naming
 * Added IP of the computer running the test in the result.xml
 * Set the max pages to test
-* TODO: Test multiple sites at once
+* Add user agent iphone or ipad and a real agent & viewport is set
+* You can now test multiple sites and compare them
 * CSV: Choose which column to add and always output ip, start url & date
 * Bug fix: URL:s that returns error (4XX-5XX and that sitespeed can't analyze) is now included in the JUnit xml
 * Bug fix: The JUnit script can now output files to a relative path
