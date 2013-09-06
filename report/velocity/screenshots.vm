@@ -6,8 +6,10 @@
 			The screenshots for viewport $viewport
 		</h2>
 
+
+		#set ($imgs = $images.split("@"))
 		#foreach ($url in $urls.split("@"))
-		     #set($name = $url.replaceAll('http://','').replaceAll('https://','').replaceAll('[^a-zA-Z0-9]','-'))
+			#set ($name=$imgs.get($math.sub($foreach.count,1)))
 		    <h3 id="$name"><a href="$url" target="_blank">$url</a></h3>
 		    <p>		   
 		       	#set($image = $name.concat(".png"))

@@ -347,18 +347,18 @@ exit 0
 fi
 
 # read the urls
-urls=()
+URLS=()
 while read txt ; do
-   urls[${#urls[@]}]=$txt
+   URLS[${#URLS[@]}]=$txt
 done < $REPORT_DATA_DIR/urls.txt
 
 ## If we have a max size of URL:s to test, only use the first MAX_PAGES
-NR_OF_URLS=${#urls[@]}
+NR_OF_URLS=${#URLS[@]}
 if [ "$NR_OF_URLS" -gt "$MAX_PAGES" ]
   then
     for (( c=$MAX_PAGES; c<=$NR_OF_URLS; c++ ))
     do
-      unset urls[$c] 
+      unset URLS[$c] 
     done
 fi
 
@@ -379,19 +379,19 @@ SHOW_ERROR_URLS="-Dcom.soulgalore.velocity.key.showserrorurls=$HAS_ERROR_URLS"
 #*******************************************************
 function analyze_pages {
 
-echo "Will analyze ${#urls[@]} pages" 
+echo "Will analyze ${#URLS[@]} pages" 
 
 # Setup start parameters, 0 jobs are running and the first file name
 JOBS=0
 RUNS=0
 
-for url in "${urls[@]}"
+for url in "${URLS[@]}"
 
 do analyze "$url" "$RUNS" &
     JOBS=$[$JOBS+1]
     RUNS=$[$RUNS+1]
     if [ $(($RUNS%20)) == 0 ]; then
-      echo "Analyzed $RUNS pages out of ${#urls[@]}"
+      echo "Analyzed $RUNS pages out of ${#URLS[@]}"
     fi
     if [ "$JOBS" -ge "$MAX_PROCESSES" ]
 	   then
@@ -535,41 +535,36 @@ function take_screenshots() {
 
 echo 'Create all png:s'
 mkdir $REPORT_IMAGE_PAGES_DIR
-WIDTH=$(echo $VIEWPORT | cut -d'x' -f1)
-HEIGHT=$(echo $VIEWPORT | cut -d'x' -f2)
-URL_LIST=
+local width=$(echo $VIEWPORT | cut -d'x' -f1)
+local height=$(echo $VIEWPORT | cut -d'x' -f2)
+local urls=
+local imagenames=
 
 ## If pngcrush exist, use it to crush the images
 command -v pngcrush >/dev/null && PNGCRUSH_EXIST=true || PNGCRUSH_EXIST=false
 
-RUNS=0
-for url in "${urls[@]}"
+local runs=0
+for url in "${URLS[@]}"
   do 
-    PAGEFILENAME=$(echo ${url#*//})
-    PAGEFILENAME=$(echo ${PAGEFILENAME//[^a-zA-Z0-9]/'-'})
-    # take care of too long names
-    if [ ${#PAGEFILENAME} -gt $MAX_FILENAME_LENGTH ]
-      then  
-      PAGEFILENAME=$(echo $PAGEFILENAME | cut -c1-$MAX_FILENAME_LENGTH)
-      PAGEFILENAME="$PAGEFILENAME$RUNS"
-    fi
-
-    echo "Creating screenshot for $url $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png "
-    phantomjs $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js "$url" $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png $WIDTH $HEIGHT "$USER_AGENT" true  > /dev/null 2>&1
+    local imagefilename=$(get_filename $url $runs)
+    echo "Creating screenshot for $url $REPORT_IMAGE_PAGES_DIR/$imagefilename.png "
+    phantomjs $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js "$url" "$REPORT_IMAGE_PAGES_DIR/$imagefilename.png" $width $$height "$USER_AGENT" true  > /dev/null 2>&1
     if $PNGCRUSH_EXIST
       then
-        pngcrush -q $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME-c.png
-        mv $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME-c.png $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png
+        pngcrush -q $REPORT_IMAGE_PAGES_DIR/$imagefilename.png $REPORT_IMAGE_PAGES_DIR/$imagefilename-c.png
+        mv $REPORT_IMAGE_PAGES_DIR/$imagefilename-c.png $REPORT_IMAGE_PAGES_DIR/$imagefilename.png
     fi 
-    URL_LIST+="$url"
-    URL_LIST+="@"
-    RUNS=$[$RUNS+1]
+    local urls+="$url"
+    local urls+="@"
+    local imagenames+="$imagefilename"
+    local imagenames+="@"
+    local runs=$[$runs+1]
   done  
-VP="-Dcom.soulgalore.velocity.key.viewport=$VIEWPORT"
-TOTAL_SCREENSHOTS="-Dcom.soulgalore.velocity.key.totalscreenshots=$PAGEFILENAME"
-URL_LIST="-Dcom.soulgalore.velocity.key.urls=$URL_LIST"
+local vp="-Dcom.soulgalore.velocity.key.viewport=$VIEWPORT"
+local url_list="-Dcom.soulgalore.velocity.key.urls=$urls"
+local image_list="-Dcom.soulgalore.velocity.key.images=$imagenames"
 echo 'Create the screenshots.html'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$VP" "$TOTAL_SCREENSHOTS" "$URL_LIST" "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/screenshots.vm $PROPERTIES_DIR/screenshots.properties $REPORT_DIR/screenshots.html || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$vp" "$url_list" "$image_list" "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/screenshots.vm $PROPERTIES_DIR/screenshots.properties $REPORT_DIR/screenshots.html || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/screenshots.html $REPORT_DIR/screenshots.html
 
 }
@@ -618,15 +613,7 @@ function analyze() {
     # setup the parameters, same names maybe makes it easier
     local url=$1
     local runs=$2
-    local pagefilename=$(echo ${url#*//})
-    local pagefilename=$(echo ${pagefilename//[^a-zA-Z0-9]/'-'})
-
-    # take care of too long names
-    if [ ${#pagefilename} -gt $MAX_FILENAME_LENGTH ]
-      then
-      local pagefilename=$(echo $pagefilename | cut -c1-$MAX_FILENAME_LENGTH)
-      local pagefilename="$pagefilename$runs"
-    fi
+    local pagefilename=$(get_filename $1 $2)
 
     echo "Analyzing $url"
     phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW -n "$pagefilename.har" "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
@@ -671,5 +658,26 @@ function analyze() {
    
 }
 
+#*******************************************************
+# Generate a filename from a URL
+# $1 the url 
+# $2 a unique number that is used if the url is too long
+#*******************************************************
+function get_filename() {
+local url=$1
+local unique=$2
+local pagefilename=$(echo ${url#*//})
+local pagefilename=$(echo ${pagefilename//[^a-zA-Z0-9]/'-'})
+
+# take care of too long names
+if [ ${#pagefilename} -gt $MAX_FILENAME_LENGTH ]
+  then
+      local pagefilename=$(echo $pagefilename | cut -c1-$MAX_FILENAME_LENGTH)
+      local pagefilename="$pagefilename$unique"
+fi
+
+echo $pagefilename
+
+}
 # launch
 main "$@"
