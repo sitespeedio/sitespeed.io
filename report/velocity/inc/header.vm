@@ -62,6 +62,11 @@
               <a href="$!{pathToIncludes}screenshots.html">Screenshots</a>
             </li>
             #end
+            #if ($showserrorurls==true)
+            <li#if( $pageMenu == "errorurls" ) class="active" #end>
+              <a href="$!{pathToIncludes}errorurls.html">Errors</a>
+            </li>
+            #end
           </ul>
     </nav><!-- /.nav-collapse -->
     #end

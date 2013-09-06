@@ -64,6 +64,8 @@ MAX_PAGES=999999
 ## Do we have any urls hat doesn't return 2XX?
 HAS_ERROR_URLS=false
 
+MAX_FILENAME_LENGTH=245
+
 ## Easy way to set your user agent as an Iphone
 IPHONE_IO6_AGENT="Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25"
 IPHONE5_VIEWPORT="320x444"
@@ -83,9 +85,10 @@ main() {
         setup_dirs_and_dependencies
         fetch_urls
         analyze_pages
-        copy_assets  
-        generate_error_file  
+        copy_assets   
+        generate_error_file 
         generate_result_files  
+          
 }
 
 
@@ -358,6 +361,16 @@ if [ "$NR_OF_URLS" -gt "$MAX_PAGES" ]
       unset urls[$c] 
     done
 fi
+
+## If we have error URLs make sure they are added to the menu
+if [ -e $REPORT_DATA_DIR/errorurls.txt ];
+then
+  HAS_ERROR_URLS=true
+fi
+
+SHOW_ERROR_URLS="-Dcom.soulgalore.velocity.key.showserrorurls=$HAS_ERROR_URLS"
+
+
 }
 
 
@@ -374,7 +387,7 @@ RUNS=0
 
 for url in "${urls[@]}"
 
-do analyze "$url" &
+do analyze "$url" "$RUNS" &
     JOBS=$[$JOBS+1]
     RUNS=$[$RUNS+1]
     if [ $(($RUNS%20)) == 0 ]; then
@@ -441,11 +454,11 @@ rm $REPORT_DATA_DIR/summary.xml.tmp
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type xml  -o $REPORT_DATA_DIR/summary.xml $REPORT_DATA_DIR/summary.xml
 
 echo 'Create the summary.details.html'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/detailed.site.summary.vm $PROPERTIES_DIR/summary.details.properties $REPORT_DIR/summary.details.html || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/detailed.site.summary.vm $PROPERTIES_DIR/summary.details.properties $REPORT_DIR/summary.details.html || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/summary.details.html $REPORT_DIR/summary.details.html
 
 echo 'Create the pages.html'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$PAGES_COLUMNS" "$SCREENSHOT" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/pages.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.html || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$PAGES_COLUMNS" "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/pages.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.html || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/pages.html $REPORT_DIR/pages.html
 
 if $OUTPUT_CSV 
@@ -455,17 +468,17 @@ if $OUTPUT_CSV
 fi
 
 echo 'Create the summary index.html'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SUMMARY_BOXES" "$SCREENSHOT" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/site.summary.vm $PROPERTIES_DIR/site.summary.properties $REPORT_DIR/index.html || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SUMMARY_BOXES" "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/site.summary.vm $PROPERTIES_DIR/site.summary.properties $REPORT_DIR/index.html || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/index.html $REPORT_DIR/index.html
 
 echo 'Create the assets.html'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/assets.vm $PROPERTIES_DIR/assets.properties $REPORT_DIR/assets.html || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/assets.vm $PROPERTIES_DIR/assets.properties $REPORT_DIR/assets.html || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/assets.html $REPORT_DIR/assets.html
 
 echo 'Create the rules.html'
 ## hack for just getting one file with the rules, take the first one in the dir!
 FILE_WITH_RULES=$(ls $REPORT_DATA_PAGES_DIR | head -n 1)
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$FILE_WITH_RULES $VELOCITY_DIR/rules.vm $PROPERTIES_DIR/rules.properties $REPORT_DIR/rules.html || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$FILE_WITH_RULES $VELOCITY_DIR/rules.vm $PROPERTIES_DIR/rules.properties $REPORT_DIR/rules.html || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/rules.html $REPORT_DIR/rules.html
 
 if $OUTPUT_IMAGES 
@@ -504,13 +517,14 @@ then
   done
   echo '</results>' >> $REPORT_DATA_DIR/errorurls.xml
   echo 'Create the errorurls.html'
-  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/errorurls.xml $VELOCITY_DIR/errorurls.vm $PROPERTIES_DIR/errorurls.properties $REPORT_DIR/errorurls.html || exit 1
+  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/errorurls.xml $VELOCITY_DIR/errorurls.vm $PROPERTIES_DIR/errorurls.properties $REPORT_DIR/errorurls.html || exit 1
   "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/errorurls.html $REPORT_DIR/errorurls.html
-  HAS_ERROR_URLS=true
+  
 else
   # create an empty xml file
   echo '<?xml version="1.0" encoding="UTF-8"?><results></results>'  > $REPORT_DATA_DIR/errorurls.xml
 fi
+
 }
 
 #*******************************************************
@@ -527,15 +541,17 @@ URL_LIST=
 
 ## If pngcrush exist, use it to crush the images
 command -v pngcrush >/dev/null && PNGCRUSH_EXIST=true || PNGCRUSH_EXIST=false
-  
+
+RUNS=0
 for url in "${urls[@]}"
   do 
     PAGEFILENAME=$(echo ${url#*//})
     PAGEFILENAME=$(echo ${PAGEFILENAME//[^a-zA-Z0-9]/'-'})
     # take care of too long names
-    if [ ${#PAGEFILENAME} -gt 250 ]
-      then
-      PAGEFILENAME=$(echo $PAGEFILENAME | cut -c1-250)
+    if [ ${#PAGEFILENAME} -gt $MAX_FILENAME_LENGTH ]
+      then  
+      PAGEFILENAME=$(echo $PAGEFILENAME | cut -c1-$MAX_FILENAME_LENGTH)
+      PAGEFILENAME="$PAGEFILENAME$RUNS"
     fi
 
     echo "Creating screenshot for $url $REPORT_IMAGE_PAGES_DIR/$PAGEFILENAME.png "
@@ -547,12 +563,13 @@ for url in "${urls[@]}"
     fi 
     URL_LIST+="$url"
     URL_LIST+="@"
+    RUNS=$[$RUNS+1]
   done  
 VP="-Dcom.soulgalore.velocity.key.viewport=$VIEWPORT"
 TOTAL_SCREENSHOTS="-Dcom.soulgalore.velocity.key.totalscreenshots=$PAGEFILENAME"
 URL_LIST="-Dcom.soulgalore.velocity.key.urls=$URL_LIST"
 echo 'Create the screenshots.html'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$VP" "$TOTAL_SCREENSHOTS" "$URL_LIST" "$SCREENSHOT" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/screenshots.vm $PROPERTIES_DIR/screenshots.properties $REPORT_DIR/screenshots.html || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$VP" "$TOTAL_SCREENSHOTS" "$URL_LIST" "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/screenshots.vm $PROPERTIES_DIR/screenshots.properties $REPORT_DIR/screenshots.html || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/screenshots.html $REPORT_DIR/screenshots.html
 
 }
@@ -595,17 +612,20 @@ EOF
 #*******************************************************
 # Analyze function, call it to analyze a page
 # $1 the url to analyze
+# $2 runs
 #*******************************************************
 function analyze() {
     # setup the parameters, same names maybe makes it easier
-    url=$1
-    pagefilename=$(echo ${url#*//})
-    pagefilename=$(echo ${pagefilename//[^a-zA-Z0-9]/'-'})
+    local url=$1
+    local runs=$2
+    local pagefilename=$(echo ${url#*//})
+    local pagefilename=$(echo ${pagefilename//[^a-zA-Z0-9]/'-'})
 
     # take care of too long names
-    if [ ${#pagefilename} -gt 250 ]
+    if [ ${#pagefilename} -gt $MAX_FILENAME_LENGTH ]
       then
-      pagefilename=$(echo $pagefilename | cut -c1-250)
+      local pagefilename=$(echo $pagefilename | cut -c1-$MAX_FILENAME_LENGTH)
+      local pagefilename="$pagefilename$runs"
     fi
 
     echo "Analyzing $url"
@@ -614,7 +634,7 @@ function analyze() {
     #move the HAR-file to the HAR dir
     mv "$pagefilename.har" $REPORT_DATA_HAR_DIR/
 
-    s=$(du -k "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" | cut -f1)
+    local s=$(du -k "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" | cut -f1)
     # Check that the size is bigger than 0
     if [ $s -lt 10 ]
       then
@@ -635,9 +655,9 @@ function analyze() {
     curl "$USER_AGENT_CURL" --compressed -o /dev/null -w "%{time_starttransfer};%{size_download}\n" -L -s "$url" >  "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
     
     read -r TTFB_SIZE <  $REPORT_DATA_PAGES_DIR/$pagefilename.info
-    TTFB="$(echo $TTFB_SIZE  | cut -d \; -f 1)"
-    SIZE="$(echo $TTFB_SIZE  | cut -d \; -f 2)"
-    TTFB="$(printf "%.3f" $TTFB)"
+    local TTFB="$(echo $TTFB_SIZE  | cut -d \; -f 1)"
+    local SIZE="$(echo $TTFB_SIZE  | cut -d \; -f 2)"
+    local TTFB="$(printf "%.3f" $TTFB)"
   
     rm "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
     # Hack for adding link and other data to the xml file
@@ -646,7 +666,7 @@ function analyze() {
     sed 's{<results>{<results filename="'$pagefilename'" size="'$SIZE'"><curl><![CDATA['"$XML_URL"']]></curl>{' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
     mv $REPORT_DATA_PAGES_DIR/$pagefilename-bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml 
 
-    "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$SCREENSHOT" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml $VELOCITY_DIR/page.vm $PROPERTIES_DIR/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1
+    "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml $VELOCITY_DIR/page.vm $PROPERTIES_DIR/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1
     "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_PAGES_DIR/$pagefilename.html $REPORT_PAGES_DIR/$pagefilename.html
    
 }
