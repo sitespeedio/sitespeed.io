@@ -64,6 +64,7 @@ MAX_PAGES=999999
 ## Do we have any urls hat doesn't return 2XX?
 HAS_ERROR_URLS=false
 
+## Max length of a filename created by the url
 MAX_FILENAME_LENGTH=245
 
 ## Easy way to set your user agent as an Iphone
@@ -73,6 +74,11 @@ IPHONE5_VIEWPORT="320x444"
 ## Easy way to set your user agent as an Ipad
 IPAD_IO6_AGENT="Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25"
 IPAD_VIEWPORT="768x1024"
+
+# Jar files, specify the versions
+CRAWLER_JAR=crawler-1.5.4-full.jar
+VELOCITY_JAR=xml-velocity-1.8-SNAPSHOT-full.jar
+HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 
 #*******************************************************
 # Main program
@@ -87,7 +93,8 @@ main() {
         analyze_pages
         copy_assets   
         generate_error_file 
-        generate_result_files  
+        generate_result_files
+        finished  
           
 }
 
@@ -266,9 +273,6 @@ then
     VIEWPORT_YSLOW="-vp $VIEWPORT"
 fi
 
-
-
-# Finished verify the input
 }
 
 #*******************************************************
@@ -279,8 +283,7 @@ function setup_dirs_and_dependencies {
 # Switch to my dir
 cd "$(dirname ${BASH_SOURCE[0]})"
 
-NOW=$(date +"%Y-%m-%d-%H-%M-%S")
-DATE=$(date) 
+local now=$(date +"%Y-%m-%d-%H-%M-%S")
 
 if [[ -z $FILE ]] 
   then
@@ -290,22 +293,17 @@ else
 fi
 
 # Logging versions
-pVersion=$(phantomjs --version) 
-echo "Using PhantomJS version $pVersion" 
+echo "Using PhantomJS version $(phantomjs --version)" 
 echo "Using Java version $jVersion" 
 
 # remove the protocol                                                                                                                                                            
-NOPROTOCOL=${URL#*//}
-HOST=${NOPROTOCOL%%/*}
+local noprotocol=${URL#*//}
+HOST=${noprotocol%%/*}
 
-# Jar files
-CRAWLER_JAR=crawler-1.5.4-full.jar
-VELOCITY_JAR=xml-velocity-1.8-SNAPSHOT-full.jar
-HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 
 # Setup dirs                                                                                                                                                             
 DEPENDENCIES_DIR="dependencies"
-REPORT_DIR_NAME=$HOST/$NOW
+REPORT_DIR_NAME=$HOST/$now
 REPORT_DIR=$REPORT_BASE_DIR/$REPORT_DIR_NAME
 REPORT_DATA_DIR=$REPORT_DIR/data
 REPORT_DATA_HAR_DIR=$REPORT_DATA_DIR/har
@@ -370,7 +368,6 @@ fi
 
 SHOW_ERROR_URLS="-Dcom.soulgalore.velocity.key.showserrorurls=$HAS_ERROR_URLS"
 
-
 }
 
 
@@ -382,18 +379,18 @@ function analyze_pages {
 echo "Will analyze ${#URLS[@]} pages" 
 
 # Setup start parameters, 0 jobs are running and the first file name
-JOBS=0
-RUNS=0
+local jobs=0
+local runs=0
 
 for url in "${URLS[@]}"
 
-do analyze "$url" "$RUNS" &
-    JOBS=$[$JOBS+1]
-    RUNS=$[$RUNS+1]
-    if [ $(($RUNS%20)) == 0 ]; then
-      echo "Analyzed $RUNS pages out of ${#URLS[@]}"
+do analyze "$url" "$runs" &
+    local jobs=$[$jobs+1]
+    local runs=$[$runs+1]
+    if [ $(($runs%20)) == 0 ]; then
+      echo "Analyzed $runs pages out of ${#URLS[@]}"
     fi
-    if [ "$JOBS" -ge "$MAX_PROCESSES" ]
+    if [ "$jobs" -ge "$MAX_PROCESSES" ]
 	   then
 	   wait
 	   JOBS=0
@@ -487,12 +484,19 @@ if $OUTPUT_IMAGES
 fi
 
 if $CREATE_TAR_ZIP
-    then
+  then
       echo "Creating zip file"
       tar -cf $REPORT_DIR_NAME.tar $REPORT_DIR 
       gzip $REPORT_DIR_NAME.tar
-    fi
+fi
 
+}
+
+#*******************************************************
+# Make a clean exit
+#
+#*******************************************************
+function finished {
 echo "Finished"
 exit 0
 }
@@ -506,7 +510,7 @@ function generate_error_file {
 # take care of error urls
 if [ -e $REPORT_DATA_DIR/errorurls.txt ];
 then
-  resultError=()
+  local resultError=()
   while read txt ; do
     resultError[${#resultError[@]}]=$txt
   done < $REPORT_DATA_DIR/errorurls.txt
@@ -679,5 +683,6 @@ fi
 echo $pagefilename
 
 }
+
 # launch
 main "$@"
