@@ -95,7 +95,7 @@ main() {
         generate_error_file 
         generate_result_files
         finished  
-          
+        
 }
 
 
@@ -497,7 +497,7 @@ fi
 #
 #*******************************************************
 function finished {
-echo "Finished"
+echo "Finished analyzing $HOST"
 exit 0
 }
 
