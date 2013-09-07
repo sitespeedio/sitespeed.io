@@ -34,7 +34,7 @@ VELOCITY_JAR=xml-velocity-1.8-SNAPSHOT-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 
 # Setup dirs                                                                                                                                                             
-DEPENDENCIES_DIR="dependencies"
+DEPENDENCIES_DIR=dependencies
 VELOCITY_DIR=report/velocity
 PROPERTIES_DIR=report/properties
 
@@ -51,6 +51,7 @@ main() {
 	analyze "$@"
   generate_sites_xml
   generate_output_files
+  finish
 }
 
 #*******************************************************
@@ -130,10 +131,10 @@ fi
 
 function analyze {
 
-RUNS=0
+local runs=0
 
 # read the urls
-urls=()
+local urls=()
 while read txt ; do
    urls[${#urls[@]}]=$txt
 done < $FILE_NAME
@@ -143,9 +144,9 @@ echo "Will analyze ${#urls[@]} sites"
 for url in "${urls[@]}" 
 do   
     sh ./sitespeed.io -u $url "$@" -r $REPORT_BASE_DIR/$NOW
-    RUNS=$[$RUNS+1]
-    if [ $(($RUNS%20)) == 0 ]; then
-      echo "Analyzed $RUNS sites out of ${#urls[@]}"
+    runs=$[$runs+1]
+    if [ $(($runs%20)) == 0 ]; then
+      echo "Analyzed $runs sites out of ${#urls[@]}"
     fi
 done
 
@@ -163,9 +164,9 @@ cd "$(dirname ${BASH_SOURCE[0]})"
 HOME="$(pwd)"
 
 # Here is the output file
-SITES_XML=$HOME/$REPORT_BASE_DIR/$NOW/sites.xml
+local sites_xml=$HOME/$REPORT_BASE_DIR/$NOW/sites.xml
 
-echo '<?xml version="1.0" encoding="UTF-8"?><sites>'  > "$SITES_XML" 
+echo '<?xml version="1.0" encoding="UTF-8"?><sites>'  > "$sites_xml" 
 
 cd $REPORT_BASE_DIR/$NOW
 
@@ -173,12 +174,12 @@ for i in * ; do
   if [ -d "$i" ]; then
     echo "Adding $i to sites.xml"
     cd "$i"
-    DATE_DIR="$(\ls -1dt */ | head -n 1)"
-    cd $DATE_DIR
-    ABSOLUTE_ANALYZE_DIR=$(pwd)
-    SUMMARY_XML="$ABSOLUTE_ANALYZE_DIR/data/summary.xml"
-    if [ -e $SUMMARY_XML ]; then
-	  sed 's/<?xml version="1.0" encoding="UTF-8"?>//g' $SUMMARY_XML >> "$SITES_XML"
+    local date_dir="$(\ls -1dt */ | head -n 1)"
+    cd $date_dir
+    local abs_analyze_dir=$(pwd)
+    local summary_xml="$abs_analyze_dir/data/summary.xml"
+    if [ -e $summary_xml ]; then
+	  sed 's/<?xml version="1.0" encoding="UTF-8"?>//g' $summary_xml >> "$sites_xml"
     else
 	  echo "Missing summary.xml for $i, will not add that to the sites.xml"
     fi
@@ -186,7 +187,7 @@ for i in * ; do
   fi
 done
 
-echo '</sites>'  >> "$SITES_XML"
+echo '</sites>'  >> "$sites_xml"
 cd $HOME
 }
 
@@ -209,6 +210,11 @@ cp "$BASE_DIR"report/img/*.* $REPORT_BASE_DIR/$NOW/img
 cp "$BASE_DIR"report/img/ico/* $REPORT_BASE_DIR/$NOW/img/ico
 cp "$BASE_DIR"report/fonts/* $REPORT_BASE_DIR/$NOW/fonts
 
+}
+
+function finish {
+  echo "Finish"
+  exit 0
 }
 
 #*******************************************************
