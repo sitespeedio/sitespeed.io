@@ -95,7 +95,7 @@ then
 fi
 
 # absolute path
-if [[ "$1" = /* ]]
+if [[ "$OUTPUT_DIR" = /* ]]
 then
 OUTPUT_DIR=$OUTPUT_DIR
 else
