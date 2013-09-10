@@ -5,7 +5,7 @@ Sitespeed.io continues to envolve thanks to people who contributes, so please pl
 If you want help out, that's great! Check the issue list and see if there's something there you want to do and drop me a note so I know and I can help you get into the project.
 
 ## Add a defect
-First, check the defect/bug list https://github.com/soulgalore/sitespeed.io/issues?labels=bug&page=1&state=open to make sure that it hasnät been filed yet.
+First, check the defect/bug list https://github.com/soulgalore/sitespeed.io/issues?labels=bug&page=1&state=open to make sure that it hasn't been filed yet.
 
 If you find a defect, please file a bug report. Include the following:
  - Explain the bug/defect and what you where doing
@@ -19,4 +19,5 @@ If you have an idea or something that you need sitespeed.io to handle, add an is
 
 
 Thanks for your time!
+
 Peter
