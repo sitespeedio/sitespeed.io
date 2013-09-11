@@ -18,6 +18,6 @@ If you have the skills & the time, it is perfect if you send a pull request with
 If you have an idea or something that you need sitespeed.io to handle, add an issue and lets discuss it there. Ideas/changes/requests are very very welcome!
 
 
-Thanks for your time!
+Thanks for your support & time!
 
 Peter
