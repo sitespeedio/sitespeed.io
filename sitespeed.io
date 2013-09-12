@@ -67,6 +67,8 @@ HAS_ERROR_URLS=false
 ## Max length of a filename created by the url
 MAX_FILENAME_LENGTH=245
 
+SCREENSHOT=false
+
 ## Easy way to set your user agent as an Iphone
 IPHONE_IO6_AGENT="Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25"
 IPHONE5_VIEWPORT="320x444"
@@ -128,7 +130,7 @@ fi
 #*******************************************************
 function get_input {
 # Set options
-while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:” OPTION
+while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:k:” OPTION
 do
      case $OPTION in
          h)
@@ -155,6 +157,7 @@ do
          g)PAGES_COLUMNS=$OPTARG;;
          b)SUMMARY_BOXES=$OPTARG;;
          j)MAX_PAGES=$OPTARG;;  
+         k)SCREENSHOT=$OPTARG;;
          # Note: The e & i are uses in the script that analyzes multiple sites
          e);;
          i);;  
@@ -200,14 +203,8 @@ else
     NOT_IN_URL=""
 fi
 
-if [[ "$OUTPUT_FORMAT" == *img* ]]
-  then 
-  OUTPUT_IMAGES=true
-else
-   OUTPUT_IMAGES=false
-fi  
-
-SCREENSHOT="-Dcom.soulgalore.velocity.key.showscreenshots=$OUTPUT_IMAGES"
+TAKE_SCREENSHOTS=$SCREENSHOT
+SCREENSHOT="-Dcom.soulgalore.velocity.key.showscreenshots=$SCREENSHOT"
 
 if [[ "$OUTPUT_FORMAT" == *csv* ]]
   then 
@@ -478,7 +475,7 @@ FILE_WITH_RULES=$(ls $REPORT_DATA_PAGES_DIR | head -n 1)
 "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$FILE_WITH_RULES $VELOCITY_DIR/rules.vm $PROPERTIES_DIR/rules.properties $REPORT_DIR/rules.html || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/rules.html $REPORT_DIR/rules.html
 
-if $OUTPUT_IMAGES 
+if $TAKE_SCREENSHOTS 
   then
   take_screenshots
 fi
@@ -552,7 +549,10 @@ for url in "${URLS[@]}"
   do 
     local imagefilename=$(get_filename $url $runs)
     echo "Creating screenshot for $url $REPORT_IMAGE_PAGES_DIR/$imagefilename.png "
-    phantomjs $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js "$url" "$REPORT_IMAGE_PAGES_DIR/$imagefilename.png" $width $$height "$USER_AGENT" true  > /dev/null 2>&1
+    phantomjs $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js "$url" "$REPORT_IMAGE_PAGES_DIR/$imagefilename.png" $width $height "$USER_AGENT" true  > /dev/null 2>&1
+
+    echo phantomjs $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js "$url" "$REPORT_IMAGE_PAGES_DIR/$imagefilename.png" $width $$height "$USER_AGENT" true  
+
     if $PNGCRUSH_EXIST
       then
         pngcrush -q $REPORT_IMAGE_PAGES_DIR/$imagefilename.png $REPORT_IMAGE_PAGES_DIR/$imagefilename-c.png
@@ -593,18 +593,19 @@ OPTIONS:
    -p      The number of processes that will analyze pages, default is 5 [optional]
    -m      The memory heap size for the java applications, default is 1024 Mb [optional]
    -n      Give your test a name, it will be added to all HTML pages [optional]
-   -o      The output format, always output as html but you can add images and a csv file for the detailed site summary page  (img|csv) [optional]
+   -o      The output format, always output as HTML and you can also output a csv file for the detailed site summary page  (csv) [optional]
    -r      The result base directory, default is sitespeed-result [optional]
    -z      Create a tar zip file of the result files, default is false [optional]
    -x      The proxy host & protocol: proxy.soulgalore.com:80 [optional] 
    -t      The proxy type, default is http [optional]
    -a      The full user agent String, default is Chrome for MacOSX. You can also set the value as iphone or ipad, that automatically also sets the viewport [optional]
    -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional] 
-   -y      The compiled yslow file, default is dependencies/yslow-3.1.5-sitespeed.js [optional]
-   -l      Which ruleset to use, default is the latest sitespeed.io version [optional]
+   -y      The compiled YSlow file, default is dependencies/yslow-3.1.5-sitespeed.js [optional]
+   -l      Which ruleset to use, default is the latest sitespeed.io version for desktop [optional]
    -g      The columns showed on detailes page summary table, see http://sitespeed.io/documentation/#pagescolumns for more info [optional] 
    -b      The boxes showed on site summary page, see http://sitespeed.io/documentation/#sitesummaryboxes for more info [optional]
    -j      The max number of pages to test [optional]   
+   -k      Take screenshots for eacch tested page (with the configured view port). Default is false. (true|false) [optional] 
 EOF
 }
 
