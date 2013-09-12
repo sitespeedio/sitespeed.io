@@ -585,27 +585,27 @@ Sitespeed is a tool that helps you analyze your website performance and show you
 
 OPTIONS:
    -h      Help
-   -u      The start url of the crawl with the format of http[s]://host[:port][/path/]. Use this or use the -f file option.
-   -f      The path to a plain text file with one url on each row. These URL:s will be used instead crawling.
-   -d      The crawl depth, default is 1 [optional]
-   -c      Crawl only on this path [optional]
-   -s      Skip urls that contains this in the path [optional]
+   -u      The start URL of the crawl: http[s]://host[:port][/path/]. Use this or use the -f file option.
+   -f      The path to a plain text file with one URL on each row.
+   -d      The crawl depth, default is 1 (one page and all links pointing to the same domain on that page) [optional]
+   -c      Crawl URLs only URLs that contains this keyword in the path [optional]
+   -s      Skip URLs that contains this keyword in the path [optional]
    -p      The number of processes that will analyze pages, default is 5 [optional]
-   -m      The memory heap size for the java applications, default is 1024 Mb [optional]
+   -m      The memory heap size for the Java applications, default is 1024 Mb [optional]
    -n      Give your test a name, it will be added to all HTML pages [optional]
-   -o      The output format, always output as HTML and you can also output a csv file for the detailed site summary page  (csv) [optional]
+   -o      The output format, always output as HTML and you can also output a CSV file for the detailed site summary page  (csv) [optional]
    -r      The result base directory, default is sitespeed-result [optional]
    -z      Create a tar zip file of the result files, default is false [optional]
    -x      The proxy host & protocol: proxy.soulgalore.com:80 [optional] 
    -t      The proxy type, default is http [optional]
-   -a      The full user agent String, default is Chrome for MacOSX. You can also set the value as iphone or ipad, that automatically also sets the viewport [optional]
+   -a      The full User Agent string, default is Chrome for MacOSX. You can also set the value as iphone or ipad (will automagically change the viewport) [optional]
    -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional] 
    -y      The compiled YSlow file, default is dependencies/yslow-3.1.5-sitespeed.js [optional]
    -l      Which ruleset to use, default is the latest sitespeed.io version for desktop [optional]
    -g      The columns showed on detailes page summary table, see http://sitespeed.io/documentation/#pagescolumns for more info [optional] 
    -b      The boxes showed on site summary page, see http://sitespeed.io/documentation/#sitesummaryboxes for more info [optional]
    -j      The max number of pages to test [optional]   
-   -k      Take screenshots for eacch tested page (with the configured view port). Default is false. (true|false) [optional] 
+   -k      Take screenshots for each page (using the configured view port). Default is false. (true|false) [optional] 
 EOF
 }
 
