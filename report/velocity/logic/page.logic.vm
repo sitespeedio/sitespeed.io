@@ -65,18 +65,28 @@
 #set($otherRequests = $math.sub($document.getRootElement().getChild("r").getValue(),$requests))
 #set($totalRequests =  $document.getRootElement().getChild("r").getValue())
 
-## the number of request per host
+## the number of request per host & size
 #set($hostAndRequests = $map.clone())
+#set($hostAndSize = $map.clone())
 #foreach ($asset in $document.getRootElement().getChild("comps").getChildren())
 		#set($nrOfRequests = 0)
+		#set($size = 0)
 		#set($theHost = $host.getHost($asset.getChild("url").getValue()))
 		#set($nrOfRequests = $hostAndRequests.get($theHost))
+		#set($size = $hostAndSize.get($theHost))
 		#if(!$nrOfRequests) 
 			#set($nrOfRequests = 1) 
 		#else
-		    	#set($nrOfRequests = $math.add($nrOfRequests, 1))
-		#end	
+			#set($nrOfRequests = $math.add($nrOfRequests, 1))
+		#end
+		#if(!$size) 
+			#set($size = $asset.getChild("size").getValue()) 
+		#else
+			#set($size = $math.add($size, $asset.getChild("size").getValue()))
+		#end
+
 		#set($swallow = $hostAndRequests.put($theHost, $nrOfRequests))
+		#set($swallow = $hostAndSize.put($theHost, $size))
 #end
 
 ## Set up stats for last modified & cache time

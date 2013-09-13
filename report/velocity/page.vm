@@ -364,17 +364,26 @@
 		<div class="row">
 
 			<div class="col-lg-6">
-				<h4>Requests per Domain ($hostAndRequests.size())</h4>
-				<table class="table table-condensed table-striped table-bordered">
+				<h4>Per Domain ($hostAndRequests.size())</h4>
+				<table class="table table-condensed table-striped table-bordered" id="domainsTable">
+					<thead>
+					<tr>
+					<th data-sort="string">Domain</th>
+					<th data-sort="int">Requests</th>
+					<th data-sort="float">Weight (kb)</th>
+					</tr>
+					</thead>	
 					<tbody>
 						#foreach ($entry in $hostAndRequests.entrySet())
 						<tr>
 							<td>$entry.getKey()</td>
 							<td>$entry.getValue()</td>
+							<td>$math.roundTo(2,$math.div($hostAndSize.get($entry.getKey()),1000))</td>
 						</tr>
 						#end
 					</tbody>
 				</table>
+
 			</div>
 			<div class="col-lg-6">
 				<h4>Time</h4>
@@ -486,6 +495,7 @@
 		<script>
 		   $(function(){
         $("#assetsTable").stupidtable();
+        $("#domainsTable").stupidtable();
 		 });
 		</script>
 		<script>
