@@ -223,6 +223,11 @@
 	
 #end
 
+## Include a custom logoc file, if you want to include your own code.
+#if ($filetool.doFileExist("report/velocity/logic/custom/site.summary.logic.vm"))
+        #parse("report/velocity/logic/custom/site.summary.logic.vm")
+#end        
+
 
 
 
