@@ -159,3 +159,13 @@
     border-color:#BCE8F1;
     color:#3A87AD;
   }
+
+  th[data-sort]{
+      cursor:pointer;
+      color: #0095d2;
+      font-weight:bold;
+    }
+    
+    th[data-sort]:hover{
+      text-decoration:underline;
+    }
