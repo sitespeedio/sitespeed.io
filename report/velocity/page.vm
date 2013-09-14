@@ -378,7 +378,7 @@
 						<tr>
 							<td>$entry.getKey()</td>
 							<td>$entry.getValue()</td>
-							<td>$math.roundTo(2,$math.div($hostAndSize.get($entry.getKey()),1000))</td>
+							<td>$math.roundTo(1,$math.div($hostAndSize.get($entry.getKey()),1000))</td>
 						</tr>
 						#end
 					</tbody>
