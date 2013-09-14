@@ -1,4 +1,4 @@
-#set($nrOfCssText = "One is good, more than five is really bad. Five is the average amount of CSS files, data from http://httparchive.org.")
+#set($nrOfCssText = "$rulemanager.getRule($name).greenLimit is ok, more than $rulemanager.getRule($name).yellowLimit is really bad. Five is the average amount of CSS files (http://httparchive.org).")
  
 <div class="alert alert-#getRuleColor($name $cssMedian)">
 	Number of CSS

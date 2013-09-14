@@ -1,4 +1,4 @@
-#set($ttfbText = "Faster than 0.3 seconds is good, more than 0.5 s is really bad.")
+#set($ttfbText = "Faster than $rulemanager.getRule($name).greenLimit seconds is good, more than $rulemanager.getRule($name).yellowLimit seconds is really bad.")
 <div class="alert alert-#getRuleColor($name $ttfbMedian)">
 	Time to first byte
 	<div>

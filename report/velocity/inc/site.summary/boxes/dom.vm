@@ -1,4 +1,4 @@
-#set($domElementsText = "Less than 900 elements is ok, above 1007 is bad (the average from http://httparchive.org)")
+#set($domElementsText = "Less than $rulemanager.getRule($name).greenLimit elements is ok, more than $rulemanager.getRule($name).yellowLimit is bad.")
 <div class="alert alert-#getRuleColor($name $totalDomElementsMedian)">
 	Number of DOM elements
 	<div>

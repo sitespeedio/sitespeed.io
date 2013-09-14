@@ -1,4 +1,4 @@
-#set($documentWeightText = "Below 10 kb is good (gzipped), between 10-26 is ok (but can be better) and above is bad. A small document is good for mobile.")
+#set($documentWeightText = "Below $rulemanager.getRule($name).greenLimit kb is good (gzipped), above $rulemanager.getRule($name).yellowLimit is bad. A small document is good for mobile.")
 <div class="alert alert-#getRuleColor($name $totalDocumentWeightMedian)">
 	Document page weight
 	<div>

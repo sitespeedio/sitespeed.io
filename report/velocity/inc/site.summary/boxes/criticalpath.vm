@@ -1,4 +1,4 @@
-#set($criticalPathText = "You should always aim for score 100, above 95 is OK.")
+#set($criticalPathText = "You should always aim for score 100, less than $rulemanager.getRule($name).yellowLimit is bad.")
 <div class="alert alert-#getRuleColor($name $totalCriticalPathMedian)">
 	Critical Rendering Path Score
 	<div>

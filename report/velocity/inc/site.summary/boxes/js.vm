@@ -1,4 +1,4 @@
-#set($nrOfJsText = "Two or less is good, up to 15 means you should look into it and more than 4 means you need to fix it. 15 is the average amount js request, statistics from http://httparchive.org.")
+#set($nrOfJsText = "$rulemanager.getRule($name).greenLimit or less is good, more than $rulemanager.getRule($name).yellowLimit means you should look into it. 15 is the average amount JS request for a site (http://httparchive.org).")
 <div class="alert alert-#getRuleColor($name $jsMedian)">
 	Number of JS
 	<div>

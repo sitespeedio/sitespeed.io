@@ -1,4 +1,4 @@
-#set($totalImageWeightText = "Less than 500 kb is ok, above 850 is bad.")
+#set($totalImageWeightText = "Less than $rulemanager.getRule($name).greenLimit kb is ok, more than $rulemanager.getRule($name).yellowLimit is bad.")
 <div class="alert alert-#getRuleColor($name $totalImageWeightMedian)">
 	Total image weight
 	<div>

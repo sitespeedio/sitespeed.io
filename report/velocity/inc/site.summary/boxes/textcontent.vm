@@ -1,4 +1,4 @@
-#set($textContentText = "Above 50% is good, below 25% is bad.")
+#set($textContentText = "Above $rulemanager.getRule($name).greenLimit% is good, less than $rulemanager.getRule($name).yellowLimit% is bad.")
 <div class="alert alert-#getRuleColor($name $textContentMedian)">
 	Amount of text content
 	<div>

@@ -1,4 +1,4 @@
-#set($requestText = "Below 25 is good, between 25-88 is something you should look into (88 is the average amount of requests a site has, collected from http://httparchive.org) and above 88 is really bad.")
+#set($requestText = "Below $rulemanager.getRule($name).greenLimit is good, more than $rulemanager.getRule($name).yellowLimit is really bad (88 is the average amount of requests from http://httparchive.org).")
 <div class="alert alert-#getRuleColor($name $requestMedian)">
 	Number of requests
 	<div>

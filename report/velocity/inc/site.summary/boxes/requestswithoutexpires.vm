@@ -1,4 +1,4 @@
-#set($assetsWithoutExpiresText = "0 is good. More than 4 is bad.")
+#set($assetsWithoutExpiresText = "$rulemanager.getRule($name).greenLimit is good. More than $rulemanager.getRule($name).yellowLimit is bad.")
 <div class="alert alert-#getRuleColor($name $totalAssetsWithoutExpiresMedian)">
 	Requests without expires
 	<div>

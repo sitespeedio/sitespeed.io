@@ -1,4 +1,4 @@
-#set($pageWeightText = "Below 1 mb is ok (but really too large for mobile), between 1-1.2 mb is something you should investigate & heavier is bad. 1.2 mb is the average site weight, statistics from http://httparchive.org.")
+#set($pageWeightText = "Below $rulemanager.getRule($name).greenLimit kb is ok (but really too large for mobile), more than $rulemanager.getRule($name).yellowLimit kb is bad. 1.2 mb is the average site weight (http://httparchive.org).")
 <div class="alert alert-#getRuleColor($name $pageWeightMedian)">
 	Total page weight
 	<div>

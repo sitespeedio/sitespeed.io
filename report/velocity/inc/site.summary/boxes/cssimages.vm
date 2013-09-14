@@ -1,4 +1,4 @@
-#set($nrOfCssImageText = "Two is good, above four is bad.")
+#set($nrOfCssImageText = "$rulemanager.getRule($name).greenLimit is good, above $rulemanager.getRule($name).yellowLimit is bad.")
 <div class="alert alert-#getRuleColor($name $cssImageMedian)">
 	Number of CSS images
 	<div>
@@ -6,3 +6,4 @@
 		($cssImagePercentile)
 	</div>
 </div>
+

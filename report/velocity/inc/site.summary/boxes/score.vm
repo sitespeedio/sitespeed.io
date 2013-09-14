@@ -1,4 +1,4 @@
-#set($scoreText = "Higher than 90 is good, between 80-90 is not so good, and below 80 is bad, really bad.")
+#set($scoreText = "Higher than $rulemanager.getRule($name).greenLimit is good and less than $rulemanager.getRule($name).yellowLimit is bad, really bad.")
 <div class="alert alert-#getRuleColor($name $scoreMedian)">
 	Rules
 	<div>

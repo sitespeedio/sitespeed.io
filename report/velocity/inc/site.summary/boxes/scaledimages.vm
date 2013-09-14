@@ -1,4 +1,4 @@
-#set($scaleText = "Never scale images in the browser")
+#set($scaleText = "Never ever scale images in the browser.")
 <div class="alert alert-#getRuleColor($name $scaledImagesMedian)">
 	Browser scaled images
 	<div>
