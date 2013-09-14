@@ -1,8 +1,8 @@
 #set($domElementsText = "Less than 900 elements is ok, above 1007 is bad (the average from http://httparchive.org)")
-<div class="alert alert-#domElementsType($totalDomElementsMedian)">
+<div class="alert alert-#getRuleColor($name $totalDomElementsMedian)">
 	Number of DOM elements
 	<div>
-		<a href="#" rel="popover" class="alert-#domElementsType($totalDomElementsMedian) large" data-trigger="hover" title="The median number of DOM elements per page" data-content="$domElementsText">$totalDomElementsMedian</a>
+		<a href="#" rel="popover" class="alert-#getRuleColor($name $totalDomElementsMedian) large" data-trigger="hover" title="The median number of DOM elements per page" data-content="$domElementsText">$totalDomElementsMedian</a>
 		($domElementsPercentile)
 	</div>
 </div>

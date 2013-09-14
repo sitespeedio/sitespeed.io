@@ -1,8 +1,8 @@
 #set($jsSyncInHeadText = "0 is good, 1 or more is bad and not OK.")
-<div class="alert alert-#totalJsSyncInHeadType($totalJsSyncInHeadMedian)">
+<div class="alert alert-#getRuleColor($name $totalJsSyncInHeadMedian)">
 	Number of JS synchronously in head
 	<div>
-		<a href="#" rel="popover" class="alert-#totalJsSyncInHeadType($totalJsSyncInHeadMedian) large" data-trigger="hover" title="Median number of $totalJsSyncInHeadMedian javascripts are loaded synchronously inside of the head tag #if($math.toInteger($jsInHeadPercentage) >
+		<a href="#" rel="popover" class="alert-#getRuleColor($name $totalJsSyncInHeadMedian) large" data-trigger="hover" title="Median number of $totalJsSyncInHeadMedian javascripts are loaded synchronously inside of the head tag #if($math.toInteger($jsInHeadPercentage) >
 			0) ($jsInHeadPercentage % of the javascript files) #end" data-content="$jsSyncInHeadText">$totalJsSyncInHeadMedian
 		</a>
 		($jsSyncInHeadPercentile)

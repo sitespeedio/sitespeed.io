@@ -1,8 +1,8 @@
 #set($ttfbText = "Faster than 0.3 seconds is good, more than 0.5 s is really bad.")
-<div class="alert alert-#ttfbType($ttfbMedian)">
+<div class="alert alert-#getRuleColor($name $ttfbMedian)">
 	Time to first byte
 	<div>
-		<a href="#" rel="popover" class="alert-#ttfbType($ttfbMedian) large" data-trigger="hover" title="The median time to first byte" data-content="$ttfbText">$ttfbMedian s</a>
+		<a href="#" rel="popover" class="alert-#getRuleColor($name $ttfbMedian) large" data-trigger="hover" title="The median time to first byte" data-content="$ttfbText">$ttfbMedian s</a>
 		($ttfbPercentile)
 	</div>
 </div>

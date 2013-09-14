@@ -1,8 +1,8 @@
 #set($scoreText = "Higher than 90 is good, between 80-90 is not so good, and below 80 is bad, really bad.")
-<div class="alert alert-#scoreType($scoreMedian)">
+<div class="alert alert-#getRuleColor($name $scoreMedian)">
 	Rules
 	<div>
-		<a href="#" class="alert-#scoreType($scoreMedian) large" rel="popover" data-trigger="hover" title="Median score $scoreMedian" data-content="$scoreText">$scoreMedian</a>
+		<a href="#" class="alert-#getRuleColor($name $scoreMedian) large" rel="popover" data-trigger="hover" title="Median score $scoreMedian" data-content="$scoreText">$scoreMedian</a>
 		($scorePercentile)
 	</div>
 </div>

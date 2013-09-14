@@ -1,7 +1,7 @@
-<div class="alert alert-info">
+<div class="alert alert-#getRuleColor($name $cacheTimeMedian)">
 	Cache time:
 	<div>
-		<a href="#" rel="popover" class="alert-info large" data-trigger="hover" title="The median cache time for all assets of the pages" data-content="Compare the cache time with when an asset was modified, if the last change time was long ago, and the cache time is low, please change it.">#prettyPrint($cacheTimeMedian)</a>
+		<a href="#" rel="popover" class="alert-#getRuleColor($name $cacheTimeMedian) large" data-trigger="hover" title="The median cache time for all assets of the pages" data-content="Compare the cache time with when an asset was modified, if the last change time was long ago, and the cache time is low, please change it.">#prettyPrint($cacheTimeMedian)</a>
 		(#prettyPrint($cacheTimePercentile))
 	</div>
 </div>

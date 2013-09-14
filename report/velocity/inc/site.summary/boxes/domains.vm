@@ -1,8 +1,8 @@
 #set($domainsText = "It is important to use few domains")
-<div class="alert alert-#domainsType($totalDomainsMedian)">
+<div class="alert alert-#getRuleColor($name $totalDomainsMedian)">
         Domains
         <div>
-                <a href="#" rel="popover" class="alert-#domainsType($totalDomainsMedian) large" data-trigger="hover" title="Median domains $totalDomainsMedian" data-content="$domainsText">$totalDomainsMedian</a>
+                <a href="#" rel="popover" class="alert-#getRuleColor($name $totalDomainsMedian) large" data-trigger="hover" title="Median domains $totalDomainsMedian" data-content="$domainsText">$totalDomainsMedian</a>
                 ($math.roundTo(1,$domainsPercentile))
         </div>
 </div>

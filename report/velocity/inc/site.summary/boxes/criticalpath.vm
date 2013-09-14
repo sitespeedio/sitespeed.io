@@ -1,8 +1,8 @@
 #set($criticalPathText = "You should always aim for score 100, above 95 is OK.")
-<div class="alert alert-#criticalPathType($totalCriticalPathMedian)">
+<div class="alert alert-#getRuleColor($name $totalCriticalPathMedian)">
 	Critical Rendering Path Score
 	<div>
-		<a href="#" rel="popover" class="alert-#criticalPathType($totalCriticalPathMedian) large" data-trigger="hover" title="The median of the rendering path score " data-content="$criticalPathText">$totalCriticalPathMedian</a>
+		<a href="#" rel="popover" class="alert-#getRuleColor($name $totalCriticalPathMedian) large" data-trigger="hover" title="The median of the rendering path score " data-content="$criticalPathText">$totalCriticalPathMedian</a>
 		($criticalPathPercentile)
 	</div>
 </div>

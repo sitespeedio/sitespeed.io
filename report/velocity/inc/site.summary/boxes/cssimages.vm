@@ -1,8 +1,8 @@
 #set($nrOfCssImageText = "Two is good, above four is bad.")
-<div class="alert alert-#cssImageType($cssImageMedian)">
+<div class="alert alert-#getRuleColor($name $cssImageMedian)">
 	Number of CSS images
 	<div>
-		<a href="#" rel="popover" class="alert-#cssImageType($cssImageMedian) large" data-trigger="hover" title="Median number of $cssImageMedian stylesheet images ($cssImagesPercentage % of the requests)" data-content="$nrOfCssImageText">$cssImageMedian</a>
+		<a href="#" rel="popover" class="alert-#getRuleColor($name $cssImageMedian) large" data-trigger="hover" title="Median number of $cssImageMedian stylesheet images ($cssImagesPercentage % of the requests)" data-content="$nrOfCssImageText">$cssImageMedian</a>
 		($cssImagePercentile)
 	</div>
 </div>
