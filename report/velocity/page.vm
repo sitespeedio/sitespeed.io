@@ -56,11 +56,11 @@
 
 
 		#if($!{showScoresBelow100})	   
-		<table class="table table-condensed table-striped table-bordered">
+		<table class="table table-condensed table-striped table-bordered" id="scoreTable">
 			<thead>
 				<tr>
 					<th>Rule</th>
-					<th>Score</th>
+					<th data-sort="int">Score</th>
 					<th>Message</th>
 					<th>Extra</th>
 				</tr>
@@ -218,7 +218,14 @@
 	<div class="col-lg-6">
 
 		<h4>Requests per Content-Type</h4>
-		<table class="table table-condensed table-striped table-bordered">
+		<table class="table table-condensed table-striped table-bordered" id="requestsContentTypeTable">
+			<thead>
+				<tr>
+					<th data-sort="string">Type</th>
+					<th data-sort="int">Requests</th>
+					<th data-sort="float">Percentage</th>
+				</tr>
+			</thead>
 			<tbody>
 				#if ($math.toInteger($nrOfHTML)>0)
                                 <tr>
@@ -295,7 +302,15 @@
 
 	<div class="col-lg-6">
 		<h4>Size per Content-Type</h4>
-		<table class="table table-condensed table-striped table-bordered">
+		<table class="table table-condensed table-striped table-bordered"  id="sizeContentTypeTable">
+			<thead>
+				<tr>
+					<th data-sort="string">Type</th>
+					<th data-sort="float">Size</th>
+					<th data-sort="float">Percentage</th>
+				</tr>
+			</thead>	
+
 			<tbody>
 				<tr>
 					<td>doc</td>
@@ -367,11 +382,11 @@
 				<h4>Per Domain ($hostAndRequests.size())</h4>
 				<table class="table table-condensed table-striped table-bordered" id="domainsTable">
 					<thead>
-					<tr>
-					<th data-sort="string">Domain</th>
-					<th data-sort="int">Requests</th>
-					<th data-sort="float">Weight (kb)</th>
-					</tr>
+						<tr>
+							<th data-sort="string">Domain</th>
+							<th data-sort="int">Requests</th>
+							<th data-sort="float">Weight (kb)</th>
+					    </tr>
 					</thead>	
 					<tbody>
 						#foreach ($entry in $hostAndRequests.entrySet())
@@ -494,8 +509,11 @@
 		#parse("report/velocity/inc/footer.vm")
 		<script>
 		   $(function(){
+		$("#scoreTable").stupidtable();
         $("#assetsTable").stupidtable();
         $("#domainsTable").stupidtable();
+        $("#requestsContentTypeTable").stupidtable();
+        $("#sizeContentTypeTable").stupidtable();
 		 });
 		</script>
 		<script>
