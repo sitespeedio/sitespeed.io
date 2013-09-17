@@ -40,7 +40,7 @@ OUTPUT_FORMAT=
 ## The heap size for the Java processes
 JAVA_HEAP=1024
 ## Pointing out the rule property dir, where summary rules are defined 
-SUMMARY_PROPERTY_DIR="-Dcom.soulgalore.velocity.sitespeed.rules.propertydir=dependencies/"
+SUMMARY_PROPERTY_DIR="-Dcom.soulgalore.velocity.sitespeed.rules.file=dependencies/rules.properties"
 ## Where to put the result files
 REPORT_BASE_DIR=sitespeed-result
 ## Create a tar.gzip of the result files
@@ -69,6 +69,8 @@ HAS_ERROR_URLS=false
 MAX_FILENAME_LENGTH=245
 ## Take screensot of every page, default is false
 SCREENSHOT=false
+## By default browser timings isn't collected
+COLLECT_BROWSER_TIMINGS=false
 
 ## Easy way to set your user agent as an Iphone
 IPHONE_IO6_AGENT="Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25"
@@ -80,8 +82,9 @@ IPAD_VIEWPORT="768x1024"
 
 # Jar files, specify the versions
 CRAWLER_JAR=crawler-1.5.4-full.jar
-VELOCITY_JAR=xml-velocity-1.8-full.jar
+VELOCITY_JAR=xml-velocity-1.8.1-SNAPSHOT-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
+BROWSERTIME_JAR=browsertime-0.1-SNAPSHOT-full.jar
 
 #*******************************************************
 # Main program
@@ -94,6 +97,7 @@ main() {
         setup_dirs_and_dependencies
         fetch_urls
         analyze_pages
+        collect_browser_time
         copy_assets   
         generate_error_file 
         generate_result_files
@@ -131,7 +135,7 @@ fi
 #*******************************************************
 function get_input {
 # Set options
-while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:k:” OPTION
+while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:q:k:” OPTION
 do
      case $OPTION in
          h)
@@ -159,6 +163,7 @@ do
          b)SUMMARY_BOXES=$OPTARG;;
          j)MAX_PAGES=$OPTARG;;  
          k)SCREENSHOT=$OPTARG;;
+         q)COLLECT_BROWSER_TIMINGS=$OPTARG;;       
          # Note: The e & i are uses in the script that analyzes multiple sites
          e);;
          i);;  
@@ -308,6 +313,7 @@ REPORT_DATA_HAR_DIR=$REPORT_DATA_DIR/har
 REPORT_PAGES_DIR=$REPORT_DIR/pages
 REPORT_DATA_PAGES_DIR=$REPORT_DATA_DIR/pages
 REPORT_IMAGE_PAGES_DIR=$REPORT_DIR/screenshots
+REPORT_DATA_METRICS_DIR=$REPORT_DATA_DIR/metrics
 VELOCITY_DIR=report/velocity
 PROPERTIES_DIR=report/properties
 
@@ -316,6 +322,7 @@ mkdir $REPORT_DATA_DIR || exit 1
 mkdir $REPORT_PAGES_DIR || exit 1
 mkdir $REPORT_DATA_PAGES_DIR || exit 1
 mkdir $REPORT_DATA_HAR_DIR || exit 1
+mkdir $REPORT_DATA_METRICS_DIR || exit 1
 
 MY_IP=$(curl -L -s  http://api.exip.org/?call=ip)
 if [ -z "$MY_IP" ]
@@ -425,8 +432,23 @@ cp "$BASE_DIR"report/fonts/* $REPORT_DIR/fonts
 #*******************************************************
 function generate_result_files {
 
-echo "Create result.xml"
- 
+echo "Create all the result pages"
+
+local runs=0
+for url in "${URLS[@]}"
+do
+  local pagefilename=$(get_filename $url $runs) 
+   
+   if $COLLECT_BROWSER_TIMINGS
+   then
+    sed 's/<?xml version="1.0" encoding="UTF-8" standalone="yes"?>//g' "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" > "$REPORT_DATA_METRICS_DIR/tmp.xml" || exit 1
+    sed  -e '/result/r $REPORT_DATA_METRICS_DIR/tmp.xml' -e 'x;$G' $pagefilename.xml 
+   fi 
+  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml $VELOCITY_DIR/page.vm $PROPERTIES_DIR/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1
+  "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_PAGES_DIR/$pagefilename.html $REPORT_PAGES_DIR/$pagefilename.html
+done
+
+echo "Create result.xml" 
 echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" date="'$DATE'" useragent="'$USER_AGENT'" viewport="'$VIEWPORT'" ip="'$MY_IP'" path="'$REPORT_DIR_NAME'"><url><![CDATA['$URL']]></url>' > $REPORT_DATA_DIR/result.xml
 for file in $REPORT_DATA_PAGES_DIR/*
 do
@@ -657,11 +679,25 @@ function analyze() {
     XML_URL=$(echo "$url" | sed 's/&/\\&/g') 
   
     sed 's{<results>{<results filename="'$pagefilename'" size="'$SIZE'"><curl><![CDATA['"$XML_URL"']]></curl>{' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
-    mv $REPORT_DATA_PAGES_DIR/$pagefilename-bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml 
+    mv $REPORT_DATA_PAGES_DIR/$pagefilename-bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml    
+}
 
-    "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml $VELOCITY_DIR/page.vm $PROPERTIES_DIR/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1
-    "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_PAGES_DIR/$pagefilename.html $REPORT_PAGES_DIR/$pagefilename.html
-   
+#*******************************************************
+# Get different browser timings
+#*******************************************************
+function collect_browser_time {
+
+if $COLLECT_BROWSER_TIMINGS
+then
+  local runs=0
+  for url in "${URLS[@]}"
+  do
+    local pagefilename=$(get_filename $url $runs)  
+    "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$BROWSERTIME_JAR -b chrome -n 3 -o "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" "$url"
+    local runs=$[$runs+1]
+  done
+fi
+
 }
 
 #*******************************************************
