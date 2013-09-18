@@ -441,13 +441,12 @@ local runs=0
 for url in "${URLS[@]}"
 do
   local pagefilename=$(get_filename $url $runs) 
-   
+   EXTRA=
    if $COLLECT_BROWSER_TIMINGS
    then
-    sed 's/<?xml version="1.0" encoding="UTF-8" standalone="yes"?>//g' "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" > "$REPORT_DATA_METRICS_DIR/tmp.xml" || exit 1
-    sed  -e '/result/r $REPORT_DATA_METRICS_DIR/tmp.xml' -e 'x;$G' $pagefilename.xml 
+    EXTRA=",$REPORT_DATA_METRICS_DIR/$pagefilename.xml" 
    fi 
-  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml $VELOCITY_DIR/page.vm $PROPERTIES_DIR/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1
+  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml$EXTRA $VELOCITY_DIR/page.vm $PROPERTIES_DIR/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1
   "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_PAGES_DIR/$pagefilename.html $REPORT_PAGES_DIR/$pagefilename.html
 done
 
@@ -461,6 +460,21 @@ do
   rm "$REPORT_DATA_DIR/tmp.txt"
 
 done 
+
+# Add all metrics
+if $COLLECT_BROWSER_TIMINGS
+   then
+   local runs=0
+    echo '<metrics>' >> "$REPORT_DATA_DIR/result.xml"
+    for url in "${URLS[@]}"
+    do
+      local pagefilename=$(get_filename $url $runs) 
+
+    sed 's/<?xml version="1.0" encoding="UTF-8" standalone="yes"?>//g' "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" > "$REPORT_DATA_METRICS_DIR/tmp.xml" || exit 1
+    cat "$REPORT_DATA_METRICS_DIR/tmp.xml" >> "$REPORT_DATA_DIR/result.xml"
+  done
+  echo '</metrics>' >> "$REPORT_DATA_DIR/result.xml"
+fi
 echo '</document>'>> "$REPORT_DATA_DIR/result.xml"
 
 echo 'Create the summary.xml'

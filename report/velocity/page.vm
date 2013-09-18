@@ -3,11 +3,13 @@
 #parse("report/velocity/logic/page.logic.vm")
 
 <div class="row">
-      	<div class="col-lg-12">
-      		<h2 class="url">
-      			Page
-      			<a href="$document.getRootElement().getChild("u").getValue()" target="_blank">$document.getRootElement().getChild("u").getValue()</a>
-      			(score: $document.getRootElement().getChild("o").getValue())
+	<div class="col-lg-12">
+		<h2 class="url">
+			Page
+			<a href="$document.getRootElement().getChild("u").getValue()" target="_blank">$document.getRootElement().getChild("u").getValue()</a>
+			(score: $document.getRootElement().getChild("o").getValue())
+
+
       		</h2>
       	</div>
 </div>	
@@ -26,6 +28,9 @@
       				<a href="#score" class="list-group-item">Scores below 100</a>
       				<a href="#assets" class="list-group-item">Page assets</a>
       				<a href="#summary" class="list-group-item">Page summary</a>
+      				#if($!{document2})
+      				<a href="#metrics" class="list-group-item">Page metrics</a>
+      				#end
       				<a href="http://www.webpagetest.org/?url=$esc.url($document.getRootElement().getChild("u").getValue())&runs=3" target="_blank" title="Test this page on http://webpagetest.org" class="list-group-item">Test on webpagetest.org</a>
       		</div>
       	</div>
@@ -505,6 +510,54 @@
 				</table>
 			</div>
 		</div>
+		#if($!{document2})
+		<div class="row">
+			<div class="col-lg-12">
+			<h3 id="metrics">Metrics</h3>
+
+			#foreach ($pageData in $document2.getRootElement().getChild("pageData").getChildren())
+
+			#if ($pageData.getChild("key").getValue()=="browserName")
+				#set ($browser= $pageData.getChild("value").getValue())
+			#elseif ($pageData.getChild("key").getValue()=="browserVersion")
+				#set ($browserVersion = $pageData.getChild("value").getValue())
+			#elseif ($pageData.getChild("key").getValue()=="platform")
+				#set ($platform=$pageData.getChild("value").getValue())
+			#elseif ($pageData.getChild("key").getValue()=="wasFetchedViaSpdy")
+			    #set ($spdy=$pageData.getChild("value").getValue())
+			#end			
+			#end
+
+			#set ($runs = $document2.getRootElement().getChild("runs").getChildren("run").size())
+
+			<p>
+			Page tested with $browser version $browserVersion on $platform with $runs runs. Using SPDY: $spdy
+			</p>
+			
+				<table class="table table-condensed table-striped table-bordered">
+				<thead>
+						<tr>
+							<th>Name</th>
+							<th>min</th>
+							<th>median</th>
+							<th>max</th>
+					    </tr>
+					</thead>	
+					<tbody>
+					#foreach ($statistic in $document2.getRootElement().getChild("statistics").getChildren("statistic"))
+					<tr>
+					<td>$statistic.getChild("name").getValue()</td>
+					<td>$statistic.getChild("min").getValue()</td>
+					<td>$statistic.getChild("median").getValue()</td>
+					<td>$statistic.getChild("max").getValue()</td> 
+					</tr>
+					#end
+					
+					</tbody>
+				</table>
+			</div>
+		</div>
+		#end
 
 		#parse("report/velocity/inc/footer.vm")
 		<script>
