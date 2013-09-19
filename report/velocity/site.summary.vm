@@ -1,8 +1,9 @@
 #parse("report/velocity/macros/date.macros.vm")
 #parse("report/velocity/macros/site.summary.macros.vm")
-#parse("report/velocity/logic/site.summary.logic.vm")
 #parse("report/velocity/inc/header.vm")
 
+#set ($nrOfDecimals=0)
+#set ($nrOfPages = $document.getRootElement().getChild("pages").getValue())
 #set ($siteElement = $document.getRootElement())
 #set ($metricsElement = $siteElement.getChild("metrics"))
 
@@ -21,9 +22,9 @@
 #set ($totalCriticalPathMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("criticalpath").getChild("median").getValue())) 
 #set ($textContentMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("textcontent").getChild("median").getValue())) 
 #set ($ttfbMedian = $math.roundTo(3,$metricsElement.getChild("ttfb").getChild("median").getValue()))
-#set ($frontendMedianPercentage = $math.roundTo(1,$metricsElement.getChild("frontend").getChild("median").getValue()))
-#set ($backendMedianPercentage = $math.roundTo(1,$metricsElement.getChild("backend").getChild("median").getValue()))
-#set ($totalDomElementsMedian = $math.roundTo(1,$metricsElement.getChild("domelements").getChild("median").getValue()))
+#set ($frontendMedianPercentage = $math.roundTo($nrOfDecimals,$metricsElement.getChild("frontend").getChild("median").getValue()))
+#set ($backendMedianPercentage = $math.roundTo($nrOfDecimals,$metricsElement.getChild("backend").getChild("median").getValue()))
+#set ($totalDomElementsMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("domelements").getChild("median").getValue()))
 #set ($imageWeightMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("imageweight").getChild("median").getValue())) 
 #set ($totalImageWeightMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("totalimageweight").getChild("median").getValue())) 
 #set ($totalDomainsMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("domains").getChild("median").getValue())) 
@@ -54,7 +55,7 @@
 #set ($scaledImagesPercentile = $math.roundTo($nrOfDecimals,$metricsElement.getChild("scaledimages").getChild("percentile95").getValue())) 
 
 ## Set percentage
-#set ($pagesWithSpofPercentage = $math.roundTo($nrOfDecimals, $math.mul($math.div($statsSpofPages.getN(),$siteElement.getChild("pages").getValue()),100)))
+#set ($pagesWithSpofPercentage = $math.roundTo($nrOfDecimals, $math.mul($math.div($metricsElement.getChild("spofpages").getChild("values").getValue(),$nrOfPages),100)))
 #set ($requestWithoutExpirePercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($totalAssetsWithoutExpiresMedian,$requestMedian),100)))
 #set ($imagesPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($imageMedian,$requestMedian),100)))
 #set ($cssImagesPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($cssImageMedian,$requestMedian),100)))

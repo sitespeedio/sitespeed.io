@@ -1,4 +1,4 @@
-## Setting up the data needed in the site.summary.vm
+## Setting up the data needed in the site.summary.xml.vm
 
 #set($nrOfPages = $document.getRootElement().getChildren("results").size())
 
