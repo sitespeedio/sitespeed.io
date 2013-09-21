@@ -1,8 +1,0 @@
-#set($totalImageWeightText = "Less than $rulemanager.getRule($name).greenLimit kb is ok, more than $rulemanager.getRule($name).yellowLimit is bad.")
-<div class="alert alert-#getRuleColor($name $totalImageWeightMedian)">
-	Total image weight
-	<div>
-		<a href="#" rel="popover" class="alert-#getRuleColor($name $totalImageWeightMedian) large" data-trigger="hover" title="Median total image size per page (images & css images)" data-content="$totalImageWeightText">$totalImageWeightMedian kb</a>
-		($totalImageWeightPercentile)
-	</div>
-</div>

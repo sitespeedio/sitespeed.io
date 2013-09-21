@@ -1,8 +1,0 @@
-#set($criticalPathText = "You should always aim for score 100, less than $rulemanager.getRule($name).yellowLimit is bad.")
-<div class="alert alert-#getRuleColor($name $totalCriticalPathMedian)">
-	Critical Rendering Path Score
-	<div>
-		<a href="#" rel="popover" class="alert-#getRuleColor($name $totalCriticalPathMedian) large" data-trigger="hover" title="The median of the rendering path score " data-content="$criticalPathText">$totalCriticalPathMedian</a>
-		($criticalPathPercentile)
-	</div>
-</div>

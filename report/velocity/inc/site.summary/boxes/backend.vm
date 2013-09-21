@@ -1,9 +1,0 @@
-<div class="alert alert-#getRuleColor($name $backendMedianPercentage)">
-	Time spent in backend:
-	<div>
-		<a href="#" rel="popover" class="alert-#getRuleColor($name $backendMedianPercentage) large" data-trigger="hover" title="The median time spent in backend" data-content="Research done by Google shows that for the top 300 000 sites, average of 14% of the time is spent in backend.">$backendMedianPercentage</a>
-		%
-	</div>
-</div>
-
-

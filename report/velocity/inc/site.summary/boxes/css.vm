@@ -1,9 +1,0 @@
-#set($nrOfCssText = "$rulemanager.getRule($name).greenLimit is ok, more than $rulemanager.getRule($name).yellowLimit is really bad. Five is the average amount of CSS files (http://httparchive.org).")
- 
-<div class="alert alert-#getRuleColor($name $cssMedian)">
-	Number of CSS
-	<div>
-		<a href="#" rel="popover" class="alert-#getRuleColor($name $cssMedian) large" data-trigger="hover" title="Median number of $cssMedian stylesheets ($cssPercentage % of the requests)" data-content="$nrOfCssText">$cssMedian</a>
-		($cssPercentile)
-	</div>
-</div>

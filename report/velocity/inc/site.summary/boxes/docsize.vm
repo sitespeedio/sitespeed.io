@@ -1,8 +1,0 @@
-#set($documentWeightText = "Below $rulemanager.getRule($name).greenLimit kb is good (gzipped), above $rulemanager.getRule($name).yellowLimit is bad. A small document is good for mobile.")
-<div class="alert alert-#getRuleColor($name $totalDocumentWeightMedian)">
-	Document page weight
-	<div>
-		<a href="#" rel="popover" class="alert-#getRuleColor($name $totalDocumentWeightMedian) large" data-trigger="hover" title="Median document weight $totalDocumentWeightMedian kb" data-content="$documentWeightText">$totalDocumentWeightMedian kb</a>
-		($math.roundTo(1,$documentWeightPercentile))
-	</div>
-</div>

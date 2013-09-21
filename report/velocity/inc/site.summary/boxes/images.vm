@@ -1,8 +1,0 @@
-#set($nrOfImagesText = "$rulemanager.getRule($name).greenLimit or less images is OK, more than $rulemanager.getRule($name).yellowLimit is bad.")
-<div class="alert alert-#getRuleColor($name $imageMedian)">
-	Number of images
-	<div>
-		<a href="#" rel="popover" class="alert-#getRuleColor($name $imageMedian) large" data-trigger="hover" title="Median number of $imageMedian images ($imagesPercentage % of the requests)" data-content="$nrOfImagesText">$imageMedian</a>
-		($imagePercentile)
-	</div>
-</div>

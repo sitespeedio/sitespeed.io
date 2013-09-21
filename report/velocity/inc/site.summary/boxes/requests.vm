@@ -1,8 +1,0 @@
-#set($requestText = "Below $rulemanager.getRule($name).greenLimit is good, more than $rulemanager.getRule($name).yellowLimit is really bad (88 is the average amount of requests from http://httparchive.org).")
-<div class="alert alert-#getRuleColor($name $requestMedian)">
-	Number of requests
-	<div>
-		<a href="#" rel="popover" class="alert-#getRuleColor($name $requestMedian) large" data-trigger="hover" title="Median number of $requestMedian requests" data-content="$requestText">$requestMedian</a>
-		($requestPercentile)
-	</div>
-</div>

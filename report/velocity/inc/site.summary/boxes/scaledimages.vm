@@ -1,8 +1,0 @@
-#set($scaleText = "Never ever scale images in the browser.")
-<div class="alert alert-#getRuleColor($name $scaledImagesMedian)">
-	Browser scaled images
-	<div>
-		<a href="#" rel="popover" class="alert-#getRuleColor($name $scaledImagesMedian) large" data-trigger="hover" title="The median number of browser scaled images" data-content="$scaleText">$scaledImagesMedian </a>
-		($scaledImagesPercentile)
-	</div>
-</div>

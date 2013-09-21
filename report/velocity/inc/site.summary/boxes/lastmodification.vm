@@ -1,7 +1,0 @@
-<div class="alert alert-#getRuleColor($name $modifiedSinceMedian)">
-	Time since last modification:
-	<div>
-		<a href="#" rel="popover" class="alert-#getRuleColor($name $modifiedSinceMedian) large" data-trigger="hover" title="The median time since an asset was modified" data-content="Compare the cache time with when an asset was modified, if the last change time was long ago, and the cache time is low, please change it.">#prettyPrint($modifiedSinceMedian)</a>
-		(#prettyPrint($modifiedSincePercentile))
-	</div>
-</div>

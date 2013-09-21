@@ -1,8 +1,0 @@
-#set($textContentText = "Above $rulemanager.getRule($name).greenLimit% is good, less than $rulemanager.getRule($name).yellowLimit% is bad.")
-<div class="alert alert-#getRuleColor($name $textContentMedian)">
-	Amount of text content
-	<div>
-		<a href="#" rel="popover" class="alert-#getRuleColor($name $textContentMedian) large" data-trigger="hover" title="The median amount of text content on a page" data-content="$textContentText">$textContentMedian %</a>
-		($textContentPercentile)
-	</div>
-</div>

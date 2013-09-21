@@ -2,73 +2,33 @@
 #parse("report/velocity/macros/site.summary.macros.vm")
 #parse("report/velocity/inc/header.vm")
 
+## Define what kind of values to show on summary page.
+#set($largeValue = "median")
+#set($largeName = "Median")
+#set($smallValue = "percentile95")
+#set($smallName = "95 percentile")
+
 #set ($nrOfDecimals=0)
 #set ($nrOfPages = $document.getRootElement().getChild("pages").getValue())
 #set ($siteElement = $document.getRootElement())
 #set ($metricsElement = $siteElement.getChild("metrics"))
 
-##  Create median  
-#set ($scoreMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("score").getChild("median").getValue()))   
-#set ($jsMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("js").getChild("median").getValue()))  
-#set ($requestMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("requests").getChild("median").getValue()))  
-#set ($cssMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("css").getChild("median").getValue()))  
-#set ($cssImageMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("cssimages").getChild("median").getValue()))  
-#set ($imageMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("images").getChild("median").getValue()))
-#set ($pageWeightMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("pageweight").getChild("median").getValue()))  
-#set ($totalDocumentWeightMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("documentweight").getChild("median").getValue()))  
-#set ($totalJsSyncInHeadMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("jssyncinhead").getChild("median").getValue()))  
-#set ($totalSpofMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("spof").getChild("median").getValue()))  
-#set ($totalAssetsWithoutExpiresMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("assetswithoutexpires").getChild("median").getValue())) 
-#set ($totalCriticalPathMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("criticalpath").getChild("median").getValue())) 
-#set ($textContentMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("textcontent").getChild("median").getValue())) 
-#set ($ttfbMedian = $math.roundTo(3,$metricsElement.getChild("ttfb").getChild("median").getValue()))
-#set ($frontendMedianPercentage = $math.roundTo($nrOfDecimals,$metricsElement.getChild("frontend").getChild("median").getValue()))
-#set ($backendMedianPercentage = $math.roundTo($nrOfDecimals,$metricsElement.getChild("backend").getChild("median").getValue()))
-#set ($totalDomElementsMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("domelements").getChild("median").getValue()))
-#set ($imageWeightMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("imageweight").getChild("median").getValue())) 
-#set ($totalImageWeightMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("totalimageweight").getChild("median").getValue())) 
-#set ($totalDomainsMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("domains").getChild("median").getValue())) 
-#set ($scaledImagesMedian = $math.roundTo($nrOfDecimals,$metricsElement.getChild("scaledimages").getChild("median").getValue())) 
-
-
-## Create percentile95
-#set ($scorePercentile = $math.toInteger($metricsElement.getChild("score").getChild("percentile95").getValue()))   
-#set ($jsPercentile = $math.toInteger($metricsElement.getChild("js").getChild("percentile95").getValue()))  
-#set ($requestPercentile = $math.toInteger($metricsElement.getChild("requests").getChild("percentile95").getValue())) 
-#set ($cssPercentile = $math.toInteger($metricsElement.getChild("css").getChild("percentile95").getValue())) 
-#set ($cssImagePercentile = $math.toInteger($metricsElement.getChild("cssimages").getChild("percentile95").getValue())) 
-#set ($imagePercentile = $math.toInteger($metricsElement.getChild("images").getChild("percentile95").getValue())) 
-#set ($pageWeightPercentile = $math.toInteger($metricsElement.getChild("pageweight").getChild("percentile95").getValue())) 
-#set ($documentWeightPercentile = $math.toInteger($metricsElement.getChild("documentweight").getChild("percentile95").getValue())) 
-#set ($jsSyncInHeadPercentile = $math.toInteger($metricsElement.getChild("jssyncinhead").getChild("percentile95").getValue())) 
-#set ($spofPercentile = $math.toInteger($metricsElement.getChild("spof").getChild("percentile95").getValue())) 
-#set ($assetsWithoutExpiresPercentile = $math.toInteger($metricsElement.getChild("assetswithoutexpires").getChild("percentile95").getValue())) 
-#set ($criticalPathPercentile = $math.toInteger($metricsElement.getChild("criticalpath").getChild("percentile95").getValue())) 
-#set ($textContentPercentile = $math.roundTo(1,$metricsElement.getChild("textcontent").getChild("percentile95").getValue()))
-#set ($ttfbPercentile = $math.roundTo(3,$metricsElement.getChild("ttfb").getChild("percentile95").getValue()))
-#set ($domElementsPercentile = $math.toInteger($metricsElement.getChild("domelements").getChild("percentile95").getValue()))
-#set ($backendPercentilePercentage = $math.roundTo(1,$metricsElement.getChild("backend").getChild("percentile95").getValue()))
-#set ($frontendPercentilePercentage = $math.roundTo(1,$metricsElement.getChild("frontend").getChild("percentile95").getValue()))
-#set ($imageWeightPercentile = $math.roundTo($nrOfDecimals,$metricsElement.getChild("imageweight").getChild("percentile95").getValue())) 
-#set ($totalImageWeightPercentile = $math.roundTo($nrOfDecimals,$metricsElement.getChild("totalimageweight").getChild("percentile95").getValue())) 
-#set ($domainsPercentile = $math.roundTo($nrOfDecimals,$metricsElement.getChild("domains").getChild("percentile95").getValue())) 
-#set ($scaledImagesPercentile = $math.roundTo($nrOfDecimals,$metricsElement.getChild("scaledimages").getChild("percentile95").getValue())) 
 
 ## Set percentage
-#set ($pagesWithSpofPercentage = $math.roundTo($nrOfDecimals, $math.mul($math.div($metricsElement.getChild("spofpages").getChild("values").getValue(),$nrOfPages),100)))
-#set ($requestWithoutExpirePercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($totalAssetsWithoutExpiresMedian,$requestMedian),100)))
-#set ($imagesPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($imageMedian,$requestMedian),100)))
-#set ($cssImagesPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($cssImageMedian,$requestMedian),100)))
-#set ($cssPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($cssMedian,$requestMedian),100)))
-#set ($jsPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($jsMedian,$requestMedian),100)))
-#set ($jsInHeadPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($totalJsSyncInHeadMedian,$jsMedian),100))) 
+##set ($pagesWithSpofPercentage = $math.roundTo($nrOfDecimals, $math.mul($math.div($metricsElement.getChild("spofpages").getChild("values").getValue(),$nrOfPages),100)))
+###set ($requestWithoutExpirePercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($totalAssetsWithoutExpiresMedian,$requestMedian),100)))
+##set ($imagesPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($imageMedian,$requestMedian),100)))
+##set ($cssImagesPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($cssImageMedian,$requestMedian),100)))
+##set ($cssPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($cssMedian,$requestMedian),100)))
+##set ($jsPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($jsMedian,$requestMedian),100)))
+##set ($jsInHeadPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($totalJsSyncInHeadMedian,$jsMedian),100))) 
 
-#set ($cacheTimeMedian = $header.getSeconds($math.toInteger($metricsElement.getChild("assetcachetimeinseconds").getChild("median").getValue())))
-#set ($cacheTimePercentile = $header.getSeconds($math.toInteger($metricsElement.getChild("assetcachetimeinseconds").getChild("percentile95").getValue())))
-#set ($modifiedSinceMedian = $header.getSeconds($math.toInteger($metricsElement.getChild("timesincelastmodificationinseconds").getChild("median").getValue())))
-#set ($modifiedSincePercentile = $header.getSeconds($math.toInteger($metricsElement.getChild("timesincelastmodificationinseconds").getChild("percentile95").getValue())))
+##set ($cacheTimeMedian = $header.getSeconds($math.toInteger($metricsElement.getChild("assetcachetimeinseconds").getChild("median").getValue())))
+##set ($cacheTimePercentile = $header.getSeconds($math.toInteger($metricsElement.getChild("assetcachetimeinseconds").getChild("percentile95").getValue())))
+##set ($modifiedSinceMedian = $header.getSeconds($math.toInteger($metricsElement.getChild("timesincelastmodificationinseconds").getChild("median").getValue())))
+##set ($modifiedSincePercentile = $header.getSeconds($math.toInteger($metricsElement.getChild("timesincelastmodificationinseconds").getChild("percentile95").getValue())))
 
-#set($totalSpofPages = $math.toInteger($metricsElement.getChild("spofpages").getChild("values").getValue()))
+##set($totalSpofPages = $math.toInteger($metricsElement.getChild("spofpages").getChild("values").getValue()))
 
 
 <div class="row">
@@ -107,7 +67,7 @@
 ## extra new: domains,maximgsize,totaljssize,totalcsssize,browserscaledimg
 
  #set ($i = 0)  
- #foreach ($box in $boxes.split(","))
+ #foreach ($boxName in $boxes.split(","))
     ## If it is time to start a new row
     #if ($i % 3 == 0)
 <div class="row">
@@ -125,7 +85,9 @@
         #set ($span = 4)
     #end
 
- <div class="col-lg-$span">#getBox($box)</div>
+ <div class="col-lg-$span">
+    #parse("report/velocity/inc/site.summary/box.vm")
+ </div>
     #set ($i =$math.add($i,1))
 
  ## End the row

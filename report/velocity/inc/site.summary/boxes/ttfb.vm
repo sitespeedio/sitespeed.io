@@ -1,8 +1,0 @@
-#set($ttfbText = "Faster than $rulemanager.getRule($name).greenLimit seconds is good, more than $rulemanager.getRule($name).yellowLimit seconds is really bad.")
-<div class="alert alert-#getRuleColor($name $ttfbMedian)">
-	Time to first byte
-	<div>
-		<a href="#" rel="popover" class="alert-#getRuleColor($name $ttfbMedian) large" data-trigger="hover" title="The median time to first byte" data-content="$ttfbText">$ttfbMedian s</a>
-		($ttfbPercentile)
-	</div>
-</div>

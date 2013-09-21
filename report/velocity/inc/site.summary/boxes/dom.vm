@@ -1,8 +1,0 @@
-#set($domElementsText = "Less than $rulemanager.getRule($name).greenLimit elements is ok, more than $rulemanager.getRule($name).yellowLimit is bad.")
-<div class="alert alert-#getRuleColor($name $totalDomElementsMedian)">
-	Number of DOM elements
-	<div>
-		<a href="#" rel="popover" class="alert-#getRuleColor($name $totalDomElementsMedian) large" data-trigger="hover" title="The median number of DOM elements per page" data-content="$domElementsText">$totalDomElementsMedian</a>
-		($domElementsPercentile)
-	</div>
-</div>

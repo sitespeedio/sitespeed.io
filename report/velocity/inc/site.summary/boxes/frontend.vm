@@ -1,7 +1,0 @@
-<div class="alert alert-#getRuleColor($name $frontendMedianPercentage)">
-	Time spent in frontend:
-	<div>
-		<a href="#" rel="popover" class="alert-#getRuleColor($name $frontendMedianPercentage) large" data-trigger="hover" title="The median time spent in frontend" data-content="Research done by Google shows that for the top 300 000 sites, average of 86% of the time is spent in frontend.">$frontendMedianPercentage</a>
-		%
-	</div>
-</div>

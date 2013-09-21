@@ -242,14 +242,20 @@ fi
 
 
 ## Avalaible summary boxes
-## score,criticalpath,ttfb,syncjs,js,css,cssimages,images,requests,requestswithoutexpires,pagesize,docsize,totalimgsize,textcontent,spof,spofperpage,dom,backend,frontend,cachetime,lastmodification,scaledimages
+## ruleScore,criticalPath,ttfb,jsSyncInHead,nrOfJS,nrOfCSS,nrOfCSSImages,nrOfImages,requests,requestsWithoutExpires,pageWeight,docWeight,totalimgsize,textContent,spof,spofPerPage,domElements,backend,frontend,assetsCacheTime,timeSinceLastModification,browserScaledImages,nrOfDomains
 if [ "$SUMMARY_BOXES" != "" ]
   then
     SUMMARY_BOXES="-Dcom.soulgalore.velocity.key.boxes=$SUMMARY_BOXES"
   else
-    # Default colums
-    SUMMARY_BOXES="-Dcom.soulgalore.velocity.key.boxes=score,criticalpath,ttfb,syncjs,js,css,cssimages,images,requests,requestswithoutexpires,pagesize,docsize,totalimgsize,scaledimages,spof,spofperpage,dom,backend,frontend,cachetime,lastmodification"
-fi
+      # Default colums
+      SUMMARY_BOXES="-Dcom.soulgalore.velocity.key.boxes=ruleScore,criticalPath,jsSyncInHead,jsPerPage,cssPerPage,cssImagesPerPage,imagesPerPage,requests,requestsWithoutExpires,pageWeight,docWeight,imageWeightPerPage,browserScaledImages,spof,domainsPerPage,domElements,assetsCacheTime,timeSinceLastModification"
+    if $COLLECT_BROWSER_TIMINGS
+      then
+      SUMMARY_BOXES="$SUMMARY_BOXES",firstPaint,ttfb,domComplete
+      fi
+  fi
+
+
 
 
 if [ "$PROXY_HOST" != "" ]

@@ -1,8 +1,0 @@
-#set($scoreText = "Higher than $rulemanager.getRule($name).greenLimit is good and less than $rulemanager.getRule($name).yellowLimit is bad, really bad.")
-<div class="alert alert-#getRuleColor($name $scoreMedian)">
-	Rules
-	<div>
-		<a href="#" class="alert-#getRuleColor($name $scoreMedian) large" rel="popover" data-trigger="hover" title="Median score $scoreMedian" data-content="$scoreText">$scoreMedian</a>
-		($scorePercentile)
-	</div>
-</div>

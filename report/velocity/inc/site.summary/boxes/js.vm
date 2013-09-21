@@ -1,9 +1,0 @@
-#set($nrOfJsText = "$rulemanager.getRule($name).greenLimit or less is good, more than $rulemanager.getRule($name).yellowLimit means you should look into it. 15 is the average amount JS request for a site (http://httparchive.org).")
-<div class="alert alert-#getRuleColor($name $jsMedian)">
-	Number of JS
-	<div>
-		<a href="#" rel="popover" class="alert-#getRuleColor($name $jsMedian) large" data-trigger="hover" title="Median number of $jsMedian javascripts ($jsPercentage % of the requests) " data-content="$nrOfJsText">$jsMedian</a>
-		($jsPercentile)
-	</div>
-
-</div>

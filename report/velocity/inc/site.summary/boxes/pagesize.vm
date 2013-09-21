@@ -1,8 +1,0 @@
-#set($pageWeightText = "Below $rulemanager.getRule($name).greenLimit kb is ok (but really too large for mobile), more than $rulemanager.getRule($name).yellowLimit kb is bad. 1.2 mb is the average site weight (http://httparchive.org).")
-<div class="alert alert-#getRuleColor($name $pageWeightMedian)">
-	Total page weight
-	<div>
-		<a href="#" rel="popover" class="alert-#getRuleColor($name $pageWeightMedian) large" data-trigger="hover" title="Median page weight $pageWeightMedian kb" data-content="$pageWeightText">$pageWeightMedian kb</a>
-		($math.roundTo(1,$pageWeightPercentile))
-	</div>
-</div>

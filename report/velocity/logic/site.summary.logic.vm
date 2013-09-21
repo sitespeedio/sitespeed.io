@@ -7,34 +7,31 @@
 #set($nrOfDecimals = 0)
 
 ## Creating all statistics objects
-#set($statsJs = $stats.newInstance("js","Number of JS","","",1))
-#set($statsCss = $stats.newInstance("css","Number of CSS","","",1))
-#set($statsImages = $stats.newInstance("images","Number of images","","",1))
-#set($statsCssImages = $stats.newInstance("cssimages","Number of CSS images","","",1))
-#set($statsRequests = $stats.newInstance("requests","Number of requests","","",1))
-#set($statsPageWeight = $stats.newInstance("pageweight","Total page weight","weight","kb",1))
-#set($statsImageWeight = $stats.newInstance("imageweight","Image weight","weight","kb",1))
-#set($statsJsWeight = $stats.newInstance("jsweight","JS weight","weight","kb",1))
-#set($statsCssWeight = $stats.newInstance("cssweight","CSS weight","weight","kb",1))
-#set($statsTotalImageWeight = $stats.newInstance("totalimageweight","Image weight per page","weight","kb",1))
-#set($statsTotalCssWeight = $stats.newInstance("totalcssweight","CSS weight per page","weight","kb",1))
-#set($statsTotalJsWeight = $stats.newInstance("totaljsweight","JS weight per page","weight","kb",1))
-#set($statsScore = $stats.newInstance("score","Score","","",1))
-#set($statsDocumentWeight = $stats.newInstance("documentweight","Document page weight","weight","kb",1))
-#set($statsSpof = $stats.newInstance("spof","Number of SPOF per page","","",1))
-#set($statsSpofPages = $stats.newInstance("spofpages","Pages with SPOF","","",1))
-#set($statsScaledImages = $stats.newInstance("scaledimages","Images scaled by the browser","","",1))
-#set($statsJsSyncInHead = $stats.newInstance("jssyncinhead","Number of JS synchronously in head","","",1))
-#set($statsAssetsWithoutExpires = $stats.newInstance("assetswithoutexpires","Requests without expires","","",1))
-#set($statsCriticalPath = $stats.newInstance("criticalpath","Critical Rendering Path Score","","",1))
-#set($statsTextContent = $stats.newInstance("textcontent","Amount of text content","","%",1))
-#set($statsTTFB = $stats.newInstance("ttfb","Time to first byte","time","s",3))
-#set($statsBackend = $stats.newInstance("backend","Time spent in backend","time","%",1))
-#set($statsFrontend = $stats.newInstance("frontend","Time spent in frontend","time","%",1))
-#set($statsTimeSinceLastModificationInSeconds = $stats.newInstance("timesincelastmodificationinseconds","Time since last modification","cachetime","s",1))
-#set($statsAssetCacheTimeInSeconds = $stats.newInstance("assetcachetimeinseconds","Cache time","cachetime","s",1))
-#set($statsDomElements = $stats.newInstance("domelements","Number of DOM elements","","",1))
-#set($statsDomains = $stats.newInstance("domains","Number of domains","","",1))
+#set($statsJs = $stats.newInstance("jsPerPage","Number of JS","","","",1))
+#set($statsCss = $stats.newInstance("cssPerPage","Number of CSS","","","",1))
+#set($statsImages = $stats.newInstance("imagesPerPage","Number of images","","","",1))
+#set($statsCssImages = $stats.newInstance("cssImagesPerPage","Number of CSS images","","","",1))
+#set($statsRequests = $stats.newInstance("requests","Number of requests","","","",1))
+#set($statsPageWeight = $stats.newInstance("pageWeight","Total page weight","","weight","kb",1))
+#set($statsImageWeight = $stats.newInstance("imageWeight","Image weight","","weight","kb",1))
+#set($statsJsWeight = $stats.newInstance("jsWeight","JS weight","","weight","kb",1))
+#set($statsCssWeight = $stats.newInstance("cssWeight","CSS weight","","weight","kb",1))
+#set($statsTotalImageWeight = $stats.newInstance("imageWeightPerPage","Image weight per page","","weight","kb",1))
+#set($statsTotalCssWeight = $stats.newInstance("cssWeightPerPage","CSS weight per page","","weight","kb",1))
+#set($statsTotalJsWeight = $stats.newInstance("jsWeightPerPage","JS weight per page","","weight","kb",1))
+#set($statsScore = $stats.newInstance("ruleScore","Rule score","","","",1))
+#set($statsDocumentWeight = $stats.newInstance("docWeight","Document weight","","weight","kb",1))
+#set($statsSpof = $stats.newInstance("spof","Number of SPOF per page","","","",1))
+#set($statsSpofPages = $stats.newInstance("spofPages","Pages with SPOF","","","",1))
+#set($statsScaledImages = $stats.newInstance("browserScaledImages","Images scaled by the browser","","","",1))
+#set($statsJsSyncInHead = $stats.newInstance("jsSyncInHead","Number of JS synchronously in head","","","",1))
+#set($statsAssetsWithoutExpires = $stats.newInstance("requestsWithoutExpires","Requests without expires","","","",1))
+#set($statsCriticalPath = $stats.newInstance("criticalPath","Critical Rendering Path Score","","","",1))
+#set($statsTextContent = $stats.newInstance("textContent","Amount of text content","","","%",1))
+#set($statsTimeSinceLastModificationInSeconds = $stats.newInstance("timeSinceLastModification","Time since last modification","","cachetime","",1))
+#set($statsAssetCacheTimeInSeconds = $stats.newInstance("assetsCacheTime","Cache time","","cachetime","",1))
+#set($statsDomElements = $stats.newInstance("domElements","Number of DOM elements","","","",1))
+#set($statsDomains = $stats.newInstance("domainsPerPage","Number of domains","","","",1))
 
 ## And add them to the list of statistics
 #set($hide = $allStats.add($statsScore))
@@ -58,9 +55,6 @@
 #set($hide = $allStats.add($statsSpofPages))
 #set($hide = $allStats.add($statsAssetsWithoutExpires))
 #set($hide = $allStats.add($statsTextContent))
-#set($hide = $allStats.add($statsTTFB))
-#set($hide = $allStats.add($statsBackend))
-#set($hide = $allStats.add($statsFrontend))
 #set($hide = $allStats.add($statsTimeSinceLastModificationInSeconds))
 #set($hide = $allStats.add($statsAssetCacheTimeInSeconds))
 #set($hide = $allStats.add($statsDomains))
@@ -145,14 +139,6 @@
      $statsAssetsWithoutExpires.addValue($math.toInteger($results.getChild("g").getChild("expiresmod").getChild("components").getChildren("item").size()))
     #end
 
-    #if($!{results.getChild("g").getChild("ttfb").getChild("components").getChildText("item")})
-	$statsTTFB.addValue($math.toDouble($math.div($math.toInteger($results.getChild("g").getChild("ttfb").getChild("components").getChildText("item")),1000)))
-	
-	$statsBackend.addValue($math.roundTo(3,$math.mul($math.div($math.toDouble($math.div($math.toInteger($results.getChild("g").getChild("ttfb").getChild("components").getChildText("item")),1000)),$math.div($math.toDouble($results.getChild("lt").getValue()),1000)),100)))
-	$statsFrontend.addValue($math.roundTo(3,$math.mul($math.div($math.sub($math.div($math.toDouble($results.getChild("lt").getValue()),1000),$math.toDouble($math.div($math.toInteger($results.getChild("g").getChild("ttfb").getChild("components").getChildText("item")),1000))),$math.div($math.toDouble($results.getChild("lt").getValue()),1000)),100)))
-
-    #end
-
     #set ($totalImagePageSize = 0)
     #set ($totalCssPageSize = 0)
     #set ($totalJsPageSize = 0)
@@ -223,9 +209,36 @@
 	
 #end
 
-## Include a custom logoc file, if you want to include your own code.
-#if ($filetool.doFileExist("report/velocity/logic/custom/site.summary.logic.vm"))
-        #parse("report/velocity/logic/custom/site.summary.logic.vm")
+## We create only these extra data if (and only if) we also run Browser Time to collect them
+
+#set($isBrowserTime = $document.getRootElement().getChild("metrics"))
+#if($isBrowserTime)
+
+## first setup all the statobjects
+#set($nameAndMesurementsStats = $map.clone())
+
+#foreach ($measurement in $document.getRootElement().getChild("metrics").getChild("timingSession").getChild("runs").getChild("run").getChild("measurements").getChildren("measurement"))
+    #set($statsMeasurement = $stats.newInstance($measurement.getAttributeValue("name"),$measurement.getAttributeValue("name"),"","","ms",1))
+    #set($hide = $allStats.add($statsMeasurement))
+    $nameAndMesurementsStats.put($measurement.getAttributeValue("name"), $statsMeasurement)
+#end
+
+#set($timingSession = $document.getRootElement().getChild("metrics").getChild("timingSession"))
+
+    #foreach ($run in $timingSession.getChild("runs").getChildren("run"))
+
+        #foreach ($measurement in $run.getChild("measurements").getChildren("measurement"))
+
+        #set($stats= $nameAndMesurementsStats.get($measurement.getAttributeValue("name")))
+        $stats.addValue($math.toDouble($measurement.getAttributeValue("duration")))
+        #end
+    #end
+#end
+
+
+## Include a custom logic file, if you want to include your own code.
+#if ($filetool.doFileExist("report/velocity/logic/custom/site.summary.xml.logic.vm"))
+        #parse("report/velocity/logic/custom/site.summary.xml.logic.vm")
 #end        
 
 
