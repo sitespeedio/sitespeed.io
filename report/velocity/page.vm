@@ -531,7 +531,10 @@
 			#set ($runs = $document2.getRootElement().getChild("runs").getChildren("run").size())
 
 			<p>
-			Page tested with $browser version $browserVersion on $platform with $runs runs. Using SPDY: $spdy
+			Page tested with $browser version $browserVersion on $platform with $runs runs. 
+			#if ($spdy)
+			Using SPDY: $spdy
+			#end
 			</p>
 			
 				<table class="table table-condensed table-striped table-bordered">
