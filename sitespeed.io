@@ -46,8 +46,6 @@ SUMMARY_PROPERTY_MOBILE="-Dcom.soulgalore.velocity.sitespeed.rules.file=dependen
 SUMMARY_PROPERTY=$SUMMARY_PROPERTY_DESKTOP
 ## Where to put the result files
 REPORT_BASE_DIR=sitespeed-result
-## Create a tar.gzip of the result files
-CREATE_TAR_ZIP=false
 ## The host name if proxy is used
 PROXY_HOST=
 ## The type of proxy
@@ -74,6 +72,8 @@ MAX_FILENAME_LENGTH=245
 SCREENSHOT=false
 ## By default browser timings isn't collected
 COLLECT_BROWSER_TIMINGS=false
+## The default setup: Use chrome & do it three times per URL
+BROWSER_TIME_PARAMS="-b chrome -n 3"
 
 ## Easy way to set your user agent as an Iphone
 IPHONE_IO6_AGENT="Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25"
@@ -147,14 +147,14 @@ do
              ;;
          u)URL=$OPTARG;;
          d)DEPTH=$OPTARG;;
-         c)FOLLOW_PATH=$OPTARG;;
+         q)FOLLOW_PATH=$OPTARG;;
          s)NOT_IN_URL=$OPTARG;;   
          o)OUTPUT_FORMAT=$OPTARG;;  
          m)JAVA_HEAP=$OPTARG;;  
          n)TEST_NAME=$OPTARG;;           
          p)MAX_PROCESSES=$OPTARG;;
          r)REPORT_BASE_DIR=$OPTARG;;
-         z)CREATE_TAR_ZIP=$OPTARG;;
+         z)BROWSER_TIME_PARAMS=$OPTARG;;
          x)PROXY_HOST=$OPTARG;;
          t)PROXY_TYPE=$OPTARG;;
          a)USER_AGENT=$OPTARG;;
@@ -166,7 +166,8 @@ do
          b)SUMMARY_BOXES=$OPTARG;;
          j)MAX_PAGES=$OPTARG;;  
          k)SCREENSHOT=$OPTARG;;
-         q)COLLECT_BROWSER_TIMINGS=$OPTARG;;       
+         c)COLLECT_BROWSER_TIMINGS=$OPTARG;;
+
          # Note: The e & i are uses in the script that analyzes multiple sites
          e);;
          i);;  
@@ -526,13 +527,6 @@ if $TAKE_SCREENSHOTS
   take_screenshots
 fi
 
-if $CREATE_TAR_ZIP
-  then
-      echo "Creating zip file"
-      tar -cf $REPORT_DIR_NAME.tar $REPORT_DIR 
-      gzip $REPORT_DIR_NAME.tar
-fi
-
 }
 
 #*******************************************************
@@ -716,7 +710,7 @@ then
   for url in "${URLS[@]}"
   do
     local pagefilename=$(get_filename $url $runs)  
-    "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$BROWSERTIME_JAR -b chrome -n 3 -o "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" "$url"
+    "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$BROWSERTIME_JAR $BROWSER_TIME_PARAMS -o "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" "$url"
     local runs=$[$runs+1]
   done
 fi
