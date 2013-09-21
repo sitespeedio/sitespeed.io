@@ -1,2 +1,0 @@
-#set($tooltipLoadTimeText = "The page load time in s")
-#columnHeaderHTML("load time (s)","float",$tooltipLoadTimeText,"hidden-sm")##

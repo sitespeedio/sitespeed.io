@@ -18,8 +18,8 @@
 
 #macro (columnValue $columnName, $results)
 ## specific columns that have extra HTML
-#set( $specialColumns  = ["score", "syncjs","spof","url"])
-#set( $showOnPhone  = ["score", "url"])
+#set( $specialColumns  = ["ruleScore", "jsSyncInHead","spof","url"])
+#set( $showOnPhone  = ["ruleScore", "url"])
 
 #if ($showOnPhone.contains($columnName))
 <td>

@@ -231,14 +231,13 @@ if [ "$TEST_NAME" != "" ]
 fi
 
 ## Avalaible pages columns
-## url,js,css,img,cssimg,font,requests,requestswithoutexpires,docsize,pagesize,criticalpath,loadtime,spof,syncjs,ttfb,domains,kbps,maximgsize,totalimgsize,totaljssize,totalcsssize,browserscaledimg,score
-## url & score are always existing (showed on a phone)
+## url & ruleScore are always existing (showed on a phone)
 if [ "$PAGES_COLUMNS" != "" ]
   then
-    PAGES_COLUMNS="-Dcom.soulgalore.velocity.key.columns=url,$PAGES_COLUMNS,score"
+    PAGES_COLUMNS="-Dcom.soulgalore.velocity.key.columns=url,$PAGES_COLUMNS,ruleScore"
   else
     # Default colums
-    PAGES_COLUMNS="-Dcom.soulgalore.velocity.key.columns=url,js,css,img,cssimg,requests,requestswithoutexpires,docsize,pagesize,browserscaledimg,criticalpath,loadtime,spof,syncjs,ttfb,score"
+    PAGES_COLUMNS="-Dcom.soulgalore.velocity.key.columns=url,jsPerPage,cssPerPage,imagesPerPage,cssImagesPerPage,requests,requestsWithoutExpires,docWeight,pageWeight,browserScaledImages,criticalPath,spof,jsSyncInHead,ruleScore"
 fi
 
 

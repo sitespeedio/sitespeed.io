@@ -1,1 +1,0 @@
-$math.div($math.toInteger($results.getChild("g").getChild("ttfb").getChild("components").getChildText("item")),1000)

@@ -1,2 +1,0 @@
-#set($tooltipKBPSText = "The kb per second")
-#columnHeaderHTML("kbps","float",$tooltipKBPSText,"hidden-sm")##
