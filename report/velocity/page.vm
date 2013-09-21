@@ -406,37 +406,24 @@
 
 			</div>
 			<div class="col-lg-6">
-				<h4>Time</h4>
+				<h4>Content</h4>
 				<table class="table table-condensed table-striped table-bordered">
 					<tbody>
-						
-							<tr>
-							<td>ttfb</td>
-							<td>	
-							    $math.toDouble($math.div($math.toInteger($document.getRootElement().getChild("g").getChild("ttfb").getChild("components").getChildText("item")),1000)) s
-							</td>
-							</tr>
-							<tr>
-							<td>load time</td>
+						<tr>
+							<td>content percentage of the page</td>
 							<td>
-								$math.div($document.getRootElement().getChild("lt").getValue(), 1000) s
+								$document.getRootElement().getChild("g").getChild("textcontent").getChild("components").getChildText("item") %
 							</td>
-							</tr>
-							<tr>
-							<td>time spent in backend</td>
+						</tr>
+						<tr>
+							<td>DOM elements</td>
 							<td>
-								$backendPercentage %
+								$document.getRootElement().getChild("g").getChild("mindom").getChild("components").getChildText("item")
 							</td>
-							</tr>
-							<tr>
-							<td>time spent in frontend</td>
-							<td>
-								$frontendPercentage %
-								</td>
-							</tr>
+						</tr>
+
 					</tbody>
 				</table>
-
 			</div>
 		</div>
 
@@ -490,24 +477,7 @@
 
 			</div>
 			<div class="col-lg-6">
-				<h4>Content</h4>
-				<table class="table table-condensed table-striped table-bordered">
-					<tbody>
-						<tr>
-							<td>content percentage of the page</td>
-							<td>
-								$document.getRootElement().getChild("g").getChild("textcontent").getChild("components").getChildText("item") %
-							</td>
-						</tr>
-						<tr>
-							<td>DOM elements</td>
-							<td>
-								$document.getRootElement().getChild("g").getChild("mindom").getChild("components").getChildText("item")
-							</td>
-						</tr>
-
-					</tbody>
-				</table>
+				
 			</div>
 		</div>
 		#if($!{document2})
