@@ -1,7 +1,6 @@
 #parse("report/velocity/inc/header.vm")
 #parse("report/velocity/macros/date.macros.vm")
 #parse("report/velocity/macros/site.summary.macros.vm")
-#parse("report/velocity/logic/site.summary.logic.vm")
 
 #set ($siteElement = $document.getRootElement())
 #set ($metrics = $siteElement.getChild("metrics"))

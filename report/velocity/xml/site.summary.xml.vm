@@ -1,6 +1,6 @@
 #parse("report/velocity/macros/date.macros.vm")
 #parse("report/velocity/macros/site.summary.macros.vm")
-#parse("report/velocity/logic/site.summary.logic.vm")
+#parse("report/velocity/logic/site.summary.xml.logic.vm")
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
 <url><![CDATA[$document.getRootElement().getChild("url").getValue()]]></url>
