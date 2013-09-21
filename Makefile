@@ -15,7 +15,6 @@ CSV := csv
 LOGIC := logic
 COLUMNS := pages/columns
 COLUMN-HEADERS := pages/column-headers
-BOXES := site.summary/boxes
 SITES-COLUMNS := sites.summary/columns
 SITES-COLUMN-HEADERS := sites.summary/column-headers
 XSLT := xslt
@@ -43,7 +42,6 @@ package:
 	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS); fi	
 	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS); fi
 	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS); fi	
-	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES); fi 
 	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(SITES-COLUMN-HEADERS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(SITES-COLUMN-HEADERS); fi 
 	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(SITES-COLUMNS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(SITES-COLUMNS); fi 	
 	@if [ ! -d $(BUILD)/$(REPORT)/$(XSLT) ]; then mkdir -p $(BUILD)/$(REPORT)/$(XSLT); fi
@@ -150,28 +148,4 @@ package:
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/totaljssize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/ttfb.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/url.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/backend.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/	
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/cachetime.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/ 
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/criticalpath.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/ 
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/css.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/ 
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/cssimages.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/ 
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/docsize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/ 
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/dom.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/ 
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/domains.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/ 
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/frontend.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/ 
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/images.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/ 
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/js.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/ 
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/backend.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/ 
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/lastmodification.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/ 
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/pagesize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/ 
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/requests.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/ 
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/requestswithoutexpires.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/ 
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/scaledimages.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/score.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/spof.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/spofperpage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/	
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/syncjs.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/textcontent.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/totalimgsize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/ttfb.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(BOXES)/        
 	@echo "finished!"
