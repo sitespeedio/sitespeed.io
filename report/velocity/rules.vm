@@ -13,7 +13,7 @@
 		
 					#foreach ($rule in $document.getRootElement().getChild("dictionary").getChild("rules").getChildren())
 						<h3>$rule.getChild("name").getValue() <em>($rule.getName())</em></h3>
-						<p>$rule.getChild("info").getValue() <em>Weigth: $rule.getChild("weight").getValue()</em></p>
+						<p>$rule.getChild("info").getValue() <em>Weight: $rule.getChild("weight").getValue()</em></p>
 					#end
 		
 
