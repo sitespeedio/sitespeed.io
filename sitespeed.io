@@ -42,7 +42,7 @@ JAVA_HEAP=1024
 ## Pointing out the rule properties where summary rules are defined 
 SUMMARY_PROPERTY_DESKTOP="-Dcom.soulgalore.velocity.sitespeed.rules.file=dependencies/rules-desktop.properties"
 SUMMARY_PROPERTY_MOBILE="-Dcom.soulgalore.velocity.sitespeed.rules.file=dependencies/rules-mobile.properties"
-# Right now you cannot choose which rules, just run desktop
+# The default one is desktop, if you choose mobile rules, then you will have the mobile version
 SUMMARY_PROPERTY=$SUMMARY_PROPERTY_DESKTOP
 ## Where to put the result files
 REPORT_BASE_DIR=sitespeed-result
@@ -268,6 +268,7 @@ if [[ "$USER_AGENT" == "iphone" ]]
 then
 USER_AGENT=$IPHONE_IO6_AGENT
 VIEWPORT=$IPHONE5_VIEWPORT
+SUMMARY_PROPERTY=$SUMMARY_PROPERTY_MOBILE
 elif [[ "$USER_AGENT" == "ipad" ]]
 then
 USER_AGENT=$IPAD_IO6_AGENT
@@ -285,6 +286,10 @@ then
     VIEWPORT_YSLOW="-vp $VIEWPORT"
 fi
 
+if [[ "$RULESET" == *mobile* ]]
+then
+SUMMARY_PROPERTY=$SUMMARY_PROPERTY_MOBILE
+fi
 }
 
 #*******************************************************
