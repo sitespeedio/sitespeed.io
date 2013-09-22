@@ -15,10 +15,8 @@ CSV := csv
 LOGIC := logic
 COLUMNS := pages/columns
 COLUMN-HEADERS := pages/column-headers
-SITES-COLUMNS := sites.summary/columns
-SITES-COLUMN-HEADERS := sites.summary/column-headers
+SITE-SUMMARY := site.summary
 XSLT := xslt
-
 clean:
 	@echo "Clean the package"
 	@rm -fR $(BUILD)
@@ -41,20 +39,22 @@ package:
 	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(CSV) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(CSV); fi
 	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS); fi	
 	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS); fi
-	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS); fi	
-	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(SITES-COLUMN-HEADERS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(SITES-COLUMN-HEADERS); fi 
-	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(SITES-COLUMNS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(SITES-COLUMNS); fi 	
+	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS); fi		
+	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(SITE-SUMMARY) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(SITE-SUMMARY); fi    	
 	@if [ ! -d $(BUILD)/$(REPORT)/$(XSLT) ]; then mkdir -p $(BUILD)/$(REPORT)/$(XSLT); fi
 
 	@cp sitespeed.io sitespeed-junit.io sitespeed-sites.io CHANGELOG LICENSE $(BUILD)/
 	@cp $(DEP)/LICENSE.txt $(BUILD)/$(DEP)/
 	@cp $(DEP)/crawler-1.5.4-full.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/crawler.properties $(BUILD)/$(DEP)/
-	@cp $(DEP)/xml-velocity-1.8-full.jar $(BUILD)/$(DEP)/	
+	@cp $(DEP)/xml-velocity-1.8.1-SNAPSHOT-full.jar $(BUILD)/$(DEP)/	
 	@cp $(DEP)/screenshot.js $(BUILD)/$(DEP)/
 	@cp $(DEP)/htmlcompressor-1.5.3.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/yuicompressor-2.4.6.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/yslow-3.1.5-sitespeed.js $(BUILD)/$(DEP)/
+	@cp $(DEP)/rules-desktop.properties $(BUILD)/$(DEP)/
+	@cp $(DEP)/rules-mobile.properties $(BUILD)/$(DEP)/
+	@cp $(DEP)/browsertime-0.1-SNAPSHOT-full.jar $(BUILD)/$(DEP)/
 	@cp $(REPORT)/$(CSS)/bootstrap.min.css $(BUILD)/$(REPORT)/$(CSS)/
 	@cp $(REPORT)/$(CSS)/bootstrap-overrides.css $(BUILD)/$(REPORT)/$(CSS)/
 	@cp $(REPORT)/$(IMG)/$(ICO)/sitespeed.io-114.png $(BUILD)/$(REPORT)/$(IMG)/$(ICO)/
@@ -92,60 +92,61 @@ package:
 	@cp $(REPORT)/$(VELOCITY)/assets.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/rules.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/errorurls.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
-	@cp $(REPORT)/$(VELOCITY)/$(LOGIC)/site.summary.logic.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(LOGIC)/
+	@cp $(REPORT)/$(VELOCITY)/$(LOGIC)/site.summary.xml.logic.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(LOGIC)/
 	@cp $(REPORT)/$(VELOCITY)/$(XML)/site.summary.xml.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(XML)/
 	@cp $(REPORT)/$(VELOCITY)/pages.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/screenshots.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/sites.summary.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(XSLT)/junit.xsl $(BUILD)/$(REPORT)/$(XSLT)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/browserscaledimg.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/criticalpath.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/css.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/cssimg.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/docsize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/domains.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/font.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/img.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/js.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/kbps.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/loadtime.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/maximgsize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/pagesize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(SITE-SUMMARY)/box.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(SITE-SUMMARY)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/browserScaledImages.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/criticalPath.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/cssImagesPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/cssPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/cssWeightPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/docWeight.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/domComplete.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/domainsPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/firstPaint.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/fontsPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/imageWeightPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/imagesPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/jsPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/jsSyncInHead.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/jsWeightPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/maxImageWeight.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/pageWeight.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/requests.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/requestswithoutexpires.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/score.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/requestsWithoutExpires.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/ruleScore.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/spof.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/syncjs.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/totalcsssize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/totalimgsize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/totaljssize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/ttfb.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/url.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/score-html-wrapper.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/ruleScore-html-wrapper.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/spof-html-wrapper.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/syncjs-html-wrapper.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/jsSyncInHead-html-wrapper.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/url-html-wrapper.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/browserscaledimg.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/criticalpath.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/css.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/cssimg.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/docsize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/domains.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/font.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/img.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/js.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/kbps.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/loadtime.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/maximgsize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/pagesize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/browserScaledImages.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/criticalPath.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS-HEADERS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/cssImagesPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/cssPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/cssWeightPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/docWeight.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/domComplete.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/domainsPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/firstPaint.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/fontsPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/imageWeightPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/imagesPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/jsPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/jsSyncInHead.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/jsWeightPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/maxImageWeight.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/pageWeight.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/requests.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/requestswithoutexpires.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/score.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/requestsWithoutExpires.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/ruleScore.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/spof.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/syncjs.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/totalcsssize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/totalimgsize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/totaljssize.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/ttfb.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/url.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@echo "finished!"
