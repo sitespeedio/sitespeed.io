@@ -483,6 +483,7 @@ if $COLLECT_BROWSER_TIMINGS
 
     sed 's/<?xml version="1.0" encoding="UTF-8" standalone="yes"?>//g' "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" > "$REPORT_DATA_METRICS_DIR/tmp.xml" || exit 1
     cat "$REPORT_DATA_METRICS_DIR/tmp.xml" >> "$REPORT_DATA_DIR/result.xml"
+    rm cat "$REPORT_DATA_METRICS_DIR/tmp.xml"
   done
   echo '</metrics>' >> "$REPORT_DATA_DIR/result.xml"
 fi
