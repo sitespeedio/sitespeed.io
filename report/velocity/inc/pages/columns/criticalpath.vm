@@ -1,2 +1,0 @@
-## The critical path score##
-$results.getChild("g").getChild("criticalpath").getChild("score").getValue()##
