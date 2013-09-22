@@ -2,6 +2,8 @@
     #parse("report/velocity/macros/site.summary.macros.vm")
     #parse("report/velocity/macros/pages.macros.vm")
 
+    ## If we have Browser time metrics, display this kind of value
+    #set($browserTimeField = "median")
     <div class="row">
         <div class="col-lg-12">
 

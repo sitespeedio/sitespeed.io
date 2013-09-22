@@ -237,7 +237,12 @@ if [ "$PAGES_COLUMNS" != "" ]
     PAGES_COLUMNS="-Dcom.soulgalore.velocity.key.columns=url,$PAGES_COLUMNS,ruleScore"
   else
     # Default colums
-    PAGES_COLUMNS="-Dcom.soulgalore.velocity.key.columns=url,jsPerPage,cssPerPage,imagesPerPage,cssImagesPerPage,requests,requestsWithoutExpires,docWeight,pageWeight,browserScaledImages,criticalPath,spof,jsSyncInHead,ruleScore"
+    PAGES_COLUMNS="-Dcom.soulgalore.velocity.key.columns=url,jsPerPage,cssPerPage,imagesPerPage,cssImagesPerPage,requests,requestsWithoutExpires,docWeight,pageWeight,browserScaledImages,criticalPath,spof,jsSyncInHead"
+    if $COLLECT_BROWSER_TIMINGS
+      then
+      PAGES_COLUMNS="$PAGES_COLUMNS",firstPaint,ttfb,domComplete
+    fi
+    PAGES_COLUMNS="$PAGES_COLUMNS",ruleScore
 fi
 
 
@@ -254,8 +259,6 @@ if [ "$SUMMARY_BOXES" != "" ]
       SUMMARY_BOXES="$SUMMARY_BOXES",firstPaint,ttfb,domComplete
       fi
   fi
-
-
 
 
 if [ "$PROXY_HOST" != "" ]
@@ -483,7 +486,7 @@ if $COLLECT_BROWSER_TIMINGS
 
     sed 's/<?xml version="1.0" encoding="UTF-8" standalone="yes"?>//g' "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" > "$REPORT_DATA_METRICS_DIR/tmp.xml" || exit 1
     cat "$REPORT_DATA_METRICS_DIR/tmp.xml" >> "$REPORT_DATA_DIR/result.xml"
-    rm cat "$REPORT_DATA_METRICS_DIR/tmp.xml"
+    rm  "$REPORT_DATA_METRICS_DIR/tmp.xml"
   done
   echo '</metrics>' >> "$REPORT_DATA_DIR/result.xml"
 fi
