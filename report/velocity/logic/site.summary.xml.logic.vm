@@ -16,7 +16,7 @@
 #set($statsImageWeight = $stats.newInstance("imageWeight","Image weight","","weight","kb",1))
 #set($statsJsWeight = $stats.newInstance("jsWeight","JS weight","","weight","kb",1))
 #set($statsCssWeight = $stats.newInstance("cssWeight","CSS weight","","weight","kb",1))
-#set($statsTotalImageWeight = $stats.newInstance("imageWeightPerPage","Image weight per page","","weight","kb",1))
+#set($statsTotalImageWeight = $stats.newInstance("imageWeightPerPage","Total images weight per page","","weight","kb",1))
 #set($statsTotalCssWeight = $stats.newInstance("cssWeightPerPage","CSS weight per page","","weight","kb",1))
 #set($statsTotalJsWeight = $stats.newInstance("jsWeightPerPage","JS weight per page","","weight","kb",1))
 #set($statsScore = $stats.newInstance("ruleScore","Rule score","","","",1))
