@@ -2,7 +2,7 @@
 #******************************************************
 # Sitespeed.io - How speedy is your site?
 # 
-# Copyright (C) 2012 by Peter Hedenskog (http://peterhedenskog.com)
+# Copyright (C) 2013 by Peter Hedenskog (http://peterhedenskog.com)
 #
 #******************************************************
 #
