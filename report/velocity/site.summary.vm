@@ -13,24 +13,6 @@
 #set ($siteElement = $document.getRootElement())
 #set ($metricsElement = $siteElement.getChild("metrics"))
 
-
-## Set percentage
-##set ($pagesWithSpofPercentage = $math.roundTo($nrOfDecimals, $math.mul($math.div($metricsElement.getChild("spofpages").getChild("values").getValue(),$nrOfPages),100)))
-###set ($requestWithoutExpirePercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($totalAssetsWithoutExpiresMedian,$requestMedian),100)))
-##set ($imagesPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($imageMedian,$requestMedian),100)))
-##set ($cssImagesPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($cssImageMedian,$requestMedian),100)))
-##set ($cssPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($cssMedian,$requestMedian),100)))
-##set ($jsPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($jsMedian,$requestMedian),100)))
-##set ($jsInHeadPercentage = $math.roundTo($nrOfDecimals,$math.mul($math.div($totalJsSyncInHeadMedian,$jsMedian),100))) 
-
-##set ($cacheTimeMedian = $header.getSeconds($math.toInteger($metricsElement.getChild("assetcachetimeinseconds").getChild("median").getValue())))
-##set ($cacheTimePercentile = $header.getSeconds($math.toInteger($metricsElement.getChild("assetcachetimeinseconds").getChild("percentile95").getValue())))
-##set ($modifiedSinceMedian = $header.getSeconds($math.toInteger($metricsElement.getChild("timesincelastmodificationinseconds").getChild("median").getValue())))
-##set ($modifiedSincePercentile = $header.getSeconds($math.toInteger($metricsElement.getChild("timesincelastmodificationinseconds").getChild("percentile95").getValue())))
-
-##set($totalSpofPages = $math.toInteger($metricsElement.getChild("spofpages").getChild("values").getValue()))
-
-
 <div class="row">
     <div class="col-lg-12">
 
