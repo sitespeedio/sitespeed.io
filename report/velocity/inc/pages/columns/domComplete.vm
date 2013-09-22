@@ -6,7 +6,11 @@
 			#if (($pageData.getChild("key").getValue()=="actualUrl") && ($pageData.getChild("value").getValue()==$url))
 			    	#foreach ($metric in $timingSession.getChild("statistics").getChildren("statistic"))
 			    	    	#if ($metric.getChild("name").getValue()==$column)
-			    	    		$metric.getChild($browserTimeField).getValue()
+			    	    		#if ($metric.getChild($browserTimeField).getValue()!="")
+						$metric.getChild($browserTimeField).getValue()
+						#else
+						unknown
+						#end
 			    	    	#end
 			    	#end	
 			#end	    	
