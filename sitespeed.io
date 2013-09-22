@@ -598,9 +598,7 @@ for url in "${URLS[@]}"
     local imagefilename=$(get_filename $url $runs)
     echo "Creating screenshot for $url $REPORT_IMAGE_PAGES_DIR/$imagefilename.png "
     phantomjs $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js "$url" "$REPORT_IMAGE_PAGES_DIR/$imagefilename.png" $width $height "$USER_AGENT" true  > /dev/null 2>&1
-
-    echo phantomjs $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js "$url" "$REPORT_IMAGE_PAGES_DIR/$imagefilename.png" $width $$height "$USER_AGENT" true  
-
+    
     if $PNGCRUSH_EXIST
       then
         pngcrush -q $REPORT_IMAGE_PAGES_DIR/$imagefilename.png $REPORT_IMAGE_PAGES_DIR/$imagefilename-c.png
