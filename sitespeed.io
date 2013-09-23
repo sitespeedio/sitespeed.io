@@ -269,15 +269,16 @@ fi
 
 if [[ "$USER_AGENT" == "iphone" ]]
 then
-USER_AGENT=$IPHONE_IO6_AGENT
+USER_AGENT="$IPHONE_IO6_AGENT"
 VIEWPORT=$IPHONE5_VIEWPORT
 SUMMARY_PROPERTY=$SUMMARY_PROPERTY_MOBILE
 elif [[ "$USER_AGENT" == "ipad" ]]
 then
-USER_AGENT=$IPAD_IO6_AGENT
+USER_AGENT="$IPAD_IO6_AGENT"
 VIEWPORT=$IPAD_VIEWPORT
+fi
 
-elif [ "$USER_AGENT" != "" ]
+if [ "$USER_AGENT" != "" ]
 then
     USER_AGENT_YSLOW="$USER_AGENT"
     USER_AGENT_CRAWLER="User-Agent:$USER_AGENT"
@@ -690,7 +691,7 @@ function analyze() {
     sed -n '1,/<\/results>/p' $REPORT_DATA_PAGES_DIR/$pagefilename-bup > $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1
  
     # page size (keeping getting TTFB for a while, it is now primaly fetched from PhantomJS)
-    curl $USER_AGENT_CURL --compressed -o /dev/null -w "%{time_starttransfer};%{size_download}\n" -L -s "$url" >  "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
+    curl "$USER_AGENT_CURL" --compressed -o /dev/null -w "%{time_starttransfer};%{size_download}\n" -L -s "$url" >  "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
     
     read -r TTFB_SIZE <  $REPORT_DATA_PAGES_DIR/$pagefilename.info
     local TTFB="$(echo $TTFB_SIZE  | cut -d \; -f 1)"
