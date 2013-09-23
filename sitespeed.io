@@ -84,7 +84,7 @@ IPAD_IO6_AGENT="Mozilla/5.0 (iPad; CPU OS 6_0 like Mac OS X) AppleWebKit/536.26 
 IPAD_VIEWPORT="768x1024"
 
 # Jar files, specify the versions
-CRAWLER_JAR=crawler-1.5.4-full.jar
+CRAWLER_JAR=crawler-1.5.5-full.jar
 VELOCITY_JAR=xml-velocity-1.8.1-SNAPSHOT-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 BROWSERTIME_JAR=browsertime-0.1-SNAPSHOT-full.jar
