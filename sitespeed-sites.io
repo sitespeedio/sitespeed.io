@@ -41,6 +41,9 @@ PROPERTIES_DIR=report/properties
 # The menu in the header of the result file is hidden
 HIDE_MENU="-Dcom.soulgalore.velocity.key.hidemenu=true"
 
+## By default browser timings isn't collected
+COLLECT_BROWSER_TIMINGS=false
+
 #*******************************************************
 # Main program
 #
@@ -98,7 +101,8 @@ do
          m)JAVA_HEAP=$OPTARG;;  
          n)TEST_NAME=$OPTARG;;
          e)COLUMNS=$OPTARG;;   
-         i)FILE_NAME=$OPTARG;;      
+         i)FILE_NAME=$OPTARG;;
+         c)COLLECT_BROWSER_TIMINGS=$OPTARG;;      
 	       ?)
               ;;
       esac
@@ -117,7 +121,11 @@ if [ "$COLUMNS" != "" ]
     COLUMNS="-Dcom.soulgalore.velocity.key.columns=$COLUMNS"
   else
     # Default colums
-    COLUMNS="-Dcom.soulgalore.velocity.key.columns=median-ruleScore,median-criticalPath,median-jsSyncInHead,median-requests,median-imageWeightPerPage,median-pageWeight,median-requestsWithoutExpires,median-assetsCacheTime,median-timeSinceLastModification,median-domainsPerPage"
+    COLUMNS="-Dcom.soulgalore.velocity.key.columns=median-ruleScore,median-criticalPath,median-requests,median-imageWeightPerPage,median-pageWeight,median-requestsWithoutExpires,median-assetsCacheTime,median-timeSinceLastModification,median-domainsPerPage"
+    if $COLLECT_BROWSER_TIMINGS
+      then
+      COLUMNS="$COLUMNS",median-ttfb,median-domComplete
+    fi
 fi
 
 if [ ! -f $FILE_NAME ]
