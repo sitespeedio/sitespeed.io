@@ -117,7 +117,7 @@ if [ "$COLUMNS" != "" ]
     COLUMNS="-Dcom.soulgalore.velocity.key.columns=$COLUMNS"
   else
     # Default colums
-    COLUMNS="-Dcom.soulgalore.velocity.key.columns=median-score,median-criticalpath,median-jssyncinhead,median-requests,median-totalimageweight,median-pageweight,median-assetswithoutexpires,median-assetcachetimeinseconds,median-timesincelastmodificationinseconds,median-domains"
+    COLUMNS="-Dcom.soulgalore.velocity.key.columns=median-ruleScore,median-criticalPath,median-jsSyncInHead,median-requests,median-imageWeightPerPage,median-pageWeight,median-requestsWithoutExpires,median-assetsCacheTime,median-timeSinceLastModification,median-domainsPerPage"
 fi
 
 if [ ! -f $FILE_NAME ]
