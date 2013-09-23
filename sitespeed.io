@@ -634,7 +634,7 @@ OPTIONS:
    -u      The start URL of the crawl: http[s]://host[:port][/path/]. Use this or use the -f file option.
    -f      The path to a plain text file with one URL on each row.
    -d      The crawl depth, default is 1 (one page and all links pointing to the same domain on that page) [optional]
-   -c      Crawl URLs only URLs that contains this keyword in the path [optional]
+   -q      Crawl URLs only URLs that contains this keyword in the path [optional]
    -s      Skip URLs that contains this keyword in the path [optional]
    -p      The number of processes that will analyze pages, default is 5 [optional]
    -m      The memory heap size for the Java applications, default is 1024 Mb [optional]
