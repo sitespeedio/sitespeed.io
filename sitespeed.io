@@ -85,7 +85,7 @@ IPAD_VIEWPORT="768x1024"
 
 # Jar files, specify the versions
 CRAWLER_JAR=crawler-1.5.5-full.jar
-VELOCITY_JAR=xml-velocity-1.8.1-SNAPSHOT-full.jar
+VELOCITY_JAR=xml-velocity-1.8.1-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 BROWSERTIME_JAR=browsertime-0.1-SNAPSHOT-full.jar
 
