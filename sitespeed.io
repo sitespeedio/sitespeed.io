@@ -653,6 +653,8 @@ OPTIONS:
    -b      The boxes showed on site summary page, see http://sitespeed.io/documentation/#sitesummaryboxes for more info [optional]
    -j      The max number of pages to test [optional]   
    -k      Take screenshots for each page (using the configured view port). Default is false. (true|false) [optional] 
+   -c      Collect BrowserTimings data (meaning open a real browser & fetch timings). Default is false. (true|false) [optional] 
+   -z      String sent to BrowserTime, so you can choose browser and tries. Default is "-b chrome -n 3".
 EOF
 }
 
