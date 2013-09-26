@@ -124,7 +124,7 @@ if [ "$COLUMNS" != "" ]
     COLUMNS="-Dcom.soulgalore.velocity.key.columns=median-ruleScore,median-criticalPath,median-requests,median-imageWeightPerPage,median-pageWeight,median-requestsWithoutExpires,median-assetsCacheTime,median-timeSinceLastModification,median-domainsPerPage"
     if $COLLECT_BROWSER_TIMINGS
       then
-      COLUMNS="$COLUMNS",median-ttfb,median-domComplete
+      COLUMNS="$COLUMNS",median-serverResponseTime,median-domContentLoadedTime
     fi
 fi
 
