@@ -256,7 +256,7 @@ if [ "$SUMMARY_BOXES" != "" ]
       SUMMARY_BOXES="-Dcom.soulgalore.velocity.key.boxes=ruleScore,criticalPath,jsSyncInHead,jsPerPage,cssPerPage,cssImagesPerPage,imagesPerPage,requests,requestsWithoutExpires,pageWeight,docWeight,imageWeightPerPage,browserScaledImages,spof,domainsPerPage,domElements,assetsCacheTime,timeSinceLastModification"
     if $COLLECT_BROWSER_TIMINGS
       then
-      SUMMARY_BOXES="$SUMMARY_BOXES",redirectionTime,serverResponseTime,pageDownloadTime,domContentLoadedTime,domInteractiveTime,pageLoadTime
+      SUMMARY_BOXES="$SUMMARY_BOXES",redirectionTime,serverResponseTime,pageDownloadTime,domInteractiveTime,domContentLoadedTime,pageLoadTime
       fi
   fi
 
