@@ -72,8 +72,8 @@ MAX_FILENAME_LENGTH=245
 SCREENSHOT=false
 ## By default browser timings isn't collected
 COLLECT_BROWSER_TIMINGS=false
-## The default setup: Use chrome & do it three times per URL
-BROWSER_TIME_PARAMS="-b chrome -n 3"
+## The default setup: Use firefox & do it three times per URL
+BROWSER_TIME_PARAMS="-b firefox -n 3"
 
 ## Easy way to set your user agent as an Iphone
 IPHONE_IO6_AGENT="Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25"
@@ -654,7 +654,7 @@ OPTIONS:
    -j      The max number of pages to test [optional]   
    -k      Take screenshots for each page (using the configured view port). Default is false. (true|false) [optional] 
    -c      Collect BrowserTimings data (meaning open a real browser & fetch timings). Default is false. (true|false) [optional] 
-   -z      String sent to BrowserTime, so you can choose browser and tries. Default is "-b chrome -n 3".
+   -z      String sent to BrowserTime, so you can choose browser and tries. Default is "-b firefox -n 3".
 EOF
 }
 
