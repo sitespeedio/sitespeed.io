@@ -1,2 +1,2 @@
-#set($tooltipUrlText = "Time to DOM complete (ms)")
+#set($tooltipUrlText = "DOMContent loaded (ms)")
 #columnHeaderHTML($column,"float",$tooltipUrlText,"")##

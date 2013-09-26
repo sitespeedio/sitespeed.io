@@ -1,2 +1,2 @@
-#set($tooltipUrlText = "Time to first byte (ms)")
+#set($tooltipUrlText = "Server response time (ms)")
 #columnHeaderHTML($column,"float",$tooltipUrlText,"")##
