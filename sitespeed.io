@@ -240,7 +240,7 @@ if [ "$PAGES_COLUMNS" != "" ]
     PAGES_COLUMNS="-Dcom.soulgalore.velocity.key.columns=url,jsPerPage,cssPerPage,imagesPerPage,cssImagesPerPage,requests,requestsWithoutExpires,docWeight,pageWeight,browserScaledImages,criticalPath,spof,jsSyncInHead"
     if $COLLECT_BROWSER_TIMINGS
       then
-      PAGES_COLUMNS="$PAGES_COLUMNS",serverResponseTime,domContentLoadedTime
+      PAGES_COLUMNS="-Dcom.soulgalore.velocity.key.columns=url,jsPerPage,cssPerPage,imagesPerPage,requests,requestsWithoutExpires,pageWeight,browserScaledImages,criticalPath,serverResponseTime,domContentLoadedTime"
     fi
     PAGES_COLUMNS="$PAGES_COLUMNS",ruleScore
 fi
