@@ -79,7 +79,7 @@ package:
 	@cp $(REPORT)/$(PROPERTIES)/errorurls.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/screenshots.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/footer.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/
-	@cp $(REPORT)/$(VELOCITY)/$(MACROS)/site.summary.macros.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS)
+	@cp $(REPORT)/$(VELOCITY)/$(MACROS)/util.macros.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS)
 	@cp $(REPORT)/$(VELOCITY)/$(MACROS)/date.macros.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS)
 	@cp $(REPORT)/$(VELOCITY)/$(MACROS)/pages.macros.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS)
 	@cp $(REPORT)/$(VELOCITY)/$(CSV)/pages.csv.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(CSV)

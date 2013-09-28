@@ -1,5 +1,5 @@
     #parse("report/velocity/inc/header.vm")
-    #parse("report/velocity/macros/site.summary.macros.vm")
+    #parse("report/velocity/macros/util.macros.vm")
     #parse("report/velocity/macros/pages.macros.vm")
 
     ## If we have Browser time metrics, display this kind of value
