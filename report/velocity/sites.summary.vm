@@ -3,7 +3,7 @@
 #parse("report/velocity/inc/header.vm")
 <div class="row">
   <div class="col-lg-12">
-    <h2>Sites analyzed</h2>
+    <h2>Analyzed $document.getRootElement().getChildren("site").size() site#plural($math.toInteger($document.getRootElement().getChildren("site").size()))</h2>
     #if ($testname)
     <h3>$testname</h3>
     #end
