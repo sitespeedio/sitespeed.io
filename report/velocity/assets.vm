@@ -1,6 +1,11 @@
 #parse("report/velocity/inc/header.vm")
 #parse("report/velocity/logic/assets.logic.vm")
 #parse("report/velocity/macros/date.macros.vm")
+
+##Add an s if plural
+#macro ( plural $number)
+#if ($number>1)s#end#end 
+
 <div class="row">
 	<div class="col-lg-12">
 
@@ -11,11 +16,28 @@
             #if ($document.getRootElement().getChild("url").getValue().length()>0) 
 			    for <a href="$document.getRootElement().getChild("url").getValue()" target="_blank">$document.getRootElement().getChild("url").getValue()</a> 
 			#end	
-            ($document.getRootElement().getChildren("results").size() pages)
+            ($document.getRootElement().getChildren("results").size() page#plural($math.toInteger($document.getRootElement().getChildren("results").size())))
         </h2>
 		#if ($testname)
 			<h3>$testname</h3>
         #end
+         <p>
+            Test performed  $document.getRootElement().getAttribute("date").getValue() with $document.getRootElement().getChild("results").getChild("i").getValue() rules.
+            </p>
+            <p>
+            <small>
+            #if ($siteElement.getChild("ip").getValue() != "unknown")
+            <strong>IP:</strong> <em> $document.getRootElement().getAttribute("ip").getValue()</em>
+            #end   
+
+            #if ($siteElement.getChild("userAgent").getValue().getValue() != "")
+            <strong>User-Agent:</strong> <em>$document.getRootElement().getAttribute("useragent").getValue()</em>
+            #end
+            #if ($siteElement.getChild("viewPort").getValue() != "")
+            <strong>Viewport:</strong> <em>$document.getRootElement().getAttribute("viewport").getValue()</em>
+            #end
+            </small>
+         </p>
 
 		<table class="table table-condensed table-striped table-bordered" id="assetsTable">
 			<thead>

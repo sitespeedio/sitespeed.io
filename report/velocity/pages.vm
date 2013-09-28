@@ -16,24 +16,27 @@
             #if ($testname)
                 <h3>$testname</h3>
             #end
+
+           
+             <p>
+            Test performed  $document.getRootElement().getAttribute("date").getValue() with $document.getRootElement().getChild("results").getChild("i").getValue() rules.
+            </p>
             <p>
-            Test performed: $document.getRootElement().getAttribute("date").getValue() with rules $document.getRootElement().getChild("results").getChild("i").getValue() 
+            <small>
+            #if ($siteElement.getChild("ip").getValue() != "unknown")
+            <strong>IP:</strong> <em> $document.getRootElement().getAttribute("ip").getValue()</em>
+            #end   
 
-            #if ($document.getRootElement().getAttribute("ip").getValue() != "unknown")
-            from IP: $document.getRootElement().getAttribute("ip").getValue()
+            #if ($siteElement.getChild("userAgent").getValue().getValue() != "")
+            <strong>User-Agent:</strong> <em>$document.getRootElement().getAttribute("useragent").getValue()</em>
             #end
-
-	        #if ($document.getRootElement().getAttribute("useragent").getValue() != "")
-            with user agent: $document.getRootElement().getAttribute("useragent").getValue()
+            #if ($siteElement.getChild("viewPort").getValue() != "")
+            <strong>Viewport:</strong> <em>$document.getRootElement().getAttribute("viewport").getValue()</em>
             #end
-	    
-	        #if ($document.getRootElement().getAttribute("viewport").getValue() != "")
-            viewport: $document.getRootElement().getAttribute("viewport").getValue()
-            #end
-
-
+            </small>
             </p>
 
+            
             <table class="table table-hover table-condensed table-striped table-bordered" id="pagesTable">
                 <thead>
                     <tr>

@@ -27,18 +27,21 @@
             <h3>$testname</h3>
         #end
         <p>
-            Test performed: $siteElement.getChild("date").getValue() with rules $siteElement.getChild("rules").getValue()
-        
+            Test performed $siteElement.getChild("date").getValue() with $siteElement.getChild("rules").getValue() rules.
+        </p>
+        <p>
+        <small>
         #if ($siteElement.getChild("ip").getValue() != "unknown")
-            from IP: $siteElement.getChild("ip").getValue()
+            <strong>IP:</strong> <em>$siteElement.getChild("ip").getValue()</em>
             #end   
 
         #if ($siteElement.getChild("userAgent").getValue().getValue() != "")
-            with user agent: $siteElement.getChild("userAgent").getValue()
+            <strong>User-Agent:</strong> <em>$siteElement.getChild("userAgent").getValue()</em>
             #end
         #if ($siteElement.getChild("viewPort").getValue() != "")
-            viewport: $siteElement.getChild("viewPort").getValue()
+            <strong>Viewport:</strong> <em>$siteElement.getChild("viewPort").getValue()</em>
             #end
+        </small>
         </p>
 
 ### $boxes fed from start script
