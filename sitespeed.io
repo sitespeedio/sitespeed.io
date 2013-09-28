@@ -305,6 +305,7 @@ function setup_dirs_and_dependencies {
 cd "$(dirname ${BASH_SOURCE[0]})"
 
 local now=$(date +"%Y-%m-%d-%H-%M-%S")
+DATE=$(date) 
 
 if [[ -z $FILE ]] 
   then
