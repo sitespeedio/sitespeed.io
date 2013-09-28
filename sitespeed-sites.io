@@ -44,6 +44,12 @@ HIDE_MENU="-Dcom.soulgalore.velocity.key.hidemenu=true"
 ## By default browser timings isn't collected
 COLLECT_BROWSER_TIMINGS=false
 
+## Pointing out the rule properties where summary rules are defined 
+SUMMARY_PROPERTY_DESKTOP="-Dcom.soulgalore.velocity.sitespeed.rules.file=dependencies/rules-desktop.properties"
+SUMMARY_PROPERTY_MOBILE="-Dcom.soulgalore.velocity.sitespeed.rules.file=dependencies/rules-mobile.properties"
+# The default one is desktop, if you choose mobile rules, then you will have the mobile version
+SUMMARY_PROPERTY=$SUMMARY_PROPERTY_DESKTOP
+
 #*******************************************************
 # Main program
 #
@@ -83,7 +89,7 @@ EOF
 function get_input {
 
 # Set options, the sames as for sitespeed.io
-while getopts “hud:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:” OPTION
+while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:q:k:” OPTION
 do
      case $OPTION in
          h)
@@ -102,7 +108,9 @@ do
          n)TEST_NAME=$OPTARG;;
          e)COLUMNS=$OPTARG;;   
          i)FILE_NAME=$OPTARG;;
-         c)COLLECT_BROWSER_TIMINGS=$OPTARG;;      
+         l)RULESET=$OPTARG;;
+         c)COLLECT_BROWSER_TIMINGS=$OPTARG;;  
+         a)USER_AGENT=$OPTARG;;    
 	       ?)
               ;;
       esac
@@ -134,6 +142,15 @@ then
     exit 1
 fi
 
+if [[ "$USER_AGENT" == "iphone" ]]
+then
+SUMMARY_PROPERTY=$SUMMARY_PROPERTY_MOBILE
+fi
+
+if [[ "$RULESET" == *mobile* ]]
+then
+SUMMARY_PROPERTY=$SUMMARY_PROPERTY_MOBILE
+fi
 
 }
 
@@ -202,7 +219,7 @@ cd $HOME
 function generate_output_files {
 
 echo 'Create the index.html'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$HIDE_MENU" "$COLUMNS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $HOME/$REPORT_BASE_DIR/$NOW/sites.xml $VELOCITY_DIR/sites.summary.vm $PROPERTIES_DIR/sites.summary.properties $HOME/$REPORT_BASE_DIR/$NOW/index.html || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$HIDE_MENU" "$COLUMNS" $SUMMARY_PROPERTY -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $HOME/$REPORT_BASE_DIR/$NOW/sites.xml $VELOCITY_DIR/sites.summary.vm $PROPERTIES_DIR/sites.summary.properties $HOME/$REPORT_BASE_DIR/$NOW/index.html || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $HOME/$REPORT_BASE_DIR/$NOW/index.html $HOME/$REPORT_BASE_DIR/$NOW/index.html
 
 #copy the rest of the files
