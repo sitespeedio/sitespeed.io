@@ -30,7 +30,7 @@
       <tbody>
         #foreach ($site in $document.getRootElement().getChildren("site"))
         <tr>
-          <td>
+          <td class="nobreak-pages">
             <a href="$site.getChild("path").getValue()/index.html">$site.getChild("url").getValue()</a>
           </td>
           <td>$site.getChild("pages").getValue()</td>
