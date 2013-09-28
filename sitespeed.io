@@ -643,7 +643,6 @@ OPTIONS:
    -n      Give your test a name, it will be added to all HTML pages [optional]
    -o      The output format, always output as HTML and you can also output a CSV file for the detailed site summary page  (csv) [optional]
    -r      The result base directory, default is sitespeed-result [optional]
-   -z      Create a tar zip file of the result files, default is false [optional]
    -x      The proxy host & protocol: proxy.soulgalore.com:80 [optional] 
    -t      The proxy type, default is http [optional]
    -a      The full User Agent string, default is Chrome for MacOSX. You can also set the value as iphone or ipad (will automagically change the viewport) [optional]
