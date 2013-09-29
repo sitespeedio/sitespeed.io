@@ -129,7 +129,7 @@ if [ "$COLUMNS" != "" ]
     COLUMNS="-Dcom.soulgalore.velocity.key.columns=$COLUMNS"
   else
     # Default colums
-    COLUMNS="-Dcom.soulgalore.velocity.key.columns=median-ruleScore,median-criticalPath,median-requests,median-imageWeightPerPage,median-pageWeight,median-requestsWithoutExpires,median-assetsCacheTime,median-timeSinceLastModification,median-domainsPerPage"
+    COLUMNS="-Dcom.soulgalore.velocity.key.columns=median-ruleScore,median-criticalPath,median-requests,median-imageWeightPerPage,median-pageWeight,median-requestsWithoutExpires,median-assetsCacheTime,median-domainsPerPage"
     if $COLLECT_BROWSER_TIMINGS
       then
       COLUMNS="$COLUMNS",median-serverResponseTime,median-domContentLoadedTime
