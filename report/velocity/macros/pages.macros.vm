@@ -1,3 +1,9 @@
+## CamelCaseSplitter
+#macro (camelCaseSplitter $name)
+#foreach ($s in $name.split("(?=[A-Z])"))
+ $s  
+#end#end
+
 ## Set the right table header  
 #macro (columnHeader $columnName)
 	#if ($filetool.doFileExist("report/velocity/inc/pages/column-headers/${columnName}.vm"))
@@ -10,9 +16,15 @@
 #end
 
 ## Header HTML
-#macro ( columnHeaderHTML $columName, $dataSort, $tooltip,$class)
+#macro ( columnHeaderHTML $columnName, $dataSort, $tooltip,$class)
 <th data-sort="$dataSort" class="$class">
-	<a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltip">$columName</a>
+	<a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltip">
+	#if ($columnName.endsWith("Time"))
+		#camelCaseSplitter($columnName)
+	#else
+	$columnName
+	#end
+	</a>
 </th>
 #end
 

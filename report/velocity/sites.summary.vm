@@ -21,7 +21,13 @@
           <th data-sort="float">
             #set ($value = $column.split("-"))
             #set ($tooltip = $document.getRootElement().getChild("site").getChild("metrics").getChild($value.get(1)).getAttribute("friendlyName").getValue())
-            <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltip">$tooltip ($value.get(0))</a>
+            <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltip">
+            #if ($tooltip.endsWith("Time"))
+              #camelCaseSplitter($tooltip)
+            #else
+              $tooltip
+            #end
+            ($value.get(0))</a>
 
           </th>
           #end
