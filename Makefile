@@ -100,7 +100,7 @@ package:
 	@cp $(REPORT)/$(XSLT)/junit.xsl $(BUILD)/$(REPORT)/$(XSLT)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(SITE-SUMMARY)/box.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(SITE-SUMMARY)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/browserScaledImages.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/criticalPath.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/criticalPathScore.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/cssImagesPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/cssPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/cssWeightPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
@@ -125,7 +125,7 @@ package:
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/jsSyncInHead-html-wrapper.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/url-html-wrapper.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/browserScaledImages.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/criticalPath.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS-HEADERS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/criticalPathScore.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/cssImagesPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/cssPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/cssWeightPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
