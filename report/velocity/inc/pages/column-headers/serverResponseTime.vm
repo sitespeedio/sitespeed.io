@@ -1,2 +1,0 @@
-#set($tooltipUrlText = "Server response time (ms)")
-#columnHeaderHTML($column,"float",$tooltipUrlText,"")##

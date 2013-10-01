@@ -1,2 +1,2 @@
-#set($tooltipUrlText = "Time to first paint (ms)")
+#set($tooltipUrlText = "Browser metric $column (ms)")
 #columnHeaderHTML($column,"float",$tooltipUrlText,"")##

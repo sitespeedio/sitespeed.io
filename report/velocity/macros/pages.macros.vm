@@ -6,7 +6,9 @@
 
 ## Set the right table header  
 #macro (columnHeader $columnName)
-	#if ($filetool.doFileExist("report/velocity/inc/pages/column-headers/${columnName}.vm"))
+	#if ($columnName.toLowerCase().endsWith("time"))
+		#parse("report/velocity/inc/pages/column-headers/genericTimeMetrics.vm")
+	#elseif ($filetool.doFileExist("report/velocity/inc/pages/column-headers/${columnName}.vm"))
 		#parse("report/velocity/inc/pages/column-headers/${columnName}.vm")
 	#elseif ($filetool.doFileExist("report/velocity/inc/pages/column-headers/custom/${columnName}.vm"))
 		#parse("report/velocity/inc/pages/column-headers/custom/${columnName}.vm")
@@ -19,7 +21,7 @@
 #macro ( columnHeaderHTML $columnName, $dataSort, $tooltip,$class)
 <th data-sort="$dataSort" class="$class">
 	<a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="$tooltip">
-	#if ($columnName.endsWith("Time"))
+	#if ($columnName.toLowerCase().endsWith("time"))
 		#camelCaseSplitter($columnName)
 	#else
 	$columnName
@@ -38,15 +40,18 @@
 #else
 <td class="hidden-sm">
 #end
-	#if ($specialColumns.contains($columnName))
-		#parse("report/velocity/inc/pages/columns/${columnName}-html-wrapper.vm")		
-    #elseif ($filetool.doFileExist("report/velocity/inc/pages/columns/${columnName}.vm")) 
-     		#parse("report/velocity/inc/pages/columns/${columnName}.vm")
-     	#elseif ($filetool.doFileExist("report/velocity/inc/pages/columns/custom/${columnName}.vm"))
-     		#parse("report/velocity/inc/pages/columns/custom/${columnName}.vm")
-     	#else
+
+#if ($columnName.toLowerCase().endsWith("time"))
+	#parse("report/velocity/inc/pages/columns/genericTimeMetrics.vm")
+#elseif ($specialColumns.contains($columnName))
+	#parse("report/velocity/inc/pages/columns/${columnName}-html-wrapper.vm")		
+#elseif ($filetool.doFileExist("report/velocity/inc/pages/columns/${columnName}.vm")) 
+	#parse("report/velocity/inc/pages/columns/${columnName}.vm")
+#elseif ($filetool.doFileExist("report/velocity/inc/pages/columns/custom/${columnName}.vm"))
+     #parse("report/velocity/inc/pages/columns/custom/${columnName}.vm")
+#else
      	Non existing vm file: ${columnName}.vm
-     	#end	
+#end 	
 </td>	
 #end
 

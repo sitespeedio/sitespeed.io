@@ -105,9 +105,7 @@ package:
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/cssPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/cssWeightPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/docWeight.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/domContentLoadedTime.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/domainsPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/firstPaint.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/fontsPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/imageWeightPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/imagesPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
@@ -120,7 +118,7 @@ package:
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/requestsWithoutExpires.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/ruleScore.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/spof.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/serverResponseTime.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/genericTimeMetrics.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/url.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/ruleScore-html-wrapper.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/spof-html-wrapper.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
@@ -132,9 +130,7 @@ package:
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/cssPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/cssWeightPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/docWeight.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/domContentLoadedTime.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/domainsPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/firstPaint.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/fontsPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/imageWeightPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/imagesPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
@@ -147,6 +143,6 @@ package:
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/requestsWithoutExpires.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/ruleScore.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/spof.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/serverResponseTime.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/genericTimeMetrics.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/url.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@echo "finished!"
