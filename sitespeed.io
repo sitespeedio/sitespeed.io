@@ -230,7 +230,7 @@ if [ "$TEST_NAME" != "" ]
     TEST_NAME="-Dcom.soulgalore.velocity.key.testname= "
 fi
 
-## Avalaible pages columns
+
 ## url & ruleScore are always existing (showed on a phone)
 if [ "$PAGES_COLUMNS" != "" ]
   then
@@ -246,14 +246,12 @@ if [ "$PAGES_COLUMNS" != "" ]
 fi
 
 
-## Avalaible summary boxes
-## ruleScore,criticalPath,ttfb,jsSyncInHead,nrOfJS,nrOfCSS,nrOfCSSImages,nrOfImages,requests,requestsWithoutExpires,pageWeight,docWeight,totalimgsize,textContent,spof,spofPerPage,domElements,backend,frontend,assetsCacheTime,timeSinceLastModification,browserScaledImages,nrOfDomains
 if [ "$SUMMARY_BOXES" != "" ]
   then
     SUMMARY_BOXES="-Dcom.soulgalore.velocity.key.boxes=$SUMMARY_BOXES"
   else
       # Default colums
-      SUMMARY_BOXES="-Dcom.soulgalore.velocity.key.boxes=ruleScore,criticalPath,jsSyncInHead,jsPerPage,cssPerPage,cssImagesPerPage,imagesPerPage,requests,requestsWithoutExpires,pageWeight,docWeight,imageWeightPerPage,browserScaledImages,spof,domainsPerPage,domElements,assetsCacheTime,timeSinceLastModification"
+      SUMMARY_BOXES="-Dcom.soulgalore.velocity.key.boxes=ruleScore,criticalPathScore,jsSyncInHead,jsPerPage,cssPerPage,cssImagesPerPage,imagesPerPage,requests,requestsWithoutExpires,pageWeight,docWeight,imageWeightPerPage,browserScaledImages,spofPerPage,domainsPerPage,domElements,assetsCacheTime,timeSinceLastModification"
     if $COLLECT_BROWSER_TIMINGS
       then
       SUMMARY_BOXES="$SUMMARY_BOXES",redirectionTime,serverResponseTime,pageDownloadTime,domInteractiveTime,domContentLoadedTime,pageLoadTime
