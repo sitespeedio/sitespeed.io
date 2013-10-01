@@ -7,12 +7,12 @@
 #set($nrOfDecimals = 0)
 
 ## Creating all statistics objects
-#set($statsJs = $stats.newInstance("jsPerPage","Number of JS","","","",1))
-#set($statsCss = $stats.newInstance("cssPerPage","Number of CSS","","","",1))
-#set($statsImages = $stats.newInstance("imagesPerPage","Number of images","","","",1))
-#set($statsCssImages = $stats.newInstance("cssImagesPerPage","Number of CSS images","","","",1))
-#set($statsRequests = $stats.newInstance("requests","Number of requests","","","",1))
-#set($statsPageWeight = $stats.newInstance("pageWeight","Total page weight","","weight","kb",1))
+#set($statsJs = $stats.newInstance("jsPerPage","Number of Javascript files per page","","","",1))
+#set($statsCss = $stats.newInstance("cssPerPage","Number of CSS files per page","","","",1))
+#set($statsImages = $stats.newInstance("imagesPerPage","Number of images per page","","","",1))
+#set($statsCssImages = $stats.newInstance("cssImagesPerPage","Number of CSS images per page","","","",1))
+#set($statsRequests = $stats.newInstance("requests","Number of requests per page","","","",1))
+#set($statsPageWeight = $stats.newInstance("pageWeight","Total page weight (including all assets)","","weight","kb",1))
 #set($statsImageWeight = $stats.newInstance("imageWeight","Image weight","","weight","kb",1))
 #set($statsJsWeight = $stats.newInstance("jsWeight","JS weight","","weight","kb",1))
 #set($statsCssWeight = $stats.newInstance("cssWeight","CSS weight","","weight","kb",1))
