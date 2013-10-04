@@ -1,8 +1,8 @@
 #! /bin/bash
 #******************************************************
-# sitespeed-sites.io - How speedy is all the sites?
+# sitespeed-sites.io - How speedy is all the sites? (http://www.sitespeed.io)
 # 
-# Copyright (C) 2013 by Peter Hedenskog (http://peterhedenskog.com)
+# Copyright (C) 2013 by Peter Hedenskog (http://www.peterhedenskog.com)
 #
 #******************************************************
 #

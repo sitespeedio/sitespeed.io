@@ -2,7 +2,7 @@
 #******************************************************
 # sitespeed-junit.io - sitespeed.io LOVES Jenkins
 # 
-# Copyright (C) 2013 by Peter Hedenskog (http://peterhedenskog.com)
+# Copyright (C) 2013 by Peter Hedenskog (http://www.peterhedenskog.com)
 #
 #******************************************************
 #

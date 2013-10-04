@@ -1,8 +1,8 @@
 #! /bin/bash
 #******************************************************
-# Sitespeed.io - How speedy is your site?
+# Sitespeed.io - How speedy is your site? (http://www.sitespeed.io)
 # 
-# Copyright (C) 2013 by Peter Hedenskog (http://peterhedenskog.com)
+# Copyright (C) 2013 by Peter Hedenskog (http://www.peterhedenskog.com)
 #
 #******************************************************
 #
@@ -87,6 +87,7 @@ IPAD_VIEWPORT="768x1024"
 ## Nexus
 NEXUS_4_AGENT="Mozilla/5.0 (Linux; Android 4.2; Nexus 4 Build/JVP15Q) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19"
 NEXUS_VIEWPORT="348x519"
+
 
 # Jar files, specify the versions
 CRAWLER_JAR=crawler-1.5.6-full.jar
@@ -659,7 +660,7 @@ OPTIONS:
    -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional] 
    -y      The compiled YSlow file, default is dependencies/yslow-3.1.5-sitespeed.js [optional]
    -l      Which ruleset to use, default is the latest sitespeed.io version for desktop [optional]
-   -g      The columns showed on detailes page summary table, see http://sitespeed.io/documentation/#pagescolumns for more info [optional] 
+   -g      The columns showed on detailed page summary table, see http://sitespeed.io/documentation/#pagescolumns for more info [optional] 
    -b      The boxes showed on site summary page, see http://sitespeed.io/documentation/#sitesummaryboxes for more info [optional]
    -j      The max number of pages to test [optional]   
    -k      Take screenshots for each page (using the configured view port). Default is false. (true|false) [optional] 
