@@ -746,6 +746,13 @@ function get_filename() {
 local url=$1
 local unique=$2
 local pagefilename=$(echo ${url#*//})
+
+## Hack for fixing when we have the same url as both http & https
+if [[ $url == https* ]]
+then
+local pagefilename=s-$pagefilename
+fi
+
 local pagefilename=$(echo ${pagefilename//[^a-zA-Z0-9]/'-'})
 
 # take care of too long names
