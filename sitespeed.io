@@ -137,6 +137,7 @@ if [[ "$JAVA" ]]; then
          echo "Java version is less than 1.6 which is too old, you will need at least Java 1.6 to run sitespeed.io"; exit 1;
     fi
 fi
+
 }
 
 #*******************************************************
@@ -325,9 +326,6 @@ else
  echo "Will fetch urls from the file $FILE with User-Agent $USER_AGENT and viewport $VIEWPORT using ruleset $RULESET ... this can take a while"
 fi
 
-# Logging versions
-echo "Using PhantomJS version $(phantomjs --version)" 
-echo "Using Java version $jVersion" 
 
 # remove the protocol                                                                                                                                                            
 local noprotocol=${URL#*//}
@@ -359,6 +357,13 @@ if [ -z "$MY_IP" ]
 then
   MY_IP='unknown'
 fi  
+
+# Logging versions
+browserTimeVersion=$("$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$BROWSERTIME_JAR -V)
+echo "Using PhantomJS version $(phantomjs --version)" 
+echo "Using Java version $jVersion" 
+echo "Using BrowserTime version $browserTimeVersion"
+echo "From IP $MY_IP"
 
 }
 
