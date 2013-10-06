@@ -1,0 +1,10 @@
+#set ($maxImageMaxSize = 0)##
+#foreach ($asset in $results.getChild("comps").getChildren())##
+#if (($asset.getChild("type").getValue() == "image") || ($asset.getChild("type").getValue() == "cssimage"))##
+#set($imgSize = $math.toDouble($math.roundTo(1,$math.div($asset.getChild("size").getValue(),1000))))##
+#if($imgSize > $maxImageMaxSize)##
+#set($maxImageMaxSize =  $imgSize)##
+#end##
+#end##
+#end##          
+$maxImageMaxSize##

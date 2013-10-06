@@ -1,5 +1,26 @@
 CHANGELOG sitespeed.io
 
+version 2.0
+------------------------
+* New modified rule: the YSlow rule yimgnoscale doesn't work with PhantomJS. The new rule comapare the image browser width and the real image width.
+* Fix for Windows users having spaces in their path to Java
+* Made column in detailed summary page configurable
+* Phone view on detailed summary page now only contains url & score to make it simplier to maintain
+* You can now configure to show the following colums on page summary: KBPS, nr of domain, largest image, total image size, browser scaled images, total js size and total css size
+* You can now add your own data to be showed in the columns on page summary!
+* You can now configure which boxes to show on the site summary page. 
+* Tech: Cleanup of the sitespeed.io script, making it a little easier to follow
+* Tech: Renaming & restructuring of templates to follow doc naming
+* Added IP of the computer running the test in the result.xml
+* Set the max pages to test
+* Add user agent iphone or ipad and a real agent & viewport is set
+* You can now test multiple sites and compare them
+* CSV: Choose which column to add and always output ip, start url & date
+* Bug fix: URL:s that returns error (4XX-5XX and that sitespeed can't analyze) is now included in the JUnit xml
+* Bug fix: The JUnit script can now output files to a relative path
+* Bug fix: Calculating "requests with primed cache" sometimes showed wrong value
+* Bug fix: User Agent now gets correctly set
+
 version 1.8.3
 ------------------------
 * Supply a test name that will be shown on all pages. Use the the parameter -n 

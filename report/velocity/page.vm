@@ -1,41 +1,75 @@
-#parse("report/velocity/header.vm")
-#parse("report/velocity/date.macros.vm")
-#parse("report/velocity/page.logic.vm")
-<div class="row-fluid">
-	<div class="span12">
+#parse("report/velocity/inc/header.vm")
+#parse("report/velocity/macros/date.macros.vm")
+#parse("report/velocity/logic/page.logic.vm")
 
+<div class="row">
+	<div class="col-lg-12">
 		<h2 class="url">
 			Page
-			<a href="$document.getRootElement().getChild("curl").getValue()" target="_blank">$document.getRootElement().getChild("curl").getValue()</a>
+			<a href="$document.getRootElement().getChild("u").getValue()" target="_blank">$document.getRootElement().getChild("u").getValue()</a>
 			(score: $document.getRootElement().getChild("o").getValue())
-		</h2>
 
-		<ul class="nav nav-tabs nav-stacked">
-			<li>
-				<a href="#score">Scores below 100</a>
-			</li>
-			<li>
-				<a href="#assets">Page assets</a>
-			</li>
-			<li>
-				<a href="#summary">Page summary</a>
-			</li>
-			<li>
-				<a href="http://www.webpagetest.org/?url=$esc.url($document.getRootElement().getChild("u").getValue())&runs=3" target="_blank" title="Test this page on http://webpagetest.org">Test on webpagetest.org</a>
-			</li>
 
-		</ul>
+      		</h2>
+      	</div>
+</div>	
+
+<div class="row">
+      	<div class="col-lg-12">
+      		<div class="list-group">
+      			<!--
+      			#if ($showscreenshots==true)
+      			<li>
+      				<a href="#screenshot">Screenshot</a>
+      			</li>
+      			#end 
+      			-->
+      				<a href="#" class="list-group-item active">Quick links</a>
+      				<a href="#score" class="list-group-item">Scores below 100</a>
+      				<a href="#assets" class="list-group-item">Page assets</a>
+      				<a href="#summary" class="list-group-item">Page summary</a>
+      				#if($!{document2})
+      				<a href="#metrics" class="list-group-item">Page metrics</a>
+      				#end
+      				<a href="http://www.webpagetest.org/?url=$esc.url($document.getRootElement().getChild("u").getValue())&runs=3" target="_blank" title="Test this page on http://webpagetest.org" class="list-group-item">Test on webpagetest.org</a>
+      		</div>
+      	</div>
+</div>		
+
+<div class="row">
+	<div class="col-lg-12">
+		<!--
+		#if ($showscreenshots==true) 
+		<h3 id="screenshot">Screenshot</h3>
+		#set($file = $document.getRootElement().getAttribute("filename").getValue())
+		#set($image = $file.concat(".png"))
+		<p><a href="../screenshots/#$file"><img src="../screenshots/$image" height="300"/></a>
+		</p>
+		#end
+		-->
 
 		<h3 id="score">Scores below 100</h3>
 
-		<table class="table table-condensed table-striped table-bordered" >
+		## Do we have any to show?
+		#foreach ($message in $document.getRootElement().getChild("g").getChildren())
+			#if($!{message.getChild("score").getValue()})	 
+			  #if($message.getChild("score").getValue()!="100")
+				#set ($showScoresBelow100 = true)
+			   #end
+			   #end
+			   #end
+
+
+		#if($!{showScoresBelow100})	   
+		<table class="table table-condensed table-striped table-bordered" id="scoreTable">
 			<thead>
 				<tr>
 					<th>Rule</th>
-					<th>Score</th>
+					<th data-sort="int">Score</th>
 					<th>Message</th>
 					<th>Extra</th>
 				</tr>
+				</thead>
 				<tbody>
 					#foreach ($message in $document.getRootElement().getChild("g").getChildren())
 						#if($!{message.getChild("score").getValue()})	 
@@ -43,12 +77,13 @@
 					<tr>
 						<td>
 							$document.getRootElement().getChild("dictionary").getChild("rules").getChild($message.getName()).getChild("name").getValue()
+							<em>($message.getName())</em>
 						</td>
 						<td>$message.getChild("score").getValue()</td>
 						<td class="nobreak-page">$message.getChild("message").getValue()</td>
 						<td class="nobreak-page">
 							## This is just too much information to show on a phone
-							<span class="hidden-phone">
+							<span class="hidden-sm">
 								#foreach ($item in $message.getChild("components").getChildren("item"))
 								<p>$item.getValue()</p>
 								#end
@@ -60,11 +95,14 @@
 					#end
 				</tbody>
 			</table>
+			#else
+			No score below 100!
+			#end
 		</div>
 	</div>
 
-	<div class="row-fluid">
-		<div class="span12">
+	<div class="row">
+		<div class="col-lg-12">
 
 			<h3 id="assets">Page assets</h3>
 			<table class="table table-condensed table-striped table-bordered" id="assetsTable">
@@ -90,12 +128,11 @@
 					<tr>
 
 						<td class="nobreak-page-url">
-							## Hide this from phones & tables, there is some kind of bug here that make navigations not work if used
-							<div class="hidden-phone hidden-tablet">
-								<a href="#headers-$foreach.count" data-toggle="modal"> <i class="icon-zoom-in"></i>
-								</a>
+								<a data-toggle="modal" href="#headers-$foreach.count"<i class="glyphicon glyphicon-zoom-in"></i></a>
 
-								<div class="modal hide fade" id="headers-$foreach.count" aria-labelledby="headersModalLabel-$foreach.count" tabindex="-1" role="dialog" aria-hidden="true">
+								<div class="modal fade" id="headers-$foreach.count">
+								<div class="modal-dialog">
+								<div class="modal-content">
 									<div class="modal-header">
 										<h3 id="headersModalLabel-$foreach.count">Response headers</h3>
 									</div>
@@ -122,10 +159,9 @@
 										<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 									</div>
 								</div>
+								</div>
+								</div>
 
-							</div>
-
-						</div>
 						<a href="$asset.getChild("url").getValue()" title="$asset.getChild("url").getValue()" target="_blank">$asset.getChild("url").getValue()</a>
 					</td>
 					<td>$asset.getChild("type").getValue()</td>
@@ -178,13 +214,23 @@
 </div>
 <!-- row -->
 
-<h3 id="summary">Page summary</h3>
-
-<div class="row-fluid">
-	<div class="span6">
+<div class="row">
+      	<div class="col-lg-12">	
+      	<h3 id="summary">Page summary</h3>
+      	</div>
+</div>		
+<div class="row">
+	<div class="col-lg-6">
 
 		<h4>Requests per Content-Type</h4>
-		<table class="table table-condensed table-striped table-bordered">
+		<table class="table table-condensed table-striped table-bordered" id="requestsContentTypeTable">
+			<thead>
+				<tr>
+					<th data-sort="string">Type</th>
+					<th data-sort="int">Requests</th>
+					<th data-sort="float">Percentage</th>
+				</tr>
+			</thead>
 			<tbody>
 				#if ($math.toInteger($nrOfHTML)>0)
                                 <tr>
@@ -259,9 +305,17 @@
 		</table>
 	</div>
 
-	<div class="span6">
+	<div class="col-lg-6">
 		<h4>Size per Content-Type</h4>
-		<table class="table table-condensed table-striped table-bordered">
+		<table class="table table-condensed table-striped table-bordered"  id="sizeContentTypeTable">
+			<thead>
+				<tr>
+					<th data-sort="string">Type</th>
+					<th data-sort="float">Size</th>
+					<th data-sort="float">Percentage</th>
+				</tr>
+			</thead>	
+
 			<tbody>
 				<tr>
 					<td>doc</td>
@@ -275,12 +329,12 @@
 					<td>$math.roundTo(1,$math.mul($math.div($jsWeight,$totalWeight),100))%</td>
 				</tr>
 				#end
-							#if ($cssWeight>0)
+				#if ($cssWeight>0)
 				<tr>
 					<td>css</td>
 					<td>$cssWeight kb (gzip unknown)</td>
 					<td>$math.roundTo(1,$math.mul($math.div($cssWeight,$totalWeight),100))%</td>
-					<tr>
+					</tr>
 						#end
 							#if ($imageWeight>0)
 						<tr>
@@ -327,131 +381,31 @@
 			</div>
 		</div>
 
-		<div class="row-fluid">
+		<div class="row">
 
-			<div class="span6">
-				<h4>Requests per Domain ($hostAndRequests.size())</h4>
-				<table class="table table-condensed table-striped table-bordered">
+			<div class="col-lg-6">
+				<h4>Per Domain ($hostAndRequests.size())</h4>
+				<table class="table table-condensed table-striped table-bordered" id="domainsTable">
+					<thead>
+						<tr>
+							<th data-sort="string">Domain</th>
+							<th data-sort="int">Requests</th>
+							<th data-sort="float">Weight (kb)</th>
+					    </tr>
+					</thead>	
 					<tbody>
 						#foreach ($entry in $hostAndRequests.entrySet())
 						<tr>
 							<td>$entry.getKey()</td>
 							<td>$entry.getValue()</td>
+							<td>$math.roundTo(1,$math.div($hostAndSize.get($entry.getKey()),1000))</td>
 						</tr>
 						#end
 					</tbody>
 				</table>
-			</div>
-			<div class="span6">
-				<h4>Time</h4>
-				<table class="table table-condensed table-striped table-bordered">
-					<tbody>
-						
-							## Well the problem is like this: Today there is no way to get the ttfb from PhantomJS so it is fetched by a extra request 
-							## using curl. Some sites that don't cache internally (and are slow) can differ quite much for ttfb, meaning ttfb can be higher the
-							## next request than the load time the first time. That needs to be signaled.
-
-							## The diff between ttfb and load time
-							#set($diff = $math.roundTo(3,$math.sub($math.toDouble($document.getRootElement().getAttribute("ttfb").getValue()),$math.div($math.toDouble($document.getRootElement().getChild("lt").getValue()),1000))))
-
-							## normal behaviour
-							#if ($diff<0)
-							<tr>
-							<td>ttfb</td>
-							<td>	
-							    	$document.getRootElement().getAttribute("ttfb").getValue() s
-							</td>
-							</tr>
-							<tr>
-							<td>load time</td>
-							<td>
-								$math.div($document.getRootElement().getChild("lt").getValue(), 1000) s
-							</td>
-							</tr>
-							<tr>
-							<td>time spent in backend</td>
-							<td>
-								$backendPercentage %
-							</td>
-							</tr>
-							<tr>
-							<td>time spent in frontend</td>
-							<td>
-								$frontendPercentage %
-								</td>
-							</tr>
-							## something is really wrong
-							#elseif ($diff > 1.0)
-							<tr>
-							<td>
-							The second fetch by curl took $document.getRootElement().getAttribute("ttfb").getValue() s, that is $diff slower than the load time ($math.div($math.toDouble($document.getRootElement().getChild("lt").getValue()),1000)) the first request, probably the backend doesn't cache so good, check it out by measuring the ttfb in in bash (the value should be constant over multiple requests):
-							<em>curl -o /dev/null -w "%{time_starttransfer}\n" -L -s "$document.getRootElement().getChild("curl").getValue()"</em>
-							</td>
-							</tr>
-							## something is wrong	
-							#else
-							<tr>
-							<td>
-							The second fetch by curl took $document.getRootElement().getAttribute("ttfb").getValue() s, that is $diff slower than the load time ($math.div($math.toDouble($document.getRootElement().getChild("lt").getValue()),1000)) the first request, you should check if this happens often.
-							</td>
-							</tr>
-							#end
-					</tbody>
-				</table>
 
 			</div>
-		</div>
-
-		<div class="row-fluid">
-			<div class="span6">
-				<h4>Cache</h4>
-				<table class="table table-condensed table-striped table-bordered">
-					<tbody>
-						<tr>
-							<td>requests with primed cache</td>
-							<td>$document.getRootElement().getChild("r_c").getValue()</td>
-						</tr>
-						<tr>
-							<td>page weight cached</td>
-							<td>
-								## The weight cached
-								## sometimes it seems like yslow can't fetch this value. when this happens output an sign
-								#if($math.toInteger($document.getRootElement().getChild("w_c").getValue()) > 0)
-									## and sometimes the cached size is bigger than the uncached size, check for that also
-									#if ($math.roundTo(1,$math.div($math.toInteger($document.getRootElement().getChild("w_c").getValue()),1000)) > $totalWeight)
-										<a href="#" title="Couldn't fetch the value"> <i class="icon-question-sign"></i>
-									#else
-										$math.roundTo(1,$math.div($document.getRootElement().getChild("w_c").getValue(),1000)) kb
-									#end
-								#else
-								<a href="#" title="Couldn't fetch the value"> <i class="icon-question-sign"></i>
-								</a>
-								#end
-							</td>
-						</tr>
-						<tr>
-							<td>average time since last modification</td>
-							<td>
-								#prettyPrint($header.getSeconds($math.toInteger($statsTimeSinceLastModificationInSeconds.getMean())))
-							</td>
-						</tr>
-						<tr>
-							<td>average cache time</td>
-							<td>
-								#prettyPrint($header.getSeconds($math.toInteger($statsAssetCacheTimeInSeconds.getMean())))
-							</td>
-						</tr>
-						<tr>
-							<td>cacheable assets</td>
-							<td>
-								$math.roundTo(2,$math.mul($math.div($math.sub($totalRequests,$math.toInteger($document.getRootElement().getChild("g").getChild("expiresmod").getChild("components").getChildren("item").size())),$totalRequests),100)) %
-							</td>
-						</tr>
-					</tbody>
-				</table>
-
-			</div>
-			<div class="span6">
+			<div class="col-lg-6">
 				<h4>Content</h4>
 				<table class="table table-condensed table-striped table-bordered">
 					<tbody>
@@ -472,10 +426,102 @@
 				</table>
 			</div>
 		</div>
-		#parse("report/velocity/footer.vm")
+
+		<div class="row">
+			<div class="col-lg-6">
+				<h4>Cache</h4>
+				<table class="table table-condensed table-striped table-bordered">
+					<tbody>
+						<tr>
+							<td>requests with primed cache</td>
+							<td>$document.getRootElement().getChild("g").getChild("expiresmod").getChild("components").getChildren("item").size()</td>
+						</tr>
+						<tr>
+							<td>median time since last modification</td>
+							<td>
+								#prettyPrint($header.getSeconds($math.toInteger($statsTimeSinceLastModificationInSeconds.getPercentile(50))))
+							</td>
+						</tr>
+						<tr>
+							<td>median cache time</td>
+							<td>
+								#prettyPrint($header.getSeconds($math.toInteger($statsAssetCacheTimeInSeconds.getPercentile(50))))
+							</td>
+						</tr>
+						<tr>
+							<td>cacheable assets</td>
+							<td>
+								$math.roundTo(2,$math.mul($math.div($math.sub($totalRequests,$math.toInteger($document.getRootElement().getChild("g").getChild("expiresmod").getChild("components").getChildren("item").size())),$totalRequests),100)) %
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+			<div class="col-lg-6">
+				
+			</div>
+		</div>
+		#if($!{document2})
+		<div class="row">
+			<div class="col-lg-12">
+			<h3 id="metrics">Metrics</h3>
+
+			#foreach ($pageData in $document2.getRootElement().getChild("pageData").getChildren())
+
+			#if ($pageData.getChild("key").getValue()=="browserName")
+				#set ($browser= $pageData.getChild("value").getValue())
+			#elseif ($pageData.getChild("key").getValue()=="browserVersion")
+				#set ($browserVersion = $pageData.getChild("value").getValue())
+			#elseif ($pageData.getChild("key").getValue()=="platform")
+				#set ($platform=$pageData.getChild("value").getValue())
+			#elseif ($pageData.getChild("key").getValue()=="wasFetchedViaSpdy")
+			    #set ($spdy=$pageData.getChild("value").getValue())
+			#end			
+			#end
+
+			#set ($runs = $document2.getRootElement().getChild("runs").getChildren("run").size())
+
+			<p>
+			Page tested with $browser version $browserVersion on $platform with $runs runs. 
+			#if ($spdy)
+			Using SPDY: $spdy
+			#end
+			</p>
+			
+				<table class="table table-condensed table-striped table-bordered">
+				<thead>
+						<tr>
+							<th>Name</th>
+							<th>min</th>
+							<th>median</th>
+							<th>max</th>
+					    </tr>
+					</thead>	
+					<tbody>
+					#foreach ($statistic in $document2.getRootElement().getChild("statistics").getChildren("statistic"))
+					<tr>
+					<td>$statistic.getChild("name").getValue()</td>
+					<td>$statistic.getChild("min").getValue()</td>
+					<td>$statistic.getChild("median").getValue()</td>
+					<td>$statistic.getChild("max").getValue()</td> 
+					</tr>
+					#end
+					
+					</tbody>
+				</table>
+			</div>
+		</div>
+		#end
+
+		#parse("report/velocity/inc/footer.vm")
 		<script>
 		   $(function(){
+		$("#scoreTable").stupidtable();
         $("#assetsTable").stupidtable();
+        $("#domainsTable").stupidtable();
+        $("#requestsContentTypeTable").stupidtable();
+        $("#sizeContentTypeTable").stupidtable();
 		 });
 		</script>
 		<script>

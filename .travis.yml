@@ -1,14 +1,18 @@
-language: java
+language: python
 
 before_install:
   - sudo apt-get update
   - sudo apt-get install xsltproc
 
 before_script:
+- phantomjs --version
 - "make package"
-- node test/server/file-server.js &
-- sleep 3
-- "./build/sitespeed.io -u http://127.0.0.1:8080/ -o img-csv"
+- python -m SimpleHTTPServer 8009 &
+- sleep 10
+- "./build/sitespeed.io -u http://localhost:8009/test/server/www/ -o csv -k true"
 - "./build/sitespeed-junit.io -o build"
 
 script: ./test/test.sh
+
+after_script:
+  - kill `ps aux | grep "python -m SimpleHTTPServer" | grep -v grep | awk '{print $2}'`

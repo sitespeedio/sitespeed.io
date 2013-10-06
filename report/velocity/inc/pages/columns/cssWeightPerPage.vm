@@ -1,0 +1,7 @@
+#set ($totalCSSSize = 0)##
+#foreach ($asset in $results.getChild("comps").getChildren())##
+#if ($asset.getChild("type").getValue() == "css")##
+#set($totalCSSSize = $math.add($totalCSSSize,$math.toDouble($math.roundTo(1,$math.div($asset.getChild("size").getValue(),1000)))))##
+#end##
+#end##           
+$math.roundTo(1,$totalCSSSize)##

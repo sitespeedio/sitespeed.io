@@ -1,0 +1,35 @@
+#if (!$metricsElement.getChild($boxName))
+<div class="alert alert-danger">
+Missing data for box $boxName
+</div>
+#else
+#if ($rulemanager.getRule($boxName))
+#set($rule=$rulemanager.getRule($boxName))
+#set($text = "To get green you need to have $rule.type.friendlyName $rule.greenLimit. For yellow $rule.yellowLimit and $rule.type.opposite.friendlyName $rule.yellowLimit to get red")
+#else
+#set($text = "No rules are setup for this metric")
+#end
+
+#set($large = $math.roundTo($math.toInteger($metricsElement.getChild($boxName).getAttributeValue("decimals")),$metricsElement.getChild($boxName).getChild(${largeValue}).getValue()))
+#set($small = $math.roundTo($math.toInteger($metricsElement.getChild($boxName).getAttributeValue("decimals")),$metricsElement.getChild($boxName).getChild(${smallValue}).getValue()))
+<div class="alert alert-#getRuleColor($boxName $large)">
+$metricsElement.getChild($boxName).getAttributeValue("friendlyName") 
+#if ($metricsElement.getChild($boxName).getAttributeValue("unit") != "")
+	($metricsElement.getChild($boxName).getAttributeValue("unit"))
+#end
+	<div>
+		<a href="#" class="alert-#getRuleColor($boxName $large) large" rel="popover" data-trigger="hover" title="$metricsElement.getChild($boxName).getAttributeValue("friendlyName")" data-content="$text">
+		#if ($metricsElement.getChild($boxName).getAttributeValue("type")=="cachetime")
+		#prettyPrint($header.getSeconds($math.toInteger($large)))
+		#else
+		$large
+		#end
+		</a>
+		#if ($metricsElement.getChild($boxName).getAttributeValue("type")=="cachetime")
+		(#prettyPrint($header.getSeconds($math.toInteger($small))))
+		#else
+		$small
+		#end
+	</div>
+</div>
+#end

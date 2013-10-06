@@ -1,0 +1,2 @@
+#set($tooltipTotalRequestsText = "The total number of requests for this page")  
+#columnHeaderHTML("total requests","int",$tooltipTotalRequestsText,"hidden-sm")##

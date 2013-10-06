@@ -1,0 +1,2 @@
+#set($tooltipScoreText = "The sitespeed.io rule grade for this page, 100 is perfect, 0 is incredible bad")
+#columnHeaderHTML("rule score","int",$tooltipScoreText,"")##

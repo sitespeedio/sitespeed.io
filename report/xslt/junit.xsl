@@ -7,7 +7,9 @@
 	<xsl:param name="avg-limit" />
 	<xsl:param name="skip" />
 	<xsl:param name="rules-file" />
+	<xsl:param name="error-urls-file" />
 	<xsl:param name="dictionary" select="document($rules-file,/)"/>
+	<xsl:param name="errorurls" select="document($error-urls-file,/)"/>
 
 	<xsl:template match="/">
 		<testsuites>
@@ -23,7 +25,6 @@
 		<xsl:variable name="time" select="lt" />
 		<xsl:variable name="time-in-seconds" select="$time div 1000"/>
 		<xsl:variable name="time-per-testcase" select="$time-in-seconds div $tests"/>
-
 		<xsl:variable name="sum" select="sum(g/*/score)"/>
 		<xsl:variable name="avg-score" select="$sum div $tests"/>
 		<xsl:variable name="avg-score-decimals" select="format-number($avg-score, '0.00')" />		
@@ -56,6 +57,32 @@
 			</testcase>	
 			<xsl:apply-templates/>
 		</testsuite>
+		<!-- Fetching if any URL:s failed -->
+		<xsl:call-template name="error-urls-template"/>
+	</xsl:template>
+
+	
+	<xsl:template name="error-urls-template">
+		<xsl:for-each select="$errorurls/results/url">
+			<xsl:variable name="url" select="substring-before(concat(., '?'), '?')" />
+			<xsl:variable name="reason" select="@reason" />
+			<!-- Replacing all . with _ for better junit results -->
+			<xsl:variable name="junit-url">
+				<xsl:call-template name="string-replace-all">
+					<xsl:with-param name="text" select="$url"/>
+					<xsl:with-param name="replace">.</xsl:with-param>
+					<xsl:with-param name="by" select="'_'"/>
+				</xsl:call-template>
+			</xsl:variable>
+
+		<testsuite name="sitespeed&#46;io.{$junit-url}" tests="1"
+			failures="1" skipped="0" time="0">
+			<testcase name="Fetch the URL" status="0" time="0">
+		        <failure message="{$reason}">
+		        </failure>
+		</testcase> 	
+		</testsuite>	
+		</xsl:for-each>
 	</xsl:template>
 
 	<xsl:template match="g/*">

@@ -1,20 +1,20 @@
-#parse("report/velocity/header.vm")
+#parse("report/velocity/inc/header.vm")
 
-<div class="row-fluid">
-	<div class="span12">
+<div class="row">
+	<div class="col-lg-12">
 
 		<h2>
 			These pages returned errors from the crawl
 		</h2>
 				
 		 #foreach ($url in $document.getRootElement().getChildren())
-	 	 <p>$url.getAttribute("reason").getValue() : <a href="$url.getValue()" target="_blank">$url.getValue()</a></p>
+		 <p>$url.getAttribute("reason").getValue() : <a href="$url.getValue()" target="_blank">$url.getValue()</a></p>
 		 #end
 		
 	</div>
 	<!-- span 12 -->
 </div>
 <!-- row -->
-#parse("report/velocity/footer.vm")
+#parse("report/velocity/inc/footer.vm")
 </body>
 </html>

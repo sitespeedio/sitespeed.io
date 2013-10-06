@@ -1,0 +1,247 @@
+## Setting up the data needed in the site.summary.xml.vm
+
+#set($nrOfPages = $document.getRootElement().getChildren("results").size())
+
+## Get the total objects
+    
+#set($nrOfDecimals = 0)
+
+## Creating all statistics objects
+#set($statsJs = $stats.newInstance("jsPerPage","Number of Javascript files per page","","","",1))
+#set($statsCss = $stats.newInstance("cssPerPage","Number of CSS files per page","","","",1))
+#set($statsImages = $stats.newInstance("imagesPerPage","Number of images per page","","","",1))
+#set($statsCssImages = $stats.newInstance("cssImagesPerPage","Number of CSS images per page","","","",1))
+#set($statsRequests = $stats.newInstance("requests","Number of requests per page","","","",1))
+#set($statsPageWeight = $stats.newInstance("pageWeight","Total page weight (including all assets)","","weight","kb",1))
+#set($statsImageWeight = $stats.newInstance("imageWeight","Image weight","","weight","kb",1))
+#set($statsJsWeight = $stats.newInstance("jsWeight","JS weight","","weight","kb",1))
+#set($statsCssWeight = $stats.newInstance("cssWeight","CSS weight","","weight","kb",1))
+#set($statsTotalImageWeight = $stats.newInstance("imageWeightPerPage","Total images weight per page","","weight","kb",1))
+#set($statsTotalCssWeight = $stats.newInstance("cssWeightPerPage","CSS weight per page","","weight","kb",1))
+#set($statsTotalJsWeight = $stats.newInstance("jsWeightPerPage","JS weight per page","","weight","kb",1))
+#set($statsScore = $stats.newInstance("ruleScore","Rule score","","","",1))
+#set($statsDocumentWeight = $stats.newInstance("docWeight","Document weight","","weight","kb",1))
+#set($statsSpof = $stats.newInstance("spofPerPage","Number of SPOF per page","","","",1))
+#set($statsSpofPages = $stats.newInstance("spofPages","Pages with SPOF","","","",1))
+#set($statsScaledImages = $stats.newInstance("browserScaledImages","Images scaled by the browser","","","",1))
+#set($statsJsSyncInHead = $stats.newInstance("jsSyncInHead","Number of JS synchronously in head","","","",1))
+#set($statsAssetsWithoutExpires = $stats.newInstance("requestsWithoutExpires","Requests without expires","","","",1))
+#set($statsCriticalPath = $stats.newInstance("criticalPathScore","Critical Rendering Path Score","","","",1))
+#set($statsTextContent = $stats.newInstance("textContent","Amount of text content","","","%",1))
+#set($statsTimeSinceLastModificationInSeconds = $stats.newInstance("timeSinceLastModification","Time since last modification","","cachetime","",1))
+#set($statsAssetCacheTimeInSeconds = $stats.newInstance("assetsCacheTime","Cache time","","cachetime","",1))
+#set($statsDomElements = $stats.newInstance("domElements","Number of DOM elements","","","",1))
+#set($statsDomains = $stats.newInstance("domainsPerPage","Number of domains","","","",1))
+
+## And add them to the list of statistics
+#set($hide = $allStats.add($statsScore))
+#set($hide = $allStats.add($statsCriticalPath))
+#set($hide = $allStats.add($statsJsSyncInHead))
+#set($hide = $allStats.add($statsJs))
+#set($hide = $allStats.add($statsCss))
+#set($hide = $allStats.add($statsImages))
+#set($hide = $allStats.add($statsCssImages))
+#set($hide = $allStats.add($statsRequests))
+#set($hide = $allStats.add($statsImageWeight))
+#set($hide = $allStats.add($statsJsWeight))
+#set($hide = $allStats.add($statsCssWeight))
+#set($hide = $allStats.add($statsTotalImageWeight))
+#set($hide = $allStats.add($statsTotalCssWeight))
+#set($hide = $allStats.add($statsTotalJsWeight))
+#set($hide = $allStats.add($statsPageWeight))
+#set($hide = $allStats.add($statsDocumentWeight))
+#set($hide = $allStats.add($statsDomElements))
+#set($hide = $allStats.add($statsSpof))
+#set($hide = $allStats.add($statsSpofPages))
+#set($hide = $allStats.add($statsAssetsWithoutExpires))
+#set($hide = $allStats.add($statsTextContent))
+#set($hide = $allStats.add($statsTimeSinceLastModificationInSeconds))
+#set($hide = $allStats.add($statsAssetCacheTimeInSeconds))
+#set($hide = $allStats.add($statsDomains))
+#set($hide = $allStats.add($statsScaledImages))
+
+
+## Fetch all statistics used by the boxes
+#foreach ($results in $document.getRootElement().getChildren())
+
+    #if($!{results.getChild("stats").getChild("js").getChild("r")})
+        $statsJs.addValue($math.toInteger($results.getChild("stats").getChild("js").getChild("r").getValue()))
+    #end   
+      
+    #if($!{results.getChild("stats").getChild("css").getChild("r")})
+        $statsCss.addValue($math.toInteger($results.getChild("stats").getChild("css").getChild("r").getValue()))
+    #end
+
+    #if($!{results.getChild("stats").getChild("cssimage").getChild("r")})
+        $statsCssImages.addValue($math.toInteger($results.getChild("stats").getChild("cssimage").getChild("r").getValue()))
+    #end
+
+    #if($!{results.getChild("stats").getChild("image").getChild("r")})
+        $statsImages.addValue($math.toInteger($results.getChild("stats").getChild("image").getChild("r").getValue()))
+    #end
+
+    #if($!{results.getChild("r")})
+         $statsRequests.addValue($math.toInteger($results.getChild("r").getValue()))
+    #end
+      
+    #if($!{results.getChild("w")})
+        ## sometimes the page weight is wrongly calculated by YSlow, so lets do it manually
+        #set($totalWeight = 0)
+        #foreach ($asset in $results.getChild("comps").getChildren())
+            #set($totalWeight = $math.add($totalWeight,$asset.getChild("size").getValue()))
+        #end
+        #set($totalWeight = $math.roundTo(1,$math.div($totalWeight,1000)))
+        $statsPageWeight.addValue($totalWeight)
+    #end
+
+    #if($!{results.getChild("o")})
+        $statsScore.addValue($math.toInteger($results.getChild("o").getValue()))
+    #end
+
+    #if($!{results.getChild("stats").getChild("doc").getChild("w")})
+   
+        $statsDocumentWeight.addValue($math.toDouble($math.roundTo(3,$math.div($results.getAttribute("size").getValue(),1000))))
+    #end
+
+
+    #if($!{results.getChild("g").getChild("mindom").getChild("score")})
+           $statsDomElements.addValue($math.toInteger($results.getChild("g").getChild("mindom").getChild("components").getChildText("item")))
+    #end
+
+    #if($!{results.getChild("g").getChild("spof").getChild("score")})
+	   #if ($results.getChild("g").getChild("spof").getChild("score").getValue() != 100)
+	       $statsSpofPages.addValue(1)
+           $statsSpof.addValue($math.toInteger($results.getChild("g").getChild("spof").getChild("components").getChildren("item").size()))
+       #else
+        $statsSpof.addValue(0)    
+       #end       
+    #end
+
+
+    #if($!{results.getChild("g").getChild("criticalpath").getChild("score")})
+           $statsCriticalPath.addValue($math.toInteger($results.getChild("g").getChild("criticalpath").getChild("score").getValue()))
+    #end
+
+    #if($!{results.getChild("g").getChild("textcontent").getChild("score")})
+           $statsTextContent.addValue($math.toDouble($results.getChild("g").getChild("textcontent").getChild("components").getChildText("item")))
+    #end
+
+    #if($!{results.getChild("g").getChild("syncjsinhead").getChild("components")})
+     $statsJsSyncInHead.addValue($math.toInteger($results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()))
+    #end
+
+    #if($!{results.getChild("g").getChild("avoidscalingimages").getChild("components")})
+     $statsScaledImages.addValue($math.toInteger($results.getChild("g").getChild("avoidscalingimages").getChild("components").getChildren("item").size()))
+    #end
+
+
+    #if($!{results.getChild("g").getChild("expiresmod").getChild("components")})
+     $statsAssetsWithoutExpires.addValue($math.toInteger($results.getChild("g").getChild("expiresmod").getChild("components").getChildren("item").size()))
+    #end
+
+    #set ($totalImagePageSize = 0)
+    #set ($totalCssPageSize = 0)
+    #set ($totalJsPageSize = 0)
+
+	## also fetch the modified since & cache time
+    #set($hosts = [])
+
+	#foreach ($asset in $results.getChild("comps").getChildren())
+
+		## set default values
+		#set ($lastMod = "")
+		#set ($date = "")
+		#set ($cacheControl = 0)
+		#set ($expires = "")
+		
+		## fetch the real ones
+		#set ($lastMod = $asset.getChild("headers").getChild("response").getChild("Last-Modified").getValue())
+		#set ($date = $asset.getChild("headers").getChild("response").getChild("Date").getValue())
+		#set ($cacheControl = $asset.getChild("headers").getChild("response").getChild("Cache-Control").getValue())
+		#set ($expires = $asset.getChild("headers").getChild("response").getChild("Expires").getValue())
+					
+		#set ($delta = $header.getDelta($lastMod,$date))
+		#if ($delta=="" || ! $delta)
+			## unknown skip it for now
+		#else
+		    $statsTimeSinceLastModificationInSeconds.addValue($delta.getSeconds())
+		#end	
+		
+		#set ($cacheTime = $header.getCacheTime($cacheControl, $expires, $date))
+		#if ($cacheTime=="" || !$cacheTime)
+		     	$statsAssetCacheTimeInSeconds.addValue(0)
+		#else	
+		     	$statsAssetCacheTimeInSeconds.addValue($cacheTime.getSeconds())
+		#end
+
+        #if (($asset.getChild("type").getValue() == "image") || ($asset.getChild("type").getValue() == "cssimage"))
+           $statsImageWeight.addValue($math.toDouble($math.roundTo(3,$math.div($asset.getChild("size").getValue(),1000))))
+           #set($totalImagePageSize = $math.add($totalImagePageSize,$math.toDouble($math.roundTo(3,$math.div($asset.getChild("size").getValue(),1000)))))
+        #elseif ($asset.getChild("type").getValue() == "css") 
+           $statsCssWeight.addValue($math.toDouble($math.roundTo(3,$math.div($asset.getChild("size").getValue(),1000))))
+           #set($totalCssPageSize = $math.add($totalCssPageSize,$math.toDouble($math.roundTo(3,$math.div($asset.getChild("size").getValue(),1000)))))
+        #elseif ($asset.getChild("type").getValue() == "js")   
+             $statsJsWeight.addValue($math.toDouble($math.roundTo(3,$math.div($asset.getChild("size").getValue(),1000))))
+             #set($totalJsPageSize = $math.add($totalJsPageSize,$math.toDouble($math.roundTo(3,$math.div($asset.getChild("size").getValue(),1000)))))
+        #end
+
+        ## count the nr of domains
+        #set($theHost = $host.getHost($asset.getChild("url").getValue()))
+        #if (!$hosts.contains($theHost))
+            #set($swallow = $hosts.add($theHost))
+        #end
+		
+	#end
+
+    #if($!{hosts} && $hosts.size()>0)
+        $statsDomains.addValue($hosts.size())
+    #end
+
+    #if($totalImagePageSize>0)
+        $statsTotalImageWeight.addValue($totalImagePageSize)
+    #end
+    #if($totalCssPageSize>0)
+        $statsTotalCssWeight.addValue($totalCssPageSize)
+    #end
+    #if($totalJsPageSize>0)
+        $statsTotalJsWeight.addValue($totalJsPageSize)
+    #end
+	
+#end
+
+## We create only these extra data if (and only if) we also run Browser Time to collect them
+
+#set($isBrowserTime = $document.getRootElement().getChild("metrics"))
+#if($isBrowserTime)
+
+## first setup all the statobjects
+#set($nameAndMesurementsStats = $map.clone())
+
+#foreach ($measurement in $document.getRootElement().getChild("metrics").getChild("timingSession").getChild("runs").getChild("run").getChild("measurements").getChildren("measurement"))
+    #set($statsMeasurement = $stats.newInstance($measurement.getAttributeValue("name"),$measurement.getAttributeValue("name"),"","","ms",1))
+    #set($hide = $allStats.add($statsMeasurement))
+    $nameAndMesurementsStats.put($measurement.getAttributeValue("name"), $statsMeasurement)
+#end
+
+#set($timingSession = $document.getRootElement().getChild("metrics").getChild("timingSession"))
+
+    #foreach ($run in $timingSession.getChild("runs").getChildren("run"))
+
+        #foreach ($measurement in $run.getChild("measurements").getChildren("measurement"))
+
+        #set($stats= $nameAndMesurementsStats.get($measurement.getAttributeValue("name")))
+        $stats.addValue($math.toDouble($measurement.getAttributeValue("duration")))
+        #end
+    #end
+#end
+
+
+## Include a custom logic file, if you want to include your own code.
+#if ($filetool.doFileExist("report/velocity/logic/custom/site.summary.xml.logic.vm"))
+        #parse("report/velocity/logic/custom/site.summary.xml.logic.vm")
+#end        
+
+
+
+
+							

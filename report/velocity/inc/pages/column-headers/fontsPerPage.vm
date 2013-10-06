@@ -1,0 +1,2 @@
+#set($tooltipFontText = "The number of font files used on this page")
+#columnHeaderHTML("font","int",$tooltipFontText,"hidden-sm")##

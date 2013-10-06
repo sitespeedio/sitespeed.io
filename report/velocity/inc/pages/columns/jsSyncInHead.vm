@@ -1,0 +1,1 @@
+$results.getChild("g").getChild("syncjsinhead").getChild("components").getChildren("item").size()##

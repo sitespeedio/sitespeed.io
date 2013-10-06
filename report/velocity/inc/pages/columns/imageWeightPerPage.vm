@@ -1,0 +1,7 @@
+#set ($totalImagePageSize = 0)##
+#foreach ($asset in $results.getChild("comps").getChildren())##
+#if (($asset.getChild("type").getValue() == "image") || ($asset.getChild("type").getValue() == "cssimage"))##
+#set($totalImagePageSize = $math.add($totalImagePageSize,$math.toDouble($math.roundTo(3,$math.div($asset.getChild("size").getValue(),1000)))))##
+#end##
+#end##           
+$math.roundTo(1,$totalImagePageSize)##

@@ -1,0 +1,2 @@
+#set($tooltipCssText = "The number of stylesheet files used in this page")
+#columnHeaderHTML("css","int",$tooltipCssText,"hidden-sm")##
