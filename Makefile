@@ -125,7 +125,7 @@ package:
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/jsSyncInHead-html-wrapper.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/url-html-wrapper.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/browserScaledImages.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
-	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/criticalPathScore.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS-HEADERS)/
+	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/criticalPathScore.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/cssImagesPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/cssPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/cssWeightPerPage.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
