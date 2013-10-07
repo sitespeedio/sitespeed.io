@@ -645,7 +645,7 @@ function help() {
 cat << EOF
 usage: $0 options
 
-Sitespeed.io is a tool that helps you analyze your website performance and show you what you should optimize, more info at http://sitespeed.io
+Sitespeed.io is a tool that helps you analyze your website performance and show you what you should optimize, more info at http://www.sitespeed.io
 
 OPTIONS:
    -h      Help
@@ -665,8 +665,8 @@ OPTIONS:
    -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional] 
    -y      The compiled YSlow file, default is dependencies/yslow-3.1.5-sitespeed.js [optional]
    -l      Which ruleset to use, default is the latest sitespeed.io version for desktop [optional]
-   -g      The columns showed on detailed page summary table, see http://sitespeed.io/documentation/#pagescolumns for more info [optional] 
-   -b      The boxes showed on site summary page, see http://sitespeed.io/documentation/#sitesummaryboxes for more info [optional]
+   -g      The columns showed on detailed page summary table, see http://www.sitespeed.io/documentation/#config-columns for more info [optional] 
+   -b      The boxes showed on site summary page, see http://www.sitespeed.io/documentation/#config-boxes for more info [optional]
    -j      The max number of pages to test [optional]   
    -k      Take screenshots for each page (using the configured view port). Default is false. (true|false) [optional] 
    -c      Collect BrowserTimings data (meaning open a real browser & fetch timings). Default is false. (true|false) [optional] 
