@@ -6,7 +6,7 @@ Major changes
 ------
 * You can now choose which data that is showed in the summary boxes (the red/yellow/green ones on the start page) and the columns on the detailed summary page.
 * You can also create your own box with your own data on the summary page and your own columns and data on the detailed summary page.
-* Fetch Navigation Timing API data form real browser, using Browser Time.
+* Fetch Navigation Timing API data from a real browser, using Browser Time.
 * New modified rule: the YSlow rule yimgnoscale doesn't work with PhantomJS. The new rule comapare the image browser width and the real image width.
 * The main script (sitespeed.io) has been cleaned up & Velocity templates has been restructured.
 * You can now test multiple sites and compare them using the sitespeed-sites.io script (you can choose what kind of data to compare).
