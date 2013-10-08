@@ -7,7 +7,7 @@ Major changes
 * You can now choose which data that is showed in the summary boxes (the red/yellow/green ones on the start page) and the columns on the detailed summary page.
 * You can also create your own box with your own data on the summary page and your own columns and data on the detailed summary page.
 * Fetch Navigation Timing API data from a real browser, using Browser Time.
-* New modified rule: the YSlow rule yimgnoscale doesn't work with PhantomJS. The new rule comapare the image browser width and the real image width.
+* New modified rule: the YSlow rule yimgnoscale doesn't work with PhantomJS. The new rule compare the image browser width and the real image width.
 * The main script (sitespeed.io) has been cleaned up & Velocity templates has been restructured.
 * You can now test multiple sites and compare them using the sitespeed-sites.io script (you can choose what kind of data to compare).
 * There are now two different rule-sets, one for desktop & one for mobile.
@@ -15,7 +15,7 @@ Major changes
 Minor changes
 ------
 * You can now configure the limits for the rules on the summary page. 
-* Phone view on detailed summary page now only contains url & score to make it simplier to maintain.
+* Phone view on detailed summary page now only contains url & score to make it simpler to maintain.
 * You can now see the IP of the computer running the test in the result.xml file.
 * You can now set the max pages to test & the name of the test (displayed on every HTML page).
 * Simplified user agent by choosing between iphone, ipad or nexus and a real agent & viewport is set.
@@ -30,7 +30,7 @@ version 1.8.3
 * Supply a test name that will be shown on all pages. Use the the parameter -n 
 * Well the problem is like this: Today there is no way to get the ttfb from PhantomJS so it is fetched by a extra request using curl. Some sites that don't cache internally (and are slow) can differ quite much for ttfb, meaning ttfb can be higher the next request than the load time the first time. If this happens it is now highlighted.
 * Bug fix: show median front/back end time instead of percentile on summary page 
-* Bug fix: dwhen the ttfb is larger than pageload, don't add it to summary stats
+* Bug fix: when the ttfb is larger than pageload, don't add it to summary stats
 * Bug fix: for some sites (very rarely) the total weight was fetched wrong by YSlow, fixed last release for all pages except summary & summary details.
 
 version 1.8.2
@@ -38,14 +38,14 @@ version 1.8.2
 * Show percentage of requests & size per content type
 * You can now export the pages data to csv (again) with the switch "-o csv"
 * Upgraded the crawler: Better closing of connections, URL:s that not following RFC 2396 gave null pointers & when a cookie is not following the spec, the url of the page setting the cookie is now logged 
-* On detailes page summary: Categorize favicon as favicon instead of others, and doc type has now an own category
-* If an analyze failes, the url and the error from YSlow is now logged
+* On detailed page summary: Categorize favicon as favicon instead of others, and doc type has now an own category
+* If an analysis fails, the url and the error from YSlow is now logged
 * Cleanup: When you feed sitespeed.io with a list of urls from a file, the text messages is cleaner in the HTML
 * Cleanup: Removed old JS table sorter on pages summary, works better now
 * Bug fix: If a page was redirected, the gzipped size was fetched as 0, now fixed
 * Bug fix: For some sites (example www.bike.se) the total weight was fetched wrong by YSlow, now the weight is calculated from each assets on the pages info page.
 * Bug fix: Urls containing & broke some tests
-* Bug fix: In very rare cases, YSlow reports a larger cache weight than the page weight. The bug is not fixed but when it happens, an error mesage is displayed
+* Bug fix: In very rare cases, YSlow reports a larger cache weight than the page weight. The bug is not fixed but when it happens, an error message is displayed
 * Bug fix: Page weight was sometimes wrongly calculated, now each asset weight is used to calculate
 
 version 1.8.1
@@ -63,7 +63,7 @@ version 1.8
 * Added new XML format for the summary page.
 * New page: The detailed summary page.
 * Always output the result of the sitespeed-junit.io to the data dir
-* Changed summary page: Before showed average & median, now median & 95 percentil
+* Changed summary page: Before showed average & median, now median & 95 percentile
 * Added summary of total image weight per page & on detailed level you can see  individual size
 * New rule for checking if old versions of plugins is used. Right now only check JQuery.
 * A little better check for correct Java version.
@@ -77,9 +77,9 @@ version 1.7
 * Create a junit xml file from the test, new script & new xsl file 
 * Added new max size of a document, using stats from http archive
 * Showing the number of domains on page summary
-* Showing the percantage of assets that are cacheable on page summary
-* Show the amount of assets that don't have an exipre header om site summary & pages summary
-* Removed prime cache valyes from site summary & page summary (was not always correct)
+* Showing the percentage of assets that are cacheable on page summary
+* Show the amount of assets that don't have an expire header om site summary & pages summary
+* Removed prime cache values from site summary & page summary (was not always correct)
 * Refactored page summary
 * Removed rule ynumreq and created three new ones in order to get clearer junit xml result (and also only check for sync js): cssnumreq, cssimagesnumreq & jsnumreq  
 * Added average & median nr of DOM elements on site summary and specific nr on page
@@ -116,7 +116,7 @@ version 1.5
 * Added percentage on summary page
 * Added support for setting user agent
 * Added support for setting view port
-* Removed exprimental rule for the amount of JS used
+* Removed experimental rule for the amount of JS used
 * Added new rule: Critical Path
 * Finetuned the SPOF rule: Now also check font face
 * Added time to first byte (using curl, new requirement)
@@ -125,15 +125,15 @@ version 1.5
 * Bugfix: Now using JAVA_HOME in a correct way (thanks Rob-m)
 * Bugfix: Upgraded the crawler to 1.3, now only fetched text/html links
 * Removed csv as output format
-* New rule: Avoid CDN lookups when your page has few rewquests
+* New rule: Avoid CDN lookups when your page has few requests
 * New rule: Do not load stylesheet files when the page has few request
 * New rule: Have a reasonable percentage of textual content compared to the rest of the page 
 
 version 1.4
 ------------------------
-* Changed the limit value for doc size on the summary page, vas 10 kb but gzip is taken inconcideration, changed to 100 kb!
+* Changed the limit value for doc size on the summary page, vas 10 kb but gzip is taken into consideration, changed to 100 kb!
 * Concatenating css & js in the results to one file each
-* Show average of how much of a page that concist of javascript in percent, on the summary page
+* Show average of how much of a page that consist of javascript in percent, on the summary page
 * Show median values where applicable on the summary page (now show both average & median value)
 * Show how much of a page that is js & css on a page in percent, compared to content
 * Made java heap size & result directory configurable from the sitespeed script
@@ -141,7 +141,7 @@ version 1.4
 * You can now zip the output result by calling the script
 * Upgraded to latest crawler & xml-velocity jar
 * Added image, css, js and css image total weight/size on page view
-* Added new exprimental rule of javascript percentage
+* Added new experimental rule of javascript percentage
 * Upgraded jquery from 1.8.2 to 1.8.3
 
 version 1.3
@@ -158,7 +158,7 @@ version 1.3
 version 1.2
 ------------------------
 * Better handling of input parameters, now you specify them in the order you like
-* Possibility to not crawl specifis path segments in urls
+* Possibility to not crawl specific path segments in urls
 * Run multiple processes when analyzing pages (to make it faster)
 * More documentation in the sitespeed.io script
 * Include rules dictionary when using yslow, always update the doc.js in yslow when adding new rule
@@ -186,12 +186,12 @@ version 1.0
 * Show extra data in modals to make it clearer
 * Popover & better texts on summary page
 * Cleanup & bug fixes in the bash script, it sometimes failed on some sites when yslow outputted content after the xml
-* Added ouput png:s that can be used on documents
+* Added output png:s that can be used on documents
 
 version 0.9
 ------------------------
 * New rules: Loading js async and finding single point of failure
-* Modified expires to skip analythics scripts
+* Modified expires to skip analytics scripts
 * Updated rules texts
 
 version 0.8
