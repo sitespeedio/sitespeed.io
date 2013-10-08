@@ -28,7 +28,7 @@ $metricsElement.getChild($boxName).getAttributeValue("friendlyName")
 		#if ($metricsElement.getChild($boxName).getAttributeValue("type")=="cachetime")
 		(#prettyPrint($header.getSeconds($math.toInteger($small))))
 		#else
-		$small
+		($small)
 		#end
 	</div>
 </div>
