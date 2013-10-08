@@ -159,7 +159,7 @@ OPTIONS:
    -r      The result base directory, default is sitespeed-result [optional]
    -l      The page score limit. Below this page score it will be a failure. Default is 90. [optional]
    -a      The average score limit for all tested pages, below this score it will be a failure. Default is 90. [optional] 
-   -s      Skip these tests. A comma separeted list of the key name of the tests, for example "ycsstop,yjsbottom" [optional]   
+   -s      Skip these tests. A comma separated list of the key name of the tests, for example "ycsstop,yjsbottom" [optional]   
  
 EOF
 }
