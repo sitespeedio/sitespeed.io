@@ -24,8 +24,7 @@
 		<xsl:variable name="skipped" select="count(g/*[contains($skip,name(.))])" />
 		<xsl:variable name="time" select="lt" />
 		<xsl:variable name="time-in-seconds" select="$time div 1000"/>
-		<xsl:variable name="time-per-testcase" select="$time-in-seconds div $tests"/>
-		<xsl:variable name="sum" select="sum(g/*/score)"/>
+        <xsl:variable name="sum" select="sum(g/*/score)"/>
 		<xsl:variable name="avg-score" select="$sum div $tests"/>
 		<xsl:variable name="avg-score-decimals" select="format-number($avg-score, '0.00')" />		
 
