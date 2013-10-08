@@ -54,7 +54,7 @@ PROXY_TYPE=http
 VIEWPORT=1280x800
 ## The name of the analyze
 TEST_NAME=
-## The colums showed in the table on the detailed summary page 
+## The columns showed in the table on the detailed summary page
 PAGES_COLUMNS=
 ## The default user agent
 USER_AGENT="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36"
@@ -69,7 +69,7 @@ MAX_PAGES=999999
 HAS_ERROR_URLS=false
 ## Max length of a filename created by the url
 MAX_FILENAME_LENGTH=245
-## Take screensot of every page, default is false
+## Take screenshot of every page, default is false
 SCREENSHOT=false
 ## By default browser timings isn't collected
 COLLECT_BROWSER_TIMINGS=false
@@ -257,7 +257,7 @@ if [ "$SUMMARY_BOXES" != "" ]
   then
     SUMMARY_BOXES="-Dcom.soulgalore.velocity.key.boxes=$SUMMARY_BOXES"
   else
-      # Default colums
+      # Default columns
       SUMMARY_BOXES="-Dcom.soulgalore.velocity.key.boxes=ruleScore,criticalPathScore,jsSyncInHead,jsPerPage,cssPerPage,cssImagesPerPage,imagesPerPage,requests,requestsWithoutExpires,pageWeight,docWeight,imageWeightPerPage,browserScaledImages,spofPerPage,domainsPerPage,domElements,assetsCacheTime,timeSinceLastModification"
     if $COLLECT_BROWSER_TIMINGS
       then
