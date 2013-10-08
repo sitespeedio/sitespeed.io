@@ -193,7 +193,7 @@
 		
 	#end
 
-    #if($!{hosts} && $hosts.size()>0)
+    #if($hosts.size()>0)
         $statsDomains.addValue($hosts.size())
     #end
 
