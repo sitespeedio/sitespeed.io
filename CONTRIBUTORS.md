@@ -5,4 +5,5 @@ Many many many thanks to:
 * Tobias Lidskog (@tobli)
 * Emil Breding (@emilb)
 * Peter Van Gils (@kab12)
+* Juga Paazmaya (@paazmaya)
 * Ajay Jain
