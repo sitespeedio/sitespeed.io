@@ -39,7 +39,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <img src="$!{pathToIncludes}img/sitespeed-logo.png" class="navbar-brand" alt="Sitespeed.io - How speedy is your site?"/>
+    <img src="$!{pathToIncludes}img/sitespeed-logo.png" class="navbar-brand" alt="Sitespeed.io - How speedy is your site?" width="172" height="50"/>
   </div>
     <!-- Place everything within .navbar-collapse to hide it until above 768px -->
     #if (!$hidemenu)
