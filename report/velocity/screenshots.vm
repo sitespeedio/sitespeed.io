@@ -10,7 +10,7 @@
 		#set ($imgs = $images.split("@"))
 		#foreach ($url in $urls.split("@"))
 			#set ($name=$imgs.get($math.sub($foreach.count,1)))
-		    <h3 id="$name"><a href="$url" target="_blank">$url</a></h3>
+		    <h3 id="$name" class="url"><a href="$url" target="_blank">$url</a></h3>
 		    <p>		   
 		       	#set($image = $name.concat(".png"))
 		       	#set($html = $name.concat(".html"))

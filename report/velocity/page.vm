@@ -128,7 +128,7 @@
 							#set ($cacheTime = "")
 					<tr>
 
-						<td class="nobreak-page-url">
+						<td>
 								<a data-toggle="modal" href="#headers-$foreach.count"<i class="glyphicon glyphicon-zoom-in"></i></a>
 
 								<div class="modal fade" id="headers-$foreach.count">
@@ -163,7 +163,7 @@
 								</div>
 								</div>
 
-						<a href="$asset.getChild("url").getValue()" title="$asset.getChild("url").getValue()" target="_blank">$asset.getChild("url").getValue()</a>
+						<div class="nobreak-page"><a href="$asset.getChild("url").getValue()" title="$asset.getChild("url").getValue()" target="_blank">$asset.getChild("url").getValue()</a></div>
 					</td>
 					<td>$asset.getChild("type").getValue()</td>
 					
@@ -225,7 +225,6 @@
 	<div class="col-lg-6">
 
 		<h4>Requests per Content-Type</h4>
-		<div class="table-responsive">
 		<table class="table table-condensed table-striped table-bordered" id="requestsContentTypeTable">
 			<thead>
 				<tr>
@@ -306,12 +305,10 @@
 				</tr>
 			</tbody>
 		</table>
-		</div>
 	</div>
 
 	<div class="col-lg-6">
 		<h4>Size per Content-Type</h4>
-		<div class="table-responsive">
 		<table class="table table-condensed table-striped table-bordered"  id="sizeContentTypeTable">
 			<thead>
 			        	<tr>
@@ -383,7 +380,6 @@
 						</tr>
 					</tbody>
 				</table>
-				</div>
 			</div>
 		</div>
 
@@ -391,7 +387,6 @@
 
 			<div class="col-lg-6">
 				<h4>Per Domain ($hostAndRequests.size())</h4>
-				<div class="table-responsive">
 				<table class="table table-condensed table-striped table-bordered" id="domainsTable">
 					<thead>
 						<tr>
@@ -403,19 +398,16 @@
 					<tbody>
 						#foreach ($entry in $hostAndRequests.entrySet())
 						<tr>
-							<td>$entry.getKey()</td>
+							<td><div class="nobreak-page">$entry.getKey()</div></td>
 							<td>$entry.getValue()</td>
 							<td>$math.roundTo(1,$math.div($hostAndSize.get($entry.getKey()),1000))</td>
 						</tr>
 						#end
 					</tbody>
 				</table>
-				</div>
-
 			</div>
 			<div class="col-lg-6">
 				<h4>Content</h4>
-				<div class="table-responsive">
 				<table class="table table-condensed table-striped table-bordered">
 					<tbody>
 						<tr>
@@ -433,14 +425,12 @@
 
 					</tbody>
 				</table>
-				</div>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col-lg-6">
 				<h4>Cache</h4>
-				<div class="table-responsive">
 				<table class="table table-condensed table-striped table-bordered">
 					<tbody>
 						<tr>
@@ -467,7 +457,6 @@
 						</tr>
 					</tbody>
 				</table>
-				</div>
 			</div>
 			<div class="col-lg-6">
 				
@@ -512,7 +501,7 @@
 					<tbody>
 					#foreach ($statistic in $document2.getRootElement().getChild("statistics").getChildren("statistic"))
 					<tr>
-					<td>$statistic.getChild("name").getValue()</td>
+					<td><div class="nobreak-page">$statistic.getChild("name").getValue()</div></td>
 					<td>$statistic.getChild("min").getValue()</td>
 					<td>$statistic.getChild("median").getValue()</td>
 					<td>$statistic.getChild("max").getValue()</td> 

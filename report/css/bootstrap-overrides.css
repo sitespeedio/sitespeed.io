@@ -83,6 +83,7 @@
     ##  When displaying urls, making sure they don't break pages
     .url {
     word-wrap: break-word;
+    white-space: normal;
     }
 
     .navbar-default .navbar-toggle {
@@ -101,24 +102,28 @@
     .nobreak-pages {
     word-wrap: break-word;
     max-width: 290px;
+    white-space: normal;
     }
 
     ## Taking care of urls not breaking the table in pages
     .nobreak-page-url {
     word-wrap: break-word;
     max-width: 500px;
+    white-space: normal;
     }
 
     ## Taking care of assets not breaking 
     .nobreak-page {
     word-wrap: break-word;
     max-width: 450px;
+    white-space: normal;
     }
 
     ## Taking care of urls not breaking the table in assets
     .nobreak-asset-url {
     word-wrap: break-word;
     max-width: 500px;
+    white-space: normal;
     }
 
 
@@ -169,3 +174,15 @@
     th[data-sort]:hover{
       text-decoration:underline;
     }
+
+ ## Small phones
+    @media (max-width:480px) {
+    
+    .nobreak-asset-url {
+       max-width: 70px;
+    }
+
+    .nobreak-page {
+    max-width: 70px;
+    }
+}

@@ -50,7 +50,7 @@
 			<tbody>
 				#foreach ($entry in $toplist)
 				<tr>
-					<td class="nobreak-asset-url">
+					<td>
 								<a href="#headers-$foreach.count" data-toggle="modal"> <i class="glyphicon glyphicon-zoom-in"></i>
 								</a>
 
@@ -86,15 +86,15 @@
 								</div>
 								</div>
 
-					<a href="$entry.getUrl()" target="_blank">$entry.getUrl()</a></td>
-					<td class="visible-lg visible-md">$assetAndType.get($entry.getUrl())</td>
+					<div class="nobreak-asset-url"><a href="$entry.getUrl()" target="_blank">$entry.getUrl()</a></div></td>
+					<td>$assetAndType.get($entry.getUrl())</td>
 					#set ($delta = $assetAndNotModifiedSince.get($entry.getUrl()))
 					#if ($delta=="" || ! $delta)
 						#set ($sort=0)
 					#else
 					    	#set ($sort=$delta.getSeconds())
 					#end	
-					<td data-sort-value="$sort" class="visible-lg visible-md">
+					<td data-sort-value="$sort">
 						#if ($delta=="" || ! $delta)
 						     last modified not set
 						#else	
@@ -117,7 +117,7 @@
 					#end
 					</td>
 					<td>$assetAndSize.get($entry.getUrl())</td>
-					<td class="visible-lg visible-md">$entry.getNrOfTimes()</td>
+					<td>$entry.getNrOfTimes()</td>
 				</tr>
 				#end
 			</tbody>
