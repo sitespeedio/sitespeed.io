@@ -1,2 +1,2 @@
 #set($tooltipCssImgText = "The number of css images used on this page")
-#columnHeaderHTML("css img","int",$tooltipCssImgText,"hidden-sm")##
+#columnHeaderHTML("css img","int",$tooltipCssImgText,"")##

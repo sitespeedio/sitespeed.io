@@ -1,2 +1,2 @@
 #set($tooltipTotalRequestsWithoutExpireText = "The total number of requests without an expire header")
-#columnHeaderHTML("requests missing expire","int",$tooltipTotalRequestsWithoutExpireText,"hidden-sm")##
+#columnHeaderHTML("requests missing expire","int",$tooltipTotalRequestsWithoutExpireText,"")##

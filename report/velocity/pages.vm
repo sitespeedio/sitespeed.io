@@ -36,7 +36,7 @@
             </small>
             </p>
 
-            
+            <div class="table-responsive">
             <table class="table table-hover table-condensed table-striped table-bordered" id="pagesTable">
                 <thead>
                     <tr>
@@ -57,6 +57,7 @@
                     #end
                 </tbody>
             </table>
+            </div>
     </div>
     </div>
     #parse("report/velocity/inc/footer.vm")

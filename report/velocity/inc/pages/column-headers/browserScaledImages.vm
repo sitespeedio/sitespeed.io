@@ -1,2 +1,2 @@
 #set($tooltipBrowserScaledImgText = "The number of images that are scaled in the browser")
-#columnHeaderHTML("browser scaled images","int",$tooltipBrowserScaledImgText,"hidden-sm")##
+#columnHeaderHTML("browser scaled images","int",$tooltipBrowserScaledImgText,"")##

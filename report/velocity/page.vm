@@ -61,6 +61,7 @@
 
 
 		#if($!{showScoresBelow100})	   
+		<div class="table-responsive">
 		<table class="table table-condensed table-striped table-bordered" id="scoreTable">
 			<thead>
 				<tr>
@@ -82,12 +83,10 @@
 						<td>$message.getChild("score").getValue()</td>
 						<td class="nobreak-page">$message.getChild("message").getValue()</td>
 						<td class="nobreak-page">
-							## This is just too much information to show on a phone
-							<span class="hidden-sm">
+							
 								#foreach ($item in $message.getChild("components").getChildren("item"))
 								<p>$item.getValue()</p>
 								#end
-							</span>
 						</td>
 					</tr>
 					#end	 
@@ -95,6 +94,7 @@
 					#end
 				</tbody>
 			</table>
+			</div>
 			#else
 			No score below 100!
 			#end
@@ -105,6 +105,7 @@
 		<div class="col-lg-12">
 
 			<h3 id="assets">Page assets</h3>
+			<div class="table-responsive">
 			<table class="table table-condensed table-striped table-bordered" id="assetsTable">
 				<thead>
 					<tr>
@@ -208,6 +209,7 @@
 				#end
 			</tbody>
 		</table>
+		</div>
 
 	</div>
 	<!-- span 12 -->
@@ -223,6 +225,7 @@
 	<div class="col-lg-6">
 
 		<h4>Requests per Content-Type</h4>
+		<div class="table-responsive">
 		<table class="table table-condensed table-striped table-bordered" id="requestsContentTypeTable">
 			<thead>
 				<tr>
@@ -303,17 +306,19 @@
 				</tr>
 			</tbody>
 		</table>
+		</div>
 	</div>
 
 	<div class="col-lg-6">
 		<h4>Size per Content-Type</h4>
+		<div class="table-responsive">
 		<table class="table table-condensed table-striped table-bordered"  id="sizeContentTypeTable">
 			<thead>
-				<tr>
-					<th data-sort="string">Type</th>
-					<th data-sort="float">Size</th>
-					<th data-sort="float">Percentage</th>
-				</tr>
+			        	<tr>
+			        		<th data-sort="string">Type</th>
+			        		<th data-sort="float">Size</th>
+			        		<th data-sort="float">Percentage</th>
+			        	</tr>
 			</thead>	
 
 			<tbody>
@@ -378,6 +383,7 @@
 						</tr>
 					</tbody>
 				</table>
+				</div>
 			</div>
 		</div>
 
@@ -385,6 +391,7 @@
 
 			<div class="col-lg-6">
 				<h4>Per Domain ($hostAndRequests.size())</h4>
+				<div class="table-responsive">
 				<table class="table table-condensed table-striped table-bordered" id="domainsTable">
 					<thead>
 						<tr>
@@ -403,10 +410,12 @@
 						#end
 					</tbody>
 				</table>
+				</div>
 
 			</div>
 			<div class="col-lg-6">
 				<h4>Content</h4>
+				<div class="table-responsive">
 				<table class="table table-condensed table-striped table-bordered">
 					<tbody>
 						<tr>
@@ -424,12 +433,14 @@
 
 					</tbody>
 				</table>
+				</div>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col-lg-6">
 				<h4>Cache</h4>
+				<div class="table-responsive">
 				<table class="table table-condensed table-striped table-bordered">
 					<tbody>
 						<tr>
@@ -456,7 +467,7 @@
 						</tr>
 					</tbody>
 				</table>
-
+				</div>
 			</div>
 			<div class="col-lg-6">
 				
@@ -488,7 +499,7 @@
 			Using SPDY: $spdy
 			#end
 			</p>
-			
+				<div class="table-responsive">
 				<table class="table table-condensed table-striped table-bordered">
 				<thead>
 						<tr>
@@ -510,6 +521,7 @@
 					
 					</tbody>
 				</table>
+				</div>
 			</div>
 		</div>
 		#end
