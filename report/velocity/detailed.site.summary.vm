@@ -64,21 +64,21 @@
                 <tr>
                     <td> <em>$metric.getAttribute("friendlyName").getValue()</em> 
                     </td>
-                     <td class="hidden-sm">
+                     <td>
                         #if ($type.equals("cachetime"))
                             #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("min").getValue())))
                         #else  
                             $math.roundTo($nrOfDecimals,$metric.getChild("min").getValue()) $unit
                         #end
                     </td>
-                    <td class="hidden-sm">
+                    <td>
                         #if ($type.equals("cachetime"))
                             #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("percentile10").getValue())))
                         #else  
                             $math.roundTo($nrOfDecimals,$metric.getChild("percentile10").getValue()) $unit
                         #end
                     </td>
-                    <td class="hidden-sm">
+                    <td>
                         #if ($type.equals("cachetime"))
                             #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("avg").getValue())))
                         #else    
@@ -106,7 +106,7 @@
                             $math.roundTo($nrOfDecimals,$metric.getChild("max").getValue()) $unit
                         #end
                     </td>
-                    <td class="hidden-sm">
+                    <td>
                         #if ($type.equals("cachetime"))
                             #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("standardDev").getValue())))
                         #else  

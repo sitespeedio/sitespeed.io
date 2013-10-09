@@ -33,14 +33,8 @@
 #macro (columnValue $columnName, $results)
 ## specific columns that have extra HTML
 #set( $specialColumns  = ["ruleScore", "jsSyncInHead","spof","url"])
-#set( $showOnPhone  = ["ruleScore", "url"])
 
-#if ($showOnPhone.contains($columnName))
 <td>
-#else
-<td class="hidden-sm">
-#end
-
 #if ($columnName.toLowerCase().endsWith("time"))
 	#parse("report/velocity/inc/pages/columns/genericTimeMetrics.vm")
 #elseif ($specialColumns.contains($columnName))
