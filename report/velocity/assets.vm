@@ -35,16 +35,16 @@
             #end
             </small>
          </p>
-
+        <div class="table-responsive">
 		<table class="table table-condensed table-striped table-bordered" id="assetsTable">
 			<thead>
 				<tr>
 					<th data-sort="string">asset</th>
-					<th data-sort="string" class="visible-lg visible-md">type</th>
-					<th data-sort="int" class="visible-lg visible-md">time since last modification</th>
+					<th data-sort="string">type</th>
+					<th data-sort="int">time since last modification</th>
 					<th data-sort="int">cache time</th>
 					<th data-sort="float">size (kb)</th>
-					<th data-sort="int" class="visible-lg visible-md">nr of requests</th>
+					<th data-sort="int">nr of requests</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -122,6 +122,7 @@
 				#end
 			</tbody>
 		</table>
+		</div>
 	</div>
 </div>
 #parse("report/velocity/inc/footer.vm")
