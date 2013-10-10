@@ -31,7 +31,6 @@
       				#if($!{document2})
       				<a href="#metrics" class="list-group-item">Page metrics</a>
       				#end
-      				<a href="http://www.webpagetest.org/?url=$esc.url($document.getRootElement().getChild("u").getValue())&runs=3" target="_blank" title="Test this page on http://webpagetest.org" class="list-group-item">Test on webpagetest.org</a>
       		</div>
       	</div>
 </div>		
