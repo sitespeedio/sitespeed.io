@@ -502,9 +502,13 @@ if $COLLECT_BROWSER_TIMINGS
     do
       local pagefilename=$(get_filename $url $runs) 
 
-    sed 's/<?xml version="1.0" encoding="UTF-8" standalone="yes"?>//g' "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" > "$REPORT_DATA_METRICS_DIR/tmp.xml" || exit 1
-    cat "$REPORT_DATA_METRICS_DIR/tmp.xml" >> "$REPORT_DATA_DIR/result.xml"
-    rm  "$REPORT_DATA_METRICS_DIR/tmp.xml"
+    ## Sometimes Selenium/BrowserTime is a little unstable and no file is produced, then skip adding it
+    if [ -e $REPORT_DATA_METRICS_DIR/$pagefilename.xml ];  
+    then
+      sed 's/<?xml version="1.0" encoding="UTF-8" standalone="yes"?>//g' "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" > "$REPORT_DATA_METRICS_DIR/tmp.xml" || exit 1
+      cat "$REPORT_DATA_METRICS_DIR/tmp.xml" >> "$REPORT_DATA_DIR/result.xml"
+      rm  "$REPORT_DATA_METRICS_DIR/tmp.xml"
+    fi  
   done
   echo '</metrics>' >> "$REPORT_DATA_DIR/result.xml"
 fi
@@ -735,6 +739,7 @@ then
   for url in "${URLS[@]}"
   do
     local pagefilename=$(get_filename $url $runs)  
+    echo "Collecting Browser Time metrics: $url"
     "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$BROWSERTIME_JAR $BROWSER_TIME_PARAMS -o "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url"
     local runs=$[$runs+1]
   done
