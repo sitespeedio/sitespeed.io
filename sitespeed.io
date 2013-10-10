@@ -75,6 +75,8 @@ SCREENSHOT=false
 COLLECT_BROWSER_TIMINGS=false
 ## The default setup: Use firefox & do it three times per URL
 BROWSER_TIME_PARAMS="-b firefox -n 3"
+## Error log
+ERROR_LOG=error.log
 
 ## Easy way to set your user agent as an Iphone
 IPHONE_IO6_AGENT="Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25"
@@ -473,13 +475,17 @@ local runs=0
 for url in "${URLS[@]}"
 do
   local pagefilename=$(get_filename $url $runs) 
-   EXTRA=
-   if $COLLECT_BROWSER_TIMINGS
-   then
-    EXTRA=",$REPORT_DATA_METRICS_DIR/$pagefilename.xml" 
-   fi 
-  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml$EXTRA $VELOCITY_DIR/page.vm $PROPERTIES_DIR/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1
-  "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_PAGES_DIR/$pagefilename.html $REPORT_PAGES_DIR/$pagefilename.html
+  ## If the file exits, meaning the analyze went ok
+  if [ -e $REPORT_DATA_PAGES_DIR/$pagefilename.xml ];
+    then
+    EXTRA=
+    if $COLLECT_BROWSER_TIMINGS
+    then
+      EXTRA=",$REPORT_DATA_METRICS_DIR/$pagefilename.xml" 
+    fi 
+    "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml$EXTRA $VELOCITY_DIR/page.vm $PROPERTIES_DIR/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1
+    "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_PAGES_DIR/$pagefilename.html $REPORT_PAGES_DIR/$pagefilename.html
+  fi
 done
 
 echo "Create result.xml" 
@@ -692,40 +698,44 @@ function analyze() {
     echo "Analyzing $url"
     phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW -n "$pagefilename.har" "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml" || exit 1
   
-    #move the HAR-file to the HAR dir
-    mv "$pagefilename.har" $REPORT_DATA_HAR_DIR/
-
     local s=$(du -k "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" | cut -f1)
     # Check that the size is bigger than 0
     if [ $s -lt 10 ]
       then
-      echo "Could not analyze $url unrecoverable error when parsing the page:"
+      echo "Could not analyze $url unrecoverable error when parsing the page, see the error.log"
       ## do the same thing again but setting console to log the error to output
-      phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url" -c 2  
+      echo "Could not analyze $url unrecoverable error when parsing the page" >> $REPORT_DATA_DIR/$ERROR_LOG
+      phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url" -c 2  >> $REPORT_DATA_DIR/$ERROR_LOG
       ## write the error url to the list
-      echo "sitespeed.io got an unrecoverable error when parsing the page,$url" >> $REPORT_DATA_DIR/errorurls.txt    
+      echo "sitespeed.io got an unrecoverable error when parsing the page,$url" >> $REPORT_DATA_DIR/errorurls.txt  
+      rm "$REPORT_DATA_PAGES_DIR/$pagefilename.xml"  
+    else
+      #move the HAR-file to the HAR dir
+      mv "$pagefilename.har" $REPORT_DATA_HAR_DIR/
+
+      # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
+      sed '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup  || exit 1
+  
+      # And crazy enough, sometimes we get things after the end of the xml
+      sed -n '1,/<\/results>/p' $REPORT_DATA_PAGES_DIR/$pagefilename-bup > $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1
+ 
+      # page size (keeping getting TTFB for a while, it is now primaly fetched from PhantomJS)
+      curl "$USER_AGENT_CURL" --compressed -o /dev/null -w "%{time_starttransfer};%{size_download}\n" -L -s "$url" >  "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
+    
+      read -r TTFB_SIZE <  $REPORT_DATA_PAGES_DIR/$pagefilename.info
+      local TTFB="$(echo $TTFB_SIZE  | cut -d \; -f 1)"
+      local SIZE="$(echo $TTFB_SIZE  | cut -d \; -f 2)"
+      local TTFB="$(printf "%.3f" $TTFB)"
+  
+      rm "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
+      # Hack for adding link and other data to the xml file
+      XML_URL=$(echo "$url" | sed 's/&/\\&/g') 
+  
+      sed 's{<results>{<results filename="'$pagefilename'" size="'$SIZE'"><curl><![CDATA['"$XML_URL"']]></curl>{' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
+      mv $REPORT_DATA_PAGES_DIR/$pagefilename-bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml     
     fi
 
-    # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
-    sed '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup  || exit 1
-  
-    # And crazy enough, sometimes we get things after the end of the xml
-    sed -n '1,/<\/results>/p' $REPORT_DATA_PAGES_DIR/$pagefilename-bup > $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1
- 
-    # page size (keeping getting TTFB for a while, it is now primaly fetched from PhantomJS)
-    curl "$USER_AGENT_CURL" --compressed -o /dev/null -w "%{time_starttransfer};%{size_download}\n" -L -s "$url" >  "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
-    
-    read -r TTFB_SIZE <  $REPORT_DATA_PAGES_DIR/$pagefilename.info
-    local TTFB="$(echo $TTFB_SIZE  | cut -d \; -f 1)"
-    local SIZE="$(echo $TTFB_SIZE  | cut -d \; -f 2)"
-    local TTFB="$(printf "%.3f" $TTFB)"
-  
-    rm "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
-    # Hack for adding link and other data to the xml file
-    XML_URL=$(echo "$url" | sed 's/&/\\&/g') 
-  
-    sed 's{<results>{<results filename="'$pagefilename'" size="'$SIZE'"><curl><![CDATA['"$XML_URL"']]></curl>{' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
-    mv $REPORT_DATA_PAGES_DIR/$pagefilename-bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml    
+   
 }
 
 #*******************************************************
