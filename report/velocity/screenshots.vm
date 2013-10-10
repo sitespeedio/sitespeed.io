@@ -14,7 +14,7 @@
 		    <p>		   
 		       	#set($image = $name.concat(".png"))
 		       	#set($html = $name.concat(".html"))
-		       	<a href="pages/$html" title="The analyze"><img src="screenshots/$image" class="img-thumbnail"></a>
+		       	<a href="pages/$html" title="Go to the full analyze"><img src="screenshots/$image" class="img-thumbnail" alt="Screenshot of $url"></a>
 		    </p>
 		    #if( $foreach.hasNext )<hr/>#end##	
 		#end                                  			
