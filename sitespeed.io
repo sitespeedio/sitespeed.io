@@ -511,7 +511,7 @@ if $COLLECT_BROWSER_TIMINGS
       local pagefilename=$(get_filename $url $runs) 
 
     ## Sometimes Selenium/BrowserTime is a little unstable and no file is produced, then skip adding it
-    if [ -e $REPORT_DATA_METRICS_DIR/$pagefilename.xml ];  
+    if [ -e "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" ];  
     then
       sed 's/<?xml version="1.0" encoding="UTF-8" standalone="yes"?>//g' "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" > "$REPORT_DATA_METRICS_DIR/tmp.xml" || exit 1
       cat "$REPORT_DATA_METRICS_DIR/tmp.xml" >> "$REPORT_DATA_DIR/result.xml"
@@ -756,9 +756,9 @@ then
     "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$BROWSERTIME_JAR $BROWSER_TIME_PARAMS -o "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url"
      ## If BrowserTime fails, an empty file is created, so remove it
     local btSize=$(du -k "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" | cut -f1) 
-    if [ $btSize -lt 10 ]
+    if [ $btSize -lt 4 ]
     then
-      echo "BrowserTime could not collect data for $url " >> $REPORT_DATA_DIR/$ERROR_LOG
+      echo "BrowserTime could not collect data for $url $btSize" >> $REPORT_DATA_DIR/$ERROR_LOG
       rm  "$REPORT_DATA_METRICS_DIR/$pagefilename.xml"
     fi  
     local runs=$[$runs+1]
