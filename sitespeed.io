@@ -477,6 +477,7 @@ do
   local pagefilename=$(get_filename $url $runs) 
   
   ## If something went wrong, the file is removed
+  ## TODO if Browser Time failed & YSLow works, parse YSlow
   if [[ -e "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" ]] && [[ -e "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" ]]
     then
     EXTRA=
