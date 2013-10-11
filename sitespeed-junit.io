@@ -120,9 +120,9 @@ function find_right_dir() {
 cd "$(dirname ${BASH_SOURCE[0]})"
 HOME="$(pwd)"
 cd $REPORT_BASE_DIR
-HOST_DIR="$(\ls -1dt */ | head -n 1)"
+HOST_DIR="$(ls -tr | tail -1)"
 cd $HOST_DIR
-DATE_DIR="$(\ls -1dt */ | head -n 1)"
+DATE_DIR="$(ls -tr | tail -1)"
 cd $DATE_DIR
 ABSOLUTE_ANALYZE_DIR=$(pwd)
 }
@@ -132,7 +132,6 @@ ABSOLUTE_ANALYZE_DIR=$(pwd)
 #
 #*******************************************************
 function parse_xsl(){
-
 local rules_file=$(ls $ABSOLUTE_ANALYZE_DIR/data/pages/ | head -n 1)
 local error_urls_file="$ABSOLUTE_ANALYZE_DIR/data/errorurls.xml"
 local xsl_file=$HOME/report/xslt/junit.xsl
