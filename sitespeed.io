@@ -476,14 +476,17 @@ for url in "${URLS[@]}"
 do
   local pagefilename=$(get_filename $url $runs) 
   
-  ## If something went wrong, the file is removed
-  ## TODO if Browser Time failed & YSLow works, parse YSlow
-  if [[ -e "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" ]] && [[ -e "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" ]]
+  ## If something went wrong, the file has been removed, don't parse it
+  if [ -e "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" ]  
     then
     EXTRA=
     if $COLLECT_BROWSER_TIMINGS
     then
-      EXTRA=",$REPORT_DATA_METRICS_DIR/$pagefilename.xml" 
+      ## If collecting the metrics went ok, then use it!
+      if [ -e "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" ]]
+        then
+        EXTRA=",$REPORT_DATA_METRICS_DIR/$pagefilename.xml" 
+      fi
     fi 
     "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml$EXTRA $VELOCITY_DIR/page.vm $PROPERTIES_DIR/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1
     "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_PAGES_DIR/$pagefilename.html $REPORT_PAGES_DIR/$pagefilename.html
