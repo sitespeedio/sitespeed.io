@@ -126,6 +126,12 @@
     white-space: normal;
     }
 
+    ## Take care of response headers modal
+    .headers {
+    word-wrap: break-word;
+    max-width: 400px;
+    white-space: normal;
+    }
 
     ## Fixes for the summary boxes
 

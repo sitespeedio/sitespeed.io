@@ -28,7 +28,7 @@
                     #foreach ($response in $results.getChild("comps").getChild("item").getChild("headers").getChild("response").getChildren())
                     <tr>
                         <td>$esc.html($response.getName())</td>
-                        <td>$esc.html($response.getValue())</td>
+                        <td><div class="headers">$esc.html($response.getValue())</div></td>
                     </tr>
                     #end
                 </tbody>
