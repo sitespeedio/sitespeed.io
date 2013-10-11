@@ -226,7 +226,7 @@ if (len === 0 || urlCount === 0 || unaryArgs.help) {
         '',
         '    phantomjs ' + phantom.scriptName + ' http://yslow.org',
         '    phantomjs ' + phantom.scriptName + ' -i grade -f xml www.yahoo.com www.cnn.com www.nytimes.com',
-        '    phantomjs ' + phantom.scriptName + ' -info all --format plain --ua "MSIE 9.0" http://yslow.org',
+        '    phantomjs ' + phantom.scriptName + ' --info all --format plain --ua "MSIE 9.0" http://yslow.org',
         '    phantomjs ' + phantom.scriptName + ' -i basic --rulseset yslow1 -d http://yslow.org',
         '    phantomjs ' + phantom.scriptName + ' -i grade -b http://www.showslow.com/beacon/yslow/ -v yslow.org',
         '    phantomjs --load-plugins=yes ' + phantom.scriptName + ' -vp 800x600 http://www.yahoo.com',
@@ -376,7 +376,9 @@ urls.forEach(function (url) {
     // open page
     page.startTime = new Date();
     page.open(url, function (status) {
-        var yslow, ysphantomjs, controller, evalFunc, loadTime, url, resp,
+        var yslow, ysphantomjs, controller, evalFunc,
+            loadTime, url, resp, output,
+            exitStatus = 0,
             startTime = page.startTime,
             resources = page.resources;
 
@@ -6322,7 +6324,7 @@ YSLOW.registerRule({
             cssSpof: true,
             jsSpof: true,
             fontFaceInCssSpof: true,
-            inlineFontFaceSpof: true},
+            inlineFontFaceSpof: true },
   url: 'http://sitespeed.io/rules/#spof',
 
   lint: function (doc, cset, config) {
@@ -6626,16 +6628,13 @@ YSLOW.registerRule({
   url: 'http://sitespeed.io/rules/#textcontent',
 
   lint: function (doc, cset, config) {
-  
   var textLength = 0, score = 100, offenders = [], message, contentPercent;
-
   textLength = SITESPEEDHELP.getTextLength(doc);
   contentPercent = textLength/doc.body.innerHTML.length*100;
-  
   if (contentPercent.toFixed(0)<50) {
     score = contentPercent.toFixed(0)*2;
   }
-
+ 
   message = 'The amount of content percentage: ' + contentPercent.toFixed(config.decimals) + '%';
   offenders.push(contentPercent.toFixed(config.decimals));
 
@@ -11458,7 +11457,6 @@ YSLOW.peeler.peel = function (node) {
 
             // YSlow phantomjs controller
             controller = function () {
-                var Preferences;
                 YSLOW.phantomjs.run = function () {
                     try {
                         var results, xhr, output, threshold,
@@ -11478,7 +11476,8 @@ YSLOW.peeler.peel = function (node) {
 
                             // format out with appropriate content type
                             formatOutput = function (content) {
-                                var format = (args.format || '').toLowerCase(),
+                                var testResults,
+                                    format = (args.format || '').toLowerCase(),
                                     harness = {
                                         'tap': {
                                             func: ysutil.formatAsTAP,
@@ -11511,14 +11510,16 @@ YSLOW.peeler.peel = function (node) {
                                     } catch (err) {
                                         threshold = args.threshold;
                                     }
+                                    testResults = harness[format].func(
+                                        ysutil.testResults(
+                                            content,
+                                            threshold
+                                        )
+                                    );
                                     return {
-                                        content: harness[format].func(
-                                            ysutil.testResults(
-                                                content,
-                                                threshold
-                                            )
-                                        ),
-                                        contentType: harness[format].contentType
+                                        content: testResults.content,
+                                        contentType: harness[format].contentType,
+                                        failures: testResults.failures
                                     };
                                 default:
                                     return {
@@ -11547,62 +11548,62 @@ YSLOW.peeler.peel = function (node) {
                                 return header;
                             };
 
+                        comps.forEach(function (comp) {
+                            var res = resources[comp.href] ||
+                                resources[ys.util.makeAbsoluteUrl(comp.href, comp.base)] || {};
 
-	                comps.forEach(function (comp) {
-                     var res = resources[comp.href] ||
-                               resources[ys.util.makeAbsoluteUrl(comp.href, comp.base)] || {};
-                
-                    // if the component hasn't been fetched by phantomjs but discovered by yslow
-                    if (res.response === undefined) {
-                        try {
-                            var headerName, h, i, len, m, startTime, endTime,
-                            reHeader = /^([^:]+):\s*([\s\S]+)$/,
-                            headers, response = new Object(), request = new Object();
+                            // if the component hasn't been fetched by phantomjs but discovered by yslow
+                            if (res.response === undefined) {
+                                try {
+                                    var headerName, h, i, len, m, startTime, endTime, headers,
+                                        reHeader = /^([^:]+):\s*([\s\S]+)$/,
+                                        response = {},
+                                        request = {};
 
-                            // fetch the asset
-                            xhr = new XMLHttpRequest();
-                            startTime = new Date().getTime();
-                            xhr.open('GET', ys.util.makeAbsoluteUrl(comp.href, comp.base), false);
-                            xhr.send();
-                            endTime = new Date().getTime();
-                            headers = xhr.getAllResponseHeaders();
-                            h = headers.split('\n');
+                                    // fetch the asset
+                                    xhr = new XMLHttpRequest();
+                                    startTime = new Date().getTime();
+                                    xhr.open('GET', ys.util.makeAbsoluteUrl(comp.href, comp.base), false);
+                                    xhr.send();
+                                    endTime = new Date().getTime();
+                                    headers = xhr.getAllResponseHeaders();
+                                    h = headers.split('\n');
 
-                            // fake the request
-                            request.headers = [];
-                            request.url = ys.util.makeAbsoluteUrl(comp.href, comp.base);
-                            request.method = "GET";
-                            request.time="2013-05-22T20:40:33.381Z";
+                                    // fake the request
+                                    request.headers = [];
+                                    request.url = ys.util.makeAbsoluteUrl(comp.href, comp.base);
+                                    request.method = 'GET';
+                                    request.time = '2013-05-22T20:40:33.381Z';
 
-                            // setup the response
-                            // real values will be added to the component
-                            // from the header
-                            response.bodySize = "-1";
-                            response.contentType = "";
-                            response.headers = [];
-                            response.id = "-1";
-                            response.redirectURL = null;
-                            response.stage = "end";
-                            response.status = xhr.status;
-                            response.time = endTime - startTime;
-                            response.url = ys.util.makeAbsoluteUrl(comp.href, comp.base);
+                                    // setup the response
+                                    // real values will be added to the component
+                                    // from the header
+                                    response.bodySize = '-1';
+                                    response.contentType = '';
+                                    response.headers = [];
+                                    response.id = '-1';
+                                    response.redirectURL = null;
+                                    response.stage = 'end';
+                                    response.status = xhr.status;
+                                    response.time = endTime - startTime;
+                                    response.url = ys.util.makeAbsoluteUrl(comp.href, comp.base);
 
-                            // get the headers
-                            h = headers.split('\n');
-                            for (i = 0, len = h.length; i < len; i += 1) {
-                                m = reHeader.exec(h[i]);
-                                if (m) {
-                                    response.headers.push({"name":m[1], "value":m[2]});
+                                    // get the headers
+                                    h = headers.split('\n');
+                                    for (i = 0, len = h.length; i < len; i += 1) {
+                                        m = reHeader.exec(h[i]);
+                                        if (m) {
+                                            response.headers.push({'name': m[1], 'value': m[2]});
                                         }
                                     }
-                                        
+
                                     res.response = response;
                                     res.request = request;
-                                
-                                    } catch (err) {
-                                        console.log(err);
-                                    }
-                                } 
+
+                                } catch (err) {
+                                    console.log(err);
+                                }
+                            }
 
                             cset.addComponent(
                                 comp.href,
@@ -11678,15 +11679,16 @@ YSLOW.peeler.peel = function (node) {
                             }
                         }
 
-                        return output.content;
+                        return output;
                     } catch (err) {
                         return err;
                     }
                 };
+
                 // Implement a bare minimum preferences object to be able to use custom CDN URLs
-                Preferences = function () {
+                function Preferences() {
                     this.prefs = {};
-                };
+                }
                 Preferences.prototype.getPref = function (name, defaultValue) {
                     return this.prefs.hasOwnProperty(name) ? this.prefs[name] : defaultValue;
                 };
@@ -11722,13 +11724,15 @@ YSLOW.peeler.peel = function (node) {
             evalFunc = new Function(yslow + ysphantomjs + controller);
 
             // evaluate script and log results
-            console.log(page.evaluate(evalFunc));
+            output = page.evaluate(evalFunc);
+            exitStatus += output.failures || 0;
+            console.log(output.content);
         }
 
         // finish phantomjs
         urlCount -= 1;
         if (urlCount === 0) {
-            phantom.exit();
+            phantom.exit(exitStatus);
         }
     });
 });
