@@ -1,1 +1,1 @@
-$results.getChild("u").getValue()##
+$results.getChild("curl").getValue()##
