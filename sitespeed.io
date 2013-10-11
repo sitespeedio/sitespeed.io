@@ -475,8 +475,9 @@ local runs=0
 for url in "${URLS[@]}"
 do
   local pagefilename=$(get_filename $url $runs) 
-  ## If the file exits, meaning the analyze went ok
-  if [ -e $REPORT_DATA_PAGES_DIR/$pagefilename.xml ];
+  
+  ## If something went wrong, the file is removed
+  if [[ -e "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" ]] && [[ -e "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" ]]
     then
     EXTRA=
     if $COLLECT_BROWSER_TIMINGS
@@ -515,6 +516,7 @@ if $COLLECT_BROWSER_TIMINGS
       cat "$REPORT_DATA_METRICS_DIR/tmp.xml" >> "$REPORT_DATA_DIR/result.xml"
       rm  "$REPORT_DATA_METRICS_DIR/tmp.xml"
     fi  
+
   done
   echo '</metrics>' >> "$REPORT_DATA_DIR/result.xml"
 fi
@@ -751,6 +753,13 @@ then
     local pagefilename=$(get_filename $url $runs)  
     echo "Collecting Browser Time metrics: $url"
     "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$BROWSERTIME_JAR $BROWSER_TIME_PARAMS -o "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url"
+     ## If BrowserTime fails, an empty file is created, so remove it
+    local btSize=$(du -k "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" | cut -f1) 
+    if [ $btSize -lt 10 ]
+    then
+      echo "BrowserTime could not collect data for $url " >> $REPORT_DATA_DIR/$ERROR_LOG
+      rm  "$REPORT_DATA_METRICS_DIR/$pagefilename.xml"
+    fi  
     local runs=$[$runs+1]
   done
 fi
