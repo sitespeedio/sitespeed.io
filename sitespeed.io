@@ -59,7 +59,7 @@ PAGES_COLUMNS=
 ## The default user agent
 USER_AGENT="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36"
 ## The YSlow file to use
-YSLOW_FILE=dependencies/yslow-3.1.8-sitespeed.js
+YSLOW_FILE=dependencies/yslow-3.1.5-sitespeed.js
 ## The desktop ruleset 
 RULESET=sitespeed.io-2.0-desktop
 RULESET_MOBILE=sitespeed.io-2.0-mobile
