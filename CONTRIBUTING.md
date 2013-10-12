@@ -12,7 +12,7 @@ If you find a defect, please file a bug report. Include the following:
  - OS & versions.
  - Always add the URL of the page you where analyzing (if it is secret, drop me an email peter**at**soulgalore.com and send me the address). 
  - Add a screenshot and clearly point out where the defect is.
- - Add a log of the output and include the content of the data/error.log file 
+ - Add a log of the output and include the content of the data/error.log file. 
 
 If you have the skills & the time, it is perfect if you send a pull request with a fix, that helps me a lot!
 
