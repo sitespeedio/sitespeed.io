@@ -25,3 +25,7 @@ Related projects:
  * https://github.com/soulgalore/delay - Delay your assets. Project used for testing if the sitespeed rules are working
 
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/soulgalore/sitespeed.io/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
