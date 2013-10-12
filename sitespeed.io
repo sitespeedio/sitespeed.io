@@ -483,7 +483,7 @@ do
     if $COLLECT_BROWSER_TIMINGS
     then
       ## If collecting the metrics went ok, then use it!
-      if [ -e "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" ]]
+      if [ -e "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" ]
         then
         EXTRA=",$REPORT_DATA_METRICS_DIR/$pagefilename.xml" 
       fi
