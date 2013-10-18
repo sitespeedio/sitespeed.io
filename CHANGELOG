@@ -2,6 +2,7 @@ CHANGELOG sitespeed.io
 
 version 2.1
 ------------------------
+* Finetuned the logo
 * Bug fix: The crawler sometimes picked up URL:s linking to other content types than HTML
 
 version 2.0
