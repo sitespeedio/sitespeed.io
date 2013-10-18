@@ -16,6 +16,8 @@ See <a href="http://www.sitespeed.io">http://www.sitespeed.io</a> for documentat
 
 The branches: *master* is the latest release, the *wip-branch* is the coming release.
 
+[![I Love Open Source](http://www.iloveopensource.io/images/logo-lightbg.png)](http://www.iloveopensource.io/projects/5261764143c6bdee140001d4)
+
 
 [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/soulgalore/sitespeed.io/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
