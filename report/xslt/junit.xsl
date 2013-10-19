@@ -111,7 +111,7 @@
 		</testcase>
 	</xsl:template>
 
-	<xsl:template match="w|o|u|i|r|lt|url|curl|stats|comps|w_c|r_c|stats_c">
+	<xsl:template match="w|o|u|i|r|lt|url|curl|stats|comps|w_c|r_c|stats_c|metrics">
 	<!-- skip these -->
 	</xsl:template>
 

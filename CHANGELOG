@@ -4,6 +4,7 @@ version 2.1
 ------------------------
 * Finetuned the logo
 * Bug fix: The crawler sometimes picked up URL:s linking to other content types than HTML
+* Bug fix: The JUnit xslt outputted timings metrics
 
 version 2.0
 ------------------------
