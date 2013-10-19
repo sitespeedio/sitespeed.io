@@ -3,4 +3,3 @@ $results.getChild("g").getChild("avoidscalingimages").getChild("components").get
 #else##
 0##
 #end##
-	
