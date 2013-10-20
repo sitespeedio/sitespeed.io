@@ -710,11 +710,12 @@ function analyze() {
     # Check that the size is bigger than 0
     if [ $s -lt 10 ]
       then
-      echo "Could not analyze $url unrecoverable error when parsing the page, see the error.log"
+      echo "Could not analyze $url unrecoverable error when parsing the page, see the $REPORT_DATA_DIR/error.log"
       ## do the same thing again but setting console to log the error to output
-      echo "Could not analyze $url unrecoverable error when parsing the page" >> $REPORT_DATA_DIR/$ERROR_LOG
-      echo "Input parameters: $INPUT" >> $REPORT_DATA_DIR/$ERROR_LOG
+      log_error "Could not analyze $url unrecoverable error when parsing the page"
+      log_error "Input parameters: $INPUT"
       phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url" -c 2  >> $REPORT_DATA_DIR/$ERROR_LOG
+
       ## write the error url to the list
       echo "sitespeed.io got an unrecoverable error when parsing the page,$url" >> $REPORT_DATA_DIR/errorurls.txt  
       rm "$REPORT_DATA_PAGES_DIR/$pagefilename.xml"  
@@ -764,8 +765,8 @@ then
     local btSize=$(du -k "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" | cut -f1) 
     if [ $btSize -lt 4 ]
     then
-      echo "BrowserTime could not collect data for $url $btSize" >> $REPORT_DATA_DIR/$ERROR_LOG
-      echo "Input parameters: $INPUT" >> $REPORT_DATA_DIR/$ERROR_LOG
+      log_error "BrowserTime could not collect data for $url $btSize"
+      log_error "Input parameters: $INPUT"
       rm  "$REPORT_DATA_METRICS_DIR/$pagefilename.xml"
     fi  
     local runs=$[$runs+1]
@@ -801,6 +802,15 @@ fi
 
 echo $pagefilename
 
+}
+
+#*******************************************************
+# Log a message to the error log
+# $1 the message
+#*******************************************************
+function log_error() {
+local now=$(date +"%Y-%m-%d-%H-%M-%S")
+echo $now $1 >> $REPORT_DATA_DIR/$ERROR_LOG
 }
 
 # launch
