@@ -90,12 +90,14 @@ IPAD_VIEWPORT="768x1024"
 NEXUS_4_AGENT="Mozilla/5.0 (Linux; Android 4.2; Nexus 4 Build/JVP15Q) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19"
 NEXUS_VIEWPORT="348x519"
 
-
 # Jar files, specify the versions
 CRAWLER_JAR=crawler-1.5.7-full.jar
 VELOCITY_JAR=xml-velocity-1.8.1-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 BROWSERTIME_JAR=browsertime-0.1-full.jar
+
+# Store the input to be able to log exactly how/what was done
+INPUT="$@"
 
 #*******************************************************
 # Main program
@@ -711,6 +713,7 @@ function analyze() {
       echo "Could not analyze $url unrecoverable error when parsing the page, see the error.log"
       ## do the same thing again but setting console to log the error to output
       echo "Could not analyze $url unrecoverable error when parsing the page" >> $REPORT_DATA_DIR/$ERROR_LOG
+      echo "Input parameters: $INPUT" >> $REPORT_DATA_DIR/$ERROR_LOG
       phantomjs $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url" -c 2  >> $REPORT_DATA_DIR/$ERROR_LOG
       ## write the error url to the list
       echo "sitespeed.io got an unrecoverable error when parsing the page,$url" >> $REPORT_DATA_DIR/errorurls.txt  
@@ -762,6 +765,7 @@ then
     if [ $btSize -lt 4 ]
     then
       echo "BrowserTime could not collect data for $url $btSize" >> $REPORT_DATA_DIR/$ERROR_LOG
+      echo "Input parameters: $INPUT" >> $REPORT_DATA_DIR/$ERROR_LOG
       rm  "$REPORT_DATA_METRICS_DIR/$pagefilename.xml"
     fi  
     local runs=$[$runs+1]
