@@ -770,6 +770,9 @@ then
       rm  "$REPORT_DATA_METRICS_DIR/$pagefilename.xml"
     fi  
     local runs=$[$runs+1]
+    if [ $(($runs%20)) == 0 ]; then
+      echo "Collected timings for  $runs pages out of ${#URLS[@]}"
+    fi
   done
 fi
 
@@ -810,6 +813,12 @@ echo $pagefilename
 #*******************************************************
 function log_error() {
 local now=$(date +"%Y-%m-%d-%H-%M-%S")
+
+if [[ ! -e $REPORT_DATA_DIR/$ERROR_LOG ]] 
+then
+  echo "$now Java version $jVersion PhantomJS version $(phantomjs --version) BrowserTime version $browserTimeVersion" > $REPORT_DATA_DIR/$ERROR_LOG
+fi  
+
 echo $now $1 >> $REPORT_DATA_DIR/$ERROR_LOG
 }
 
