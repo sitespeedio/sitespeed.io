@@ -4,7 +4,7 @@
 	<xsl:output method="xml" indent="yes" />
 
 	<!--The file to fetch the limits from-->
-	<xsl:param name="limits-file">dependencies/timing-limits.xml</xsl:param>
+	<xsl:param name="limits-file"/>
 	<xsl:param name="limits" select="document($limits-file,/)"/>
 
 	<xsl:template match="metrics">
@@ -40,7 +40,7 @@
 		<xsl:variable name="version" select="../../pageData/entry[key='browserVersion']/value"/>
 		<xsl:variable name="tries" select="count(../../runs/run)"/>
 
-		<!-- First check if we have specific values configured for  that URL else use the default ones -->
+		<!-- First check if we have specific values configured for that URL else use the default ones -->
 		<xsl:variable name="exist" select="boolean($limits/limits/urls/page[url=$url])"/>
 
 		<xsl:choose>
