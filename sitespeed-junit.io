@@ -162,8 +162,8 @@ OPTIONS:
    -h      Help
    -o      The output dir
    -r      The result base directory, default is sitespeed-result [optional]
-   -l      The page score limit. Below this page score it will be a failure. Default is 90. [optional]
-   -a      The average score limit for all tested pages, below this score it will be a failure. Default is 90. [optional] 
+   -l      The page rule score limit. Below this page score it will be a failure. Default is 90. [optional]
+   -a      The average rule score limit for all tested pages, below this score it will be a failure. Default is 90. [optional] 
    -s      Skip these tests. A comma separated list of the key name of the tests, for example "ycsstop,yjsbottom" [optional]   
  
 EOF
