@@ -135,7 +135,7 @@ ABSOLUTE_ANALYZE_DIR=$(pwd)
 function parse_xsl(){
 local rules_file=$(ls $ABSOLUTE_ANALYZE_DIR/data/pages/ | head -n 1)
 local error_urls_file="$ABSOLUTE_ANALYZE_DIR/data/errorurls.xml"
-local xsl_file=$HOME/report/xslt/junit.xsl
+local xsl_file=$HOME/report/xslt/junit-rules.xsl
 local result_xml=$ABSOLUTE_ANALYZE_DIR/data/result.xml
 local xsl_timings_file=$HOME/report/xslt/junit-timings.xsl
 local limits_file=$HOME/dependencies/timing-limits-default.xml
