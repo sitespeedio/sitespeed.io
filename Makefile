@@ -55,6 +55,7 @@ package:
 	@cp $(DEP)/rules-desktop.properties $(BUILD)/$(DEP)/
 	@cp $(DEP)/rules-mobile.properties $(BUILD)/$(DEP)/
 	@cp $(DEP)/browsertime-0.1-full.jar $(BUILD)/$(DEP)/
+	@cp $(DEP)/timing-limits-default.xml $(BUILD)/$(DEP)/
 	@cp $(REPORT)/$(CSS)/bootstrap.min.css $(BUILD)/$(REPORT)/$(CSS)/
 	@cp $(REPORT)/$(CSS)/bootstrap-overrides.css $(BUILD)/$(REPORT)/$(CSS)/
 	@cp $(REPORT)/$(IMG)/$(ICO)/sitespeed.io-114.png $(BUILD)/$(REPORT)/$(IMG)/$(ICO)/
@@ -97,7 +98,8 @@ package:
 	@cp $(REPORT)/$(VELOCITY)/pages.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/screenshots.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
 	@cp $(REPORT)/$(VELOCITY)/sites.summary.vm $(BUILD)/$(REPORT)/$(VELOCITY)/
-	@cp $(REPORT)/$(XSLT)/junit.xsl $(BUILD)/$(REPORT)/$(XSLT)/
+	@cp $(REPORT)/$(XSLT)/junit-rules.xsl $(BUILD)/$(REPORT)/$(XSLT)/
+	@cp $(REPORT)/$(XSLT)/junit-timings.xsl $(BUILD)/$(REPORT)/$(XSLT)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(SITE-SUMMARY)/box.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(SITE-SUMMARY)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/browserScaledImages.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/criticalPathScore.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS)/
