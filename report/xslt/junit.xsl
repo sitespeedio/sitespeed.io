@@ -51,7 +51,7 @@
 			failures="{$failures+$avg-fail}" skipped="{$skipped}" time="{$time-in-seconds}">
 			<testcase name="Overall average score" status="{$avg-score-decimals}" time="0">
 			    <xsl:if test="$avg-score-decimals&lt;$avg-limit">
-			        <failure message="The average overall score {$avg-score-decimals} is below your limit of {$avg-limit}"/>
+			        <failure type="failedRule" message="The average overall score {$avg-score-decimals} is below your limit of {$avg-limit}"/>
 			    </xsl:if>
 			</testcase>	
 			<xsl:apply-templates/>
@@ -77,7 +77,7 @@
 		<testsuite name="sitespeed&#46;io.{$junit-url}" tests="1"
 			failures="1" skipped="0" time="0">
 			<testcase name="Fetch the URL" status="0" time="0">
-		        <failure message="{$reason}">
+		        <failure type="BrokenRule" message="{$reason}">
 		        </failure>
 		</testcase> 	
 		</testsuite>	
@@ -101,7 +101,7 @@
 			<xsl:if test="$score&lt;$page-limit">
 				<xsl:variable name="message" select="message" />
 
-				<failure message="Score: {$score} - {$message}">
+				<failure type="failedRule" message="Score: {$score} - {$message}">
 					<xsl:for-each select="components/item">
 						<xsl:text>&#xa;</xsl:text>
 						<xsl:value-of select="." />
