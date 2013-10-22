@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<limits type="median">
+  <default>                     	
+  <!-- All timings are in ms -->			
+  <serverResponseTime>300</serverResponseTime>
+  <domContentLoadedTime>800</domContentLoadedTime>
+  </default> 
+  <!--<urls>
+	<page>
+     <url>http://www.peterhedenskog.com</url>
+     <limits>
+     <serverResponseTime>250</serverResponseTime>
+     <domContentLoadedTime>500</domContentLoadedTime>
+     </limits>
+  </page>	
+</urls>
+-->
+</limits>	

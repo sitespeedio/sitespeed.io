@@ -103,7 +103,8 @@ else
 OUTPUT_DIR=$HOME/$OUTPUT_DIR
 fi
 
-OUTPUT="--output $OUTPUT_DIR/sitespeed.io-junit.xml"
+OUTPUT_RULE_XML="--output $OUTPUT_DIR/sitespeed.io-rule-junit.xml"
+OUTPUT_TIMINGS_XML="--output $OUTPUT_DIR/sitespeed.io-timings-junit.xml"
 
 if [ "$SKIP" != "" ]
 then
@@ -136,8 +137,13 @@ local rules_file=$(ls $ABSOLUTE_ANALYZE_DIR/data/pages/ | head -n 1)
 local error_urls_file="$ABSOLUTE_ANALYZE_DIR/data/errorurls.xml"
 local xsl_file=$HOME/report/xslt/junit.xsl
 local result_xml=$ABSOLUTE_ANALYZE_DIR/data/result.xml
+local xsl_timings_file=$HOME/report/xslt/junit-timings.xsl
+local limits_file=$HOME/dependencies/timing-limits.xml
 
-xsltproc --stringparam page-limit $PAGE_LIMIT --stringparam avg-limit $AVERAGE_LIMIT $OUTPUT --stringparam rules-file $ABSOLUTE_ANALYZE_DIR/data/pages/$rules_file --stringparam error-urls-file $error_urls_file $SKIP_TESTS $xsl_file $result_xml 
+xsltproc --stringparam page-limit $PAGE_LIMIT --stringparam avg-limit $AVERAGE_LIMIT $OUTPUT_RULE_XML --stringparam rules-file $ABSOLUTE_ANALYZE_DIR/data/pages/$rules_file --stringparam error-urls-file $error_urls_file $SKIP_TESTS $xsl_file $result_xml 
+
+xsltproc --stringparam limits-file $limits_file $OUTPUT_TIMINGS_XML $xsl_timings_file $result_xml
+
 cp $ABSOLUTE_ANALYZE_DIR/data/summary.xml $OUTPUT_DIR/summary.xml
 }
 

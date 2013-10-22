@@ -52,7 +52,7 @@
 
 						<testcase name="{$name}" time="{$time-in-seconds}">
 						<xsl:if test="$time&gt;$time-limit">
-							<failure message="The time for {$name} is {$time} ms, that is higher than your limit of {$time-limit} ms. Using {$browser} {$version} with the {$limit-type} of {$tries} runs."/>
+							<failure type="failedTiming" message="The time for {$name} is {$time} ms, that is higher than your limit of {$time-limit} ms. Using {$browser} {$version} with the {$limit-type} of {$tries} runs."/>
 						</xsl:if>
 						</testcase>
 						</xsl:if>
@@ -64,7 +64,7 @@
 						<xsl:variable name="time-limit" select="."/>
 						<testcase name="{$name}" time="{$time-in-seconds}">
 						<xsl:if test="$time&gt;$time-limit">
-							<failure message="The time for {$name} is {$time} ms, that is higher than your limit of {$time-limit} ms. Using {$browser} {$version} with the {$limit-type} of {$tries} runs."/>
+							<failure type="failedTiming" message="The time for {$name} is {$time} ms, that is higher than your limit of {$time-limit} ms. Using {$browser} {$version} with the {$limit-type} of {$tries} runs."/>
 						</xsl:if>
 						</testcase>
 					</xsl:for-each>
