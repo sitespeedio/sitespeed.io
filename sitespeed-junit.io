@@ -73,6 +73,7 @@ do
          s)SKIP=$OPTARG;;
          a)AVERAGE_LIMIT=$OPTARG;;
          o)OUTPUT_DIR=$OPTARG;;
+         # TODO add rule limit file for timings
          ?)
              help
              exit
