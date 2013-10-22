@@ -4,15 +4,20 @@
   <!-- All timings are in ms -->			
   <serverResponseTime>300</serverResponseTime>
   <domContentLoadedTime>800</domContentLoadedTime>
+  <redirectionTime>0</redirectionTime>
   </default> 
-  <!--<urls>
-	<page>
+
+  <!-- Example setup for setting values for a specific url -->
+  <!--
+      
+  <urls>
+    <page>
      <url>http://www.peterhedenskog.com</url>
      <limits>
      <serverResponseTime>250</serverResponseTime>
      <domContentLoadedTime>500</domContentLoadedTime>
      </limits>
-  </page>	
-</urls>
+    </page>	
+  </urls>
 -->
 </limits>	

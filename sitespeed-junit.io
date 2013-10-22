@@ -138,7 +138,7 @@ local error_urls_file="$ABSOLUTE_ANALYZE_DIR/data/errorurls.xml"
 local xsl_file=$HOME/report/xslt/junit.xsl
 local result_xml=$ABSOLUTE_ANALYZE_DIR/data/result.xml
 local xsl_timings_file=$HOME/report/xslt/junit-timings.xsl
-local limits_file=$HOME/dependencies/timing-limits.xml
+local limits_file=$HOME/dependencies/timing-limits-default.xml
 
 xsltproc --stringparam page-limit $PAGE_LIMIT --stringparam avg-limit $AVERAGE_LIMIT $OUTPUT_RULE_XML --stringparam rules-file $ABSOLUTE_ANALYZE_DIR/data/pages/$rules_file --stringparam error-urls-file $error_urls_file $SKIP_TESTS $xsl_file $result_xml 
 
