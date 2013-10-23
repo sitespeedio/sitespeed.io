@@ -33,6 +33,9 @@ SKIP_TESTS=
 # Where to put the data
 OUTPUT_DIR=
 
+#The timing limit file
+TIMINGS_LIMIT_FILE_INPUT=
+
 #*******************************************************
 # Main program
 #
@@ -61,7 +64,7 @@ function verify_environment() {
 #*******************************************************
 function get_input {
 # Set options
-while getopts “hr:o:l:s:a:” OPTION
+while getopts “hr:o:l:s:a:t:” OPTION
 do
      case $OPTION in
          h)
@@ -73,7 +76,7 @@ do
          s)SKIP=$OPTARG;;
          a)AVERAGE_LIMIT=$OPTARG;;
          o)OUTPUT_DIR=$OPTARG;;
-         # TODO add rule limit file for timings
+         t)TIMINGS_LIMIT_FILE_INPUT=$OPTARG;;
          ?)
              help
              exit
@@ -111,6 +114,20 @@ if [ "$SKIP" != "" ]
 then
     SKIP_TESTS="--stringparam skip $SKIP"
 fi
+
+if [ "$TIMINGS_LIMIT_FILE_INPUT" != "" ]
+then
+  if [[ "$TIMINGS_LIMIT_FILE_INPUT" = /* ]]
+    then
+    LIMITS_FILE=$TIMINGS_LIMIT_FILE_INPUT
+  else
+    LIMITS_FILE=$HOME/$TIMINGS_LIMIT_FILE_INPUT
+  fi  
+else
+  LIMITS_FILE=$HOME/dependencies/timing-limits-default.xml
+fi
+
+
 }
 
 #*******************************************************
@@ -130,7 +147,7 @@ ABSOLUTE_ANALYZE_DIR=$(pwd)
 }
 
 #*******************************************************
-# Create the JUnit xml file & copy the summary
+# Create the JUnit xml files & copy the summary
 #
 #*******************************************************
 function parse_xsl(){
@@ -139,11 +156,11 @@ local error_urls_file="$ABSOLUTE_ANALYZE_DIR/data/errorurls.xml"
 local xsl_file=$HOME/report/xslt/junit-rules.xsl
 local result_xml=$ABSOLUTE_ANALYZE_DIR/data/result.xml
 local xsl_timings_file=$HOME/report/xslt/junit-timings.xsl
-local limits_file=$HOME/dependencies/timing-limits-default.xml
+
 
 xsltproc --stringparam page-limit $PAGE_LIMIT --stringparam avg-limit $AVERAGE_LIMIT $OUTPUT_RULE_XML --stringparam rules-file $ABSOLUTE_ANALYZE_DIR/data/pages/$rules_file --stringparam error-urls-file $error_urls_file $SKIP_TESTS $xsl_file $result_xml 
 
-xsltproc --stringparam limits-file $limits_file $OUTPUT_TIMINGS_XML $xsl_timings_file $result_xml
+xsltproc --stringparam limits-file $LIMITS_FILE $OUTPUT_TIMINGS_XML $xsl_timings_file $result_xml
 
 cp $ABSOLUTE_ANALYZE_DIR/data/summary.xml $OUTPUT_DIR/summary.xml
 }
@@ -165,7 +182,8 @@ OPTIONS:
    -r      The result base directory, default is sitespeed-result [optional]
    -l      The page rule score limit. Below this page score it will be a failure. Default is 90. [optional]
    -a      The average rule score limit for all tested pages, below this score it will be a failure. Default is 90. [optional] 
-   -s      Skip these tests. A comma separated list of the key name of the tests, for example "ycsstop,yjsbottom" [optional]   
+   -s      Skip these rule tests. A comma separated list of the key name of the rules; for example "ycsstop,yjsbottom" [optional]
+   -t      The XML timing limit file, setting limits when a timing fails. Default file is dependencies/timing-limits-default.xml [optional]
  
 EOF
 }
