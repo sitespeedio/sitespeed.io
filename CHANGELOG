@@ -2,8 +2,10 @@ CHANGELOG sitespeed.io
 
 version 2.1
 ------------------------
+* Create two JUnit xml files, one for rules & one for timing metrics! The new names of the output files are: sitespeed.io-rule-junit.xml & sitespeed.io-timings-junit.xml
 * Finetuned the logo
 * Output the the input parameters to the error.log so it is easy to reproduce the error
+* Centralizeed the error logging
 * Bug fix: The crawler sometimes picked up URL:s linking to other content types than HTML
 * Bug fix: The JUnit xslt outputted timings metrics
 
