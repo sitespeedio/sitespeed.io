@@ -107,7 +107,7 @@ else
 OUTPUT_DIR=$HOME/$OUTPUT_DIR
 fi
 
-OUTPUT_RULE_XML="--output $OUTPUT_DIR/sitespeed.io-rule-junit.xml"
+OUTPUT_RULE_XML="--output $OUTPUT_DIR/sitespeed.io-rules-junit.xml"
 OUTPUT_TIMINGS_XML="--output $OUTPUT_DIR/sitespeed.io-timings-junit.xml"
 
 if [ "$SKIP" != "" ]
