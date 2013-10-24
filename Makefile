@@ -43,7 +43,7 @@ package:
 	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(SITE-SUMMARY) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(SITE-SUMMARY); fi    	
 	@if [ ! -d $(BUILD)/$(REPORT)/$(XSLT) ]; then mkdir -p $(BUILD)/$(REPORT)/$(XSLT); fi
 
-	@cp sitespeed.io sitespeed-junit.io sitespeed-sites.io CHANGELOG LICENSE $(BUILD)/
+	@cp sitespeed.io sitespeed-junit.io sitespeed-sites.io travis-ci.sh CHANGELOG LICENSE $(BUILD)/
 	@cp $(DEP)/LICENSE.txt $(BUILD)/$(DEP)/
 	@cp $(DEP)/crawler-1.5.7-full.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/crawler.properties $(BUILD)/$(DEP)/
