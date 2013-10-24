@@ -77,8 +77,7 @@
 		<testsuite name="sitespeed&#46;io.{$junit-url}" tests="1"
 			failures="1" skipped="0" time="0">
 			<testcase name="Fetch the URL" status="0" time="0">
-		        <failure type="BrokenRule" message="{$reason}">
-		        </failure>
+		        <failure type="BrokenRule" message="{$reason}"/>
 		</testcase> 	
 		</testsuite>	
 		</xsl:for-each>
