@@ -8,6 +8,7 @@ version 2.1
 * Centralized the error logging
 * Added an easy way of include sitespeed.io in Travis-CI
 * Made it possible to analyze sitew with non signed certificates
+* Prepared for HTTP2.0 rules & renamed the current rulesets, new names: sitespeed.io-desktop & sitespeed.io-mobile
 * Bug fix: The crawler sometimes picked up URL:s linking to other content types than HTML
 * Bug fix: The JUnit xslt outputted timings metrics
 
