@@ -163,6 +163,7 @@ xsltproc --stringparam page-limit $PAGE_LIMIT --stringparam avg-limit $AVERAGE_L
 xsltproc --stringparam limits-file $LIMITS_FILE $OUTPUT_TIMINGS_XML $xsl_timings_file $result_xml
 
 cp $ABSOLUTE_ANALYZE_DIR/data/summary.xml $OUTPUT_DIR/summary.xml
+cp $ABSOLUTE_ANALYZE_DIR/data/result.xml $OUTPUT_DIR/result.xml
 }
 
 #*******************************************************
