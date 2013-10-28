@@ -6,7 +6,7 @@ before_install:
 
 before_script:
 - phantomjs --version
-- "make package"
+- "make build"
 - python -m SimpleHTTPServer 8009 &
 - sleep 10
 - "./build/sitespeed.io -u http://localhost:8009/test/server/www/ -o csv -k true"

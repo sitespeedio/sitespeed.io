@@ -23,8 +23,8 @@ clean:
 	@rm -fR $(BUILD)
 	@echo "done"
 
-package: 
-	@echo "Packaging sitespeed.io"
+build: 
+	@echo "Building sitespeed.io"
 	@if [ ! -d $(BUILD) ]; then mkdir -p $(BUILD); fi
 	@if [ ! -d $(BUILD)/$(DEP) ]; then mkdir -p $(BUILD)/$(DEP); fi
 	@if [ ! -d $(BUILD)/$(REPORT) ]; then mkdir -p $(BUILD)/$(REPORT); fi
@@ -148,6 +148,7 @@ package:
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/spof.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/genericTimeMetrics.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/url.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
+package:
 	@mv build sitespeed.io-$(SITESPEED_IO_VERSION)
 	@tar -cvzf sitespeed.io-$(SITESPEED_IO_VERSION).tar.gz sitespeed.io-$(SITESPEED_IO_VERSION)/
 	@echo "finished!"
