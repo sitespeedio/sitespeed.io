@@ -168,7 +168,7 @@ echo "Will analyze ${#urls[@]} sites"
 
 for url in "${urls[@]}" 
 do   
-    sh ./sitespeed.io -u $url "$@" -r $REPORT_BASE_DIR/$NOW
+    bash ./sitespeed.io -u $url "$@" -r $REPORT_BASE_DIR/$NOW
     runs=$[$runs+1]
     if [ $(($runs%20)) == 0 ]; then
       echo "Analyzed $runs sites out of ${#urls[@]}"
