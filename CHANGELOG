@@ -1,5 +1,9 @@
 CHANGELOG sitespeed.io
 
+version 2.2
+------------------------
+* Bug fix: sitespeed-sites.io used the sitespeed.io script with sh instead of bash
+
 version 2.1
 ------------------------
 * Create two JUnit xml files, one for rules & one for timing metrics! The new names of the output files are: sitespeed.io-rules-junit.xml & sitespeed.io-timings-junit.xml
