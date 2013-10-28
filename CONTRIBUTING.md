@@ -8,10 +8,11 @@ If you want help out, that's great! Check the issue list and see if there's some
 First, check the defect/bug list https://github.com/soulgalore/sitespeed.io/issues?labels=bug&page=1&state=open to make sure that it hasn't been filed yet.
 
 If you find a defect, please file a bug report. Include the following:
- - Explain the bug/defect and what you where doing
- - OS & versions
- - Always add the URL of the page you where analyzing (if it is secret, drop me an email peter**at**soulgalore.com and send me the address) 
- - Add a screenshot and clearly point out where the defect is
+ - Explain the bug/defect and what you where doing.
+ - OS & versions.
+ - Always add the URL of the page you where analyzing (if it is secret, drop me an email peter**at**soulgalore.com and send me the address). 
+ - Add a screenshot and clearly point out where the defect is.
+ - Add a log of the output and include the content of the data/error.log file. 
 
 If you have the skills & the time, it is perfect if you send a pull request with a fix, that helps me a lot!
 
