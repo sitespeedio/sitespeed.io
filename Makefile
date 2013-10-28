@@ -17,6 +17,7 @@ COLUMNS := pages/columns
 COLUMN-HEADERS := pages/column-headers
 SITE-SUMMARY := site.summary
 XSLT := xslt
+SITESPEED_IO_VERSION := $(shell egrep '^version' CHANGELOG | head -1 | awk '{print $$2;}')
 clean:
 	@echo "Clean the package"
 	@rm -fR $(BUILD)
@@ -147,4 +148,6 @@ package:
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/spof.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/genericTimeMetrics.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
 	@cp $(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/url.vm $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS)/
+	@mv build sitespeed.io-$(SITESPEED_IO_VERSION)
+	@tar -cvzf sitespeed.io-$(SITESPEED_IO_VERSION).tar.gz sitespeed.io-$(SITESPEED_IO_VERSION)/
 	@echo "finished!"
