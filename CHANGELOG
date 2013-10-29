@@ -2,6 +2,7 @@ CHANGELOG sitespeed.io
 
 version 2.2
 ------------------------
+* New BrowserTime version, having 60s wait for load
 * Bug fix: sitespeed-sites.io used the sitespeed.io script with sh instead of bash
 
 version 2.1
