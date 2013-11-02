@@ -489,7 +489,12 @@ do
         then
         EXTRA=",$REPORT_DATA_METRICS_DIR/$pagefilename.xml" 
       fi
-    fi 
+    fi
+    ## Ok, GA uses an character (01x) that is invalid in the XML
+    ## TODO add a check & output if the invalid character happen
+    cat $REPORT_DATA_PAGES_DIR/$pagefilename.xml | tr -d '\01x' > $REPORT_DATA_PAGES_DIR/$pagefilename.xml.tmp
+    mv $REPORT_DATA_PAGES_DIR/$pagefilename.xml.tmp $REPORT_DATA_PAGES_DIR/$pagefilename.xml
+
     "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml$EXTRA $VELOCITY_DIR/page.vm $PROPERTIES_DIR/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1
     "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_PAGES_DIR/$pagefilename.html $REPORT_PAGES_DIR/$pagefilename.html
   fi
