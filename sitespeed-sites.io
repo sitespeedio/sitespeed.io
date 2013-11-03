@@ -208,6 +208,13 @@ for i in * ; do
     else
 	  echo "Missing summary.xml for $i, will not add that to the sites.xml"
     fi
+    local error_log="$abs_analyze_dir/data/error.log"
+    echo $error_log
+    if [[ -e $error_log ]]; then
+      echo "Found it!"
+      echo "Error log for $i" >> $HOME/$REPORT_BASE_DIR/$NOW/error.log
+      cat $error_log >> $HOME/$REPORT_BASE_DIR/$NOW/error.log
+    fi  
     cd ../../
   fi
 done
