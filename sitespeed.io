@@ -530,7 +530,7 @@ fi
 echo '</document>'>> "$REPORT_DATA_DIR/result.xml"
 
 echo 'Create the summary.xml'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m $SUMMARY_PROPERTY -jar $DEPENDENCIES_DIR/$VELOCITY_JAR  $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/xml/site.summary.xml.vm $PROPERTIES_DIR/site.summary.properties $REPORT_DATA_DIR/summary.xml.tmp || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m $SUMMARY_PROPERTY -jar $DEPENDENCIES_DIR/$VELOCITY_JAR  $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/xml/site.summary.xml.vm $PROPERTIES_DIR/site.summary.properties $REPORT_DATA_DIR/summary.xml.tmp removeInvalidCharacters || exit 1
 
 # Velocity adds a lot of garbage spaces and new lines, need to be removed before the xml is cleaned up
 # because of performance reasons
@@ -544,7 +544,7 @@ echo 'Create the summary.details.html'
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/summary.details.html $REPORT_DIR/summary.details.html
 
 echo 'Create the pages.html'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$PAGES_COLUMNS" "$SCREENSHOT" "$SHOW_ERROR_URLS" $SUMMARY_PROPERTY -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/pages.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.html || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$PAGES_COLUMNS" "$SCREENSHOT" "$SHOW_ERROR_URLS" $SUMMARY_PROPERTY -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/pages.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.html removeInvalidCharacters || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/pages.html $REPORT_DIR/pages.html
 
 if $OUTPUT_CSV 
@@ -558,13 +558,13 @@ echo 'Create the summary index.html'
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/index.html $REPORT_DIR/index.html
 
 echo 'Create the assets.html'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/assets.vm $PROPERTIES_DIR/assets.properties $REPORT_DIR/assets.html || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/assets.vm $PROPERTIES_DIR/assets.properties $REPORT_DIR/assets.html removeInvalidCharacters || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/assets.html $REPORT_DIR/assets.html
 
 echo 'Create the rules.html'
 ## hack for just getting one file with the rules, take the first one in the dir!
 FILE_WITH_RULES=$(ls $REPORT_DATA_PAGES_DIR | head -n 1)
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$FILE_WITH_RULES $VELOCITY_DIR/rules.vm $PROPERTIES_DIR/rules.properties $REPORT_DIR/rules.html || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$FILE_WITH_RULES $VELOCITY_DIR/rules.vm $PROPERTIES_DIR/rules.properties $REPORT_DIR/rules.html removeInvalidCharacters || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/rules.html $REPORT_DIR/rules.html
 
 if $TAKE_SCREENSHOTS 
@@ -705,7 +705,7 @@ function analyze() {
     local pagefilename=$(get_filename $1 $2)
 
     echo "Analyzing $url"
-    phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW -n "$pagefilename.har" "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"  2> $REPORT_DATA_DIR/phantomjs.error.log || exit 1
+    phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW -n "$pagefilename.har" "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"  2>> $REPORT_DATA_DIR/phantomjs.error.log || exit 1
   
     local s=$(du -k "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" | cut -f1)
     # Check that the size is bigger than 0
