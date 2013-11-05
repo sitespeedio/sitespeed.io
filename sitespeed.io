@@ -92,9 +92,9 @@ NEXUS_VIEWPORT="348x519"
 
 # Jar files, specify the versions
 CRAWLER_JAR=crawler-1.5.7-full.jar
-VELOCITY_JAR=xml-velocity-1.8.2-SNAPSHOT-full.jar
+VELOCITY_JAR=xml-velocity-1.8.2-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
-BROWSERTIME_JAR=browsertime-0.2-SNAPSHOT-full.jar
+BROWSERTIME_JAR=browsertime-0.2-full.jar
 
 # Store the input to be able to log exactly how/what was done
 INPUT="$@"
@@ -765,7 +765,7 @@ then
   do
     local pagefilename=$(get_filename $url $runs)  
     echo "Collecting Browser Time metrics: $url"
-    "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$BROWSERTIME_JAR --compact $BROWSER_TIME_PARAMS -o "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url"
+    "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$BROWSERTIME_JAR --compact --raw $BROWSER_TIME_PARAMS -o "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url"
      ## If BrowserTime fails, an empty file is created, so remove it
     local btSize=$(du -k "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" | cut -f1) 
     if [ $btSize -lt 4 ]
