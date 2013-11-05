@@ -4,6 +4,7 @@ version 2.1.1
 ------------------------
 * New BrowserTime version, having 60s wait for load, also fixes Firefox 25 bug
 * Logging all PhantomJS errors to own PhantomJS error log
+* Bug fix: URL using brackets didn't get correct doc size
 * Bug fix: Unable to crawl websites with GA cookie #298
 * Bug fix: sitespeed-sites.io used the sitespeed.io script with sh instead of bash
 
