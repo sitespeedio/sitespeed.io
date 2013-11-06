@@ -1,25 +1,25 @@
 #! /bin/bash
 #******************************************************
 # Sitespeed.io - How speedy is your site? (http://www.sitespeed.io)
-# 
+#
 # Copyright (C) 2013 by Peter Hedenskog (http://www.peterhedenskog.com)
 #
 #******************************************************
 #
-# Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in 
+# Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in
 # compliance with the License. You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
 #
-# Unless required by applicable law or agreed to in writing, software distributed under the License is 
-# distributed  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.   
+# Unless required by applicable law or agreed to in writing, software distributed under the License is
+# distributed  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 #
 #*******************************************************
 
 
 #*******************************************************
-# All the options that you can configure when you run 
+# All the options that you can configure when you run
 # the script
 #*******************************************************
 
@@ -39,7 +39,7 @@ MAX_PROCESSES=5
 OUTPUT_FORMAT=
 ## The heap size for the Java processes
 JAVA_HEAP=1024
-## Pointing out the rule properties where summary rules are defined 
+## Pointing out the rule properties where summary rules are defined
 SUMMARY_PROPERTY_DESKTOP="-Dcom.soulgalore.velocity.sitespeed.rules.file=dependencies/rules-desktop.properties"
 SUMMARY_PROPERTY_MOBILE="-Dcom.soulgalore.velocity.sitespeed.rules.file=dependencies/rules-mobile.properties"
 # The default one is desktop, if you choose mobile rules, then you will have the mobile version
@@ -60,7 +60,7 @@ PAGES_COLUMNS=
 USER_AGENT="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36"
 ## The YSlow file to use
 YSLOW_FILE=dependencies/yslow-3.1.5-sitespeed.js
-## The desktop ruleset 
+## The desktop ruleset
 RULESET=sitespeed.io-desktop
 RULESET_MOBILE=sitespeed.io-mobile
 ## Maximum pages to test
@@ -94,7 +94,7 @@ NEXUS_VIEWPORT="348x519"
 CRAWLER_JAR=crawler-1.5.7-full.jar
 VELOCITY_JAR=xml-velocity-1.8.2-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
-BROWSERTIME_JAR=browsertime-0.2-full.jar
+BROWSERTIME_JAR=browsertime-0.3-SNAPSHOT-full.jar
 
 # Store the input to be able to log exactly how/what was done
 INPUT="$@"
@@ -104,18 +104,18 @@ INPUT="$@"
 #
 #*******************************************************
 main() {
-        verify_environment 
+        verify_environment
         get_input "$@"
-        verify_input 
+        verify_input
         setup_dirs_and_dependencies
         fetch_urls
         analyze_pages
         collect_browser_time
-        copy_assets   
-        generate_error_file 
+        copy_assets
+        generate_error_file
         generate_result_files
-        finished  
-        
+        finished
+
 }
 
 
@@ -159,10 +159,10 @@ do
          u)URL=$OPTARG;;
          d)DEPTH=$OPTARG;;
          q)FOLLOW_PATH=$OPTARG;;
-         s)NOT_IN_URL=$OPTARG;;   
-         o)OUTPUT_FORMAT=$OPTARG;;  
-         m)JAVA_HEAP=$OPTARG;;  
-         n)TEST_NAME=$OPTARG;;           
+         s)NOT_IN_URL=$OPTARG;;
+         o)OUTPUT_FORMAT=$OPTARG;;
+         m)JAVA_HEAP=$OPTARG;;
+         n)TEST_NAME=$OPTARG;;
          p)MAX_PROCESSES=$OPTARG;;
          r)REPORT_BASE_DIR=$OPTARG;;
          z)BROWSER_TIME_PARAMS=$OPTARG;;
@@ -175,13 +175,13 @@ do
          f)FILE=$OPTARG;;
          g)PAGES_COLUMNS=$OPTARG;;
          b)SUMMARY_BOXES=$OPTARG;;
-         j)MAX_PAGES=$OPTARG;;  
+         j)MAX_PAGES=$OPTARG;;
          k)SCREENSHOT=$OPTARG;;
          c)COLLECT_BROWSER_TIMINGS=$OPTARG;;
 
          # Note: The e & i are uses in the script that analyzes multiple sites
          e);;
-         i);;  
+         i);;
          ?)
              help
              exit
@@ -192,7 +192,7 @@ done
 
 
 #*******************************************************
-# Verify that all options needed exists & set default 
+# Verify that all options needed exists & set default
 # values for missing ones
 #*******************************************************
 function verify_input {
@@ -228,11 +228,11 @@ TAKE_SCREENSHOTS=$SCREENSHOT
 SCREENSHOT="-Dcom.soulgalore.velocity.key.showscreenshots=$SCREENSHOT"
 
 if [[ "$OUTPUT_FORMAT" == *csv* ]]
-  then 
+  then
   OUTPUT_CSV=true
 else
    OUTPUT_CSV=false
-fi  
+fi
 
 if [ "$TEST_NAME" != "" ]
   then
@@ -265,7 +265,7 @@ if [ "$SUMMARY_BOXES" != "" ]
       SUMMARY_BOXES="-Dcom.soulgalore.velocity.key.boxes=ruleScore,criticalPathScore,jsSyncInHead,jsPerPage,cssPerPage,cssImagesPerPage,imagesPerPage,requests,requestsWithoutExpires,pageWeight,docWeight,imageWeightPerPage,browserScaledImages,spofPerPage,domainsPerPage,domElements,assetsCacheTime,timeSinceLastModification"
     if $COLLECT_BROWSER_TIMINGS
       then
-      SUMMARY_BOXES="$SUMMARY_BOXES",redirectionTime,serverResponseTime,pageDownloadTime,domInteractiveTime,domContentLoadedTime,pageLoadTime
+      SUMMARY_BOXES="$SUMMARY_BOXES",serverResponseTime,backEndTime,pageDownloadTime,frontEndTime,domContentLoadedTime,pageLoadTime
       fi
   fi
 
@@ -313,7 +313,7 @@ fi
 }
 
 #*******************************************************
-# Setup the dirs needed and set versions needed for 
+# Setup the dirs needed and set versions needed for
 # doing the analyze
 #*******************************************************
 function setup_dirs_and_dependencies {
@@ -321,9 +321,9 @@ function setup_dirs_and_dependencies {
 cd "$(dirname ${BASH_SOURCE[0]})"
 
 local now=$(date +"%Y-%m-%d-%H-%M-%S")
-DATE=$(date) 
+DATE=$(date)
 
-if [[ -z $FILE ]] 
+if [[ -z $FILE ]]
   then
   echo "Will crawl from start point $URL with User-Agent $USER_AGENT and viewport $VIEWPORT with crawl depth $DEPTH using ruleset $RULESET ... this can take a while"
 else
@@ -331,12 +331,12 @@ else
 fi
 
 
-# remove the protocol                                                                                                                                                            
+# remove the protocol
 local noprotocol=${URL#*//}
 HOST=${noprotocol%%/*}
 
 
-# Setup dirs                                                                                                                                                             
+# Setup dirs
 DEPENDENCIES_DIR="dependencies"
 REPORT_DIR_NAME=$HOST/$now
 REPORT_DIR=$REPORT_BASE_DIR/$REPORT_DIR_NAME
@@ -360,12 +360,12 @@ MY_IP=$(curl -L -s  http://api.exip.org/?call=ip)
 if [ -z "$MY_IP" ]
 then
   MY_IP='unknown'
-fi  
+fi
 
 # Logging versions
 browserTimeVersion=$("$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$BROWSERTIME_JAR -V)
-echo "Using PhantomJS version $(phantomjs --version)" 
-echo "Using Java version $jVersion" 
+echo "Using PhantomJS version $(phantomjs --version)"
+echo "Using Java version $jVersion"
 echo "Using BrowserTime version $browserTimeVersion"
 echo "From IP $MY_IP"
 
@@ -376,7 +376,7 @@ echo "From IP $MY_IP"
 #*******************************************************
 function fetch_urls {
 if [[ -z $FILE ]]
-then 
+then
   "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -Dcom.soulgalore.crawler.propertydir=$DEPENDENCIES_DIR/ $PROXY_CRAWLER -cp $DEPENDENCIES_DIR/$CRAWLER_JAR com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL -rh "\"$USER_AGENT_CRAWLER\"" -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/errorurls.txt
 else
   cp $FILE $REPORT_DATA_DIR/urls.txt
@@ -400,7 +400,7 @@ if [ "$NR_OF_URLS" -gt "$MAX_PAGES" ]
   then
     for (( c=$MAX_PAGES; c<=$NR_OF_URLS; c++ ))
     do
-      unset URLS[$c] 
+      unset URLS[$c]
     done
 fi
 
@@ -420,7 +420,7 @@ SHOW_ERROR_URLS="-Dcom.soulgalore.velocity.key.showserrorurls=$HAS_ERROR_URLS"
 #*******************************************************
 function analyze_pages {
 
-echo "Will analyze ${#URLS[@]} pages" 
+echo "Will analyze ${#URLS[@]} pages"
 
 # Setup start parameters, 0 jobs are running and the first file name
 local jobs=0
@@ -476,10 +476,10 @@ echo "Create all the result pages"
 local runs=0
 for url in "${URLS[@]}"
 do
-  local pagefilename=$(get_filename $url $runs) 
-  
+  local pagefilename=$(get_filename $url $runs)
+
   ## If something went wrong, the file has been removed, don't parse it
-  if [ -e "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" ]  
+  if [ -e "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" ]
     then
     EXTRA=
     if $COLLECT_BROWSER_TIMINGS
@@ -487,7 +487,7 @@ do
       ## If collecting the metrics went ok, then use it!
       if [ -e "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" ]
         then
-        EXTRA=",$REPORT_DATA_METRICS_DIR/$pagefilename.xml" 
+        EXTRA=",$REPORT_DATA_METRICS_DIR/$pagefilename.xml"
       fi
     fi
 
@@ -500,7 +500,7 @@ do
   fi
 done
 
-echo "Create result.xml" 
+echo "Create result.xml"
 echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" date="'$DATE'" useragent="'$USER_AGENT'" viewport="'$VIEWPORT'" ip="'$MY_IP'" path="'$REPORT_DIR_NAME'"><url><![CDATA['$URL']]></url>' > $REPORT_DATA_DIR/result.xml
 for file in $REPORT_DATA_PAGES_DIR/*
 do
@@ -509,7 +509,7 @@ do
   sed 's/<?xml version="1.0" encoding="UTF-8"?>//g' "$REPORT_DATA_DIR/tmp.txt" >> "$REPORT_DATA_DIR/result.xml" || exit 1
   rm "$REPORT_DATA_DIR/tmp.txt"
 
-done 
+done
 
 # Add all metrics
 if $COLLECT_BROWSER_TIMINGS
@@ -518,15 +518,15 @@ if $COLLECT_BROWSER_TIMINGS
     echo '<metrics>' >> "$REPORT_DATA_DIR/result.xml"
     for url in "${URLS[@]}"
     do
-      local pagefilename=$(get_filename $url $runs) 
+      local pagefilename=$(get_filename $url $runs)
 
     ## Sometimes Selenium/BrowserTime is a little unstable and no file is produced, then skip adding it
-    if [ -e "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" ];  
+    if [ -e "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" ];
     then
       sed 's/<?xml version="1.0" encoding="UTF-8" standalone="yes"?>//g' "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" > "$REPORT_DATA_METRICS_DIR/tmp.xml" || exit 1
       cat "$REPORT_DATA_METRICS_DIR/tmp.xml" >> "$REPORT_DATA_DIR/result.xml"
       rm  "$REPORT_DATA_METRICS_DIR/tmp.xml"
-    fi  
+    fi
 
   done
   echo '</metrics>' >> "$REPORT_DATA_DIR/result.xml"
@@ -551,7 +551,7 @@ echo 'Create the pages.html'
 "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$PAGES_COLUMNS" "$SCREENSHOT" "$SHOW_ERROR_URLS" $SUMMARY_PROPERTY -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/pages.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.html || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/pages.html $REPORT_DIR/pages.html
 
-if $OUTPUT_CSV 
+if $OUTPUT_CSV
   then
   echo 'Create the pages.csv'
   "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$PAGES_COLUMNS" $SUMMARY_PROPERTY -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/csv/pages.csv.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.csv || exit 1
@@ -571,7 +571,7 @@ FILE_WITH_RULES=$(ls $REPORT_DATA_PAGES_DIR | head -n 1)
 "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$FILE_WITH_RULES $VELOCITY_DIR/rules.vm $PROPERTIES_DIR/rules.properties $REPORT_DIR/rules.html || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/rules.html $REPORT_DIR/rules.html
 
-if $TAKE_SCREENSHOTS 
+if $TAKE_SCREENSHOTS
   then
   take_screenshots
 fi
@@ -609,7 +609,7 @@ then
   echo 'Create the errorurls.html'
   "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" "$SHOW_ERROR_URLS" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/errorurls.xml $VELOCITY_DIR/errorurls.vm $PROPERTIES_DIR/errorurls.properties $REPORT_DIR/errorurls.html || exit 1
   "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/errorurls.html $REPORT_DIR/errorurls.html
-  
+
 else
   # create an empty xml file
   echo '<?xml version="1.0" encoding="UTF-8"?><results></results>'  > $REPORT_DATA_DIR/errorurls.xml
@@ -635,7 +635,7 @@ command -v pngcrush >/dev/null && PNGCRUSH_EXIST=true || PNGCRUSH_EXIST=false
 
 local runs=0
 for url in "${URLS[@]}"
-  do 
+  do
     local imagefilename=$(get_filename $url $runs)
     echo "Creating screenshot for $url $REPORT_IMAGE_PAGES_DIR/$imagefilename.png "
     phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js "$url" "$REPORT_IMAGE_PAGES_DIR/$imagefilename.png" $width $height "$USER_AGENT" true  > /dev/null 2>&1
@@ -644,13 +644,13 @@ for url in "${URLS[@]}"
       then
         pngcrush -q $REPORT_IMAGE_PAGES_DIR/$imagefilename.png $REPORT_IMAGE_PAGES_DIR/$imagefilename-c.png
         mv $REPORT_IMAGE_PAGES_DIR/$imagefilename-c.png $REPORT_IMAGE_PAGES_DIR/$imagefilename.png
-    fi 
+    fi
     local urls+="$url"
     local urls+="@"
     local imagenames+="$imagefilename"
     local imagenames+="@"
     local runs=$[$runs+1]
-  done  
+  done
 local vp="-Dcom.soulgalore.velocity.key.viewport=$VIEWPORT"
 local url_list="-Dcom.soulgalore.velocity.key.urls=$urls"
 local image_list="-Dcom.soulgalore.velocity.key.images=$imagenames"
@@ -682,17 +682,17 @@ OPTIONS:
    -n      Give your test a name, it will be added to all HTML pages [optional]
    -o      The output format, always output as HTML and you can also output a CSV file for the detailed site summary page  (csv) [optional]
    -r      The result base directory, default is sitespeed-result [optional]
-   -x      The proxy host & protocol: proxy.soulgalore.com:80 [optional] 
+   -x      The proxy host & protocol: proxy.soulgalore.com:80 [optional]
    -t      The proxy type, default is http [optional]
    -a      The full User Agent string, default is Chrome for MacOSX. You can also set the value as iphone or ipad (will automagically change the viewport) [optional]
-   -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional] 
+   -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional]
    -y      The compiled YSlow file, default is dependencies/yslow-3.1.5-sitespeed.js [optional]
    -l      Which ruleset to use, default is the latest sitespeed.io version for desktop [optional]
-   -g      The columns showed on detailed page summary table, see http://www.sitespeed.io/documentation/#config-columns for more info [optional] 
+   -g      The columns showed on detailed page summary table, see http://www.sitespeed.io/documentation/#config-columns for more info [optional]
    -b      The boxes showed on site summary page, see http://www.sitespeed.io/documentation/#config-boxes for more info [optional]
-   -j      The max number of pages to test [optional]   
-   -k      Take screenshots for each page (using the configured view port). Default is false. (true|false) [optional] 
-   -c      Collect BrowserTimings data (meaning open a real browser & fetch timings). Default is false. (true|false) [optional] 
+   -j      The max number of pages to test [optional]
+   -k      Take screenshots for each page (using the configured view port). Default is false. (true|false) [optional]
+   -c      Collect BrowserTimings data (meaning open a real browser & fetch timings). Default is false. (true|false) [optional]
    -z      String sent to BrowserTime, so you can choose browser and tries. Default is "-b firefox -n 3".
 EOF
 }
@@ -710,7 +710,7 @@ function analyze() {
 
     echo "Analyzing $url"
     phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW -n "$pagefilename.har" "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"  2>> $REPORT_DATA_DIR/phantomjs.error.log || exit 1
-  
+
     local s=$(du -k "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" | cut -f1)
     # Check that the size is bigger than 0
     if [ $s -lt 10 ]
@@ -722,35 +722,35 @@ function analyze() {
       phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url" -c 2  >> $REPORT_DATA_DIR/$ERROR_LOG
 
       ## write the error url to the list
-      echo "sitespeed.io got an unrecoverable error when parsing the page,$url" >> $REPORT_DATA_DIR/errorurls.txt  
-      rm "$REPORT_DATA_PAGES_DIR/$pagefilename.xml"  
+      echo "sitespeed.io got an unrecoverable error when parsing the page,$url" >> $REPORT_DATA_DIR/errorurls.txt
+      rm "$REPORT_DATA_PAGES_DIR/$pagefilename.xml"
     else
       #move the HAR-file to the HAR dir
       mv "$pagefilename.har" $REPORT_DATA_HAR_DIR/
 
       # Sometimes the yslow script adds output before the xml tag, should probably be reported ...
       sed '/<?xml/,$!d' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup  || exit 1
-  
+
       # And crazy enough, sometimes we get things after the end of the xml
       sed -n '1,/<\/results>/p' $REPORT_DATA_PAGES_DIR/$pagefilename-bup > $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1
- 
+
       # page size (keeping getting TTFB for a while, it is now primaly fetched from PhantomJS)
       curl "$USER_AGENT_CURL" --compressed --globoff -o /dev/null -w "%{time_starttransfer};%{size_download}\n" -L -s "$url" >  "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
-      
+
       read -r TTFB_SIZE <  $REPORT_DATA_PAGES_DIR/$pagefilename.info
       local TTFB="$(echo $TTFB_SIZE  | cut -d \; -f 1)"
       local SIZE="$(echo $TTFB_SIZE  | cut -d \; -f 2)"
       local TTFB="$(printf "%.3f" $TTFB)"
-  
+
       rm "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
       # Hack for adding link and other data to the xml file
-      XML_URL=$(echo "$url" | sed 's/&/\\&/g') 
-  
+      XML_URL=$(echo "$url" | sed 's/&/\\&/g')
+
       sed 's{<results>{<results filename="'$pagefilename'" size="'$SIZE'"><curl><![CDATA['"$XML_URL"']]></curl>{' $REPORT_DATA_PAGES_DIR/$pagefilename.xml > $REPORT_DATA_PAGES_DIR/$pagefilename-bup || exit 1
-      mv $REPORT_DATA_PAGES_DIR/$pagefilename-bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml     
+      mv $REPORT_DATA_PAGES_DIR/$pagefilename-bup $REPORT_DATA_PAGES_DIR/$pagefilename.xml
     fi
 
-   
+
 }
 
 #*******************************************************
@@ -763,17 +763,17 @@ then
   local runs=0
   for url in "${URLS[@]}"
   do
-    local pagefilename=$(get_filename $url $runs)  
+    local pagefilename=$(get_filename $url $runs)
     echo "Collecting Browser Time metrics: $url"
     "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$BROWSERTIME_JAR --compact --raw $BROWSER_TIME_PARAMS -o "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url"
      ## If BrowserTime fails, an empty file is created, so remove it
-    local btSize=$(du -k "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" | cut -f1) 
+    local btSize=$(du -k "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" | cut -f1)
     if [ $btSize -lt 4 ]
     then
       log_error "BrowserTime could not collect data for $url $btSize"
       log_error "Input parameters: $INPUT"
       rm  "$REPORT_DATA_METRICS_DIR/$pagefilename.xml"
-    fi  
+    fi
     local runs=$[$runs+1]
     if [ $(($runs%20)) == 0 ]; then
       echo "Collected timings for  $runs pages out of ${#URLS[@]}"
@@ -785,7 +785,7 @@ fi
 
 #*******************************************************
 # Generate a filename from a URL
-# $1 the url 
+# $1 the url
 # $2 a unique number that is used if the url is too long
 #*******************************************************
 function get_filename() {
@@ -819,10 +819,10 @@ echo $pagefilename
 function log_error() {
 local now=$(date +"%Y-%m-%d-%H-%M-%S")
 
-if [[ ! -e $REPORT_DATA_DIR/$ERROR_LOG ]] 
+if [[ ! -e $REPORT_DATA_DIR/$ERROR_LOG ]]
 then
   echo "$now Java version $jVersion PhantomJS version $(phantomjs --version) BrowserTime version $browserTimeVersion" > $REPORT_DATA_DIR/$ERROR_LOG
-fi  
+fi
 
 echo $now $1 >> $REPORT_DATA_DIR/$ERROR_LOG
 }
