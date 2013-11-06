@@ -4,6 +4,7 @@ version 2.2
 ------------------------
 * New BrowserTime version including backEndTime & frontEndTime
 * Changed default summary page to show backend & frontend time (removed redirectionTime & domInteractiveTime)
+* Increased timeout for the crawler for really slow pages
 
 version 2.1.1
 ------------------------
