@@ -5,6 +5,7 @@ version 2.2
 * New BrowserTime version including backEndTime & frontEndTime
 * Changed default summary page to show backend & frontend time (removed redirectionTime & domInteractiveTime)
 * Increased timeout for the crawler for really slow pages
+* Bug fix: The fix for removing invalid XML caharcters created by GA, sometimes broke the analyze, now fixed (#304)
 
 version 2.1.1
 ------------------------
