@@ -23,6 +23,7 @@
 # the script
 #*******************************************************
 
+
 ## The URL to crawl
 URL=
 ## The depth of the crawl, default is 1
@@ -45,7 +46,7 @@ SUMMARY_PROPERTY_MOBILE="-Dcom.soulgalore.velocity.sitespeed.rules.file=dependen
 # The default one is desktop, if you choose mobile rules, then you will have the mobile version
 SUMMARY_PROPERTY=$SUMMARY_PROPERTY_DESKTOP
 ## Where to put the result files
-REPORT_BASE_DIR=sitespeed-result
+REPORT_BASE_DIR="$(pwd)"/sitespeed-result
 ## The host name if proxy is used
 PROXY_HOST=
 ## The type of proxy
