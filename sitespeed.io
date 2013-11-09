@@ -311,6 +311,16 @@ if [[ "$RULESET" == *mobile* ]]
 then
 SUMMARY_PROPERTY=$SUMMARY_PROPERTY_MOBILE
 fi
+
+# absolute path
+if [[ "$REPORT_DIR" = /* ]]
+then
+REPORT_DIR=$REPORT_DIR
+else
+#relative
+REPORT_DIR="$(pwd)"/$REPORT_DIR
+fi
+
 }
 
 #*******************************************************
