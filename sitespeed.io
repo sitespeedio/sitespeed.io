@@ -46,7 +46,7 @@ SUMMARY_PROPERTY_MOBILE="-Dcom.soulgalore.velocity.sitespeed.rules.file=dependen
 # The default one is desktop, if you choose mobile rules, then you will have the mobile version
 SUMMARY_PROPERTY=$SUMMARY_PROPERTY_DESKTOP
 ## Where to put the result files
-REPORT_BASE_DIR=sitespeed-result
+REPORT_BASE_DIR="$(pwd)"/sitespeed-result
 ## The host name if proxy is used
 PROXY_HOST=
 ## The type of proxy
@@ -155,7 +155,7 @@ do
      case $OPTION in
          h)
              help
-             exit 1
+             exit  0
              ;;
          u)URL=$OPTARG;;
          d)DEPTH=$OPTARG;;

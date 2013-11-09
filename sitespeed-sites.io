@@ -94,7 +94,7 @@ do
      case $OPTION in
          h)
              help
-             exit 1
+             exit 0
              ;;
          r)REPORT_BASE_DIR=$OPTARG;;
 	       ## Special handling for u & f, because that is sitespeed.io specific

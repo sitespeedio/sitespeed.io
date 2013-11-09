@@ -69,7 +69,7 @@ do
      case $OPTION in
          h)
              help
-             exit 1
+             exit 0
              ;;
          r)REPORT_BASE_DIR=$OPTARG;;
          l)PAGE_LIMIT=$OPTARG;;
