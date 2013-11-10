@@ -174,7 +174,7 @@ fi
 #*******************************************************
 function get_input {
 # Set options
-while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:q:k:” OPTION
+while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:q:k:V” OPTION
 do
      case $OPTION in
          h)
@@ -203,6 +203,10 @@ do
          j)MAX_PAGES=$OPTARG;;
          k)SCREENSHOT=$OPTARG;;
          c)COLLECT_BROWSER_TIMINGS=$OPTARG;;
+         V)
+             echo $SITESPEED_VERSION
+             exit  0
+             ;;
 
          # Note: The e & i are uses in the script that analyzes multiple sites
          e);;
