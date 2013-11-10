@@ -23,12 +23,12 @@ progname=`basename "$0"`
 
 # need this for relative symlinks
 while [ -h "$PRG" ] ; do
-local ls=`ls -ld "$PRG"`
-local link=`expr "$ls" : '.*-> \(.*\)$'`
+ls=`ls -ld "$PRG"`
+link=`expr "$ls" : '.*-> \(.*\)$'`
 if expr "$link" : '/.*' > /dev/null; then
-local PRG="$link"
+PRG="$link"
 else
-local PRG=`dirname "$PRG"`"/$link"
+PRG=`dirname "$PRG"`"/$link"
 fi
 done
 
@@ -42,7 +42,7 @@ SITESPEED_HOME=$(cd "$home" > /dev/null && pwd)
 # the script
 #*******************************************************
 ## The version
-SITESPEED_VERSION=$(egrep '^version' CHANGELOG | head -1 | awk '{print $$2;}')
+SITESPEED_VERSION=$(egrep '^version' $SITESPEED_HOME/CHANGELOG | head -1 | awk '{print $$2;}')
 ## The URL to crawl
 URL=
 ## The depth of the crawl, default is 1

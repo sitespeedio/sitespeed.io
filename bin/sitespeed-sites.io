@@ -1,24 +1,47 @@
 #! /bin/bash
 #******************************************************
 # sitespeed-sites.io - How speedy is all the sites? (http://www.sitespeed.io)
-# 
+#
 # Copyright (C) 2013 by Peter Hedenskog (http://www.peterhedenskog.com)
 #
 #******************************************************
 #
-# Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in 
+# Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in
 # compliance with the License. You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
 #
-# Unless required by applicable law or agreed to in writing, software distributed under the License is 
-# distributed  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.   
+# Unless required by applicable law or agreed to in writing, software distributed under the License is
+# distributed  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 #
 #*******************************************************
 
+## Get the right home dir for sitespeed.io (shell code copied from Apache Maven)
+PRG="$0"
+progname=`basename "$0"`
+
+# need this for relative symlinks
+while [ -h "$PRG" ] ; do
+ls=`ls -ld "$PRG"`
+link=`expr "$ls" : '.*-> \(.*\)$'`
+if expr "$link" : '/.*' > /dev/null; then
+PRG="$link"
+else
+PRG=`dirname "$PRG"`"/$link"
+fi
+done
+
+home=`dirname "$PRG"`/..
+## This is the home of sitespeed
+SITESPEED_HOME=$(cd "$home" > /dev/null && pwd)
+## finished getting home
+
 # Setting up options
-REPORT_BASE_DIR=sitespeed-result/sites
+REPORT_BASE_DIR=$(pwd)/sitespeed-result/sites
+
+## Property for telling Velocity where the templates live
+VELOCITY_TEMPLATES_HOME="-Dcom.soulgalore.velocity.templates.home=$SITESPEED_HOME"
 
 # Used for the directory name
 NOW=$(date +"%Y-%m-%d-%H-%M-%S")
@@ -26,17 +49,14 @@ NOW=$(date +"%Y-%m-%d-%H-%M-%S")
 # The heap size for the Java processes
 JAVA_HEAP=1024
 
-# The default name of the file that hold the urls
-FILE_NAME=urls.txt
-
 # Version of the Jar-files used.
-VELOCITY_JAR=xml-velocity-1.8.1-full.jar
+VELOCITY_JAR=xml-velocity-1.8.4-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 
-# Setup dirs                                                                                                                                                             
-DEPENDENCIES_DIR=dependencies
-VELOCITY_DIR=report/velocity
-PROPERTIES_DIR=report/properties
+# Setup dirs
+DEPENDENCIES_DIR="$SITESPEED_HOME"/dependencies
+VELOCITY_DIR="$SITESPEED_HOME"/report/velocity
+PROPERTIES_DIR="$SITESPEED_HOME"/report/properties
 
 # The menu in the header of the result file is hidden
 HIDE_MENU="-Dcom.soulgalore.velocity.key.hidemenu=true"
@@ -44,9 +64,9 @@ HIDE_MENU="-Dcom.soulgalore.velocity.key.hidemenu=true"
 ## By default browser timings isn't collected
 COLLECT_BROWSER_TIMINGS=false
 
-## Pointing out the rule properties where summary rules are defined 
-SUMMARY_PROPERTY_DESKTOP="-Dcom.soulgalore.velocity.sitespeed.rules.file=dependencies/rules-desktop.properties"
-SUMMARY_PROPERTY_MOBILE="-Dcom.soulgalore.velocity.sitespeed.rules.file=dependencies/rules-mobile.properties"
+## Pointing out the rule properties where summary rules are defined
+SUMMARY_PROPERTY_DESKTOP="-Dcom.soulgalore.velocity.sitespeed.rules.file="$SITESPEED_HOME"/dependencies/rules-desktop.properties"
+SUMMARY_PROPERTY_MOBILE="-Dcom.soulgalore.velocity.sitespeed.rules.file="$SITESPEED_HOME"/dependencies/rules-mobile.properties"
 # The default one is desktop, if you choose mobile rules, then you will have the mobile version
 SUMMARY_PROPERTY=$SUMMARY_PROPERTY_DESKTOP
 
@@ -57,7 +77,7 @@ SUMMARY_PROPERTY=$SUMMARY_PROPERTY_DESKTOP
 main() {
   verify_environment
   get_input "$@"
-	analyze "$@"
+  analyze "$@"
   generate_sites_xml
   generate_output_files
   finish
@@ -78,11 +98,11 @@ OPTIONS:
    -h      Help
    -r      The result base directory, default is sitespeed-result/sites [optional]
    -e      The columns to display in the result table [optional]
-   -i      The path to a plain text file with one URL on each row. Default name is urls.txt located in the same directory as this script [optional]
+   -i      The path to a plain text file with one URL on each row.
 EOF
 }
 
-#******************************************************* 
+#*******************************************************
 # Fetch input
 #
 #*******************************************************
@@ -98,19 +118,19 @@ do
              ;;
          r)REPORT_BASE_DIR=$OPTARG;;
 	       ## Special handling for u & f, because that is sitespeed.io specific
-	       u) 
-	       echo "-u is an invalid argument, feed the script with a list of url:s" 
+	       u)
+	       echo "-u is an invalid argument, feed the script with a list of url:s"
 	       exit 1;;
-         f) 
-         echo "-f is an invalid argument, feed the script with a list of url:s" 
+         f)
+         echo "-f is an invalid argument, feed the script with a list of url:s"
          exit 1;;
-         m)JAVA_HEAP=$OPTARG;;  
+         m)JAVA_HEAP=$OPTARG;;
          n)TEST_NAME=$OPTARG;;
-         e)COLUMNS=$OPTARG;;   
+         e)COLUMNS=$OPTARG;;
          i)FILE_NAME=$OPTARG;;
          l)RULESET=$OPTARG;;
-         c)COLLECT_BROWSER_TIMINGS=$OPTARG;;  
-         a)USER_AGENT=$OPTARG;;    
+         c)COLLECT_BROWSER_TIMINGS=$OPTARG;;
+         a)USER_AGENT=$OPTARG;;
 	       ?)
               ;;
       esac
@@ -136,9 +156,16 @@ if [ "$COLUMNS" != "" ]
     fi
 fi
 
+if [[ -z $FILE_NAME ]]
+then
+    echo "Use -i to feed the script with which file to use."
+    help
+    exit 1
+fi
+
 if [ ! -f $FILE_NAME ]
 then
-    echo The $FILE_NAME file does not exist. Use -i to feed the script with which file to use. 
+    echo "The $FILE_NAME file does not exist. Use -i to feed the script with which file to use."
     exit 1
 fi
 
@@ -152,9 +179,18 @@ then
 SUMMARY_PROPERTY=$SUMMARY_PROPERTY_MOBILE
 fi
 
+mkdir -p "$REPORT_BASE_DIR/$NOW" || exit 1
+
 }
 
 function analyze {
+
+## Run included or local sitespeed.io
+if hash sitespeed.io 2>/dev/null; then
+       SITESPEED_IO=sitespeed.io
+    else
+       SITESPEED_IO="bash ./sitespeed.io"
+fi
 
 local runs=0
 
@@ -164,11 +200,11 @@ while read txt ; do
    urls[${#urls[@]}]=$txt
 done < $FILE_NAME
 
-echo "Will analyze ${#urls[@]} sites" 
+echo "Will analyze ${#urls[@]} sites"
 
-for url in "${urls[@]}" 
-do   
-    bash ./sitespeed.io -u $url "$@" -r $REPORT_BASE_DIR/$NOW
+for url in "${urls[@]}"
+do
+    "$SITESPEED_IO" -u $url "$@" -r "$REPORT_BASE_DIR/$NOW"
     runs=$[$runs+1]
     if [ $(($runs%20)) == 0 ]; then
       echo "Analyzed $runs sites out of ${#urls[@]}"
@@ -178,20 +214,17 @@ done
 }
 
 #*******************************************************
-# Generate a sites xml file that holds all 
+# Generate a sites xml file that holds all
 # latest analyzed versions of a site, using the
 # summary.xml file
 #*******************************************************
 function generate_sites_xml {
 
-# Switch to my dir                                                                                                                                                                                  
-cd "$(dirname ${BASH_SOURCE[0]})"
-HOME="$(pwd)"
 
 # Here is the output file
-local sites_xml=$HOME/$REPORT_BASE_DIR/$NOW/sites.xml
+local sites_xml=$REPORT_BASE_DIR/$NOW/sites.xml
 
-echo '<?xml version="1.0" encoding="UTF-8"?><sites>'  > "$sites_xml" 
+echo '<?xml version="1.0" encoding="UTF-8"?><sites>'  > "$sites_xml"
 
 cd $REPORT_BASE_DIR/$NOW
 
@@ -209,12 +242,9 @@ for i in * ; do
 	  echo "Missing summary.xml for $i, will not add that to the sites.xml"
     fi
     local error_log="$abs_analyze_dir/data/error.log"
-    echo $error_log
     if [[ -e $error_log ]]; then
-      echo "Found it!"
-      echo "Error log for $i" >> $HOME/$REPORT_BASE_DIR/$NOW/error.log
       cat $error_log >> $HOME/$REPORT_BASE_DIR/$NOW/error.log
-    fi  
+    fi
     cd ../../
   fi
 done
@@ -226,8 +256,8 @@ cd $HOME
 function generate_output_files {
 
 echo 'Create the index.html'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$HIDE_MENU" "$COLUMNS" $SUMMARY_PROPERTY -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $HOME/$REPORT_BASE_DIR/$NOW/sites.xml $VELOCITY_DIR/sites.summary.vm $PROPERTIES_DIR/sites.summary.properties $HOME/$REPORT_BASE_DIR/$NOW/index.html || exit 1
-"$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $HOME/$REPORT_BASE_DIR/$NOW/index.html $HOME/$REPORT_BASE_DIR/$NOW/index.html
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$HIDE_MENU" "$COLUMNS" $SUMMARY_PROPERTY "$VELOCITY_TEMPLATES_HOME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_BASE_DIR/$NOW/sites.xml $VELOCITY_DIR/sites.summary.vm $PROPERTIES_DIR/sites.summary.properties $REPORT_BASE_DIR/$NOW/index.html || exit 1
+"$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_BASE_DIR/$NOW/index.html $REPORT_BASE_DIR/$NOW/index.html
 
 #copy the rest of the files
 mkdir $REPORT_BASE_DIR/$NOW/css
@@ -236,11 +266,11 @@ mkdir $REPORT_BASE_DIR/$NOW/img
 mkdir $REPORT_BASE_DIR/$NOW/img/ico
 mkdir $REPORT_BASE_DIR/$NOW/fonts
 
-cat "$BASE_DIR"report/css/bootstrap.min.css > $REPORT_BASE_DIR/$NOW/css/styles.css
-cat "$BASE_DIR"report/js/jquery-1.10.2.min.js report/js/bootstrap.min.js report/js/stupidtable.min.js > $REPORT_BASE_DIR/$NOW/js/all.js
-cp "$BASE_DIR"report/img/*.* $REPORT_BASE_DIR/$NOW/img
-cp "$BASE_DIR"report/img/ico/* $REPORT_BASE_DIR/$NOW/img/ico
-cp "$BASE_DIR"report/fonts/* $REPORT_BASE_DIR/$NOW/fonts
+cat "$SITESPEED_HOME"/report/css/bootstrap.min.css > $REPORT_BASE_DIR/$NOW/css/styles.css
+cat "$SITESPEED_HOME"/report/js/jquery-1.10.2.min.js "$SITESPEED_HOME"/report/js/bootstrap.min.js "$SITESPEED_HOME"/report/js/stupidtable.min.js > $REPORT_BASE_DIR/$NOW/js/all.js
+cp "$SITESPEED_HOME"/report/img/*.* $REPORT_BASE_DIR/$NOW/img
+cp "$SITESPEED_HOME"/report/img/ico/* $REPORT_BASE_DIR/$NOW/img/ico
+cp "$SITESPEED_HOME"/report/fonts/* $REPORT_BASE_DIR/$NOW/fonts
 
 }
 
