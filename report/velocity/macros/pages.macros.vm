@@ -1,10 +1,10 @@
 ## CamelCaseSplitter
 #macro (camelCaseSplitter $name)
 #foreach ($s in $name.split("(?=[A-Z])"))
- $s  
+ $s
 #end#end
 
-## Set the right table header  
+## Set the right table header
 #macro (columnHeader $columnName)
 	#if ($columnName.toLowerCase().endsWith("time"))
 		#parse("report/velocity/inc/pages/column-headers/genericTimeMetrics.vm")
@@ -38,15 +38,15 @@
 #if ($columnName.toLowerCase().endsWith("time"))
 	#parse("report/velocity/inc/pages/columns/genericTimeMetrics.vm")
 #elseif ($specialColumns.contains($columnName))
-	#parse("report/velocity/inc/pages/columns/${columnName}-html-wrapper.vm")		
-#elseif ($filetool.doFileExist("report/velocity/inc/pages/columns/${columnName}.vm")) 
+	#parse("report/velocity/inc/pages/columns/${columnName}-html-wrapper.vm")
+#elseif ($filetool.doFileExist("report/velocity/inc/pages/columns/${columnName}.vm"))
 	#parse("report/velocity/inc/pages/columns/${columnName}.vm")
 #elseif ($filetool.doFileExist("report/velocity/inc/pages/columns/custom/${columnName}.vm"))
      #parse("report/velocity/inc/pages/columns/custom/${columnName}.vm")
 #else
      	Non existing vm file: ${columnName}.vm
-#end 	
-</td>	
+#end
+</td>
 #end
 
 
