@@ -154,9 +154,6 @@ fi
 #
 #*******************************************************
 function find_right_dir() {
-# Switch to my dir
-cd "$(dirname ${BASH_SOURCE[0]})"
-HOME="$(pwd)"
 cd $REPORT_BASE_DIR
 HOST_DIR="$(ls -tr | tail -1)"
 cd $HOST_DIR
