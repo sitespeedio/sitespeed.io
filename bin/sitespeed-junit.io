@@ -1,25 +1,44 @@
 #! /bin/bash
 #******************************************************
 # sitespeed-junit.io - sitespeed.io LOVES Jenkins
-# 
+#
 # Copyright (C) 2013 by Peter Hedenskog (http://www.peterhedenskog.com)
 #
 #******************************************************
 #
-# Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in 
+# Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in
 # compliance with the License. You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
 #
-# Unless required by applicable law or agreed to in writing, software distributed under the License is 
-# distributed  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.   
+# Unless required by applicable law or agreed to in writing, software distributed under the License is
+# distributed  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and limitations under the License.
 #
 #*******************************************************
 
+## Get the right home dir for sitespeed.io (shell code copied from Apache Maven)
+PRG="$0"
+progname=`basename "$0"`
+
+# need this for relative symlinks
+while [ -h "$PRG" ] ; do
+ls=`ls -ld "$PRG"`
+link=`expr "$ls" : '.*-> \(.*\)$'`
+if expr "$link" : '/.*' > /dev/null; then
+PRG="$link"
+else
+PRG=`dirname "$PRG"`"/$link"
+fi
+done
+
+home=`dirname "$PRG"`/..
+## This is the home of sitespeed
+SITESPEED_HOME=$(cd "$home" > /dev/null && pwd)
+## finished getting home
 
 # Default result dir
-REPORT_BASE_DIR=sitespeed-result
+REPORT_BASE_DIR=$(pwd)/sitespeed-result
 
 # The limit if a rule should signal an error
 PAGE_LIMIT=90
@@ -41,16 +60,16 @@ TIMINGS_LIMIT_FILE_INPUT=
 #
 #*******************************************************
 main() {
-        verify_environment 
+        verify_environment
         get_input "$@"
         find_right_dir
         verify_input
         parse_xsl
-          
+
 }
 
 #*******************************************************
-# Verify what we need. Since the regular sitespeed.io 
+# Verify what we need. Since the regular sitespeed.io
 # script is run before, omnly check for the XSLT
 #*******************************************************
 function verify_environment() {
@@ -95,7 +114,7 @@ function verify_input() {
 if [[ -z $OUTPUT_DIR ]]
 then
      help
-     exit 1
+     exit 0
 fi
 
 # absolute path
@@ -104,7 +123,7 @@ then
 OUTPUT_DIR=$OUTPUT_DIR
 else
 #relative
-OUTPUT_DIR=$HOME/$OUTPUT_DIR
+OUTPUT_DIR=$SITESPEED_HOME/$OUTPUT_DIR
 fi
 
 OUTPUT_RULE_XML="--output $OUTPUT_DIR/sitespeed.io-rules-junit.xml"
@@ -121,10 +140,10 @@ then
     then
     LIMITS_FILE=$TIMINGS_LIMIT_FILE_INPUT
   else
-    LIMITS_FILE=$HOME/$TIMINGS_LIMIT_FILE_INPUT
-  fi  
+    LIMITS_FILE=$SITESPEED_HOME/$TIMINGS_LIMIT_FILE_INPUT
+  fi
 else
-  LIMITS_FILE=$HOME/dependencies/timing-limits-default.xml
+  LIMITS_FILE=$SITESPEED_HOME/dependencies/timing-limits-default.xml
 fi
 
 
@@ -153,12 +172,12 @@ ABSOLUTE_ANALYZE_DIR=$(pwd)
 function parse_xsl(){
 local rules_file=$(ls $ABSOLUTE_ANALYZE_DIR/data/pages/ | head -n 1)
 local error_urls_file="$ABSOLUTE_ANALYZE_DIR/data/errorurls.xml"
-local xsl_file=$HOME/report/xslt/junit-rules.xsl
+local xsl_file=$SITESPEED_HOME/report/xslt/junit-rules.xsl
 local result_xml=$ABSOLUTE_ANALYZE_DIR/data/result.xml
-local xsl_timings_file=$HOME/report/xslt/junit-timings.xsl
+local xsl_timings_file=$SITESPEED_HOME/report/xslt/junit-timings.xsl
 
 
-xsltproc --stringparam page-limit $PAGE_LIMIT --stringparam avg-limit $AVERAGE_LIMIT $OUTPUT_RULE_XML --stringparam rules-file $ABSOLUTE_ANALYZE_DIR/data/pages/$rules_file --stringparam error-urls-file $error_urls_file $SKIP_TESTS $xsl_file $result_xml 
+xsltproc --stringparam page-limit $PAGE_LIMIT --stringparam avg-limit $AVERAGE_LIMIT $OUTPUT_RULE_XML --stringparam rules-file $ABSOLUTE_ANALYZE_DIR/data/pages/$rules_file --stringparam error-urls-file $error_urls_file $SKIP_TESTS $xsl_file $result_xml
 
 xsltproc --stringparam limits-file $LIMITS_FILE $OUTPUT_TIMINGS_XML $xsl_timings_file $result_xml
 
@@ -182,10 +201,10 @@ OPTIONS:
    -o      The output dir
    -r      The result base directory, default is sitespeed-result [optional]
    -l      The page rule score limit. Below this page score it will be a failure. Default is 90. [optional]
-   -a      The average rule score limit for all tested pages, below this score it will be a failure. Default is 90. [optional] 
+   -a      The average rule score limit for all tested pages, below this score it will be a failure. Default is 90. [optional]
    -s      Skip these rule tests. A comma separated list of the key name of the rules; for example "ycsstop,yjsbottom" [optional]
    -t      The XML timing limit file, setting limits when a timing fails. Default file is dependencies/timing-limits-default.xml [optional]
- 
+
 EOF
 }
 
