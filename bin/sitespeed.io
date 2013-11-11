@@ -395,12 +395,12 @@ fi
 if hash browsertime 2>/dev/null; then
        BROWSERTIME=browsertime
     else
-       BROWSERTIME="$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar "$DEPENDENCIES_DIR/$BROWSERTIME_JAR"
+       BROWSERTIME="$JAVA"" -Xmx""$JAVA_HEAP""m -Xms""$JAVA_HEAP""m -jar ""$DEPENDENCIES_DIR/$BROWSERTIME_JAR"
 fi
 
-# Logging versions
-browserTimeVersion=$("$BROWSERTIME" -V)
 
+# Logging versions
+browserTimeVersion=$($BROWSERTIME -V)
 echo "Using sitespeed.io version $SITESPEED_VERSION"
 echo "Using PhantomJS version $(phantomjs --version)"
 echo "Using Java version $jVersion"
@@ -804,7 +804,7 @@ then
     local pagefilename=$(get_filename $url $runs)
     echo "Collecting Browser Time metrics: $url"
 
-    "$BROWSERTIME" --compact --raw $BROWSER_TIME_PARAMS -o "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url"
+    $BROWSERTIME --compact --raw $BROWSER_TIME_PARAMS -o "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url"
 
      ## If BrowserTime fails, an empty file is created, so remove it
     local btSize=$(du -k "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" | cut -f1)
