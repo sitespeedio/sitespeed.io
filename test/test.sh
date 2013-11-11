@@ -4,9 +4,9 @@
 cd "$(dirname ${BASH_SOURCE[0]})"
 
  
-DOMAIN_DIR=$(ls -1 ../build/build/ | head -n1);
-DATE_DIR=$(ls -1 ../build/build/$DOMAIN_DIR | head -n1);
-RESULT_DIR=$( cd ../build/build/$DOMAIN_DIR/$DATE_DIR && pwd)
+DOMAIN_DIR=$(ls -1 ../sitespeed-result/ | head -n1);
+DATE_DIR=$(ls -1 ../sitespeed-result/$DOMAIN_DIR | head -n1);
+RESULT_DIR=$( cd ../sitesped-result/$DOMAIN_DIR/$DATE_DIR && pwd)
 
 
 files=( index.html errorurls.html pages.html pages.csv rules.html summary.details.html )
