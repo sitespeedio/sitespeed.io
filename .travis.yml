@@ -9,7 +9,7 @@ before_script:
 - "make build"
 - python -m SimpleHTTPServer 8009 &
 - sleep 10
-- "./build/bin/sitespeed-sites.io -i /test/sitespeed-sites.txt"
+- "./build/bin/sitespeed-sites.io -i test/sitespeed-sites.txt"
 - "./build/bin/sitespeed.io -u http://localhost:8009/test/server/www/ -o csv -k true"
 - "./build/bin/sitespeed-junit.io -o build"
 
