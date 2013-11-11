@@ -149,7 +149,7 @@ hash curl >/dev/null 2>&1 || { echo >&2 "Missing curl, please install it to be a
 if hash browsertime 2>/dev/null; then
        BROWSERTIME=browsertime
     else
-       BROWSERTIME="$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -jar $DEPENDENCIES_DIR/$BROWSERTIME_JAR
+       BROWSERTIME="$JAVA -Xmx$JAVA_HEAPm -Xms$JAVA_HEAPm -jar $DEPENDENCIES_DIR/$BROWSERTIME_JAR"
 fi
 
 # Respect JAVA_HOME if set
