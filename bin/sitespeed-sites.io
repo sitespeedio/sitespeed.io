@@ -165,7 +165,7 @@ fi
 
 if [ ! -f $FILE_NAME ]
 then
-    echo "The $FILE_NAME file does not exist. Use -i to feed the script with which file to use."
+    echo "The $FILE_NAME file does not exist. Pwd:$(pwd).Use -i to feed the script with which file to use."
     exit 1
 fi
 
