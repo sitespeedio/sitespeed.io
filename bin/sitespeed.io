@@ -145,13 +145,6 @@ function verify_environment {
 hash phantomjs >/dev/null 2>&1 || { echo >&2 "Missing phantomjs, please install it to be able to run sitespeed.io"; exit 1; }
 hash curl >/dev/null 2>&1 || { echo >&2 "Missing curl, please install it to be able to run sitespeed.io"; exit 1; }
 
-## Run included or local BT version
-if hash browsertime 2>/dev/null; then
-       BROWSERTIME=browsertime
-    else
-       BROWSERTIME="$JAVA -Xmx$JAVA_HEAPm -Xms$JAVA_HEAPm -jar $DEPENDENCIES_DIR/$BROWSERTIME_JAR"
-fi
-
 # Respect JAVA_HOME if set
 if [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/java" ]]
 then
@@ -396,6 +389,13 @@ MY_IP=$(curl -L -s  http://api.exip.org/?call=ip)
 if [ -z "$MY_IP" ]
 then
   MY_IP='unknown'
+fi
+
+## Run included or local BT version
+if hash browsertime 2>/dev/null; then
+       BROWSERTIME=browsertime
+    else
+       BROWSERTIME="$JAVA -Xmx$JAVA_HEAPm -Xms$JAVA_HEAPm -jar $DEPENDENCIES_DIR/$BROWSERTIME_JAR"
 fi
 
 # Logging versions
