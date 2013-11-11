@@ -47,8 +47,8 @@ build:
 	@if [ ! -d $(BUILD)/$(REPORT)/$(XSLT) ]; then mkdir -p $(BUILD)/$(REPORT)/$(XSLT); fi
 	@cp CHANGELOG LICENSE $(BUILD)/
 	@cp $(BIN)/sitespeed.io $(BUILD)/$(BIN)/
-	@cp $(BIN)/sitespeed-junit.io $(BUILD)/$(BIN)/
-	@cp $(BIN)/sitespeed-sites.io $(BUILD)/$(BIN)/
+	@cp $(BIN)/sitespeed.io-junit $(BUILD)/$(BIN)/
+	@cp $(BIN)/sitespeed.io-sites $(BUILD)/$(BIN)/
 	@cp $(BIN)//travis-ci.sh $(BUILD)/$(BIN)/
 	@cp $(DEP)/LICENSE.txt $(BUILD)/$(DEP)/
 	@cp $(DEP)/crawler-1.5.7-full.jar $(BUILD)/$(DEP)/

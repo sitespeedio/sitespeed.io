@@ -5,6 +5,7 @@ version 2.2
 * Moved all scripts to the bin folder, following the standard and easier to package
 * Cleanup all scripts to use absolute paths, making it easier to package for Homebrew
 * sitespeed-sites.io now always need to be feed with the filename of the text file containing all the URLS
+* New names: sitespeed.io-sites & sitespeed.io-junit
 * New BrowserTime version including backEndTime & frontEndTime
 * Changed default summary page to show backend & frontend time (removed redirectionTime & domInteractiveTime)
 * Increased timeout for the crawler for really slow pages

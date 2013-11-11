@@ -43,14 +43,14 @@ REPORT_BASE_DIR=$(pwd)/sitespeed-result
 # The limit if a rule should signal an error
 PAGE_LIMIT=90
 
+## Default output dir
+ OUTPUT_DIR=$(pwd)
+
 # The average limit, if it is below this figure, it is an error
 AVERAGE_LIMIT=90
 
 # List of tests to skip.
 SKIP_TESTS=
-
-# Where to put the data
-OUTPUT_DIR=
 
 #The timing limit file
 TIMINGS_LIMIT_FILE_INPUT=
@@ -111,21 +111,6 @@ done
 #*******************************************************
 function verify_input() {
 
-if [[ -z $OUTPUT_DIR ]]
-then
-     help
-     exit 0
-fi
-
-# absolute path
-if [[ "$OUTPUT_DIR" = /* ]]
-then
-OUTPUT_DIR=$OUTPUT_DIR
-else
-#relative
-OUTPUT_DIR=$SITESPEED_HOME/$OUTPUT_DIR
-fi
-
 OUTPUT_RULE_XML="--output $OUTPUT_DIR/sitespeed.io-rules-junit.xml"
 OUTPUT_TIMINGS_XML="--output $OUTPUT_DIR/sitespeed.io-timings-junit.xml"
 
@@ -178,6 +163,7 @@ xsltproc --stringparam page-limit $PAGE_LIMIT --stringparam avg-limit $AVERAGE_L
 
 xsltproc --stringparam limits-file $LIMITS_FILE $OUTPUT_TIMINGS_XML $xsl_timings_file $result_xml
 
+echo "Will copy files to $OUTPUT_DIR"
 cp $ABSOLUTE_ANALYZE_DIR/data/summary.xml $OUTPUT_DIR/summary.xml
 cp $ABSOLUTE_ANALYZE_DIR/data/result.xml $OUTPUT_DIR/result.xml
 }
@@ -195,7 +181,7 @@ sitespeed-juni.io is a tool that will convert your sitespeed result into a junit
 
 OPTIONS:
    -h      Help
-   -o      The output dir
+   -o      The output dir. Default one is the current dir [optional]
    -r      The result base directory, default is sitespeed-result [optional]
    -l      The page rule score limit. Below this page score it will be a failure. Default is 90. [optional]
    -a      The average rule score limit for all tested pages, below this score it will be a failure. Default is 90. [optional]
