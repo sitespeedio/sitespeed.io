@@ -706,7 +706,8 @@ function help() {
 cat << EOF
 usage: $0 options
 
-Sitespeed.io is a tool that helps you analyze your website performance and show you what you should optimize, more info at http://www.sitespeed.io
+Sitespeed.io is a tool that helps you analyze your website performance and show you what you should optimize, more info at http://www.sitespeed.io.
+Example: $0 -u http://www.sitespeed.io
 
 OPTIONS:
    -h      Help
