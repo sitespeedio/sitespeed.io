@@ -3,14 +3,17 @@ language: python
 before_install:
   - sudo apt-get update
   - sudo apt-get install xsltproc
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
 
 before_script:
 - phantomjs --version
 - "make build"
 - python -m SimpleHTTPServer 8009 &
 - sleep 10
-- "./build/sitespeed.io -u http://localhost:8009/test/server/www/ -o csv -k true"
-- "./build/sitespeed-junit.io -o build"
+- "./build/bin/sitespeed.io-sites -i test/sitespeed-sites.txt"
+- "./build/bin/sitespeed.io -u http://localhost:8009/test/server/www/ -o csv -k true -c true"
+- "./build/bin/sitespeed.io-junit -o build"
 
 script: ./test/test.sh
 

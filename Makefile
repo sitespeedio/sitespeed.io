@@ -17,15 +17,17 @@ COLUMNS := pages/columns
 COLUMN-HEADERS := pages/column-headers
 SITE-SUMMARY := site.summary
 XSLT := xslt
+BIN := bin
 SITESPEED_IO_VERSION := $(shell egrep '^version' CHANGELOG | head -1 | awk '{print $$2;}')
 clean:
 	@echo "Clean the package"
 	@rm -fR $(BUILD)
 	@echo "done"
 
-build: 
+build:
 	@echo "Building sitespeed.io"
 	@if [ ! -d $(BUILD) ]; then mkdir -p $(BUILD); fi
+	@if [ ! -d $(BUILD)/$(BIN) ]; then mkdir -p $(BUILD)/$(BIN); fi
 	@if [ ! -d $(BUILD)/$(DEP) ]; then mkdir -p $(BUILD)/$(DEP); fi
 	@if [ ! -d $(BUILD)/$(REPORT) ]; then mkdir -p $(BUILD)/$(REPORT); fi
 	@if [ ! -d $(BUILD)/$(REPORT)/$(CSS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(CSS); fi
@@ -38,30 +40,33 @@ build:
 	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(LOGIC) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(LOGIC); fi
 	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(XML) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(XML); fi
 	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(CSV) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(CSV); fi
-	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS); fi	
+	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(MACROS); fi
 	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMNS); fi
-	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS); fi		
-	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(SITE-SUMMARY) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(SITE-SUMMARY); fi    	
+	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(COLUMN-HEADERS); fi
+	@if [ ! -d $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(SITE-SUMMARY) ]; then mkdir -p $(BUILD)/$(REPORT)/$(VELOCITY)/$(INC)/$(SITE-SUMMARY); fi
 	@if [ ! -d $(BUILD)/$(REPORT)/$(XSLT) ]; then mkdir -p $(BUILD)/$(REPORT)/$(XSLT); fi
-
-	@cp sitespeed.io sitespeed-junit.io sitespeed-sites.io travis-ci.sh CHANGELOG LICENSE $(BUILD)/
+	@cp CHANGELOG LICENSE $(BUILD)/
+	@cp $(BIN)/sitespeed.io $(BUILD)/$(BIN)/
+	@cp $(BIN)/sitespeed.io-junit $(BUILD)/$(BIN)/
+	@cp $(BIN)/sitespeed.io-sites $(BUILD)/$(BIN)/
+	@cp $(BIN)//travis-ci.sh $(BUILD)/$(BIN)/
 	@cp $(DEP)/LICENSE.txt $(BUILD)/$(DEP)/
 	@cp $(DEP)/crawler-1.5.7-full.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/crawler.properties $(BUILD)/$(DEP)/
-	@cp $(DEP)/xml-velocity-1.8.2-full.jar $(BUILD)/$(DEP)/	
+	@cp $(DEP)/xml-velocity-1.8.4-full.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/screenshot.js $(BUILD)/$(DEP)/
 	@cp $(DEP)/htmlcompressor-1.5.3.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/yuicompressor-2.4.6.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/yslow-3.1.5-sitespeed.js $(BUILD)/$(DEP)/
 	@cp $(DEP)/rules-desktop.properties $(BUILD)/$(DEP)/
 	@cp $(DEP)/rules-mobile.properties $(BUILD)/$(DEP)/
-	@cp $(DEP)/browsertime-0.2-full.jar $(BUILD)/$(DEP)/
+	@cp $(DEP)/browsertime-0.3-full.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/timing-limits-default.xml $(BUILD)/$(DEP)/
 	@cp $(REPORT)/$(CSS)/bootstrap.min.css $(BUILD)/$(REPORT)/$(CSS)/
 	@cp $(REPORT)/$(CSS)/bootstrap-overrides.css $(BUILD)/$(REPORT)/$(CSS)/
 	@cp $(REPORT)/$(IMG)/$(ICO)/sitespeed.io-114.png $(BUILD)/$(REPORT)/$(IMG)/$(ICO)/
 	@cp $(REPORT)/$(IMG)/$(ICO)/sitespeed.io-144.png $(BUILD)/$(REPORT)/$(IMG)/$(ICO)/
-	@cp $(REPORT)/$(IMG)/$(ICO)/sitespeed.io-72.png $(BUILD)/$(REPORT)/$(IMG)/$(ICO)/	
+	@cp $(REPORT)/$(IMG)/$(ICO)/sitespeed.io-72.png $(BUILD)/$(REPORT)/$(IMG)/$(ICO)/
 	@cp $(REPORT)/$(IMG)/$(ICO)/sitespeed.io.ico $(BUILD)/$(REPORT)/$(IMG)/$(ICO)/
 	@cp $(REPORT)/$(IMG)/sitespeed-logo.png $(BUILD)/$(REPORT)/$(IMG)/
 	@cp $(REPORT)/$(JS)/bootstrap.min.js $(BUILD)/$(REPORT)/$(JS)/
@@ -75,7 +80,7 @@ build:
 	@cp $(REPORT)/$(PROPERTIES)/page.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/site.summary.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/sites.summary.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
-	@cp $(REPORT)/$(PROPERTIES)/summary.details.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/	
+	@cp $(REPORT)/$(PROPERTIES)/summary.details.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/rules.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/assets.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/
 	@cp $(REPORT)/$(PROPERTIES)/errorurls.properties $(BUILD)/$(REPORT)/$(PROPERTIES)/

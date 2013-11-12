@@ -1,0 +1,309 @@
+#! /bin/bash
+#******************************************************
+# sitespeed-sites.io - How speedy is all the sites? (http://www.sitespeed.io)
+#
+# Copyright (C) 2013 by Peter Hedenskog (http://www.peterhedenskog.com)
+#
+#******************************************************
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in
+# compliance with the License. You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software distributed under the License is
+# distributed  on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and limitations under the License.
+#
+#*******************************************************
+
+## Get the right home dir for sitespeed.io (shell code copied from Apache Maven)
+PRG="$0"
+progname=`basename "$0"`
+
+# need this for relative symlinks
+while [ -h "$PRG" ] ; do
+ls=`ls -ld "$PRG"`
+link=`expr "$ls" : '.*-> \(.*\)$'`
+if expr "$link" : '/.*' > /dev/null; then
+PRG="$link"
+else
+PRG=`dirname "$PRG"`"/$link"
+fi
+done
+
+home=`dirname "$PRG"`/..
+## This is the home of sitespeed
+SITESPEED_HOME=$(cd "$home" > /dev/null && pwd)
+## finished getting home
+
+# Setting up options
+REPORT_BASE_DIR=$(pwd)/sitespeed-result/sites
+
+## Property for telling Velocity where the templates live
+VELOCITY_TEMPLATES_HOME="-Dcom.soulgalore.velocity.templates.home=$SITESPEED_HOME"
+
+# Used for the directory name
+NOW=$(date +"%Y-%m-%d-%H-%M-%S")
+
+# The heap size for the Java processes
+JAVA_HEAP=1024
+
+# Version of the Jar-files used.
+VELOCITY_JAR=xml-velocity-1.8.4-full.jar
+HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
+
+# Setup dirs
+DEPENDENCIES_DIR="$SITESPEED_HOME"/dependencies
+VELOCITY_DIR="$SITESPEED_HOME"/report/velocity
+PROPERTIES_DIR="$SITESPEED_HOME"/report/properties
+
+# The menu in the header of the result file is hidden
+HIDE_MENU="-Dcom.soulgalore.velocity.key.hidemenu=true"
+
+## By default browser timings isn't collected
+COLLECT_BROWSER_TIMINGS=false
+
+## Pointing out the rule properties where summary rules are defined
+SUMMARY_PROPERTY_DESKTOP="-Dcom.soulgalore.velocity.sitespeed.rules.file="$SITESPEED_HOME"/dependencies/rules-desktop.properties"
+SUMMARY_PROPERTY_MOBILE="-Dcom.soulgalore.velocity.sitespeed.rules.file="$SITESPEED_HOME"/dependencies/rules-mobile.properties"
+# The default one is desktop, if you choose mobile rules, then you will have the mobile version
+SUMMARY_PROPERTY=$SUMMARY_PROPERTY_DESKTOP
+
+#*******************************************************
+# Main program
+#
+#*******************************************************
+main() {
+  verify_environment
+  get_input "$@"
+  analyze "$@"
+  generate_sites_xml
+  generate_output_files
+  finish
+}
+
+#*******************************************************
+# Help function, call it to print all different usages.
+#
+#*******************************************************
+help()
+{
+cat << EOF
+usage: $0 options
+
+Test multiple sites in one go. The options are specific to this script, the rest will be passed on to sitespeed.io.
+
+OPTIONS:
+   -h      Help
+   -r      The result base directory, default is sitespeed-result/sites [optional]
+   -e      The columns to display in the result table [optional]
+   -i      The path to a plain text file with one URL on each row.
+EOF
+}
+
+#*******************************************************
+# Fetch input
+#
+#*******************************************************
+function get_input {
+
+# Set options, the sames as for sitespeed.io
+while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:q:k:” OPTION
+do
+     case $OPTION in
+         h)
+             help
+             exit 0
+             ;;
+         r)REPORT_BASE_DIR=$OPTARG;;
+	       ## Special handling for u & f, because that is sitespeed.io specific
+	       u)
+	       echo "-u is an invalid argument, feed the script with a list of url:s"
+	       exit 1;;
+         f)
+         echo "-f is an invalid argument, feed the script with a list of url:s"
+         exit 1;;
+         m)JAVA_HEAP=$OPTARG;;
+         n)TEST_NAME=$OPTARG;;
+         e)COLUMNS=$OPTARG;;
+         i)FILE_NAME=$OPTARG;;
+         l)RULESET=$OPTARG;;
+         c)COLLECT_BROWSER_TIMINGS=$OPTARG;;
+         a)USER_AGENT=$OPTARG;;
+	       ?)
+              ;;
+      esac
+done
+
+
+if [ "$TEST_NAME" != "" ]
+  then
+    TEST_NAME="-Dcom.soulgalore.velocity.key.testname=$TEST_NAME"
+  else
+    TEST_NAME="-Dcom.soulgalore.velocity.key.testname= "
+fi
+
+if [ "$COLUMNS" != "" ]
+  then
+    COLUMNS="-Dcom.soulgalore.velocity.key.columns=$COLUMNS"
+  else
+    # Default colums
+    COLUMNS="-Dcom.soulgalore.velocity.key.columns=median-ruleScore,median-criticalPathScore,median-requests,median-imageWeightPerPage,median-pageWeight,median-requestsWithoutExpires,median-assetsCacheTime,median-domainsPerPage"
+    if $COLLECT_BROWSER_TIMINGS
+      then
+      COLUMNS="$COLUMNS",median-serverResponseTime,median-domContentLoadedTime
+    fi
+fi
+
+if [[ -z $FILE_NAME ]]
+then
+    echo "Use -i to feed the script with which file to use."
+    help
+    exit 1
+fi
+
+if [ ! -f $FILE_NAME ]
+then
+    echo "The $FILE_NAME file does not exist. Pwd:$(pwd).Use -i to feed the script with which file to use."
+    exit 1
+fi
+
+if [[ "$USER_AGENT" == "iphone" ]]
+then
+SUMMARY_PROPERTY=$SUMMARY_PROPERTY_MOBILE
+fi
+
+if [[ "$RULESET" == *mobile* ]]
+then
+SUMMARY_PROPERTY=$SUMMARY_PROPERTY_MOBILE
+fi
+
+mkdir -p "$REPORT_BASE_DIR/$NOW" || exit 1
+
+}
+
+function analyze {
+
+## Run included or local sitespeed.io
+if hash sitespeed.io 2>/dev/null; then
+       SITESPEED_IO=sitespeed.io
+    else
+       SITESPEED_IO="bash ./sitespeed.io"
+fi
+
+local runs=0
+
+# read the urls
+local urls=()
+while read txt ; do
+   urls[${#urls[@]}]=$txt
+done < $FILE_NAME
+
+echo "Will analyze ${#urls[@]} sites"
+
+for url in "${urls[@]}"
+do
+    "$SITESPEED_IO" -u $url "$@" -r "$REPORT_BASE_DIR/$NOW"
+    runs=$[$runs+1]
+    if [ $(($runs%20)) == 0 ]; then
+      echo "Analyzed $runs sites out of ${#urls[@]}"
+    fi
+done
+
+}
+
+#*******************************************************
+# Generate a sites xml file that holds all
+# latest analyzed versions of a site, using the
+# summary.xml file
+#*******************************************************
+function generate_sites_xml {
+
+
+# Here is the output file
+local sites_xml=$REPORT_BASE_DIR/$NOW/sites.xml
+
+echo '<?xml version="1.0" encoding="UTF-8"?><sites>'  > "$sites_xml"
+
+cd $REPORT_BASE_DIR/$NOW
+
+for i in * ; do
+  if [ -d "$i" ]; then
+    echo "Adding $i to sites.xml"
+    cd "$i"
+    local date_dir="$(\ls -1dt */ | head -n 1)"
+    cd $date_dir
+    local abs_analyze_dir=$(pwd)
+    local summary_xml="$abs_analyze_dir/data/summary.xml"
+    if [ -e $summary_xml ]; then
+	  sed 's/<?xml version="1.0" encoding="UTF-8"?>//g' $summary_xml >> "$sites_xml"
+    else
+	  echo "Missing summary.xml for $i, will not add that to the sites.xml"
+    fi
+    local error_log="$abs_analyze_dir/data/error.log"
+    if [[ -e $error_log ]]; then
+      cat $error_log >> $HOME/$REPORT_BASE_DIR/$NOW/error.log
+    fi
+    cd ../../
+  fi
+done
+
+echo '</sites>'  >> "$sites_xml"
+cd $HOME
+}
+
+function generate_output_files {
+
+echo 'Create the index.html'
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$HIDE_MENU" "$COLUMNS" $SUMMARY_PROPERTY "$VELOCITY_TEMPLATES_HOME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_BASE_DIR/$NOW/sites.xml $VELOCITY_DIR/sites.summary.vm $PROPERTIES_DIR/sites.summary.properties $REPORT_BASE_DIR/$NOW/index.html || exit 1
+"$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_BASE_DIR/$NOW/index.html $REPORT_BASE_DIR/$NOW/index.html
+
+#copy the rest of the files
+mkdir $REPORT_BASE_DIR/$NOW/css
+mkdir $REPORT_BASE_DIR/$NOW/js
+mkdir $REPORT_BASE_DIR/$NOW/img
+mkdir $REPORT_BASE_DIR/$NOW/img/ico
+mkdir $REPORT_BASE_DIR/$NOW/fonts
+
+cat "$SITESPEED_HOME"/report/css/bootstrap.min.css > $REPORT_BASE_DIR/$NOW/css/styles.css
+cat "$SITESPEED_HOME"/report/js/jquery-1.10.2.min.js "$SITESPEED_HOME"/report/js/bootstrap.min.js "$SITESPEED_HOME"/report/js/stupidtable.min.js > $REPORT_BASE_DIR/$NOW/js/all.js
+cp "$SITESPEED_HOME"/report/img/*.* $REPORT_BASE_DIR/$NOW/img
+cp "$SITESPEED_HOME"/report/img/ico/* $REPORT_BASE_DIR/$NOW/img/ico
+cp "$SITESPEED_HOME"/report/fonts/* $REPORT_BASE_DIR/$NOW/fonts
+
+}
+
+function finish {
+  echo "Finish"
+  exit 0
+}
+
+#*******************************************************
+# Check that we have what is needed to run
+# Will check for PhantomJS, cURL and right Java version
+#*******************************************************
+function verify_environment {
+command -v phantomjs >/dev/null 2>&1 || { echo >&2 "Missing phantomjs, please install it to be able to run sitespeed.io"; exit 1; }
+command -v curl >/dev/null 2>&1 || { echo >&2 "Missing curl, please install it to be able to run sitespeed.io"; exit 1; }
+
+# Respect JAVA_HOME if set
+if [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/java" ]]
+then
+    JAVA="$JAVA_HOME/bin/java"
+else
+    JAVA="java"
+fi
+
+if [[ "$JAVA" ]]; then
+    jVersion=$("$JAVA" -version 2>&1 | awk -F '"' '/version/ {print $2}')
+    if [[ "$jVersion" < "1.6" ]]; then
+         echo "Java version is less than 1.6 which is too old, you will need at least Java 1.6 to run sitespeed.io"; exit 1;
+    fi
+fi
+}
+
+# launch
+main "$@"
+
+

@@ -1,5 +1,16 @@
 CHANGELOG sitespeed.io
 
+version 2.2
+------------------------
+* Moved all scripts to the bin folder, following the standard and easier to package
+* Cleanup all scripts to use absolute paths, making it easier to package for Homebrew
+* sitespeed-sites.io now always need to have the filename of the text file containing all the URLS
+* New names: sitespeed.io-sites & sitespeed.io-junit
+* New BrowserTime version (0.3) including backEndTime & frontEndTime
+* Changed default summary page to show backend & frontend time (removed redirectionTime & domInteractiveTime)
+* Increased timeout for the crawler for really slow pages
+* Bug fix: The fix for removing invalid XML caharcters created by GA, sometimes broke the analyze, now fixed (#304)
+
 version 2.1.1
 ------------------------
 * New BrowserTime version, having 60s wait for load, also fixes Firefox 25 bug
