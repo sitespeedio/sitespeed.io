@@ -114,6 +114,13 @@ function verify_input() {
 OUTPUT_RULE_XML="--output $OUTPUT_DIR/sitespeed.io-rules-junit.xml"
 OUTPUT_TIMINGS_XML="--output $OUTPUT_DIR/sitespeed.io-timings-junit.xml"
 
+if [[ "$OUTPUT_DIR" = /* ]]
+  then
+    OUTPUT_DIR=$OUTPUT_DIR
+  else
+    OUTPUT_DIR=$(pwd)/$OUTPUT_DIR
+fi
+
 if [ "$SKIP" != "" ]
 then
     SKIP_TESTS="--stringparam skip $SKIP"
