@@ -1,9 +1,10 @@
 CHANGELOG sitespeed.io
 
-version 2.3
+version 2.2.2
 ------------------------
 * Bug fix: User marks named with spaces broke the summary.xml
 * Bug fix: Sites with extremely far away last modification time on an asset, could break an analyze
+* Upgraded Browser Time version to 0.4, getting back custom user measurements.
 
 version 2.2.1
 ------------------------
