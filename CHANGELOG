@@ -1,5 +1,9 @@
 CHANGELOG sitespeed.io
 
+version 2.3
+------------------------
+* Bug fix: Sites with extremely far away last modification time on an asset, could break an analyze
+
 version 2.2.1
 ------------------------
 * Bug fix: Cleaner handling of relative URL in the sitespeed.io-junit script.
