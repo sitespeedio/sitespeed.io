@@ -9,8 +9,16 @@ Sitespeed.io will create six different result pages:
  * Full page analysis (per page)
  * Most used assets report
  * Screenshots
- 
+
 ![The site summary page](https://raw.github.com/sitespeedio/sitespeed.io/master/doc/summary-1.8.jpg)
+
+Install/run on Mac OS X
+=============
+```bash
+$ brew tap sitespeedio/sitespeedio
+$ brew install sitespeed.io
+$ sitespeed.io -h
+```
 
 See <a href="http://www.sitespeed.io">http://www.sitespeed.io</a> for documentation.  
 
