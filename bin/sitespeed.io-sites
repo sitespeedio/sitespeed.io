@@ -50,7 +50,7 @@ NOW=$(date +"%Y-%m-%d-%H-%M-%S")
 JAVA_HEAP=1024
 
 # Version of the Jar-files used.
-VELOCITY_JAR=xml-velocity-1.8.5-SNAPSHOT-full.jar
+VELOCITY_JAR=xml-velocity-1.8.5-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 
 # Setup dirs
