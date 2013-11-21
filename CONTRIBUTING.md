@@ -9,7 +9,7 @@ First, check the defect/bug list https://github.com/soulgalore/sitespeed.io/issu
 
 If you find a defect, please file a bug report. Include the following:
  - Explain the bug/defect and what you where doing.
- - OS & versions.
+ - OS & versions (Windows is not supported, it may work, but I don't test it)
  - Always add the URL of the page you where analyzing (if it is secret, drop me an email peter**at**soulgalore.com and send me the address). 
  - Add a screenshot and clearly point out where the defect is.
  - Add a log of the output and include the content of the data/error.log file. 
@@ -20,6 +20,6 @@ If you have the skills & the time, it is perfect if you send a pull request with
 If you have an idea or something that you need sitespeed.io to handle, add an issue and lets discuss it there. Ideas/changes/requests are very very welcome!
 
 
-Thanks for your support & time!
+Thanks for your time & support!
 
 Peter
