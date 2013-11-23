@@ -1,0 +1,2 @@
+#set($tooltipMissingGZipText = "The number of text assets missing GZip")
+#columnHeaderHTML("requests missing gzip","int",$tooltipMissingGZipText,"")##
