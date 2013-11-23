@@ -2,7 +2,7 @@ CHANGELOG sitespeed.io
 
 version 2.3-wip
 ------------------------
-* Added the number of text assets that are missing GZIP on the summary page (xml) #310
+* Added the number of text assets that are missing GZIP on the summary page (xml) #310 and for pages #315
 
 version 2.2.2
 ------------------------
