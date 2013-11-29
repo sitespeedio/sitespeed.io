@@ -189,7 +189,7 @@ function analyze {
 if hash sitespeed.io 2>/dev/null; then
        SITESPEED_IO=sitespeed.io
     else
-       SITESPEED_IO="bash ./sitespeed.io"
+       SITESPEED_IO="bash ./bin/sitespeed.io"
 fi
 
 local runs=0
@@ -204,7 +204,7 @@ echo "Will analyze ${#urls[@]} sites"
 
 for url in "${urls[@]}"
 do
-    "$SITESPEED_IO" -u $url "$@" -r "$REPORT_BASE_DIR/$NOW"
+    $SITESPEED_IO -u $url "$@" -r "$REPORT_BASE_DIR/$NOW"
     runs=$[$runs+1]
     if [ $(($runs%20)) == 0 ]; then
       echo "Analyzed $runs sites out of ${#urls[@]}"
