@@ -284,7 +284,7 @@ if [ "$SUMMARY_BOXES" != "" ]
     SUMMARY_BOXES="-Dcom.soulgalore.velocity.key.boxes=$SUMMARY_BOXES"
   else
       # Default columns
-      SUMMARY_BOXES="-Dcom.soulgalore.velocity.key.boxes=ruleScore,criticalPathScore,jsSyncInHead,jsPerPage,cssPerPage,cssImagesPerPage,imagesPerPage,requests,requestsWithoutExpires,requestsWithoutGZipPerPage,pageWeight,docWeight,imageWeightPerPage,browserScaledImages,spofPerPage,domainsPerPage,domElements,assetsCacheTime,timeSinceLastModification"
+      SUMMARY_BOXES="-Dcom.soulgalore.velocity.key.boxes=ruleScore,criticalPathScore,jsSyncInHead,jsPerPage,cssPerPage,cssImagesPerPage,imagesPerPage,requests,requestsWithoutExpires,pageWeight,docWeight,imageWeightPerPage,browserScaledImages,spofPerPage,domainsPerPage,domElements,assetsCacheTime,timeSinceLastModification"
     if $COLLECT_BROWSER_TIMINGS
       then
       SUMMARY_BOXES="$SUMMARY_BOXES",serverResponseTime,backEndTime,pageDownloadTime,frontEndTime,domContentLoadedTime,pageLoadTime
