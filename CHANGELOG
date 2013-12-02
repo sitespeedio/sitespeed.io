@@ -1,8 +1,10 @@
 CHANGELOG sitespeed.io
 
-hotfix (coming in 2.3)
+version 2.2.3
 ------------------------
 * Bug fix: The sitespeed-sites script had wrong path to the sitespeed script
+* Added the number of text assets that are missing GZIP on the summary page (xml) #310 and for pages #315. Add it by the name requestsWithoutGZipPerPage
+* Fix in how to handle browser parameters, to get it to work clean with Jenkins
 
 version 2.2.2
 ------------------------

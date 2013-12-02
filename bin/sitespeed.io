@@ -805,6 +805,9 @@ then
     local pagefilename=$(get_filename $url $runs)
     echo "Collecting Browser Time metrics: $url"
 
+    ## Fix when shuffling the parameters from Java (Jenkins), then the " will be passed and needs to be removed
+    BROWSER_TIME_PARAMS=${BROWSER_TIME_PARAMS//[\"]/}
+
     $BROWSERTIME --compact --raw $BROWSER_TIME_PARAMS -o "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url"
 
      ## If BrowserTime fails, an empty file is created, so remove it

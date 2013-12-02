@@ -3,7 +3,7 @@
 #set($nrOfPages = $document.getRootElement().getChildren("results").size())
 
 ## Get the total objects
-    
+
 #set($nrOfDecimals = 0)
 
 ## Creating all statistics objects
@@ -32,6 +32,7 @@
 #set($statsAssetCacheTimeInSeconds = $stats.newInstance("assetsCacheTime","Cache time","","cachetime","",1))
 #set($statsDomElements = $stats.newInstance("domElements","Number of DOM elements","","","",1))
 #set($statsDomains = $stats.newInstance("domainsPerPage","Number of domains","","","",1))
+#set($statsCompressed = $stats.newInstance("requestsWithoutGZipPerPage","Requests without GZip","","","",1))
 
 ## And add them to the list of statistics
 #set($hide = $allStats.add($statsScore))
@@ -59,15 +60,15 @@
 #set($hide = $allStats.add($statsAssetCacheTimeInSeconds))
 #set($hide = $allStats.add($statsDomains))
 #set($hide = $allStats.add($statsScaledImages))
-
+#set($hide = $allStats.add($statsCompressed))
 
 ## Fetch all statistics used by the boxes
 #foreach ($results in $document.getRootElement().getChildren())
 
     #if($!{results.getChild("stats").getChild("js").getChild("r")})
         $statsJs.addValue($math.toInteger($results.getChild("stats").getChild("js").getChild("r").getValue()))
-    #end   
-      
+    #end
+
     #if($!{results.getChild("stats").getChild("css").getChild("r")})
         $statsCss.addValue($math.toInteger($results.getChild("stats").getChild("css").getChild("r").getValue()))
     #end
@@ -83,7 +84,7 @@
     #if($!{results.getChild("r")})
          $statsRequests.addValue($math.toInteger($results.getChild("r").getValue()))
     #end
-      
+
     #if($!{results.getChild("w")})
         ## sometimes the page weight is wrongly calculated by YSlow, so lets do it manually
         #set($totalWeight = 0)
@@ -99,7 +100,7 @@
     #end
 
     #if($!{results.getChild("stats").getChild("doc").getChild("w")})
-   
+
         $statsDocumentWeight.addValue($math.toDouble($math.roundTo(3,$math.div($results.getAttribute("size").getValue(),1000))))
     #end
 
@@ -113,8 +114,16 @@
 	       $statsSpofPages.addValue(1)
            $statsSpof.addValue($math.toInteger($results.getChild("g").getChild("spof").getChild("components").getChildren("item").size()))
        #else
-        $statsSpof.addValue(0)    
-       #end       
+        $statsSpof.addValue(0)
+       #end
+    #end
+
+    #if($!{results.getChild("g").getChild("ycompress").getChild("score")})
+       #if ($results.getChild("g").getChild("ycompress").getChild("score").getValue() != 100)
+           $statsCompressed.addValue($math.toInteger($results.getChild("g").getChild("ycompress").getChild("components").getChildren("item").size()))
+       #else
+        $statsCompressed.addValue(0)
+       #end
     #end
 
 
@@ -153,34 +162,34 @@
 		#set ($date = "")
 		#set ($cacheControl = 0)
 		#set ($expires = "")
-		
+
 		## fetch the real ones
 		#set ($lastMod = $asset.getChild("headers").getChild("response").getChild("Last-Modified").getValue())
 		#set ($date = $asset.getChild("headers").getChild("response").getChild("Date").getValue())
 		#set ($cacheControl = $asset.getChild("headers").getChild("response").getChild("Cache-Control").getValue())
 		#set ($expires = $asset.getChild("headers").getChild("response").getChild("Expires").getValue())
-					
+
 		#set ($delta = $header.getDelta($lastMod,$date))
 		#if ($delta=="" || ! $delta)
 			## unknown skip it for now
 		#else
 		    $statsTimeSinceLastModificationInSeconds.addValue($delta.getSeconds())
-		#end	
-		
+		#end
+
 		#set ($cacheTime = $header.getCacheTime($cacheControl, $expires, $date))
 		#if ($cacheTime=="" || !$cacheTime)
 		     	$statsAssetCacheTimeInSeconds.addValue(0)
-		#else	
+		#else
 		     	$statsAssetCacheTimeInSeconds.addValue($cacheTime.getSeconds())
 		#end
 
         #if (($asset.getChild("type").getValue() == "image") || ($asset.getChild("type").getValue() == "cssimage"))
            $statsImageWeight.addValue($math.toDouble($math.roundTo(3,$math.div($asset.getChild("size").getValue(),1000))))
            #set($totalImagePageSize = $math.add($totalImagePageSize,$math.toDouble($math.roundTo(3,$math.div($asset.getChild("size").getValue(),1000)))))
-        #elseif ($asset.getChild("type").getValue() == "css") 
+        #elseif ($asset.getChild("type").getValue() == "css")
            $statsCssWeight.addValue($math.toDouble($math.roundTo(3,$math.div($asset.getChild("size").getValue(),1000))))
            #set($totalCssPageSize = $math.add($totalCssPageSize,$math.toDouble($math.roundTo(3,$math.div($asset.getChild("size").getValue(),1000)))))
-        #elseif ($asset.getChild("type").getValue() == "js")   
+        #elseif ($asset.getChild("type").getValue() == "js")
              $statsJsWeight.addValue($math.toDouble($math.roundTo(3,$math.div($asset.getChild("size").getValue(),1000))))
              #set($totalJsPageSize = $math.add($totalJsPageSize,$math.toDouble($math.roundTo(3,$math.div($asset.getChild("size").getValue(),1000)))))
         #end
@@ -190,7 +199,7 @@
         #if (!$hosts.contains($theHost))
             #set($swallow = $hosts.add($theHost))
         #end
-		
+
 	#end
 
     #if($hosts.size()>0)
@@ -206,7 +215,7 @@
     #if($totalJsPageSize>0)
         $statsTotalJsWeight.addValue($totalJsPageSize)
     #end
-	
+
 #end
 
 ## We create only these extra data if (and only if) we also run Browser Time to collect them
@@ -239,9 +248,9 @@
 ## Include a custom logic file, if you want to include your own code.
 #if ($filetool.doFileExist("report/velocity/logic/custom/site.summary.xml.logic.vm"))
         #parse("report/velocity/logic/custom/site.summary.xml.logic.vm")
-#end        
+#end
 
 
 
 
-							
+
