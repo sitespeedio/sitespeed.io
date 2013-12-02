@@ -1,5 +1,8 @@
 CHANGELOG sitespeed.io
 
+version 2.3-wip
+------------------------
+
 version 2.2.3
 ------------------------
 * Bug fix: The sitespeed-sites script had wrong path to the sitespeed script
