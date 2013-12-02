@@ -2,6 +2,7 @@ CHANGELOG sitespeed.io
 
 version 2.3-wip
 ------------------------
+* Include -V when listing supported options in command line help
 
 version 2.2.3
 ------------------------
