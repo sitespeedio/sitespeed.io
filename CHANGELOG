@@ -2,6 +2,7 @@ CHANGELOG sitespeed.io
 
 version 2.3-wip
 ------------------------
+* Put the JUnit files into a dir named junit
 
 version 2.2.3
 ------------------------
