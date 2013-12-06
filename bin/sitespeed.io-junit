@@ -111,8 +111,9 @@ done
 #*******************************************************
 function verify_input() {
 
-OUTPUT_RULE_XML="--output $OUTPUT_DIR/sitespeed.io-rules-junit.xml"
-OUTPUT_TIMINGS_XML="--output $OUTPUT_DIR/sitespeed.io-timings-junit.xml"
+JUNIT_DIR=junit
+OUTPUT_RULE_XML="--output $OUTPUT_DIR/$JUNIT_DIR/sitespeed.io-rules-junit.xml"
+OUTPUT_TIMINGS_XML="--output $OUTPUT_DIR/$JUNIT_DIR/sitespeed.io-timings-junit.xml"
 
 if [[ "$OUTPUT_DIR" = /* ]]
   then
@@ -138,6 +139,8 @@ else
   LIMITS_FILE=$SITESPEED_HOME/dependencies/timing-limits-default.xml
 fi
 
+## Create the JUnit dir
+mkdir -p $OUTPUT_DIR/$JUNIT_DIR
 
 }
 
