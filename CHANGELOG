@@ -3,6 +3,8 @@ CHANGELOG sitespeed.io
 version 2.3
 ------------------------
 * Put the JUnit files into a dir named /junit/ when running the sitespeed.io-junit script. WARNING: this means you need to change in Jenkins where you match the files.
+* Include -V when listing supported options in command line help
+
 
 version 2.2.3
 ------------------------

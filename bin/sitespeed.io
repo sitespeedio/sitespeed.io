@@ -733,6 +733,7 @@ OPTIONS:
    -k      Take screenshots for each page (using the configured view port). Default is false. (true|false) [optional]
    -c      Collect BrowserTimings data (meaning open a real browser & fetch timings). Default is false. (true|false) [optional]
    -z      String sent to BrowserTime, so you can choose browser and tries. Default is "-b firefox -n 3".
+   -V      Show the version of sitespeed.io
 EOF
 }
 
