@@ -1,8 +1,8 @@
 CHANGELOG sitespeed.io
 
-version 2.3-wip
+version 2.3
 ------------------------
-* Put the JUnit files into a dir named junit
+* Put the JUnit files into a dir named /junit/ when running the sitespeed.io-junit script. WARNING: this means you need to change in Jenkins where you match the files.
 
 version 2.2.3
 ------------------------
