@@ -15,8 +15,7 @@ Sitespeed.io will create six different result pages:
 Install/run on Mac OS X
 =============
 ```bash
-$ brew tap sitespeedio/sitespeedio
-$ brew install sitespeed.io
+$ brew install sitespeedio/sitespeedio/sitespeed.io
 $ sitespeed.io -h
 ```
 
