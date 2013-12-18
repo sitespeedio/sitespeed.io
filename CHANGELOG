@@ -6,6 +6,7 @@ version 2.4-wip
 * Added more default fields in the summary: requestsMissingGzip, jsWeightPerPage, cssWeightPerPage #325
 * Changed order of the summary fields so that logical fields are grouped together
 * Made it clearer that CSS & JS weight are per file in the summary (meaning inline CSS/JS are not included)
+* Show red/yellow/green for cacheTime on the summary page #312
 
 version 2.3
 ------------------------
