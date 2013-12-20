@@ -13,7 +13,7 @@
 <path>$document.getRootElement().getAttribute("path").getValue()</path>
 <metrics>
 #foreach ($stats in $allStats)
-<$stats.getName().replace(' ','.') friendlyName="$stats.getFriendlyName()" type="$stats.getType()" unit="$stats.getUnit()" decimals="$stats.getDecimals()">
+<$stats.getName().replace(' ','.') friendlyName="$stats.getFriendlyName()" type="$stats.getType()" unit="$stats.getUnit()" decimals="$stats.getDecimals()" desc="$stats.getDescription()">
 <avg>#getNumber($stats.getMean())</avg>
 <median>#getNumber($stats.getPercentile(50))</median>
 <max>#getNumber($stats.getMax())</max>
