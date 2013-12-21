@@ -8,6 +8,7 @@ version 2.4-wip
 * Made it clearer that CSS & JS weight are per file in the summary (meaning inline CSS/JS are not included)
 * Show red/yellow/green for cacheTime on the summary page #312 and for JS & CSS size
 * Added short description on each rule on the summary page (hover to see it) #161
+* Bug fix: the rule "Avoid DNS lookups when a page has few requests" was broken, couldn't tell if JS was loaded async or not #328
 
 version 2.3
 ------------------------
