@@ -12,7 +12,7 @@
 
       		</h2>
       	</div>
-</div>	
+</div>
 
 <div class="row">
       	<div class="col-lg-12">
@@ -22,7 +22,7 @@
       			<li>
       				<a href="#screenshot">Screenshot</a>
       			</li>
-      			#end 
+      			#end
       			-->
       				<a href="#" class="list-group-item active">Quick links</a>
       				<a href="#score" class="list-group-item">Scores below 100</a>
@@ -33,12 +33,12 @@
       				#end
       		</div>
       	</div>
-</div>		
+</div>
 
 <div class="row">
 	<div class="col-lg-12">
 		<!--
-		#if ($showscreenshots==true) 
+		#if ($showscreenshots==true)
 		<h3 id="screenshot">Screenshot</h3>
 		#set($file = $document.getRootElement().getAttribute("filename").getValue())
 		#set($image = $file.concat(".png"))
@@ -51,7 +51,7 @@
 
 		## Do we have any to show?
 		#foreach ($message in $document.getRootElement().getChild("g").getChildren())
-			#if($!{message.getChild("score").getValue()})	 
+			#if($!{message.getChild("score").getValue()})
 			  #if($message.getChild("score").getValue()!="100")
 				#set ($showScoresBelow100 = true)
 			   #end
@@ -59,7 +59,7 @@
 			   #end
 
 
-		#if($!{showScoresBelow100})	   
+		#if($!{showScoresBelow100})
 		<div class="table-responsive">
 		<table class="table table-condensed table-striped table-bordered" id="scoreTable">
 			<thead>
@@ -72,7 +72,7 @@
 				</thead>
 				<tbody>
 					#foreach ($message in $document.getRootElement().getChild("g").getChildren())
-						#if($!{message.getChild("score").getValue()})	 
+						#if($!{message.getChild("score").getValue()})
 						     #if($message.getChild("score").getValue()!="100")
 					<tr>
 						<td>
@@ -82,14 +82,14 @@
 						<td>$message.getChild("score").getValue()</td>
 						<td class="nobreak-page">$message.getChild("message").getValue()</td>
 						<td class="nobreak-page">
-							
+
 								#foreach ($item in $message.getChild("components").getChildren("item"))
 								<p>$item.getValue()</p>
 								#end
 						</td>
 					</tr>
-					#end	 
-					    	#end	 
+					#end
+					    	#end
 					#end
 				</tbody>
 			</table>
@@ -165,20 +165,20 @@
 						<div class="nobreak-page"><a href="$asset.getChild("url").getValue()" title="$asset.getChild("url").getValue()" target="_blank">$asset.getChild("url").getValue()</a></div>
 					</td>
 					<td>$asset.getChild("type").getValue()</td>
-					
+
 								#set ($lastMod = $asset.getChild("headers").getChild("response").getChild("Last-Modified").getValue())
 								#set ($date = $asset.getChild("headers").getChild("response").getChild("Date").getValue())
 								#set ($cacheControl = $asset.getChild("headers").getChild("response").getChild("Cache-Control").getValue())
 								#set ($expires = $asset.getChild("headers").getChild("response").getChild("Expires").getValue())
-								
+
 								#set ($delta = $header.getDelta($lastMod,$date))
 								#if ($delta=="" || ! $delta)
 									#set ($sort=0)
 								#else
 								    #set ($sort=$delta.getSeconds())
 								    $statsTimeSinceLastModificationInSeconds.addValue($delta.getSeconds())
-								#end	
-			
+								#end
+
 					<td data-sort-value="$sort">
 							#if ($delta=="" || ! $delta)
 							     last modified not set
@@ -190,15 +190,15 @@
 							#if ($cacheTime=="" || !$cacheTime)
 							     #set ($sort=0)
 							     $statsAssetCacheTimeInSeconds.addValue(0)
-							#else	
+							#else
 							     #set ($sort=$cacheTime.getSeconds())
 							     $statsAssetCacheTimeInSeconds.addValue($cacheTime.getSeconds())
 							#end
 					<td data-sort-value="$sort">
 							#if ($cacheTime=="" || !$cacheTime)
 							     0
-							#else								   
-							     #prettyPrint($cacheTime)  
+							#else
+							     #prettyPrint($cacheTime)
 							#end
 					</td>
 					#set ($size=$math.roundTo(1,$math.div($asset.getChild("size").getValue(),1000)))
@@ -216,10 +216,10 @@
 <!-- row -->
 
 <div class="row">
-      	<div class="col-lg-12">	
+      	<div class="col-lg-12">
       	<h3 id="summary">Page summary</h3>
       	</div>
-</div>		
+</div>
 <div class="row">
 	<div class="col-lg-6">
 
@@ -315,13 +315,13 @@
 			        		<th data-sort="float">Size</th>
 			        		<th data-sort="float">Percentage</th>
 			        	</tr>
-			</thead>	
+			</thead>
 
 			<tbody>
 				<tr>
 					<td>doc</td>
 					<td>$docWeightCurl ($docWeight) kb</td>
-					<td>$math.roundTo(1,$math.mul($math.div($docWeight,$totalWeight),100))%</td>	
+					<td>$math.roundTo(1,$math.mul($math.div($docWeight,$totalWeight),100))%</td>
 				</tr>
 				#if ($jsWeight>0)
 				<tr>
@@ -393,7 +393,7 @@
 							<th data-sort="int">Requests</th>
 							<th data-sort="float">Weight (kb)</th>
 					    </tr>
-					</thead>	
+					</thead>
 					<tbody>
 						#foreach ($entry in $hostAndRequests.entrySet())
 						<tr>
@@ -458,7 +458,7 @@
 				</table>
 			</div>
 			<div class="col-lg-6">
-				
+
 			</div>
 		</div>
 		#if($!{document2})
@@ -476,13 +476,13 @@
 				#set ($platform=$pageData.getChild("value").getValue())
 			#elseif ($pageData.getChild("key").getValue()=="wasFetchedViaSpdy")
 			    #set ($spdy=$pageData.getChild("value").getValue())
-			#end			
+			#end
 			#end
 
 			#set ($runs = $document2.getRootElement().getChild("runs").getChildren("run").size())
 
 			<p>
-			Page tested with $browser version $browserVersion on $platform with $runs runs. 
+			Page tested with $browser version $browserVersion on $platform with $runs runs.
 			#if ($spdy)
 			Using SPDY: $spdy
 			#end
@@ -496,17 +496,17 @@
 							<th>median</th>
 							<th>max</th>
 					    </tr>
-					</thead>	
+					</thead>
 					<tbody>
 					#foreach ($statistic in $document2.getRootElement().getChild("statistics").getChildren("statistic"))
 					<tr>
 					<td><div class="nobreak-page">$statistic.getChild("name").getValue()</div></td>
-					<td>$statistic.getChild("min").getValue()</td>
-					<td>$statistic.getChild("median").getValue()</td>
-					<td>$statistic.getChild("max").getValue()</td> 
+					<td>$math.roundTo(1,$statistic.getChild("min").getValue())</td>
+					<td>$math.roundTo(1,$statistic.getChild("median").getValue())</td>
+					<td>$math.roundTo(1,$statistic.getChild("max").getValue())</td>
 					</tr>
 					#end
-					
+
 					</tbody>
 				</table>
 				</div>
@@ -530,7 +530,7 @@
     $('.container').tooltip({
       selector: "a[rel=tooltip]"
     })
-}) 
+})
 </script>
 
 </body>
