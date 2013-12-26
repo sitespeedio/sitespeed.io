@@ -243,7 +243,7 @@ for i in * ; do
     fi
     local error_log="$abs_analyze_dir/data/error.log"
     if [[ -e $error_log ]]; then
-      cat $error_log >> $HOME/$REPORT_BASE_DIR/$NOW/error.log
+      cat $error_log >> $REPORT_BASE_DIR/$NOW/error.log
     fi
     cd ../../
   fi
