@@ -390,6 +390,11 @@ if [ -z "$MY_IP" ]
 then
   MY_IP='unknown'
 fi
+## Ugly quick fix when the API is down
+if [[ "$MY_IP" == *html* ]]
+ then
+    MY_IP='unknown'
+fi
 
 ## Run included or local BT version
 if hash browsertime 2>/dev/null; then
