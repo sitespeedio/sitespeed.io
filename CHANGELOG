@@ -10,6 +10,11 @@ version 2.4-wip
 * Added short description on each rule on the summary page (hover to see it) #161
 * Bug fix: the rule "Avoid DNS lookups when a page has few requests" was broken, couldn't tell if JS was loaded async or not #328
 
+
+version 2.3.1
+------------------------
+* Bug fix: Fixed bug When api.exip.org is down (sitespeed stops to work)
+
 version 2.3
 ------------------------
 * Put the JUnit files into a dir named /junit/ when running the sitespeed.io-junit script. WARNING: this means you need to change in Jenkins where you match the files.
