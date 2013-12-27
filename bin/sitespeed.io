@@ -769,7 +769,7 @@ function analyze() {
       ## do the same thing again but setting console to log the error to output
       log_error "Could not analyze $url unrecoverable error when parsing the page"
       log_error "Input parameters: $INPUT"
-      phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url" -c 2  >> $REPORT_DATA_DIR/$ERROR_LOG
+      phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url" -c 2  2>> $REPORT_DATA_DIR/phantomjs.error.log >> $REPORT_DATA_DIR/$ERROR_LOG
 
       ## write the error url to the list
       echo "sitespeed.io got an unrecoverable error when parsing the page,$url" >> $REPORT_DATA_DIR/errorurls.txt
