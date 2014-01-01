@@ -535,7 +535,7 @@ do
       ## If collecting the metrics went ok, then use it!
       if [ -e "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" ]
         then
-        EXTRA=,"$REPORT_DATA_METRICS_DIR/$pagefilename.xml"
+        BROWSER_TIME_XML="$REPORT_DATA_METRICS_DIR/$pagefilename.xml"
       fi
     fi
 
@@ -543,7 +543,7 @@ do
     "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -cp $DEPENDENCIES_DIR/$VELOCITY_JAR com.soulgalore.velocity.RemoveInvalidXMLChars $REPORT_DATA_PAGES_DIR/$pagefilename.xml $REPORT_DATA_PAGES_DIR/$pagefilename.xml.tmp
     mv $REPORT_DATA_PAGES_DIR/$pagefilename.xml.tmp $REPORT_DATA_PAGES_DIR/$pagefilename.xml
 
-    "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$SCREENSHOT" "$SHOW_ERROR_URLS" "$VELOCITY_TEMPLATES_HOME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml$EXTRA $VELOCITY_DIR/page.vm $PROPERTIES_DIR/page.properties $REPORT_PAGES_DIR/$pagefilename.html || exit 1
+    "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$SCREENSHOT" "$SHOW_ERROR_URLS" "$VELOCITY_TEMPLATES_HOME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml $VELOCITY_DIR/page.vm $PROPERTIES_DIR/page.properties $REPORT_PAGES_DIR/$pagefilename.html $BROWSER_TIME_XML || exit 1
     "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_PAGES_DIR/$pagefilename.html $REPORT_PAGES_DIR/$pagefilename.html
   fi
 done
