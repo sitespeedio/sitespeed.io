@@ -288,8 +288,8 @@ if [ "$SUMMARY_BOXES" != "" ]
     if $COLLECT_BROWSER_TIMINGS
       then
       SUMMARY_BOXES="$SUMMARY_BOXES",serverResponseTime,backEndTime,pageDownloadTime,frontEndTime,domContentLoadedTime,pageLoadTime
-      ## Extra: If we use chrome, always add the firstpaint
-        if [[ "$BROWSER_TIME_PARAMS " == *chrome* ]]
+      ## Extra: If we use chrome or IE , always add the firstpaint
+        if [[ "$BROWSER_TIME_PARAMS " == *chrome* ]] ||  [[ "$BROWSER_TIME_PARAMS " == *ie* ]]
           then
           SUMMARY_BOXES="$SUMMARY_BOXES",firstPaintTime
         fi
