@@ -361,18 +361,18 @@ DATE=$(date)
 if [[ -z $FILE ]]
   then
   echo "Will crawl from start point $URL with User-Agent $USER_AGENT and viewport $VIEWPORT with crawl depth $DEPTH using ruleset $RULESET ... this can take a while"
+  # remove the protocol
+  local noprotocol=${URL#*//}
+  HOST=${noprotocol%%/*}
+  BASE_DIR=$HOST
 else
  echo "Will fetch urls from the file $FILE with User-Agent $USER_AGENT and viewport $VIEWPORT using ruleset $RULESET ... this can take a while"
+ BASE_DIR=$(basename "$FILE")
 fi
-
-# remove the protocol
-local noprotocol=${URL#*//}
-HOST=${noprotocol%%/*}
-
 
 # Setup dirs
 DEPENDENCIES_DIR="$SITESPEED_HOME/dependencies"
-REPORT_DIR_NAME=$HOST/$now
+REPORT_DIR_NAME=$BASE_DIR/$now
 REPORT_DIR=$REPORT_BASE_DIR/$REPORT_DIR_NAME
 REPORT_DATA_DIR=$REPORT_DIR/data
 REPORT_DATA_HAR_DIR=$REPORT_DATA_DIR/har
