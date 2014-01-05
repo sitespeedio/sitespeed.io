@@ -248,6 +248,7 @@ $nameAndDescription.put("frontEndTime","The time it takes for the browser to par
 
 #foreach ($measurement in $document.getRootElement().getChild("metrics").getChild("timingSession").getChild("runs").getChild("run").getChild("measurements").getChildren("measurement"))
     #set ($name =$measurement.getAttributeValue("name"))
+    #set ($browser = "$browser.substring(0,1).toUpperCase()$browser.substring(1)")
     #set ($desc = "$name $browser")
     #set($statsMeasurement = $stats.newInstance($measurement.getAttributeValue("name"),$desc,$nameAndDescription.get($measurement.getAttributeValue("name")),"","ms",1))
     #set($hide = $allStats.add($statsMeasurement))
