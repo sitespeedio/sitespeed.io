@@ -237,11 +237,19 @@ $nameAndDescription.put("redirectionTime","Time spent on redirects. Definition: 
 $nameAndDescription.put("backEndTime","The time it takes for the network and the server to generate and start setnding the HTML. Definition: responseStart - navigationStart")
 $nameAndDescription.put("frontEndTime","The time it takes for the browser to parse and create the page. Definition: loadEventStart - responseEnd")
 
+#foreach ($pageData in $document.getRootElement().getChild("metrics").getChild("timingSession").getChild("pageData").getChildren())
+            #if ($pageData.getChild("key").getValue()=="browserName")
+                #set ($browser= $pageData.getChild("value").getValue())
+            #end
+ #end
+
 ## first setup all the statobjects
 #set($nameAndMesurementsStats = $map.clone())
 
 #foreach ($measurement in $document.getRootElement().getChild("metrics").getChild("timingSession").getChild("runs").getChild("run").getChild("measurements").getChildren("measurement"))
-    #set($statsMeasurement = $stats.newInstance($measurement.getAttributeValue("name"),$measurement.getAttributeValue("name"),$nameAndDescription.get($measurement.getAttributeValue("name")),"","ms",1))
+    #set ($name =$measurement.getAttributeValue("name"))
+    #set ($desc = "$name $browser")
+    #set($statsMeasurement = $stats.newInstance($measurement.getAttributeValue("name"),$desc,$nameAndDescription.get($measurement.getAttributeValue("name")),"","ms",1))
     #set($hide = $allStats.add($statsMeasurement))
     $nameAndMesurementsStats.put($measurement.getAttributeValue("name"), $statsMeasurement)
 #end
