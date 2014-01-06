@@ -12,7 +12,7 @@ version 2.4-wip
 * Sitespeed.io works (again) on Windows, this time also when fetching Navigation Timing metrics
 * Show which browser that is used on the summary page when collecting timing metrics
 * Bug fix: the rule "Avoid DNS lookups when a page has few requests" was broken, couldn't tell if JS was loaded async or not #328
-
+* Bug fix: Running the JUnit test when you fetched URL:s from a file was broken
 
 version 2.3.1
 ------------------------
