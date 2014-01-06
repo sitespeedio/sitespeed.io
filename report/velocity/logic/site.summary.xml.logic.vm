@@ -1,5 +1,5 @@
+#parse("report/velocity/macros/util.macros.vm")
 ## Setting up the data needed in the site.summary.xml.vm
-
 #set($nrOfPages = $document.getRootElement().getChildren("results").size())
 
 ## Get the total objects
@@ -248,10 +248,7 @@ $nameAndDescription.put("frontEndTime","The time it takes for the browser to par
 
 #foreach ($measurement in $document.getRootElement().getChild("metrics").getChild("timingSession").getChild("runs").getChild("run").getChild("measurements").getChildren("measurement"))
     #set ($name =$measurement.getAttributeValue("name"))
-    #set ($browser = "$browser.substring(0,1).toUpperCase()$browser.substring(1)")
-    #if ($browser.equals("Internet explorer"))
-        #set ($browser="IE")
-     #end
+    #set( $browser = "#getBrowserName( $browser )" )
     #set ($desc = "$name $browser")
     #set($statsMeasurement = $stats.newInstance($measurement.getAttributeValue("name"),$desc,$nameAndDescription.get($measurement.getAttributeValue("name")),"","ms",1))
     #set($hide = $allStats.add($statsMeasurement))

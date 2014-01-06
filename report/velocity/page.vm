@@ -1,6 +1,8 @@
 #parse("report/velocity/inc/header.vm")
 #parse("report/velocity/macros/date.macros.vm")
+#parse("report/velocity/macros/util.macros.vm")
 #parse("report/velocity/logic/page.logic.vm")
+
 
 <div class="row">
 	<div class="col-lg-12">
@@ -26,7 +28,7 @@
       			-->
       				<a href="#" class="list-group-item active">Quick links</a>
       				<a href="#score" class="list-group-item">Scores below 100</a>
-      				<a href="#assets" class="list-group-item">Page assets</a>
+      				<a hrefmacros.="#assets" class="list-group-item">Page assets</a>
       				<a href="#summary" class="list-group-item">Page summary</a>
       				#if($!{document2})
       				<a href="#metrics" class="list-group-item">Page metrics</a>
@@ -482,7 +484,7 @@
 			#set ($runs = $document2.getRootElement().getChild("runs").getChildren("run").size())
 
 			<p>
-			Page tested with $browser version $browserVersion on $platform with $runs runs.
+			Page tested with #getBrowserName($browser) version $browserVersion on $platform with $runs run#plural($runs).
 			#if ($spdy)
 			Using SPDY: $spdy
 			#end

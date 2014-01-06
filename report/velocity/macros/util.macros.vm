@@ -14,6 +14,13 @@ info#end#end
 
 ##Add an s if plural
 #macro ( plural $number)
-#if ($number>1)s#end#end 
+#if ($number>1)s#end#end
 
-
+##Get Browser name
+#macro (getBrowserName $name)
+#set ($browser = "$name.substring(0,1).toUpperCase()$name.substring(1)")##
+#if ($browser.equals("Internet explorer"))##
+#set ($browser="IE")##
+#end##
+$browser##
+#end##
