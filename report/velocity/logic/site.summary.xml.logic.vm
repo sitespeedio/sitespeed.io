@@ -234,7 +234,7 @@ $nameAndDescription.put("serverResponseTime","How long time does it take until t
 $nameAndDescription.put("domContentLoadedTime","The time the browser takes to parse the document and execute deferred and parser-inserted scripts including the network time from the user's location to your server. Definition: domContentLoadedEventStart - navigationStart")
 $nameAndDescription.put("domInteractiveTime","The time the browser takes to parse the document, including the network time from the user's location to your server. Definition: domInteractive - navigationStart")
 $nameAndDescription.put("redirectionTime","Time spent on redirects. Definition: fetchStart - navigationStart")
-$nameAndDescription.put("backEndTime","The time it takes for the network and the server to generate and start setnding the HTML. Definition: responseStart - navigationStart")
+$nameAndDescription.put("backEndTime","The time it takes for the network and the server to generate and start sending the HTML. Definition: responseStart - navigationStart")
 $nameAndDescription.put("frontEndTime","The time it takes for the browser to parse and create the page. Definition: loadEventStart - responseEnd")
 
 #foreach ($pageData in $document.getRootElement().getChild("metrics").getChild("timingSession").getChild("pageData").getChildren())
