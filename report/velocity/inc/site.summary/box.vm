@@ -9,10 +9,10 @@ Missing data for box $boxName
 #if ($metricsElement.getChild($boxName).getAttributeValue("type")=="cachetime")
 	#set($green = $header.getDays($math.toInteger($rule.greenLimit)).days)
 	#set($yellow= $header.getDays($math.toInteger($rule.yellowLimit)).days)
-	#set($text = "<p>$description</p> <p>To get Green you need to have $rule.type.friendlyName $green days. For Yellow $yellow days and $rule.type.opposite.friendlyName $yellow days to get Red.</p>")
+	#set($text = "<p>$description</p> <p>To get green you need to have $rule.type.friendlyName $green days. For yellow $yellow days and $rule.type.opposite.friendlyName $yellow days to get red.</p>")
 #else
 #set($description = $metricsElement.getChild($boxName).getAttributeValue("desc"))
-	#set($text = "<p>$description</p>  <p>To get Green you need to have $rule.type.friendlyName $rule.greenLimit. For Yellow $rule.yellowLimit and $rule.type.opposite.friendlyName $rule.yellowLimit to get Red.</p>")
+	#set($text = "<p>$description</p>  <p>To get green you need to have $rule.type.friendlyName $rule.greenLimit. For yellow $rule.yellowLimit and $rule.type.opposite.friendlyName $rule.yellowLimit to get red.</p>")
 #end
 #else
 #set($text = "No rules are setup for this metric")
