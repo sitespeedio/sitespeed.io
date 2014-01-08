@@ -60,7 +60,7 @@ build:
 	@cp $(DEP)/yslow-3.1.5-sitespeed.js $(BUILD)/$(DEP)/
 	@cp $(DEP)/rules-desktop.properties $(BUILD)/$(DEP)/
 	@cp $(DEP)/rules-mobile.properties $(BUILD)/$(DEP)/
-	@cp $(DEP)/browsertime-0.5-SNAPSHOT-full.jar $(BUILD)/$(DEP)/
+	@cp $(DEP)/browsertime-0.5-full.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/timing-limits-default.xml $(BUILD)/$(DEP)/
 	@cp $(REPORT)/$(CSS)/bootstrap.min.css $(BUILD)/$(REPORT)/$(CSS)/
 	@cp $(REPORT)/$(CSS)/bootstrap-overrides.css $(BUILD)/$(REPORT)/$(CSS)/

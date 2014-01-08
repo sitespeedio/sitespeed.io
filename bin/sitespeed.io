@@ -113,7 +113,7 @@ NEXUS_VIEWPORT="348x519"
 CRAWLER_JAR=crawler-1.5.7-full.jar
 VELOCITY_JAR=xml-velocity-1.8.7-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
-BROWSERTIME_JAR=browsertime-0.5-SNAPSHOT-full.jar
+BROWSERTIME_JAR=browsertime-0.5-full.jar
 
 # Store the input to be able to log exactly how/what was done
 INPUT="$@"
