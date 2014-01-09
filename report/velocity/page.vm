@@ -463,12 +463,23 @@
 
 			</div>
 		</div>
+
+		## Ugly hack for many browsers
+		#set($pageMetrics = [$document2, $document3, $document4, $document5, $document6])
+
 		#if($!{document2})
 		<div class="row">
 			<div class="col-lg-12">
 			<h3 id="metrics">Metrics</h3>
+			</div>
+		</div>
+		#end
 
-			#foreach ($pageData in $document2.getRootElement().getChild("pageData").getChildren())
+		#foreach ($browserMetric in $pageMetrics)
+		#if($!{browserMetric})
+		<div class="row">
+			<div class="col-lg-12">
+			#foreach ($pageData in $browserMetric.getRootElement().getChild("pageData").getChildren())
 
 			#if ($pageData.getChild("key").getValue()=="browserName")
 				#set ($browser= $pageData.getChild("value").getValue())
@@ -481,7 +492,7 @@
 			#end
 			#end
 
-			#set ($runs = $document2.getRootElement().getChild("runs").getChildren("run").size())
+			#set ($runs = $browserMetric.getRootElement().getChild("runs").getChildren("run").size())
 
 			<p>
 			Page tested with #getBrowserName($browser) version $browserVersion on $platform with $runs run#plural($runs).
@@ -500,7 +511,7 @@
 					    </tr>
 					</thead>
 					<tbody>
-					#foreach ($statistic in $document2.getRootElement().getChild("statistics").getChildren("statistic"))
+					#foreach ($statistic in $browserMetric.getRootElement().getChild("statistics").getChildren("statistic"))
 					<tr>
 					<td><div class="nobreak-page">$statistic.getChild("name").getValue()</div></td>
 					<td>$math.roundTo(1,$statistic.getChild("min").getValue())</td>
@@ -514,6 +525,7 @@
 				</div>
 			</div>
 		</div>
+		#end
 		#end
 
 		#parse("report/velocity/inc/footer.vm")

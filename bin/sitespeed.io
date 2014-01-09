@@ -93,10 +93,10 @@ HAS_ERROR_URLS=false
 MAX_FILENAME_LENGTH=245
 ## Take screenshot of every page, default is false
 SCREENSHOT=false
-## By default browser timings isn't collected
-COLLECT_BROWSER_TIMINGS=false
+## The browser to use. A comma separated list of browsers
+BROWSERS=
 ## The default setup: Use firefox & do it three times per URL
-BROWSER_TIME_PARAMS="-b firefox -n 3"
+BROWSER_TIME_PARAMS="-n 3"
 ## Error log
 ERROR_LOG=error.log
 ## Easy way to set your user agent as an Iphone
@@ -111,9 +111,11 @@ NEXUS_VIEWPORT="348x519"
 
 # Jar files, specify the versions
 CRAWLER_JAR=crawler-1.5.7-full.jar
-VELOCITY_JAR=xml-velocity-1.8.7-full.jar
+VELOCITY_JAR=xml-velocity-1.8.8-SNAPSHOT-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 BROWSERTIME_JAR=browsertime-0.5-full.jar
+
+COLLECT_BROWSER_TIMINGS=false
 
 # Store the input to be able to log exactly how/what was done
 INPUT="$@"
@@ -195,7 +197,7 @@ do
          b)SUMMARY_BOXES=$OPTARG;;
          j)MAX_PAGES=$OPTARG;;
          k)SCREENSHOT=$OPTARG;;
-         c)COLLECT_BROWSER_TIMINGS=$OPTARG;;
+         c)BROWSERS=$OPTARG;;
          V)
              echo $SITESPEED_VERSION
              exit  0
@@ -232,6 +234,11 @@ if [ "$URL" != "" ] && [ "$FILE" != "" ]
   exit 1
 fi
 
+if [ "$BROWSERS" != "" ]
+  then
+  COLLECT_BROWSER_TIMINGS=true
+  BROWSERS_ARRAY=(${BROWSERS//,/ })
+fi
 if [ "$FOLLOW_PATH" != "" ]
 then
     FOLLOW_PATH="-p $FOLLOW_PATH"
@@ -289,7 +296,7 @@ if [ "$SUMMARY_BOXES" != "" ]
       then
       SUMMARY_BOXES="$SUMMARY_BOXES",serverResponseTime,backEndTime,pageDownloadTime,frontEndTime,domContentLoadedTime,pageLoadTime
       ## Extra: If we use chrome or IE , always add the firstpaint
-        if [[ "$BROWSER_TIME_PARAMS " == *chrome* ]] ||  [[ "$BROWSER_TIME_PARAMS " == *ie* ]]
+        if [[ "$BROWSERS " == *chrome* ]] ||  [[ "$BROWSERS " == *ie* ]]
           then
           SUMMARY_BOXES="$SUMMARY_BOXES",firstPaintTime
         fi
@@ -380,6 +387,7 @@ REPORT_PAGES_DIR=$REPORT_DIR/pages
 REPORT_DATA_PAGES_DIR=$REPORT_DATA_DIR/pages
 REPORT_IMAGE_PAGES_DIR=$REPORT_DIR/screenshots
 REPORT_DATA_METRICS_DIR=$REPORT_DATA_DIR/metrics
+
 VELOCITY_DIR="$SITESPEED_HOME"/report/velocity
 PROPERTIES_DIR="$SITESPEED_HOME"/report/properties
 
@@ -389,6 +397,17 @@ mkdir $REPORT_PAGES_DIR || exit 1
 mkdir $REPORT_DATA_PAGES_DIR || exit 1
 mkdir $REPORT_DATA_HAR_DIR || exit 1
 mkdir $REPORT_DATA_METRICS_DIR || exit 1
+
+REPORT_DATA_METRICS_ARRAY=()
+## Create directory per browser
+if [ ${#BROWSERS_ARRAY[@]}  -ge 0 ]
+  then
+  for i in "${!BROWSERS_ARRAY[@]}"
+  do
+    REPORT_DATA_METRICS_ARRAY=("${REPORT_DATA_METRICS_ARRAY[@]}" $REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]})
+    mkdir $REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]} || exit 1
+  done
+fi
 
 MY_IP=$(curl -L -s  http://api.exip.org/?call=ip)
 if [ -z "$MY_IP" ]
@@ -533,10 +552,13 @@ do
     if $COLLECT_BROWSER_TIMINGS
     then
       ## If collecting the metrics went ok, then use it!
-      if [ -e "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" ]
-        then
-        BROWSER_TIME_XML="$REPORT_DATA_METRICS_DIR/$pagefilename.xml"
-      fi
+      for i in "${!REPORT_DATA_METRICS_ARRAY[@]}"
+         do
+            if [ -e "${REPORT_DATA_METRICS_ARRAY[i]}/$pagefilename.xml" ]
+            then
+              BROWSER_TIME_XML="$BROWSER_TIME_XML ${REPORT_DATA_METRICS_ARRAY[i]}/$pagefilename.xml "
+            fi
+          done
     fi
 
     ## Ok, Google Analytics sometimes uses characters that are invalid in XML, so lets strip the XML file first
@@ -569,12 +591,17 @@ if $COLLECT_BROWSER_TIMINGS
       local pagefilename=$(get_filename $url $runs)
 
     ## Sometimes Selenium/BrowserTime is a little unstable and no file is produced, then skip adding it
-    if [ -e "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" ];
-    then
-      sed 's/<?xml version="1.0" encoding="UTF-8" standalone="yes"?>//g' "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" > "$REPORT_DATA_METRICS_DIR/tmp.xml" || exit 1
-      cat "$REPORT_DATA_METRICS_DIR/tmp.xml" >> "$REPORT_DATA_DIR/result.xml"
-      rm  "$REPORT_DATA_METRICS_DIR/tmp.xml"
+    ## TODO need to add browser directory
+
+  for i in "${!REPORT_DATA_METRICS_ARRAY[@]}"
+    do
+      if [ -e "${REPORT_DATA_METRICS_ARRAY[i]}/$pagefilename.xml" ]
+         then
+        sed 's/<?xml version="1.0" encoding="UTF-8" standalone="yes"?>//g' "${REPORT_DATA_METRICS_ARRAY[i]}/$pagefilename.xml" > "$REPORT_DATA_METRICS_DIR/tmp.xml" || exit 1
+        cat "$REPORT_DATA_METRICS_DIR/tmp.xml" >> "$REPORT_DATA_DIR/result.xml"
+        rm  "$REPORT_DATA_METRICS_DIR/tmp.xml"
     fi
+  done
 
   done
   echo '</metrics>' >> "$REPORT_DATA_DIR/result.xml"
@@ -717,7 +744,8 @@ cat << EOF
 usage: $0 options
 
 Sitespeed.io is a tool that helps you analyze your website performance and show you what you should optimize, more info at http://www.sitespeed.io.
-Example: $0 -u http://www.sitespeed.io
+To collect Browser Timings in Chrome & IE you need to install the ChromeDriver and the Internet Explorer Driver (Windows only)
+Example: $0 -u http://www.sitespeed.io -c chrome,firefox
 
 OPTIONS:
    -h      Help
@@ -741,7 +769,7 @@ OPTIONS:
    -b      The boxes showed on site summary page, see http://www.sitespeed.io/documentation/#config-boxes for more info [optional]
    -j      The max number of pages to test [optional]
    -k      Take screenshots for each page (using the configured view port). Default is false. (true|false) [optional]
-   -c      Collect BrowserTimings data (meaning open a real browser & fetch timings). Default is false. (true|false) [optional]
+   -c      Choose which browser to use to collect timing data. You can set multiple browsers in a comma sepratated list (firefox|chrome|ie) [optional]
    -z      String sent to BrowserTime, so you can choose browser and tries. Default is "-b firefox -n 3".
    -V      Show the version of sitespeed.io
 EOF
@@ -810,30 +838,33 @@ function collect_browser_time {
 
 if $COLLECT_BROWSER_TIMINGS
 then
+for i in "${!BROWSERS_ARRAY[@]}"
+do
   local runs=0
   for url in "${URLS[@]}"
   do
     local pagefilename=$(get_filename $url $runs)
-    echo "Collecting Browser Time metrics: $url"
+    echo "Collecting Browser Time metrics (${BROWSERS_ARRAY[i]}): $url"
 
     ## Fix when shuffling the parameters from Java (Jenkins), then the " will be passed and needs to be removed
     BROWSER_TIME_PARAMS=${BROWSER_TIME_PARAMS//[\"]/}
 
-    $BROWSERTIME --compact --raw $BROWSER_TIME_PARAMS -o "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url"
+    $BROWSERTIME --compact --raw -b ${BROWSERS_ARRAY[i]} $BROWSER_TIME_PARAMS -o "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url"
 
      ## If BrowserTime fails, an empty file is created, so remove it
-    local btSize=$(du -k "$REPORT_DATA_METRICS_DIR/$pagefilename.xml" | cut -f1)
+    local btSize=$(du -k "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml" | cut -f1)
     if [ $btSize -lt 4 ]
     then
       log_error "BrowserTime could not collect data for $url $btSize"
       log_error "Input parameters: $INPUT"
-      rm  "$REPORT_DATA_METRICS_DIR/$pagefilename.xml"
+      rm  "$REPORT_DATA_METRICS_DIR/${array[i]}/$pagefilename.xml"
     fi
     local runs=$[$runs+1]
     if [ $(($runs%20)) == 0 ]; then
       echo "Collected timings for  $runs pages out of ${#URLS[@]}"
     fi
   done
+done
 fi
 
 }

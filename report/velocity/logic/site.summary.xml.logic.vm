@@ -237,7 +237,10 @@ $nameAndDescription.put("redirectionTime","Time spent on redirects. Definition: 
 $nameAndDescription.put("backEndTime","The time it takes for the network and the server to generate and start sending the HTML. Definition: responseStart - navigationStart")
 $nameAndDescription.put("frontEndTime","The time it takes for the browser to parse and create the page. Definition: loadEventStart - responseEnd")
 
-#foreach ($pageData in $document.getRootElement().getChild("metrics").getChild("timingSession").getChild("pageData").getChildren())
+## Foreach browser, add the data!
+#foreach ($timingSession in $document.getRootElement().getChild("metrics").getChildren("timingSession"))
+
+#foreach ($pageData in $timingSession.getChild("pageData").getChildren())
             #if ($pageData.getChild("key").getValue()=="browserName")
                 #set ($browser= $pageData.getChild("value").getValue())
             #end
@@ -246,25 +249,32 @@ $nameAndDescription.put("frontEndTime","The time it takes for the browser to par
 ## first setup all the statobjects
 #set($nameAndMesurementsStats = $map.clone())
 
-#foreach ($measurement in $document.getRootElement().getChild("metrics").getChild("timingSession").getChild("runs").getChild("run").getChild("measurements").getChildren("measurement"))
+#foreach ($measurement in $timingSession.getChild("runs").getChild("run").getChild("measurements").getChildren("measurement"))
     #set ($name =$measurement.getAttributeValue("name"))
     #set( $browser = "#getBrowserName( $browser )" )
-    #set ($desc = "$name $browser")
-    #set($statsMeasurement = $stats.newInstance($measurement.getAttributeValue("name"),$desc,$nameAndDescription.get($measurement.getAttributeValue("name")),"","ms",1))
+    #set ($descBrowser = "$name $browser")
+    #set ($statsNameBrowser = "$name$browser")
+    #set($statsMeasurement = $stats.newInstance($measurement.getAttributeValue("name"),$name,$nameAndDescription.get($measurement.getAttributeValue("name")),"","ms",1))
+    #set($statsBrowserMeasurement = $stats.newInstance($statsNameBrowser,$descBrowser,$nameAndDescription.get($measurement.getAttributeValue("name")),"","ms",1))
     #set($hide = $allStats.add($statsMeasurement))
+    #set($hide = $allStats.add($statsBrowserMeasurement))
     $nameAndMesurementsStats.put($measurement.getAttributeValue("name"), $statsMeasurement)
+    $nameAndMesurementsStats.put($statsNameBrowser, $statsBrowserMeasurement)
 #end
-
-#set($timingSession = $document.getRootElement().getChild("metrics").getChild("timingSession"))
 
     #foreach ($run in $timingSession.getChild("runs").getChildren("run"))
 
         #foreach ($measurement in $run.getChild("measurements").getChildren("measurement"))
-
+        #set ($name =$measurement.getAttributeValue("name"))
+        #set ($statsNameBrowser = "$name$browser")
         #set($stats= $nameAndMesurementsStats.get($measurement.getAttributeValue("name")))
         $stats.addValue($math.toDouble($measurement.getAttributeValue("duration")))
+        #set($statsBrowser= $nameAndMesurementsStats.get($statsNameBrowser))
+        $statsBrowser.addValue($math.toDouble($measurement.getAttributeValue("duration")))
         #end
     #end
+#end
+
 #end
 
 
