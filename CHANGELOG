@@ -1,5 +1,8 @@
 CHANGELOG sitespeed.io
 
+version 2.5-wip
+------------------------
+
 version 2.4
 ------------------------
 * If Chrome or IE is used, display firstPaintTime in the summary as default #307
