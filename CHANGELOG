@@ -1,6 +1,6 @@
 CHANGELOG sitespeed.io
 
-version 2.4.1 (not released yet)
+version 2.4.1
 ------------------------
 * Put the HAR file in the HAR directory instead of sitespeed home dir (fixes #343), now it will work in Jenkins for Ubuntu
 
