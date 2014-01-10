@@ -12,7 +12,7 @@ before_script:
 - python -m SimpleHTTPServer 8009 &
 - sleep 10
 - "./build/bin/sitespeed.io-sites -i test/sitespeed-sites.txt"
-- "./build/bin/sitespeed.io -u http://localhost:8009/test/server/www/ -o csv -k true -c true"
+- "./build/bin/sitespeed.io -u http://localhost:8009/test/server/www/ -o csv -k true -c firefox"
 - "./build/bin/sitespeed.io-junit -o build"
 
 script: ./test/test.sh
