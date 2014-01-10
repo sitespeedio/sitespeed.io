@@ -1,5 +1,9 @@
 CHANGELOG sitespeed.io
 
+version 2.4.1 (not released yet)
+------------------------
+* Put the HAR file in the HAR directory instead of sitespeed home dir (fixes #343), now it will work in Jenkins for Ubuntu
+
 version 2.4
 ------------------------
 * If Chrome or IE is used, display firstPaintTime in the summary as default #307
