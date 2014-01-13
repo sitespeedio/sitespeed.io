@@ -544,14 +544,14 @@ local runs=0
 for url in "${URLS[@]}"
 do
   local pagefilename=$(get_filename $url $runs)
-
+  local BROWSER_TIME_XML=""
   ## If something went wrong, the file has been removed, don't parse it
   if [ -e "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" ]
     then
     EXTRA=
     if $COLLECT_BROWSER_TIMINGS
     then
-      ## If collecting the metrics went ok, then use it!
+      ## If collecting the metrics went ok, then use it
       for i in "${!REPORT_DATA_METRICS_ARRAY[@]}"
          do
             if [ -e "${REPORT_DATA_METRICS_ARRAY[i]}/$pagefilename.xml" ]
@@ -564,7 +564,7 @@ do
     ## Ok, Google Analytics sometimes uses characters that are invalid in XML, so lets strip the XML file first
     "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -cp $DEPENDENCIES_DIR/$VELOCITY_JAR com.soulgalore.velocity.RemoveInvalidXMLChars $REPORT_DATA_PAGES_DIR/$pagefilename.xml $REPORT_DATA_PAGES_DIR/$pagefilename.xml.tmp
     mv $REPORT_DATA_PAGES_DIR/$pagefilename.xml.tmp $REPORT_DATA_PAGES_DIR/$pagefilename.xml
-
+    echo $BROWSER_TIME_XML
     "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$SCREENSHOT" "$SHOW_ERROR_URLS" "$VELOCITY_TEMPLATES_HOME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml $VELOCITY_DIR/page.vm $PROPERTIES_DIR/page.properties $REPORT_PAGES_DIR/$pagefilename.html $BROWSER_TIME_XML || exit 1
     "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_PAGES_DIR/$pagefilename.html $REPORT_PAGES_DIR/$pagefilename.html
   fi
