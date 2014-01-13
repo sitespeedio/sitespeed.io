@@ -13,18 +13,23 @@ $ sitespeed.io -h
 ```
 Run on Linux or Windows
 =============
-There are a few more steps to get it to work on Linux and Windows, checkout the [documentation](http://www.sitespeed.io/documentation/#installation) on the documentation portal.
+Follow these [instructions](http://www.sitespeed.io/documentation/#install-linux) to run on Linux and [these](http://www.sitespeed.io/documentation/#install-windows) for Windows.
 
-What will you get?
+Functionality
 =============
-Sitespeed.io will collect the latest ...
- * Site summary page
- * Detailed site summary page
- * Detailed site report
- * Full page analysis (per page)
- * Most used assets report
- * Screenshots
+Here's a list of the main features, for a full list checkout the [documentation](http://www.sitespeed.io):
+ * Crawl your site or feed sitespeed with a list of URL:s
+ * Analyze the pages against the latest web best practice rule
+ * Fetch Navigation Timing & User Timing metrics using Chrome, Firefox and/or Internet Explorer
+ * See the result on a high summary level for all the pages and individual results on a page level
+ * Analyze and compare multiple sites (use it to compare your site with competitors)
+ * Output JUnit XML of both web best practices & timing metrics 
+ * Get screenshots of your site at a specific viewport
+ * See the most used assets for all analyzed pages
 
+Example
+=============
+And here's a couple of examples on how the result pages looks like:
 ![The site summary page](https://raw.github.com/sitespeedio/sitespeed.io/master/doc/summary-2.0.jpg)
 
 
