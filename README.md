@@ -1,7 +1,22 @@
 <a href="http://www.sitespeed.io" target="_blank">Sitespeed.io</a> - how speedy is your website? [![Build Status](https://secure.travis-ci.org/sitespeedio/sitespeed.io.png?branch=master)](http://travis-ci.org/sitespeedio/sitespeed.io)
 =============
 
-Sitespeed.io is an open source tool that helps you analyze and optimize your website speed and performance, based on performance best practices rules and collecting metrics using the Navigation Timing API and User Timings.
+Sitespeed.io is an open source tool that helps you analyze and optimize your website speed and performance, based on performance best practices rules and collecting browser metrics using the Navigation Timing API and User Timings.
+
+You can use it on Mac, Linux & Windows. And collect metrics using Chrome, Firefox and Internet Explorer (Windows only).
+
+Install/run on Mac OS X
+=============
+```bash
+$ brew install sitespeedio/sitespeedio/sitespeed.io
+$ sitespeed.io -h
+```
+Install/run on Linux/Windows
+=============
+Checkout the [documentation](http://www.sitespeed.io/documentation/#installation).
+
+What will you get?
+=============
 Sitespeed.io will create six different result pages:
  * Site summary page
  * Detailed site summary page
@@ -12,12 +27,6 @@ Sitespeed.io will create six different result pages:
 
 ![The site summary page](https://raw.github.com/sitespeedio/sitespeed.io/master/doc/summary-2.0.jpg)
 
-Install/run on Mac OS X
-=============
-```bash
-$ brew install sitespeedio/sitespeedio/sitespeed.io
-$ sitespeed.io -h
-```
 
 See <a href="http://www.sitespeed.io">http://www.sitespeed.io</a> for documentation.  
 
