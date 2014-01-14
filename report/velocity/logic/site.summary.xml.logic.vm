@@ -223,54 +223,69 @@
 #set($isBrowserTime = $document.getRootElement().getChild("metrics"))
 #if($isBrowserTime)
 
+
 ## Setup all descriptions
 #set($nameAndDescription = $map.clone())
-$nameAndDescription.put("firstPaintTime","This is when the first paint happens on the screen, reported by the browser.")
-$nameAndDescription.put("serverConnectionTime","How long time it takes to connect to the server. Definition: connectEnd - connectStart")
-$nameAndDescription.put("domainLookupTime","The time it takes to do the DNS lookup. Definition: domainLookupEnd - domainLookupStart")
-$nameAndDescription.put("pageLoadTime","The time it takes for page to load, from initiation of the pageview (e.g., click on a page link) to load completion in the browser. Important: this is only relevant to some pages, depending on how you page is built. Definition: loadEventStart - navigationStart")
-$nameAndDescription.put("pageDownloadTime","How long time does it take to download the page (the HTML). Definition: responseEnd - responseStart")
-$nameAndDescription.put("serverResponseTime","How long time does it take until the server respond. Definition: responseStart - requestStart")
-$nameAndDescription.put("domContentLoadedTime","The time the browser takes to parse the document and execute deferred and parser-inserted scripts including the network time from the user's location to your server. Definition: domContentLoadedEventStart - navigationStart")
-$nameAndDescription.put("domInteractiveTime","The time the browser takes to parse the document, including the network time from the user's location to your server. Definition: domInteractive - navigationStart")
-$nameAndDescription.put("redirectionTime","Time spent on redirects. Definition: fetchStart - navigationStart")
-$nameAndDescription.put("backEndTime","The time it takes for the network and the server to generate and start sending the HTML. Definition: responseStart - navigationStart")
-$nameAndDescription.put("frontEndTime","The time it takes for the browser to parse and create the page. Definition: loadEventStart - responseEnd")
 
-## Foreach browser, add the data!
-#foreach ($timingSession in $document.getRootElement().getChild("metrics").getChildren("timingSession"))
+#set($hide = $nameAndDescription.put("firstPaintTime","This is when the first paint happens on the screen, reported by the browser."))
+#set($hide = $nameAndDescription.put("serverConnectionTime","How long time it takes to connect to the server. Definition: connectEnd - connectStart"))
+#set($hide = $nameAndDescription.put("domainLookupTime","The time it takes to do the DNS lookup. Definition: domainLookupEnd - domainLookupStart"))
+#set($hide = $nameAndDescription.put("pageLoadTime","The time it takes for page to load, from initiation of the pageview (e.g., click on a page link) to load completion in the browser. Important: this is only relevant to some pages, depending on how you page is built. Definition: loadEventStart - navigationStart"))
+#set($hide = $nameAndDescription.put("pageDownloadTime","How long time does it take to download the page (the HTML). Definition: responseEnd - responseStart"))
+#set($hide = $nameAndDescription.put("serverResponseTime","How long time does it take until the server respond. Definition: responseStart - requestStart"))
+#set($hide = $nameAndDescription.put("domContentLoadedTime","The time the browser takes to parse the document and execute deferred and parser-inserted scripts including the network time from the user's location to your server. Definition: domContentLoadedEventStart - navigationStart"))
+#set($hide = $nameAndDescription.put("domInteractiveTime","The time the browser takes to parse the document, including the network time from the user's location to your server. Definition: domInteractive - navigationStart"))
+#set($hide = $nameAndDescription.put("redirectionTime","Time spent on redirects. Definition: fetchStart - navigationStart"))
+#set($hide = $nameAndDescription.put("backEndTime","The time it takes for the network and the server to generate and start sending the HTML. Definition: responseStart - navigationStart"))
+#set($hide = $nameAndDescription.put("frontEndTime","The time it takes for the browser to parse and create the page. Definition: loadEventStart - responseEnd"))
 
-#foreach ($pageData in $timingSession.getChild("pageData").getChildren())
-            #if ($pageData.getChild("key").getValue()=="browserName")
-                #set ($browser= $pageData.getChild("value").getValue())
-            #end
- #end
 
-## first setup all the statobjects
 #set($nameAndMesurementsStats = $map.clone())
 
-#foreach ($measurement in $timingSession.getChild("runs").getChild("run").getChild("measurements").getChildren("measurement"))
-    #set ($name =$measurement.getAttributeValue("name"))
-    #set( $browser = "#getBrowserName( $browser )" )
-    #set ($descBrowser = "$name $browser")
-    #set ($statsNameBrowser = "$name$browser")
-    #set($statsMeasurement = $stats.newInstance($measurement.getAttributeValue("name"),$name,$nameAndDescription.get($measurement.getAttributeValue("name")),"","ms",1))
-    #set($statsBrowserMeasurement = $stats.newInstance($statsNameBrowser,$descBrowser,$nameAndDescription.get($measurement.getAttributeValue("name")),"","ms",1))
-    #set($hide = $allStats.add($statsMeasurement))
-    #set($hide = $allStats.add($statsBrowserMeasurement))
-    $nameAndMesurementsStats.put($measurement.getAttributeValue("name"), $statsMeasurement)
-    $nameAndMesurementsStats.put($statsNameBrowser, $statsBrowserMeasurement)
-#end
+## Foreach page & browser, add the data!
+#foreach ($timingSession in $document.getRootElement().getChild("metrics").getChildren("timingSession"))
+
+    #foreach ($pageData in $timingSession.getChild("pageData").getChildren())
+        #if ($pageData.getChild("key").getValue()=="browserName")
+            #set ($browser= $pageData.getChild("value").getValue())
+        #end
+    #end
+
+  ## first setup all the statsobjects
+    #foreach ($measurement in $timingSession.getChild("runs").getChild("run").getChild("measurements").getChildren("measurement"))
+        #set ($name =$measurement.getAttributeValue("name"))
+        #set( $browser = "#getBrowserName( $browser )" )
+        #set ($descBrowser = "$name $browser")
+        #set ($statsNameBrowser = "$name$browser")
+        #set($statsMeasurement = $stats.newInstance($name,$name,$nameAndDescription.get($name),"","ms",1))
+        #set($statsBrowserMeasurement = $stats.newInstance($statsNameBrowser,$descBrowser,$nameAndDescription.get($name),"","ms",1))
+        #set($hide = $nameAndMesurementsStats.put($name, $statsMeasurement))
+        #set($hide = $nameAndMesurementsStats.put($statsNameBrowser, $statsBrowserMeasurement))
+    #end
+
+    #end
+
+    ## Collect the real data
+    #foreach ($timingSession in $document.getRootElement().getChild("metrics").getChildren("timingSession"))
+
+    #foreach ($pageData in $timingSession.getChild("pageData").getChildren())
+        #if ($pageData.getChild("key").getValue()=="browserName")
+            #set ($browser= $pageData.getChild("value").getValue())
+            #set( $browser = "#getBrowserName( $browser )" )
+        #end
+    #end
 
     #foreach ($run in $timingSession.getChild("runs").getChildren("run"))
-
         #foreach ($measurement in $run.getChild("measurements").getChildren("measurement"))
-        #set ($name =$measurement.getAttributeValue("name"))
-        #set ($statsNameBrowser = "$name$browser")
-        #set($stats= $nameAndMesurementsStats.get($measurement.getAttributeValue("name")))
-        $stats.addValue($math.toDouble($measurement.getAttributeValue("duration")))
-        #set($statsBrowser= $nameAndMesurementsStats.get($statsNameBrowser))
-        $statsBrowser.addValue($math.toDouble($measurement.getAttributeValue("duration")))
+            #set ($name =$measurement.getAttributeValue("name"))
+            #set ($statsNameBrowser = "$name$browser")
+            #set($stats= $nameAndMesurementsStats.get($name))
+            $stats.addValue($math.toDouble($measurement.getAttributeValue("duration")))
+            #set($statsBrowser= $nameAndMesurementsStats.get($statsNameBrowser))
+            $statsBrowser.addValue($math.toDouble($measurement.getAttributeValue("duration")))
+            ## Will only be added once since the equals ...
+            #set($hide = $allStats.add($statsBrowser))
+            #set($hide = $allStats.add($stats))
         #end
     #end
 #end
