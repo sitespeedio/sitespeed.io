@@ -24,3 +24,12 @@ info#end#end
 #end##
 $browser##
 #end##
+
+##Get OS  name
+#macro (getOsName $name)
+#set ($os = $name.toLowerCase())##
+#if ($os.equals("xp") || $os.equals("windows")  || $os.equals("win8")  || $os.equals("win7"))##
+#set ($os="Windows")##
+#end##
+$os.substring(0,1).toUpperCase()$os.substring(1)##
+#end##

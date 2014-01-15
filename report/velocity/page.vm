@@ -495,7 +495,7 @@
 			#set ($runs = $browserMetric.getRootElement().getChild("runs").getChildren("run").size())
 
 			<p>
-			Page tested with #getBrowserName($browser) version $browserVersion on $platform with $runs run#plural($runs).
+			Page tested with #getBrowserName($browser) version $browserVersion on #getOsName($platform) with $runs run#plural($runs).
 			#if ($spdy)
 			Using SPDY: $spdy
 			#end
