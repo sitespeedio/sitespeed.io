@@ -30,7 +30,7 @@ Here's a list of the main features, for a full list checkout the [documentation]
 Example
 =============
 And here's a couple of examples on how the result pages looks like:
-![The site summary page](https://raw.github.com/sitespeedio/sitespeed.io/master/doc/summary-2.0.jpg)
+TODO add new fresh images
 
 
 See <a href="http://www.sitespeed.io">http://www.sitespeed.io</a> for documentation.  
