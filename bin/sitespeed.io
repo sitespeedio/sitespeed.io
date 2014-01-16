@@ -842,7 +842,7 @@ do
     local pagefilename=$(get_filename $url $runs)
     echo "Collecting Browser Time metrics (${BROWSERS_ARRAY[i]}): $url"
 
-    $BROWSERTIME --compact --raw -b ${BROWSERS_ARRAY[i]} -n $NUMBER_OF_RUNS -o "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url"
+    $BROWSERTIME --compact --raw -b ${BROWSERS_ARRAY[i]} -n $NUMBER_OF_RUNS -o "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url" 2>&1 |tee /dev/tty >>$REPORT_DATA_DIR/error.log || echo "BrowserTime failed to fetch $url, check the error log $REPORT_DATA_DIR/error.log "
 
      ## If BrowserTime fails, an empty file is created, so remove it
     local btSize=$(du -k "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml" | cut -f1)
