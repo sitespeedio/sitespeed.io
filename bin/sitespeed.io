@@ -95,8 +95,8 @@ MAX_FILENAME_LENGTH=245
 SCREENSHOT=false
 ## The browser to use. A comma separated list of browsers
 BROWSERS=
-## The default setup: Use firefox & do it three times per URL
-BROWSER_TIME_PARAMS="-n 3"
+## The default number of runs
+NUMBER_OF_RUNS="3"
 ## Error log
 ERROR_LOG=error.log
 ## Easy way to set your user agent as an Iphone
@@ -185,7 +185,7 @@ do
          n)TEST_NAME=$OPTARG;;
          p)MAX_PROCESSES=$OPTARG;;
          r)REPORT_BASE_DIR=$OPTARG;;
-         z)BROWSER_TIME_PARAMS=$OPTARG;;
+         z)NUMBER_OF_RUNS=$OPTARG;;
          x)PROXY_HOST=$OPTARG;;
          t)PROXY_TYPE=$OPTARG;;
          a)USER_AGENT=$OPTARG;;
@@ -769,7 +769,7 @@ OPTIONS:
    -j      The max number of pages to test [optional]
    -k      Take screenshots for each page (using the configured view port). Default is false. (true|false) [optional]
    -c      Choose which browser to use to collect timing data. You can set multiple browsers in a comma sepratated list (firefox|chrome|ie) [optional]
-   -z      String sent to BrowserTime, so you can choose browser and tries. Default is "-b firefox -n 3".
+   -z      The number of times you should test each URL when fetching timing metrics. Default is three times [optional]
    -V      Show the version of sitespeed.io
 EOF
 }
@@ -842,10 +842,7 @@ do
     local pagefilename=$(get_filename $url $runs)
     echo "Collecting Browser Time metrics (${BROWSERS_ARRAY[i]}): $url"
 
-    ## Fix when shuffling the parameters from Java (Jenkins), then the " will be passed and needs to be removed
-    BROWSER_TIME_PARAMS=${BROWSER_TIME_PARAMS//[\"]/}
-
-    $BROWSERTIME --compact --raw -b ${BROWSERS_ARRAY[i]} $BROWSER_TIME_PARAMS -o "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url"
+    $BROWSERTIME --compact --raw -b ${BROWSERS_ARRAY[i]} -n $NUMBER_OF_RUNS -o "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url"
 
      ## If BrowserTime fails, an empty file is created, so remove it
     local btSize=$(du -k "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml" | cut -f1)
