@@ -470,15 +470,6 @@ if [ "$NR_OF_URLS" -gt "$MAX_PAGES" ]
       unset URLS[$c]
     done
 fi
-
-## If we have error URLs make sure they are added to the menu
-if [ -e $REPORT_DATA_DIR/errorurls.txt ];
-then
-  HAS_ERROR_URLS=true
-fi
-
-SHOW_ERROR_URLS="-Dcom.soulgalore.velocity.key.showserrorurls=$HAS_ERROR_URLS"
-
 }
 
 
@@ -670,6 +661,8 @@ function generate_error_file {
 # take care of error urls
 if [ -e $REPORT_DATA_DIR/errorurls.txt ];
 then
+  HAS_ERROR_URLS=true
+  SHOW_ERROR_URLS="-Dcom.soulgalore.velocity.key.showserrorurls=$HAS_ERROR_URLS"
   local resultError=()
   while read txt ; do
     resultError[${#resultError[@]}]=$txt
@@ -840,7 +833,7 @@ do
   for url in "${URLS[@]}"
   do
     local pagefilename=$(get_filename $url $runs)
-    echo "Collecting Browser Time metrics (${BROWSERS_ARRAY[i]}): $url"
+    echo "Collecting Navigation Timing metrics (${BROWSERS_ARRAY[i]}): $url"
 
     $BROWSERTIME --compact --raw -b ${BROWSERS_ARRAY[i]} -n $NUMBER_OF_RUNS -o "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url" 2>&1 |tee /dev/tty >>$REPORT_DATA_DIR/error.log || echo "BrowserTime failed to fetch $url, check the error log $REPORT_DATA_DIR/error.log "
 
@@ -851,6 +844,8 @@ do
       log_error "BrowserTime could not collect data for $url $btSize"
       log_error "Input parameters: $INPUT"
       rm  "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml"
+      echo "Could not collect Navigation Timing metrics,$url" >> $REPORT_DATA_DIR/errorurls.txt
+      echo "Could not collect Navigation Timing metrics for $url using ${BROWSERS_ARRAY[i]}"
     fi
     local runs=$[$runs+1]
     if [ $(($runs%20)) == 0 ]; then
