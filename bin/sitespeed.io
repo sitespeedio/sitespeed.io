@@ -129,6 +129,7 @@ main() {
         get_input "$@"
         verify_input
         setup_dirs_and_dependencies
+        log_versions
         fetch_urls
         analyze_pages
         collect_browser_time
@@ -427,15 +428,18 @@ if hash browsertime 2>/dev/null; then
        BROWSERTIME="$JAVA"" -Xmx""$JAVA_HEAP""m -Xms""$JAVA_HEAP""m -jar ""$DEPENDENCIES_DIR/$BROWSERTIME_JAR"
 fi
 
-
-# Logging versions
 browserTimeVersion=$($BROWSERTIME -V)
+}
+
+#*******************************************************
+# Log the versions
+#*******************************************************
+function log_versions {
 echo "Using sitespeed.io version $SITESPEED_VERSION"
 echo "Using PhantomJS version $(phantomjs --version)"
 echo "Using Java version $jVersion"
 echo "Using BrowserTime version $browserTimeVersion"
 echo "From IP $MY_IP"
-
 }
 
 #*******************************************************
