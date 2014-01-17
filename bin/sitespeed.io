@@ -99,6 +99,8 @@ BROWSERS=
 NUMBER_OF_RUNS="3"
 ## Error log
 ERROR_LOG=error.log
+## Show error in the navigation
+SHOW_ERROR_URLS="-Dcom.soulgalore.velocity.key.showserrorurls=false"
 ## Easy way to set your user agent as an Iphone
 IPHONE_IO6_AGENT="Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25"
 IPHONE5_VIEWPORT="320x444"
