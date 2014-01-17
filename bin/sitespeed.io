@@ -850,7 +850,7 @@ do
     then
       log_error "BrowserTime could not collect data for $url $btSize"
       log_error "Input parameters: $INPUT"
-      rm  "$REPORT_DATA_METRICS_DIR/${array[i]}/$pagefilename.xml"
+      rm  "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml"
     fi
     local runs=$[$runs+1]
     if [ $(($runs%20)) == 0 ]; then
