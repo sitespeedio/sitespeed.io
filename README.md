@@ -31,6 +31,7 @@ Example
 =============
 And here's a couple of examples on how the result pages looks like:
 TODO add new fresh images
+![The site summary page](https://raw.github.com/sitespeedio/sitespeed.io/2.5-wip/doc/summary-2.5.png)
 
 
 See <a href="http://www.sitespeed.io">http://www.sitespeed.io</a> for documentation.  
