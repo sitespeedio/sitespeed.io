@@ -63,6 +63,8 @@ HIDE_MENU="-Dcom.soulgalore.velocity.key.hidemenu=true"
 
 ## By default browser timings isn't collected
 COLLECT_BROWSER_TIMINGS=false
+## And no browser is chosen
+BROWSER=
 
 ## Pointing out the rule properties where summary rules are defined
 SUMMARY_PROPERTY_DESKTOP="-Dcom.soulgalore.velocity.sitespeed.rules.file="$SITESPEED_HOME"/dependencies/rules-desktop.properties"
@@ -129,7 +131,7 @@ do
          e)COLUMNS=$OPTARG;;
          i)FILE_NAME=$OPTARG;;
          l)RULESET=$OPTARG;;
-         c)COLLECT_BROWSER_TIMINGS=$OPTARG;;
+         c)BROWSER=$OPTARG;;
          a)USER_AGENT=$OPTARG;;
 	       ?)
               ;;
@@ -150,11 +152,13 @@ if [ "$COLUMNS" != "" ]
   else
     # Default colums
     COLUMNS="-Dcom.soulgalore.velocity.key.columns=median-ruleScore,median-criticalPathScore,median-requests,median-imageWeightPerPage,median-pageWeight,median-requestsWithoutExpires,median-assetsCacheTime,median-domainsPerPage"
-    if $COLLECT_BROWSER_TIMINGS
+    if [ "$BROWSER" != "" ]
       then
       COLUMNS="$COLUMNS",median-serverResponseTime,median-domContentLoadedTime
     fi
 fi
+
+
 
 if [[ -z $FILE_NAME ]]
 then
