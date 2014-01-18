@@ -99,7 +99,7 @@ BROWSERS=
 NUMBER_OF_RUNS="3"
 ## Error log
 ERROR_LOG=error.log
-## Show error in the navigation
+## Show error in the navigation, only if errorrs exist
 SHOW_ERROR_URLS="-Dcom.soulgalore.velocity.key.showserrorurls=false"
 ## Easy way to set your user agent as an Iphone
 IPHONE_IO6_AGENT="Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25"
@@ -117,6 +117,7 @@ VELOCITY_JAR=xml-velocity-1.8.8-SNAPSHOT-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 BROWSERTIME_JAR=browsertime-0.5-full.jar
 
+# Don't fetch Navigation Timing metrics by default
 COLLECT_BROWSER_TIMINGS=false
 
 # Store the input to be able to log exactly how/what was done
@@ -137,6 +138,7 @@ main() {
         collect_browser_time
         copy_assets
         generate_error_file
+        generate_individual_result_files
         generate_result_files
         finished
 
@@ -360,7 +362,7 @@ fi
 }
 
 #*******************************************************
-# Setup the dirs needed and set versions needed for
+# Setup the dirs and dependencies  needed for
 # doing the analyze
 #*******************************************************
 function setup_dirs_and_dependencies {
@@ -429,14 +431,13 @@ if hash browsertime 2>/dev/null; then
     else
        BROWSERTIME="$JAVA"" -Xmx""$JAVA_HEAP""m -Xms""$JAVA_HEAP""m -jar ""$DEPENDENCIES_DIR/$BROWSERTIME_JAR"
 fi
-
-browserTimeVersion=$($BROWSERTIME -V)
 }
 
 #*******************************************************
 # Log the versions
 #*******************************************************
 function log_versions {
+browserTimeVersion=$($BROWSERTIME -V)
 echo "Using sitespeed.io version $SITESPEED_VERSION"
 echo "Using PhantomJS version $(phantomjs --version)"
 echo "Using Java version $jVersion"
@@ -511,19 +512,20 @@ wait
 
 
 #*******************************************************
-# Copy all assets used for creating the HTML files
+# Copy all assets used for creating the HTML result
 #*******************************************************
 function copy_assets {
 
-#copy the rest of the files
 mkdir $REPORT_DIR/css
 mkdir $REPORT_DIR/js
 mkdir $REPORT_DIR/img
 mkdir $REPORT_DIR/img/ico
 mkdir $REPORT_DIR/fonts
 
+# Concatenate CSS & JS
 cat "$SITESPEED_HOME"/report/css/bootstrap.min.css  > $REPORT_DIR/css/styles.css
 cat "$SITESPEED_HOME"/report/js/jquery-1.10.2.min.js "$SITESPEED_HOME"/report/js/bootstrap.min.js "$SITESPEED_HOME"/report/js/stupidtable.min.js > $REPORT_DIR/js/all.js
+
 cp "$SITESPEED_HOME"/report/img/*.* $REPORT_DIR/img
 cp "$SITESPEED_HOME"/report/img/ico/* $REPORT_DIR/img/ico
 cp "$SITESPEED_HOME"/report/fonts/* $REPORT_DIR/fonts
@@ -531,12 +533,11 @@ cp "$SITESPEED_HOME"/report/fonts/* $REPORT_DIR/fonts
 }
 
 #*******************************************************
-# Generate result output files
+# Generate the individual result files
 #*******************************************************
-function generate_result_files {
+function generate_individual_result_files {
 
-echo "Create all the result pages"
-
+echo "Create all pages per URL"
 local runs=0
 for url in "${URLS[@]}"
 do
@@ -565,6 +566,14 @@ do
     "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_PAGES_DIR/$pagefilename.html $REPORT_PAGES_DIR/$pagefilename.html
   fi
 done
+}
+
+#*******************************************************
+# Generate all the summary files
+#*******************************************************
+function generate_result_files {
+
+echo "Create all the result pages"
 
 echo "Create result.xml"
 echo '<?xml version="1.0" encoding="UTF-8"?><document host="'$HOST'" date="'$DATE'" useragent="'$USER_AGENT'" viewport="'$VIEWPORT'" ip="'$MY_IP'" path="'$REPORT_DIR_NAME'"><url><![CDATA['$URL']]></url>' > $REPORT_DATA_DIR/result.xml
@@ -574,7 +583,6 @@ do
   sed 's@<dictionary>.*@</results>@' "$file" > $REPORT_DATA_DIR/tmp.txt || exit 1
   sed 's/<?xml version="1.0" encoding="UTF-8"?>//g' "$REPORT_DATA_DIR/tmp.txt" >> "$REPORT_DATA_DIR/result.xml" || exit 1
   rm "$REPORT_DATA_DIR/tmp.txt"
-
 done
 
 # Add all metrics
