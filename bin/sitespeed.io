@@ -848,13 +848,14 @@ do
   do
     local pagefilename=$(get_filename $url $runs)
     echo "Collecting Navigation Timing metrics (${BROWSERS_ARRAY[i]}): $url"
-
-    $BROWSERTIME --compact --raw -b ${BROWSERS_ARRAY[i]} -n $NUMBER_OF_RUNS -o "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url" 2>&1 |tee /dev/tty >>$REPORT_DATA_DIR/error.log || echo "BrowserTime failed to fetch $url, check the error log $REPORT_DATA_DIR/error.log "
+    ## Extra info: If you are using the Chrome driver on OS X, it always output "Starting the ChromeDriver ..." and this is a hack to remove that
+    ($BROWSERTIME --compact --raw -b ${BROWSERS_ARRAY[i]} -n $NUMBER_OF_RUNS -o "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url" 3>&1 1>&2 2>&3 | grep -v '^Starting' ) 3>&1 1>&2 2>&3 >> $REPORT_DATA_DIR/error.log
 
      ## If BrowserTime fails, an empty file is created, so remove it
     local btSize=$(du -k "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml" | cut -f1)
     if [ $btSize -lt 4 ]
     then
+      echo "BrowserTime failed to fetch $url, check the error log $REPORT_DATA_DIR/error.log "
       log_error "BrowserTime could not collect data for $url $btSize"
       log_error "Input parameters: $INPUT"
       rm  "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml"
