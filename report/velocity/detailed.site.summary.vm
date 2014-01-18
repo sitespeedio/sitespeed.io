@@ -8,10 +8,10 @@
     <div class="col-lg-12">
 
         <h2 class="url">
-            $siteElement.getChild("pages").getValue() page#plural($math.toInteger($siteElement.getChild("pages").getValue())) analyzed 
-            #if ($siteElement.getChild("url").getValue().length()>0) 
+            $siteElement.getChild("pages").getValue() page#plural($math.toInteger($siteElement.getChild("pages").getValue())) analyzed
+            #if ($siteElement.getChild("url").getValue().length()>0)
                 for <a href="$siteElement.getChild("url").getValue()" target="_blank">$siteElement.getChild("url").getValue()</a>
-            #end    
+            #end
         </h2>
         #if ($testname)
             <h3>$testname</h3>
@@ -23,7 +23,7 @@
         <small>
         #if ($siteElement.getChild("ip").getValue() != "unknown")
             <strong>IP:</strong> <em>$siteElement.getChild("ip").getValue()</em>
-            #end   
+            #end
 
         #if ($siteElement.getChild("userAgent").getValue().getValue() != "")
             <strong>User-Agent:</strong> <em>$siteElement.getChild("userAgent").getValue()</em>
@@ -42,10 +42,10 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="table-responsive">
-        <table class="table table-hover table-condensed table-striped table-bordered">
+        <table class="table table-hover table-condensed table-striped table-bordered" id="detailedTable">
             <thead>
                 <tr>
-                    <th>name</th>
+                    <th data-sort="string">name</th>
                     <th>min</th>
                     <th>10%</th>
                     <th>avg</th>
@@ -53,7 +53,7 @@
                     <th>95%</th>
                     <th>max</th>
                     <th>sDev</th>
-                    
+
                 </tr>
             </thead>
             <tbody>
@@ -62,54 +62,54 @@
                 #set ($type = $metric.getAttribute("type").getValue())
                 #set ($unit = $metric.getAttribute("unit").getValue())
                 <tr>
-                    <td> <em>$metric.getAttribute("friendlyName").getValue()</em> 
+                    <td> <em>$metric.getAttribute("friendlyName").getValue()</em>
                     </td>
                      <td>
                         #if ($type.equals("cachetime"))
                             #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("min").getValue())))
-                        #else  
+                        #else
                             $math.roundTo($nrOfDecimals,$metric.getChild("min").getValue()) $unit
                         #end
                     </td>
                     <td>
                         #if ($type.equals("cachetime"))
                             #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("percentile10").getValue())))
-                        #else  
+                        #else
                             $math.roundTo($nrOfDecimals,$metric.getChild("percentile10").getValue()) $unit
                         #end
                     </td>
                     <td>
                         #if ($type.equals("cachetime"))
                             #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("avg").getValue())))
-                        #else    
+                        #else
                             $math.roundTo($nrOfDecimals,$metric.getChild("avg").getValue()) $unit
                         #end
-                    </td>             
+                    </td>
                     <td>
                         #if ($type.equals("cachetime"))
                             #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("median").getValue())))
-                        #else  
+                        #else
                             $math.roundTo($nrOfDecimals,$metric.getChild("median").getValue()) $unit
                         #end
                     </td>
                     <td>
                         #if ($type.equals("cachetime"))
                             #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("percentile95").getValue())))
-                        #else  
+                        #else
                             $math.roundTo($nrOfDecimals,$metric.getChild("percentile95").getValue()) $unit
                         #end
                     </td>
                     <td>
                         #if ($type.equals("cachetime"))
                             #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("max").getValue())))
-                        #else  
+                        #else
                             $math.roundTo($nrOfDecimals,$metric.getChild("max").getValue()) $unit
                         #end
                     </td>
                     <td>
                         #if ($type.equals("cachetime"))
                             #prettyPrint($header.getSeconds($math.toInteger($metric.getChild("standardDev").getValue())))
-                        #else  
+                        #else
                             $math.roundTo($nrOfDecimals,$metric.getChild("standardDev").getValue()) $unit
                         #end
                     </td>
@@ -121,5 +121,10 @@
     </div>
 </div>
 #parse("report/velocity/inc/footer.vm")
+<script>
+           $(function(){
+        $("#detailedTable").stupidtable();
+         });
+</script>
 </body>
 </html>
