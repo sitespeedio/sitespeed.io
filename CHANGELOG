@@ -1,6 +1,6 @@
 CHANGELOG sitespeed.io
 
-version 2.5-wip
+version 2.5
 ------------------------
 * Better error handling: Log all errors to the error log file and #334 and make sure one page error will not break the whole test #329
 * Test in multiple browsers in one run #341
