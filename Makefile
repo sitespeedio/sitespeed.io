@@ -53,7 +53,7 @@ build:
 	@cp $(DEP)/LICENSE.txt $(BUILD)/$(DEP)/
 	@cp $(DEP)/crawler-1.5.7-full.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/crawler.properties $(BUILD)/$(DEP)/
-	@cp $(DEP)/xml-velocity-1.8.8-SNAPSHOT-full.jar $(BUILD)/$(DEP)/
+	@cp $(DEP)/xml-velocity-1.8.8-full.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/screenshot.js $(BUILD)/$(DEP)/
 	@cp $(DEP)/htmlcompressor-1.5.3.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/yuicompressor-2.4.6.jar $(BUILD)/$(DEP)/
