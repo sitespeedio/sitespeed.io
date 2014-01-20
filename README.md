@@ -37,8 +37,6 @@ TODO add new fresh images
 
 See <a href="http://www.sitespeed.io">http://www.sitespeed.io</a> for documentation.  
 
-The branches: *master* is the latest release, the *wip-branch* is the coming release.
-
 [![I Love Open Source](http://www.iloveopensource.io/images/logo-lightbg.png)](http://www.iloveopensource.io/projects/5261764143c6bdee140001d4)
 
 
