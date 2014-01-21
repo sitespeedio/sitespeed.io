@@ -20,7 +20,7 @@
 #set($statsTotalCssWeight = $stats.newInstance("cssWeightPerPage","CSS file weight per page","Don't download large front-end framework CSS files when you only use small parts of it.","weight","kb",1))
 #set($statsTotalJsWeight = $stats.newInstance("jsWeightPerPage","JS file weight per page","Don't download large Javascript libraries when you only use small parts of it. ","weight","kb",1))
 #set($statsScore = $stats.newInstance("ruleScore","Rule score","The sitespeed.io total rule score for all the pages.","","",1))
-#set($statsDocumentWeight = $stats.newInstance("docWeight","Document weight","Keep the ducument at a reasonable size, it will make it possible for the browser to generate the page faster. ","weight","kb",1))
+#set($statsDocumentWeight = $stats.newInstance("docWeight","Document weight","Keep the document at a reasonable size, it will make it possible for the browser to generate the page faster. ","weight","kb",1))
 #set($statsSpof = $stats.newInstance("spofPerPage","Number of SPOF per page","A Single Point Of Failure is a asset that is loaded (usually) from another domain before the page starts rendering, meaning if the asset isn't loaded, the page will be broken/slow.","","",1))
 #set($statsSpofPages = $stats.newInstance("spofPages","Pages with SPOF","How many pages have a single point of failures (meaning if someone elses API/site is broken, it will break your page.","","",1))
 #set($statsScaledImages = $stats.newInstance("browserScaledImages","Images scaled by the browser","Never scale images in the browser, that will slow down the rendering.","","",1))
