@@ -27,6 +27,14 @@ Here's a list of the main features, for a full list checkout the [documentation]
  * Get screenshots of your site at a specific viewport
  * See the most used assets for all analyzed pages
 
+Development
+=============
+The master branch is the latest release and/or in production-ready state. Clone that and you know it will always work. I'm using the [git-flow](http://nvie.com/posts/a-successful-git-branching-model/) branching model, so please send pull request to the develop branch.
+
+Documentation
+=============
+See <a href="http://www.sitespeed.io">http://www.sitespeed.io</a> for documentation. 
+
 Example
 =============
 And here's a couple of examples on how the result pages looks like:
@@ -35,7 +43,6 @@ And here's a couple of examples on how the result pages looks like:
 
 ![All the pages](https://raw.github.com/sitespeedio/sitespeed.io/master/doc/pages-2.5.png)
 
-See <a href="http://www.sitespeed.io">http://www.sitespeed.io</a> for documentation.  
 
 [![I Love Open Source](http://www.iloveopensource.io/images/logo-lightbg.png)](http://www.iloveopensource.io/projects/5261764143c6bdee140001d4)
 
