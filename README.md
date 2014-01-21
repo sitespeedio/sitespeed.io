@@ -29,7 +29,7 @@ Here's a list of the main features, for a full list checkout the [documentation]
 
 Development
 =============
-The master branch is the latest release and/or in production-ready state. Clone that and you know it will always work. I'm using the [git-flow](http://nvie.com/posts/a-successful-git-branching-model/) branching model, so please send pull request to the develop branch.
+The master branch is the latest release and/or in production-ready state. Clone that and you know it will always work. I'm using the [git-flow](http://nvie.com/posts/a-successful-git-branching-model/) branching model, please send pull request to the develop branch.
 
 Documentation
 =============
