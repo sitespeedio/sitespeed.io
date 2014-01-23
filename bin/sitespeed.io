@@ -613,7 +613,7 @@ fi
 echo '</document>'>> "$REPORT_DATA_DIR/result.xml"
 
 echo 'Create the summary.xml'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m $SUMMARY_PROPERTY "$VELOCITY_TEMPLATES_HOME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR  $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/xml/site.summary.xml.vm $PROPERTIES_DIR/site.summary.properties $REPORT_DATA_DIR/summary.xml.tmp 2>&1 |tee /dev/tty >>$REPORT_DATA_DIR/error.log || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m $SUMMARY_PROPERTY "$VELOCITY_TEMPLATES_HOME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR  $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/xml/site.summary.xml.vm $PROPERTIES_DIR/site.summary.properties $REPORT_DATA_DIR/summary.xml.tmp 2>&1 |tee /dev/stderr >>$REPORT_DATA_DIR/error.log || exit 1
 
 # Velocity adds a lot of garbage spaces and new lines, need to be removed before the xml is cleaned up
 # because of performance reasons
@@ -623,31 +623,31 @@ rm $REPORT_DATA_DIR/summary.xml.tmp
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type xml  -o $REPORT_DATA_DIR/summary.xml $REPORT_DATA_DIR/summary.xml
 
 echo 'Create the summary.details.html'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" "$SHOW_ERROR_URLS" "$VELOCITY_TEMPLATES_HOME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/detailed.site.summary.vm $PROPERTIES_DIR/summary.details.properties $REPORT_DIR/summary.details.html 2>&1 |tee /dev/tty >>$REPORT_DATA_DIR/error.log || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" "$SHOW_ERROR_URLS" "$VELOCITY_TEMPLATES_HOME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/detailed.site.summary.vm $PROPERTIES_DIR/summary.details.properties $REPORT_DIR/summary.details.html 2>&1 |tee /dev/stderr >>$REPORT_DATA_DIR/error.log || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/summary.details.html $REPORT_DIR/summary.details.html
 
 echo 'Create the pages.html'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$PAGES_COLUMNS" "$SCREENSHOT" "$SHOW_ERROR_URLS" "$VELOCITY_TEMPLATES_HOME"  $SUMMARY_PROPERTY -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/pages.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.html 2>&1 |tee /dev/tty >>$REPORT_DATA_DIR/error.log || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$PAGES_COLUMNS" "$SCREENSHOT" "$SHOW_ERROR_URLS" "$VELOCITY_TEMPLATES_HOME"  $SUMMARY_PROPERTY -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/pages.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.html 2>&1 |tee /dev/stderr >>$REPORT_DATA_DIR/error.log || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/pages.html $REPORT_DIR/pages.html
 
 if $OUTPUT_CSV
   then
   echo 'Create the pages.csv'
-  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$PAGES_COLUMNS" $SUMMARY_PROPERTY "$VELOCITY_TEMPLATES_HOME"  -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/csv/pages.csv.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.csv 2>&1 |tee /dev/tty >>$REPORT_DATA_DIR/error.log || exit 1
+  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$PAGES_COLUMNS" $SUMMARY_PROPERTY "$VELOCITY_TEMPLATES_HOME"  -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/csv/pages.csv.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.csv 2>&1 |tee /dev/stderr >>$REPORT_DATA_DIR/error.log || exit 1
 fi
 
 echo 'Create the summary index.html'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SUMMARY_BOXES" "$SCREENSHOT" "$SHOW_ERROR_URLS" "$VELOCITY_TEMPLATES_HOME"  $SUMMARY_PROPERTY -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/site.summary.vm $PROPERTIES_DIR/site.summary.properties $REPORT_DIR/index.html 2>&1 |tee /dev/tty >>$REPORT_DATA_DIR/error.log || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SUMMARY_BOXES" "$SCREENSHOT" "$SHOW_ERROR_URLS" "$VELOCITY_TEMPLATES_HOME"  $SUMMARY_PROPERTY -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/site.summary.vm $PROPERTIES_DIR/site.summary.properties $REPORT_DIR/index.html 2>&1 |tee /dev/stderr >>$REPORT_DATA_DIR/error.log || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/index.html $REPORT_DIR/index.html
 
 echo 'Create the assets.html'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" "$SHOW_ERROR_URLS" "$VELOCITY_TEMPLATES_HOME"  -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/assets.vm $PROPERTIES_DIR/assets.properties $REPORT_DIR/assets.html 2>&1 |tee /dev/tty >>$REPORT_DATA_DIR/error.log || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" "$SHOW_ERROR_URLS" "$VELOCITY_TEMPLATES_HOME"  -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/assets.vm $PROPERTIES_DIR/assets.properties $REPORT_DIR/assets.html 2>&1 |tee /dev/stderr >>$REPORT_DATA_DIR/error.log || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/assets.html $REPORT_DIR/assets.html
 
 echo 'Create the rules.html'
 ## hack for just getting one file with the rules, take the first one in the dir!
 FILE_WITH_RULES=$(ls $REPORT_DATA_PAGES_DIR | head -n 1)
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" "$SHOW_ERROR_URLS" "$VELOCITY_TEMPLATES_HOME"  -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$FILE_WITH_RULES $VELOCITY_DIR/rules.vm $PROPERTIES_DIR/rules.properties $REPORT_DIR/rules.html 2>&1 |tee /dev/tty >>$REPORT_DATA_DIR/error.log || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" "$SHOW_ERROR_URLS" "$VELOCITY_TEMPLATES_HOME"  -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$FILE_WITH_RULES $VELOCITY_DIR/rules.vm $PROPERTIES_DIR/rules.properties $REPORT_DIR/rules.html 2>&1 |tee /dev/stderr >>$REPORT_DATA_DIR/error.log || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/rules.html $REPORT_DIR/rules.html
 
 if $TAKE_SCREENSHOTS
@@ -688,7 +688,7 @@ then
   done
   echo '</results>' >> $REPORT_DATA_DIR/errorurls.xml
   echo 'Create the errorurls.html'
-  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" "$SHOW_ERROR_URLS" "$VELOCITY_TEMPLATES_HOME"  -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/errorurls.xml $VELOCITY_DIR/errorurls.vm $PROPERTIES_DIR/errorurls.properties $REPORT_DIR/errorurls.html 2>&1 |tee /dev/tty >>$REPORT_DATA_DIR/error.log || exit 1
+  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" "$SHOW_ERROR_URLS" "$VELOCITY_TEMPLATES_HOME"  -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/errorurls.xml $VELOCITY_DIR/errorurls.vm $PROPERTIES_DIR/errorurls.properties $REPORT_DIR/errorurls.html 2>&1 |tee /dev/stderr >>$REPORT_DATA_DIR/error.log || exit 1
   "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/errorurls.html $REPORT_DIR/errorurls.html
 
 else
@@ -736,7 +736,7 @@ local vp="-Dcom.soulgalore.velocity.key.viewport=$VIEWPORT"
 local url_list="-Dcom.soulgalore.velocity.key.urls=$urls"
 local image_list="-Dcom.soulgalore.velocity.key.images=$imagenames"
 echo 'Create the screenshots.html'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$vp" "$url_list" "$image_list" "$SCREENSHOT" "$SHOW_ERROR_URLS" "$VELOCITY_TEMPLATES_HOME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/screenshots.vm $PROPERTIES_DIR/screenshots.properties $REPORT_DIR/screenshots.html 2>&1 |tee /dev/tty >>$REPORT_DATA_DIR/error.log || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$vp" "$url_list" "$image_list" "$SCREENSHOT" "$SHOW_ERROR_URLS" "$VELOCITY_TEMPLATES_HOME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/summary.xml $VELOCITY_DIR/screenshots.vm $PROPERTIES_DIR/screenshots.properties $REPORT_DIR/screenshots.html 2>&1 |tee /dev/stderr >>$REPORT_DATA_DIR/error.log || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/screenshots.html $REPORT_DIR/screenshots.html
 
 }
