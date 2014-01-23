@@ -127,7 +127,8 @@ if [ -f /dev/stderr ]
 then
     OUTPUT=/dev/stderr
   else
-    OUTPUT=/dev/tty
+    ## looks crazy but fix for run on Git Bash on Windows
+    OUTPUT=dev/tty
 fi
 
 #*******************************************************
