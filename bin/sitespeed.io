@@ -123,11 +123,12 @@ COLLECT_BROWSER_TIMINGS=false
 # Store the input to be able to log exactly how/what was done
 INPUT="$@"
 
+## Running on Jenkins slave or as a daemon you will not have a console
+## use stderr, else on Windows (Git Bash) use the console
 if [ -f /dev/stderr ]
 then
     OUTPUT=/dev/stderr
   else
-    ## looks crazy but fix for run on Git Bash on Windows
     OUTPUT=/dev/tty
 fi
 
