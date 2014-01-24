@@ -112,7 +112,7 @@ NEXUS_4_AGENT="Mozilla/5.0 (Linux; Android 4.2; Nexus 4 Build/JVP15Q) AppleWebKi
 NEXUS_VIEWPORT="348x519"
 
 # Jar files, specify the versions
-CRAWLER_JAR=crawler-1.5.7-full.jar
+CRAWLER_JAR=crawler-1.5.8-SNAPSHOT-full.jar
 VELOCITY_JAR=xml-velocity-1.8.8-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 BROWSERTIME_JAR=browsertime-0.5-full.jar
