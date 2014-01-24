@@ -1,5 +1,11 @@
 CHANGELOG sitespeed.io
 
+version 2.6-wip
+------------------------
+* When parsing all individual HTML files, show how many that has been parsed every 20 run #354
+* Bug fix: The internal link to assets on the detailed page don't work  #355
+* Bug fix: When crawling, always use the first URL, not the redirected one (if redirected) #356
+
 version 2.5.1
 ------------------------
 * Fixed defect when trying to output error to the current console (instead of using the stderr) #354
