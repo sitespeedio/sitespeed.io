@@ -566,9 +566,6 @@ do
               BROWSER_TIME_XML="$BROWSER_TIME_XML ${REPORT_DATA_METRICS_ARRAY[i]}/$pagefilename.xml "
             fi
           done
-      local runs=$[$runs+1]
-      if [ $(($runs%20)) == 0 ]; then
-        echo "Created $runs individual HTML pages out of ${#URLS[@]}"
       fi
     fi
 
@@ -577,6 +574,10 @@ do
     mv $REPORT_DATA_PAGES_DIR/$pagefilename.xml.tmp $REPORT_DATA_PAGES_DIR/$pagefilename.xml
     "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$SCREENSHOT" "$SHOW_ERROR_URLS" "$VELOCITY_TEMPLATES_HOME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml $VELOCITY_DIR/page.vm $PROPERTIES_DIR/page.properties $REPORT_PAGES_DIR/$pagefilename.html $BROWSER_TIME_XML ||  exit 1
     "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_PAGES_DIR/$pagefilename.html $REPORT_PAGES_DIR/$pagefilename.html
+
+    local runs=$[$runs+1]
+    if [ $(($runs%20)) == 0 ]; then
+    echo "Created $runs individual HTML pages out of ${#URLS[@]}"
   fi
 done
 }
