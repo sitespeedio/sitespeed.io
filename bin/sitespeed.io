@@ -546,7 +546,7 @@ cp "$SITESPEED_HOME"/report/fonts/* $REPORT_DIR/fonts
 #*******************************************************
 function generate_individual_result_files {
 
-echo "Create all pages per URL"
+echo "Create all (${#URLS[@]}) pages per URL"
 local runs=0
 for url in "${URLS[@]}"
 do
@@ -566,6 +566,10 @@ do
               BROWSER_TIME_XML="$BROWSER_TIME_XML ${REPORT_DATA_METRICS_ARRAY[i]}/$pagefilename.xml "
             fi
           done
+      local runs=$[$runs+1]
+      if [ $(($runs%20)) == 0 ]; then
+        echo "Created $runs individual HTML pages out of ${#URLS[@]}"
+      fi
     fi
 
     ## Ok, Google Analytics sometimes uses characters that are invalid in XML, so lets strip the XML file first
