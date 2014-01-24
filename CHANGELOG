@@ -1,5 +1,9 @@
 CHANGELOG sitespeed.io
 
+version 2.5.2
+------------------------
+* Even better fix for #354
+
 version 2.5.1
 ------------------------
 * Fixed defect when trying to output error to the current console (instead of using the stderr) #354
