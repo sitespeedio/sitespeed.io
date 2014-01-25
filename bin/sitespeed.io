@@ -112,7 +112,7 @@ NEXUS_4_AGENT="Mozilla/5.0 (Linux; Android 4.2; Nexus 4 Build/JVP15Q) AppleWebKi
 NEXUS_VIEWPORT="348x519"
 
 # Jar files, specify the versions
-CRAWLER_JAR=crawler-1.5.7-full.jar
+CRAWLER_JAR=crawler-1.5.8-full.jar
 VELOCITY_JAR=xml-velocity-1.8.8-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 BROWSERTIME_JAR=browsertime-0.5-full.jar
@@ -546,7 +546,7 @@ cp "$SITESPEED_HOME"/report/fonts/* $REPORT_DIR/fonts
 #*******************************************************
 function generate_individual_result_files {
 
-echo "Create all pages per URL"
+echo "Create all (${#URLS[@]}) pages per URL"
 local runs=0
 for url in "${URLS[@]}"
 do
@@ -566,6 +566,7 @@ do
               BROWSER_TIME_XML="$BROWSER_TIME_XML ${REPORT_DATA_METRICS_ARRAY[i]}/$pagefilename.xml "
             fi
           done
+      fi
     fi
 
     ## Ok, Google Analytics sometimes uses characters that are invalid in XML, so lets strip the XML file first
@@ -573,6 +574,10 @@ do
     mv $REPORT_DATA_PAGES_DIR/$pagefilename.xml.tmp $REPORT_DATA_PAGES_DIR/$pagefilename.xml
     "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$SCREENSHOT" "$SHOW_ERROR_URLS" "$VELOCITY_TEMPLATES_HOME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$pagefilename.xml $VELOCITY_DIR/page.vm $PROPERTIES_DIR/page.properties $REPORT_PAGES_DIR/$pagefilename.html $BROWSER_TIME_XML ||  exit 1
     "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_PAGES_DIR/$pagefilename.html $REPORT_PAGES_DIR/$pagefilename.html
+
+    local runs=$[$runs+1]
+    if [ $(($runs%20)) == 0 ]; then
+    echo "Created $runs individual HTML pages out of ${#URLS[@]}"
   fi
 done
 }

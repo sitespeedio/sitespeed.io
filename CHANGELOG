@@ -1,12 +1,18 @@
 CHANGELOG sitespeed.io
 
+version 2.5.3
+------------------------
+* When parsing all individual HTML files, show how many that has been parsed every 20 run #354
+* Bug fix: The internal link to assets on the detailed page don't work  #355
+* Bug fix: Redirected URL don't report the end location URL (see the description in the issue for the full story #356)
+
 version 2.5.2
 ------------------------
-* Even better fix for #354
+* Even better fix for #352
 
 version 2.5.1
 ------------------------
-* Fixed defect when trying to output error to the current console (instead of using the stderr) #354
+* Fixed defect when trying to output error to the current console (instead of using the stderr) #352
 
 version 2.5
 ------------------------

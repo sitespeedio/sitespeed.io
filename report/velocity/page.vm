@@ -28,7 +28,7 @@
       			-->
       				<a href="#" class="list-group-item active">Quick links</a>
       				<a href="#score" class="list-group-item">Scores below 100</a>
-      				<a hrefmacros.="#assets" class="list-group-item">Page assets</a>
+      				<a href="#assets" class="list-group-item">Page assets</a>
       				<a href="#summary" class="list-group-item">Page summary</a>
       				#if($!{document2})
       				<a href="#metrics" class="list-group-item">Page metrics</a>
