@@ -1,6 +1,6 @@
 CHANGELOG sitespeed.io
 
-version 2.6-wip
+version 2.5.3
 ------------------------
 * When parsing all individual HTML files, show how many that has been parsed every 20 run #354
 * Bug fix: The internal link to assets on the detailed page don't work  #355
