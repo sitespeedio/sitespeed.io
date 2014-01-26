@@ -446,7 +446,7 @@ fi
 # Log the versions
 #*******************************************************
 function log_versions {
-browserTimeVersion=$($BROWSERTIME -V)
+browserTimeVersion=$("$BROWSERTIME" -V)
 echo "Using sitespeed.io version $SITESPEED_VERSION"
 echo "Using PhantomJS version $(phantomjs --version)"
 echo "Using Java version $jVersion"
@@ -863,7 +863,7 @@ do
     local pagefilename=$(get_filename $url $runs)
     echo "Collecting Navigation Timing metrics (${BROWSERS_ARRAY[i]}): $url"
     ## Extra info: If you are using the Chrome driver on OS X, it always output "Starting the ChromeDriver ..." and this is a hack to remove that
-    ($BROWSERTIME --compact --raw -b ${BROWSERS_ARRAY[i]} -n $NUMBER_OF_RUNS -o "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url" 3>&1 1>&2 2>&3 | grep -v '^Starting' ) 3>&1 1>&2 2>&3 >> $REPORT_DATA_DIR/error.log
+    ("$BROWSERTIME" --compact --raw -b ${BROWSERS_ARRAY[i]} -n $NUMBER_OF_RUNS -o "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url" 3>&1 1>&2 2>&3 | grep -v '^Starting' ) 3>&1 1>&2 2>&3 >> $REPORT_DATA_DIR/error.log
 
      ## If BrowserTime fails, an empty file is created, so remove it
     local btSize=$(du -k "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml" | cut -f1)

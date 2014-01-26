@@ -2,6 +2,7 @@ CHANGELOG sitespeed.io
 
 version 2.6-wip
 ------------------------
+* Bug fix: Fix for running BrowserTime in Windows and you have spaces in your path #358
 
 version 2.5.3
 ------------------------
