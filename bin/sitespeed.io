@@ -125,7 +125,7 @@ INPUT="$@"
 
 ## Running on Jenkins slave or as a daemon you will not have a console
 ## use stderr, else on Windows (Git Bash) use the console
-if [ -f /dev/stderr ]
+if [ -w /dev/stderr ]
 then
     OUTPUT=/dev/stderr
   else
