@@ -2,6 +2,8 @@ CHANGELOG sitespeed.io
 
 version 2.6-wip
 ------------------------
+* Bug fix: 2.5.3 introduced a new bug if one analyze failed, so the whole analyze was broken
+* The crawler now handles gzipped content
 
 version 2.5.3
 ------------------------
