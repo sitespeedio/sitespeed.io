@@ -1,5 +1,10 @@
 CHANGELOG sitespeed.io
 
+version 2.5.4
+------------------------
+* Bug fix: If phantomJS fails, the whole analyze fails (introduced in 2.5.x) #359
+* The crawler now handles gziped content #263
+
 version 2.5.3
 ------------------------
 * When parsing all individual HTML files, show how many that has been parsed every 20 run #354
