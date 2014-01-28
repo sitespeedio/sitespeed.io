@@ -1,6 +1,6 @@
 CHANGELOG sitespeed.io
 
-version 2.6-wip
+version 2.5.4
 ------------------------
 * Bug fix: If phantomJS fails, the whole analyze fails (introduced in 2.5.x) #359
 * The crawler now handles gziped content #263
