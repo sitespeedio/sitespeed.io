@@ -120,6 +120,12 @@ BROWSERTIME_JAR=browsertime-0.5-full.jar
 # Don't fetch Navigation Timing metrics by default
 COLLECT_BROWSER_TIMINGS=false
 
+# Load user-specific config file if it exists
+if [ -f ~/.sitespeedio ]
+then
+    source ~/.sitespeedio
+fi
+
 # Store the input to be able to log exactly how/what was done
 INPUT="$@"
 
