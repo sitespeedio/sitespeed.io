@@ -112,7 +112,7 @@ NEXUS_4_AGENT="Mozilla/5.0 (Linux; Android 4.2; Nexus 4 Build/JVP15Q) AppleWebKi
 NEXUS_VIEWPORT="348x519"
 
 # Jar files, specify the versions
-CRAWLER_JAR=crawler-1.5.9-full.jar
+CRAWLER_JAR=crawler-1.5.10-full.jar
 VELOCITY_JAR=xml-velocity-1.8.8-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
 BROWSERTIME_JAR=browsertime-0.5-full.jar
@@ -322,6 +322,8 @@ if [ "$PROXY_HOST" != "" ]
 then
     PROXY_PHANTOMJS="--proxy=$PROXY_HOST --proxy-type=$PROXY_TYPE"
     PROXY_CRAWLER="-Dcom.soulgalore.crawler.proxy=$PROXY_TYPE":"$PROXY_HOST"
+    PROXY_BROWSER_TIME="-p $PROXY_HOST"
+    PROXY_CURL="-x $PROXY_TYPE":"//$PROXY_HOST"
 fi
 
 if [[ "$USER_AGENT" == "iphone" ]]
@@ -423,7 +425,7 @@ if [ ${#BROWSERS_ARRAY[@]}  -ge 0 ]
   done
 fi
 
-MY_IP=$(curl -L -s  http://api.exip.org/?call=ip)
+MY_IP=$(curl -L -s  $PROXY_CURL http://api.exip.org/?call=ip)
 if [ -z "$MY_IP" ]
 then
   MY_IP='unknown'
@@ -806,6 +808,7 @@ function analyze() {
 
     echo "Analyzing $url"
     phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW -n "$REPORT_DATA_HAR_DIR/$pagefilename.har" "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"  2>> $REPORT_DATA_DIR/phantomjs.error.log || echo "PhantomJS could not handle $url , check the error log:  $REPORT_DATA_DIR/phantomjs.error.log"
+
     local s=$(du -k "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" | cut -f1)
     # Check that the size is bigger than 0
     if [ $s -lt 10 ]
@@ -828,7 +831,7 @@ function analyze() {
       sed -n '1,/<\/results>/p' $REPORT_DATA_PAGES_DIR/$pagefilename-bup > $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1
 
       # page size (keeping getting TTFB for a while, it is now primaly fetched from PhantomJS)
-      curl "$USER_AGENT_CURL" --compressed --globoff -o /dev/null -w "%{time_starttransfer};%{size_download}\n" -L -s "$url" >  "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
+      curl "$USER_AGENT_CURL" --compressed --globoff -o /dev/null $PROXY_CURL -w "%{time_starttransfer};%{size_download}\n" -L -s "$url" >  "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
 
       read -r TTFB_SIZE <  $REPORT_DATA_PAGES_DIR/$pagefilename.info
       local TTFB="$(echo $TTFB_SIZE  | cut -d \; -f 1)"
@@ -861,7 +864,7 @@ do
     local pagefilename=$(get_filename $url $runs)
     echo "Collecting Navigation Timing metrics (${BROWSERS_ARRAY[i]}): $url"
     ## Extra info: If you are using the Chrome driver on OS X, it always output "Starting the ChromeDriver ..." and this is a hack to remove that
-    ($BROWSERTIME --compact --raw -b ${BROWSERS_ARRAY[i]} -n $NUMBER_OF_RUNS -o "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url" 3>&1 1>&2 2>&3 | grep -v '^Starting' ) 3>&1 1>&2 2>&3 >> $REPORT_DATA_DIR/error.log
+    ($BROWSERTIME --compact --raw -b ${BROWSERS_ARRAY[i]} $PROXY_BROWSER_TIME -n $NUMBER_OF_RUNS -o "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url" 3>&1 1>&2 2>&3 | grep -v '^Starting' ) 3>&1 1>&2 2>&3 >> $REPORT_DATA_DIR/error.log
 
      ## If BrowserTime fails, an empty file is created, so remove it
     local btSize=$(du -k "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml" | cut -f1)

@@ -51,7 +51,7 @@ build:
 	@cp $(BIN)/sitespeed.io-sites $(BUILD)/$(BIN)/
 	@cp $(BIN)//travis-ci.sh $(BUILD)/$(BIN)/
 	@cp $(DEP)/LICENSE.txt $(BUILD)/$(DEP)/
-	@cp $(DEP)/crawler-1.5.9-full.jar $(BUILD)/$(DEP)/
+	@cp $(DEP)/crawler-1.5.10-full.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/crawler.properties $(BUILD)/$(DEP)/
 	@cp $(DEP)/xml-velocity-1.8.8-full.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/screenshot.js $(BUILD)/$(DEP)/
