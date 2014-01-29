@@ -2,6 +2,8 @@ CHANGELOG sitespeed.io
 
 version 2.6-wip
 ------------------------
+* Bug fix: New version of the crawler, the proxy support was broken in the last release
+* Added proxy support when collecting Navigation Timing metrics #351
 
 version 2.5.4
 ------------------------
