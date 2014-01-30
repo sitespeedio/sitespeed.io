@@ -123,6 +123,7 @@ COLLECT_BROWSER_TIMINGS=false
 # Load user-specific config file if it exists
 if [ -f ~/.sitespeedio ]
 then
+    echo "Using local configuration file to override setup" ~/.sitespeedio
     source ~/.sitespeedio
 fi
 
