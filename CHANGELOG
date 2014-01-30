@@ -1,5 +1,8 @@
 CHANGELOG sitespeed.io
 
+version 2.6-wip
+------------------------
+
 version 2.5.5
 ------------------------
 * Bug fix: New version of the crawler, the proxy support was broken in the last release
