@@ -8,6 +8,7 @@ You can use it on Mac, Linux & Windows (using Git Bash). And collect timing metr
 Run on Mac OS X
 =============
 ```bash
+$ brew tap tobli/browsertime
 $ brew install sitespeedio/sitespeedio/sitespeed.io
 $ sitespeed.io -h
 ```
