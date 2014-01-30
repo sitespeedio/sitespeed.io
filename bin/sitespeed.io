@@ -110,6 +110,12 @@ IPAD_VIEWPORT="768x1024"
 ## Nexus
 NEXUS_4_AGENT="Mozilla/5.0 (Linux; Android 4.2; Nexus 4 Build/JVP15Q) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.166 Mobile Safari/535.19"
 NEXUS_VIEWPORT="348x519"
+## The boxes that are shown on the summary page.
+## http://www.sitespeed.io/documentation/#config-boxes
+SUMMARY_BOXES=
+## The columns shown on the page summaries
+## http://www.sitespeed.io/documentation/#config-columns
+PAGES_COLUMNS=
 
 # Jar files, specify the versions
 CRAWLER_JAR=crawler-1.5.10-full.jar
