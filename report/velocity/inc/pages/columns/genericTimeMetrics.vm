@@ -11,7 +11,7 @@
 #if ($metric.getChild("name").getValue()==$column)##
 #if ($metric.getChild($browserTimeField).getValue()!="")##
 #if (!$isDisplayed)##
-$metric.getChild($browserTimeField).getValue()##
+$math.roundTo(1,$math.toDouble($metric.getChild($browserTimeField).getValue()))##
 #set ($isDisplayed = true)##
 #end##
 #else##
