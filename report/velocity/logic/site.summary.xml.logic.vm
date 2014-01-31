@@ -257,8 +257,10 @@
         #set( $browser = "#getBrowserName( $browser )" )
         #set ($descBrowser = "$name $browser")
         #set ($statsNameBrowser = "$name$browser")
-        #set($statsMeasurement = $stats.newInstance($name,$name,$nameAndDescription.get($name),"","ms",1))
-        #set($statsBrowserMeasurement = $stats.newInstance($statsNameBrowser,$descBrowser,$nameAndDescription.get($name),"","ms",1))
+        #set ($description = $nameAndDescription.get($name))
+        #if(!$description) #set($description='User Timing Measurements') #end
+        #set($statsMeasurement = $stats.newInstance($name,$name,$description,"","ms",1))
+        #set($statsBrowserMeasurement = $stats.newInstance($statsNameBrowser,$descBrowser,$description,"","ms",1))
         #set($hide = $nameAndMesurementsStats.put($name, $statsMeasurement))
         #set($hide = $nameAndMesurementsStats.put($statsNameBrowser, $statsBrowserMeasurement))
     #end
