@@ -2,6 +2,8 @@ CHANGELOG sitespeed.io
 
 version 2.6-wip
 ------------------------
+* Bug fix: User defined measurements get Velocity code as description #366
+* Bug fix: Show one decimal for time metrics on pages #363
 
 version 2.5.5
 ------------------------
