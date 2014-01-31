@@ -843,7 +843,7 @@ function analyze() {
       # And crazy enough, sometimes we get things after the end of the xml
       sed -n '1,/<\/results>/p' $REPORT_DATA_PAGES_DIR/$pagefilename-bup > $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1
 
-      # page size (keeping getting TTFB for a while, it is now primaly fetched from PhantomJS)
+      # page size (keeping getting TTFB for a while, it is now fetched through Browser Time)
       curl "$USER_AGENT_CURL" --compressed --globoff -o /dev/null $PROXY_CURL -w "%{time_starttransfer};%{size_download}\n" -L -s "$url" >  "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
 
       read -r TTFB_SIZE <  $REPORT_DATA_PAGES_DIR/$pagefilename.info
