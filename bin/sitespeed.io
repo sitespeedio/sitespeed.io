@@ -121,7 +121,7 @@ PAGES_COLUMNS=
 CRAWLER_JAR=crawler-1.5.10-full.jar
 VELOCITY_JAR=xml-velocity-1.8.8-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
-BROWSERTIME_JAR=browsertime-0.5-full.jar
+BROWSERTIME_JAR=browsertime-0.6-SNAPSHOT-full.jar
 
 # Don't fetch Navigation Timing metrics by default
 COLLECT_BROWSER_TIMINGS=false
@@ -777,7 +777,7 @@ cat << EOF
 usage: $0 options
 
 Sitespeed.io is a tool that helps you analyze your website performance and show you what you should optimize, more info at http://www.sitespeed.io.
-To collect Browser Timings in Chrome & IE you need to install the ChromeDriver and the Internet Explorer Driver (Windows only)
+To collect Browser Timings in Chrome & IE you need to install the ChromeDriver and the Internet Explorer Driver (Windows only).
 Example: $0 -u http://www.sitespeed.io -c chrome,firefox
 
 OPTIONS:
