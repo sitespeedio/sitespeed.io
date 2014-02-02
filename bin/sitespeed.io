@@ -308,7 +308,7 @@ if [ "$PAGES_COLUMNS" != "" ]
   else
     # Default colums
     PAGES_COLUMNS="-Dcom.soulgalore.velocity.key.columns=url,jsPerPage,cssPerPage,imagesPerPage,cssImagesPerPage,requests,requestsWithoutExpires,docWeight,pageWeight,browserScaledImages,criticalPathScore,spof,jsSyncInHead"
-    if $COLLECT_BROWSER_TIMINGS
+    if [ "$COLLECT_BROWSER_TIMINGS" = "true" ]
       then
       PAGES_COLUMNS="-Dcom.soulgalore.velocity.key.columns=url,jsPerPage,cssPerPage,imagesPerPage,requests,requestsWithoutExpires,pageWeight,browserScaledImages,criticalPathScore,serverResponseTime,domContentLoadedTime"
     fi
@@ -322,7 +322,7 @@ if [ "$SUMMARY_BOXES" != "" ]
   else
       # Default columns
       SUMMARY_BOXES="-Dcom.soulgalore.velocity.key.boxes=ruleScore,criticalPathScore,jsSyncInHead,jsPerPage,cssPerPage,cssImagesPerPage,imagesPerPage,requests,requestsWithoutExpires,requestsWithoutGZipPerPage,docWeight,jsWeightPerPage,cssWeightPerPage,imageWeightPerPage,pageWeight,browserScaledImages,spofPerPage,domainsPerPage,domElements,assetsCacheTime,timeSinceLastModification"
-    if $COLLECT_BROWSER_TIMINGS
+      if [ "$COLLECT_BROWSER_TIMINGS" = "true" ]
       then
       SUMMARY_BOXES="$SUMMARY_BOXES",serverResponseTime,backEndTime,pageDownloadTime,frontEndTime,domContentLoadedTime,pageLoadTime
       ## Extra: If we use chrome or IE , always add the firstpaint
@@ -574,7 +574,7 @@ do
   if [ -e "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" ]
     then
     EXTRA=
-    if $COLLECT_BROWSER_TIMINGS
+    if [ "$COLLECT_BROWSER_TIMINGS" = "true" ]
     then
       ## If collecting the metrics went ok, then use it
       for i in "${!REPORT_DATA_METRICS_ARRAY[@]}"
@@ -616,7 +616,7 @@ do
 done
 
 # Add all metrics
-if $COLLECT_BROWSER_TIMINGS
+if [ "$COLLECT_BROWSER_TIMINGS" = "true" ]
    then
    local runs=0
     echo '<metrics>' >> "$REPORT_DATA_DIR/result.xml"
@@ -660,7 +660,7 @@ echo 'Create the pages.html'
 "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$PAGES_COLUMNS" "$SCREENSHOT" "$SHOW_ERROR_URLS" "$VELOCITY_TEMPLATES_HOME"  $SUMMARY_PROPERTY -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/pages.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.html 2>&1 |tee $OUTPUT  >>$REPORT_DATA_DIR/error.log || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/pages.html $REPORT_DIR/pages.html
 
-if $OUTPUT_CSV
+  if [ "$OUTPUT_CSV" = "true" ]
   then
   echo 'Create the pages.csv'
   "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$PAGES_COLUMNS" $SUMMARY_PROPERTY "$VELOCITY_TEMPLATES_HOME"  -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_DIR/result.xml $VELOCITY_DIR/csv/pages.csv.vm $PROPERTIES_DIR/pages.properties $REPORT_DIR/pages.csv 2>&1 |tee $OUTPUT  >>$REPORT_DATA_DIR/error.log || exit 1
@@ -680,7 +680,7 @@ FILE_WITH_RULES=$(ls $REPORT_DATA_PAGES_DIR | head -n 1)
 "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$TEST_NAME" "$SCREENSHOT" "$SHOW_ERROR_URLS" "$VELOCITY_TEMPLATES_HOME"  -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_DATA_PAGES_DIR/$FILE_WITH_RULES $VELOCITY_DIR/rules.vm $PROPERTIES_DIR/rules.properties $REPORT_DIR/rules.html 2>&1 |tee $OUTPUT  >>$REPORT_DATA_DIR/error.log || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_DIR/rules.html $REPORT_DIR/rules.html
 
-if $TAKE_SCREENSHOTS
+if [ "$TAKE_SCREENSHOTS" = "true" ]
   then
   take_screenshots
 fi
@@ -751,7 +751,7 @@ for url in "${URLS[@]}"
     echo "Creating screenshot for $url $REPORT_IMAGE_PAGES_DIR/$imagefilename.png "
     phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js "$url" "$REPORT_IMAGE_PAGES_DIR/$imagefilename.png" $width $height "$USER_AGENT" true  > /dev/null 2>&1
 
-    if $PNGCRUSH_EXIST
+    if [ "$PNGCRUSH_EXIST" = "true" ]
       then
         pngcrush -q $REPORT_IMAGE_PAGES_DIR/$imagefilename.png $REPORT_IMAGE_PAGES_DIR/$imagefilename-c.png
         mv $REPORT_IMAGE_PAGES_DIR/$imagefilename-c.png $REPORT_IMAGE_PAGES_DIR/$imagefilename.png
@@ -870,7 +870,7 @@ function analyze() {
 #*******************************************************
 function collect_browser_time {
 
-if $COLLECT_BROWSER_TIMINGS
+if [ "$COLLECT_BROWSER_TIMINGS" = "true" ]
 then
 for i in "${!BROWSERS_ARRAY[@]}"
 do
