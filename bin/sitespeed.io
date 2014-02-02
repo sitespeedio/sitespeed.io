@@ -126,6 +126,9 @@ BROWSERTIME_JAR=browsertime-0.6-SNAPSHOT-full.jar
 # Don't fetch Navigation Timing metrics by default
 COLLECT_BROWSER_TIMINGS=false
 
+# Help write relevant info to the log
+HAS_ERRORS_BEEN_LOGGED=false
+
 # Load user-specific config file if it exists
 if [ -f ~/.sitespeedio ]
 then
@@ -936,9 +939,15 @@ echo $pagefilename
 function log_error() {
 local now=$(date +"%Y-%m-%d-%H-%M-%S")
 
-if [[ ! -e $REPORT_DATA_DIR/$ERROR_LOG ]]
+if [ "$HAS_ERRORS_BEEN_LOGGED" != "true" ]
 then
-  echo "$now Sitespeed.io version $SITESPEED_VERSION Java version $jVersion PhantomJS version $(phantomjs --version) BrowserTime version $browserTimeVersion" > $REPORT_DATA_DIR/$ERROR_LOG
+  echo "$now Sitespeed.io version $SITESPEED_VERSION Java version $jVersion PhantomJS version $(phantomjs --version) BrowserTime version $browserTimeVersion" >> $REPORT_DATA_DIR/$ERROR_LOG
+  if [ -f ~/.sitespeedio ]
+  then
+  echo "User config:"  >> $REPORT_DATA_DIR/$ERROR_LOG
+  cat ~/.sitespeedio >> $REPORT_DATA_DIR/$ERROR_LOG
+  fi
+  HAS_ERRORS_BEEN_LOGGED=true
 fi
 
 echo $now $1 >> $REPORT_DATA_DIR/$ERROR_LOG
