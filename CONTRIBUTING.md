@@ -9,10 +9,10 @@ First, check the [defect/bug list](https://github.com/sitespeedio/sitespeed.io/i
 
 If you find a defect, please file a bug report. Include the following:
  - Explain the bug/defect and what you where doing.
- - OS & versions 
- - Always add the URL of the page you where analyzing (if it is secret, drop me an email peter**at**soulgalore.com and send me the address). 
- - Add a screenshot and clearly point out where the defect is.
- - Add a log of the output and include the content of the data/error.log file in a [gist](https://gist.github.com/) and attach it to the issue. 
+ - OS & versions
+ - Always add the URL of the page you where analyzing (if it is secret, drop me an email peter**at**soulgalore.com and send me the address).
+ - Add a screenshot and clearly point out where the defect is (if applicable)
+ - Include the content of the data/error.log file in a [gist](https://gist.github.com/) and attach it to the issue.
 
 If you have the skills & the time, it is perfect if you send a pull request with a fix, that helps me a lot!
 
