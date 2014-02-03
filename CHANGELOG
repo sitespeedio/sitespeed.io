@@ -4,7 +4,7 @@ version 2.5.5
 ------------------------
 * Bug fix: New version of the crawler, the proxy support was broken in the last release
 * Added proxy support when collecting Navigation Timing metrics #351
-* Added support for local configuration wher you can override default configuration (thanks @AD7six)
+* Added support for local configuration where you can override default configuration (thanks @AD7six)
 
 version 2.5.4
 ------------------------
