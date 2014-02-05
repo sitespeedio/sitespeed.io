@@ -56,7 +56,7 @@ build:
 	@cp $(DEP)/xml-velocity-1.8.8-full.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/screenshot.js $(BUILD)/$(DEP)/
 	@cp $(DEP)/htmlcompressor-1.5.3.jar $(BUILD)/$(DEP)/
-	@cp $(DEP)/yuicompressor-2.4.6.jar $(BUILD)/$(DEP)/
+	@cp $(DEP)/yuicompressor-2.4.8.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/yslow-3.1.5-sitespeed.js $(BUILD)/$(DEP)/
 	@cp $(DEP)/rules-desktop.properties $(BUILD)/$(DEP)/
 	@cp $(DEP)/rules-mobile.properties $(BUILD)/$(DEP)/
