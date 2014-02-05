@@ -346,14 +346,20 @@ then
     PROXY_CURL="-x $PROXY_TYPE":"//$PROXY_HOST"
 fi
 
+
 if [ "$BASIC_AUTH_USER_PASSWORD" != "" ]
   then
     ## Fix for the current version of the crawler
-    ## TODO also remove the port
     local noprotocol=${URL#*//}
     local host=${noprotocol%%/*}
+    local port=${host#*:}
+    if [[ $port = *[[:digit:]]* ]]; then
+      echo "using port $port"
+    else
+      local port=80
+    fi
     BASIC_AUTH_PHANTOMJS="-ba $BASIC_AUTH_USER_PASSWORD"
-    BASIC_AUTH_CRAWLER="-Dcom.soulgalore.crawler.auth=$host":80:"$BASIC_AUTH_USER_PASSWORD"
+    BASIC_AUTH_CRAWLER="-Dcom.soulgalore.crawler.auth=$host":"$port":"$BASIC_AUTH_USER_PASSWORD"
     ## BASIC_AUTH_BROWSER_TIME="-p $PROXY_HOST"
     BASIC_AUTH_CURL="-u $BASIC_AUTH_USER_PASSWORD"
 fi
@@ -420,7 +426,6 @@ if [[ -z $FILE ]]
   # remove the protocol
   local noprotocol=${URL#*//}
   HOST=${noprotocol%%/*}
-  BASE_DIR=$HOST
 else
  echo "Will fetch urls from the file $FILE with User-Agent $USER_AGENT and viewport $VIEWPORT using ruleset $RULESET ... this can take a while"
  BASE_DIR=$(basename "$FILE")
