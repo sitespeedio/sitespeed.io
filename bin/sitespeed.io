@@ -81,7 +81,7 @@ PAGES_COLUMNS=
 ## The default user agent
 USER_AGENT="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36"
 ## The YSlow file to use
-YSLOW_FILE="$SITESPEED_HOME"/dependencies/yslow-3.1.5-sitespeed.js
+YSLOW_FILE="$SITESPEED_HOME"/dependencies/yslow-3.1.8-sitespeed.js
 ## The desktop ruleset
 RULESET=sitespeed.io-desktop
 RULESET_MOBILE=sitespeed.io-mobile
@@ -823,7 +823,8 @@ function analyze() {
     local pagefilename=$(get_filename $1 $2)
 
     echo "Analyzing $url"
-    phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW -n "$REPORT_DATA_HAR_DIR/$pagefilename.har" "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"  2>> $REPORT_DATA_DIR/phantomjs.error.log || echo "PhantomJS could not handle $url , check the error log:  $REPORT_DATA_DIR/phantomjs.error.log"
+    ## Removing HAR functionality from phantomjs, will be included in browsertime -n "$REPORT_DATA_HAR_DIR/$pagefilename.har"
+    phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"  2>> $REPORT_DATA_DIR/phantomjs.error.log || echo "PhantomJS could not handle $url , check the error log:  $REPORT_DATA_DIR/phantomjs.error.log"
 
     local s=$(du -k "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" | cut -f1)
     # Check that the size is bigger than 0
