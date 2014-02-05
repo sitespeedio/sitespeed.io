@@ -199,7 +199,7 @@ fi
 #*******************************************************
 function get_input {
 # Set options
-while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:q:k:V” OPTION
+while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:q:k:V:P:U:D:” OPTION
 do
      case $OPTION in
          h)
@@ -228,6 +228,9 @@ do
          j)MAX_PAGES=$OPTARG;;
          k)SCREENSHOT=$OPTARG;;
          c)BROWSERS=$OPTARG;;
+         U)BASIC_AUTH_USER=$OPTARG;;
+         P)BASIC_AUTH_PASSWORD=$OPTARG;;
+         D)BASIC_AUTH_DOMAIN=$OPTARG;;
          V)
              echo $SITESPEED_VERSION
              exit  0
@@ -341,6 +344,15 @@ then
     PROXY_BROWSER_TIME="-p $PROXY_HOST"
     PROXY_CURL="-x $PROXY_TYPE":"//$PROXY_HOST"
 fi
+
+if [ "$BASIC_AUTH_DOMAIN" != "" ]
+  then
+    BASIC_AUTH_PHANTOMJS="--proxy=$PROXY_HOST --proxy-type=$PROXY_TYPE"
+    BASIC_AUTH_CRAWLER="-Dcom.soulgalore.crawler.auth=$BASIC_AUTH_DOMAIN":80:"$BASIC_AUTH_USER":"$BASIC_AUTH_PASSWORD"
+    BASIC_AUTH_BROWSER_TIME="-p $PROXY_HOST"
+    BASIC_AUTH_CURL="-u $BASIC_AUTH_USER:$BASIC_AUTH_PASSWORD"
+fi
+
 
 if [[ "$USER_AGENT" == "iphone" ]]
 then
@@ -808,6 +820,8 @@ OPTIONS:
    -c      Choose which browser to use to collect timing data. You can set multiple browsers in a comma sepratated list (firefox|chrome|ie) [optional]
    -z      The number of times you should test each URL when fetching timing metrics. Default is three times [optional]
    -V      Show the version of sitespeed.io
+   -U      Basic auth user
+   -P      Basic auth password
 EOF
 }
 
@@ -847,7 +861,7 @@ function analyze() {
       sed -n '1,/<\/results>/p' $REPORT_DATA_PAGES_DIR/$pagefilename-bup > $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1
 
       # page size (keeping getting TTFB for a while, it is now fetched through Browser Time)
-      curl "$USER_AGENT_CURL" --compressed --globoff -o /dev/null $PROXY_CURL -w "%{time_starttransfer};%{size_download}\n" -L -s "$url" >  "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
+      curl "$USER_AGENT_CURL" --compressed --globoff -o /dev/null $PROXY_CURL -w "%{time_starttransfer};%{size_download}\n" -L -s "$url" $BASIC_AUTH_CURL >  "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
 
       read -r TTFB_SIZE <  $REPORT_DATA_PAGES_DIR/$pagefilename.info
       local TTFB="$(echo $TTFB_SIZE  | cut -d \; -f 1)"
