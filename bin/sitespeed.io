@@ -129,6 +129,9 @@ COLLECT_BROWSER_TIMINGS=false
 # Help write relevant info to the log
 HAS_ERRORS_BEEN_LOGGED=false
 
+# Basic auth: <username:password>
+BASIC_AUTH_USER_PASSWORD=
+
 # Load user-specific config file if it exists
 if [ -f ~/.sitespeedio ]
 then
@@ -822,7 +825,7 @@ OPTIONS:
    -c      Choose which browser to use to collect timing data. You can set multiple browsers in a comma sepratated list (firefox|chrome|ie) [optional]
    -z      The number of times you should test each URL when fetching timing metrics. Default is three times [optional]
    -V      Show the version of sitespeed.io
-   -B      Basic auth user & password (username:password) [optional]
+   -B      Basic auth user & password <username:password> [optional]
 EOF
 }
 
