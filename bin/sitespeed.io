@@ -199,7 +199,7 @@ fi
 #*******************************************************
 function get_input {
 # Set options
-while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:q:k:V:P:U:D:” OPTION
+while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:q:k:V:B:” OPTION
 do
      case $OPTION in
          h)
@@ -228,9 +228,7 @@ do
          j)MAX_PAGES=$OPTARG;;
          k)SCREENSHOT=$OPTARG;;
          c)BROWSERS=$OPTARG;;
-         U)BASIC_AUTH_USER=$OPTARG;;
-         P)BASIC_AUTH_PASSWORD=$OPTARG;;
-         D)BASIC_AUTH_DOMAIN=$OPTARG;;
+         B)BASIC_AUTH_USER_PASSWORD=$OPTARG;;
          V)
              echo $SITESPEED_VERSION
              exit  0
@@ -345,12 +343,16 @@ then
     PROXY_CURL="-x $PROXY_TYPE":"//$PROXY_HOST"
 fi
 
-if [ "$BASIC_AUTH_DOMAIN" != "" ]
+if [ "$BASIC_AUTH_USER_PASSWORD" != "" ]
   then
-    BASIC_AUTH_PHANTOMJS="--proxy=$PROXY_HOST --proxy-type=$PROXY_TYPE"
-    BASIC_AUTH_CRAWLER="-Dcom.soulgalore.crawler.auth=$BASIC_AUTH_DOMAIN":80:"$BASIC_AUTH_USER":"$BASIC_AUTH_PASSWORD"
-    BASIC_AUTH_BROWSER_TIME="-p $PROXY_HOST"
-    BASIC_AUTH_CURL="-u $BASIC_AUTH_USER:$BASIC_AUTH_PASSWORD"
+    ## Fix for the current version of the crawler
+    ## TODO also remove the port
+    local noprotocol=${URL#*//}
+    local host=${noprotocol%%/*}
+    BASIC_AUTH_PHANTOMJS="-ba $BASIC_AUTH_USER_PASSWORD"
+    BASIC_AUTH_CRAWLER="-Dcom.soulgalore.crawler.auth=$host":80:"$BASIC_AUTH_USER_PASSWORD"
+    ## BASIC_AUTH_BROWSER_TIME="-p $PROXY_HOST"
+    BASIC_AUTH_CURL="-u $BASIC_AUTH_USER_PASSWORD"
 fi
 
 
@@ -490,7 +492,7 @@ echo "From IP $MY_IP"
 function fetch_urls {
 if [[ -z $FILE ]]
 then
-  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -Dcom.soulgalore.crawler.propertydir=$DEPENDENCIES_DIR/ $PROXY_CRAWLER -cp $DEPENDENCIES_DIR/$CRAWLER_JAR com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL -rh "\"$USER_AGENT_CRAWLER\"" -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/errorurls.txt
+  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -Dcom.soulgalore.crawler.propertydir=$DEPENDENCIES_DIR/ $BASIC_AUTH_CRAWLER $PROXY_CRAWLER -cp $DEPENDENCIES_DIR/$CRAWLER_JAR com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL -rh "\"$USER_AGENT_CRAWLER\"" -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/errorurls.txt
 else
   cp $FILE $REPORT_DATA_DIR/urls.txt
 fi
@@ -761,7 +763,7 @@ for url in "${URLS[@]}"
   do
     local imagefilename=$(get_filename $url $runs)
     echo "Creating screenshot for $url $REPORT_IMAGE_PAGES_DIR/$imagefilename.png "
-    phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js "$url" "$REPORT_IMAGE_PAGES_DIR/$imagefilename.png" $width $height "$USER_AGENT" true  > /dev/null 2>&1
+    phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js "$url" "$REPORT_IMAGE_PAGES_DIR/$imagefilename.png" $width $height "$USER_AGENT" true $BASIC_AUTH_USER_PASSWORD > /dev/null 2>&1
 
     if [ "$PNGCRUSH_EXIST" = "true" ]
       then
@@ -820,8 +822,7 @@ OPTIONS:
    -c      Choose which browser to use to collect timing data. You can set multiple browsers in a comma sepratated list (firefox|chrome|ie) [optional]
    -z      The number of times you should test each URL when fetching timing metrics. Default is three times [optional]
    -V      Show the version of sitespeed.io
-   -U      Basic auth user
-   -P      Basic auth password
+   -B      Basic auth user & password (username:password) [optional]
 EOF
 }
 
@@ -838,7 +839,7 @@ function analyze() {
 
     echo "Analyzing $url"
     ## Removing HAR functionality from phantomjs, will be included in browsertime -n "$REPORT_DATA_HAR_DIR/$pagefilename.har"
-    phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"  2>> $REPORT_DATA_DIR/phantomjs.error.log || echo "PhantomJS could not handle $url , check the error log:  $REPORT_DATA_DIR/phantomjs.error.log"
+    phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET $BASIC_AUTH_PHANTOMJS -f xml --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"  2>> $REPORT_DATA_DIR/phantomjs.error.log || echo "PhantomJS could not handle $url , check the error log:  $REPORT_DATA_DIR/phantomjs.error.log"
 
     local s=$(du -k "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" | cut -f1)
     # Check that the size is bigger than 0
