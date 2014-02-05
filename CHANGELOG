@@ -1,4 +1,8 @@
 CHANGELOG sitespeed.io
+version 2.5.6
+------------------------
+* New BrowserTime version 0.6 that fix crash while trying to run resource timing measurements in Firefox, 
+  see the list of changes here: https://github.com/tobli/browsertime/releases/tag/browsertime-0.6 
 
 version 2.5.5
 ------------------------
