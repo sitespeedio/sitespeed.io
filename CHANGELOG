@@ -2,6 +2,7 @@ CHANGELOG sitespeed.io
 
 version 2.6-wip
 ------------------------
+* Upgraded to YSlow 3.1.8 (with configurable CDN), removed PhantomJS har files (will be included using BrowserTime). One issue though, the compressed js don't work
 * Bug fix: User defined measurements get Velocity code as description #366
 * Bug fix: Show one decimal for time metrics on pages #363
 
