@@ -3,7 +3,7 @@ Sitespeed.io continues to evolve thanks to people who contributes, so please ple
 
 ## Making changes
 If you want help out, that's great! Check the issue list and see if there's something there you want to do and drop me a note so I know and I can help you get into the project.
-One important thing: The YSlow file dependencies/yslow-3.1.5-sitespeed.js is generated from the project https://github.com/sitespeedio/yslow meaning all pull requests
+One **important** thing: The YSlow file `dependencies/yslow-X.Y.Z-sitespeed.js` is generated from the project https://github.com/sitespeedio/yslow meaning all pull requests
 needs to be sent to that project and then we will include the finalized javascript file in this project.
 
 ## Add a defect
@@ -24,4 +24,4 @@ If you have an idea or something that you need sitespeed.io to handle, add an is
 
 Thanks for your time & support!
 
-Peter
+Peter & Tobias
