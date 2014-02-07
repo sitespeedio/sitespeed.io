@@ -117,6 +117,9 @@ SUMMARY_BOXES=
 ## http://www.sitespeed.io/documentation/#config-columns
 PAGES_COLUMNS=
 
+# A comma separated list of additional CDNs
+CDN_LIST=
+
 # Jar files, specify the versions
 CRAWLER_JAR=crawler-1.5.10-full.jar
 VELOCITY_JAR=xml-velocity-1.8.8-full.jar
@@ -202,7 +205,7 @@ fi
 #*******************************************************
 function get_input {
 # Set options
-while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:q:k:V:B:” OPTION
+while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:q:k:V:B:C:” OPTION
 do
      case $OPTION in
          h)
@@ -232,6 +235,7 @@ do
          k)SCREENSHOT=$OPTARG;;
          c)BROWSERS=$OPTARG;;
          B)BASIC_AUTH_USER_PASSWORD=$OPTARG;;
+         C)CDN_LIST=$OPTARG;;
          V)
              echo $SITESPEED_VERSION
              exit  0
@@ -407,6 +411,11 @@ then
 else
 #relative
   REPORT_DIR="$(pwd)"/$REPORT_DIR
+fi
+
+if [ "$CDN_LIST" != "" ]
+then
+    CDN="--cdns $CDN_LIST"
 fi
 
 }
@@ -831,6 +840,7 @@ OPTIONS:
    -z      The number of times you should test each URL when fetching timing metrics. Default is three times [optional]
    -V      Show the version of sitespeed.io
    -B      Basic auth user & password <username:password> [optional]
+   -C     A comma separated list of additional CDNs [optional]
 EOF
 }
 
@@ -847,7 +857,7 @@ function analyze() {
 
     echo "Analyzing $url"
     ## Removing HAR functionality from phantomjs, will be included in browsertime -n "$REPORT_DATA_HAR_DIR/$pagefilename.har"
-    phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET $BASIC_AUTH_PHANTOMJS -f xml --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"  2>> $REPORT_DATA_DIR/phantomjs.error.log || echo "PhantomJS could not handle $url , check the error log:  $REPORT_DATA_DIR/phantomjs.error.log"
+    phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET $BASIC_AUTH_PHANTOMJS -f xml $CDN --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"  2>> $REPORT_DATA_DIR/phantomjs.error.log || echo "PhantomJS could not handle $url , check the error log:  $REPORT_DATA_DIR/phantomjs.error.log"
 
     local s=$(du -k "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" | cut -f1)
     # Check that the size is bigger than 0
