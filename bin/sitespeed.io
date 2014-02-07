@@ -435,6 +435,7 @@ if [[ -z $FILE ]]
   # remove the protocol
   local noprotocol=${URL#*//}
   HOST=${noprotocol%%/*}
+  BASE_DIR=$HOST
 else
  echo "Will fetch urls from the file $FILE with User-Agent $USER_AGENT and viewport $VIEWPORT using ruleset $RULESET ... this can take a while"
  BASE_DIR=$(basename "$FILE")
