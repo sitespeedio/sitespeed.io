@@ -95,6 +95,8 @@ MAX_FILENAME_LENGTH=245
 SCREENSHOT=false
 ## The browser to use. A comma separated list of browsers
 BROWSERS=
+## The browser cookie for phantomjs.
+COOKIE=
 ## The default number of runs
 NUMBER_OF_RUNS="3"
 ## Error log
@@ -196,7 +198,7 @@ fi
 #*******************************************************
 function get_input {
 # Set options
-while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:q:k:V” OPTION
+while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:q:k:C:V” OPTION
 do
      case $OPTION in
          h)
@@ -225,6 +227,7 @@ do
          j)MAX_PAGES=$OPTARG;;
          k)SCREENSHOT=$OPTARG;;
          c)BROWSERS=$OPTARG;;
+	       C)COOKIE=$OPTARG;;
          V)
              echo $SITESPEED_VERSION
              exit  0
@@ -381,6 +384,13 @@ then
 else
 #relative
   REPORT_DIR="$(pwd)"/$REPORT_DIR
+fi
+
+if [ "$COOKIE" != "" ]
+then
+    COOKIE=$COOKIE
+else
+    COOKIE=''
 fi
 
 }
@@ -745,8 +755,8 @@ local runs=0
 for url in "${URLS[@]}"
   do
     local imagefilename=$(get_filename $url $runs)
-    echo "Creating screenshot for $url $REPORT_IMAGE_PAGES_DIR/$imagefilename.png "
-    phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js "$url" "$REPORT_IMAGE_PAGES_DIR/$imagefilename.png" $width $height "$USER_AGENT" true  > /dev/null 2>&1
+    echo "Creating screenshot for $url $REPORT_IMAGE_PAGES_DIR/$imagefilename.png"
+    phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js "$url" "$REPORT_IMAGE_PAGES_DIR/$imagefilename.png" $width $height "$USER_AGENT" true "$COOKIE" > /dev/null 2>&1
 
     if $PNGCRUSH_EXIST
       then
@@ -803,6 +813,7 @@ OPTIONS:
    -j      The max number of pages to test [optional]
    -k      Take screenshots for each page (using the configured view port). Default is false. (true|false) [optional]
    -c      Choose which browser to use to collect timing data. You can set multiple browsers in a comma sepratated list (firefox|chrome|ie) [optional]
+   -C      The cookie of phantomjs ex) '{"name":"cookie_name","value":"cookie_value","domain":"localhost"}' [optional]
    -z      The number of times you should test each URL when fetching timing metrics. Default is three times [optional]
    -V      Show the version of sitespeed.io
 EOF
@@ -820,7 +831,7 @@ function analyze() {
     local pagefilename=$(get_filename $1 $2)
 
     echo "Analyzing $url"
-    phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW -n "$REPORT_DATA_HAR_DIR/$pagefilename.har" "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"  2>> $REPORT_DATA_DIR/phantomjs.error.log || echo "PhantomJS could not handle $url , check the error log:  $REPORT_DATA_DIR/phantomjs.error.log"
+    phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW -C "$COOKIE" -n "$REPORT_DATA_HAR_DIR/$pagefilename.har" "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"  2>> $REPORT_DATA_DIR/phantomjs.error.log || echo "PhantomJS could not handle $url , check the error log:  $REPORT_DATA_DIR/phantomjs.error.log"
 
     local s=$(du -k "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" | cut -f1)
     # Check that the size is bigger than 0
@@ -947,3 +958,4 @@ echo $now $1 >> $REPORT_DATA_DIR/$ERROR_LOG
 
 # launch
 main "$@"
+
