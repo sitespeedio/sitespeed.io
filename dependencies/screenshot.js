@@ -1,12 +1,12 @@
 var page = require('webpage').create(),
-    address, output, size, w, h, agent, full;
+    address, output, size, w, h, agent, full, cookie;
 var resourceWait  = 1e3,
     maxRenderWait = 1e4,
     count         = 0,
     renderTimeout;
 
-if (phantom.args.length < 5 || phantom.args.length > 6) {
-    console.log('Usage: screenshot.js URL filename width height user-agent full');
+if (phantom.args.length < 5 || phantom.args.length > 7) {
+    console.log('Usage: screenshot.js URL filename width height user-agent full cookie');
     phantom.exit();
 } else {
     address = phantom.args[0];
@@ -15,6 +15,16 @@ if (phantom.args.length < 5 || phantom.args.length > 6) {
     h = phantom.args[3];
     agent = phantom.args[4];
     full = phantom.args[5];
+    cookie_str = phantom.args[6];
+    try{
+      cookie = JSON.parse(cookie_str,function(k, v){
+        return v;
+      });
+    } catch (e) {
+      console.log('Error - '+ e);
+      cookie = undefined;
+    }
+    if(cookie != undefined) phantom.addCookie(cookie);
 
     function doClip() {
         if (full != 'true')
