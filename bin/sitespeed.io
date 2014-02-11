@@ -746,7 +746,7 @@ for url in "${URLS[@]}"
   do
     local imagefilename=$(get_filename $url $runs)
     echo "Creating screenshot for $url $REPORT_IMAGE_PAGES_DIR/$imagefilename.png "
-    phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js "$url" "$REPORT_IMAGE_PAGES_DIR/$imagefilename.png" $width $height "$USER_AGENT" true  > /dev/null 2>&1
+    phantomjs --ssl-protocol=any --ignore-ssl-errors=yes $PROXY_PHANTOMJS $DEPENDENCIES_DIR/screenshot.js "$url" "$REPORT_IMAGE_PAGES_DIR/$imagefilename.png" $width $height "$USER_AGENT" true  > /dev/null 2>&1
 
     if $PNGCRUSH_EXIST
       then
@@ -820,7 +820,7 @@ function analyze() {
     local pagefilename=$(get_filename $1 $2)
 
     echo "Analyzing $url"
-    phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW -n "$REPORT_DATA_HAR_DIR/$pagefilename.har" "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"  2>> $REPORT_DATA_DIR/phantomjs.error.log || echo "PhantomJS could not handle $url , check the error log:  $REPORT_DATA_DIR/phantomjs.error.log"
+    phantomjs --ssl-protocol=any --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW -n "$REPORT_DATA_HAR_DIR/$pagefilename.har" "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"  2>> $REPORT_DATA_DIR/phantomjs.error.log || echo "PhantomJS could not handle $url , check the error log:  $REPORT_DATA_DIR/phantomjs.error.log"
 
     local s=$(du -k "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" | cut -f1)
     # Check that the size is bigger than 0
@@ -830,7 +830,7 @@ function analyze() {
       ## do the same thing again but setting console to log the error to output
       log_error "Could not analyze $url unrecoverable error when parsing the page"
       log_error "Input parameters: $INPUT"
-      phantomjs --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url" -c 2  2>&1 >> $REPORT_DATA_DIR/$ERROR_LOG
+      phantomjs --ssl-protocol=any --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url" -c 2  2>&1 >> $REPORT_DATA_DIR/$ERROR_LOG
 
       ## write the error url to the list
       echo "sitespeed.io got an unrecoverable error when parsing the page,$url" >> $REPORT_DATA_DIR/errorurls.txt
