@@ -8,3 +8,6 @@ Many many many thanks to:
 * Juga Paazmaya (@paazmaya)
 * Ajay Jain
 * Andy Dawson (@AD7six)
+* Chris Southam (@ChrisSoutham)
+* JoongSeob Vito Kim (@dorajistyle)
+* Zack Tollman (@tollmanz)

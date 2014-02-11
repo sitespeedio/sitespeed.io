@@ -1,5 +1,4 @@
 CHANGELOG sitespeed.io
-
 version 2.6-wip
 ------------------------
 * Upgraded to YSlow 3.1.8 (with configurable CDN), removed PhantomJS har files (will be included using BrowserTime) and with basic auth support
@@ -10,12 +9,18 @@ version 2.6-wip
 * Bug fix: If an error happens when crawling, log that to the error.log #378
 * Bug fix: User defined measurements get Velocity code as description #366
 * Bug fix: Show one decimal for time metrics on pages #363
+* Bug fix: Connect via any SSL protocol #379 thanks @tollmanz
+
+version 2.5.6
+------------------------
+* New BrowserTime version 0.6 that fix crash while trying to run resource timing measurements in Firefox,
+  see the list of changes here: https://github.com/tobli/browsertime/releases/tag/browsertime-0.6
 
 version 2.5.5
 ------------------------
 * Bug fix: New version of the crawler, the proxy support was broken in the last release
 * Added proxy support when collecting Navigation Timing metrics #351
-* Added support for local configuration wher you can override default configuration (thanks @AD7six)
+* Added support for local configuration where you can override default configuration (thanks @AD7six)
 
 version 2.5.4
 ------------------------
