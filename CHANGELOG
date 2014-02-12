@@ -6,6 +6,7 @@ version 2.6-wip
 * Turned on CDN rule and made it possibly to supply CDN domains
 * Added new crawler that solves problem when the crawler picked up URLs with wrong domain, thanks @ChrisSoutham
 * Updated support for catching lazy loaded assests in YSlow/PhantomJS, thanks @dorajistyle
+* Show the 90 percentile value for all timing metrics on the individual pages #380
 * Bug fix: If an error happens when crawling, log that to the error.log #378
 * Bug fix: User defined measurements get Velocity code as description #366
 * Bug fix: Show one decimal for time metrics on pages #363
