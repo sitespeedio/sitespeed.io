@@ -507,6 +507,7 @@
 							<th>Name</th>
 							<th>min</th>
 							<th>median</th>
+							<th>p90</th>
 							<th>max</th>
 					    </tr>
 					</thead>
@@ -516,6 +517,7 @@
 					<td><div class="nobreak-page">$statistic.getChild("name").getValue()</div></td>
 					<td>$math.roundTo(1,$statistic.getChild("min").getValue())</td>
 					<td>$math.roundTo(1,$statistic.getChild("median").getValue())</td>
+					<td>$math.roundTo(1,$statistic.getChild("p90").getValue())</td>
 					<td>$math.roundTo(1,$statistic.getChild("max").getValue())</td>
 					</tr>
 					#end
