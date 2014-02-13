@@ -357,10 +357,10 @@ if [ "$BASIC_AUTH_USER_PASSWORD" != "" ]
     local noprotocol=${URL#*//}
     local host=${noprotocol%%/*}
     local port=${host#*:}
-    if [[ $port = *[[:digit:]]* ]]; then
-      echo "using port $port"
-    else
+    if [[ $port = *[!0-9]* ]]; then
       local port=80
+    else
+      echo "using port $port"
     fi
     BASIC_AUTH_PHANTOMJS="-ba $BASIC_AUTH_USER_PASSWORD"
     BASIC_AUTH_CRAWLER="-Dcom.soulgalore.crawler.auth=$host":"$port":"$BASIC_AUTH_USER_PASSWORD"
