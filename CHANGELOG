@@ -11,6 +11,7 @@ version 2.6-wip
 * Bug fix: User defined measurements get Velocity code as description #366
 * Bug fix: Show one decimal for time metrics on pages #363
 * Bug fix: Connect via any SSL protocol #379 thanks @tollmanz
+* Kind of a bug fix: The crawler can now handle a href tags with a line break instead of space between the a & the href
 
 version 2.5.6
 ------------------------
