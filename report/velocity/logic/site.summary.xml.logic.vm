@@ -33,6 +33,8 @@
 #set($statsDomElements = $stats.newInstance("domElements","Number of DOM elements","Too many DOM elements means that the page is complex and will be slower to render.","","",1))
 #set($statsDomains = $stats.newInstance("domainsPerPage","Number of domains","Many domains means many DNS lookups and that means slower pages.","","",1))
 #set($statsCompressed = $stats.newInstance("requestsWithoutGZipPerPage","Requests without GZip","All text content (JS/CSS/HTML) can and should be sent GZiped so that the size is as small as possible.","","",1))
+#set($statsRedirects= $stats.newInstance("redirectsPerPage","Redirects per page","Avoid doing redirects, since it will slow down the page.","","",1))
+#set($statsMaxRequestsPerDomain= $stats.newInstance("maxRequestsPerDomainPerPage","Max requests per domain","Using HTTP 1.1 you want to avoid loading too many assets from one domain","","",1))
 
 ## And add them to the list of statistics
 #set($hide = $allStats.add($statsScore))
@@ -61,6 +63,8 @@
 #set($hide = $allStats.add($statsDomains))
 #set($hide = $allStats.add($statsScaledImages))
 #set($hide = $allStats.add($statsCompressed))
+#set($hide = $allStats.add($statsRedirects))
+#set($hide = $allStats.add($statsMaxRequestsPerDomain))
 
 ## Fetch all statistics used by the boxes
 #foreach ($results in $document.getRootElement().getChildren())
@@ -148,12 +152,17 @@
      $statsAssetsWithoutExpires.addValue($math.toInteger($results.getChild("g").getChild("expiresmod").getChild("components").getChildren("item").size()))
     #end
 
+    #if($!{results.getChild("g").getChild("redirects").getChild("components")})
+     $statsRedirects.addValue($math.toInteger($results.getChild("g").getChild("redirects").getChild("components").getChildText("item")))
+    #end
+
     #set ($totalImagePageSize = 0)
     #set ($totalCssPageSize = 0)
     #set ($totalJsPageSize = 0)
 
 	## also fetch the modified since & cache time
     #set($hosts = [])
+    #set($hostAndRequests = $map.clone())
 
 	#foreach ($asset in $results.getChild("comps").getChildren())
 
@@ -200,11 +209,34 @@
             #set($swallow = $hosts.add($theHost))
         #end
 
-	#end
+         ## And check how many assets we have per domain
+        #set($nrOfRequests = 0)
+        #set($nrOfRequests = $hostAndRequests.get($theHost))
+
+        #if(!$nrOfRequests)
+            #set($nrOfRequests = 1)
+        #else
+            #set($nrOfRequests = $math.add($nrOfRequests, 1))
+        #end
+
+        #set($swallow = $hostAndRequests.put($theHost, $nrOfRequests))
+
+    #end
+
+    ## TODO get the host with most request and add it!
+    #set ($mostDomains=0)
+    #foreach ($entry in $hostAndRequests.entrySet())
+    #if ($entry.getValue() > $mostDomains)
+        #set ($mostDomains=$entry.getValue() )
+    #end
+    #end
+
+    $statsMaxRequestsPerDomain.addValue($mostDomains)
 
     #if($hosts.size()>0)
         $statsDomains.addValue($hosts.size())
     #end
+
 
     #if($totalImagePageSize>0)
         $statsTotalImageWeight.addValue($totalImagePageSize)

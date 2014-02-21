@@ -329,7 +329,7 @@ if [ "$SUMMARY_BOXES" != "" ]
     SUMMARY_BOXES="-Dcom.soulgalore.velocity.key.boxes=$SUMMARY_BOXES"
   else
       # Default columns
-      SUMMARY_BOXES="-Dcom.soulgalore.velocity.key.boxes=ruleScore,criticalPathScore,jsSyncInHead,jsPerPage,cssPerPage,cssImagesPerPage,imagesPerPage,requests,requestsWithoutExpires,requestsWithoutGZipPerPage,docWeight,jsWeightPerPage,cssWeightPerPage,imageWeightPerPage,pageWeight,browserScaledImages,spofPerPage,domainsPerPage,domElements,assetsCacheTime,timeSinceLastModification"
+      SUMMARY_BOXES="-Dcom.soulgalore.velocity.key.boxes=ruleScore,criticalPathScore,jsSyncInHead,jsPerPage,cssPerPage,cssImagesPerPage,imagesPerPage,requests,requestsWithoutExpires,requestsWithoutGZipPerPage,docWeight,jsWeightPerPage,cssWeightPerPage,imageWeightPerPage,pageWeight,browserScaledImages,spofPerPage,domainsPerPage,domElements,assetsCacheTime,timeSinceLastModification,maxRequestsPerDomainPerPage,redirectsPerPage"
       if [ "$COLLECT_BROWSER_TIMINGS" = "true" ]
       then
       SUMMARY_BOXES="$SUMMARY_BOXES",serverResponseTime,backEndTime,pageDownloadTime,frontEndTime,domContentLoadedTime,pageLoadTime
@@ -830,7 +830,7 @@ OPTIONS:
    -t      The proxy type, default is http [optional]
    -a      The full User Agent string, default is Chrome for MacOSX. You can also set the value as iphone or ipad (will automagically change the viewport) [optional]
    -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional]
-   -y      The compiled YSlow file, default is dependencies/yslow-3.1.5-sitespeed.js [optional]
+   -y      The compiled YSlow file, default is dependencies/yslow-3.1.8-sitespeed.js [optional]
    -l      Which ruleset to use, default is the latest sitespeed.io version for desktop [optional]
    -g      The columns showed on detailed page summary table, see http://www.sitespeed.io/documentation/#config-columns for more info [optional]
    -b      The boxes showed on site summary page, see http://www.sitespeed.io/documentation/#config-boxes for more info [optional]
