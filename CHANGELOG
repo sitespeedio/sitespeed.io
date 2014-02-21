@@ -8,6 +8,8 @@ version 2.6-wip
 * Updated support for catching lazy loaded assests in YSlow/PhantomJS, thanks @dorajistyle
 * Show the 90 percentile value for all timing metrics on the individual pages #380
 * Mobile rules changed: Doc size max 14 kb and max server side 200 ms for green 
+* Summary: Show max number of request per domain #384
+* Summary: Show number of redirects per page #385
 * Bug fix: If an error happens when crawling, log that to the error.log #378
 * Bug fix: User defined measurements get Velocity code as description #366
 * Bug fix: Show one decimal for time metrics on pages #363
