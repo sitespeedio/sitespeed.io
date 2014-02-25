@@ -226,12 +226,14 @@
     ## TODO get the host with most request and add it!
     #set ($mostDomains=0)
     #foreach ($entry in $hostAndRequests.entrySet())
-    #if ($entry.getValue() > $mostDomains)
-        #set ($mostDomains=$entry.getValue() )
-    #end
+        #if ($entry.getValue() > $mostDomains)
+            #set ($mostDomains=$entry.getValue() )
+        #end
     #end
 
+ #if($hosts.size()>0)
     $statsMaxRequestsPerDomain.addValue($mostDomains)
+#end
 
     #if($hosts.size()>0)
         $statsDomains.addValue($hosts.size())
