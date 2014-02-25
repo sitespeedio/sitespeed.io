@@ -10,6 +10,7 @@ version 2.6-wip
 * Mobile rules changed: Doc size max 14 kb and max server side 200 ms for green 
 * Summary: Show max number of request per domain #384
 * Summary: Show number of redirects per page #385
+* The avoid scaled images rules has been changed: If the image is larger than X (100 pixels by default) the rule will kick in.
 * Bug fix: If an error happens when crawling, log that to the error.log #378
 * Bug fix: User defined measurements get Velocity code as description #366
 * Bug fix: Show one decimal for time metrics on pages #363
