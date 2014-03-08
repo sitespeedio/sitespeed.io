@@ -64,13 +64,16 @@ HIDE_MENU="-Dcom.soulgalore.velocity.key.hidemenu=true"
 ## By default browser timings isn't collected
 COLLECT_BROWSER_TIMINGS=false
 ## And no browser is chosen
-BROWSER=
+BROWSERS=
 
 ## Pointing out the rule properties where summary rules are defined
 SUMMARY_PROPERTY_DESKTOP="-Dcom.soulgalore.velocity.sitespeed.rules.file="$SITESPEED_HOME"/dependencies/rules-desktop.properties"
 SUMMARY_PROPERTY_MOBILE="-Dcom.soulgalore.velocity.sitespeed.rules.file="$SITESPEED_HOME"/dependencies/rules-mobile.properties"
 # The default one is desktop, if you choose mobile rules, then you will have the mobile version
 SUMMARY_PROPERTY=$SUMMARY_PROPERTY_DESKTOP
+
+## The colums that will be showed, check http://www.sitespeed.io/documentation/#multiplecolumns
+COLUMNS=
 
 #*******************************************************
 # Main program
@@ -131,7 +134,7 @@ do
          e)COLUMNS=$OPTARG;;
          i)FILE_NAME=$OPTARG;;
          l)RULESET=$OPTARG;;
-         c)BROWSER=$OPTARG;;
+         c)BROWSERS=$OPTARG;;
          a)USER_AGENT=$OPTARG;;
 	       ?)
               ;;
@@ -152,9 +155,16 @@ if [ "$COLUMNS" != "" ]
   else
     # Default colums
     COLUMNS="-Dcom.soulgalore.velocity.key.columns=median-ruleScore,median-criticalPathScore,median-requests,median-imageWeightPerPage,median-pageWeight,median-requestsWithoutExpires,median-assetsCacheTime,median-domainsPerPage"
-    if [ "$BROWSER" != "" ]
+    if [ "$BROWSERS" != "" ]
       then
-      COLUMNS="$COLUMNS",median-serverResponseTime,median-domContentLoadedTime
+      COLUMNS="$COLUMNS",median-serverResponseTime
+         ## Extra: If we use chrome or IE , always add the firstpaint
+        if [[ "$BROWSERS" == *chrome* ]] ||  [[ "$BROWSERS " == *ie* ]]
+          then
+          COLUMNS="$COLUMNS",median-firstPaintTime
+        else
+           COLUMNS="$COLUMNS",median-domContentLoadedTime
+        fi
     fi
 fi
 
