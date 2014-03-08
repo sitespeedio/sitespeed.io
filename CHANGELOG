@@ -12,7 +12,8 @@ version 2.6-wip
 * Summary: Show number of redirects per page #385
 * The avoid scaled images rules has been changed: If the image is larger than X (100 pixels by default) the rule will kick in.
 * The sitespeed.io-sites script now uses firstPaint as default if you use IE or Chrome, supports local config file & uses maxRequestsPerDomain 
-  as default column instead of max requests per domain
+  as default column instead of max requests per domain #387
+* DNSLookup hurts more than CSS requests in points for Critical Path Rule #392
 * Bug fix: If an error happens when crawling, log that to the error.log #378
 * Bug fix: User defined measurements get Velocity code as description #366
 * Bug fix: Show one decimal for time metrics on pages #363
