@@ -159,7 +159,7 @@ fi
 if [ "$SITES_COLUMNS"  == "" ]
   then
     # Default colums
-    SITES_COLUMNS="median-ruleScore,median-criticalPathScore,median-requests,median-imageWeightPerPage,median-pageWeight,median-requestsWithoutExpires,median-assetsCacheTime,median-domainsPerPage"
+    SITES_COLUMNS="median-ruleScore,median-criticalPathScore,median-requests,median-imageWeightPerPage,median-pageWeight,median-requestsWithoutExpires,median-assetsCacheTime,median-maxRequestsPerDomainPerPage"
     if [ "$BROWSERS" != "" ]
       then
       SITES_COLUMNS="$SITES_COLUMNS",median-serverResponseTime
