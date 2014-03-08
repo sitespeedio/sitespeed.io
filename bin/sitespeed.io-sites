@@ -73,7 +73,14 @@ SUMMARY_PROPERTY_MOBILE="-Dcom.soulgalore.velocity.sitespeed.rules.file="$SITESP
 SUMMARY_PROPERTY=$SUMMARY_PROPERTY_DESKTOP
 
 ## The colums that will be showed, check http://www.sitespeed.io/documentation/#multiplecolumns
-COLUMNS=
+SITES_COLUMNS=
+
+# Load user-specific config file if it exists
+if [ -f ~/.sitespeedio ]
+then
+    echo "Using local configuration file to override setup" ~/.sitespeedio
+    source ~/.sitespeedio
+fi
 
 #*******************************************************
 # Main program
@@ -131,7 +138,7 @@ do
          exit 1;;
          m)JAVA_HEAP=$OPTARG;;
          n)TEST_NAME=$OPTARG;;
-         e)COLUMNS=$OPTARG;;
+         e)SITES_COLUMNS=$OPTARG;;
          i)FILE_NAME=$OPTARG;;
          l)RULESET=$OPTARG;;
          c)BROWSERS=$OPTARG;;
@@ -149,21 +156,19 @@ if [ "$TEST_NAME" != "" ]
     TEST_NAME="-Dcom.soulgalore.velocity.key.testname= "
 fi
 
-if [ "$COLUMNS" != "" ]
+if [ "$SITES_COLUMNS"  == "" ]
   then
-    COLUMNS="-Dcom.soulgalore.velocity.key.columns=$COLUMNS"
-  else
     # Default colums
-    COLUMNS="-Dcom.soulgalore.velocity.key.columns=median-ruleScore,median-criticalPathScore,median-requests,median-imageWeightPerPage,median-pageWeight,median-requestsWithoutExpires,median-assetsCacheTime,median-domainsPerPage"
+    SITES_COLUMNS="median-ruleScore,median-criticalPathScore,median-requests,median-imageWeightPerPage,median-pageWeight,median-requestsWithoutExpires,median-assetsCacheTime,median-domainsPerPage"
     if [ "$BROWSERS" != "" ]
       then
-      COLUMNS="$COLUMNS",median-serverResponseTime
+      SITES_COLUMNS="$SITES_COLUMNS",median-serverResponseTime
          ## Extra: If we use chrome or IE , always add the firstpaint
         if [[ "$BROWSERS" == *chrome* ]] ||  [[ "$BROWSERS " == *ie* ]]
           then
-          COLUMNS="$COLUMNS",median-firstPaintTime
+          SITES_COLUMNS="$SITES_COLUMNS",median-firstPaintTime
         else
-           COLUMNS="$COLUMNS",median-domContentLoadedTime
+           SITES_COLUMNS="$SITES_COLUMNS",median-domContentLoadedTime
         fi
     fi
 fi
@@ -270,7 +275,7 @@ cd $HOME
 function generate_output_files {
 
 echo 'Create the index.html'
-"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$HIDE_MENU" "$COLUMNS" $SUMMARY_PROPERTY "$VELOCITY_TEMPLATES_HOME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_BASE_DIR/$NOW/sites.xml $VELOCITY_DIR/sites.summary.vm $PROPERTIES_DIR/sites.summary.properties $REPORT_BASE_DIR/$NOW/index.html || exit 1
+"$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m "$HIDE_MENU" "-Dcom.soulgalore.velocity.key.columns=$SITES_COLUMNS" $SUMMARY_PROPERTY "$VELOCITY_TEMPLATES_HOME" -jar $DEPENDENCIES_DIR/$VELOCITY_JAR $REPORT_BASE_DIR/$NOW/sites.xml $VELOCITY_DIR/sites.summary.vm $PROPERTIES_DIR/sites.summary.properties $REPORT_BASE_DIR/$NOW/index.html || exit 1
 "$JAVA" -jar $DEPENDENCIES_DIR/$HTMLCOMPRESSOR_JAR --type html --compress-css --compress-js -o $REPORT_BASE_DIR/$NOW/index.html $REPORT_BASE_DIR/$NOW/index.html
 
 #copy the rest of the files
