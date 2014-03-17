@@ -856,8 +856,7 @@ function analyze() {
     local pagefilename=$(get_filename $1 $2)
 
     echo "Analyzing $url"
-    ## Removing HAR functionality from phantomjs, will be included in browsertime -n "$REPORT_DATA_HAR_DIR/$pagefilename.har"
-    phantomjs --ssl-protocol=any --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET $BASIC_AUTH_PHANTOMJS -f xml $CDN --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"  2>> $REPORT_DATA_DIR/phantomjs.error.log || echo "PhantomJS could not handle $url , check the error log:  $REPORT_DATA_DIR/phantomjs.error.log"
+    phantomjs --ssl-protocol=any --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -n "$REPORT_DATA_HAR_DIR/$pagefilename.har" -r $RULESET $BASIC_AUTH_PHANTOMJS -f xml $CDN --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"  2>> $REPORT_DATA_DIR/phantomjs.error.log || echo "PhantomJS could not handle $url , check the error log:  $REPORT_DATA_DIR/phantomjs.error.log"
     local s=$(du -k "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" | cut -f1)
     # Check that the size is bigger than 0
     if [ $s -lt 10 ]
