@@ -1,4 +1,8 @@
 CHANGELOG sitespeed.io
+
+version 2.6-wip
+------------------------
+
 version 2.5.7
 ------------------------
 * Upgraded to YSlow 3.1.8 (with configurable CDN)
