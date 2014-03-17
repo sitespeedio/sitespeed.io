@@ -19,6 +19,7 @@ SITE-SUMMARY := site.summary
 XSLT := xslt
 BIN := bin
 SITESPEED_IO_VERSION := $(shell egrep '^version' CHANGELOG | head -1 | awk '{print $$2;}')
+BROWSER_TIME_VERSION=0.6
 clean:
 	@echo "Clean the package"
 	@rm -fR $(BUILD)
@@ -60,7 +61,7 @@ build:
 	@cp $(DEP)/yslow-3.1.8-sitespeed.js $(BUILD)/$(DEP)/
 	@cp $(DEP)/rules-desktop.properties $(BUILD)/$(DEP)/
 	@cp $(DEP)/rules-mobile.properties $(BUILD)/$(DEP)/
-	@cp $(DEP)/browsertime-0.6-full.jar $(BUILD)/$(DEP)/
+	@cp $(DEP)/browsertime-$(BROWSER_TIME_VERSION)-full.jar $(BUILD)/$(DEP)/
 	@cp $(DEP)/timing-limits-default.xml $(BUILD)/$(DEP)/
 	@cp $(REPORT)/$(CSS)/bootstrap.min.css $(BUILD)/$(REPORT)/$(CSS)/
 	@cp $(REPORT)/$(CSS)/bootstrap-overrides.css $(BUILD)/$(REPORT)/$(CSS)/
@@ -158,4 +159,6 @@ build:
 package:
 	@mv build sitespeed.io-$(SITESPEED_IO_VERSION)
 	@tar -cvzf sitespeed.io-$(SITESPEED_IO_VERSION).tar.gz sitespeed.io-$(SITESPEED_IO_VERSION)/
+	@rm sitespeed.io-$(SITESPEED_IO_VERSION)/$(DEP)/browsertime-$(BROWSER_TIME_VERSION)-full.jar
+	@tar -cvzf sitespeed.io-$(SITESPEED_IO_VERSION).homebrew.tar.gz sitespeed.io-$(SITESPEED_IO_VERSION)/
 	@echo "finished!"
