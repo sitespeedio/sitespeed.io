@@ -23,6 +23,7 @@ BROWSER_TIME_VERSION=0.6
 clean:
 	@echo "Clean the package"
 	@rm -fR $(BUILD)
+	@rm -fR sitespeed.io-$(SITESPEED_IO_VERSION)
 	@echo "done"
 
 build:
