@@ -839,8 +839,8 @@ OPTIONS:
    -c      Choose which browser to use to collect timing data. You can set multiple browsers in a comma sepratated list (firefox|chrome|ie) [optional]
    -z      The number of times you should test each URL when fetching timing metrics. Default is three times [optional]
    -V      Show the version of sitespeed.io
-   -B      Basic auth user & password <username:password> [optional]
-   -C     A comma separated list of additional CDNs [optional]
+   -B      Basic auth user & password <username:password> Note: Only works for analyzing rules at the moment [optional]
+   -C      A comma separated list of additional CDNs [optional]
 EOF
 }
 
