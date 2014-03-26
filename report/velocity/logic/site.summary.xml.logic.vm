@@ -335,19 +335,18 @@
  #set( $navigationTimingNames = ["unloadEventStart", "unloadEventEnd", "redirectStart", "redirectEnd", "fetchStart", "domainLookupStart", "domainLookupEnd","connectStart", "connectEnd", "secureConnectionStart", "requestStart", "responseStart", "responseEnd", "domLoading", "domInteractive", "domContentLoadedEventStart", "domContentLoadedEventEnd", "domComplete", "loadEventStart", "loadEventEnd"] )
 
 #foreach ($timings in $navigationTimingNames)
-     #set($statsMeasurement = $stats.newInstance($timings,$timings,"Navigation Timing Metric $timings","","ms",0))
+     #set($statsMeasurement = $stats.newInstance($timings,$timings,"Navigation Timing Metric $timings","","ms",1))
      #set ($statsNameBrowser = "$timings$browser")
      #set($statsBrowserMeasurement = $stats.newInstance($statsNameBrowser,$statsNameBrowser,"Navigation Timing Metric $timings measured from navigationStart using $browser ","","ms",1))
      #set($hide = $nameAndMesurementsStats.put($timings, $statsMeasurement))
      #set($hide = $nameAndMesurementsStats.put($statsNameBrowser, $statsBrowserMeasurement))
 #end
 
-#set ($navigationStartValue = $math.toInteger(0))
 #foreach ($run in $timingSession.getChild("runs").getChildren("run"))
-
+    #set ($navigationStartValue = $math.toDouble(0))
     #foreach ($mark in $run.getChild("marks").getChildren("mark"))
         #set ($markName = $mark.getAttributeValue("name"))
-        #set ($markValue = $math.toInteger($mark.getAttributeValue("startTime")))
+        #set ($markValue = $math.toDouble($mark.getAttributeValue("startTime")))
 
         #if ($markName.equals("navigationStart"))
             #set($navigationStartValue = $markValue)
