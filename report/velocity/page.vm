@@ -494,12 +494,12 @@
 
 			#set ($runs = $browserMetric.getRootElement().getChild("runs").getChildren("run").size())
 
-			<p>
+			<h3>
 			Page tested with #getBrowserName($browser) version $browserVersion on #getOsName($platform) with $runs run#plural($runs).
 			#if ($spdy)
 			Using SPDY: $spdy
 			#end
-			</p>
+			</h3>
 				<div class="table-responsive">
 				<table class="table table-condensed table-striped table-bordered">
 				<thead>
@@ -525,6 +525,40 @@
 					</tbody>
 				</table>
 				</div>
+
+				#set( $navigationTimingNames = ["unloadEventStart", "unloadEventEnd", "redirectStart", "redirectEnd", "fetchStart", "domainLookupStart", "domainLookupEnd","connectStart", "connectEnd", "secureConnectionStart", "requestStart", "responseStart", "responseEnd", "domLoading", "domInteractive", "domContentLoadedEventStart", "domContentLoadedEventEnd", "domComplete", "loadEventStart", "loadEventEnd"] )
+
+
+				#foreach ($eachRun in $browserMetric.getRootElement().getChild("runs").getChildren("run"))
+				<h4>Run number $velocityCount in $browser</h4>
+					<table class="table table-condensed table-striped table-bordered">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Value (ms)</th>
+						</tr>
+						</thead>
+						<tbody>
+				 	#set ($navigationStartValue = $math.toDouble(0))
+					#foreach ($mark in $eachRun.getChild("marks").getChildren("mark"))
+						#set ($markName = $mark.getAttributeValue("name"))
+       				 	#set ($markValue = $math.toDouble($mark.getAttributeValue("startTime")))
+       					#if ($markName.equals("navigationStart"))
+            					#set($navigationStartValue = $markValue)
+        					#else
+        					 #if ($navigationTimingNames.contains("$markName"))
+        						#set ($markValue = $math.toDouble($math.sub($markValue, $navigationStartValue)))
+        						<tr>
+        						<td>$markName</td><td>$markValue</td>
+        						</tr>
+        					#end
+        					#end
+       				 #end
+       				 </tbody>
+       				 </table>
+				#end
+
+
 			</div>
 		</div>
 		#end
