@@ -274,6 +274,9 @@
 #set($hide = $nameAndDescription.put("frontEndTime","The time it takes for the browser to parse and create the page. Definition: loadEventStart - responseEnd"))
 
 
+
+
+
 #set($nameAndMesurementsStats = $map.clone())
 
 ## Foreach page & browser, add the data!
@@ -324,6 +327,45 @@
             #set($hide = $allStats.add($stats))
         #end
     #end
+
+
+## Get all the specific Navigation Timing metric
+## we only use the ones defined here
+## all values will be relative to navigationStart
+ #set( $navigationTimingNames = ["unloadEventStart", "unloadEventEnd", "redirectStart", "redirectEnd", "fetchStart", "domainLookupStart", "domainLookupEnd","connectStart", "connectEnd", "secureConnectionStart", "requestStart", "responseStart", "responseEnd", "domLoading", "domInteractive", "domContentLoadedEventStart", "domContentLoadedEventEnd", "domComplete", "loadEventStart", "loadEventEnd"] )
+
+#foreach ($timings in $navigationTimingNames)
+     #set($statsMeasurement = $stats.newInstance($timings,$timings,"Navigation Timing Metric $timings","","ms",0))
+     #set ($statsNameBrowser = "$timings$browser")
+     #set($statsBrowserMeasurement = $stats.newInstance($statsNameBrowser,$statsNameBrowser,"Navigation Timing Metric $timings measured from navigationStart using $browser ","","ms",1))
+     #set($hide = $nameAndMesurementsStats.put($timings, $statsMeasurement))
+     #set($hide = $nameAndMesurementsStats.put($statsNameBrowser, $statsBrowserMeasurement))
+#end
+
+#set ($navigationStartValue = $math.toInteger(0))
+#foreach ($run in $timingSession.getChild("runs").getChildren("run"))
+
+    #foreach ($mark in $run.getChild("marks").getChildren("mark"))
+        #set ($markName = $mark.getAttributeValue("name"))
+        #set ($markValue = $math.toInteger($mark.getAttributeValue("startTime")))
+
+        #if ($markName.equals("navigationStart"))
+            #set($navigationStartValue = $markValue)
+        #else
+            ## Only add the defined navigation timings
+             #if ($navigationTimingNames.contains("$markName"))
+                   #set($stats= $nameAndMesurementsStats.get($markName))
+                   #set ($statsNameBrowser = "$markName$browser")
+                   #set($statsBrowser= $nameAndMesurementsStats.get($statsNameBrowser))
+                   $stats.addValue($math.sub($markValue, $navigationStartValue))
+                   $statsBrowser.addValue($math.sub($markValue, $navigationStartValue))
+                  #set($hide = $allStats.add($stats))
+                  #set($hide = $allStats.add($statsBrowser))
+              #end
+        #end
+    #end
+#end
+
 #end
 
 #end
@@ -333,8 +375,3 @@
 #if ($filetool.doFileExist("report/velocity/logic/custom/site.summary.xml.logic.vm"))
         #parse("report/velocity/logic/custom/site.summary.xml.logic.vm")
 #end
-
-
-
-
-
