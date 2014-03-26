@@ -27,7 +27,7 @@
 <percentile90>#getNumber($stats.getPercentile(90))</percentile90>
 <percentile95>#getNumber($stats.getPercentile(95))</percentile95>
 <values>#getNumber($stats.getN())</values>
-</$stats.getName().replace(' ','.') >
+</$stats.getName().replace(' ','.')>
 #end
 </metrics>
 </site>
