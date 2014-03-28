@@ -494,12 +494,12 @@
 
 			#set ($runs = $browserMetric.getRootElement().getChild("runs").getChildren("run").size())
 
-			<h3>
+			<h4>
 			Page tested with #getBrowserName($browser) version $browserVersion on #getOsName($platform) with $runs run#plural($runs).
 			#if ($spdy)
 			Using SPDY: $spdy
 			#end
-			</h3>
+			</h4>
 				<div class="table-responsive">
 				<table class="table table-condensed table-striped table-bordered">
 				<thead>
@@ -526,11 +526,13 @@
 				</table>
 				</div>
 
+				## This is extra to show
+				<!--
 				#set( $navigationTimingNames = ["unloadEventStart", "unloadEventEnd", "redirectStart", "redirectEnd", "fetchStart", "domainLookupStart", "domainLookupEnd","connectStart", "connectEnd", "secureConnectionStart", "requestStart", "responseStart", "responseEnd", "domLoading", "domInteractive", "domContentLoadedEventStart", "domContentLoadedEventEnd", "domComplete", "loadEventStart", "loadEventEnd"] )
 
 
 				#foreach ($eachRun in $browserMetric.getRootElement().getChild("runs").getChildren("run"))
-				<h4>Run number $velocityCount in $browser</h4>
+				<h5>Run number $velocityCount in $browser</h5>
 					<table class="table table-condensed table-striped table-bordered">
 					<thead>
 						<tr>
@@ -557,10 +559,10 @@
        				 </tbody>
        				 </table>
 				#end
-
-
+					-->
 			</div>
 		</div>
+
 		#end
 		#end
 
