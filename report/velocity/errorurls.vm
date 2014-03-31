@@ -8,8 +8,14 @@
 		</h2>
 
 		 #foreach ($url in $document.getRootElement().getChildren())
-		 <p>$url.getAttribute("reason").getValue() : <a href="$url.getValue()" target="_blank">$url.getValue()</a></p>
-		 #end
+                #set ($urlAndReferer =$url.getValue())
+                #if ($urlAndReferer.indexOf("from")>-1)
+                 #set ($urlAndRefererArray = $urlAndReferer.split("from"))
+                 <p>$url.getAttribute("reason").getValue() : <a href="$urlAndRefererArray[0]" target="_blank">$urlAndRefererArray[0]</a> linked from <a href="$urlAndRefererArray[1]">$urlAndRefererArray[1]</a></p>
+                #else
+		      <p>$url.getAttribute("reason").getValue() : <a href="$url.getValue()" target="_blank">$url.getValue()</a></p>
+	           #end
+            #end
 
 	</div>
 	<!-- span 12 -->
