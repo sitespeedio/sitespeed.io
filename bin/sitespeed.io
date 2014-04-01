@@ -183,6 +183,16 @@ function verify_environment {
 hash phantomjs >/dev/null 2>&1 || { echo >&2 "Missing phantomjs, please install it to be able to run sitespeed.io"; exit 1; }
 hash curl >/dev/null 2>&1 || { echo >&2 "Missing curl, please install it to be able to run sitespeed.io"; exit 1; }
 
+# JAVA_HOME has problems in windows with git bash
+if [[ `echo $(uname 2>&1) | grep "not found" 2>&1` ]] || [[ ( $(uname | grep "windows" 2>&1) || $(uname | grep "W32_NT" 2>&1) ) ]]
+then
+  JAVA=$(java -version 2>&1)
+  if `echo ${JAVA} | grep "not found" 1>/dev/null 2>&1`
+  then
+    JAVA=""
+  fi
+fi
+
 # Respect JAVA_HOME if set
 if [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/java" ]]
 then
