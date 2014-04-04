@@ -124,7 +124,7 @@ CDN_LIST=
 CRAWLER_JAR=crawler-1.5.14-SNAPSHOT-full.jar
 VELOCITY_JAR=xml-velocity-1.8.8-full.jar
 HTMLCOMPRESSOR_JAR=htmlcompressor-1.5.3.jar
-BROWSERTIME_JAR=browsertime-0.6-full.jar
+BROWSERTIME_JAR=browsertime-0.7-SNAPSHOT-full.jar
 
 # Don't fetch Navigation Timing metrics by default
 COLLECT_BROWSER_TIMINGS=false
@@ -364,7 +364,7 @@ if [ "$BASIC_AUTH_USER_PASSWORD" != "" ]
     fi
     BASIC_AUTH_PHANTOMJS="-ba $BASIC_AUTH_USER_PASSWORD"
     BASIC_AUTH_CRAWLER="-Dcom.soulgalore.crawler.auth=$host":"$port":"$BASIC_AUTH_USER_PASSWORD"
-    ## BASIC_AUTH_BROWSER_TIME="-p $PROXY_HOST"
+    BASIC_AUTH_BROWSER_TIME="--basic-auth $BASIC_AUTH_USER_PASSWORD"
     BASIC_AUTH_CURL="-u $BASIC_AUTH_USER_PASSWORD"
 fi
 
@@ -469,7 +469,8 @@ if [ ${#BROWSERS_ARRAY[@]}  -ge 0 ]
   for i in "${!BROWSERS_ARRAY[@]}"
   do
     REPORT_DATA_METRICS_ARRAY=("${REPORT_DATA_METRICS_ARRAY[@]}" $REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]})
-    mkdir $REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]} || exit 1
+    mkdir $REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}
+    mkdir $REPORT_DATA_HAR_DIR/${BROWSERS_ARRAY[i]}
   done
 fi
 
@@ -856,7 +857,7 @@ function analyze() {
     local pagefilename=$(get_filename $1 $2)
 
     echo "Analyzing $url"
-    phantomjs --ssl-protocol=any --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -n "$REPORT_DATA_HAR_DIR/$pagefilename.har" -r $RULESET $BASIC_AUTH_PHANTOMJS -f xml $CDN --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"  2>> $REPORT_DATA_DIR/phantomjs.error.log || echo "PhantomJS could not handle $url , check the error log:  $REPORT_DATA_DIR/phantomjs.error.log"
+    phantomjs --ssl-protocol=any --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d  -r $RULESET $BASIC_AUTH_PHANTOMJS -f xml $CDN --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"  2>> $REPORT_DATA_DIR/phantomjs.error.log || echo "PhantomJS could not handle $url , check the error log:  $REPORT_DATA_DIR/phantomjs.error.log"
     local s=$(du -k "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" | cut -f1)
     # Check that the size is bigger than 0
     if [ $s -lt 10 ]
@@ -912,7 +913,7 @@ do
     local pagefilename=$(get_filename $url $runs)
     echo "Collecting Navigation Timing metrics (${BROWSERS_ARRAY[i]}): $url"
     ## Extra info: If you are using the Chrome driver on OS X, it always output "Starting the ChromeDriver ..." and this is a hack to remove that
-    ( $BROWSERTIME --compact --raw -b ${BROWSERS_ARRAY[i]} $PROXY_BROWSER_TIME -n $NUMBER_OF_RUNS -o "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url" 3>&1 1>&2 2>&3 | grep -v '^Starting' ) 3>&1 1>&2 2>&3 >> $REPORT_DATA_DIR/error.log
+    ( $BROWSERTIME --compact --raw -b ${BROWSERS_ARRAY[i]} $PROXY_BROWSER_TIME -n $NUMBER_OF_RUNS $BASIC_AUTH_BROWSER_TIME  --har-file $REPORT_DATA_HAR_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.har -o "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml" -ua "\"$USER_AGENT\"" -w $VIEWPORT "$url" 3>&1 1>&2 2>&3 | grep -v '^Starting' ) 3>&1 1>&2 2>&3 >> $REPORT_DATA_DIR/error.log
 
      ## If BrowserTime fails, an empty file is created, so remove it
     local btSize=$(du -k "$REPORT_DATA_METRICS_DIR/${BROWSERS_ARRAY[i]}/$pagefilename.xml" | cut -f1)
