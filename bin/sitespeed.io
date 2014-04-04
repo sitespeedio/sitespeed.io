@@ -186,7 +186,13 @@ hash curl >/dev/null 2>&1 || { echo >&2 "Missing curl, please install it to be a
 # Respect JAVA_HOME if set
 if [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/java" ]]
 then
+  # Special hack for windows/git bash
+  if [[ -x "$JAVA_HOME\bin\java" ]]
+  then
+    JAVA="$JAVA_HOME\bin\java"
+  else
     JAVA="$JAVA_HOME/bin/java"
+  fi
 else
     JAVA="java"
 fi
