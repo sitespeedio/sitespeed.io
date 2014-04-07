@@ -3,6 +3,7 @@ CHANGELOG sitespeed.io
 version 2.6-wip
 ------------------------
 * You can now see specific navigation timing values on the summary page. Configure the summary box with the exact Navigation Timing name.
+* The -V option no longer requires an argument. #412
 
 version 2.5.7
 ------------------------
