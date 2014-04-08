@@ -318,6 +318,7 @@ fi
 ## url & ruleScore are always existing (showed on a phone)
 if [ "$PAGES_COLUMNS" != "" ]
   then
+    PAGES_COLUMNS=${PAGES_COLUMNS//, /,}
     PAGES_COLUMNS="-Dcom.soulgalore.velocity.key.columns=url,$PAGES_COLUMNS,ruleScore"
   else
     # Default colums
@@ -332,6 +333,7 @@ fi
 
 if [ "$SUMMARY_BOXES" != "" ]
   then
+    SUMMARY_BOXES=${SUMMARY_BOXES//, /,}
     SUMMARY_BOXES="-Dcom.soulgalore.velocity.key.boxes=$SUMMARY_BOXES"
   else
       # Default columns
