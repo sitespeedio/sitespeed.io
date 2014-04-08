@@ -159,8 +159,8 @@ fi
 #
 #*******************************************************
 main() {
-        verify_environment
         get_input "$@"
+        verify_environment
         verify_input
         setup_dirs_and_dependencies
         log_versions
