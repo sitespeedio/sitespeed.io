@@ -410,13 +410,15 @@ then
   SUMMARY_PROPERTY=$SUMMARY_PROPERTY_MOBILE
 fi
 
-# absolute path
-if [[ "$REPORT_DIR" = /* ]]
+if ! [[ $REPORT_BASE_DIR == /* ]] #relative path
 then
-  REPORT_DIR=$REPORT_DIR
-else
-#relative
-  REPORT_DIR="$(pwd)"/$REPORT_DIR
+  REPORT_BASE_DIR="$(pwd)"/$REPORT_BASE_DIR
+fi
+
+if [[ $(echo "$REPORT_BASE_DIR" | grep -c " ") -ne 0 ]]
+then
+  echo -e "Result base directory (${REPORT_BASE_DIR}) cannot contain spaces.\nPlease specify another directory using the -r option."
+  exit 1
 fi
 
 if [ "$CDN_LIST" != "" ]
