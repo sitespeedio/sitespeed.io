@@ -539,14 +539,7 @@ while read txt ; do
 done < $REPORT_DATA_DIR/urls.txt
 
 ## If we have a max size of URL:s to test, only use the first MAX_PAGES
-NR_OF_URLS=${#URLS[@]}
-if [ "$NR_OF_URLS" -gt "$MAX_PAGES" ]
-  then
-    for (( c=$MAX_PAGES; c<=$NR_OF_URLS; c++ ))
-    do
-      unset URLS[$c]
-    done
-fi
+URLS=( ${URLS[@]:0:$MAX_PAGES} )
 }
 
 
