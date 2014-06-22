@@ -1,11 +1,8 @@
 CHANGELOG sitespeed.io
 
-version 2.6-wip
+version 3.0-wip
 ------------------------
-* You can now see specific navigation timing values on the summary page. Configure the summary box with the exact Navigation Timing name.
-* When the crawler finds a broken link, the page where it exists is now also reported (not only the broken link)
-* Exit with a helpful message if the result directory path contains spaces, instead of failing later when creating directories. #411
-* The -V option no longer requires an argument. #412
+* Hello, we are moving to nodejs, one small step at a time
 
 version 2.5.7
 ------------------------

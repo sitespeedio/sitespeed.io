@@ -1,1 +1,0 @@
-$math.toInteger($results.getChild("o").getValue())##

@@ -1,2 +1,0 @@
-#set($tooltipDocSizeText = "The document size (kb)")
-#columnHeaderHTML("doc size (kb)","float",$tooltipDocSizeText,"")##

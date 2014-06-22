@@ -1,5 +1,0 @@
-#if($!{results.getChild("stats").getChild("font").getChild("r")})##
-$results.getChild("stats").getChild("font").getChild("r").getValue()##
-#else##
-0##
-#end##

@@ -1,2 +1,0 @@
-#set($tooltipTotalImgSizeText = "The total size of images on the page (kb)")
-#columnHeaderHTML("total img size","float",$tooltipTotalImgSizeText,"")##

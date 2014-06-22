@@ -1,5 +1,0 @@
-#if($!{results.getChild("g").getChild("ycompress")})##
-$results.getChild("g").getChild("ycompress").getChild("components").getChildren("item").size()##
-#else##
-0##
-#end##

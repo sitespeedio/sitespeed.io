@@ -1,2 +1,0 @@
-#set($tooltipPageSizeText = "The page total size when no assets are cached (kb)")
-#columnHeaderHTML("page size (kb)","float",$tooltipPageSizeText,"")##

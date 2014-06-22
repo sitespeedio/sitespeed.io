@@ -1,2 +1,0 @@
-## The number of requests missing expire value##
-$math.toInteger($results.getChild("g").getChild("expiresmod").getChild("components").getChildren("item").size())##

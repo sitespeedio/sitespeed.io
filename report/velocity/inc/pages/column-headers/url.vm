@@ -1,2 +1,0 @@
-#set($tooltipUrlText = "The url to the page")
-#columnHeaderHTML("url","string",$tooltipUrlText,"")##

@@ -1,2 +1,0 @@
-#set($tooltipImgMaxSizeText = "The lagest size of an image on the page (kb)")
-#columnHeaderHTML("largest img","float",$tooltipImgMaxSizeText,"")##
