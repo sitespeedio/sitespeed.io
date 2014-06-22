@@ -1,0 +1,90 @@
+ {
+  "requests": {
+    "title": "total requests",
+    "desc": "The total number of requests"
+  },
+  "js": {
+    "title": "js",
+    "desc": "The total number of JS requests"
+  },
+  "img": {
+    "title": "img",
+    "desc": "The total number of image requests"
+  },
+  "cssimg": {
+    "title": "css img",
+    "desc": "The total number of css image requests"
+  },
+  "css": {
+    "title": "css",
+    "desc": "The total number of CSS requests"
+  },
+  "font": {
+    "title": "font",
+    "desc": "The total number of font requests"
+  },
+  "flash": {
+    "title": "flash",
+    "desc": "The total number of flash requests"
+  },
+  "iframe": {
+    "title": "iframe",
+    "desc": "The total number of iframe requests"
+  },
+  "pageSize": {
+    "title": "page size (kb)",
+    "desc": "The total size for all assets and the page"
+  },
+  "jsSize": {
+    "title": "js size (kb)",
+    "desc": "The total size of all JS files"
+  },
+  "cssSize": {
+    "title": "css size (kb)",
+    "desc": "The total size of all CSS files"
+  },
+  "imgSize": {
+    "title": "img size (kb)",
+    "desc": "The total size of all images"
+  },
+  "docSize": {
+    "title": "doc size (kb)",
+    "desc": "The document size (uncompressed)"
+  },
+  "cacheTime": {
+    "title": "cache time",
+    "desc": "The median cache time for all assets on the page"
+  },
+  "expiresmod.items": {
+    "title": "req missing expire",
+    "desc": "Number of requests missing a expire date"
+  },
+  "timeSinceLastModification": {
+    "title": "median time since last mod",
+    "desc": "The median time since an assets was modified"
+  },
+  "avoidscalingimages.items": {
+    "title": "browser scaled images",
+    "desc": "The number of images that are scaled in the browser"
+  },
+  "noduplicates.items": {
+    "title": "remove duplicate JS and CSS.",
+    "desc": "Duplicate Javacript & CSS files not be fetched multiple times but executed twice."
+  },
+  "serverResponseTime.median": {
+    "title": "server response time (ms)",
+    "desc": "The median server response time"
+  },
+  "domContentLoadedTime.median": {
+    "title": "dom contant loaded time (ms)",
+    "desc": "The median domContentLoadedTime"
+  },
+  "gscore": {
+    "title": "gpsi score",
+    "desc": "Google Pagespeed Insights score"
+  },
+  "criticalpath": {
+    "title": "critical path score",
+    "desc": "The critical rendering path score"
+  }
+}

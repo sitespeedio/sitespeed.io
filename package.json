@@ -1,0 +1,58 @@
+{
+  "name": "sitespeed.io",
+  "version": "3.0.0-alpha",
+  "bin": "./bin/sitespeed.js",
+  "description": "Analyze your web performance of your site",
+  "keywords": [
+    "performance",
+    "web",
+    "rules",
+    "speed",
+    "navigation-timing",
+    "browser"
+  ],
+  "homepage": "http://www.sitespeed.io",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "Peter Hedenskog",
+    "url": "http://www.peterhedenskog.com"
+  },
+  "contributors": {
+    "name": "Tobias Lidskog"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sitespeedio/sitespeed.io.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sitespeedio/sitespeed.io/issues"
+  },
+  "files": ["bin","conf","assets","lib","templates"],
+
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "engines": {
+    "node": ">=0.8.1"
+  },
+  "devDependencies": {
+    "mocha": "1.20.x",
+    "expect.js": "0.3.x"
+  },
+  "main": "./lib/runner.js",
+  "dependencies": {
+    "handlebars": "1.3.x",
+    "phantomjs": "1.9.x",
+    "async": "0.9.x",
+    "fast-stats": "0.0.2",
+    "fs-extra": "0.9.x",
+    "winston": "0.7.x",
+    "nomnom": "1.7.x",
+    "dateformat": "1.0.x",
+    "xmlbuilder": "2.2.x",
+    "whereis": "0.2.x",
+    "gpagespeed": "0.0.6",
+    "webpagetest": "0.2.x",
+    "simplehar": "0.14.x"
+  }
+}

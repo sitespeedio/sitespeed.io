@@ -1,0 +1,194 @@
+/* Align the footer to the center*/
+  footer p {
+    text-align: center;
+    }
+
+    /* Font used in the number in summary*/
+    .large {
+      font-family: Tahoma,Impact,Verdana,sans-serif;
+      font-size: 32px;
+      line-height: 38px;
+      font-weight:bold;
+    }
+
+    /* Popovers on summary page*/
+    .popover-content {
+    color: black;
+    font-size: 16px;
+    line-height: 18px;
+    font-weight:normal;
+    }
+
+     /* Popovers on summary page*/
+    .popover-title {
+    color: black;
+    font-weight:bold;
+    font-size: 16px;
+    line-height: 18px;
+    }
+
+    a.clean:hover{
+    color: #000000;
+    text-decoration: none;
+    }
+
+    a.clean {
+    color: #000000;
+    text-decoration: none;
+    }
+
+    /* Font used in the number in summary*/
+    body {
+      font-family: Tahoma,Verdana,sans-serif;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: Tahoma,Verdana,sans-serif;
+    }
+
+    .navbar {
+        border: 0;
+        border-radius: 0;
+    }
+
+    .navbar-collapse {
+        border: 0;
+        box-shadow: none;
+    }
+
+    /* fix for the logo*/
+    .navbar-brand {
+      padding: 0px 0px;
+      max-width: 250px;
+    }
+
+    .navbar-default {
+      color: white;
+      background-color: #0095d2;
+    }
+
+    .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+      color: white;
+      background-color: #0073b0;
+    }
+
+    .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
+    color: white;
+    }
+
+    .navbar-default .navbar-nav>li>a  {
+      color: white;
+    }
+
+    /*  When displaying urls, making sure they don't break pages*/
+    .url {
+    word-wrap: break-word;
+    white-space: normal;
+    }
+
+    .navbar-default .navbar-toggle {
+      border: 1px solid #fff;
+    }
+
+    .navbar-default .navbar-toggle .icon-bar {
+      background-color: #fff;
+    }
+
+    .navbar-default .navbar-toggle:hover, .navbar-toggle:focus {
+      background-color: #0073b0;
+    }
+
+    /* Taking care of urls not breaking the table in pages*/
+    .nobreak-pages {
+    word-wrap: break-word;
+    max-width: 290px;
+    white-space: normal;
+    }
+
+    /* Taking care of urls not breaking the table in pages*/
+    .nobreak-page-url {
+    word-wrap: break-word;
+    max-width: 500px;
+    white-space: normal;
+    }
+
+    /* Taking care of assets not breaking */
+    .nobreak-page {
+    word-wrap: break-word;
+    max-width: 450px;
+    white-space: normal;
+    }
+
+    /* Taking care of urls not breaking the table in assets*/
+    .nobreak-asset-url {
+    word-wrap: break-word;
+    max-width: 500px;
+    white-space: normal;
+    }
+
+    /* Take care of response headers modal*/
+    .headers {
+    word-wrap: break-word;
+    max-width: 400px;
+    white-space: normal;
+    }
+
+    /* Fixes for the summary boxes*/
+
+    a.alert-success:hover {
+    text-decoration: none;
+    color: #468847;
+    cursor:pointer;
+    }
+
+    a.alert-danger:hover {
+    text-decoration: none;
+    color: #B94A48;
+    cursor:pointer;
+    }
+
+    a.alert-warning:hover {
+    text-decoration: none;
+    color: #C09853;
+    cursor:pointer;
+    }
+
+    a.alert-warning {
+    text-decoration: none;
+    color: #C09853;
+    cursor:pointer;
+    }
+
+    a.alert-info {
+    text-decoration: none;
+    color: #3A87AD;
+    cursor:pointer;
+    }
+
+  .alert-info {
+    background-color:#D9EDF7;
+    border-color:#BCE8F1;
+    color:#3A87AD;
+  }
+
+  th[data-sort]{
+      cursor:pointer;
+      color: #0095d2;
+      font-weight:bold;
+    }
+
+    th[data-sort]:hover{
+      text-decoration:underline;
+    }
+
+ /* Small phones*/
+    @media (max-width:480px) {
+
+    .nobreak-asset-url {
+       max-width: 70px;
+    }
+
+    .nobreak-page {
+    max-width: 70px;
+    }
+}
