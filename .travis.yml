@@ -1,19 +1,17 @@
-language: python
+language: node_js
+node_js:
+  - "0.11"
+  - "0.10"
 
 before_install:
-  - sudo apt-get update
-  - sudo apt-get install xsltproc
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
 
 before_script:
 - phantomjs --version
-- "make build"
 - python -m SimpleHTTPServer 8009 &
 - sleep 10
-- "./build/bin/sitespeed.io-sites -i test/sitespeed-sites.txt"
-- "./build/bin/sitespeed.io -u http://localhost:8009/test/server/www/ -o csv -k true -c firefox"
-- "./build/bin/sitespeed.io-junit -o build"
+- " node ./bin/sitespeed.js -u http://localhost:8009/test/server/www/ -c firefox"
 
 script: ./test/test.sh
 
