@@ -30,4 +30,4 @@ New in 3.0
 
 Documentation
 =============
-See <a href="http://www.sitespeed.io">http://www.sitespeed.io</a> for documentation.
+Will be added soon.
