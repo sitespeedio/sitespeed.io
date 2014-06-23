@@ -18,7 +18,7 @@
        <tbody>
          {{#each statistics}}
            <tr>
-             <td>{{name}}</td>
+             <td><rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="{{getTimingMetricsDefinition name}}">{{name}}</a></td>
              <td>{{getDecimals min 1}}</td>
              <td>{{getDecimals median 1}}</td>
              <td>{{getDecimals p90 1}}</td>
