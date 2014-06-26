@@ -5,6 +5,8 @@ Sitespeed.io is an open source tool that helps you analyze and optimize your web
 
 You can use it on Mac, Linux & Windows (using Git Bash). And collect timing metrics using Chrome, Firefox and Internet Explorer (Windows only). You can use Jenkins with the Jenkins [plugin](https://github.com/sitespeedio/jenkins.sitespeed.io) to collect data and break builds.
 
+Pro tip: you can check out the coming [3.0](https://github.com/sitespeedio/sitespeed.io/tree/3.0-wip) version, it is written in nodejs and about 100% easier to extend.
+
 Run on Mac OS X
 =============
 ```bash
