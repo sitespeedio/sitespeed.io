@@ -2,7 +2,6 @@
   <div class="col-lg-12">
     <h4 id="browserTime"> Page tested with {{prettyBrowserName pageData.browserName}} version {{pageData.browserVersion}} on
       {{prettyOSName pageData.platform}} with {{timingRuns.length}} run{{getPlural timingRuns.length}}.
-       {{#if pageData.wasFetchedViaSpdy}} Fetched using SPDY.{{/if}}
     </h4>
     <div class="table-responsive">
       <table class="table table-condensed table-striped table-bordered">
