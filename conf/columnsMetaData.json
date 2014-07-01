@@ -86,5 +86,22 @@
   "criticalpath": {
     "title": "critical path score",
     "desc": "The critical rendering path score"
+  },
+  "speedIndex": {
+    "title": "speed index",
+    "desc": "wpt"
+  },
+  "imageSavings": {
+    "title": "image savings (kb)",
+    "desc": "The image size that can be saved if compressed correctly (WPT)"
+  },
+  "imageTotal": {
+    "title": "image total (kb)",
+    "desc": "The total image weight (WPT)"
+  },
+  "firstViewFirstPaint": {
+    "title": "first paint (ms)",
+    "desc": "The first paint time of the first view (median)"
   }
+
 }
