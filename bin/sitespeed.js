@@ -10,4 +10,6 @@ require('whereis')('java', function searched(err) {
   }
 });
 
-r.run();
+r.run(function() {
+  console.log("Finished callback");
+});
