@@ -10,8 +10,9 @@ Pro tip: you can check out the coming [3.0](https://github.com/sitespeedio/sites
 Run on Mac OS X
 =============
 ```bash
+$ brew tap sitespeedio/sitespeedio
 $ brew tap tobli/browsertime
-$ brew install sitespeedio/sitespeedio/sitespeed.io
+$ brew install sitespeed.io
 $ sitespeed.io -h
 ```
 Run on Linux or Windows
