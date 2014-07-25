@@ -19,13 +19,13 @@
                 </tr>
               </thead>
               <tbody>
-                {{#each sites}}
+                {{#each sitesAndAggregates}}
               <tr>
                 <td>
-                <a href="{{getHostname this}}/index.html">{{this}}</a>
+                <a href="{{getHostname this.site}}/index.html">{{this.site}}</a>
                 </td>
-                {{#each ../columns}}
-                  <td>{{getSiteAggregatedValue .. 'median' this ../../aggregates }}</td>
+                {{#each aggregates}}
+                  <td data-sort-value="{{stats.median}}">{{getHumanReadable this stats.median true}}</td>
                 {{/each}}
               </tr>
               {{/each}}
