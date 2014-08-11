@@ -1,11 +1,15 @@
-        {{#if config.url}}
+      {{#if config.url}}
         <h2 class="url">
           <!-- TODO handle runs from file with no url -->
             {{numberOfPages}} page{{getPlural numberOfPages}} analyzed for <a href="{{config.url}}" target="_blank">{{config.url}}</a>
         </h2>
-       {{else}}
+      {{/if}}
+      {{#if config.sites}}
+        <h2> Sites analyzed from file {{config.sites}}</h2>
+      {{/if}}
+       {{#if config.file}}
          <h2> {{numberOfPages}} page{{getPlural numberOfPages}} analyzed for file {{config.file}}</h2>
-       {{/if}}
+      {{/if}}
         {{#if config.name}}
             <h3>{{config.name}}</h3>
         {{/if}}
