@@ -40,8 +40,8 @@
 
 <script>
 $(function(){
-$("#sitesTable").stupidtable();
-});
+  $("#sitesTable").stupidtable();
+  });
 </script>
 
 <script>
