@@ -19,7 +19,7 @@
               {{#if config.googleKey}}
               <a href="#gpsi" class="list-group-item">Google Pagespeed Insights</a>
               {{/if}}
-              {{#if config.webpagetest}}
+              {{#if config.webpagetestUrl}}
               <a href="#wpt" class="list-group-item">WebPageTest metrics</a>
               {{/if}}
               {{#if config.browser}}
@@ -85,7 +85,7 @@
     </div>
     {{/if}}
 
-    {{#if config.webpagetest}}
+    {{#if config.webpagetestUrl}}
     <div class="row">
         <div class="col-lg-12">
           {{>wpt}}
