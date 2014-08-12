@@ -55,6 +55,10 @@
     "title": "cache time",
     "desc": "The median cache time for all assets on the page"
   },
+  "ruleScore": {
+    "title": "rule score",
+    "desc": "The sitespeed.io rule grade for this page. 100 is perfect 0 is incredibe bad"
+  },
   "expiresmod.items": {
     "title": "req missing expire",
     "desc": "Number of requests missing a expire date"
