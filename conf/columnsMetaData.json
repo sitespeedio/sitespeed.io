@@ -31,23 +31,23 @@
     "title": "iframe",
     "desc": "The total number of iframe requests"
   },
-  "pageSize": {
+  "pageWeight": {
     "title": "page size (kb)",
     "desc": "The total size for all assets and the page"
   },
-  "jsSize": {
+  "jsWeight": {
     "title": "js size (kb)",
     "desc": "The total size of all JS files"
   },
-  "cssSize": {
+  "cssWeight": {
     "title": "css size (kb)",
     "desc": "The total size of all CSS files"
   },
-  "imgSize": {
+  "imgWeight": {
     "title": "img size (kb)",
     "desc": "The total size of all images"
   },
-  "docSize": {
+  "docWeight": {
     "title": "doc size (kb)",
     "desc": "The document size (uncompressed)"
   },
