@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-var Runner = require("../lib/runner");
+var Runner = require('../lib/runner');
 
 var r = new Runner();
 
