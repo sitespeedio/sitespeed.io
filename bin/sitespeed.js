@@ -11,7 +11,8 @@ require('whereis')('java', function searched(err) {
   }
   else {
     r.run(function() {
-      console.log("Finished callback");
+      // TODO this is only used to check that everything is ok
+      console.log('Finished callback');
     });
   }
 });
