@@ -205,7 +205,7 @@ fi
 #*******************************************************
 function get_input {
 # Set options
-while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:q:k:V:B:C:” OPTION
+while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:H:v:y:l:c:j:e:i:q:k:V:B:C:” OPTION
 do
      case $OPTION in
          h)
@@ -225,6 +225,7 @@ do
          x)PROXY_HOST=$OPTARG;;
          t)PROXY_TYPE=$OPTARG;;
          a)USER_AGENT=$OPTARG;;
+         H)HEADERS=$OPTARG;;
          v)VIEWPORT=$OPTARG;;
          y)YSLOW_FILE=$OPTARG;;
          l)RULESET=$OPTARG;;
@@ -394,6 +395,17 @@ then
     USER_AGENT_CURL="-A $USER_AGENT"
 fi
 
+if [ ! -z "$HEADERS" -a "$HEADERS" != " " ]
+then
+	HEADERS_CRAWLER=`echo $HEADERS | sed -e 's/[{}]/''/g' | sed -e 's/[,]/'@'/g' | sed -e 's/[\"]/''/g'`
+	HEADERS_YSLOW="-ch $HEADERS"
+	HEADERS_CURL=`echo $HEADERS_CRAWLER | awk '{n=split($0,a,"@"); for (i=1; i<=n; i++) printf "-H " a[i] " "}'`
+	if [ "$USER_AGENT_CRAWLER" != ""  ]
+	then
+		HEADERS_CRAWLER="$HEADERS_CRAWLER@$USER_AGENT_CRAWLER"
+	fi   
+fi
+
 if [ "$VIEWPORT" != "" ]
 then
     VIEWPORT_YSLOW="-vp $VIEWPORT"
@@ -510,7 +522,7 @@ echo "From IP $MY_IP"
 function fetch_urls {
 if [[ -z $FILE ]]
 then
-  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -Dcom.soulgalore.crawler.propertydir=$DEPENDENCIES_DIR/ $BASIC_AUTH_CRAWLER $PROXY_CRAWLER -cp $DEPENDENCIES_DIR/$CRAWLER_JAR com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL -rh "\"$USER_AGENT_CRAWLER\"" -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/errorurls.txt 2>&1 |tee $OUTPUT >>$REPORT_DATA_DIR/error.log
+  "$JAVA" -Xmx"$JAVA_HEAP"m -Xms"$JAVA_HEAP"m -Dcom.soulgalore.crawler.propertydir=$DEPENDENCIES_DIR/ $BASIC_AUTH_CRAWLER $PROXY_CRAWLER -cp $DEPENDENCIES_DIR/$CRAWLER_JAR com.soulgalore.crawler.run.CrawlToFile -u $URL -l $DEPTH $FOLLOW_PATH $NOT_IN_URL -rh "\"$HEADERS_CRAWLER\"" -f $REPORT_DATA_DIR/urls.txt -ef $REPORT_DATA_DIR/errorurls.txt 2>&1 |tee $OUTPUT >>$REPORT_DATA_DIR/error.log
 else
   cp $FILE $REPORT_DATA_DIR/urls.txt
 fi
@@ -829,6 +841,7 @@ OPTIONS:
    -x      The proxy host & protocol: proxy.soulgalore.com:80 [optional]
    -t      The proxy type, default is http [optional]
    -a      The full User Agent string, default is Chrome for MacOSX. You can also set the value as iphone or ipad (will automagically change the viewport) [optional]
+   -H 	   Any request headers to use, in the JSON form of {"name":"value","name":"value"} [optional]
    -v      The view port, the page viewport size WidthxHeight, like 400x300, default is 1280x800 [optional]
    -y      The compiled YSlow file, default is dependencies/yslow-3.1.8-sitespeed.js [optional]
    -l      Which ruleset to use, default is the latest sitespeed.io version for desktop [optional]
@@ -856,7 +869,7 @@ function analyze() {
     local pagefilename=$(get_filename $1 $2)
 
     echo "Analyzing $url"
-    phantomjs --ssl-protocol=any --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -n "$REPORT_DATA_HAR_DIR/$pagefilename.har" -r $RULESET $BASIC_AUTH_PHANTOMJS -f xml $CDN --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"  2>> $REPORT_DATA_DIR/phantomjs.error.log || echo "PhantomJS could not handle $url , check the error log:  $REPORT_DATA_DIR/phantomjs.error.log"
+    phantomjs --ssl-protocol=any --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -n "$REPORT_DATA_HAR_DIR/$pagefilename.har" -r $RULESET $BASIC_AUTH_PHANTOMJS $HEADERS_YSLOW -f xml $CDN --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url"  >"$REPORT_DATA_PAGES_DIR/$pagefilename.xml"  2>> $REPORT_DATA_DIR/phantomjs.error.log || echo "PhantomJS could not handle $url , check the error log:  $REPORT_DATA_DIR/phantomjs.error.log"
     local s=$(du -k "$REPORT_DATA_PAGES_DIR/$pagefilename.xml" | cut -f1)
     # Check that the size is bigger than 0
     if [ $s -lt 10 ]
@@ -865,7 +878,8 @@ function analyze() {
       ## do the same thing again but setting console to log the error to output
       log_error "Could not analyze $url unrecoverable error when parsing the page"
       log_error "Input parameters: $INPUT"
-      phantomjs --ssl-protocol=any --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET -f xml "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url" -c 2  2>&1 >> $REPORT_DATA_DIR/$ERROR_LOG
+
+      phantomjs --ssl-protocol=any --ignore-ssl-errors=yes $PROXY_PHANTOMJS $YSLOW_FILE -d -r $RULESET $HEADERS_YSLOW -f xml --ua "$USER_AGENT_YSLOW" $VIEWPORT_YSLOW "$url" -c 2  2>&1 >> $REPORT_DATA_DIR/$ERROR_LOG
 
       ## write the error url to the list
       echo "sitespeed.io got an unrecoverable error when parsing the page,$url" >> $REPORT_DATA_DIR/errorurls.txt
@@ -879,7 +893,7 @@ function analyze() {
       sed -n '1,/<\/results>/p' $REPORT_DATA_PAGES_DIR/$pagefilename-bup > $REPORT_DATA_PAGES_DIR/$pagefilename.xml || exit 1
 
       # page size (keeping getting TTFB for a while, it is now fetched through Browser Time)
-      curl "$USER_AGENT_CURL" --compressed --globoff -o /dev/null $PROXY_CURL -w "%{time_starttransfer};%{size_download}\n" -L -s "$url" $BASIC_AUTH_CURL >  "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
+      curl "$USER_AGENT_CURL" --compressed --globoff -o /dev/null $PROXY_CURL $HEADERS_CURL -w "%{time_starttransfer};%{size_download}\n" -L -s "$url" $BASIC_AUTH_CURL >  "$REPORT_DATA_PAGES_DIR/$pagefilename.info"
 
       read -r TTFB_SIZE <  $REPORT_DATA_PAGES_DIR/$pagefilename.info
       local TTFB="$(echo $TTFB_SIZE  | cut -d \; -f 1)"
