@@ -36,7 +36,9 @@
   ],
   "scripts": {
     "test": "./node_modules/.bin/mocha",
-    "eslint": "./node_modules/.bin/eslint -c .eslintrc lib/*.js"
+    "eslint": "./node_modules/.bin/eslint -c .eslintrc lib/*.js",
+    "lint": "jshint .",
+    "travis": "npm run lint"
   },
   "engines": {
     "node": ">=0.8.1"
@@ -62,9 +64,5 @@
     "webpagetest": "0.2.x",
     "simplehar": "0.14.x",
     "cross-spawn": "0.1.x"
-  },
-  "scripts": {
-    "lint": "jshint .",
-    "travis": "npm run lint"
   }
 }
