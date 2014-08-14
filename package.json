@@ -27,17 +27,24 @@
   "bugs": {
     "url": "https://github.com/sitespeedio/sitespeed.io/issues"
   },
-  "files": ["bin","conf","assets","lib","templates"],
-
+  "files": [
+    "bin",
+    "conf",
+    "assets",
+    "lib",
+    "templates"
+  ],
   "scripts": {
-    "test": "./node_modules/.bin/mocha"
+    "test": "./node_modules/.bin/mocha",
+    "eslint": "./node_modules/.bin/eslint -c .eslintrc lib/*.js"
   },
   "engines": {
     "node": ">=0.8.1"
   },
   "devDependencies": {
-    "mocha": "1.20.x",
-    "expect.js": "0.3.x"
+    "eslint": "^0.7.4",
+    "expect.js": "0.3.x",
+    "mocha": "1.20.x"
   },
   "main": "./lib/runner.js",
   "dependencies": {
