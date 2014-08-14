@@ -42,9 +42,9 @@
     "node": ">=0.8.1"
   },
   "devDependencies": {
-    "eslint": "^0.7.4",
+    "mocha": "1.20.x",
     "expect.js": "0.3.x",
-    "mocha": "1.20.x"
+    "jshint":"2.5.3"
   },
   "main": "./lib/runner.js",
   "dependencies": {
@@ -62,5 +62,9 @@
     "webpagetest": "0.2.x",
     "simplehar": "0.14.x",
     "cross-spawn": "0.1.x"
+  },
+  "scripts": {
+    "lint": "jshint .",
+    "travis": "npm run lint"
   }
 }
