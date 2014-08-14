@@ -1,4 +1,10 @@
 CHANGELOG sitespeed.io
+
+version 2.5.8
+------------------------
+* Added support for custom headers (new -H argument)
+* Fixed bug with curl user agent argument 
+
 version 2.5.7
 ------------------------
 * Upgraded to YSlow 3.1.8 (with configurable CDN)
