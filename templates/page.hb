@@ -77,6 +77,12 @@
 		</div>
     {{/if}}
 
+    <!-- do some funky things if we have HAR files -->
+    {{#if config.browser}}
+
+    {{/if}}
+
+
     {{#if config.gpsiKey}}
     <div class="row">
         <div class="col-lg-12">
