@@ -93,7 +93,7 @@
   },
   "speedIndex": {
     "title": "speed index",
-    "desc": "wpt"
+    "desc": "The average time when pixels on the screen have been painted (WPT)"
   },
   "imageSavings": {
     "title": "image savings (kb)",
