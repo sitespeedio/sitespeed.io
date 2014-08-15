@@ -143,7 +143,7 @@
     "warning": 500,
     "error": 800
   },
-  "gpsi.score": {
+  "gpsi.gscore": {
     "warning": 90,
     "error": 80
   },
@@ -154,5 +154,9 @@
   "wpt.visualComplete": {
     "warning": 1000,
     "error": 1000
+  },
+  "wpt.imageSavings": {
+    "warning": 1,
+    "error": 50
   }
 }
