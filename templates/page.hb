@@ -16,10 +16,10 @@
       				<a href="#score" class="list-group-item">Scores below 100</a>
       				<a href="#assets" class="list-group-item">Page assets</a>
       				<a href="#summary" class="list-group-item">Page summary</a>
-              {{#if config.googleKey}}
+              {{#if config.gpsiKey}}
               <a href="#gpsi" class="list-group-item">Google Pagespeed Insights</a>
               {{/if}}
-              {{#if config.webpagetestUrl}}
+              {{#if config.wptUrl}}
               <a href="#wpt" class="list-group-item">WebPageTest metrics</a>
               {{/if}}
               {{#if config.browser}}
@@ -77,7 +77,7 @@
 		</div>
     {{/if}}
 
-    {{#if config.googleKey}}
+    {{#if config.gpsiKey}}
     <div class="row">
         <div class="col-lg-12">
           {{>gpsi}}
@@ -85,7 +85,7 @@
     </div>
     {{/if}}
 
-    {{#if config.webpagetestUrl}}
+    {{#if config.wptUrl}}
     <div class="row">
         <div class="col-lg-12">
           {{>wpt}}
