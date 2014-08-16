@@ -45,6 +45,11 @@
             <li{{#if pageMeta.isAssets}} class="active" {{/if}}>
               <a href="{{pageMeta.path}}assets.html">Assets</a>
             </li>
+            {{#if config.browser}}
+              <li{{#if pageMeta.isDomains}} class="active" {{/if}}>
+                <a href="{{pageMeta.path}}domains.html">Domains</a>
+              </li>
+            {{/if}}
             {{#if config.screenshot}}
               <li{{#if pageMeta.isScreenshots}} class="active" {{/if}}>
                 <a href="{{pageMeta.path}}screenshots.html">Screenshots</a>
