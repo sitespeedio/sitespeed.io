@@ -49,6 +49,12 @@
               <li{{#if pageMeta.isDomains}} class="active" {{/if}}>
                 <a href="{{pageMeta.path}}domains.html">Domains</a>
               </li>
+            {{else}}
+              {{#if config.wptUrl}}
+              <li{{#if pageMeta.isDomains}} class="active" {{/if}}>
+                <a href="{{pageMeta.path}}domains.html">Domains</a>
+              </li>
+              {{/if}}
             {{/if}}
             {{#if config.screenshot}}
               <li{{#if pageMeta.isScreenshots}} class="active" {{/if}}>

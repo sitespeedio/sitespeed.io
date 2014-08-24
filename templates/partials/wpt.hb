@@ -5,7 +5,7 @@
 
       {{wptData.response.data.median.firstView.browser_name}}{{wptData.response.data.median.firstView.browser_version}}
 
-      <p><a href="{{wptData.response.data.summary}}">WPT summary</a> - <a href="../data/webpagetest/{{getUrlHash this.url}}-wpt.har">Download HAR</a></p></p>
+      <p><a href="{{wptData.response.data.summary}}">WPT summary</a> - <a href="../data/webpagetest/{{getFileName this.url}}-wpt.har">Download HAR</a></p></p>
 
       <div class="table-responsive">
         <table class="table table-condensed table-striped table-bordered">
@@ -49,11 +49,11 @@
       <h3>Waterfall first view</h3>
 
   <p>
-      <img src="../data/webpagetest/{{getUrlHash this.url}}-waterfall.png" class="img-responsive" alt="Waterfall first view"/>
+      <img src="../data/webpagetest/{{getFileName this.url}}-waterfall.png" class="img-responsive" alt="Waterfall first view"/>
     </p>
     <p><!--TODO check that we have repatedView -->
       <h3>Waterfall repeated view</h3>
-        <img src="../data/webpagetest/{{getUrlHash this.url}}-waterfall-repeat.png" class="img-responsive" alt="Waterfall repeated view"/>
+        <img src="../data/webpagetest/{{getFileName this.url}}-waterfall-repeat.png" class="img-responsive" alt="Waterfall repeated view"/>
     </p>
   </div>
 </div>

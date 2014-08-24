@@ -31,7 +31,7 @@
                           <td>
                             {{> displayUrlHeaders}}
                             <!-- TODO how to get the config-->
-                            {{#if ../config.screenshot}}<a href="screenshots.html#{{getUrlHash this.url}}"><i class="glyphicon glyphicon-picture"></i></a>{{/if}}
+                            {{#if ../config.screenshot}}<a href="screenshots.html#{{getFileName this.url}}"><i class="glyphicon glyphicon-picture"></i></a>{{/if}}
                             {{> displayUrl}}</td>
                           {{#each ../config.pageColumns}}
                           <td>{{getPageColumnValue this ../this}}</td>
