@@ -23,7 +23,7 @@
               <a href="#wpt" class="list-group-item">WebPageTest metrics</a>
               {{/if}}
               {{#if config.browser}}
-              <a href="#browserTime" class="list-group-item">Timing metrics</a>
+              <a href="#browser" class="list-group-item">Timing metrics</a>
               {{/if}}
       		</div>
       	</div>
@@ -100,9 +100,13 @@
     {{/if}}
 
     {{#if config.browser}}
-      {{#each browsertimeData}}
-        {{>browserMeasurements}}
-    {{/each}}
+      {{#if config.browsertime}}
+        {{#each browsertimeData}}
+          {{>browserMeasurements}}
+        {{/each}}
+      {{else}}
+        {{>phantomJSMeasurements}}
+      {{/if}}
     {{/if}}
 {{> footer}}
 <script>
