@@ -45,7 +45,7 @@
             <li{{#if pageMeta.isAssets}} class="active" {{/if}}>
               <a href="{{pageMeta.path}}assets.html">Assets</a>
             </li>
-            {{#if config.browser}}
+            {{#if config.browsertime}}
               <li{{#if pageMeta.isDomains}} class="active" {{/if}}>
                 <a href="{{pageMeta.path}}domains.html">Domains</a>
               </li>
