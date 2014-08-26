@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-lg-12">
-    <h4 id="browserTime"> Page tested with {{capitalize pageData.browserName}} version {{pageData.browserVersion}} on
+    <h4 id="browser"> Page tested with {{capitalize pageData.browserName}} version {{pageData.browserVersion}} on
       {{prettyOSName pageData.platform}} with {{timingRuns.length}} run{{getPlural timingRuns.length}}.
     </h4>
     <div class="table-responsive">
