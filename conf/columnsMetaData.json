@@ -80,7 +80,7 @@
     "desc": "The median server response time"
   },
   "domContentLoadedTime.median": {
-    "title": "dom contant loaded time (ms)",
+    "title": "dom content loaded time (ms)",
     "desc": "The median domContentLoadedTime"
   },
   "gscore": {
