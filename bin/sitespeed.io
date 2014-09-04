@@ -205,7 +205,7 @@ fi
 #*******************************************************
 function get_input {
 # Set options
-while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:q:k:V:B:C:” OPTION
+while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:q:k:V:B:C:J:” OPTION
 do
      case $OPTION in
          h)
@@ -236,6 +236,7 @@ do
          c)BROWSERS=$OPTARG;;
          B)BASIC_AUTH_USER_PASSWORD=$OPTARG;;
          C)CDN_LIST=$OPTARG;;
+		 J)JENKINSBUILDNR=$OPTARG;;
          V)
              echo $SITESPEED_VERSION
              exit  0
@@ -418,6 +419,12 @@ then
     CDN="--cdns $CDN_LIST"
 fi
 
+if [ "$JENKINSBUILDNR" == "" ]
+then
+	local now=$(date +"%Y-%m-%d-%H-%M-%S")
+    JENKINSBUILDNR=$now
+fi
+
 }
 
 #*******************************************************
@@ -443,7 +450,7 @@ fi
 
 # Setup dirs
 DEPENDENCIES_DIR="$SITESPEED_HOME/dependencies"
-REPORT_DIR_NAME=$BASE_DIR/$now
+REPORT_DIR_NAME=$BASE_DIR/$JENKINSBUILDNR
 REPORT_DIR=$REPORT_BASE_DIR/$REPORT_DIR_NAME
 REPORT_DATA_DIR=$REPORT_DIR/data
 REPORT_DATA_HAR_DIR=$REPORT_DATA_DIR/har
