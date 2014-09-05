@@ -817,7 +817,7 @@ Example: $0 -u http://www.sitespeed.io -c chrome,firefox
 OPTIONS:
    -h      Help
    -u      The start URL of the crawl: http[s]://host[:port][/path/]. Use this or use the -f file option.
-   -f      The path to a plain text file with one URL on each row. Each line mustend with a new line in the file.
+   -f      The path to a plain text file with one URL on each row. Each line must end with a new line in the file.
    -d      The crawl depth, default is 1 (one page and all links pointing to the same domain on that page) [optional]
    -q      Crawl URLs only URLs that contains this keyword in the path [optional]
    -s      Skip URLs that contains this keyword in the path [optional]
@@ -840,7 +840,7 @@ OPTIONS:
    -z      The number of times you should test each URL when fetching timing metrics. Default is three times [optional]
    -V      Show the version of sitespeed.io
    -B      Basic auth user & password <username:password> [optional]
-   -C     A comma separated list of additional CDNs [optional]
+   -C      A comma separated list of additional CDNs [optional]
 EOF
 }
 
