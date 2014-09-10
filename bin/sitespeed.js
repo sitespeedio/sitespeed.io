@@ -1,7 +1,8 @@
 #!/usr/bin/env node
-var Runner = require('../lib/runner');
+var Runner = require('../lib/runner'),
+config = require('../lib/conf');
 
-var r = new Runner();
+var r = new Runner(config);
 
 require('whereis')('java', function searched(err) {
   // yep, we still need Java for the crawler & browsertime

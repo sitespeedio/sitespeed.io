@@ -37,7 +37,7 @@
                           <td>{{getPageColumnValue this ../this}}</td>
                           {{/each}}
 
-                          <td><span class="label label-{{getRuleColor 'ruleScore' this.score }}">{{this.score}}</span></td>
+                          <td><span class="label label-{{getRuleColor 'ruleScore' this.score ../config }}">{{this.score}}</span></td>
                       </tr>
                   {{/each}}
                 </tbody>

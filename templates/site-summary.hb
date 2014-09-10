@@ -10,7 +10,14 @@
           <div class="row">
         {{/bootstrapIsNewRow}}
           <div class="col-lg-{{getBootstrapSpan @index 3 ../aggregates.length}}">
-            {{> summaryBox}}
+            <div class="alert alert-{{getRuleColor id stats.median ../config}}">
+              {{title}}
+              <div>
+                <!-- TODO implement To get green you need to have ...-->
+                <a href="#" class="alert-{{getRuleColor id stats.median ../config}} large" rel="popover" data-html="true" data-trigger="hover" title="{{title}}" data-content="{{desc}}">
+                  {{getHumanReadable this stats.median true}} </a> ({{getHumanReadable this stats.p90 true}})
+              </div>
+            </div>
           </div>
       {{#bootstrapIsEndRow @index ../aggregates.length 3}}
       </div> <!-- end row -->
