@@ -40,7 +40,7 @@
     "expect.js": "0.3.x",
     "jshint":"2.5.3"
   },
-  "main": "./lib/runner.js",
+  "main": "./lib/sitespeed.js",
   "dependencies": {
     "handlebars": "2.0.x",
     "phantomjs": "1.9.x",
