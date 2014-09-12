@@ -55,7 +55,8 @@
     "gpagespeed": "0.0.6",
     "webpagetest": "0.2.x",
     "simplehar": "0.14.x",
-    "cross-spawn": "0.1.x"
+    "cross-spawn": "0.1.x",
+    "tape": "2.14.x"
   },
   "scripts": {
     "lint": "jshint .",
