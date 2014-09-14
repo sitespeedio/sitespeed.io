@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 var Sitespeed = require('../lib/sitespeed'),
-config = require('../lib/conf');
+config = require('../lib/cli');
 
 var sitespeed = new Sitespeed();
 
