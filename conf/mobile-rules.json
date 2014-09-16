@@ -147,13 +147,25 @@
     "warning": 90,
     "error": 80
   },
-  "wpt.speedIndex": {
+  "wpt.firstViewSpeedIndex": {
     "warning": 1000,
     "error": 1000
   },
-  "wpt.visualComplete": {
+  "wpt.repeatViewSpeedIndex": {
     "warning": 1000,
     "error": 1000
+  },
+  "wpt.firstViewVisualComplete": {
+    "warning": 1000,
+    "error": 1000
+  },
+  "wpt.repeatViewVisualComplete": {
+    "warning": 1000,
+    "error": 1000
+  },
+  "wpt.firstViewTTFB": {
+    "warning": 200,
+    "error": 400
   },
   "wpt.imageSavings": {
     "warning": 1,
