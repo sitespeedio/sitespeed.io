@@ -422,7 +422,7 @@ fi
 if [ "$UNIQUE_TEST_IDENTIFIER" == "" ]
 then
 	local now=$(date +"%Y-%m-%d-%H-%M-%S")
-    UNIQUE_TEST_IDENTIFIER=$now
+  UNIQUE_TEST_IDENTIFIER=$now
 fi
 
 }
@@ -463,7 +463,7 @@ VELOCITY_DIR="$SITESPEED_HOME"/report/velocity
 PROPERTIES_DIR="$SITESPEED_HOME"/report/properties
 
 if [ -d "$REPORT_DIR" ]; then
-  echo 'You must provide a unique test indentifier name.'
+  echo "You must provide a unique test name. There is already a test with this name: $UNIQUE_TEST_IDENTIFIER"
   help
   exit 1
 fi
