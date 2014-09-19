@@ -205,7 +205,7 @@ fi
 #*******************************************************
 function get_input {
 # Set options
-while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:q:k:V:B:C:J:” OPTION
+while getopts “hu:d:f:s:o:m:b:n:p:r:z:x:g:t:a:v:y:l:c:j:e:i:q:k:V:B:C:i:” OPTION
 do
      case $OPTION in
          h)
@@ -236,7 +236,7 @@ do
          c)BROWSERS=$OPTARG;;
          B)BASIC_AUTH_USER_PASSWORD=$OPTARG;;
          C)CDN_LIST=$OPTARG;;
-		 J)JENKINSBUILDNR=$OPTARG;;
+         i)UNIQUE_TEST_IDENTIFIER=$OPTARG;;
          V)
              echo $SITESPEED_VERSION
              exit  0
@@ -419,10 +419,10 @@ then
     CDN="--cdns $CDN_LIST"
 fi
 
-if [ "$JENKINSBUILDNR" == "" ]
+if [ "$UNIQUE_TEST_IDENTIFIER" == "" ]
 then
 	local now=$(date +"%Y-%m-%d-%H-%M-%S")
-    JENKINSBUILDNR=$now
+    UNIQUE_TEST_IDENTIFIER=$now
 fi
 
 }
@@ -450,7 +450,7 @@ fi
 
 # Setup dirs
 DEPENDENCIES_DIR="$SITESPEED_HOME/dependencies"
-REPORT_DIR_NAME=$BASE_DIR/$JENKINSBUILDNR
+REPORT_DIR_NAME=$BASE_DIR/$UNIQUE_TEST_IDENTIFIER
 REPORT_DIR=$REPORT_BASE_DIR/$REPORT_DIR_NAME
 REPORT_DATA_DIR=$REPORT_DIR/data
 REPORT_DATA_HAR_DIR=$REPORT_DATA_DIR/har
@@ -461,6 +461,12 @@ REPORT_DATA_METRICS_DIR=$REPORT_DATA_DIR/metrics
 
 VELOCITY_DIR="$SITESPEED_HOME"/report/velocity
 PROPERTIES_DIR="$SITESPEED_HOME"/report/properties
+
+if [ -d "$REPORT_DIR" ]; then
+  echo 'You must provide a unique test indentifier name.'
+  help
+  exit 1
+fi
 
 mkdir -p $REPORT_DIR || exit 1
 mkdir $REPORT_DATA_DIR || exit 1
@@ -831,6 +837,7 @@ OPTIONS:
    -p      The number of processes that will analyze pages, default is 5 [optional]
    -m      The memory heap size for the Java applications, default is 1024 Mb [optional]
    -n      Give your test a name, it will be added to all HTML pages [optional]
+   -i      Unique name for your test that will be used in the path, default to the current datetime [optional]
    -o      The output format, always output as HTML and you can also output a CSV file for the detailed site summary page  (csv) [optional]
    -r      The result base directory, default is sitespeed-result [optional]
    -x      The proxy host & protocol: proxy.soulgalore.com:80 [optional]
