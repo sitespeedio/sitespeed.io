@@ -1,6 +1,7 @@
 #!/usr/bin/env node
+
 var Sitespeed = require('../lib/sitespeed'),
-config = require('../lib/cli');
+  config = require('../lib/cli');
 
 var sitespeed = new Sitespeed();
 
@@ -9,10 +10,9 @@ require('whereis')('java', function searched(err) {
   if (err) {
     console.error(
       'Could not find Java, make sure it is installed in your $PATH');
-  }
-  else {
+  } else {
     sitespeed.run(config, function() {
-      console.log('Finished');
+      // nothing todo by default
     });
   }
 });
