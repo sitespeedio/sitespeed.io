@@ -3,7 +3,7 @@ var defaultConfig = {
   deep: 1,
   threads: 5,
   memory: 1024,
-  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.71 Safari/537.36',
+  userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36',
   yslow: 'phantomjs/yslow-3.1.8-sitespeed.js',
   ruleSet: 'sitespeed.io-desktop',
   limitFile: '../conf/desktopRules.json',
