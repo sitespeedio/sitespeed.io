@@ -26,14 +26,14 @@
         {{#each domains}}
         <tr>
           <td>{{this.domain}}</td>
-          <td>{{this.blocked.max}}</td>
-          <td>{{this.dns.max}}</td>
-          <td>{{this.connect.max}}</td>
-          <td>{{this.ssl.max}}</td>
-          <td>{{this.send.max}}</td>
-          <td>{{this.wait.max}}</td>
-          <td>{{this.receive.max}}</td>
-          <td><a href="{{this.slowestUrl}}">{{this.total.max}}</a></td>
+          <td><a href="{{this.blocked.maxTimeUrl}}">{{this.blocked.stats.max}}</a></td>
+          <td><a href="{{this.dns.maxTimeUrl}}">{{this.dns.stats.max}}</a></td>
+          <td><a href="{{this.connect.maxTimeUrl}}">{{this.connect.stats.max}}</a></td>
+          <td><a href="{{this.ssl.maxTimeUrl}}">{{this.ssl.stats.max}}</a></td>
+          <td><a href="{{this.send.maxTimeUrl}}">{{this.send.stats.max}}</a></td>
+          <td><a href="{{this.wait.maxTimeUrl}}">{{this.wait.stats.max}}</a></td>
+          <td><a href="{{this.receive.maxTimeUrl}}">{{this.receive.stats.max}}</a></td>
+          <td><a href="{{this.total.maxTimeUrl}}">{{this.total.stats.max}}</a></td>
           <td>{{this.count}}</td>
         </tr>
         {{/each}}
