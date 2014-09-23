@@ -4,14 +4,18 @@ node_js:
   - "0.10"
 
 before_install:
+  - "npm install -g npm && npm cache clean"
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
-
+ 
 before_script:
 - phantomjs --version
 - python -m SimpleHTTPServer 8009 &
 - sleep 10
 - " node ./bin/sitespeed.js -u http://localhost:8009/test/server/www/ -b firefox"
+
+script: 
+"npm run-script travis"
 
 after_script:
   - kill `ps aux | grep "python -m SimpleHTTPServer" | grep -v grep | awk '{print $2}'`

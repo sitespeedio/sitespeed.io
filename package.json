@@ -60,6 +60,7 @@
   },
   "scripts": {
     "lint": "jshint .",
+    "test": "npm run lint",
     "travis": "npm run lint"
   }
 }
