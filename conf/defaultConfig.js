@@ -8,6 +8,7 @@ var defaultConfig = {
   ruleSet: 'sitespeed.io-desktop',
   limitFile: '../conf/desktopRules.json',
   profile: 'desktop',
+  testData: 'all',
   no: 3,
   threshold: 90,
   graphitePort: 2003,
