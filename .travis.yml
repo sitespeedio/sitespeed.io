@@ -8,6 +8,7 @@ before_install:
   - "sh -e /etc/init.d/xvfb start"
  
 before_script:
+- "cat /etc/hosts"
 - phantomjs --version
 - python -m SimpleHTTPServer 8009 &
 - sleep 10
