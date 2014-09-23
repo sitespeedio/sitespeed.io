@@ -5,6 +5,9 @@
     <div class="col-lg-12">
 
       {{> domainSummary}}
+      <p>
+        The max time each part took per domain.
+      </p>
 
       <div class="table-responsive">
         <table class="table table-condensed table-striped table-bordered" id="domainsTable">
@@ -26,14 +29,14 @@
         {{#each domains}}
         <tr>
           <td>{{this.domain}}</td>
-          <td><a href="{{this.blocked.maxTimeUrl}}">{{this.blocked.stats.max}}</a></td>
-          <td><a href="{{this.dns.maxTimeUrl}}">{{this.dns.stats.max}}</a></td>
-          <td><a href="{{this.connect.maxTimeUrl}}">{{this.connect.stats.max}}</a></td>
-          <td><a href="{{this.ssl.maxTimeUrl}}">{{this.ssl.stats.max}}</a></td>
-          <td><a href="{{this.send.maxTimeUrl}}">{{this.send.stats.max}}</a></td>
-          <td><a href="{{this.wait.maxTimeUrl}}">{{this.wait.stats.max}}</a></td>
-          <td><a href="{{this.receive.maxTimeUrl}}">{{this.receive.stats.max}}</a></td>
-          <td><a href="{{this.total.maxTimeUrl}}">{{this.total.stats.max}}</a></td>
+          <td><a href="{{this.blocked.maxTimeUrl}}">{{this.blocked.stats.max}}</a> <a href="pages/{{getFileName this.blocked.maxTimePageUrl}}.html#har"><span class="glyphicon glyphicon-question-sign"></span></a></td>
+          <td><a href="{{this.dns.maxTimeUrl}}">{{this.dns.stats.max}}</a> <a href="pages/{{getFileName this.dns.maxTimePageUrl}}.html#har"><span class="glyphicon glyphicon-question-sign"></span></a></td>
+          <td><a href="{{this.connect.maxTimeUrl}}">{{this.connect.stats.max}}</a> <a href="pages/{{getFileName this.connect.maxTimePageUrl}}.html#har"><span class="glyphicon glyphicon-question-sign"></span></a></td>
+          <td><a href="{{this.ssl.maxTimeUrl}}">{{this.ssl.stats.max}}</a> <a href="pages/{{getFileName this.ssl.maxTimePageUrl}}.html#har"><span class="glyphicon glyphicon-question-sign"></span></a></td>
+          <td><a href="{{this.send.maxTimeUrl}}">{{this.send.stats.max}}</a> <a href="pages/{{getFileName this.send.maxTimePageUrl}}.html#har"><span class="glyphicon glyphicon-question-sign"></span></a></td>
+          <td><a href="{{this.wait.maxTimeUrl}}">{{this.wait.stats.max}}</a> <a href="pages/{{getFileName this.wait.maxTimePageUrl}}.html#har"><span class="glyphicon glyphicon-question-sign"></span></a></td>
+          <td><a href="{{this.receive.maxTimeUrl}}">{{this.receive.stats.max}}</a> <a href="pages/{{getFileName this.receive.maxTimePageUrl}}.html#har"><span class="glyphicon glyphicon-question-sign"></span></a></td>
+          <td><a href="{{this.total.maxTimeUrl}}">{{this.total.stats.max}}</a> <a href="pages/{{getFileName this.total.maxTimePageUrl}}.html#har"><span class="glyphicon glyphicon-question-sign"></span></a></td>
           <td>{{this.count}}</td>
         </tr>
         {{/each}}
