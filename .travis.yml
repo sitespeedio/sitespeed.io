@@ -12,10 +12,10 @@ before_script:
 - phantomjs --version
 - python -m SimpleHTTPServer 8009 &
 - sleep 10
-- "node ./bin/sitespeed.js -u http://localhost:8009/test/server/www/ -b firefox"
 
 script: 
 - "npm run-script travis"
+- "node ./bin/sitespeed.js -u http://localhost:8009/test/server/www/ -b firefox"
 
 after_script:
   - kill `ps aux | grep "python -m SimpleHTTPServer" | grep -v grep | awk '{print $2}'`
