@@ -1,5 +1,5 @@
 node_modules
 sitespeed-result
 test
-lib/yslow-3.1.8-sitespeed.js
+lib/phantomjs/yslow-3.1.8-sitespeed.js
 assets
