@@ -6,7 +6,7 @@
 
       {{> domainSummary}}
       <h3>
-        The max time each part took per domain.
+        The max time each part took per domain
       </h3>
 
       <div class="table-responsive">
