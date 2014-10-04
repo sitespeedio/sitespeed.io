@@ -14,7 +14,9 @@
                         <a href="#largestImages" class="list-group-item">Largest images</a>
                         <a href="#largestAssets" class="list-group-item">Largest assets</a>
                         <a href="#worstCachedAssets" class="list-group-item">Biggest mismatch in time since last modification and cache time</a>
+                        {{#if config.browsertime}}
                         <a href="#slowestDomains" class="list-group-item">Slowest domains</a>
+                        {{/if}}
                     </div>
                   </div>
           </div>
@@ -131,6 +133,7 @@
   </div>
 </div>
 
+{{#if config.browsertime}}
 <div class="row">
   <div class="col-lg-12">
      <h3>Slowest domains</h3>
@@ -152,6 +155,7 @@
      </table>
   </div>
 </div>
+{{/if}}
 
 {{> footer}}
 </body>
