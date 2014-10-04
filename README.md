@@ -23,9 +23,6 @@ New in 3.0
 * Generate JUnit XML files/TAP and/or send data to Graphite; now included as main functionality.
 * Yep, hate to say it but the parameters to the CLI has changed, so please check --help to see how you should do
 
-Current status
-=============
-
 You can use the new version on Mac & Linux and hopefully on Windows in the near future.
 
 Install
