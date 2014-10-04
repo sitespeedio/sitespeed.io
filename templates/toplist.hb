@@ -13,8 +13,8 @@
                         <a href="#largestPages" class="list-group-item">Largest pages</a>
                         <a href="#largestImages" class="list-group-item">Largest images</a>
                         <a href="#largestAssets" class="list-group-item">Largest assets</a>
-                        <a href="#slowestAssets" class="list-group-item">Slowest assets</a>
-                        <a href="#worstCachedAssets" class="list-group-item">Worst cached assets</a>
+                        <a href="#worstCachedAssets" class="list-group-item">Biggest mismatch in time since last modification and cache time</a>
+                        <a href="#slowestDomains" class="list-group-item">Slowest domains</a>
                     </div>
                   </div>
           </div>
@@ -32,7 +32,7 @@
     <tbody>
       {{#each lowestScoringPages}}
       <tr>
-        <td>{{> displayUrlHeaders}} {{> displayUrl}}</td>
+        <td>{{> displayUrl}}</td>
         <td>{{this.score}}</td>
       </tr>
       {{/each}}
@@ -53,7 +53,7 @@
      <tbody>
        {{#each heaviestPages}}
        <tr>
-         <td>{{> displayUrlHeaders}} {{> displayUrl}}</td>
+         <td>{{> displayUrl}}</td>
          <td>{{getKbSize this.yslow.pageWeight.v}}</td>
        </tr>
        {{/each}}
@@ -75,7 +75,7 @@
     <tbody>
       {{#each largestImages}}
       <tr>
-        <td>{{> displayUrlHeaders}}{{> displayAssetUrl}} <a href="{{this.parent}}">p</a></td>
+        <td>{{> displayAssetUrl}} <a href="{{this.parent}}"><span class="glyphicon glyphicon-home"></span></a></td>
         <td>{{getKbSize this.size}}</td>
       </tr>
       {{/each}}
@@ -96,7 +96,7 @@
      <tbody>
        {{#each largestAssets}}
        <tr>
-         <td>{{> displayUrlHeaders}}{{> displayAssetUrl}} <a href="{{this.parent}}">p</a></td>
+         <td>{{> displayAssetUrl}} <a href="{{this.parent}}"><span class="glyphicon glyphicon-home"></span></a></td>
          <td>{{this.type}}</td>
          <td>{{getKbSize this.size}}</td>
        </tr>
@@ -108,48 +108,49 @@
 
 
 <div class="row">
-  <div class="col-lg-6">
-    <h3>Worst cached assets</h3>
+  <div class="col-lg-12">
+    <h3>Biggest mismatch in time since last modification and cache time</h3>
       <table class="table table-condensed table-striped table-bordered" id="worstCachedAssets">
         <thead>
          <tr>
           <th>url</th>
-          <th>size (kb)</th>
+          <th>time since last modification</th>
+          <th>cache time</th>
          </tr>
         </thead>
     <tbody>
       {{#each worstCachedAssets}}
       <tr>
-        <td>{{> displayUrlHeaders}}{{> displayAssetUrl}} <a href="{{this.parent}}">p</a></td>
-        <td>{{getKbSize this.size}}</td>
+        <td>{{> displayAssetUrl}} <a href="{{this.parent}}"><span class="glyphicon glyphicon-home"></span></a></td>
+        <td data-sort-value="{{this.timeSinceLastModification}}">{{getPrettyPrintSeconds this.timeSinceLastModification}}</td>
+        <td data-sort-value="{{this.cacheTime}}">{{getPrettyPrintSeconds this.cacheTime}}</td>
       </tr>
       {{/each}}
     </tbody>
     </table>
   </div>
+</div>
 
-  <div class="col-lg-6">
-     <h3>Slowest assets</h3>
+<div class="row">
+  <div class="col-lg-12">
+     <h3>Slowest domains</h3>
        <table class="table table-condensed table-striped table-bordered" id="slowestAssets">
          <thead>
           <tr>
-           <th>url</th>
-           <th>size (kb)</th>
+           <th>domain</th>
+           <th>time</th>
           </tr>
          </thead>
      <tbody>
-       {{#each slowestAssets}}
+       {{#each slowestDomains}}
        <tr>
-         <td>{{> displayUrlHeaders}}{{> displayAssetUrl}} <a href="{{this.parent}}">p</a></td>
-         <td>{{getKbSize this.size}}</td>
+         <td>{{this.domain}}</td>
+         <td>{{this.total.stats.max}}</td>
        </tr>
        {{/each}}
      </tbody>
      </table>
   </div>
-</div>
-
-    </div>
 </div>
 
 {{> footer}}
