@@ -1,8 +1,16 @@
 CHANGELOG sitespeed.io
 
-version 3.0-wip
+version 3.0.0-alpha
 ------------------------
-* Hello, we are moving to nodejs, one small step at a time
+* The main goal with 3.0 has been to move to NodeJS. The crawler & BrowserTime still uses Java and we will try to move away from that in the future
+* Support for getting Navigation Timing data from PhantomJS 2.0
+* Drive/get/collect data from WebPageTest & Google Page Speed Insights
+* Two new summary pages: Slowest domains and Toplist (with information about assets). More info will come
+* We use Handlebars templates (instead of the old Velocity ones).
+* All data is is JSON instead of XML as it was before.
+* HAR-files created from the browser you use when fetching Navigation Timing API metrics
+* Generate JUnit XML files/TAP and/or send data to Graphite; now included as main functionality.
+* Yep, hate to say it but the parameters to the CLI has changed, so please check --help to see how you should do
 
 version 2.5.7
 ------------------------
