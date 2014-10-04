@@ -1,1 +1,1 @@
-<div class="nobreak-asset-url"><a href="{{decodeURIComponent this.url}}" target="_blank">{{decodeURIComponent this.url}}</a></div>
+<div class="nobreak-asset-url"><a href="{{decodeURIComponent this.url}}" target="_blank">{{showMaxEnd this.url 100}}</a></div>
