@@ -25,12 +25,10 @@ New in 3.0
 
 You can use the new version on Mac & Linux and hopefully on Windows in the near future.
 
-Install
+Install 
 =============
 ```bash
-$ cd sitespeed.io
-$ npm pack
-$ npm install sitespeed.io-3.0.0-alpha.tgz -g
+$ npm install sitespeed.io@3.0.0-alpha -g
 ```
 
 Documentation
