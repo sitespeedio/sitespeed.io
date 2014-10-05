@@ -25,7 +25,7 @@ You can use the new version on Mac & Linux and hopefully on Windows in the near 
 Install 
 =============
 ```bash
-$ npm install sitespeed.io@3.0.0-alpha -g
+$ npm install sitespeed.io -g
 ```
 
 Documentation
