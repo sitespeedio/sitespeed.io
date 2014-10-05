@@ -1,13 +1,13 @@
 {
   "name": "sitespeed.io",
-  "version": "3.0.0-alpha",
+  "version": "3.0.0-alpha-2",
   "bin": "./bin/sitespeed.js",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
     "web",
     "rules",
-    "speed",
+    "har",
     "navigation-timing",
     "browser"
   ],
