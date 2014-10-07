@@ -13,9 +13,11 @@
       	<div class="col-lg-12">
       		<div class="list-group">
       				<a href="#" class="list-group-item active">Quick links</a>
-      				<a href="#score" class="list-group-item">Scores below 100</a>
+      				{{#if config.runYslow}}
+              <a href="#score" class="list-group-item">Scores below 100</a>
       				<a href="#assets" class="list-group-item">Page assets</a>
       				<a href="#summary" class="list-group-item">Page summary</a>
+              {{/if}}
               {{#if config.gpsiKey}}
               <a href="#gpsi" class="list-group-item">Google Pagespeed Insights</a>
               {{/if}}

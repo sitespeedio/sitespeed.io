@@ -42,9 +42,11 @@
             <li{{#if pageMeta.isPages}} class="active" {{/if}}>
               <a href="{{pageMeta.path}}pages.html">Pages</a>
             </li>
+            {{#if config.runYslow}}
             <li{{#if pageMeta.isAssets}} class="active" {{/if}}>
               <a href="{{pageMeta.path}}assets.html">Assets</a>
             </li>
+            {{/if}}
             <li{{#if pageMeta.isToplist}} class="active" {{/if}}>
               <a href="{{pageMeta.path}}toplist.html">Toplist</a>
             </li>

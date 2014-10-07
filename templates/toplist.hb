@@ -9,11 +9,13 @@
         <div class="row">
                   <div class="col-lg-12">
                     <div class="list-group">
+                        {{#if config.runYslow}}
                         <a href="#score" class="list-group-item">Pages with worst score</a>
                         <a href="#largestPages" class="list-group-item">Largest pages</a>
                         <a href="#largestImages" class="list-group-item">Largest images</a>
                         <a href="#largestAssets" class="list-group-item">Largest assets</a>
                         <a href="#worstCachedAssets" class="list-group-item">Biggest mismatch in time since last modification and cache time</a>
+                        {{/if}}
                         {{#if config.browsertime}}
                         <a href="#slowestDomains" class="list-group-item">Slowest domains</a>
                         {{/if}}
@@ -21,6 +23,7 @@
                   </div>
           </div>
 
+{{#if config.runYslow}}
 <div class="row">
   <div class="col-lg-6">
     <h3>Pages with worst score</h3>
@@ -132,6 +135,7 @@
     </table>
   </div>
 </div>
+{{/if}}
 
 {{#if config.browsertime}}
 <div class="row">

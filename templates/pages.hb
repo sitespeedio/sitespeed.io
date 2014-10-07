@@ -19,9 +19,12 @@
                     </a>
                     </th>
                     {{/each}}
+
+                    {{#if config.runYslow}}
                     <th data-sort="int">
                         <a rel="tooltip"  data-placement="top" data-html="false" href="#" data-original-title="The sitespeed.io rule grade for this page. 100 is perfect 0 is incredibe bad.">score</a>
                     </th>
+                    {{/if}}
                 </tr>
                 </thead>
 
@@ -36,8 +39,9 @@
                           {{#each ../config.pageColumns}}
                           <td>{{getPageColumnValue this ../this}}</td>
                           {{/each}}
-
+                          {{#if config.runYslow}}
                           <td><span class="label label-{{getRuleColor 'ruleScore' this.score ../config }}">{{this.score}}</span></td>
+                          {{/if}}
                       </tr>
                   {{/each}}
                 </tbody>
