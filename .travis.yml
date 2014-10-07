@@ -16,6 +16,7 @@ before_script:
 script: 
 - "npm run-script travis"
 - "node ./bin/sitespeed.js -u http://127.0.0.1:8009/test/server/www/ -b firefox -n 1"
+- "node ./bin/sitespeed.js -u http://127.0.0.1:8009/test/server/www/ -b firefox -n 1 --noYslow -d 0"
 
 after_script:
   - kill `ps aux | grep "python -m SimpleHTTPServer" | grep -v grep | awk '{print $2}'`
