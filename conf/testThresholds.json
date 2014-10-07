@@ -1,17 +1,16 @@
 {
-  "wpt": {
-    "render": 1000,
-    "SpeedIndex": 1100
-  },
-  "yslow": {
+  "rules": {
     "default": 90
-  },
-  "gpsi": {
-    "score": 90
   },
   "timings": {
     "serverResponseTime": 300,
     "domContentLoadedTime": 700
+  },
+  "wpt": {
+    "render": 1000,
+    "SpeedIndex": 1100
+  },
+  "gpsi": {
+    "score": 90
   }
-
 }

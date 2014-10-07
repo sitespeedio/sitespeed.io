@@ -10,7 +10,6 @@ var defaultConfig = {
   profile: 'desktop',
   testData: 'all',
   no: 3,
-  threshold: 90,
   graphitePort: 2003,
   graphiteNamespace: 'sitespeed.io',
   graphiteData: 'all',
