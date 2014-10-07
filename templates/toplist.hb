@@ -86,7 +86,7 @@
   </div>
 
   <div class="col-lg-6">
-     <h3>Largest assets</h3>
+     <h3>Largest assets excluding images</h3>
        <table class="table table-condensed table-striped table-bordered" id="largestAssets">
          <thead>
           <tr>
