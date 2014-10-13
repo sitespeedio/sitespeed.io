@@ -39,8 +39,8 @@
                           {{#each ../config.pageColumns}}
                           <td>{{getPageColumnValue this ../this}}</td>
                           {{/each}}
-                          {{#if config.runYslow}}
-                          <td><span class="label label-{{getRuleColor 'ruleScore' this.score ../config }}">{{this.score}}</span></td>
+                          {{#if ../config.runYslow}}
+                          <td><span class="label label-{{getRuleColor 'ruleScore' this.score ../../config }}">{{this.score}}</span></td>
                           {{/if}}
                       </tr>
                   {{/each}}
