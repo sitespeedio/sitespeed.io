@@ -1,22 +1,24 @@
 language: node_js
 node_js:
-  - "0.11"
-  - "0.10"
-
+- '0.11'
+- '0.10'
 before_install:
-  - "export DISPLAY=:99.0"
-  - "sh -e /etc/init.d/xvfb start"
- 
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
 before_script:
-- "cat /etc/hosts"
+- cat /etc/hosts
 - phantomjs --version
 - python -m SimpleHTTPServer 8009 &
 - sleep 10
-
-script: 
-- "npm run-script travis"
-- "node ./bin/sitespeed.js -u http://127.0.0.1:8009/test/server/www/ -b firefox -n 1"
-- "node ./bin/sitespeed.js -u http://127.0.0.1:8009/test/server/www/ -b firefox -n 1 --noYslow -d 0"
-
+script:
+- npm run-script travis
+- node ./bin/sitespeed.js -u http://127.0.0.1:8009/test/server/www/ -b firefox -n
+  1
+- node ./bin/sitespeed.js -u http://127.0.0.1:8009/test/server/www/ -b firefox -n
+  1 --noYslow -d 0
+- node ./bin/sitespeed.js -u http://www.sitespeed.io -n 2 -d 0 --gpsiKey $GKEY
 after_script:
-  - kill `ps aux | grep "python -m SimpleHTTPServer" | grep -v grep | awk '{print $2}'`
+- kill `ps aux | grep "python -m SimpleHTTPServer" | grep -v grep | awk '{print $2}'`
+env:
+  global:
+    secure: ZCqHD+/PhHNVFWoqir66Xd9YeJRcTHDJYvNL9j4+GTKDEI1h94twhAjQ7Z9DhlCnXwL1lsfEcIjvNCWd3ir/FNy2oZsUzu6kMpFF/niugurFbS551moJ2ObNEfOdj93/sTo4UWH2MZouC9eYeuj1vNYbAev6wBIptL95X/ArldQ=
