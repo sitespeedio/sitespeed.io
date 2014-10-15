@@ -56,7 +56,8 @@
     "webpagetest": "0.2.x",
     "simplehar": "0.14.x",
     "cross-spawn": "0.1.x",
-    "tape": "2.14.x"
+    "tape": "2.14.x",
+    "valid-url":"1.0.x"
   },
   "scripts": {
     "lint": "jshint .",
