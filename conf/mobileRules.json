@@ -143,31 +143,31 @@
     "warning": 500,
     "error": 800
   },
-  "gpsi.gscore": {
+  "gpsiscore": {
     "warning": 90,
     "error": 80
   },
-  "wpt.firstViewSpeedIndex": {
+  "firstViewSpeedIndex": {
     "warning": 1000,
     "error": 1000
   },
-  "wpt.repeatViewSpeedIndex": {
+  "repeatViewSpeedIndex": {
     "warning": 1000,
     "error": 1000
   },
-  "wpt.firstViewVisualComplete": {
+  "firstViewVisualComplete": {
     "warning": 1000,
     "error": 1000
   },
-  "wpt.repeatViewVisualComplete": {
+  "repeatViewVisualComplete": {
     "warning": 1000,
     "error": 1000
   },
-  "wpt.firstViewTTFB": {
+  "firstViewTTFB": {
     "warning": 200,
     "error": 400
   },
-  "wpt.imageSavings": {
+  "imageSavings": {
     "warning": 1,
     "error": 10
   }
