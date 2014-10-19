@@ -17,6 +17,7 @@
                         <a href="#worstCachedAssets" class="list-group-item">Biggest mismatch in time since last modification and cache time</a>
                         {{/if}}
                         {{#if config.browsertime}}
+                        <a href="#slowestAssets" class="list-group-item">Slowest assets</a>
                         <a href="#slowestDomains" class="list-group-item">Slowest domains</a>
                         {{/if}}
                     </div>
@@ -140,8 +141,33 @@
 {{#if config.browsertime}}
 <div class="row">
   <div class="col-lg-12">
-     <h3>Slowest domains</h3>
+     <h3>Slowest assets</h3>
        <table class="table table-condensed table-striped table-bordered" id="slowestAssets">
+         <thead>
+          <tr>
+           <th>url</th>
+           <th>time</th>
+          </tr>
+         </thead>
+     <tbody>
+       {{#each slowestAssets}}
+       <tr>
+         <td>{{> displayAssetUrl}}</td>
+         <td>{{this.timing.stats.max}}</td>
+       </tr>
+       {{/each}}
+     </tbody>
+     </table>
+  </div>
+</div>
+{{/if}}
+
+
+{{#if config.browsertime}}
+<div class="row">
+  <div class="col-lg-12">
+     <h3>Slowest domains</h3>
+       <table class="table table-condensed table-striped table-bordered" id="slowestDomains">
          <thead>
           <tr>
            <th>domain</th>
