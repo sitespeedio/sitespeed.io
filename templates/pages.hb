@@ -32,10 +32,13 @@
                   {{#each pages}}
                       <tr>
                           <td>
+                            <div class="nobreak-asset-url">
                             {{> displayUrlHeaders}}
                             <!-- TODO how to get the config-->
-                            {{#if ../config.screenshot}}<a href="screenshots.html#{{getFileName this.url}}"><i class="glyphicon glyphicon-picture"></i></a>{{/if}}
-                            {{> displayUrl}}</td>
+                            {{#if ../config.screenshot}}<a href="screenshots.html#{{getFileName this.url}}"><span class="glyphicon glyphicon-picture"></span></a>{{/if}}
+                            {{> displayUrl}}
+                            </div>
+                            </td>
                           {{#each ../config.pageColumns}}
                           <td>{{getPageColumnValue this ../this}}</td>
                           {{/each}}

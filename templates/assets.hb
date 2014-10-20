@@ -3,7 +3,7 @@
 {{> header}}
 <div class="row">
     <div class="col-lg-12">
-      
+
       {{> assetsSummary}}
 
       <div class="table-responsive">
@@ -21,7 +21,7 @@
 			<tbody>
         {{#each assets}}
         <tr>
-          <td>{{> displayUrlHeaders}}{{> displayAssetUrl}}</td>
+          <td><div class="nobreak-asset-url">{{> displayUrlHeaders}}{{> displayAssetUrl}}</div></td>
           <td>{{this.type}}</td>
           <td data-sort-value="{{this.timeSinceLastModification}}">{{getPrettyPrintSeconds this.timeSinceLastModification}}</td>
           <td data-sort-value="{{this.cacheTime}}">{{getPrettyPrintSeconds this.cacheTime}}</td>

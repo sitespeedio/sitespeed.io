@@ -13,7 +13,7 @@
     <tbody>
       {{#each assets}}
       <tr>
-      <td>{{> displayUrlHeaders}}{{> displayAssetUrl}}</td>
+      <td><div class="nobreak-asset-url">{{> displayUrlHeaders}}{{> displayAssetUrl}}</div></td>
       <td>{{type}}</td>
       <td data-sort-value="{{getTimeSinceLastMod this}}">{{getPrettyTimeSinceLastMod this}}</td>
       <td data-sort-value="{{getCacheTime this}}">{{getPrettyCacheTime this}}</td>
