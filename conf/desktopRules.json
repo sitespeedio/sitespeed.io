@@ -143,31 +143,31 @@
     "warning": 500,
     "error": 800
   },
-  "gpsiscore": {
+  "scoreGPSI": {
     "warning": 90,
     "error": 80
   },
-  "firstViewSpeedIndex": {
+  "firstViewSpeedIndexWPT": {
     "warning": 1000,
     "error": 1000
   },
-  "repeatViewSpeedIndex": {
+  "repeatViewSpeedIndexWPT": {
     "warning": 1000,
     "error": 1000
   },
-  "firstViewVisualComplete": {
+  "firstViewVisualCompleteWPT": {
     "warning": 1000,
     "error": 1000
   },
-  "repeatViewVisualComplete": {
+  "repeatViewVisualCompleteWPT": {
     "warning": 1000,
     "error": 1000
   },
-  "firstViewTTFB": {
+  "firstViewTTFBWPT": {
     "warning": 300,
     "error": 500
   },
-  "imageSavings": {
+  "imageSavingsWPT": {
     "warning": 1,
     "error": 50
   }
