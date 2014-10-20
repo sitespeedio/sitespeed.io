@@ -47,8 +47,8 @@
               <a href="{{pageMeta.path}}assets.html">Assets</a>
             </li>
             {{/if}}
-            <li{{#if pageMeta.isToplist}} class="active" {{/if}}>
-              <a href="{{pageMeta.path}}toplist.html">Toplist</a>
+            <li{{#if pageMeta.isHotlist}} class="active" {{/if}}>
+              <a href="{{pageMeta.path}}hotlist.html">Hotlist</a>
             </li>
             {{#if config.browsertime}}
               <li{{#if pageMeta.isDomains}} class="active" {{/if}}>
