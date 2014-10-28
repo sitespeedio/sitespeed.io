@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-12">
-    <h4 id="browser"> Page tested with {{capitalize pageData.browserName}} version {{pageData.browserVersion}} on
-      {{prettyOSName pageData.platform}} with {{timingRuns.length}} run{{getPlural timingRuns.length}}.
+    <h4 id="browser"> Page tested with {{capitalize browserName}} version {{browserVersion}} on
+      {{prettyOSName platform}} with {{runs}} run{{getPlural runs}}.
     </h4>
     <div class="table-responsive">
       <table class="table table-condensed table-striped table-bordered">
