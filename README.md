@@ -1,13 +1,12 @@
 <a href="http://www.sitespeed.io" target="_blank">Sitespeed.io</a> - how speedy is your website? [![Build Status](https://secure.travis-ci.org/sitespeedio/sitespeed.io.png?branch=3.0-wip)](http://travis-ci.org/sitespeedio/sitespeed.io)
 =============
 
-2014-10-04: Today I've merged the 3.0-wip into the master branch and releasing an early alpha release of 3.0. It is still really rough around the edges and 
-it will be fixed the coming weeks. The release date for a final 3.0 is the 3:rd of November.
+2014-10-28: We have now released the first beta of 3.0!
 
 The latest stable release is 2.5.7, you can get it from the <a href="https://github.com/sitespeedio/sitespeed.io/releases/tag/v2.5.7">release page</a> or install it using Homebrew.
 
 
-New in 3.0.0-alpha
+New in 3.0.0-beta
 =============
 * The main goal with 3.0 has been to move to NodeJS. The crawler & BrowserTime still uses Java and we will try to move away from that in the future
 * We use Handlebars templates (instead of the old Velocity ones).
@@ -25,7 +24,7 @@ You can use the new version on Mac & Linux and hopefully on Windows in the near 
 Install 
 =============
 ```bash
-$ npm install sitespeed.io -g
+$ npm install sitespeed.io@3.0.0-beta -g
 ```
 
 Documentation
