@@ -9,7 +9,7 @@
   },
   "criticalPathScore": {
     "warning": 99,
-    "error": 95
+    "error": 90
   },
   "cssImagesPerPage": {
     "warning": 2,
