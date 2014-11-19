@@ -3,7 +3,7 @@
       <h2 id="wpt">WebPageTest</h2>
       <p>{{{wptData.response.data.from}}}</p> {{wptData.response.data.runs}}
 
-      {{wptData.response.data.median.firstView.browser_name}}{{wptData.response.data.median.firstView.browser_version}}
+      {{wptData.response.data.median.firstView.browser_name}} {{wptData.response.data.median.firstView.browser_version}}
 
       <p><a href="{{wptData.response.data.summary}}">WPT summary</a> - <a href="../data/webpagetest/{{getFileName this.url}}-wpt.har">Download HAR</a></p></p>
 
