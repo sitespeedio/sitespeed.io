@@ -4,7 +4,7 @@
 <div class="row">
     <div class="col-lg-12">
       <h2 class="url">
-			Page <a href="{{decodeURIComponent url}}" target="_blank">{{decodeURIComponent url}}</a> (score: {{score}})
+			Page <a href="{{decodeURIComponent url}}" target="_blank">{{decodeURIComponent url}}</a> {{#if config.runYslow}}(score: {{score}}){{/if}}
       </h2>
     </div>
 </div>
