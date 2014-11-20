@@ -7,8 +7,7 @@
     "domContentLoadedTime": 700
   },
   "wpt": {
-    "render": 1000,
-    "SpeedIndex": 1100
+    "SpeedIndex": 1000
   },
   "gpsi": {
     "score": 90
