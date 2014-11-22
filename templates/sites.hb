@@ -25,11 +25,7 @@
                 {{#each sitesAndAggregates}}
               <tr>
                 <td>
-                  {{#if config.url}}
-                    <a href="{{getHostname this.site}}/index.html">{{this.site}}</a>
-                  {{else}}
-                  <a href="{{this.site}}/index.html">{{this.site}}</a>
-                {{/if}}
+                  <a href="{{getHostname this.site}}/index.html">{{this.site}}</a>
                 </td>
                 {{#each aggregates}}
                   <td data-sort-value="{{#if stats.median}}{{stats.median}}{{else}}-1{{/if}}">{{getHumanReadable this stats.median true}}</td>
