@@ -1,4 +1,4 @@
-<a href="http://www.sitespeed.io" target="_blank">Sitespeed.io</a> - how speedy is your website? [![Build Status](https://secure.travis-ci.org/sitespeedio/sitespeed.io.png?branch=3.0-wip)](http://travis-ci.org/sitespeedio/sitespeed.io)
+<a href="http://www.sitespeed.io" target="_blank">Sitespeed.io</a> - how speedy is your website? [![Build Status](https://travis-ci.org/sitespeedio/sitespeed.io.svg?branch=master)](http://travis-ci.org/sitespeedio/sitespeed.io)
 =============
 
 2014-10-28: We have now released the first beta of 3.0!
