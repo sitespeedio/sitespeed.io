@@ -4,7 +4,8 @@
   },
   "timings": {
     "serverResponseTime": 300,
-    "domContentLoadedTime": 700
+    "domContentLoadedTime": 700,
+    "speedIndex": 1000
   },
   "wpt": {
     "SpeedIndex": 1000
