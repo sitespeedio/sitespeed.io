@@ -1,5 +1,5 @@
 var defaultConfig = {
-  supportedBrowsers: ['chrome', 'firefox', 'phantomjs'],
+  supportedBrowsers: ['chrome', 'firefox', 'phantomjs', 'ie', 'safari'],
   connection: ['mobile3g', 'mobile3gfast', 'cable', 'native'],
   deep: 1,
   threads: 5,
