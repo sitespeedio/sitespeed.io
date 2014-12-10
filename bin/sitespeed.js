@@ -16,8 +16,6 @@ require('whereis')('java', function searched(err) {
         console.error(err);
         process.exit(1);
       }
-      else {
-      }
     });
   }
 });
