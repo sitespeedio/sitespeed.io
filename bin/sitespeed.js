@@ -11,8 +11,13 @@ require('whereis')('java', function searched(err) {
     console.error(
       'Could not find Java, make sure it is installed in your $PATH');
   } else {
-    sitespeed.run(config, function() {
-      // nothing todo by default
+    sitespeed.run(config, function(err) {
+      if (err) {
+        console.error(err);
+        process.exit(1);
+      }
+      else {
+      }
     });
   }
 });
