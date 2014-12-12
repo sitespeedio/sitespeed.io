@@ -29,4 +29,4 @@ $ npm install sitespeed.io@3.0.0-beta-9 -g
 
 Documentation
 =============
-Will be added soon.
+http://www.sitespeed.io/documentation/
