@@ -32,6 +32,7 @@
                <td>{{wptData.response.data.median.firstView.SpeedIndex}}</td>
                <td>{{wptData.response.data.median.firstView.visualComplete}}</td>
              </tr>
+             {{#if wptData.response.data.median.repeatView}}
              <tr>
                <td><strong>Repeat View</strong></td>
                <td>{{wptData.response.data.median.repeatView.loadTime}}</td>
@@ -42,18 +43,21 @@
                <td>{{wptData.response.data.median.repeatView.SpeedIndex}}</td>
                <td>{{wptData.response.data.median.repeatView.visualComplete}}</td>
              </tr>
+             {{/if}}
          </tbody>
        </table>
 
 
       <h3>Waterfall first view</h3>
 
-  <p>
+    <p>
       <img src="../data/webpagetest/{{getFileName this.url}}-waterfall.png" class="img-responsive" alt="Waterfall first view"/>
     </p>
-    <p><!--TODO check that we have repatedView -->
+    {{#if wptData.response.data.median.repeatView}}
+    <p>
       <h3>Waterfall repeated view</h3>
         <img src="../data/webpagetest/{{getFileName this.url}}-waterfall-repeat.png" class="img-responsive" alt="Waterfall repeated view"/>
     </p>
+    {{/if}}
   </div>
 </div>
