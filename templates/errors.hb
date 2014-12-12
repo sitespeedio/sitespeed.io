@@ -8,10 +8,31 @@
         <p>
           Got {{totalErrors}} error{{getPlural totalErrors}}.
         </p>
-        {{{getErrorHTML errors.downloadErrorUrls}}}
+      {{#if errors.downloadErrorUrls}}
+          <h2>Download errors</h2>
+          <dl>
+            {{#each errors.downloadErrorUrls}}
+                <dt>{{@key}}</dt>
+                <dd>{{this}}</dd>
+            {{/each}}
+          </dl>
+      {{/if}}
 
-        {{{getErrorHTML errors.analysisErrorUrls}}}
-
+      {{#if errors.analysisErrorUrls}}
+          <h2>Analysis errors</h2>
+          <dl>
+            {{#each errors.analysisErrorUrls}}
+                <dt>{{@key}}</dt>
+                <dd>
+                    <ul>
+                      {{#each this}}
+                          <li>{{@key}} - {{this}}</li>
+                      {{/each}}
+                    </ul>
+                </dd>
+            {{/each}}
+          </dl>
+      {{/if}}
     </div>
 </div>
 
