@@ -1,9 +1,10 @@
 <div class="row">
   <div class="col-lg-12">
       <h2 id="wpt">WebPageTest</h2>
-      <p>{{{wptData.response.data.from}}}</p> {{wptData.response.data.runs}}
+      <p>{{{wptData.response.data.from}}} {{wptData.response.data.runs}} times
 
-      {{wptData.response.data.median.firstView.browser_name}} {{wptData.response.data.median.firstView.browser_version}}
+      {{wptData.response.data.median.firstView.browser_name}} version {{wptData.response.data.median.firstView.browser_version}}
+      </p>
 
       <p><a href="{{wptData.response.data.summary}}">WPT summary</a> - <a href="../data/webpagetest/{{getFileName this.url}}-wpt.har">Download HAR</a></p></p>
 
@@ -19,6 +20,9 @@
             <th>Last Visual Change</th>
             <th>Speed Index</th>
             <th>Visual Complete</th>
+            {{#each wptData.response.data.median.repeatView.userTimes}}
+            <th>{{@key}}</th>
+            {{/each}}
            </tr>
           </thead>
          <tbody>
@@ -31,6 +35,9 @@
                <td>{{wptData.response.data.median.firstView.lastVisualChange}}</td>
                <td>{{wptData.response.data.median.firstView.SpeedIndex}}</td>
                <td>{{wptData.response.data.median.firstView.visualComplete}}</td>
+               {{#each wptData.response.data.median.firstView.userTimes}}
+               <td>{{this}}</td>
+               {{/each}}
              </tr>
              {{#if wptData.response.data.median.repeatView}}
              <tr>
@@ -42,11 +49,13 @@
                <td>{{wptData.response.data.median.repeatView.lastVisualChange}}</td>
                <td>{{wptData.response.data.median.repeatView.SpeedIndex}}</td>
                <td>{{wptData.response.data.median.repeatView.visualComplete}}</td>
+               {{#each wptData.response.data.median.repeatView.userTimes}}
+               <td>{{this}}</td>
+               {{/each}}
              </tr>
              {{/if}}
          </tbody>
        </table>
-
 
       <h3>Waterfall first view</h3>
 
