@@ -21,7 +21,7 @@
               {{#if config.gpsiKey}}
               <a href="#gpsi" class="list-group-item">Google Pagespeed Insights</a>
               {{/if}}
-              {{#if config.wptUrl}}
+              {{#if config.wptDomain}}
               <a href="#wpt" class="list-group-item">WebPageTest metrics</a>
               {{/if}}
               {{#if config.browser}}
@@ -93,7 +93,7 @@
     </div>
     {{/if}}
 
-    {{#if config.wptUrl}}
+    {{#if config.wptDomain}}
     <div class="row">
         <div class="col-lg-12">
           {{>wpt}}
