@@ -55,7 +55,7 @@
                 <a href="{{pageMeta.path}}domains.html">Domains</a>
               </li>
             {{else}}
-              {{#if config.wptDomain}}
+              {{#if config.wptHost}}
               <li{{#if pageMeta.isDomains}} class="active" {{/if}}>
                 <a href="{{pageMeta.path}}domains.html">Domains</a>
               </li>
