@@ -1,27 +1,22 @@
 <a href="http://www.sitespeed.io" target="_blank">Sitespeed.io</a> - how speedy is your website? [![Build Status](https://travis-ci.org/sitespeedio/sitespeed.io.svg?branch=master)](http://travis-ci.org/sitespeedio/sitespeed.io)
 =============
 
-2014-10-28: We have now released the first beta of 3.0!
+Welcome to the wonderful world of web performance!
 
-The latest stable release is 2.5.7, you can get it from the <a href="https://github.com/sitespeedio/sitespeed.io/releases/tag/v2.5.7">release page</a> or install it using Homebrew.
+sitespeed.io can:
+* analyze your site against web performance best practice rules, crawl your site or test specific URL:s
+* measure how fast your site/pages is using the Navigation Timing API and User Timing API
+* send all your metrics to Graphite
+* benchmark your site against your competitors (comparing specific pages, creating reports, dump the data to Graphite)
+* drive WebPageTest (WPT), meaning collect metrics from WPT, create reports and or
+send the data to Graphite
+* test your site against your performance budget
+* output TAP or JUnit XML to run in your Continuous Integration tool
+* create configurable HTML reports
+* test your site against Google Page Speed Insights and include the result in the reports
+* create your own post task that will get the result from the analyze and do whatever you want with it (store to a database, create new reports etc)
 
-
-New in 3.0.0-beta
-=============
-* The main goal with 3.0 has been to move to NodeJS. The crawler & BrowserTime still uses Java and we will try to move away from that in the future
-* We use Handlebars templates (instead of the old Velocity ones).
-* All data is JSON instead of XML as it was before.
-* Drive/get/collect data from WebPageTest & Google Page Speed Insights
-* HAR-files created from the browser you use when fetching Navigation Timing API metrics
-* Generate JUnit XML files and/or send data to Graphite; now included as main functionality.
-* Support for getting Navigation Timing data from PhantomJS 2.0
-* Two new result pages: Slowest domains and Toplist (with information about assets). More info will come
-* We use Handlebars templates (instead of the old Velocity ones).
-* Yep, hate to say it but the parameters to the CLI has changed, so please check --help to see how you should do
-
-You can use the new version on Mac & Linux and hopefully on Windows in the near future.
-
-Install 
+Install
 =============
 ```bash
 $ npm install -g sitespeed.io
@@ -30,3 +25,6 @@ $ npm install -g sitespeed.io
 Documentation
 =============
 http://www.sitespeed.io/documentation/
+
+Example reports
+=============
