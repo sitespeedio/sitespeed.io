@@ -15,7 +15,7 @@ script:
 - node ./bin/sitespeed.js --sites test/sites.txt -n 1  -b firefox -n 1
 - node ./bin/sitespeed.js -f test/sites.txt -n 1
 - node ./bin/sitespeed.js -u http://www.sitespeed.io -b firefox -n 1 --noYslow -d 0
-- node ./bin/sitespeed.js -u http://www.sitespeed.io -n 2 -d 0 --gpsiKey $GKEY --wptKey $WPTKEY --wptHost www.webpagetest.org --wptLocation Dulles:Chrome
+- node ./bin/sitespeed.js -u http://www.sitespeed.io -n 2 -d 0 --gpsiKey $GKEY --wptKey $WPTKEY --wptHost www.webpagetest.org
 - node ./bin/sitespeed.js -u http://127.0.0.1:8009/test/server/www/ -d 0 --junit
 after_script:
 - kill `ps aux | grep "python -m SimpleHTTPServer" | grep -v grep | awk '{print $2}'`
