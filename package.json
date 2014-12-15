@@ -44,6 +44,7 @@
   "dependencies": {
     "handlebars": "2.0.x",
     "phantomjs": "1.9.x",
+    "slimerjs": "0.9.x",
     "async": "0.9.x",
     "fast-stats": "0.0.2",
     "fs-extra": "0.13.x",
