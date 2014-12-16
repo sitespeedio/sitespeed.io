@@ -3,6 +3,7 @@ CHANGELOG sitespeed.io
 version 3.0.1
 ------------------------
 * Add experimental support for running yslow in [SlimerJS](http://www.slimerjs.org) #544
+* Fix Google PageSpeed Insights that broke in 3.0 #545
 
 version 3.0.0
 ------------------------
