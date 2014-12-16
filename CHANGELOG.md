@@ -1,4 +1,4 @@
-CHANGELOG sitespeed.io
+# CHANGELOG - sitespeed.io
 
 version 3.0.1
 ------------------------
