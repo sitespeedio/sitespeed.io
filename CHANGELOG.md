@@ -6,6 +6,7 @@ version 3.0.1
 * Fix Google PageSpeed Insights that broke in 3.0 #545
 * Better logs when screenshot fails and increased timeout to 2 minutes 
 * Upgraded to new Crawler with higher default timeout times #547
+* Added parameter to configure which phantomjs version to use (--phantomjsPath)
 
 version 3.0.0
 ------------------------
