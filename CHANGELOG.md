@@ -4,6 +4,8 @@ version 3.0.1
 ------------------------
 * Add experimental support for running yslow in [SlimerJS](http://www.slimerjs.org) #544
 * Fix Google PageSpeed Insights that broke in 3.0 #545
+* Better logs when screenshot fails
+* Upgraded to new Crawler with higher default timeout times #547
 
 version 3.0.0
 ------------------------
