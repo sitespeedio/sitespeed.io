@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+version 3.0.2 (NOT YET RELEASED)
+------------------------
+
 version 3.0.1
 ------------------------
 * Add experimental support for running yslow in [SlimerJS](http://www.slimerjs.org) #544
