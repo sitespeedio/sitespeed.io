@@ -28,4 +28,4 @@ http://www.sitespeed.io/documentation/
 
 Example reports
 =============
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/doc/3.0-summary.png">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/doc/3.0-summary2.png">
