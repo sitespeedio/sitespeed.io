@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+version 3.0.3 (NOT YET RELEASED)
+------------------------
+
 version 3.0.2 
 ------------------------
 * fixes in the YSlow script so that some pages that fails, will work #549
