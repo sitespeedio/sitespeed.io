@@ -2,6 +2,7 @@
 
 version 3.0.2 (NOT YET RELEASED)
 ------------------------
+* fixes in the YSlow script so that some pages that fails, will work #549
 
 version 3.0.1
 ------------------------
