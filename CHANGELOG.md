@@ -2,6 +2,7 @@
 
 version 3.0.3 (NOT YET RELEASED)
 ------------------------
+* Choose if you want to create HTML reports or not (--no-html) #548
 
 version 3.0.2 
 ------------------------
