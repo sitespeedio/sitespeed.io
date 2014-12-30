@@ -28,4 +28,9 @@ http://www.sitespeed.io/documentation/
 
 Example reports
 =============
+Summary:
 <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/doc/3.0-summary2.png">
+Pages summary:
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/doc/3.0-pages.png">
+Metrics in Graphite:
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/doc/3.0-grafana-timing-metrics.png">
