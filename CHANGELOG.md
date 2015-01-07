@@ -1,11 +1,12 @@
 # CHANGELOG - sitespeed.io
 
-version 3.0.3 (NOT YET RELEASED)
+version 3.0.3
 ------------------------
 * Choose if you want to create HTML reports or not (--no-html) #548
 * Bugfix: URL:s with and without request parameters collided when 
   data files was created, now an extra hash is added to URL:s with 
   parameters #552 
+* Better logging for PhantomJS
 
 version 3.0.2 
 ------------------------
