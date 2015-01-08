@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+version 3.0.4 (NOT RELEASED YET)
+------------------------
+
+
 version 3.0.3
 ------------------------
 * Choose if you want to create HTML reports or not (--no-html) #548
