@@ -2,6 +2,7 @@
 
 version 3.0.4 (NOT RELEASED YET)
 ------------------------
+* Bugfix: Errors when taking screenshots weren't recorded as errors.
 
 
 version 3.0.3
