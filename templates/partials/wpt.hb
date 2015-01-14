@@ -4,10 +4,10 @@
 
       {{#each wptData}}
 
-      <p>{{{response.data.from}}} {{response.data.runs}} times
+      <h3>{{{response.data.from}}} {{response.data.runs}} times
 
       {{response.data.median.firstView.browser_name}} version {{response.data.median.firstView.browser_version}}
-      </p>
+      </h3>
 
       <p><a href="{{response.data.summary}}">WPT summary</a> - <a href="../data/webpagetest/{{getFileName ../url}}{{getWPTKey response.data.location response.data.connectivity}}-wpt.har">Download HAR</a></p></p>
 
