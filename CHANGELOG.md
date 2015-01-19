@@ -1,9 +1,9 @@
 # CHANGELOG - sitespeed.io
 
-version 3.0.4 (NOT RELEASED YET)
+version 3.0.4
 ------------------------
 * Bugfix: Errors when taking screenshots weren't recorded as errors.
-
+* Bugfix: Fix crash when running analysis #562
 
 version 3.0.3
 ------------------------
