@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+version 3.0.5 (NOT RELEASED YET)
+------------------------
+* Changed deprecated phantom.args to be compatible to PhantomJS 2
+
 version 3.0.4
 ------------------------
 * Bugfix: Errors when taking screenshots weren't recorded as errors.
