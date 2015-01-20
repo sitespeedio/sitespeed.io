@@ -1,8 +1,8 @@
 # CHANGELOG - sitespeed.io
 
-version 3.0.5 (NOT RELEASED YET)
+version 3.0.5
 ------------------------
-* Changed deprecated phantom.args to be compatible to PhantomJS 2
+* Changed deprecated phantom.args to be compatible to PhantomJS 2 #558
 
 version 3.0.4
 ------------------------
