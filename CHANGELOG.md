@@ -1,4 +1,7 @@
 # CHANGELOG - sitespeed.io
+version 3.0.6 (NOT RELEASED YET)
+------------------------
+* Hardcoded dependencies in package.json
 
 version 3.0.5
 ------------------------
