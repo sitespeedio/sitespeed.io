@@ -1,6 +1,6 @@
 node_modules
 sitespeed-result
 test
-lib/phantomjs/yslow-3.1.8-sitespeed.js
-lib/phantomjs/collectTimings.js
+lib/headless/yslow-3.1.8-sitespeed.js
+lib/headless/collectTimings.js
 assets
