@@ -62,7 +62,7 @@
     "slimerjs": "0.9.2",
     "tape": "3.4.0",
     "valid-url": "1.0.9",
-    "webpagetest": "0.3.1",
+    "webpagetest": "0.2.5",
     "whereis": "0.4.0",
     "winston": "0.8.3",
     "xmlbuilder": "2.4.5"
