@@ -14,10 +14,13 @@ script:
 - node ./bin/sitespeed.js -u http://www.sitespeed.io -b firefox -n 1 -d 0
 - node ./bin/sitespeed.js --sites test/sites.txt -n 1  -b firefox -n 1
 - node ./bin/sitespeed.js -f test/sites.txt -n 1
-- node ./bin/sitespeed.js -u http://www.sitespeed.io -b firefox -n 1 --noYslow -m 3 --screenshot
-- node ./bin/sitespeed.js -u http://www.sitespeed.io -n 2 -d 0 --gpsiKey $GKEY --wptKey $WPTKEY --wptHost www.webpagetest.org
+- node ./bin/sitespeed.js -u http://www.sitespeed.io -b firefox -n 1 --noYslow -m
+  3 --screenshot
+- node ./bin/sitespeed.js -u http://www.sitespeed.io -n 2 -d 0 --gpsiKey $GKEY --wptKey
+  $WPTKEY --wptHost www.webpagetest.org
 - node ./bin/sitespeed.js -u http://127.0.0.1:8009/test/server/www/ -d 0 --junit
-- node ./bin/sitespeed.js -u http://www.sitespeed.io -b phantomjs -n 1 --slimerjs -m 2
+- node ./bin/sitespeed.js -u http://www.sitespeed.io -b phantomjs -n 1 --slimerjs
+  -m 2
 - node ./bin/sitespeed.js -u http://www.sitespeed.io -d 0 --noYslow
 after_script:
 - kill `ps aux | grep "python -m SimpleHTTPServer" | grep -v grep | awk '{print $2}'`
@@ -25,3 +28,6 @@ env:
   global:
   - secure: ZCqHD+/PhHNVFWoqir66Xd9YeJRcTHDJYvNL9j4+GTKDEI1h94twhAjQ7Z9DhlCnXwL1lsfEcIjvNCWd3ir/FNy2oZsUzu6kMpFF/niugurFbS551moJ2ObNEfOdj93/sTo4UWH2MZouC9eYeuj1vNYbAev6wBIptL95X/ArldQ=
   - secure: ZmEirO6J+rY+6T6eQWRNxqiqRNOYJktqQWaeUDR6WvzoR80oPdgKoNRS012dk4aCGr2+Dxf/KP6Iu2qbDE3YP3QD7PhoexicTVB6MTl81hZfX/eN0lt4lZknTYtjnAAWQB/aWAM6OVLjh8rAzq9PTBzl5EtAeMMJWmnhz6r+cLc=
+notifications:
+  slack:
+    secure: W/D3AEszCIvbkAISABUFdz5wlS5Fo+dh3DLoUd0v1fsm+jKDNN+7wJ1kIctosru+bail2Vzyr1oiHLjF8+IbitRGZ1VT8/BTpvynrp2haEUlshYsYBAVts5Y6AA/3V6WFl6FzJaHPDLsrox8OQ3Xztubhz4ybWPfk69KQvx0hYA=
