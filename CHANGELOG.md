@@ -1,13 +1,19 @@
 # CHANGELOG - sitespeed.io
-version 3.0.6 (NOT RELEASED YET)
-------------------------
-* Hardcoded dependencies in package.json
 
-version 3.1
+version 3.1 (NOT YET RELEASED)
 ------------------------
-* Support for SlimerJS. Note: Choose which "headless" analyzer to use by 
+* Support for SlimerJS. Note: Choose which "headless" analyzer to use by
   using --headless [slimerjs|phantomjs]. Default is phantomjs.
-  Also fetch timings using your choice by configure -b headless
+  Also fetch timings using your choice by configure -b headless #544 #559
+
+* Run WebPageTest test from multiple locations/browsers/connectivity. In 3.0
+  you could only use one browser/location/connectivity, now you can use
+  as many as you want. Everything is backward compatible except the Graphite keys
+  for WebPageTest has changed, now including browser, location and connectivity.
+  Meaning you need to change Grafana or what tool you are using to use the new
+  keys when you upgrade. #546  
+
+* Hardcoded dependencies in package.json
 
 version 3.0.5
 ------------------------
@@ -21,12 +27,12 @@ version 3.0.4
 version 3.0.3
 ------------------------
 * Choose if you want to create HTML reports or not (--no-html) #548
-* Bugfix: URL:s with and without request parameters collided when 
-  data files was created, now an extra hash is added to URL:s with 
-  parameters #552 
+* Bugfix: URL:s with and without request parameters collided when
+  data files was created, now an extra hash is added to URL:s with
+  parameters #552
 * Better logging for PhantomJS
 
-version 3.0.2 
+version 3.0.2
 ------------------------
 * fixes in the YSlow script so that some pages that fails, will work #549
 
@@ -34,7 +40,7 @@ version 3.0.1
 ------------------------
 * Add experimental support for running yslow in [SlimerJS](http://www.slimerjs.org) #544
 * Fix Google PageSpeed Insights that broke in 3.0 #545
-* Better logs when screenshot fails and increased timeout to 2 minutes 
+* Better logs when screenshot fails and increased timeout to 2 minutes
 * Upgraded to new Crawler with higher default timeout times #547
 * Added parameter to configure which phantomjs version to use (--phantomjsPath)
 
@@ -59,11 +65,11 @@ version 2.5.7
 * Added new crawler that solves problem when the crawler picked up URLs with wrong domain, thanks @ChrisSoutham
 * Updated support for catching lazy loaded assests in YSlow/PhantomJS, thanks @dorajistyle
 * Show the 90 percentile value for all timing metrics on the individual pages #380
-* Mobile rules changed: Doc size max 14 kb and max server side 200 ms for Green 
+* Mobile rules changed: Doc size max 14 kb and max server side 200 ms for Green
 * Summary: Show max number of request per domain #384
 * Summary: Show number of redirects per page #385
 * The avoid scaled images rules has been changed: If the image is larger than X (100 pixels by default) the rule will kick in.
-* The sitespeed.io-sites script now uses firstPaint as default if you use IE or Chrome, supports local config file & uses maxRequestsPerDomain 
+* The sitespeed.io-sites script now uses firstPaint as default if you use IE or Chrome, supports local config file & uses maxRequestsPerDomain
   as default column instead of max requests per domain #387
 * DNSLookup hurts more than CSS requests in points for Critical Path Rule #392
 * Bug fix: If an error happens when crawling, log that to the error.log #378
@@ -198,7 +204,7 @@ Major changes
 
 Minor changes
 ------
-* You can now configure the limits for the rules on the summary page. 
+* You can now configure the limits for the rules on the summary page.
 * Phone view on detailed summary page now only contains url & score to make it simpler to maintain.
 * You can now see the IP of the computer running the test in the result.xml file.
 * You can now set the max pages to test & the name of the test (displayed on every HTML page).
@@ -211,9 +217,9 @@ Minor changes
 
 version 1.8.3
 ------------------------
-* Supply a test name that will be shown on all pages. Use the the parameter -n 
+* Supply a test name that will be shown on all pages. Use the the parameter -n
 * Well the problem is like this: Today there is no way to get the ttfb from PhantomJS so it is fetched by a extra request using curl. Some sites that don't cache internally (and are slow) can differ quite much for ttfb, meaning ttfb can be higher the next request than the load time the first time. If this happens it is now highlighted.
-* Bug fix: show median front/back end time instead of percentile on summary page 
+* Bug fix: show median front/back end time instead of percentile on summary page
 * Bug fix: when the ttfb is larger than pageload, don't add it to summary stats
 * Bug fix: for some sites (very rarely) the total weight was fetched wrong by YSlow, fixed last release for all pages except summary & summary details.
 
@@ -221,7 +227,7 @@ version 1.8.2
 ------------------------
 * Show percentage of requests & size per content type
 * You can now export the pages data to csv (again) with the switch "-o csv"
-* Upgraded the crawler: Better closing of connections, URL:s that not following RFC 2396 gave null pointers & when a cookie is not following the spec, the url of the page setting the cookie is now logged 
+* Upgraded the crawler: Better closing of connections, URL:s that not following RFC 2396 gave null pointers & when a cookie is not following the spec, the url of the page setting the cookie is now logged
 * On detailed page summary: Categorize favicon as favicon instead of others, and doc type has now an own category
 * If an analysis fails, the url and the error from YSlow is now logged
 * Cleanup: When you feed sitespeed.io with a list of urls from a file, the text messages is cleaner in the HTML
@@ -251,14 +257,14 @@ version 1.8
 * Added summary of total image weight per page & on detailed level you can see  individual size
 * New rule for checking if old versions of plugins is used. Right now only check JQuery.
 * A little better check for correct Java version.
-* Bug fix: The check for number of DOM elements where wrong when checking for warning 
+* Bug fix: The check for number of DOM elements where wrong when checking for warning
 
 
 version 1.7
 ------------------------
 * Added check that Java exists before the analyze
 * Feed sitespeed with either a url to crawl or a plain text file with a list of URL:s (NOTE: the -f argument is now used for the file, the -c is the new for follow a specific path when crawling)
-* Create a junit xml file from the test, new script & new xsl file 
+* Create a junit xml file from the test, new script & new xsl file
 * Added new max size of a document, using stats from http archive
 * Showing the number of domains on page summary
 * Showing the percentage of assets that are cacheable on page summary
@@ -294,7 +300,7 @@ version 1.5.1
 
 version 1.5
 ------------------------
-* Added support for configuring the crawler (see the dependencies/crawler.properties file). 
+* Added support for configuring the crawler (see the dependencies/crawler.properties file).
 * Added support for analyze behind proxy (thanks https://github.com/rhulse and https://github.com/samteeeee for reporting and testing it)
 * Added html page that shows url:s that returned errors from the crawl
 * Added percentage on summary page
@@ -311,7 +317,7 @@ version 1.5
 * Removed csv as output format
 * New rule: Avoid CDN lookups when your page has few requests
 * New rule: Do not load stylesheet files when the page has few request
-* New rule: Have a reasonable percentage of textual content compared to the rest of the page 
+* New rule: Have a reasonable percentage of textual content compared to the rest of the page
 
 version 1.4
 ------------------------
@@ -352,7 +358,7 @@ version 1.2
 
 version 1.1
 ------------------------
-* New crawler instead of wget that didn't work on some sites with spider options (amazon etc) 
+* New crawler instead of wget that didn't work on some sites with spider options (amazon etc)
 * Fix for css in head rule, now only dns lookups are punished, not the number of css
 * Crawl by follow a specific path, meaning you can analyze parts of sites
 
@@ -391,5 +397,3 @@ version  0.7
 * Fixed so that long url:s don't break
 * Sometimes output xml was broken
 * Only fetch content of type html
-
-
