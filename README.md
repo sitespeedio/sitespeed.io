@@ -1,5 +1,8 @@
-<a href="http://www.sitespeed.io" target="_blank">Sitespeed.io</a> - how speedy is your website? [![Build Status](https://travis-ci.org/sitespeedio/sitespeed.io.svg?branch=master)](http://travis-ci.org/sitespeedio/sitespeed.io)
+<a href="http://www.sitespeed.io" target="_blank">Sitespeed.io</a> - how speedy is your website? 
 =============
+[![Build status][travis-image]][travis-url]
+[![NPM version][npm-image]][npm-url]
+[![Downloads][downloads-image]][downloads-url]
 
 Welcome to the wonderful world of web performance!
 
@@ -34,3 +37,10 @@ Pages summary:
 <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/doc/3.0-pages.png">
 Metrics in Graphite:
 <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/doc/3.0-grafana-timing-metrics.png">
+
+[npm-image]: https://img.shields.io/npm/v/sitespeed.io.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/sitespeed.io
+[travis-image]: https://img.shields.io/travis/sitespeedio/sitespeed.io.svg?style=flat-square
+[travis-url]: https://travis-ci.org/sitespeedio/sitespeed.io
+[downloads-image]: http://img.shields.io/npm/dm/sitespeed.io.svg?style=flat-square
+[downloads-url]: https://npmjs.org/package/sitespeed.io
