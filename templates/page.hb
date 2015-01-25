@@ -107,7 +107,7 @@
           {{>browserMeasurements}}
         {{/each}}
       {{else}}
-        {{>phantomJSMeasurements}}
+        {{>headlessMeasurements}}
       {{/if}}
     {{/if}}
 {{> footer}}

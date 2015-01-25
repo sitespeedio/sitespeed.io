@@ -3,6 +3,12 @@ version 3.0.6 (NOT RELEASED YET)
 ------------------------
 * Hardcoded dependencies in package.json
 
+version 3.1
+------------------------
+* Support for SlimerJS. Note: Choose which "headless" analyzer to use by 
+  using --headless [slimerjs|phantomjs]. Default is phantomjs.
+  Also fetch timings using your choice by configure -b headless
+
 version 3.0.5
 ------------------------
 * Changed deprecated phantom.args to be compatible to PhantomJS 2 #558
