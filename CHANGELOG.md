@@ -3,7 +3,7 @@
 version 3.1
 ------------------------
 * Support for SlimerJS. Note: Choose which "headless" analyzer to use by 
-  using --headless [slimerjs|phantomjs].
+  using --headless [slimerjs|phantomjs]. Default is phantomjs.
   Also fetch timings using your choice by configure -b headless
 
 version 3.0.5
