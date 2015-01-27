@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-version 3.1 (NOT YET RELEASED)
+version 3.1
 ------------------------
 * Support for SlimerJS. Note: Choose which "headless" analyzer to use by
   using --headless [slimerjs|phantomjs]. Default is phantomjs.
@@ -10,6 +10,7 @@ version 3.1 (NOT YET RELEASED)
   you could only use one browser/location/connectivity, now you can use
   as many as you want. Everything is backward compatible except the Graphite keys
   for WebPageTest has changed, now including browser, location and connectivity.
+  
   Meaning you need to change Grafana or what tool you are using to use the new
   keys when you upgrade. #546  
 
