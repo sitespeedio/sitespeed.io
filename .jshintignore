@@ -1,6 +1,6 @@
 node_modules
 sitespeed-result
 test
-lib/headless/yslow-3.1.8-sitespeed.js
-lib/headless/collectTimings.js
+lib/headless/scripts/yslow-3.1.8-sitespeed.js
+lib/headless/scripts/collectTimings.js
 assets
