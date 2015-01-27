@@ -10,7 +10,7 @@ Do you use sitespeed.io in your everyday work? Then we have a perfect propositio
 # Functionality wanted
 We have a couple of functions that we have on the wish list but haven't had time to implement. Or even think about implementing.  
 ## A HAR viewer
-We produce HAR files today but we don't display them. We really like the [SimpleHar](http://rafacesar.github.io/simplehar/) and the old classic [HarViewer](http://www.softwareishard.com/har/viewer/) and we are pretty confident that it is possible to write a configurable HAR viewer that produces SVG and don't use JQuery. We would love to add that new HAR viewer to sitespeed.io and help users to see how the requests are loaded.
+We produce [HAR](http://www.softwareishard.com/blog/har-12-spec/) files today but we don't display them. We really like the [SimpleHar](http://rafacesar.github.io/simplehar/) and the old classic [HarViewer](http://www.softwareishard.com/har/viewer/) and we are pretty confident that it is possible to write a configurable HAR viewer that produces SVG and don't use JQuery. We would love to add that new HAR viewer to sitespeed.io and help users to see how the requests are loaded.
 
 ## A proxy producing HAR data
 We use the ancient [BrowserMobProxy](https://github.com/lightbody/browsermob-proxy ) to get HAR files. It uses Java and there's work for modernizing the next version. But we would love to have a HAR proxy that is built in NodeJS.
