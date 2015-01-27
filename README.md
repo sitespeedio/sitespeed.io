@@ -29,6 +29,10 @@ Documentation
 =============
 http://www.sitespeed.io/documentation/
 
+Help us!
+=============
+Do you want to make sitespeed.io even better? Check out the [help us](HELP.md) page.
+
 Example reports
 =============
 Summary:
