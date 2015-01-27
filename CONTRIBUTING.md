@@ -1,5 +1,5 @@
 # How to contribute
-Sitespeed.io continues to evolve thanks to people who contributes, so please please help out!
+Sitespeed.io continues to evolve thanks to people who contributes, so please please help out. Check your  [list](HELP.md) of what you can do to help us.
 
 ## Making changes
 If you want help out, that's great! Check the issue list and see if there's something there you want to do and drop me a note so I know and I can help you get into the project.
@@ -16,11 +16,10 @@ If you find a defect, please file a bug report. Include the following:
  - Add a screenshot and clearly point out where the defect is (if applicable)
  - Include the content of the data/error.log file in a [gist](https://gist.github.com/) and attach it to the issue.
 
-If you have the skills & the time, it is perfect if you send a pull request with a fix, that helps me a lot!
+If you have the skills & the time, it is perfect if you send a pull request with a fix, that helps us a lot!
 
 ## Add a change request/new functionality request
 If you have an idea or something that you need sitespeed.io to handle, add an issue and lets discuss it there. Ideas/changes/requests are very very welcome!
-
 
 Thanks for your time & support!
 
