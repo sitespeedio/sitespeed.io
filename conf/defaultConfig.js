@@ -6,7 +6,7 @@ var defaultConfig = {
   memory: 1024,
   headless: 'phantomjs',
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36',
-  yslow: 'headless/yslow-3.1.8-sitespeed.js',
+  yslow: 'headless/scripts/yslow-3.1.8-sitespeed.js',
   ruleSet: 'sitespeed.io-desktop',
   profile: 'desktop',
   testData: 'all',
