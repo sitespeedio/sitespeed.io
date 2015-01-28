@@ -21,9 +21,9 @@ require('whereis')('java', function searched(err) {
         'Could not find Java, make sure it is installed in your $PATH');
     process.exit(1);
   } else {
-    sitespeed.run(config, function(err) {
-      if (err) {
-        winston.loggers.get('sitespeed.io').error(err);
+    sitespeed.run(config, function(error) {
+      if (error) {
+        winston.loggers.get('sitespeed.io').error(error);
         process.exit(1);
       }
     });
