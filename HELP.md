@@ -25,3 +25,11 @@ One new functionality released in 3.0 is the new **Hotlist** tab where we show t
 
 ## New design for www.sitespeed.io
 Today we use [Bootstrap](http://getbootstrap.com/) but we want to move away from it. We will start with the documentation site. Help make a super simple and light weight design for us. It needs to be simple and super fast :)
+
+## Output as CSV
+One function we had before was outputing all the metrics as CSV. It is still a nice feature for some users, so it would be cool to have it again. You have the issue [here](https://github.com/sitespeedio/sitespeed.io/issues/560)
+
+# Money
+> "Can't we just support you with money?" 
+
+We would prefer that you spend your money on people that really needs it, support the [Red Cross](https://www.icrc.org/eng/donations/ways-to-donate/).
