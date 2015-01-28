@@ -1,8 +1,10 @@
-<a href="http://www.sitespeed.io" target="_blank">Sitespeed.io</a> - how speedy is your website? 
-=============
+# sitespeed.io
+
 [![Build status][travis-image]][travis-url]
 [![NPM version][npm-image]][npm-url]
 [![Downloads][downloads-image]][downloads-url]
+
+[Website](http://www.sitespeed.io) | [Documentation](http://www.sitespeed.io/documentation) | [Help us](https://github.com/sitespeedio/sitespeed.io/blob/master/HELP.md) | [Twitter](https://twitter.com/SiteSpeedio)
 
 Welcome to the wonderful world of web performance!
 
