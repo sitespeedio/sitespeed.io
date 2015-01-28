@@ -20,6 +20,9 @@ We use the ancient [BrowserMobProxy](https://github.com/lightbody/browsermob-pro
 ## Grunt/Gulp plugins
 Help us create a Grunt or Gulp plugin that runs sitespeed.io and integrates the performance budget functionality.
 
+## A NodeJS crawler
+We still use our own [Java crawler](https://github.com/sitespeedio/crawler) and we want to get rid off it and use a NodeJS crawler. We have tested out [Simple crawler](https://github.com/cgiffard/node-simplecrawler) but at least the the way of limiting the crawl of how deep it should crawl, doesn't work 100%. Help us fix it and implement Simpel crawler in sitespeed.io (or if you have suggestions for other crawlers).
+
 ## Visual love for the Hotlist
 One new functionality released in 3.0 is the new **Hotlist** tab where we show things like slowest assets, largest images etc. That page result page need some love!
 
