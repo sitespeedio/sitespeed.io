@@ -4,7 +4,7 @@
 [![NPM version][npm-image]][npm-url]
 [![Downloads][downloads-image]][downloads-url]
 
-[Website](http://www.sitespeed.io) | [Documentation](http://www.sitespeed.io/documentation) | [Help us](https://github.com/sitespeedio/sitespeed.io/blob/master/HELP.md) | [Twitter](https://twitter.com/SiteSpeedio)
+[Website](http://www.sitespeed.io) | [Documentation](http://www.sitespeed.io/documentation/) | [Help us](https://github.com/sitespeedio/sitespeed.io/blob/master/HELP.md) | [Twitter](https://twitter.com/SiteSpeedio)
 
 Welcome to the wonderful world of web performance!
 
@@ -26,10 +26,6 @@ Install
 ```bash
 $ npm install -g sitespeed.io
 ```
-
-Documentation
-=============
-http://www.sitespeed.io/documentation/
 
 Help us!
 =============
