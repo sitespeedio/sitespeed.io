@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+version 3.1.1 (NOT YET RELEASED)
+------------------------
+* Changed to eslint from jshint.
+
 version 3.1
 ------------------------
 * Support for SlimerJS. Note: Choose which "headless" analyzer to use by
