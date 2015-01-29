@@ -3,6 +3,7 @@
 version 3.1.1 (NOT YET RELEASED)
 ------------------------
 * Changed to eslint from jshint.
+* Updated to latest phantomjs package.
 
 version 3.1
 ------------------------
