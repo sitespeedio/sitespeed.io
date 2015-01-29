@@ -20,7 +20,7 @@ script:
   $WPTKEY --wptHost www.webpagetest.org
 - node ./bin/sitespeed.js -u http://127.0.0.1:8009/test/server/www/ -d 0 --junit
 - node ./bin/sitespeed.js -u http://www.sitespeed.io -b headless -n 1 --headless slimerjs -m 2
-- node ./bin/sitespeed.js -u http://www.sitespeed.io -b headless -n 1 -d 0 --noYslow
+- node ./bin/sitespeed.js -u http://www.sitespeed.io -b headless -n 1 --headless slimerjs -d 0 --noYslow
 after_script:
 - kill `ps aux | grep "python -m SimpleHTTPServer" | grep -v grep | awk '{print $2}'`
 env:
