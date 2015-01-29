@@ -21,16 +21,19 @@ We use the ancient [BrowserMobProxy](https://github.com/lightbody/browsermob-pro
 Help us create a Grunt or Gulp plugin that runs sitespeed.io and integrates the performance budget functionality.
 
 ## A NodeJS crawler
-We still use our own [Java crawler](https://github.com/sitespeedio/crawler) and we want to get rid off it and use a NodeJS crawler. We have tested out [Simple crawler](https://github.com/cgiffard/node-simplecrawler) but at least the the way of limiting the crawl of how deep it should crawl, doesn't work 100%. Help us fix it and implement Simpel crawler in sitespeed.io (or if you have suggestions for other crawlers).
+We still use our own [Java crawler](https://github.com/sitespeedio/crawler) and we want to get rid off it and use a NodeJS crawler. We have tested out [Simple crawler](https://github.com/cgiffard/node-simplecrawler) but at least the the way of limiting the crawl of how deep it should crawl, doesn't work 100%. Help us fix it and implement Simpel crawler in sitespeed.io (or if you have suggestions for other crawlers). You can check which functions that are used today in the current [crawler](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/crawler/crawler.js).
 
 ## Visual love for the Hotlist
 One new functionality released in 3.0 is the new **Hotlist** tab where we show things like slowest assets, largest images etc. That page result page need some love!
 
 ## New design for www.sitespeed.io
-Today we use [Bootstrap](http://getbootstrap.com/) but we want to move away from it. We will start with the documentation site. Help make a super simple and light weight design for us. It needs to be simple and super fast :)
+Today we use [Bootstrap](http://getbootstrap.com/) but we want to move away from it. We will start with the documentation site. Help make a super simple and light weight design for us. It needs to be simple and super fast :) We have some ideas, get in touch and we can talk.
 
 ## Output as CSV
 One function we had before was outputing all the metrics as CSV. It is still a nice feature for some users, so it would be cool to have it again. You have the issue [here](https://github.com/sitespeedio/sitespeed.io/issues/560)
+
+## Documentation
+Documentation is fun and it is the core of making software easy to use. Help us out and proof read and add sections that are missing. We would love to have a section on how to setup sitespeed.io running in [Travis](https://travis-ci.org/).
 
 # Money
 > "Can't we just support you with money?" 
