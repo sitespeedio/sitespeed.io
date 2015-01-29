@@ -7,6 +7,7 @@
  * Released under the Apache 2.0 License
  */
 'use strict';
+/*eslint no-process-exit:0*/
 
 var Sitespeed = require('../lib/sitespeed'),
     config = require('../lib/cli'),
