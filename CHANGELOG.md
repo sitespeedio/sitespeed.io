@@ -4,6 +4,7 @@ version 3.1.1 (NOT YET RELEASED)
 ------------------------
 * Changed to eslint from jshint.
 * Updated to latest phantomjs package.
+* Updated to latest BrowserTime (with 2.0.0 of BrowserMobProxy)
 
 version 3.1
 ------------------------
