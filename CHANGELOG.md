@@ -5,6 +5,8 @@ version 3.1.1 (NOT YET RELEASED)
 * Changed to eslint from jshint.
 * Updated to latest phantomjs package.
 * Updated to latest BrowserTime (with 2.0.0 of BrowserMobProxy)
+* You can now choose not to create the domain path in the result dir 
+  by using the flag suppressDomainFolder #570
 
 version 3.1
 ------------------------
