@@ -54,17 +54,17 @@
     "cross-spawn": "0.2.3",
     "dateformat": "1.0.11",
     "fast-stats": "0.0.2",
-    "fs-extra": "0.15.0",
+    "fs-extra": "0.16.3",
     "gpagespeed": "1.0.0",
     "handlebars": "2.0.0",
     "nomnom": "1.8.1",
     "phantomjs": "1.9.15",
-    "slimerjs": "0.9.2",
-    "tape": "3.4.0",
+    "slimerjs": "0.9.5",
+    "tape": "3.5.0",
     "valid-url": "1.0.9",
     "webpagetest": "0.2.5",
     "whereis": "0.4.0",
     "winston": "0.8.3",
-    "xmlbuilder": "2.4.5"
+    "xmlbuilder": "2.4.6"
   }
 }
