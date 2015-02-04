@@ -1,9 +1,5 @@
 # CHANGELOG - sitespeed.io
 
-version 3.2
-------------------------
-* Better handling of feeding URL:s via file. Supports array and file. Note: instead of using 
-  the filename, the first domain of the first file will be used in the path.
 
 version 3.1.1 (NOT YET RELEASED)
 ------------------------
@@ -12,6 +8,8 @@ version 3.1.1 (NOT YET RELEASED)
 * Updated to latest BrowserTime (with 2.0.0 of BrowserMobProxy)
 * You can now choose not to create the domain path in the result dir 
   by using the flag suppressDomainFolder #570
+* Better handling of feeding URL:s via file. Supports array with URLs and file.
+
 
 version 3.1
 ------------------------
