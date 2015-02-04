@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+version 3.1.2 (NOT YET RELEASED)
+------------------------
+
 version 3.1.1 
 ------------------------
 * Changed to eslint from jshint.
