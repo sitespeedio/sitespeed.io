@@ -17,8 +17,8 @@ We produce [HAR](http://www.softwareishard.com/blog/har-12-spec/) files today bu
 ## A proxy producing HAR data
 We use the ancient [BrowserMobProxy](https://github.com/lightbody/browsermob-proxy ) to get HAR files. It uses Java and there's work for modernizing the next version. But we would love to have a HAR proxy that is built in NodeJS.
 
-## Grunt/Gulp plugins
-Help us create a Grunt or Gulp plugin that runs sitespeed.io and integrates the performance budget functionality.
+## Gulp plugin
+Help us create aGulp plugin that runs sitespeed.io and integrates the performance budget functionality.
 
 ## A NodeJS crawler
 We still use our own [Java crawler](https://github.com/sitespeedio/crawler) and we want to get rid off it and use a NodeJS crawler. We have tested out [Simple crawler](https://github.com/cgiffard/node-simplecrawler) but at least the the way of limiting the crawl of how deep it should crawl, doesn't work 100%. Help us fix it and implement Simpel crawler in sitespeed.io (or if you have suggestions for other crawlers). You can check which functions that are used today in the current [crawler](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/crawler/crawler.js).
