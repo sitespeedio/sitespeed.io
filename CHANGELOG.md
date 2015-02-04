@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+version 3.2
+------------------------
+* Better handling of feeding URL:s via file. Supports array and file. Note: instead of using 
+  the filename, the first domain of the first file will be used in the path.
+
 version 3.1.1 (NOT YET RELEASED)
 ------------------------
 * Changed to eslint from jshint.

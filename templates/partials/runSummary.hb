@@ -6,8 +6,8 @@
       {{numberOfPages}} page{{getPlural numberOfPages}} analyzed for <a href="{{config.url}}" target="_blank">{{config.url}}</a>
     </h2>
   {{else}}
-    {{#if config.file}}
-      <h2> {{numberOfPages}} page{{getPlural numberOfPages}} analyzed for file {{config.file}}</h2>
+    {{#if config.urls}}
+      <h2> {{numberOfPages}} page{{getPlural numberOfPages}} analyzed for file {{config.urls}}</h2>
     {{/if}}
   {{/if}}
 {{/if}}
