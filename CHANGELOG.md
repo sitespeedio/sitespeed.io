@@ -1,7 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-
-version 3.1.1 (NOT YET RELEASED)
+version 3.1.1 
 ------------------------
 * Changed to eslint from jshint.
 * Updated to latest phantomjs package.
