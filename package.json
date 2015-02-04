@@ -40,7 +40,7 @@
     "travis": "npm run lint"
   },
   "engines": {
-    "node": ">=0.8.1"
+    "node": ">=0.10.7"
   },
   "devDependencies": {
     "mocha": "1.20.x",
