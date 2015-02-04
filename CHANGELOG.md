@@ -2,6 +2,7 @@
 
 version 3.1.2 (NOT YET RELEASED)
 ------------------------
+* Include Node.js version when printing versions at the start of each run.
 
 version 3.1.1 
 ------------------------
