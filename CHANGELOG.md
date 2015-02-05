@@ -2,6 +2,8 @@
 
 version 3.1.2 (NOT YET RELEASED)
 ------------------------
+* Ok, incredible stupid implementation by me for the current perf budget, 
+  throwing an error when failing. Now the result array of the tests are returned.
 
 version 3.1.1 
 ------------------------
