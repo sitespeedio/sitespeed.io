@@ -4,6 +4,7 @@ version 3.1.2 (NOT YET RELEASED)
 ------------------------
 * Include Node.js version when printing versions at the start of each run.
 * Bug fix: Since we added slimerjs, we showed headless domContentLoadedTime as a page colum for every tested page. 
+* Bug fix: Don't automatically add column data if you configure it yourself
 
 version 3.1.1 
 ------------------------
