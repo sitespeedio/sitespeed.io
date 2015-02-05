@@ -4,6 +4,7 @@ version 3.1.2 (NOT YET RELEASED)
 ------------------------
 * Ok, incredible stupid implementation by me for the current perf budget, 
   throwing an error when failing. Now the result array of the tests are returned.
+* Added support for having a budget for number of requests, type and size #571
 
 version 3.1.1 
 ------------------------
