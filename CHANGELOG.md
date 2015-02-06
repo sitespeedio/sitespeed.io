@@ -2,6 +2,7 @@
 
 version 3.1.3 (NOT RELEASED YET)
 ------------------------
+* Improve validation of command line parameters.
 
 version 3.1.2
 ------------------------
