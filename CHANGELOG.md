@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+version 3.1.3 (NOT RELEASED YET)
+------------------------
+
 version 3.1.2
 ------------------------
 * Include Node.js version when printing versions at the start of each run.
