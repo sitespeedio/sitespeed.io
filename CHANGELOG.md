@@ -1,15 +1,14 @@
 # CHANGELOG - sitespeed.io
 
-version 3.1.2 (NOT YET RELEASED)
+version 3.1.2
 ------------------------
 * Include Node.js version when printing versions at the start of each run.
+* Ok, incredible stupid implementation by me for the current perf budget,
+  throwing an error when failing. Now the result array of the tests are returned.
+* Added support for having a budget for number of requests, type and size #571
 * Bug fix: Since we added slimerjs, we showed headless domContentLoadedTime as a page colum for every tested page. 
 * Bug fix: Don't automatically add column data if you configure it yourself.
 * Bug fix: Headless timings perf budget was broken.
-* Ok, incredible stupid implementation by me for the current perf budget, 
-  throwing an error when failing. Now the result array of the tests are returned.
-* Added support for having a budget for number of requests, type and size #571
-
 
 version 3.1.1 
 ------------------------
