@@ -61,6 +61,11 @@
               </li>
               {{/if}}
             {{/if}}
+            {{#if config.budget}}
+              <li{{#if pageMeta.isBudget}} class="active" {{/if}}>
+                <a href="{{pageMeta.path}}budget.html">Budget</a>
+              </li>
+            {{/if}}
             {{#if config.screenshot}}
               <li{{#if pageMeta.isScreenshots}} class="active" {{/if}}>
                 <a href="{{pageMeta.path}}screenshots.html">Screenshots</a>
