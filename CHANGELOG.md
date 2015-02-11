@@ -3,6 +3,7 @@
 version 3.1.3 (NOT RELEASED YET)
 ------------------------
 * Improve validation of command line parameters.
+* Added perf budget HTML page #576. Running a budget will also create an HTML page of the result.
 
 version 3.1.2
 ------------------------
