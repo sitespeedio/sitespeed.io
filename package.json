@@ -8,6 +8,8 @@
     "web",
     "rules",
     "har",
+    "webperf",
+    "perfmatters",
     "navigation-timing",
     "browser"
   ],
