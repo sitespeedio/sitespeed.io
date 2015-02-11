@@ -24,13 +24,13 @@
       {{/if}}
 
       <h3>Working budgets</h3>
+        <ul>
         {{#each budget}}
-        <p>
         {{#if isOk}}
-          The budget for {{title}} {{> displayUrl}} passed [{{value}}].
+          <li>The budget for {{title}} {{> displayUrl}} passed [{{value}}].</li>
         {{/if}}
-        </p>
         {{/each}}
+      </ul>
     </div>
 </div>
 
