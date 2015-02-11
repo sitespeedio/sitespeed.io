@@ -13,7 +13,7 @@
               {{#if @first}}
                 Rule {{title}} with limit [{{limit}}] failed for <ul>
               {{/if}}
-            <li>{{url}} [{{value}}]</li>
+            <li>{{> displayUrl}} [{{value}}]</li>
             {{#if @last}}
               </ul>
             {{/if}}
@@ -27,7 +27,7 @@
         {{#each budget}}
         <p>
         {{#if isOk}}
-          The budget for {{title}} <a href="{{url}}">{{url}}</a> passed [{{value}}].
+          The budget for {{title}} {{> displayUrl}} passed [{{value}}].
         {{/if}}
         </p>
         {{/each}}
