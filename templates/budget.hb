@@ -4,10 +4,10 @@
 <div class="row">
     <div class="col-lg-12">
       <h2>The budget</h2>
-      <p>These are the results from the performance budget.</p>
+      <p>These are the results from the performance budget. We got {{noFailing}} failing and {{noWorking}} working.</p>
 
       {{#if isFailing}}
-        <h3>Failing budgets</h3>
+        <h3>Failing budgets [{{noFailing}}]</h3>
           {{#each failing}}
             {{#each this}}
               {{#if @first}}
@@ -23,7 +23,7 @@
         <h3>No failing budgets</h3>
       {{/if}}
 
-      <h3>Working budgets</h3>
+      <h3>Working budgets [{{noWorking}}]</h3>
         <ul>
         {{#each budget}}
         {{#if isOk}}
