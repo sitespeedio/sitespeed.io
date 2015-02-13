@@ -1,9 +1,10 @@
 # CHANGELOG - sitespeed.io
 
-version 3.1.3 (NOT RELEASED YET)
+version 3.1.3
 ------------------------
 * Improve validation of command line parameters.
 * Added perf budget HTML page #576. Running a budget will also create an HTML page of the result. Thanks @stefanjudis for the idea!
+* New BrowserTime version  (0.8.22)
 
 version 3.1.2
 ------------------------
