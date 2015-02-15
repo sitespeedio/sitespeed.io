@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+version 3.1.4 (NOT YET RELEASED)
+------------------------
+* Log the time the analyze of the URL(s) took #578
+
 version 3.1.3
 ------------------------
 * Improve validation of command line parameters.
