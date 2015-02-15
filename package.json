@@ -54,7 +54,7 @@
     "async": "0.9.0",
     "browsertime": "0.8.22",
     "cross-spawn": "0.2.3",
-    "dateformat": "1.0.11",
+    "moment": "2.9.0",
     "fast-stats": "0.0.2",
     "fs-extra": "0.16.3",
     "gpagespeed": "1.0.0",
