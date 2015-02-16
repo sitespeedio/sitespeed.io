@@ -1,9 +1,13 @@
 # CHANGELOG - sitespeed.io
 
+version 3.1.5 (NOT YET RELEASED)
+------------------------
+* Enable verbose logging in Browsertime whenever Sitespeed.io runs in verbose mode (--verbose/-v).
+
 version 3.1.4
 ------------------------
 * Log the time the analyze of the URL(s) took #578
-* Enable verbose logging in Browsertime whenever Sitespeed.io runs in verbose mode (--verbose/-v). 
+
 
 version 3.1.3
 ------------------------
