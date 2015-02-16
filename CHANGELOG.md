@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-version 3.1.4 (NOT YET RELEASED)
+version 3.1.4
 ------------------------
 * Log the time the analyze of the URL(s) took #578
 
