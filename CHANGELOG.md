@@ -3,11 +3,11 @@
 version 3.1.5 (NOT YET RELEASED)
 ------------------------
 * Enable verbose logging in Browsertime whenever Sitespeed.io runs in verbose mode (--verbose/-v).
+* Check that location for WPT always contains location and browser
 
 version 3.1.4
 ------------------------
 * Log the time the analyze of the URL(s) took #578
-
 
 version 3.1.3
 ------------------------
