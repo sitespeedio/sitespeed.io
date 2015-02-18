@@ -52,7 +52,7 @@
   "main": "./lib/sitespeed.js",
   "dependencies": {
     "async": "0.9.0",
-    "browsertime": "0.8.22",
+    "browsertime": "0.8.23",
     "cross-spawn": "0.2.3",
     "moment": "2.9.0",
     "fast-stats": "0.0.2",
