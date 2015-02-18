@@ -1,9 +1,10 @@
 # CHANGELOG - sitespeed.io
 
-version 3.1.5 (NOT YET RELEASED)
+version 3.1.5
 ------------------------
 * Enable verbose logging in Browsertime whenever Sitespeed.io runs in verbose mode (--verbose/-v).
 * Check that location for WPT always contains location and browser
+* Bumped BrowserTime, new version making sure it will not hang when Selenium/Chromedriver has problems.
 
 version 3.1.4
 ------------------------
