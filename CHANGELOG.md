@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+version 3.1.6 (NOT YET RELEASED)
+------------------------
+
 version 3.1.5
 ------------------------
 * Enable verbose logging in Browsertime whenever Sitespeed.io runs in verbose mode (--verbose/-v).
