@@ -1,7 +1,9 @@
 # CHANGELOG - sitespeed.io
 
-version 3.1.6 (NOT YET RELEASED)
+version 3.1.6
 ------------------------
+* Faulty configuration for default WebPageTest location #588
+
 
 version 3.1.5
 ------------------------
