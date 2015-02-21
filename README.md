@@ -21,6 +21,8 @@ send the data to Graphite
 * test your site against [Google Page Speed Insights](https://developers.google.com/speed/pagespeed/insights/) and include the result in the reports
 * create your own post task that will get the result from the analyze and do whatever you want with it (store to a database, create new reports etc)
 
+Check the [changelog](CHANGELOG.md) for the latest changes.
+
 Install
 =============
 ```bash
