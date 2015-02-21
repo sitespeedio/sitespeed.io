@@ -1,8 +1,8 @@
 # sitespeed.io
 
 [![Build status][travis-image]][travis-url]
-[![NPM version][npm-image]][npm-url]
 [![Downloads][downloads-image]][downloads-url]
+[![Stars][stars-image]][stars-url]
 
 [Website](http://www.sitespeed.io) | [Documentation](http://www.sitespeed.io/documentation/) | [Help us](https://github.com/sitespeedio/sitespeed.io/blob/master/HELP.md) | [Twitter](https://twitter.com/SiteSpeedio)
 
@@ -42,9 +42,9 @@ Pages summary:
 Metrics in Graphite:
 <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/doc/3.0-grafana-timing-metrics.png">
 
-[npm-image]: https://img.shields.io/npm/v/sitespeed.io.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/sitespeed.io
 [travis-image]: https://img.shields.io/travis/sitespeedio/sitespeed.io.svg?style=flat-square
 [travis-url]: https://travis-ci.org/sitespeedio/sitespeed.io
+[stars-url]: https://github.com/sitespeedio/sitespeed.io/stargazers
+[stars-image]: https://img.shields.io/github/stars/sitespeedio/sitespeed.io.svg?style=flat-square
 [downloads-image]: http://img.shields.io/npm/dm/sitespeed.io.svg?style=flat-square
 [downloads-url]: https://npmjs.org/package/sitespeed.io
