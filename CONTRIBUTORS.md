@@ -14,3 +14,4 @@ Many many many thanks to:
 * Steffen Persch (@n3o77)
 * Matt Flower (@MattFlower) 
 * Stefan Judis (@stefanjudis)
+* Peter Elmered (@pelmered)
