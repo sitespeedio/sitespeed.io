@@ -11,9 +11,9 @@ Welcome to the wonderful world of web performance!
 sitespeed.io can:
 * analyze your site against web performance best practice rules, crawl your site or test specific URL:s
 * measure how fast your site/pages is using the [Navigation Timing API](http://www.w3.org/TR/navigation-timing/) and [User Timing API](http://www.w3.org/TR/user-timing/)
-* send all your metrics to [Graphite](graphite.wikidot.com)
+* send all your metrics to [Graphite](http://graphite.wikidot.com)
 * benchmark your site against your competitors (comparing specific pages, creating reports, dump the data to Graphite)
-* drive [WebPageTest](www.webpagetest.org) (WPT), meaning collect metrics from WPT, create reports and or
+* drive [WebPageTest](http://www.webpagetest.org) (WPT), meaning collect metrics from WPT, create reports and or
 send the data to Graphite
 * test your site against your performance budget
 * output TAP or JUnit XML to run in your Continuous Integration tool
