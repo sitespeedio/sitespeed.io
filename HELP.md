@@ -23,8 +23,8 @@ Help us create a Gulp plugin that runs sitespeed.io and integrates the performan
 ## Visual love for the Hotlist
 One new functionality released in 3.0 is the new **Hotlist** tab where we show things like slowest assets, largest images etc. That page result page need some love!
 
-## New design for www.sitespeed.io
-Today we use [Bootstrap](http://getbootstrap.com/) but we want to move away from it. We will start with the documentation site. Help make a super simple and light weight design for us. It needs to be simple and super fast :) We have some ideas, get in touch and we can talk.
+## Make the Jenkins plugin run on Jenkins slaves
+We have finally upgraded the [Jenkins plugin](https://github.com/sitespeedio/jenkins.sitespeed.io) to work with sitespeed.io 3.X. But it still need some love to be able to run on Jenkins slaves.
 
 ## Output as CSV
 One function we had before was outputing all the metrics as CSV. It is still a nice feature for some users, so it would be cool to have it again. You have the issue [here](https://github.com/sitespeedio/sitespeed.io/issues/560)
