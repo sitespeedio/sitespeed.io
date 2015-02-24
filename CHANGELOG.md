@@ -1,9 +1,10 @@
 # CHANGELOG - sitespeed.io
 
-version 3.1.7 (NOT_RELEASED_YET)
+version 3.1.7
 ------------------------
 * Running only one run for WPT made aggregators failed (once again) #589
 * Links in CLI now pointing to new documentation URL:s
+* Log Graphite host & port each time the metrics is sent
 
 version 3.1.6
 ------------------------
