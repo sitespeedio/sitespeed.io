@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+version 3.1.8 (NOT_YET_RELEASED)
+------------------------
+
 version 3.1.7
 ------------------------
 * Running only one run for WPT made aggregators failed (once again) #589
