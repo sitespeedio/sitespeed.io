@@ -7,7 +7,7 @@ One **important** thing: The YSlow file `dependencies/yslow-X.Y.Z-sitespeed.js` 
 needs to be sent to that project and then we will include the finalized javascript file in this project.
 
 ## Add a defect
-First, check the [defect/bug list](https://github.com/sitespeedio/sitespeed.io/issues?labels=bug&page=1&state=open) to make sure that it hasn't been filed yet.
+Please make sure you run the [latest version](https://www.npmjs.com/package/sitespeed.io) of sitespeed.io. Then check the [defect/bug list](https://github.com/sitespeedio/sitespeed.io/issues?labels=bug&page=1&state=open) to make sure that it hasn't been filed yet.
 
 If you find a defect, please file a bug report. Include the following:
  - Explain the bug/defect and what you where doing.
