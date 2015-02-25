@@ -2,6 +2,7 @@
 
 version 3.1.8 (NOT_YET_RELEASED)
 ------------------------
+* Added verbose logging for GPSI
 
 version 3.1.7
 ------------------------
