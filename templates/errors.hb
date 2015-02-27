@@ -8,7 +8,7 @@
         <p>
           Got {{totalErrors}} error{{getPlural totalErrors}}.
         </p>
-      {{#if errors.downloadErrorUrls}}
+      {{#if hasErrors}}
           <h2>Download errors</h2>
           <dl>
             {{#each errors.downloadErrorUrls}}
@@ -18,7 +18,7 @@
           </dl>
       {{/if}}
 
-      {{#if errors.analysisErrorUrls}}
+      {{#if hasErrors}}
           <h2>Analysis errors</h2>
           <dl>
             {{#each errors.analysisErrorUrls}}
