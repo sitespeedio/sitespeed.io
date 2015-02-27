@@ -2,6 +2,7 @@
 
 version 3.1.9 (NOT_YET_RELEASED)
 ------------------------
+* Cleaned up the structure for Graphite internally #600
 
 version 3.1.8
 ------------------------
