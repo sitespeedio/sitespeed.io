@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+version 3.1.9 (NOT_YET_RELEASED)
+------------------------
+
 version 3.1.8
 ------------------------
 * Added verbose logging for GPSI
