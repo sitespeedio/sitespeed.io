@@ -1,8 +1,9 @@
 # CHANGELOG - sitespeed.io
 
-version 3.1.8 (NOT_YET_RELEASED)
+version 3.1.8
 ------------------------
 * Added verbose logging for GPSI
+* Bumped Browsertime version, including fir for stopping Browsermobporxy on Windows
 
 version 3.1.7
 ------------------------
