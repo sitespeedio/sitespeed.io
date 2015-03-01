@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+version 3.1.10 (UNRELEASED)
+------------------------
+
 version 3.1.9
 ------------------------
 * Cleaned up the structure for Graphite internally #600
