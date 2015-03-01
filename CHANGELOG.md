@@ -1,11 +1,12 @@
 # CHANGELOG - sitespeed.io
 
-version 3.1.9 (NOT_YET_RELEASED)
+version 3.1.9
 ------------------------
 * Cleaned up the structure for Graphite internally #600
 * Send domain timings info to Graphite to spot slow domains
 * Show errors in error page, only when we have errors
 * Upgrade to handlebars 3.0
+* Upgraded Browsertime with new Selenium version, making Firefox 36 work
 
 version 3.1.8
 ------------------------
