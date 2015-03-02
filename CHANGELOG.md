@@ -1,7 +1,8 @@
 # CHANGELOG - sitespeed.io
 
-version 3.1.10 (UNRELEASED)
+version 3.1.10
 ------------------------
+* New Browsertime version, setting timeout for browser drivers.
 
 version 3.1.9
 ------------------------
