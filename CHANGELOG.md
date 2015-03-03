@@ -2,7 +2,7 @@
 
 unreleased
 ------------------------
-
+* Send all timings per requests to Graphite when collecting data using Browsertime and WebPageTest #603
 
 version 3.1.10
 ------------------------
