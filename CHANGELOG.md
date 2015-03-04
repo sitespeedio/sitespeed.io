@@ -3,7 +3,10 @@
 unreleased
 ------------------------
 * Send all timings per requests to Graphite when collecting data using Browsertime and WebPageTest (turn on with --graphiteData all or --graphiteData requesttimings) #603
+
 * Flatten the domain name when sending domain timings to Graphite (making it easier to make nice graphs) #601
+
+* Configure paths to assets for result pages #604
 
 version 3.1.10
 ------------------------
