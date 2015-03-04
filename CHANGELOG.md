@@ -8,6 +8,8 @@ unreleased
 
 * Configure paths to assets for result pages #604
 
+* Bug fix: If Graphite server is unreachable, callback chain was broken, meaning sitespeed didn't end properly #606  
+
 version 3.1.10
 ------------------------
 * New Browsertime version, setting timeout for browser drivers.
