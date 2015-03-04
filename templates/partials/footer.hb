@@ -10,6 +10,6 @@
 
   </div>
   <!-- /container -->
-  <script src="{{pageMeta.path}}js/jquery-1.10.2.min.js"></script>
-  <script src="{{pageMeta.path}}js/bootstrap.min.js"></script>
-  <script src="{{pageMeta.path}}js/stupidtable.min.js"></script>
+  <script src="{{config.assetPath}}js/jquery-1.10.2.min.js"></script>
+  <script src="{{config.assetPath}}js/bootstrap.min.js"></script>
+  <script src="{{config.assetPath}}js/stupidtable.min.js"></script>
