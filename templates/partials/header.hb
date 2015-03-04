@@ -6,30 +6,26 @@
   <meta name="robots" content="noindex" />
   <link rel="stylesheet" href="{{#if config.assetPath}}{{config.assetPath}}{{else}}{{pageMeta.path}}{{/if}}css/bootstrap.min.css" type="text/css">
   <link rel="stylesheet" href="{{#if config.assetPath}}{{config.assetPath}}{{else}}{{pageMeta.path}}{{/if}}css/bootstrap-overrides.css" type="text/css">
-
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{#if config.assetPath}}{{config.assetPath}}{{else}}{{pageMeta.path}}{{/if}}img/ico/sitespeed.io-144.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{#if config.assetPath}}{{config.assetPath}}{{else}}{{pageMeta.path}}{{/if}}img/ico/sitespeed.io-114.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{#if config.assetPath}}{{config.assetPath}}{{else}}{{pageMeta.path}}{{/if}}img/ico/sitespeed.io-72.png">
-<link rel="apple-touch-icon-precomposed" href="{{config.assetPath}}img/ico/sitespeed.io-57.png">
+<link rel="apple-touch-icon-precomposed" href="{{#if config.assetPath}}{{config.assetPath}}{{else}}{{pageMeta.path}}{{/if}}img/ico/sitespeed.io-57.png">
 <link rel="shortcut icon" href="{{#if config.assetPath}}{{config.assetPath}}{{else}}{{pageMeta.path}}{{/if}}img/ico/sitespeed.io.ico">
-
 </head>
- <body>
 
-
-<nav class="navbar navbar-default" role="navigation">
-  <div class="container">
-
-<div class="navbar-header">
-    <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sitespeed-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <img src="{{#if config.assetPath}}{{config.assetPath}}{{else}}{{pageMeta.path}}{{/if}}img/sitespeed-logo.png" class="navbar-brand" alt="Sitespeed.io - How speedy is your site?" width="162" height="50"/>
-  </div>
-    <!-- Place everything within .navbar-collapse to hide it until above 768px -->
+<body>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sitespeed-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <img src="{{#if config.assetPath}}{{config.assetPath}}{{else}}{{pageMeta.path}}{{/if}}img/sitespeed-logo.png" class="navbar-brand" alt="Sitespeed.io - How speedy is your site?" width="162" height="50"/>
+      </div>
+      <!-- Place everything within .navbar-collapse to hide it until above 768px -->
     {{#unless pageMeta.hideMenu}}
     <nav class="collapse navbar-collapse sitespeed-collapse">
        <ul class="nav navbar-nav">
@@ -75,10 +71,9 @@
               <a href="{{pageMeta.path}}errors.html">Errors</a>
             </li>
           </ul>
-    </nav><!-- /.nav-collapse -->
-    {{/unless}}
-  </div><!-- /.container -->
-</nav><!-- /.navbar -->
-
+        </nav><!-- /.nav-collapse -->
+        {{/unless}}
+    </div><!-- /.container -->
+  </nav><!-- /.navbar -->
 
   <div class="container">
