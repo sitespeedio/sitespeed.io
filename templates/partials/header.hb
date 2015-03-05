@@ -3,7 +3,7 @@
   <title>{{pageMeta.title}}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
   <meta name="description" content="{{pageMeta.description}}">
-  <meta name="robots" content="noindex" />
+  <meta name="keywords" content="results,sitespeed.io,site speed,speed test, perfmatters, webperf">
   <link rel="stylesheet" href="{{#if config.assetPath}}{{config.assetPath}}{{else}}{{pageMeta.path}}{{/if}}css/bootstrap.min.css" type="text/css">
   <link rel="stylesheet" href="{{#if config.assetPath}}{{config.assetPath}}{{else}}{{pageMeta.path}}{{/if}}css/bootstrap-overrides.css" type="text/css">
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{#if config.assetPath}}{{config.assetPath}}{{else}}{{pageMeta.path}}{{/if}}img/ico/sitespeed.io-144.png">
