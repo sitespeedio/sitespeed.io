@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+unreleased
+------------------------
+
+
 version 3.1.11
 ------------------------
 * Send all timings per requests to Graphite when collecting data using Browsertime and WebPageTest (turn on with --graphiteData all or --graphiteData requesttimings) #603
