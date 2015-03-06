@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-unreleased
+version 3.1.12
 ------------------------
 * Better title and descriptions #605 and removed robots no index
 * Minify HTML output #608
