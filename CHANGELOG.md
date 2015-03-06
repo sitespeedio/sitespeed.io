@@ -3,6 +3,7 @@
 unreleased
 ------------------------
 * Better title and descriptions #605 and removed robots no index
+* Minify HTML output #608
 
 version 3.1.11
 ------------------------
