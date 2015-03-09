@@ -1,5 +1,5 @@
 {{#if pageMeta.isSites}}
-  <h2> Sites analyzed from file {{config.sites}}</h2>
+  <h2>Analyzed sites</h2>
 {{else}}
   {{#if config.url}}
     <h2 class="url">
