@@ -35,7 +35,7 @@ version 3.1.9
 version 3.1.8
 ------------------------
 * Added verbose logging for GPSI
-* Bumped Browsertime version, including fir for stopping Browsermobporxy on Windows
+* Bumped Browsertime version, including fix for stopping Browsermobporxy on Windows
 
 version 3.1.7
 ------------------------
