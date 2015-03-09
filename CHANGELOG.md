@@ -2,6 +2,7 @@
 
 unreleased
 ------------------------
+* Check that we git an HAR from WebPageTest before we use the data #596
 
 version 3.1.12
 ------------------------
