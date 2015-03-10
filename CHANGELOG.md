@@ -8,6 +8,7 @@ unreleased (3.2.0)
  
 * Default memory decreased to 256, the old 1024 is only needed when fetching really big sites. 256 is good because it is easier to use oob on small boxes. #610
 
+* Make it easier to use scriptPath and waitScript in BrowserTime #611
 
 version 3.1.12
 ------------------------
