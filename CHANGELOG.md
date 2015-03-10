@@ -1,8 +1,13 @@
 # CHANGELOG - sitespeed.io
 
-unreleased
+unreleased (3.2.0)
 ------------------------
 * Check that we git an HAR from WebPageTest before we use the data #596
+
+* TODO: This change must go as 3.2 it is not backward compatible: We have made it easire to test multiple sites. Add multiple sites by pointing out multiple files like --sites mySite1.txt --sites mySite2.txt.  This is done becasue it plays much nicer with our docker images. #579 
+ 
+* Default memory decreased to 256, the old 1024 is only needed when fetching really big sites. 256 is good because it is easier to use oob on small boxes. #610
+
 
 version 3.1.12
 ------------------------
