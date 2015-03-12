@@ -26,6 +26,28 @@
         {{/each}}
        </tbody>
      </table>
+
+     {{#if userDefinedMetrics}}
+      <h4>User defined metrics</h4>
+        <table class="table table-condensed table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+       <tbody>
+      {{#each userDefinedMetrics}}
+        {{#each this}}
+          <tr>
+            <td>{{@key}}</td>
+            <td>{{this}}</td>
+          </tr>
+        {{/each}}
+      {{/each}}
+    </tbody>
+    </table>
+    {{/if}}
    </div>
   </div>
 </div>
