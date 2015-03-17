@@ -15,7 +15,7 @@
          </tr>
         </thead>
        <tbody>
-         {{#each statistics}}
+         {{#each default.statistics}}
            <tr>
              <td>{{name}} <a rel="tooltip"  data-placement="right" data-html="false" href="#" data-original-title="{{getTimingMetricsDefinition name}}"><i class="glyphicon glyphicon-question-sign"></i></a></td>
              <td>{{getDecimals min 1}}</td>
@@ -27,8 +27,8 @@
        </tbody>
      </table>
 
-     {{#if userDefinedMetrics}}
-      <h4>User defined metrics</h4>
+     {{#if custom.data}}
+      <h4>Custom scripts</h4>
         <table class="table table-condensed table-striped table-bordered">
           <thead>
             <tr>
@@ -37,7 +37,7 @@
             </tr>
           </thead>
        <tbody>
-      {{#each userDefinedMetrics}}
+      {{#each custom.data}}
         {{#each this}}
           <tr>
             <td>{{@key}}</td>
