@@ -2,11 +2,12 @@
 
 unreleased (3.2.0)
 ------------------------
-* Check that we git an HAR from WebPageTest before we use the data #596
-* TODO: This change must go as 3.2 it is not backward compatible: We have made it easire to test multiple sites. Add multiple sites by pointing out multiple files like --sites mySite1.txt --sites mySite2.txt.  This is done becasue it plays much nicer with our docker images. #579 
+* Check that we got an HAR from WebPageTest before we use the data #596
+* We have made it easier to test multiple sites. Add multiple sites by pointing out multiple files like --sites mySite1.txt --sites mySite2.txt.  This is done becasue it plays much nicer with our docker images. #579 
 * Default memory decreased to 256, the old 1024 is only needed when fetching really big sites. 256 is good because it is easier to use oob on small boxes. #610
-* Make it easier to use scriptPath and waitScript in BrowserTime #611
-* Simplified the proxy usage #612 meaning the proxy will start when browsertime is needed
+* Make it easier to use customScripts and waitScript in BrowserTime. CustomS scripts data is now shown in the result pages and sent to Graphite. #611
+* Upgraded to latest BrowserTime 0.9 with new structure of the data
+* Simplified the proxy usage #612 meaning the proxy will start when Browsertime is needed
 
 version 3.1.12
 ------------------------
