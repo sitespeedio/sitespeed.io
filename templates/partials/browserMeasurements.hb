@@ -17,11 +17,11 @@
        <tbody>
          {{#each default.statistics}}
            <tr>
-             <td>{{name}} <a rel="tooltip"  data-placement="right" data-html="false" href="#" data-original-title="{{getTimingMetricsDefinition name}}"><i class="glyphicon glyphicon-question-sign"></i></a></td>
-             <td>{{getDecimals min 1}}</td>
-             <td>{{getDecimals median 1}}</td>
-             <td>{{getDecimals p90 1}}</td>
-             <td>{{getDecimals max 1}}</td>
+             <td>{{@key}} <a rel="tooltip"  data-placement="right" data-html="false" href="#" data-original-title="{{getTimingMetricsDefinition name}}"><i class="glyphicon glyphicon-question-sign"></i></a></td>
+            <td>{{getDecimals min 1}}</td>
+            <td>{{getDecimals median 1}}</td>
+            <td>{{getDecimals p90 1}}</td>
+            <td>{{getDecimals max 1}}</td>
            </tr>
         {{/each}}
        </tbody>
