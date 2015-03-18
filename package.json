@@ -47,7 +47,7 @@
   "devDependencies": {
     "mocha": "1.20.x",
     "expect.js": "0.3.x",
-    "eslint": "0.15.x"
+    "eslint": "0.17.1"
   },
   "main": "./lib/sitespeed.js",
   "dependencies": {
