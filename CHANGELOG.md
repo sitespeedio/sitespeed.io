@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-unreleased (3.2.0)
+version 3.2.0
 ------------------------
 * Check that we got an HAR from WebPageTest before we use the data #596
 * We have made it easier to test multiple sites. Add multiple sites by pointing out multiple files like --sites mySite1.txt --sites mySite2.txt. This is done becasue it plays much nicer with our docker images. #579 
