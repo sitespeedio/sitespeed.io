@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+version 3.2.1 (UNRELEASED)
+------------------------
+
+
 version 3.2.0
 ------------------------
 * Check that we got an HAR from WebPageTest before we use the data #596
