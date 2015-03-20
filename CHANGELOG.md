@@ -2,7 +2,7 @@
 
 version 3.2.1 (UNRELEASED)
 ------------------------
-
+* Check that URLs are valid when fetched from a file
 
 version 3.2.0
 ------------------------
