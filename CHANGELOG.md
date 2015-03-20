@@ -3,6 +3,8 @@
 version 3.2.1 (UNRELEASED)
 ------------------------
 * Check that URLs are valid when fetched from a file
+* Bug fixes: Compressed sizes has been wrong a long time since a bug in PhantomJS. However, if you also fetch data using browsers or 
+WebPageTest, the sizez will now be correctly populated! #54 #577
 
 version 3.2.0
 ------------------------
