@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+unreleased
+------------------------
+
 version 3.2.1
 ------------------------
 * Check that URLs are valid when fetched from a file
