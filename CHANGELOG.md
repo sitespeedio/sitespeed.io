@@ -1,10 +1,11 @@
 # CHANGELOG - sitespeed.io
 
-version 3.2.1 (UNRELEASED)
+version 3.2.1
 ------------------------
 * Check that URLs are valid when fetched from a file
 * Bug fixes: Compressed sizes has been wrong a long time since a bug in PhantomJS. However, if you also fetch data using browsers or 
 WebPageTest, the sizez will now be correctly populated! #54 #577
+* New Browsertime 0.9.2 with fix for HTTPS, making requests visible in HAR-files.
 
 version 3.2.0
 ------------------------
