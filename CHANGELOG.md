@@ -1,7 +1,8 @@
 # CHANGELOG - sitespeed.io
 
-unreleased
+version 3.2.2
 ------------------------
+* New Browsertime version, putting User Timings back in the statistics and killing hanging Chrome/Chromedrivers on Linux. Older version could hang when running Chrome on Linux. 
 
 version 3.2.1
 ------------------------
