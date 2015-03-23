@@ -2,6 +2,7 @@
 
 unreleased
 ------------------------
+* Bug fix: --storeJson (storing all collected data in one JSON file) didn't work. 
 
 version 3.2.2
 ------------------------
