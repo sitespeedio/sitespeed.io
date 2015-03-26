@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+unreleased
+------------------------
+
 version 3.2.3
 ------------------------
 * Bug fix: --storeJson (storing all collected data in one JSON file) didn't work. 
