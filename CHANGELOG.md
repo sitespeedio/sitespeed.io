@@ -1,8 +1,9 @@
 # CHANGELOG - sitespeed.io
 
-unreleased
+version 3.2.3
 ------------------------
 * Bug fix: --storeJson (storing all collected data in one JSON file) didn't work. 
+* Bug fix: PhantomJS 2.0 had stopped working fetching timings #621, thanks Patrick Wieczorek for reporting
 
 version 3.2.2
 ------------------------
