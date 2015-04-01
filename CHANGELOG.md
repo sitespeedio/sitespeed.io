@@ -3,7 +3,7 @@
 unreleased
 ------------------------
 * Bug fix: Put User Timings (from the User Timing API) in the summary
-
+* Bug fix: Put custom javascript value into the summary
 
 version 3.2.3
 ------------------------
