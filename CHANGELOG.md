@@ -2,6 +2,8 @@
 
 unreleased
 ------------------------
+* Bug fix: Put User Timings (from the User Timing API) in the summary
+
 
 version 3.2.3
 ------------------------
