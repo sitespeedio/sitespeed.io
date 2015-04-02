@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+unreleased
+------------------------
+
 version 3.2.5
 ------------------------
 * Bug fix: 3.2.4 contain code that shouldn't be released ...
