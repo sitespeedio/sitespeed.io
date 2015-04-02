@@ -12,7 +12,7 @@ before_script:
 - sleep 10
 script:
 - npm run-script travis
-- node ./bin/sitespeed.js -u http://www.sitespeed.io -b firefox -n 1 -d 0
+- node ./bin/sitespeed.js -u http://www.sitespeed.io -b firefox -n 1 -d 0 --budget test/budget.json
 - node ./bin/sitespeed.js --sites test/sites.txt -n 1  -b firefox -n 1
 - node ./bin/sitespeed.js -f test/sites.txt -n 1
 - node ./bin/sitespeed.js -u http://www.sitespeed.io -b firefox -n 1 --noYslow -m
