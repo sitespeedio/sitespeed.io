@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+unreleased
+------------------------
+
 version 3.2.6
 ------------------------
 * Bumped to new Browsertime version with support for starting your own Selenium server. Use --btConfig to configure the server. 
