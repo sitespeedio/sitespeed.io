@@ -2,6 +2,7 @@
 
 unreleased
 ------------------------
+* Bumped to new Browsertime version with support for starting your own Selenium server
 
 version 3.2.5
 ------------------------
