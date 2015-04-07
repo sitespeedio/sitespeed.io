@@ -2,6 +2,7 @@
 
 unreleased
 ------------------------
+* You must specify if you want to send all request timing data to Graphite (before it was turned on by default). To send all data use --graphiteData summary,rules,pagemetrics,timings,requesttimings
 
 version 3.2.6
 ------------------------
