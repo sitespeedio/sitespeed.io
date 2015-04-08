@@ -2,6 +2,7 @@
 
 unreleased
 ------------------------
+* Send request timings to Graphite if we use WebPageTest #639
 
 version 3.2.6
 ------------------------
