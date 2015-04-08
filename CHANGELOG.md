@@ -1,9 +1,9 @@
 # CHANGELOG - sitespeed.io
 
-unreleased
+version 3.2.7
 ------------------------
 * Send request timings to Graphite if we use WebPageTest #639
-* Possible to configure the URL to the selenium server (needed for Chrome on Linux)
+* Possible to configure the URL to a selenium server (making Chrome on Linux more stable or at least less instable)
 
 version 3.2.6
 ------------------------
