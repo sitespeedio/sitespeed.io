@@ -3,6 +3,7 @@
 unreleased
 ------------------------
 * Send request timings to Graphite if we use WebPageTest #639
+* Possible to configure the URL to the selenium server (needed for Chrome on Linux)
 
 version 3.2.6
 ------------------------
