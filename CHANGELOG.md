@@ -2,7 +2,7 @@
 
 unreleased
 ------------------------
-
+* Use --postURL to POST the result of an analyze to a URL
 
 version 3.2.7
 ------------------------
