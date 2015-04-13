@@ -2,7 +2,7 @@
 
 unreleased
 ------------------------
-
+* Removed the limit of sending max 100 domains to Graphite
 
 version 3.2.8
 ------------------------
