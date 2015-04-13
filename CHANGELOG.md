@@ -1,9 +1,9 @@
 # CHANGELOG - sitespeed.io
 
-unreleased
+version 3.2.8
 ------------------------
 * Use --postURL to POST the result of an analyze to a URL
-* User --processJson to rerun all the post tasks on a result.
+* Use --processJson to rerun all the post tasks on a result, use it to reconfigure what data to show in the HTML output. 
 * Bug fix: extra check when generating Graphite keys. #642
 
 version 3.2.7
