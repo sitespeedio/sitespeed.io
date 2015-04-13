@@ -3,6 +3,7 @@
 unreleased
 ------------------------
 * Use --postURL to POST the result of an analyze to a URL
+* User --processJson to rerun all the post tasks on a result.
 * Bug fix: extra check when generating Graphite keys. #642
 
 version 3.2.7
