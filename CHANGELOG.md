@@ -1,8 +1,8 @@
 # CHANGELOG - sitespeed.io
 
-unreleased
+version 3.2.9
 ------------------------
-* Removed the limit of sending max 100 domains to Graphite
+* Removed the limit of sending max 100 domains to Graphite #643
 
 version 3.2.8
 ------------------------
