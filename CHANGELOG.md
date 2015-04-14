@@ -1,9 +1,12 @@
 # CHANGELOG - sitespeed.io
 
+unreleased
+------------------------
+* Send the total weight per domain to Graphite #644 thanks @JeroenVdb
+
 version 3.2.10
 ------------------------
 * Bug fix: Removed another limit for number of domains, setting it to 10 domains before #643
-
 
 version 3.2.9
 ------------------------
