@@ -1,7 +1,9 @@
 # CHANGELOG - sitespeed.io
 
-unreleased
+version 3.2.10
 ------------------------
+* Bug fix: Removed another limit for number of domains, setting it to 10 domains before #643
+
 
 version 3.2.9
 ------------------------
