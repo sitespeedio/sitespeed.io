@@ -38,8 +38,8 @@
   ],
   "scripts": {
     "lint": "eslint .",
-    "test": "npm run lint && mocha",
-    "travis": "npm run lint"
+    "test": "mocha",
+    "travis": "npm run lint && npm run test"
   },
   "engines": {
     "node": ">=0.10.7"
