@@ -38,16 +38,16 @@
   ],
   "scripts": {
     "lint": "eslint .",
-    "test": "npm run lint",
+    "test": "npm run lint && mocha",
     "travis": "npm run lint"
   },
   "engines": {
     "node": ">=0.10.7"
   },
   "devDependencies": {
-    "mocha": "1.20.x",
-    "expect.js": "0.3.x",
-    "eslint": "0.17.1"
+    "chai": "^2.2.0",
+    "eslint": "0.17.1",
+    "mocha": "2.*"
   },
   "main": "./lib/sitespeed.js",
   "dependencies": {
