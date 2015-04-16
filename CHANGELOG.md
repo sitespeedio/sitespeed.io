@@ -2,7 +2,7 @@
 
 unreleased
 ------------------------
-* Send the total weight per domain to Graphite #644 thanks @JeroenVdb
+* Send the total weight per domain and per content type to Graphite #644 thanks @JeroenVdb
 
 version 3.2.10
 ------------------------
