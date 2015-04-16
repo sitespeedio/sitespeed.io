@@ -3,6 +3,8 @@
 unreleased
 ------------------------
 * Send the total weight per domain and per content type to Graphite #644 thanks @JeroenVdb
+* Add the result of the analyze to the callback
+* Silence log when running in test env (log errors and above)
 
 version 3.2.10
 ------------------------
