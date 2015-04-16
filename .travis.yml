@@ -13,13 +13,13 @@ before_script:
 script:
 - npm run-script travis
 - node ./bin/sitespeed.js -u http://www.sitespeed.io -b firefox -n 1 -d 0 --budget test/budget.json
-- node ./bin/sitespeed.js --sites test/sites.txt -n 1  -b firefox -n 1
-- node ./bin/sitespeed.js -f test/sites.txt -n 1
+- node ./bin/sitespeed.js --sites test/resources/urls/sites.txt -n 1  -b firefox -n 1
+- node ./bin/sitespeed.js -f test/resources/urls/sites.txt -n 1
 - node ./bin/sitespeed.js -u http://www.sitespeed.io -b firefox -n 1 --noYslow -m
   3 --screenshot
 - node ./bin/sitespeed.js -u http://www.sitespeed.io -n 2 -d 0 --gpsiKey $GKEY --wptKey
   $WPTKEY --wptHost www.webpagetest.org
-- node ./bin/sitespeed.js -u http://127.0.0.1:8009/test/server/www/ -d 0 --junit
+- node ./bin/sitespeed.js -u http://127.0.0.1:8009/test/resources//server/www/ -d 0 --junit
 - node ./bin/sitespeed.js -u http://www.sitespeed.io -b headless -n 1 --headless slimerjs -m 2
 - node ./bin/sitespeed.js -u http://www.sitespeed.io -b headless -n 1 --headless slimerjs -d 0 --noYslow
 after_script:
