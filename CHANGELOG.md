@@ -3,7 +3,8 @@
 unreleased
 ------------------------
 * Send the total weight per domain and per content type to Graphite #644 thanks @JeroenVdb
-* Add the result of the analyze to the callback
+* Changed the key structure for request per domain: NAMESPACE.www.myhost.com.summary.domains.totalRequests.*
+* If you start sitespeed supplying a callback method it will now call the callback(error, result) (now supplying the result)
 * Silence log when running in test env (log errors and above)
 
 version 3.2.10
@@ -17,7 +18,7 @@ version 3.2.9
 version 3.2.8
 ------------------------
 * Use --postURL to POST the result of an analyze to a URL
-* Use --processJson to rerun all the post tasks on a result, use it to reconfigure what data to show in the HTML output. 
+* Use --processJson to rerun all the post tasks on a result, use it to reconfigure what data to show in the HTML output.
 * Bug fix: extra check when generating Graphite keys. #642
 
 version 3.2.7
@@ -27,7 +28,7 @@ version 3.2.7
 
 version 3.2.6
 ------------------------
-* Bumped to new Browsertime version with support for starting your own Selenium server. Use --btConfig to configure the server. 
+* Bumped to new Browsertime version with support for starting your own Selenium server. Use --btConfig to configure the server.
 
 version 3.2.5
 ------------------------
@@ -41,24 +42,24 @@ version 3.2.4
 
 version 3.2.3
 ------------------------
-* Bug fix: --storeJson (storing all collected data in one JSON file) didn't work. 
+* Bug fix: --storeJson (storing all collected data in one JSON file) didn't work.
 * Bug fix: PhantomJS 2.0 had stopped working fetching timings #621, thanks Patrick Wieczorek for reporting
 
 version 3.2.2
 ------------------------
-* New Browsertime version, putting User Timings back in the statistics and killing hanging Chrome/Chromedrivers on Linux. Older version could hang when running Chrome on Linux. 
+* New Browsertime version, putting User Timings back in the statistics and killing hanging Chrome/Chromedrivers on Linux. Older version could hang when running Chrome on Linux.
 
 version 3.2.1
 ------------------------
 * Check that URLs are valid when fetched from a file
-* Bug fixes: Compressed sizes has been wrong a long time since a bug in PhantomJS. However, if you also fetch data using browsers or 
+* Bug fixes: Compressed sizes has been wrong a long time since a bug in PhantomJS. However, if you also fetch data using browsers or
 WebPageTest, the sizez will now be correctly populated! #54 #577
 * New Browsertime 0.9.2 with fix for HTTPS, making requests visible in HAR-files.
 
 version 3.2.0
 ------------------------
 * Check that we got an HAR from WebPageTest before we use the data #596
-* We have made it easier to test multiple sites. Add multiple sites by pointing out multiple files like --sites mySite1.txt --sites mySite2.txt. This is done becasue it plays much nicer with our docker images. #579 
+* We have made it easier to test multiple sites. Add multiple sites by pointing out multiple files like --sites mySite1.txt --sites mySite2.txt. This is done becasue it plays much nicer with our docker images. #579
 * Default memory decreased to 256, the old 1024 is only needed when fetching really big sites. 256 is good because it is easier to use oob on small boxes. #610
 * Make it easier to use customScripts and waitScript in BrowserTime. Custom scripts metrics is now shown in the result pages and sent to Graphite #611
 * Upgraded to latest BrowserTime 0.9 with new structure of the data
@@ -129,16 +130,16 @@ version 3.1.2
 * Ok, incredible stupid implementation by me for the current perf budget,
   throwing an error when failing. Now the result array of the tests are returned.
 * Added support for having a budget for number of requests, type and size #571
-* Bug fix: Since we added slimerjs, we showed headless domContentLoadedTime as a page colum for every tested page. 
+* Bug fix: Since we added slimerjs, we showed headless domContentLoadedTime as a page colum for every tested page.
 * Bug fix: Don't automatically add column data if you configure it yourself.
 * Bug fix: Headless timings perf budget was broken.
 
-version 3.1.1 
+version 3.1.1
 ------------------------
 * Changed to eslint from jshint.
 * Updated to latest phantomjs package.
 * Updated to latest BrowserTime (with 2.0.0 of BrowserMobProxy)
-* You can now choose not to create the domain path in the result dir 
+* You can now choose not to create the domain path in the result dir
   by using the flag suppressDomainFolder #570
 * Better handling of feeding URL:s via file. Supports array with URLs and file.
 
@@ -153,7 +154,7 @@ version 3.1
   you could only use one browser/location/connectivity, now you can use
   as many as you want. Everything is backward compatible except the Graphite keys
   for WebPageTest has changed, now including browser, location and connectivity.
-  
+
   Meaning you need to change Grafana or what tool you are using to use the new
   keys when you upgrade. #546  
 
