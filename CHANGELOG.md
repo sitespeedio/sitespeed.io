@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-unreleased
+version 3.3
 ------------------------
 * Send the total weight per domain and per content type to Graphite #644 thanks @JeroenVdb.
 * Changed the key structure for request per domain (to follow the same structure as the rest of the domain keys): NAMESPACE.www.myhost.com.summary.domains.requests.*
