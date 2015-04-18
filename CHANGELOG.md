@@ -2,9 +2,9 @@
 
 unreleased
 ------------------------
-* Send the total weight per domain and per content type to Graphite #644 thanks @JeroenVdb
-* Changed the key structure for request per domain: NAMESPACE.www.myhost.com.summary.domains.totalRequests.*
-* If you start sitespeed supplying a callback method it will now call the callback(error, result) (now supplying the result)
+* Send the total weight per domain and per content type to Graphite #644 thanks @JeroenVdb.
+* Changed the key structure for request per domain (to follow the same structure as the rest of the domain keys): NAMESPACE.www.myhost.com.summary.domains.requests.*
+* If you start sitespeed with a callback method it will now call the callback(error, result) now supplying the result.
 * Silence log when running in test env (log errors and above)
 
 version 3.2.10
