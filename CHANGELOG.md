@@ -1,12 +1,17 @@
 # CHANGELOG - sitespeed.io
 
+version 3.3.3
+------------------------
+* Bug fix: Add size & number of requests for all domains
+* Send accumulatedTime a.k.a total time for a domain for all assets to Graphite
+
 version 3.3.2
 ------------------------
 * Bug fix: Fetch number of assets used per domain only once per HAR file.
 
 version 3.3.1
 ------------------------
-* Bug fix: Number of request per domain always showed 1, that's not right! 
+* Bug fix: Number of request per domain always showed 1, that's not right!
 
 version 3.3
 ------------------------
