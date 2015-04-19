@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+unreleased
+------------------------
+
 version 3.3.3
 ------------------------
 * Bug fix: Add size & number of requests for all domains
