@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+version 3.3.1
+------------------------
+* Bug fix: Number of request per domain always showed 1, that's not right! 
+
 version 3.3
 ------------------------
 * Send the total weight per domain and per content type to Graphite #644 thanks @JeroenVdb.
