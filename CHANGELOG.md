@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+version 3.3.2
+------------------------
+* Bug fix: Fetch number of assets used per domain only once per HAR file.
+
 version 3.3.1
 ------------------------
 * Bug fix: Number of request per domain always showed 1, that's not right! 
