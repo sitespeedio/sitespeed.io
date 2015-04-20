@@ -2,6 +2,7 @@
 
 unreleased
 ------------------------
+* Bug fix: Specifying a custom yslow script now works again, fixing #649. Thanks to Jubel Han for reporting.
 
 version 3.3.3
 ------------------------
