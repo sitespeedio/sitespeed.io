@@ -5,6 +5,7 @@ unreleased
 * New structure for URL paths sent to Graphite. Now follow protocol.hostname.pathname structure, thanks @JeroenVdb #651
 * Send size and type of every asset to Graphite #650 thanks @JeroenVdb!
 * Renamed requesttimings to requests when choosing which data that should be sent to Graphite
+* Hail the new default waitScript! If you are using phantomjs2 we will now wait for the loadEventEnd + aprox 2 seconds before we end a run for YSlow #653
 * Bug fix: Specifying a custom yslow script now works again, fixing #649. Thanks to Jubel Han for reporting.
 
 version 3.3.3
