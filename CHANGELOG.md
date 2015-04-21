@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+unreleased
+------------------------
+
 version 3.4
 ------------------------
 * IMPORTANT: New structure for URL paths sent to Graphite. Now follow protocol.hostname.pathname structure, thanks @JeroenVdb #651
