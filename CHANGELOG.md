@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+unreleased
+------------------------
+
 version 3.4.1
 ------------------------
 * Super ugly quick fix for dubplicate dots in graphite keys #654
