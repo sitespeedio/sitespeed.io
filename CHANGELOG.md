@@ -2,6 +2,9 @@
 
 unreleased
 ------------------------
+* Rewrite of the Graphite key generation, now always follow the patter protocol.my_domain_com._then_the_path #651.
+  The cool thing is that this opens for a lot og Graphite/Grafana goodies, the bad is that if you use it today,
+  you need to remap the keys in Grafana to get the graphs.
 
 version 3.4.1
 ------------------------
