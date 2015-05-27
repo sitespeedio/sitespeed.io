@@ -1,6 +1,6 @@
 {
   "name": "sitespeed.io",
-  "version": "3.2.7",
+  "version": "3.5.0",
   "bin": "./bin/sitespeed.js",
   "description": "Analyze the web performance of your site",
   "keywords": [
@@ -38,16 +38,17 @@
   ],
   "scripts": {
     "lint": "eslint .",
-    "test": "npm run lint",
-    "travis": "npm run lint"
+    "test": "mocha",
+    "travis": "npm run lint && npm run test"
   },
   "engines": {
     "node": ">=0.10.7"
   },
   "devDependencies": {
-    "mocha": "1.20.x",
-    "expect.js": "0.3.x",
-    "eslint": "0.17.1"
+    "chai": "^2.2.0",
+    "chai-as-promised": "^4.3.0",
+    "eslint": "0.17.1",
+    "mocha": "2.*"
   },
   "main": "./lib/sitespeed.js",
   "dependencies": {
@@ -62,6 +63,7 @@
     "moment": "2.9.0",
     "nomnom": "1.8.1",
     "phantomjs": "1.9.15",
+    "request": "2.55.0",
     "slimerjs": "0.9.2",
     "tape": "3.5.0",
     "valid-url": "1.0.9",
