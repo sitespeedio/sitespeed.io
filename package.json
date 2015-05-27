@@ -53,7 +53,7 @@
   "main": "./lib/sitespeed.js",
   "dependencies": {
     "async": "0.9.0",
-    "browsertime": "0.9.4",
+    "browsertime": "git+https://github.com/yesman82/browsertime.git",
     "cross-spawn": "0.2.6",
     "fast-stats": "0.0.2",
     "fs-extra": "0.16.3",
