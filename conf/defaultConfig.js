@@ -6,7 +6,6 @@ var defaultConfig = {
   memory: 256,
   headless: 'phantomjs',
   userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2062.120 Safari/537.36',
-  yslow: 'headless/scripts/yslow-3.1.8-sitespeed.js',
   ruleSet: 'sitespeed.io-desktop',
   profile: 'desktop',
   testData: 'all',
@@ -15,7 +14,10 @@ var defaultConfig = {
   graphiteNamespace: 'sitespeed.io',
   graphiteData: 'all',
   resultBaseDir: 'sitespeed-result',
-  viewPort: '1280x800'
+  viewPort: '1280x800',
+  waitScript: ' if (window.performance && window.performance.timing)'
+          + '{ return ((window.performance.timing.loadEventEnd > 0) && ((new Date).getTime() - window.performance.timing.loadEventEnd > 2000 ));}'
+          + ' else { return true;}'
 };
 
 module.exports = defaultConfig;

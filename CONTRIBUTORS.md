@@ -15,3 +15,4 @@ Many many many thanks to:
 * Matt Flower (@MattFlower) 
 * Stefan Judis (@stefanjudis)
 * Peter Elmered (@pelmered)
+* Jeroen Van den Berghe (@JeroenVdb)
