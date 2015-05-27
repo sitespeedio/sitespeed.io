@@ -20,7 +20,6 @@ script:
 - node ./bin/sitespeed.js --sites test/resources/urls/sites.txt -n 1  -b firefox -n 1
 - node ./bin/sitespeed.js -f test/resources/urls/sites.txt -n 1
 - node ./bin/sitespeed.js -u http://www.sitespeed.io -b firefox -n 1 --noYslow -m 3 --screenshot
-- node ./bin/sitespeed.js -u http://www.sitespeed.io -n 2 -d 0 --gpsiKey $GKEY --wptKey $WPTKEY --wptHost www.webpagetest.org
 - node ./bin/sitespeed.js -u http://127.0.0.1:8009/test/resources//server/www/ -d 0 --junit
 - node ./bin/sitespeed.js -u http://www.sitespeed.io -b headless -n 1 -m 2 --phantomjsPath /usr/local/phantomjs/bin/phantomjs
 - node ./bin/sitespeed.js -u http://www.sitespeed.io -b headless -n 1 --headless slimerjs -d 0 --noYslow
