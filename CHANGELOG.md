@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+version 3.5.1 (unreleased)
+------------------------
+* Holy cow, we now support WebPageTest scripting ( https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/scripting)! Every  occurrence of {{{URL}}} in your script will be replaced with the URL that is actually going to be tested.
+
 version 3.5
 ------------------------
 * Rewrite of the Graphite key generation, now always follow the patter protocol.my_domain_com._then_the_path #651.
