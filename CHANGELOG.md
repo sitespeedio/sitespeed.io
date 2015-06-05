@@ -2,7 +2,9 @@
 
 version 3.5.1 (unreleased)
 ------------------------
-* Holy cow, we now support WebPageTest scripting ( https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/scripting)! Every  occurrence of {{{URL}}} in your script will be replaced with the URL that is actually going to be tested.
+* Holy cow, we now support WebPageTest scripting ( https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/scripting)! Every  occurrence of {{{URL}}} in your script will be replaced with the URL that is actually going to be tested. Feed the script file to sitespeed.io using --wptScript
+
+* When we are at it, also support custom scripts to collect metrics for WebPageTest! Feed your custom javascript metrics file using --wptCustomMetrics. Read more here: https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/custom-metrics 
 
 version 3.5
 ------------------------

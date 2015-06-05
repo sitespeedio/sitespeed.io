@@ -62,6 +62,42 @@
              {{/if}}
          </tbody>
        </table>
+     </div>
+
+     {{#if response.data.median.firstView.custom.value}}
+     <h3>Custom Metrics</h3>
+     <div class="table-responsive">
+       <table class="table table-condensed table-striped table-bordered">
+         <thead>
+           <tr>
+             <th>View</th>
+             {{#each response.data.median.firstView.custom.value}}
+             <th>{{this}}</th>
+             {{/each}}
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <tr>
+                <td><strong>First View</strong></td>
+                {{#each response.data.median.firstView.custom.value}}
+                <td>{{getWPTCustomMetricValue ../response.data.median.firstView this}}</td>
+                {{/each}}
+              </tr>
+              {{#if response.data.median.repeatView}}
+              <tr>
+                <td><strong>Repeat View</strong></td>
+                {{#each response.data.median.repeatView.custom.value}}
+                <td>{{getWPTCustomMetricValue ../response.data.median.repeatView this}}</td>
+                {{/each}}
+              </tr>
+              {{/if}}
+            </tbody>
+          </table>
+        </div>
+
+        {{/if}}
+
 
       <h3>Waterfall first view</h3>
 
