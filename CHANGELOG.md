@@ -1,10 +1,12 @@
 # CHANGELOG - sitespeed.io
 
-version 3.5.1 (unreleased)
+version 3.6 (unreleased)
 ------------------------
 * Holy cow, we now support WebPageTest scripting ( https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/scripting)! Every  occurrence of {{{URL}}} in your script will be replaced with the URL that is actually going to be tested. Feed the script file to sitespeed.io using --wptScript
 
 * When we are at it, also support custom scripts to collect metrics for WebPageTest! Feed your custom javascript metrics file using --wptCustomMetrics. Read more here: https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/custom-metrics 
+
+* Graphite keys now replaces pipe, comma and plus. If your URL:s hand them, they will now be replaced by _. The reason is that some Grafana functions don't work with the special characters. Thanks @EikeDawid for the PR! #679
 
 version 3.5
 ------------------------
