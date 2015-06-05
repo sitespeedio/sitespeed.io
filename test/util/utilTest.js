@@ -141,7 +141,26 @@ describe('util', function() {
 			var result = util.getGraphiteURLKey('http://www.sitespeed.io/image.gif');
 			assert.deepEqual(result,'http.www_sitespeed_io._image_gif');
 		});
-
+                
+                it('Should escape pipes that make graphite data retrieval problematic', function() {
+                        var result = util.getGraphiteURLKey('http://www.example.com/browse|ID|4.html');
+                        assert.deepEqual(result,'http.www_example_com._browse_ID_4_html');
+                });
+                
+                it('Should escape encoded pipe characters that make graphite data retrieval problematic', function() {
+                        var result = util.getGraphiteURLKey('http://www.example.com/browse%7CID%7C4.html');
+                        assert.deepEqual(result,'http.www_example_com._browse_ID_4_html');
+                });
+                
+                it('Should escape "+" that make graphite data retrieval problematic', function() {
+                        var result = util.getGraphiteURLKey('http://www.example.com/browse/hello+world');
+                        assert.deepEqual(result,'http.www_example_com._browse_hello_world');
+                });
+                
+                it('Should escape "," (comma) that makes graphite functions fail', function() {
+                        var result = util.getGraphiteURLKey('http://www.example.com/browse/hello,world');
+                        assert.deepEqual(result,'http.www_example_com._browse_hello_world');
+                });
 
 	});
 });
