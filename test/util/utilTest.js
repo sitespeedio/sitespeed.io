@@ -148,7 +148,7 @@ describe('util', function() {
 		});
 
 		it('Should escape encoded pipe characters that make graphite data retrieval problematic', function() {
-			var result = util.getGraphiteURLKey('http://www.example.com/browse|ID|4.html');
+			var result = util.getGraphiteURLKey('http://www.example.com/browse%7CID%7C4.html');
 			assert.deepEqual(result, 'http.www_example_com._browse_ID_4_html');
 		});
 
