@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+version 3.6.1
+------------------------
+* Bug fix: All WPT metrics wasn't sent ok #681
+
 version 3.6
 ------------------------
 * Holy cow, we now support WebPageTest scripting ( https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/scripting)! Every  occurrence of {{{URL}}} in your script will be replaced with the URL that is actually going to be tested. Feed the script file to sitespeed.io using --wptScript #623
