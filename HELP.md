@@ -17,8 +17,6 @@ We produce [HAR](http://www.softwareishard.com/blog/har-12-spec/) files today bu
 ## A proxy producing HAR data
 We use the ancient [BrowserMobProxy](https://github.com/lightbody/browsermob-proxy ) to get HAR files. It uses Java and there's work for modernizing the next version. But we would love to have a HAR proxy that is built in NodeJS.
 
-## Gulp plugin
-Help us create a Gulp plugin that runs sitespeed.io and integrates the performance budget functionality.
 
 ## Visual love for the Hotlist
 One new functionality released in 3.0 is the new **Hotlist** tab where we show things like slowest assets, largest images etc. That page result page need some love!
