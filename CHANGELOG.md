@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+version 3.6.2
+------------------------
+* Bug fix: Installation works on Windows again. Updated Browsertime with new Selenium that fixes the original problem.
+
 version 3.6.1
 ------------------------
 * Bug fix: All WPT metrics wasn't sent ok #681
