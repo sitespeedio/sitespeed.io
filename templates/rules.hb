@@ -10,7 +10,7 @@
           <h3 id="{{name}}">{{name}}<em class="url"> ({{@key}})</em></h3>
           <p>{{info}}<em>Weight: {{weight}}</em></p>
         {{/each}}
-
+      </p>  
     </div>
 </div>
 
