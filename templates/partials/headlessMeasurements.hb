@@ -1,11 +1,7 @@
 <div class="row">
   <div class="col-lg-12">
     <h4 id="browser"> Page tested with
-      {{#if config.slimerjs}}
-      SlimerJS
-      {{else}}
-      PhantomJS
-      {{/if}}
+      {{config.headless}}
       
       {{config.no}} run{{getPlural config.no}}
     </h4>
