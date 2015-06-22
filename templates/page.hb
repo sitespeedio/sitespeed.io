@@ -27,7 +27,7 @@
               {{#if config.browser}}
               <a href="#browser" class="list-group-item">Timing metrics</a>
                 {{#if config.browsertime}}
-                  <a href="#har" class="list-group-item">HAR files</a>
+                  <a href="#har" class="list-group-item">HAR waterfalls</a>
                   {{/if}}
               {{/if}}
       		</div>
@@ -86,12 +86,28 @@
     {{#if config.browsertime}}
     <div class="row">
         <div class="col-lg-12">
-        <h4 id="har">HAR files for each run</h4>
+        <h4 id="har">HAR waterfalls for each run</h4>
         {{#each browsertimeData}}
+
+        <h5>{{capitalize browserName}}</h5>
+        <nav>
+      <ul class="pagination">
+        <li class="disabled">
+          <a href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
         {{#times runs}}
-          <a href="../har/{{../browserName}}/{{getFileName ../../url}}-{{this}}.html">Run {{inc this 1}} {{../browserName}}</a>
+          <li><a href="../har/{{../browserName}}/{{getFileName ../../url}}-{{this}}.html">Run {{inc this 1}}</a></li>
         {{/times}}
-        {{/each}}
+        <li class="disabled">
+          <a href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+    {{/each}}
         </div>
     </div>
     {{/if}}

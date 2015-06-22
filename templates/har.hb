@@ -7,20 +7,38 @@
 
 <div class="row">
     <div class="col-lg-12">
-      <h2>HAR {{browser}} run {{inc run 1}}</h2>
+      <h2>HAR {{capitalize browser}} run {{inc run 1}}</h2>
       <h3 class="url">
         Page <a href="{{decodeURIComponent url}}" target="_blank">{{decodeURIComponent url}}</a>
       </h3>
       <div class="container sh-container">
       {{{har}}}
     </div>
-    <p>
-      {{#times config.no}}
-        <a href="{{getFileName ../url}}-{{this}}.html">Run {{inc this 1}}</a>
-      {{/times}}
-    </p>
 
-    <a href="../../data/har/{{browser}}/{{getFileName url}}.har">Download</a>
+    <nav class="text-center">
+      <ul class="pagination">
+        <li class="disabled">
+          <a href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        {{#times config.no}}
+          <li><a href="{{getFileName ../url}}-{{this}}.html">Run {{inc this 1}}</a></li>
+          {{/times}}
+        <li class="disabled">
+          <a href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <nav>
+      <ul class="pager">
+        <li><a href="../../data/har/{{browser}}/{{getFileName url}}.har">Download the HAR</a></li>
+      </ul>
+    </nav>
+
     </div>
 </div>
 
