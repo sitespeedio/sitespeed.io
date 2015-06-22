@@ -26,6 +26,7 @@
               {{/if}}
               {{#if config.browser}}
               <a href="#browser" class="list-group-item">Timing metrics</a>
+              <a href="#har" class="list-group-item">HAR files</a>
               {{/if}}
       		</div>
       	</div>
@@ -80,8 +81,17 @@
     {{/if}}
 
     <!-- do some funky things if we have HAR files -->
-    {{#if config.browser}}
-
+    {{#if config.browsertime}}
+    <div class="row">
+        <div class="col-lg-12">
+        <h4 id="har">HAR files for each run</h4>
+        {{#each browsertimeData}}
+        {{#times runs}}
+          <a href="../har/{{../browserName}}/{{getFileName ../../url}}-{{this}}.html">Run {{inc this 1}}</a>
+        {{/times}}
+        {{/each}}
+        </div>
+    </div>
     {{/if}}
 
 
