@@ -11,9 +11,14 @@
       <h3 class="url">
         Page <a href="{{decodeURIComponent url}}" target="_blank">{{decodeURIComponent url}}</a>
       </h3>
+      <div class="hidden-xs hidden-sm">
       <div class="container sh-container">
-      {{{har}}}
+      {{{makeSafe har}}}
     </div>
+  </div>
+      <div class="visible-xs visible-sm">
+      You need to have a large screen to see the HAR waterfall graph.
+      </div>
 
     <nav class="text-center">
       <ul class="pagination">
