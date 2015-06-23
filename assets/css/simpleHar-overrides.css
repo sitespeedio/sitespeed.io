@@ -4,6 +4,10 @@
    max-width: 1100px;
  }
 
+.sh-container {
+  display: none;
+}
+
 /*
   Make the waterfall more compact
 */

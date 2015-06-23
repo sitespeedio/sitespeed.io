@@ -102,7 +102,7 @@
 
 .sh-container .size {
 	text-align:right;
-	width:95px;
+	width:90px;
 }
 .sh-container .size em {color:#999}
 
@@ -111,7 +111,7 @@
 	font-weight:normal;
 }
 .sh-container .timeline {
-	width:600px;
+	width:725px;
 	position:relative;
 	padding:0;
 }
@@ -237,7 +237,7 @@
 	font-weight:400;
 	line-height:1;
 	-webkit-font-smoothing:antialiased;
-	
+
 	content:"\e155";
 	padding-left:4px;
 	font-size:12px;
@@ -288,19 +288,19 @@
 	-webkit-animation:shloader 1s infinite linear;
 	-moz-animation:shloader 1s infinite linear;
 	animation:shloader 1s infinite linear;
-	
+
 }
 @keyframes shloader
 {
 	0% {
 		-webkit-transform: rotateZ(0deg);
 		transform: rotateZ(0deg);
-		
+
 	}
 	100% {
 		-webkit-transform: rotateZ(360deg);
 		transform: rotateZ(360deg);
-		
+
 	}
 }
 @-webkit-keyframes shloader
@@ -308,13 +308,13 @@
 	0% {
 		-webkit-transform: rotateZ(0deg);
 		transform: rotateZ(0deg);
-		
+
 	}
 	100% {
 		-webkit-transform: rotateZ(360deg);
 		transform: rotateZ(360deg);
-		
-	}		
+
+	}
 }
 .sh-localaccesswarning {
 	width:100%;
