@@ -64,7 +64,7 @@
     "nomnom": "1.8.1",
     "phantomjs": "1.9.15",
     "request": "2.55.0",
-    "simplehar": "file:simplehar-0.19.0.tgz",
+    "simplehar": "git://github.com/sitespeedio/simplehar#master",
     "slimerjs": "0.9.2",
     "tape": "3.5.0",
     "valid-url": "1.0.9",
