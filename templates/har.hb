@@ -13,7 +13,7 @@
       </h3>
       <div class="hidden-xs hidden-sm">
       <div class="container sh-container">
-      {{{makeSafe har}}}
+      {{{har}}}
     </div>
   </div>
       <div class="visible-xs visible-sm">
