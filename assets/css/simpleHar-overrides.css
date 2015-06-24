@@ -4,6 +4,7 @@
    max-width: 1100px;
  }
 
+/* Hide the container until the everything is ready*/
 .sh-container {
   display: none;
 }
@@ -110,22 +111,3 @@
 .sh-table .progress-bar-success{
   background-color: #4374dc;
 }
-
-
-/** WPT waterfall colors
-
-<div class="progress-bar progress-bar-warning" style="width:{blockedWidth}"></div>
-<div class="progress-bar progress-bar-last" style="width:{dnsWidth}"></div>
-<div class="progress-bar progress-bar-info" style="width:{connectWidth}"></div>
-<div class="progress-bar progress-bar-secondary" style="width:{sslWidth}"></div>
-<div class="progress-bar progress-bar-primary" style="width:{sendWidth}"></div>
-<div class="progress-bar progress-bar-danger" style="width:{waitWidth}"></div>
-<div class="progress-bar progress-bar-success" style="width:{receiveWidth}"></div>
-
-
-DNS 497b1e
-Initial cf8124
-SSL a83bcb
-Tme to forst byte: 7ff62f
-Content Download: 4374dc
-*/
