@@ -11,8 +11,9 @@
       <h3 class="url">
         Page <a href="{{decodeURIComponent url}}" target="_blank">{{decodeURIComponent url}}</a>
       </h3>
-      <p>The HAR waterfall is created using a modified version of <a href="https://github.com/rafacesar/simplehar">Simple HAR</a> (originally created by <a href="https://github.com/rafacesar">Rafael</a>) and is under <b>heavy</b> development.
+      <p>The HAR waterfall is created using a modified version of <a href="https://github.com/rafacesar/simplehar">Simple HAR</a> (originally created by <a href="https://github.com/rafacesar">Rafael</a>) and is under development.
       </p>
+
       <div class="hidden-xs hidden-sm">
       <div class="container sh-container">
       {{{har}}}
@@ -39,6 +40,33 @@
         </li>
       </ul>
     </nav>
+
+    <!--
+    <div class="table-responsive">
+    <table class="table table-condensed table-bordered">
+      <thead>
+        <tr>
+            <th>RUM SpeedIndex</th>
+            <th>FirstPaint</th>
+            <th>DomContentLoadedTime</th>
+            {{#each userTimings}}
+              <th>{{name}}</th>
+            {{/each}}
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td>{{getDecimals speedIndex}}</td>
+            <td>{{getDecimals firstPaint 1}}</td>
+            <td>{{getDecimals timings.domContentLoadedTime 1}}</td>
+            {{#each userTimings}}
+              <td>{{getDecimals startTime 1}}</td>
+            {{/each}}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+-->
 
     <nav>
       <ul class="pager">

@@ -25,9 +25,9 @@
               <a href="#wpt" class="list-group-item">WebPageTest metrics</a>
               {{/if}}
               {{#if config.browser}}
-              <a href="#browser" class="list-group-item">Timing metrics</a>
+              <a href="#browser" class="list-group-item">Timing metrics summary</a>
                 {{#if config.browsertime}}
-                  <a href="#har" class="list-group-item">HAR waterfalls</a>
+                  <a href="#har" class="list-group-item">Timing metrics per run and HAR waterfalls</a>
                   {{/if}}
               {{/if}}
       		</div>
@@ -82,37 +82,6 @@
 		</div>
     {{/if}}
 
-    <!-- do some funky things if we have HAR files -->
-    {{#if config.browsertime}}
-    <div class="row">
-        <div class="col-lg-12">
-        <h4 id="har">HAR waterfalls for each run</h4>
-        {{#each browsertimeData}}
-
-        <h5>{{capitalize browserName}}</h5>
-        <nav>
-      <ul class="pagination">
-        <li class="disabled">
-          <a href="#" aria-label="Previous">
-            <span aria-hidden="true">&laquo;</span>
-          </a>
-        </li>
-        {{#times runs}}
-          <li><a href="../har/{{../browserName}}/{{getFileName ../../url}}-{{this}}.html">Run {{inc this 1}}</a></li>
-        {{/times}}
-        <li class="disabled">
-          <a href="#" aria-label="Next">
-            <span aria-hidden="true">&raquo;</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-    {{/each}}
-        </div>
-    </div>
-    {{/if}}
-
-
     {{#if config.gpsiKey}}
     <div class="row">
         <div class="col-lg-12">
@@ -134,6 +103,11 @@
         {{#each browsertimeData}}
           {{>browserMeasurements}}
         {{/each}}
+        <div class="row">
+            <div class="col-lg-12">
+              {{>waterfallList}}
+            </div>
+        </div>
       {{else}}
         {{>headlessMeasurements}}
       {{/if}}
