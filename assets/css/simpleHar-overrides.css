@@ -43,8 +43,86 @@
  background-color: #e25f5c;
 }
 
+/* Blocked */
+.sh-container .popover .bg-warning {
+  background-color: #cf8124;
+}
+/* DNS */
+.sh-container .popover .bg-last {
+  background-color: #3d666c;
+}
+
+/* Connect */
+.sh-container .popover .bg-info {
+  background-color: #cf8124;
+}
+
+/* SSL */
+.sh-container .popover .bg-secondary {
+  background-color: #a83bcb;
+}
+
+/* Send */
+.sh-container .popover .bg-primary  {
+  background-color: #7ff62f;
+}
+
+/* Wait */
+.sh-container .popover .bg-danger {
+  background-color: #7ff62f;
+}
+
+/* Receive */
+.sh-container .popover .bg-success {
+  background-color: #4374dc;
+}
+
+/* Blocked */
+.sh-table .progress-bar-warning {
+  background-color: #cf8124;
+}
+/* DNS */
+.sh-table .progress-bar-last{
+  background-color: #3d666c;
+}
+
+/* Connect */
+.sh-table .progress-bar-info{
+  background-color: #cf8124;
+}
+
+/* SSL */
+.sh-table .progress-bar-secondary{
+  background-color: #a83bcb;
+}
+
+/* Send */
+.sh-table .progress-bar-primary {
+  background-color: #7ff62f;
+}
+
+/* Wait */
+.sh-table .progress-bar-danger{
+  background-color: #7ff62f;
+}
+
+/* Receive */
+.sh-table .progress-bar-success{
+  background-color: #4374dc;
+}
+
 
 /** WPT waterfall colors
+
+<div class="progress-bar progress-bar-warning" style="width:{blockedWidth}"></div>
+<div class="progress-bar progress-bar-last" style="width:{dnsWidth}"></div>
+<div class="progress-bar progress-bar-info" style="width:{connectWidth}"></div>
+<div class="progress-bar progress-bar-secondary" style="width:{sslWidth}"></div>
+<div class="progress-bar progress-bar-primary" style="width:{sendWidth}"></div>
+<div class="progress-bar progress-bar-danger" style="width:{waitWidth}"></div>
+<div class="progress-bar progress-bar-success" style="width:{receiveWidth}"></div>
+
+
 DNS 497b1e
 Initial cf8124
 SSL a83bcb

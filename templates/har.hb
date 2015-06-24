@@ -7,10 +7,12 @@
 
 <div class="row">
     <div class="col-lg-12">
-      <h2>HAR {{capitalize browser}} run {{inc run 1}}</h2>
+      <h2>HAR waterfall graph for {{capitalize browser}} run {{inc run 1}}</h2>
       <h3 class="url">
         Page <a href="{{decodeURIComponent url}}" target="_blank">{{decodeURIComponent url}}</a>
       </h3>
+      <p>The HAR waterfall is created using a modified version of <a href="https://github.com/rafacesar/simplehar">Simple HAR</a> (originally created by <a href="https://github.com/rafacesar">Rafael</a>) and is under <b>heavy</b> development.
+      </p>
       <div class="hidden-xs hidden-sm">
       <div class="container sh-container">
       {{{har}}}
@@ -43,7 +45,6 @@
         <li><a href="../../data/har/{{browser}}/{{getFileName url}}.har">Download the HAR</a></li>
       </ul>
     </nav>
-
     </div>
 </div>
 
