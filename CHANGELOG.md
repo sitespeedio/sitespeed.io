@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+version 3.6.3 (UNRELEASED)
+------------------------
+* Finally we have a HAR Viewer! It's a modified version of Rafael Cesars https://www.npmjs.com/package/simplehar. It could still need some love and work but we think it will add some real value. 
+
 version 3.6.2
 ------------------------
 * Bug fix: Installation works on Windows again. Updated Browsertime with new Selenium that fixes the original problem.
