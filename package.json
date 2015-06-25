@@ -1,6 +1,6 @@
 {
   "name": "sitespeed.io",
-  "version": "3.6.2",
+  "version": "3.6.2-canary4",
   "bin": "./bin/sitespeed.js",
   "description": "Analyze the web performance of your site",
   "keywords": [
@@ -64,7 +64,7 @@
     "nomnom": "1.8.1",
     "phantomjs": "1.9.15",
     "request": "2.55.0",
-    "simplehar": "git://github.com/sitespeedio/simplehar#master",
+    "simplehar.sitespeed.io": "0.19.0",
     "slimerjs": "0.9.2",
     "tape": "3.5.0",
     "valid-url": "1.0.9",
