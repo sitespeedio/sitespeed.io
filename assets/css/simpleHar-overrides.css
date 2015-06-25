@@ -114,8 +114,12 @@
 
 
 /** Different color depending on the rule status of the asset */
-.sh-container .url i.yellow {
+.sh-container .url i.ok {
   color: black;
+}
+
+.sh-container .url i.yellow {
+  color: darkorange;
 }
 
 .sh-container .url i.red {
