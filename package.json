@@ -1,6 +1,6 @@
 {
   "name": "sitespeed.io",
-  "version": "3.6.2-canary4",
+  "version": "3.6.2",
   "bin": "./bin/sitespeed.js",
   "description": "Analyze the web performance of your site",
   "keywords": [
