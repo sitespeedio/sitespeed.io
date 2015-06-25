@@ -11,7 +11,7 @@
       <h3 class="url">
         Page <a href="{{decodeURIComponent url}}" target="_blank">{{decodeURIComponent url}}</a>
       </h3>
-      <p>The HAR waterfall is created using a modified version of <a href="https://github.com/rafacesar/simplehar">Simple HAR</a> (originally created by <a href="https://github.com/rafacesar">Rafael</a>) and is under development.
+      <p>The HAR waterfall is created using a modified version of <a href="https://github.com/rafacesar/simplehar">Simple HAR</a> (originally created by <a href="https://github.com/rafacesar">Rafael Cesar</a>) and is under development.
       </p>
 
       <div class="hidden-xs hidden-sm">
