@@ -111,3 +111,17 @@
 .sh-table .progress-bar-success{
   background-color: #4374dc;
 }
+
+
+/** Different color depending on the rule status of the asset */
+.sh-container .url i.yellow {
+  color: black;
+}
+
+.sh-container .url i.red {
+  color: red;
+}
+
+.sh-container .url i.green {
+  color: green;
+}
