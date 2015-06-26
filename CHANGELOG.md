@@ -1,10 +1,10 @@
 # CHANGELOG - sitespeed.io
 
-version 3.6.3 (UNRELEASED)
+version 3.6.3 
 ------------------------
 * Finally we have a HAR Viewer! It's a modified version of Rafael Cesars https://www.npmjs.com/package/simplehar. It could still need some love and work but we think it will add some real value. 
 
-* Bug fix: Wors Cached assets on the hotlist looked bad on small screens.
+* Bug fix: Worst Cached assets on the hotlist looked bad on small screens.
 
 version 3.6.2
 ------------------------
