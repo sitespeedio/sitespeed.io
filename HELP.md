@@ -11,8 +11,8 @@ Do you use sitespeed.io in your everyday work? Then we have a perfect propositio
 
 # Help wanted
 We have a couple of functions that we have on the wish list but haven't had time to implement. Or even think about implementing.  
-## A HAR viewer
-We produce [HAR](http://www.softwareishard.com/blog/har-12-spec/) files today but we don't display them. We really like the [SimpleHar](http://rafacesar.github.io/simplehar/) and the old classic [HarViewer](http://www.softwareishard.com/har/viewer/) and we are pretty confident that it is possible to write a configurable HAR viewer that produces SVG and don't use JQuery. We would love to add that new HAR viewer to sitespeed.io and help users to see how the requests are loaded.
+## Make the HAR viewer even better
+We use a [modified version](https://github.com/sitespeedio/simplehar) of the SimpleHar viewer and we think we could do some more tweaks to make it even better. Get in touch and lets discuss what we should do.
 
 ## A proxy producing HAR data
 We use the ancient [BrowserMobProxy](https://github.com/lightbody/browsermob-proxy ) to get HAR files. It uses Java and there's work for modernizing the next version. But we would love to have a HAR proxy that is built in NodeJS.
@@ -33,4 +33,4 @@ Documentation is fun and it is the core of making software easy to use. Help us 
 # Money
 > "Can't we just support you with money?" 
 
-We would prefer that you spend your money on people that really needs it, support the [Red Cross](https://www.icrc.org/eng/donations/ways-to-donate/).
+We would prefer that you spend your money on people that really needs it, support the [Red Cross](https://www.icrc.org/eng/donations/ways-to-donate/). If you represent a company and truly believe in Open Source, then you can sponsor the servers for [http://dashboard.sitespeed.io/](http://dashboard.sitespeed.io/) and [https://run.sitespeed.io/](https://run.sitespeed.io/).
