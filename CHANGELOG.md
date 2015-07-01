@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+version 3.6.4 (UNRELEASED)
+------------------------
+* Text fixes, thanks @atdt #690
+
 version 3.6.3 
 ------------------------
 * Finally we have a HAR Viewer! It's a modified version of Rafael Cesars https://www.npmjs.com/package/simplehar. It could still need some love and work but we think it will add some real value. 
