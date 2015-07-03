@@ -8,6 +8,8 @@
 
 Welcome to the wonderful world of web performance!
 
+**July 2015 - vacation!** - Tobias and me are taking a break from the project under July and will only fix important bugs. If you have things bug/feature request, please add an issue and we will take care of it asap. PR are very welcome :)
+
 sitespeed.io can:
 * analyze your site against web performance best practice rules, crawl your site or test specific URL:s
 * measure how fast your site/pages is using the [Navigation Timing API](http://www.w3.org/TR/navigation-timing/) and [User Timing API](http://www.w3.org/TR/user-timing/)
@@ -22,6 +24,8 @@ send the data to Graphite
 * create your own post task that will get the result from the analyze and do whatever you want with it (store to a database, create new reports etc)
 
 Check the [changelog](CHANGELOG.md) for the latest changes.
+
+You can test the [online version](https://run.sitespeed.io/) to get a feeling of what you can do.
 
 Install
 =============
