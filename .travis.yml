@@ -4,9 +4,10 @@ node_js:
 - '0.10'
 - '0.12'
 before_install:
-- wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
-- tar -xjf phantomjs-2.0.0-ubuntu-12.04.tar.bz2
-# - export PATH=$PATH:$PWD/phantomjs-2.0.0-ubuntu-12.04/bin/
+- mkdir travis-phantomjs
+- wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -O $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
+- tar -xvf $PWD/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2 -C $PWD/travis-phantomjs
+- export PATH=$PWD/travis-phantomjs:$PATH
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 before_script:
@@ -23,7 +24,7 @@ script:
 - node ./bin/sitespeed.js -u http://www.sitespeed.io -b firefox -n 1 --noYslow -m 3 --screenshot
 - node ./bin/sitespeed.js -u http://www.sitespeed.io -n 2 -d 0 --gpsiKey $GKEY --wptKey $WPTKEY --wptHost www.webpagetest.org
 - node ./bin/sitespeed.js -u http://127.0.0.1:8009/test/resources//server/www/ -d 0 --junit
-- node ./bin/sitespeed.js -u http://www.sitespeed.io -b headless -n 1 -m 2 --phantomjsPath $PWD/phantomjs-2.0.0-ubuntu-12.04/bin/phantomjs
+- node ./bin/sitespeed.js -u http://www.sitespeed.io -b headless -n 1 -m 2 --phantomjsPath $PWD/travis-phantomjs/bin/phantomjs
 - node ./bin/sitespeed.js -u http://www.sitespeed.io -b headless -n 1 --headless slimerjs -d 0 --noYslow
 after_script:
 - kill `ps aux | grep "python -m SimpleHTTPServer" | grep -v grep | awk '{print $2}'`
