@@ -3,10 +3,11 @@
 version 3.6.4 (UNRELEASED)
 ------------------------
 * Text fixes, thanks @atdt #690
+* Bumping versions: async, cross-spawn-async, fast-stats, fs-extra, handlebars, html-minifier, moment, phantomjs, request, winston & xmlbuilder.
 
-version 3.6.3 
+version 3.6.3
 ------------------------
-* Finally we have a HAR Viewer! It's a modified version of Rafael Cesars https://www.npmjs.com/package/simplehar. It could still need some love and work but we think it will add some real value. 
+* Finally we have a HAR Viewer! It's a modified version of Rafael Cesars https://www.npmjs.com/package/simplehar. It could still need some love and work but we think it will add some real value.
 
 * Bug fix: Worst Cached assets on the hotlist looked bad on small screens.
 
