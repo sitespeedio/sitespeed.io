@@ -12,7 +12,7 @@ before_install:
 before_script:
 - cat /etc/hosts
 - phantomjs --version
-- $PWD/phantomjs-2.0.0-ubuntu-12.04/bin/phantomjs --version
+#- $PWD/phantomjs-2.0.0-ubuntu-12.04/bin/phantomjs --version
 - python -m SimpleHTTPServer 8009 &
 - sleep 10
 script:
