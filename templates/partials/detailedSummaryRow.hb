@@ -7,4 +7,5 @@
   <td>{{getHumanReadable this stats.p90 true}}</td>
   <td>{{getHumanReadable this stats.p99 true}}</td>
   <td>{{getHumanReadable this stats.max true}}</td>
+  <td>{{getHumanReadable this stats.sum true}}</td>
 </tr>

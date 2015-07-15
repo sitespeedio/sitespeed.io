@@ -21,6 +21,7 @@
                     <th>p90</th>
                     <th>p99</th>
                     <th>max</th>
+                    <th>sum</th>
                 </tr>
             </thead>
             <tbody>
