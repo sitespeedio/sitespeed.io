@@ -5,6 +5,7 @@ version 3.7.0 (UNRELEASED)
 ### Added
 * Show and send total summary of collected data for all pages. Example: testing ten pages we will now have the total number of requsts made for all those 10 pages #693
 * Send all individual navigation timings to Graphite (before we only sent calculated timings) #580
+* Send sitespeed and browser version to Graphite. The keys in Graphite: sitespeed.io.meta.chrome.version, sitespeed.io.meta.firefox.version and sitespeed.io.meta.sitespeed.version #703
 
 ### Changed
 * Bumping versions: async, cross-spawn-async, fast-stats, fs-extra, handlebars, html-minifier, moment, phantomjs, request, winston, browsertime & xmlbuilder.
