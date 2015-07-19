@@ -4,7 +4,7 @@ version 3.6.4 (UNRELEASED)
 ------------------------
 * Text fixes, thanks @atdt #690
 * Bumping versions: async, cross-spawn-async, fast-stats, fs-extra, handlebars, html-minifier, moment, phantomjs, request, winston, browsertime & xmlbuilder.
-* Show and send total summary of collected data for all pages. FOr example, testing ten pages we will now have the total number of requsts made for all those 10 pages #693
+* Show and send total summary of collected data for all pages. Example: testing ten pages we will now have the total number of requsts made for all those 10 pages #693
 * Send all individual navigation timings to Graphite (before we only sent calculated timings) #580
 * If we just test one page, then skip the crawling (but do one request that checks the status of the page before we start) #706
 
