@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-version 3.6.4 (UNRELEASED)
+version 3.7.0 (UNRELEASED)
 ------------------------
 * Text fixes, thanks @atdt #690
 * Bumping versions: async, cross-spawn-async, fast-stats, fs-extra, handlebars, html-minifier, moment, phantomjs, request, winston, browsertime & xmlbuilder.
