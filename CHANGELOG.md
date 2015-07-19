@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-version 3.7.0 (UNRELEASED)
+version 3.7.0
 ------------------------
 ### Added
 * Show and send total summary of collected data for all pages. Example: testing ten pages we will now have the total number of requsts made for all those 10 pages #693
