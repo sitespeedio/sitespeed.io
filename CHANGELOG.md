@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-version 3.7.1
+version 3.7.1 - 2015-07-19
 ------------------------
 ### Fixed
 * Sending version numbers of sitespeed.io, firefox and chrome removes all dots except the first one
