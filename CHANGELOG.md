@@ -1,6 +1,11 @@
 # CHANGELOG - sitespeed.io
 
-version 3.7.0
+version 3.7.1
+------------------------
+### Fixed
+* Sending version numbers of sitespeed.io, firefox and chrome removes all dots except the first one
+
+version 3.7.0 - 2015-07-19
 ------------------------
 ### Added
 * Show and send total summary of collected data for all pages. Example: testing ten pages we will now have the total number of requsts made for all those 10 pages #693
