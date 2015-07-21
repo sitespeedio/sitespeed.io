@@ -1,6 +1,6 @@
 {
   "name": "sitespeed.io",
-  "version": "3.7.1",
+  "version": "3.7.2",
   "bin": "./bin/sitespeed.js",
   "description": "Analyze the web performance of your site",
   "keywords": [
