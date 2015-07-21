@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+version 3.7.2 - 2015-07-21
+------------------------
+### Fixed
+* Testing a page multiple times ended up with HAR with many many requests for each page. This is now fixed in BrowserTime v0.10.2 #707
+
 version 3.7.1 - 2015-07-19
 ------------------------
 ### Fixed
