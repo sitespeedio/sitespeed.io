@@ -12,4 +12,5 @@
   <!-- /container -->
   <script src="{{#if config.assetPath}}{{config.assetPath}}{{else}}{{pageMeta.path}}{{/if}}js/jquery-2.1.4.min.js"></script>
   <script src="{{#if config.assetPath}}{{config.assetPath}}{{else}}{{pageMeta.path}}{{/if}}js/bootstrap.min.js"></script>
-  <script src="{{#if config.assetPath}}{{config.assetPath}}{{else}}{{pageMeta.path}}{{/if}}js/stupidtable.min.js"></script>
+  <script src="{{#if config.assetPath}}{{config.assetPath}}{{else}}{{pageMeta.path}}{{/if}}js/stupidtableSimpleHar.js"></script>
+  <script src="{{#if config.assetPath}}{{config.assetPath}}{{else}}{{pageMeta.path}}{{/if}}js/simpleHar.js"></script>

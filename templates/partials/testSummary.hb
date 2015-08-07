@@ -2,7 +2,7 @@
     <h3>{{config.name}}</h3>
 {{/if}}
 <p>
-    Test performed {{config.run.date}} with {{config.ruleSet}} rules.
+    Test performed {{config.run.date}} with {{config.ruleSet}} rules using a {{config.connection}} connection.
 </p>
 <p>
 <small>

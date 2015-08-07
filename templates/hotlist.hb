@@ -116,6 +116,7 @@
 <div class="row">
   <div class="col-lg-12">
     <h3>Worst cached assets</h3>
+    <div class="table-responsive">
       <table class="table table-condensed table-striped table-bordered" id="worstCachedAssets">
         <thead>
          <tr>
@@ -127,13 +128,14 @@
     <tbody>
       {{#each worstCachedAssets}}
       <tr>
-        <td>{{> displayAssetUrl}} <a href="{{this.parent}}"><span class="glyphicon glyphicon-home"></span></a></td>
+        <td class="nobreak-asset-url">{{> displayAssetUrl}} <a href="{{this.parent}}"><span class="glyphicon glyphicon-home"></span></a></td>
         <td data-sort-value="{{this.timeSinceLastModification}}">{{getPrettyPrintSeconds this.timeSinceLastModification}}</td>
         <td data-sort-value="{{this.cacheTime}}">{{getPrettyPrintSeconds this.cacheTime}}</td>
       </tr>
       {{/each}}
     </tbody>
     </table>
+  </div>
   </div>
 </div>
 {{/if}}

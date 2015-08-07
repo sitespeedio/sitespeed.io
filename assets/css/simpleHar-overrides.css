@@ -1,0 +1,131 @@
+/* Fix for sitespeed, we set the headers collide
+*/
+.headers {
+   max-width: 1100px;
+ }
+
+/* Hide the container until the everything is ready*/
+.sh-container {
+  display: none;
+}
+
+/*
+  Make the waterfall more compact
+*/
+ .url > div {
+   padding:2px 5px;
+ }
+
+ .progress {
+   margin-bottom:0;
+   height:23px;
+   border-radius:0;
+   -webkit-box-shadow: none;
+   box-shadow: none;
+}
+
+.progress-bar {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+ }
+
+ /**
+ Redirect background color
+ */
+ .sh-table .bg-redirect {
+  background-color: #ffff61;
+}
+
+.sh-table .bg-warning {
+ background-color: #e25f5c;
+}
+
+.sh-table .bg-danger {
+ background-color: #e25f5c;
+}
+
+/* Blocked */
+.sh-container .popover .bg-warning {
+  background-color: #cf8124;
+}
+/* DNS */
+.sh-container .popover .bg-last {
+  background-color: #3d666c;
+}
+
+/* Connect */
+.sh-container .popover .bg-info {
+  background-color: #cf8124;
+}
+
+/* SSL */
+.sh-container .popover .bg-secondary {
+  background-color: #a83bcb;
+}
+
+/* Send */
+.sh-container .popover .bg-primary  {
+  background-color: #7ff62f;
+}
+
+/* Wait */
+.sh-container .popover .bg-danger {
+  background-color: #7ff62f;
+}
+
+/* Receive */
+.sh-container .popover .bg-success {
+  background-color: #4374dc;
+}
+
+/* Blocked */
+.sh-table .progress-bar-warning {
+  background-color: #cf8124;
+}
+/* DNS */
+.sh-table .progress-bar-last{
+  background-color: #3d666c;
+}
+
+/* Connect */
+.sh-table .progress-bar-info{
+  background-color: #cf8124;
+}
+
+/* SSL */
+.sh-table .progress-bar-secondary{
+  background-color: #a83bcb;
+}
+
+/* Send */
+.sh-table .progress-bar-primary {
+  background-color: #7ff62f;
+}
+
+/* Wait */
+.sh-table .progress-bar-danger{
+  background-color: #7ff62f;
+}
+
+/* Receive */
+.sh-table .progress-bar-success{
+  background-color: #4374dc;
+}
+
+
+/** Different color depending on the rule status of the asset */
+.sh-container .url i.ok {
+  color: black;
+}
+
+.sh-container .url i.yellow {
+  color: darkorange;
+}
+
+.sh-container .url i.red {
+  color: red;
+}
+
+.sh-container .url i.green {
+  color: green;
+}
