@@ -4,6 +4,7 @@ version UNRELEASED
 ------------------------
 ### Fixed
 * Removed faulty error logging from WPT if your location missed browser configuration. That was wrong, you actually don't need it.
+* Basic Auth was missing when testing one page (since 3.7.0). Thank you Jesse Zoldak (@jzoldak) for the PR! #716
 
 version 3.7.2 - 2015-07-21
 ------------------------
