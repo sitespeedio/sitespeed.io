@@ -5,6 +5,12 @@ version UNRELEASED
 ### Fixed
 * Removed faulty error logging from WPT if your location missed browser configuration. That was wrong, you actually don't need it.
 * Basic Auth was missing when testing one page (since 3.7.0). Thank you Jesse Zoldak (@jzoldak) for the PR! #717
+* You can now pass configuration files again. When you do a run, the config.json will be in your result folder. Pass it again with 
+--configFile to your next run and it will be tested again, but in a new date result dir #270
+
+### Added
+* Pass request headers as JSON as complement to all headers in a file #715, thank you Devrim Tufan (@tufandevrim) for the PR.
+
 
 version 3.7.2 - 2015-07-21
 ------------------------
