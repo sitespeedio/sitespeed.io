@@ -17,3 +17,5 @@ Many many many thanks to:
 * Peter Elmered (@pelmered)
 * Jeroen Van den Berghe (@JeroenVdb)
 * Eike (@EikeDawid)
+* Jesse Zoldak (@jzoldak)
+* Devrim Tufan (@tufandevrim)
