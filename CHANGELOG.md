@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-version UNRELEASED
+version 3.8.0 - 2015-08-10
 ------------------------
 ### Fixed
 * Removed faulty error logging from WPT if your location missed browser configuration. That was wrong, you actually don't need it.
