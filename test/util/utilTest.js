@@ -103,7 +103,7 @@ describe('util', function() {
 	describe('#getGraphiteURLKey', function() {
 
 		it('A domain without slash should return protocol.www_domain_com ', function() {
-			var result = util.getGraphiteURLKey('https://www.sitespeed.io');
+			var result = util.getGraphiteURLKey('http://www.sitespeed.io');
 			assert.deepEqual(result, 'http.www_sitespeed_io.slash');
 		});
 
@@ -114,7 +114,7 @@ describe('util', function() {
 
 		it('A domain with a slash should return protocol.www_domain_com', function() {
 			var result = util.getGraphiteURLKey('https://www.sitespeed.io/');
-			assert.deepEqual(result, 'http.www_sitespeed_io.slash');
+			assert.deepEqual(result, 'https.www_sitespeed_io.slash');
 		});
 
 		it('Many subdomains should keep all domains in the domain part of the key', function() {
@@ -124,22 +124,22 @@ describe('util', function() {
 
 		it('The path should be separated from the domain (ending without a slash)', function() {
 			var result = util.getGraphiteURLKey('https://www.sitespeed.io/too/deep');
-			assert.deepEqual(result, 'http.www_sitespeed_io._too_deep');
+			assert.deepEqual(result, 'https.www_sitespeed_io._too_deep');
 		});
 
 		it('The path should be separated from the domain (ends with a slash)', function() {
 			var result = util.getGraphiteURLKey('https://www.sitespeed.io/too/deep/');
-			assert.deepEqual(result, 'http.www_sitespeed_io._too_deep_');
+			assert.deepEqual(result, 'https.www_sitespeed_io._too_deep_');
 		});
 
 		it('The path and files should be separated from the domain (when a file is in a folder)', function() {
 			var result = util.getGraphiteURLKey('https://www.sitespeed.io/js/my.js');
-			assert.deepEqual(result, 'http.www_sitespeed_io._js_my_js');
+			assert.deepEqual(result, 'https.www_sitespeed_io._js_my_js');
 		});
 
 		it('The path and files should be separated from the domain (when the file is in root)', function() {
 			var result = util.getGraphiteURLKey('https://www.sitespeed.io/image.gif');
-			assert.deepEqual(result, 'http.www_sitespeed_io._image_gif');
+			assert.deepEqual(result, 'https.www_sitespeed_io._image_gif');
 		});
 
 		it('Should escape pipes that make graphite data retrieval problematic', function() {
