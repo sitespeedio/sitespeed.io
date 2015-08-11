@@ -19,7 +19,7 @@ describe('sitespeed', function() {
 
 		it('should get a result', function(done) {
       sitespeed.run({
-				url: 'http://www.sitespeed.io',
+				url: 'https://www.sitespeed.io',
 				deep: 0
 			}, function(err, result) {
         result.should.exist;

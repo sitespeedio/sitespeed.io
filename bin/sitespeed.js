@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Sitespeed.io - How speedy is your site? (http://www.sitespeed.io)
+ * Sitespeed.io - How speedy is your site? (https://www.sitespeed.io)
  * Copyright (c) 2014, Peter Hedenskog, Tobias Lidskog
  * and other contributors
  * Released under the Apache 2.0 License

@@ -1,7 +1,7 @@
   <footer>
     <hr/>
     <p>
-      <a href="http://www.sitespeed.io">sitespeed.io</a>
+      <a href="https://www.sitespeed.io">sitespeed.io</a>
       by
       <a href="https://twitter.com/soulislove">Peter Hedenskog</a> &
       <a href="https://twitter.com/tobiaslidskog">Tobias Lidskog</a>

@@ -4,7 +4,7 @@ Do you want to make sitespeed.io even better? Here's how you can help out!
 ## Developers
 We love to have more people involved in making sitespeed.io better. We are constantly working on adding more documentation and trying to write more information in the issues so its easier to help out. If there's an [issue](https://github.com/sitespeedio/sitespeed.io/issues) that you want to help out, ping the issue and we'll help you getting started.
 
-Have you already implemented your own [postTask](http://www.sitespeed.io/documentation/#postTasks)? Add it as a [gist](http://gist.github.com/) and show people how you done it.
+Have you already implemented your own [postTask](https://www.sitespeed.io/documentation/#postTasks)? Add it as a [gist](http://gist.github.com/) and show people how you done it.
 
 ## Companies
 Do you use sitespeed.io in your everyday work? Then we have a perfect proposition for you! Have a hack day with focus on sitespeed.io for your team and contribute back. Pick one the things in the **Help wanted** section. Or maybe there's a function you think is missing? Create it. Contribute back. 
