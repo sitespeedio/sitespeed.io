@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io
 
+version UNRELEASED
+------------------------
+### Fixed
+* Parameters passed in the wrong order for basic auth when taking screenshots, thanks @jzoldak for the PR! #691
+* Use same time out time when taking screenshots and when running yslow #725
+
 version 3.8.0 - 2015-08-10
 ------------------------
 ### Fixed
