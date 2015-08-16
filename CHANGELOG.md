@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-version UNRELEASED
+version 3.8.1 - 2015-08-16
 ------------------------
 ### Fixed
 * Parameters passed in the wrong order for basic auth when taking screenshots, thanks @jzoldak for the PR! #691
