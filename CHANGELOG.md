@@ -4,6 +4,8 @@ UNRELEASED
 ------------------------
 * Create same Graphite namespace structure for the domain url as for per-page metrics #728 thanks @JeroenVdb for the PR
 
+* All args to the headless script should be passed in the right order #727 thanks @jzoldak for the PR
+
 version 3.8.1 - 2015-08-16
 ------------------------
 ### Fixed
