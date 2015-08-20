@@ -3,8 +3,8 @@
 UNRELEASED
 ------------------------
 * Create same Graphite namespace structure for the domain url as for per-page metrics #728 thanks @JeroenVdb for the PR
-
 * All args to the headless script should be passed in the right order #727 thanks @jzoldak for the PR
+* If a sites uses SPDY, the size in the HAR from WPT is set to 0. Now we use the value from Browsertime first, else use WPT if it is not 0. #699
 
 version 3.8.1 - 2015-08-16
 ------------------------
