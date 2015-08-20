@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+UNRELEASED
+------------------------
+* Create same Graphite namespace structure for the domain url as for per-page metrics #728 thanks @JeroenVdb for the PR
+
 version 3.8.1 - 2015-08-16
 ------------------------
 ### Fixed
