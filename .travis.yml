@@ -1,17 +1,20 @@
 language: node_js
 node_js:
 - '0.10'
-- '0.12'
+
+cache:
+  directories:
+  - $HOME/phantomjs
+
+sudo: false
+
 before_install:
-- wget https://s3.amazonaws.com/travis-phantomjs/phantomjs-2.0.0-ubuntu-12.04.tar.bz2
-- tar -xjf phantomjs-2.0.0-ubuntu-12.04.tar.bz2
-- sudo rm -rf /usr/local/phantomjs/bin/phantomjs
-- sudo mv phantomjs /usr/local/phantomjs/bin/phantomjs
+- bash test/installPhantomjs.sh
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 before_script:
 - cat /etc/hosts
-- phantomjs --version
+- $HOME/phantomjs/bin/phantomjs --version
 - python -m SimpleHTTPServer 8009 &
 - sleep 10
 script:
@@ -21,8 +24,8 @@ script:
 - node ./bin/sitespeed.js -f test/resources/urls/sites.txt -n 1
 - node ./bin/sitespeed.js -u https://www.sitespeed.io -b firefox -n 1 --noYslow -m 3 --screenshot
 - node ./bin/sitespeed.js -u https://www.sitespeed.io -n 2 -d 0 --gpsiKey $GKEY --wptKey $WPTKEY --wptHost www.webpagetest.org
-- node ./bin/sitespeed.js -u http://127.0.0.1:8009/test/resources//server/www/ -d 0 --junit
-- node ./bin/sitespeed.js -u https://www.sitespeed.io -b headless -n 1 -m 2 --phantomjsPath /usr/local/phantomjs/bin/phantomjs
+- node ./bin/sitespeed.js -u http://127.0.0.1:8009/test/resources/server/www/ -d 0 --junit
+- node ./bin/sitespeed.js -u https://www.sitespeed.io -b headless -n 1 -m 2 --phantomjsPath $HOME/phantomjs/bin/phantomjs
 - node ./bin/sitespeed.js -u https://www.sitespeed.io -b headless -n 1 --headless slimerjs -d 0 --noYslow
 after_script:
 - kill `ps aux | grep "python -m SimpleHTTPServer" | grep -v grep | awk '{print $2}'`
