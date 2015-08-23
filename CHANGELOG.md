@@ -1,11 +1,14 @@
 # CHANGELOG - sitespeed.io
 
-UNRELEASED
+version 3.9.0 - 2015-08-22
 ------------------------
-* Create same Graphite namespace structure for the domain url as for per-page metrics #728 thanks @JeroenVdb for the PR. Use the flag --graphiteUseNewDomainKeyStructure to turn on the new standard (will become default in 4.0).
+### Fixed
 * All args to the headless script should be passed in the right order #727 thanks @jzoldak for the PR
-* If a sites uses SPDY, the size in the HAR from WPT is set to 0. Now we use the value from Browsertime first, else use WPT if it is not 0. #699
-* You can choose to have query parameters in the Graphite key for the URL, thanks @jeremy-green for the PR #719. To use query parameters, add --graphiteUseQueryParameters to your run.
+* If a site uses SPDY, the sizes in the HAR from WebPageTest is set to 0, don't use it to populate the sizes #699
+
+### Added
+* Create same Graphite namespace structure for the domain url as for per-page metrics #728 thanks @JeroenVdb for the PR. Use the flag --graphiteUseNewDomainKeyStructure to turn on the new standard (will become default in 4.0).
+* You can choose to have query parameters in the Graphite key for the URL, thanks @jeremy-green for the PR #719. To use query parameters in the keys, add --graphiteUseQueryParameters to your run.
 
 version 3.8.1 - 2015-08-16
 ------------------------
