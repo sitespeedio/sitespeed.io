@@ -13,7 +13,6 @@ var defaultConfig = {
   graphitePort: 2003,
   graphiteNamespace: 'sitespeed.io',
   graphiteData: 'all',
-  updatedGraphiteDomainSection: false,
   resultBaseDir: 'sitespeed-result',
   viewPort: '1280x800',
   waitScript: ' if (window.performance && window.performance.timing)'

@@ -2,10 +2,10 @@
 
 UNRELEASED
 ------------------------
-* Create same Graphite namespace structure for the domain url as for per-page metrics #728 thanks @JeroenVdb for the PR
+* Create same Graphite namespace structure for the domain url as for per-page metrics #728 thanks @JeroenVdb for the PR. Use the flag --graphiteUseNewDomainKeyStructure to turn on the new standard (will become default in 4.0).
 * All args to the headless script should be passed in the right order #727 thanks @jzoldak for the PR
 * If a sites uses SPDY, the size in the HAR from WPT is set to 0. Now we use the value from Browsertime first, else use WPT if it is not 0. #699
-* You can choose to have query parameters in the Graphite key for the URL, thanks @jeremy-green for the PR #719. To use query parameters, add --graphiteUseQueryParameters to your run. 
+* You can choose to have query parameters in the Graphite key for the URL, thanks @jeremy-green for the PR #719. To use query parameters, add --graphiteUseQueryParameters to your run.
 
 version 3.8.1 - 2015-08-16
 ------------------------
@@ -18,7 +18,7 @@ version 3.8.0 - 2015-08-10
 ### Fixed
 * Removed faulty error logging from WPT if your location missed browser configuration. That was wrong, you actually don't need it.
 * Basic Auth was missing when testing one page (since 3.7.0). Thank you Jesse Zoldak (@jzoldak) for the PR! #717
-* You can now pass configuration files again. When you do a run, the config.json will be in your result folder. Pass it again with 
+* You can now pass configuration files again. When you do a run, the config.json will be in your result folder. Pass it again with
 --configFile to your next run and it will be tested again, but in a new date result dir #270
 
 ### Added
@@ -49,7 +49,7 @@ version 3.7.0 - 2015-07-19
 ### Fixed
 * Text fixes, thanks @atdt #690
 * New Browsertime version fixes Browser name and browser version in the HAR file #704
- 
+
 version 3.6.3 - 2015-06-26
 ------------------------
 * Finally we have a HAR Viewer! It's a modified version of Rafael Cesars https://www.npmjs.com/package/simplehar. It could still need some love and work but we think it will add some real value.
