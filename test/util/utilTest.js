@@ -127,6 +127,16 @@ describe('util', function() {
 			assert.deepEqual(result, 'https.www_sitespeed_io._too_deep');
 		});
 
+		it('By default query parameter is stripped', function() {
+			var result = util.getGraphiteURLKey('https://www.sitespeed.io/too/deep?my=query');
+			assert.deepEqual(result, 'https.www_sitespeed_io._too_deep');
+		});
+
+		it('You should be able to choose if you want to have the query paremeter in the key or not', function() {
+			var result = util.getGraphiteURLKey('https://www.sitespeed.io/too/deep?my=query', true);
+			assert.deepEqual(result, 'https.www_sitespeed_io._too_deep_my_query');
+		});
+
 		it('The path should be separated from the domain (ends with a slash)', function() {
 			var result = util.getGraphiteURLKey('https://www.sitespeed.io/too/deep/');
 			assert.deepEqual(result, 'https.www_sitespeed_io._too_deep_');
