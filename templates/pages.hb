@@ -37,7 +37,7 @@
                             <!-- TODO how to get the config-->
                             {{#if ../config.screenshot}}<a href="screenshots.html#{{getFileName this.url}}"><span class="glyphicon glyphicon-picture"></span></a>{{/if}}
                             {{> displayUrl}}
-                            {{#if ../config.browsertime}}<a href="har/{{../../config.browsertime.[0]}}/{{getFileName this.url}}-0.html"><span class="glyphicon glyphicon-align-left"></span></a>{{/if}}
+                            {{#if ../includeHar}}<a href="har/{{../../config.browsertime.[0]}}/{{getFileName this.url}}-0.html"><span class="glyphicon glyphicon-align-left"></span></a>{{/if}}
                             </div>
                             </td>
                           {{#each ../config.pageColumns}}
