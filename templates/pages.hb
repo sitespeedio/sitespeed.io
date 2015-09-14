@@ -31,7 +31,7 @@
                 <tbody>
                   {{#each pages}}
                       <tr>
-                          <td>
+                          <td data-sort-value="{{decodeURIComponent this.url}}">
                             <div class="nobreak-asset-url">
                             {{> displayUrlHeaders}}
                             <!-- TODO how to get the config-->

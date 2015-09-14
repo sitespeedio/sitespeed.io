@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io
 
+
+UNRELEASED
+------------------------
+### Fixed
+* Sorting by url for pages/assets on result pages now works as expected. #743
+
 version 3.9.0 - 2015-08-22
 ------------------------
 ### Fixed
