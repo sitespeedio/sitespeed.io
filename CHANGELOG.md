@@ -1,5 +1,12 @@
 # CHANGELOG - sitespeed.io
 
+
+version 3.9.1 - 2015-09-14
+------------------------
+### Fixed
+* Sorting by url for pages/assets on result pages now works as expected. #743
+* Be able to disable the proxy when running BrowserTime #735
+
 version 3.9.0 - 2015-08-22
 ------------------------
 ### Fixed

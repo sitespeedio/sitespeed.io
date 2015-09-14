@@ -21,7 +21,7 @@
 			<tbody>
         {{#each assets}}
         <tr>
-          <td><div class="nobreak-asset-url">{{> displayUrlHeaders}}{{> displayAssetUrl}}</div></td>
+          <td data-sort-value="{{decodeURIComponent this.url}}"><div class="nobreak-asset-url">{{> displayUrlHeaders}}{{> displayAssetUrl}}</div></td>
           <td>{{this.type}}</td>
           <td data-sort-value="{{this.timeSinceLastModification}}">{{getPrettyPrintSeconds this.timeSinceLastModification}}</td>
           <td data-sort-value="{{this.cacheTime}}">{{getPrettyPrintSeconds this.cacheTime}}</td>
