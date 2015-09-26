@@ -9,7 +9,7 @@ Grunt-sitespeedio fails the build no matter if GPSI score matches the budget tha
 ### Added
 Add ability to budget on a per rule basis, thanks @jzoldak #751
 Add waitScript logic to screenshots thanks agaib @jzoldak #737
-
+Added ability to supress domain data beeing sent to Graphite. Using --graphiteData you now need to explicit use domains if you want to send the data (if you don't use all) (thanks @xo4n for pointing that out) #755
 
 version 3.9.1 - 2015-09-14
 ------------------------
