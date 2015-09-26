@@ -1,15 +1,15 @@
 # CHANGELOG - sitespeed.io
 
-version 3.10.0 - [NOT YET RELEASED]
+version 3.10.0 - 2015-09-26
 ------------------------
 ### Fixed
-Do not report skipped rules as failed on the Budget page. thanks @jzoldak #753
-Grunt-sitespeedio fails the build no matter if GPSI score matches the budget thanks @laer #746
-Fixed the ability to supress domain data beeing sent to Graphite. Using --graphiteData you now need to explicit use domains if you want to send the data (if you don't use all). That data shouldn't always be sent as it was before. (thanks @xo4n for pointing that out) #755
+* Do not report skipped rules as failed on the Budget page. thanks @jzoldak #753
+* Grunt-sitespeedio fails the build no matter if GPSI score matches the budget thanks @laer #746
+* Fixed the ability to supress domain data beeing sent to Graphite. Using --graphiteData you now need to explicit use domains if you want to send the data (if you don't use all). That data shouldn't always be sent as it was before. (thanks @xo4n for pointing that out) #755
 
 ### Added
-Add ability to budget on a per rule basis, thanks @jzoldak #751
-Add waitScript logic to screenshots thanks agaib @jzoldak #737
+* Add ability to budget on a per rule basis, thanks @jzoldak #751
+* Add waitScript logic to screenshots thanks agaib @jzoldak #737
 
 version 3.9.1 - 2015-09-14
 ------------------------
