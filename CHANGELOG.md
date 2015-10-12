@@ -2,6 +2,9 @@
 
 UNRELEASED
 ------------------------
+### Fixed
+* Report the sitespeed version as full integeres to Graphite. Meaning 3.10.0 will be 3100.
+
 ### Added
 * Normalize file names, use _ as separator in the domain name instead of dots #742
 
