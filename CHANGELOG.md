@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+UNRELEASED
+------------------------
+### Added
+* Normalize file names, use _ as separator in the domain name instead of dots #742
+
 version 3.10.0 - 2015-09-26
 ------------------------
 ### Fixed
