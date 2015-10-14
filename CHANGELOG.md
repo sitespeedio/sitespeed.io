@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-UNRELEASED
+version 3.11.0 - 2015-10-14
 ------------------------
 ### Fixed
 * Report the sitespeed version as full integeres to Graphite. Meaning 3.10.0 will be 3100.
