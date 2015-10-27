@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+version 3.11.1 - 2015-10-27
+------------------------
+### Fixed
+* Upgraded Browsertime to new version to work with Node 4 
+
 version 3.11.0 - 2015-10-14
 ------------------------
 ### Fixed
