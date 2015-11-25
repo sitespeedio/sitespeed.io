@@ -60,6 +60,7 @@
     "gpagespeed": "1.0.0",
     "handlebars": "3.0.3",
     "html-minifier": "0.7.2",
+    "lodash.defaults": "^3.1.2",
     "moment": "2.10.3",
     "nomnom": "1.8.1",
     "phantomjs": "1.9.17",
