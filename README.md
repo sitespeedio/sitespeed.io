@@ -2,7 +2,9 @@
 
 [![Build status][travis-image]][travis-url]
 [![Downloads][downloads-image]][downloads-url]
+[![Docker][docker-image]][docker-url]
 [![Stars][stars-image]][stars-url]
+
 
 [Website](https://www.sitespeed.io) | [Documentation](https://www.sitespeed.io/documentation/) | [Help us](https://github.com/sitespeedio/sitespeed.io/blob/master/HELP.md) | [Twitter](https://twitter.com/SiteSpeedio)
 
@@ -50,3 +52,5 @@ Metrics in Graphite:
 [stars-image]: https://img.shields.io/github/stars/sitespeedio/sitespeed.io.svg?style=flat-square
 [downloads-image]: http://img.shields.io/npm/dm/sitespeed.io.svg?style=flat-square
 [downloads-url]: https://npmjs.org/package/sitespeed.io
+[docker-image]: https://img.shields.io/docker/pulls/sitespeedio/sitespeed.io.svg
+[docker-url]: https://hub.docker.com/r/sitespeedio/sitespeed.io/
