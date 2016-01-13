@@ -1,4 +1,9 @@
 # CHANGELOG - sitespeed.io
+
+version 3.11.3 - 2016-01-13
+### Fixed
+* Fixes bug for collecting summary metrics for WPT, introduced in 3.11.2
+
 version 3.11.2 - 2016-01-13
 ### Fixed
 * Browser name in WebPageTest can have spaces and that wasn't handled so when the metrics is sent to Graphite, it fails. #798
