@@ -3,6 +3,9 @@ version 3.11.2 - 2016-01-13
 ### Fixed
 * Browser name in WebPageTest can have spaces and that wasn't handled so when the metrics is sent to Graphite, it fails. #798
 
+### Changed
+* Bumbed 3rd party dependencies: winston, request, phantomjs, moment, fs-extra, browsertime, cross-spawn-async, async
+
 version 3.11.1 - 2015-10-27
 ------------------------
 ### Fixed
