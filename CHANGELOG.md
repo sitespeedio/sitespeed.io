@@ -1,6 +1,7 @@
 # CHANGELOG - sitespeed.io
 
 version 3.11.3 - 2016-01-13
+------------------------
 ### Fixed
 * Fixes bug for collecting summary metrics for WPT, introduced in 3.11.2
 
