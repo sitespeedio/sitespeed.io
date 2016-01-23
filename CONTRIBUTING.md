@@ -1,5 +1,5 @@
 # How to contribute
-Sitespeed.io continues to evolve thanks to people who contributes, so please please help out. Check your  [list](HELP.md) of what you can do to help us.
+Sitespeed.io continues to evolve thanks to people who contributes, so please please help out. Check our [list](HELP.md) of what you can do to help us.
 
 ## Making changes
 If you want help out, that's great! Check the issue list and see if there's something there you want to do and drop me a note so I know and I can help you get into the project.
