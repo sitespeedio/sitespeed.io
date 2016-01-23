@@ -1,5 +1,12 @@
 # CHANGELOG - sitespeed.io
 
+UNRELEASED
+------------------------
+### Fixed
+* Typos #804 Thanks @beenanner
+
+* Making slimerjs more indepenedent from phantomjs #806 thanks @keithamus
+
 version 3.11.3 - 2016-01-13
 ------------------------
 ### Fixed

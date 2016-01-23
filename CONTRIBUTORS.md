@@ -19,3 +19,5 @@ Many many many thanks to:
 * Eike (@EikeDawid)
 * Jesse Zoldak (@jzoldak)
 * Devrim Tufan (@tufandevrim)
+* Keith Cirkel (@keithamus)
+* Jonathan Lee (@beenanner)
