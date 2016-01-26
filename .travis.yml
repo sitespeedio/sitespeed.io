@@ -1,11 +1,7 @@
 language: node_js
 node_js:
 - '0.10'
-- '4.0'
-
-cache:
-  directories:
-  - $HOME/phantomjs
+- '4.2'
 
 sudo: false
 addons:
@@ -19,12 +15,10 @@ addons:
 before_install:
 - firefox --version 2>/dev/null
 - google-chrome --product-version
-- bash test/installPhantomjs.sh
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 before_script:
-- cat /etc/hosts
-- $HOME/phantomjs/bin/phantomjs --version
+- phantomjs --version
 - python -m SimpleHTTPServer 8009 &
 - sleep 10
 script:
