@@ -7,6 +7,9 @@ UNRELEASED
 
 * Making slimerjs more indepenedent from phantomjs #806 thanks @keithamus
 
+### Changed
+* Upgraded default PhantomJS to 2.1
+
 version 3.11.3 - 2016-01-13
 ------------------------
 ### Fixed
