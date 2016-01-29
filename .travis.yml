@@ -1,8 +1,7 @@
 language: node_js
 node_js:
-- '0.10'
 - '4.2'
-
+- '5.5.0'
 sudo: false
 addons:
   apt:
