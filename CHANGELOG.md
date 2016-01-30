@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-UNRELEASED
+verson 3.11.4 - 2016-01-30 
 ------------------------
 ### Fixed
 * Typos #804 Thanks @beenanner
@@ -8,7 +8,7 @@ UNRELEASED
 * Making slimerjs more indepenedent from phantomjs #806 thanks @keithamus
 
 ### Changed
-* Upgraded default PhantomJS to 2.1
+* Upgraded default PhantomJS to 2.1. We will remove PhantomJS 2.0 from Docker containers.
 
 version 3.11.3 - 2016-01-13
 ------------------------
