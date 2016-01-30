@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+version 3.11.5 - 2016-01-30
+------------------------
+### Fixed
+* Dependency problem for PhantomJS 2.1. We hope it works now :)
+
 version 3.11.4 - 2016-01-30 
 ------------------------
 ### Fixed
