@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-verson 3.11.4 - 2016-01-30 
+version 3.11.4 - 2016-01-30 
 ------------------------
 ### Fixed
 * Typos #804 Thanks @beenanner
