@@ -1,0 +1,19 @@
+extends ./layout.jade
+
+mixin rowHeading(items)
+    tr
+        each item, key in items
+            th #{key} (mean)
+
+mixin row(items)
+    tr
+        each item, key in items
+            td #{item.mean}
+
+block content
+    h2 Domains
+    each statsForDomain, domainUrl in domainStats
+        h3= domainUrl
+        table
+            +rowHeading(statsForDomain)
+            +row(statsForDomain)

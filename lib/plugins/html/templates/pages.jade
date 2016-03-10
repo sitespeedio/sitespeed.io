@@ -1,0 +1,11 @@
+extends ./layout.jade
+
+block content
+    h2 Pages
+    table
+        tr
+            th url
+        each pageInfo, url in pages
+            tr
+                td
+                    a(href="#{pageInfo.path}/index.html")= url

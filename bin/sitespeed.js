@@ -1,57 +1,52 @@
 #!/usr/bin/env node
+/*eslint no-console: 0*/
 
-/**
- * Sitespeed.io - How speedy is your site? (https://www.sitespeed.io)
- * Copyright (c) 2014, Peter Hedenskog, Tobias Lidskog
- * and other contributors
- * Released under the Apache 2.0 License
- */
 'use strict';
-/*eslint no-process-exit:0*/
 
-var Sitespeed = require('../lib/sitespeed'),
-	config = require('../lib/cli'),
-	winston = require('winston');
+const cli = require('../lib/support/cli'),
+  App = require('../lib/app'),
+  Promise = require('bluebird'),
+  difference = require('lodash.difference'),
+  merge = require('lodash.merge'),
+  loader = require('../lib/support/pluginLoader');
 
-var sitespeed = new Sitespeed();
-
-require('whereis')('java', function searched(err) {
-	// yep, we still need Java for the crawler & browsertime
-	if (err) {
-		winston.loggers.get('sitespeed.io').error(
-			'Could not find Java, make sure it is installed in your $PATH');
-		process.exit(1);
-	} else {
-		sitespeed.run(config, function(error, data) {
-			if (error) {
-				winston.loggers.get('sitespeed.io').error(error);
-				process.exit(1);
-			}
-
-			// do we have a budget?
-			if (data && data.budget) {
-				var isFailing = false;
-
-        // loop through the result and log
-				data.budget.forEach(function(result) {
-					if (result.skipped) {
-						winston.loggers.get('sitespeed.io').info('Skipping ' + result.title + ' ' + result.url + ' ' + ' value [' +
-							result.value + ']');
-					} else if (result.isOk) {
-						winston.loggers.get('sitespeed.io').info('The budget for ' + result.title + ' ' + result.url + ' passed [' +
-							result.value +
-							']');
-					} else {
-						isFailing = true;
-						winston.loggers.get('sitespeed.io').error('The budget for ' + result.title + ' ' + result.url + ' failed. ' +
-							result.description);
-					}
-				});
-
-				if (isFailing) {
-					process.exit(1);
-				}
-			}
-		});
-	}
+require('longjohn');
+Promise.config({
+  warnings: true,
+  longStackTraces: true
 });
+
+function allInArray(sampleArray, referenceArray) {
+  return difference(sampleArray, referenceArray).length === 0;
+}
+
+process.exitCode = 1;
+
+let parsed = cli.parseCommandLine();
+
+loader.parsePluginNames(parsed.raw)
+  .then((pluginNames) => {
+    if (allInArray(['browsertime', 'coach'], pluginNames)) {
+      parsed.options.browsertime = merge({}, parsed.options.browsertime, {coach: true});
+    }
+    return loader.loadPlugins(pluginNames);
+  })
+  .then((plugins) => {
+    let app = new App(plugins, parsed.options);
+
+    return app.run()
+      .then((errors) => {
+        if (errors.length > 0) {
+          throw new Error('Errors while running:\n' + errors.join('\n'));
+        }
+      });
+  })
+  .then(() => {
+    process.exitCode = 0;
+    console.log('DONE!');
+  })
+  .catch((e) => {
+    process.exitCode = 1;
+    console.error('FAIL! ' + e.message);
+  })
+  .finally(() => process.exit());

@@ -1,0 +1,62 @@
+- const coach = pageInfo.data.coach.run.results || pageInfo.data.coach.stats;
+
+b Total Score: #{coach.score}
+
+p Tested using #{options.browsertime.browser} #{options.browsertime.iterations} time(s)
+
+a#coach
+h3 Accessibility (#{coach.accessibility.score})
+if coach.accessibility.score < 100
+  table
+    tr
+      th Title
+      th Advice
+      th Score
+    each rule, name in coach.accessibility.adviceList
+      if rule.score < 100
+        tr
+          td #{rule.title} (#{name})
+          td #{rule.advice}
+          td #{rule.score}
+else
+  p You have a perfect accessibility score!
+
+h3 Performance (#{coach.performance.score})
+if coach.performance.score < 100
+  table
+    tr
+      th Title
+      th Advice
+      th Score
+    each rule, name in coach.performance.adviceList
+      if rule.score < 100
+        tr
+          td #{rule.title} (#{name})
+          td #{rule.advice}
+          td #{rule.score}
+else
+  p You have a perfect performance score!
+
+h3 Best practice (#{coach.bestpractice.score})
+if coach.bestpractice.score < 100
+  table
+    tr
+      th Title
+      th Advice
+      th Score
+    each rule, name in coach.bestpractice.adviceList
+      if rule.score < 100
+        tr
+          td #{rule.title} (#{name})
+          td #{rule.advice}
+          td #{rule.score}
+else
+  p Your best practice score is perfect!
+
+h2 Info
+a#info
+  table
+    each value, name in coach.info
+      tr
+        td #{name}
+        td #{value}

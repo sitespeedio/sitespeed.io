@@ -1,0 +1,33 @@
+h3 Timings
+a#timings
+
+- const browsertime = pageInfo.data.browsertime.run || pageInfo.data.browsertime.summary[0].browsertimeData[0]
+- const timings = browsertime.timings;
+- const visualMetrics = timings.visualMetrics;
+
+if visualMetrics
+  p SpeedIndex: #{visualMetrics.speedIndex}
+  p Render: #{visualMetrics.firstVisualChange}
+  p Last visual change: #{visualMetrics.lastVisualChange}
+
+if timings.firstPaint > -1
+  p First paint: #{timings.firstPaint}
+p Fully loaded: #{timings.fullyLoaded}
+p RUM Speed Index: #{timings.rumSpeedIndex}
+p Timing
+  table
+    tr
+      th name
+      th timing
+    each value, name in timings.timings
+      tr
+        td #{name}
+        td #{value}
+if (Object.keys(timings.userTimings.marks).length > 0)
+  p User Timings marks
+    each value, name in timings.userTimings.marks
+      p #{name}: #{JSON.stringify(value, null, 2)}
+if (Object.keys(timings.userTimings.measures).length > 0)
+  p User Timings measures
+    each value, name in timings.userTimings.measures
+      p #{name}: #{JSON.stringify(value, null, 2)}

@@ -1,0 +1,25 @@
+
+h2 WebPageTest
+a#webpagetest
+
+- const wpt = pageInfo.data.webpagetest.run;
+
+each view in ['firstView', 'repeatView']
+  - var data = wpt[view];
+  if data
+    p #{view}
+    table
+      tr
+        th TTFB
+        th Render
+        th fullyLoaded
+        th SpeedIndex
+      tr
+        td #{data.TTFB}
+        td #{data.render}
+        td #{data.fullyLoaded}
+        td #{data.SpeedIndex}
+    p Waterfall
+    img(src='#{data.images.waterfall}', alt='Waterfall view')
+    p Connection view
+    img(src='#{data.images.connectionView}', alt='Connnection view')

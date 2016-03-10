@@ -1,0 +1,40 @@
+extends ./layout.jade
+
+block content
+    h2 Runs for #{url}
+        each val, index in runPages
+            .run-link
+                a(href='./#{index}.html') #{index}
+
+    if pageInfo.errors
+        p Errors
+        .errors= JSON.stringify(pageInfo.errors, null, 2)
+    else
+      ul
+        if pageInfo.data.coach
+          if pageInfo.data.coach.stats
+            li: a(href='#coach') Coach
+        if pageInfo.data.browsertime
+          if pageInfo.data.browsertime.summary
+            li: a(href='#timings') Timings
+        if pageInfo.data.snufkin
+          if pageInfo.data.snufkin.summary
+            li: a(href='#info') Info
+        if pageInfo.data.webpagetest
+          li: a(href='#webpagetest') WebPageTest
+
+      if pageInfo.data.coach
+        if pageInfo.data.coach.stats
+          include ./coach/index.jade
+
+      if pageInfo.data.browsertime
+        if pageInfo.data.browsertime.summary
+          include ./browsertime/index.jade
+
+      if pageInfo.data.snufkin
+        if pageInfo.data.snufkin.summary
+          include ./snufkin/index.jade
+
+      if pageInfo.data.webpagetest
+          include ./webpagetest/index.jade
+

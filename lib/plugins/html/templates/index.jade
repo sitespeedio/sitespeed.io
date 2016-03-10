@@ -1,0 +1,37 @@
+extends ./layout.jade
+
+block inlineStyles
+    style(media='screen', type='text/css').
+        .boxes {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .box {
+            border: dashed;
+            background: lightgreen;
+            margin: 10px;
+        }
+
+block indexLink
+
+block content
+    h2 Summary!
+    ul
+    each path, page in summaryPages
+        li
+            a(href=path)= page
+
+    // -
+        h2 Boxes
+        .boxes
+            .box.box-link
+                a(href='http://www.sitespeed.io') www.sitespeed.io
+            .box.box-stats
+                span Title
+                div median (p90)
+            .box.box-counter
+                span Title
+                div 42
+            .box A box with some content
+            .box A box with some content
+            .box A box with some content

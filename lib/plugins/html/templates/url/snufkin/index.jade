@@ -1,0 +1,33 @@
+h2 Page summary
+a#snufkin
+
+- const snufkin = pageInfo.data.snufkin.run || pageInfo.data.snufkin.summary[0];
+
+p HTTP version: #{snufkin.httpVersion}
+
+table
+  tr
+    th Response code
+    th Total
+  each total, code in snufkin.responseCodes
+    tr
+      td #{code}
+      td #{total}
+
+  table
+    tr
+      th Content
+      th Transfer Size
+      th Header Size
+      th Content Size
+      th Request(s)
+        each data, type in snufkin.contentTypes
+          tr
+            td #{type}
+            td #{helper.getKbSize(data.transferSize, true)}
+            td #{helper.getKbSize(data.headerSize, true)}
+            td #{helper.getKbSize(data.contentSize, true)}
+            td #{data.requests}
+  p Expire and last modified
+  p Expire median: #{helper.prettyPrintSeconds(snufkin.expireStats.median)}
+  p Last modified median: #{helper.prettyPrintSeconds(snufkin.lastModifiedStats.median)}

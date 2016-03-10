@@ -1,0 +1,29 @@
+extends ./layout.jade
+
+block content
+    .index-link
+        a(href=urlLink) Summary for url #{url}
+    h2 Run number (#{runIndex})
+
+    ul
+      each val, key in pageInfo.data
+        li= key
+        
+    if pageInfo.error
+      .error= pageInfo.error
+    else
+      if pageInfo.data.coach
+        if pageInfo.data.coach.run
+          include ./coach/index.jade
+
+      if pageInfo.data.browsertime
+        if pageInfo.data.browsertime.run
+          include ./browsertime/index.jade
+
+      if pageInfo.data.snufkin
+        if pageInfo.data.snufkin.run
+          include ./snufkin/index.jade
+
+      if pageInfo.data.webpagetest
+        if pageInfo.data.webpagetest.run
+          include ./webpagetest/run.jade

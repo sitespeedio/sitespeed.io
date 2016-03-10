@@ -1,0 +1,18 @@
+doctype html
+html(lang="en")
+    head
+        title= pageTitle
+        link(rel="stylesheet", href=cssLink)
+        block inlineStyles
+
+    body
+        block indexLink
+            .index-link
+                a(href=indexLink) Back to index
+
+        h1 Sitespeed 4
+
+        block content
+        block footer
+            #footer
+                p Sitespeed.io by Peter and Tobias
