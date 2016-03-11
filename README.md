@@ -29,26 +29,8 @@ If you're feeling adventurous and would like to give the new version a spin, try
 > bin/sitespeed.js http://www.sitespeed.io
 ```
 
-<<<<<<< HEAD
-Help us!
-=============
-Do you want to make sitespeed.io even better? Check out the [help us](HELP.md) page.
-
-Example reports
-=============
-Summary:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/doc/3.0-summary2.png">
-Pages summary:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/doc/3.0-pages.png">
-Metrics in Graphite:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/doc/3.0-grafana-timing-metrics.png">
-
-[travis-image]: https://img.shields.io/travis/sitespeedio/sitespeed.io.svg?style=flat-square
-[travis-url]: https://travis-ci.org/sitespeedio/sitespeed.io
-=======
 [travis-image-4]: https://img.shields.io/travis/sitespeedio/sitespeed.io/4.0.svg?style=flat-square
 [travis-url]: https://travis-ci.org/sitespeedio/sitespeed.io/branches
->>>>>>> bf5f02f... Intial commit of sitespeed.io 4.0.
 [stars-url]: https://github.com/sitespeedio/sitespeed.io/stargazers
 [stars-image]: https://img.shields.io/github/stars/sitespeedio/sitespeed.io.svg?style=flat-square
 [downloads-image]: http://img.shields.io/npm/dm/sitespeed.io.svg?style=flat-square
