@@ -79,7 +79,7 @@
     "node-slack": "0.0.7",
     "phantomjs-prebuilt": "2.1.5",
     "snufkin": "0.3.8",
-    "webcoach": "0.2.0",
+    "webcoach": "0.3.2",
     "webpagetest": "0.3.4",
     "yargs": "4.2.0"
   }
