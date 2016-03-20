@@ -72,6 +72,6 @@
     "webpagetest": "0.2.5",
     "whereis": "0.4.0",
     "winston": "2.1.1",
-    "xmlbuilder": "2.6.4"
+    "xmlbuilder": "7.0.0"
   }
 }
