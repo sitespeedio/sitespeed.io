@@ -20,12 +20,20 @@ describe('influxdb', function() {
           "p90": "16",
           "p99": "16",
           "max": "16"
-        }
+        },
+        'url': 'http://sub.domain.com/foo/bar'
       };
 
       let generator = new DataGenerator('ns');
 
-      expect(generator.dataFromMessage(message)).to.not.be.empty;
+      var data = generator.dataFromMessage(message);
+
+      expect(data).to.not.be.empty;
+
+      const firstName = data[0].seriesName;
+
+      expect(firstName).to.match(/pageSummary.sub_domain_com/);
+      expect(firstName).to.match(/foo_bar.gpsi.median/);
     });
   });
 });

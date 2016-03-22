@@ -20,12 +20,43 @@ describe('graphite', function() {
           "p90": "16",
           "p99": "16",
           "max": "16"
+        },
+        'url': 'http://sub.domain.com/foo/bar'
+      };
+
+      let generator = new DataGenerator('ns');
+
+      var data = generator.dataFromMessage(message);
+      expect(data).to.match(/pageSummary.sub_domain_com/);
+      expect(data).to.match(/bar.gpsi.median/);
+      expect(data).to.match(/foo_bar/);
+    });
+
+    it('should generate data for domains.summary', function() {
+      const message = {
+        "type": "domains.summary",
+        "timestamp": "2016-01-08T12:59:06+01:00",
+        "source": "domains",
+        "data": {
+          "www.sitespeed.io": {
+            "dns": {
+              "median": "0",
+              "mean": "13",
+              "min": "0",
+              "p10": "0",
+              "p90": "40",
+              "p99": "40",
+              "max": "40"
+            }
+          }
         }
       };
 
       let generator = new DataGenerator('ns');
 
-      expect(generator.dataFromMessage(message)).to.not.be.empty;
+      var data = generator.dataFromMessage(message);
+      expect(data).to.match(/ns.summary.domains.www.sitespeed.io.dns.median/);
     });
+
   });
 });
