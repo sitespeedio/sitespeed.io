@@ -5,9 +5,9 @@ const DataGenerator = require('../lib/plugins/graphite/data-generator'),
 
 describe('graphite', function() {
   describe('dataGenerator', function() {
-    it('should generate data for gpsi.pageStats', function() {
+    it('should generate data for gpsi.pageSummary', function() {
       const message = {
-        "type": "gpsi.pageStats",
+        "type": "gpsi.pageSummary",
         "timestamp": "2016-01-08T12:59:06+01:00",
         "source": "gpsi",
         "data": {
