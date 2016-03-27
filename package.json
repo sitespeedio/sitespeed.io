@@ -58,7 +58,7 @@
     "cross-spawn-async": "2.1.6",
     "fast-stats": "0.0.3",
     "fs-extra": "0.26.5",
-    "gpagespeed": "1.0.0",
+    "gpagespeed": "3.0.0",
     "handlebars": "3.0.3",
     "html-minifier": "0.7.2",
     "moment": "2.11.1",
