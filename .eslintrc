@@ -6,3 +6,6 @@ env:
 
 extends:
     "eslint:recommended"
+
+rules:
+    "no-bitwise": error
