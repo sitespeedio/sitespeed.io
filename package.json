@@ -32,7 +32,7 @@
     "url": "https://github.com/soulgalore/sitespeed.io/issues"
   },
   "scripts": {
-    "lint": "npm run eslint",
+    "lint": "npm run eslint && npm run pug-lint",
     "eslint": "eslint .",
     "eclint": "eclint check * lib/**/* bin/**/* tools/**/* !*.iml",
     "eclint:fix": "eclint fix * lib/**/* bin/**/* tools/**/* !*.iml",
