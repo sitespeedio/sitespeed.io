@@ -49,7 +49,6 @@
     "chai-as-promised": "^5.2.0",
     "eclint": "^1.1.5",
     "eslint": "^2.0.0",
-    "eslint-plugin-require-jsdoc": "^1.0.4",
     "jsdoc": "^3.3.3",
     "license-checker": "^5.0.1",
     "mocha": "^2.4.4",
