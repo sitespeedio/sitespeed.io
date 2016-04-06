@@ -55,7 +55,7 @@
     "async": "1.5.2",
     "brace-expansion": "1.1.2",
     "browsertime": "0.12.2",
-    "cross-spawn-async": "2.1.6",
+    "cross-spawn-async": "2.2.1",
     "fast-stats": "0.0.3",
     "fs-extra": "0.26.5",
     "gpagespeed": "1.0.0",
