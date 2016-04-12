@@ -3,9 +3,10 @@ a#snufkin
 
 - const snufkin = pageInfo.data.snufkin.run || pageInfo.data.snufkin.pageSummary[0];
 
-p HTTP version: #{snufkin.httpVersion}
+p The page uses #{snufkin.httpVersion}
 
 table
+  caption Requests per response code
   tr
     th Response code
     th Total
@@ -14,7 +15,12 @@ table
       td #{code}
       td #{total}
 
+  - totalContentSize = 0
+  - totalTransferSize = 0
+  - totalHeaderSize = 0
+  - totalRequests = 0
   table
+    caption Requests and sizes per content type
     tr
       th Content
       th Transfer Size
@@ -22,12 +28,37 @@ table
       th Content Size
       th Request(s)
         each data, type in snufkin.contentTypes
+          - totalContentSize += data.contentSize
+          - totalTransferSize += data.transferSize
+          - totalHeaderSize += data.headerSize
+          - totalRequests += data.requests
           tr
             td #{type}
             td #{helper.getKbSize(data.transferSize, true)}
             td #{helper.getKbSize(data.headerSize, true)}
             td #{helper.getKbSize(data.contentSize, true)}
             td #{data.requests}
-  p Expire and last modified
-  p Expire median: #{helper.prettyPrintSeconds(snufkin.expireStats.median)}
-  p Last modified median: #{helper.prettyPrintSeconds(snufkin.lastModifiedStats.median)}
+        tr
+          td Total
+          td #{helper.getKbSize(totalTransferSize, true)}
+          td #{helper.getKbSize(totalHeaderSize, true)}
+          td #{helper.getKbSize(totalContentSize, true)}
+          td #{totalRequests}
+  table
+    caption Expires and last modified stats
+    tr
+      th type
+      th min
+      th p10
+      th median
+      th p90
+      th p99
+      th max
+    tr 
+      td Expires
+      each data, type in snufkin.expireStats
+        td #{helper.prettyPrintSeconds(data)}
+    tr 
+      td Last modified
+      each data, type in snufkin.lastModifiedStats
+        td #{helper.prettyPrintSeconds(data)}      

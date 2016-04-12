@@ -1,17 +1,30 @@
 extends ./layout.jade
 
 block content
-    .index-link
-        a(href=urlLink) Summary for url #{url}
-    h2 Run number (#{runIndex})
-
-    ul
-      each val, key in pageInfo.data
-        li= key
-        
+    - runNumber = Number(runIndex)+1
+    h1 Run #{runNumber} summary
+    h5 #{url}
+    
+    p Tested using #{options.browsertime.browser} #{options.browsertime.iterations} time(s)
+    
     if pageInfo.error
       .error= pageInfo.error
     else
+      | Quick links
+      ul(class='menu')
+        if pageInfo.data.snufkin
+          if pageInfo.data.snufkin.run
+            li: a(href='#info') Page summary
+        if pageInfo.data.coach
+          if pageInfo.data.coach.run
+            li: a(href='#coach') Advice
+        if pageInfo.data.browsertime
+          if pageInfo.data.browsertime.run
+            li: a(href='#timings') Timing
+        if pageInfo.data.webpagetest
+          if pageInfo.data.webpagetest.run
+            li: a(href='#webpagetest') WebPageTest
+        
       if pageInfo.data.coach
         if pageInfo.data.coach.run
           include ./coach/index.jade
@@ -27,3 +40,7 @@ block content
       if pageInfo.data.webpagetest
         if pageInfo.data.webpagetest.run
           include ./webpagetest/run.jade
+          
+
+      .index-link
+        a(href=urlLink class='button button-primary' ) Back to summary

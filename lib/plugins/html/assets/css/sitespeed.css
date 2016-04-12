@@ -1,0 +1,87 @@
+/** Tables */
+
+table {
+  width: 100%;
+}
+
+th,
+td {
+  padding: 4px 15px;
+  text-align: left;
+  border: 1px solid #E1E1E1; }
+th:first-child,
+td:first-child {
+  padding-left: 15px; }
+th:last-child,
+td:last-child {
+  padding-right: 15px; }
+
+tr:nth-child(odd) {background: #f9f9f9}
+tr:nth-child(even) {background: #FFF}
+
+tr th {
+  background: #e1f6fd;
+}
+
+/** Footer **/
+footer {
+  text-align: center;
+}
+
+/** Labels */
+
+.label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+.ok {
+  background-color: #468847;
+}
+.warning {
+  background-color: #f0ad4e;
+}
+.error {
+    background-color: #d9534f;
+}
+
+ul.menu {
+  list-style: none;
+  font-size: 125%;
+  text-transform: uppercase;
+}
+
+/* Hide/show in coach offending */
+.hideable {
+  display: none;
+}
+
+/* Hack for long URLs in tables, please help us with a better way to do this! */
+.url {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+.assetsurl {
+  max-width: 400px;
+}
+
+.pagesurl {
+  max-width: 350px;
+}
+
+.offendingurl {
+  max-width: 900px;
+}

@@ -1,11 +1,30 @@
 extends ./layout.jade
 
 block content
-    h2 Pages
-    table
+  .row
+    .column
+      h2 Pages
+      table(data-sortable, id='pages')
         tr
             th url
-        each pageInfo, url in pages
+            th js size (kb)
+            th css size (kb)
+            th image size (kb)
+            th total size (kb)
+            th total requests
+            th performance score
+        each pageInfo, url in pages   
             tr
                 td
+                  .url.pagesurl
                     a(href='#{pageInfo.path}/index.html')= url
+                td #{pageInfo.data.snufkin.pageSummary[0].contentTypes.javascript?helper.getKbSize(pageInfo.data.snufkin.pageSummary[0].contentTypes.javascript.contentSize, false):0} 
+                td #{pageInfo.data.snufkin.pageSummary[0].contentTypes.css?helper.getKbSize(pageInfo.data.snufkin.pageSummary[0].contentTypes.css.contentSize, false):0}  
+                td #{pageInfo.data.snufkin.pageSummary[0].contentTypes.image.contentSize?helper.getKbSize(pageInfo.data.snufkin.pageSummary[0].contentTypes.image.contentSize, false):0}  
+                td #{helper.getKbSize(pageInfo.data.snufkin.pageSummary[0].contentSize, false)}
+                td #{pageInfo.data.snufkin.pageSummary[0].requests} 
+                td
+                  div(class='label #{helper.getLabel(pageInfo.data.browsertime.page[0].browserScripts[0].coach.coachAdvice.advice.performance.score)}') #{pageInfo.data.browsertime.page[0].browserScripts[0].coach.coachAdvice.advice.performance.score}
+                
+
+                

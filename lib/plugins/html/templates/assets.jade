@@ -9,15 +9,16 @@ mixin row(items)
         each item in items
             tr
                 td
+                  .url.assetsurl
                     a(href=item.url)= item.url
                 td= item.type
-                td= item.lastModification
+                td= helper.prettyPrintSeconds(item.lastModification)
                 td= helper.prettyPrintSeconds(item.cacheTime)
                 td= helper.getKbSize(item.size, true)
                 td= item.requestCount
 
 block content
-    h2 Most used assets!
-    table
-        +rowHeading(['url', 'type', 'last modified', 'cache time', 'size', 'count'])
+    h2 Most used assets
+    table(data-sortable, id='assets')
+        +rowHeading(['url', 'type', 'time since last modified', 'cache time', 'size', 'count'])
         +row(assets)

@@ -1,18 +1,21 @@
 doctype html
 html(lang='en')
     head
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1")
         title= pageTitle
-        link(rel='stylesheet', href=cssLink)
+        meta(name="description" content="#{pageDescription}")
+        link(rel='stylesheet', href='#{path}css/normalize.css')
+        link(rel='stylesheet', href='#{path}css/skeleton.css')
+        link(rel='stylesheet', href='#{path}css/navigation.css')
+        link(rel='stylesheet', href='#{path}css/sitespeed.css')
         block inlineStyles
 
     body
-        block indexLink
-            .index-link
-                a(href=indexLink) Back to index
-
-        h1 Sitespeed 4
-
+      include ./header.jade
+      .container 
+        
         block content
-        block footer
-            #footer
-                p Sitespeed.io by Peter and Tobias
+      
+        include ./footer.jade
+      script(src='#{path}js/sortable.min.js')
