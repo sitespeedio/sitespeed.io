@@ -76,6 +76,7 @@
     "mkdirp": "0.5.1",
     "moment": "2.12.0",
     "node-slack": "0.0.7",
+    "node-uuid": "1.4.7",
     "phantomjs-prebuilt": "2.1.7",
     "simplecrawler": "0.6.2",
     "snufkin": "0.3.8",
