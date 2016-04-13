@@ -81,7 +81,7 @@
     "phantomjs-prebuilt": "2.1.7",
     "simplecrawler": "0.6.2",
     "snufkin": "0.3.8",
-    "webcoach": "0.17.0",
+    "webcoach": "0.19.0",
     "webpagetest": "0.3.4",
     "yargs": "4.4.0"
   }
