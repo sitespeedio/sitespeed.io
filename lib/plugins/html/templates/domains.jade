@@ -1,19 +1,33 @@
 extends ./layout.jade
 
-mixin rowHeading(items)
+mixin row(domain, items)
     tr
-        each item, key in items
-            th #{key} (mean)
-
-mixin row(items)
-    tr
-        each item, key in items
-            td #{item.mean}
+      td #{domain}
+      each item, key in items
+        td #{item.mean}
 
 block content
     h2 Domains
-    each statsForDomain, domainUrl in domainStats
-        h3= domainUrl
-        table
-            +rowHeading(statsForDomain)
-            +row(statsForDomain)
+    table
+      tr
+        th Domain
+        th blocked
+        th dns
+        th connect
+        th send
+        th wait
+        th receive
+        th total
+        th requests 
+      each statsForDomain, domainUrl in domainStats  
+        tr
+          td #{domainUrl}
+          td #{statsForDomain.blocked ? statsForDomain.blocked.median : 0}
+          td #{statsForDomain.dns ? statsForDomain.dns.median : 0}
+          td #{statsForDomain.connect ? statsForDomain.connect.median: 0}
+          td #{statsForDomain.send ? statsForDomain.send.median : 0} 
+          td #{statsForDomain.wait ? statsForDomain.wait.median : 0}
+          td #{statsForDomain.receive ? statsForDomain.receive.median : 0}
+          td unknown
+          td #{statsForDomain.requests ? statsForDomain.requests : 'unknown'}
+      

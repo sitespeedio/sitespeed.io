@@ -60,6 +60,7 @@
     "browsertime": "1.0.0-alpha.8",
     "concurrent-queue": "7.0.1",
     "fast-stats": "0.0.3",
+    "fs-extra": "0.26.7",
     "gpagespeed": "3.0.0",
     "gridly": "1.4.1",
     "influx": "4.1.0",
