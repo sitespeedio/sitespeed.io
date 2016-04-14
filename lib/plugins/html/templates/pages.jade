@@ -24,7 +24,5 @@ block content
                 td #{helper.getKbSize(pageInfo.data.snufkin.pageSummary[0].contentSize, false)}
                 td #{pageInfo.data.snufkin.pageSummary[0].requests} 
                 td
-                  div(class='label #{helper.getLabel(pageInfo.data.browsertime.page[0].browserScripts[0].coach.coachAdvice.advice.performance.score)}') #{pageInfo.data.browsertime.page[0].browserScripts[0].coach.coachAdvice.advice.performance.score}
-                
-
-                
+                  - label = 'label ' +  helper.getLabel(pageInfo.data.browsertime.page[0].browserScripts[0].coach.coachAdvice.advice.performance.score)
+                  span(class=label)  #{pageInfo.data.browsertime.page[0].browserScripts[0].coach.coachAdvice.advice.performance.score}

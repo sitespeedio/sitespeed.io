@@ -11,7 +11,7 @@ block content
       .error= pageInfo.error
     else
       | Quick links
-      ul(class='menu')
+      ul.menu
         if pageInfo.data.snufkin
           if pageInfo.data.snufkin.run
             li: a(href='#info') Page summary
@@ -41,6 +41,5 @@ block content
         if pageInfo.data.webpagetest.run
           include ./webpagetest/run.jade
           
-
       .index-link
-        a(href=urlLink class='button button-primary' ) Back to summary
+        a.button.button-primary(href=urlLink) Back to summary

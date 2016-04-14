@@ -19,7 +19,7 @@ script(type='text/javascript').
     a#coach
     .row
       .four.columns
-        img(src='#{path}img/coach.png' class='u-max-full-width')
+        img.u-max-full-width(src='#{path}img/coach.png', alt='Im the coach')
       .eight.columns
         h3 Coach score
         ul
@@ -30,7 +30,7 @@ script(type='text/javascript').
     .row
       .twelve.columns
         h3 Accessibility advice (#{coach.accessibility.score}) 
-        button(onclick="toggleRow();" class="button-primary") Show/hide details
+        button.button-primary(onclick='toggleRow();') Show/hide details
         if coach.accessibility.score < 100
           table
             tr
@@ -44,13 +44,13 @@ script(type='text/javascript').
                   td #{rule.advice}
                   td #{rule.score}
                 - if (rule.offending.length > 0)  
-                  tr(class='hideable')
-                    td(colspan='3', class='url offendingurl') !{rule.offending.join('<br>')}
+                  tr.hideable
+                    td.url.offendingurl(colspan='3') !{rule.offending.join('<br>')}
         else
           p You have a perfect accessibility score!
 
         h3 Performance advice (#{coach.performance.score})
-        button(onclick="toggleRow();" class="button-primary") Show/hide details
+        button.button-primary(onclick='toggleRow();') Show/hide details
         if coach.performance.score < 100
           table
             tr
@@ -64,14 +64,14 @@ script(type='text/javascript').
                   td #{rule.advice}
                   td #{rule.score}
                 - if (rule.offending.length > 0)   
-                  tr(class='hideable')
-                    td(colspan='3', class='url offendingurl') !{rule.offending.join('<br>')}
+                  tr.hideable
+                    td.url.offendingurl(colspan='3') !{rule.offending.join('<br>')}
                 
         else
           p You have a perfect performance score!
 
         h3 Best practice advice (#{coach.bestpractice.score})
-        button(onclick="toggleRow();" class="button-primary") Show/hide details
+        button.button-primary(onclick='toggleRow();') Show/hide details
         if coach.bestpractice.score < 100
           table
             tr
@@ -85,8 +85,8 @@ script(type='text/javascript').
                   td #{rule.advice}
                   td #{rule.score}
                 - if (rule.offending.length > 0)   
-                  tr(class='hideable')
-                    td(colspan='3', class='url offendingurl') !{rule.offending.join('<br>')}  
+                  tr.hideable
+                    td.url.offendingurl(colspan='3') !{rule.offending.join('<br>')}  
         else
           p Your best practice score is perfect!
 
