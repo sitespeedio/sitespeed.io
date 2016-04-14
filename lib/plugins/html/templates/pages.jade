@@ -18,10 +18,10 @@ block content
                 td
                   .url.pagesurl
                     a(href='#{pageInfo.path}/index.html')= url
-                td #{pageInfo.data.snufkin.pageSummary[0].contentTypes.javascript?helper.getKbSize(pageInfo.data.snufkin.pageSummary[0].contentTypes.javascript.contentSize, false):0} 
-                td #{pageInfo.data.snufkin.pageSummary[0].contentTypes.css?helper.getKbSize(pageInfo.data.snufkin.pageSummary[0].contentTypes.css.contentSize, false):0}  
-                td #{pageInfo.data.snufkin.pageSummary[0].contentTypes.image.contentSize?helper.getKbSize(pageInfo.data.snufkin.pageSummary[0].contentTypes.image.contentSize, false):0}  
-                td #{helper.getKbSize(pageInfo.data.snufkin.pageSummary[0].contentSize, false)}
+                td #{pageInfo.data.snufkin.pageSummary[0].contentTypes.javascript?helper.getKbSize(pageInfo.data.snufkin.pageSummary[0].contentTypes.javascript.transferSize, false):0} 
+                td #{pageInfo.data.snufkin.pageSummary[0].contentTypes.css?helper.getKbSize(pageInfo.data.snufkin.pageSummary[0].contentTypes.css.transferSize, false):0}  
+                td #{pageInfo.data.snufkin.pageSummary[0].contentTypes.image.transferSize?helper.getKbSize(pageInfo.data.snufkin.pageSummary[0].contentTypes.image.transferSize, false):0}  
+                td #{helper.getKbSize(pageInfo.data.snufkin.pageSummary[0].transferSize, false)}
                 td #{pageInfo.data.snufkin.pageSummary[0].requests} 
                 td
                   - label = 'label ' +  helper.getLabel(pageInfo.data.browsertime.page[0].browserScripts[0].coach.coachAdvice.advice.performance.score)
