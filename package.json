@@ -64,6 +64,7 @@
     "gpagespeed": "3.0.0",
     "gridly": "1.4.1",
     "influx": "4.1.0",
+    "intel": "1.1.0",
     "jade": "1.11.0",
     "line-reader": "0.4.0",
     "lodash.clonedeep": "4.3.2",

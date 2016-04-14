@@ -7,6 +7,8 @@ const cli = require('../lib/support/cli'),
   App = require('../lib/app'),
   Promise = require('bluebird'),
   difference = require('lodash.difference'),
+  logging = require('../lib/support/logging'),
+  log = require('intel'),
   merge = require('lodash.merge'),
   loader = require('../lib/support/pluginLoader');
 
@@ -23,6 +25,12 @@ function allInArray(sampleArray, referenceArray) {
 process.exitCode = 1;
 
 let parsed = cli.parseCommandLine();
+logging.configure(parsed.options);
+
+if (log.isEnabledFor(log.CRITICAL)) { // TODO change the threshold to VERBOSE before releasing 4.0
+  Promise.longStackTraces();
+}
+
 
 loader.parsePluginNames(parsed.raw)
   .then((pluginNames) => {
@@ -43,10 +51,10 @@ loader.parsePluginNames(parsed.raw)
   })
   .then(() => {
     process.exitCode = 0;
-    console.log('DONE!');
+    log.info('Finished analysing ' + parsed.url);
   })
   .catch((e) => {
     process.exitCode = 1;
-    console.error('FAIL! ' + e.message);
+    log.error('Failing: ' + e.message);
   })
   .finally(() => process.exit());
