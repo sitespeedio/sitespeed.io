@@ -1,32 +1,51 @@
 
-h2 WebPageTest
 a#webpagetest
+h2 WebPageTest
 
 - const data = pageInfo.data.webpagetest.pageSummary[0].data
 - const medianRun = data.median
 
-a(href='#{data.summary}') WebPageTest
 
-p #{data.from}
 
-p #{medianRun.firstView.browser_name} - #{medianRun.firstView.browser_version}
-
+p Test run from !{data.from} using #{medianRun.firstView.browser_name} - #{medianRun.firstView.browser_version}. Check the  
+  a(href='#{data.summary}') result page on WebPageTest
+  | .
 each view in ['firstView', 'repeatView']
   - var median = medianRun[view];
   if median
-    p #{view}
+    h4 #{view}
     table
+      caption Metrics
       tr
         th TTFB
         th Render
-        th fullyLoaded
+        th firstPaint
+        th loadTime
         th SpeedIndex
+        th fullyLoaded
+        th connections
+
+
       tr
         td #{median.TTFB}
         td #{median.render}
-        td #{median.fullyLoaded}
+        td #{median.firstPaint}
+        td #{median.loadTime}
         td #{median.SpeedIndex}
-    p Waterfall
-    img(src='#{median.images.waterfall}', alt='Waterfall view')
-    p Connection view
-    img(src='#{median.images.connectionView}', alt='Connnection view')
+        td #{median.fullyLoaded}
+        td #{median.connections}
+    if (median.userTimes) 
+      table
+        caption User timings
+        tr
+        each value, key in median.userTimes    
+          th #{key}
+        tr  
+        each value, key in median.userTimes       
+          td #{value}
+      
+        
+    h5 Waterfall
+    img(src='#{median.images.waterfall}', alt='Waterfall view', class='u-max-full-width')
+    h5 Connection view
+    img(src='#{median.images.connectionView}', alt='Connnection view', class='u-max-full-width')
