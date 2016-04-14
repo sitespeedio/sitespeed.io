@@ -7,7 +7,7 @@ a#webpagetest
 each view in ['firstView', 'repeatView']
   - var data = wpt[view];
   if data
-    p #{view}
+    h4 #{view}
     table
       tr
         th TTFB
@@ -19,7 +19,7 @@ each view in ['firstView', 'repeatView']
         td #{data.render}
         td #{data.fullyLoaded}
         td #{data.SpeedIndex}
-    p Waterfall
-    img(src='#{data.images.waterfall}', alt='Waterfall view')
-    p Connection view
-    img(src='#{data.images.connectionView}', alt='Connnection view')
+    h5 Waterfall
+    img(src='#{data.images.waterfall}', alt='Waterfall view', class='u-max-full-width')
+    h5 Connection view
+    img(src='#{data.images.connectionView}', alt='Connnection view', class='u-max-full-width')
