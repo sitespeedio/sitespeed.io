@@ -9,16 +9,32 @@ each view in ['firstView', 'repeatView']
   if data
     h4 #{view}
     table
+      caption Metrics
       tr
         th TTFB
         th Render
-        th fullyLoaded
+        th firstPaint
+        th loadTime
         th SpeedIndex
+        th fullyLoaded
+        th connections
       tr
         td #{data.TTFB}
         td #{data.render}
-        td #{data.fullyLoaded}
+        td #{data.firstPaint}
+        td #{data.loadTime}
         td #{data.SpeedIndex}
+        td #{data.fullyLoaded}
+        td #{data.connections}
+    if (data.userTimes) 
+      table
+        caption User timings
+        tr
+        each value, key in data.userTimes    
+          th #{key}
+        tr  
+        each value, key in data.userTimes       
+          td #{value}
     h5 Waterfall
     img(src='#{data.images.waterfall}', alt='Waterfall view', class='u-max-full-width')
     h5 Connection view
