@@ -9,6 +9,8 @@ const cli = require('../lib/support/cli'),
   difference = require('lodash.difference'),
   logging = require('../lib/support/logging'),
   log = require('intel'),
+  os = require('os'),
+  packageInfo = require('../package'),
   merge = require('lodash.merge'),
   loader = require('../lib/support/pluginLoader');
 
@@ -31,6 +33,7 @@ if (log.isEnabledFor(log.CRITICAL)) { // TODO change the threshold to VERBOSE be
   Promise.longStackTraces();
 }
 
+log.info('Versions OS: %s sitespeed.io: %s browsertime: %s coach: %s', os.platform() + ' ' + os.release(), packageInfo.version, packageInfo.dependencies.browsertime, packageInfo.dependencies.webcoach);
 
 loader.parsePluginNames(parsed.raw)
   .then((pluginNames) => {
