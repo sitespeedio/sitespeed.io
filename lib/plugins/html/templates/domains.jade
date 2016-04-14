@@ -9,7 +9,6 @@ mixin row(domain, items)
 block content
     h2 Domains
     table
-    caption Median metrics
       tr
         th Domain
         th blocked
@@ -29,5 +28,5 @@ block content
           td #{statsForDomain.send ? statsForDomain.send.median : 0} 
           td #{statsForDomain.wait ? statsForDomain.wait.median : 0}
           td #{statsForDomain.receive ? statsForDomain.receive.median : 0}
-          td #{statsForDomain.total ? statsForDomain.total.median : 'unknown'}
-          td #{statsForDomain.requests ? statsForDomain.requests : 'unknown'}
+          td #{statsForDomain.total.median}
+          td #{statsForDomain.requests}
