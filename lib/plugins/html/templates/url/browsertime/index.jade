@@ -16,30 +16,30 @@ a#timings
     if timings.firstPaint > -1
       tr 
         td First paint
-        td #{timings.firstPaint}  
+        td #{timings.firstPaint.toFixed(1)}  
     tr
       td RUM Speed Index
-      td #{timings.rumSpeedIndex}
+      td #{timings.rumSpeedIndex.toFixed(1)}
     tr
       td Fully loaded
-      td #{timings.fullyLoaded}  
+      td #{timings.fullyLoaded.toFixed(1)}  
     if visualMetrics
       tr
         td SpeedIndex
-        td #{visualMetrics.speedIndex}
+        td #{visualMetrics.speedIndex.toFixed(1)}
       tr
         td Render
-        td #{visualMetrics.firstVisualChange}
+        td #{visualMetrics.firstVisualChange.toFixed(1)}
       tr
         td Last visual change
-        td #{visualMetrics.lastVisualChange}      
+        td #{visualMetrics.lastVisualChange.toFixed(1)}      
     if (Object.keys(timings.userTimings.marks).length > 0)
       each value, name in timings.userTimings.marks
         tr
           td #{value.name}
-          td #{value.startTime}
+          td #{value.startTime.toFixed(1)}
     if (Object.keys(timings.userTimings.measures).length > 0)
       each value, name in timings.userTimings.measures
         tr
           td #{value.name}
-          td #{value.startTime}
+          td #{value.startTime.toFixed(1)}
