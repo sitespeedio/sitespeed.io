@@ -50,7 +50,7 @@ footer {
   background-color: #f0ad4e;
 }
 .error {
-    background-color: #d9534f;
+  background-color: #d9534f;
 }
 
 ul.menu {
@@ -84,4 +84,33 @@ ul.menu {
 
 .offendingurl {
   max-width: 900px;
+}
+
+.summarybox {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.summarybox.ok {
+  color: #468847;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+.summarybox.warning {
+  color: #c09853;
+  background-color: #fcf8e3;
+  border-color: #fbeed5;
+}
+.summarybox.error {
+  color: #b94a48;
+  background-color: #f2dede;
+  border-color: #eed3d7;
+}
+
+.summarynumber {
+  font-size: 3rem;
+  line-height: 3rem;
+  font-weight: bold;
 }
