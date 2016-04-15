@@ -14,7 +14,7 @@ block content
     include ./summaryBox.jade
       
     -run = 0            
-    h3 This is info from the #{run} run
+    h3 This is info from the #{run+1} run
     if pageInfo.errors
         p Errors
         .errors= JSON.stringify(pageInfo.errors, null, 2)
