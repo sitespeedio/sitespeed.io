@@ -1,0 +1,34 @@
+- const btStatistics = pageInfo.data.browsertime.page[0].statistics
+h2 Summary
+- timingMetrics = ['firstPaint', 'fullyLoaded', 'rumSpeedIndex']
+table
+ tr
+  th metric
+  th min
+  th median
+  th mean
+  th max
+ each timing in timingMetrics   
+  tr
+    td #{timing}
+    td #{btStatistics.timings[timing].min)
+    td #{btStatistics.timings[timing].median)
+    td #{btStatistics.timings[timing].mean)
+    td #{btStatistics.timings[timing].max)
+ if btStatistics.timings.userTimings
+  if btStatistics.timings.userTimings.marks        
+    each userTimings, name in btStatistics.timings.userTimings.marks
+      tr
+        td #{name}
+        td #{userTimings.min)
+        td #{userTimings.median)
+        td #{userTimings.mean)
+        td #{userTimings.max)
+ if btStatistics.visualMetrics      
+  each visualMetric, name in btStatistics.visualMetrics
+    tr
+      td #{name}
+      td #{visualMetric.min)
+      td #{visualMetric.median)
+      td #{visualMetric.mean)
+      td #{visualMetric.max)

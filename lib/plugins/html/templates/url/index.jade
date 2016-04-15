@@ -10,9 +10,8 @@ block content
         - value = Number(index) + 1
         a(href='./#{index}.html') #{value} 
         | - 
-    
-    h2 Summary
-    p TODO We are missing a good summary for this page, median speed Index etc.
+         
+    include ./summaryBox.jade
       
     -run = 0            
     h3 This is info from the #{run} run
