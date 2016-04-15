@@ -18,8 +18,8 @@ block content
         .summarybox.ok Best Practice score
           .summarynumber #{coach.summary.bestpractice.score.median}
       .one-third.column  
-        .summarybox.ok 
-          .summarynumber #{coach.summary.bestpractice.score.median}  
+        .summarybox.ok Transfer size per page
+          .summarynumber #{helper.getKbSize(snufkin.summary.transferSize.median, true)}  
       .one-third.column  
-        .summarybox.ok 
-          .summarynumber #{coach.summary.bestpractice.score.median}
+        .summarybox.ok Image requests 
+          .summarynumber #{snufkin.summary.image.requests.median}
