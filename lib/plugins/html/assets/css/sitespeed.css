@@ -114,3 +114,8 @@ ul.menu {
   line-height: 3rem;
   font-weight: bold;
 }
+
+.summarysmall {
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+}

@@ -1,27 +1,52 @@
 extends ./layout.jade
 
+mixin box(name, node, limit)
+  -median=node.median
+  -max=node.max
+  .summarybox.ok=name
+    .summarynumber #{median} 
+      span.summarysmall (#{max}) 
+
+mixin boxSize(name, node, limit)
+  -median=node.median
+  -max=node.max
+  .summarybox.ok=name
+    .summarynumber #{helper.getKbSize(median, true)} 
+      span.summarysmall (#{helper.getKbSize(max, true)}) 
+
 block content
     h2 Summary
-    p TODO Should we have the old summary look and feel with some important metrics red/yellow/green and how do we make them clickable?
+    p TODO There's alot we can do here. Now everything is hardcoded, lets fix that later. Can we make the numbers clickable/linkable?
     
-    if (coach)
-      .row
-        .one-third.column
-            .summarybox.ok Overall Score 
-              .summarynumber #{coach.summary.score.median} 
-        .one-third.column  
-          .summarybox.warning Performance score 
-            .summarynumber #{coach.summary.performance.score.median}
-        .one-third.column  
-          .summarybox.ok Accessbility score 
-            .summarynumber #{coach.summary.accessibility.score.median}
+    .row
+      .one-third.column
+        +box('Overall score', coach.summary.score, '')
+      .one-third.column  
+        +box('Performance score', coach.summary.performance.score, '')
+      .one-third.column  
+        +box('Accessibility score', coach.summary.accessibility.score, '')  
+          
     .row
       .one-third.column  
-        .summarybox.ok Best Practice score
-          .summarynumber #{coach.summary.bestpractice.score.median}
+        +box('Best Practice score', coach.summary.bestpractice.score, '')
       .one-third.column  
-        .summarybox.ok Transfer size per page
-          .summarynumber #{helper.getKbSize(pagexray.summary.transferSize.median, true)}  
+        +box('Total requests', pagexray.summary.requests, '')  
+      .one-third.column 
+        +box('Image requests', pagexray.summary.image.requests, '') 
+    .row    
+      .one-third.column 
+        +box('CSS requests', pagexray.summary.css.requests, '') 
+      .one-third.column 
+        +box('Javascript requests', pagexray.summary.javascript.requests, '') 
+      .one-third.column 
+        +box('Font requests', pagexray.summary.font.requests, '') 
+    .row
       .one-third.column  
-        .summarybox.ok Image requests 
-          .summarynumber #{pagexray.summary.image.requests.median}
+        +boxSize('Total size',  pagexray.summary.transferSize, '')
+      .one-third.column  
+        +boxSize('Image size', pagexray.summary.image.transferSize, '')  
+      .one-third.column 
+        +boxSize('Javascript size', pagexray.summary.javascript.transferSize, '')     
+
+      
+    
