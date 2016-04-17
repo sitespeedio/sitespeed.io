@@ -12,8 +12,8 @@ block content
     else
       | Quick links
       ul.menu
-        if pageInfo.data.snufkin
-          if pageInfo.data.snufkin.run
+        if pageInfo.data.pagexray
+          if pageInfo.data.pagexray.run
             li: a(href='#info') Page summary
         if pageInfo.data.coach
           if pageInfo.data.coach.run
@@ -33,9 +33,9 @@ block content
         if pageInfo.data.browsertime.run
           include ./browsertime/index.jade
 
-      if pageInfo.data.snufkin
-        if pageInfo.data.snufkin.run
-          include ./snufkin/index.jade
+      if pageInfo.data.pagexray
+        if pageInfo.data.pagexray.run
+          include ./pagexray/index.jade
 
       if pageInfo.data.webpagetest
         if pageInfo.data.webpagetest.run

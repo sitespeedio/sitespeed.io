@@ -14,7 +14,7 @@ block content
             th total requests
             th performance score
         each pageInfo, url in pages
-            - p = pageInfo.data.snufkin.pageSummary[0]
+            - p = pageInfo.data.pagexray.pageSummary[0]
             tr
                 td.url.pagesurl
                     a(href='#{pageInfo.path}/index.html')= url

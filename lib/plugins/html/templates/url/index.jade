@@ -26,8 +26,8 @@ block content
         if pageInfo.data.browsertime
           if pageInfo.data.browsertime.page
             li: a(href='#timings') Timings
-        if pageInfo.data.snufkin
-          if pageInfo.data.snufkin.pageSummary
+        if pageInfo.data.pagexray
+          if pageInfo.data.pagexray.pageSummary
             li: a(href='#info') Info
         if pageInfo.data.webpagetest
           li: a(href='#webpagetest') WebPageTest
@@ -40,9 +40,9 @@ block content
         if pageInfo.data.browsertime.page
           include ./browsertime/index.jade
 
-      if pageInfo.data.snufkin
-        if pageInfo.data.snufkin.pageSummary
-          include ./snufkin/index.jade
+      if pageInfo.data.pagexray
+        if pageInfo.data.pagexray.pageSummary
+          include ./pagexray/index.jade
 
       if pageInfo.data.webpagetest
           include ./webpagetest/index.jade

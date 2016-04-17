@@ -78,9 +78,9 @@
     "moment": "2.12.0",
     "node-slack": "0.0.7",
     "node-uuid": "1.4.7",
+    "pagexray": "0.5.0",
     "phantomjs-prebuilt": "2.1.7",
     "simplecrawler": "0.6.2",
-    "snufkin": "0.3.8",
     "webcoach": "0.20.0",
     "webpagetest": "0.3.4",
     "yargs": "4.4.0"

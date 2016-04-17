@@ -1,16 +1,16 @@
 h2 Page summary
-a#snufkin
+a#pagexray
 
-- const snufkin = pageInfo.data.snufkin.run || pageInfo.data.snufkin.pageSummary[0];
+- const pagexray = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary[0];
 
-p The page uses #{snufkin.httpVersion}
+p The page uses #{pagexray.httpVersion}
 
 table
   caption Requests per response code
   tr
     th Response code
     th Total
-  each total, code in snufkin.responseCodes
+  each total, code in pagexray.responseCodes
     tr
       td #{code}
       td #{total}
@@ -27,7 +27,7 @@ table
       th Header Size
       th Content Size
       th Request(s)
-        each data, type in snufkin.contentTypes
+        each data, type in pagexray.contentTypes
           - totalContentSize += data.contentSize
           - totalTransferSize += data.transferSize
           - totalHeaderSize += data.headerSize
@@ -56,9 +56,9 @@ table
       th max
     tr 
       td Expires
-      each data, type in snufkin.expireStats
+      each data, type in pagexray.expireStats
         td #{helper.prettyPrintSeconds(data)}
     tr 
       td Last modified
-      each data, type in snufkin.lastModifiedStats
+      each data, type in pagexray.lastModifiedStats
         td #{helper.prettyPrintSeconds(data)}      

@@ -3,23 +3,25 @@ extends ./layout.jade
 block content
     h2 Summary
     p TODO Should we have the old summary look and feel with some important metrics red/yellow/green and how do we make them clickable?
-    .row
-      .one-third.column
-        .summarybox.ok Overall Score 
-          .summarynumber #{coach.summary.score.median} 
-      .one-third.column  
-        .summarybox.warning Performance score 
-          .summarynumber #{coach.summary.performance.score.median}
-      .one-third.column  
-        .summarybox.ok Accessbility score 
-          .summarynumber #{coach.summary.accessibility.score.median}
+    
+    if (coach)
+      .row
+        .one-third.column
+            .summarybox.ok Overall Score 
+            .summarynumber #{coach.summary.score.median} 
+        .one-third.column  
+          .summarybox.warning Performance score 
+            .summarynumber #{coach.summary.performance.score.median}
+        .one-third.column  
+          .summarybox.ok Accessbility score 
+            .summarynumber #{coach.summary.accessibility.score.median}
     .row
       .one-third.column  
         .summarybox.ok Best Practice score
           .summarynumber #{coach.summary.bestpractice.score.median}
       .one-third.column  
         .summarybox.ok Transfer size per page
-          .summarynumber #{helper.getKbSize(snufkin.summary.transferSize.median, true)}  
+          .summarynumber #{helper.getKbSize(pagexray.summary.transferSize.median, true)}  
       .one-third.column  
         .summarybox.ok Image requests 
-          .summarynumber #{snufkin.summary.image.requests.median}
+          .summarynumber #{pagexray.summary.image.requests.median}
