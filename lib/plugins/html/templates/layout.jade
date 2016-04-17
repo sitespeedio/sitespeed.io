@@ -5,17 +5,17 @@ html(lang='en')
         meta(name='viewport', content='width=device-width, initial-scale=1')
         title= pageTitle
         meta(name='description', content='#{pageDescription}')
-        link(rel='stylesheet', href='#{path}css/normalize.css')
-        link(rel='stylesheet', href='#{path}css/skeleton.css')
-        link(rel='stylesheet', href='#{path}css/navigation.css')
-        link(rel='stylesheet', href='#{path}css/sitespeed.css')
+        link(rel='stylesheet', href='#{rootPath}/css/normalize.css')
+        link(rel='stylesheet', href='#{rootPath}/css/skeleton.css')
+        link(rel='stylesheet', href='#{rootPath}/css/navigation.css')
+        link(rel='stylesheet', href='#{rootPath}/css/sitespeed.css')
         block inlineStyles
 
     body
       include ./header.jade
-      .container 
-        
+      .container
+
         block content
-      
+
         include ./footer.jade
-      script(src='#{path}js/sortable.min.js')
+      script(src='#{rootPath}/js/sortable.min.js')

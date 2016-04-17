@@ -4,21 +4,21 @@ script(type='text/javascript').
   function toggleRow() {
     var rows = document.getElementsByClassName("hideable");
     for (var i = 0; i < rows.length; ++i) {
-      
+
       var status = rows[i].currentStyle ? rows[i].currentStyle.display :
                               getComputedStyle(rows[i], null).display;
-      
+
       rows[i].style.display = (status === 'none') ? "table-row" : "none";
-      
-    }  
-  } 
-   
+
+    }
+  }
+
 .row
   .column
     a#coach
     .row
       .four.columns
-        img.u-max-full-width(src='#{path}img/coach.png', alt='Im the coach')
+        img.u-max-full-width(src='#{rootPath}/img/coach.png', alt='Im the coach')
       .eight.columns
         h3 Coach score
         ul
@@ -28,7 +28,7 @@ script(type='text/javascript').
           li Best practice score #{coach.bestpractice.score}
     .row
       .twelve.columns
-        h3 Accessibility advice (#{coach.accessibility.score}) 
+        h3 Accessibility advice (#{coach.accessibility.score})
         button.button-primary(onclick='toggleRow();') Show/hide details
         if coach.accessibility.score < 100
           table
@@ -42,7 +42,7 @@ script(type='text/javascript').
                   td #{rule.title} (#{name})
                   td #{rule.advice}
                   td #{rule.score}
-                - if (rule.offending.length > 0)  
+                - if (rule.offending.length > 0)
                   tr.hideable
                     td.url.offendingurl(colspan='3') !{rule.offending.join('<br>')}
         else
@@ -62,10 +62,10 @@ script(type='text/javascript').
                   td #{rule.title} (#{name})
                   td #{rule.advice}
                   td #{rule.score}
-                - if (rule.offending.length > 0)   
+                - if (rule.offending.length > 0)
                   tr.hideable
                     td.url.offendingurl(colspan='3') !{rule.offending.join('<br>')}
-                
+
         else
           p You have a perfect performance score!
 
@@ -83,9 +83,9 @@ script(type='text/javascript').
                   td #{rule.title} (#{name})
                   td #{rule.advice}
                   td #{rule.score}
-                - if (rule.offending.length > 0)   
+                - if (rule.offending.length > 0)
                   tr.hideable
-                    td.url.offendingurl(colspan='3') !{rule.offending.join('<br>')}  
+                    td.url.offendingurl(colspan='3') !{rule.offending.join('<br>')}
         else
           p Your best practice score is perfect!
 

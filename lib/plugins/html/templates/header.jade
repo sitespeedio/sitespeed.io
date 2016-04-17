@@ -2,17 +2,17 @@
   .navgrid
     .logo
         a(href='https://www.sitespeed.io')
-          img.navbar-brand(src='#{path}img/sitespeed.io-logo.png', width='162', height='50', alt='sitespeed.io logo')
+          img.navbar-brand(src='#{rootPath}/img/sitespeed.io-logo.png', width='162', height='50', alt='sitespeed.io logo')
     ul
       li
         - active = menu==='summary' ? 'active' : ''
-        a(href='#{path}index.html', class=active) Summary
+        a(href='#{rootPath}/index.html', class=active) Summary
       li
         - active = menu==='domains' ? 'active' : ''
-        a(href='#{path}domains.html', class=active) Domains
+        a(href='#{rootPath}/domains.html', class=active) Domains
       li
         - active = menu==='assets' ? 'active' : ''
-        a(href='#{path}assets.html', class=active) Assets
+        a(href='#{rootPath}/assets.html', class=active) Assets
       li
         - active = menu==='pages' ? 'active' : ''
-        a(href='#{path}pages.html', class=active) Pages
+        a(href='#{rootPath}/pages.html', class=active) Pages
