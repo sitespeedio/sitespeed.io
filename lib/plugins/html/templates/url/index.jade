@@ -4,17 +4,17 @@ block content
     h1 Page summary
     h5 #{url}
     p Tested using #{options.browsertime.browser} #{options.browsertime.iterations} time(s)
-    
-    p Runs:  
+             
+    include ./summaryBox.jade
+
+    p All runs:  
       each val, index in runPages
         - value = Number(index) + 1
         a(href='./#{index}.html') #{value} 
         | - 
-         
-    include ./summaryBox.jade
       
     -run = 0            
-    h3 This is info from the #{run+1} run
+    h3 This is statistics from run #{run+1}
     if pageInfo.errors
         p Errors
         .errors= JSON.stringify(pageInfo.errors, null, 2)
