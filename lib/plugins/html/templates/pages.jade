@@ -13,16 +13,17 @@ block content
             th total size (kb)
             th total requests
             th performance score
-        each pageInfo, url in pages   
+        each pageInfo, url in pages
+            - p = pageInfo.data.snufkin.pageSummary[0]
             tr
-                td
-                  .url.pagesurl
+                td.url.pagesurl
                     a(href='#{pageInfo.path}/index.html')= url
-                td #{pageInfo.data.snufkin.pageSummary[0].contentTypes.javascript?helper.getKbSize(pageInfo.data.snufkin.pageSummary[0].contentTypes.javascript.transferSize, false):0} 
-                td #{pageInfo.data.snufkin.pageSummary[0].contentTypes.css?helper.getKbSize(pageInfo.data.snufkin.pageSummary[0].contentTypes.css.transferSize, false):0}  
-                td #{pageInfo.data.snufkin.pageSummary[0].contentTypes.image.transferSize?helper.getKbSize(pageInfo.data.snufkin.pageSummary[0].contentTypes.image.transferSize, false):0}  
-                td #{helper.getKbSize(pageInfo.data.snufkin.pageSummary[0].transferSize, false)}
-                td #{pageInfo.data.snufkin.pageSummary[0].requests} 
+                td #{p.contentTypes.javascript?helper.getKbSize(p.contentTypes.javascript.transferSize, false):0}
+                td #{p.contentTypes.css?helper.getKbSize(p.contentTypes.css.transferSize, false):0}
+                td #{p.contentTypes.image.transferSize?helper.getKbSize(p.contentTypes.image.transferSize, false):0}
+                td #{helper.getKbSize(p.transferSize, false)}
+                td #{p.requests}
                 td
-                  - label = 'label ' +  helper.getLabel(pageInfo.data.browsertime.page[0].browserScripts[0].coach.coachAdvice.advice.performance.score)
-                  span(class=label)  #{pageInfo.data.browsertime.page[0].browserScripts[0].coach.coachAdvice.advice.performance.score}
+                    - score = pageInfo.data.browsertime.page[0].browserScripts[0].coach.coachAdvice.advice.performance.score
+                    - label = 'label ' +  helper.getLabel(score)
+                    span(class=label)  #{score}
