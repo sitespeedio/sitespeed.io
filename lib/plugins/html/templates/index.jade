@@ -1,16 +1,16 @@
 extends ./layout.jade
 
 mixin box(name, node, limit)
-  -median=node.median
-  -max=node.max
-  .summarybox.ok=name
+  -median= node.median
+  -max= node.max
+  .summarybox.ok= name
     .summarynumber #{median} 
       span.summarysmall (#{max}) 
 
 mixin boxSize(name, node, limit)
-  -median=node.median
-  -max=node.max
-  .summarybox.ok=name
+  -median= node.median
+  -max= node.max
+  .summarybox.ok= name
     .summarynumber #{helper.getKbSize(median, true)} 
       span.summarysmall (#{helper.getKbSize(max, true)}) 
 
@@ -47,6 +47,3 @@ block content
         +boxSize('Image size', pagexray.summary.image.transferSize, '')  
       .one-third.column 
         +boxSize('Javascript size', pagexray.summary.javascript.transferSize, '')     
-
-      
-    
