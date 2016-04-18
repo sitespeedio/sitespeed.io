@@ -13,9 +13,9 @@ mixin rows(items)
                   .url.assetsurl
                     a(href=item.url)= item.url
                 td= item.type
-                td= h.time.duration(item.lastModification)
-                td= h.time.duration(item.cacheTime)
-                td= h.size.format(item.size)
+                td(data-value='#{item.lastModification}')= h.time.duration(item.lastModification)
+                td(data-value='#{item.cacheTime}')= h.time.duration(item.cacheTime)
+                td(data-value='#{item.size}')= h.size.format(item.size)
                 td= item.requestCount
 
 block content
