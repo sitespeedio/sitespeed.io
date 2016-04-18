@@ -20,6 +20,6 @@ mixin rows(items)
 
 block content
     h2 Most used assets
-    table.sortable-theme-bootstrap(data-sortable, id='assets')
+    table(data-sortable, id='assets')
         +rowHeading(['url', 'type', 'time since last modified', 'cache time', 'size', 'count'])
         +rows(assets)
