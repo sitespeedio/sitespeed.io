@@ -4,46 +4,46 @@ mixin box(name, node, limit)
   -median= node.median
   -max= node.max
   .summarybox.ok= name
-    .summarynumber #{median} 
-      span.summarysmall (#{max}) 
+    .summarynumber #{median}
+      span.summarysmall (#{max})
 
 mixin boxSize(name, node, limit)
   -median= node.median
   -max= node.max
   .summarybox.ok= name
-    .summarynumber #{helper.getKbSize(median, true)} 
-      span.summarysmall (#{helper.getKbSize(max, true)}) 
+    .summarynumber #{h.size.format(median)}
+      span.summarysmall (#{h.size.format(max)})
 
 block content
     h2 Summary
     p TODO There's alot we can do here. Now everything is hardcoded, lets fix that later. Can we make the numbers clickable/linkable?
-    
+
     .row
       .one-third.column
         +box('Overall score', coach.summary.score, '')
-      .one-third.column  
+      .one-third.column
         +box('Performance score', coach.summary.performance.score, '')
-      .one-third.column  
-        +box('Accessibility score', coach.summary.accessibility.score, '')  
-          
+      .one-third.column
+        +box('Accessibility score', coach.summary.accessibility.score, '')
+
     .row
-      .one-third.column  
+      .one-third.column
         +box('Best Practice score', coach.summary.bestpractice.score, '')
-      .one-third.column  
-        +box('Total requests', pagexray.summary.requests, '')  
-      .one-third.column 
-        +box('Image requests', pagexray.summary.image.requests, '') 
-    .row    
-      .one-third.column 
-        +box('CSS requests', pagexray.summary.css.requests, '') 
-      .one-third.column 
-        +box('Javascript requests', pagexray.summary.javascript.requests, '') 
-      .one-third.column 
-        +box('Font requests', pagexray.summary.font.requests, '') 
+      .one-third.column
+        +box('Total requests', pagexray.summary.requests, '')
+      .one-third.column
+        +box('Image requests', pagexray.summary.image.requests, '')
     .row
-      .one-third.column  
+      .one-third.column
+        +box('CSS requests', pagexray.summary.css.requests, '')
+      .one-third.column
+        +box('Javascript requests', pagexray.summary.javascript.requests, '')
+      .one-third.column
+        +box('Font requests', pagexray.summary.font.requests, '')
+    .row
+      .one-third.column
         +boxSize('Total size',  pagexray.summary.transferSize, '')
-      .one-third.column  
-        +boxSize('Image size', pagexray.summary.image.transferSize, '')  
-      .one-third.column 
-        +boxSize('Javascript size', pagexray.summary.javascript.transferSize, '')     
+      .one-third.column
+        +boxSize('Image size', pagexray.summary.image.transferSize, '')
+      .one-third.column
+        +boxSize('Javascript size', pagexray.summary.javascript.transferSize, '')

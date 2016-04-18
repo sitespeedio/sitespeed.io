@@ -16,15 +16,16 @@ block content
             th performance score
         each pageInfo, url in pages
             - p = pageInfo.data.pagexray.pageSummary[0]
+            - t = p.contentTypes
             tr
                 td.url.pagesurl
                     a(href='#{pageInfo.path}/index.html')= url
-                td #{p.contentTypes.javascript?helper.getKbSize(p.contentTypes.javascript.transferSize, false):0}
-                td #{p.contentTypes.css?helper.getKbSize(p.contentTypes.css.transferSize, false):0}
-                td #{p.contentTypes.image.transferSize?helper.getKbSize(p.contentTypes.image.transferSize, false):0}
-                td #{helper.getKbSize(p.transferSize, false)}
+                td #{h.size.asKb((t.javascript || {}).transferSize)}
+                td #{h.size.asKb((t.css || {}).transferSize)}
+                td #{h.size.asKb((t.image || {}).transferSize)}
+                td #{h.size.asKb(p.transferSize)}
                 td #{p.requests}
                 td
                     - score = pageInfo.data.browsertime.page[0].browserScripts[0].coach.coachAdvice.advice.performance.score
-                    - label = 'label ' +  helper.getLabel(score)
+                    - label = 'label ' +  h.label(score)
                     span(class=label)  #{score}

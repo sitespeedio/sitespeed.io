@@ -13,9 +13,9 @@ mixin rows(items)
                   .url.assetsurl
                     a(href=item.url)= item.url
                 td= item.type
-                td= helper.prettyPrintSeconds(item.lastModification)
-                td= helper.prettyPrintSeconds(item.cacheTime)
-                td= helper.getKbSize(item.size, true)
+                td= h.time.duration(item.lastModification)
+                td= h.time.duration(item.cacheTime)
+                td= h.size.format(item.size)
                 td= item.requestCount
 
 block content
