@@ -1,15 +1,33 @@
+mixin adviceInfo(name, perfectScore, node)
+  h3 #{name} (#{node.score})
+  button.button-primary(onclick='toggleRow();') Show/hide details
+  if node.score < 100
+    table
+      tr
+        th Title
+        th Advice
+        th Score
+        each advice, adviceName in node.adviceList
+          if advice.score < 100
+            tr
+              td #{advice.title} (#{adviceName})
+              td #{advice.advice}
+              td #{advice.score}
+          - if (advice.offending.length > 0)
+            tr.hideable
+              td.url.offendingurl(colspan='3') !{advice.offending.join('<br>')}
+  else
+    p #{perfectScore}
+
 - const coach = pageInfo.data.coach ? pageInfo.data.coach.run.advice : pageInfo.data.browsertime.page[0].browserScripts[run].coach.coachAdvice.advice;
 
 script(type='text/javascript').
   function toggleRow() {
     var rows = document.getElementsByClassName("hideable");
     for (var i = 0; i < rows.length; ++i) {
-
       var status = rows[i].currentStyle ? rows[i].currentStyle.display :
                               getComputedStyle(rows[i], null).display;
-
       rows[i].style.display = (status === 'none') ? "table-row" : "none";
-
     }
   }
 
@@ -28,66 +46,11 @@ script(type='text/javascript').
           li Best practice score #{coach.bestpractice.score}
     .row
       .twelve.columns
-        h3 Accessibility advice (#{coach.accessibility.score})
-        button.button-primary(onclick='toggleRow();') Show/hide details
-        if coach.accessibility.score < 100
-          table
-            tr
-              th Title
-              th Advice
-              th Score
-            each rule, name in coach.accessibility.adviceList
-              if rule.score < 100
-                tr
-                  td #{rule.title} (#{name})
-                  td #{rule.advice}
-                  td #{rule.score}
-                - if (rule.offending.length > 0)
-                  tr.hideable
-                    td.url.offendingurl(colspan='3') !{rule.offending.join('<br>')}
-        else
-          p You have a perfect accessibility score!
-
-        h3 Performance advice (#{coach.performance.score})
-        button.button-primary(onclick='toggleRow();') Show/hide details
-        if coach.performance.score < 100
-          table
-            tr
-              th Title
-              th Advice
-              th Score
-            each rule, name in coach.performance.adviceList
-              if rule.score < 100
-                tr
-                  td #{rule.title} (#{name})
-                  td #{rule.advice}
-                  td #{rule.score}
-                - if (rule.offending.length > 0)
-                  tr.hideable
-                    td.url.offendingurl(colspan='3') !{rule.offending.join('<br>')}
-
-        else
-          p You have a perfect performance score!
-
-        h3 Best practice advice (#{coach.bestpractice.score})
-        button.button-primary(onclick='toggleRow();') Show/hide details
-        if coach.bestpractice.score < 100
-          table
-            tr
-              th Title
-              th Advice
-              th Score
-            each rule, name in coach.bestpractice.adviceList
-              if rule.score < 100
-                tr
-                  td #{rule.title} (#{name})
-                  td #{rule.advice}
-                  td #{rule.score}
-                - if (rule.offending.length > 0)
-                  tr.hideable
-                    td.url.offendingurl(colspan='3') !{rule.offending.join('<br>')}
-        else
-          p Your best practice score is perfect!
+        +adviceInfo('Accessibility advice','You have a perfect accessibility score!',coach.accessibility)
+        
+        +adviceInfo('Performance advice','You have a perfect Performance score!',coach.performance)
+        
+        +adviceInfo('Best practice advice','Your best practice score is perfect!',coach.bestpractice)
 
         a#info
         h2 Info
