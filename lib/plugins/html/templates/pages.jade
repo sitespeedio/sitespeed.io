@@ -26,6 +26,6 @@ block content
                 td(data-value='#{p.transferSize}') #{h.size.asKb(p.transferSize)}
                 td #{p.requests}
                 - score = pageInfo.data.browsertime.page[0].browserScripts[0].coach.coachAdvice.advice.performance.score
-                - label = 'label ' +  h.label(score)
+                - label = 'label ' +  h.scoreLabel(score)
                 td(data-value='#{score}')
                     span(class=label)  #{score}
