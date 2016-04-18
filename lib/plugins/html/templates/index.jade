@@ -47,3 +47,11 @@ block content
         +boxSize('Image size', pagexray.summary.image.transferSize, '')
       .one-third.column
         +boxSize('Javascript size', pagexray.summary.javascript.transferSize, '')
+    if (webpagetest)
+      .row
+        .one-third.column
+          +box('WPT render (firstView)',  webpagetest.summary.firstView.render, '')
+        .one-third.column
+          +box('WPT SpeedIndex (firstView)', webpagetest.summary.firstView.SpeedIndex, '')
+        .one-third.column
+          +box('WPT Fully loaded (firstView)', webpagetest.summary.firstView.fullyLoaded,'')
