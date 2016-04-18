@@ -8,17 +8,18 @@ mixin row(domain, items)
 
 block content
     h2 Domains
-    table
-      tr
-        th Domain
-        th blocked
-        th dns
-        th connect
-        th send
-        th wait
-        th receive
-        th total
-        th requests 
+    table(data-sortable, id='domains')
+      thead
+        tr
+          th Domain
+          th blocked
+          th dns
+          th connect
+          th send
+          th wait
+          th receive
+          th total
+          th requests 
       each statsForDomain, domainUrl in domainStats  
         tr
           td #{domainUrl}
