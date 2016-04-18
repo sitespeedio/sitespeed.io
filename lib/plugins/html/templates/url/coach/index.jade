@@ -60,4 +60,4 @@ script(type='text/javascript').
           each value, name in coach.info
             tr
               td #{name}
-              td #{value}
+              td #{JSON.stringify(value, null, 2)}
