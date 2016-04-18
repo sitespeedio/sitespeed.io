@@ -3,10 +3,12 @@ mixin adviceInfo(name, perfectScore, node)
   button.button-primary(onclick='toggleRow();') Show/hide details
   if node.score < 100
     table
-      tr
-        th Title
-        th Advice
-        th Score
+      thead
+        tr
+          th Title
+          th Advice
+          th Score
+      tbody    
         each advice, adviceName in node.adviceList
           if advice.score < 100
             tr
