@@ -1,3 +1,4 @@
 docs/*
 sitespeed-result/*
 lib/plugins/yslow/scripts/*
+lib/plugins/html/assets/js/*
