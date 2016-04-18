@@ -4,8 +4,9 @@ block content
   .row
     .column
       h2 Pages
-      table(data-sortable, id='pages')
-        tr
+      table.sortable-theme-bootstrap(data-sortable, id='pages')
+        thead
+          tr
             th url
             th js size (kb)
             th css size (kb)
