@@ -86,6 +86,8 @@ ul.menu {
   max-width: 900px;
 }
 
+/* Boxes on the start summary page */
+
 .summarybox {
   padding: 15px;
   margin-bottom: 20px;
@@ -118,4 +120,11 @@ ul.menu {
 .summarysmall {
   font-size: 1.5rem;
   line-height: 1.5rem;
+}
+
+/* Large */
+
+.large {
+  font-size: 2rem;
+  line-height: 2rem;
 }

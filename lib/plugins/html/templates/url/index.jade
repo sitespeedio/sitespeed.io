@@ -7,13 +7,13 @@ block content
 
     include ./summaryBox.jade
 
-    p All runs:
+    .large All runs: 
       each val, index in runPages
         - value = Number(index) + 1
         a(href='./#{index}.html') #{value}
         if (value !== Object.keys(runPages).length)
           | -
-
+    p      
     -run = 0
     h3 This is statistics from run #{run+1}
     if pageInfo.errors
