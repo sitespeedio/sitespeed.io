@@ -1,34 +1,35 @@
 - const btStatistics = pageInfo.data.browsertime.page[0].statistics
 h2 Summary
 - timingMetrics = ['firstPaint', 'fullyLoaded', 'rumSpeedIndex']
-table
-	tr
-		th metric
-		th min
-		th median
-		th mean
-		th max
-	each timing in timingMetrics   
+.responsive
+	table
 		tr
-			td #{timing}
-			td #{btStatistics.timings[timing].min}
-			td #{btStatistics.timings[timing].median}
-			td #{btStatistics.timings[timing].mean}
-			td #{btStatistics.timings[timing].max}
-	if btStatistics.timings.userTimings
-		if btStatistics.timings.userTimings.marks        
-			each userTimings, name in btStatistics.timings.userTimings.marks
-				tr
-					td #{name}
-					td #{userTimings.min}
-					td #{userTimings.median}
-					td #{userTimings.mean}
-					td #{userTimings.max}
-	if btStatistics.visualMetrics      
-		each visualMetric, name in btStatistics.visualMetrics
+			th.text metric
+			th min
+			th median
+			th mean
+			th max
+		each timing in timingMetrics   
 			tr
-				td #{name}
-				td #{visualMetric.min}
-				td #{visualMetric.median}
-				td #{visualMetric.mean}
-				td #{visualMetric.max}
+				td.text(data-title='metric') #{timing}
+				td(data-title='min') #{btStatistics.timings[timing].min}
+				td(data-title='median') #{btStatistics.timings[timing].median}
+				td(data-title='mean') #{btStatistics.timings[timing].mean}
+				td(data-title='max') #{btStatistics.timings[timing].max}
+		if btStatistics.timings.userTimings
+			if btStatistics.timings.userTimings.marks        
+				each userTimings, name in btStatistics.timings.userTimings.marks
+					tr
+						td.text(data-title='#{name}') #{name}
+						td(data-title='min') #{userTimings.min}
+						td(data-title='median') #{userTimings.median}
+						td(data-title='mean') #{userTimings.mean}
+						td(data-title='max') #{userTimings.max}
+		if btStatistics.visualMetrics      
+			each visualMetric, name in btStatistics.visualMetrics
+				tr
+					td.text(data-title='#{name}') #{name}
+					td(data-title='min') #{visualMetric.min}
+					td(data-title='median') #{visualMetric.median}
+					td(data-title='mean') #{visualMetric.mean}
+					td(data-title='max') #{visualMetric.max}

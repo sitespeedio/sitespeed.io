@@ -8,7 +8,7 @@ block content
         table(data-sortable, id='pages')
           thead
             tr
-              th url
+              th.text url
               th js size (kb)
               th css size (kb)
               th image size (kb)
@@ -19,7 +19,7 @@ block content
               - p = pageInfo.data.pagexray.pageSummary[0]
               - t = p.contentTypes
               tr
-                  td.url.pagesurl(data-title='URL')
+                  td.text.url.pagesurl(data-title='URL')
                       a(href='#{pageInfo.path}/index.html')= url
                   td(data-title='Javascript size', data-value='#{(t.javascript || {}).transferSize}') #{h.size.asKb((t.javascript || {}).transferSize)}
                   td(data-title='CSS size',data-value='#{(t.css || {}).transferSize}') #{h.size.asKb((t.css || {}).transferSize)}

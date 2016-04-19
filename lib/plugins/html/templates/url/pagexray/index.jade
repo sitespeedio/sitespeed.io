@@ -8,12 +8,12 @@ p The page uses #{pagexray.httpVersion}
 table
   caption Requests per response code
   tr
-    th Response code
-    th Total
+    th.text Response code
+    th.text Total
   each total, code in pagexray.responseCodes
     tr
-      td #{code}
-      td #{total}
+      td.text #{code}
+      td.text #{total}
 
   - totalContentSize = 0
   - totalTransferSize = 0
@@ -22,7 +22,7 @@ table
   table
     caption Requests and sizes per content type
     tr
-      th Content
+      th.text Content
       th Transfer Size
       th Header Size
       th Content Size
@@ -33,7 +33,7 @@ table
           - totalHeaderSize += data.headerSize > 0 ? data.headerSize : 0
           - totalRequests += data.requests
           tr
-            td #{type}
+            td.text #{type}
             td #{h.size.format(data.transferSize)}
             td #{data.headerSize > 0 ? h.size.format(data.headerSize) : ''}
             td #{h.size.format(data.contentSize)}
@@ -47,7 +47,7 @@ table
   table
     caption Expires and last modified stats
     tr
-      th type
+      th.text type
       th min
       th p10
       th median
@@ -55,10 +55,10 @@ table
       th p99
       th max
     tr
-      td Expires
+      td.text Expires
       each data, type in pagexray.expireStats
         td #{h.time.duration(data)}
     tr
-      td Last modified
+      td.text Last modified
       each data, type in pagexray.lastModifiedStats
         td #{h.time.duration(data)}

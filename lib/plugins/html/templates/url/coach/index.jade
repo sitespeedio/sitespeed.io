@@ -2,22 +2,23 @@ mixin adviceInfo(name, perfectScore, node)
   h3 #{name} (#{node.score})
   button.button-primary(onclick='toggleRow();') Show/hide details
   if node.score < 100
-    table
-      thead
-        tr
-          th Title
-          th Advice
-          th Score
-      tbody    
-        each advice, adviceName in node.adviceList
-          if advice.score < 100
-            tr
-              td #{advice.title} (#{adviceName})
-              td #{advice.advice}
-              td #{advice.score}
-          - if (advice.offending.length > 0)
-            tr.hideable
-              td.url.offendingurl(colspan='3') !{advice.offending.join('<br>')}
+    .responsive
+      table
+        thead
+          tr
+            th.text Title
+            th.text Advice
+            th Score
+        tbody    
+          each advice, adviceName in node.adviceList
+            if advice.score < 100
+              tr
+                td.text(data-title='Title') #{advice.title} (#{adviceName})
+                td.text.url(data-title='Advice') #{advice.advice}
+                td(data-title='Score') #{advice.score}
+            - if (advice.offending.length > 0)
+              tr.text.hideable
+                td.url.offendingurl(colspan='3') !{advice.offending.join('<br>')}
   else
     p #{perfectScore}
 
@@ -59,5 +60,5 @@ script(type='text/javascript').
         table
           each value, name in coach.info
             tr
-              td #{name}
-              td #{JSON.stringify(value, null, 2)}
+              td.text #{name}
+              td.text #{JSON.stringify(value, null, 2)}

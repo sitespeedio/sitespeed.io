@@ -8,26 +8,27 @@ mixin row(domain, items)
 
 block content
     h2 Domains
-    table(data-sortable, id='domains')
-      thead
-        tr
-          th Domain
-          th blocked
-          th dns
-          th connect
-          th send
-          th wait
-          th receive
-          th total
-          th requests 
-      each statsForDomain, domainUrl in domainStats  
-        tr
-          td #{domainUrl}
-          td #{statsForDomain.blocked ? statsForDomain.blocked.median : 0}
-          td #{statsForDomain.dns ? statsForDomain.dns.median : 0}
-          td #{statsForDomain.connect ? statsForDomain.connect.median: 0}
-          td #{statsForDomain.send ? statsForDomain.send.median : 0} 
-          td #{statsForDomain.wait ? statsForDomain.wait.median : 0}
-          td #{statsForDomain.receive ? statsForDomain.receive.median : 0}
-          td #{statsForDomain.total.median}
-          td #{statsForDomain.requests}
+    .responsive
+      table(data-sortable, id='domains')
+        thead
+          tr
+            th.text Domain
+            th blocked
+            th dns
+            th connect
+            th send
+            th wait
+            th receive
+            th total
+            th requests 
+        each statsForDomain, domainUrl in domainStats  
+          tr
+            td.text.url.assetsurl(data-title='Domain') #{domainUrl}
+            td.text(data-title='Blocked') #{statsForDomain.blocked ? statsForDomain.blocked.median : 0}
+            td.text(data-title='DNS') #{statsForDomain.dns ? statsForDomain.dns.median : 0}
+            td.text(data-title='Connect') #{statsForDomain.connect ? statsForDomain.connect.median: 0}
+            td.text(data-title='Send') #{statsForDomain.send ? statsForDomain.send.median : 0} 
+            td.text(data-title='Wait') #{statsForDomain.wait ? statsForDomain.wait.median : 0}
+            td.text(data-title='Receive') #{statsForDomain.receive ? statsForDomain.receive.median : 0}
+            td.text(data-title='Total time') #{statsForDomain.total.median}
+            td.text(data-title='Request') #{statsForDomain.requests}

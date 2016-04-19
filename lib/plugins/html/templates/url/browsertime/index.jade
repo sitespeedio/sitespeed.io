@@ -7,39 +7,39 @@ a#timings
 
   table
     tr
-      th name
+      th.text name
       th timing
     each value, name in timings.timings
       tr
-        td #{name}
+        td.text #{name}
         td #{value}
     if timings.firstPaint > -1
       tr 
-        td First paint
+        td.text First paint
         td #{timings.firstPaint.toFixed(1)}  
     tr
-      td RUM Speed Index
+      td.text RUM Speed Index
       td #{timings.rumSpeedIndex.toFixed(1)}
     tr
-      td Fully loaded
+      td.text Fully loaded
       td #{timings.fullyLoaded.toFixed(1)}  
     if visualMetrics
       tr
-        td SpeedIndex
+        td.text SpeedIndex
         td #{visualMetrics.speedIndex.toFixed(1)}
       tr
-        td Render
+        td.text Render
         td #{visualMetrics.firstVisualChange.toFixed(1)}
       tr
-        td Last visual change
+        td.text Last visual change
         td #{visualMetrics.lastVisualChange.toFixed(1)}      
     if (Object.keys(timings.userTimings.marks).length > 0)
       each value, name in timings.userTimings.marks
         tr
-          td #{value.name}
+          td.text #{value.name}
           td #{value.startTime.toFixed(1)}
     if (Object.keys(timings.userTimings.measures).length > 0)
       each value, name in timings.userTimings.measures
         tr
-          td #{value.name}
+          td.text #{value.name}
           td #{value.startTime.toFixed(1)}
