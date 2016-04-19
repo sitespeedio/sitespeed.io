@@ -56,9 +56,42 @@ script(type='text/javascript').
         +adviceInfo('Best practice advice','Your best practice score is perfect!',coach.bestpractice)
 
         a#info
-        h2 Info
+        h2 Page info
         table
-          each value, name in coach.info
             tr
-              td.text #{name}
-              td.text #{JSON.stringify(value, null, 2)}
+              td.text Title
+              td.text #{coach.info.documentTitle}
+            tr
+              td.text Width
+              td.text #{coach.info.documentWidth}
+            tr
+              td.text Height
+              td.text #{coach.info.documentHeight} 
+            tr
+              td.text DOM elements
+              td.text #{coach.info.domElements}    
+            tr
+              td.text Avg DOMdepth
+              td.text #{coach.info.domDepth.avg}    
+            tr
+              td.text Max DOM depth
+              td.text #{coach.info.domDepth.max}
+            tr
+              td.text Iframes
+              td.text #{coach.info.iframes} 
+            tr
+              td.text Local storage
+              td.text #{h.size.format(coach.info.localStorageSize)} 
+            tr
+              td.text Session storage
+              td.text #{h.size.format(coach.info.sessionStorageSize)}
+            tr
+              td.text HTML vs AMP
+              td.text #{coach.info.amp?'This is an AMP page':'Plain good HTML page'}       
+        h3 Resource hints
+        table
+          each value, key in coach.info.resourceHints
+            tr
+              td.text #{key}
+              td.url !{value.join('<br>')}
+        
