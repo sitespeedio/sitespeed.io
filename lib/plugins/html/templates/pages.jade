@@ -22,9 +22,9 @@ block content
                   td.text.url.pagesurl(data-title='URL')
                       a(href='#{pageInfo.path}/index.html')= url
                   td(data-title='Javascript size', data-value='#{(t.javascript || {}).transferSize}') #{h.size.asKb((t.javascript || {}).transferSize)}
-                  td(data-title='CSS size',data-value='#{(t.css || {}).transferSize}') #{h.size.asKb((t.css || {}).transferSize)}
+                  td(data-title='CSS size', data-value='#{(t.css || {}).transferSize}') #{h.size.asKb((t.css || {}).transferSize)}
                   td(data-title='Image size', data-value='#{(t.image || {}).transferSize}') #{h.size.asKb((t.image || {}).transferSize)}
-                  td(data-title='Total size',data-value='#{p.transferSize}') #{h.size.asKb(p.transferSize)}
+                  td(data-title='Total size', data-value='#{p.transferSize}') #{h.size.asKb(p.transferSize)}
                   td(data-title='Requests') #{p.requests}
                   - score = pageInfo.data.browsertime.page[0].browserScripts[0].coach.coachAdvice.advice.performance.score
                   - label = 'label ' +  h.scoreLabel(score)
