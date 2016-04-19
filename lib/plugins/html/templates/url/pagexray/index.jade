@@ -5,8 +5,8 @@ a#pagexray
 
 p The page uses #{pagexray.httpVersion}
 
+h3 Requests per response code
 table
-  caption Requests per response code
   tr
     th.text Response code
     th.text Total
@@ -15,50 +15,55 @@ table
       td.text #{code}
       td.text #{total}
 
-  - totalContentSize = 0
-  - totalTransferSize = 0
-  - totalHeaderSize = 0
-  - totalRequests = 0
+- totalContentSize = 0
+- totalTransferSize = 0
+- totalHeaderSize = 0
+- totalRequests = 0
+h3 Requests and sizes per content type
+.responsive
   table
-    caption Requests and sizes per content type
+    thead
+      tr
+        th.text Content
+        th Transfer Size
+        th Header Size
+        th Content Size
+        th Request(s)
+    tbody    
+    each data, type in pagexray.contentTypes
+      - totalContentSize += data.contentSize
+      - totalTransferSize += data.transferSize
+      - totalHeaderSize += data.headerSize > 0 ? data.headerSize : 0
+      - totalRequests += data.requests
+      tr
+        td.text(data-title='type') #{type}
+        td(data-title='transferSize') #{h.size.format(data.transferSize)}
+        td(data-title='headerSize') #{data.headerSize > 0 ? h.size.format(data.headerSize) : ''}
+        td(data-title='contentSize') #{h.size.format(data.contentSize)}
+        td(data-title='requests') #{data.requests}
     tr
-      th.text Content
-      th Transfer Size
-      th Header Size
-      th Content Size
-      th Request(s)
-        each data, type in pagexray.contentTypes
-          - totalContentSize += data.contentSize
-          - totalTransferSize += data.transferSize
-          - totalHeaderSize += data.headerSize > 0 ? data.headerSize : 0
-          - totalRequests += data.requests
-          tr
-            td.text #{type}
-            td #{h.size.format(data.transferSize)}
-            td #{data.headerSize > 0 ? h.size.format(data.headerSize) : ''}
-            td #{h.size.format(data.contentSize)}
-            td #{data.requests}
-        tr
-          td Total
-          td #{h.size.format(totalTransferSize)}
-          td #{h.size.format(totalHeaderSize)}
-          td #{h.size.format(totalContentSize)}
-          td #{totalRequests}
+      td(data-title='Total')  Total
+      td(data-title='transferSize') #{h.size.format(totalTransferSize)}
+      td(data-title='headerSize') #{h.size.format(totalHeaderSize)}
+      td(data-title='contentSize') #{h.size.format(totalContentSize)}
+      td(data-title='requests') #{totalRequests}
+h3 Expires and last modified stats
+.responsive          
   table
-    caption Expires and last modified stats
-    tr
-      th.text type
-      th min
-      th p10
-      th median
-      th p90
-      th p99
-      th max
-    tr
-      td.text Expires
-      each data, type in pagexray.expireStats
-        td #{h.time.duration(data)}
-    tr
-      td.text Last modified
-      each data, type in pagexray.lastModifiedStats
-        td #{h.time.duration(data)}
+    thead
+      tr
+        th.text type
+        th min
+        th median
+        th max
+    tbody    
+      tr
+        td.text(data-title='Type')  Expires
+        td(data-title='min') #{h.time.duration(pagexray.expireStats.min)}
+        td(data-title='median') #{h.time.duration(pagexray.expireStats.median)}
+        td(data-title='max') #{h.time.duration(pagexray.expireStats.max)}
+      tr
+        td.text(data-title='Type') Last modified
+        td(data-title='min') #{h.time.duration(pagexray.lastModifiedStats.min)}
+        td(data-title='median') #{h.time.duration(pagexray.lastModifiedStats.median)}
+        td(data-title='max') #{h.time.duration(pagexray.lastModifiedStats.max)}

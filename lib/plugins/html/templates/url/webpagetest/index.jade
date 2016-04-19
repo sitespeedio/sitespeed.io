@@ -12,33 +12,34 @@ each view in ['firstView', 'repeatView']
   - var median = medianRun[view];
   if median
     h4 #{view}
-    table
-      caption Metrics
-      tr
-        th.text TTFB
-        th.text Render
-        th.text firstPaint
-        th.text loadTime
-        th.text SpeedIndex
-        th.text fullyLoaded
-        th.text connections
-      tr
-        td #{median.TTFB}
-        td #{median.render}
-        td #{median.firstPaint}
-        td #{median.loadTime}
-        td #{median.SpeedIndex}
-        td #{median.fullyLoaded}
-        td #{median.connections}
-    if (median.userTimes) 
+    .responsive
       table
-        caption User timings
+        caption Metrics
         tr
-        each value, key in median.userTimes    
-          th #{key}
-        tr  
-        each value, key in median.userTimes       
-          td #{value}
+          th.text TTFB
+          th.text Render
+          th.text firstPaint
+          th.text loadTime
+          th.text SpeedIndex
+          th.text fullyLoaded
+          th.text connections
+        tr
+          td(data-title='TTFB') #{median.TTFB}
+          td(data-title='render')  #{median.render}
+          td(data-title='firstPaint') #{median.firstPaint}
+          td(data-title='loadTime') #{median.loadTime}
+          td(data-title='SpeedIndex') #{median.SpeedIndex}
+          td(data-title='fullyLoaded') #{median.fullyLoaded}
+          td(data-title='connections') #{median.connections}
+      if (median.userTimes) 
+        table
+          caption User timings
+          tr
+          each value, key in median.userTimes    
+            th #{key}
+          tr  
+          each value, key in median.userTimes       
+            td(data-title='#{key}')  #{value}
     h5 Waterfall
     img.u-max-full-width(src='#{median.images.waterfall}', alt='Waterfall view')
     h5 Connection view

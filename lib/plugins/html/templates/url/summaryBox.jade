@@ -3,12 +3,13 @@ h2 Summary
 - timingMetrics = ['firstPaint', 'fullyLoaded', 'rumSpeedIndex']
 .responsive
 	table
-		tr
-			th.text metric
-			th min
-			th median
-			th mean
-			th max
+		thead
+			tr
+				th.text metric
+				th min
+				th median
+				th mean
+				th max	
 		each timing in timingMetrics   
 			tr
 				td.text(data-title='metric') #{timing}

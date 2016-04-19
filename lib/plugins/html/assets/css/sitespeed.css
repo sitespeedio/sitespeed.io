@@ -154,6 +154,11 @@ ul.menu {
 		display: block;
 	}
 
+  /* Hide/show in coach offending */
+  .responsive tr.hideable {
+    display: none;
+  }
+
 	/* Hide table headers (but not display: none;, for accessibility) */
 	.responsive thead tr {
 		position: absolute;

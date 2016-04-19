@@ -8,33 +8,34 @@ each view in ['firstView', 'repeatView']
   - var data = wpt[view];
   if data
     h4 #{view}
-    table
-      caption Metrics
-      tr
-        th.text TTFB
-        th.text Render
-        th.text firstPaint
-        th.text loadTime
-        th.text SpeedIndex
-        th.text fullyLoaded
-        th.text connections
-      tr
-        td #{data.TTFB}
-        td #{data.render}
-        td #{data.firstPaint}
-        td #{data.loadTime}
-        td #{data.SpeedIndex}
-        td #{data.fullyLoaded}
-        td #{data.connections}
-    if (data.userTimes) 
+    .responsive
       table
-        caption User timings
+        caption Metrics
         tr
-        each value, key in data.userTimes    
-          th #{key}
-        tr  
-        each value, key in data.userTimes       
-          td #{value}
+          th.text TTFB
+          th.text Render
+          th.text firstPaint
+          th.text loadTime
+          th.text SpeedIndex
+          th.text fullyLoaded
+          th.text connections
+        tr
+          td(data-title='TTFB') #{median.TTFB}
+          td(data-title='render') #{median.render}
+          td(data-title='firstPaint') #{median.firstPaint}
+          td(data-title='loadTime') #{median.loadTime}
+          td(data-title='SpeedIndex') #{median.SpeedIndex}
+          td(data-title='fullyLoaded') #{median.fullyLoaded}
+          td(data-title='connections') #{median.connections}
+      if (data.userTimes) 
+        table
+          caption User timings
+          tr
+          each value, key in data.userTimes    
+            th #{key}
+          tr  
+          each value, key in data.userTimes       
+            td(data-title='#{key}') #{value}
     h5 Waterfall
     img.u-max-full-width(src='#{data.images.waterfall}', alt='Waterfall view')
     h5 Connection view
