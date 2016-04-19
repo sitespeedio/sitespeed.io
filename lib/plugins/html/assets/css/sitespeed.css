@@ -128,3 +128,58 @@ ul.menu {
   font-size: 2rem;
   line-height: 2rem;
 }
+
+
+/** Responsive tables, wrap them in a div
+* We use Chris Coyiers (old) hide the table
+* solution https://css-tricks.com/responsive-data-tables/
+*/
+@media only screen and (max-width: 800px) {
+
+	/* Force table to not be like tables anymore */
+	.responsive table,
+	.responsive thead,
+	.responsive tbody,
+	.responsive th,
+	.responsive td,
+	.responsive tr {
+		display: block;
+	}
+
+	/* Hide table headers (but not display: none;, for accessibility) */
+	.responsive thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	.responsive tr { border: 1px solid #E1E1E1; }
+
+	.responsive td {
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #E1E1E1;
+		position: relative;
+		padding-left: 50%;
+		white-space: normal;
+		text-align:left;
+	}
+
+	.responsive td:before {
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 30%;
+		padding-right: 10px;
+		white-space: nowrap;
+		text-align:left;
+		font-weight: bold;
+	}
+
+	/*
+	Label the data
+	*/
+	.responsive td:before { content: attr(data-title); }
+}
