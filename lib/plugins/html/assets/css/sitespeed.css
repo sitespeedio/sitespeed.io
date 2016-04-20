@@ -137,6 +137,10 @@ ul.menu {
   line-height: 2rem;
 }
 
+.hidden-small {
+  display: inline;
+}
+
 
 /** Responsive tables, wrap them in a div
 * We use Chris Coyiers (old) hide the table
@@ -195,4 +199,8 @@ ul.menu {
 	Label the data
 	*/
 	.responsive td:before { content: attr(data-title); }
+
+  .hidden-small {
+    display: none;
+  }
 }

@@ -1,6 +1,6 @@
 mixin adviceInfo(name, perfectScore, node)
   h3 #{name} (#{node.score})
-  button.button-primary(onclick='toggleRow();') Show/hide details
+  button.hidden-small.button-primary(onclick='toggleRow();') Show/hide details
   if node.score < 100
     .responsive
       table
