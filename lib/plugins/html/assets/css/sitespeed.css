@@ -119,6 +119,12 @@ ul.menu {
   border-color: #eed3d7;
 }
 
+.summarybox.info {
+  background-color: #D9EDF7;
+  border-color: #BCE8F1;
+  color: #3A87AD;
+}
+
 .summarynumber {
   font-size: 3rem;
   line-height: 3rem;
