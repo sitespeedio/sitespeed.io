@@ -5,32 +5,32 @@ h2 Summary
 	table
 		thead
 			tr
-				th.text metric
+				th metric
 				th min
 				th median
 				th mean
-				th max	
-		each timing in timingMetrics   
+				th max
+		each timing in timingMetrics
 			tr
-				td.text(data-title='metric') #{timing}
-				td(data-title='min') #{btStatistics.timings[timing].min}
-				td(data-title='median') #{btStatistics.timings[timing].median}
-				td(data-title='mean') #{btStatistics.timings[timing].mean}
-				td(data-title='max') #{btStatistics.timings[timing].max}
+				td(data-title='metric') #{timing}
+				td.number(data-title='min') #{btStatistics.timings[timing].min}
+				td.number(data-title='median') #{btStatistics.timings[timing].median}
+				td.number(data-title='mean') #{btStatistics.timings[timing].mean}
+				td.number(data-title='max') #{btStatistics.timings[timing].max}
 		if btStatistics.timings.userTimings
-			if btStatistics.timings.userTimings.marks        
+			if btStatistics.timings.userTimings.marks
 				each userTimings, name in btStatistics.timings.userTimings.marks
 					tr
-						td.text(data-title='#{name}') #{name}
-						td(data-title='min') #{userTimings.min}
-						td(data-title='median') #{userTimings.median}
-						td(data-title='mean') #{userTimings.mean}
-						td(data-title='max') #{userTimings.max}
-		if btStatistics.visualMetrics      
+						td.number(data-title='#{name}') #{name}
+						td.number(data-title='min') #{userTimings.min}
+						td.number(data-title='median') #{userTimings.median}
+						td.number(data-title='mean') #{userTimings.mean}
+						td.number(data-title='max') #{userTimings.max}
+		if btStatistics.visualMetrics
 			each visualMetric, name in btStatistics.visualMetrics
 				tr
-					td.text(data-title='#{name}') #{name}
-					td(data-title='min') #{visualMetric.min}
-					td(data-title='median') #{visualMetric.median}
-					td(data-title='mean') #{visualMetric.mean}
-					td(data-title='max') #{visualMetric.max}
+					td(data-title='#{name}') #{name}
+					td.number(data-title='min') #{visualMetric.min}
+					td.number(data-title='median') #{visualMetric.median}
+					td.number(data-title='mean') #{visualMetric.mean}
+					td.number(data-title='max') #{visualMetric.max}

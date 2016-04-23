@@ -7,7 +7,6 @@ table {
 th,
 td {
   padding: 4px 15px;
-  text-align: right;
   border: 1px solid #E1E1E1; }
 th:first-child,
 td:first-child {
@@ -19,16 +18,12 @@ td:last-child {
 tr:nth-child(odd) {background: #f9f9f9}
 tr:nth-child(even) {background: #FFF}
 
-tr th {
+th {
   background: #e1f6fd;
 }
 
-td.text {
-  text-align: left;
-}
-
-th.text {
-  text-align: left;
+td.number {
+  text-align: right;
 }
 
 /** Footer **/

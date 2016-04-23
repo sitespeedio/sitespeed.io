@@ -9,13 +9,13 @@ mixin rowHeading(items)
 mixin rows(items)
         each item in items
             tr
-                td.text.url.assetsurl(data-title='URL')
+                td.url.assetsurl(data-title='URL')
                   a(href=item.url)= item.url
                 td(data-title='type')= item.type
                 td(data-title='last modified', data-value='#{item.lastModification}')= h.time.duration(item.lastModification)
                 td(data-title='cache time', data-value='#{item.cacheTime}')= h.time.duration(item.cacheTime)
-                td(data-title='size', data-value='#{item.size}')= h.size.format(item.size)
-                td(data-title='count')= item.requestCount
+                td.number(data-title='size', data-value='#{item.size}')= h.size.format(item.size)
+                td.number(data-title='count')= item.requestCount
 
 block content
     h2 Most used assets

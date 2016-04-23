@@ -5,41 +5,41 @@ a#timings
 - const timings = browsertime.timings;
 - const visualMetrics = timings.visualMetrics;
 
-  table
+table
+  tr
+    th name
+    th timing
+  each value, name in timings.timings
     tr
-      th.text name
-      th timing
-    each value, name in timings.timings
-      tr
-        td.text #{name}
-        td #{value}
-    if timings.firstPaint > -1
-      tr 
-        td.text First paint
-        td #{timings.firstPaint.toFixed(1)}  
+      td #{name}
+      td.number #{value}
+  if timings.firstPaint > -1
     tr
-      td.text RUM Speed Index
-      td #{timings.rumSpeedIndex.toFixed(1)}
+      td First paint
+      td.number #{timings.firstPaint.toFixed(1)}
+  tr
+    td RUM Speed Index
+    td.number #{timings.rumSpeedIndex.toFixed(1)}
+  tr
+    td Fully loaded
+    td.number #{timings.fullyLoaded.toFixed(1)}
+  if visualMetrics
     tr
-      td.text Fully loaded
-      td #{timings.fullyLoaded.toFixed(1)}  
-    if visualMetrics
+      td SpeedIndex
+      td.number #{visualMetrics.speedIndex.toFixed(1)}
+    tr
+      td Render
+      td.number #{visualMetrics.firstVisualChange.toFixed(1)}
+    tr
+      td Last visual change
+      td.number #{visualMetrics.lastVisualChange.toFixed(1)}
+  if (Object.keys(timings.userTimings.marks).length > 0)
+    each value, name in timings.userTimings.marks
       tr
-        td.text SpeedIndex
-        td #{visualMetrics.speedIndex.toFixed(1)}
+        td #{value.name}
+        td.number #{value.startTime.toFixed(1)}
+  if (Object.keys(timings.userTimings.measures).length > 0)
+    each value, name in timings.userTimings.measures
       tr
-        td.text Render
-        td #{visualMetrics.firstVisualChange.toFixed(1)}
-      tr
-        td.text Last visual change
-        td #{visualMetrics.lastVisualChange.toFixed(1)}      
-    if (Object.keys(timings.userTimings.marks).length > 0)
-      each value, name in timings.userTimings.marks
-        tr
-          td.text #{value.name}
-          td #{value.startTime.toFixed(1)}
-    if (Object.keys(timings.userTimings.measures).length > 0)
-      each value, name in timings.userTimings.measures
-        tr
-          td.text #{value.name}
-          td #{value.startTime.toFixed(1)}
+        td #{value.name}
+        td.number #{value.startTime.toFixed(1)}

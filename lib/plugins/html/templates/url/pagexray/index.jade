@@ -8,12 +8,12 @@ p The page uses #{pagexray.httpVersion}
 h3 Requests per response code
 table
   tr
-    th.text Response code
-    th.text Total
+    th Response code
+    th Total
   each total, code in pagexray.responseCodes
     tr
-      td.text #{code}
-      td.text #{total}
+      td #{code}
+      td #{total}
 
 - totalContentSize = 0
 - totalTransferSize = 0
@@ -24,12 +24,12 @@ h3 Requests and sizes per content type
   table
     thead
       tr
-        th.text Content
+        th Content
         th Transfer Size
         th Header Size
         th Content Size
         th Request(s)
-    tbody    
+    tbody
     each data, type in pagexray.contentTypes
       - totalContentSize += data.contentSize
       - totalTransferSize += data.transferSize
@@ -37,33 +37,33 @@ h3 Requests and sizes per content type
       - totalRequests += data.requests
       tr
         td(data-title='type') #{type}
-        td(data-title='transferSize') #{h.size.format(data.transferSize)}
-        td(data-title='headerSize') #{data.headerSize > 0 ? h.size.format(data.headerSize) : ''}
-        td(data-title='contentSize') #{h.size.format(data.contentSize)}
-        td(data-title='requests') #{data.requests}
+        td.number(data-title='transferSize') #{h.size.format(data.transferSize)}
+        td.number(data-title='headerSize') #{data.headerSize > 0 ? h.size.format(data.headerSize) : ''}
+        td.number(data-title='contentSize') #{h.size.format(data.contentSize)}
+        td.number(data-title='requests') #{data.requests}
     tr
-      td(data-title='Total') Total
-      td(data-title='transferSize') #{h.size.format(totalTransferSize)}
-      td(data-title='headerSize') #{h.size.format(totalHeaderSize)}
-      td(data-title='contentSize') #{h.size.format(totalContentSize)}
-      td(data-title='requests') #{totalRequests}
+      td.number(data-title='Total') Total
+      td.number(data-title='transferSize') #{h.size.format(totalTransferSize)}
+      td.number(data-title='headerSize') #{h.size.format(totalHeaderSize)}
+      td.number(data-title='contentSize') #{h.size.format(totalContentSize)}
+      td.number(data-title='requests') #{totalRequests}
 h3 Expires and last modified stats
-.responsive          
+.responsive
   table
     thead
       tr
-        th.text type
+        th type
         th min
         th median
         th max
-    tbody    
+    tbody
       tr
-        td.text(data-title='Type')  Expires
-        td(data-title='min') #{h.time.duration(pagexray.expireStats.min)}
-        td(data-title='median') #{h.time.duration(pagexray.expireStats.median)}
-        td(data-title='max') #{h.time.duration(pagexray.expireStats.max)}
+        td(data-title='Type')  Expires
+        td.number(data-title='min') #{h.time.duration(pagexray.expireStats.min)}
+        td.number(data-title='median') #{h.time.duration(pagexray.expireStats.median)}
+        td.number(data-title='max') #{h.time.duration(pagexray.expireStats.max)}
       tr
-        td.text(data-title='Type') Last modified
+        td(data-title='Type') Last modified
         td(data-title='min') #{h.time.duration(pagexray.lastModifiedStats.min)}
         td(data-title='median') #{h.time.duration(pagexray.lastModifiedStats.median)}
         td(data-title='max') #{h.time.duration(pagexray.lastModifiedStats.max)}

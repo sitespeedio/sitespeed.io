@@ -12,30 +12,30 @@ each view in ['firstView', 'repeatView']
       table
         caption Metrics
         tr
-          th.text TTFB
-          th.text Render
-          th.text firstPaint
-          th.text loadTime
-          th.text SpeedIndex
-          th.text fullyLoaded
-          th.text connections
+          th TTFB
+          th Render
+          th firstPaint
+          th loadTime
+          th SpeedIndex
+          th fullyLoaded
+          th connections
         tr
-          td(data-title='TTFB') #{median.TTFB}
-          td(data-title='render') #{median.render}
-          td(data-title='firstPaint') #{median.firstPaint}
-          td(data-title='loadTime') #{median.loadTime}
-          td(data-title='SpeedIndex') #{median.SpeedIndex}
-          td(data-title='fullyLoaded') #{median.fullyLoaded}
-          td(data-title='connections') #{median.connections}
-      if (data.userTimes) 
+          td.number(data-title='TTFB') #{median.TTFB}
+          td.number(data-title='render') #{median.render}
+          td.number(data-title='firstPaint') #{median.firstPaint}
+          td.number(data-title='loadTime') #{median.loadTime}
+          td.number(data-title='SpeedIndex') #{median.SpeedIndex}
+          td.number(data-title='fullyLoaded') #{median.fullyLoaded}
+          td.number(data-title='connections') #{median.connections}
+      if (data.userTimes)
         table
           caption User timings
           tr
-          each value, key in data.userTimes    
+          each value, key in data.userTimes
             th #{key}
-          tr  
-          each value, key in data.userTimes       
-            td(data-title='#{key}') #{value}
+          tr
+          each value, key in data.userTimes
+            td.number(data-title='#{key}') #{value}
     h5 Waterfall
     img.u-max-full-width(src='#{data.images.waterfall}', alt='Waterfall view')
     h5 Connection view
