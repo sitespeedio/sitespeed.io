@@ -11,15 +11,15 @@ block content
         thead
           tr
             th Domain
-            th blocked
-            th dns
-            th connect
-            th send
-            th ssl
-            th wait
-            th receive
-            th total
-            th requests
+            th Blocked
+            th DNS
+            th Connect
+            th Send
+            th SSL
+            th Wait
+            th Receive
+            th Total time
+            th Requests
         each domain in domainStats
           tr
             td.url.assetsurl(data-title='Domain') #{domain.domainName}
