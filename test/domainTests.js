@@ -23,7 +23,8 @@ describe('aggregator', function() {
     it('should add har to aggregate', function() {
       aggregator.addToAggregate(har);
       const summary = aggregator.summarize();
-      expect(summary['cdn1.vox-cdn.com']).to.have.deep.property('connect.max', '11');
+      const voxDomain = summary.find((domain) => (domain.domainName === 'cdn1.vox-cdn.com'));
+      expect(voxDomain).to.have.deep.property('connect.max', '11');
 
     });
   });
