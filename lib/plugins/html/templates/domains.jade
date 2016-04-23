@@ -1,10 +1,8 @@
 extends ./layout.jade
 
-mixin row(domain, items)
-    tr
-      td #{domain}
-      each item, key in items
-        td #{item.mean}
+mixin statsCell(stats, name)
+  - value = stats ? stats.median : undefined
+  td.number(data-title=name, data-value=value) #{value}
 
 block content
     h2 Domains
@@ -12,7 +10,7 @@ block content
       table(data-sortable, id='domains')
         thead
           tr
-            th.text Domain
+            th Domain
             th blocked
             th dns
             th connect
@@ -20,15 +18,15 @@ block content
             th wait
             th receive
             th total
-            th requests 
-        each statsForDomain, domainUrl in domainStats  
+            th requests
+        each domain in domainStats
           tr
-            td.text.url.assetsurl(data-title='Domain') #{domainUrl}
-            td.text(data-title='Blocked') #{statsForDomain.blocked ? statsForDomain.blocked.median : 0}
-            td.text(data-title='DNS') #{statsForDomain.dns ? statsForDomain.dns.median : 0}
-            td.text(data-title='Connect') #{statsForDomain.connect ? statsForDomain.connect.median: 0}
-            td.text(data-title='Send') #{statsForDomain.send ? statsForDomain.send.median : 0} 
-            td.text(data-title='Wait') #{statsForDomain.wait ? statsForDomain.wait.median : 0}
-            td.text(data-title='Receive') #{statsForDomain.receive ? statsForDomain.receive.median : 0}
-            td.text(data-title='Total time') #{statsForDomain.total.median}
-            td.text(data-title='Request') #{statsForDomain.requests}
+            td.url.assetsurl(data-title='Domain') #{domain.domainName}
+            +statsCell(domain.blocked, 'Blocked')
+            +statsCell(domain.dns, 'DNS')
+            +statsCell(domain.connect, 'Connect')
+            +statsCell(domain.send, 'Send')
+            +statsCell(domain.wait, 'Wait')
+            +statsCell(domain.receive, 'Receive')
+            +statsCell(domain.totalTime, 'Total time')
+            td.number(data-title='Requests', data-value=domain.requestCount) #{domain.requestCount}
