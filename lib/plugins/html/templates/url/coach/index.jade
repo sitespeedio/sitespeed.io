@@ -15,7 +15,7 @@ mixin adviceInfo(name, perfectScore, node)
               tr
                 td(data-title='Title') #{advice.title} (#{adviceName})
                 td.url(data-title='Advice') #{advice.advice}
-                td(data-title='Score') #{advice.score}
+                td.number(data-title='Score') #{advice.score}
             if (advice.offending.length > 0)
               tr.hideable
                 td.url.offendingurl(colspan='3') !{advice.offending.join('<br>')}
@@ -41,7 +41,7 @@ script(type='text/javascript').
   .column
     .row
       .four.columns
-        img.u-max-full-width(src='#{rootPath}/img/coach.png', alt='Im the coach')
+        img.u-max-full-width(src='#{rootPath}/img/coach.png', alt='I am the coach')
       .eight.columns
         h3 Coach score
         ul
@@ -65,28 +65,28 @@ script(type='text/javascript').
               td #{coach.info.documentTitle}
             tr
               td Width
-              td #{coach.info.documentWidth}
+              td.number #{coach.info.documentWidth}
             tr
               td Height
-              td #{coach.info.documentHeight}
+              td.number #{coach.info.documentHeight}
             tr
               td DOM elements
-              td #{coach.info.domElements}
+              td.number #{coach.info.domElements}
             tr
               td Avg DOMdepth
-              td #{coach.info.domDepth.avg}
+              td.number #{coach.info.domDepth.avg}
             tr
               td Max DOM depth
-              td #{coach.info.domDepth.max}
+              td.number #{coach.info.domDepth.max}
             tr
               td Iframes
-              td #{coach.info.iframes}
+              td.number #{coach.info.iframes}
             tr
               td Local storage
-              td #{h.size.format(coach.info.localStorageSize)}
+              td.number #{h.size.format(coach.info.localStorageSize)}
             tr
               td Session storage
-              td #{h.size.format(coach.info.sessionStorageSize)}
+              td.number #{h.size.format(coach.info.sessionStorageSize)}
             tr
               td HTML vs AMP
               td #{coach.info.amp?'This is an AMP page':'Plain good HTML page'}
