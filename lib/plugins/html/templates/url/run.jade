@@ -24,7 +24,11 @@ block content
         if pageInfo.data.webpagetest
           if pageInfo.data.webpagetest.run
             li: a(href='#webpagetest') WebPageTest
-        
+
+      if pageInfo.data.pagexray
+        if pageInfo.data.pagexray.run
+          include ./pagexray/index.jade
+
       if pageInfo.data.coach
         if pageInfo.data.coach.run
           include ./coach/index.jade
@@ -33,13 +37,9 @@ block content
         if pageInfo.data.browsertime.run
           include ./browsertime/index.jade
 
-      if pageInfo.data.pagexray
-        if pageInfo.data.pagexray.run
-          include ./pagexray/index.jade
-
       if pageInfo.data.webpagetest
         if pageInfo.data.webpagetest.run
           include ./webpagetest/run.jade
-          
+
       .index-link
         a.button.button-primary(href=urlLink) Back to summary

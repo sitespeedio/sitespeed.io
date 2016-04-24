@@ -24,6 +24,9 @@ mixin adviceInfo(name, perfectScore, node)
 
 - const coach = pageInfo.data.coach ? pageInfo.data.coach.run.advice : pageInfo.data.browsertime.page[0].browserScripts[run].coach.coachAdvice.advice;
 
+a#coach
+h2 Coach
+
 script(type='text/javascript').
   function toggleRow() {
     var rows = document.getElementsByClassName("hideable");
@@ -36,7 +39,6 @@ script(type='text/javascript').
 
 .row
   .column
-    a#coach
     .row
       .four.columns
         img.u-max-full-width(src='#{rootPath}/img/coach.png', alt='Im the coach')
