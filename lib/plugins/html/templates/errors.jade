@@ -1,16 +1,12 @@
 extends ./layout.jade
-
-mixin rowHeading(items)
-    tr
-        each item in items
-            th= item
+include _tableMixins
 
 mixin row(errors)
-        each error, url in errors
-            tr
-                td
-                    a(href=url)= url
-                td= JSON.stringify(error, null, 2)
+  each error, url in errors
+    tr
+      td
+        a(href=url)= url
+      td= JSON.stringify(error, null, 2)
 
 block content
     h2 Errors!

@@ -1,7 +1,21 @@
 extends ./layout.jade
+include _tableMixins
 
-mixin sizeCell(title, size)
-  td.number(data-title=title, data-value='#{size}') #{h.size.asKb(size)}
+mixin rows(pages)
+  each pageInfo, url in pages
+    - p = pageInfo.data.pagexray.pageSummary[0], t = p.contentTypes
+    tr
+      td.url.pagesurl(data-title='URL')
+        a(href='#{pageInfo.path}/index.html')= url
+      +sizeCell('Javascript size', h.get(t.javascript, 'transferSize'))
+      +sizeCell('CSS size', h.get(t.css, 'transferSize'))
+      +sizeCell('Image size', h.get(t.image, 'transferSize'))
+      +sizeCell('Total size', p.transferSize)
+      td.number(data-title='Requests', data-value='#{p.requests}') #{p.requests}
+      - score = pageInfo.data.browsertime.page[0].browserScripts[0].coach.coachAdvice.advice.performance.score
+      - label = 'label ' +  h.scoreLabel(score)
+      td.number(data-title='Performance score', data-value='#{score}')
+        span(class=label) #{score}
 
 block content
   .row
@@ -9,27 +23,6 @@ block content
       h2 Pages
       .responsive
         table(data-sortable, id='pages')
-          thead
-            tr
-              th url
-              th js size (kb)
-              th css size (kb)
-              th image size (kb)
-              th total size (kb)
-              th total requests
-              th performance score
-          each pageInfo, url in pages
-            - p = pageInfo.data.pagexray.pageSummary[0], t = p.contentTypes
-
-            tr
-              td.url.pagesurl(data-title='URL')
-                a(href='#{pageInfo.path}/index.html')= url
-              +sizeCell('Javascript size', h.get(t.javascript, 'transferSize'))
-              +sizeCell('CSS size', h.get(t.css, 'transferSize'))
-              +sizeCell('Image size', h.get(t.image, 'transferSize'))
-              +sizeCell('Total size', p.transferSize)
-              td.number(data-title='Requests', data-value='#{p.requests}') #{p.requests}
-              - score = pageInfo.data.browsertime.page[0].browserScripts[0].coach.coachAdvice.advice.performance.score
-              - label = 'label ' +  h.scoreLabel(score)
-              td.number(data-title='Performance score', data-value='#{score}')
-                span(class=label) #{score}
+          +rowHeading(['url', 'js size (kb)', 'css size (kb)', 'image size (kb)',
+            'total size (kb)', 'total requests', 'performance score'])
+          +rows(pages)

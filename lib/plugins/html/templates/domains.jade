@@ -1,34 +1,23 @@
 extends ./layout.jade
+include _tableMixins
 
-mixin statsCell(stats, name)
-  - value = stats ? stats.median : undefined
-  td.number(data-title=name, data-value=value) #{value}
+mixin rows(domainStats)
+  each domain in domainStats
+    tr
+      td.url.assetsurl(data-title='Domain') #{domain.domainName}
+      +statsCell(domain.blocked, 'Blocked')
+      +statsCell(domain.dns, 'DNS')
+      +statsCell(domain.connect, 'Connect')
+      +statsCell(domain.send, 'Send')
+      +statsCell(domain.ssl, 'SSL')
+      +statsCell(domain.wait, 'Wait')
+      +statsCell(domain.receive, 'Receive')
+      +statsCell(domain.totalTime, 'Total time')
+      td.number(data-title='Requests', data-value=domain.requestCount) #{domain.requestCount}
 
 block content
     h2 Domains
     .responsive
       table(data-sortable, id='domains')
-        thead
-          tr
-            th Domain
-            th Blocked
-            th DNS
-            th Connect
-            th Send
-            th SSL
-            th Wait
-            th Receive
-            th Total time
-            th Requests
-        each domain in domainStats
-          tr
-            td.url.assetsurl(data-title='Domain') #{domain.domainName}
-            +statsCell(domain.blocked, 'Blocked')
-            +statsCell(domain.dns, 'DNS')
-            +statsCell(domain.connect, 'Connect')
-            +statsCell(domain.send, 'Send')
-            +statsCell(domain.ssl, 'SSL')
-            +statsCell(domain.wait, 'Wait')
-            +statsCell(domain.receive, 'Receive')
-            +statsCell(domain.totalTime, 'Total time')
-            td.number(data-title='Requests', data-value=domain.requestCount) #{domain.requestCount}
+        +rowHeading(['Domain', 'Blocked', 'DNS', 'Connect', 'Send', 'SSL', 'Wait', 'Receive', 'Total time', 'Requests'])
+        +rows(domainStats)

@@ -1,25 +1,20 @@
 extends ./layout.jade
+include _tableMixins
 
-mixin rowHeading(items)
-    thead
-      tr
-        each item in items
-            th= item
-
-mixin rows(items)
-        each item in items
-            tr
-                td.url.assetsurl(data-title='URL')
-                  a(href=item.url)= item.url
-                td(data-title='type')= item.type
-                td(data-title='last modified', data-value='#{item.lastModification}')= h.time.duration(item.lastModification)
-                td(data-title='cache time', data-value='#{item.cacheTime}')= h.time.duration(item.cacheTime)
-                td.number(data-title='size', data-value='#{item.size}')= h.size.format(item.size)
-                td.number(data-title='count')= item.requestCount
+mixin rows(assets)
+  each asset in assets
+    tr
+      td.url.assetsurl(data-title='URL')
+        a(href=asset.url)= asset.url
+      td(data-title='type')= asset.type
+      +durationCell('last modified',asset.lastModification)
+      +durationCell('cache time',asset.cacheTime)
+      +sizeCell('size', asset.size)
+      td.number(data-title='count')= asset.requestCount
 
 block content
     h2 Most used assets
     .responsive
       table(data-sortable, id='assets')
-          +rowHeading(['url', 'type', 'time since last modified', 'cache time', 'size', 'count'])
+          +rowHeading(['url', 'type', 'time since last modified', 'cache time', 'size (kb)', 'count'])
           +rows(assets)
