@@ -21,7 +21,7 @@ h2 Summary
 			if btStatistics.timings.userTimings.marks
 				each userTimings, name in btStatistics.timings.userTimings.marks
 					tr
-						td.number(data-title='#{name}') #{name}
+						td(data-title='#{name}') #{name}
 						td.number(data-title='min') #{userTimings.min}
 						td.number(data-title='median') #{userTimings.median}
 						td.number(data-title='mean') #{userTimings.mean}

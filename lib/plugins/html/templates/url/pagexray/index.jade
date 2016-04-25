@@ -42,7 +42,7 @@ h3 Requests and sizes per content type
         td.number(data-title='contentSize') #{h.size.format(data.contentSize)}
         td.number(data-title='requests') #{data.requests}
     tr
-      td.number(data-title='Total') Total
+      td(data-title='Total') Total
       td.number(data-title='transferSize') #{h.size.format(totalTransferSize)}
       td.number(data-title='headerSize') #{h.size.format(totalHeaderSize)}
       td.number(data-title='contentSize') #{h.size.format(totalContentSize)}
@@ -64,6 +64,6 @@ h3 Expires and last modified stats
         td.number(data-title='max') #{h.time.duration(pagexray.expireStats.max)}
       tr
         td(data-title='Type') Last modified
-        td(data-title='min') #{h.time.duration(pagexray.lastModifiedStats.min)}
-        td(data-title='median') #{h.time.duration(pagexray.lastModifiedStats.median)}
-        td(data-title='max') #{h.time.duration(pagexray.lastModifiedStats.max)}
+        td.number(data-title='min') #{h.time.duration(pagexray.lastModifiedStats.min)}
+        td.number(data-title='median') #{h.time.duration(pagexray.lastModifiedStats.median)}
+        td.number(data-title='max') #{h.time.duration(pagexray.lastModifiedStats.max)}
