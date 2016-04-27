@@ -13,8 +13,14 @@ mixin rows(assets)
       +numberCell('count', asset.requestCount)
 
 block content
-    h2 Most used assets
-    .responsive
-      table(data-sortable, id='assets')
-          +rowHeading(['url', 'type', 'time since last modified', 'cache time', 'size (kb)', 'count'])
-          +rows(assets)
+  h2 Most used assets
+
+  if count < fullCount
+    div Showing top #{count} assets out of #{fullCount}
+  else
+    div Showing all #{fullCount} assets
+
+  .responsive
+    table(data-sortable, id='assets')
+      +rowHeading(['url', 'type', 'time since last modified', 'cache time', 'size (kb)', 'count'])
+      +rows(topAssets)
