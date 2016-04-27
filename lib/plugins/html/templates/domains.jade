@@ -16,8 +16,13 @@ mixin rows(domainStats)
       +numberCell('Requests', domain.requestCount)
 
 block content
-    h2 Domains
-    .responsive
-      table(data-sortable, id='domains')
-        +rowHeading(['Domain', 'Blocked', 'DNS', 'Connect', 'Send', 'SSL', 'Wait', 'Receive', 'Total time', 'Requests'])
-        +rows(domainStats)
+  h2 Domains
+  if count < fullCount
+    div Showing top #{count} domains out of #{fullCount}
+  else
+    div Showing top #{fullCount} domains
+
+  .responsive
+    table(data-sortable, id='domains')
+      +rowHeading(['Domain', 'Blocked', 'DNS', 'Connect', 'Send', 'SSL', 'Wait', 'Receive', 'Total time', 'Requests'])
+      +rows(topDomains)
