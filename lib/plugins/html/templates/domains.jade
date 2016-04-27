@@ -13,7 +13,7 @@ mixin rows(domainStats)
       +statsCell(domain.wait, 'Wait')
       +statsCell(domain.receive, 'Receive')
       +statsCell(domain.totalTime, 'Total time')
-      td.number(data-title='Requests', data-value=domain.requestCount) #{domain.requestCount}
+      +numberCell('Requests', domain.requestCount)
 
 block content
     h2 Domains

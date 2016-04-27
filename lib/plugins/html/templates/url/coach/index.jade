@@ -1,3 +1,5 @@
+include ../../_tableMixins
+
 mixin adviceInfo(name, perfectScore, node)
   h3 #{name} (#{node.score})
   button.hidden-small.button-primary(onclick='toggleRow();') Show/hide details
@@ -83,10 +85,10 @@ script(type='text/javascript').
               td.number #{coach.info.iframes}
             tr
               td Local storage
-              td.number #{h.size.format(coach.info.localStorageSize)}
+              +sizeCell('', coach.info.localStorageSize)
             tr
               td Session storage
-              td.number #{h.size.format(coach.info.sessionStorageSize)}
+              +sizeCell('', coach.info.sessionStorageSize)
             tr
               td HTML vs AMP
               td #{coach.info.amp?'This is an AMP page':'Plain good HTML page'}

@@ -9,8 +9,8 @@ mixin rows(assets)
       td(data-title='type')= asset.type
       +durationCell('last modified',asset.lastModification)
       +durationCell('cache time',asset.cacheTime)
-      +sizeCell('size', asset.size)
-      td.number(data-title='count')= asset.requestCount
+      +kbSizeCell('size', asset.size)
+      +numberCell('count', asset.requestCount)
 
 block content
     h2 Most used assets

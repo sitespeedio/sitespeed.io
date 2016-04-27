@@ -14,14 +14,7 @@ each view in ['firstView', 'repeatView']
     .responsive
       table
         caption Metrics
-        tr
-          th TTFB
-          th Render
-          th firstPaint
-          th loadTime
-          th SpeedIndex
-          th fullyLoaded
-          th connections
+        +rowHeading(['TTFB', 'Render', 'firstPaint', 'loadTime', 'SpeedIndex', 'fullyLoaded', 'connections'])
         tr
           td.number(data-title='TTFB') #{median.TTFB}
           td.number(data-title='render')  #{median.render}
@@ -38,7 +31,7 @@ each view in ['firstView', 'repeatView']
             th #{key}
           tr
           each value, key in median.userTimes
-            td.number(data-title='#{key}')  #{value}
+            +numberCell(key, value)
     h5 Waterfall
     img.u-max-full-width(src='#{median.images.waterfall}', alt='Waterfall view')
     h5 Connection view
