@@ -48,9 +48,9 @@
     "chai": "^3.5.0",
     "chai-as-promised": "^5.2.0",
     "eclint": "^1.1.5",
-    "eslint": "^2.0.0",
+    "eslint": "^2.9.0",
     "jsdoc": "^3.3.3",
-    "license-checker": "^5.0.1",
+    "license-checker": "^5.1.2",
     "mocha": "^2.4.4",
     "pug-lint": "^2.1.6"
   },
@@ -60,9 +60,9 @@
     "browsertime": "1.0.0-alpha.9",
     "concurrent-queue": "7.0.1",
     "fast-stats": "0.0.3",
-    "fs-extra": "0.28.0",
+    "fs-extra": "0.30.0",
     "gpagespeed": "3.0.0",
-    "influx": "4.1.0",
+    "influx": "4.2.0",
     "intel": "1.1.0",
     "jade": "1.11.0",
     "line-reader": "0.4.0",
@@ -81,8 +81,8 @@
     "pagexray": "0.6.0",
     "phantomjs-prebuilt": "2.1.7",
     "simplecrawler": "0.6.2",
-    "webcoach": "0.20.3",
+    "webcoach": "0.22.0",
     "webpagetest": "0.3.4",
-    "yargs": "4.6.0"
+    "yargs": "4.7.0"
   }
 }
