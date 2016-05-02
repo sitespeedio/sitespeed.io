@@ -3,7 +3,7 @@ extends ./layout.jade
 block content
     h1 Page summary
     h5 #{url}
-    p Tested using #{options.browsertime.browser} #{options.browsertime.iterations} time(s)
+    p Tested using #{h.cap(options.browsertime.browser)} #{options.browsertime.iterations} #{h.plural(options.browsertime.iterations,'time')}.
 
     include ./summaryBox.jade
 
@@ -13,7 +13,7 @@ block content
         a(href='./#{index}.html') #{value}
         if (value !== Object.keys(runPages).length)
           | -
-    p      
+    p
     -run = 0
     h3 This is statistics from run #{run+1}
     if pageInfo.errors

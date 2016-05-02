@@ -4,9 +4,9 @@ block content
     - runNumber = Number(runIndex)+1
     h1 Run #{runNumber} summary
     h5 #{url}
-    
-    p Tested using #{options.browsertime.browser} #{options.browsertime.iterations} time(s)
-    
+
+    p Tested using #{h.cap(options.browsertime.browser)} #{options.browsertime.iterations} #{h.plural(options.browsertime.iterations,'time')}.
+
     if pageInfo.error
       .error= pageInfo.error
     else
