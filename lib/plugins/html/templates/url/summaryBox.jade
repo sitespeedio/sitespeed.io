@@ -1,6 +1,7 @@
 - const btStatistics = pageInfo.data.browsertime.page[0].statistics
 h2 Summary
-- timingMetrics = ['firstPaint', 'fullyLoaded', 'rumSpeedIndex']
+- timingMetrics = ['fullyLoaded', 'rumSpeedIndex']
+- if (btStatistics.timings.firstPaint.min > 0) timingMetrics.unshift('firstPaint')
 .responsive
 	table
 		thead
