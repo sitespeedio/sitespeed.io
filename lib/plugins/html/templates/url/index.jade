@@ -3,7 +3,7 @@ extends ./layout.jade
 block content
     h1 Page summary
     h5 #{url}
-    p Tested using #{h.cap(options.browsertime.browser)} #{options.browsertime.iterations} #{h.plural(options.browsertime.iterations,'time')}.
+    p Tested using #{h.cap(options.browsertime.browser)} #{h.plural(options.browsertime.iterations, 'time')}.
 
     include ./summaryBox.jade
 
