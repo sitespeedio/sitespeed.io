@@ -27,6 +27,8 @@ checker.init({
     if (incompatibleDependencies.length > 0) {
       console.error('Found packages with incompatible license: ' + JSON.stringify(incompatibleDependencies));
       process.exit(1);
+    } else {
+      console.log('All is well! No packages with an incompatible license found.');
     }
   }
 });
