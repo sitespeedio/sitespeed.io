@@ -3,18 +3,11 @@ services:
     grafana:
         image: grafana/grafana
         depends_on:
-            - graphite
             - influxdb
         links:
-            - graphite
             - influxdb
         ports:
             - "3000:3000"
-    graphite:
-        image: sitespeedio/graphite
-        ports:
-            - "2003:2003"
-            - "8080:80"
     influxdb:
         image: tutum/influxdb
         environment:
