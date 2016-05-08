@@ -91,9 +91,43 @@ describe('metricsFilter', () => {
         }
       });
     });
-    
+
     it('should filter with multiple wildcards', () => {
       const filtered = metricsFilter.filterMetrics(wptResult, 'data.*.*.TTFB');
+
+      expect(filtered).to.deep.equal({
+        data: {
+          average: {
+            firstView: {TTFB: 503},
+            repeatView: {TTFB: 362}
+          },
+          standardDeviation: {
+            firstView: {TTFB: 0},
+            repeatView: {TTFB: 0}
+          },
+          median: {
+            firstView: {TTFB: 503},
+            repeatView: {TTFB: 362}
+          }
+        }
+      });
+    });
+
+    it('should filter with starting wildcards', () => {
+      const filtered = metricsFilter.filterMetrics(wptResult, '*.average.*.TTFB');
+
+      expect(filtered).to.deep.equal({
+        data: {
+          average: {
+            firstView: {TTFB: 503},
+            repeatView: {TTFB: 362}
+          }
+        }
+      });
+    });
+
+    it('should filter with multiple starting wildcards', () => {
+      const filtered = metricsFilter.filterMetrics(wptResult, '*.*.*.TTFB');
 
       expect(filtered).to.deep.equal({
         data: {
