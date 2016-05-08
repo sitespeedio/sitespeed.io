@@ -147,5 +147,34 @@ describe('metricsFilter', () => {
       });
     });
 
+    it('should filter with dots in json keys', () => {
+      const data = {
+        'a.b': {
+          foo: 42
+        },
+        c: {
+          foo: 17
+        },
+        'd.e.f': {
+          foo: -1
+        },
+        g: 'foo'
+      };
+
+      const filtered = metricsFilter.filterMetrics(data, '*.foo');
+
+      expect(filtered).to.deep.equal({
+        'a.b': {
+          foo: 42
+        },
+        c: {
+          foo: 17
+        },
+        'd.e.f': {
+          foo: -1
+        }
+      });
+    });
+
   });
 });
