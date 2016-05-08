@@ -27,7 +27,7 @@ describe('graphite', function() {
       let generator = new DataGenerator('ns');
 
       var data = generator.dataFromMessage(message);
-      expect(data).to.match(/pageSummary.sub_domain_com/);
+      expect(data).to.match(/ns.pageSummary.sub_domain_com/);
       expect(data).to.match(/bar.gpsi.median/);
       expect(data).to.match(/foo_bar/);
     });
