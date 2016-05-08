@@ -24,7 +24,7 @@ describe('influxdb', function() {
         'url': 'http://sub.domain.com/foo/bar'
       };
 
-      let generator = new DataGenerator('ns');
+      let generator = new DataGenerator();
 
       var data = generator.dataFromMessage(message);
 
