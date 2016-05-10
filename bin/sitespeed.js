@@ -35,6 +35,7 @@ if (log.isEnabledFor(log.CRITICAL)) { // TODO change the threshold to VERBOSE be
 
 log.info('Versions OS: %s sitespeed.io: %s browsertime: %s coach: %s', os.platform() + ' ' + os.release(), packageInfo.version, packageInfo.dependencies.browsertime, packageInfo.dependencies.webcoach);
 
+// FIXME need to consider aliases, e.g. -d => --crawler.depth
 loader.parsePluginNames(parsed.raw)
   .then((pluginNames) => {
     if (allInArray(['browsertime', 'coach'], pluginNames)) {
