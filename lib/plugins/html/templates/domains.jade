@@ -5,14 +5,14 @@ mixin rows(domainStats)
   each domain in domainStats
     tr
       td.url.assetsurl(data-title='Domain') #{domain.domainName}
-      +statsCell(domain.blocked, 'Blocked')
-      +statsCell(domain.dns, 'DNS')
-      +statsCell(domain.connect, 'Connect')
-      +statsCell(domain.send, 'Send')
-      +statsCell(domain.ssl, 'SSL')
-      +statsCell(domain.wait, 'Wait')
-      +statsCell(domain.receive, 'Receive')
-      +statsCell(domain.totalTime, 'Total time')
+      +statsCell(domain.blocked, 'Blocked', 'max')
+      +statsCell(domain.dns, 'DNS', 'max')
+      +statsCell(domain.connect, 'Connect', 'max')
+      +statsCell(domain.send, 'Send', 'max')
+      +statsCell(domain.ssl, 'SSL', 'max')
+      +statsCell(domain.wait, 'Wait', 'max')
+      +statsCell(domain.receive, 'Receive', 'max')
+      +statsCell(domain.totalTime, 'Total time', 'max')
       +numberCell('Requests', domain.requestCount)
 
 block content
