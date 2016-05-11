@@ -3,8 +3,8 @@ include _tableMixins
 
 mixin rows(pages)
   each pageInfo, url in pages
-    - p = pageInfo.data.pagexray.pageSummary[0]
-    - t = p.contentTypes
+    - p = pageInfo.data.pagexray ? pageInfo.data.pagexray.pageSummary[0] : {}
+    - t = p.contentTypes || {javascript: {transferSize: ''}, css: {transferSize: ''}, image: {transferSize: ''}}
     tr
       td.url.pagesurl(data-title='URL')
         a(href='#{pageInfo.path}/index.html')= url
