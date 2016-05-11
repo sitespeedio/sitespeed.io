@@ -2,8 +2,8 @@ include ../../_tableMixins
 
 mixin adviceInfo(name, perfectScore, node)
   h3 #{name} (#{node.score})
-  button.hidden-small.button-primary(onclick='toggleRow();') Show/hide details
   if node.score < 100
+    button.hidden-small.button-primary(onclick='toggleRow();') Show/hide details
     .responsive
       table
         thead
