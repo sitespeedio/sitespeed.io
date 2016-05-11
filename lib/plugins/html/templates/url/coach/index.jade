@@ -24,7 +24,7 @@ mixin adviceInfo(name, perfectScore, node)
   else
     p #{perfectScore}
 
-- const coach = pageInfo.data.coach ? pageInfo.data.coach.run.advice : pageInfo.data.browsertime.page[0].browserScripts[run].coach.coachAdvice.advice;
+- const advice = pageInfo.data.coach.run ? pageInfo.data.coach.run.advice : pageInfo.data.coach.pageSummary[0].advice;
 
 a#coach
 h2 Coach
@@ -47,54 +47,54 @@ script(type='text/javascript').
       .eight.columns
         h3 Coach score
         ul
-          li Total score #{coach.score}
-          li Performance score #{coach.performance.score}
-          li Accessibility Score #{coach.accessibility.score}
-          li Best practice score #{coach.bestpractice.score}
+          li Total score #{advice.score}
+          li Performance score #{advice.performance.score}
+          li Accessibility Score #{advice.accessibility.score}
+          li Best practice score #{advice.bestpractice.score}
     .row
       .twelve.columns
-        +adviceInfo('Accessibility advice','You have a perfect accessibility score!',coach.accessibility)
+        +adviceInfo('Accessibility advice','You have a perfect accessibility score!', advice.accessibility)
 
-        +adviceInfo('Performance advice','You have a perfect Performance score!',coach.performance)
+        +adviceInfo('Performance advice','You have a perfect Performance score!', advice.performance)
 
-        +adviceInfo('Best practice advice','Your best practice score is perfect!',coach.bestpractice)
+        +adviceInfo('Best practice advice','Your best practice score is perfect!', advice.bestpractice)
 
         a#info
         h2 Page info
         table
             tr
               td Title
-              td #{coach.info.documentTitle}
+              td #{advice.info.documentTitle}
             tr
               td Width
-              td.number #{coach.info.documentWidth}
+              td.number #{advice.info.documentWidth}
             tr
               td Height
-              td.number #{coach.info.documentHeight}
+              td.number #{advice.info.documentHeight}
             tr
               td DOM elements
-              td.number #{coach.info.domElements}
+              td.number #{advice.info.domElements}
             tr
               td Avg DOMdepth
-              td.number #{coach.info.domDepth.avg}
+              td.number #{advice.info.domDepth.avg}
             tr
               td Max DOM depth
-              td.number #{coach.info.domDepth.max}
+              td.number #{advice.info.domDepth.max}
             tr
               td Iframes
-              td.number #{coach.info.iframes}
+              td.number #{advice.info.iframes}
             tr
               td Local storage
-              +sizeCell('', coach.info.localStorageSize)
+              +sizeCell('', advice.info.localStorageSize)
             tr
               td Session storage
-              +sizeCell('', coach.info.sessionStorageSize)
+              +sizeCell('', advice.info.sessionStorageSize)
             tr
               td HTML vs AMP
-              td #{coach.info.amp?'This is an AMP page':'Plain good HTML page'}
+              td #{advice.info.amp?'This is an AMP page':'Plain good HTML page'}
         h3 Resource hints
         table
-          each value, key in coach.info.resourceHints
+          each value, key in advice.info.resourceHints
             tr
               td #{key}
-              td.url !{value.join('<br>')}
+              td.url #{value.join('<br>')}
