@@ -18,5 +18,5 @@ mixin sizeCell(title, size)
 
 mixin statsCell(stats, name, stat)
   - stat = stat ? stat : 'median'
-  - value = stats ? stats[stat] : undefined
+  - value = stats ? stats[stat] : 0
   td.number(data-title=name, data-value=value)= value
