@@ -81,7 +81,7 @@
     "pagexray": "0.6.0",
     "phantomjs-prebuilt": "2.1.7",
     "simplecrawler": "0.7.0",
-    "webcoach": "0.22.0",
+    "webcoach": "0.22.1",
     "webpagetest": "0.3.4",
     "yargs": "4.7.0"
   }
