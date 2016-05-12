@@ -7,7 +7,9 @@ table {
 th,
 td {
   padding: 4px 15px;
-  border: 1px solid #E1E1E1; }
+  border: 1px solid #E1E1E1;
+  vertical-align: top;
+  }
 th:first-child,
 td:first-child {
   padding-left: 15px; }
