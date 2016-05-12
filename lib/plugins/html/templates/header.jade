@@ -15,4 +15,11 @@
         a(href='#{rootPath}/assets.html', class=active) Assets
       li
         - active = menu==='pages' ? 'active' : ''
-        a(href='#{rootPath}/pages.html', class=active) Pages
+        a(href='#{rootPath}/pages.html', class=active) Pages  
+      if doWeHaveErrors
+        li
+          - active = menu==='errors' ? 'active' : ''
+          a(href='#{rootPath}/errors.html', class=active) Errors  
+
+
+        
