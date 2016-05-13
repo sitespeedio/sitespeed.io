@@ -48,6 +48,13 @@ block content
         +boxInfo('Image size', pagexray.summary.image.transferSize, h.size.format)
       .one-third.column
         +boxInfo('Javascript size', pagexray.summary.javascript.transferSize, h.size.format)
+    .row
+      .one-third.column
+        +boxInfo('RUM Speed Index',  browsertime.summary.rumSpeedIndex)
+      .one-third.column
+        +boxInfo('Fully loaded', browsertime.summary.fullyLoaded)
+      .one-third.column
+        +boxInfo('Backend Time', browsertime.summary.timings.backEndTime)    
     if (webpagetest)
       .row
         .one-third.column
