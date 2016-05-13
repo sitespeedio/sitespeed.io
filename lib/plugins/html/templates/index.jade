@@ -53,9 +53,13 @@ block content
         +boxInfo('RUM Speed Index',  browsertime.summary.rumSpeedIndex)
       .one-third.column
         +boxInfo('Fully loaded', browsertime.summary.fullyLoaded)
-      .one-third.column
-        +boxInfo('Backend Time', browsertime.summary.timings.backEndTime)    
-    if (webpagetest)
+      if browsertime.summary.firstPaint
+        .one-third.column
+          +boxInfo('First Paint', browsertime.summary.firstPaint)
+      else    
+        .one-third.column
+          +boxInfo('Backend Time', browsertime.summary.timings.backEndTime)    
+    if webpagetest
       .row
         .one-third.column
           +boxInfo('WPT render (firstView)',  webpagetest.summary.firstView.render)
