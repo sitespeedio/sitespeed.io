@@ -15,7 +15,7 @@ mixin rows(pages)
         +kbSizeCell('Image size', h.get(t.image, 'transferSize'))
         +kbSizeCell('Total size', p.transferSize)
         +numberCell('Requests', p.requests)
-        - score = pageInfo.data.browsertime ?  pageInfo.data.browsertime.page.browserScripts[0].coach.coachAdvice.advice.performance.score : 0
+        - score = pageInfo.data.browsertime ?  pageInfo.data.browsertime.pageSummary.browserScripts[0].coach.coachAdvice.advice.performance.score : 0
         - label = 'label ' +  h.scoreLabel(score)
         td.number(data-title='Performance score', data-value='#{score}')
           span(class=label) #{score}

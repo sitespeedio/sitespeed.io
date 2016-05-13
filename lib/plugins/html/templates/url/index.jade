@@ -24,7 +24,7 @@ block content
     ul
       if d.coach && d.coach.pageSummary
         li: a(href='#coach') Coach
-      if d.browsertime && d.browsertime.page
+      if d.browsertime && d.browsertime.pageSummary
         li: a(href='#timings') Timings
       if d.pagexray && d.pagexray.pageSummary
         li: a(href='#pagexray') Info
@@ -34,7 +34,7 @@ block content
     if d.coach && d.coach.pageSummary
       include ./coach/index.jade
 
-    if d.browsertime && d.browsertime.page
+    if d.browsertime && d.browsertime.pageSummary
       include ./browsertime/index.jade
 
     if d.pagexray && d.pagexray.pageSummary
