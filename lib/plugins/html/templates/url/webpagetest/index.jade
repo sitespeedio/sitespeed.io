@@ -1,7 +1,7 @@
 a#webpagetest
 h2 WebPageTest
 
-- const data = pageInfo.data.webpagetest.pageSummary[0].data
+- const data = pageInfo.data.webpagetest.pageSummary.data
 - const medianRun = data.median
 
 p Test run from !{data.from} using #{medianRun.firstView.browser_name} - #{medianRun.firstView.browser_version}. Check the

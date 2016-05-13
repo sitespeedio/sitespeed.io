@@ -19,13 +19,13 @@ each view in ['firstView', 'repeatView']
           th fullyLoaded
           th connections
         tr
-          td.number(data-title='TTFB') #{median.TTFB}
-          td.number(data-title='render') #{median.render}
-          td.number(data-title='firstPaint') #{median.firstPaint}
-          td.number(data-title='loadTime') #{median.loadTime}
-          td.number(data-title='SpeedIndex') #{median.SpeedIndex}
-          td.number(data-title='fullyLoaded') #{median.fullyLoaded}
-          td.number(data-title='connections') #{median.connections}
+          td.number(data-title='TTFB') #{data.TTFB}
+          td.number(data-title='render') #{data.render}
+          td.number(data-title='firstPaint') #{data.firstPaint}
+          td.number(data-title='loadTime') #{data.loadTime}
+          td.number(data-title='SpeedIndex') #{data.SpeedIndex}
+          td.number(data-title='fullyLoaded') #{data.fullyLoaded}
+          td.number(data-title='connections') #{data.connections}
       if (data.userTimes)
         table
           caption User timings
