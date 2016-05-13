@@ -5,7 +5,7 @@ mixin rows(pages)
   each pageInfo, url in pages
     //- Skip the page if we don't have bt & pageinfo
     if  pageInfo.data.pagexray && pageInfo.data.browsertime
-      - p = pageInfo.data.pagexray ? pageInfo.data.pagexray.pageSummary[0] : {}
+      - p = pageInfo.data.pagexray ? pageInfo.data.pagexray.pageSummary : {}
       - t = p.contentTypes || {javascript: {transferSize: ''}, css: {transferSize: ''}, image: {transferSize: ''}}
       tr
         td.url.pagesurl(data-title='URL')
