@@ -7,7 +7,7 @@ block content
 
   include ./summaryBox.jade
 
-  .large All runs:
+  .large All runs:&nbsp;
     each val, index in runPages
       - value = Number(index) + 1
       a(href='./#{index}.html') #{value}
@@ -15,7 +15,7 @@ block content
         | -
   p
   - run = 0
-  h3 This is statistics from run #{run + 1}
+  h3 Statistics from run #{run + 1}
   if pageInfo.errors
     p Errors
     .errors= JSON.stringify(pageInfo.errors, null, 2)
