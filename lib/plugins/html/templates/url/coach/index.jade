@@ -97,4 +97,7 @@ script(type='text/javascript').
           each value, key in advice.info.resourceHints
             tr
               td #{key}
-              td.url !{value.join('<br>')}
+              td.url
+                ul
+                  each url in value
+                    li #{url}
