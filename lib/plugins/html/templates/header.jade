@@ -1,22 +1,17 @@
+mixin headerLink(id, name)
+  if (headers[id])
+    li
+      - active = menu===id ? 'active' : ''
+      a(href='#{rootPath}/#{id}.html', class=active)= name
+
 .darkblue.nav
   .navgrid
     .logo
         a(href='https://www.sitespeed.io')
           img.navbar-brand(src='#{rootPath}/img/sitespeed.io-logo.png', width='162', height='50', alt='sitespeed.io logo')
     ul
-      li
-        - active = menu==='summary' ? 'active' : ''
-        a(href='#{rootPath}/index.html', class=active) Summary
-      li
-        - active = menu==='domains' ? 'active' : ''
-        a(href='#{rootPath}/domains.html', class=active) Domains
-      li
-        - active = menu==='assets' ? 'active' : ''
-        a(href='#{rootPath}/assets.html', class=active) Assets
-      li
-        - active = menu==='pages' ? 'active' : ''
-        a(href='#{rootPath}/pages.html', class=active) Pages  
-      if doWeHaveErrors
-        li
-          - active = menu==='errors' ? 'active' : ''
-          a(href='#{rootPath}/errors.html', class=active) Errors  
+      +headerLink('index', 'Summary')
+      +headerLink('domains', 'Domains')
+      +headerLink('assets', 'Assets')
+      +headerLink('pages', 'Pages')
+      +headerLink('errors', 'Errors')
