@@ -35,7 +35,7 @@ if (log.isEnabledFor(log.CRITICAL)) { // TODO change the threshold to VERBOSE be
 
 log.info('Versions OS: %s sitespeed.io: %s browsertime: %s coach: %s', os.platform() + ' ' + os.release(), packageInfo.version, packageInfo.dependencies.browsertime, packageInfo.dependencies.webcoach);
 
-loader.parsePluginNames(parsed.raw)
+loader.parsePluginNames(parsed.explicitOptions)
   .then((pluginNames) => {
     if (allInArray(['browsertime', 'coach'], pluginNames)) {
       parsed.options.browsertime = merge({}, parsed.options.browsertime, {coach: true});
