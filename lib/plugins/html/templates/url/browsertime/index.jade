@@ -26,13 +26,13 @@ table
   if visualMetrics
     tr
       td SpeedIndex
-      td.number #{visualMetrics.speedIndex.toFixed(1)}
+      td.number #{visualMetrics.SpeedIndex.toFixed(1)}
     tr
       td Render
-      td.number #{visualMetrics.firstVisualChange.toFixed(1)}
+      td.number #{visualMetrics.FirstVisualChange.toFixed(1)}
     tr
       td Last visual change
-      td.number #{visualMetrics.lastVisualChange.toFixed(1)}
+      td.number #{visualMetrics.LastVisualChange.toFixed(1)}
   if (Object.keys(timings.userTimings.marks).length > 0)
     each value, name in timings.userTimings.marks
       tr
