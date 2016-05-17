@@ -41,6 +41,20 @@ h3 Requests and sizes per content type
       +sizeCell('contentSize', totalContentSize)
       +numberCell('requests', totalRequests)
 
+if pagexray.firstParty
+  h3 First Party vs Third Party
+  .responsive
+    table
+      +rowHeading(['Type', 'Transfer Size', 'Header Size', 'Content Size', 'Requests'])
+      - var types = ['firstParty', 'thirdParty']
+      each type in types
+        tr
+          td(data-title='type') #{type}
+          +sizeCell('transferSize', pagexray[type].transferSize)
+          +sizeCell('headerSize', pagexray[type].headerSize)
+          +sizeCell('contentSize', pagexray[type].contentSize)
+          +numberCell('requests', pagexray[type].requests)
+
 h3 Expires and last modified stats
 - expire = pagexray.expireStats
 - lastModified = pagexray.lastModifiedStats
