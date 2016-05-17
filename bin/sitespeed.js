@@ -4,7 +4,7 @@
 'use strict';
 
 const cli = require('../lib/support/cli'),
-  App = require('../lib/app'),
+  Sitespeed = require('../lib/sitespeed'),
   Promise = require('bluebird'),
   difference = require('lodash.difference'),
   logging = require('../lib/support/logging'),
@@ -43,9 +43,9 @@ loader.parsePluginNames(parsed.explicitOptions)
     return loader.loadPlugins(pluginNames);
   })
   .then((plugins) => {
-    let app = new App(plugins, parsed.options);
+    let sitespeed = new Sitespeed(plugins, parsed.options);
 
-    return app.run()
+    return sitespeed.run()
       .then((errors) => {
         if (errors.length > 0) {
           throw new Error('Errors while running:\n' + errors.join('\n'));
