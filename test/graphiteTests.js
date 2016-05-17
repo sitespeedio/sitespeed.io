@@ -1,7 +1,8 @@
 'use strict';
 
 const DataGenerator = require('../lib/plugins/graphite/data-generator'),
-  expect = require('chai').expect;
+  expect = require('chai').expect,
+  moment = require('moment');
 
 describe('graphite', function() {
   describe('dataGenerator', function() {
@@ -26,7 +27,7 @@ describe('graphite', function() {
 
       let generator = new DataGenerator('ns');
 
-      var data = generator.dataFromMessage(message);
+      var data = generator.dataFromMessage(message, moment());
       expect(data).to.match(/ns.pageSummary.sub_domain_com/);
       expect(data).to.match(/bar.gpsi.median/);
       expect(data).to.match(/foo_bar/);
@@ -54,7 +55,7 @@ describe('graphite', function() {
 
       let generator = new DataGenerator('ns');
 
-      var data = generator.dataFromMessage(message);
+      var data = generator.dataFromMessage(message, moment());
       expect(data).to.match(/ns.summary.domains.www.sitespeed.io.dns.median/);
     });
 
