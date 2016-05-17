@@ -25,7 +25,7 @@ describe('graphite', function() {
         'url': 'http://sub.domain.com/foo/bar'
       };
 
-      let generator = new DataGenerator('ns');
+      let generator = new DataGenerator('ns', false, {_:['filename']});
 
       var data = generator.dataFromMessage(message, moment());
       expect(data).to.match(/ns.pageSummary.sub_domain_com/);
@@ -53,10 +53,9 @@ describe('graphite', function() {
         }
       };
 
-      let generator = new DataGenerator('ns');
-
+      let generator = new DataGenerator('ns', false, {_:['filename']});
       var data = generator.dataFromMessage(message, moment());
-      expect(data).to.match(/ns.summary.domains.www.sitespeed.io.dns.median/);
+      expect(data).to.match(/ns.summary.filename.domains.www.sitespeed.io.dns.median/);
     });
 
   });
