@@ -66,12 +66,12 @@ block content
         else
           .one-third.column
             +boxInfo('Backend Time', browsertime.summary.timings.backEndTime)
-    if browsertime.visualMetrics
+    if browsertime.summary.visualMetrics
       .row
         .one-third.column
-          +boxInfo('Speed Index',  browsertime.summary.visualMetrics.SpeedIndex)
-        .one-third.column
           +boxInfo('First Visual Change', browsertime.summary.visualMetrics.FirstVisualChange)
+        .one-third.column
+          +boxInfo('Speed Index',  browsertime.summary.visualMetrics.SpeedIndex)
         .one-third.column
           +boxInfo('Last Visual Change', browsertime.summary.visualMetrics.LastVisualChange)  
     if webpagetest
