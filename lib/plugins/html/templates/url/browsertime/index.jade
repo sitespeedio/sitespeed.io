@@ -3,7 +3,7 @@ h3 Timings
 
 - const browsertime = pageInfo.data.browsertime.run || pageInfo.data.browsertime.pageSummary.browserScripts[run]
 - const timings = browsertime.timings;
-- const visualMetrics = browsertime.visualMetrics;
+- const visualMetrics = pageInfo.data.browsertime.pageSummary.browserScripts.visualMetrics[run]
 
 table
   tr
