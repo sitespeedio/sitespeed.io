@@ -3,7 +3,7 @@ include ../../_tableMixins
 mixin adviceInfo(name, perfectScore, node)
   h3 #{name} (#{node.score})
   if node.score < 100
-    button.hidden-small.button-primary(onclick='toggleRow();') Show/hide details
+    button.hidden-small.button-primary(onclick='toggleRow(this);') Show/hide details
     .responsive
       table
         thead
@@ -30,8 +30,8 @@ a#coach
 h2 Coach
 
 script(type='text/javascript').
-  function toggleRow() {
-    var rows = document.getElementsByClassName("hideable");
+  function toggleRow(toggleElement) {
+    var rows = toggleElement.nextSibling.getElementsByClassName("hideable");
     for (var i = 0; i < rows.length; ++i) {
       var status = rows[i].currentStyle ? rows[i].currentStyle.display :
                               getComputedStyle(rows[i], null).display;
