@@ -1,11 +1,16 @@
 # CHANGELOG - sitespeed.io
 
+version 4.0.0 - NOT YET RELEASED
+------------------------
+### Changed
+* Everything! Rewrite from scratch in progress.
+
 version 3.11.5 - 2016-01-30
 ------------------------
 ### Fixed
 * Dependency problem for PhantomJS 2.1. We hope it works now :)
 
-version 3.11.4 - 2016-01-30 
+version 3.11.4 - 2016-01-30
 ------------------------
 ### Fixed
 * Typos #804 Thanks @beenanner
@@ -31,7 +36,7 @@ version 3.11.2 - 2016-01-13
 version 3.11.1 - 2015-10-27
 ------------------------
 ### Fixed
-* Upgraded Browsertime to new version to work with Node 4 
+* Upgraded Browsertime to new version to work with Node 4
 
 version 3.11.0 - 2015-10-14
 ------------------------
@@ -244,7 +249,7 @@ version 3.1.11 - 2015-03-05
 
 * Configure paths to assets for result pages #604
 
-* Bug fix: If Graphite server is unreachable, callback chain was broken, meaning sitespeed didn't end properly #606  
+* Bug fix: If Graphite server is unreachable, callback chain was broken, meaning sitespeed didn't end properly #606
 
 version 3.1.10 - 2015-03-02
 ------------------------
@@ -321,7 +326,7 @@ version 3.1 - 2015-01-27
   for WebPageTest has changed, now including browser, location and connectivity.
 
   Meaning you need to change Grafana or what tool you are using to use the new
-  keys when you upgrade. #546  
+  keys when you upgrade. #546
 
 * Hardcoded dependencies in package.json
 
@@ -581,7 +586,7 @@ version 1.7
 * Show the amount of assets that don't have an expire header om site summary & pages summary
 * Removed prime cache values from site summary & page summary (was not always correct)
 * Refactored page summary
-* Removed rule ynumreq and created three new ones in order to get clearer junit xml result (and also only check for sync js): cssnumreq, cssimagesnumreq & jsnumreq  
+* Removed rule ynumreq and created three new ones in order to get clearer junit xml result (and also only check for sync js): cssnumreq, cssimagesnumreq & jsnumreq
 * Added average & median nr of DOM elements on site summary and specific nr on page
 * Added response headers info on assets page
 * Bug fix: If a max age HTTP cache header was missing the cache time, the cache time was set to 0, not listening to Expires header.

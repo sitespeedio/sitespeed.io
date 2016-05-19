@@ -1,0 +1,32 @@
+extends ./layout.jade
+include _tableMixins
+
+mixin rows(pages)
+  each pageInfo, url in pages
+    - p = pageInfo.data.pagexray ? pageInfo.data.pagexray.pageSummary : {}
+    - t = p.contentTypes || {javascript: {transferSize: ''}, css: {transferSize: ''}, image: {transferSize: ''}}
+    tr
+      td.url.pagesurl(data-title='URL')
+        a(href='#{pageInfo.path}/index.html')= url
+      +kbSizeCell('Javascript size', h.get(t.javascript, 'transferSize'))
+      +kbSizeCell('CSS size', h.get(t.css, 'transferSize'))
+      +kbSizeCell('Image size', h.get(t.image, 'transferSize'))
+      +kbSizeCell('Total size', p.transferSize)
+      +numberCell('Requests', p.requests)
+      if pageInfo.data.coach
+        - score = pageInfo.data.coach.pageSummary.advice.performance.score
+        td.number(data-title='Performance score', data-value='#{score}')
+          - label = 'label ' +  h.scoreLabel(score)
+          span(class=label) #{score}
+      else
+        td
+
+block content
+  .row
+    .column
+      h2 Pages
+      .responsive
+        table(data-sortable, id='pages')
+          +rowHeading(['url', 'js size (kb)', 'css size (kb)', 'image size (kb)',
+            'total size (kb)', 'total requests', 'performance score'])
+          +rows(pages)

@@ -1,0 +1,38 @@
+extends ./layout.jade
+
+block content
+  - runNumber = Number(runIndex)+1
+  h1 Run #{runNumber} summary
+  h5 #{url}
+
+  p Tested using #{h.cap(options.browsertime.browser)} #{h.plural(options.browsertime.iterations, 'time')}.
+
+  if pageInfo.error
+    .error= pageInfo.error
+  else
+    | Quick links
+    ul.menu
+    - d = pageInfo.data
+    if d.pagexray && d.pagexray.run
+      li: a(href='#pagexray') Page summary
+    if d.coach && d.coach.run
+      li: a(href='#coach') Advice
+    if d.browsertime && d.browsertime.run
+      li: a(href='#timings') Timing
+    if d.webpagetest && d.webpagetest.run
+      li: a(href='#webpagetest') WebPageTest
+
+    if d.pagexray && d.pagexray.run
+      include ./pagexray/index.jade
+
+    if d.coach && d.coach.run
+      include ./coach/index.jade
+
+    if d.browsertime && d.browsertime.run
+      include ./browsertime/index.jade
+
+    if d.webpagetest && d.webpagetest.run
+      include ./webpagetest/run.jade
+
+    .index-link
+      a.button.button-primary(href=urlLink) Back to summary

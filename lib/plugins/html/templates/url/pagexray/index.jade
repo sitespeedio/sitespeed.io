@@ -1,0 +1,73 @@
+include ../../_tableMixins
+
+a#pagexray
+h2 Page summary
+
+- const pagexray = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
+
+p The page uses #{pagexray.httpVersion}
+
+h3 Requests per response code
+table
+  +rowHeading(['Response code', 'Total'])
+  each total, code in pagexray.responseCodes
+    tr
+      td #{code}
+      td #{total}
+
+- totalContentSize = 0
+- totalTransferSize = 0
+- totalHeaderSize = 0
+- totalRequests = 0
+h3 Requests and sizes per content type
+.responsive
+  table
+    +rowHeading(['Content', 'Transfer Size', 'Header Size', 'Content Size', 'Requests'])
+    each data, type in pagexray.contentTypes
+      - totalContentSize += data.contentSize
+      - totalTransferSize += data.transferSize
+      - totalHeaderSize += data.headerSize > 0 ? data.headerSize : 0
+      - totalRequests += data.requests
+      tr
+        td(data-title='type') #{type}
+        +sizeCell('transferSize', data.transferSize)
+        +sizeCell('headerSize', data.headerSize)
+        +sizeCell('contentSize', data.contentSize)
+        +numberCell('requests', data.requests)
+    tr
+      td(data-title='Total') Total
+      +sizeCell('transferSize', totalTransferSize)
+      +sizeCell('headerSize', totalHeaderSize)
+      +sizeCell('contentSize', totalContentSize)
+      +numberCell('requests', totalRequests)
+
+if pagexray.firstParty
+  h3 First Party vs Third Party
+  .responsive
+    table
+      +rowHeading(['Type', 'Transfer Size', 'Header Size', 'Content Size', 'Requests'])
+      - var types = ['firstParty', 'thirdParty']
+      each type in types
+        tr
+          td(data-title='type') #{type}
+          +sizeCell('transferSize', pagexray[type].transferSize)
+          +sizeCell('headerSize', pagexray[type].headerSize)
+          +sizeCell('contentSize', pagexray[type].contentSize)
+          +numberCell('requests', pagexray[type].requests)
+
+h3 Expires and last modified stats
+- expire = pagexray.expireStats
+- lastModified = pagexray.lastModifiedStats
+.responsive
+  table
+    +rowHeading(['type', 'min', 'median', 'max'])
+    tr
+      td(data-title='Type') Expires
+      +durationCell('min', expire.min)
+      +durationCell('median', expire.median)
+      +durationCell('max', expire.max)
+    tr
+      td(data-title='Type') Last modified
+      +durationCell('min', lastModified.min)
+      +durationCell('median', lastModified.median)
+      +durationCell('max', lastModified.max)

@@ -1,0 +1,6 @@
+{
+  "preset": "clock",
+  "validateIndentation": null,
+  "disallowIdLiterals": null,
+  "disallowAttributeInterpolation": null
+}

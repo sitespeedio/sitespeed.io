@@ -1,0 +1,45 @@
+a#timings
+h3 Timings
+
+- const browsertime = pageInfo.data.browsertime.run || pageInfo.data.browsertime.pageSummary.browserScripts[run]
+- const timings = browsertime.timings;
+- const visualMetrics = browsertime.visualMetrics;
+
+table
+  tr
+    th name
+    th timing
+  each value, name in timings.timings
+    tr
+      td #{name}
+      td.number #{value}
+  if timings.firstPaint > -1
+    tr
+      td First paint
+      td.number #{timings.firstPaint.toFixed(1)}
+  tr
+    td RUM Speed Index
+    td.number #{timings.rumSpeedIndex.toFixed(1)}
+  tr
+    td Fully loaded
+    td.number #{timings.fullyLoaded.toFixed(1)}
+  if visualMetrics
+    tr
+      td Speed Index (visual metric)
+      td.number #{visualMetrics.SpeedIndex.toFixed(1)}
+    tr
+      td First Visual Change (visual metric)
+      td.number #{visualMetrics.FirstVisualChange.toFixed(1)}
+    tr
+      td Last Visual Change (visual metric) 
+      td.number #{visualMetrics.LastVisualChange.toFixed(1)}
+  if (Object.keys(timings.userTimings.marks).length > 0)
+    each value, name in timings.userTimings.marks
+      tr
+        td #{value.name}
+        td.number #{value.startTime.toFixed(1)}
+  if (Object.keys(timings.userTimings.measures).length > 0)
+    each value, name in timings.userTimings.measures
+      tr
+        td #{value.name}
+        td.number #{value.startTime.toFixed(1)}

@@ -1,0 +1,28 @@
+extends ./layout.jade
+include _tableMixins
+
+mixin rows(domainStats)
+  each domain in domainStats
+    tr
+      td.url.assetsurl(data-title='Domain') #{domain.domainName}
+      +statsCell(domain.blocked, 'Blocked', 'max')
+      +statsCell(domain.dns, 'DNS', 'max')
+      +statsCell(domain.connect, 'Connect', 'max')
+      +statsCell(domain.send, 'Send', 'max')
+      +statsCell(domain.ssl, 'SSL', 'max')
+      +statsCell(domain.wait, 'Wait', 'max')
+      +statsCell(domain.receive, 'Receive', 'max')
+      +statsCell(domain.totalTime, 'Total time', 'max')
+      +numberCell('Requests', domain.requestCount)
+
+block content
+  h2 Domains
+  if count < fullCount
+    div Showing top #{count} domains out of #{fullCount}
+  else
+    div Showing all #{fullCount} domains
+
+  .responsive
+    table(data-sortable, id='domains')
+      +rowHeading(['Domain', 'Blocked', 'DNS', 'Connect', 'Send', 'SSL', 'Wait', 'Receive', 'Total time', 'Requests'])
+      +rows(topDomains)
