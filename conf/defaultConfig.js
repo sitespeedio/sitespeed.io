@@ -17,7 +17,8 @@ var defaultConfig = {
   viewPort: '1280x800',
   waitScript: ' if (window.performance && window.performance.timing)'
           + '{ return ((window.performance.timing.loadEventEnd > 0) && ((new Date).getTime() - window.performance.timing.loadEventEnd > 2000 ));}'
-          + ' else { return true;}'
+          + ' else { return true;}',
+  onInitialize: 'return true'
 };
 
 module.exports = defaultConfig;
