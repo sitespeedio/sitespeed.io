@@ -20,7 +20,10 @@ mixin adviceInfo(name, perfectScore, node)
                 td.number(data-title='Score') #{advice.score}
             if (advice.offending.length > 0)
               tr.hideable
-                td.url.offendingurl(colspan='3') !{advice.offending.join('<br>')}
+                td.url.offendingurl(colspan='3')
+                  ul
+                    each offender in advice.offending
+                      li #{offender}
   else
     p #{perfectScore}
 
