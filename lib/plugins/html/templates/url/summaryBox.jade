@@ -32,7 +32,8 @@ if pageInfo.data.browsertime
         each visualMetric, name in btStatistics.visualMetrics
           tr
             td(data-title='#{name}') #{name} (visual metric)
-            td.number(data-title='min') #{visualMetric.min}            td.number(data-title='median') #{visualMetric.median} 
+            td.number(data-title='min') #{visualMetric.min}
+            td.number(data-title='median') #{visualMetric.median} 
             td.number(data-title='mean') #{visualMetric.mean}
             td.number(data-title='max') #{visualMetric.max}
 else
