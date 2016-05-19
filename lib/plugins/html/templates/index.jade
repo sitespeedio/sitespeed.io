@@ -66,7 +66,7 @@ block content
         else
           .one-third.column
             +boxInfo('Backend Time', browsertime.summary.timings.backEndTime)
-    if browsertime.summary.visualMetrics
+    if browsertime && browsertime.summary.visualMetrics
       .row
         .one-third.column
           +boxInfo('First Visual Change', browsertime.summary.visualMetrics.FirstVisualChange)
