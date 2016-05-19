@@ -1,7 +1,10 @@
 {
   "name": "sitespeed.io",
   "version": "3.11.5",
-  "bin": "./bin/sitespeed.js",
+  "bin": { 
+    "sitespeed.io": "./bin/sitespeed.js",
+    "sitespeed": "./bin/sitespeed.js"
+  },
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
