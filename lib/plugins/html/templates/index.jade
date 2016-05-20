@@ -36,23 +36,23 @@ block content
         .one-third.column
           +boxInfo('Total requests', pagexray.summary.requests)
         .one-third.column
-          +boxInfo('Image requests', pagexray.summary.image.requests)
+          +boxInfo('Image requests', pagexray.summary.contentTypes.image.requests)
 
     if pagexray
       .row
         .one-third.column
-          +boxInfo('CSS requests', pagexray.summary.css.requests)
+          +boxInfo('CSS requests', pagexray.summary.contentTypes.css.requests)
         .one-third.column
-          +boxInfo('Javascript requests', pagexray.summary.javascript.requests)
+          +boxInfo('Javascript requests', pagexray.summary.contentTypes.javascript.requests)
         .one-third.column
-          +boxInfo('Font requests', pagexray.summary.font.requests)
+          +boxInfo('Font requests', pagexray.summary.contentTypes.font.requests)
       .row
         .one-third.column
           +boxInfo('Total size',  pagexray.summary.transferSize, h.size.format)
         .one-third.column
-          +boxInfo('Image size', pagexray.summary.image.transferSize, h.size.format)
+          +boxInfo('Image size', pagexray.summary.contentTypes.image.transferSize, h.size.format)
         .one-third.column
-          +boxInfo('Javascript size', pagexray.summary.javascript.transferSize, h.size.format)
+          +boxInfo('Javascript size', pagexray.summary.contentTypes.javascript.transferSize, h.size.format)
 
     if browsertime
       .row
