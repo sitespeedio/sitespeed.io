@@ -81,7 +81,7 @@
     "moment": "2.13.0",
     "node-slack": "0.0.7",
     "node-uuid": "1.4.7",
-    "pagexray": "0.8.0",
+    "pagexray": "0.9.0",
     "simplecrawler": "0.7.0",
     "webcoach": "0.22.2",
     "webpagetest": "0.3.4",
