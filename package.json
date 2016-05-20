@@ -47,6 +47,9 @@
   "engines": {
     "node": ">=4.3.0"
   },
+  "publishConfig": {
+    "tag": "canary"
+  },
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-as-promised": "^5.2.0",
