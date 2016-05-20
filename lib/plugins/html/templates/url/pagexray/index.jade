@@ -28,12 +28,13 @@ h3 Requests and sizes per content type
       - totalTransferSize += data.transferSize
       - totalHeaderSize += data.headerSize > 0 ? data.headerSize : 0
       - totalRequests += data.requests
-      tr
-        td(data-title='type') #{type}
-        +sizeCell('transferSize', data.transferSize)
-        +sizeCell('headerSize', data.headerSize)
-        +sizeCell('contentSize', data.contentSize)
-        +numberCell('requests', data.requests)
+      if data.requests > 0
+        tr
+          td(data-title='type') #{type}
+          +sizeCell('transferSize', data.transferSize)
+          +sizeCell('headerSize', data.headerSize)
+          +sizeCell('contentSize', data.contentSize)
+          +numberCell('requests', data.requests)
     tr
       td(data-title='Total') Total
       +sizeCell('transferSize', totalTransferSize)
