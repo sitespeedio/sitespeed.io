@@ -27,6 +27,28 @@ If you would like to give the new version a spin, try the following (you'll need
 > bin/sitespeed.js http://www.sitespeed.io
 ```
 
+## Why 4.0?
+There's a lot of things that we want to improve since 3.0. Here's some of the most important changes:
+
+* We support HTTP/2! In 3.X we used PhantomJS and a modified version of YSlow to analyze best practice rules. We also had BrowserMobProxy in front of our browsers that made it impossible to collect metrics using H2. We now use [the coach](https://github.com/sitespeedio/coach) and Firefox/Chrome without a proxy. That makes it easier for us to adapt to browser changes and changes in best practices.
+
+* New HAR files rock! In the old version we use BrowserMobProxy as a proxy in front of the browser to collect the HAR. In the new version we collect the HAR directly from the browser. For Firefox we use the [HAR export trigger](https://github.com/firebug/har-export-trigger) and in Chrome we generates it from the performance log.
+
+* Stability: We have a new completely rewritten version of [Browsertime](https://github.com/tobli/browsertime) that makes it easier for us to catch errors from the browser, drivers and environment problems.  
+
+* Speed: Yep we dropped Java (it was needed for BrowserMobProxy) and most things are happening in parallel with the new version.
+
+* Don't overload Graphite: One thing that was annoying with 3.x was that it by default sent a massive amount of metrics to Graphite. That's cool in a way but it was too much. We now send curated metrics by default and you can choose to send more.
+
+* You can collect metrics from Chrome on an Android phone. In the current version you need to have it connected using USB to the server running sitespeed.io, lets see how we can make it better in the future.
+
+* Using our Docker container you will get support getting SpeedIndex and startRender using [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics). This is highly experimental at this stage.
+
+There are new things that will come also that isn't 100% implemented yet and you can help us.
+* We want to use [PerfCascade](https://github.com/micmro/PerfCascade) to view the HAR files. Help us with #876
+* InfluxDB support. We have started with a POC but need to implement it properly, see #889.
+* We need to have a good way to throttle the connection, checkout #895.
+
 [travis-image-4]: https://img.shields.io/travis/sitespeedio/sitespeed.io/4.0.svg?style=flat-square
 [travis-url]: https://travis-ci.org/sitespeedio/sitespeed.io/branches
 [stars-url]: https://github.com/sitespeedio/sitespeed.io/stargazers
