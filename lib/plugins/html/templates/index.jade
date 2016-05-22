@@ -9,14 +9,14 @@ mixin box(name, node, func)
 
 mixin boxInfo(name, node, formatter)
   -formatter = formatter || function(value) {return value}
-  -median=0
-  -max=0
+  -median = 0
+  -max = 0
   -if(node && node.median !== 'undefined'){
-    -median=node.median
-  -}
+    -median = node.median
+  - }  
   -if(node && node.max !== 'undefined'){
-    -max=node.max
-  -}
+    -max = node.max
+  - }
   .summarybox.info= name
     .summarynumber #{formatter(median)}&nbsp;
       span.summarysmall (#{formatter(max)})      
@@ -51,7 +51,6 @@ block content
       .one-third.column
         +boxInfo('404 responses', pagexray.summary.responseCodes['404'])
           
-
     if pagexray
       .row
         .one-third.column
