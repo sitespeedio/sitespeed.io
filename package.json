@@ -60,7 +60,7 @@
     "mocha": "^2.4.4",
     "pug-lint": "^2.1.6"
   },
-  "main": "./bin/sitespeed.js",
+  "main": "./lib/sitespeed.js",
   "dependencies": {
     "bluebird": "3.3.5",
     "browsertime": "1.0.0-alpha.18",
