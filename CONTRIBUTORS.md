@@ -1,4 +1,5 @@
 Many many many thanks to:
+* Jonathan Lee (@beenanner)
 
 3.X and earlier:
 * Tom Sutton (@tomsutton1984)
@@ -14,7 +15,7 @@ Many many many thanks to:
 * JoongSeob Vito Kim (@dorajistyle)
 * Zack Tollman (@tollmanz)
 * Steffen Persch (@n3o77)
-* Matt Flower (@MattFlower) 
+* Matt Flower (@MattFlower)
 * Stefan Judis (@stefanjudis)
 * Peter Elmered (@pelmered)
 * Jeroen Van den Berghe (@JeroenVdb)
