@@ -28,7 +28,10 @@ script:
 - npm run travis
 - bin/sitespeed.js -b firefox -n 2 http://www.browsertime.net
 - bin/sitespeed.js -b chrome -n 2 https://www.sitespeed.io
-- bin/sitespeed.js -b chrome -n 2 https://www.sitespeed.io ----webpagetest.key $WPTKEY --webpagetest.host www.webpagetest.org
+if [ "${TRAVIS_NODE_VERSION}" = "6" ]; then
+   - bin/sitespeed.js -b chrome -n 2 https://www.sitespeed.io --webpagetest.key $WPTKEY --webpagetest.host www.webpagetest.org
+fi
+
 env:
   global:
   - secure: ZCqHD+/PhHNVFWoqir66Xd9YeJRcTHDJYvNL9j4+GTKDEI1h94twhAjQ7Z9DhlCnXwL1lsfEcIjvNCWd3ir/FNy2oZsUzu6kMpFF/niugurFbS551moJ2ObNEfOdj93/sTo4UWH2MZouC9eYeuj1vNYbAev6wBIptL95X/ArldQ=
