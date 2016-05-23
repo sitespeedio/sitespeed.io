@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+UNRELEASED
+-------------------------
+### Changed
+* Upgraded Jade to Pug (new name) and latest alpha version.
+
 version 4.0.0-alpha1 - 2016-05-22
 -------------------------
 ### Changed
