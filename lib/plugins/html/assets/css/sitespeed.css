@@ -64,6 +64,11 @@ ul.menu {
   text-transform: uppercase;
 }
 
+.errors {
+  margin-bottom: 2em;
+  background: lightpink;
+}
+
 /* Hide/show in coach offending */
 .hideable {
   display: none;

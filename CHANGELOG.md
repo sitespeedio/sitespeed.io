@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+-------------------------
+### Fixed
+* Show results from other plugins even if one plugin has an error (e.g. WebPageTest fails but Browsertime succeeds).
+
 version 4.0.0-alpha1 - 2016-05-22
 -------------------------
 ### Changed
