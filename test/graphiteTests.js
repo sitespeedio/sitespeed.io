@@ -25,11 +25,11 @@ describe('graphite', function() {
         'url': 'http://sub.domain.com/foo/bar'
       };
 
-      let generator = new DataGenerator('ns', false, {_:['filename']});
+      let generator = new DataGenerator('ns', false, {_:['filename'], browser:'chrome', connectivity: 'cable'});
 
       var data = generator.dataFromMessage(message, moment());
       expect(data).to.match(/ns.pageSummary.sub_domain_com/);
-      expect(data).to.match(/bar.gpsi.median/);
+      expect(data).to.match(/bar.chrome.cable.gpsi.median/);
       expect(data).to.match(/foo_bar/);
     });
 
@@ -53,9 +53,9 @@ describe('graphite', function() {
         }
       };
 
-      let generator = new DataGenerator('ns', false, {_:['filename']});
+      let generator = new DataGenerator('ns', false, {_:['filename'], browser:'chrome', connectivity: 'cable'});
       var data = generator.dataFromMessage(message, moment());
-      expect(data).to.match(/ns.summary.filename.domains.www.sitespeed.io.dns.median/);
+      expect(data).to.match(/ns.summary.filename.chrome.cable.domains.www.sitespeed.io.dns.median/);
     });
 
   });
