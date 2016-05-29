@@ -13,32 +13,33 @@ block content
       a(href='./#{index}.html') #{value}
       if (value !== Object.keys(runPages).length)
         | &nbsp;-&nbsp;
-  p
+
+  if pageInfo.errors
+    h4 Errors
+    .errors= JSON.stringify(pageInfo.errors, null, 2)
+
   - run = 0
   h3 Statistics from run #{run + 1}
-  if pageInfo.errors
-    p Errors
-    .errors= JSON.stringify(pageInfo.errors, null, 2)
-  else
-    - d = pageInfo.data
-    ul
-      if d.coach && d.coach.pageSummary
-        li: a(href='#coach') Coach
-      if d.browsertime && d.browsertime.pageSummary
-        li: a(href='#timings') Timings
-      if d.pagexray && d.pagexray.pageSummary
-        li: a(href='#pagexray') Info
-      if d.webpagetest
-        li: a(href='#webpagetest') WebPageTest
 
+  - const d = pageInfo.data
+  ul
     if d.coach && d.coach.pageSummary
-      include ./coach/index.jade
-
+      li: a(href='#coach') Coach
     if d.browsertime && d.browsertime.pageSummary
-      include ./browsertime/index.jade
-
+      li: a(href='#timings') Timings
     if d.pagexray && d.pagexray.pageSummary
-      include ./pagexray/index.jade
-
+      li: a(href='#pagexray') Info
     if d.webpagetest
-      include ./webpagetest/index.jade
+      li: a(href='#webpagetest') WebPageTest
+
+  if d.coach && d.coach.pageSummary
+    include ./coach/index.jade
+
+  if d.browsertime && d.browsertime.pageSummary
+    include ./browsertime/index.jade
+
+  if d.pagexray && d.pagexray.pageSummary
+    include ./pagexray/index.jade
+
+  if d.webpagetest
+    include ./webpagetest/index.jade
