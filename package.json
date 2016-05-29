@@ -57,7 +57,7 @@
     "eslint": "^2.9.0",
     "jsdoc": "^3.3.3",
     "license-checker": "^5.1.2",
-    "mocha": "^2.4.4",
+    "mocha": "^2.5.0",
     "pug-lint": "^2.1.6"
   },
   "main": "./lib/sitespeed.js",
