@@ -86,7 +86,7 @@
     "node-uuid": "1.4.7",
     "pagexray": "0.9.0",
     "simplecrawler": "0.7.0",
-    "webcoach": "0.22.3",
+    "webcoach": "0.22.4",
     "webpagetest": "0.3.4",
     "yargs": "4.7.0"
   }
