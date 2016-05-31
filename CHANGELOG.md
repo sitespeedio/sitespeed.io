@@ -4,6 +4,7 @@
 -------------------------
 ### Fixed
 * Show results from other plugins even if one plugin has an error (e.g. WebPageTest fails but Browsertime succeeds).
+* Read browsertime pre and post tasks.
 
 ### Changed
 * Added browser and connectivity to Graphite keys.
