@@ -47,9 +47,9 @@ There's a lot of things that we want to improve since 3.0. Here's some of the mo
 * Using our Docker container you will get support getting SpeedIndex and startRender using [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics). This is highly experimental at this stage.
 
 There are new things that will come also that isn't 100% implemented yet and you can help us.
-* We want to use [PerfCascade](https://github.com/micmro/PerfCascade) to view the HAR files. Help us with [876]( https://github.com/sitespeedio/sitespeed.io/issues/#876)
-* InfluxDB support. We have started with a POC but need to implement it properly, see [889](https://github.com/sitespeedio/sitespeed.io/issues/#889).
-* We need to have a good way to throttle the connection, checkout [895](https://github.com/sitespeedio/sitespeed.io/issues/#895).
+* We want to use [PerfCascade](https://github.com/micmro/PerfCascade) to view the HAR files. Help us with [876]( https://github.com/sitespeedio/sitespeed.io/issues/876)
+* InfluxDB support. We have started with a POC but need to implement it properly, see [889](https://github.com/sitespeedio/sitespeed.io/issues/889).
+* We need to have a good way to throttle the connection, checkout [895](https://github.com/sitespeedio/sitespeed.io/issues/895).
 
 ## I want to help!
 We have a [special page](HELP.md) for you!
