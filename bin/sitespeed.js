@@ -47,7 +47,7 @@ loader.parsePluginNames(parsed.explicitOptions)
   .then(() => {
     process.exitCode = 0;
   })
-  .catch((e) => {
+  .catch(() => {
     process.exitCode = 1;
   })
   .finally(() => process.exit());
