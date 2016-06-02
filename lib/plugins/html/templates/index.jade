@@ -1,22 +1,20 @@
 extends ./layout.jade
 
 mixin box(name, node, func)
-  -median= node.median
-  -max= node.max
+  - median= node.median
+  - max= node.max
   .summarybox(class=(func(median)))= name
     .summarynumber #{median}&nbsp;
       span.summarysmall (#{max})
 
 mixin boxInfo(name, node, formatter)
-  -formatter = formatter || function(value) {return value}
-  -median = 0
-  -max = 0
-  -if(node && node.median !== 'undefined'){
-    -median = node.median
-  - }  
-  -if(node && node.max !== 'undefined'){
-    -max = node.max
-  - }
+  - formatter = formatter || function(value) {return value}
+  - median = 0
+  - max = 0
+  if (node && node.median !== 'undefined')
+    - median = node.median
+  if(node && node.max !== 'undefined')
+    - max = node.max
   .summarybox.info= name
     .summarynumber #{formatter(median)}&nbsp;
       span.summarysmall (#{formatter(max)})      
