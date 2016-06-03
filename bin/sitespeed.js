@@ -5,7 +5,7 @@
 'use strict';
 
 const cli = require('../lib/support/cli'),
-  Sitespeed = require('../lib/sitespeed'),
+  sitespeed = require('../lib/sitespeed'),
   Promise = require('bluebird'),
   difference = require('lodash.difference'),
   merge = require('lodash.merge'),
@@ -35,8 +35,6 @@ loader.parsePluginNames(parsed.explicitOptions)
     return pluginNames;
   })
   .then((pluginNames) => {
-    let sitespeed = new Sitespeed();
-
     return sitespeed.run(pluginNames, parsed.options)
       .then((errors) => {
         if (errors.length > 0) {
