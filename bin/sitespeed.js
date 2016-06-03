@@ -7,8 +7,6 @@
 const cli = require('../lib/support/cli'),
   sitespeed = require('../lib/sitespeed'),
   Promise = require('bluebird'),
-  difference = require('lodash.difference'),
-  merge = require('lodash.merge'),
   loader = require('../lib/support/pluginLoader');
 
 require('longjohn');
@@ -17,23 +15,11 @@ Promise.config({
   longStackTraces: true
 });
 
-function allInArray(sampleArray, referenceArray) {
-  return difference(sampleArray, referenceArray).length === 0;
-}
-
 process.exitCode = 1;
 
 let parsed = cli.parseCommandLine();
 
 loader.parsePluginNames(parsed.explicitOptions)
-  .then((pluginNames) => {
-    if (allInArray(['browsertime', 'coach'], pluginNames)) {
-      parsed.options.browsertime = merge({}, parsed.options.browsertime, {
-        coach: true
-      });
-    }
-    return pluginNames;
-  })
   .then((pluginNames) => {
     return sitespeed.run(pluginNames, parsed.options)
       .then((errors) => {
