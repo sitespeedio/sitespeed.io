@@ -1,5 +1,5 @@
 {
-  "preset": "clock",
+  "extends": "clock",
   "validateIndentation": null,
   "disallowIdLiterals": null,
   "disallowAttributeInterpolation": null
