@@ -1,7 +1,9 @@
 # CHANGELOG - sitespeed.io
 
-#" Unreleased
+## Unreleased
 -------------------------
+### Fixed
+* Enable the coach by default.
 
 
 ## 4.0.0-alpha2 - 2016-06-07
