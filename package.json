@@ -60,6 +60,7 @@
     "jsdoc": "^3.3.3",
     "license-checker": "^5.1.2",
     "mocha": "^2.4.4",
+    "node-sass": "^3.7.0",
     "pug-lint": "^2.2.0",
     "pug-lint-config-clock": "^1.1.1"
   },
