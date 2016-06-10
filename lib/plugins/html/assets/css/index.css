@@ -946,13 +946,13 @@ ul.menu {
   text-transform: uppercase; }
 
 .errors {
-  margin-bottom: 2em;
+  margin-bottom: 1.333em;
   background: lightpink; }
 
 /* Large */
 .large {
-  font-size: 2rem;
-  line-height: 2rem; }
+  font-size: 1.333rem;
+  line-height: 1.333rem; }
 
 .hidden-small {
   display: inline; }
