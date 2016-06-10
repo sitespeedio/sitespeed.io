@@ -784,7 +784,7 @@ pre > code {
   color: #ffffff;
   background-color: #0095d2;
   border-color: #0095d2; }
-  .button--primary:hover .button--primary:focus {
+  .button--primary:hover, .button--primary:focus, .button--primary:active {
     color: #ffffff;
     background-color: #0087be;
     border-color: #0087be; }
