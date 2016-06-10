@@ -1,4 +1,4 @@
-extends ./layout.jade
+extends ./layout.pug
 
 block content
   - runNumber = Number(runIndex)+1
@@ -23,16 +23,16 @@ block content
       li: a(href='#webpagetest') WebPageTest
 
     if d.pagexray && d.pagexray.run
-      include ./pagexray/index.jade
+      include ./pagexray/index.pug
 
     if d.coach && d.coach.run
-      include ./coach/index.jade
+      include ./coach/index.pug
 
     if d.browsertime && d.browsertime.run
-      include ./browsertime/index.jade
+      include ./browsertime/index.pug
 
     if d.webpagetest && d.webpagetest.run
-      include ./webpagetest/run.jade
+      include ./webpagetest/run.pug
 
     .index-link
       a.button.button--primary(href=urlLink) Back to summary

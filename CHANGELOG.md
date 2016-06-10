@@ -2,6 +2,7 @@
 
 ## 4.0.0-alpha3 - 2016-06-09
 -------------------------
+
 ### Fixed
 * Enable the coach by default.
 * Fixed broken default plugin loading.

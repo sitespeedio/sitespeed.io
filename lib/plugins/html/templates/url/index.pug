@@ -1,16 +1,16 @@
-extends ./layout.jade
+extends ./layout.pug
 
 block content
   h1 Page summary
   h5 #{url}
   p Tested using #{h.cap(options.browsertime.browser)} #{h.plural(options.browsertime.iterations, 'time')}.
 
-  include ./summaryBox.jade
+  include ./summaryBox.pug
 
   .large All runs:&nbsp;
     each val, index in runPages
       - value = Number(index) + 1
-      a(href='./#{index}.html') #{value}
+      a(href='./' + index + '.html') #{value}
       if (value !== Object.keys(runPages).length)
         | &nbsp;-&nbsp;
 
@@ -21,7 +21,7 @@ block content
   - run = 0
   h3 Statistics from run #{run + 1}
 
-  - const d = pageInfo.data
+  - var d = pageInfo.data
   ul
     if d.coach && d.coach.pageSummary
       li: a(href='#coach') Coach
@@ -33,13 +33,13 @@ block content
       li: a(href='#webpagetest') WebPageTest
 
   if d.coach && d.coach.pageSummary
-    include ./coach/index.jade
+    include ./coach/index.pug
 
   if d.browsertime && d.browsertime.pageSummary
-    include ./browsertime/index.jade
+    include ./browsertime/index.pug
 
   if d.pagexray && d.pagexray.pageSummary
-    include ./pagexray/index.jade
+    include ./pagexray/index.pug
 
   if d.webpagetest
-    include ./webpagetest/index.jade
+    include ./webpagetest/index.pug
