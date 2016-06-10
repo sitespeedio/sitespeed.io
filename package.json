@@ -42,7 +42,8 @@
     "pug-lint": "pug-lint lib/plugins/html/templates",
     "test": "mocha",
     "check-licenses": "tools/check-licenses.js",
-    "travis": "npm run lint && npm run test"
+    "travis": "npm run lint && npm run test",
+    "build:css": "node-sass lib/plugins/html/src/sass/main.scss > lib/plugins/html/assets/css/index.css && cleancss -o lib/plugins/html/assets/css/index.min.css lib/plugins/html/assets/css/index.css"
   },
   "engines": {
     "node": ">=4.3.0"
@@ -53,11 +54,13 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-as-promised": "^5.2.0",
+    "clean-css": "^3.4.17",
     "eclint": "^1.1.5",
     "eslint": "^2.9.0",
     "jsdoc": "^3.3.3",
     "license-checker": "^5.1.2",
     "mocha": "^2.4.4",
+    "node-sass": "^3.7.0",
     "pug-lint": "^2.2.0",
     "pug-lint-config-clock": "^1.1.1"
   },

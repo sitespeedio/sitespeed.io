@@ -19,7 +19,7 @@ mixin adviceInfo(name, perfectScore, node)
                 td.url(data-title='Advice') #{advice.advice}
                 td.number(data-title='Score') #{advice.score}
             if (advice.offending.length > 0)
-              tr.hideable
+              tr.u-hideable
                 td.url.offendingurl(colspan='3')
                   ul
                     each offender in advice.offending
@@ -34,7 +34,7 @@ h2 Coach
 
 script(type='text/javascript').
   function toggleRow(toggleElement) {
-    var rows = toggleElement.nextSibling.getElementsByClassName("hideable");
+    var rows = toggleElement.nextSibling.getElementsByClassName("u-hideable");
     for (var i = 0; i < rows.length; ++i) {
       var status = rows[i].currentStyle ? rows[i].currentStyle.display :
                               getComputedStyle(rows[i], null).display;
