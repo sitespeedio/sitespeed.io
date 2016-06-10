@@ -1,7 +1,7 @@
 a#webpagetest
 h2 WebPageTest
 
-- const wpt = pageInfo.data.webpagetest.run;
+- var wpt = pageInfo.data.webpagetest.run;
 
 each view in ['firstView', 'repeatView']
   - var data = wpt[view];
@@ -34,8 +34,8 @@ each view in ['firstView', 'repeatView']
             th #{key}
           tr
           each value, key in data.userTimes
-            td.number(data-title='#{key}') #{value}
+            td.number(data-title= key) #{value}
     h5 Waterfall
-    img.u-max-full-width(src='#{data.images.waterfall}', alt='Waterfall view')
+    img.u-max-full-width(src= data.images.waterfall, alt='Waterfall view')
     h5 Connection view
-    img.u-max-full-width(src='#{data.images.connectionView}', alt='Connnection view')
+    img.u-max-full-width(src= data.images.connectionView, alt='Connnection view')

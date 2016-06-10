@@ -27,7 +27,7 @@ mixin adviceInfo(name, perfectScore, node)
   else
     p #{perfectScore}
 
-- const advice = pageInfo.data.coach.run ? pageInfo.data.coach.run.advice : pageInfo.data.coach.pageSummary.advice;
+- var advice = pageInfo.data.coach.run ? pageInfo.data.coach.run.advice : pageInfo.data.coach.pageSummary.advice;
 
 a#coach
 h2 Coach
@@ -46,7 +46,7 @@ script(type='text/javascript').
   .column
     .row
       .four.columns
-        img.u-max-full-width(src='#{rootPath}/img/coach.png', alt='I am the coach')
+        img.u-max-full-width(src= rootPath + '/img/coach.png', alt='I am the coach')
       .eight.columns
         h3 Coach score
         ul
