@@ -31,8 +31,9 @@
   background-color: $color--blue;
   border-color: $color--blue;
 
-  &:hover
-  &:focus {
+  &:hover,
+  &:focus,
+  &:active {
     color: $color--white;
     background-color: darken($color--blue, 4%);
     border-color: darken($color--blue, 4%);
