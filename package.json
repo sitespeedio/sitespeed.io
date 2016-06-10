@@ -61,7 +61,6 @@
     "license-checker": "^5.1.2",
     "mocha": "^2.4.4",
     "node-sass": "^3.7.0",
-    "pug": "^2.0.0-beta2",
     "pug-lint": "^2.2.2",
     "pug-lint-config-clock": "^2.0.0"
   },
@@ -75,7 +74,6 @@
     "gpagespeed": "3.0.0",
     "influx": "4.2.0",
     "intel": "1.1.0",
-    "jade": "1.11.0",
     "line-reader": "0.4.0",
     "lodash.clonedeep": "4.3.2",
     "lodash.difference": "4.3.0",
@@ -90,6 +88,7 @@
     "node-slack": "0.0.7",
     "node-uuid": "1.4.7",
     "pagexray": "0.9.0",
+    "pug": "^2.0.0-beta2",
     "simplecrawler": "0.7.0",
     "webcoach": "0.23.0",
     "webpagetest": "0.3.4",
