@@ -1,0 +1,18 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        title= pageTitle
+        meta(name='description', content=pageDescription)
+        link(rel='stylesheet', href=rootPath + '/css/index.min.css')
+        block inlineStyles
+
+    body
+      include ./header.pug
+      .container
+
+        block content
+
+        include ./footer.pug
+      script(src= rootPath + '/js/sortable.min.js')

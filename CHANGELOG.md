@@ -1,9 +1,25 @@
 # CHANGELOG - sitespeed.io
 
-UNRELEASED
+## 4.0.0-alpha3 - 2016-06-09
 -------------------------
+
+### Fixed
+* Enable the coach by default.
+* Fixed broken default plugin loading.
+
+
+## 4.0.0-alpha2 - 2016-06-07
+-------------------------
+### Fixed
+* Show results from other plugins even if one plugin has an error (e.g. WebPageTest fails but Browsertime succeeds).
+* Fixed preTask and postTaks, now named preScript/postScript, try iy out to login the user.
+
+
 ### Changed
-* Upgraded Jade to Pug (new name) and latest alpha version.
+* Added browser and connectivity to Graphite keys, all keys now hold browser and connectivity.
+
+### Added
+* Hey we now log the the log file in the result dir.
 
 version 4.0.0-alpha1 - 2016-05-22
 -------------------------
