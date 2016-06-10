@@ -1,5 +1,5 @@
 if pageInfo.data.browsertime
-  - const btStatistics = pageInfo.data.browsertime.pageSummary.statistics
+  - var btStatistics = pageInfo.data.browsertime.pageSummary.statistics
   h2 Summary
   - timingMetrics = ['firstPaint', 'fullyLoaded', 'rumSpeedIndex']
   .responsive
@@ -23,7 +23,7 @@ if pageInfo.data.browsertime
         if btStatistics.timings.userTimings.marks
           each userTimings, name in btStatistics.timings.userTimings.marks
             tr
-              td(data-title='#{name}') #{name}
+              td(data-title= name) #{name}
               td.number(data-title='min') #{userTimings.min}
               td.number(data-title='median') #{userTimings.median}
               td.number(data-title='mean') #{userTimings.mean}
@@ -31,7 +31,7 @@ if pageInfo.data.browsertime
       if btStatistics.visualMetrics
         each visualMetric, name in btStatistics.visualMetrics
           tr
-            td(data-title='#{name}') #{name} (visual metric)
+            td(data-title= name) #{name} (visual metric)
             td.number(data-title='min') #{visualMetric.min}
             td.number(data-title='median') #{visualMetric.median} 
             td.number(data-title='mean') #{visualMetric.mean}

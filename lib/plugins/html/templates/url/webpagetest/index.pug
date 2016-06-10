@@ -1,11 +1,11 @@
 a#webpagetest
 h2 WebPageTest
 
-- const data = pageInfo.data.webpagetest.pageSummary.data
-- const medianRun = data.median
+- var data = pageInfo.data.webpagetest.pageSummary.data
+- var medianRun = data.median
 
 p Test run from !{data.from} using #{medianRun.firstView.browser_name} - #{medianRun.firstView.browser_version}. Check the
-  a(href='#{data.summary}') result page on WebPageTest
+  a(href= data.summary) result page on WebPageTest
   | .
 each view in ['firstView', 'repeatView']
   - var median = medianRun[view];
@@ -33,6 +33,6 @@ each view in ['firstView', 'repeatView']
           each value, key in median.userTimes
             +numberCell(key, value)
     h5 Waterfall
-    img.u-max-full-width(src='#{median.images.waterfall}', alt='Waterfall view')
+    img.u-max-full-width(src= median.images.waterfall, alt='Waterfall view')
     h5 Connection view
-    img.u-max-full-width(src='#{median.images.connectionView}', alt='Connnection view')
+    img.u-max-full-width(src= median.images.connectionView, alt='Connnection view')
