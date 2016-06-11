@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## UNREALEASED
+-------------------------
+### Added
+* Use PerfCascade to show waterfall on page summary and individual runs from collected HAR (#997) 
+
 ## 4.0.0-alpha3 - 2016-06-09
 -------------------------
 ### Fixed
