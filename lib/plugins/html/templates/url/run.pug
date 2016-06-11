@@ -19,6 +19,8 @@ block content
       li: a(href='#coach') Advice
     if d.browsertime && d.browsertime.run
       li: a(href='#timings') Timing
+      if d.browsertime.run.har
+        li: a(href='#waterfall') Waterfall
     if d.webpagetest && d.webpagetest.run
       li: a(href='#webpagetest') WebPageTest
 
@@ -30,6 +32,8 @@ block content
 
     if d.browsertime && d.browsertime.run
       include ./browsertime/index.pug
+      if d.browsertime.run.har
+          include ./waterfall/index.pug
 
     if d.webpagetest && d.webpagetest.run
       include ./webpagetest/run.pug

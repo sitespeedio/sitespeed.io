@@ -957,3 +957,433 @@ ul.menu {
 .hidden-small {
   display: inline; }
 
+#page-selector {
+  display: none;
+  clear: both;
+  margin: 1em 0; }
+
+* {
+  box-sizing: border-box; }
+
+#output {
+  margin: 2em 0;
+  font-size: 12px;
+  line-height: 1em; }
+
+.water-fall-holder {
+  fill: #ccc; }
+
+svg.water-fall-chart {
+  width: 100%;
+  overflow: visible; }
+
+.water-fall-chart .left-fixed-holder {
+  overflow: visible; }
+
+.water-fall-chart .marker-holder {
+  width: 100%; }
+
+.water-fall-chart .line-holder {
+  stroke-width: 1;
+  stroke: #ccc;
+  stroke-opacity: 0.5; }
+
+.water-fall-chart .line-holder.active {
+  stroke: #69009e;
+  stroke-width: 2;
+  stroke-opacity: 1; }
+
+.water-fall-chart .type-onload .line-holder {
+  stroke: #c0c0ff; }
+
+.water-fall-chart .type-oncontentload .line-holder {
+  stroke: #d888df; }
+
+.water-fall-chart .labels {
+  width: 100%; }
+
+.water-fall-chart .labels .inner-label {
+  pointer-events: none; }
+
+.water-fall-chart .time-block.active {
+  opacity: 0.8; }
+
+.water-fall-chart .line-end,
+.water-fall-chart .line-start {
+  display: none;
+  stroke-width: 1;
+  stroke-opacity: 0.5;
+  stroke: #000; }
+
+.water-fall-chart .line-end.active,
+.water-fall-chart .line-start.active {
+  display: block; }
+
+.water-fall-chart .mark-holder text {
+  -webkit-writing-mode: tb;
+  writing-mode: vertical-lr;
+  writing-mode: tb; }
+
+.left-fixed-holder .label-full-bg {
+  fill: #fff;
+  opacity: 0.9; }
+
+.time-scale line {
+  stroke: #0cc;
+  stroke-width: 1; }
+
+.time-scale text {
+  font-weight: bold; }
+
+.row-item .even {
+  fill: #ccc;
+  opacity: 0.05; }
+
+.row-item .odd {
+  fill: #000;
+  opacity: 0.05; }
+
+.row-item:hover .odd,
+.row-item:hover .even {
+  fill: #000;
+  opacity: 0.1; }
+
+.row-item .rect-holder text {
+  fill: #aaa; }
+
+.row-item.status5xx .even {
+  fill: #f66; }
+
+.row-item.status5xx .odd {
+  fill: #f00; }
+
+.row-item.status4xx .even {
+  fill: #c33; }
+
+.row-item.status4xx .odd {
+  fill: #c00; }
+
+.row-item.status3xx .even {
+  fill: #ff6; }
+
+.row-item.status3xx .odd {
+  fill: #ff0; }
+
+.row-item.status5xx .even,
+.row-item.status5xx .odd,
+.row-item.status4xx .even,
+.row-item.status4xx .odd,
+.row-item.status3xx .even,
+.row-item.status3xx .odd {
+  opacity: 0.3; }
+
+.row-item.status5xx:hover .even,
+.row-item.status5xx:hover .odd,
+.row-item.status4xx:hover .even,
+.row-item.status4xx:hover .odd,
+.row-item.status3xx:hover .even,
+.row-item.status3xx:hover .odd {
+  opacity: 0.5; }
+
+.lables {
+  overflow: hidden; }
+
+/*block colours*/
+.block-css {
+  fill: #a6d18f; }
+
+.block-iframe,
+.block-html,
+.block-svg,
+.block-internal {
+  fill: #82a8de; }
+
+.block-img,
+.block-image {
+  fill: #b394cf; }
+
+.block-script,
+.block-javascript,
+.block-js {
+  fill: #e0b483; }
+
+.block-link {
+  fill: #89afe6; }
+
+.block-swf,
+.block-flash {
+  fill: #42aab1; }
+
+.block-font {
+  fill: #e15d4e; }
+
+.block-xmlhttprequest,
+.block-ajax {
+  fill: #f00; }
+
+/*remove?*/
+.block-plain,
+.block-other {
+  fill: #b3b3b3; }
+
+.block-total {
+  fill: #ccc; }
+
+.block-unload {
+  fill: #909; }
+
+.block-redirect {
+  fill: #ffff60; }
+
+.block-appcache {
+  fill: #1f831f; }
+
+.block-dns {
+  fill: #1f7c83; }
+
+.block-tcp {
+  fill: #e58226; }
+
+.block-ttfb {
+  fill: #1fe11f; }
+
+.block-response {
+  fill: #1977dd; }
+
+.block-dom {
+  fill: #9cc; }
+
+.block-dom-content-loaded {
+  fill: #d888df; }
+
+.block-onload {
+  fill: #c0c0ff; }
+
+.block-ssl {
+  fill: #c141cd; }
+
+.block-ms-first-paint-event {
+  fill: #8fbc83; }
+
+.block-dom-interactive-event {
+  fill: #d888df; }
+
+.block-network-server {
+  fill: #8cd18c; }
+
+.block-custom-measure {
+  fill: #f00; }
+
+.block-navigation-api-total {
+  fill: #ccc; }
+
+.block-blocking,
+.block-blocked {
+  fill: #cdcdcd; }
+
+.block-undefined {
+  fill: #0f0; }
+
+.block-blocked {
+  fill: #ccc; }
+
+/*TODO: define colour*/
+.block-dns {
+  fill: #1f7c83; }
+
+.block-connect {
+  fill: #e58226; }
+
+.block-ssl {
+  fill: #c141cd; }
+
+.block-send {
+  fill: #1fe110; }
+
+/*TODO: define colour*/
+.block-wait {
+  fill: #1fe11f; }
+
+/*TODO: define colour*/
+.block-receive {
+  fill: #1977dd; }
+
+/* Info overlay SVG - wrapper */
+.info-overlay {
+  fill: #fff;
+  stroke: #cdcdcd; }
+
+.info-overlay-close-btn {
+  fill: rgba(205, 205, 205, 0.5);
+  transform: translate(-23px, -23px);
+  cursor: pointer; }
+
+.info-overlay-close-btn text {
+  fill: #111;
+  pointer-events: none; }
+
+.info-overlay-close-btn:focus {
+  border: solid 1px #36c; }
+
+/* Info overlay HTML - types */
+.type-css {
+  background: #406B29; }
+
+/*a6d18f - 40%*/
+.type-iframe,
+.type-html,
+.type-svg,
+.type-internal {
+  background: #1C4278; }
+
+/*82a8de - 40%*/
+.type-img,
+.type-image {
+  background: #4D2E69; }
+
+/*b394cf - 40%*/
+.type-script,
+.type-javascript,
+.type-js {
+  background: #7A4E1D; }
+
+/*e0b483 - 40%*/
+.type-link {
+  background: #89afe6; }
+
+/*89afe6 - 40%*/
+.type-swf,
+.type-flash {
+  background: #234980; }
+
+/*#42aab1 - 40%*/
+.type-font {
+  background: #AE2A1B; }
+
+/*#e15d4e - 40%*/
+.type-xmlhttprequest,
+.type-ajax {
+  background: #CC0000; }
+
+/* f00 40%*/
+.type-plain,
+.type-other {
+  background: #808080; }
+
+/*#b3b3b3 - 40%*/
+/* Info overlay HTML - base */
+.info-overlay-holder * {
+  padding: 0;
+  margin: 0;
+  font-size: 12px; }
+
+.info-overlay-holder body {
+  position: relative;
+  height: 450px;
+  clear: both;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  background: #fff;
+  color: #666; }
+
+.info-overlay-holder body .wrapper {
+  height: 450px;
+  width: 100%;
+  overflow: scroll; }
+
+/* Info overlay HTML - header */
+.info-overlay-holder header {
+  color: #fff;
+  box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.25); }
+
+.info-overlay-holder .requestID {
+  font-weight: bold; }
+
+.info-overlay-holder h3 {
+  font-size: 1.1em;
+  padding: 1em;
+  margin: 0;
+  font-weight: normal; }
+
+.info-overlay-holder h3 strong {
+  font-size: 1.1em; }
+
+.info-overlay-holder .tab-nav ul {
+  margin: 0;
+  padding: 0; }
+
+.info-overlay-holder .tab-nav li {
+  margin: 0;
+  padding: 0;
+  display: inline-block; }
+
+.info-overlay-holder button {
+  background: transparent;
+  outline: 0;
+  border: 0;
+  border-bottom: solid 2px transparent;
+  padding: 0.5em 1em;
+  margin: 0 0.25em; }
+
+.info-overlay-holder li:first-child button {
+  margin-left: 1em; }
+
+.info-overlay-holder button:focus, .info-overlay-holder button:hover {
+  border-color: rgba(255, 255, 255, 0.6); }
+
+.info-overlay-holder button.active {
+  border-color: #fff;
+  cursor: default; }
+
+/* Info overlay HTML - content */
+.info-overlay-holder dt {
+  float: left;
+  clear: both;
+  margin-top: 0.5em;
+  width: 25%;
+  text-align: right;
+  font-weight: bold; }
+
+.info-overlay-holder dd {
+  float: left;
+  width: 73%;
+  margin: 0.5em 0 0 2%;
+  padding: 0 0 0.5em 0; }
+
+.info-overlay-holder dt:after {
+  content: ":"; }
+
+.info-overlay-holder pre {
+  font-size: 11px;
+  line-height: 23px;
+  border-radius: 0;
+  background: #f6f3f3; }
+
+.info-overlay-holder .tab {
+  float: left;
+  width: 100%;
+  height: 350px;
+  padding: 12px 12px 24px; }
+
+.info-overlay-holder .tab h2 {
+  font-size: 1.2em;
+  margin: 0.5em 0 0;
+  padding: 0.5em 0 0.5em 1em;
+  clear: both;
+  border-top: solid 1px #efefef; }
+
+.info-overlay-holder .tab pre {
+  overflow-y: hidden; }
+
+.info-overlay-holder .tab .preview {
+  width: auto;
+  max-width: 100%;
+  max-height: 500px;
+  border: solid 1px #666; }
+
+.info-overlay-holder .tab dl:after {
+  content: "";
+  display: table;
+  clear: both; }
+

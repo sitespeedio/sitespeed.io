@@ -27,6 +27,8 @@ block content
       li: a(href='#coach') Coach
     if d.browsertime && d.browsertime.pageSummary
       li: a(href='#timings') Timings
+    if d.browsertime && d.browsertime.har
+      li: a(href='#waterfall') Waterfall
     if d.pagexray && d.pagexray.pageSummary
       li: a(href='#pagexray') Info
     if d.webpagetest
@@ -37,6 +39,9 @@ block content
 
   if d.browsertime && d.browsertime.pageSummary
     include ./browsertime/index.pug
+
+  if ( d.browsertime.har && showWaterfallSummary)
+      include ./waterfall/index.pug
 
   if d.pagexray && d.pagexray.pageSummary
     include ./pagexray/index.pug
