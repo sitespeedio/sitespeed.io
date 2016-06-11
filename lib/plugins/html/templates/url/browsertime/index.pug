@@ -31,7 +31,7 @@ table
       td First Visual Change (visual metric)
       td.number #{visualMetrics.FirstVisualChange.toFixed(1)}
     tr
-      td Last Visual Change (visual metric) 
+      td Last Visual Change (visual metric)
       td.number #{visualMetrics.LastVisualChange.toFixed(1)}
   if (Object.keys(timings.userTimings.marks).length > 0)
     each value, name in timings.userTimings.marks
@@ -43,30 +43,3 @@ table
       tr
         td #{value.name}
         td.number #{value.startTime.toFixed(1)}
-
-h3 Waterfall
-if (pageInfo.data.browsertime.run && pageInfo.data.browsertime.run.har)
-  - var dahar = pageInfo.data.browsertime.run.har
-else 
-  - var dahar = pageInfo.data.browsertime.har
-
-if (dahar.log.pages.length > 1)  
-  p Choose HAR:
-select#page-selector
-div#output
-
-
-script(src='../../js/perf-cascade.min.js')
-script(type='text/javascript').
-  var outputHolderEl = document.getElementById("output");
-  var pageSelectorEl = document.getElementById("page-selector");
-  var options = {
-    rowHeight: 20, //default: 23
-    showAlignmentHelpers : true, //default: true
-    showIndicatorIcons: false, //default: true
-    leftColumnWith: 30 ,//default: 25
-    pageSelector: pageSelectorEl
-  };
-  var har = !{JSON.stringify(dahar.log)};
-  var perfCascadeSvg =  perfCascade.fromHar(har, options);
-  outputHolderEl.appendChild(perfCascadeSvg);  
