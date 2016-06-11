@@ -1,0 +1,25 @@
+a#waterfall
+h3 Waterfall
+if (pageInfo.data.browsertime.run && pageInfo.data.browsertime.run.har)
+  - var dahar = pageInfo.data.browsertime.run.har
+else
+  - var dahar = pageInfo.data.browsertime.har
+
+if (dahar.log.pages.length > 1)
+  p Choose HAR:
+select#page-selector
+#output
+script(src='../../js/perf-cascade.min.js')
+script(type='text/javascript').
+  var outputHolderEl = document.getElementById("output");
+  var pageSelectorEl = document.getElementById("page-selector");
+  var options = {
+    rowHeight: 20, //default: 23
+    showAlignmentHelpers : true, //default: true
+    showIndicatorIcons: false, //default: true
+    leftColumnWith: 30 ,//default: 25
+    pageSelector: pageSelectorEl
+  };
+  var har = !{JSON.stringify(dahar.log)};
+  var perfCascadeSvg =  perfCascade.fromHar(har, options);
+  outputHolderEl.appendChild(perfCascadeSvg);
