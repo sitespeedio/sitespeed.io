@@ -101,7 +101,6 @@ svg.water-fall-chart {width:100%; overflow: visible;}
 
 .block-undefined {fill: #0f0;}
 
-
 .block-blocked {fill: #ccc;} /*TODO: define colour*/
 .block-dns {fill: #1f7c83;}
 .block-connect {fill: #e58226;}
@@ -112,9 +111,21 @@ svg.water-fall-chart {width:100%; overflow: visible;}
 
 /* Info overlay SVG - wrapper */
 .info-overlay {fill: #fff; stroke: #cdcdcd; }
-.info-overlay-close-btn {fill: rgba(205, 205, 205, 0.5); transform: translate(-23px, -23px); cursor: pointer;}
+.info-overlay-close-btn {fill: rgba(205, 205, 205, 0.8); transform: translate(-23px, -23px); cursor: pointer;}
 .info-overlay-close-btn text {fill: #111; pointer-events: none;}
 .info-overlay-close-btn:focus {border: solid 1px #36c;}
+
+/* Info overlay SVG - timings tab */
+.info-overlay-holder .no-colour,
+.info-overlay-holder .serverrtt,
+.info-overlay-holder .allcombined,
+.info-overlay-holder .load {border-right: solid 5px transparent; padding-right: 5px;}
+.info-overlay-holder .blocked {border-right: solid 5px #ccc; padding-right: 5px;}
+.info-overlay-holder .dns {border-right: solid 5px #1f7c83; padding-right: 5px;}
+.info-overlay-holder .connect {border-right: solid 5px #e58226; padding-right: 5px;}
+.info-overlay-holder .tlsssl {border-right: solid 5px #c141cd; padding-right: 5px;}
+.info-overlay-holder .ttfb {border-right: solid 5px #1fe11f; padding-right: 5px;}
+.info-overlay-holder .download {border-right: solid 5px #1977dd; padding-right: 5px;}
 
 /* Info overlay HTML - types */
 .type-css {background: #406B29;}/*a6d18f - 40%*/
