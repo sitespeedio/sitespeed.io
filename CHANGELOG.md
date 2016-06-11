@@ -2,11 +2,12 @@
 
 ## 4.0.0-alpha3 - 2016-06-09
 -------------------------
-
 ### Fixed
 * Enable the coach by default.
 * Fixed broken default plugin loading.
 
+### Added
+* Added PerfCascade to render waterfalls on HTML page summary and individual run reports
 
 ## 4.0.0-alpha2 - 2016-06-07
 -------------------------
