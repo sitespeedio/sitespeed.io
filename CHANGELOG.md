@@ -3,7 +3,10 @@
 ## UNREALEASED
 -------------------------
 ### Added
-* Use PerfCascade to show waterfall on page summary and individual runs from collected HAR (#997) 
+* Use PerfCascade to show waterfall on page summary and individual runs from collected HAR (#997)
+
+### Changed
+* Lets use Chrome as default browser since Firefox 47/Selenium/Gecko/Marionette is broken https://github.com/sitespeedio/sitespeed.io/issues/993
 
 ## 4.0.0-alpha3 - 2016-06-09
 -------------------------
