@@ -1,7 +1,7 @@
 {
   "name": "sitespeed.io",
-  "version": "3.11.1",
   "bin": "./bin/sitespeed.js",
+  "version": "4.0.0-alpha.3",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -14,14 +14,19 @@
     "browser"
   ],
   "homepage": "https://www.sitespeed.io",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "author": {
     "name": "Peter Hedenskog",
-    "url": "http://www.peterhedenskog.com"
+    "url": "https://www.peterhedenskog.com"
   },
-  "contributors": {
-    "name": "Tobias Lidskog"
-  },
+  "contributors": [
+    {
+      "name": "Tobias Lidskog"
+    },
+    {
+      "name": "Jonathan Lee"
+    }
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/sitespeedio/sitespeed.io.git"
@@ -29,32 +34,41 @@
   "bugs": {
     "url": "https://github.com/sitespeedio/sitespeed.io/issues"
   },
-  "files": [
-    "assets",
-    "bin",
-    "conf",
-    "lib",
-    "templates"
-  ],
   "scripts": {
-    "lint": "eslint .",
+    "lint": "npm run eslint && npm run pug-lint",
+    "eslint": "eslint .",
+    "eclint": "eclint check * lib/**/* bin/**/* tools/**/* !*.iml",
+    "eclint:fix": "eclint fix * lib/**/* bin/**/* tools/**/* !*.iml",
+    "pug-lint": "pug-lint lib/plugins/html/templates",
     "test": "mocha",
-    "travis": "npm run lint && npm run test"
+    "check-licenses": "tools/check-licenses.js",
+    "travis": "npm run lint && npm run test",
+    "build:css": "node-sass lib/plugins/html/src/sass/main.scss > lib/plugins/html/assets/css/index.css && cleancss -o lib/plugins/html/assets/css/index.min.css lib/plugins/html/assets/css/index.css"
   },
   "engines": {
-    "node": ">=0.10.7"
+    "node": ">=4.3.0"
+  },
+  "publishConfig": {
+    "tag": "canary"
   },
   "devDependencies": {
-    "chai": "^2.2.0",
-    "chai-as-promised": "^4.3.0",
-    "eslint": "1.1.0",
-    "mocha": "2.*"
+    "chai": "^3.5.0",
+    "chai-as-promised": "^5.2.0",
+    "clean-css": "^3.4.17",
+    "eclint": "^1.1.5",
+    "eslint": "^2.9.0",
+    "jsdoc": "^3.3.3",
+    "license-checker": "^5.1.2",
+    "mocha": "^2.4.4",
+    "node-sass": "^3.7.0",
+    "pug-lint": "^2.2.2",
+    "pug-lint-config-clock": "^2.0.0"
   },
   "main": "./lib/sitespeed.js",
   "dependencies": {
-    "async": "1.3.0",
-    "browsertime": "0.12.0",
-    "cross-spawn-async": "1.0.1",
+    "bluebird": "3.3.5",
+    "browsertime": "1.0.0-alpha.20",
+    "concurrent-queue": "7.0.1",
     "fast-stats": "0.0.3",
     "fs-extra": "0.22.1",
     "gpagespeed": "1.0.0",

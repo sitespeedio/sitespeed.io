@@ -1,12 +1,2 @@
-{
-    "env": {
-        "node": true,
-        "mocha": true
-    },
-    "rules": {
-        "quotes": [2, "single"],
-        "no-underscore-dangle": 0,
-        "no-use-before-define": 0,
-	"no-unused-vars": 1
-    }
-}
+env:
+    mocha: true

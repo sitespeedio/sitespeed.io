@@ -1,0 +1,106 @@
+include ../../_tableMixins
+
+mixin adviceInfo(name, perfectScore, node)
+  h3 #{name} (#{node.score})
+  if node.score < 100
+    button.hidden-small.button.button--primary(onclick='toggleRow(this);') Show/hide details
+    .responsive
+      table
+        thead
+          tr
+            th Title
+            th Advice
+            th Score
+        tbody
+          each advice, adviceName in node.adviceList
+            if advice.score < 100
+              tr
+                td(data-title='Title') #{advice.title} (#{adviceName})
+                td.url(data-title='Advice') #{advice.advice}
+                td.number(data-title='Score') #{advice.score}
+            if (advice.offending.length > 0)
+              tr.u-hideable
+                td.url.offendingurl(colspan='3')
+                  ul
+                    each offender in advice.offending
+                      li #{offender}
+  else
+    p #{perfectScore}
+
+- var advice = pageInfo.data.coach.run ? pageInfo.data.coach.run.advice : pageInfo.data.coach.pageSummary.advice;
+
+a#coach
+h2 Coach
+
+script(type='text/javascript').
+  function toggleRow(toggleElement) {
+    var rows = toggleElement.nextSibling.getElementsByClassName("u-hideable");
+    for (var i = 0; i < rows.length; ++i) {
+      var status = rows[i].currentStyle ? rows[i].currentStyle.display :
+                              getComputedStyle(rows[i], null).display;
+      rows[i].style.display = (status === 'none') ? "table-row" : "none";
+    }
+  }
+
+.row
+  .column
+    .row
+      .four.columns
+        img.u-max-full-width(src= rootPath + '/img/coach.png', alt='I am the coach')
+      .eight.columns
+        h3 Coach score
+        ul
+          li Total score #{advice.score}
+          li Performance score #{advice.performance.score}
+          li Accessibility Score #{advice.accessibility.score}
+          li Best practice score #{advice.bestpractice.score}
+    .row
+      .twelve.columns
+        +adviceInfo('Accessibility advice','You have a perfect accessibility score!', advice.accessibility)
+
+        +adviceInfo('Performance advice','You have a perfect Performance score!', advice.performance)
+
+        +adviceInfo('Best practice advice','Your best practice score is perfect!', advice.bestpractice)
+
+        a#info
+        h2 Page info
+        table
+            tr
+              td Title
+              td #{advice.info.documentTitle}
+            tr
+              td Width
+              td.number #{advice.info.documentWidth}
+            tr
+              td Height
+              td.number #{advice.info.documentHeight}
+            tr
+              td DOM elements
+              td.number #{advice.info.domElements}
+            tr
+              td Avg DOMdepth
+              td.number #{advice.info.domDepth.avg}
+            tr
+              td Max DOM depth
+              td.number #{advice.info.domDepth.max}
+            tr
+              td Iframes
+              td.number #{advice.info.iframes}
+            tr
+              td Local storage
+              +sizeCell('', advice.info.localStorageSize)
+            tr
+              td Session storage
+              +sizeCell('', advice.info.sessionStorageSize)
+            tr
+              td HTML vs AMP
+              td #{advice.info.amp?'This is an AMP page':'Plain good HTML page'}
+        h3 Resource hints
+        table
+          each value, key in advice.info.resourceHints
+            tr
+              td #{key}
+              td.url
+                ul
+                  each url in value
+                    li #{url}

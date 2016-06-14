@@ -1,0 +1,15 @@
+extends ./layout.pug
+include _tableMixins
+
+mixin row(errors)
+  each error, url in errors
+    tr
+      td
+        a(href=url)= url
+      td= JSON.stringify(error, null, 2)
+
+block content
+    h2 Errors!
+    table
+        +rowHeading(['url', 'errors'])
+        +row(errors)

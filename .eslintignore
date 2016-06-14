@@ -1,5 +1,4 @@
-sitespeed-result
-test
-lib/headless/scripts/*
-assets
-scripts
+docs/*
+sitespeed-result/*
+lib/plugins/yslow/scripts/*
+lib/plugins/html/assets/js/*

@@ -1,48 +1,41 @@
 language: node_js
 node_js:
-- '0.10'
-- '4.0'
-
+- '4'
+- '6'
+env:
+  - CXX=g++-4.8
+sudo: required
+dist: trusty
 cache:
+  apt: true
   directories:
-  - $HOME/phantomjs
-
-sudo: false
+    - node_modules
 addons:
   apt:
     sources:
+    - ubuntu-toolchain-r-test
     - google-chrome
     packages:
+    - g++-4.8
     - google-chrome-stable
-  firefox: latest
-
+  firefox: "46.0"
 before_install:
 - firefox --version 2>/dev/null
 - google-chrome --product-version
-- bash test/installPhantomjs.sh
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
-before_script:
-- cat /etc/hosts
-- $HOME/phantomjs/bin/phantomjs --version
-- python -m SimpleHTTPServer 8009 &
-- sleep 10
 script:
-- npm run-script travis
-- node ./bin/sitespeed.js -u https://www.sitespeed.io -b firefox -n 1 -d 0 --budget test/budget.json
-- node ./bin/sitespeed.js --sites test/resources/urls/sites.txt -n 1  -b firefox -n 1
-- node ./bin/sitespeed.js -f test/resources/urls/sites.txt -n 1
-- node ./bin/sitespeed.js -u https://www.sitespeed.io -b firefox -n 1 --noYslow -m 3 --screenshot
-- node ./bin/sitespeed.js -u https://www.sitespeed.io -n 2 -d 0 --gpsiKey $GKEY --wptKey $WPTKEY --wptHost www.webpagetest.org
-- node ./bin/sitespeed.js -u http://127.0.0.1:8009/test/resources/server/www/ -d 0 --junit
-- node ./bin/sitespeed.js -u https://www.sitespeed.io -b headless -n 1 -m 2 --phantomjsPath $HOME/phantomjs/bin/phantomjs
-- node ./bin/sitespeed.js -u https://www.sitespeed.io -b headless -n 1 --headless slimerjs -d 0 --noYslow
-after_script:
-- kill `ps aux | grep "python -m SimpleHTTPServer" | grep -v grep | awk '{print $2}'`
+- npm run travis
+- npm run build:css && test -z "$(git status --porcelain lib/plugins/html/assets/css/index.css)"
+- bin/sitespeed.js -b firefox -n 2 http://www.browsertime.net
+- bin/sitespeed.js -b chrome -n 2 https://www.sitespeed.io
+- bin/sitespeed.js -b chrome -n 2 https://www.sitespeed.io --webpagetest.key $WPTKEY
+
 env:
   global:
   - secure: ZCqHD+/PhHNVFWoqir66Xd9YeJRcTHDJYvNL9j4+GTKDEI1h94twhAjQ7Z9DhlCnXwL1lsfEcIjvNCWd3ir/FNy2oZsUzu6kMpFF/niugurFbS551moJ2ObNEfOdj93/sTo4UWH2MZouC9eYeuj1vNYbAev6wBIptL95X/ArldQ=
   - secure: ZmEirO6J+rY+6T6eQWRNxqiqRNOYJktqQWaeUDR6WvzoR80oPdgKoNRS012dk4aCGr2+Dxf/KP6Iu2qbDE3YP3QD7PhoexicTVB6MTl81hZfX/eN0lt4lZknTYtjnAAWQB/aWAM6OVLjh8rAzq9PTBzl5EtAeMMJWmnhz6r+cLc=
+
 notifications:
   slack:
-    secure: W/D3AEszCIvbkAISABUFdz5wlS5Fo+dh3DLoUd0v1fsm+jKDNN+7wJ1kIctosru+bail2Vzyr1oiHLjF8+IbitRGZ1VT8/BTpvynrp2haEUlshYsYBAVts5Y6AA/3V6WFl6FzJaHPDLsrox8OQ3Xztubhz4ybWPfk69KQvx0hYA=
+    secure: Bo/bgmtFVGj6I2XnkvERfGnoM+t73WQSsP5eMlGM0jhUSKPqIc7Hf2zjYil3amMY3awFnoA6prILcMBzyUURj3jc5VRsWBCf6aQZ3bM+xzAcuTMcoiAKS7Ru1HQj1WY8G7VycDWuNeF8dCT0kt2QhcSneAUQ0qqyclWjcOK22kw=

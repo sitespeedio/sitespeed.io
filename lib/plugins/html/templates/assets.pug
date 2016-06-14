@@ -1,0 +1,26 @@
+extends ./layout.pug
+include _tableMixins
+
+mixin rows(assets)
+  each asset in assets
+    tr
+      td.url.assetsurl(data-title='URL')
+        a(href=asset.url)= asset.url
+      td(data-title='type')= asset.type
+      +durationCell('last modified',asset.lastModification)
+      +durationCell('cache time',asset.cacheTime)
+      +kbSizeCell('size', asset.size)
+      +numberCell('count', asset.requestCount)
+
+block content
+  h2 Most used assets
+
+  if count < fullCount
+    div Showing top #{count} assets out of #{fullCount}
+  else
+    div Showing all #{fullCount} assets
+
+  .responsive
+    table(data-sortable, id='assets')
+      +rowHeading(['url', 'type', 'time since last modified', 'cache time', 'size (kb)', 'count'])
+      +rows(topAssets)

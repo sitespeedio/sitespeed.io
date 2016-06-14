@@ -1,9 +1,87 @@
 # CHANGELOG - sitespeed.io
 
+## UNREALEASED
+-------------------------
+### Added
+* Use PerfCascade to show waterfall on page summary and individual runs from collected HAR (#997)
+
+### Changed
+* Lets use Chrome as default browser since Firefox 47/Selenium/Gecko/Marionette is broken https://github.com/sitespeedio/sitespeed.io/issues/993
+
+## 4.0.0-alpha3 - 2016-06-09
+-------------------------
+
+### Fixed
+* Enable the coach by default.
+* Fixed broken default plugin loading.
+
+
+## 4.0.0-alpha2 - 2016-06-07
+-------------------------
+### Fixed
+* Show results from other plugins even if one plugin has an error (e.g. WebPageTest fails but Browsertime succeeds).
+* Fixed preTask and postTaks, now named preScript/postScript, try iy out to login the user.
+
+
+### Changed
+* Added browser and connectivity to Graphite keys, all keys now hold browser and connectivity.
+
+### Added
+* Hey we now log the the log file in the result dir.
+
+version 4.0.0-alpha1 - 2016-05-22
+-------------------------
+### Changed
+* Everything! Rewrite from scratch in progress. This is an alpha release, try it test it but do not upgrade in production yet (https://github.com/sitespeedio/sitespeed.io/issues/945).
+
+* We support HTTP/2! In 3.X we used PhantomJS and a modified version of YSlow to analyze best practice rules. We also had BrowserMobProxy in front of our browsers that made it impossible to collect metrics using H2. We now use [the coach](https://github.com/sitespeedio/coach) and Firefox/Chrome without a proxy. That makes it easier for us to adapt to browser changes and changes in best practices.
+
+* We now support the feature that people asked about the most: Measure a page as a logged in user. Use --browsertime.preTask to run a selenium task to before the page is analyzed. Documentation is coming soon.
+
+* New HAR files rock! In the old version we use BrowserMobProxy as a proxy in front of the browser to collect the HAR. In the new version we collect the HAR directly from the browser. For Firefox we use the [HAR export trigger](https://github.com/firebug/har-export-trigger) and in Chrome we generates it from the performance log.
+
+* Stability: We have a new completely rewritten version of [Browsertime](https://github.com/tobli/browsertime) that makes it easier for us to catch errors from the browser, drivers and environment problems.  
+
+* Speed: Yep we dropped Java (it was needed for BrowserMobProxy) and most things are happening in parallel with the new version.
+
+* Don't overload Graphite: One thing that was annoying with 3.x was that it by default sent a massive amount of metrics to Graphite. That's cool in a way but it was too much. We now send curated metrics by default and you can choose to send more.
+
+* You can collect metrics from Chrome on an Android phone. In the current version you need to have it connected using USB to the server running sitespeed.io, lets see how we can make it better in the future.
+
+* Using our Docker container you will get support getting SpeedIndex and startRender using [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics). This is highly experimental at this stage.
+
+version 3.11.5 - 2016-01-30
+------------------------
+### Fixed
+* Dependency problem for PhantomJS 2.1. We hope it works now :)
+
+version 3.11.4 - 2016-01-30
+------------------------
+### Fixed
+* Typos #804 Thanks @beenanner
+
+* Making slimerjs more indepenedent from phantomjs #806 thanks @keithamus
+
+### Changed
+* Upgraded default PhantomJS to 2.1. We will remove PhantomJS 2.0 from Docker containers.
+
+version 3.11.3 - 2016-01-13
+------------------------
+### Fixed
+* Fixes bug for collecting summary metrics for WPT, introduced in 3.11.2
+
+version 3.11.2 - 2016-01-13
+------------------------
+### Fixed
+* Browser name in WebPageTest can have spaces and that wasn't handled so when the metrics is sent to Graphite, it fails. #798
+
+### Changed
+* Bumped 3rd party dependencies: winston, request, phantomjs, moment, fs-extra, browsertime, cross-spawn-async, async
+
 version 3.11.1 - 2015-10-27
 ------------------------
 ### Fixed
-* Upgraded Browsertime to new version to work with Node 4 
+* Upgraded Browsertime to new version to work with Node 4
 
 version 3.11.0 - 2015-10-14
 ------------------------
@@ -216,7 +294,7 @@ version 3.1.11 - 2015-03-05
 
 * Configure paths to assets for result pages #604
 
-* Bug fix: If Graphite server is unreachable, callback chain was broken, meaning sitespeed didn't end properly #606  
+* Bug fix: If Graphite server is unreachable, callback chain was broken, meaning sitespeed didn't end properly #606
 
 version 3.1.10 - 2015-03-02
 ------------------------
@@ -293,7 +371,7 @@ version 3.1 - 2015-01-27
   for WebPageTest has changed, now including browser, location and connectivity.
 
   Meaning you need to change Grafana or what tool you are using to use the new
-  keys when you upgrade. #546  
+  keys when you upgrade. #546
 
 * Hardcoded dependencies in package.json
 
@@ -553,7 +631,7 @@ version 1.7
 * Show the amount of assets that don't have an expire header om site summary & pages summary
 * Removed prime cache values from site summary & page summary (was not always correct)
 * Refactored page summary
-* Removed rule ynumreq and created three new ones in order to get clearer junit xml result (and also only check for sync js): cssnumreq, cssimagesnumreq & jsnumreq  
+* Removed rule ynumreq and created three new ones in order to get clearer junit xml result (and also only check for sync js): cssnumreq, cssimagesnumreq & jsnumreq
 * Added average & median nr of DOM elements on site summary and specific nr on page
 * Added response headers info on assets page
 * Bug fix: If a max age HTTP cache header was missing the cache time, the cache time was set to 0, not listening to Expires header.
