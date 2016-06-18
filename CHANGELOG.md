@@ -4,7 +4,7 @@
 -------------------------
 ### Added
 * Use PerfCascade to show waterfall on page summary and individual runs from collected HAR (#997)
-* Show simple Google Page Speed Insights metrics in HTML and send the score to Graphite (#1006)
+* Show simple Google Page Speed Insights metrics in HTML and send the score to Graphite (#948)
 
 ### Changed
 * Lets use Chrome as default browser since Firefox 47/Selenium/Gecko/Marionette is broken https://github.com/sitespeedio/sitespeed.io/issues/993
