@@ -17,11 +17,11 @@ mixin boxInfo(name, node, formatter)
     - max = node.max
   .summarybox.info= name
     .summarynumber #{formatter(median)}&nbsp;
-      span.summarysmall (#{formatter(max)})      
-      
+      span.summarysmall (#{formatter(max)})
+
 block content
     h2 Summary
-    p TODO This page haven't got much love for alpha-1, help us make it better in the next release!
+    p TODO This page haven't got much love for the alpha releases, help us make it better in beta.
 
     if coach
       .row
@@ -48,7 +48,7 @@ block content
         +boxInfo('301 responses', pagexray.summary.responseCodes['301'])
       .one-third.column
         +boxInfo('404 responses', pagexray.summary.responseCodes['404'])
-          
+
     if pagexray
       .row
         .one-third.column
@@ -84,7 +84,7 @@ block content
         .one-third.column
           +boxInfo('Speed Index',  browsertime.summary.visualMetrics.SpeedIndex)
         .one-third.column
-          +boxInfo('Last Visual Change', browsertime.summary.visualMetrics.LastVisualChange)  
+          +boxInfo('Last Visual Change', browsertime.summary.visualMetrics.LastVisualChange)
     if webpagetest
       .row
         .one-third.column
