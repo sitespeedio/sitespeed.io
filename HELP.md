@@ -8,16 +8,20 @@ We love to have more people involved in making sitespeed.io better. We are const
 Help us make the result pages look better! Help us make the documentation look better. You can pretty much help us with everything.
 
 ## Documentation
-Documentation is fun and it is the core of making software easy to use. Help us out and proof read and add sections that are missing. 
+Documentation is fun and it is the core of making software easy to use. Help us out and proof read and add sections that are missing. Documentation for 4.0 happens [here](https://github.com/sitespeedio/doc.sitespeed.io/tree/4.0).
+
+## Tests
+We lack a lot of tests for the coming 4.0. Writing tests is a good way to get familiar with the codebase and will help us a lot in the future. A good start is adding support for the code in the [support library](https://github.com/sitespeedio/sitespeed.io/tree/master/lib/support).
+
 
 ## Companies
-Do you use sitespeed.io in your everyday work? Then we have a perfect proposition for you! Have a hack day with focus on sitespeed.io for your team and contribute back. Pick one the things in the **Help wanted** section. Or maybe there's a function you think is missing? Create it. Contribute back. 
+Do you use sitespeed.io in your everyday work? Then we have a perfect proposition for you! Have a hack day with focus on sitespeed.io for your team and contribute back. Pick one the things in the **Help wanted** section. Or maybe there's a function you think is missing? Create it. Contribute back.
 
-# 4.0
+# 4.0 a.k.a help wanted
 There's a lot that needs to happen before we can release the final 4.0. Checkout the [milestones](https://github.com/sitespeedio/sitespeed.io/milestones) and check if there's issues you want to do. Are they lacking info? Ping the issue and we will help you.  
 
 
 # Money
-> "Can't we just support you with money?" 
+> "Can't we just support you with money?"
 
-We would prefer that you spend your money on people that really needs it, support the [Red Cross](https://www.icrc.org/eng/donations/ways-to-donate/). If you represent a company and truly believe in Open Source, then you can sponsor the servers for [http://dashboard.sitespeed.io/](http://dashboard.sitespeed.io/).
+We would prefer that you spend your money on people that really needs it, support the [Red Cross](https://www.icrc.org/eng/donations/ways-to-donate/). We will add more specific projects that we want you to support soon.
