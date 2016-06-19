@@ -16,6 +16,8 @@ The current production version is developed in the [3.x](https://github.com/site
 Version 4.0 is a ground up rewrite for node.js 4.3 and newer. It builds on all our experience since shipping 3.0 in December 2014,
 the first version to use node.js. It's currently under active development, you can check the release schedule [here](https://github.com/sitespeedio/sitespeed.io/milestones).  We're determined to make it the best version of sitespeed.io to date.
 
+IMPORTANT: Firefox 47.0 broke the compatibility with Firefoxdriver, so until Firefox 47.0.1 is released, you need to use Chrome for sitespeed.io (or Firefox 46). You can read more [here](https://github.com/sitespeedio/sitespeed.io/issues/993). 
+
 Documentation and tests for the upcoming version aren't in place yet. Rest assured, it will be before 4.0 is released.
 If you would like to give the new version a spin, try the following (you'll need node.js and Firefox/Chrome installed):
 
