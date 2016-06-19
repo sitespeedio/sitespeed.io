@@ -9,6 +9,10 @@
 ### Changed
 * Lets use Chrome as default browser since Firefox 47/Selenium/Gecko/Marionette is broken https://github.com/sitespeedio/sitespeed.io/issues/993
 
+* Only add browser/connectivity in Graphite keys in metrics collected by Browsertime (#1009).
+
+* Add location/connectivity to Graphite keys for WebPageTest (#1008).
+
 ## 4.0.0-alpha3 - 2016-06-09
 -------------------------
 
