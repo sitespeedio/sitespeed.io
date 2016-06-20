@@ -3,7 +3,7 @@ extends ./layout.pug
 block content
   - runNumber = Number(runIndex)+1
   h1 Run #{runNumber} summary
-  h5 #{url}
+  h5 #{daurl}
 
   p Tested using #{h.cap(options.browsertime.browser)} #{h.plural(options.browsertime.iterations, 'time')}.
 

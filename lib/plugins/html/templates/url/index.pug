@@ -2,7 +2,7 @@ extends ./layout.pug
 
 block content
   h1 Page summary
-  h5 #{url}
+  h5 #{daurl}
   p Tested using #{h.cap(options.browsertime.browser)} #{h.plural(options.browsertime.iterations, 'time')}.
 
   include ./summaryBox.pug
@@ -50,4 +50,4 @@ block content
     include ./webpagetest/index.pug
 
   if d.gpsi
-    include ./gpsi/index.pug    
+    include ./gpsi/index.pug

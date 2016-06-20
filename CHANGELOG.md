@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+-------------------------
+### Fixed
+* It looks like url is field that can't be used in pug, so we where missing the URL on each individual page. Renamed and fixed.
+
+
 ## 4.0.0-alpha4 - 2016-06-20
 -------------------------
 ### Added
@@ -12,6 +18,8 @@
 * Only add browser/connectivity in Graphite keys in metrics collected by Browsertime (#1009).
 
 * Add location/connectivity to Graphite keys for WebPageTest (#1008).
+
+* Internal: We changed from Jade to Pug (latest) and moved to Sass for the CSS (thanks @matthojo)
 
 ## 4.0.0-alpha3 - 2016-06-09
 -------------------------
