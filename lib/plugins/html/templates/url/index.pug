@@ -5,8 +5,6 @@ block content
   h1 Page summary
 
   h5 #{daurl}
-  p Tested using #{h.cap(options.browsertime.browser)} #{h.plural(options.browsertime.iterations, 'time')}.
-
   - var profile = options.mobile ? 'mobile' : 'desktop'
   p Tested using #{h.cap(options.browsertime.browser)}  #{h.plural(options.browsertime.iterations, 'run')} with #{profile} profile.
 
