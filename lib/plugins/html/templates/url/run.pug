@@ -1,18 +1,56 @@
 extends ./layout.pug
 
 block content
+  - var d = pageInfo.data
   - runNumber = Number(runIndex)+1
   h1 Run #{runNumber} summary
   h5 #{daurl}
 
-  p Tested using #{h.cap(options.browsertime.browser)} #{h.plural(options.browsertime.iterations, 'time')}.
+  - var profile = options.mobile ? 'mobile' : 'desktop'
+  p Tested using #{h.cap(options.browsertime.browser)}  #{h.plural(options.browsertime.iterations, 'run')} with #{profile} profile.
+
+  .row
+    .one-half.column
+      table
+        tr
+          th Key metric
+          th Value
+        if d.coach && d.coach.run
+          tr
+            td Performance score:
+            td #{d.coach.run.advice.performance.score}
+        if d.pagexray && d.pagexray.run
+          tr
+            td Total page size:
+            td #{h.size.format(d.pagexray.run.transferSize)}
+        if d.pagexray && d.pagexray.run
+          tr
+            td Requests:
+            td #{d.pagexray.run.requests}
+        if d.browsertime && d.browsertime.run && d.browsertime.run.timings.firstPaint
+          tr
+            td First Paint:
+            td #{d.browsertime.run.timings.firstPaint}
+        if d.browsertime && d.browsertime.run && d.browsertime.run.visualMetrics && d.browsertime.run.visualMetrics.SpeedIndex
+          tr
+            td SpeedIndex:
+            td #{d.browsertime.run.visualMetrics.SpeedIndex}
+        else
+          tr
+            td RUMSpeedIndex:
+            td #{d.browsertime.run.timings.rumSpeedIndex}
+
+    .one-half.column
+      - screenshotName = 'screenshots/' + runIndex + '.png'
+      - var width = options.mobile ? 150 : '100%';
+      a(href=screenshotName)
+        img(src=screenshotName width=width class='screenshot')
+
 
   if pageInfo.error
     .error= pageInfo.error
   else
-    | Quick links
     ul.menu
-    - d = pageInfo.data
     if d.pagexray && d.pagexray.run
       li: a(href='#pagexray') Page summary
     if d.coach && d.coach.run

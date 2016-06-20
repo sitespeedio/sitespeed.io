@@ -1,6 +1,6 @@
 if pageInfo.data.browsertime
   - var btStatistics = pageInfo.data.browsertime.pageSummary.statistics
-  h2 Summary
+  h2 Timings Summary
   - timingMetrics = ['firstPaint', 'fullyLoaded', 'rumSpeedIndex']
   .responsive
     table
@@ -33,7 +33,7 @@ if pageInfo.data.browsertime
           tr
             td(data-title= name) #{name} (visual metric)
             td.number(data-title='min') #{visualMetric.min}
-            td.number(data-title='median') #{visualMetric.median} 
+            td.number(data-title='median') #{visualMetric.median}
             td.number(data-title='mean') #{visualMetric.mean}
             td.number(data-title='max') #{visualMetric.max}
 else
