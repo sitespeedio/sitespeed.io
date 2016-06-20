@@ -42,7 +42,7 @@ block content
     .one-half.column
       - var width = options.mobile ? 150 : '100%';
       a(href='screenshots/0.png')
-        img(src='screenshots/0.png' width=width class='screenshot')
+        img.screenshot(src='screenshots/0.png', width=width, alt='Screenshot of run 0')
 
   include ./summaryBox.pug
 
@@ -59,7 +59,6 @@ block content
 
   - run = 0
   h3 Statistics from run #{run + 1}
-
 
   ul
     if d.coach && d.coach.pageSummary

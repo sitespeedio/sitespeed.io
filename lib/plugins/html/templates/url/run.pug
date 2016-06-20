@@ -44,8 +44,7 @@ block content
       - screenshotName = 'screenshots/' + runIndex + '.png'
       - var width = options.mobile ? 150 : '100%';
       a(href=screenshotName)
-        img(src=screenshotName width=width class='screenshot')
-
+        img.screenshot(src=screenshotName, width=width, alt='Screenshot')
 
   if pageInfo.error
     .error= pageInfo.error
