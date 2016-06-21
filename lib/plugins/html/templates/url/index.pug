@@ -34,7 +34,7 @@ block content
           tr
             td SpeedIndex:
             td #{d.browsertime.pageSummary.visualMetrics.SpeedIndex}
-        else
+        else if d.browsertime && d.browsertime.pageSummary
           tr
             td RUMSpeedIndex:
             td #{d.browsertime.pageSummary.statistics.timings.rumSpeedIndex.median}

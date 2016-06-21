@@ -35,7 +35,7 @@ block content
           tr
             td SpeedIndex:
             td #{d.browsertime.run.visualMetrics.SpeedIndex}
-        else
+        else if d.browsertime && d.browsertime.run
           tr
             td RUMSpeedIndex:
             td #{d.browsertime.run.timings.rumSpeedIndex}
