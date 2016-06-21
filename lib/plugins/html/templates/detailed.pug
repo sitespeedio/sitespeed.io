@@ -1,0 +1,46 @@
+extends ./layout.pug
+include _tableMixins
+
+block content
+    - metrics = [];
+    - if (coach) metrics.push({name: 'Coach score', node: coach.summary.score, h: h.noop},{name:'Coach performance score', node: coach.summary.performance.score, h: h.noop}, {name: 'Accessibility score', node: coach.summary.accessibility.score, h: h.noop},{name: 'Best Practice score', node: coach.summary.bestpractice.score, h: h.noop});
+
+    - if (pagexray) metrics.push({name: 'Image requests', node: pagexray.summary.contentTypes.image.requests, h: h.noop}, {name: 'CSS requests', node: pagexray.summary.contentTypes.css.requests, h: h.noop},{name: 'Javascript requests', node: pagexray.summary.contentTypes.javascript.requests, h: h.noop}, {name: 'Font requests', node: pagexray.summary.contentTypes.font.requests, h: h.noop},{name: 'Total requests', node: pagexray.summary.requests, h: h.noop})
+
+    - if (pagexray) metrics.push({name: 'Image size', node: pagexray.summary.contentTypes.image.transferSize, h: h.size.format}, {name: 'HTML size', node: pagexray.summary.contentTypes.html.transferSize, h: h.size.format}, {name: 'CSS size', node: pagexray.summary.contentTypes.css.transferSize, h: h.size.format}, {name: 'Javascript size', node: pagexray.summary.contentTypes.javascript.transferSize, h: h.size.format},{name: 'Font size', node: pagexray.summary.contentTypes.font.transferSize, h: h.size.format},  {name:'Total size', node:  pagexray.summary.transferSize, h: h.size.format})
+
+    if (pagexray)
+      - var responseCodes =  Object.keys(pagexray.summary.responseCodes)
+       each code in responseCodes
+        - metrics.push({name: code + ' responses', node: pagexray.summary.responseCodes[code], h: h.noop })
+
+    - if (browsertime) metrics.push({name: 'RUMSpeed Index', node: browsertime.summary.rumSpeedIndex, h: h.noop},{name: 'First Paint', node: browsertime.summary.firstPaint, h: h.noop},{name: 'Fully loaded', node: browsertime.summary.fullyLoaded, h: h.noop})
+
+    if (browsertime)
+        - var timings =  Object.keys(browsertime.summary.timings)
+        each timing in timings
+         - metrics.push({name: timing, node: browsertime.summary.timings[timing], h: h.noop })
+
+    if webpagetest
+      - metrics.push({name: 'WPT render (firstView)', node: webpagetest.summary.firstView.render, h: h.noop},{name: 'WPT SpeedIndex (firstView)', node: webpagetest.summary.firstView.SpeedIndex, h: h.noop},{name: 'WPT Fully loaded (firstView)', node: webpagetest.summary.firstView.fullyLoaded, h: h.noop})
+
+    h2 Detailed summary
+    .responsive
+      table(data-sortable, id='detailed')
+        thead
+          tr
+            th name
+            th min
+            th p10
+            th median
+            th p90
+            th max
+        each metric in metrics
+          if metric.node && metric.node.min
+            tr
+              td(data-title='Metric' , data-value=metric.name) #{metric.name}
+              td(data-title='min', data-value=metric.node.min) #{metric.h(metric.node.min)}
+              td(data-title='p10', data-value=metric.node.p10) #{metric.h(metric.node.p10)}
+              td(data-title='median', data-value=metric.node.median) #{metric.h(metric.node.median)}
+              td(data-title='p90', data-value=metric.node.p90) #{metric.h(metric.node.p90)}
+              td(data-title='max', data-value=metric.node.max) #{metric.h(metric.node.max)}
