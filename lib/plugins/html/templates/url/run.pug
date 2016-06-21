@@ -41,10 +41,11 @@ block content
             td #{d.browsertime.run.timings.rumSpeedIndex}
 
     .one-half.column
-      - screenshotName = 'screenshots/' + runIndex + '.png'
-      - var width = options.mobile ? 150 : '100%';
-      a(href=screenshotName)
-        img.screenshot(src=screenshotName, width=width, alt='Screenshot')
+        //- No good way to detect if we have screenshots or not right now for a run
+        - screenshotName = 'screenshots/' + runIndex + '.png'
+        - var width = options.mobile ? 150 : '100%';
+        a(href=screenshotName)
+          img.screenshot(src=screenshotName, width=width, alt='Screenshot')
 
   if pageInfo.error
     .error= pageInfo.error
