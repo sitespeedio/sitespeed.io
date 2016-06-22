@@ -88,6 +88,7 @@
     "node-slack": "0.0.7",
     "node-uuid": "1.4.7",
     "pagexray": "0.9.0",
+    "png-crop": "0.0.1",
     "pug": "^2.0.0-beta2",
     "simplecrawler": "0.7.0",
     "webcoach": "0.23.0",
