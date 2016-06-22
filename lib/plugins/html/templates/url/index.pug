@@ -66,7 +66,7 @@ block content
       li: a(href='#coach') Coach
     if d.browsertime && d.browsertime.pageSummary
       li: a(href='#timings') Timings
-    if d.browsertime && d.browsertime.har
+    if d.browsertime && d.browsertime.har && options.html && options.html.showWaterfallSummary
       li: a(href='#waterfall') Waterfall
     if d.pagexray && d.pagexray.pageSummary
       li: a(href='#pagexray') Info
