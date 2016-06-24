@@ -1,27 +1,22 @@
 extends ./layout.pug
 
-mixin box(name, node, func)
-  - median= node.median
-  - max= node.max
-  .summarybox(class=(func(median)))= name
-    .summarynumber #{median}&nbsp;
-      span.summarysmall (#{max})
+mixin box(box)
+  if (box.helper)
+  - large = box.helper ? box.helper(box.large) : box.large
+  - small = box.helper ? box.helper(box.small) : box.small
 
-mixin boxInfo(name, node, formatter)
-  - formatter = formatter || function(value) {return value}
-  - median = 0
-  - max = 0
-  if (node && node.median !== 'undefined')
-    - median = node.median
-  if(node && node.max !== 'undefined')
-    - max = node.max
-  .summarybox.info= name
-    .summarynumber #{formatter(median)}&nbsp;
-      span.summarysmall (#{formatter(max)})
+  if (box.score)
+    - klass=h.scoreLabel(box.score)
+  else
+    - klass='info'
+  .summarybox(class=klass)= box.name
+    .summarynumber #{large}&nbsp;
+      span.summarysmall (#{small})
 
 block content
-    h2 Summary
-    p TODO This page haven't got much love for the alpha releases, help us make it better in beta.
+    include runInfo
 
-    each box in boxes
-      p #{box.name} #{box.median} - #{box.helper(box.median)}
+    each box, i in boxes
+      +box(box)
+
+    p.small * The value inside of the parentheses are the 95th percentile (95% of the time, the number is below this amount)

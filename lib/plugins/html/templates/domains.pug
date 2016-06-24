@@ -16,7 +16,7 @@ mixin rows(domainStats)
       +numberCell('Requests', domain.requestCount)
 
 block content
-  h2 Domains
+  include runInfo
   if count < fullCount
     div Showing top #{count} domains out of #{fullCount}
   else

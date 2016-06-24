@@ -13,8 +13,7 @@ mixin rows(assets)
       +numberCell('count', asset.requestCount)
 
 block content
-  h2 Most used assets
-
+  include runInfo
   if count < fullCount
     div Showing top #{count} assets out of #{fullCount}
   else

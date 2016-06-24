@@ -20,11 +20,10 @@ mixin rows(pages)
           span(class=label) #{score}
       else
         td
-
 block content
   .row
     .column
-      h2 Pages
+      include runInfo
       .responsive
         table(data-sortable, id='pages')
           +rowHeading(['url', 'js size (kb)', 'css size (kb)', 'image size (kb)',

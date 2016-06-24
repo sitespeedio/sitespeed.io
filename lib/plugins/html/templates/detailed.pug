@@ -1,0 +1,25 @@
+extends ./layout.pug
+include _tableMixins
+
+block content
+
+    h2 Detailed summary
+    .responsive
+      table(data-sortable, id='detailed')
+        thead
+          tr
+            th name
+            th min
+            th p10
+            th median
+            th p90
+            th max
+        each metric in metrics
+          if metric.node && metric.node.min
+            tr
+              td(data-title='Metric', data-value=metric.name) #{metric.name}
+              td(data-title='min', data-value=metric.node.min) #{metric.h(metric.node.min)}
+              td(data-title='p10', data-value=metric.node.p10) #{metric.h(metric.node.p10)}
+              td(data-title='median', data-value=metric.node.median) #{metric.h(metric.node.median)}
+              td(data-title='p90', data-value=metric.node.p90) #{metric.h(metric.node.p90)}
+              td(data-title='max', data-value=metric.node.max) #{metric.h(metric.node.max)}

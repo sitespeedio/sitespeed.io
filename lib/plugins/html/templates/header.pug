@@ -11,6 +11,7 @@ mixin headerLink(id, name)
           img.navbar-brand(src= rootPath + '/img/sitespeed.io-logo.png', width='162', height='50', alt='sitespeed.io logo')
     ul
       +headerLink('index', 'Summary')
+      +headerLink('detailed', 'Detailed Summary')
       +headerLink('domains', 'Domains')
       +headerLink('assets', 'Assets')
       +headerLink('pages', 'Pages')
