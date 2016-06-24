@@ -8,6 +8,8 @@
 ### Added
 * Added the detailed summary page that we learned to love.
 
+* Small summary on each summary page to display the run information.
+
 ## 4.0.0-alpha4 - 2016-06-20
 -------------------------
 ### Added
