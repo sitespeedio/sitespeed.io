@@ -20,8 +20,7 @@ mixin boxInfo(name, node, formatter)
       span.summarysmall (#{formatter(max)})
 
 block content
-    h2 Summary
-    p TODO This page haven't got much love for the alpha releases, help us make it better in beta.
+    include runInfo
 
     if coach
       .row
@@ -93,3 +92,5 @@ block content
           +boxInfo('WPT SpeedIndex (firstView)', webpagetest.summary.firstView.SpeedIndex)
         .one-third.column
           +boxInfo('WPT Fully loaded (firstView)', webpagetest.summary.firstView.fullyLoaded)
+
+    p.small * The value inside of the parentheses are the 95th percentile (95% of the time, the number is below this amount)
