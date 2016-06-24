@@ -5,6 +5,8 @@
 ### Fixed
 * It looks like url is field that can't be used in pug, so we where missing the URL on each individual page. Renamed and fixed.
 
+### Added
+* Added the detailed summary page that we learned to love.
 
 ## 4.0.0-alpha4 - 2016-06-20
 -------------------------
