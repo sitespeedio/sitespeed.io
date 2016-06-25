@@ -16,7 +16,10 @@ mixin box(box)
 block content
     include runInfo
 
-    each box, i in boxes
-      +box(box)
+    each rows, i in boxes
+      .row
+        each box in rows
+          .one-third.column
+            +box(box)
 
     p.small * The value inside of the parentheses are the 95th percentile (95% of the time, the number is below this amount)
