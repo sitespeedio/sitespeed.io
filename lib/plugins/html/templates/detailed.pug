@@ -2,8 +2,7 @@ extends ./layout.pug
 include _tableMixins
 
 block content
-
-    h2 Detailed summary
+  include runInfo
     .responsive
       table(data-sortable, id='detailed')
         thead
