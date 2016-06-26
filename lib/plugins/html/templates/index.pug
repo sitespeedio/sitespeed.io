@@ -5,11 +5,7 @@ mixin box(box)
   - large = box.helper ? box.helper(box.large) : box.large
   - small = box.helper ? box.helper(box.small) : box.small
 
-  if (box.score)
-    - klass=h.scoreLabel(box.score)
-  else
-    - klass='info'
-  .summarybox(class=klass)= box.name
+  .summarybox(class=box.label)= box.name
     .summarynumber #{large}&nbsp;
       span.summarysmall (#{small})
 
@@ -29,5 +25,5 @@ block content
                 +box(box)
             default
               +box(box)
-        
+
     p.small * The value inside of the parentheses are the 95th percentile (95% of the time, the number is below this amount)
