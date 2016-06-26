@@ -10,6 +10,8 @@
 
 * Small summary on each summary page to display the run information.
 
+* More summary boxes on the summary page.
+
 ## 4.0.0-alpha4 - 2016-06-20
 -------------------------
 ### Added
