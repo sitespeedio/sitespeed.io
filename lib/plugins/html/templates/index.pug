@@ -19,7 +19,16 @@ block content
     each rows, i in boxes
       .row
         each box in rows
-          .one-third.column
-            +box(box)
+          - var length = rows.length
+          case length
+            when 3
+              .one-third.column
+                +box(box)
+            when 2
+              .one-half.column
+                +box(box)
+            default
+              +box(box)
+
 
     p.small * The value inside of the parentheses are the 95th percentile (95% of the time, the number is below this amount)
