@@ -1,13 +1,19 @@
 extends ./layout.pug
 
 mixin box(box)
-  if (box.helper)
   - large = box.helper ? box.helper(box.large) : box.large
   - small = box.helper ? box.helper(box.small) : box.small
 
-  .summarybox(class=box.label)= box.name
-    .summarynumber #{large}&nbsp;
-      span.summarysmall (#{small})
+  if (box.url)
+    - url = 'help.html#' + box.url
+    a(href=url, class='summaries')
+      .summarybox(class=box.label)= box.name
+        .summarynumber #{large}&nbsp;
+          span.summarysmall (#{small})
+  else
+    .summarybox(class=box.label)= box.name
+      .summarynumber #{large}&nbsp;
+        span.summarysmall (#{small})
 
 block content
     include runInfo

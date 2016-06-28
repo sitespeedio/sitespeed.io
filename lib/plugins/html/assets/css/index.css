@@ -909,6 +909,9 @@ table[data-sortable] th:not([data-sortable="false"]) {
     border-color: #BCE8F1;
     color: #3A87AD; }
 
+a.summaries {
+  text-decoration: none; }
+
 .summarynumber {
   font-size: 2rem;
   line-height: 1;

@@ -1,0 +1,34 @@
+extends ./layout.pug
+
+block content
+
+    h2(id='overallScore') Overall score
+    p The combined performance, accessibility and best practices score. If the score is 100 you are doing fantastic, no more to do here.
+
+    h2(id='performanceScore') Performance score
+    p The page is matched against performance best practices advice. Checkout the&nbsp;
+      a(href='#performanceAdvice') full list
+      | .  
+
+    h2(id='accessibilityScore') Accessibility score
+    p Make sure your site is accessible and usable for everyone. You can read more about making the web accessible&nbsp;
+      a(href='https://www.marcozehe.de/2015/12/14/the-web-accessibility-basics/') here
+      | .
+
+    h2(id='bestPracticeScore') Best practice score
+    p You want your page to follow best practices, right? Making sure your page is set up for search engines, have good URL structure and so on.
+
+    h2(id='performanceAdvice') Performance advice
+    each advice, adviceKey in coach.data.coach.pageSummary.advice.performance.adviceList
+      h5(id=adviceKey) #{advice.title} (#{adviceKey})
+      p #{advice.description}
+
+    h2 Best practice advice
+    each advice, adviceKey in coach.data.coach.pageSummary.advice.bestpractice.adviceList
+      h5(id=adviceKey) #{advice.title} (#{adviceKey})
+      p #{advice.description}
+
+    h2 Accessibility advice
+    each advice, adviceKey in coach.data.coach.pageSummary.advice.accessibility.adviceList
+      h5(id=adviceKey) #{advice.title} (#{adviceKey})
+      p #{advice.description}
