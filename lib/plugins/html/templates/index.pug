@@ -6,7 +6,7 @@ mixin box(box)
 
   if (box.url)
     - url = 'help.html#' + box.url
-    a(href=url, class='summaries')
+    a.summaries(href=url)
       .summarybox(class=box.label)= box.name
         .summarynumber #{large}&nbsp;
           span.summarysmall (#{small})
