@@ -1,18 +1,16 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 4.0.0-alpha5 - 2016-06-30
 -------------------------
 ### Fixed
 * It looks like url is field that can't be used in pug, so we where missing the URL on each individual page. Renamed and fixed.
 
 ### Added
 * Added the detailed summary page that we learned to love.
-
 * Small summary on each summary page to display the run information.
-
 * More summary boxes on the summary page.
-
 * Updated Browsertime to new release including latest Selenium to make Firefox 47.0.1 work.
+* Added definition and help for the metrics in the summary boxes.
 
 ## 4.0.0-alpha4 - 2016-06-20
 -------------------------
