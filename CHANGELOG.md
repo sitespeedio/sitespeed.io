@@ -12,6 +12,8 @@
 
 * More summary boxes on the summary page.
 
+* Updated Browsertime to new release including latest Selenium to make Firefox 47.0.1 work.
+
 ## 4.0.0-alpha4 - 2016-06-20
 -------------------------
 ### Added
