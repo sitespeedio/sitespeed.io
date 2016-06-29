@@ -875,7 +875,14 @@ pre > code {
       text-align: center;
       padding: 0;
       margin: 0;
-      background-color: #0095d2; } }
+      background-color: #0095d2; }
+  :target:before {
+    content: "";
+    display: block;
+    height: 50px;
+    /* fixed header height*/
+    margin: -50px 0 0;
+    /* negative fixed header height */ } }
 
 table[data-sortable] th[data-sorted="true"] {
   color: #3a87ad;
