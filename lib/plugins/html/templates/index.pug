@@ -1,18 +1,14 @@
 extends ./layout.pug
 
 mixin box(box)
-  if (box.helper)
-  - large = box.helper ? box.helper(box.large) : box.large
-  - small = box.helper ? box.helper(box.small) : box.small
-
   .summarybox(class=box.label)= box.name
-    .summarynumber #{large}&nbsp;
-      span.summarysmall (#{small})
+    .summarynumber #{box.median}&nbsp;
+      span.summarysmall (#{box.p90})
 
 block content
     include runInfo
 
-    each rows, i in boxes
+    each rows in boxes
       .row
         each box in rows
           - var length = rows.length
@@ -26,4 +22,4 @@ block content
             default
               +box(box)
 
-    p.small * The value inside of the parentheses are the 95th percentile (95% of the time, the number is below this amount)
+    p.small * The value inside of the parentheses are the 90th percentile (90% of the time, the number is below this amount)
