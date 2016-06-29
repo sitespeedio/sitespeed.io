@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+-------------------------
+### Fixed
+* The CSS size advice on summary page used the wrong metrics to check the color, meaning 0 bytes made it red :/
+
 ## 4.0.0-alpha5 - 2016-06-30
 -------------------------
 ### Fixed
