@@ -20,6 +20,11 @@ Documentation and tests for the upcoming version aren't in place yet. Rest assur
 If you would like to give the new version a spin, try the following (you'll need node.js and Firefox/Chrome installed):
 
 ```bash
+npm i -g sitespeed.io@canary
+```
+Or clone the repo and test the latest changes:
+
+```bash
 > git clone https://github.com/sitespeedio/sitespeed.io.git
 > cd sitespeed.io
 > npm install
