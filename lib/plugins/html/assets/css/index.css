@@ -875,7 +875,15 @@ pre > code {
       text-align: center;
       padding: 0;
       margin: 0;
-      background-color: #0095d2; } }
+      background-color: #0095d2; }
+  /* Fix for fixed navigation and links */
+  :target:before {
+    content: "";
+    display: block;
+    height: 50px;
+    /* fixed header height*/
+    margin: -50px 0 0;
+    /* negative fixed header height */ } }
 
 table[data-sortable] th[data-sorted="true"] {
   color: #3a87ad;
@@ -908,6 +916,9 @@ table[data-sortable] th:not([data-sortable="false"]) {
     background-color: #D9EDF7;
     border-color: #BCE8F1;
     color: #3A87AD; }
+
+a.summaries {
+  text-decoration: none; }
 
 .summarynumber {
   font-size: 2rem;
