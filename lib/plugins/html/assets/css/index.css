@@ -876,6 +876,7 @@ pre > code {
       padding: 0;
       margin: 0;
       background-color: #0095d2; }
+  /* Fix for fixed navigation and links */
   :target:before {
     content: "";
     display: block;
