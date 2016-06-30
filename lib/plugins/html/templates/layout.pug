@@ -5,9 +5,14 @@ html(lang='en')
         meta(name='viewport', content='width=device-width, initial-scale=1')
         title= pageTitle
         meta(name='description', content=pageDescription)
+        meta(name='robots', content='noindex')
         link(rel='stylesheet', href=rootPath + '/css/index.min.css')
         block inlineStyles
-
+        link(rel='apple-touch-icon-precomposed', sizes='144x144', href='/img/ico/sitespeed.io-144.png')
+        link(rel='apple-touch-icon-precomposed', sizes='114x114', href='/img/ico/sitespeed.io-114.png')
+        link(rel='apple-touch-icon-precomposed', sizes='72x72', href='/img/ico/sitespeed.io-72.png')
+        link(rel='apple-touch-icon-precomposed', href='/img/ico/sitespeed.io-57.png')
+        link(rel='shortcut icon', href='/img/ico/sitespeed.io.ico')
     body
       include ./header.pug
       .container
