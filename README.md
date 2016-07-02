@@ -13,6 +13,8 @@
 *This branch tracks the development of the upcoming version 4.0 of sitespeed.io.
 The current production version is developed in the [3.x](https://github.com/sitespeedio/sitespeed.io/tree/3.x).*
 
+**July = vacation!** Most of the team are on vacation in July and early August. We will continue to focus on 4.0 but answering/fixing issues will take longer then normal.
+
 Version 4.0 is a ground up rewrite for node.js 4.3 and newer. It builds on all our experience since shipping 3.0 in December 2014,
 the first version to use node.js. It's currently under active development, you can check the release schedule [here](https://github.com/sitespeedio/sitespeed.io/milestones).  We're determined to make it the best version of sitespeed.io to date.
 
