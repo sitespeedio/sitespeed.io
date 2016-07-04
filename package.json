@@ -85,7 +85,7 @@
     "lodash.set": "4.2.0",
     "longjohn": "0.2.11",
     "mkdirp": "0.5.1",
-    "moment": "2.13.0",
+    "moment": "2.14.1",
     "node-slack": "0.0.7",
     "node-uuid": "1.4.7",
     "pagexray": "0.9.0",
