@@ -4,6 +4,7 @@
 -------------------------
 ### Fixed
 * The CSS size advice on summary page used the wrong metrics to check the color, meaning 0 bytes made it red :/
+* Shorten long URLs displayed on HTML Asset report #977
 
 ## 4.0.0-alpha5 - 2016-06-30
 -------------------------
@@ -38,7 +39,6 @@
 ### Fixed
 * Enable the coach by default.
 * Fixed broken default plugin loading.
-
 
 ## 4.0.0-alpha2 - 2016-06-07
 -------------------------
