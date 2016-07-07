@@ -6,6 +6,7 @@
 * The CSS size advice on summary page used the wrong metrics to check the color, meaning 0 bytes made it red :/
 * Shorten long URLs displayed on HTML Asset report #977
 * Empty size fixes for tablet view of HTML report
+* Title/description for each page says something about the page + we don't want robots to index the result pages 
 
 ### Added
 * Updated to latest Browsertime, now supporting different connectivity profiles using tsproxy or tc.
