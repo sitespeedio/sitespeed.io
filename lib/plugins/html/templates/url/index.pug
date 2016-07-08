@@ -54,24 +54,24 @@ block content
       if (value !== Object.keys(runPages).length)
         | &nbsp;-&nbsp;
 
-  if pageInfo.errors
-    h4 Errors
-    .errors= JSON.stringify(pageInfo.errors, null, 2)
-
   - run = 0
   h3 Statistics from run #{run + 1}
 
-  ul
-    if d.coach && d.coach.pageSummary
-      li: a(href='#coach') Coach
-    if d.browsertime && d.browsertime.pageSummary
-      li: a(href='#timings') Timings
-    if d.browsertime && d.browsertime.har && options.html && options.html.showWaterfallSummary
-      li: a(href='#waterfall') Waterfall
-    if d.pagexray && d.pagexray.pageSummary
-      li: a(href='#pagexray') Info
-    if d.webpagetest
-      li: a(href='#webpagetest') WebPageTest
+  if pageInfo.errors
+    h4 Errors
+    .errors= JSON.stringify(pageInfo.errors, null, 2)
+  else
+    ul.menu
+      if d.coach && d.coach.pageSummary
+        li: a(href='#coach') Coach
+      if d.browsertime && d.browsertime.pageSummary
+        li: a(href='#timings') Timings
+      if d.browsertime && d.browsertime.har && options.html && options.html.showWaterfallSummary
+        li: a(href='#waterfall') Waterfall
+      if d.pagexray && d.pagexray.pageSummary
+        li: a(href='#pagexray') Page summary
+      if d.webpagetest
+        li: a(href='#webpagetest') WebPageTest
 
   if d.coach && d.coach.pageSummary
     include ./coach/index.pug
