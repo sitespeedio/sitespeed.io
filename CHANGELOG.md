@@ -1,5 +1,12 @@
 # CHANGELOG - sitespeed.io
 
+
+version 3.11.6 - 2016-07-10
+------------------------
+### Fixed
+* Updated Browsertime to latest Selenium to work with Firefox 47.0.1
+
+
 version 3.11.5 - 2016-01-30
 ------------------------
 ### Fixed
