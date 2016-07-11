@@ -659,6 +659,9 @@ td.offendingurl {
   */
   .responsive td:before {
     content: attr(data-title); }
+  .responsive td.url.offendingurl {
+    word-break: break-all;
+    padding-left: 2px; }
   .hidden-small {
     display: none; } }
 
