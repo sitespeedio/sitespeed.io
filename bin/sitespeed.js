@@ -7,6 +7,7 @@
 const cli = require('../lib/support/cli'),
   sitespeed = require('../lib/sitespeed'),
   Promise = require('bluebird'),
+  pullAll = require('lodash.pullall'),
   loader = require('../lib/support/pluginLoader');
 
 require('longjohn');
@@ -21,6 +22,8 @@ let parsed = cli.parseCommandLine();
 
 loader.parsePluginNames(parsed.explicitOptions)
   .then((pluginNames) => {
+    let disabledPlugins = parsed.options.plugin ? parsed.options.plugin.disable : [];
+    pullAll(pluginNames,disabledPlugins);
     return sitespeed.run(pluginNames, parsed.options)
       .then((errors) => {
         if (errors.length > 0) {
