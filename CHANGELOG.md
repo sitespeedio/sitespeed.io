@@ -7,7 +7,8 @@
 * Shorten long URLs displayed on HTML Asset report #977
 * Empty size fixes for tablet view of HTML report
 * Title/description for each page says something about the page + we don't want robots to index the result pages
-* Fixed long URLs that broke page design #1020
+* Fixed long URLs that broke page design #1020 #1049
+
 
 ### Added
 * Updated to latest Browsertime, now supporting different connectivity profiles using tsproxy or tc. #895
