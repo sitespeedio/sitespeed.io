@@ -1,4 +1,4 @@
 
 - var profile = options.mobile ? 'mobile' : 'desktop'
-  h2 #{h.plural(noPages,'page')} analyzed for #{h.short(options._[0], 30)}
+  h2.url #{h.plural(noPages,'page')} analyzed for #{h.short(options._[0], 30)}
   p.small Tested using #{h.cap(options.browsertime.browser)}  #{h.plural(options.browsertime.iterations, 'run')} with #{profile} profile and connectivity #{options.connectivity}.
