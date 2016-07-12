@@ -22,8 +22,8 @@ let parsed = cli.parseCommandLine();
 
 loader.parsePluginNames(parsed.explicitOptions)
   .then((pluginNames) => {
-    let disabledPlugins = parsed.options.plugin ? parsed.options.plugin.disable : [];
-    pullAll(pluginNames,disabledPlugins);
+    let disabledPlugins = parsed.options.plugins ? parsed.options.plugins.disable : [];
+    pullAll(pluginNames, Array.isArray(disabledPlugins) ? disabledPlugins : [disabledPlugins]);
     return sitespeed.run(pluginNames, parsed.options)
       .then((errors) => {
         if (errors.length > 0) {
