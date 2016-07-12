@@ -9,9 +9,10 @@
 * Title/description for each page says something about the page + we don't want robots to index the result pages
 * Fixed long URLs that broke page design #1020 #1049
 
-
 ### Added
 * Updated to latest Browsertime, now supporting different connectivity profiles using tsproxy or tc. #895
+
+* Disable default plugins (disable HTML, screenshot etc). Looking forward to add plugins #1015
 
 ## 4.0.0-alpha5 - 2016-06-30
 -------------------------
