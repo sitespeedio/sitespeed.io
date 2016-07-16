@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+UNRELEASED
+------------------------
+### Fixed
+* Updated SlimerJS dependency
 
 version 3.11.6 - 2016-07-10
 ------------------------
