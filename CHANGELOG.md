@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-UNRELEASED
+version 3.11.7 - 2016-07-16
 ------------------------
 ### Fixed
 * Updated SlimerJS dependency
@@ -16,7 +16,7 @@ version 3.11.5 - 2016-01-30
 ### Fixed
 * Dependency problem for PhantomJS 2.1. We hope it works now :)
 
-version 3.11.4 - 2016-01-30 
+version 3.11.4 - 2016-01-30
 ------------------------
 ### Fixed
 * Typos #804 Thanks @beenanner
@@ -42,7 +42,7 @@ version 3.11.2 - 2016-01-13
 version 3.11.1 - 2015-10-27
 ------------------------
 ### Fixed
-* Upgraded Browsertime to new version to work with Node 4 
+* Upgraded Browsertime to new version to work with Node 4
 
 version 3.11.0 - 2015-10-14
 ------------------------
