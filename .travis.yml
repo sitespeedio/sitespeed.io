@@ -1,13 +1,18 @@
 language: node_js
 node_js:
-- '4.2'
-- '5.5.0'
-sudo: false
+- '4'
+- '6'
+env:
+  - CXX=g++-4.8
+sudo: required
+dist: trusty
 addons:
   apt:
     sources:
+    - ubuntu-toolchain-r-test
     - google-chrome
     packages:
+    - g++-4.8
     - google-chrome-stable
   firefox: latest
 
