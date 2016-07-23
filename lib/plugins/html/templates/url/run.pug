@@ -9,72 +9,81 @@ block content
   - var profile = options.mobile ? 'mobile' : 'desktop'
   p Tested using #{h.cap(options.browsertime.browser)}  #{h.plural(options.browsertime.iterations, 'run')} with #{profile} profile.
 
-  .row
-    .one-half.column
-      table
-        tr
-          th Metric
-          th Value
-        if d.coach && d.coach.run
-          tr
-            td Performance score:
-            td #{d.coach.run.advice.performance.score}
-        if d.pagexray && d.pagexray.run
-          tr
-            td Total page size:
-            td #{h.size.format(d.pagexray.run.transferSize)}
-        if d.pagexray && d.pagexray.run
-          tr
-            td Requests:
-            td #{d.pagexray.run.requests}
-        if d.browsertime && d.browsertime.run && d.browsertime.run.timings.firstPaint
-          tr
-            td First Paint:
-            td #{d.browsertime.run.timings.firstPaint}
-        if d.browsertime && d.browsertime.run && d.browsertime.run.visualMetrics && d.browsertime.run.visualMetrics.SpeedIndex
-          tr
-            td SpeedIndex:
-            td #{d.browsertime.run.visualMetrics.SpeedIndex}
-        else if d.browsertime && d.browsertime.run
-          tr
-            td RUMSpeedIndex:
-            td #{d.browsertime.run.timings.rumSpeedIndex}
-
-    .one-half.column
-        //- No good way to detect if we have screenshots or not right now for a run
-        - screenshotName = 'screenshots/' + runIndex + '.png'
-        - var width = options.mobile ? 150 : '100%';
-        a(href=screenshotName)
-          img.screenshot(src=screenshotName, width=width, alt='Screenshot')
-
   if pageInfo.error
     .error= pageInfo.error
   else
-    ul.menu
-      if d.pagexray && d.pagexray.run
-        li: a(href='#pagexray') Page summary
-      if d.coach && d.coach.run
-        li: a(href='#coach') Coach
-      if d.browsertime && d.browsertime.run
-        li: a(href='#timings') Timing
-        if d.browsertime.run.har
-          li: a(href='#waterfall') Waterfall
-      if d.webpagetest && d.webpagetest.run
-        li: a(href='#webpagetest') WebPageTest
-
+    input#tab1(type='radio', name='tabs', checked='')
+    label(for='tab1') Summary
+    if d.coach && d.coach.run
+      input#tab2(type='radio', name='tabs')
+      label(for='tab2') Coach
+    if d.browsertime && d.browsertime.run
+      input#tab3(type='radio', name='tabs')
+      label(for='tab3') Browsertime
     if d.pagexray && d.pagexray.run
-      include ./pagexray/index.pug
+      input#tab4(type='radio', name='tabs')
+      label(for='tab4') PageXray
+    if d.webpagetest && d.webpagetest.run
+      input#tab5(type='radio', name='tabs')
+      label(for='tab5') WebPageTest
+
+    section#summary
+      .row
+        .one-half.column
+          table
+            tr
+              th Metric
+              th Value
+            if d.coach && d.coach.run
+              tr
+                td Performance score:
+                td #{d.coach.run.advice.performance.score}
+            if d.pagexray && d.pagexray.run
+              tr
+                td Total page size:
+                td #{h.size.format(d.pagexray.run.transferSize)}
+            if d.pagexray && d.pagexray.run
+              tr
+                td Requests:
+                td #{d.pagexray.run.requests}
+            if d.browsertime && d.browsertime.run && d.browsertime.run.timings.firstPaint
+              tr
+                td First Paint:
+                td #{d.browsertime.run.timings.firstPaint}
+            if d.browsertime && d.browsertime.run && d.browsertime.run.visualMetrics && d.browsertime.run.visualMetrics.SpeedIndex
+              tr
+                td SpeedIndex:
+                td #{d.browsertime.run.visualMetrics.SpeedIndex}
+            else if d.browsertime && d.browsertime.run
+              tr
+                td RUMSpeedIndex:
+                td #{d.browsertime.run.timings.rumSpeedIndex}
+
+        .one-half.column
+            //- No good way to detect if we have screenshots or not right now for a run
+            - screenshotName = 'screenshots/' + runIndex + '.png'
+            - var width = options.mobile ? 150 : '100%';
+            a(href=screenshotName)
+              img.screenshot(src=screenshotName, width=width, alt='Screenshot')
 
     if d.coach && d.coach.run
-      include ./coach/index.pug
+      section#coach
+        include ./coach/index.pug
 
     if d.browsertime && d.browsertime.run
-      include ./browsertime/index.pug
-      if d.browsertime.run.har
+      section#browsertime
+        include ./browsertime/index.pug
+
+        if d.browsertime.run.har
           include ./waterfall/index.pug
 
-    if d.webpagetest && d.webpagetest.run
-      include ./webpagetest/run.pug
+    if d.pagexray && d.pagexray.run
+      section#pagexray
+        include ./pagexray/index.pug
 
-    .index-link
-      a.button.button--primary(href=urlLink) Back to summary
+    if d.webpagetest && d.webpagetest.run
+      section#webpagetest
+        include ./webpagetest/run.pug
+
+  .index-link
+    a.button.button--primary(href=urlLink) Back to summary

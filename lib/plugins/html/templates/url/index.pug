@@ -8,85 +8,97 @@ block content
   - var profile = options.mobile ? 'mobile' : 'desktop'
   p Tested using #{h.cap(options.browsertime.browser)}  #{h.plural(options.browsertime.iterations, 'run')} with #{profile} profile.
 
-  .row
-    .one-half.column
-      table
-        tr
-          th Metric
-          th Value
-        if d.coach && d.coach.pageSummary
-          tr
-            td Performance score:
-            td #{d.coach.pageSummary.advice.performance.score}
-        if d.pagexray && d.pagexray.pageSummary
-          tr
-            td Total page size:
-            td #{h.size.format(d.pagexray.pageSummary.transferSize)}
-        if d.pagexray && d.pagexray.pageSummary
-          tr
-            td Requests:
-            td #{d.pagexray.pageSummary.requests}
-        if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.timings.firstPaint
-          tr
-            td First Paint:
-            td #{d.browsertime.pageSummary.statistics.timings.firstPaint.median}
-        if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.visualMetrics.SpeedIndex
-          tr
-            td SpeedIndex:
-            td #{d.browsertime.pageSummary.visualMetrics.SpeedIndex}
-        else if d.browsertime && d.browsertime.pageSummary
-          tr
-            td RUMSpeedIndex:
-            td #{d.browsertime.pageSummary.statistics.timings.rumSpeedIndex.median}
-
-    .one-half.column
-        if d.browsertime.pageSummary.screenshots
-          - var width = options.mobile ? 150 : '100%';
-          a(href='screenshots/0.png')
-            img.screenshot(src='screenshots/0.png', width=width, alt='Screenshot of run 0')
-
-  include ./summaryBox.pug
-
-  .large All runs:&nbsp;
-    each val, index in runPages
-      - value = Number(index) + 1
-      a(href='./' + index + '.html') #{value}
-      if (value !== Object.keys(runPages).length)
-        | &nbsp;-&nbsp;
-
-  - run = 0
-  h3 Statistics from run #{run + 1}
+  p
+    .large All runs:&nbsp;
+      each val, index in runPages
+        - value = Number(index) + 1
+        a(href='./' + index + '.html') #{value}
+        if (value !== Object.keys(runPages).length)
+          | &nbsp;-&nbsp;
 
   if pageInfo.errors
     h4 Errors
     .errors= JSON.stringify(pageInfo.errors, null, 2)
+
   else
-    ul.menu
-      if d.coach && d.coach.pageSummary
-        li: a(href='#coach') Coach
-      if d.browsertime && d.browsertime.pageSummary
-        li: a(href='#timings') Timings
-      if d.browsertime && d.browsertime.har && options.html && options.html.showWaterfallSummary
-        li: a(href='#waterfall') Waterfall
-      if d.pagexray && d.pagexray.pageSummary
-        li: a(href='#pagexray') Page summary
-      if d.webpagetest
-        li: a(href='#webpagetest') WebPageTest
+    - run = 0
+    input#tab1(type='radio', name='tabs', checked='')
+    label(for='tab1') Summary
+    if d.coach && d.coach.pageSummary
+      input#tab2(type='radio', name='tabs')
+      label(for='tab2') Coach (#{run + 1})
+    if d.browsertime && d.browsertime.pageSummary
+      input#tab3(type='radio', name='tabs')
+      label(for='tab3') Browsertime (#{run + 1})
+    if d.pagexray && d.pagexray.pageSummary
+      input#tab4(type='radio', name='tabs')
+      label(for='tab4') PageXray (#{run + 1})
+    if d.webpagetest
+      input#tab5(type='radio', name='tabs')
+      label(for='tab5') WebPageTest
+    if d.gpsi
+      input#tab6(type='radio', name='tabs')
+      label(for='tab6') GPSI
 
-  if d.coach && d.coach.pageSummary
-    include ./coach/index.pug
+    section#summary
+      .row
+        .one-half.column
+          table
+            tr
+              th Metric
+              th Value
+            if d.coach && d.coach.pageSummary
+              tr
+                td Performance score:
+                td #{d.coach.pageSummary.advice.performance.score}
+            if d.pagexray && d.pagexray.pageSummary
+              tr
+                td Total page size:
+                td #{h.size.format(d.pagexray.pageSummary.transferSize)}
+            if d.pagexray && d.pagexray.pageSummary
+              tr
+                td Requests:
+                td #{d.pagexray.pageSummary.requests}
+            if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.timings.firstPaint
+              tr
+                td First Paint:
+                td #{d.browsertime.pageSummary.statistics.timings.firstPaint.median}
+            if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.visualMetrics.SpeedIndex
+              tr
+                td SpeedIndex:
+                td #{d.browsertime.pageSummary.visualMetrics.SpeedIndex}
+            else if d.browsertime && d.browsertime.pageSummary
+              tr
+                td RUMSpeedIndex:
+                td #{d.browsertime.pageSummary.statistics.timings.rumSpeedIndex.median}
 
-  if d.browsertime && d.browsertime.pageSummary
-    include ./browsertime/index.pug
+        .one-half.column
+            if d.browsertime.pageSummary.screenshots
+              - var width = options.mobile ? 150 : '100%';
+              a(href='screenshots/0.png')
+                img.screenshot(src='screenshots/0.png', width=width, alt='Screenshot of run 0')
 
-  if ( d.browsertime.har && showWaterfallSummary)
-      include ./waterfall/index.pug
+      include ./summaryBox.pug
 
-  if d.pagexray && d.pagexray.pageSummary
-    include ./pagexray/index.pug
+    if d.coach && d.coach.pageSummary
+      section#coach
+        include ./coach/index.pug
 
-  if d.webpagetest
-    include ./webpagetest/index.pug
+    if d.browsertime && d.browsertime.pageSummary
+      section#browsertime
+        include ./browsertime/index.pug
 
-  if d.gpsi
-    include ./gpsi/index.pug
+        if ( d.browsertime.har && showWaterfallSummary)
+          include ./waterfall/index.pug
+
+    if d.pagexray && d.pagexray.pageSummary
+      section#pagexray
+        include ./pagexray/index.pug
+
+    if d.webpagetest
+      section#webpagetest
+        include ./webpagetest/index.pug
+
+    if d.gpsi
+      section#gpsi
+        include ./gpsi/index.pug
