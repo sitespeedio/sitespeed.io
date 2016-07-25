@@ -9,6 +9,16 @@ block content
   - var profile = options.mobile ? 'mobile' : 'desktop'
   p Tested using #{h.cap(options.browsertime.browser)}  #{h.plural(options.browsertime.iterations, 'run')} with #{profile} profile.
 
+  p
+    .large All runs:&nbsp;
+      each val, index in runPages
+        - value = Number(index) + 1
+        a(href='./' + index + '.html') #{value}
+        if (value !== Object.keys(runPages).length)
+          | &nbsp;-&nbsp;
+  .index-link
+    a.button.button--primary(href=urlLink) Back to summary        
+
   if pageInfo.error
     .error= pageInfo.error
   else
@@ -92,6 +102,3 @@ block content
     if d.webpagetest && d.webpagetest.run
       section#webpagetest
         include ./webpagetest/run.pug
-
-  .index-link
-    a.button.button--primary(href=urlLink) Back to summary
