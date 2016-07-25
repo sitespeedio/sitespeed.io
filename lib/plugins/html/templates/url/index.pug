@@ -23,16 +23,24 @@ block content
   else
     - run = 0
     input#tab1(type='radio', name='tabs', checked='')
-    label(for='tab1') Summary
+    label(for='tab1')
+      img(src= rootPath + '/img/summary64.png', height=32)
+      | Summary
     if d.coach && d.coach.pageSummary
       input#tab2(type='radio', name='tabs')
-      label(for='tab2') Coach (#{run + 1})
+      label(for='tab2')
+        img(src= rootPath + '/img/coach64.png', height=32)
+        | Coach
     if d.browsertime && d.browsertime.pageSummary
       input#tab3(type='radio', name='tabs')
-      label(for='tab3') Browsertime (#{run + 1})
+      label(for='tab3')
+        img(src= rootPath + '/img/browsertime64.png', height=32)
+        | Browsertime
     if d.pagexray && d.pagexray.pageSummary
       input#tab4(type='radio', name='tabs')
-      label(for='tab4') PageXray (#{run + 1})
+      label(for='tab4')
+        img(src= rootPath + '/img/xray64.png', height=32)
+        | PageXray
     if d.webpagetest
       input#tab5(type='radio', name='tabs')
       label(for='tab5') WebPageTest
@@ -41,6 +49,7 @@ block content
       label(for='tab6') GPSI
 
     section#summary
+      h2 Summary  
       .row
         .one-half.column
           table

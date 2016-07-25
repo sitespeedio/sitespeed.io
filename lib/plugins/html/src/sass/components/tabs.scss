@@ -30,17 +30,19 @@ label {
 }
 
 label:before {
-  font-family: fontawesome;
+  //font-family: fontawesome;
   font-weight: normal;
-  margin-right: 10px;
+  // margin-right: 10px;
 }
 
+/*
 label[for*='1']:before { content: 'S'; }
 label[for*='2']:before { content: 'C'; }
 label[for*='3']:before { content: 'B'; }
 label[for*='4']:before { content: 'P'; }
 label[for*='5']:before { content: 'W'; }
 label[for*='6']:before { content: 'G'; }
+*/
 
 label:hover {
   color: #888;
