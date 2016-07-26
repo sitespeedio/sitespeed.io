@@ -16,7 +16,12 @@ block content
         each metric in metrics
           if metric.node && metric.node.min
             tr
-              td(data-title='Metric', data-value=metric.name) #{metric.name}
+              td(data-title='Metric', data-value=metric.name)
+                if (metric.metricName)
+                  - url = 'help.html#' + metric.metricName
+                  a(href=url) #{metric.name}
+                else
+                  | #{metric.name}
               td(data-title='min', data-value=metric.node.min) #{metric.h(metric.node.min)}
               td(data-title='p10', data-value=metric.node.p10) #{metric.h(metric.node.p10)}
               td(data-title='median', data-value=metric.node.median) #{metric.h(metric.node.median)}
