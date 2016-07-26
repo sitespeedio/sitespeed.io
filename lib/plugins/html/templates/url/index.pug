@@ -21,7 +21,6 @@ block content
     .errors= JSON.stringify(pageInfo.errors, null, 2)
 
   else
-    - run = 0
     input#tab1(type='radio', name='tabs', checked='')
     label(for='tab1')
       img(src= rootPath + '/img/summary64.png', height=32, alt='Summary')
@@ -54,6 +53,7 @@ block content
 
     section#summary
       h2 Summary
+      p.small Summary of some of the most important metrics.
       .row
         .one-half.column
           table

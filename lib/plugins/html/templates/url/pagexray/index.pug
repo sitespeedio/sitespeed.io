@@ -1,8 +1,8 @@
 include ../../_tableMixins
 
 a#pagexray
-h2 Page summary
-
+h2 PageXray
+p.small Xrays your page and let you know all about how the page is built.
 - var pagexray = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
 
 p The page uses #{pagexray.httpVersion}
@@ -31,7 +31,7 @@ h3 Requests and sizes per content type
       if data.requests > 0
         tr
           td(data-title='type') #{type}
-          +sizeCell('headerSize', data.headerSize)  
+          +sizeCell('headerSize', data.headerSize)
           +sizeCell('transferSize', data.transferSize)
           +sizeCell('contentSize', data.contentSize)
           +numberCell('requests', data.requests)
