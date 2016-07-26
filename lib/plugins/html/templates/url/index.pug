@@ -43,10 +43,14 @@ block content
         | PageXray
     if d.webpagetest
       input#tab5(type='radio', name='tabs')
-      label(for='tab5') WebPageTest
+      label(for='tab5')
+        img(src= rootPath + '/img/webpagetest64.png', height=32, alt='WebPageTest')
+        | WebPageTest
     if d.gpsi
       input#tab6(type='radio', name='tabs')
-      label(for='tab6') GPSI
+      label(for='tab6')
+        img(src= rootPath + '/img/gpsi64.png', height=32, alt='Google Page Speed Insights')
+        | GPSI
 
     section#summary
       h2 Summary

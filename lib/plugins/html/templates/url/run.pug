@@ -43,7 +43,9 @@ block content
         | PageXray
     if d.webpagetest && d.webpagetest.run
       input#tab5(type='radio', name='tabs')
-      label(for='tab5') WebPageTest
+      label(for='tab5')
+        img(src= rootPath + '/img/webpagetest64.png', height=32, alt='WebPageTest')
+        | WebPageTest
 
     section#summary
       .row
