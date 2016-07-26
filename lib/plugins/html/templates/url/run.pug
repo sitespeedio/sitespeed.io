@@ -17,29 +17,29 @@ block content
         if (value !== Object.keys(runPages).length)
           | &nbsp;-&nbsp;
   .index-link
-    a.button.button--primary(href=urlLink) Back to summary        
+    a.button.button--primary(href=urlLink) Back to summary
 
   if pageInfo.error
     .error= pageInfo.error
   else
     input#tab1(type='radio', name='tabs', checked='')
     label(for='tab1')
-      img(src= rootPath + '/img/summary64.png', height=32)
+      img(src= rootPath + '/img/summary64.png', height=32, alt='Summary')
       | Summary
     if d.coach && d.coach.run
       input#tab2(type='radio', name='tabs')
       label(for='tab2')
-        img(src= rootPath + '/img/coach64.png', height=32)
+        img(src= rootPath + '/img/coach64.png', height=32, alt='Coach')
         | Coach
     if d.browsertime && d.browsertime.run
       input#tab3(type='radio', name='tabs')
       label(for='tab3')
-        img(src= rootPath + '/img/browsertime64.png', height=32)
+        img(src= rootPath + '/img/browsertime64.png', height=32, alt='Browsertime')
         | Browsertime
     if d.pagexray && d.pagexray.run
       input#tab4(type='radio', name='tabs')
       label(for='tab4')
-        img(src= rootPath + '/img/xray64.png', height=32)
+        img(src= rootPath + '/img/xray64.png', height=32, alt='PageXray')
         | PageXray
     if d.webpagetest && d.webpagetest.run
       input#tab5(type='radio', name='tabs')
