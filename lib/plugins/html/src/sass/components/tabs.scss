@@ -1,0 +1,82 @@
+/*
+Thanks Oliver Knoblich
+http://codepen.io/oknoblich/pen/tfjFl
+*/
+
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+section {
+  display: none;
+  padding: 20px 0 0;
+  border-top: 1px solid #ddd;
+}
+
+input {
+  display: none;
+}
+
+label {
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 15px 22px;
+  font-weight: 600;
+  text-align: center;
+  color: #bbb;
+  border: 1px solid transparent;
+}
+
+label:before {
+  //font-family: fontawesome;
+  font-weight: normal;
+  // margin-right: 10px;
+}
+
+/*
+label[for*='1']:before { content: 'S'; }
+label[for*='2']:before { content: 'C'; }
+label[for*='3']:before { content: 'B'; }
+label[for*='4']:before { content: 'P'; }
+label[for*='5']:before { content: 'W'; }
+label[for*='6']:before { content: 'G'; }
+*/
+
+label:hover {
+  color: #888;
+  cursor: pointer;
+}
+
+input:checked + label {
+  color: #555;
+  border: 1px solid #ddd;
+  border-top: 2px solid $color--blue;
+  border-bottom: 1px solid #fff;
+}
+
+#tab1:checked ~ #summary,
+#tab2:checked ~ #coach,
+#tab3:checked ~ #browsertime,
+#tab4:checked ~ #pagexray,
+#tab4:checked ~ #webpagetest,
+#tab4:checked ~ #gpsi {
+  display: block;
+}
+
+@media screen and (max-width: 650px) {
+  label {
+    font-size: 0;
+  }
+  label:before {
+    margin: 0;
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  label {
+    padding: 13px;
+  }
+}

@@ -165,3 +165,9 @@ svg.water-fall-chart {width:100%; overflow: visible;}
 .info-overlay-holder .tab pre {overflow-y: hidden;}
 .info-overlay-holder .tab .preview {width: auto; max-width: 100%; max-height: 500px; border: solid 1px #666;}
 .info-overlay-holder .tab dl:after {content: ""; display: table; clear: both;}
+
+@media screen and (max-width: 400px) {
+  select {
+    max-width: 100%;
+  }
+}

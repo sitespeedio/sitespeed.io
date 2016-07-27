@@ -403,72 +403,6 @@ hr {
   border-width: 0;
   border-top: 1px solid #e1e1e1; }
 
-form {
-  margin-bottom: 2.5rem; }
-
-input,
-textarea,
-select,
-fieldset {
-  margin-bottom: 1.5rem; }
-
-input[type="email"], input[type="number"], input[type="search"], input[type="text"], input[type="tel"], input[type="url"], input[type="password"] {
-  height: 38px;
-  padding: 6px 10px;
-  /* The 6px vertically centers text on FF, ignored by Webkit */
-  background-color: #ffffff;
-  border: 1px solid #e1e1e1;
-  border-radius: 4px;
-  box-shadow: none; }
-
-textarea, select {
-  height: 38px;
-  padding: 6px 10px;
-  /* The 6px vertically centers text on FF, ignored by Webkit */
-  background-color: #ffffff;
-  border: 1px solid #e1e1e1;
-  border-radius: 4px;
-  box-shadow: none; }
-
-/* Removes awkward default styles on some inputs for iOS */
-input[type="email"], input[type="number"], input[type="search"], input[type="text"], input[type="tel"], input[type="url"], input[type="password"] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none; }
-
-textarea {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  min-height: 65px;
-  padding-top: 6px;
-  padding-bottom: 6px; }
-
-input[type="email"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="text"]:focus, input[type="tel"]:focus, input[type="url"]:focus, input[type="password"]:focus {
-  border: 1px solid #0095d2;
-  outline: 0; }
-
-textarea:focus, select:focus {
-  border: 1px solid #0095d2;
-  outline: 0; }
-
-label, legend {
-  display: block;
-  margin-bottom: .5rem;
-  font-weight: 600; }
-
-fieldset {
-  padding: 0;
-  border-width: 0; }
-
-input[type="checkbox"], input[type="radio"] {
-  display: inline; }
-
-label > .label-body {
-  display: inline-block;
-  margin-left: .5rem;
-  font-weight: normal; }
-
 .container:after,
 .row:after {
   content: "";
@@ -1409,9 +1343,79 @@ svg.water-fall-chart {
   display: table;
   clear: both; }
 
+@media screen and (max-width: 400px) {
+  select {
+    max-width: 100%; } }
+
 .screenshot {
   padding: 4px;
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 4px; }
+
+/*
+Thanks Oliver Knoblich
+http://codepen.io/oknoblich/pen/tfjFl
+*/
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+section {
+  display: none;
+  padding: 20px 0 0;
+  border-top: 1px solid #ddd; }
+
+input {
+  display: none; }
+
+label {
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 15px 22px;
+  font-weight: 600;
+  text-align: center;
+  color: #bbb;
+  border: 1px solid transparent; }
+
+label:before {
+  font-weight: normal; }
+
+/*
+label[for*='1']:before { content: 'S'; }
+label[for*='2']:before { content: 'C'; }
+label[for*='3']:before { content: 'B'; }
+label[for*='4']:before { content: 'P'; }
+label[for*='5']:before { content: 'W'; }
+label[for*='6']:before { content: 'G'; }
+*/
+label:hover {
+  color: #888;
+  cursor: pointer; }
+
+input:checked + label {
+  color: #555;
+  border: 1px solid #ddd;
+  border-top: 2px solid #0095d2;
+  border-bottom: 1px solid #fff; }
+
+#tab1:checked ~ #summary,
+#tab2:checked ~ #coach,
+#tab3:checked ~ #browsertime,
+#tab4:checked ~ #pagexray,
+#tab4:checked ~ #webpagetest,
+#tab4:checked ~ #gpsi {
+  display: block; }
+
+@media screen and (max-width: 650px) {
+  label {
+    font-size: 0; }
+  label:before {
+    margin: 0;
+    font-size: 18px; } }
+
+@media screen and (max-width: 400px) {
+  label {
+    padding: 13px; } }
 
