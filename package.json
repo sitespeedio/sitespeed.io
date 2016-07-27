@@ -72,7 +72,7 @@
     "fast-stats": "0.0.3",
     "fs-extra": "0.30.0",
     "gpagespeed": "3.0.0",
-    "influx": "4.2.0",
+    "influx": "4.2.1",
     "intel": "1.1.1",
     "line-reader": "0.4.0",
     "lodash.chunk": "4.0.6",

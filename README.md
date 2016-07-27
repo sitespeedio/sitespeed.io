@@ -4,6 +4,7 @@
 [![Downloads][downloads-image]][downloads-url]
 [![Docker][docker-image]][docker-url]
 [![Stars][stars-image]][stars-url]
+[![Changelog #212][changelog-image]][changelog-url]
 
 
 [Website](https://www.sitespeed.io) | [Documentation](https://www.sitespeed.io/documentation/) | [Twitter](https://twitter.com/SiteSpeedio)
@@ -67,3 +68,5 @@ We have a [special page](HELP.md) for you!
 [downloads-url]: https://npmjs.org/package/sitespeed.io
 [docker-image]: https://img.shields.io/docker/pulls/sitespeedio/sitespeed.io.svg
 [docker-url]: https://hub.docker.com/r/sitespeedio/sitespeed.io/
+[changelog-image]: https://img.shields.io/badge/changelog-%23212-lightgrey.svg?style=flat-square
+[changelog-url]: https://changelog.com/212
