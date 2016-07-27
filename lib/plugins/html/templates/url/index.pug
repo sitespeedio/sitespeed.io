@@ -21,35 +21,7 @@ block content
     .errors= JSON.stringify(pageInfo.errors, null, 2)
 
   else
-    input#tab1(type='radio', name='tabs', checked='')
-    label(for='tab1')
-      img(src= rootPath + '/img/summary64.png', height=32, alt='Summary')
-      | Summary
-    if d.coach && d.coach.pageSummary
-      input#tab2(type='radio', name='tabs')
-      label(for='tab2')
-        img(src= rootPath + '/img/coach64.png', height=32, alt='Coach')
-        | Coach
-    if d.browsertime && d.browsertime.pageSummary
-      input#tab3(type='radio', name='tabs')
-      label(for='tab3')
-        img(src= rootPath + '/img/browsertime64.png', height=32, alt='Browsertime')
-        | Browsertime
-    if d.pagexray && d.pagexray.pageSummary
-      input#tab4(type='radio', name='tabs')
-      label(for='tab4')
-        img(src= rootPath + '/img/xray64.png', height=32, alt='PageXray')
-        | PageXray
-    if d.webpagetest
-      input#tab5(type='radio', name='tabs')
-      label(for='tab5')
-        img(src= rootPath + '/img/webpagetest64.png', height=32, alt='WebPageTest')
-        | WebPageTest
-    if d.gpsi
-      input#tab6(type='radio', name='tabs')
-      label(for='tab6')
-        img(src= rootPath + '/img/gpsi64.png', height=32, alt='Google Page Speed Insights')
-        | GPSI
+    include ./tabs.pug
 
     section#summary
       h2 Summary
