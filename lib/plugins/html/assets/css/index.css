@@ -1382,14 +1382,6 @@ label {
 label:before {
   font-weight: normal; }
 
-/*
-label[for*='1']:before { content: 'S'; }
-label[for*='2']:before { content: 'C'; }
-label[for*='3']:before { content: 'B'; }
-label[for*='4']:before { content: 'P'; }
-label[for*='5']:before { content: 'W'; }
-label[for*='6']:before { content: 'G'; }
-*/
 label:hover {
   color: #888;
   cursor: pointer; }
@@ -1404,8 +1396,8 @@ input:checked + label {
 #tab2:checked ~ #coach,
 #tab3:checked ~ #browsertime,
 #tab4:checked ~ #pagexray,
-#tab4:checked ~ #webpagetest,
-#tab4:checked ~ #gpsi {
+#tab5:checked ~ #webpagetest,
+#tab6:checked ~ #gpsi {
   display: block; }
 
 @media screen and (max-width: 650px) {
