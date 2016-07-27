@@ -4,7 +4,8 @@ p.small Metrics & data collected using WebPageTest.org (or your private instance
 - var data = pageInfo.data.webpagetest.pageSummary.data
 - var medianRun = data.median
 
-p Test run from !{data.from} using #{medianRun.firstView.browser_name} - #{medianRun.firstView.browser_version}. Check the
+p Test run from !{data.from} using #{medianRun.firstView.browser_name} - #{medianRun.firstView.browser_version}.
+p Check the&nbsp;
   a(href= data.summary) result page on WebPageTest
   | .
 each view in ['firstView', 'repeatView']
@@ -13,7 +14,6 @@ each view in ['firstView', 'repeatView']
     h4 #{view}
     .responsive
       table
-        caption Metrics
         +rowHeading(['TTFB', 'Render', 'firstPaint', 'loadTime', 'SpeedIndex', 'fullyLoaded', 'connections'])
         tr
           td.number(data-title='TTFB') #{median.TTFB}
@@ -25,7 +25,6 @@ each view in ['firstView', 'repeatView']
           td.number(data-title='connections') #{median.connections}
       if (median.userTimes)
         table
-          caption User timings
           tr
           each value, key in median.userTimes
             th #{key}

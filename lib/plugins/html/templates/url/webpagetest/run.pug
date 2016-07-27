@@ -9,7 +9,6 @@ each view in ['firstView', 'repeatView']
     h4 #{view}
     .responsive
       table
-        caption Metrics
         tr
           th TTFB
           th Render
@@ -28,7 +27,6 @@ each view in ['firstView', 'repeatView']
           td.number(data-title='connections') #{data.connections}
       if (data.userTimes)
         table
-          caption User timings
           tr
           each value, key in data.userTimes
             th #{key}
