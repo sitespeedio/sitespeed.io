@@ -78,7 +78,7 @@
     "lodash.chunk": "4.1.0",
     "lodash.clonedeep": "4.3.2",
     "lodash.difference": "4.3.0",
-    "lodash.foreach": "4.3.0",
+    "lodash.foreach": "4.4.0",
     "lodash.get": "4.3.0",
     "lodash.merge": "4.4.0",
     "lodash.pullall": "4.1.1",
