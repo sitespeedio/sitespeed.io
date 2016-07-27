@@ -4,34 +4,42 @@ h3 Timings
 - var browsertime = pageInfo.data.browsertime.run || pageInfo.data.browsertime.pageSummary.browserScripts[run]
 - var timings = browsertime.timings;
 - var visualMetrics = browsertime.visualMetrics;
-
+- baseHelpURL = rootPath + '/help.html#';
 table
   tr
     th name
     th timing
   each value, name in timings.timings
     tr
-      td #{name}
+      - url = baseHelpURL + name
+      td
+        a(href=url) #{name}
       td.number #{value}
   if timings.firstPaint > -1
     tr
-      td First paint
+      td
+        a(href=baseHelpURL + 'firstPaint') First paint
       td.number #{timings.firstPaint.toFixed(1)}
   tr
-    td RUM Speed Index
+    td
+      a(href=baseHelpURL + 'rumSpeedIndex') RUM Speed Index
     td.number #{timings.rumSpeedIndex.toFixed(1)}
   tr
-    td Fully loaded
+    td
+      a(href=baseHelpURL + 'fullyLoaded') Fully loaded
     td.number #{timings.fullyLoaded.toFixed(1)}
   if visualMetrics
     tr
-      td Speed Index (visual metric)
+      td
+        a(href=baseHelpURL + 'SpeedIndex') Speed Index (visual metric)
       td.number #{visualMetrics.SpeedIndex.toFixed(1)}
     tr
-      td First Visual Change (visual metric)
+      td
+        a(href=baseHelpURL + 'FirstVisualChange') First Visual Change (visual metric)
       td.number #{visualMetrics.FirstVisualChange.toFixed(1)}
     tr
-      td Last Visual Change (visual metric)
+      td
+        a(href=baseHelpURL + 'LastVisualChange') Last Visual Change (visual metric)
       td.number #{visualMetrics.LastVisualChange.toFixed(1)}
   if (Object.keys(timings.userTimings.marks).length > 0)
     each value, name in timings.userTimings.marks
