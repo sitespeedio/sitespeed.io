@@ -22,7 +22,7 @@ input {
 label {
   display: inline-block;
   margin: 0 0 -1px;
-  padding: 15px 25px;
+  padding: 15px 22px;
   font-weight: 600;
   text-align: center;
   color: #bbb;
@@ -77,6 +77,6 @@ input:checked + label {
 
 @media screen and (max-width: 400px) {
   label {
-    padding: 15px;
+    padding: 13px;
   }
 }
