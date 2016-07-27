@@ -7,7 +7,7 @@ mixin rows(pages)
     - t = p.contentTypes || {javascript: {transferSize: ''}, css: {transferSize: ''}, image: {transferSize: ''}}
     tr
       td.url.pagesurl(data-title='URL')
-        a(href= pageInfo.path + '/index.html')= url
+        a(href= pageInfo.path + 'index.html')= url
       +kbSizeCell('Javascript size', h.get(t.javascript, 'transferSize'))
       +kbSizeCell('CSS size', h.get(t.css, 'transferSize'))
       +kbSizeCell('Image size', h.get(t.image, 'transferSize'))

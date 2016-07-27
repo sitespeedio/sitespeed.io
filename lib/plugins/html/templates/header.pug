@@ -2,13 +2,13 @@ mixin headerLink(id, name)
   if (headers[id])
     li
       - active = menu===id ? 'active' : ''
-      a(href= rootPath + '/' + id + '.html', class=active)= name
+      a(href= rootPath + id + '.html', class=active)= name
 
 .darkblue.nav
   .navgrid
     .logo
         a(href='https://www.sitespeed.io')
-          img.navbar-brand(src= rootPath + '/img/sitespeed.io-logo.png', width='162', height='50', alt='sitespeed.io logo')
+          img.navbar-brand(src= rootPath + 'img/sitespeed.io-logo.png', width='162', height='50', alt='sitespeed.io logo')
     ul
       +headerLink('index', 'Summary')
       +headerLink('detailed', 'Detailed Summary')
