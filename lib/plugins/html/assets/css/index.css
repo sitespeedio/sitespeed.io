@@ -1343,6 +1343,10 @@ svg.water-fall-chart {
   display: table;
   clear: both; }
 
+@media screen and (max-width: 400px) {
+  select {
+    max-width: 100%; } }
+
 .screenshot {
   padding: 4px;
   background-color: #fff;
