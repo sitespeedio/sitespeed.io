@@ -75,7 +75,7 @@
     "influx": "4.2.1",
     "intel": "1.1.1",
     "line-reader": "0.4.0",
-    "lodash.chunk": "4.0.6",
+    "lodash.chunk": "4.1.0",
     "lodash.clonedeep": "4.3.2",
     "lodash.difference": "4.3.0",
     "lodash.foreach": "4.3.0",
