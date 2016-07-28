@@ -23,4 +23,12 @@ We lack a lot of tests for the coming 4.0. Writing tests is a good way to get fa
 Do you use sitespeed.io in your everyday work? Then we have a perfect proposition for you! Have a hack day with focus on sitespeed.io for your team and contribute back. Pick one the things in the **Help wanted** section. Or maybe there's a function you think is missing? Create it. Contribute back.
 
 # 4.0 a.k.a help wanted
-There's a lot that needs to happen before we can release the final 4.0. Checkout the [milestones](https://github.com/sitespeedio/sitespeed.io/milestones) and check if there's issues you want to do. Are they lacking info? Ping the issue and we will help you.
+There's a lot that needs to happen before we can release the final 4.0. 
+You can help us:
+* We want to be able to [blacklist/whitelist URLs](https://github.com/sitespeedio/browsertime/issues/156). If you do Python this could be your thing.
+* Do you use InfluxDB? @tobli did a POC implementing InfluxDB and you can [help us make it better](https://github.com/sitespeedio/sitespeed.io/issues/889).
+* We need help with the documentation for 4.0. We have started in the [4.0 branch](https://github.com/sitespeedio/doc.sitespeed.io/tree/4.0) and would love to get feedback and help.
+* We need help with the [help text](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/plugins/html/templates/help.pug) that explains the metrics we use. But can you understand the text? Help us make it understandable. 
+
+
+Checkout the [milestones](https://github.com/sitespeedio/sitespeed.io/milestones) and check if there's issues you want to do. Are they lacking info? Ping the issue and we will help you.
