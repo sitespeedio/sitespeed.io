@@ -28,7 +28,7 @@ You can help us:
 * We want to be able to [blacklist/whitelist URLs](https://github.com/sitespeedio/browsertime/issues/156). If you do Python this could be your thing.
 * Do you use InfluxDB? @tobli did a POC implementing InfluxDB and you can [help us make it better](https://github.com/sitespeedio/sitespeed.io/issues/889).
 * We need help with the documentation for 4.0. We have started in the [4.0 branch](https://github.com/sitespeedio/doc.sitespeed.io/tree/4.0) and would love to get feedback and help.
-* We need help with the [help text](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/plugins/html/templates/help.pug) that explains the metrics we use. But can you understand the text? Help us make it understandable. 
-
+* We need [help](https://github.com/sitespeedio/sitespeed.io/issues/1089) with the [help text](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/plugins/html/templates/help.pug) that explains the metrics we use. But can you understand the text? Help us make it understandable. 
+* [Make the tabs better (make the linkable)](https://github.com/sitespeedio/sitespeed.io/issues/1087).
 
 Checkout the [milestones](https://github.com/sitespeedio/sitespeed.io/milestones) and check if there's issues you want to do. Are they lacking info? Ping the issue and we will help you.
