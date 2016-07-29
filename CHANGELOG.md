@@ -8,11 +8,14 @@
 * Empty size fixes for tablet view of HTML report
 * Title/description for each page says something about the page + we don't want robots to index the result pages
 * Fixed long URLs that broke page design #1020 #1049
+* Right CLI parameter name for setting the Selenium URL (if you use a standalone server)
+* Made it easier to understand how to configure location and connectivity for WebPageTest.
 
 ### Added
 * Updated to latest Browsertime, now supporting different connectivity profiles using tsproxy or tc. #895
-
 * Disable default plugins (disable HTML, screenshot etc). Looking forward to add plugins #1015
+* Configure the pageCompleteCheck using CLI.
+* Moved metrics to different tabs on the page result page.
 
 ## 4.0.0-alpha5 - 2016-06-30
 -------------------------
