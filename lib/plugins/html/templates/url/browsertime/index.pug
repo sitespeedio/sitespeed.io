@@ -51,3 +51,16 @@ table
       tr
         td #{value.name}
         td.number #{value.startTime.toFixed(1)}
+
+h4 Custom scripts
+if browsertime.custom
+  table
+    tr
+      th name
+      th value
+    each value, name in browsertime.custom
+      tr
+        td #{name}
+        td #{value}
+else
+  p There are no custom configured scripts.
