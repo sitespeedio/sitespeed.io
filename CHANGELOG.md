@@ -17,6 +17,7 @@
 * Configure the pageCompleteCheck using CLI.
 * Moved metrics to different tabs on the page result page.
 * Set the number of runs for WebPageTest using a specific cli parameter #1101
+* Run custom script and URL/script for WebPageTest #1101
 
 ## 4.0.0-alpha5 - 2016-06-30
 -------------------------
