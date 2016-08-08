@@ -92,7 +92,7 @@
     "pagexray": "0.9.0",
     "png-crop": "0.0.1",
     "pug": "^2.0.0-beta4",
-    "simplecrawler": "0.7.0",
+    "simplecrawler": "1.0.0",
     "webcoach": "0.24.2",
     "webpagetest": "0.3.4",
     "yargs": "4.8.1"
