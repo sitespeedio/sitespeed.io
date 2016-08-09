@@ -16,7 +16,10 @@ h4 Total performance score #{pageInfo.data.gpsi.pageSummary.ruleGroups.SPEED.sco
       if (rule.ruleImpact > 0)
         tr
           td(data-title='Name') #{rule.localizedRuleName}
-          td.url(data-title='Summary') #{rule.summary.format}
+          if rule.summary
+            td.url(data-title='Summary') #{rule.summary.format}
+          else
+            td.url(data-title='Summary') No summary.
             //-each block in rule.urlBlocks
             //-  p #{block.header.format}
               //-  ul
