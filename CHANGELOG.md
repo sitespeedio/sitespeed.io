@@ -10,6 +10,7 @@
 * Fixed long URLs that broke page design #1020 #1049
 * Right CLI parameter name for setting the Selenium URL (if you use a standalone server)
 * Made it easier to understand how to configure location and connectivity for WebPageTest.
+* Fixed breaking GPSI when summary was missing from the rule. #1110
 
 ### Added
 * Updated to latest Browsertime, now supporting different connectivity profiles using tsproxy or tc. #895
