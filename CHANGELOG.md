@@ -21,6 +21,7 @@
 * Moved metrics to different tabs on the page result page.
 * Set the number of runs for WebPageTest using a specific cli parameter #1101
 * Run custom script and URL/script for WebPageTest #1101
+* Run custom script. Use --browsertime.script myScript.js to add your script. You can run multiple script by passing the parameter multiple times. The metrics will automatically turn up on the summary page, detailed page, the summary page of the page and the run page. They will also be sent to Graphite. #1063 
 
 ## 4.0.0-alpha5 - 2016-06-30
 -------------------------
