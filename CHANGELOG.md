@@ -14,6 +14,7 @@
 * Updated browsertime, so when you are running pre/post script, you can get hold of the selenium-webdriver from the context (a lot of people have had problem with it). Checkout https://github.com/sitespeedio/browsertime/blob/1.0/test/prepostscripts/preLoginExample.js for an example.
 * Finally Firefox works again, you can use Firefox 48 since we now use Geckodriver.
 * New version of TSProxy that fixes the redirect problems for HTTP -> HTTPS https://github.com/sitespeedio/browsertime/issues/175
+* New PerfCascade that takes care of responses that misses a content type #1030
 
 ### Added
 * Updated to latest Browsertime, now supporting different connectivity profiles using tsproxy or tc. #895
