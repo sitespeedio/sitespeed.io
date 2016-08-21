@@ -73,7 +73,7 @@ block content
       section#browsertime
         include ./browsertime/index.pug
 
-        if ( d.browsertime.har && showWaterfallSummary)
+        if ( d.browsertime.har && showWaterfallSummary || d.browsertime.har && options.n === 1)
           include ./waterfall/index.pug
 
     if d.pagexray && d.pagexray.pageSummary
