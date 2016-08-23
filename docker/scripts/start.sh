@@ -10,6 +10,6 @@ google-chrome-stable --version
 firefox --version 2>/dev/null
 echo 'Starting Xvfb ...'
 export DISPLAY=:99
-2>/dev/null 1>&2 Xvfb :99 -shmem -screen 0 1366x768x16 &
+2>/dev/null 1>&2 Xvfb :99 -shmem -screen 0 1280x1024x16 &
 
 exec "$@"
