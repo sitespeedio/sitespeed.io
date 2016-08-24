@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+version 3.11.8 - 2016-08-24
+------------------------
+### Fixed
+* Updated phantomjs prebuilt dependency
+
 version 3.11.7 - 2016-07-16
 ------------------------
 ### Fixed
