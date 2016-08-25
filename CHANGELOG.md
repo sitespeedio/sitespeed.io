@@ -11,7 +11,7 @@
 * Right CLI parameter name for setting the Selenium URL (if you use a standalone server)
 * Made it easier to understand how to configure location and connectivity for WebPageTest.
 * Fixed breaking GPSI when summary was missing from the rule. #1110
-* Updated browsertime, so when you are running pre/post script, you can get hold of the selenium-webdriver from the context (a lot of people have had problem with it). Checkout https://github.com/sitespeedio/browsertime/blob/1.0/test/prepostscripts/preLoginExample.js for an example.
+* Updated browsertime, so when you are running pre/post script, you can get hold of the selenium-webdriver from the context (a lot of people have had problem with it). Checkout https://github.com/sitespeedio/browsertime/blob/master/test/prepostscripts/preLoginExample.js for an example.
 * Finally Firefox works again, you can use Firefox 48 since we now use Geckodriver.
 * New version of TSProxy that fixes the redirect problems for HTTP -> HTTPS https://github.com/sitespeedio/browsertime/issues/175
 * New PerfCascade that takes care of responses that misses a content type #1030
