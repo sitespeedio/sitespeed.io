@@ -50,12 +50,13 @@ describe('graphite', function() {
               "max": "40"
             }
           }
-        }
+        },
+        'group': 'sub_domain_com'
       };
 
-      let generator = new DataGenerator('ns', false, {_:['filename'], browser:'chrome', connectivity: 'cable'});
+      let generator = new DataGenerator('ns', false, {_:['sub_domain_com'], browser:'chrome', connectivity: 'cable'});
       var data = generator.dataFromMessage(message, moment());
-      expect(data).to.match(/ns.summary.filename.chrome.cable.domains.www.sitespeed.io.dns.median/);
+      expect(data).to.match(/ns.summary.sub_domain_com.chrome.cable.domains.www.sitespeed.io.dns.median/);
     });
 
   });

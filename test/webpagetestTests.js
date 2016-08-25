@@ -11,7 +11,7 @@ const wptResult = JSON.parse(fs.readFileSync(wptResultPath, 'utf8'));
 describe('webpagetest', function() {
   describe('aggregator', function() {
     it('should summarize data', function() {
-      aggregator.addToAggregate(wptResult);
+      aggregator.addToAggregate('www.sitespeed.io', wptResult);
 
       expect(aggregator.summarize()).to.not.be.empty;
     });
