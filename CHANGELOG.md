@@ -25,7 +25,7 @@
 * Moved metrics to different tabs on the page result page.
 * Set the number of runs for WebPageTest using a specific cli parameter #1101
 * Run custom script and URL/script for WebPageTest #1101
-* Run custom script. Use --browsertime.script myScript.js to add your script. You can run multiple script by passing the parameter multiple times. The metrics will automatically turn up on the summary page, detailed page, the summary page of the page and the run page. They will also be sent to Graphite. #1063 
+* Run custom script. Use --browsertime.script myScript.js to add your script. You can run multiple script by passing the parameter multiple times. The metrics will automatically turn up on the summary page, detailed page, the summary page of the page and the run page. They will also be sent to Graphite. #1063
 * Add your own plugin (examples coming soon) #891
 * Removed analysisStorer as default plugin (do not store all json metrics by default). If you want to use it, enable it with --plugins.load analysisStorer
 * Always show the waterfall if you run one run.
@@ -33,6 +33,7 @@
 
 ### Changed
 * All URLs is now belonging to a group. The group right now is the domain of the URL. When summaries are sent to Graphite, each summary belong to a group. Meaning summary metrics will always correspond to the group (not as before the filename if you get the URLs from a file). #1145
+* New default namespace for Graphite metrics: sitespeed_io.default to be more flexible for the dashboards we will supply
 
 ## 4.0.0-alpha5 - 2016-06-30
 -------------------------
