@@ -63,10 +63,10 @@ block content
               a(href='screenshots/0.png')
                 img.screenshot(src='screenshots/0.png', width=width, alt='Screenshot of run 0')
 
+      include ./summaryBox.pug
+
       if d.browsertime && d.browsertime.har
         include ./waterfall/index.pug
-
-      include ./summaryBox.pug
 
     if d.coach && d.coach.pageSummary
       section#coach
