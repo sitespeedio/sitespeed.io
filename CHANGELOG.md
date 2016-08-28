@@ -35,7 +35,7 @@
 ### Changed
 * All URLs is now belonging to a group. The group right now is the domain of the URL. When summaries are sent to Graphite, each summary belong to a group. Meaning summary metrics will always correspond to the group (not as before the filename if you get the URLs from a file). #1145
 * New default namespace for Graphite metrics: sitespeed_io.default to be more flexible for the dashboards we will supply
-* Removed p10 and p90 as default to Graphite (and all calculations). We make it configurable in the future from the cli (it's prepared already).
+* Removed p10 and p99 as default to Graphite (and all calculations). We make it configurable in the future from the cli (it's prepared already).
 
 ## 4.0.0-alpha5 - 2016-06-30
 -------------------------
