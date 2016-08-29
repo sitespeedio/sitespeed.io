@@ -65,6 +65,9 @@ block content
 
       include ./summaryBox.pug
 
+      if d.browsertime && d.browsertime.har
+        include ./waterfall/index.pug
+
     if d.coach && d.coach.pageSummary
       section#coach
         include ./coach/index.pug
@@ -72,9 +75,6 @@ block content
     if d.browsertime && d.browsertime.pageSummary
       section#browsertime
         include ./browsertime/index.pug
-
-        if ( d.browsertime.har && showWaterfallSummary || d.browsertime.har && options.n === 1)
-          include ./waterfall/index.pug
 
     if d.pagexray && d.pagexray.pageSummary
       section#pagexray
