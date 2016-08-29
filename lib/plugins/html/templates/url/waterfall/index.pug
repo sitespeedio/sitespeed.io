@@ -3,11 +3,13 @@ h3 Waterfall
 if (pageInfo.data.browsertime.run && pageInfo.data.browsertime.run.har)
   - var dahar = pageInfo.data.browsertime.run.har
 else
-  - var dahar = pageInfo.data.browsertime.har
+  - var dahar = summaryPageHAR
 
 if (dahar.log.pages.length > 1)
   p Choose HAR:
 select#page-selector
+if summaryPageHAR && dahar.log.pages.length === 1
+  p HAR from first run:
 #output
 script(src= rootPath + '/js/perf-cascade.min.js')
 script(type='text/javascript').
