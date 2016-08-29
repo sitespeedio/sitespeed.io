@@ -9,8 +9,8 @@ block content
           tr
             th name
             th min
-            th p10
             th median
+            th mean
             th p90
             th max
         each metric in metrics
@@ -23,7 +23,7 @@ block content
                 else
                   | #{metric.name}
               td(data-title='min', data-value=metric.node.min) #{metric.h(metric.node.min)}
-              td(data-title='p10', data-value=metric.node.p10) #{metric.h(metric.node.p10)}
               td(data-title='median', data-value=metric.node.median) #{metric.h(metric.node.median)}
+              td(data-title='mean', data-value=metric.node.mean) #{metric.h(metric.node.mean)}
               td(data-title='p90', data-value=metric.node.p90) #{metric.h(metric.node.p90)}
               td(data-title='max', data-value=metric.node.max) #{metric.h(metric.node.max)}
