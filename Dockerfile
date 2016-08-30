@@ -10,3 +10,5 @@ COPY . /usr/src/app
 COPY docker/scripts/start.sh /start.sh
 
 ENTRYPOINT ["/start.sh"]
+VOLUME /sitespeed.io
+WORKDIR /sitespeed.io
