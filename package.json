@@ -67,7 +67,7 @@
   "main": "./lib/sitespeed.js",
   "dependencies": {
     "bluebird": "3.4.1",
-    "browsertime": "1.0.0-beta.1",
+    "browsertime": "1.0.0-beta.2",
     "concurrent-queue": "7.0.1",
     "fast-stats": "0.0.3",
     "fs-extra": "0.30.0",
@@ -93,7 +93,7 @@
     "png-crop": "0.0.1",
     "pug": "^2.0.0-beta4",
     "simplecrawler": "1.0.1",
-    "webcoach": "0.24.5",
+    "webcoach": "0.24.6",
     "webpagetest": "0.3.4",
     "yargs": "4.8.1"
   }
