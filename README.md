@@ -33,6 +33,12 @@ Or clone the repo and test the latest changes:
 > bin/sitespeed.js http://www.sitespeed.io
 ```
 
+Or using Docker:
+
+```bash
+> docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:beta https://www.sitespeed.io
+```
+
 ## Why 4.0?
 There's a lot of things that we want to improve since 3.0. Here's some of the most important changes:
 
