@@ -30,7 +30,8 @@
 * Removed analysisStorer as default plugin (do not store all json metrics by default). If you want to use it, enable it with --plugins.load analysisStorer
 * Always show the waterfall if you run one run.
 * You can configure which metrics to send to Graphite #943
-* Send domain, expireStats and lastModifiedStats to Graphite for a group summary and pageSummary.
+* Send domain, expireStats and lastModifiedStats to Graphite for a group summary and totalDomains for page summary.
+* Send documentHeight, domElements, domDepth.avg, domDepth.max and iframes per default for each page summary (missed those, these are handy!).
 
 ### Changed
 * All URLs is now belonging to a group. The group right now is the domain of the URL. When summaries are sent to Graphite, each summary belong to a group. Meaning summary metrics will always correspond to the group (not as before the filename if you get the URLs from a file). #1145
