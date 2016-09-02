@@ -14,6 +14,17 @@
 *This branch tracks the development of the upcoming version 4.0 of sitespeed.io.
 The current production version is developed in the [3.x](https://github.com/sitespeedio/sitespeed.io/tree/3.x).*
 
+Using sitespeed.io you can:
+* test your web site against Web Performance best practices using the Coach.
+* Collect timing metrics like Navigation Timing API and User Timing API from Firefox/Chrome using Browsertime.
+* Run your custom made Javascript and collect whatever metric you need.
+* Test one or multiple page, one or many runs to get more accurate metrics.
+* Create HTML result pages or store the metrics in Graphite
+* Write your own plugins that can do whatever tests you want/need.
+
+But what does it look like?
+
+## 4.0
 Version 4.0 is a ground up rewrite for node.js 4.3 and newer. It builds on all our experience since shipping 3.0 in December 2014,
 the first version to use node.js. It's currently under active development, you can check the release schedule [here](https://github.com/sitespeedio/sitespeed.io/milestones).  We're determined to make it the best version of sitespeed.io to date.
 
