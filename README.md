@@ -27,7 +27,10 @@ But what does it look like?
 A summary report in HTML:
 <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/doc/html-summary.png">
 
-PageSummary in Graphite looking in Grafana:
+Individual page report:
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/doc/page.png">
+
+Collected metrics from a URL in Graphite/Grafana:
 <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/doc/pagesummary-grafana.png">
 
 ## 4.0
