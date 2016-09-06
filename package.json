@@ -95,6 +95,6 @@
     "simplecrawler": "1.0.1",
     "webcoach": "0.25.0",
     "webpagetest": "0.3.4",
-    "yargs": "4.8.1"
+    "yargs": "5.0.0"
   }
 }
