@@ -14,12 +14,15 @@ mixin rows(assets)
 
 block content
   include runInfo
-  if count < fullCount
-    div Showing top #{count} assets out of #{fullCount}
-  else
-    div Showing all #{fullCount} assets
+  if fullCount > 0
+    if count < fullCount
+      div Showing top #{count} assets out of #{fullCount}
+    else
+      div Showing all #{fullCount} assets
 
-  .responsive
-    table(data-sortable, id='assets')
-      +rowHeading(['url', 'type', 'time since last modified', 'cache time', 'size (kb)', 'count'])
-      +rows(topAssets)
+    .responsive
+      table(data-sortable, id='assets')
+        +rowHeading(['url', 'type', 'time since last modified', 'cache time', 'size (kb)', 'count'])
+        +rows(topAssets)
+  else
+    p We are missing assets metrics, the HAR was not created.

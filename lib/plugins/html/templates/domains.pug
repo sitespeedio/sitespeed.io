@@ -17,12 +17,14 @@ mixin rows(domainStats)
 
 block content
   include runInfo
-  if count < fullCount
-    div Showing top #{count} domains out of #{fullCount}
+  if topDomains
+    if count < fullCount
+      div Showing top #{count} domains out of #{fullCount}
+    else
+      div Showing all #{fullCount} domains
+    .responsive
+      table(data-sortable, id='domains')
+        +rowHeading(['Domain', 'Blocked', 'DNS', 'Connect', 'Send', 'SSL', 'Wait', 'Receive', 'Total time', 'Requests'])
+        +rows(topDomains)
   else
-    div Showing all #{fullCount} domains
-
-  .responsive
-    table(data-sortable, id='domains')
-      +rowHeading(['Domain', 'Blocked', 'DNS', 'Connect', 'Send', 'SSL', 'Wait', 'Receive', 'Total time', 'Requests'])
-      +rows(topDomains)
+    p We are missing domain information, the HAR file wasn't generated.      

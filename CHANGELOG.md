@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+-------------------------
+### Fixed
+* If the HAR export plugin fails in Firefox, don't break the run, use the data we have and try to make the most if it. #1190 
+
+
 ## 4.0.0-beta.1 2016-09-02
 -------------------------
 ### Fixed
