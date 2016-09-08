@@ -1,0 +1,24 @@
+extends ./layout.pug
+include _tableMixins
+
+mixin rows(assets)
+  each asset in assets
+    tr
+      td.url.assetsurl(data-title='URL')
+        a(href=asset.url)= h.shortAsset(asset.url)
+        | &nbsp;
+        a(href=asset.page + 'index.html') &circlearrowleft;
+      +durationCell('last modified',asset.lastModification)
+      +durationCell('cache time',asset.cacheTime)
+      +kbSizeCell('size', asset.contentSize)
+
+block content
+  include runInfo
+  - var topLists = ['javascript', 'image', 'css', 'html'];
+  each type in topLists
+    if (assetsBySize[type] && assetsBySize[type].length > 1)
+      h3 Largest #{type} files
+      .responsive
+        table(data-sortable, id=type)
+          +rowHeading(['url', 'time since last modified', 'cache time', 'size (kb)'])
+          +rows(assetsBySize[type])
