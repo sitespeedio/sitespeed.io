@@ -1,0 +1,10 @@
+{
+  "name": "graphite",
+  "type": "graphite",
+  "url": "http://graphite:80",
+  "access": "proxy",
+  "basicAuth": true,
+  "default": true,
+  "user": "guest",
+  "password": "guest"
+}
