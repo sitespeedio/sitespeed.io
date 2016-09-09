@@ -3,7 +3,13 @@
 ## UNRELEASED
 -------------------------
 ### Fixed
-* If the HAR export plugin fails in Firefox, don't break the run, use the data we have and try to make the most if it. #1190 
+* If the HAR export plugin fails in Firefox, don't break the run, use the data we have and try to make the most if it. #1190
+
+### Added
+* Send content size & request per content type by default to Graphite for WebPageTest pageSummary #1194
+
+### Changed
+* Send content size & request per content type grouped by breakdown to Graphite for WebPageTest summary #1194
 
 
 ## 4.0.0-beta.1 2016-09-02
