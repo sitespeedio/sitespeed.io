@@ -1,7 +1,7 @@
 extends ./layout.pug
 include _tableMixins
 
-mixin rows(assets)
+mixin rows(assets, showTiming)
   each asset in assets
     tr
       td.url.assetsurl(data-title='URL')
@@ -11,14 +11,30 @@ mixin rows(assets)
       +durationCell('last modified',asset.lastModification)
       +durationCell('cache time',asset.cacheTime)
       +kbSizeCell('size', asset.contentSize)
+      if showTiming
+        +numberCell('timing', asset.timing)
 
 block content
   include runInfo
   - var topLists = ['javascript', 'image', 'css', 'html'];
+  ul
+    each type in topLists
+      if (assetsBySize[type] && assetsBySize[type].length > 1)
+        li
+          a(href='#' + type) Largest #{type} files
+    li
+      a(href='#slowest') Slowest responses
+
   each type in topLists
     if (assetsBySize[type] && assetsBySize[type].length > 1)
       h3 Largest #{type} files
       .responsive
         table(data-sortable, id=type)
           +rowHeading(['url', 'time since last modified', 'cache time', 'size (kb)'])
-          +rows(assetsBySize[type])
+          +rows(assetsBySize[type], false)
+
+  h3 Slowest responses
+  .responsive
+    table(data-sortable, id='slowest')
+      +rowHeading(['url', 'time since last modified', 'cache time', 'size (kb)', 'timing (ms)'])
+      +rows(slowestAssets, true)
