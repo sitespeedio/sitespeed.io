@@ -51,10 +51,18 @@ script(type='text/javascript').
       .eight.columns
         h3 Coach score
         ul
-          li Total score #{advice.score}
-          li Performance score #{advice.performance.score}
-          li Accessibility Score #{advice.accessibility.score}
-          li Best practice score #{advice.bestpractice.score}
+          - sLabel = 'label normal ' + h.scoreLabel(advice.score)
+          - pLabel = 'label normal ' + h.scoreLabel(advice.performance.score)
+          - aLabel = 'label normal ' + h.scoreLabel(advice.accessibility.score)
+          - bLabel = 'label normal ' +  h.scoreLabel(advice.bestpractice.score)
+          li.group-item Total score&nbsp;
+            span(class=sLabel) #{advice.score}
+          li.group-item Performance score&nbsp;
+            span(class=pLabel) #{advice.performance.score}
+          li.group-item Accessibility score&nbsp;
+            span(class=aLabel) #{advice.accessibility.score}
+          li.group-item Best practice score&nbsp;
+            span(class=bLabel) #{advice.bestpractice.score}
     .row
       .twelve.columns
         +adviceInfo('Accessibility advice','You have a perfect accessibility score!', advice.accessibility)
