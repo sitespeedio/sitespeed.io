@@ -7,6 +7,8 @@
 
 ### Added
 * Send content size & request per content type by default to Graphite for WebPageTest pageSummary #1194
+* You can now set --max-old-space-size when running the Docker container, use -e MAX_OLD_SPACE_SIZE=4096 (or what max size you want) #1185
+* The old hotlist is rebranded to toplist. You can now see the largest responses by content type and the slowest responses #1183
 
 ### Changed
 * Send content size & request per content type grouped by breakdown to Graphite for WebPageTest summary #1194
