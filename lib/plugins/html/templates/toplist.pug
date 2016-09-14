@@ -18,11 +18,12 @@ block content
   include runInfo
   - var topLists = ['javascript', 'image', 'css', 'html'];
   ul
+    li.group-item.active Quick links
     each type in topLists
       if (assetsBySize[type] && assetsBySize[type].length > 1)
-        li
+        li.group-item
           a(href='#' + type) Largest #{type} files
-    li
+    li.group-item
       a(href='#slowest') Slowest responses
 
   each type in topLists
