@@ -58,7 +58,7 @@
     "eclint": "^1.1.5",
     "eslint": "^2.9.0",
     "jsdoc": "^3.3.3",
-    "license-checker": "^5.1.2",
+    "license-checker": "^8.0.0",
     "mocha": "^2.4.4",
     "node-sass": "^3.8.0",
     "pug-lint": "^2.3.0",
