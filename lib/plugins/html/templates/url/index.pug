@@ -23,7 +23,7 @@ block content
   else
     include ./tabs.pug
 
-    section#summary
+    section#summary-panel
       h2 Summary
       p.small Summary of some of the most important metrics.
       .row
@@ -69,21 +69,21 @@ block content
         include ./waterfall/index.pug
 
     if d.coach && d.coach.pageSummary
-      section#coach
+      section#coach-panel
         include ./coach/index.pug
 
     if d.browsertime && d.browsertime.pageSummary
-      section#browsertime
+      section#browsertime-panel
         include ./browsertime/index.pug
 
     if d.pagexray && d.pagexray.pageSummary
-      section#pagexray
+      section#pagexray-panel
         include ./pagexray/index.pug
 
     if d.webpagetest
-      section#webpagetest
+      section#webpagetest-panel
         include ./webpagetest/index.pug
 
     if d.gpsi
-      section#gpsi
+      section#gpsi-panel
         include ./gpsi/index.pug

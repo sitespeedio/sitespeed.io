@@ -1370,48 +1370,52 @@ section {
   padding: 20px 0 0;
   border-top: 1px solid #ddd; }
 
-input {
-  display: none; }
-
-label {
+a[data-name=tabs] {
   display: inline-block;
   margin: 0 0 -1px;
   padding: 15px 22px;
   font-weight: 600;
   text-align: center;
   color: #bbb;
-  border: 1px solid transparent; }
+  border: 1px solid transparent;
+  text-decoration: none; }
 
-label:before {
+a[data-name=tabs]:before {
   font-weight: normal; }
 
-label:hover {
+:target:before {
+  display: none; }
+
+a[data-name=tabs]:hover {
   color: #888;
   cursor: pointer; }
 
-input:checked + label {
+a[data-name=tabs]:target:focus {
+  outline: none; }
+
+a[selected] {
   color: #555;
   border: 1px solid #ddd;
   border-top: 2px solid #0095d2;
   border-bottom: 1px solid #fff; }
 
-#tab1:checked ~ #summary,
-#tab2:checked ~ #coach,
-#tab3:checked ~ #browsertime,
-#tab4:checked ~ #pagexray,
-#tab5:checked ~ #webpagetest,
-#tab6:checked ~ #gpsi {
+#summary[selected] ~ #summary-panel,
+#coach[selected] ~ #coach-panel,
+#browsertime[selected] ~ #browsertime-panel,
+#pagexray[selected] ~ #pagexray-panel,
+#webpagetest[selected] ~ #webpagetest-panel,
+#gpsi[selected] ~ #gpsi-panel {
   display: block; }
 
 @media screen and (max-width: 650px) {
-  label {
+  a[data-name=tabs] {
     font-size: 0; }
-  label:before {
+  a[data-name=tabs]:before {
     margin: 0;
     font-size: 18px; } }
 
 @media screen and (max-width: 400px) {
-  label {
+  a[data-name=tabs] {
     padding: 13px; } }
 
 .group-item {
