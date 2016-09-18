@@ -15,13 +15,17 @@ echo "Up!"
 echo "Adding datasources..."
 
 for datasource in `ls -1 /datasources/*.json`; do
-  curl -H 'Content-Type:application/json' -u admin:admin --data @"${datasource}" ${GF_API}/datasources
+  echo "Adding ${datasource}"
+  curl -s -H 'Content-Type:application/json' -u admin:admin --data @"${datasource}" ${GF_API}/datasources
+  echo ""
 done
 
 echo "Adding dashboards..."
 
 for dashboard in `ls -1 /dashboards/*.json`; do
-  curl -H 'Content-Type:application/json' -u admin:admin --data @"${dashboard}" ${GF_API}/dashboards/db
+  echo "Adding ${dashboard}"
+  curl -s -H 'Content-Type:application/json' -u admin:admin --data @"${dashboard}" ${GF_API}/dashboards/db
+  echo ""
 done
 
 echo "Done!"

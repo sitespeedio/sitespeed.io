@@ -3,8 +3,9 @@
   "type": "influxdb",
   "url": "http://influxdb:8086",
   "access": "proxy",
+  "isDefault": false,
   "basicAuth": false,
-  "database": "_internal",
-  "user": "admin",
-  "password": "admin"
+  "basicAuthUser":"admin",
+  "basicAuthPassword":"admin",
+  "database": "_internal"
 }

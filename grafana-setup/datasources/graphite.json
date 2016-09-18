@@ -3,8 +3,8 @@
   "type": "graphite",
   "url": "http://graphite:80",
   "access": "proxy",
+  "isDefault": true,
   "basicAuth": true,
-  "default": true,
-  "user": "guest",
-  "password": "guest"
+  "basicAuthUser":"guest",
+  "basicAuthPassword":"guest"
 }
