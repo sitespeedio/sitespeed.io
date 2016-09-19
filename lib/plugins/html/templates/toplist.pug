@@ -16,26 +16,28 @@ mixin rows(assets, showTiming)
 
 block content
   include runInfo
-  - var topLists = ['javascript', 'image', 'css', 'html'];
-  ul
-    li.group-item.active Quick links
+
+  if (assetsBySize)
+    - var topLists = ['javascript', 'image', 'css', 'html'];
+    ul
+      li.group-item.active Quick links
+      each type in topLists
+        if (assetsBySize[type] && assetsBySize[type].length > 1)
+          li.group-item
+            a(href='#' + type) Largest #{type} files
+      li.group-item
+        a(href='#slowest') Slowest responses
+
     each type in topLists
       if (assetsBySize[type] && assetsBySize[type].length > 1)
-        li.group-item
-          a(href='#' + type) Largest #{type} files
-    li.group-item
-      a(href='#slowest') Slowest responses
+        h3 Largest #{type} files
+        .responsive
+          table(data-sortable, id=type)
+            +rowHeading(['url', 'time since last modified', 'cache time', 'size (kb)'])
+            +rows(assetsBySize[type], false)
 
-  each type in topLists
-    if (assetsBySize[type] && assetsBySize[type].length > 1)
-      h3 Largest #{type} files
-      .responsive
-        table(data-sortable, id=type)
-          +rowHeading(['url', 'time since last modified', 'cache time', 'size (kb)'])
-          +rows(assetsBySize[type], false)
-
-  h3 Slowest responses
-  .responsive
-    table(data-sortable, id='slowest')
-      +rowHeading(['url', 'time since last modified', 'cache time', 'size (kb)', 'timing (ms)'])
-      +rows(slowestAssets, true)
+    h3 Slowest responses
+    .responsive
+      table(data-sortable, id='slowest')
+        +rowHeading(['url', 'time since last modified', 'cache time', 'size (kb)', 'timing (ms)'])
+        +rows(slowestAssets, true)
