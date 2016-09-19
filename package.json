@@ -93,7 +93,7 @@
     "png-crop": "0.0.1",
     "pug": "2.0.0-beta6",
     "simplecrawler": "1.0.1",
-    "webcoach": "0.25.0",
+    "webcoach": "0.26.0",
     "webpagetest": "0.3.4",
     "yargs": "5.0.0"
   }
