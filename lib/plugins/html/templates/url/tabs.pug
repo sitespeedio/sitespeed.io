@@ -1,29 +1,45 @@
-input#tab1(type='radio', name='tabs', checked='')
-label(for='tab1')
+a#summary(href='#summary', data-name='tabs', onclick='return selectTab(this)', if-not-selected)
   img(src= rootPath + '/img/summary64.png', height=32, alt='Summary')
   | Summary
 if d.coach && (d.coach.pageSummary || d.coach.run)
-  input#tab2(type='radio', name='tabs')
-  label(for='tab2')
+  a#coach(href='#coach', data-name='tabs', onclick='return selectTab(this)')
     img(src= rootPath + '/img/coach64.png', height=32, alt='Coach')
     | Coach
 if d.browsertime && (d.browsertime.pageSummary || d.browsertime.run)
-  input#tab3(type='radio', name='tabs')
-  label(for='tab3')
+  a#browsertime(href='#browsertime', data-name='tabs', onclick='return selectTab(this)')
     img(src= rootPath + '/img/browsertime64.png', height=32, alt='Browsertime')
     | Browsertime
 if d.pagexray && (d.pagexray.pageSummary || d.pagexray.run)
-  input#tab4(type='radio', name='tabs')
-  label(for='tab4')
+  a#pagexray(href='#pagexray', data-name='tabs', onclick='return selectTab(this)')
     img(src= rootPath + '/img/xray64.png', height=32, alt='PageXray')
     | PageXray
 if d.webpagetest || (d.webpagetest && d.webpagetest.run)
-  input#tab5(type='radio', name='tabs')
-  label(for='tab5')
+  a#webpagetest(href='#webpagetest', data-name='tabs', onclick='return selectTab(this)')
     img(src= rootPath + '/img/webpagetest64.png', height=32, alt='WebPageTest')
     | WebPageTest
 if d.gpsi
-  input#tab6(type='radio', name='tabs')
-  label(for='tab6')
+  a#gpsi(href='#gpsi', data-name='tabs', onclick='return selectTab(this)')
     img(src= rootPath + '/img/gpsi64.png', height=32, alt='Google Page Speed Insights')
     | GPSI
+
+script(type='text/javascript').
+  function select(el) { el && el.setAttribute('selected', '') }
+
+  [].forEach.call(document.querySelectorAll('[data-name=tabs]'), function(el) {
+    if (location.hash === '#' + el.id) select(el);
+  });
+
+  if (!document.querySelectorAll('[data-name=tabs][selected]').length) {
+    select(document.querySelector('[if-not-selected]'));
+  }
+
+  function selectTab(el) {
+    var sel = document.querySelector('[data-name=tabs][selected]');
+    if (sel) sel.removeAttribute('selected');
+    select(el);
+    if (history.replaceState) {
+      history.replaceState(null, null, el.href);
+      return false;
+    }
+    // IE9 fallback
+  }
