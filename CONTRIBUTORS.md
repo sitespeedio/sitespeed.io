@@ -1,5 +1,6 @@
 Many many many thanks to:
 * Matthew Harrison-Jones (@matthojo)
+* Moos (@moos)
 
 3.X and earlier:
 * Tom Sutton (@tomsutton1984)
