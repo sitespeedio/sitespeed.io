@@ -3,6 +3,8 @@ services:
     sitespeed:
         build: .
         command: -V
+        volumes:
+            - ./sitespeed-result/:/sitespeed.io/sitespeed-result
 #    caddy:
 #        image: abiosoft/caddy
 #        ports:
