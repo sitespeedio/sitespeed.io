@@ -14,7 +14,7 @@
 
 ### Changed
 * Send content size & request per content type grouped by breakdown to Graphite for WebPageTest summary #1194
-
+* Get plugin by relative or absolute path (perfect for Docker). If you wanna use a npm installed module use $(npm get prefix)/foo
 
 ## 4.0.0-beta.1 2016-09-02
 -------------------------
