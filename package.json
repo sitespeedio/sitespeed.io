@@ -68,6 +68,7 @@
   "dependencies": {
     "bluebird": "3.4.6",
     "browsertime": "1.0.0-beta.5",
+    "cli-color": "1.1.0",
     "concurrent-queue": "7.0.1",
     "fast-stats": "0.0.3",
     "fs-extra": "0.30.0",
@@ -78,6 +79,7 @@
     "lodash.chunk": "4.2.0",
     "lodash.clonedeep": "4.5.0",
     "lodash.difference": "4.5.0",
+    "lodash.flatten": "4.4.0",
     "lodash.foreach": "4.5.0",
     "lodash.get": "4.4.2",
     "lodash.merge": "4.6.0",
@@ -94,6 +96,7 @@
     "pug": "2.0.0-beta6",
     "simplecrawler": "1.0.1",
     "webcoach": "0.27.0",
+    "text-table": "0.2.0",
     "webpagetest": "0.3.4",
     "yargs": "5.0.0"
   }
