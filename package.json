@@ -97,6 +97,7 @@
     "simplecrawler": "1.0.1",
     "webcoach": "0.27.0",
     "text-table": "0.2.0",
+    "webcoach": "0.27.0",
     "webpagetest": "0.3.4",
     "yargs": "5.0.0"
   }
