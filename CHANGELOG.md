@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Added
+* You can now output a summary for a run in the CLI. Thanks @moos for the PR.
+
 ## 4.0.0-beta.3 2016-09-26
 -------------------------
 ### Fixed
