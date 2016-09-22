@@ -6,6 +6,7 @@
 * If the HAR export plugin fails in Firefox, don't break the run, use the data we have and try to make the most if it. #1190
 * Make it possible to link to specific tabs on page/run pages #1087 Thank you @moos for the fix!
 * Passing --outputFolder now works correctly. #1209
+* Upgraded to latest Browsertime for make Firefox 49 to work again.
 
 ### Added
 * Send content size & request per content type by default to Graphite for WebPageTest pageSummary #1194
