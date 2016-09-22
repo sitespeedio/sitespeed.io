@@ -89,11 +89,11 @@
     "moment": "2.14.1",
     "node-slack": "0.0.7",
     "node-uuid": "1.4.7",
-    "pagexray": "0.12.0",
+    "pagexray": "0.13.0",
     "png-crop": "0.0.1",
     "pug": "2.0.0-beta6",
     "simplecrawler": "1.0.1",
-    "webcoach": "0.26.0",
+    "webcoach": "0.27.0",
     "webpagetest": "0.3.4",
     "yargs": "5.0.0"
   }
