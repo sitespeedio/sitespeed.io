@@ -1,6 +1,9 @@
 # CHANGELOG - sitespeed.io
 
 ## UNRELEASED
+### Fixed
+* Pug templates never was a cache hit, so generating the HTML took a lot of extra memory #1218 #1219 thank @moos for the PR #1220 
+
 ### Added
 * You can now output a summary for a run in the CLI. Thanks @moos for the PR.
 
