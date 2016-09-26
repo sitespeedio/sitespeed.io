@@ -41,7 +41,7 @@ Documentation and tests for the upcoming version aren't in place yet. Rest assur
 If you would like to give the new version a spin, try the following (you'll need node.js and Firefox/Chrome installed):
 
 ```bash
-npm i -g sitespeed.io@4.0.0-beta.2
+npm i -g sitespeed.io@4.0.0-beta.3
 ```
 Or clone the repo and test the latest changes:
 
@@ -56,7 +56,7 @@ Or clone the repo and test the latest changes:
 Or using Docker:
 
 ```bash
-> docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:4.0-beta.2 https://www.sitespeed.io
+> docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:4.0-beta.3 https://www.sitespeed.io
 ```
 
 ## Why 4.0?
