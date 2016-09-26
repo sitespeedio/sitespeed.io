@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## 4.0.0-beta.3 2016-09-26
+-------------------------
+### Fixed
+* The output directory structure was broken in beta.2, please update to beta.3.
+
 ## 4.0.0-beta.2 2016-09-23
 -------------------------
 ### Fixed
