@@ -67,6 +67,7 @@ h3 Expires and last modified stats
       +durationCell('min', expire.min)
       +durationCell('median', expire.median)
       +durationCell('max', expire.max)
+  if lastModified
     tr
       td(data-title='Type') Last modified
       +durationCell('min', lastModified.min)
