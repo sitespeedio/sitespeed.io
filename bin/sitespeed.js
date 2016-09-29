@@ -6,11 +6,15 @@
 
 const cli = require('../lib/support/cli'),
   sitespeed = require('../lib/sitespeed'),
-  Promise = require('bluebird');
+  Promise = require('bluebird'),
+  loader = require('../lib/support/pluginLoader'),
+  browsertimeCli = require('browsertime').cli;
 
-if (process.env.NODE_ENV !== 'production') {
-  require('longjohn');
-}
+let browsertimeOptions = browsertimeCli.getOptions({
+  group: 'Browser',
+  prefix: 'browsertime.',
+  forceGroup: true
+});
 
 Promise.config({
   warnings: true,
@@ -19,8 +23,9 @@ Promise.config({
 
 process.exitCode = 1;
 
-let parsed = cli.parseCommandLine();
 let budgetFailing = false;
+
+let parsed = cli.parseCommandLine(browsertimeOptions);
 // hack for getting in the unchanged cli options
 parsed.options.explicitOptions = parsed.explicitOptions;
 parsed.options.urls = parsed.urls;
