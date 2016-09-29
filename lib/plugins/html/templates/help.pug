@@ -29,17 +29,17 @@ block content
 
     if (coach)
       h2(id='performanceAdvice') Performance advice
-      each advice, adviceKey in coach.data.coach.pageSummary.advice.performance.adviceList
+      each advice, adviceKey in coach.performance.adviceList
         h5(id=adviceKey) #{advice.title} (#{adviceKey})
         p #{advice.description}
 
       h2(id='bestPracticeAdvice') Best practice advice
-      each advice, adviceKey in coach.data.coach.pageSummary.advice.bestpractice.adviceList
+      each advice, adviceKey in coach.bestpractice.adviceList
         h5(id=adviceKey) #{advice.title} (#{adviceKey})
         p #{advice.description}
 
       h2(id='accessibilityAdvice') Accessibility advice
-      each advice, adviceKey in coach.data.coach.pageSummary.advice.accessibility.adviceList
+      each advice, adviceKey in coach.accessibility.adviceList
         h5(id=adviceKey) #{advice.title} (#{adviceKey})
         p #{advice.description}
 
