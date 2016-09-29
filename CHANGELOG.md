@@ -1,6 +1,7 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 4.0.0-beta.4 2016-09-29
+-------------------------
 ### Fixed
 * Pug templates never was a cache hit, so generating the HTML took a lot of extra memory #1218 #1219 thank @moos for the PR #1220 
 * Fix crash for pages that didn't set the last-modified http header #1221 
