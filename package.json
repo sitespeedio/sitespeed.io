@@ -95,6 +95,7 @@
     "png-crop": "0.0.1",
     "pug": "2.0.0-beta6",
     "simplecrawler": "1.0.1",
+    "tape": "4.6.1",
     "text-table": "0.2.0",
     "webcoach": "0.27.1",
     "webpagetest": "0.3.4",
