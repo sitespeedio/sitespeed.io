@@ -1,10 +1,15 @@
 # CHANGELOG - sitespeed.io
 
+## Unreleased
+-------------------------
+### Changed
+* The data structure (internally) for toplists is changed so they can be sent to Graphite and used in a budget. Messages for largest assets was renamed from assets.aggregateSizePerContentType to assets.largest. Also send the largest individual size of an image to Graphite by default.
+
 ## 4.0.0-beta.4 2016-09-29
 -------------------------
 ### Fixed
-* Pug templates never was a cache hit, so generating the HTML took a lot of extra memory #1218 #1219 thank @moos for the PR #1220 
-* Fix crash for pages that didn't set the last-modified http header #1221 
+* Pug templates never was a cache hit, so generating the HTML took a lot of extra memory #1218 #1219 thank @moos for the PR #1220
+* Fix crash for pages that didn't set the last-modified http header #1221
 * WebPageTest data rendering was broken since 4.0.0-beta.1.
 
 ### Added
