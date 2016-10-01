@@ -60,7 +60,7 @@ block content
 
         .one-half.column
             //- No good way to detect if we have screenshots or not right now for a run
-            - screenshotName = 'screenshots/' + runIndex + '.png'
+            - screenshotName = 'data/screenshots/' + runIndex + '.png'
             - var width = options.mobile ? 150 : '100%';
             a(href=screenshotName)
               img.screenshot(src=screenshotName, width=width, alt='Screenshot')

@@ -1,7 +1,7 @@
 {
   "name": "sitespeed.io",
   "bin": "./bin/sitespeed.js",
-  "version": "4.0.0-beta.3",
+  "version": "4.0.0-beta.4",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -67,7 +67,7 @@
   "main": "./lib/sitespeed.js",
   "dependencies": {
     "bluebird": "3.4.6",
-    "browsertime": "1.0.0-beta.5",
+    "browsertime": "1.0.0-beta.6",
     "cli-color": "1.1.0",
     "concurrent-queue": "7.0.1",
     "fast-stats": "0.0.3",
@@ -82,6 +82,7 @@
     "lodash.flatten": "4.4.0",
     "lodash.foreach": "4.5.0",
     "lodash.get": "4.4.2",
+    "lodash.isempty": "4.4.0",
     "lodash.merge": "4.6.0",
     "lodash.pullall": "4.2.0",
     "lodash.reduce": "4.6.0",
@@ -95,9 +96,8 @@
     "png-crop": "0.0.1",
     "pug": "2.0.0-beta6",
     "simplecrawler": "1.0.1",
-    "webcoach": "0.27.0",
     "text-table": "0.2.0",
-    "webcoach": "0.27.0",
+    "webcoach": "0.27.1",
     "webpagetest": "0.3.4",
     "yargs": "5.0.0"
   }
