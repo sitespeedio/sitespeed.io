@@ -1,5 +1,5 @@
 {
-  "name": "graphite",
+  "name": "${DS_GRAPHITE}",
   "type": "graphite",
   "url": "http://graphite:80",
   "access": "proxy",
