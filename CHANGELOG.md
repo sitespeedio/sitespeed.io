@@ -2,11 +2,16 @@
 
 ## Unreleased
 
+### Added
+* Send summary and individual URL metrics to Slack. #1228
+
 ### Changed
 * The data structure (internally) for toplists is changed so they can be sent to Graphite and used in a budget. Messages for largest assets was renamed from assets.aggregateSizePerContentType to assets.largest. Also send the largest individual size of an image to Graphite by default.
 
 * Plugin analysisStorer is now called analysisstorer and messageLogger is now messagelogger and live within their own plugin folder, following the pattern of all other plugins.
 
+### Fixed
+* A little better error handling when loading a plugin fails.
 
 ## 4.0.0-beta.4 2016-09-29
 -------------------------
