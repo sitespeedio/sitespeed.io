@@ -7,7 +7,14 @@
 const cli = require('../lib/support/cli'),
   sitespeed = require('../lib/sitespeed'),
   Promise = require('bluebird'),
-  loader = require('../lib/support/pluginLoader');
+  loader = require('../lib/support/pluginLoader'),
+  browsertimeCli = require('browsertime').cli;
+
+let browsertimeOptions = browsertimeCli.getOptions({
+  group: 'Browser',
+  prefix: 'browsertime.',
+  forceGroup: true
+});
 
 require('longjohn');
 Promise.config({
@@ -17,7 +24,7 @@ Promise.config({
 
 process.exitCode = 1;
 
-let parsed = cli.parseCommandLine();
+let parsed = cli.parseCommandLine(browsertimeOptions);
 
 loader.parsePluginNames(parsed.explicitOptions)
   .then((pluginNames) => {
