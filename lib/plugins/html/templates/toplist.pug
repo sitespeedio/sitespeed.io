@@ -37,6 +37,7 @@ block content
             +rows(assetsBySize[type], false)
 
     h3 Slowest responses
+    p These are the assets that took the longest time to download.
     .responsive
       table(data-sortable, id='slowest')
         +rowHeading(['url', 'time since last modified', 'cache time', 'size (kb)', 'timing (ms)'])
