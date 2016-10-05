@@ -7,6 +7,7 @@
 
 * Plugin analysisStorer is now called analysisstorer and messageLogger is now messagelogger and live within their own plugin folder, following the pattern of all other plugins.
 
+
 ## 4.0.0-beta.4 2016-09-29
 -------------------------
 ### Fixed
