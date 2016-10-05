@@ -12,7 +12,7 @@ services:
 #        volumes:
 #            - ./sitespeed-result/:/srv
     grafana:
-        image: grafana/grafana
+        image: grafana/grafana:3.1.1
         links:
             - graphite
             - influxdb
