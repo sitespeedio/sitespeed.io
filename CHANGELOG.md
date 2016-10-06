@@ -4,6 +4,8 @@
 
 ### Added
 * Send summary and individual URL metrics to Slack. #1228
+* Simple first step for performance budget #1227
+* Download the HAR files to your local #1174
 
 ### Changed
 * The data structure (internally) for toplists is changed so they can be sent to Graphite and used in a budget. Messages for largest assets was renamed from assets.aggregateSizePerContentType to assets.largest. Also send the largest individual size of an image to Graphite by default.
