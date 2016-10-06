@@ -9,7 +9,12 @@ if (dahar.log.pages.length > 1)
   p Choose HAR:
 select#page-selector
 if summaryPageHAR && dahar.log.pages.length === 1
-  p HAR from first run:
+  p HAR from first run (
+    a(href='data/browsertime.har') download
+    |):
+else
+  a(href='data/browsertime.har') Download
+  |  the HAR file.
 #output
 script(src= rootPath + '/js/perf-cascade.min.js')
 script(type='text/javascript').
