@@ -18,18 +18,25 @@ Promise.config({
 process.exitCode = 1;
 
 let parsed = cli.parseCommandLine();
+let budgetFailing = false;
 
 loader.parsePluginNames(parsed.explicitOptions)
   .then((pluginNames) => {
     return sitespeed.run(pluginNames, parsed.options)
-      .then((errors) => {
-        if (errors.length > 0) {
-          throw new Error('Errors while running:\n' + errors.join('\n'));
+      .then((result) => {
+        if (result.errors.length > 0) {
+          throw new Error('Errors while running:\n' + result.errors.join('\n'));
+        }
+        if (Object.keys(result.budgetResult.failing).length > 0) {
+          process.exitCode = 1;
+          budgetFailing = true;
         }
       });
   })
   .then(() => {
-    process.exitCode = 0;
+    if (!budgetFailing) {
+      process.exitCode = 0;
+    }
   })
   .catch(() => {
     process.exitCode = 1;
