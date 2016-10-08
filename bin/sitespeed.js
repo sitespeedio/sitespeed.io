@@ -18,8 +18,7 @@ process.exitCode = 1;
 
 let parsed = cli.parseCommandLine();
 let budgetFailing = false;
-
-return sitespeed.run(parsed.options._, parsed.options)
+return sitespeed.run(parsed.options._, parsed.options, parsed.explicitOptions)
   .then((result) => {
     if (result.errors.length > 0) {
       throw new Error('Errors while running:\n' + result.errors.join('\n'));
