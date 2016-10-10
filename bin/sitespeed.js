@@ -20,7 +20,9 @@ let parsed = cli.parseCommandLine();
 let budgetFailing = false;
 // hack for getting in the unchanged cli options
 parsed.options.explicitOptions = parsed.explicitOptions;
-return sitespeed.run(parsed.options._, parsed.options)
+parsed.options.urls = parsed.urls;
+
+return sitespeed.run(parsed.options)
   .then((result) => {
     if (result.errors.length > 0) {
       throw new Error('Errors while running:\n' + result.errors.join('\n'));
