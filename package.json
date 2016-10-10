@@ -70,6 +70,7 @@
     "browsertime": "1.0.0-beta.6",
     "cli-color": "1.1.0",
     "concurrent-queue": "7.0.1",
+    "elasticsearch": "^11.0.1",
     "fast-stats": "0.0.3",
     "fs-extra": "0.30.0",
     "gpagespeed": "3.0.0",
