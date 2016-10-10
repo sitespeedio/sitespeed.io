@@ -25,13 +25,13 @@ Using sitespeed.io you can:
 But what does it look like?
 
 A summary report in HTML:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/doc/html-summary.png">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/html-summary.png">
 
 Individual page report:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/doc/page.png">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/page.png">
 
 Collected metrics from a URL in Graphite/Grafana:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/doc/pagesummary-grafana.png">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/pagesummary-grafana.png">
 
 ## 4.0
 Version 4.0 is a ground up rewrite for node.js 4.3 and newer. It builds on all our experience since shipping 3.0 in December 2014,
