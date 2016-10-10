@@ -2,5 +2,6 @@
 node_modules
 *.log
 *.iml
+.vscode
 sitespeed-result
 configs
