@@ -1,0 +1,95 @@
+---
+layout: default
+title: Sitespeed.io - Release notes 1.7
+description: Sitespeed.io 1.7 release contains support for using sitespeed in your continuous integration tool.
+author: Peter Hedenskog
+keywords: sitespeed.io, release, release-notes, 1.7, jenkins, travis
+nav: 
+image: http://sitespeed.io/img/sitespeed-1.7-twitter.png
+twitterdescription: Sitespeed.io + Jenkins = LOVE! Yes, with the new release you can run sitespeed in your continuous integration tool, generating JUnit XML and for sure know when you break the rules!
+---
+<div class="page-header">
+  <h1>Sitespeed.io 1.7 release notes</h1>
+</div>
+
+<h3>Sitespeed.io + Jenkins = LOVE</h3>
+<p>Sitespeed.io can now output JUnit XML that you can use in your continuous integration tool. With that, you can for every build test your site against 
+the rules! In the  <a href="/documentation/#junit">documentation</a> you will see how to do it for <a href="/documentation/#jenkins">Jenkins</a> & <a href="/documentation/#travis">Travis</a> (Travis don't have full support yet for JUnit XML but you can still make sure that builds get broken if you violate the rules).
+</p>
+<p>
+You can specify your own limits of when you want the tests to fail: for the overall score and the limit for individual tests. And you can of course skip tests. Using Jenkins you will get information per page and per test, so you easy can see what is failing.
+</p>
+
+<p>
+	<a href="/documentation/jenkins-test-all-pages.jpg"><img src="/documentation/jenkins-test-all-pages.jpg"/></a>
+	</p>
+
+<h3>Feed the beast with a list of URL:s</h3>
+<p>For some sites crawling the site isn't the best thing; you want to test a couple of the most used pages (some of them longer down in the path tree). Now you can do that by supply a list of URL:s to sitespeed to test.
+</p>
+<p>The list is a plain text file with one URL on each line and the first URL will give the name of the whole test. Here's an example of a file:
+</p>
+<pre>
+http://peterhedenskog.com/
+http://peterhedenskog.com/work/
+http://peterhedenskog.com/music/
+</pre>
+<p>Check the <a href="/documentation/#run">documentation</a> of how to do it. <em>Note</em>: The parameter to supply a file is <strong>f</strong> meaning that the old functionality "follow only this path when crawling" has changed to parameter <strong>c</strong> so please make sure you change that if you use that functionality.
+</p>
+
+<h3>New functionality</h3>
+<div class="row-fluid">
+<ul class="thumbnails">
+<li class="span3">
+    <div class="thumbnail">
+      <a href="dom.jpg"><img src="dom.jpg" alt="DOM elements on summary page"></a>
+      <h4>DOM elements</h4>
+      <p>You can now see the average & median number of <a href="dom.jpg">DOM elements</a> on the site summary and for a specific page.</p>
+    </div>
+  </li>
+  <li class="span3">
+    <div class="thumbnail">
+      <a href="expires.jpg"><img src="expires.jpg" alt="No expire header"></a>
+      <h4>Missing expire</h4>
+      <p>See how many assets on your site that is missing an expire header (I hope it is none!).</p>
+    </div>
+  </li>
+
+<li class="span3">
+    <div class="thumbnail">
+      <a href="cacheable.jpg"><img src="cacheable.jpg" alt="Cached assets"></a>
+      <h4>Cached assets</h4>
+      <p>How many of your assets are being cached?</p>
+    </div>
+  </li>
+<li class="span3">
+    <div class="thumbnail">
+      <a href="summary.jpg"><img src="summary.jpg" alt="New page summary"></a>
+      <h4>New page summary</h4>
+      <p>The summary has been redesigned, now you can see cache, content, time, content-type and domain metrics.</p>
+    </div>
+  </li>
+</ul>
+</div>
+
+
+<h3>Small fixes</h3>
+<ul>
+<li>The max size of a document for getting a warning has been changed, now using statistics from <a href="http://httparchive.org/" target="_blank">HTTPArchive</a>. </li>
+<li>The primed cache values has been removed from site summary & site detailed report, because they wasn't actually showing correct values all the time.</li>
+<li>The Yslow rule <em>ynumreq</em> has been removed and replaced by three new ones in order to get clearer JUnit XML results: <em>cssnumreq</em>, <em>cssimagesnumreq</em> & <em>jsnumreq</em></li>
+<li>You can now see the response headers info on the assets page.</li>
+</ul>  
+
+
+<h3>Bug fixes</h3>
+<ul>
+	<li>If a max age HTTP cache header was missing the cache time part, the cache time was set to 0 instead of checking if an Expire header exists.</li>
+	<li>If an asset was missing expire headers, it inherited the last one assets with an expire date/header.</li>
+</ul>
+
+</p>
+<hr>
+<p>	
+See the <a href="https://github.com/soulgalore/sitespeed.io/blob/master/CHANGELOG">changelog</a> for changes done in the past and the next <a href="https://github.com/soulgalore/sitespeed.io/issues?milestone=17&state=open">milestone</a> what will come in the next release.
+</p>

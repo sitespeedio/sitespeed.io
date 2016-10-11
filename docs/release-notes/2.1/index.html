@@ -1,0 +1,38 @@
+---
+layout: default
+title: Sitespeed.io - Release notes 2.1
+description: The 2.1 release makes it possible to break builds using Jenkins & Travis-CI if the browser timings hits the limits.
+author: Peter Hedenskog
+keywords: sitespeed.io, release, release-notes, 2.1
+nav: 
+image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+twitterdescription: The 2.1 release makes it possible to break builds using Jenkins & Travis-CI if the Navigation Timing metrics hits the limits.
+---
+<div class="page-header">
+  <h1>Sitespeed.io 2.1 release notes</h1>
+</div>
+<p>This release focus on one thing: Break builds for <a href="http://jenkins-ci.org/" target="_blank">Jenkins</a> and <a href="https://travis-ci.org/" target="_blank">Travis-CI</a> if your browser 
+	Navigation Timing API metrics doesn't meet your limits.</p>
+<h2>Break builds if your pages are too slow</h2>
+<p>Configure the limits for your pages and break builds if the timings are higher than your configuration. You can use the timings in the Navigation Timing API or create your own custom timings. Choose how many times you want to test the page and use the median or different percentile values. Read more about it <a href="/documentation/#junit">here</a>.</p>
+<h2>Keep track of your timings</h2>
+<p>Using Jenkins you can easily create graphs of your browser timings. They look like they are from the 1980's but it's quite nice info (btw nicer graphs will come in later releases)!</p>
+<p class="text-center"><img class="img-responsive img-thumbnail" src="/documentation/domContentLoadedTime.png"/></p>
+
+<h2>Use sitespeed.io in your projects with Travis-CI</h2>
+<p>Drop the latest sitespeed.io release in your project, configure the Travis config file and break the build if it doesn't meet your limits. Checkout the <a href="https://github.com/sitespeedio/travis-ci-example" target="_blank">example</a> project on Github. Now you can break builds if you break your web performance best practices rules or if you exceed your timing limits. Read <a href="/documentation/#travis">more</a> about the Travis-CI integration.</p>
+
+<h2>Minor changes</h2>
+<ul>
+<li>Prepared for HTTP 2.0 rules & renamed the current rulesets. The new names: <em>sitespeed.io-desktop</em> & <em>sitespeed.io-mobile</em></li>
+<li>Better error handling: Output the input parameters to the <em>error.log</em> file so it is easy to reproduce the error. Also centralized the error logging</li>
+<li>Made it possible to analyze sites with non signed certificates</li>
+<li>Finetuned the logo</li>
+<li>Bug fix: The crawler sometimes picked up URL:s linking to other content types than HTML (if you have linked to an image)</li>
+<li>Bug fix: The JUnit XSLT outputted timings metrics</li>
+</ul>
+
+<hr>
+<p>	
+See the <a href="https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG">changelog</a> for changes done in the past.
+</p>

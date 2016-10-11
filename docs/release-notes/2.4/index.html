@@ -1,0 +1,41 @@
+---
+layout: default
+title: Sitespeed.io - Release notes 2.4
+description: Sitespeed.io 2.4 release focus on making the default setup even cleaner and works on Windows.
+author: Peter Hedenskog
+keywords: sitespeed.io, release, release-notes, 2.4
+nav:
+image:  https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+twitterdescription: Sitespeed.io 2.4 focus on adding extra value on the defaut setup and add support for Windows (again).
+---
+<div class="page-header">
+  <h1>Sitespeed.io 2.4 release notes</h1>
+</div>
+<p>Here are the most important changes:</p>
+
+<h2>Microsoft Windows</h2>
+<p>With the new release sitespeed.io has been tested (and fixed) to work on Windows 8.1. You can run analyze and fetch metrics, create the JUnit results and test multiple sites at once. Check out the timing metrics fetched using Internet Explorer 11:</p>
+  <p class="text-center">
+  <img src="time-metrics-ie-windows.jpg" class="img-thumbnail img-responsive"></img>
+</p>
+<p><a href="http://browsertime.net" target="_blank">Browser Time</a> has been updated to a new version that works in Windows (and actually also fetch resource timing data, but that isn't used in sitespeed right now).</p>
+<h2>Better default setup on the summary page</h2>
+<p>If you use Chrome or Internet Explorer that reports the first paint time, it will automatically be showed as metric on the summary page. All browser will also show the new fields as default: <em>requestsMissingGzip</em> (how many requests that
+  are missing GZip), <em>jsWeightPerPage</em> (the Javascript weight per page in kb) and <em>cssWeightPerPage</em> (the CSS weight in kb per page).</p>
+  <p class="text-center">
+  <img src="new-fields.jpg" class="img-thumbnail img-responsive"></img>
+</p>
+<h2>What is measured?</h2>
+<p>Now you can hover on the each metric on the summary page to see a description of what it measured.</p>
+  <p class="text-center">
+  <img src="extra-info.jpg" class="img-thumbnail img-responsive"></img>
+</p>
+<h2>Bug fixes</h2>
+<ul>
+<li>The rule <em>Avoid DNS lookups when a page has few requests</em> was broken, couldn't tell if JS was loaded async or not, meaning the number of requests was sometimes calculated wrong.</li>
+<li>You could not create JUnit output if you fetched a URL:s from file instead of crawling.</li>
+</ul>
+<hr>
+<p>
+See all the <a href="https://github.com/soulgalore/sitespeed.io/blob/master/CHANGELOG">changes</a> done in this release.
+</p>

@@ -1,0 +1,180 @@
+.blue {
+  background-color: #e1f6fd;
+  padding-bottom: 20px;
+}
+
+.copy {
+  padding-top: 20px;
+}
+
+.flogo {
+  padding-top: 10px;
+}
+
+footer h3 {
+    margin-bottom:10px;
+}
+
+.pull-left {
+float: left!important;
+}
+
+.pull-right {
+float: right!important;
+}
+
+.img-big {
+margin-right: 20px;
+}
+
+.img-footer {
+margin-top: 15px;
+}
+
+.middle {
+vertical-align: middle;
+width: 32px;
+}
+
+.fastly {
+vertical-align: middle;
+height: 32px;
+}
+
+hr {
+margin-top: 20px;
+margin-bottom: 20px;
+border: 0;
+border-top: 1px solid #eee;
+box-sizing: content-box;
+height: 0;
+}
+
+footer p {
+text-align: center;
+margin: 0;
+}
+
+a {
+color: #428bca;
+text-decoration: none;
+}
+
+.language-bash {
+color: #fff;
+background-color: #555;
+font-size: 80%;
+}
+
+pre code {
+display: block;
+padding: 9.5px;
+margin: 0 0 10px;
+font-size: 13px;
+line-height: 1.428571429;
+word-break: break-all;
+word-wrap: break-word;
+color: #333;
+background-color: #f5f5f5;
+border: 1px solid #ccc;
+border-radius: 4px;
+font-family: Monaco,Menlo,Consolas,"Courier New",monospace;
+white-space: pre-wrap;
+}
+
+.note-info {
+background-color: #f0f7fd;
+border-color: #d0e3f0;
+}
+.note {
+margin: 20px 0;
+padding: 15px 30px 15px 15px;
+border-left: 10px solid #eee;
+}
+
+.note-warning {
+background-color: #fcf2f2;
+border-color: #dfb5b4;
+}
+
+.img-thumbnail img {
+padding: 4px;
+line-height: 1.428571429;
+background-color: #fff;
+border: 1px solid #ddd;
+border-radius: 4px;
+-webkit-transition: all .2s ease-in-out;
+transition: all .2s ease-in-out;
+display: inline-block;
+max-width: 100%;
+height: auto;
+}
+
+.small {
+  font-size: 0.8em;
+  line-height: 1.2em;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+footer li {
+  padding-bottom: 4px;
+}
+
+footer a {
+  color: #0095d2;
+}
+
+a btn {
+  margin-top: 10px;
+}
+
+.photo {
+border-radius: 10px;
+margin-right: 20px;
+margin-bottom: 10px;
+}
+
+.language-help {
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre;
+}
+
+@media screen and (max-width: 820px) {
+  .small {
+    text-align: center;
+    font-size: 19px;
+  }
+
+  h1 {
+    line-height: 1em;
+  }
+
+  ul {
+    padding-left: 10px;
+    margin-left: 10px;
+  }
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}

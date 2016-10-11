@@ -1,0 +1,26 @@
+---
+layout: default
+title: Sitespeed.io - Release notes 1.8.3
+description: Sitespeed.io 1.8.3 release focus on some small bug fixes for TTFB.
+author: Peter Hedenskog
+keywords: sitespeed.io, release, release-notes, 1.8.3
+nav: 
+image: http://sitespeed.io/img/sitespeed-1.5-twitter.jpg
+twitterdescription: This release fixes & makes thing clenar if there is problem with the TTFB.
+---
+<div class="page-header">
+  <h1>Sitespeed.io 1.8.3 release notes</h1>
+</div>
+
+<p>The 1.8.3 release contains some bug fixes that makes the time to first byte (TTFB) and frontend/backend time cleaner:</p>
+<ul>
+<li><strong>TTFB</strong> - today there is no way to get the TTFB from PhantomJS, it is fetched by a extra request using curl. Some sites vary much in TTFB between requests, meaning TTFB can be much higher the next request, even higher than the load time the first request. If this happens it is now highlighted in pages summary and page details, so you can investigate it further.</li>
+<li><strong>Median value front/backend time</strong> - show median front/back end time instead of percentile on summary page.</li>
+<li><strong>Cleanup</strong> - when the TTFB is larger than page load time, don't add it to summary statistics.</li>
+<li><strong>Cleanup</strong> - for some sites (very rarely) the total weight was fetched wrong by YSlow, fixed last release for all pages except summary & summary details.</li>
+</ul>
+<p>And there is one new small feature: You can now supply a test name that will be showed on all test result pages (using the parameter <em>n</em>). See an example <a href="/documentation/#name">here</a>.</p>
+<hr>
+<p>	
+See the <a href="https://github.com/soulgalore/sitespeed.io/blob/master/CHANGELOG">changelog</a> for changes done in the past.
+</p>

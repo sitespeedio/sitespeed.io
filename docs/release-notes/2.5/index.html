@@ -1,0 +1,45 @@
+---
+layout: default
+title: Sitespeed.io - Release notes 2.5
+description: Sitespeed.io 2.5 makes it possible to test in multiple browsers in one run.
+author: Peter Hedenskog
+keywords: sitespeed.io, release, release-notes, 2.5
+nav:
+image:  https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+twitterdescription: Sitespeed.io 2.5 makes it possible to test in multiple browsers in one run.
+---
+<div class="page-header">
+  <h1>Sitespeed.io 2.5 </h1>
+</div>
+<p>The brand new thing is that you can test with multiple browsers with one run! Before I show you, there's one really  <strong>IMPORTANT</strong> thing: the parameters have changed when you collect metrics,  you choose which browser with the
+  <strong>c</strong> parameter and the <strong>z</strong> decides how many runs per page (three is still the default value).
+  It looks like this ( test the URL ten times with Chrome):</p>
+  <pre class="bash">$ ./bin/sitespeed.io -u https://www.sitespeed.io -c chrome -z 10</pre>
+<p>If you want to test with multiple browsers, you add each browser separated with a comma:</p>
+<pre class="bash">$ ./bin/sitespeed.io -u https://www.sitespeed.io -c firefox,chrome </pre>
+  <p>Then you will get timings from both the browsers, by default fetching each URL three times. On the summary page, the summaries will be for both Firefox & Chrome:</p>
+  <img src="summaries.png" alt="The metric summary data" class="img-thumbnail img-responsive">
+    <p>All the summary timings will be named with the browser name at the end of the name. To get <em>domContentLoadedTime</em> for Firefox, you configure to fetch <em>domContentLoadedTimeFirefox</em>. Here's an exampe running on Windows, only showing
+      domContentLoadedTime for each browser:</p>
+<pre class="bash">$ bin/sitespeed.io -u https://www.sitespeed.io -c firefox,chrome,ie -b domContentLoadedTimeFirefox,domContentLoadedTimeChrome,domContentLoadedTimeIE </pre>
+<p>And the summary will then look something like this:</p>
+<img src="summary-per-browser.png" alt="Summary per browser" class="img-thumbnail img-responsive">
+<div class="note note-warning">Running Internet Explorer on Windows have some caching issues (meaning the cache is not cleared between runs). If you have a good solution on how to solve that for Selenium, please send
+  <a href="https://twitter.com/soulislove">me</a> or <a href="https://twitter.com/tobiaslidskog">Tobias</a> a tweet.</div>
+
+  <p>
+  On the details page, you will see the data for each browser:
+  </p>
+   <img src="2browsers.png" alt="The metrics from two browsers" class="img-thumbnail img-responsive">
+
+<h2>Jenkins</h2>
+<p>If you are using the Jenkins <a href="https://github.com/sitespeedio/jenkins.sitespeed.io">plugin</a>, you need to upgrade it to the new beta 7 version to be able to get all the browser metrics into Graphite. The summary metrics will look the same
+  except that you will have an extra level per browser.</p>
+
+  <div class="note note-info">Remember that the metrics we fetch are synthetic measurements, it will not be the same for real users BUT if you fetch sufficient times (maybe 30 times per URL)  then you can safely compare the timings between runs.</div>
+
+</p>
+<hr>
+<p>
+See all the <a href="https://github.com/soulgalore/sitespeed.io/blob/master/CHANGELOG">changes</a> done in this release.
+</p>

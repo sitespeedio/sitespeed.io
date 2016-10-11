@@ -1,0 +1,58 @@
+---
+layout: default
+title: Sitespeed.io - Release notes 3.0
+description: The new sitespeed.io has support for driving WebPageTest, send metrics to Graphite and much more.
+author: Peter Hedenskog
+keywords: sitespeed.io, release, release-notes, 3.0
+nav:
+image:  https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+twitterdescription: The new sitespeed.io has support for driving WebPageTest, send metrics to Graphite and much more.
+---
+<div class="page-header">
+  <h1>Sitespeed.io 3.0 </h1>
+</div>
+<p>Yep, it took us almost half a year to migrate sitespeed.io to NodeJS and now it is ready for a release! The new version is faster, has a much richer feature list and is
+so much easier to maintain.</p>
+<p>Here's a list of the new things:</p>
+<ul>
+  <li><strong>NodeJS</strong> - We moved (almost) everything to NodeJS. We are still dependent on Java, because the (old) Java crawler is still used and we will try to remove it in the future.
+     The new version is faster than the old one. And so much easier to change and better separation between logic and </li>
+  <li><strong>Send metrics to Graphite</strong> - one of the number one feature requests for sitespeed.io has been to collect data over time and graph it. Sitespeed.io now supports sending the metrics to Graphite  It can looks something like this
+    <img src="/documentation/grafana-timing-metrics.png" class="img-thumbnail"/>
+  </li>
+
+  <li><strong>RUM SpeedIndex</strong> - We have rewritten BrowserTime to NodeJS, and it now supports running whatever javascript snippet you want< meaning you can fetch whatever
+  metric you want. It is not fully implemented yet in sitespeed.io, but with the current version it gives us
+  Pat Meenans <a href="https://github.com/WPO-Foundation/RUM-SpeedIndex">RUM SpeedIndex</a> and support for getting resource timing API metrics.</li>
+  <li><strong>PostTask</strong> - when sitespeed.io has analyzed all pages and collected the metrics, you can run your own code to handle the result. This can be used to store the data in a database
+    or create your own reports.
+  </li>
+  <li><strong>Drive WebPageTest</strong> - you can now feed <a href="http://www.webpagetest.org/">WebPageTest</a> with URL:s to test and collect the metrics and include them in your sitespeed.io report.
+    <img src="/documentation/wpt-summary.png" class="img-thumbnail"/>
+  </li>
+  <li><strong>Google Page Speed Insights</strong> - collect the score and other data and show it in your sitespeed.io report.
+    <img src="/documentation/gpsi-detailed-page-info.png" class="img-thumbnail"/>
+  </li>
+  <li><strong>Support for PhantomJS 2</strong> - yep we know, 2.0 is not released yet and we are really looking forward to it, so
+    we added the functionality to use it already. What's extra cool with 2.0 (except that it is much faster) is that it supports the Navigation Timing API. You can use it by pointing out your binary by <code>--phantomjsPath</code></li>
+  <li><strong>Two new rules</strong> - check if connection is closed and don't set private headers on static assets.</li>
+  <li><strong>Two new summary pages</strong> - slowest domains and hotlist (find troublesome assets fast)</li>
+  <li><strong>TAP</strong> - you can now generate <a href="http://testanything.org/">TAP</a> reports, making your CI tool break your build if you don't follow the web performance best practice rules</li>
+  <li><strong>Performance budget</strong> - we kind of had support for a performance budget before with the JUnitXML. With the new version it is much cleaner: <a href="/documentation/#perfBudget">specify</a> which values
+  you will test against and run. </li>
+  <li><strong>Throttle the connection</strong> - You can throttle the connection when you are fetching timing metrics from the browser. Choose between:
+    <ul>
+      <li><strong>mobile3g</strong> - 1.6 Mbps/768 Kbps - 300 RTT</li>
+      <li><strong>mobile3gfast</strong> - 1.6 Mbps/768 Kbps - 150 RTT</li>
+      <li><strong>cable</strong> - 5 Mbps/1 Mbps - 28 RTT</li>
+      <li><strong>native</strong> - the current connection</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Tobias and me (Peter) have worked really hard the last half year to make the 3.0 release happen. We hope that you will love it as much as we do.
+  There are still bugs out there, if you find them, please add an <a href="https://github.com/sitespeedio/sitespeed.io/issues">issue</a> at GitHub and solve it with a pull request :)
+
+<div class="note note-warning">The input parameters has changed since 2.5. Yep we know it is bad practice, the reason is that the old version
+had a really bad CLI handling where you could only fetch a input parameter with a character and we where running out of characters! To see the new parameters see
+<pre>sitespeed.io -h</pre></div>

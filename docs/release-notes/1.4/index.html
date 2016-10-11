@@ -1,0 +1,69 @@
+---
+layout: default
+title: Sitespeed.io - Release notes 1.4
+description: Sitespeed.io 1.4 is now released with median values on the summary page, a new rule checking if you use to much javascript and lots of small changes.
+author: Peter Hedenskog
+keywords: sitespeed.io, release, release-notes, 1.4
+nav: 
+image: http://sitespeed.io/img/sitespeed-1.4-twitter.gif 
+twitterdescription: The new release contains with median values on the summary page, a new rule checking if you use to much javascript, the amount of js, css, images & css images on each individual page and lots of small changes.
+---
+<div class="page-header">
+  <h1>Sitespeed.io 1.4 release notes</h1>
+</div>
+
+<p>
+Sitespeed 1.4 was relased the 5th of December 2012. The main goal with the release was to add median values for all statistics on the summary page (before only average values was displayed). This is what's done in this release:
+</p>
+
+<div class="row-fluid">
+<ul class="thumbnails">
+<li class="span3">
+    <div class="thumbnail">
+      <a href="median.jpg"><img src="median.jpg" alt="Show median value on the summary page"></a>
+      <h4>Median values</h4>
+      <p><a href="median.jpg">Median</a> values are now shown for all statistics on the summary page (shows both average & median).</p>
+    </div>
+  </li>
+  <li class="span3">
+    <div class="thumbnail">
+      <a href="jspercentage.jpg"><img src="jspercentage.jpg" alt="Too much javascript"></a>
+      <h4>Too much javascript?</h4>
+      <p>The amount of javascript on each page are calculated and compared with the amount of textual content, to make it visible how much javascript that is used.</p>
+    </div>
+  </li>
+
+<li class="span3">
+    <div class="thumbnail">
+      <a href="jscsssizes.png"><img src="jscsssizes.png" alt="The size of js & css compared to text"></a>
+      <h4>Too much js & css?</h4>
+      <p>The size of javasscript and css on each individual page are compared to the textual content, in order to get a feel of how much js & css you use.</p>
+    </div>
+  </li>
+<li class="span3">
+    <div class="thumbnail">
+      <a href="sizes.png"><img src="sizes.png" alt="The actual size in kb of images, css, js & css images"></a>
+      <h4>Total weight on page</h4>
+      <p>Added image, css, js and css image total weight in kb on the indivdual page summary.</p>
+    </div>
+  </li>
+</ul>
+</div>
+<p>And these minor ones:
+</p>
+
+<ul>
+<li>Changed the limit value for doc size on the summary page, was 10 kb but gzip is not taken inconcideration, changed to 100 kb!</li>
+<li>Concatenating css & js files in the results to one file each.</li>
+<li>Made Java heap size & result directory configurable from the sitespeed script. Read more <a href="/documentation/#heap">here</a> and <a href="/documentation/#changeresult">here</a>.</li>
+<li>Cleanup of the sitespeed.io script, removed unused code and made a structure easier to maintain.</li>
+<li>You can now zip the output result files by passing a parameter to the script. Read exactly how you do it <a href="/documentation/#tar">here</a>.</li>
+<li>Upgraded to latest crawler & xml-velocity jar.</li>
+<li>Upgraded jQuery from 1.8.2 to 1.8.3</li>
+</ul>
+
+<p>Also the <a href="/documentation/">documentation</a> has been reworked.</p>
+
+<p>	
+See the <a href="https://github.com/soulgalore/sitespeed.io/blob/master/CHANGELOG">changelog</a> for changes done in the past.
+</p>
