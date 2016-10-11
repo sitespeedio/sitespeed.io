@@ -1,0 +1,66 @@
+---
+layout: default
+title: Sitespeed.io - Release notes 2.0
+description: The 2.0 release is here. Test multiple sites with one go, configure what you want to see and fetch timings using the Navigation Timing API (and custom measurements!)
+author: Peter Hedenskog
+keywords: sitespeed.io, release, release-notes, 2.0
+nav: 
+image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+twitterdescription: The 2.0 release is here! Test multiple sites with one go, configure what you want to see and fetch timings using the Navigation Timing API (and custom measurements!).
+---
+<div class="page-header">
+  <h1>Sitespeed.io 2.0 release notes</h1>
+</div>
+<p>Well, it took all summer and almost the autumn to get it ready and now it is here! Almost everything has been reworked & cleaned up,  here are the new major changes: </p>
+
+<h2>Configurable summary boxes</h2>
+<p>You can now <a href="/documentation/#config-boxes">choose which data that is showed</a> in the summary boxes on the first page. You can also create your own boxes (with your own data) and set the rule limits (when to signal red/yellow/green).</p>
+<p class="text-center">
+<a href="summary.png" target="_blank"><img class="img-responsive img-thumbnail" src="summary.png" alt="The summary boxes, now you can change them"></a>
+</p>
+<h2>Configurable columns</h2>
+<p>Yes, you can also <a href="/documentation/#config-columns">choose & create</a> your own data to be showed in the detailed summary columns.</p>
+<p class="text-center"><a href="columns.png" target="_blank"><img class="img-responsive img-thumbnail" src="columns.png" alt="Configure which colums to see!"></a></p>
+<h2>Fetch real browser timings</h2>
+<p>Fetch Navigation Timing API data from real browser (and custom measurements) using <a href="https://github.com/tobli/browsertime" target="_blank">Browser Time</a>. You will get the info in the summary page:</p>
+<p class="text-center"><a href="time-summary.png" target="_blank"><img class="img-responsive img-thumbnail" src="time-summary.png" alt="See the timings in the summary"></a></p>
+<p>In the summary detailed page:</p>
+<p class="text-center"><a href="columns-time.png" target="_blank"><img class="img-responsive img-thumbnail" src="columns-time.png" alt="See the timings in the detailed summary"></a></p>
+<p>And specific timings on each page that has been tested:</p>
+<p class="text-center"><a href="page-specific-metrics.png" target="_blank"><img class="img-responsive img-thumbnail" src="page-specific-metrics.png" alt="See the timings for each page"></a></p>
+<p>Read <a href="/documentation/#browsertime">more</a> about the browser timings.</p>
+<h2>New rule: Browser scaled images</h2>
+<p>The YSlow rule yimgnoscale doesn't work with PhantomJS. The new rule compare the image browser width and the real image width and if it differ, you will get that in the output.</p>
+<p class="text-center"><a href="browser-scaled-images.png" target="_blank"><img class="img-responsive img-thumbnail" src="browser-scaled-images.png" alt="The result for browser scaled images"></a></p>
+<h2>Test multiple sites & compare them</h2>
+<p>You can now <a href="/documentation/#multiple">test multiple sites and compare them</a> using the sitespeed-sites.io script (you can choose what kind of data to compare).</p>
+<p class="text-center"><a href="sites.png" target="_blank"><img class="img-responsive img-thumbnail" src="sites.png" alt="Test multiple sites"></a></p>
+<h2>Test for mobile or desktop</h2>
+<p>There are now two different rule-sets, one for desktop & one for mobile.</p>
+
+<h2>Rewrite</h2>
+<p>The main script (sitespeed.io) has been cleaned up & Velocity templates has been restructured.</p>
+
+<h2>Upgrade to Bootstrap 3.0</h2>
+<p>The new Bootstrap version is mobile first and will render the page faster than before.</p>
+
+<h2>New logo</h2>
+<p>Say hello to the new sitespeed.io logo: </p>
+<p class="text-center"><img class="img-responsive img-thumbnail" src="/img/sitespeed.io-400x400.png" alt="The new sitespeed.io logo!"></p>
+<h2>Minor changes</h2>
+<ul> 
+	<li>Phone view on detailed summary page now only contains url & score to make it simpler to maintain.</li>
+	<li>You can now see the IP of the computer running the test in the result.xml file.</li>
+	<li>You can now set the max pages to test & the name of the test (displayed on every HTML page).</li>
+	<li>Simplified user agent by choosing between iphone, ipad or nexus and a real agent & viewport is set.</li>
+<li>Output as CSV: Choose which column to output and always output ip, start url & date.</li>
+<li>Fix for Windows-users that is having spaces in their path to Java.</li>
+<li>Bug fix: URL:s that returns error (4XX-5XX and that sitespeed can't analyze) is now included in the JUnit xml.</li>
+<li>Bug fix: The JUnit script can now output files to a relative path.</li>
+<li>Bug fix: User Agent is now correctly set.</li>
+</ul>
+
+<hr>
+<p>	
+See the <a href="https://github.com/soulgalore/sitespeed.io/blob/master/CHANGELOG">changelog</a> for changes done in the past.
+</p>

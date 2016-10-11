@@ -1,0 +1,134 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  font-family: Tahoma, Verdana,sans-serif;
+  font-size: 19px;
+  line-height: 1.618em;
+  word-wrap: break-word;
+}
+
+.nav {
+  background: #0095d2;
+}
+
+.nav ul {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  background-color: #0095d2;
+}
+.nav li {
+  font-size: 1em;
+  line-height: 40px;
+  height: 40px;
+  border-bottom: 1px solid #0073b0;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+}
+
+.nav a:hover {
+  background-color: #0073b0;
+}
+
+.nav a.active {
+  background-color: #0073b0;
+  color: #fff;
+  cursor: default;
+}
+
+.logo {
+  text-align: center;
+  background-color: #0095d2;
+}
+
+.navbar-brand {
+padding: 0px 0px;
+font-size: 18px;
+max-width: 250px;
+}
+
+.nav li ul {
+  position: absolute;
+  display: none;
+  width: inherit;
+}
+
+@media screen and (min-width: 820px) {
+
+  body
+  { padding-top: 50px; }
+
+  .nav {
+    height: 50px;
+    width: 100%;
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+  }
+
+  .navbar-brand {
+  padding: 0px 0px;
+  font-size: 18px;
+  float: left;
+  max-width: 250px;
+  }
+
+  .nav a {
+    padding-left: 20px;
+    padding-right: 20px;
+
+  }
+
+  .nav {
+    z-index: 10;
+    top: 0;
+    background-color: #0095d2;
+  }
+
+  .nav li {
+    border-bottom: none;
+    height: 50px;
+    line-height: 50px;
+    font-size: 1em;
+    float: left;
+    display: inline-block;
+    margin-right: 0px;
+  }
+
+  .nav a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+  }
+
+  .nav ul {
+    list-style: none;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    background-color: #0095d2;
+  }
+
+  /* Sub Menus */
+    .nav li ul {
+      position: absolute;
+      display: none;
+      width: inherit;
+    }
+
+    .nav li:hover ul {
+      display: block;
+    }
+
+    .nav li ul li {
+      display: block;
+      float: none;
+    }
+
+}

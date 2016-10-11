@@ -1,0 +1,33 @@
+---
+layout: default
+title: Sitespeed.io - Release notes 1.8.1
+description: Sitespeed.io 1.8.1 release holds three really important bug fixes.
+author: Peter Hedenskog
+keywords: sitespeed.io, release, release-notes, 1.8.1 
+nav: 
+image: http://sitespeed.io/img/sitespeed-1.5-twitter.jpg
+twitterdescription: Yes box, here are some really nice bug fixes.
+---
+<div class="page-header">
+  <h1>Sitespeed.io 1.8.1 release notes</h1>
+</div>
+
+<p>There are three really important bug fixes in the 1.8.1 release, all three are now fixed in the <a href="https://github.com/soulgalore/yslow" target="_blank">sitespeed.io/YSlow branch</a> and included in sitespeed.io</p>
+
+<ul>
+<li> YSlow didn't honour max-age before expires (following the 1.1 HTTP specification), meaning for sites that had different values for max-age & expires, YSlow reported the expires header as the cache time even when a max-age header existed.</li>
+
+<li>If a CSS file imported other CSS files with a relative url using the @import directive, that CSS wasn't fetched by YSlow, meaning the cache time & size was not in the result.</li>
+
+<li>There was a mismatch between assets actually fetched by PhantomJS and Yslow, where PhantomJS don't collect all the assets used by the page. The end result was that some assets didn't get the response headers, meaning cachetime, size etc was unknown. This was the reason why no favicons and Google fonts was fetched correct before.</li>
+</ul>
+
+<p>Also two other things fixed, first in the detailed summary page, the TTFB is in seconds, not milliseconds as done before. Thanks <strong>Peter van Gils</strong> for reporting!</p> 
+
+<p> The second thing is that now when every asset is fetched, the YSlow rule check if a favicon is cached was added and  the favicon is now checked in the cache expire rules.</p>
+
+
+<hr>
+<p>	
+See the <a href="https://github.com/soulgalore/sitespeed.io/blob/master/CHANGELOG">changelog</a> for changes done in the past.
+</p>

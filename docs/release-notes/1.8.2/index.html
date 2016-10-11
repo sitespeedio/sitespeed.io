@@ -1,0 +1,37 @@
+---
+layout: default
+title: Sitespeed.io - Release notes 1.8.2
+description: Sitespeed.io 1.8.2 release let you export the pages info as CSV, better error logging and some bug fixes.
+author: Peter Hedenskog
+keywords: sitespeed.io, release, release-notes, 1.8.2
+nav: 
+image: http://sitespeed.io/img/sitespeed-1.5-twitter.jpg
+twitterdescription: This release let you export the pages info as CSV, better error logging and some bug fixes.
+---
+<div class="page-header">
+  <h1>Sitespeed.io 1.8.2 release notes</h1>
+</div>
+
+<p>The 1.8.2 release contains some new small features, cleanup & bug fixes.</p>
+
+<h3>New features/enhancements</h3>
+<ul>
+	<li><strong>CSV export</strong> - you can now export the pages data to a CSV file (added it again) with the switch "-o csv"</li>
+	<li><strong>Content type percentage</strong> - the detailed page now show percentage of requests & size per content type</li>
+	<li><strong>Better error reporting</strong> - a URL that fails e.g. breaks the test, now logs the exact URL, the error message and add the URL to the error list. Also if a cookie is wrongly set, the URL that sets the cookie is logged. Also the Java & PhantomJS version is always shown</li>
+	<li><strong>Content categories</strong> - Favicon and the document are now own categorizes in the detailed page summary</li>
+	<li><strong>Cleanup</strong> - before two different Javascript column sorters was used (on different pages), now one is used</li>
+	<li><strong>Cleanup</strong> - the output is cleaner if you run a test with a list of URLs from a file</li>
+</ul>
+
+<h3>Bug fixes</h3>
+<ul>	
+<li>If a page was redirected, the gzipped size was before fetched as 0</li>
+<li>For some sites (example www.bike.se) the total weight was fetched wrong by YSlow, now the weight is calculated from each assets on the pages info page</li>
+<li>URLs containing & broke some tests</li>
+<li>In very rare cases, YSlow reports a larger cache weight than the page weight. The bug is not fixed but when it happens, an error message is displayed</li>
+
+<hr>
+<p>	
+See the <a href="https://github.com/soulgalore/sitespeed.io/blob/master/CHANGELOG">changelog</a> for changes done in the past.
+</p>
