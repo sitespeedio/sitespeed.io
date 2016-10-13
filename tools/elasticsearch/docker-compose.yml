@@ -1,0 +1,17 @@
+version: '2'
+services:
+    kibana:
+        image: kibana:5.0.0-alpha5
+        depends_on:
+            - elasticsearch
+        links:
+            - elasticsearch
+        ports:
+            - "5601:5601"
+    elasticsearch:
+        image: elasticsearch:5.0.0-alpha5
+        ports:
+            - "9200:9200"
+            - "9300:9300"
+        environment:
+            ES_JAVA_OPTS: -Xms2g -Xmx2g
