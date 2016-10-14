@@ -1,0 +1,74 @@
+---
+layout: default
+title: Sitespeed.io - Release notes 1.6
+description: Sitespeed.io 1.6 release contains a really easy way to see which assets that should have longer cache times and some other small changes.
+author: Peter Hedenskog
+keywords: sitespeed.io, release, release-notes, 1.6
+nav: 
+image: http://sitespeed.io/img/sitespeed-1.5-twitter.jpg
+twitterdescription: The new release contains a really easy way to identify which assets that should have longer cache times, better handling of the SPOF rule & see the most used assets on the site.
+---
+<div class="page-header">
+  <h1>Sitespeed.io 1.6 release notes</h1>
+</div>
+
+<h3>Find the assets that should have longer cache time</h3>
+<p>Wow, I really like this feature :) The idea was adopted from Steve Souders of functionality that's missing in the webperf tools that exist today.
+It is actually three functions: 
+<ol>
+<li>
+On the detailed page level, you will for every asset see the time since it was last changed (now date minus last modification date) and 
+the actual cache time. This give you a nice view to see if assets are cached too short. Check this example: </p>
+<img src="assets.jpg">
+
+ <p>The asset marked in red was 
+last changed 315 days ago, but the cache time is 0s. That's not good.</p> 
+</li>
+<li>
+<p>You will also see a summary of all assets on an individual page, of the average time since last modification and the cache time.</p> 
+<img src="page.jpg">
+
+</li>
+<li>
+<p>On the summary page, you will get the same information but for the whole site. In this example, the average cache time is 10 days (and the median is 0 seconds). The average time since last modification for all assets are 321 days (and the median 189). You will gain a lot if you change the cache headers for this site :) </p>
+
+<img src="summary.jpg">
+</li>
+</ol>
+
+<h3>The most used assets on the site</h3>
+<p>Introducing a new brand thing: see which assets are used the most across the analyzed pages. Thanks <a href="https://github.com/tobli" target="_blank">Tobias Lidskog</a> for the great idea! Here you will see the most (max 200) assets, and how many times they are used. This will give you a hint on which assets you will win the most to fine tune.</p>
+<img src="newassets.jpg">
+
+
+
+<h3>Better handling of the SPOF rule</h3>
+<p>The SPOF rule now only report font face that are loaded from another top level domain (that seems more reasonable than report all font face files). Also the actual font file is reported (before only the css that included the font-face).
+
+<h3>Show requests per domain on individual page</h3>
+<p>Summarize the requests by domain, so you easy can see how the requests are sharded between domains. Every webperf tool has it, now also sitespeed.</p>
+<img src="bydomain.jpg">
+
+
+<h3>Configure Yslow backend & rules</h3>
+<p>Now it is possible to add a parameter to the script to choose which ruleset or which Yslow file to use. This has two great wins:
+If you clone your own version, you can test your own rules without changing the main script. It also makes it more flexible in the future,
+opening up for multiple rulesets & rule implementations</p>
+
+<h3>Time spent in backend vs frontend</h3>
+<p>No rules attached to this yet, this is more if informational data. How much time do your site spend in backend & in frontend? You will see the information both on each individual page and on the summary page (the new blue informational color).
+</p>
+<img src="frontback.jpg">
+
+<h3>Adjusted rules on summary page</h3>
+Adjusted the warning rules on the summary page, now a warning is up to the average number collected from <a href="http://www.httparchive.org" target="_blank">http://www.httparchive.org</a> (where applicable). For example: to get red (BAD!) on number of css files, you need to exceed the average number of css files, that the sites have that is collected by HTTP Archive.
+
+<h3>New Yslow version</h3>
+<p>Yslow has been upgraded with better error handling of faulty javascripts.</p>
+
+<h3>Use Java 1.6 or higher</h3>
+<p>The Java code used by sitespeed is now compiled for Java 1.6, so 1.7 is no longer the requirement.</p>
+<hr>
+<p>	
+See the <a href="https://github.com/soulgalore/sitespeed.io/blob/master/CHANGELOG">changelog</a> for changes done in the past and the next <a href="https://github.com/soulgalore/sitespeed.io/issues?milestone=16&state=open">milestone</a> what will come in the next release.
+</p>

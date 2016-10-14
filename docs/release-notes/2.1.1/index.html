@@ -1,0 +1,27 @@
+---
+layout: default
+title: Sitespeed.io - Release notes 2.1.1
+description: Sitespeed.io 2.1.1 release focus on some small bug fixes.
+author: Peter Hedenskog
+keywords: sitespeed.io, release, release-notes, 2.1.1
+nav:
+image:  https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+twitterdescription: This release fixes
+---
+<div class="page-header">
+  <h1>Sitespeed.io 2.1.1 release notes</h1>
+</div>
+
+<p>This release contains a couple of  bug fixes:</p>
+<ul>
+<li>Unable to crawl websites with GA cookie (<a href="https://github.com/sitespeedio/sitespeed.io/issues/298">#298</a>, when GA uses a character that are not valid in XML).</li>
+<li>The sitespeed-sites.io used the sitespeed.io script with sh instead of bash.</li>
+<li>New BrowserTime version (0.2) so you now can use Firefox 25 + the wait time before breaking a test is now 60 seconds instead of 30.</li>
+<li>All PhantomJS errors are now logged to a PhantomJS error log (since there is a <a href="https://codereview.qt-project.org/#change,69321" target="_blank">defect</a> in QT using Mavericks).</li>
+<li>URL:s using brackets didn't get the correct document size.</li>
+
+</ul>
+<hr>
+<p>
+See the <a href="https://github.com/soulgalore/sitespeed.io/blob/master/CHANGELOG">changelog</a> for changes done in the past.
+</p>

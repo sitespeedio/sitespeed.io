@@ -1,0 +1,58 @@
+---
+layout: default
+title: Sitespeed.io - Release notes 1.8
+description: Sitespeed.io 1.8 release adds a more detailed summary to help you keep track of your site.
+author: Peter Hedenskog
+keywords: sitespeed.io, release, release-notes, 1.8, jenkins 
+nav: 
+image: http://sitespeed.io/img/sitespeed-1.5-twitter.jpg
+twitterdescription: It is all in the (summary) details! It is now easier to keep track how your site is really doing with median, X percentile, max & min values.
+---
+<div class="page-header">
+  <h1>Sitespeed.io 1.8 release notes</h1>
+</div>
+
+<h3>It's all in the (summary) details</h3>
+<p>The summary page is now based on the <i>summary.xml</i> file. The XML file keeps information of all fields you see on the summary page for all the pages that has been tested. For all the metrics you will get the average, median, max, min, standard deviation, variance, 10 percentile, 90 percentile & the 95 percentile! Yes that is a lot of difference statistics and it is quite cool!</p>
+How do you actually make use of it? Well for example, you can easily see which is the largest image of your site, check this out (data collected from a big video site):
+<a href="detailed-summary-large-image.png"><img src="detailed-summary-large-image.png"></a>
+<p>You will find the link to the detailed summary on the start page of the result pages. When the new design is added, it will be in the navigation</p>
+
+<p>You can also use the <i>summary.xml</i> file with Jenkins. You can use the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Plot plugin</a> and create graphs between your test runs, keep track of what's happening with your site in your development cycle.</p>
+<a href="jenkins-page-weight.png"><img src="jenkins-page-weight.png"></a>
+
+<p>There are also some new metrics: The total per page and individual size of js/css and images. You can check out an example of the <a href="/documentation/summary-1.8.1.xml" target="_blank">summary.xml</a> file.</p>
+
+<h3>Goodbye average, hello the 90th percentile!</h3>
+The summary page used to report average values of all different metrics. That has been changed, now median & the 90th percentile is the standard. 
+
+<h3>Preparing for comparing different runs</h3>
+<p>
+  The report dir name & structure has been changed, to make it easier to compare runs in the future. The old structure was sitespeed-HOST-DATE, now it is HOST/DATE.
+</p>
+
+<h3>New rule checking for old versions</h3>
+<p>There is a new rule in town that checks if the latest version is used of a Javascript plugin. Right now the only check is for the latest JQuery version, in the future other plugins will be checked.</p>
+<a href="jquery.png"><img src="jquery.png"></a>
+
+<h3>Image size are important!</h3>
+<p>
+  On the summary page, you can now see the total image size per page (median & 90 percentile values of course).
+</p>
+<a href="image-weight.png"><img src="image-weight.png"></a>
+
+<h3>New way of how to output the JUnit XML</h3>
+<p>A few changes to make things easier: By default, the JUnit xml file is now named <em>sitespeed.io-junit.xml</em>. You need to configure the output directory (see the <a href="/documentation/#jenkins">docs</a>) and the script will also put a copy of the summary.xml in the same dir.
+</p>
+
+<h3>Bug fixes</h3>
+<ul>
+	<li>The check for number of DOM elements where wrong when signalling a warning.</li>
+  <li>Better check for Java version (thanks Emil Breding).</li>
+</ul>
+
+</p>
+<hr>
+<p>	
+See the <a href="https://github.com/soulgalore/sitespeed.io/blob/master/CHANGELOG">changelog</a> for changes done in the past.
+</p>

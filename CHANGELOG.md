@@ -6,11 +6,13 @@
 * Send summary and individual URL metrics to Slack. #1228
 * Simple first step for performance budget #1227
 * Download the HAR files to your local #1174
+* Moved site to docs folder within the project #1240
 
 ### Changed
 * The data structure (internally) for toplists is changed so they can be sent to Graphite and used in a budget. Messages for largest assets was renamed from assets.aggregateSizePerContentType to assets.largest. Also send the largest individual size of an image to Graphite by default.
-
 * Plugin analysisStorer is now called analysisstorer and messageLogger is now messagelogger and live within their own plugin folder, following the pattern of all other plugins.
+* Default cli options now lives in each plugins.
+* No default channel for Slack, use the one setup in the hook instead.
 
 ### Fixed
 * A little better error handling when loading a plugin fails.

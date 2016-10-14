@@ -1,0 +1,56 @@
+---
+layout: default
+title: Sitespeed.io - Release notes 1.5
+description: The new release contains four new rules (check out the critical rendering path rule!), a fine tuned SPOF rule, time to first byte, ability to set user agent/viewport, use a proxy and more!
+author: Peter Hedenskog
+keywords: sitespeed.io, release, release-notes, 1.5
+nav: 
+image: http://sitespeed.io/img/sitespeed-1.5-twitter.jpg
+twitterdescription: The new release contains four new rules (check out the critical rendering path rule!), a fine tuned SPOF rule, time to first byte, ability to set user agent/viewport, use a proxy and more!
+---
+<div class="page-header">
+  <h1>Sitespeed.io 1.5 release notes</h1>
+</div>
+
+<p>
+Sitespeed 1.5 was released the 6th of January 2013 with the following changes:
+</p>
+
+<h2>New rules</h2>
+<ul>
+<li><strong>The Critical Rendering Path</strong> - Every request fetched inside of HEAD, will postpone the rendering of the page, so be aware of what you actually do. Read more about the <a href="/rules/#criticalpath">rule</a> and read about the rendering path in <a href=" http://calendar.perfplanet.com/2012/deciphering-the-critical-rendering-path/">this</a> really good article by Ilya Grigorik. </li>
+<li><strong>Avoid CDN lookups when your page has few requests</strong> -  If you have few requests on a page, they should all be on the same domain to avoid DNS lookups, because the lookups will then cost much.</li>
+<li><strong>Do not load stylesheet files when the page has few request</strong> - When a page has few requests (or actually maybe always if you don't have a massive amount of css), it is better to inline the css, to make the page to start render as early as possible. Yes, people will say "will not caching be a problem"? Please try it out and you will see :)</li>
+<li><strong>Have a reasonable percentage of textual content compared to the rest of the page</strong> - Not much to say about it.</li> 
+<li>Fine tuned the <strong>SPOF</strong> rule: Now the font-face problems will be checked.</li>
+</ul>
+
+<h2>New functionality</h2>
+<ul>
+  <li>Support for configuring the crawler (see the <i>dependencies/crawler.properties</i> file). You can now configure the number of crawler threads and connection/socket timeout. </li>
+  <li>Support for analyze behind proxy (thanks <a href="https://github.com/rhulse" target="_blank">rhulse</a> and <a href="https://github.com/samteeee" target="_blank">samteeee</a> for reporting and testing it). Configure it like <a href="/documentation/#proxy">this</a>.</li>
+  <li>You can now see errors from the crawl. If you have internal links that returns errors, an extra report file will be created.</li>
+  <li>You can now <a href="/documentation/#useragent">set</a> the user agent & view port.</li>
+  <li>You can now see the percentage of things when you hover on the summary page, for example how many percent of the request are missing a far expire header.</li>
+  <li>Added time to first byte for each page (cURL is now a new requirement to run sitespeed.io)</li>
+  <li>Cleanup of the <strong>Full page analyzis</strong> page, the page shows now both <i>Requests per Content-Type</i> and <i>Size per Content-Type</i></li>
+</ul>
+
+<h2>Bugfix</h2>
+<ul>
+<li>The document weight now shows the real size (gzipped when it is).</li>
+<li>The check for if PhantomJS is installed wasn't working, fixed now.</li>
+<li>Now using JAVA_HOME in a correct way (thanks Rob-m). </li>
+<li>Upgraded the crawler to version 1.3, now only fetch text/html links (before it also fetched xml etc).</li>
+</ul>
+
+<h2>Removed functionality</h2>
+<ul>
+  <li>Removed experimental rule for the amount of JS used because it wasn't adding any value.</li>
+  <li>Removed csv as output format (too much work to keep up to date).</li>
+</ul>
+
+
+<p>	
+See the <a href="https://github.com/soulgalore/sitespeed.io/blob/master/CHANGELOG">changelog</a> for changes done in the past and the next <a href="https://github.com/soulgalore/sitespeed.io/issues?milestone=15&state=open">milestone</a> what will come in the next release.
+</p>
