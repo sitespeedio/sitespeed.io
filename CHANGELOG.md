@@ -1,6 +1,8 @@
 # CHANGELOG - sitespeed.io
 
-## Unreleased
+## UNRELEASED
+
+## 4.0.0-beta.5 2016-10-17
 
 ### Added
 * Send summary and individual URL metrics to Slack. #1228
