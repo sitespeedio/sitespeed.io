@@ -18,6 +18,7 @@
 ### Fixed
 * A little better error handling when loading a plugin fails.
 * LastModified in the PageXray section was wrongly outside the table
+* Layout for resource hints
 
 ## 4.0.0-beta.4 2016-09-29
 -------------------------

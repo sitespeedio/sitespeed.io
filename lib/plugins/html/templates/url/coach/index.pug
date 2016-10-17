@@ -107,9 +107,13 @@ script(type='text/javascript').
         h3 Resource hints
         table
           each value, key in advice.info.resourceHints
-            tr
-              td #{key}
-              td.url
-                ul
-                  each url in value
-                    li #{url}
+            if value && value.length > 0
+              tr
+                td #{key}
+                td.url
+                  ul
+                    each url in value
+                      li #{url}
+            else
+              tr
+                td(colspan='2') No URLs for #{key}         
