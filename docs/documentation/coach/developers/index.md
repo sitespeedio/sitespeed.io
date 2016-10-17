@@ -61,7 +61,7 @@ Then the coach take the HAR file generated from the page and analyze that too. T
 
 In the last step the  coach merges the advice into one advice list and creates an overall score.
 
-Isn't that cool? We got one more thing that we [intend to implement](https://github.com/sitespeedio/coach/issues/13)): the combination of the two: A HAR advice that takes input from a DOM. This is cool because the coach will then have the power to know it all.
+Isn't that cool? We got one more thing that we [intend to implement](https://github.com/sitespeedio/coach/issues/13): the combination of the two: A HAR advice that takes input from a DOM. This is cool because the coach will then have the power to know it all.
 
 #### DOM advice
 
@@ -140,7 +140,7 @@ module.exports = {
   }
 };
 ```
-What's extra cool is that a HAR advice can both act on input (specific advice for device or browser) and on the result from the DOM advice running in the browser (=you can let the HAR advice know which assets are loaded inside of head etc).
+What's extra cool is that a HAR advice can both act on input (specific advice for device or browser) and on the result from the DOM advice running in the browser (you can let the HAR advice know which assets are loaded inside of head etc).
 
 #### The best of two worlds
 As an extra feature, the HAR advice override the DOM advice if the advice has the same id. This means you can easily combine data from the two and still output one advice.

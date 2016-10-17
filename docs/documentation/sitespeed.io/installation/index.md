@@ -44,4 +44,4 @@ $ docker pull sitespeedio/sitespeed.io:4.0-beta
 $ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:4.0-beta https://www.sitespeed.io -b firefox
 ~~~
 
-That will output the data from the run in the current directory. You can read more about running the containers [here]({{site.baseurl}}/documentation/docker/).
+That will output the data from the run in the current directory. You can read more about running the containers [here]({{site.baseurl}}/documentation/sitespeed.io/docker/).

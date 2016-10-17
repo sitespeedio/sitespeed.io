@@ -161,7 +161,7 @@ The coach tests your site in two steps:
 
 You can run the different steps standalone but for the best result run them together.
 
-![What the coach do](https://github.com/sitespeedio/coach/blob/master/img/coach-explained.png)
+![What the coach do]({{site.baseurl}}/img/coach-explained.png)
 
 ## Bonus
 The coach knows more than just performance. She also knows about accessibility and web best practice.

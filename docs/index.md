@@ -11,7 +11,7 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 
 ## Analyze your website speed and performance
 
-Sitespeed.io is an open source tool ([Apache License Version 2.0](https://github.com/sitespeedio/sitespeed.io/blob/master/LICENSE)) that helps you analyze your website **speed** and **performance** based on **performance best practices** and **timing metrics**. It collects data from multiple pages on your website, analyze them using the [rules](/documentation/rules-and-best-practices/) and output the result as HTML or send the metrics to [Graphite](/documentation/graphs/).
+Sitespeed.io is an open source tool ([Apache License Version 2.0](https://github.com/sitespeedio/sitespeed.io/blob/master/LICENSE)) that helps you analyze your website **speed** and **performance** based on **performance best practices** and **timing metrics**. It collects data from multiple pages on your website, analyze them using the [Coach]({{site.baseurl}}/documentation/coach/) and output the result as HTML or send the metrics to [Graphite]({{site.baseurl}}/documentation/sitespeed.io/graphs/).
 
 You can analyze one site, analyze and compare multiple sites or let your continuous integration server break your build when your performance budget is exceeded.
 
