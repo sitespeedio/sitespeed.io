@@ -25,6 +25,7 @@ twitterdescription: Documentation for the sitespeed.io.
  * [Metrics](metrics/) - configure which metrics you want to use.
  * [Continuous Integration](continuous-integration/) - generate JUnit XML/TAP and use Jenkins, Team City, Grunt or the Gulp plugin.
  * [Docker](docker/) - how to use our Docker containers.
+ * [Graphs](graphs/) - send data to a TSDB for visualizing metrics.
  * [Mobile phones](mobile-phones/) - test using your mobile phone (Android only).
  * [WebPageTest](webpagetest/) - drive WebPageTest and fetch metrics and graph them.
  * [Developers](developers/) - more info on how to create your own post tasks or use your own rules.
