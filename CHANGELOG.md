@@ -13,9 +13,11 @@
 * Plugin analysisStorer is now called analysisstorer and messageLogger is now messagelogger and live within their own plugin folder, following the pattern of all other plugins.
 * Default cli options now lives in each plugins.
 * No default channel for Slack, use the one setup in the hook instead.
+* Run sitespeed.io without the cli.
 
 ### Fixed
 * A little better error handling when loading a plugin fails.
+
 
 ## 4.0.0-beta.4 2016-09-29
 -------------------------
