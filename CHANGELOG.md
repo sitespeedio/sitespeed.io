@@ -1,6 +1,9 @@
 # CHANGELOG - sitespeed.io
 
 ## UNRELEASED
+### Changed
+* New Browsertim beta-7.
+
 
 ## 4.0.0-beta.5 2016-10-17
 
