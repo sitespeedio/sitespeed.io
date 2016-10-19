@@ -1,14 +1,13 @@
 ---
 layout: default
-title: WebPageTest - Documentation - sitespeed.io
+title: Use WebPageTest together with sitespeed.io
 description: Drive WebPageTest using sitespeed.io and include the metrics in your sitespeed.io report.
 keywords: webpagetest, wpt, documentation, web performance, sitespeed.io
-author: Peter Hedenskog
 nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Drive WebPageTest using sitespeed.io and include the metrics in your sitespeed.io report.
 ---
-[Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / WebPageTest
+[Documentation](/documentation/sitespeed.io/) / WebPageTest
 
 # WebPageTest
 {:.no_toc}
@@ -17,14 +16,14 @@ twitterdescription: Drive WebPageTest using sitespeed.io and include the metrics
 {:toc}
 
 ## Using WebPageTest
-Yep we all still love [WebPageTest](https://www.webpagetest.org/) (WPT), so we made it possible to drive an instance of and collect the data from it.
+We still love [WebPageTest](https://www.webpagetest.org/) (WPT), so you can drive WebPageTest through sitespeed.io. You will get a WebPageTest tab for each result and if using Graphite, WebPageTest metrics will be automagically sent.
 
-To use WPT you can either get an [API key](https://www.webpagetest.org/getkey.php) (sponsored by Akamai) for the global version or follow Pat Meenans instructions on how to get [a private version up and running in 5 minutes](http://calendar.perfplanet.com/2014/webpagetest-private-instances-in-five-minutes/). Or read how [WikiMedia setup there own instance using AWS](https://wikitech.wikimedia.org/wiki/WebPageTest).
+To use WPT you can either get an [API key](https://www.webpagetest.org/getkey.php) (sponsored by Akamai) for the global version or follow Pat Meenans instructions on how to get [a private version up and running in 5 minutes](http://calendar.perfplanet.com/2014/webpagetest-private-instances-in-five-minutes/). Or read how [WikiMedia setup an instance using AWS](https://wikitech.wikimedia.org/wiki/WebPageTest).
 
 ## Configuration
 Internally sitespeed.io uses the [WebPageTest API](https://github.com/marcelduran/webpagetest-api) so you can do almost the same thing as with the API standalone.
 
-By default we the following configuration options:
+By default we have the following configuration options:
 
 ~~~ bash
 --webpagetest.host          The domain of your WebPageTest instance.                                        
@@ -36,7 +35,15 @@ By default we the following configuration options:
 --webpagetest.script        Path to a script file
 ~~~
 
-and if you need anything else adding your own CLI parameter will propagate to the WebPageTest API. Checkout the different [options](https://github.com/marcelduran/webpagetest-api#test-works-for-test-command-only) for the API. Say that you want to change the user agent of your test. In the API you do that with <code>--useragent</code> so you can pass the same by adding <code>--webpagetest.useragent</code> in the cli.
+If you need anything else adding your own CLI parameter will propagate to the WebPageTest API. Checkout the different [options](https://github.com/marcelduran/webpagetest-api#test-works-for-test-command-only) for the API.
+
+Example: Say that you want to change the user agent of your test. In the API you do that with <code>--useragent</code> so you can pass the same by adding <code>--webpagetest.useragent</code> in the cli.
+
+~~~ bash
+$ sitespeed.io --webpagetest.host my.wpt.host.com --webpagetest.useragent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36" https://www.sitespeed.io
+~~~
+
+## Default configurations
 
 The default configuration for WebPageTest looks like this:
 
@@ -53,9 +60,13 @@ The default configuration for WebPageTest looks like this:
 }
 ~~~
 
+And you override these with parameters. If you want to change the location, just pass <code>--webpagetest.location mylocation</code> and your new location will be used.
+
 ### WebPageTest scripting
 
-WebPageTest has scripting capability where you can automate a multi-step test (=login the user and do stuff). That is supported by sitespeed.io by supplying the script. Do like this. Create your script file (checkout [WebPageTest documentation](https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/scripting)). It can look something like this (wptScript.txt):
+WebPageTest has scripting capability where you can automate a multi-step test (=login the user and do stuff). That is supported by sitespeed.io by supplying the script. Do like this:
+
+Create your script file (checkout [WebPageTest documentation](https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/scripting) for what you can do). It can look something like this (wptScript.txt):
 
 ~~~ bash
 logData    0
@@ -102,5 +113,5 @@ return viewport;
 Then run sitespeed.io like this:
 
 ~~~ bash
-sitespeed.io --webpagetest.custom myScriptFile.txt --webpagetest.host my.wpt.host.com https://www.sitespeed.ip
+$ sitespeed.io --webpagetest.custom myScriptFile.txt --webpagetest.host my.wpt.host.com https://www.sitespeed.io
 ~~~
