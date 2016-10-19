@@ -1,14 +1,13 @@
 ---
 layout: default
-title: Browsers - Documentation - sitespeed.io
-description: How to configure sitespeed.io
+title: How to configure sitespeed.io
+description: In the cli just run "sitespeed.io --help" to get the configuration options.
 keywords: configuration, documentation, web performance, sitespeed.io
-author: Peter Hedenskog
 nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Configuration for sitespeed.io.
 ---
-[Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / Configuration
+[Documentation](/documentation/sitespeed.io/) / Configuration
 
 # Configuration
 {:.no_toc}
@@ -20,7 +19,7 @@ twitterdescription: Configuration for sitespeed.io.
 Sitespeed.io is highly configurable, let's check it out!
 
 ## The options
-You have the following options running sitespeed.io (we will add more as we are coming to the stable 4.0 release):
+You have the following options running sitespeed.io (run <code>sitespeed.io --help</code> to get the list on your command line):
 
 ~~~help
 bin/sitespeed.js [options] <url>/<file>
@@ -119,12 +118,12 @@ urlOrFile
 
 
 ## The basics
-If you installed with the global option (-g), run the command *sitespeed.io* else run the script *bin/sitespeed.js*.  In the examples we will use the installed version.
+If you installed with the global option run the command *sitespeed.io* else run the script *bin/sitespeed.js*.  In the examples we will use the globally installed version.
 
 You can analyze a site either by crawling or feed sitespeed.io with the URL:s you want to analyze.
 
 ### Analyze by URLs
-You can choose
+The simplest way to run sitespeed.io is to give it a URL.
 
 ~~~bash
 $ sitespeed.io https://www.sitespeed.io
@@ -144,7 +143,7 @@ http://www.yoursite.com/my/really/important/page/
 http://www.yoursite.com/where/we/are/
 ~~~
 
-And feed it:
+And run it:
 
 ~~~bash
 $ sitespeed.io urls.txt
@@ -152,21 +151,21 @@ $ sitespeed.io urls.txt
 
 ### Analyze by crawling
 
-You can choose how deep to crawl (1=only one page, 2=include links from first page, etc.):
+If you wanna find pages that are not so performant it's a good idea to crawl. Sitespeed.io will start with the URL and fetch all links on that pages and continue to dig deeper into the site structure. You can choose how deep to crawl (1=only one page, 2=include links from first page, etc.):
 
 ~~~bash
 $ sitespeed.io https://www.sitespeed.io -d 2
 ~~~
 
 ### How many runs per URL?
-Collecting timing metrics it's good to test the URL more than one time. You can configure how many runs doing like this (five runs):
+Collecting timing metrics it's good to test the URL more than one time (default is three times). You can configure how many runs doing like this (five runs):
 
 ~~~bash
 $ sitespeed.io https://www.sitespeed.io -n 5
 ~~~
 
 ### Choose browser
-Choose which browser to use:
+Choose which browser to use (default is Chrome):
 
 ~~~bash
 $ sitespeed.io https://www.sitespeed.io -b firefox
