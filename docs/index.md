@@ -1,25 +1,20 @@
 ---
 layout: startpage
-title: Sitespeed.io - Analyze your website speed and performance
+title: Sitespeed.io - Welcome to the wonderful world of Web Performance
 description: Sitespeed.io is an open source tool that helps you analyze and optimize your website speed and performance, based on performance best practices. Run it locally or use it in your continuous integration. Download or fork it on Github!
-author: Peter Hedenskog
 keywords: sitespeed.io, wpo, webperf, perfmatters, fast, site, speed, web performance optimization, analyze, best practices, continous integration
 nav: start
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 ---
-<img src="{{site.baseurl}}/img/sitespeed.io-logo-large2.png" class="pull-left img-big" alt="Sitespeed.io logo" width="188" height="200" onLoad="window.performance.mark('logoTime');">
+<img src="/img/sitespeed.io-logo-large2.png" class="pull-left img-big" alt="Sitespeed.io logo" width="188" height="200" onLoad="window.performance.mark('logoTime');">
 
-## Analyze your website speed and performance
+## Welcome to the wonderful world of Web Performance
 
-Sitespeed.io is an open source tool ([Apache License Version 2.0](https://github.com/sitespeedio/sitespeed.io/blob/master/LICENSE)) that helps you analyze your website **speed** and **performance** based on **performance best practices** and **timing metrics**. It collects data from multiple pages on your website, analyze them using the [Coach]({{site.baseurl}}/documentation/coach/) and output the result as HTML or send the metrics to [Graphite]({{site.baseurl}}/documentation/sitespeed.io/graphs/).
+Sitespeed.io is a set of Open Source tools that helps you make your web pages faster for the user. [The coach](/documentation/coach/) gives you performance advice of what you can do better on your site. [Browsertime](/documentation/browsertime/) collects metrics and HAR files from your browser. [PageXray](/documentation/pagexray/) converts a HAR file to a usable JSON structure that tells you more about your page. And finally [sitespeed.io](/documentation/sitespeed.io/) is the main tool that uses all the others and add supports for testing multiple pages and report the metrics to Graphite (and soon InfluxDB).
 
-You can analyze one site, analyze and compare multiple sites or let your continuous integration server break your build when your performance budget is exceeded.
-
-Install using [npm](https://www.npmjs.org/) ([need help?]({{site.baseurl}}/documentation/installation/)):
+Try out sitespeed.io by installing using [npm](https://www.npmjs.org/)/[yarn](https://yarnpkg.com/)/[Docker](https://hub.docker.com/r/sitespeedio/sitespeed.io/) ([need help?](/documentation/installation/)):
 
 ~~~ bash
 $ npm install -g sitespeed.io
 $ sitespeed.io -h
 ~~~
-
-You can clone or fork the project at [![Github]({{site.baseurl}}/img/GitHub-Mark-64px.png){: .middle}](https://github.com/sitespeedio/sitespeed.io/issues) and if you like sitespeed.io, please give us a [![Give us a star]({{site.baseurl}}/img/star3.png){: .middle}](https://github.com/sitespeedio/sitespeed.io/stargazers)!
