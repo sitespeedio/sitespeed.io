@@ -26,26 +26,30 @@ You have the following options running sitespeed.io (we will add more as we are 
 bin/sitespeed.js [options] <url>/<file>
 
 Browser
-  --browsertime.browser, -b, --browser                    Choose which Browser to use when you test.                           [choices: "chrome", "firefox"] [default: "chrome"]
-  --browsertime.iterations, -n                            How many times you want to test each page                                                                  [default: 3]
-  --browsertime.delay                                     Delay between runs, in milliseconds                                                               [number] [default: 0]
-  --browsertime.connectivity.profile, -c, --connectivity  The connectivity profile. Default connectivity engine is tsproxy
-                                                                                       [choices: "3g", "3gfast", "3gslow", "2g", "cable", "native", "custom"] [default: "native"]
-  --browsertime.connectivity.config                       This option requires --connectivity.profile be set to "custom". Takes a JSON object with the keys downstreamKbps,
-                                                          upstreamKbps and latency. "{\"downstreamKbps\":6000, \"upstreamKbps\": 6000, \"latency\": 200}"
-  --browsertime.connectivity.tsproxy.port                 The port used for ts proxy                                                                              [default: 1080]
-  --browsertime.connectivity.engine                       The engine for connectivity. Tsproxy needs Python 2.7. TC needs tc, modprobe and ip installed to work. Running tc
-                                                          inside Docker needs modprobe to run outside the container.              [choices: "tc", "tsproxy"] [default: "tsproxy"]
-  --browsertime.pageCompleteCheck                         Javascript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true)
-  --browsertime.script, --script                          Add custom Javascript to run on page (that returns a number). Note that --script can be passed multiple times if you
-                                                          want to collect multiple metrics. The metrics will automatically be pushed to the summary/detailed summary and each
-                                                          individual page + sent to Graphite/InfluxDB.
-  --browsertime.selenium.url                              Configure the path to the Selenium server when fetching timings using browsers. If not configured the supplied
-                                                          NodeJS/Selenium version is used.
-  --browsertime.viewPort                                  The view port, the page viewport size WidthxHeight like 400x300                                   [default: "1366x708"]
-  --browsertime.userAgent                                 The full User Agent string, defaults to the user agent used by the browsertime.browser option.
-  --browsertime.preScript, --preScript                    Task(s) to run before you test your URL (use it for login etc). Note that --preScript can be passed multiple times.
-  --browsertime.postScript, --postScript                  Path to JS file for any postTasks that need to be executed.
+  --browsertime.browser, -b, --browser                         Choose which Browser to use when you test.          [choices: "chrome", "firefox"] [default: "chrome"]
+  --browsertime.iterations, -n                                 How many times you want to test each page                                                 [default: 3]
+  --browsertime.delay                                          Delay between runs, in milliseconds                                              [number] [default: 0]
+  --browsertime.connectivity.profile, -c, --connectivity       The connectivity profile. Default connectivity engine is tsproxy
+                                                                           [choices: "3g", "3gfast", "3gslow", "2g", "cable", "native", "custom"] [default: "native"]
+  --browsertime.connectivity.downstreamKbps, --downstreamKbps  This option requires --connectivity.profile be set to "custom".
+  --browsertime.connectivity.upstreamKbps, --upstreamKbps      This option requires --connectivity.profile be set to "custom".
+  --browsertime.connectivity.latency, --latency                This option requires --connectivity.profile be set to "custom".
+  --browsertime.connectivity.tsproxy.port                      The port used for ts proxy                                                             [default: 1080]
+  --browsertime.connectivity.engine                            The engine for connectivity. Tsproxy needs Python 2.7. TC needs tc, modprobe and ip installed to work.
+                                                               Running tc inside Docker needs modprobe to run outside the container.
+                                                                                                                      [choices: "tc", "tsproxy"] [default: "tsproxy"]
+  --browsertime.pageCompleteCheck                              Javascript snippet is repeatedly queried to see if page has completed loading (indicated by the script
+                                                               returning true)
+  --browsertime.script, --script                               Add custom Javascript to run on page (that returns a number). Note that --script can be passed
+                                                               multiple times if you want to collect multiple metrics. The metrics will automatically be pushed to
+                                                               the summary/detailed summary and each individual page + sent to Graphite/InfluxDB.
+  --browsertime.selenium.url                                   Configure the path to the Selenium server when fetching timings using browsers. If not configured the
+                                                               supplied NodeJS/Selenium version is used.
+  --browsertime.viewPort                                       The view port, the page viewport size WidthxHeight like 400x300                  [default: "1366x708"]
+  --browsertime.userAgent                                      The full User Agent string, defaults to the user agent used by the browsertime.browser option.
+  --browsertime.preScript, --preScript                         Task(s) to run before you test your URL (use it for login etc). Note that --preScript can be passed
+                                                               multiple times.
+  --browsertime.postScript, --postScript                       Path to JS file for any postTasks that need to be executed.
 
 Crawler
   --crawler.depth, -d     How deep to crawl (1=only one page, 2=include links from first page, etc.)
@@ -53,27 +57,31 @@ Crawler
 
 Graphite
   --graphite.host                The Graphite host used to store captured metrics.
-  --graphite.port                The Graphite port used to store captured metrics.                                                                                [default: 2003]
-  --graphite.namespace           The namespace key added to all captured metrics.                                                               [default: "sitespeed_io.default"]
-  --graphite.includeQueryParams  Whether to include query paramaters from the URL in the Graphite keys or not                                          [boolean] [default: false]
+  --graphite.port                The Graphite port used to store captured metrics.                                                                    [default: 2003]
+  --graphite.namespace           The namespace key added to all captured metrics.                                                   [default: "sitespeed_io.default"]
+  --graphite.includeQueryParams  Whether to include query paramaters from the URL in the Graphite keys or not                              [boolean] [default: false]
 
 Plugins
-  --plugins.list     List all configured plugins in the log.                                                                                           [boolean] [default: false]
-  --plugins.disable  Disable a plugin. Use it to disable generating html or screenshots.                                                                                  [array]
-  --plugins.load     Extra plugins as an installed npm module that you want to run                                                                                        [array]
+  --plugins.list     List all configured plugins in the log.                                                                               [boolean] [default: false]
+  --plugins.disable  Disable a plugin. Use it to disable generating html or screenshots.                                                                      [array]
+  --plugins.load     Extra plugins that you want to run. Relative or absolute path to the plugin.                                                             [array]
+
+Budget
+  --budget         Path to the JSON budget file.
+  --budget.output  The output format of the budget                                                                                       [choices: "junitxml", "tap"]
 
 Metrics
-  --metrics.list        List all possible metrics in the data folder (metrics.txt).                                                                    [boolean] [default: false]
-  --metrics.filterList  List all configured filters for metrics in the data folder (configuredMetrics.txt)                                             [boolean] [default: false]
-  --metrics.filter      Add/change/remove filters for metrics. If you want to send all metrics, use: *+ . If you want to remove all current metrics and send only the coach
-                        score: *- coach.summary.score.*                                                                                                                   [array]
+  --metrics.list        List all possible metrics in the data folder (metrics.txt).                                                        [boolean] [default: false]
+  --metrics.filterList  List all configured filters for metrics in the data folder (configuredMetrics.txt)                                 [boolean] [default: false]
+  --metrics.filter      Add/change/remove filters for metrics. If you want to send all metrics, use: *+ . If you want to remove all current metrics and send only the
+                        coach score: *- coach.summary.score.*                                                                                                 [array]
 
 WebPageTest
-  --webpagetest.host          The domain of your WebPageTest instance.                                                                   [default: "https://www.webpagetest.org"]
+  --webpagetest.host          The domain of your WebPageTest instance.                                                       [default: "https://www.webpagetest.org"]
   --webpagetest.key           The API key for you WebPageTest instance.
-  --webpagetest.location      The location for the test                                                                                                [default: "Dulles:Chrome"]
-  --webpagetest.connectivity  The connectivity for the test.                                                                                                   [default: "Cable"]
-  --webpagetest.runs          The number of runs per URL.                                                                                                            [default: 3]
+  --webpagetest.location      The location for the test                                                                                    [default: "Dulles:Chrome"]
+  --webpagetest.connectivity  The connectivity for the test.                                                                                       [default: "Cable"]
+  --webpagetest.runs          The number of runs per URL.                                                                                                [default: 3]
   --webpagetest.custom        Execute arbitrary Javascript at the end of a test to collect custom metrics.
   --webpagetest.script        Path to a script file
 
@@ -82,21 +90,27 @@ gpsi
 
 Slack
   --slack.hookUrl   WebHook url for the Slack team (check https://<your team>.slack.com/apps/manage/custom-integrations).
-  --slack.userName  User name to use when posting status to Slack.                                                                                      [default: "Sitespeed.io"]
+  --slack.userName  User name to use when posting status to Slack.                                                                          [default: "Sitespeed.io"]
+  --slack.channel   The slack channel without the # (if something else than the default channel for your hook).
+  --slack.type      Send summary for a run, metrics from all URLs or both to Slack.                          [choices: "summary", "url", "both"] [default: "summary"]
 
 HTML
-  --html.showWaterfallSummary  Set to true to show waterfalls on summary HTML report                                                                   [boolean] [default: false]
+  --html.showAllWaterfallSummary  Set to true to show all waterfalls on page summary HTML report                                           [boolean] [default: false]
+
+text
+  --summary         Show brief text summary to stdout                                                                                      [boolean] [default: false]
+  --summary-detail  Show longer text summary to stdout                                                                                     [boolean] [default: false]
 
 Options:
-  --version, -V   Show version number                                                                                                                                   [boolean]
-  --debug         Debug mode logs all internal messages to the console.                                                                                [boolean] [default: false]
-  --verbose, -v   Verbose mode prints progress messages to the console. Enter up to three times (-vvv) to increase the level of detail.                                   [count]
-  --mobile        Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Apple iPhone 6.                  [boolean] [default: false]
-  --outputFolder  The folder name where the result will be stored. By default the name is generated using current_date/domain/filename              [default: "sitespeed-result"]
+  --version, -V   Show version number                                                                                                                       [boolean]
+  --debug         Debug mode logs all internal messages to the console.                                                                    [boolean] [default: false]
+  --verbose, -v   Verbose mode prints progress messages to the console. Enter up to three times (-vvv) to increase the level of detail.                       [count]
+  --mobile        Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Apple iPhone 6.      [boolean] [default: false]
+  --outputFolder  The folder where the result will be stored.
   --firstParty    A regex running against each request and categorize it as first vs third party URL. (ex: ".*sitespeed.*")
-  --utc           Use Coordinated Universal Time for timestamps                                                                                        [boolean] [default: false]
+  --utc           Use Coordinated Universal Time for timestamps                                                                            [boolean] [default: false]
   --config        Path to JSON config file
-  --help, -h      Show help                                                                                                                                             [boolean]
+  --help, -h      Show help                                                                                                                                 [boolean]
 
 Read the docs at https://www.sitespeed.io/documentation/
 
