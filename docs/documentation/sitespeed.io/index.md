@@ -13,7 +13,7 @@ twitterdescription: Documentation for the sitespeed.io.
 
 <img src="{{site.baseurl}}/img/logos/sitespeed.io.png" class="pull-right img-big" alt="Browsertime logo" width="200" height="214">
 
- * [Introduction](introduction/)
+ * [Getting started](getting-started/) - get up and running with sitespeed.io
  * [Installation](installation/) - install using npm, Vagrant or run our Docker containers.
  * [Configuration](configuration/) - there's alot of things you can do with sitespeed.io, lets checkout how!
  * [Browsers](browsers/) - collect timings using real browsers. We support Firefox, Chrome, Internet Explorer and Safari.
