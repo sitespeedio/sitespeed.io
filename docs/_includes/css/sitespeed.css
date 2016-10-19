@@ -60,12 +60,6 @@ color: #428bca;
 text-decoration: none;
 }
 
-.language-bash {
-color: #fff;
-background-color: #555;
-font-size: 80%;
-}
-
 pre code {
 display: block;
 padding: 9.5px;
