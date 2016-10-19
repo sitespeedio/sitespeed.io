@@ -172,3 +172,36 @@ margin-bottom: 10px;
     width: 100%;
     height: 100%;
 }
+
+blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #03C9A9;
+  margin: 1.5em 10px;
+  padding:10px;
+}
+blockquote:before {
+	font-family : georgia;
+  color: #6C7A89;
+  content: open-quote;
+  font-size: 60px;
+  /* how to fix the quote position*/
+  line-height: 0.1em;
+  vertical-align: -0.4em;
+}
+
+blockquote p {
+  display: inline;
+  letter-spacing : 1px;
+}
+
+blockquote span {
+  display : block;
+  margin-top : 10px;
+  margin-left : 10px;
+  font-size : 15px;
+  font-style:italic;
+}
+blockquote span:before {
+  content : "-";
+  margin-right : 3px;
+}
