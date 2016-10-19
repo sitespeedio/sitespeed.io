@@ -29,4 +29,5 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Graphs](graphs/) - send data to a TSDB for visualizing metrics.
  * [Mobile phones](mobile-phones/) - test using your mobile phone (Android only).
  * [WebPageTest](webpagetest/) - drive WebPageTest and fetch metrics and graph them.
- * [Developers](developers/) - more info on how to create your own post tasks or use your own rules.
+ * [How it all works](how-it-all-works/) - lets checkout how everything works.
+ * [Developers](developers/) - more info how to contribute and understand sitesped.io.
