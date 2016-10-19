@@ -1,16 +1,15 @@
 ---
 layout: default
 title: Pre/post scripts (log in the user)
-description:
+description: You can login the user to test pages as a logged in user.
 keywords: selenium, web performance, sitespeed.io
-author: Peter Hedenskog
 nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Pre/post scripts (log in the user)
 ---
-[Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / Pre/post scripts
+[Documentation](/documentation/sitespeed.io/) / Pre/post scripts
 
-# Pre/post scripts
+# Pre/post scripts and login the user
 {:.no_toc}
 
 * Lets place the TOC here
@@ -59,10 +58,40 @@ Then run like (change your username & password first):
 $ sitespeed.io --preScript login.js https://en.wikipedia.org/wiki/Barack_Obama
 ~~~
 
+The script will the login the user and then access https://en.wikipedia.org/wiki/Barack_Obama and measure that page.
+
+
 Checkout the magic row:
 
 ~~~
 var webdriver = context.webdriver;
 ~~~
 
-From the context object you get hold of the Selenium [Webdriver object](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html).
+From the context object you get hold of the Selenium [Webdriver object](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html) that you can use find elements on the page.
+
+## Test a page with primed cache
+One other thing you can do with a pre script is simulate a user that browses a couple of pages and then measure the performance of a page (by default the cache is emptied when you use sitespeed.io).
+
+Create a pre script (pre.js):
+
+~~~ bash
+module.exports = {
+  run(context) {
+    return context.runWithDriver((driver) => {
+      // Go to the start page of sitespeed.io
+      return driver.get('https://www.sitespeed.io/');
+    });    
+  }
+};
+~~~
+
+And then run it like this:
+
+~~~ bash
+$ sitespeed.io --preScript pre.js -b chrome https://www.sitespeed.io/documentation/
+~~~
+
+The browser will then first access https://www.sitespeed.io/, fill the cache and then go to https://www.sitespeed.io/documentation/ where we will collect all the metrics.
+
+Firefox (and/or the HAR Export trigger) has a bug that reports requests in the HAR file as 200 not flagging that they are from the local browser cache. Follow the [bug here](https://github.com/sitespeedio/browsertime/issues/121). In practice you should use Chrome until this is fixed.
+{: .note .note-warning}
