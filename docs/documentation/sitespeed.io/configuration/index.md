@@ -191,3 +191,22 @@ We use [TSProxy](https://github.com/WPO-Foundation/tsproxy) by default so you ne
 ~~~bash
 $ sitespeed.io https://www.sitespeed.io -c cable
 ~~~
+
+### Viewport/user agent and mobile
+
+You can set the viewport & user agent, so that you can fake testing a site as a mobile device.
+
+Simplest way is to just add <code>--mobile</code> as a parameter. The viewport will be set to 360x640 and the User Agent will be Iphone6. If you use Chrome it will use the pre-set device Apple iPhone 6.
+
+~~~bash
+$ sitespeed.io https://www.sitespeed.io --mobile
+~~~
+
+You can also set specific viewport and User Agent:
+
+~~~bash
+$ sitespeed.io https://www.sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "UCWEB/2.0 (MIDP-2.0; U; Adr 4.4.4; en-US; XT1022) U2/1.0.0 UCBrowser/10.6.0.706 U2/1.0.0 Mobile"
+~~~
+
+Mobile testing is always best on mobile devices. You can [test on Android phones](../mobile-phones/) using sitespeed.io.
+{: .note .note-warning}
