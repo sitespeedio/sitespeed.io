@@ -210,3 +210,8 @@ $ sitespeed.io https://www.sitespeed.io --browsertime.viewPort 400x400 --browser
 
 Mobile testing is always best on mobile devices. You can [test on Android phones](../mobile-phones/) using sitespeed.io.
 {: .note .note-warning}
+
+## Advanced
+
+### Login the user
+We have added a [special section](../prepostscript) for that!
