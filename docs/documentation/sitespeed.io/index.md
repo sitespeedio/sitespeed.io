@@ -1,9 +1,8 @@
 ---
 layout: default
-title: sitespeed.io
-description:
+title: Documentation for sitespeed.io 4.x
+description: Read about all you can do we with sitespeed.io.
 keywords: tools, documentation, web performance
-author: Peter Hedenskog
 nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Documentation for the sitespeed.io.
@@ -11,12 +10,12 @@ twitterdescription: Documentation for the sitespeed.io.
 
 # Documentation 4.x
 
-<img src="{{site.baseurl}}/img/logos/sitespeed.io.png" class="pull-right img-big" alt="Browsertime logo" width="200" height="214">
+<img src="/img/logos/sitespeed.io.png" class="pull-right img-big" alt="Browsertime logo" width="200" height="214">
 
  * [Getting started](getting-started/) - get up and running with sitespeed.io
- * [Installation](installation/) - install using npm, Vagrant or run our Docker containers.
+ * [Installation](installation/) - install using npm, yarn or run our Docker containers.
  * [Configuration](configuration/) - there's alot of things you can do with sitespeed.io, lets checkout how!
- * [Browsers](browsers/) - collect timings using real browsers. We support Firefox, Chrome, Internet Explorer and Safari.
+ * [Browsers](browsers/) - collect timings using real browsers. We support Firefox, Chrome and Chrome on Android.
  * [Use Cases](use-cases/) - find out best practices for testing a site, compare with other sites.
 * [Performance Dashboard](performance-dasboard/) - keep track of your metrics and performance.
  * [Performance Budget](performance-budget/) - make sure you are within your performance budget.

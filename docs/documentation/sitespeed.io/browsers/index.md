@@ -1,14 +1,13 @@
 ---
 layout: default
-title: Browsers - Documentation - sitespeed.io
-description: How to get browser timings using sitespeed.io for Firefox and Chrome.
+title: Browsers sitespeed.io
+description: You can use Firefox, Chrome and Chrome on Android to collect metrics.
 keywords: browsers, documentation, web performance, sitespeed.io
-author: Peter Hedenskog
 nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: Browser timings for sitespeed.io.
+twitterdescription: You can use Firefox, Chrome and Chrome on Android to collect metrics.
 ---
-[Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / Browsers
+[Documentation](/documentation/sitespeed.io/) / Browsers
 
 # Browsers
 {:.no_toc}
@@ -43,7 +42,7 @@ $ sitespeed.io https://www.sitespeed.io -c cable
 We plan to implement support for other connectivity engines in the future. You can try out our tc implementation by setting <code>--connectivity.engine tc</code>
 
 ## Choose when to end your test
-By default the browser will collect data until  [window.performance.timing.loadEventEnd happens + aprox 2 seconds more](https://github.com/sitespeedio/browsertime/blob/d68261e554470f7b9df28797502f5edac3ace2e3/lib/core/seleniumRunner.js#L15). That is perfectly fine for most sites, but if you do Ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (–waitScript). When the scripts returns true the browser will close or if the timeout time (default 60 seconds) will be reached.
+By default the browser will collect data until  [window.performance.timing.loadEventEnd happens + aprox 2 seconds more](https://github.com/sitespeedio/browsertime/blob/d68261e554470f7b9df28797502f5edac3ace2e3/lib/core/seleniumRunner.js#L15). That is perfectly fine for most sites, but if you do Ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (--browsertime.pageCompleteCheck). When the scripts returns true the browser will close or if the timeout time will be reached.
 
 In this we wait 10 seconds until loadEventEnd happens but you can also choose to trigger it at a specific event.
 
@@ -51,14 +50,21 @@ In this we wait 10 seconds until loadEventEnd happens but you can also choose to
 $ sitespeed.io https://www.sitespeed.io --browsertime.pageCompleteCheck 'return (function() {try { return (Date.now() - window.performance.timing.loadEventEnd) > 10000;} catch(e) {} return true;})()'
 ~~~
 
+We use Selenium in the backend to drive the browsers and right now Selenium/drivers doesn't support the *pageLoadStrategies* where you can change when Selenium will give control to the user. Right now we always wait on the pageLoadEvent, meaning pages that doesn't fire that event will fail. Track the progress to fix that [here](https://github.com/sitespeedio/browsertime/issues/186).
+{: .note .note-warning}
+
 ## Custom metrics
 
-You can collect your own metrics in the browser by supplying Javascript file(s). Each file need to return a metric/value and it will be picked up and returned in the JSON. If you return a number, statistics will automatically be generated for the value (like median/percentiles etc).
+You can collect your own metrics in the browser by supplying Javascript file(s). By default we collect all metrics inside [these folders](https://github.com/sitespeedio/browsertime/tree/master/browserscripts) but you maybe have something else you wanna collect.
 
-Say we have a folder called scripts and in there we have one file called scripts.js that checks how many javascript that is loaded. The script looks like this:
+Each javascript file need to return a metric/value and it will be picked up and returned in the JSON. If you return a number, statistics will automatically be generated for the value (like median/percentiles etc).
+
+Say we have one file called scripts.js that checks how many javascript that is loaded. The script looks like this:
 
 ~~~bash
-return document.getElementsByTagName("script").length;
+(function() {
+  return document.getElementsByTagName("script").length;
+})();
 ~~~
 
 Then to pick up the script, run like this:
@@ -67,9 +73,19 @@ Then to pick up the script, run like this:
 sitespeed.io https://www.sitespeed.io --browsertime.script scripts.js -b firefox
 ~~~
 
-## More browser goodness
+You will get a custom script section in the Browsertime tab.
+![Custom scripts individual page](customscripts.png)
+{: .img-thumbnail}
+
+And in the summary and detailed summary section.
+![Summary page](summary.png)
+{: .img-thumbnail}
+
+One more thing: All custom scripts values will be sent to Graphite, no extra configuration needed!
+
+## Using Browsertime
 Everything you can do in Browsertime, you can also do in sitespeed.io. Add browsertime to the CLI parameter and it will be passed on to Browsertime.
 
 You can check what Browsertime can do [here](https://github.com/sitespeedio/browsertime/blob/master/lib/support/cli.js).
 
-Say for example that you wanna pass on extra Chrome arguments to Chrome. In standalone Browsertime you do that with <i>--chrome.args</i>. If you wanna do that in sitespeed.io you add browsertime to the param: <i>--browsertime.chrome.args</i>. Yes we know, it is sweat :)
+Say for example that you wanna pass on extra Chrome arguments to Chrome. In standalone Browsertime you do that with <code>--chrome.args</code>. If you wanna do that in sitespeed.io you add browsertime to the param: <code>--browsertime.chrome.args</code>. Yes we know, it is sweat :)
