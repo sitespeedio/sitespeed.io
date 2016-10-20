@@ -13,7 +13,7 @@ twitterdescription: Say hello to scripts and custom metrics for WebPageTest.
 We have a couple of cool things in 3.6!
 
 ## WebPageTest
-If you run WebPageTest through sitespeed.io. We now supports WebPageTest scripts (so you can login etc) and custom metrics (define your own javascript to fetch metrics). WebPageTest custom metrics are also sent to Graphite! Read more about how to run your [custom script](/documentation/webpagetest/#webpagetest-scripting) and to collect [custom metrics](/documentation/webpagetest/#custom-metrics).
+If you run WebPageTest through sitespeed.io. We now supports WebPageTest scripts (so you can login etc) and custom metrics (define your own javascript to fetch metrics). WebPageTest custom metrics are also sent to Graphite! Read more about how to run your [custom script]({{site.baseurl}}/documentation/webpagetest/#webpagetest-scripting) and to collect [custom metrics]({{site.baseurl}}/documentation/webpagetest/#custom-metrics).
 
 ## Browsertime with Firefox 38
 We also have a new upgraded version of Browsertime that gives us a new Selenium that works with Firefox 38, has the possibility to run Chrome without sandbox mode (use the **btConfig** flag to configure specific Browsertime things). Thanks [Patrick Wieczorek](https://github.com/yesman82) for the PR!

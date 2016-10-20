@@ -7,7 +7,7 @@ nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Pre/post scripts (log in the user)
 ---
-[Documentation](/documentation/sitespeed.io/) / Pre/post scripts
+[Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / Pre/post scripts
 
 # Pre/post scripts and login the user
 {:.no_toc}

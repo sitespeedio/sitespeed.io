@@ -7,7 +7,7 @@ nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: How it all works.
 ---
-[Documentation](/documentation/sitespeed.io/) / How it all works
+[Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / How it all works
 
 # How it all works
 {:.no_toc}
@@ -18,7 +18,7 @@ twitterdescription: How it all works.
 ## The big picture
 The big picture looks something like this:
 
-![How it all works](sitespeed-how-it-works.png)
+![How it all works]({{site.baseurl}}/img/sitespeed-how-it-works.png)
 {: .img-thumbnail}
 
 ## Analyzing a URL step by step

@@ -29,4 +29,4 @@ sitespeed.io -u http://www.example.com --headless slimerjs -b chrome
 sitespeed.io -u http://www.example.com --phantomjsPath /path/to/phantomjs -b chrome
 ~~~
 
-Doing like that your test will automatically wait for *loadEventEnd* + 2 seconds, and you can choose to configure yourself when to end. You can [read more](/documentation/browsers/) on what you can configure when you run a test.
+Doing like that your test will automatically wait for *loadEventEnd* + 2 seconds, and you can choose to configure yourself when to end. You can [read more]({{site.baseurl}}/documentation/browsers/) on what you can configure when you run a test.

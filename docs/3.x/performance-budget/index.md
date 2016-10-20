@@ -8,7 +8,7 @@ nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Performance budget with sitespeed.io.
 ---
-[Documentation 3.x](/documentation/) / Performance Budget
+[Documentation 3.x]({{site.baseurl}}/documentation/) / Performance Budget
 
 # Performance Budget
 {:.no_toc}

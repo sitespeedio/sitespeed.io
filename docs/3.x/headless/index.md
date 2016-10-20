@@ -8,7 +8,7 @@ nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Collect browser timings headless using sitespeed.io.
 ---
-[Documentation 3.x](/documentation/) / Headless
+[Documentation 3.x]({{site.baseurl}}/documentation/) / Headless
 
 # Headless
 {:.no_toc}

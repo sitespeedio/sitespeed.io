@@ -8,7 +8,7 @@ nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Use sitespeed.io in your Continuous Integration setup.
 ---
-[Documentation 3.x](/documentation/) / Continous Intergration
+[Documentation 3.x]({{site.baseurl}}/documentation/) / Continous Intergration
 
 # Continuous integration
 {:.no_toc}
@@ -103,12 +103,12 @@ The plugin focus on breaking your build if your budget doesnt't match the real w
 
 Add sitespeed.io in your build step:
 
-![Add sitespeed.io as a build step](add-build-step-jenkins.png)
+![Add sitespeed.io as a build step]({{site.baseurl}}/img/add-build-step-jenkins.png)
 {: .img-thumbnail}
 
 You can configure the plugin like this:
 
-![Configure the plugin](jenkins-plugin-configuration.png)
+![Configure the plugin]({{site.baseurl}}/img/jenkins-plugin-configuration.png)
 {: .img-thumbnail}
 
 And remember, if you output TAP, use the [TAP plugin](https://wiki.jenkins-ci.org/display/JENKINS/TAP+Plugin) or JUnit use the built in **Publish JUnit test result report**.
@@ -127,7 +127,7 @@ sitespeed.io.cmd -u https://www.sitespeed.io
 ~~~
 
 **Screenshot of adding a build step in TeamCity**
-![Adding a build step in TeamCity](teamcity-build-step.png)
+![Adding a build step in TeamCity]({{site.baseurl}}/img/teamcity-build-step.png)
 {: .img-thumbnail}
 
 ### JUnit Reporting
@@ -139,7 +139,7 @@ sitespeed.io.cmd -u https://www.sitespeed.io --junit > sitespeedio_result.xml
 * TeamCity should now run sitespeed.io and report back its results.
 
 **Screenshot of adding JUnit reporting in TeamCity**
-![Adding JUnit reporting in TeamCity](teamcity-build-feature.png)
+![Adding JUnit reporting in TeamCity]({{site.baseurl}}/img/teamcity-build-feature.png)
 {: .img-thumbnail}
 
 ## Travis integration

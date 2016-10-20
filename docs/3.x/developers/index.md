@@ -8,7 +8,7 @@ nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: How to add your own post tasks, create rules and other cool stuff.
 ---
-[Documentation 3.x](/documentation/) / Developers
+[Documentation 3.x]({{site.baseurl}}/documentation/) / Developers
 
 # Developers
 {:.no_toc}

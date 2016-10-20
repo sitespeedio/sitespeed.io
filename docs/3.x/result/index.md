@@ -8,7 +8,7 @@ nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Result from an analyze using sitespeed.io.
 ---
-[Documentation 3.x](/documentation/) / Result
+[Documentation 3.x]({{site.baseurl}}/documentation/) / Result
 
 # The Result
 {:.no_toc}
@@ -24,7 +24,7 @@ send the metrics to [Graphite](#graphite). Lets first checkout the different HTM
 
 The summary page is a executive summary page where green is good, yellow means that you should look into it and red is bad (sometimes really bad). The page shows a summary of best practices for good web site performance (and site speed metrics if configured). You can choose which boxes/best practices that will be shown on this page, so you can create different views for different use cases.
 
-![Site summary page](site-summary-3.png)
+![Site summary page]({{site.baseurl}}/img/site-summary-3.png)
 {: .img-thumbnail}
 
 
@@ -32,7 +32,7 @@ The summary page is a executive summary page where green is good, yellow means t
 
 The detailed summary page will give you almost all the metrics you want for you site. You will get the average, 10th percentile, median, 95th percentile, min, max and standard deviation value for each metrics (this page is based on the **summary.json** file, where you also will find the variance and the 90th percentile, if ever needed when comparing metrics).
 
-![Detailed site summary page](detailed-site-summary-3.png)
+![Detailed site summary page]({{site.baseurl}}/img/detailed-site-summary-3.png)
 {: .img-thumbnail}
 
 
@@ -40,14 +40,14 @@ The detailed summary page will give you almost all the metrics you want for you 
 
 The detailed site report page shows data collected for each page. You can configure which metrics/data that you want to show in the columns, so you can choose what is extra important for you.
 
-![Detailed site report](detailed-site-report-3.png)
+![Detailed site report]({{site.baseurl}}/img/detailed-site-report-3.png)
 {: .img-thumbnail}
 
 ## Full page analyzes
 
-Every page that is tested, also get a corresponding HTML page, where all in deep data is shown. Checkout the [examples](/example/) section to see what it looks like.
+Every page that is tested, also get a corresponding HTML page, where all in deep data is shown. Checkout the [examples]({{site.baseurl}}/examples/) section to see what it looks like.
 
-![Full page report](full-page-report-3.png)
+![Full page report]({{site.baseurl}}/img/full-page-report-3.png)
 {: .img-thumbnail}
 
 ## Most used assets report
@@ -55,19 +55,19 @@ The most used assets report show you the most used assets (a.k.a which asset sho
 
 You will see the following for each asset: the type, the time since last modification, the cache time, the weight and the number of times the asset has been used.
 
-![Assets report](assets-report-3.png)
+![Assets report]({{site.baseurl}}/img/assets-report-3.png)
 {: .img-thumbnail}
 
 ## Hotlist
 The hotlist is a way of trying to find bad pages/assets that you should focus on to get better performance.
 
-![Hotlist report](hotlist-report-3.png)
+![Hotlist report]({{site.baseurl}}/img/hotlist-report-3.png)
 {: .img-thumbnail}
 
 ## Domains
 If you fetch timings using your browser, the domains page will be created, that shows timings per domain, making it easier to spot 3rd party domains that is slow.
 
-![Domains report](domains-report-3.png)
+![Domains report]({{site.baseurl}}/img/domains-report-3.png)
 {: .img-thumbnail}
 
 ## Screenshots
@@ -78,7 +78,7 @@ You can choose to take screenshots of every tested page for the used viewport.
 All collected data will be stored as a fat JSON file in your data directory if you add *storeJson* when you run sitespeed.io. That is good if you yourself want to harvest the data from the result.
 
 # Graphite
-Most of the collected metrics can be stored in Graphite, making it easy for you to graph the metrics. Checkout the [Graph section](/documentation/graphs/).
+Most of the collected metrics can be stored in Graphite, making it easy for you to graph the metrics. Checkout the [Graph section]({{site.baseurl}}/documentation/graphs/).
 
 # TAP and JUnit XML
-You can create TAP or JUnit XML from your analyze, head over to the [Continuous Integration section](/documentation/continuous-integration/#generating-junit-xml-or-tap).
+You can create TAP or JUnit XML from your analyze, head over to the [Continuous Integration section]({{site.baseurl}}/documentation/continuous-integration/#generating-junit-xml-or-tap).

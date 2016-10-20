@@ -7,7 +7,7 @@ keywords: sitespeed.io, rules, wpo, fast, speed, web performance optimization, b
 nav: documentation
 
 ---
-[Documentation 3.x](/documentation/) / Rules and best practices
+[Documentation 3.x]({{site.baseurl}}/documentation/) / Rules and best practices
 
 # The rules
 {:.no_toc}

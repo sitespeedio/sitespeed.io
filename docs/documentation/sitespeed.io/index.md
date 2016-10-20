@@ -10,7 +10,7 @@ twitterdescription: Documentation for the sitespeed.io.
 
 # Documentation 4.x
 
-<img src="/img/logos/sitespeed.io.png" class="pull-right img-big" alt="Browsertime logo" width="200" height="214">
+<img src="{{site.baseurl}}/img/logos/sitespeed.io.png" class="pull-right img-big" alt="Browsertime logo" width="200" height="214">
 
 Sitespeed.io is the complete toolbox to test the web performance of your web site. Use it to monitor your performance or checkout how your competitors is doing.
 
@@ -26,7 +26,8 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Metrics](metrics/) - configure which metrics you want to use.
  * [Continuous Integration](continuous-integration/) - generate JUnit XML/TAP and use Jenkins, Team City, Grunt or the Gulp plugin.
  * [Docker](docker/) - how to use our Docker containers.
- * [Graphs](graphs/) - send data to a TSDB for visualizing metrics.
+ * [Upgrade](upgrade/) - upgrading from 3.x to 4.0 check out our guide here.
+  * [Graphs](graphs/) - send data to a TSDB for visualizing metrics.
  * [Mobile phones](mobile-phones/) - test using your mobile phone (Android only).
  * [WebPageTest](webpagetest/) - drive WebPageTest and fetch metrics and graph them.
  * [How it all works](how-it-all-works/) - lets checkout how everything works.

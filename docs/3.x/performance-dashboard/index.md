@@ -9,7 +9,7 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Web performance dashboard using sitespeed.io.
 ---
 
-[Documentation 3.x](/documentation/) / Performance Dashboard
+[Documentation 3.x]({{site.baseurl}}/documentation/) / Performance Dashboard
 
 # Performance Dashboard
 {:.no_toc}
@@ -36,34 +36,34 @@ You can run these images on your own machine(s) or in the cloud. You only need D
 There are lots of metrics collected, lets check what kind of views of the data you can create:
 
 * [In deep info about your most important pages](http://dashboard.sitespeed.io/dashboard/db/metrics-for-one-page-american-airlines-home-page) - you can graph and keep track how your page is built (things like number of requests, request types and sizes) and how fast your page is using the Navigation Timing and User Timings.
-[![Metrics for one page example](one-page.png)](http://dashboard.sitespeed.io/dashboard/db/metrics-for-one-page-american-airlines-home-page)
+[![Metrics for one page example]({{site.baseurl}}/img/one-page.png)](http://dashboard.sitespeed.io/dashboard/db/metrics-for-one-page-american-airlines-home-page)
 {: .img-thumbnail}
 
 * [Keep track how your whole site is doing]((http://dashboard.sitespeed.io/dashboard/db/summary-of-a-site-america-airlines)) - summary for a whole site helps you see keep track of all tested pages. Use it to catch pages that are underperforming. And to keep track for your whole site over time. Do you see the red boxes in the image? That is budgets that haven't been met. You can configure budgets for all metrics making it super easy for all users to understand if the site is doing good or bad.
-[![Summary](summary.png)](http://dashboard.sitespeed.io/dashboard/db/summary-of-a-site-america-airlines)
+[![Summary]({{site.baseurl}}/img/summary.png)](http://dashboard.sitespeed.io/dashboard/db/summary-of-a-site-america-airlines)
 {: .img-thumbnail}
 
 * [Competition ain't nothing](http://dashboard.sitespeed.io/dashboard/db/compare-multiple-sites) - compare multiple sites and keep track of them. This is an awesome way to keep track of your competition, how fast they are and how they are building their web sites.
-[![Compare](compare.png)](http://dashboard.sitespeed.io/dashboard/db/compare-multiple-sites)
+[![Compare]({{site.baseurl}}/img/compare.png)](http://dashboard.sitespeed.io/dashboard/db/compare-multiple-sites)
 {: .img-thumbnail}
 
 * [ WebPageTest](http://dashboard.sitespeed.io/dashboard/db/using-webpagetest) -  yes we love WebPageTest and in this example we drive WebPageTest through sitespeed.io and graph the data. We use the <a href="http://www.webpagetest.org/getkey.php">free limited API key</a> provided by Akamai and you should setup your own WebPageTest instance so you can test all your important pages, as often as you need.
-[![WebPageTest](webpagetest.png)](http://dashboard.sitespeed.io/dashboard/db/using-webpagetest)
+[![WebPageTest]({{site.baseurl}}/img/webpagetest.png)](http://dashboard.sitespeed.io/dashboard/db/using-webpagetest)
 {: .img-thumbnail}
 
 * [Keep track of your third party content](http://dashboard.sitespeed.io/dashboard/db/3rd-party-america-airlines) - today most of the consumer web pages have about 40% of third party content. You don't want them to slow you down and so you need to keep track of how they are doing. Thanks <a href="https://twitter.com/JrnVdb">Jeroen Vd Berghe</a> for the help and inspiration with the graphs.
-[![3rd party](3rdparty.png)](http://dashboard.sitespeed.io/dashboard/db/3rd-party-america-airlines)
+[![3rd party]({{site.baseurl}}/img/3rdparty.png)](http://dashboard.sitespeed.io/dashboard/db/3rd-party-america-airlines)
 {: .img-thumbnail}
 
 * [Collect Custom Metrics](http://dashboard.sitespeed.io/dashboard/db/user-timing-and-custom-metrics) - collect your own defined metrics using the User Timing API and running your own Javascript snippets in the browser and the values will automatically be sent to Graphite (both for ach page and a summary for all pages). This is perfect if there's a metric that is super important for your site or if there's a metric that is missing in sitespeed.io. You can add it yourself, as long as you can fetch it using Javascript.
-[![Custom metrics](custom-metrics2.jpg)](http://dashboard.sitespeed.io/dashboard/db/user-timing-and-custom-metrics)
+[![Custom metrics]({{site.baseurl}}/img/custom-metrics2.jpg)](http://dashboard.sitespeed.io/dashboard/db/user-timing-and-custom-metrics)
 {: .img-thumbnail}
 
 
 * [Keep track of every page and every request](http://dashboard.sitespeed.io/dashboard/db/load-timings-per-asset) -
 this is maybe a little bit crazy but you can collect
 <a href="http://dashboard.sitespeed.io/dashboard/db/load-timings-per-asset">timings per request</a> You can graph things like time spent in *blocked*, *dns*, *connect*, *ssl*, *send*, *wait*, *receive* and *total* time. It will generate a lot of data but is extremely good to find slow loading assets from a 3rd party.
-[![Timings per asset](perasset.png)](http://dashboard.sitespeed.io/dashboard/db/load-timings-per-asset)
+[![Timings per asset]({{site.baseurl}}/img/perasset.png)](http://dashboard.sitespeed.io/dashboard/db/load-timings-per-asset)
 {: .img-thumbnail}
 
 ## Setup the containers
@@ -137,7 +137,7 @@ grafana/grafana
 
 The next step is to access your Grafana instance and configure it to use your Graphite instance as backend. Choose *Grafana admin* > *Data Sources* > *Add new*. And then make sure to set it as default and enable Basic Auth.
 
-![Configure Grafana to use Graphite](configure-grafana.jpg)
+![Configure Grafana to use Graphite]({{site.baseurl}}/img/configure-grafana.jpg)
 {: .img-thumbnail}
 
 
@@ -181,7 +181,7 @@ sitespeed.io -u http://mysite.com -b firefox --graphiteHost YOUR_GRAPHITE_HOST -
 ~~~
 
 ## Setup your dashboards
-To get up and running fast we have a [zip file](dashboards.zip) with example JSON:s that you can use to. Remember though that you need to change the keys to match your keys so you can see values.
+To get up and running fast we have a [zip file]({{site.baseurl}}/dashboards.zip) with example JSON:s that you can use to. Remember though that you need to change the keys to match your keys so you can see values.
 
 If you need help, checkout the [Grafana documentation](http://docs.grafana.org/).
 

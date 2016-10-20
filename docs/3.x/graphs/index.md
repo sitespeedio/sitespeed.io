@@ -8,7 +8,7 @@ nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Create graphs for your web performance metrics using Graphite and Grafana.
 ---
-[Documentation 3.x](/documentation/) / Graphs
+[Documentation 3.x]({{site.baseurl}}/documentation/) / Graphs
 
 # Graphs
 {:.no_toc}
@@ -30,13 +30,13 @@ sitespeed.io -u http://www.cybercom.com --graphiteHost localhost -m 5 --graphite
 ~~~
 
 And setup the following graphs:
-![sitespeed.io page metrics sent to Graphite](grafana-page-metrics.png)
+![sitespeed.io page metrics sent to Graphite]({{site.baseurl}}/img/grafana-page-metrics.png)
 {: .img-thumbnail}
 
-![sitespeed.io timing metrics sent to Graphite](grafana-timing-metrics.png)
+![sitespeed.io timing metrics sent to Graphite]({{site.baseurl}}/img/grafana-timing-metrics.png)
 {: .img-thumbnail}
 
-![sitespeed.io page metrics sent to Graphite](grafana-page-metrics.png)
+![sitespeed.io page metrics sent to Graphite]({{site.baseurl}}/img/grafana-page-metrics.png)
 {: .img-thumbnail}
 
 In this example, we compare four Swedish newspapers, running it like this
@@ -47,12 +47,12 @@ $ sitespeed.io  --sites /Users/peter/swedish.txt --graphiteHost localhost --grap
 
 and the result:
 
-![sitespeed.io comparing multiple sites](grafana-swedish-newspapers.png)
+![sitespeed.io comparing multiple sites]({{site.baseurl}}/img/grafana-swedish-newspapers.png)
 {: .img-thumbnail}
 
 And the last example, we fetch data from WebPageTest and create the following:
 
-![sitespeed.io running WebPageTest and graphing the data](grafana-wpt-dark.png)
+![sitespeed.io running WebPageTest and graphing the data]({{site.baseurl}}/img/grafana-wpt-dark.png)
 {: .img-thumbnail}
 
 ~~~bash

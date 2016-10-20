@@ -8,7 +8,7 @@ nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Use Cases for running sitespeed.io.
 ---
-[Documentation 3.x](/documentation/) / Use Cases
+[Documentation 3.x]({{site.baseurl}}/documentation/) / Use Cases
 
 # Use Cases
 {:.no_toc}

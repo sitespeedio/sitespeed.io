@@ -21,7 +21,7 @@ How do you actually make use of it? Well for example, you can easily see which i
 <p>You can also use the <i>summary.xml</i> file with Jenkins. You can use the <a href="https://wiki.jenkins-ci.org/display/JENKINS/Plot+Plugin" target="_blank">Plot plugin</a> and create graphs between your test runs, keep track of what's happening with your site in your development cycle.</p>
 <a href="jenkins-page-weight.png"><img src="jenkins-page-weight.png"></a>
 
-<p>There are also some new metrics: The total per page and individual size of js/css and images. You can check out an example of the <a href="/documentation/summary-1.8.1.xml" target="_blank">summary.xml</a> file.</p>
+<p>There are also some new metrics: The total per page and individual size of js/css and images. You can check out an example of the <a href="{{site.baseurl}}/documentation/summary-1.8.1.xml" target="_blank">summary.xml</a> file.</p>
 
 <h3>Goodbye average, hello the 90th percentile!</h3>
 The summary page used to report average values of all different metrics. That has been changed, now median & the 90th percentile is the standard. 
@@ -42,7 +42,7 @@ The summary page used to report average values of all different metrics. That ha
 <a href="image-weight.png"><img src="image-weight.png"></a>
 
 <h3>New way of how to output the JUnit XML</h3>
-<p>A few changes to make things easier: By default, the JUnit xml file is now named <em>sitespeed.io-junit.xml</em>. You need to configure the output directory (see the <a href="/documentation/#jenkins">docs</a>) and the script will also put a copy of the summary.xml in the same dir.
+<p>A few changes to make things easier: By default, the JUnit xml file is now named <em>sitespeed.io-junit.xml</em>. You need to configure the output directory (see the <a href="{{site.baseurl}}/documentation/#jenkins">docs</a>) and the script will also put a copy of the summary.xml in the same dir.
 </p>
 
 <h3>Bug fixes</h3>
