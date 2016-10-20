@@ -2,7 +2,8 @@
 
 ## UNRELEASED
 ### Changed
-* New Browsertim beta-7
+* New browsertime beta-7
+* Sending all data to Slack changed property name from both to all: --slack.type all and default is now all (instead of summary). 
 
 ## Fixed
 * Don't set viewport when running on Android.
