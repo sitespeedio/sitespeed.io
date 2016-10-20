@@ -91,7 +91,7 @@ Slack
   --slack.hookUrl   WebHook url for the Slack team (check https://<your team>.slack.com/apps/manage/custom-integrations).
   --slack.userName  User name to use when posting status to Slack.                                                                          [default: "Sitespeed.io"]
   --slack.channel   The slack channel without the # (if something else than the default channel for your hook).
-  --slack.type      Send summary for a run, metrics from all URLs or both to Slack.                          [choices: "summary", "url", "both"] [default: "summary"]
+  --slack.type      Send summary for a run, metrics from all URLs or all to Slack.                          [choices: "summary", "url", "all"] [default: "summary"]
 
 HTML
   --html.showAllWaterfallSummary  Set to true to show all waterfalls on page summary HTML report                                           [boolean] [default: false]
@@ -212,6 +212,19 @@ Mobile testing is always best on mobile devices. You can [test on Android phones
 {: .note .note-warning}
 
 ## Advanced
+
+### Slack
+You can send the result of a run to Slack. Setup a webhook in the slack API (https://<your team>.slack.com/apps/manage/custom-integrations) and then configure it:
+
+~~~bash
+$ sitespeed.io https://www.sitespeed.io/ --slack.hookUrl https://hooks.slack.com/services/YOUR/HOOK/URL
+~~~
+
+You can also choose to send summary (the summary for all runs), individual runs (with url) or both by choosing the <code>slack.type</code>.
+
+~~~bash
+$ sitespeed.io https://www.sitespeed.io/ --slack.hookUrl https://hooks.slack.com/services/YOUR/HOOK/URL --slack.type summary
+~~~
 
 ### Login the user
 We have added a [special section](../prepostscript) for that!
