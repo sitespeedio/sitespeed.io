@@ -18,7 +18,7 @@ so much easier to maintain.</p>
   <li><strong>NodeJS</strong> - We moved (almost) everything to NodeJS. We are still dependent on Java, because the (old) Java crawler is still used and we will try to remove it in the future.
      The new version is faster than the old one. And so much easier to change and better separation between logic and </li>
   <li><strong>Send metrics to Graphite</strong> - one of the number one feature requests for sitespeed.io has been to collect data over time and graph it. Sitespeed.io now supports sending the metrics to Graphite  It can looks something like this
-    <img src="/documentation/grafana-timing-metrics.png" class="img-thumbnail"/>
+    <img src="{{site.baseurl}}/documentation/grafana-timing-metrics.png" class="img-thumbnail"/>
   </li>
 
   <li><strong>RUM SpeedIndex</strong> - We have rewritten BrowserTime to NodeJS, and it now supports running whatever javascript snippet you want< meaning you can fetch whatever
@@ -28,17 +28,17 @@ so much easier to maintain.</p>
     or create your own reports.
   </li>
   <li><strong>Drive WebPageTest</strong> - you can now feed <a href="http://www.webpagetest.org/">WebPageTest</a> with URL:s to test and collect the metrics and include them in your sitespeed.io report.
-    <img src="/documentation/wpt-summary.png" class="img-thumbnail"/>
+    <img src="{{site.baseurl}}/documentation/wpt-summary.png" class="img-thumbnail"/>
   </li>
   <li><strong>Google Page Speed Insights</strong> - collect the score and other data and show it in your sitespeed.io report.
-    <img src="/documentation/gpsi-detailed-page-info.png" class="img-thumbnail"/>
+    <img src="{{site.baseurl}}/documentation/gpsi-detailed-page-info.png" class="img-thumbnail"/>
   </li>
   <li><strong>Support for PhantomJS 2</strong> - yep we know, 2.0 is not released yet and we are really looking forward to it, so
     we added the functionality to use it already. What's extra cool with 2.0 (except that it is much faster) is that it supports the Navigation Timing API. You can use it by pointing out your binary by <code>--phantomjsPath</code></li>
   <li><strong>Two new rules</strong> - check if connection is closed and don't set private headers on static assets.</li>
   <li><strong>Two new summary pages</strong> - slowest domains and hotlist (find troublesome assets fast)</li>
   <li><strong>TAP</strong> - you can now generate <a href="http://testanything.org/">TAP</a> reports, making your CI tool break your build if you don't follow the web performance best practice rules</li>
-  <li><strong>Performance budget</strong> - we kind of had support for a performance budget before with the JUnitXML. With the new version it is much cleaner: <a href="/documentation/#perfBudget">specify</a> which values
+  <li><strong>Performance budget</strong> - we kind of had support for a performance budget before with the JUnitXML. With the new version it is much cleaner: <a href="{{site.baseurl}}/documentation/#perfBudget">specify</a> which values
   you will test against and run. </li>
   <li><strong>Throttle the connection</strong> - You can throttle the connection when you are fetching timing metrics from the browser. Choose between:
     <ul>

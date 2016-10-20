@@ -8,7 +8,7 @@ nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Introduction for sitespeed.io.
 ---
-[Documentation 3.x](/documentation/) / Introduction
+[Documentation 3.x]({{site.baseurl}}/documentation/) / Introduction
 
 # Introduction
 Sitespeed.io is an open source tool that helps you understand if your site is fast or not. It tests your site against web performance best practice rules, get timings using Chrome/Firefox or PhantomJS 2 (using the Navigation Timing API and User Timing API).

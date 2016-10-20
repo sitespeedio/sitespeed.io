@@ -7,7 +7,7 @@ nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: You can use Firefox, Chrome and Chrome on Android to collect metrics.
 ---
-[Documentation](/documentation/sitespeed.io/) / Browsers
+[Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / Browsers
 
 # Browsers
 {:.no_toc}
@@ -74,11 +74,11 @@ sitespeed.io https://www.sitespeed.io --browsertime.script scripts.js -b firefox
 ~~~
 
 You will get a custom script section in the Browsertime tab.
-![Custom scripts individual page](customscripts.png)
+![Custom scripts individual page]({{site.baseurl}}/img/customscripts.png)
 {: .img-thumbnail}
 
 And in the summary and detailed summary section.
-![Summary page](summary.png)
+![Summary page]({{site.baseurl}}/img/summary.png)
 {: .img-thumbnail}
 
 One more thing: All custom scripts values will be sent to Graphite, no extra configuration needed!

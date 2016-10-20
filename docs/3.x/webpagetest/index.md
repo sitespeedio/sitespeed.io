@@ -8,7 +8,7 @@ nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Drive WebPageTest using sitespeed.io and include the teh metrics in your sitespeed.io report.
 ---
-[Documentation 3.x](/documentation/) / WebPageTest
+[Documentation 3.x]({{site.baseurl}}/documentation/) / WebPageTest
 
 # WebPageTest
 {:.no_toc}
@@ -23,17 +23,17 @@ To use WPT you can either get an [API key](http://www.webpagetest.org/getkey.php
 
 Out of the it will collect [these](https://github.com/sitespeedio/sitespeed.io/tree/master/lib/aggregators/webpagetest) metrics that can be displayed on the summary page. By default, these will be shown:
 
-![WebPageTest summary](wpt-summary.png)
+![WebPageTest summary]({{site.baseurl}}/img/wpt-summary.png)
 {: .img-thumbnail}
 
 On the pages summary, you will also automatically get the SpeedIndex score:
-![WebPageTest pages](wpt-pages.png)
+![WebPageTest pages]({{site.baseurl}}/img/wpt-pages.png)
 {: .img-thumbnail}
 
 And on the detailed summary page, we show some interesting metrics and the waterfalls
 for the median result of both first and repeated view:
 
-![WebPageTest page info](wpt-detailed-page-info.png)
+![WebPageTest page info]({{site.baseurl}}/img/wpt-detailed-page-info.png)
 {: .img-thumbnail}
 
 ## Configuration

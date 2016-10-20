@@ -8,7 +8,7 @@ nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Use Docker to run sitespeed.io.
 ---
-[Documentation 3.x](/documentation/) / Docker
+[Documentation 3.x]({{site.baseurl}}/documentation/) / Docker
 
 # Docker
 {:.no_toc}

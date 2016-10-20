@@ -8,7 +8,7 @@ nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Configuration for the sitespeed.io.
 ---
-[Documentation 3.x](/documentation/) / Configuration
+[Documentation 3.x]({{site.baseurl}}/documentation/) / Configuration
 
 # Configuration
 {:.no_toc}

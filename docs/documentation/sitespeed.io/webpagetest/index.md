@@ -7,7 +7,7 @@ nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Drive WebPageTest using sitespeed.io and include the metrics in your sitespeed.io report.
 ---
-[Documentation](/documentation/sitespeed.io/) / WebPageTest
+[Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / WebPageTest
 
 # WebPageTest
 {:.no_toc}

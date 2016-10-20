@@ -8,7 +8,7 @@ nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Fetch Google Page Speed Insights metrics and include them in your sitespeed.io report.
 ---
-[Documentation 3.x](/documentation/) / GPSI
+[Documentation 3.x]({{site.baseurl}}/documentation/) / GPSI
 
 # Google Page Speed Insights
 {:.no_toc}
@@ -28,15 +28,15 @@ $ sitespeed.io -u http://yoursite.com  --gpsiKey MY_SECRET_KEY
 
 Sitespeed.io will collect all available data from GPSI. On the summary page, the GPSI score will be shown. We also collect number of requests. You can check the implementation [here](https://github.com/sitespeedio/sitespeed.io/tree/master/lib/aggregators/gpsi) and add an issue if you want us to collect more data:
 
-![Google Page Speed Summary](gpsi-summary.png)
+![Google Page Speed Summary]({{site.baseurl}}/img/gpsi-summary.png)
 {: .img-thumbnail}
 
 On the pages summary, you will also automatically the GPSI score:
 
-![Google Page Speed Pages](gpsi-pages.png)
+![Google Page Speed Pages]({{site.baseurl}}/img/gpsi-pages.png)
 {: .img-thumbnail}
 
 And on the detailed summary page, we show all the data that are provided by GPSI, it looks like this:
 
-![Google Page Speed details](gpsi-detailed-page-info.png)
+![Google Page Speed details]({{site.baseurl}}/img/gpsi-detailed-page-info.png)
 {: .img-thumbnail}
