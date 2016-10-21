@@ -3,10 +3,11 @@
 ## UNRELEASED
 ### Changed
 * New browsertime beta-7
-* Sending all data to Slack changed property name from both to all: --slack.type all and default is now all (instead of summary). 
+* Sending all data to Slack changed property name from both to all: --slack.type all and default is now all (instead of summary).
 
 ## Fixed
 * Don't set viewport when running on Android.
+* Screenshots for Firefox works again #1256
 
 ## 4.0.0-beta.5 2016-10-17
 
