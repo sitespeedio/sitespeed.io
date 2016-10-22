@@ -1,8 +1,5 @@
-## Docker to the rescue!
+## It's a new Coach in town
 * * *
-Use our [Docker containers](https://hub.docker.com/u/sitespeedio/) to get an environment with Firefox, Chrome, XVFB and sitespeed.io up and running in a couple of minutes.
+<img src="{{site.baseurl}}/img/logos/coach.png" class="pull-left img-big" alt="I'm the coach" width="188" height="219">
 
-~~~ bash
-$ docker pull sitespeedio/sitespeed.io
-$ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -b firefox
-~~~
+The Godfather of web performance tools YSlow is dead. It died a couple of years after the first release and finally there's something new that can guide you in the web performance jungle: [The Coach]({{site.baseurl}}/documentaion/coach/) gives you advice on how you can make your web page more performant.

@@ -24,7 +24,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Plugins](plugins/) - list/disable/enable or create your own plugin.
  * [Pre/post scripting](prepostscript/) - run Selenium scripts before/after you test a URL.
  * [Metrics](metrics/) - configure which metrics you want to use.
- * [Continuous Integration](continuous-integration/) - generate JUnit XML/TAP and use Jenkins, Team City, Grunt or the Gulp plugin.
+ * [Continuous Integration](continuous-integration/) - generate JUnit XML/TAP and use Jenkins, Grunt or the Gulp plugin.
  * [Docker](docker/) - how to use our Docker containers.
  * [Upgrade](upgrade/) - upgrading from 3.x to 4.0 check out our guide here.
   * [Graphs](graphs/) - send data to a TSDB for visualizing metrics.
