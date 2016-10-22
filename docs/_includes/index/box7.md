@@ -1,6 +1,6 @@
 ## Thank you!
 * * *
-Sitespeed.io is built upon a couple Open Source tools, massive love to those projects:
+Sitespeed.io is built upon Open Source tools, massive love to those projects ([see the full list]({{site.baseurl}}/documentation/sitespeed.io/how-it-all-works/#built-upon-open-source)):
 
  * [Selenium](http://www.seleniumhq.org/)
  * [TSProxy](https://github.com/WPO-Foundation/tsproxy)

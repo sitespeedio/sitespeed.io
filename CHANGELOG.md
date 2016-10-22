@@ -8,6 +8,7 @@
 ## Fixed
 * Don't set viewport when running on Android.
 * Screenshots for Firefox works again #1256
+* Cli for setting budget junit output is junit NOT junitxml
 
 ## 4.0.0-beta.5 2016-10-17
 
