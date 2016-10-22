@@ -30,7 +30,7 @@ You can throttle the connection when you are fetching metrics using the browser.
 * 3gfast - 1600/768 150 RTT
 * 3gslow - 780/330 200 RTT
 * 2g - 35/328 1300 RTT
-* cable - 5000/1000 280 RTT
+* cable - 5000/1000 28 RTT
 * native - your current connection
 
 We use [TSProxy](https://github.com/WPO-Foundation/tsproxy) by default so you need Python 2.7 to be able tho throttle the connection.
