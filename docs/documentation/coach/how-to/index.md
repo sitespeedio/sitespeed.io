@@ -20,19 +20,19 @@ You can use the coach in a couple of different ways.
 
 ### Standalone
 
-You need Node.js 4.3.0 or later to run. And you need Firefox and/or Chrome installed.
+You need Node.js 4.3.0 or later to run. And you need Chrome and/or Firefox installed.
 
-If you want to use Firefox (Firefox is default):
+If you want to use Chrome (Chrome is default):
 
 ```bash
 webcoach https://www.sitespeed.io
 ```
 
-Try it with Chrome:
+Try it with Firefox:
 
 ```bash
 npm install webcoach -g
-webcoach https://www.sitespeed.io --browser chrome
+webcoach https://www.sitespeed.io --browser firefox
 ```
 
 If you also want to show the offending assets/details and the description of the advice:
@@ -150,7 +150,7 @@ const coachResult = api.merge(domAdviceResult, harAdviceResult);
 Now you have the full result (as JSON) as a coachResult.
 
 ## What do the coach do
-The coach will give you advice on how to do your page better. You will also get a score between 0-100. If you get 100 the page is great, if you get 0 you can do much better!
+The coach will give you advice on how to make your page better. You will also get a score between 0-100. If you get 100 the page is great, if you get 0 you have some work to do!
 
 ## How does it all work?
 
@@ -181,9 +181,9 @@ The coach will then just tell you how the page is built and you can draw your ow
 The coach has a clock and knows how to use it! You will get timing metrics and know if you are doing better or worse than the last run.
 
 # Developers guide
-Checkout the [developers guide](../developers/) to get a better feeling how the coach works.
+Checkout the [developers guide](../developers/) to get a better feeling of how the coach works.
 
 # Browser support
 The coach is automatically tested in latest Chrome and Firefox. To get best results you need Chrome or Firefox 48 (or later) to be able to know if the server is using HTTP/2.
 
-We hope that the coach work in other browsers but we cannot guarantee it right now.
+We hope that the coach works in other browsers, but we cannot guarantee it right now.

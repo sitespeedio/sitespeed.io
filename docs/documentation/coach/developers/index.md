@@ -61,7 +61,7 @@ Then the coach take the HAR file generated from the page and analyze that too. T
 
 In the last step the  coach merges the advice into one advice list and creates an overall score.
 
-Isn't that cool? We got one more thing that we [intend to implement](https://github.com/sitespeedio/coach/issues/13): the combination of the two: A HAR advice that takes input from a DOM. This is cool because the coach will then have the power to know it all.
+Cool huh? We got one more thing that we [intend to implement](https://github.com/sitespeedio/coach/issues/13): the combination of the two: A HAR advice that takes input from a DOM. This will be cool because the coach will then have the power to know it all.
 
 #### DOM advice
 
@@ -99,7 +99,7 @@ A simple example is the cssPrint advice that looks for a print stylesheet.
 
 
 #### HAR advice
-We use [PageXray](https://github.com/sitespeedio/pagexray) to convert the HAR file into a Page object that are easier to work with.
+We use [PageXray](https://github.com/sitespeedio/pagexray) to convert the HAR file into a Page object that is easier to work with.
 
 Each HAR advice needs to implement a processPage function. The function will be called once for each page.
 
@@ -145,9 +145,9 @@ What's extra cool is that a HAR advice can both act on input (specific advice fo
 #### The best of two worlds
 As an extra feature, the HAR advice override the DOM advice if the advice has the same id. This means you can easily combine data from the two and still output one advice.
 
-There's no advice that use that functionality today but be sure it will soon be.
+There's no advice that use that functionality today, but be rest assured it will soon be.
 
-It also means we can use information from the resource timing API v2 (where we can get response size) making the DOM advice even more powerful, but when you combine the HAR & DOM advice we can get all the values from the HAR (or some if we want that).
+It also means we can use information from the resource timing API v2 (where we can get response size) making the DOM advice even more powerful, but when you combine the HAR & DOM advice we can get all/some of the values from the HAR.
 
 ## Testing HTTP/2 vs HTTP/1
 Both DOM and HAR advice have help methods that makes it easy to give different advice depending on the protocol.
@@ -188,10 +188,10 @@ it('We should find out if we load an print CSS', function() {
 
 Right now all these tests run in https://github.com/sitespeedio/coach/blob/master/test/dom/performance/indexTest.js
 
-Each test case runs against a specific HTML page located in [test/http-server](test/http-server)  Create a suitable HTML page with the structure you want to test. Create the test case in  [test/dom](test/dom) or [test/har](test/har) and run it with <code>npm test</code>
+Each test case runs against a specific HTML page located in `test/http-server` Create a suitable HTML page with the structure you want to test. Create the test case in `test/dom` or `test/har` and run it with <code>npm test</code>
 
 ## Test your changes against a web page
-The coach uses Browsertime as runner for browsers. When you done a change, make sure to build a new version of the combined Javascript and then test against a url.
+The coach uses Browsertime as runner for browsers. When you finished with a change, make sure to build a new version of the combined Javascript and then test against a url.
 
 ```bash
 npm run combine
@@ -199,6 +199,6 @@ bin/index.js https://www.sitespeed.io firefox
 ```
 
 # Add a new category
-When you browse the code you will see that the coach knows more things than performance.
+When you browse the code you will see that the coach knows more than just performance.
 
-We have accessibility best practice, performance, and info today. Do the coach need to know something else? Let us know and we can create that category (it's as easy as create a new folder) and we can start add new advice there.
+We have accessibility best practice, performance, and info today. Does the coach need to know something else? Let us know and we can create that category (it's as easy as create a new folder) and we can start add new advice there.
