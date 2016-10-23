@@ -1,7 +1,7 @@
-## Why we love sitespeed.io
+## Why should you use sitespeed.io
 * * *
 
- * You can use Firefox or Chrome
- * HTTP/2
- * Write your plugins
+ * It uses Firefox or Chrome
+ * Works with HTTP/2
+ * You can write your plugins
  * Runs on Linux/MacOSX/Docker

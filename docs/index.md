@@ -10,7 +10,7 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 
 ## Welcome to the wonderful world of Web Performance
 
-Sitespeed.io is a set of Open Source tools that helps you make your web pages faster for the user. [The coach]({{site.baseurl}}/documentation/coach/) gives you performance advice of what you can do better on your site. [Browsertime](/documentation/browsertime/) collects metrics and HAR files from your browser. [PageXray]({{site.baseurl}}/documentation/pagexray/) converts a HAR file to a usable JSON structure that tells you more about your page. And finally [sitespeed.io]({{site.baseurl}}/documentation/sitespeed.io/) is the main tool that uses all the others and add supports for testing multiple pages and report the metrics to Graphite (and soon InfluxDB).
+Sitespeed.io is a set of Open Source tools that helps make your web pages faster. [The coach]({{site.baseurl}}/documentation/coach/) gives you performance advice based on best practices for your site. [Browsertime](/documentation/browsertime/) collects metrics and HAR files from your browser. [PageXray]({{site.baseurl}}/documentation/pagexray/) converts a HAR file to a usable JSON structure that tells you more about your page. And finally [sitespeed.io]({{site.baseurl}}/documentation/sitespeed.io/) is the main tool that uses all the previously mentioned tools and add supports for testing multiple pages as well as adds the ability to report the metrics to a TSDB(Currently Graphite and soon InfluxDB).
 
 Try out sitespeed.io by installing using [npm](https://www.npmjs.org/)/[yarn](https://yarnpkg.com/)/[Docker](https://hub.docker.com/r/sitespeedio/sitespeed.io/) ([need help?]({{site.baseurl}}/documentation/installation/)):
 
