@@ -27,7 +27,7 @@ Browsertime allows you to:
 $ bin/browsertime.js https://www.sitespeed.io
 ~~~
 
-Load https://www.sitespeed.io in Chrome three times. Results are stored in a json file (browsertime.json) with the timing data, and a har file (browsertime.har) in browsertime-results/www.sitespeed.io/$date/
+Load https://www.sitespeed.io in Chrome three times. Results are stored in a json file (browsertime.json) with the timing data, and a har file (browsertime.har) in `browsertime-results/www.sitespeed.io/$date/`
 
 ## I want more examples
 Checkout the [examples](https://github.com/sitespeedio/browsertime/tree/master/docs/examples).
@@ -52,13 +52,13 @@ Browsertime uses Selenium NodeJS to drive the browser. It starts the browser, lo
 
 To get the HAR from Firefox we use the [HAR Export Trigger](https://github.com/firebug/har-export-trigger) and Chrome we parse the timeline log and generates the HAR file.
 
-Oh and you can run your own Selenium script before (<code>--preScript</code>) and after (<code>--postScript</code>) a URL is accessed so you can login/logout or do whatever you want.
+Oh and you can run your own Selenium script before (<code>--preScript</code>) and after (<code>--postScript</code>) a URL is accessed, so you can login/logout or do whatever you want.
 
 
 ## The rewrite to 1.0
 
 The master is to a large degree a re-write of the internal implementation, the cli interface, and the node API. It's
-based on learnings from the previous releases of Browsertime, and their use in Sitespeed.io. It's still lacking some features
+based on the learnings from the previous releases of Browsertime, and their use in Sitespeed.io. It's still lacking some features
 from the 0.x releases, and the API is not final. However it should be a better foundation for future development, using
 more modern Javascript features and a much more extensive test suite.
 
