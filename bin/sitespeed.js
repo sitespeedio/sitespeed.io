@@ -8,7 +8,10 @@ const cli = require('../lib/support/cli'),
   sitespeed = require('../lib/sitespeed'),
   Promise = require('bluebird');
 
-require('longjohn');
+if (process.env.NODE_ENV !== 'production'){
+  require('longjohn');
+}
+
 Promise.config({
   warnings: true,
   longStackTraces: true

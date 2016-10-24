@@ -1,4 +1,4 @@
-## It's a new Coach in town
+## There's a new Coach in town
 * * *
 <img src="{{site.baseurl}}/img/logos/coach.png" class="pull-left img-big" alt="I'm the coach" width="188" height="219">
 

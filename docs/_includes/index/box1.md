@@ -4,6 +4,6 @@
 * * *
 
 {{ post.intro }}
-[Read the blog post to find out more.]({{ post.url }})
+[Read the blog post to find out more.]({{site.baseurl}}{{ post.url }})
 
 {% endfor %}
