@@ -220,7 +220,7 @@ You can send the result of a run to Slack. Setup a webhook in the slack API (htt
 $ sitespeed.io https://www.sitespeed.io/ --slack.hookUrl https://hooks.slack.com/services/YOUR/HOOK/URL
 ~~~
 
-You can also choose to send summary (the summary for all runs), individual runs (with url) or both by choosing the <code>slack.type</code>.
+You can also choose to send summary (the summary for all runs), individual runs (with url), only errors or all by choosing the <code>slack.type</code>.
 
 ~~~bash
 $ sitespeed.io https://www.sitespeed.io/ --slack.hookUrl https://hooks.slack.com/services/YOUR/HOOK/URL --slack.type summary
