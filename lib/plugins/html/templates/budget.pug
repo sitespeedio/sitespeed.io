@@ -11,14 +11,14 @@ mixin row(budget)
 
 block content
     h2 The budget
-    p The result of the performance budget.
+    p The result of the performance budget. We got #{totalFailing} failing and #{totalWorking} working.
 
-    h3 Failing budgets
+    h3 Failing budgets [#{totalFailing}]
     table
         +rowHeading(['url', 'result'])
         +row(budget.failing)
 
-    h3 Working budgets
+    h3 Working budgets [#{totalWorking}]
     table
         +rowHeading(['url', 'result'])
         +row(budget.working)
