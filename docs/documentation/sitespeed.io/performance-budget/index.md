@@ -33,17 +33,20 @@ The log will look something like this:
 [2016-10-24 10:53:01] Budget: 8 working and 4 failing tests
 ~~~
 
-<!--
+
 And the report looks like this.
 ![Example of the budget](budget.png)
 {: .img-thumbnail}
--->
 
 Lets see how you configure your budgets.
 
 
 ### The budget file
 The current version can handle min/max values and works on the internal data structure.
+
+
+You can read more about the metrics/data structure in the [metrics section]({{site.baseurl}}/documentation/sitespeed.io/metrics/).
+
 
 ~~~
 {
@@ -97,3 +100,23 @@ Then run it like this:
 ~~~bash
 $ sitespeed.io https://www.sitespeed.io/ --budget myBudget.json -b chrome -n 11
 ~~~
+
+And if the budget fails the exit status will be > 0. And you can also choose to report the budget as JUnitXML (Jenkins) and TAP.
+
+### JUnit XML
+You can output a JUnit XML file from the budget result like this.
+
+~~~bash
+$ sitespeed.io https://www.sitespeed.io/ --budget myBudget.json --budget.output junit -b chrome -n 5
+~~~
+
+It will create a *junit.xml* in the outputFolder.
+
+### TAP
+If you instead uses TAP, you can do like this:
+
+~~~bash
+$ sitespeed.io https://www.sitespeed.io/ --budget myBudget.json --budget.output tap -b chrome -n 5
+~~~
+
+And it will create a *budget.tap* fill in the configured outputFolder.
