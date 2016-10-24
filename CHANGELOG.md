@@ -4,6 +4,7 @@
 ### Added
 * You can now configure so sitespeed.io only slacks on error #1260
 * Do not run as root inside the Docker container #1259
+* Budget HTML page and log the budget info. #1264
 
 ### Changed
 * New browsertime beta-7
