@@ -1,6 +1,10 @@
 # CHANGELOG - sitespeed.io
 
 ## UNRELEASED
+### Added
+* You can now configure so sitespeed.io only slacks on error #1260
+* Do not run as root inside the Docker container #1259
+
 ### Changed
 * New browsertime beta-7
 * Sending all data to Slack changed property name from both to all: --slack.type all and default is now all (instead of summary).
@@ -9,6 +13,7 @@
 * Don't set viewport when running on Android.
 * Screenshots for Firefox works again #1256
 * Cli for setting budget junit output is junit NOT junitxml
+* Slack specific URL errors, so if something fails we know about it #1261
 
 ## 4.0.0-beta.5 2016-10-17
 
