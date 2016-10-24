@@ -33,13 +33,13 @@ You can throttle the connection when you are fetching metrics using the browser.
 * cable - 5000/1000 28 RTT
 * native - your current connection
 
-We use [TSProxy](https://github.com/WPO-Foundation/tsproxy) by default so you need Python 2.7 to be able tho throttle the connection.
+We use [TSProxy](https://github.com/WPO-Foundation/tsproxy) by default so you need Python 2.7 to be able to throttle the connection.
 
 ~~~bash
 $ sitespeed.io https://www.sitespeed.io -c cable
 ~~~
 
-We plan to implement support for other connectivity engines in the future. You can try out our tc implementation by setting <code>--connectivity.engine tc</code>
+We plan to implement support for other connectivity engines in the future. You can try out our [tc](http://lartc.org/manpages/tc.txt) implementation by setting <code>--browsertime.connectivity.engine tc</code> that should work out of the box inside of Docker.
 
 ## Choose when to end your test
 By default the browser will collect data until  [window.performance.timing.loadEventEnd happens + aprox 2 seconds more](https://github.com/sitespeedio/browsertime/blob/d68261e554470f7b9df28797502f5edac3ace2e3/lib/core/seleniumRunner.js#L15). That is perfectly fine for most sites, but if you do Ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (--browsertime.pageCompleteCheck). When the scripts returns true the browser will close or if the timeout time will be reached.
