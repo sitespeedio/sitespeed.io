@@ -25,7 +25,7 @@ You need [Docker](https://docs.docker.com/engine/installation/) and [Docker Comp
 
 1. Download our new Docker compose file: <code>curl -O https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/docker-compose.yml</code>
 2. Run: <code>docker-compose up</code>
-3. Run sitespeed: <code> docker-compose run sitespeed.io https://www.sitespeed.io/ --graphite.host=graphite</code>
+3. Run sitespeed to get some metrics: <code> docker-compose run sitespeed.io https://www.sitespeed.io/ --graphite.host=graphite</code>
 4. Access the dashboard: http://127.0.0.1:3000
 
 
@@ -91,6 +91,18 @@ And then also for all tested pages of a site.
 
 ## Whatever you want
 Do you need anything else? Since we store all the data in Graphite and use Grafana you can create your own dashboards, it super simple!
+
+# Get the metrics
+You have the dashboard and you need to collect metrics. Using the crontab works fine or whatever kind of scheduler you are using (or Jenkins per build or ... whatever suits you the best).
+
+Using the crontab (on a standalone server) you do like this:
+<code>crontab -e</code> to edit the crontab. Make sure you users cron can run Docker and change *my.graphite.host* to your Graphite host.
+
+~~~
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+0,30 * * * * docker run --privileged --rm sitespeedio/sitespeed.io:4.0 -n 5 --graphite.host my.graphite.host -c cable -b chrome https://en.wikipedia.org/wiki/Sweden >> /tmp/sitespeed-output.txt 2>&1
+~~~
 
 # Production
 To run this in production you should do a couple of modifications.
