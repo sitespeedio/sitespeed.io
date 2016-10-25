@@ -63,3 +63,34 @@ $ sitespeed.io https://www.sitespeed.io --plugins.load analysisStorer
 ~~~
 
 # Create your own plugin
+Here's an example of the functions each plugin can implement. You should look at the source code for different examples and we will setup an example plugin later on.
+
+~~~ javascript
+const path = require('path');
+
+module.exports = {
+  name() {
+    // This is ... shocking news the name of the plugin
+    return path.basename(__dirname);
+  },
+
+  open(context, options) {
+    // when sitespeed.io start it calls the open function for all plugins
+    // the context holds information for this specific run that
+    // generated at runtime, for example you can get hold of the storageManager
+    // that stores files to disk.
+    // The options is the configuration supplied for the run.
+  },
+  processMessage(message, queue) {
+    // The plugin will get all messages sent through the queue
+    // and can act on specific messages by type:
+    // message.type
+  },
+  close(options, errors) {
+    // When all URLs are finished all plugins close function is called.
+    // Options are the configuration options and errors a array of errors
+    // from the run.
+  }
+
+};
+~~~
