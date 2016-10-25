@@ -16,7 +16,7 @@ twitterdescription: Create your own plugin for sitespeed.io
 * Lets place the TOC here
 {:toc}
 
-Sitespeed.io uses a plugin architecture where you can remove/add your own plugins that can run additional tests on the URLs or do what you want with the result (store to a database or ...).
+Sitespeed.io uses a plugin architecture where you can add/remove your own plugins that will run additional tests on the URLs or anything else you can think of with the results (store to a database or ...).
 
 
 ## List configured plugins
@@ -30,33 +30,33 @@ And you will get a log entry looking something like this:
 
 ~~~
 ...
-The following plugins is enabled: assets,browsertime,coach,domains,html,screenshot
+The following plugins are enabled: assets,browsertime,coach,domains,html,screenshot
 ...
 ~~~
 
-These are the default plugins. If you want to disable some of them then ...
+These are the default plugins.
 
 ## Disable a plugin
-You can disable default plugins if you want. Maybe you don't need to output HTML and only send the data to Graphite or you don't need the screenshots.
+You can disable default plugins if you want. Maybe you don't want to output HTML and only want to send the data to Graphite or you don't need the screenshots.
 
 ~~~ bash
 $ sitespeed.io https://www.sitespeed.io --plugins.disable html
 ~~~
 
-If you wanna disable multiple plugins:
+If you want to disable multiple plugins:
 
 ~~~ bash
 $ sitespeed.io https://www.sitespeed.io --plugins.disable html screenshot
 ~~~
 
-And if you wanna verify that it worked, add the plugins.list:
+And if you want to verify that it worked, add the plugins.list:
 
 ~~~ bash
 $ sitespeed.io https://www.sitespeed.io --plugins.disable html screenshot --plugins.list
 ~~~
 
 ## Add a plugin
-You can also add a plugin. Plugins you create yourself or plugins that isn't enabled by default. The analysisStorer plugin stores the original JSON data from analyzers (from Browsertime, Coach data, WebPageTest etc).
+You can also add a plugin. Plugins you create yourself or plugins that are not enabled by default. The analysisStorer plugin stores the original JSON data from analyzers (from Browsertime, Coach data, WebPageTest etc).
 
 ~~~ bash
 $ sitespeed.io https://www.sitespeed.io --plugins.load analysisStorer

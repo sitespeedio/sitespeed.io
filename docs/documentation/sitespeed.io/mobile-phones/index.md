@@ -19,7 +19,7 @@ twitterdescription: Test your page using a mobile phone
 # Prerequisites
 
 ## Desktop
- * Install the [Android SDK](http://developer.android.com/sdk/index.html#downloads) on your desktop (get just the command line tools!). If you are in Mac and use [Homebrew](http://brew.sh/) just run: <code>brew install android-platform-tools</code>
+ * Install the [Android SDK](http://developer.android.com/sdk/index.html#downloads) on your desktop (just the command line tools!). If you are in Mac and use [Homebrew](http://brew.sh/) just run: <code>brew install android-platform-tools</code>
  * Start the adb-server on your desktop: <code>adb start-server</code>
 
 ## On your phone
@@ -33,7 +33,7 @@ twitterdescription: Test your page using a mobile phone
  * When you plugin your phone, click OK on the "Allow USB debugging?" popup.
 
 ## Connectivity
-If you run by default, the phone will use the current connection. Using the connectivity flag will not work for now (would love a PR for that!) but you can use [phuedxs](https://github.com/phuedx) [Micro Device Lab](https://github.com/phuedx/micro-device-lab) and connect your phone to the wifi you want to use. There you can choose what kind of connectivity profile you want to use.
+If you run by default, the phone will use the current connection. The connectivity flag is currently not supported (would love a PR for that!) but you can use [phuedxs](https://github.com/phuedx) [Micro Device Lab](https://github.com/phuedx/micro-device-lab) and connect your phone to the wifi you want to use. There you can choose what kind of connectivity profile you want to use.
 
 ## Run
 You are now ready to run your and test on your phone:
@@ -42,4 +42,4 @@ You are now ready to run your and test on your phone:
 $ sitespeed.io --browsertime.chrome.android.package com.android.chrome https://www.sitespeed.io  
 ~~~
 
-And you will get the result as you are used to with summaries and waterfall graphs.
+You will get result as you would with running this normally with summaries and waterfall graphs.

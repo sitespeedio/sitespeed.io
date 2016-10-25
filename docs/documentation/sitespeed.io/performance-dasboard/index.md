@@ -32,7 +32,7 @@ You need [Docker](https://docs.docker.com/engine/installation/) and [Docker Comp
 If you want to play with the dashboards the default login is sitespeedio and password is YYY.
 
 # How it works
-We have prepared a Docker Compose file that downloads and setup Graphite/Grafana and sitespeed.io + a couple of example dashboards. It works perfect when you wanna try it out and if you wanna run it in production you should modify it a little.
+We have prepared a Docker Compose file that downloads and setup Graphite/Grafana and sitespeed.io + a couple of example dashboards. It works perfect when you wanna try it out locally, but if you wanna run it in production you should modify it a bit.
 
 ## Docker compose file
 
@@ -59,7 +59,8 @@ We insert the pre made dashboards using a Docker container using curl. You can c
 # Production
 To run this in production you should do a couple of modifications.
 
-1. Always run sitespeed.io on a standalone instance do bring down the noise.
+1. Always run sitespeed.io on a standalone instance
+    - This avoids causing discrepancies in results due to things like competing resources or network traffic.
 2. Change the default user and password for Grafana.
 3. Map the Graphite volume to a physical directory outside of Docker to have better control.
 4. Remove the sitespeedio/grafana-bootstrap from the Docker compose file, you only need that for the first run.

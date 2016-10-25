@@ -55,11 +55,11 @@ We use Selenium in the backend to drive the browsers and right now Selenium/driv
 
 ## Custom metrics
 
-You can collect your own metrics in the browser by supplying Javascript file(s). By default we collect all metrics inside [these folders](https://github.com/sitespeedio/browsertime/tree/master/browserscripts) but you maybe have something else you wanna collect.
+You can collect your own metrics in the browser by supplying Javascript file(s). By default we collect all metrics inside [these folders](https://github.com/sitespeedio/browsertime/tree/master/browserscripts) but you might have something else you want to collect.
 
-Each javascript file need to return a metric/value and it will be picked up and returned in the JSON. If you return a number, statistics will automatically be generated for the value (like median/percentiles etc).
+Each javascript file need to return a metric/value which will be picked up and returned in the JSON. If you return a number, statistics will automatically be generated for the value (like median/percentiles etc).
 
-Say we have one file called scripts.js that checks how many javascript that is loaded. The script looks like this:
+Say we have one file called scripts.js that checks how many scripts tags exist on a page. The script looks like this:
 
 ~~~bash
 (function() {
@@ -84,8 +84,8 @@ And in the summary and detailed summary section.
 One more thing: All custom scripts values will be sent to Graphite, no extra configuration needed!
 
 ## Using Browsertime
-Everything you can do in Browsertime, you can also do in sitespeed.io. Add browsertime to the CLI parameter and it will be passed on to Browsertime.
+Everything you can do in Browsertime, you can also do in sitespeed.io. Prefixing browsertime to a CLI parameter will pass that parameter on to Browsertime.
 
 You can check what Browsertime can do [here](https://github.com/sitespeedio/browsertime/blob/master/lib/support/cli.js).
 
-Say for example that you wanna pass on extra Chrome arguments to Chrome. In standalone Browsertime you do that with <code>--chrome.args</code>. If you wanna do that in sitespeed.io you add browsertime to the param: <code>--browsertime.chrome.args</code>. Yes we know, it is sweat :)
+For example you wanna pass on an extra Chrome arguments to Chrome. In standalone Browsertime you do that with <code>--chrome.args</code>. If you wanna do that through sitespeed.io you just prefix browsertime to the param: <code>--browsertime.chrome.args</code>. Yes we know, pretty sweet! :)

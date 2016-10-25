@@ -17,9 +17,9 @@ twitterdescription: Introduction for sitespeed.io.
 
 Sitespeed.io is an Open Source tool that helps you measuring the performance of your web site. You can [install](../installation/) it using [npm](https://www.npmjs.org/)/[yarn](https://yarnpkg.com/)/[Docker](https://www.docker.com/).
 
-Test your site against web performance best practice rules (using the [Coach](/documentation/coach/)), collect timing metrics from Chrome/Firefox (using [Browsertime](/documentation/browsertime/)) and gives you a report on how the site is performing. You can generate a HTML report (check out the [examples](/examples/) section to see what it looks like). You can build your own plugin that handles all the metrics that are collected or you can just use the Graphite plugin and build graphs with Grafana, checkout our example site [https://dashboard.sitespeed.io](https://dashboard.sitespeed.io).
+Test your site against web performance best practice rules (using the [Coach]({{site.baseurl}}/documentation/coach/)), collect timing metrics from Chrome/Firefox (using [Browsertime]({site.baseurl}}/documentation/browsertime/)) and get a report on how your site is performing. You can generate a HTML report (check out the [examples](/examples/) section to see what it looks like). You can use the Graphite plugin and build graphs with Grafana, checkout our example site [https://dashboard.sitespeed.io](https://dashboard.sitespeed.io). You can even build your own plugin that handles all the metrics that are collected.
 
-In October 2016 we released 4.0 (sitespeed.io is 4 years old). One of the main goals with 4.0 was to make it easier for people to contribute (and we have already got more contributions than before) and easier to use. With 3.X we got the following feedback in the [Toolsday](http://www.toolsday.io/) podcast:
+In October 2016 we released 4.0 (sitespeed.io is 4 years old). One of the main goals with 4.0 was to make it easier for people to contribute and use. We have already have more contributions than ever before. With 3.X we got the following feedback in the [Toolsday](http://www.toolsday.io/) podcast:
 
 <blockquote cite="http://www.toolsday.io/episodes/performance.html">
 SpeedCurve has a really low barrier of entry ... it's a bit of a evolution maybe ... if you need something more advanced look into sitespeed.io"
@@ -32,4 +32,4 @@ To get started you need either [NodeJS](https://nodejs.org/en/download/) ([Linux
 
 You also need [Firefox](https://www.mozilla.org/en-US/firefox/new/) and/or [Chrome](https://www.google.com/chrome/).
 
-If you installed the prerequisites, head over to the [installation](../installation/) section and get going!
+If you've installed the prerequisites, head over to the [installation](../installation/) section and get going!
