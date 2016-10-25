@@ -211,6 +211,22 @@ $ sitespeed.io https://www.sitespeed.io --browsertime.viewPort 400x400 --browser
 Mobile testing is always best on an actual mobile devices. You can [test on Android phones](../mobile-phones/) using sitespeed.io.
 {: .note .note-warning}
 
+### Connectivity
+
+You can fake the connectivity for the browser. By default we use [TSProxy](https://github.com/WPO-Foundation/tsproxy) so you need Python 2.7 to work but you can also set the connectivity engine to [tc](http://lartc.org/manpages/tc.txt) if that works better for you.
+
+Setting the connectivity to cable:
+
+~~~bash
+$ sitespeed.io -c cable https://www.sitespeed.io/
+~~~
+
+Changing the engine type to tc:
+
+~~~bash
+$ sitespeed.io -c cable --browsertime.connectivity.engine tc https://www.sitespeed.io/
+~~~
+
 ## Advanced
 
 ### Slack
