@@ -8,7 +8,7 @@ const cli = require('../lib/support/cli'),
   sitespeed = require('../lib/sitespeed'),
   Promise = require('bluebird');
 
-if (process.env.NODE_ENV !== 'production'){
+if (process.env.NODE_ENV !== 'production') {
   require('longjohn');
 }
 
@@ -30,13 +30,13 @@ return sitespeed.run(parsed.options)
     if (result.errors.length > 0) {
       throw new Error('Errors while running:\n' + result.errors.join('\n'));
     }
-    if (Object.keys(result.budgetResult.failing).length > 0) {
+    if (parsed.options.budget && Object.keys(result.budgetResult.failing).length > 0) {
       process.exitCode = 1;
       budgetFailing = true;
     }
   })
   .then(() => {
-    if (parsed.options.budget && !budgetFailing) {
+    if (!budgetFailing) {
       process.exitCode = 0;
     }
   })
