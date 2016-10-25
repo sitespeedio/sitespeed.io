@@ -22,6 +22,15 @@ The big picture looks something like this:
 {: .img-thumbnail}
 
 ## Analyzing a URL step by step
+The new sitespeed.io 4.0 is built upon plugins and messages. The flow is like this:
+
+1. You start the application and feed it with a URL/URLs.
+2. The app will go through the configured plugins and start them and the plugins will wait for messages.
+3. The app will send the URLs as URL messages and the plugins that listens to that type of messages will act on that. When they are finished with what they do, they post other messages on with the findings they did.
+4. When all URLs are finished, the plugins will get a "close" call to say prepare what you have.
+5. Finish
+
+The overall idea is pretty simple.
 
 ## Built upon Open Source
 Sitespeed.io uses a lot of other Open Source tools massive love to those projects:

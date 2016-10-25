@@ -60,6 +60,11 @@ color: #428bca;
 text-decoration: none;
 }
 
+code {
+  background-color: #ccc;
+  padding: 2px;
+}
+
 pre code {
 display: block;
 padding: 9.5px;

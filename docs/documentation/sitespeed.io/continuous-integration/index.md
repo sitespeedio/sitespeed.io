@@ -44,7 +44,7 @@ docker run --privileged -v ${WORKSPACE}:/sitespeed.io sitespeedio/sitespeed.io -
 docker run --privileged -v ${WORKSPACE}:/sitespeed.io sitespeedio/sitespeed.io --outputFolder output --budget /sitespeed.io/budget.json --budget.output junit https://www.sitespeed.io/ -n 1
 ~~~
 
-And then you can setup the JUnit report like this:
+* Setup the JUnit report like this:
 ![JUnit reports]({{site.baseurl}}/img/junit-report.png)
 {: .img-thumbnail}
 
