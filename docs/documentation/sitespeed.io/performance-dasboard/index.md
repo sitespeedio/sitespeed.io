@@ -12,12 +12,13 @@ twitterdescription: Web performance dashboard using sitespeed.io.
 
 # Performance Dashboard
 {:.no_toc}
-We spent a lot of time making it easier in 4.x to install and run your own performance dashboard with pre made dashboards and a Docker compose file to rule them all.
 
 * Lets place the TOC here
 {:toc}
 
-# What you needed
+We spent a lot of time making it easier in 4.x to install and run your own performance dashboard with pre made dashboards and a Docker compose file to rule them all. You can see the beauty [here](https://dashboard.sitespeed.io).
+
+# What you need
 You need [Docker](https://docs.docker.com/engine/installation/) and [Docker Compose](https://docs.docker.com/compose/install/).
 
 # Up and running in 5 minutes
@@ -28,51 +29,65 @@ You need [Docker](https://docs.docker.com/engine/installation/) and [Docker Comp
 4. Access the dashboard: http://127.0.0.1:3000
 
 
-If you want to play with the dashboards the default login is sitespeedio and password is ...well chckout the docker-compose.yml file.
-
-# How it works
-We have prepared a Docker Compose file that downloads and setup Graphite/Grafana and sitespeed.io + a couple of example dashboards. It works perfect when you wanna try it out locally, but if you wanna run it in production you should modify it a bit.
+If you want to play with the dashboards the default login is sitespeedio and password is ...well checkout the docker-compose.yml file.
 
 ## Docker compose file
-
+We have prepared a Docker Compose file that downloads and setup Graphite/Grafana and sitespeed.io + a couple of example dashboards. It works perfect when you wanna try it out locally, but if you wanna run it in production you should modify it a bit.
 
 ## Pre made dashboards
-We insert the pre made dashboards using a Docker container using curl. You can check it out: https://github.com/sitespeedio/grafana-bootstrap-docker
+We insert the pre made dashboards using a Docker container using curl. You can check it out: [https://github.com/sitespeedio/grafana-bootstrap-docker](https://github.com/sitespeedio/grafana-bootstrap-docker)
 
 # Example dashboards
 
-The dashboards has a couple of templates (the dropdowns at the top of the page). A dashboard that show metrics for a specific page has the following templates:
+The dashboards has a couple of templates (the drop downs at the top of the page). A dashboard that show metrics for a specific page has the following templates:
 
 ![Page templates]({{site.baseurl}}/img/templates-page.png)
 {: .img-thumbnail}
 
-The *path* is the first path after the first part of the namespace. Using default values the namespace looks like *sitespeed_io.default*. Adding your own metrics you should keep the first part (sitespeed_io) but can change the second. The rest of the templates are self explanatory.
-
+The *path* is the first path after the first part of the namespace. Using default values the namespace looks like *sitespeed_io.default*. Adding your own metrics you should keep the first part (sitespeed_io) but can change the second. When you choose on of the values in a template, the rest will then be populated. You can choose checking metrics for a specific page, browser and connectivity.
 
 ## Page summary
-Here you metrics specific to a page.
-![Page summary in Grafana]({{site.baseurl}}/img/pagesummary-grafana.png)
+The page summary shows metrics for a specific URL/page.
+
+[![Page summary in Grafana]({{site.baseurl}}/img/pagesummary-grafana.png)](https://dashboard.sitespeed.io/dashboard/db/page-summary)
 {: .img-thumbnail}
 
 ## Site summary
-![Site summary in Grafana]({{site.baseurl}}/img/sitesummary-grafana.png)
+The site summary show metrics for a site (a summary of all URLs tested for that domain).
+
+[![Site summary in Grafana]({{site.baseurl}}/img/sitesummary-grafana.png)](https://dashboard.sitespeed.io/dashboard/db/site-summary)
 {: .img-thumbnail}
 
 ## Timings
-![Site summary in Grafana]({{site.baseurl}}/img/timings-grafana.png)
+The Timings dashboard shows how you can look at timings for URL.
+
+[![Timings in Grafana]({{site.baseurl}}/img/timings-grafana.png)](https://dashboard.sitespeed.io/dashboard/db/timings)
 {: .img-thumbnail}
 
 ## Visual metrics
-We are working on getting SpeedIndex and other VisualMetrics into sitespeed.io.
+We are working on getting SpeedIndex and other VisualMetrics into sitespeed.io and you can try it out but it is still experimental.
+
+[![Visual Metrics]({{site.baseurl}}/img/visualmetrics.png)](https://dashboard.sitespeed.io/dashboard/db/visual-metrics)
+{: .img-thumbnail}
 
 ## 3rd vs. 1st party
-To get this up and running you should need to configure the <code>--firstParty</code> parameter/regex when you run.
+How much impact to 3rd party code has on your page? To get this up and running you should need to configure the <code>--firstParty</code> parameter/regex when you run.
+
+[![3rd vs 1st]({{site.baseurl}}/img/3rd.png)](https://dashboard.sitespeed.io/dashboard/db/3rd-vs-1st-party)
+{: .img-thumbnail}
 
 ## WebPageTest page summary
-Have we told you that we love WebPageTest? Yes we have and here are a default WebPagTest page summary.
+Have we told you that we love WebPageTest? Yes we have and here are a default WebPagTest page summary where you can look at results for individual URLs.
+
+[![WebPageTest page summary]({{site.baseurl}}/img/webpagetestPageSummary.png)](https://dashboard.sitespeed.io/dashboard/db/webpagetest-page-summary)
+{: .img-thumbnail}
+
 
 ## WebPageTest site summary
-Coming soon!
+And then also for all tested pages of a site.
+
+[![WebPageTest site summary]({{site.baseurl}}/img/webpagetestSiteSummary.png)](https://dashboard.sitespeed.io/dashboard/db/webpagetest-site-summary)
+{: .img-thumbnail}
 
 ## Whatever you want
 Do you need anything else? Since we store all the data in Graphite and use Grafana you can create your own dashboards, it super simple!
