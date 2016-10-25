@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Getting started - sitespeed.io
+title: Getting started
 description: Introduction for sitespeed.io.
 keywords: introduction, getting started, documentation, web performance, sitespeed.io
 nav: documentation

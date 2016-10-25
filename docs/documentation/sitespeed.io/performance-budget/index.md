@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Performance Budget - Documentation - sitespeed.io
+title: Performance Budget
 description: Performance budget with sitespeed.io.
 keywords: performance, budget, documentation, web performance, sitespeed.io
 nav: documentation

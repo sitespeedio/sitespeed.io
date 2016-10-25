@@ -3,7 +3,6 @@ layout: default
 title: Upgrading from 3.x -> 4 sitespeed.io
 description:
 keywords: upgrading documentation, web performance, sitespeed.io
-author: Peter Hedenskog
 nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Use Cases for running sitespeed.io.
@@ -74,7 +73,7 @@ twitterdescription: Use Cases for running sitespeed.io.
 | `--gpsiKey` || Your Google API Key, configure it to also fetch data from Google Page Speed Insights. |
 | `--noYslow` || Set to true to turn off collecting metrics using YSlow. |
 | `--html` || Create HTML reports. Default to true. Set no-html to disable HTML reports.  [true] |
-| `--wptConfig <FILE>` || WebPageTest configuration, see https://github.com/marcelduran/webpagetest-api runTest method 
+| `--wptConfig <FILE>` || WebPageTest configuration, see https://github.com/marcelduran/webpagetest-api runTest method
 | `--wptScript <FILE>` || WebPageTest scripting. Every occurance of \{\{\{URL\}\}\} will be replaced with the real URL. |
 | `--wptCustomMetrics <FILE>` || Fetch metrics from your page using Javascript |
 | `--wptHost <domain>` || The domain of your WebPageTest instance. |
@@ -82,4 +81,3 @@ twitterdescription: Use Cases for running sitespeed.io.
 | `--requestHeaders <FILE>|<HEADER>` || Any request headers to use, a file or a header string with JSON form of {"name":"value","name2":"value"}. Not supported for WPT & GPSI. |
 | `--postURL <URL>` || The full URL where the result JSON will be sent by POST. Warning: Testing many pages can make the result JSON massive. |
 | `--phantomjsPath <PATH>` || The full path to the phantomjs binary, to override the supplied version |
-
