@@ -1,5 +1,5 @@
 permalink: /:title/
-baseurl: /
+baseurl: /sitespeed.io
 markdown: kramdown
 compress_html:
   clippings: all
