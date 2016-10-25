@@ -36,7 +36,7 @@ return sitespeed.run(parsed.options)
     }
   })
   .then(() => {
-    if (!budgetFailing) {
+    if (parsed.options.budget && !budgetFailing) {
       process.exitCode = 0;
     }
   })
