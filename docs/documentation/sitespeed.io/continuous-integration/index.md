@@ -57,4 +57,4 @@ We have an example project for setting up Travis [https://github.com/sitespeedio
 Checkout the [grunt plugin](https://github.com/sitespeedio/grunt-sitespeedio)!
 
 ## Gulp plugin
-Coming soon.
+Checkout Ankit Singhals [gulp plugin](https://github.com/dreamzmaster/gulp-sitespeedio) (hopefully supporting sitespeed.io 4.0 soon). 
