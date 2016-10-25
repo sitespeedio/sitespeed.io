@@ -32,6 +32,8 @@ The new sitespeed.io 4.0 is built upon plugins and messages. The flow is like th
 
 The overall idea is pretty simple.
 
+You should also look at the [plugin structure]({{site.baseurl}}/documentation/sitespeed.io/plugins/#create-your-own-plugin). With that you have the overall picture of how everything works :)
+
 ## Built upon Open Source
 Sitespeed.io uses a lot of other Open Source tools massive love to those projects:
 
