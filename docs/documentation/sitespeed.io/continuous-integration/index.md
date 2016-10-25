@@ -51,7 +51,7 @@ docker run --privileged -v ${WORKSPACE}:/sitespeed.io sitespeedio/sitespeed.io -
 Remember that you can send the metrics to Graphite to keep a closer look at all the metrics over time.
 
 ## Travis
-Coming soon.
+We have an example project for setting up Travis [https://github.com/sitespeedio/travis/](https://github.com/sitespeedio/travis/blob/master/.travis.yml). Do not use timings in your budget because it will be highly unreliable. Use metrics that will be the same between runs like Coach score or number of requests.
 
 ## Grunt plugin
 Checkout the [grunt plugin](https://github.com/sitespeedio/grunt-sitespeedio)!
