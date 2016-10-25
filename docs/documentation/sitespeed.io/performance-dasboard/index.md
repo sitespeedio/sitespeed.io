@@ -41,17 +41,35 @@ We insert the pre made dashboards using a Docker container using curl. You can c
 
 # Example dashboards
 
+The dashboards has a couple of templates (the dropdowns at the top of the page). A dashboard that show metrics for a specific page has the following templates:
+
+![Page templates]({{site.baseurl}}/img/templates-page.png)
+{: .img-thumbnail}
+
+The *path* is the first path after the first part of the namespace. Using default values the namespace looks like *sitespeed_io.default*. Adding your own metrics you should keep the first part (sitespeed_io) but can change the second. The rest of the templates are self explanatory.
+
+
 ## Page summary
+Here you metrics specific to a page.
+![Page summary in Grafana]({{site.baseurl}}/img/pagesummary-grafana.png)
+{: .img-thumbnail}
 
 ## Site summary
+![Site summary in Grafana]({{site.baseurl}}/img/sitesummary-grafana.png)
+{: .img-thumbnail}
 
 ## Timings
+![Site summary in Grafana]({{site.baseurl}}/img/timings-grafana.png)
+{: .img-thumbnail}
 
 ## Visual metrics
+We are working on getting SpeedIndex and other VisualMetrics into sitespeed.io.
 
 ## 3rd vs. 1st party
+To get this up and running you should
 
 ## WebPageTest page summary
+Have we told you that we love WebPageTest? Yes we have and here are a default WebPagTest page summary.
 
 ## WebPageTest site summary
 
