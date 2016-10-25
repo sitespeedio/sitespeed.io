@@ -30,7 +30,8 @@ return sitespeed.run(parsed.options)
     if (result.errors.length > 0) {
       throw new Error('Errors while running:\n' + result.errors.join('\n'));
     }
-    if (Object.keys(result.budgetResult.failing).length > 0) {
+    //TODO: find better way to check initial page loads and is 2xx or 3xx
+    if (Object.keys(result.budgetResult.failing).length > 0 || (Object.keys(result.budgetResult.failing).length === 0 && Object.keys(result.budgetResult.working).length === 0)) {
       process.exitCode = 1;
       budgetFailing = true;
     }
