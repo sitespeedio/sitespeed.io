@@ -256,5 +256,8 @@ You can choose to send just a summary (the summary for all runs), individual run
 $ sitespeed.io https://www.sitespeed.io/ --slack.hookUrl https://hooks.slack.com/services/YOUR/HOOK/URL --slack.type summary
 ~~~
 
+![Slack]({{site.baseurl}}/img/slack.png)
+{: .img-thumbnail}
+
 ### Login the user
 We have added a [special section](../prepostscript) for that!

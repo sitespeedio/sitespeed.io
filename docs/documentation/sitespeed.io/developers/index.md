@@ -3,7 +3,6 @@ layout: default
 title: Developers - Documentation - sitespeed.io
 description: How to add your own post tasks, create rules and other cool stuff.
 keywords: developers, documentation, web performance, sitespeed.io
-author: Peter Hedenskog
 nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: How to add your own post tasks, create rules and other cool stuff.
@@ -16,4 +15,4 @@ twitterdescription: How to add your own post tasks, create rules and other cool 
 * Lets place the TOC here
 {:toc}
 
-Coming soon!
+Start by checking out [How it all works]({{site.baseurl}}/documentation/sitespeed.io/how-it-all-works/) and read about the [plugin structure]({{site.baseurl}}/documentation/sitespeed.io/plugins/#create-your-own-plugin).
