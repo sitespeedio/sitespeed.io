@@ -3,7 +3,6 @@ layout: default
 title: Web Performance Dashboards with sitespeed.io
 description: Setup you dashboard using Docker Compose, it cannot be simpler.
 keywords: dashboard, docker, documentation, web performance, sitespeed.io
-author: Peter Hedenskog
 nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Web performance dashboard using sitespeed.io.
@@ -23,18 +22,19 @@ You need [Docker](https://docs.docker.com/engine/installation/) and [Docker Comp
 
 # Up and running in 5 minutes
 
-1. Download our new Docker compose file: curl -O https://FULL_PATH
+1. Download our new Docker compose file: <code>curl -O https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/docker-compose.yml</code>
 2. Run: <code>docker-compose up</code>
 3. Run sitespeed: <code> docker-compose run sitespeed.io https://www.sitespeed.io/ --graphite.host=graphite</code>
 4. Access the dashboard: http://127.0.0.1:3000
 
 
-If you want to play with the dashboards the default login is sitespeedio and password is YYY.
+If you want to play with the dashboards the default login is sitespeedio and password is ...well chckout the docker-compose.yml file.
 
 # How it works
 We have prepared a Docker Compose file that downloads and setup Graphite/Grafana and sitespeed.io + a couple of example dashboards. It works perfect when you wanna try it out locally, but if you wanna run it in production you should modify it a bit.
 
 ## Docker compose file
+
 
 ## Pre made dashboards
 We insert the pre made dashboards using a Docker container using curl. You can check it out: https://github.com/sitespeedio/grafana-bootstrap-docker
@@ -66,13 +66,16 @@ Here you metrics specific to a page.
 We are working on getting SpeedIndex and other VisualMetrics into sitespeed.io.
 
 ## 3rd vs. 1st party
-To get this up and running you should
+To get this up and running you should need to configure the <code>--firstParty</code> parameter/regex when you run.
 
 ## WebPageTest page summary
 Have we told you that we love WebPageTest? Yes we have and here are a default WebPagTest page summary.
 
 ## WebPageTest site summary
+Coming soon!
 
+## Whatever you want
+Do you need anything else? Since we store all the data in Graphite and use Grafana you can create your own dashboards, it super simple!
 
 # Production
 To run this in production you should do a couple of modifications.

@@ -227,6 +227,20 @@ Changing the engine type to tc:
 $ sitespeed.io -c cable --browsertime.connectivity.engine tc https://www.sitespeed.io/
 ~~~
 
+### First party vs third party
+You can categorize requests as first or third parties by adding a regexp. You will then get the size & requests by type both in HTML and sent to Graphite.
+
+~~~bash
+$ sitespeed.io --firstParty ".ryanair.com" https://www.ryanair.com/us/en/
+~~~
+
+### Output folder or where to store the result
+You can change where you want the data to be stored by setting the <code>--outputFolder</code> parameter. That is good in scenarios where you wanna change the default behavior and put the output in specific place.
+
+~~~bash
+$ sitespeed.io --outputFolder /my/folder ".ryanair.com" https://www.sitespeed.io/
+~~~
+
 ## Advanced
 
 ### Slack
