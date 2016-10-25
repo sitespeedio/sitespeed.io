@@ -1,6 +1,6 @@
 # sitespeed.io
 
-[![Build status][travis-image-4]][travis-url]
+[![Build status][travis-image]][travis-url]
 [![Downloads][downloads-image]][downloads-url]
 [![Docker][docker-image]][docker-url]
 [![Stars][stars-image]][stars-url]
@@ -84,8 +84,8 @@ There are new things that will come also that isn't 100% implemented yet and you
 ## I want to help!
 We have a [special page](HELP.md) for you!
 
-[travis-image-4]: https://img.shields.io/travis/sitespeedio/sitespeed.io/4.0.svg?style=flat-square
-[travis-url]: https://travis-ci.org/sitespeedio/sitespeed.io/branches
+[travis-image-]: https://img.shields.io/travis/sitespeedio/sitespeed.io.svg?style=flat-square
+[travis-url]: https://travis-ci.org/sitespeedio/sitespeed.io
 [stars-url]: https://github.com/sitespeedio/sitespeed.io/stargazers
 [stars-image]: https://img.shields.io/github/stars/sitespeedio/sitespeed.io.svg?style=flat-square
 [downloads-image]: http://img.shields.io/npm/dm/sitespeed.io.svg?style=flat-square
