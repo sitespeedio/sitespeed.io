@@ -17,7 +17,7 @@ twitterdescription: Performance budget with sitespeed.io.
 {:toc}
 
 ## Performance budget
-Have you heard of a performance budget? If not, please read the excellent posts by Tim Kadlec [Setting a performance budget](http://timkadlec.com/2013/01/setting-a-performance-budget/) and [Fast enough](http://timkadlec.com/2014/01/fast-enough/). Also read Daniel Malls [How to make a performance budget](http://danielmall.com/articles/how-to-make-a-performance-budget/). After that, continue setup sitespeed.io :)
+Have you heard of a performance budget? If not, please go read these excellent posts by Tim Kadlec. Don't worry we will be here when you get back. [Setting a performance budget](http://timkadlec.com/2013/01/setting-a-performance-budget/) and [Fast enough](http://timkadlec.com/2014/01/fast-enough/). Also read Daniel Malls [How to make a performance budget](http://danielmall.com/articles/how-to-make-a-performance-budget/). Welcome back, let's continue the setup of sitespeed.io performance budgets. :)
 
 
 ### How it works
@@ -34,11 +34,11 @@ The log will look something like this:
 ~~~
 
 
-And the report looks like this.
-![Example of the budget](budget.png)
+The report looks like this.
+![Example of the budget]({{site.baseurl}}/img/budget.png)
 {: .img-thumbnail}
 
-Lets see how you configure your budgets.
+Lets see how you configure budgets.
 
 
 ### The budget file
@@ -101,7 +101,7 @@ Then run it like this:
 $ sitespeed.io https://www.sitespeed.io/ --budget myBudget.json -b chrome -n 11
 ~~~
 
-And if the budget fails the exit status will be > 0. And you can also choose to report the budget as JUnitXML (Jenkins) and TAP.
+And if the budget fails the exit status will be > 0. You can also choose to report the budget as JUnitXML (Jenkins) and TAP.
 
 ### JUnit XML
 You can output a JUnit XML file from the budget result like this.
@@ -113,10 +113,10 @@ $ sitespeed.io https://www.sitespeed.io/ --budget myBudget.json --budget.output 
 It will create a *junit.xml* in the outputFolder.
 
 ### TAP
-If you instead uses TAP, you can do like this:
+If you would instead like to use TAP, you can do so like this:
 
 ~~~bash
 $ sitespeed.io https://www.sitespeed.io/ --budget myBudget.json --budget.output tap -b chrome -n 5
 ~~~
 
-And it will create a *budget.tap* fill in the configured outputFolder.
+It will create a *budget.tap* in the outputFolder.

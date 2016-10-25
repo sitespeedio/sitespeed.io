@@ -17,12 +17,12 @@ twitterdescription: Use sitespeed.io in your Continuous Integration setup.
 * Lets place the TOC here
 {:toc}
 
-Use sitespeed.io to keep track of what is happening with your site and make sure you know that you don’t break the performance best practice rules before your changes are released. Your build can also be broken if has too many assets, are too big or too slow. And of course, if you use WebPageTest you can use the metrics from them to break your build.
+Use sitespeed.io to keep track of what is happening with your site making sure that you don’t break the performance best practice rules before your change make it to production. You can even leverage budgets to break your build if your page has too many assets, they are too big or too slow. If you use WebPageTest you can even use those metrics to break a build.
 
-You can define your own [budget file](({{site.baseurl}}/documentation/sitespeed.io/performance-budget/)) with rules on when to break your build. You will get an error return status after the run or you can choose to output JUnit XML and TAP.
+You can define your own [budget file](({{site.baseurl}}/documentation/sitespeed.io/performance-budget/)) with rules on when to break your build. This budget will return an error code status after the run or you can choose to output JUnit XML and TAP.
 
 ## Jenkins
-The easiest way to run in Jenkins is to use the pre built Docker containers. You can run an installed npm version too, but then you need to use the [Xvfb plugin](https://wiki.jenkins-ci.org/display/JENKINS/Xvfb+Plugin) to make it running headless.
+The easiest way to run in Jenkins is to use the pre built Docker containers. You can run an installed npm version too, but then you will need to setup browsers and use the [Xvfb plugin](https://wiki.jenkins-ci.org/display/JENKINS/Xvfb+Plugin) to make the browsers run in headless mode.
 
 ### Setup
 * Choose *New Item* and create a new freestyle project.
@@ -34,7 +34,7 @@ docker run --privileged -v ${WORKSPACE}:/sitespeed.io sitespeedio/sitespeed.io -
 ~~~
 
 * You can then install the **Publish HTML Reports** plugin to make the reports easy available in Jenkins. Add it as a *Post-build Actions* and set the **HTML directory to archive** to *${WORKSPACE}/output/* and it will work fine.
-![HTML reports](html-reports.png)
+![HTML reports]({{site.baseurl}}/img/html-reports.png)
 {: .img-thumbnail}
 
 
@@ -45,10 +45,10 @@ docker run --privileged -v ${WORKSPACE}:/sitespeed.io sitespeedio/sitespeed.io -
 ~~~
 
 And then you can setup the JUnit report like this:
-![JUnit reports](junit-report.png)
+![JUnit reports]({{site.baseurl}}/img/junit-report.png)
 {: .img-thumbnail}
 
-Remember that you can send the metrics to Graphite to keep a closer look at all the metrics.
+Remember that you can send the metrics to Graphite to keep a closer look at all the metrics over time.
 
 ## Travis
 Coming soon.

@@ -19,7 +19,7 @@ twitterdescription: Configuration for sitespeed.io.
 Sitespeed.io is highly configurable, let's check it out!
 
 ## The options
-You have the following options running sitespeed.io (run <code>sitespeed.io --help</code> to get the list on your command line):
+You have the following options when running sitespeed.io (run <code>sitespeed.io --help</code> to get the list on your command line):
 
 ~~~help
 bin/sitespeed.js [options] <url>/<file>
@@ -120,7 +120,7 @@ urlOrFile
 ## The basics
 If you installed with the global option run the command *sitespeed.io* else run the script *bin/sitespeed.js*.  In the examples we will use the globally installed version.
 
-You can analyze a site either by crawling or feed sitespeed.io with the URL:s you want to analyze.
+You can analyze a site either by crawling or by feeding sitespeed.io with a list URL:s you want to analyze.
 
 ### Analyze by URLs
 The simplest way to run sitespeed.io is to give it a URL.
@@ -158,7 +158,7 @@ $ sitespeed.io https://www.sitespeed.io -d 2
 ~~~
 
 ### How many runs per URL?
-Collecting timing metrics it's good to test the URL more than one time (default is three times). You can configure how many runs doing like this (five runs):
+When collecting timing metrics it's good to test the URL more than one time (default is three times). You can configure how many runs like this (five runs):
 
 ~~~bash
 $ sitespeed.io https://www.sitespeed.io -n 5
@@ -186,7 +186,7 @@ You can throttle the connection when you are fetching metrics using the browser.
 * cable - 5000/1000 28 RTT
 * native - your current connection
 
-We use [TSProxy](https://github.com/WPO-Foundation/tsproxy) by default so you need Python 2.7 to be able to throttle the connection.
+We use [TSProxy](https://github.com/WPO-Foundation/tsproxy) by default, so you need Python 2.7 to be able to throttle the connection.
 
 ~~~bash
 $ sitespeed.io https://www.sitespeed.io -c cable
@@ -208,19 +208,19 @@ You can also set specific viewport and User Agent:
 $ sitespeed.io https://www.sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "UCWEB/2.0 (MIDP-2.0; U; Adr 4.4.4; en-US; XT1022) U2/1.0.0 UCBrowser/10.6.0.706 U2/1.0.0 Mobile"
 ~~~
 
-Mobile testing is always best on mobile devices. You can [test on Android phones](../mobile-phones/) using sitespeed.io.
+Mobile testing is always best on an actual mobile devices. You can [test on Android phones](../mobile-phones/) using sitespeed.io.
 {: .note .note-warning}
 
 ## Advanced
 
 ### Slack
-You can send the result of a run to Slack. Setup a webhook in the slack API (https://<your team>.slack.com/apps/manage/custom-integrations) and then configure it:
+You can send the result of a run to Slack. First setup a webhook in the slack API (https://<your team>.slack.com/apps/manage/custom-integrations) and then configure it:
 
 ~~~bash
 $ sitespeed.io https://www.sitespeed.io/ --slack.hookUrl https://hooks.slack.com/services/YOUR/HOOK/URL
 ~~~
 
-You can also choose to send summary (the summary for all runs), individual runs (with url), only errors or all by choosing the <code>slack.type</code>.
+You can choose to send just a summary (the summary for all runs), individual runs (with url), only errors or all by choosing the <code>slack.type</code>.
 
 ~~~bash
 $ sitespeed.io https://www.sitespeed.io/ --slack.hookUrl https://hooks.slack.com/services/YOUR/HOOK/URL --slack.type summary

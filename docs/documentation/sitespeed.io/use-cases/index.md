@@ -16,30 +16,31 @@ twitterdescription: Use Cases for running sitespeed.io.
 {:toc}
 
 ## Crawl and test one site
-One common use case is to crawl a site and analyze and measure the URL:s. Crawling a site is good because it will find new pages that are linked for the pages you crawl.
+One common use case is to crawl a site and analyze and measure the URLs. Crawling a site is good practice as it will find new pages that are linked from the pages you crawl.
 
-I use this for sites where the content team creates new pages directly in the CMS and I as developer are out of control of which pages that exist. Crawling will make sure we pick up new pages and measure them. I usually use this in production to pick up pages that could/should be faster or have problems.
+This is useful for sites where the content team creates new pages directly in a CMS and the developers don't have control over which pages exist. Crawling will make sure we pick up new pages and measure them. Use this to discover pages that could/should be faster or have problems.
 
-Crawling too deep can take long time, so be aware.
+Crawling too deep can take a considerable amount of time, so be aware.
+{: .note .note-warning}
 
 ~~~bash
 $ sitespeed.io http://www.nytimes.com/pages/sports/ -d 2
 ~~~
 
-It's smart to not send crawl results to Graphite because it will probably create a lot of new URLS over time, making the size of the Graphite "database" grow. Instead use it to verify deploys or that the content team doing there job. You can combine this with the [performance budget](../performance-budget/), making a test fail if one page cross the limits.
+Best practice is to not send crawl results to Graphite as it will probably create a lot of new URLS over time, making the size of the Graphite "database" grow indefinitely. Instead use it to verify deploys or that the content team following best practices. You can combine this with the [performance budget](../performance-budget/), making a test fail if any page crosses the limits.
 
-## Test specific URL:s for one site (performance monitoring)
+## Test specific URLs for a site (performance monitoring)
 
-Testing the same URL over and over again is good so you can benchmark it. I use it in my continuous integration tool (to check the performance before changes is released) and when I compare sites to its competitors (matching start pages, product pages, purchase flows etc).
+Testing the same URL over and over again is good practice, since this will allow you to benchmark it. This allows for continuous integration tool (to check the performance before changes is released) and when comparing sites to it's competitors (matching start pages, product pages, purchase flows, etc).
 
-### How do I choose which URL:s to test?
+### How to choose which URLs to test?
 
-If you use use Google Analytics (you shouldn't but your company probably do that) use that to check which are the most pages or talk to the business to check that we have the same understanding of which pages are the most important of our site.
+If you use an Analytical tool check which pages are the most popular or talk to the business to check that you have the same understanding of which pages are the most important of the site.
 
-If we going to test the URL:s in our continuous integration, I try to keep the list of URL:s small, max 10, so we can test each URL many times to get timings that consistent between runs.
+If we going to test the URLss in our continuous integration, try to keep the list of URLs small, max of 10, so you can test each URL as many times as possible to get timings that are consistent between runs.
 
 ### What else do I need?
-You should do this continuously every X minutes/hours (depending how often you release/your content change). By default we support Graphite to store the data of a run and uses Grafana to make 
+You should do this continuously every X minutes/hours (depending how often you release/your content change). By default we support Graphite to store the data of a run and uses Grafana to make it look pretty. 
 
 ### Setup
 
@@ -56,7 +57,3 @@ And run it like this
 ~~~bash
 sitespeed.io amazon.txt -b chrome -n 5
 ~~~
-
-
-
-In the setup for dashboard.sitespeed.io we do like this:

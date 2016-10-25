@@ -12,7 +12,7 @@ twitterdescription: Documentation for the sitespeed.io.
 
 <img src="{{site.baseurl}}/img/logos/sitespeed.io.png" class="pull-right img-big" alt="Browsertime logo" width="200" height="214">
 
-Sitespeed.io is the complete toolbox to test the web performance of your web site. Use it to monitor your performance or checkout how your competitors is doing.
+Sitespeed.io is the complete toolbox to test the web performance of your web site. Use it to monitor your performance or checkout how your competition is doing.
 
  * [Getting started](getting-started/) - get up and running with sitespeed.io
  * [Installation](installation/) - install using npm, yarn or run our Docker containers.

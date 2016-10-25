@@ -18,7 +18,7 @@ twitterdescription: How it all works.
 ## The big picture
 The big picture looks something like this:
 
-![How it all works]({{site.baseurl}}/documentation/sitespeed.io/how-it-all-works/sitespeed-how-it-works.png)
+![How it all works]({{site.baseurl}}/img/sitespeed-how-it-works.png)
 {: .img-thumbnail}
 
 ## Analyzing a URL step by step
