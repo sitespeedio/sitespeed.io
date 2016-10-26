@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+## Fixed
+* Call summary Site summary in the slack plugin to make it easier to undestand.
+
 ## 4.0.0-beta.6 2016-10-26
 ### Added
 * You can now configure so sitespeed.io only slacks on error #1260
