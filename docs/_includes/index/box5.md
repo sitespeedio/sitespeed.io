@@ -1,7 +1,7 @@
-## Why should you use sitespeed.io
+## Upgrade to sitespeed.io 4.0!
 * * *
 
- * It uses Firefox or Chrome
  * Works with HTTP/2
- * You can write your plugins
- * Runs on Linux/MacOSX/Docker
+ * You can write your own plugins
+ * The coach is the new YSlow
+ * Completely rewritten code base
