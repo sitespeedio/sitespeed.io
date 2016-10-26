@@ -1,13 +1,13 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 4.0.0-beta.6 2016-10-26
 ### Added
 * You can now configure so sitespeed.io only slacks on error #1260
 * Do not run as root inside the Docker container #1259
 * Budget HTML page and log the budget info. #1264
 
 ### Changed
-* New browsertime beta-7
+* New browsertime beta-9 and latest Coach
 * Sending all data to Slack changed property name from both to all: --slack.type all and default is now all (instead of summary).
 
 ## Fixed
