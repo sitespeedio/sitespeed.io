@@ -7,12 +7,9 @@
 [![Changelog #212][changelog-image]][changelog-url]
 
 
-[Website](https://www.sitespeed.io) | [Documentation](https://www.sitespeed.io/documentation/) | [Twitter](https://twitter.com/SiteSpeedio)
+[Website](https://www.sitespeed.io/) | [Documentation](https://www.sitespeed.io/documentation/) | [Twitter](https://twitter.com/SiteSpeedio)
 
 ## Welcome to the wonderful world of web performance!
-
-*This branch tracks the development of the upcoming version 4.0 of sitespeed.io.
-The current production version is developed in the [3.x](https://github.com/sitespeedio/sitespeed.io/tree/3.x).*
 
 Using sitespeed.io you can:
 * test your web site against Web Performance best practices using the [Coach](https://github.com/sitespeedio/coach).
@@ -22,7 +19,7 @@ Using sitespeed.io you can:
 * Create HTML result pages or store the metrics in Graphite
 * Write your own plugins that can do whatever tests you want/need.
 
-But what does it look like?
+And a lot of more things. But what does it look like?
 
 A summary report in HTML:
 <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/html-summary.png">
@@ -34,15 +31,20 @@ Collected metrics from a URL in Graphite/Grafana:
 <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/pagesummary-grafana.png">
 
 ## 4.0
-Version 4.0 is a ground up rewrite for node.js 4.3 and newer. It builds on all our experience since shipping 3.0 in December 2014,
-the first version to use node.js. It's currently under active development, you can check the release schedule [here](https://github.com/sitespeedio/sitespeed.io/milestones).  We're determined to make it the best version of sitespeed.io to date.
+Version 4.0 is a ground up rewrite for node.js 6.9.1 and newer. It builds on all our experience since shipping 3.0 in December 2014,
+the first version to use node.js. 
 
-Documentation and tests for the upcoming version aren't in place yet. Rest assured, it will be before 4.0 is released.
-If you would like to give the new version a spin, try the following (you'll need node.js and Firefox/Chrome installed):
+Install using npm:
 
 ```bash
-npm i -g sitespeed.io@4.0.0-beta.4
+npm i -g sitespeed.io
 ```
+Or using Docker:
+
+```bash
+> docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io
+```
+
 Or clone the repo and test the latest changes:
 
 ```bash
@@ -53,14 +55,9 @@ Or clone the repo and test the latest changes:
 > bin/sitespeed.js http://www.sitespeed.io
 ```
 
-Or using Docker:
-
-```bash
-> docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:4.0-beta.4 https://www.sitespeed.io
-```
 
 ## Why 4.0?
-There's a lot of things that we want to improve since 3.0. Here's some of the most important changes:
+There's a lot of things that we wanted to improve since 3.0. Here's some of the most important changes:
 
 * We support HTTP/2! In 3.X we used PhantomJS and a modified version of YSlow to analyze best practice rules. We also had BrowserMobProxy in front of our browsers that made it impossible to collect metrics using H2. We now use [the coach](https://github.com/sitespeedio/coach) and Firefox/Chrome without a proxy. That makes it easier for us to adapt to browser changes and changes in best practices.
 
@@ -84,7 +81,7 @@ There are new things that will come also that isn't 100% implemented yet and you
 ## I want to help!
 We have a [special page](HELP.md) for you!
 
-[travis-image-]: https://img.shields.io/travis/sitespeedio/sitespeed.io.svg?style=flat-square
+[travis-image]: https://img.shields.io/travis/sitespeedio/sitespeed.io.svg?style=flat-square
 [travis-url]: https://travis-ci.org/sitespeedio/sitespeed.io
 [stars-url]: https://github.com/sitespeedio/sitespeed.io/stargazers
 [stars-image]: https://img.shields.io/github/stars/sitespeedio/sitespeed.io.svg?style=flat-square
