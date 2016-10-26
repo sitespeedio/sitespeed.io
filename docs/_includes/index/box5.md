@@ -1,7 +1,9 @@
 ## Upgrade to sitespeed.io 4.0!
 * * *
 
- * Works with HTTP/2
+ * HTTP/2 support
  * You can write your own plugins
  * The coach is the new YSlow
- * Completely rewritten code base
+ * Generic dashboard templates
+ * HAR files as seen by the browser
+ * Completely rewritten code base to make it easier to update in the future
