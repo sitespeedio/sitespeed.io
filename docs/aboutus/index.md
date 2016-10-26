@@ -27,4 +27,4 @@ In my work at [iZettle](https://www.izettle.com/) I spend most of my time enabli
 
 In early 2015 I was awarded for building sitespeed.io by [The Swedish Internet Infrastructure Foundation](https://www.iis.se/english/about-se/) making it possible for me to work full time on the project for three months.
 
-I'm one of the organizers of the [Stockholm Web Performance meetup group](http://www.meetup.com/Stockholm-Web-Performance-Group/). We are 600+ members and are always looking for new speakers. If you are in Stockholm and have something to share, ping me on <a href="https://twitter.com/soulislove">Twitter</a> and see if we can make it happen.
+I'm one of the organizers of the [Stockholm Web Performance meetup group](http://www.meetup.com/Stockholm-Web-Performance-Group/). We are 700+ members and are always looking for new speakers. If you are in Stockholm and have something to share, ping me on <a href="https://twitter.com/soulislove">Twitter</a> and see if we can make it happen.
