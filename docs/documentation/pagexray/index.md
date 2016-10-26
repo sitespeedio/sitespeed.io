@@ -9,10 +9,14 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription:
 ---
 # PageXray
+{:.no_toc}
 
 <img src="{{site.baseurl}}/img/logos/pagexray.png" class="pull-right img-big" alt="PageXray logo" width="365" height="200">
 
 We love the HAR file, but it's hard to actually see what the page includes only looking at the file. PageXray converts a HAR file to a JSON format that is easier to read. We use the format internally in the coach and sitespeed.io.
+
+* Lets place the TOC here
+{:toc}
 
 ## What do we collect?
 
