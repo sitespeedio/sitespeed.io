@@ -47,13 +47,14 @@ layout: compress
 </head>
 <body>
 	{% include header.html %}
-	<div class="blue">
+
 	<div class="grid">
 		<div class="col-1-1">
 			{{ content }}
 		</div>
-	</div>
+
 </div>
+<div class="white">
 	<div class="grid">
 		<div class="col-1-2">
 			{% capture box1 %}{% include index/box1.md %}{% endcapture %}
@@ -94,13 +95,13 @@ layout: compress
 			{{ box8 | markdownify }}
 		</div>
 	</div>
+</div>
 
-	<div class="blue">
+
 	<div class="grid">
 		<div class="col-1-1">
 		{% include footer.html %}
 		</div>
-	</div>
 </div>
 
 </body>
