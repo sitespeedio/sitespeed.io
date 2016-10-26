@@ -3,6 +3,7 @@
 ## UNRELEASED
 ## Fixed
 * Call summary Site summary in the slack plugin to make it easier to undestand.
+* Run as root inside the Docker container, it makes things easier.
 
 ## 4.0.0-beta.6 2016-10-26
 ### Added
