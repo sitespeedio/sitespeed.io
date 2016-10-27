@@ -13,3 +13,4 @@ docker build --no-cache -t sitespeedio/sitespeed.io:$PACKAGE_VERSION -t sitespee
 docker login
 
 docker push sitespeedio/sitespeed.io:$PACKAGE_VERSION
+docker push sitespeedio/sitespeed.io:latest
