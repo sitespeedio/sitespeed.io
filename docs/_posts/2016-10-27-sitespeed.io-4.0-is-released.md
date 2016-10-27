@@ -140,8 +140,9 @@ What's been the hardest part doing 4.0? Things that we cannot control or not pla
 * Firefox. We love Firefox. We love Chrome. And it is important that sitespeed.io works on at least two different browsers. The move from Firefoxdriver to Geckodriver hasn't been smooth and there's been a lot of problems getting things to work. Firefox versions not working with Selenium, some thing broken etc but we hope that all those problems are over now :)
 
 # sitespeed.io 5.0
-Hehe that will take time! We will continue to work on 4.0 for a while to implement the things we are missing and we would love [your help](https://github.com/sitespeedio/sitespeed.io/blob/master/HELP.md)!
+Hehe that will take time! We will continue to work on 4.0 for a while to implement the things we are missing, fixing bugs and we would love [your help](https://github.com/sitespeedio/sitespeed.io/blob/master/HELP.md)!
 
+The next couple of days we gonna do cleanup and remove old issues, old projects and try get a fresh start.
 
 See you soon in [the issues](https://github.com/sitespeedio/sitespeed.io/issues)!
 
