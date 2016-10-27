@@ -51,7 +51,7 @@ There was a lot of more things that we wanted to fix but those where the most im
 We released four new Open Source performance tools. Yep four. Lets talk about them and then get into what we've done with sitespeed.io.
 
 ## The coach
-<img src="{{site.baseurl}}/img/logos/coach.png" class="pull-right img-big" alt="I'm the coach" width="188" height="219">
+<img src="{{site.baseurl}}/img/logos/coach.png" class="pull-right img-big" alt="I'm the coach" width="168" height="196">
 YSlow is dead, long live the Coach! The coach helps you find performance problems on your page and gives you advice of what you can do better. We use the coach in sitespeed.io but what's extra cool is that it can be used by any tool.
 
 The coach gives you advice on how to make your page faster. The coach aims to NEVER give you bad advice. If the world changes, the coach changes. No more wrong rules, instead the right advice :)
@@ -70,7 +70,7 @@ If you got an HAR, run it through the xray and you will get a simple JSON struct
 
 
 ## Browsertime
-<img src="{{site.baseurl}}/img/logos/browsertime.png" class="pull-right img-big" alt="Browsertime logo" width="200" height="175">
+<img src="{{site.baseurl}}/img/logos/browsertime.png" class="pull-right img-big" alt="Browsertime logo" width="180" height="158">
 
 Browsertime has been around since sitespeed.io 2.0 but now it has been totally rewritten to get rid of the async hell :) Browsertime uses Selenium to start a browser, go to a URL, executes Javascript to collect metrics, and  creates a HAR file.
 
@@ -78,6 +78,9 @@ The new version is still in 1.0 beta and soon we hope to release the final versi
 
 # sitespeed.io 4.0
 Lets talk about all the new and shiny things in 4.0. The new version uses the Coach, PageXray and Browsertime. And together we get:
+
+## Plugins
+Everything in the new version is a plugin! You can add/remove/create your own plugin. A plugin can run additional tests on a URL or handle the result, like storing it to a database. You can also publish your plugins to npm. Just let us know about your plugin so we can tell the world.
 
 ## HTTP/2
 YES finally we support HTTP/2! The coach will give different advice if your page are using http/1 or 2.  We have nothing in the way (ready proxy) that messes with the connection between the browser and the server.
@@ -93,9 +96,6 @@ Are you prepared? In the new version you can login your user using a Selenium sc
 ## Mobile phone support
 You can [drive your Android phone and test pages]({{site.baseurl}}//documentation/sitespeed.io/mobile-phones/) using Chrome. You will get an HAR file and it will run all the javascript and collect the metrics.
 
-## Graphite keys - generic dashboards
-We have changed the key structure of the keys in Graphite. Yes that means you need to redo your dashboards. BUT we did it because we know support generic dashboards. You can share dashboards between project/sites. And we created a couple of default ones for you.
-
 ## Log the requests and values
 We already got some really cool PRs for 4.0. [Moos](https://github.com/moos) added support in Browsertime to log number of requests and some timing metrics. So when you sit down and go through the logs from sitespeed.io you will see log entries like:
 
@@ -104,6 +104,9 @@ We already got some really cool PRs for 4.0. [Moos](https://github.com/moos) add
 ~~~
 
 If you are used to just browse through the logs, this adds some real extra value.
+
+## Graphite keys - generic dashboards
+We have changed the key structure of the keys in Graphite. Yes that means you need to redo your dashboards. BUT we did it because we know support generic dashboards. You can share dashboards between project/sites. And we created a couple of default ones for you.
 
 ## Dashboard in 2 seconds
 Well almost 2 seconds :) Using our new Docker compose script and ready made dashboards you can get it up and running as fast as the containers are downloaded. We also worked to get the Graphite key structure re-usable between web sites so it's easy to share dashboards.
@@ -130,7 +133,16 @@ We hoped we could solve everything but ... well it didn't work out. A couple of 
 * More love for the waterfall graph. We use [PerfCascade](https://micmro.github.io/PerfCascade/) to view the HAR and that has worked out extremely well on top of that we have some ideas to make it even better.
 
 # That bumpy ride
-There's a couple things that has been
+What's been the hardest part doing 4.0? Things that we cannot control or not plan to make a part of sitespeed.io.
 
-All the best and you soon in the issues
-Peter, Tobias and Jonathan
+* Finding a good way to shape the traffic between the browser and the server. We ended up using [TSProxy](https://github.com/WPO-Foundation/tsproxy) by Patrick Meenan as default one. You need Python 2.7 for that to work. It's used by the Chrome team and maybe needs some more love on some devices. Lets try it out for a while :) We also support using tc (Linux traffic control) on supported OS. You can test that in our Docker container running Ubuntu. It "should" work out of the box.
+
+* Firefox. We love Firefox. We love Chrome. And it is important that sitespeed.io works on at least two different browsers. The move from Firefoxdriver to Geckodriver hasn't been smooth and there's been a lot of problems getting things to work. Firefox versions not working with Selenium, some thing broken etc but we hope that all those problems are over now :)
+
+# sitespeed.io 5.0
+Hehe that will take time! We will continue to work on 4.0 for a while to implement the things we are missing and we would love [your help](https://github.com/sitespeedio/sitespeed.io/blob/master/HELP.md)!
+
+
+See you soon in [the issues](https://github.com/sitespeedio/sitespeed.io/issues)!
+
+/Peter, Tobias and Jonathan
