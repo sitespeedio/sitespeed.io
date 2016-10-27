@@ -14,3 +14,6 @@ If you don't find the answer here or in the [documentation]({{site.baseurl}}/doc
 
 * Lets place the TOC here
 {:toc}
+
+## No FAQ?
+We will update the FAQ when we get things in for 4.0.
