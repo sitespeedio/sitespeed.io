@@ -5,7 +5,7 @@ description:
 keywords: upgrading documentation, web performance, sitespeed.io
 nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: Use Cases for running sitespeed.io.
+twitterdescription: Upgrade 3 -> 4
 ---
 [Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / Upgrade
 
@@ -14,6 +14,14 @@ twitterdescription: Use Cases for running sitespeed.io.
 
 * Lets place the TOC here
 {:toc}
+
+Upgrading is just updating to the new version. There's a couple of important thing that has changed.
+
+## Graphite keys
+The keys in Graphite has a new structure. The reason is that we wants to have a generic solution where we can use the same dashboards for whatever site and we want to follow the new data structure. If old data is important to you, you need to run multiple instances for a while, one with 3.x and one with 4 and have multiple dashboards, and then when you have the history, make the switch to the 4.0 dashboards.
+
+## CLI mapping
+A lot changed in the CLI and the easiest way for you is just to run sitespeed.io with <code>--help</code> to see what you can use. You can also check this mapping.
 
 | 3.x      | 4.0         | Description |
 |:------------|:-------------------|:-------------|
@@ -81,3 +89,11 @@ twitterdescription: Use Cases for running sitespeed.io.
 | `--requestHeaders <FILE>|<HEADER>` | N/A | Any request headers to use, a file or a header string with JSON form of {"name":"value","name2":"value"}. Not supported for WPT & GPSI. |
 | `--postURL <URL>` | N/A | The full URL where the result JSON will be sent by POST. Warning: Testing many pages can make the result JSON massive. |
 | `--phantomjsPath <PATH>` | N/A | The full path to the phantomjs binary, to override the supplied version |
+
+## Docker
+
+With the new container you don't need to tell it to start sitespeed.io, just do:
+
+~~~ bash
+$ docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
+~~~

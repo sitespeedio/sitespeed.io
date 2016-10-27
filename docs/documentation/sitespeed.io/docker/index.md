@@ -22,6 +22,14 @@ With 4.0 we focused on single Docker container that you should use to run sitesp
 
 It also contains FFMpeg, Imagemagick and some other things for the future to get SpeedIndex using [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics).
 
+### Structure
+The new structure looks like this:
+
+[NodeJS with Ubuntu 16](https://github.com/sitespeedio/docker-node) -> [VisualMetrics dependencies](https://github.com/sitespeedio/docker-visualmetrics-deps) ->
+[Firefox/Chrome/xvfb](https://github.com/sitespeedio/docker-browsers) -> [sitespeed.io](https://github.com/sitespeedio/sitespeed.io/blob/master/Dockerfile)
+
+The first container installs NodeJS (latest LTS) on Ubuntu 16. The next one adds the dependencies (FFMpeg, ImageMagick and some Python libraries) needed to run [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics). Then we install specific version of Firefox, Chrome and then xvfb. It's important to lock down the browsers to specific versions because it has been a real mess using Firefox the last half year (to be fair Chrome/Selenium have also had issues in the past). Then in last step, we add sitespeed and tag it to the sitespeed.io version number. 
+
 ## Running in Docker
 The simplest way to run using Firefox:
 
