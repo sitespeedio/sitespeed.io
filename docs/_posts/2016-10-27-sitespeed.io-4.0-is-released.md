@@ -2,7 +2,6 @@
 layout: default
 title: Welcome sitespeed.io 4.0
 description: Finally sitespeed.io 4.0 is here!
-author: Peter Hedenskog
 authorimage: /img/robot-head.png
 intro: After more than a full year of hard work from us (Peter/Tobias/Jonathan and contributors) we finally released 4.0. We did a complete rewrite and also created two new performance tools during that year.
 keywords: sitespeed.io, sitespeed, site, speed, webperf, performance, web, wpo
