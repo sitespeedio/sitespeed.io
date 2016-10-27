@@ -39,7 +39,7 @@ When we started 4.0 there was a couple of things that we wanted to fix:
 
  * We wanted to generate a better [HAR](http://www.softwareishard.com/blog/har-12-spec/) file. In 3.X we used to use [BrowserMobProxy](https://github.com/lightbody/browsermob-proxy) and it did not support HTTP/2. It also modified the response headers. And you need Java to run it.
 
- * We want more contributors. 3.X was the first thing we built in NodeJS and we could have surely make the code more readable and easier to understand. We also wanted better structure to make it easier for people to add their own things.
+ * We want more contributors. 3.X was the first thing we built in NodeJS and we could have surely made the code more readable and easier to understand. We also wanted better structure to make it easier for people to add their own things.
 
  * Test a page as a logged in user. The number one feature that users miss in  sitespeed.io is to be able to login a user and test the performance as a logged in user.
 
@@ -83,7 +83,7 @@ Lets talk about all the new and shiny things in 4.0. The new version uses the Co
 Everything in the new version is a plugin! You can add/remove/create your own plugin. A plugin can run additional tests on a URL or handle the result, like storing it to a database. You can also publish your plugins to npm. Just let us know about your plugin so we can tell the world.
 
 ## HTTP/2
-YES finally we support HTTP/2! The coach will give different advice if your page are using http/1 or 2.  We have nothing in the way (ready proxy) that messes with the connection between the browser and the server.
+YES finally we support HTTP/2! The coach will give different advice if your page is using http/1 or 2.  We have nothing in the way (ready proxy) that messes with the connection between the browser and the server.
 
 ## HAR
 We have super great HAR files. For Firefox we use the [HAR Export Trigger](https://github.com/firebug/har-export-trigger) to generate the HAR file inside of Firefox.
@@ -116,10 +116,10 @@ Well almost 2 seconds :) Using our new Docker compose script and ready made dash
 3. Run sitespeed: <code> docker-compose run sitespeed.io https://www.sitespeed.io/ --graphite.host=graphite</code>
 4. Access the dashboard: http://127.0.0.1:3000
 
-does the trick, it will setup all what you need! Using it in productions you should do some tweaks, read more about that [here]({{site.baseurl}}/documentation/sitespeed.io/performance-dasboard/#production).
+That's all you need. In production you should do some tweaks, read more about that [here]({{site.baseurl}}/documentation/sitespeed.io/performance-dasboard/#production).
 
 ## Everything else
-There's a lot of new things, just try out 4.0 and you will see. Or go to the [documentation]({{site.baseurl}}/documentation/).
+There are a lot of new things, just try out 4.0 and you will see. Or go to the [documentation]({{site.baseurl}}/documentation/).
 
 # What's next (missing in 4.0)
 We hoped we could solve everything but ... well it didn't work out. A couple of things that we would like to add in the near future:
