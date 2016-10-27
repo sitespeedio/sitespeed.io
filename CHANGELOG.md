@@ -1,8 +1,28 @@
 # CHANGELOG - sitespeed.io
+## 4.0.0 2016-10-27
+Version 4.0 is a ground up rewrite for Node.js 6.9.1 and newer. It builds on all our experience since shipping 3.0 in December 2014, the first version to use Node.js.
 
-## UNRELEASED
+* We support HTTP/2! In 3.X we used PhantomJS and a modified version of YSlow to analyze best practice rules. We also had BrowserMobProxy in front of our browsers that made it impossible to collect metrics using H2. We now use the coach and Firefox/Chrome without a proxy. That makes it easier for us to adapt to browser changes and changes in best practices.
+
+* We got the feature that people asked about the most: Measure a page as a logged in user. Use --browsertime.preScript to run a selenium task to before the page is analyzed. Documentation is coming soon.
+
+* New HAR files rock! In the old version we use BrowserMobProxy as a proxy in front of the browser to collect the HAR. In the new version we collect the HAR directly from the browser. For Firefox we use the HAR export trigger and in Chrome we generates it from the performance log.
+
+* Stability: We have a new completely rewritten version of Browsertime that makes it easier for us to catch errors from the browser, drivers and environment problems.
+
+* Speed: Yep we dropped Java (it was needed for BrowserMobProxy) and most things are happening in parallel with the new version.
+
+* Don't overload Graphite: One thing that was annoying with 3.x was that it by default sent a massive amount of metrics to Graphite. That's cool in a way but it was too much. We now send curated metrics by default and you can choose to send more.
+
+* You can collect metrics from Chrome on an Android phone. In the current version you need to have it connected using USB to the server running sitespeed.io, lets see how we can make it better in the future.
+
+* Using our Docker container you will get support getting SpeedIndex and startRender using VisualMetrics. This is highly experimental at this stage.
+
+And many many more changed. Read about the release https://www.sitespeed.io/sitespeed.io-4.0-is-released
+
+## Unreleased beta
 ## Fixed
-* Call summary Site summary in the slack plugin to make it easier to undestand.
+* Call summary Site summary in the slack plugin to make it easier to understand.
 * Run as root inside the Docker container, it makes things easier.
 
 ## 4.0.0-beta.6 2016-10-26
