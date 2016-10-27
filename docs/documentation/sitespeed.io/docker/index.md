@@ -28,7 +28,7 @@ The new structure looks like this:
 [NodeJS with Ubuntu 16](https://github.com/sitespeedio/docker-node) -> [VisualMetrics dependencies](https://github.com/sitespeedio/docker-visualmetrics-deps) ->
 [Firefox/Chrome/xvfb](https://github.com/sitespeedio/docker-browsers) -> [sitespeed.io](https://github.com/sitespeedio/sitespeed.io/blob/master/Dockerfile)
 
-The first container installs NodeJS (latest LTS) on Ubuntu 16. The next one adds the dependencies (FFMpeg, ImageMagick and some Python libraries) needed to run [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics). Then we install specific version of Firefox, Chrome and then xvfb. It's important to lock down the browsers to specific versions because it has been a real mess using Firefox the last half year (to be fair Chrome/Selenium have also had issues in the past). Then in last step, we add sitespeed and tag it to the sitespeed.io version number. 
+The first container installs NodeJS (latest LTS) on Ubuntu 16. The next one adds the dependencies (FFMpeg, ImageMagick and some Python libraries) needed to run [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics). Then we install specific version of Firefox, Chrome and then xvfb. It's important to lock down the browsers to specific versions because it has been a real mess using Firefox the last half year (to be fair Chrome/Selenium have also had issues in the past). Then in last step, we add sitespeed and tag it to the sitespeed.io version number.
 
 ## Running in Docker
 The simplest way to run using Firefox:
@@ -85,3 +85,21 @@ docker pull sitespeedio/sitespeed.io
 And then change your start script (or where you start your container) to use the new version number.
 
 If you don't use version number (you should!) then just pull the container and your next run will use the latest version.
+
+## Troubleshooting
+
+# How to visualize your test in XVFB.
+The docker containers have `x11vnc` installed which enables visualization of the test running inside Xvfb. To view the tests, follow these steps:
+
+- You will need to run the sitespeed.io by exporting a PORT for `vncserver` . By default, it is 5900.
+`docker run --privileged --rm -v "$(pwd)":/sitespeed.io -p 5900:5900 sitespeedio/sitespeed.io-chrome sitespeed.io -u http://www.sitespeed.io -b chrome --seleniumServer http://127.0.0.1:4444/wd/hub`
+- Find the container id of the docker container for sitespeed:
+ ` docker ps`
+- Enter into your running docker container for sitespeed.io by executing:
+ `docker exec -it <container-id> bash`
+- Run `ps aux` to find the `Xvfb` process. It should be using `DISPLAY=:99`
+- Run `x11vnc -display :99 -storepasswd -localhost`. Enter any password. This will start your x11vnc server which you can use by any VNC client to view
+- Download VNC client like RealVNC
+- Enter VNC server : `0.0.0.0:5900`
+- When prompted for password, enter the password you entered while creating the vnc server.
+- You should be able to view the contents of Xvfb.
