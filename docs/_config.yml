@@ -1,4 +1,6 @@
 permalink: /:title/
+ftp_host: ftp.soulislove.com
+ftp_dir: /
 baseurl: 
 markdown: kramdown
 compress_html:
