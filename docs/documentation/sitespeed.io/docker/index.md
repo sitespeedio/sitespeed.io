@@ -28,7 +28,7 @@ The new structure looks like this:
 [NodeJS with Ubuntu 16](https://github.com/sitespeedio/docker-node) -> [VisualMetrics dependencies](https://github.com/sitespeedio/docker-visualmetrics-deps) ->
 [Firefox/Chrome/xvfb](https://github.com/sitespeedio/docker-browsers) -> [sitespeed.io](https://github.com/sitespeedio/sitespeed.io/blob/master/Dockerfile)
 
-The first container installs NodeJS (latest LTS) on Ubuntu 16. The next one adds the dependencies (FFMpeg, ImageMagick and some Python libraries) needed to run [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics). Then we install specific version of Firefox, Chrome and then xvfb. It's important to lock down the browsers to specific versions because it has been a real mess using Firefox the last half year (to be fair Chrome/Selenium have also had issues in the past). Then in last step, we add sitespeed and tag it to the sitespeed.io version number. 
+The first container installs NodeJS (latest LTS) on Ubuntu 16. The next one adds the dependencies (FFMpeg, ImageMagick and some Python libraries) needed to run [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics). Then we install specific version of Firefox, Chrome and then xvfb. It's important to lock down the browsers to specific versions because it has been a real mess using Firefox the last half year (to be fair Chrome/Selenium have also had issues in the past). Then in last step, we add sitespeed and tag it to the sitespeed.io version number.
 
 ## Running in Docker
 The simplest way to run using Firefox:
@@ -85,3 +85,10 @@ docker pull sitespeedio/sitespeed.io
 And then change your start script (or where you start your container) to use the new version number.
 
 If you don't use version number (you should!) then just pull the container and your next run will use the latest version.
+
+## Inspect the container
+In 4.0 we autostart sitespeed.io. If you wanna check what's in the container, you can do that by changing the entry point.
+
+~~~ bash
+docker run -it --entrypoint bash sitespeedio/sitespeed.io:4.0.0
+~~~
