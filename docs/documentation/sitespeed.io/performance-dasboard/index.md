@@ -44,7 +44,12 @@ The dashboards has a couple of templates (the drop downs at the top of the page)
 ![Page templates]({{site.baseurl}}/img/templates-page.png)
 {: .img-thumbnail}
 
-The *path* is the first path after the first part of the namespace. Using default values the namespace looks like *sitespeed_io.default*. Adding your own metrics you should keep the first part (sitespeed_io) but can change the second. When you choose on of the values in a template, the rest will then be populated. You can choose checking metrics for a specific page, browser and connectivity.
+The *path* is the first path after the namespace. Using default values the namespace looks is *sitespeed_io.default*.
+
+When you choose one of the values in a template, the rest will be populated. You can choose checking metrics for a specific page, browser and connectivity.
+
+## The namespace
+The default namespace is *sitespeed_io.default* and the example dashboards are built upon that the first part of the namespace is still *sitespeed_io* but feel free to change the second part. Keeping the first part will make the example dashboards work.
 
 ## Page summary
 The page summary shows metrics for a specific URL/page.
