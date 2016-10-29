@@ -88,18 +88,36 @@ If you don't use version number (you should!) then just pull the container and y
 
 ## Troubleshooting
 
-# How to visualize your test in XVFB.
+### Visualize your test in XVFB
 The docker containers have `x11vnc` installed which enables visualization of the test running inside Xvfb. To view the tests, follow these steps:
 
 - You will need to run the sitespeed.io by exporting a PORT for `vncserver` . By default, it is 5900.
-`docker run --privileged --rm -v "$(pwd)":/sitespeed.io -p 5900:5900 sitespeedio/sitespeed.io-chrome sitespeed.io -u http://www.sitespeed.io -b chrome --seleniumServer http://127.0.0.1:4444/wd/hub`
+~~~bash
+docker run --privileged --rm -v "$(pwd)":/sitespeed.io -p 5900:5900 sitespeedio/sitespeed.io-chrome sitespeed.io -u http://www.sitespeed.io -b chrome --seleniumServer http://127.0.0.1:4444/wd/hub`
+~~~
 - Find the container id of the docker container for sitespeed:
- ` docker ps`
+~~~bash
+docker ps
+~~~
 - Enter into your running docker container for sitespeed.io by executing:
- `docker exec -it <container-id> bash`
-- Run `ps aux` to find the `Xvfb` process. It should be using `DISPLAY=:99`
-- Run `x11vnc -display :99 -storepasswd -localhost`. Enter any password. This will start your x11vnc server which you can use by any VNC client to view
+~~~bash
+docker exec -it <container-id> bash
+~~~
+- Find the 'Xvfb' process using `ps -ef`. It should be using `DISPLAY=:99`.
+- Run
+~~~bash
+x11vnc -display :99 -storepasswd
+~~~
+Enter any password. This will start your x11vnc server which you can use by any VNC client to view
 - Download VNC client like RealVNC
 - Enter VNC server : `0.0.0.0:5900`
 - When prompted for password, enter the password you entered while creating the vnc server.
 - You should be able to view the contents of Xvfb.
+
+### Inspect the container
+In 4.0 we autostart sitespeed.io. If you wanna check what's in the container, you can do that by changing the entry point.
+
+~~~ bash
+docker run -it --entrypoint bash sitespeedio/sitespeed.io:4.0.0
+~~~
+

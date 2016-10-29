@@ -30,3 +30,4 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Mobile phones](mobile-phones/) - test using your mobile phone (Android only).
  * [WebPageTest](webpagetest/) - drive WebPageTest and fetch metrics and graph them.
  * [How it all works](how-it-all-works/) - lets checkout how everything works.
+ * [Developers](developers/) - start here when you want to do PRs or create a plugin.
