@@ -145,4 +145,4 @@ The next couple of days we will be doing cleanup and remove old issues, old proj
 
 See you soon in [the issues](https://github.com/sitespeedio/sitespeed.io/issues)!
 
-/Peter, Tobias and Jonathan
+/Peter, Tobias, and Jonathan
