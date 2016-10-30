@@ -34,15 +34,16 @@ Collected metrics from a URL in Graphite/Grafana:
 Version 4.0 is a ground up rewrite for node.js 6.9.1 and newer. It builds on all our experience since shipping 3.0 in December 2014,
 the first version to use node.js.
 
-Install using npm:
-
-```bash
-$ npm i -g sitespeed.io
-```
-Or using Docker:
+Using Docker:
 
 ```bash
 $ docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io
+```
+
+Or install using npm:
+
+```bash
+$ npm i -g sitespeed.io
 ```
 
 Or clone the repo and test the latest changes:
