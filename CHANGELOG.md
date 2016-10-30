@@ -1,8 +1,8 @@
 # CHANGELOG - sitespeed.io
-## UNRELEASED
+## 4.0.1 2016-10-30
 ### Fixed
-* If you configured params for Chrome, the check for Android configuration broke the run.
-* The CLI output was wrong when seting up a custom profile. You should use --connectovity custom
+* If you configured cli params for Chrome, the check for Android configuration broke the run.
+* The CLI output was wrong when setting up a custom profile. You should use --connectivity custom
 
 
 ## 4.0.0 2016-10-27
