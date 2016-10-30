@@ -19,7 +19,7 @@ twitterdescription: Use sitespeed.io in your Continuous Integration setup.
 
 Use sitespeed.io to keep track of what is happening with your site making sure that you don’t break the performance best practice rules before your change make it to production. You can even leverage budgets to break your build if your page has too many assets, they are too big or too slow. If you use WebPageTest you can even use those metrics to break a build.
 
-You can define your own [budget file](({{site.baseurl}}/documentation/sitespeed.io/performance-budget/)) with rules on when to break your build. This budget will return an error code status after the run or you can choose to output JUnit XML and TAP.
+You can define your own [budget file](../performance-budget/#the-budget-file) with rules on when to break your build. This budget will return an error code status after the run or you can choose to output JUnit XML and TAP.
 
 ## Jenkins
 The easiest way to run in Jenkins is to use the pre built Docker containers. You can run an installed npm version too, but then you will need to setup browsers and use the [Xvfb plugin](https://wiki.jenkins-ci.org/display/JENKINS/Xvfb+Plugin) to make the browsers run in headless mode.
