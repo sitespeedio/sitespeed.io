@@ -2,6 +2,8 @@
 ## UNRELEASED
 ### Fixed
 * If you configured params for Chrome, the check for Android configuration broke the run.
+* The CLI output was wrong when seting up a custom profile. You should use --connectovity custom
+
 
 ## 4.0.0 2016-10-27
 Version 4.0 is a ground up rewrite for Node.js 6.9.1 and newer. It builds on all our experience since shipping 3.0 in December 2014, the first version to use Node.js.
