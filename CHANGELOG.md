@@ -1,5 +1,5 @@
 # CHANGELOG - sitespeed.io
-## UNRELEASED
+## 4.0.2 2016-10-31
 ### Fixed
 * Domains metrics wasn't grouped per domain, making metrics sent to Graphite fail if you configure them to send all. See #1290 and #1289.
 
