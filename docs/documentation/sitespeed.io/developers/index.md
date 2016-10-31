@@ -35,7 +35,17 @@ The flow is like this:
 
 The overall idea is pretty simple. 
 
-## Debugging with Chrome
+### Contributing to the Documentation
+First make sure you have Bundler: <code>gem install bundler</code>
+
+*If you run on a Mac OS make sure you have xcode-select installed: <code>xcode-select --install</code>*
+
+To run the documentation server locally execute the following from within the /docs directory after cloning the repo locally: <code>bundle install && bundle exec jekyll serve --baseurl ''</code>. 
+
+Vist https://localhost:4000/ in the browser of your choice.
+
+
+### Debugging with Chrome
 You can debug sitespeed.io using Chrome and NodeJS > 6. Thanks [@moos](https://github.com/moos) for sharing.
 
 ~~~ bash
