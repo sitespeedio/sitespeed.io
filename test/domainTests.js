@@ -22,11 +22,10 @@ describe('domains', function() {
 
     describe('#addToAggregate', function() {
       it('should add har to aggregate', function() {
-        aggregator.addToAggregate(har);
+        aggregator.addToAggregate(har, 'http://www.vox.com');
         const summary = aggregator.summarize();
-        const voxDomain = summary['cdn1.vox-cdn.com'];
+        const voxDomain = summary.groups.total['cdn1.vox-cdn.com'];
         expect(voxDomain).to.have.deep.property('connect.max', '11');
-
       });
     });
   });
