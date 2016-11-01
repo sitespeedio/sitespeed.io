@@ -13,7 +13,6 @@ mixin rows(assets)
       +durationCell('cache time',asset.cacheTime)
       +kbSizeCell('size', asset.size)
       +numberCell('count', asset.requestCount)
-
 block content
   include runInfo
   if fullCount > 0
