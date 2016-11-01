@@ -10,6 +10,10 @@ const cli = require('../lib/support/cli'),
   loader = require('../lib/support/pluginLoader'),
   browsertimeCli = require('browsertime').cli;
 
+if (process.env.NODE_ENV !== 'production') {
+  require('longjohn');
+}
+
 let browsertimeOptions = browsertimeCli.getOptions({
   group: 'Browser',
   prefix: 'browsertime.',
