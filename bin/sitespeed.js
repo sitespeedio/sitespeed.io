@@ -7,7 +7,6 @@
 const cli = require('../lib/support/cli'),
   sitespeed = require('../lib/sitespeed'),
   Promise = require('bluebird'),
-  loader = require('../lib/support/pluginLoader'),
   browsertimeCli = require('browsertime').cli;
 
 if (process.env.NODE_ENV !== 'production') {
