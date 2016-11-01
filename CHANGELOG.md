@@ -1,7 +1,10 @@
 # CHANGELOG - sitespeed.io
-## UNRELEASED
+## 4.0.3 2016-11-01
 ### Fixed
 * Setting --mobile didn't chnage viewport/useragent. Thank you @zhangzhaoaaa for reporting #1298
+
+* Asset toplist data (slowest/largest assets) couldn't be sent to Graphite. It's now restructured with new naming and you can also get the URL for slowest
+assets toplist in Graphite. Documentation coming up the coming days. #1294
 
 ## 4.0.2 2016-10-31
 ### Fixed
