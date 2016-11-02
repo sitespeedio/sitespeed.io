@@ -1,7 +1,11 @@
 # CHANGELOG - sitespeed.io
+## Unreleased
+### Fixed
+* If you where using graphite.includeQueryParams when you where sending keys to graphite, URLs containing ? and & failed. Those characters are now replaced. 
+
 ## 4.0.3 2016-11-01
 ### Fixed
-* Setting --mobile didn't chnage viewport/useragent. Thank you @zhangzhaoaaa for reporting #1298
+* Setting --mobile didn't change viewport/useragent. Thank you @zhangzhaoaaa for reporting #1298
 
 * Asset toplist data (slowest/largest assets) couldn't be sent to Graphite. It's now restructured with new naming and you can also get the URL for slowest
 assets toplist in Graphite. Documentation coming up the coming days. #1294
