@@ -33,14 +33,12 @@ The flow is like this:
 4. When all URLs are finished, the plugins will get a "close" call to say prepare what you have.
 5. Finish
 
-The overall idea is pretty simple. 
-
 ### Contributing to the Documentation
 First make sure you have Bundler: <code>gem install bundler</code>
 
 *If you run on a Mac OS make sure you have xcode-select installed: <code>xcode-select --install</code>*
 
-To run the documentation server locally execute the following from within the /docs directory after cloning the repo locally: <code>bundle install && bundle exec jekyll serve --baseurl ''</code>. 
+To run the documentation server locally execute the following from within the /docs directory after cloning the repo locally: <code>bundle install && bundle exec jekyll serve --baseurl ''</code>.
 
 Vist https://localhost:4000/ in the browser of your choice.
 
