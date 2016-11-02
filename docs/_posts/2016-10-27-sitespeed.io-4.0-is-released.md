@@ -93,7 +93,7 @@ To get the HAR from Chrome we parses the event log to generate it. Tobias spent 
 Are you prepared? In the new version you can login your user using a Selenium script! Yes that is true. You customize your own script to run pre and post testing a URL. [Check out]({{site.baseurl}}/documentation/sitespeed.io/prepostscript/) the documentation.
 
 ## Mobile phone support
-You can [drive your Android phone and test pages]({{site.baseurl}}//documentation/sitespeed.io/mobile-phones/) using Chrome. You will get an HAR file and it will run all the javascript and collect the metrics.
+You can [drive your Android phone and test pages]({{site.baseurl}}/documentation/sitespeed.io/mobile-phones/) using Chrome. You will get an HAR file and it will run all the javascript and collect the metrics.
 
 ## Log the requests and values
 We already got some really cool PRs for 4.0. [Moos](https://github.com/moos) added support in Browsertime to log number of requests and some timing metrics. When you sit down and go through the logs from sitespeed.io you will see log entries like:
