@@ -115,7 +115,7 @@ Well almost 2 seconds :) Using our new Docker compose script and ready made dash
 3. Run sitespeed: <code> docker-compose run sitespeed.io https://www.sitespeed.io/ --graphite.host=graphite</code>
 4. Access the dashboard: http://127.0.0.1:3000
 
-That's all you need. In production you should do some tweaks, read more about that [here]({{site.baseurl}}/documentation/sitespeed.io/performance-dasboard/#production).
+That's all you need. In production you should do some tweaks, read more about that [here]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#production).
 
 ## Everything else
 There are a lot of new things, just try out 4.0 and you will see. Or go to the [documentation]({{site.baseurl}}/documentation/).
