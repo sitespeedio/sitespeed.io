@@ -1,7 +1,10 @@
 # CHANGELOG - sitespeed.io
-## Unreleased
+## 4.0.4 2016-11-04
 ### Fixed
 * If you where using graphite.includeQueryParams when you where sending keys to graphite, URLs containing ? and & failed. Those characters are now replaced. 
+* We rollbacked sending the URL in Graphite keys for toplists, it's opened the possibility to generate too much data in Graphite.
+* FYI: Soon we will update to the final 3.0.0 of Selenium and we then need to drop support for NodeJS 4.x.
+
 
 ## 4.0.3 2016-11-01
 ### Fixed
