@@ -1,4 +1,9 @@
 # CHANGELOG - sitespeed.io
+
+## UNRELEASED
+### Fixed
+* Running budget with one rule for one URL failed the JUnit output, thanks @krukru for the report #1317
+
 ## 4.0.4 2016-11-04
 ### Fixed
 * If you where using graphite.includeQueryParams when you where sending keys to graphite, URLs containing ? and & failed. Those characters are now replaced. 
