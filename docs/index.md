@@ -17,7 +17,7 @@ Try out sitespeed.io by installing using [npm](https://www.npmjs.org/)/[yarn](ht
 **Docker**
 
 ~~~ bash
-$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
+$ docker run --privileged --shm-size=512m --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
 ~~~
 
 **npm**
