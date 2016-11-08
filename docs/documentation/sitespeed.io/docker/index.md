@@ -45,24 +45,24 @@ If you wanna use Chrome you either need to use privileged or turn of the sandbox
 $ docker run --privileged --shm-size=512m --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -b chrome https://www.sitespeed.io/
 ~~~
 
-Note: The shm-size increases the memory for the GPU (default is 64mb and that is too small) see [https://github.com/elgalu/docker-selenium/issues/20](https://github.com/elgalu/docker-selenium/issues/20). 
+Note: The shm-size increases the memory for the GPU (default is 64mb and that is too small) see [https://github.com/elgalu/docker-selenium/issues/20](https://github.com/elgalu/docker-selenium/issues/20).
 
 or
 
 ~~~ bash
-$ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -b chrome --browsertime.chrome.args no-sandbox https://www.sitespeed.io/
+$ docker run --shm-size=512m --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -b chrome --browsertime.chrome.args no-sandbox https://www.sitespeed.io/
 ~~~
 
 If you want to feed sitespeed with a list of URLs in a file (here named *myurls.txt*), add the file to your current directory and do like this:
 
 ~~~ bash
-sudo docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io myurls.txt -b chrome
+sudo docker run --shm-size=512m --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io myurls.txt -b chrome
 ~~~
 
 In the real world you should always specify the exact version (tag) of the Docker container to make sure you use the same version everytime (else you will download the latest tag, meaning you can have major changes between test runs without you even knowing). Specify the tag after the container name(X.Y.Z) in this example. The tag/version number will be the same number as the sitespeed.io release:
 
 ~~~ bash
-sudo docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:X.Y.Z https://www.sitespeed.io/ -b chrome
+sudo docker run --shm-size=512m --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:X.Y.Z https://www.sitespeed.io/ -b chrome
 ~~~
 
 
@@ -103,7 +103,7 @@ The docker containers have `x11vnc` installed which enables visualization of the
 - You will need to run the sitespeed.io image by exposing a PORT for vnc server . By default, it is 5900. If you plan to change your port for VNC server, then you need to expose that port.
 
 ~~~bash
-docker run --privileged --rm -v "$(pwd)":/sitespeed.io -p 5900:5900 sitespeedio/sitespeed.io https://www.sitespeed.io/ -b chrome
+docker run --shm-size=512m --privileged --rm -v "$(pwd)":/sitespeed.io -p 5900:5900 sitespeedio/sitespeed.io https://www.sitespeed.io/ -b chrome
 ~~~
 
 - Find the container id of the docker container for sitespeed by running:
