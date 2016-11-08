@@ -42,8 +42,10 @@ That will map the current directory inside Docker and output the result director
 If you wanna use Chrome you either need to use privileged or turn of the sandbox option:
 
 ~~~ bash
-$ docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -b chrome https://www.sitespeed.io/
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -b chrome https://www.sitespeed.io/
 ~~~
+
+Note: The shm-size increases the memory in the GPU, see [https://github.com/elgalu/docker-selenium/issues/20](https://github.com/elgalu/docker-selenium/issues/20).
 
 or
 

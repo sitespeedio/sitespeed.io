@@ -37,7 +37,7 @@ the first version to use node.js.
 Using Docker:
 
 ```bash
-$ docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io
 ```
 
 Or install using npm:
