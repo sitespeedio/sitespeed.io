@@ -4,9 +4,12 @@
 ### Fixed
 * Running budget with one rule for one URL failed the JUnit output, thanks @krukru for the report #1317
 
+### Added
+* Pick up environment variables in the CLI. The namespace is SITESPEED_IO. This is useful for setting up default values in Docker. Say you want to set an environment variable for --browsertime.iterations 1 then use SITESPEED_IO_BROWSERTIME__ITERATIONS=1. Checkout https://www.npmjs.com/package/yargs#envprefix for full docs.
+
 ## 4.0.4 2016-11-04
 ### Fixed
-* If you where using graphite.includeQueryParams when you where sending keys to graphite, URLs containing ? and & failed. Those characters are now replaced. 
+* If you where using graphite.includeQueryParams when you where sending keys to graphite, URLs containing ? and & failed. Those characters are now replaced.
 * We rollbacked sending the URL in Graphite keys for toplists, it's opened the possibility to generate too much data in Graphite.
 * FYI: Soon we will update to the final 3.0.0 of Selenium and we then need to drop support for NodeJS 4.x.
 
