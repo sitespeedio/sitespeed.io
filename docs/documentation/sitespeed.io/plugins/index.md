@@ -64,10 +64,18 @@ There's a plugin bundled with sitespeed.io called *analysisStorer* plugin that i
 $ sitespeed.io https://www.sitespeed.io --plugins.load analysisStorer
 ~~~
 
-If you want to run plugins that you created yourself or shared from others, you can either install the plugin using npm and load it by name or point out the directory where the plugin lives.
+If you want to run plugins that you created yourself or shared from others, you can either install the plugin using npm (locally) and load it by name or point out the directory where the plugin lives.
 
 ~~~ bash
 $ sitespeed.io https://www.sitespeed.io --plugins.load ../my/super/plugin
+~~~
+
+### Plugin in Docker
+
+If you run in Docker you need to mount your plugin as a volume. Practically you should clone your repo on your server and then mount it like this.
+
+~~~ bash
+docker run -v /Users/peter/git/myplugin/:/myplugin sitespeedio/sitespeed.io -b firefox --plugins.load /myplugin -n 1 https://www.sitespeed.io/
 ~~~
 
 # Create your own plugin
@@ -118,7 +126,8 @@ The *context* holds information for this specific run that generated at runtime 
   storageManager, // The storage manager is what you use to store data to disk
   dataCollection, // a shared collection of the collected data
   timestamp, // The timestamp of when you started the run
-  budget // If you run with budget, the result will be here
+  budget, // If you run with budget, the result will be here
+  log // The logger used in sitespeed.io, use it to log https://github.com/seanmonstar/intel
 }
 ~~~
 
@@ -161,6 +170,13 @@ queue.postMessage(make('browsertime.screenshot', results.screenshots, {
   group
 }));
 ~~~
+
+If you wanna send messages inside your plugin, your plugin needs to depend on sitespeed and you can require the message maker like this:
+
+~~~
+const messageMaker = require('sitespeed.io/lib/support/messageMaker');
+~~~
+
 
 ### close(options, errors)
 When all URLs is analyzed, the close function is called once for each plugin. You can use that to store data that you collected.
