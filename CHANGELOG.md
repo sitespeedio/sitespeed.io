@@ -1,11 +1,28 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 4.0.5 2016-11-11
 ### Fixed
 * Running budget with one rule for one URL failed the JUnit output, thanks @krukru for the report #1317
 
 ### Added
 * Pick up environment variables in the CLI. The namespace is SITESPEED_IO. This is useful for setting up default values in Docker. Say you want to set an environment variable for --browsertime.iterations 1 then use SITESPEED_IO_BROWSERTIME__ITERATIONS=1. Checkout https://www.npmjs.com/package/yargs#envprefix for full docs.
+
+* Upgraded to Browsertime 1.0.0-beta-10:
+  * Added initiator of each request entry to chrome HAR
+  * Output SpeedIndex & firstVisualChange in the logs if you use VisualMetrics
+  * Generating HAR files from Chrome caused a crash in some cases.
+  * Entry timings in HAR files from Chrome were strings instead of numbers.
+  * One extra fix for outputing timing metrics in the console:  If timing metrics is < 1000 ms don't convert to seconds and let always have fixed\
+size for mdev fixing many numbers for SpeedIndex.
+  * Configure proxies with --proxy.http and --proxy.https
+  * New TSProxy that is less complex
+  * Upgraded Selenium to 3.0.1 (no beta!)
+  * Upgraded Geckodriver to 0.11.1
+  * Updated minimum NodeJS to 6.9.0 (same as Selenium). IMPORTANT: Selenium 3.0.0 will not work on NodeJS 4.x so you need to update.
+  * Export chrome perflog dumps as json in extraJson property of the result, instead of a string in the extras property. Only relevant to api users.
+  * Upgraded sltc so we use 0.6.0 with simplified tc that actually works
+  * We now run xvfb from inside NodeJS so we can set the screen size, making it easy to record the correct size for VisualMetrics. We also use environment variables that starts with BROWSERTIME so we can turn on xvfb easily on Docker.
+https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md 
 
 ## 4.0.4 2016-11-04
 ### Fixed
