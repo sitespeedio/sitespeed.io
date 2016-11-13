@@ -15,5 +15,8 @@ If you don't find the answer here or in the [documentation]({{site.baseurl}}/doc
 * Lets place the TOC here
 {:toc}
 
-## No FAQ?
-We will update the FAQ when we get things in for 4.0.
+## Should I use TSProxy or tc as connectivity engine?
+If you run our Docker containers (and you really should do that) it seems that you get more stable values using the tc. We use that on the [dashboard](https://dashboard.sitespeed.io). However the Chrome team uses TSProxy in some of their test tools, so it should be good. But testing on Linux/MacOS X it seems like the [numbers differs](https://github.com/WPO-Foundation/tsproxy/issues/10). Help us if you see the same!
+
+## I can't get Firefox to work in Docker on Digital Ocean what's wrong?
+Do you get a lot of "Browser failed to start in time, trying one more time." in your log? There's some kind of problem with the "One click app" for Docker 1.12.3 and Ubuntu, it makes Firefox crash. However if you install Ubuntu 16 standalone and then manually installs Docker, it works fine.
