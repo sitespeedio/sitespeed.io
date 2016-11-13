@@ -217,7 +217,7 @@ Setting the connectivity to cable:
 $ sitespeed.io -c cable https://www.sitespeed.io/
 ~~~
 
-Changing the engine type to tc:
+Changing the engine type to tc (use tc when you run in Docker):
 
 ~~~bash
 $ sitespeed.io -c cable --browsertime.connectivity.engine tc https://www.sitespeed.io/
