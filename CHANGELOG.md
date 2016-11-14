@@ -1,13 +1,14 @@
 # CHANGELOG - sitespeed.io
 
-## 4.0.6 2016-11-13
+## 4.0.7 2016-11-13
 ### Fixed
 * Upgraded to Browsertime 1.0.0-beta.11
   * Fixed issue with incorrect values for speedindex and start render due to a small info bubble of text appearing in the video frames.
 
+## 4.0.6 2016-11-13
 ### Added
 * Additional information added in the documentation around using connectivity engine `tc` for network throttling.
-* Additional information added in the FAQ section of the documentation mentioning Digital Ocean issue with pre-baked docker(1.12.3) instances and Firefox.
+* Additional information added in the FAQ section of the documentation mentioning Digital Ocean issue with pre-baked docker(1.12.3) instances and Firefox. 
 
 ## 4.0.5 2016-11-11
 ### Fixed
