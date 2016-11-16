@@ -21,7 +21,7 @@ table
 - totalRequests = 0
 h3 Requests and sizes per content type
 .responsive
-  table
+  table(data-sortable, id='contentSize')
     +rowHeading(['Content', 'Header Size', 'Transfer Size', 'Content Size', 'Requests'])
     each data, type in pagexray.contentTypes
       - totalContentSize += data.contentSize
