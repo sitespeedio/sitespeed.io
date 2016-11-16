@@ -1,4 +1,7 @@
 # CHANGELOG - sitespeed.io
+## UNRELEASED
+### Fixed
+* Cli help options for Browsertime was very unclear and unspecific. 
 
 ## 4.0.7 2016-11-13
 ### Fixed
