@@ -86,6 +86,7 @@ Your plugin needs to follow this structure.
 
 ~~~ javascript
 const path = require('path');
+const log = require('intel').getLogger('plugins.'+path.basename(__dirname));
 
 module.exports = {
   name() {
