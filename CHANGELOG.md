@@ -1,4 +1,10 @@
 # CHANGELOG - sitespeed.io
+## UNRELEASED
+### Fixed
+* Cli help options for Browsertime was very unclear and unspecific. 
+
+### Added
+* Made the size table sorteable for PageXray metrics
 
 ## 4.0.7 2016-11-13
 ### Fixed
