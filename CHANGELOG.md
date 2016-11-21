@@ -5,6 +5,9 @@
 
 ### Added
 * Made the size table sorteable for PageXray metrics
+* Upgraded the Docker container to use FF 50
+* Upgraded to latest Browsertime beta 12 with better video support
+* Option to set your custom alias for connectivity thank you @jpvincent for the idea #1329 
 
 ## 4.0.7 2016-11-13
 ### Fixed
