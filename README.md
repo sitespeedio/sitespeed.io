@@ -12,11 +12,11 @@
 ## Welcome to the wonderful world of web performance!
 
 Using sitespeed.io you can:
-* test your web site against Web Performance best practices using the [Coach](https://github.com/sitespeedio/coach).
+* Test your web site against Web Performance best practices using the [Coach](https://github.com/sitespeedio/coach).
 * Collect timing metrics like Navigation Timing API and User Timing API from Firefox/Chrome using [Browsertime](https://github.com/sitespeedio/browsertime).
-* Run your custom made Javascript and collect whatever metric you need.
-* Test one or multiple page, one or many runs to get more accurate metrics.
-* Create HTML result pages or store the metrics in Graphite
+* Run your custom-made JavaScript and collect whichever metric(s) you need.
+* Test one or multiple pages, across one or many runs to get more-accurate metrics.
+* Create HTML-result pages or store the metrics in Graphite.
 * Write your own plugins that can do whatever tests you want/need.
 
 And a lot of more things. But what does it look like?
@@ -31,7 +31,7 @@ Collected metrics from a URL in Graphite/Grafana:
 <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/pagesummary-grafana.png">
 
 ## 4.0
-Version 4.0 is a ground up rewrite for node.js 6.9.1 and newer. It builds on all our experience since shipping 3.0 in December 2014,
+Version 4.0 is a ground-up rewrite for node.js 6.9.1 and newer. It builds on all our experience since shipping 3.0 in December 2014,
 the first version to use node.js.
 
 Using Docker:
