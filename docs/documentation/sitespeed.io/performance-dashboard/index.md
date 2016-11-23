@@ -24,7 +24,7 @@ You need [Docker](https://docs.docker.com/engine/installation/) and [Docker Comp
 # Up and running in 5 minutes
 
 1. Download our new Docker compose file: <code>curl -O https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/docker-compose.yml</code>
-2. Run: <code>docker-compose up</code>
+2. Run: <code>docker-compose up</code> (make sure you run the latest [Docker compose](https://docs.docker.com/compose/install/) version)
 3. Run sitespeed to get some metrics: <code> docker-compose run sitespeed.io https://www.sitespeed.io/ --graphite.host=graphite</code>
 4. Access the dashboard: http://127.0.0.1:3000
 
