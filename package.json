@@ -95,6 +95,7 @@
     "simplecrawler": "1.0.1",
     "tape": "4.6.2",
     "text-table": "0.2.0",
+    "uuid": "^3.0.0",
     "webcoach": "0.29.0",
     "webpagetest": "0.3.4",
     "yargs": "5.0.0"
