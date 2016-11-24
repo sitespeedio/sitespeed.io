@@ -237,7 +237,7 @@ You can change where you want the data to be stored by setting the <code>--outpu
 $ sitespeed.io --outputFolder /my/folder ".ryanair.com" https://www.sitespeed.io/
 ~~~
 
-## Configuration as JSON
+### Configuration as JSON
 
 You can keep all your configuration in a JSON file and then pass it on to sitespeed, and override with CLI parameters.
 
