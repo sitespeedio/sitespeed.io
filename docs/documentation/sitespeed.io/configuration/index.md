@@ -237,6 +237,48 @@ You can change where you want the data to be stored by setting the <code>--outpu
 $ sitespeed.io --outputFolder /my/folder ".ryanair.com" https://www.sitespeed.io/
 ~~~
 
+## Configuration as JSON
+
+You can keep all your configuration in a JSON file and then pass it on to sitespeed, and override with CLI parameters.
+
+Create a config file and call it config.json:
+
+~~~
+{
+  "browsertime": {
+    "connectivity": {
+      "engine": "tc",
+      "profile": "cable"
+    },
+    "iterations": 5,
+    "browser": "chrome",
+    "experimental": {
+      "video": true
+    }
+  },
+  "graphite": {
+    "host": "my.graphite.host",
+    "namespace": "sitespeed_io.desktopFirstView"
+  },
+"plugins": {
+	"disable": ["html"]
+	},
+  "utc": true
+}
+~~~
+
+The run it like this:
+
+~~~bash
+$ sitespeed.io --config config.json https://www.sitespeed.io
+~~~
+
+If you wanna override and run the same configuration but using Firefox, you just override with the CLI paramater:
+
+~~~bash
+$ sitespeed.io --config config.json -b firefox https://www.sitespeed.io
+~~~
+
 ## Advanced
 
 ### Slack
