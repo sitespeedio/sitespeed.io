@@ -9,6 +9,7 @@
 * Upgraded to latest Browsertime beta 12 with better video support
 * Option to set your custom alias for connectivity thank you @jpvincent for the idea #1329 
 * GPSI now uses mobile configuration so if you pass --mobile, it will use the mobile rules. #1342
+* Always send PerceptualSpeedIndex to Graphite as picked up by Browsertime/VisualMetrics
 
 ## 4.0.7 2016-11-13
 ### Fixed
