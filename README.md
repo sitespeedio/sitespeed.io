@@ -56,6 +56,12 @@ $ bin/sitespeed.js --help
 $ bin/sitespeed.js http://www.sitespeed.io
 ```
 
+## Running Sitespeed 4.0 with Docker + Proxy + Custmer Login Script + Create Custom Folder (date/time stamped)
+Here is an example that finally worked for me with lot of tweaks that runs using the Sitespeed 4.0 docker, behind corporate proxy, saving the HTML summary reports in customer folder marked with date/timestamp and avoiding the HAR trigger error by using the --browsertime.pageCompleteCheck option with custom javascript.
+
+Below is a cron job definition that runs ever 45th minute of an hour
+
+45 * * * * docker run --privileged -v /app/sitespeed.io:/sitespeed.io sitespeedio/sitespeed.io <url|list> --preScript prescript.js -n 1 -b firefox  --graphite.host <graphiteip-host> --graphite.namespace <graphite-namespace>  --browsertime.proxy.http=proxy.xxxx.xxxxxxxx.com:80 --browsertime.proxy.https=proxy.xxxx.xxxxxxxx.com:80 --outputFolder sitespeed-result/<customfoldername>/$(date +\%Y-\%m-\%d-\%H-\%M-\%S) --browsertime.pageCompleteCheck 'return (function() {try { return (Date.now() - window.performance.timing.loadEventEnd) > 10000;} catch(e) {} return true;})()'
 
 ## Why 4.0?
 There's a lot of things that we wanted to improve since 3.0. Here's some of the most important changes:
