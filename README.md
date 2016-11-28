@@ -62,7 +62,7 @@ Here is an example that finally worked for me with lot of tweaks that runs using
 Below is a cron job definition that runs ever 45th minute of an hour
 
 ```bash
-45 * * * * docker run --privileged -v /app/sitespeed.io:/sitespeed.io sitespeedio/sitespeed.io <url|list> --preScript prescript.js -n 1 -b firefox  --graphite.host <graphiteip-host> --graphite.namespace <graphite-namespace>  --browsertime.proxy.http=proxy.xxxx.xxxxxxxx.com:80 --browsertime.proxy.https=proxy.xxxx.xxxxxxxx.com:80 --outputFolder sitespeed-result/<customfoldername>/$(date +\%Y-\%m-\%d-\%H-\%M-\%S) --browsertime.pageCompleteCheck 'return (function() {try { return (Date.now() - window.performance.timing.loadEventEnd) > 10000;} catch(e) {} return true;})()'
+45 * * * * docker run --privileged -v /app/sitespeed.io:/sitespeed.io sitespeedio/sitespeed.io <url|text file with list of urls> --preScript prescript.js -n 1 -b firefox  --graphite.host <graphiteip-host> --graphite.namespace <graphite-namespace>  --browsertime.proxy.http=proxy.xxxx.xxxxxxxx.com:80 --browsertime.proxy.https=proxy.xxxx.xxxxxxxx.com:80 --outputFolder sitespeed-result/<customfoldername>/$(date +\%Y-\%m-\%d-\%H-\%M-\%S) --browsertime.pageCompleteCheck 'return (function() {try { return (Date.now() - window.performance.timing.loadEventEnd) > 10000;} catch(e) {} return true;})()'
 ```
 
 ## Why 4.0?
