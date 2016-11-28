@@ -56,7 +56,7 @@ $ bin/sitespeed.js --help
 $ bin/sitespeed.js http://www.sitespeed.io
 ```
 
-## Running Sitespeed 4.0 with Docker + Proxy + Custmer Login Script + Create Custom Folder (date/time stamped)
+## Running Sitespeed 4.0 with Docker + Proxy + Custom Login Script + Create Custom Folder (date/time stamped)
 Here is an example that finally worked for me with lot of tweaks that runs using the Sitespeed 4.0 docker, behind corporate proxy, saving the HTML summary reports in customer folder marked with date/timestamp and avoiding the HAR trigger error by using the --browsertime.pageCompleteCheck option with custom javascript.
 
 Below is a cron job definition that runs ever 45th minute of an hour
