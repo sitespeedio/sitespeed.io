@@ -1,0 +1,27 @@
+include ../../_tableMixins
+
+- var visualMetrics = browsertime.visualMetrics;
+- baseHelpURL = rootPath + 'help.html#';
+
+a
+h2 Video
+
+include ./videoElement.pug
+
+table
+  tr
+    td
+      a(href=baseHelpURL + 'FirstVisualChange') First Visual Change
+    td.number #{visualMetrics.FirstVisualChange.toFixed(1)}
+  tr
+    td
+      a(href=baseHelpURL + 'speedIndex') Speed Index
+    td.number #{visualMetrics.SpeedIndex.toFixed(0)}
+  tr
+    td
+      a(href=baseHelpURL + 'PerceptualSpeedIndex') Perceptual Speed Index
+    td.number #{visualMetrics.PerceptualSpeedIndex.toFixed(0)}
+  tr
+    td
+      a(href=baseHelpURL + 'LastVisualChange') Last Visual Change
+    td.number #{visualMetrics.LastVisualChange.toFixed(1)}

@@ -1403,6 +1403,7 @@ a[selected] {
 #coach[selected] ~ #coach-panel,
 #browsertime[selected] ~ #browsertime-panel,
 #pagexray[selected] ~ #pagexray-panel,
+#video[selected] ~ #video-panel,
 #webpagetest[selected] ~ #webpagetest-panel,
 #gpsi[selected] ~ #gpsi-panel {
   display: block; }
