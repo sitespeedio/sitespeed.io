@@ -76,10 +76,6 @@ block content
       section#browsertime-panel
         include ./browsertime/index.pug
 
-    if options.browsertime && options.browsertime.experimental && options.browsertime.experimental.video
-      section#video-panel
-        include ./video/index.pug
-
     if d.pagexray && d.pagexray.run
       section#pagexray-panel
         include ./pagexray/index.pug
