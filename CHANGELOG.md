@@ -2,6 +2,7 @@
 ## UNRELEASED
 ### Fixed
 * Cli help options for Browsertime was very unclear and unspecific. 
+* TSProxy is somehow broken together with Selenium. TC is now default connectivity engine when running in Docker.
 
 ### Added
 * Made the size table sorteable for PageXray metrics
