@@ -1,14 +1,37 @@
-a
-h3 Browsertime
-p.small Collect timing metrics from your browser.
 - var browsertime = pageInfo.data.browsertime.run || pageInfo.data.browsertime.pageSummary.browserScripts[run]
 - var timings = browsertime.timings;
 - var visualMetrics = browsertime.visualMetrics;
 - baseHelpURL = rootPath + 'help.html#';
+
+a
+h3 Browsertime
+
+p.small Collect timing metrics from your browser.
+
+if options.browsertime.video
+  include ./videoElement.pug
+
 table
   tr
     th name
     th timing
+  if visualMetrics
+    tr
+      td
+        a(href=baseHelpURL + 'FirstVisualChange') First Visual Change
+      td.number #{visualMetrics.FirstVisualChange.toFixed(0)}
+    tr
+      td
+        a(href=baseHelpURL + 'speedIndex') Speed Index
+      td.number #{visualMetrics.SpeedIndex.toFixed(0)}
+    tr
+      td
+        a(href=baseHelpURL + 'PerceptualSpeedIndex') Perceptual Speed Index
+      td.number #{visualMetrics.PerceptualSpeedIndex.toFixed(0)}
+    tr
+      td
+        a(href=baseHelpURL + 'LastVisualChange') Last Visual Change
+      td.number #{visualMetrics.LastVisualChange.toFixed(0)}
   each value, name in timings.pageTimings
     tr
       - url = baseHelpURL + name
@@ -28,19 +51,6 @@ table
     td
       a(href=baseHelpURL + 'fullyLoaded') Fully loaded
     td.number #{timings.fullyLoaded.toFixed(1)}
-  if visualMetrics
-    tr
-      td
-        a(href=baseHelpURL + 'SpeedIndex') Speed Index (visual metric)
-      td.number #{visualMetrics.SpeedIndex.toFixed(1)}
-    tr
-      td
-        a(href=baseHelpURL + 'FirstVisualChange') First Visual Change (visual metric)
-      td.number #{visualMetrics.FirstVisualChange.toFixed(1)}
-    tr
-      td
-        a(href=baseHelpURL + 'LastVisualChange') Last Visual Change (visual metric)
-      td.number #{visualMetrics.LastVisualChange.toFixed(1)}
   if (Object.keys(timings.userTimings.marks).length > 0)
     each value, name in timings.userTimings.marks
       tr
