@@ -2,9 +2,15 @@
 ## UNRELEASED
 ### Fixed
 * Cli help options for Browsertime was very unclear and unspecific. 
+* TSProxy is somehow broken together with Selenium. TC is now default connectivity engine when running in Docker.
 
 ### Added
 * Made the size table sorteable for PageXray metrics
+* Upgraded the Docker container to use FF 50
+* Upgraded to latest Browsertime beta 12 with better video support
+* Option to set your custom alias for connectivity thank you @jpvincent for the idea #1329 
+* GPSI now uses mobile configuration so if you pass --mobile, it will use the mobile rules. #1342
+* Always send PerceptualSpeedIndex to Graphite as picked up by Browsertime/VisualMetrics
 
 ## 4.0.7 2016-11-13
 ### Fixed
