@@ -1,14 +1,20 @@
 # CHANGELOG - sitespeed.io
 ## UNRELEASED
 ### Fixed
-* Cli help options for Browsertime was very unclear and unspecific. 
+* Cli help options for Browsertime was very unclear and unspecific.
+* TSProxy is somehow broken together with Selenium. TC is now default connectivity engine when running in Docker.
+* Finally fixed the problem with Chrome that it sometimes didn't start in Docker: https://github.com/SeleniumHQ/docker-selenium/issues/87#issuecomment-250475864
+
 
 ### Added
 * Made the size table sorteable for PageXray metrics
 * Upgraded the Docker container to use FF 50
 * Upgraded to latest Browsertime beta 12 with better video support
-* Option to set your custom alias for connectivity thank you @jpvincent for the idea #1329 
+* Option to set your custom alias for connectivity thank you @jpvincent for the idea #1329
 * GPSI now uses mobile configuration so if you pass --mobile, it will use the mobile rules. #1342
+* Always send PerceptualSpeedIndex to Graphite as picked up by Browsertime/VisualMetrics
+* Added --video and --speedIndex to record a video and get SpeedIndex and related metrics using VisualMetrics. Use it in our Docker container.
+* If you configured to run a video you can see that in the Browsertime tab.
 
 ## 4.0.7 2016-11-13
 ### Fixed
@@ -18,7 +24,7 @@
 ## 4.0.6 2016-11-13
 ### Added
 * Additional information added in the documentation around using connectivity engine `tc` for network throttling.
-* Additional information added in the FAQ section of the documentation mentioning Digital Ocean issue with pre-baked docker(1.12.3) instances and Firefox. 
+* Additional information added in the FAQ section of the documentation mentioning Digital Ocean issue with pre-baked docker(1.12.3) instances and Firefox.
 
 ## 4.0.5 2016-11-11
 ### Fixed
@@ -42,7 +48,7 @@ size for mdev fixing many numbers for SpeedIndex.
   * Export chrome perflog dumps as json in extraJson property of the result, instead of a string in the extras property. Only relevant to api users.
   * Upgraded sltc so we use 0.6.0 with simplified tc that actually works
   * We now run xvfb from inside NodeJS so we can set the screen size, making it easy to record the correct size for VisualMetrics. We also use environment variables that starts with BROWSERTIME so we can turn on xvfb easily on Docker.
-https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md 
+https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md
 
 ## 4.0.4 2016-11-04
 ### Fixed
