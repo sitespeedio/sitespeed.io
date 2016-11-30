@@ -3,7 +3,7 @@ layout: default
 title: Speed Index, video and more goodies
 description: The new 4.1 release brings us Speed Index and video.
 authorimage: /img/robot-head.png
-intro: In 4.1 we have some really great news. SpeedIndex, video and preURL measuring that second view.
+intro: In 4.1 we have some really great news. SpeedIndex, video and preURL measuring that second view. And we also fixed that bug that Chrome sometimes doesn't start in Docker.
 keywords: sitespeed.io, speed, index, speed, webperf, performance, web, wpo
 nav: blog
 ---
@@ -17,10 +17,10 @@ In the new version you can record a video of the screen and we calculate the Spe
 
 Recording a video and slicing and dicing the result needs a lot if extra software (FFMpeg, ImageMagick, Pillow and pyssim) so use your Docker containers to get that out of the box.
 
-If you wanna collect SpeedIndex (and first visual change, last vsiual change and Perceptual Speed Index) you run like this:
+If you wanna collect SpeedIndex (and first visual change, last visual change and Perceptual Speed Index) you run like this:
 
 ~~~ bash
-$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --video --speedindex -c cable https://www.sitespeed.io/
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --video --speedIndex -c cable https://www.sitespeed.io/
 ~~~
 
 All metrics will automatically be shown in the result report and sent to Graphite if you have setup. You will also get a video on your Browsertime result tab that looks like this:
@@ -34,7 +34,7 @@ Using only <code>--video</code> you will record the screen but not collect metri
 
 With 4.1 you have Docker container that you can run anywhere (on your local machine, in the cloud, on your servers etc) and collect Speed Index from Chrome and Firefox. And that makes us really happy :)
 
-Also a very special thanks to [Walter Elbert](https://github.com/walterebert) that helped us with FFMPeg so we convert the video to a mp4 that works in all modern browsers.
+Also a very special thanks to [Walter Ebert](https://github.com/walterebert) that helped us with FFMPeg so we convert the video to a mp4 that works in all modern browsers.
 
 ## Introducing pre URL and second view
 The other big thing in 4.1 is that we made it easy test second view. Ehh, second view you say? Well many tools have the repeat view (access the same URL twice), to make it easy to see how the cache works. However in real user scenarios it's better to first access one URL and then go to the one that you want to measure (exact as the user do). In 4.0 we had support for that but you need supply your own preScript. In 4.1 we made it super easy, just add the URL with parameter:
@@ -58,11 +58,17 @@ custom alias for connectivity thank you [@jpvincent](https://github.com/jpvincen
 
 * We increased the resource timing buffer size to 600 to make sure the Fully loaded metric works better.
 
+* We finally fixed that last (known) problem with Chrome in Docker, that made Chrome fail to start sometimes. Thanks to the Selenium Docker team [that fixed it first](https://github.com/SeleniumHQ/docker-selenium/issues/87#issuecomment-250475864
+)
+
 ## What's next
-Christmas is coming soon and we will take it easy but there's a couple of things coming.
+Christmas is coming soon and we will take it easy and mostly focus on bug fixes, clean up the code and finalizing Browsertime 1.0 but there's a couple of other things coming.
 
 Soon you will be able to [add an alias](https://github.com/sitespeedio/sitespeed.io/issues/1326) to your URLs when you send them to Graphite.
 
 Then we want to focus on [supporting InfluxDB](https://github.com/sitespeedio/sitespeed.io/issues/889). We have a base setup already and we would love help/feedback.
+
+## How can you help out?
+It would be super cool if could have custom video player, maybe you can [help us out](https://github.com/sitespeedio/sitespeed.io/issues/1356)
 
 /Peter, Tobias, and Jonathan
