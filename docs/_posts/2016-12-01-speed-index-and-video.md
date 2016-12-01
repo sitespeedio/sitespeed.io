@@ -30,7 +30,7 @@ All metrics will automatically be shown in the result report and sent to Graphit
 Your browser does not support the video tag.
 </video>
 
-Using only <code>--video</code> you will record the screen but not collect metrics.
+Using only <code>--video</code> you will record the screen but not collect metrics. If you only use <code>--speedIndex</code> we will collect the metrics and delete the video.
 
 With 4.1 you have Docker container that you can run anywhere (on your local machine, in the cloud, on your servers etc) and collect Speed Index from Chrome and Firefox. And that makes us really happy :)
 
@@ -59,7 +59,7 @@ custom alias for connectivity thank you [@jpvincent](https://github.com/jpvincen
 * We increased the resource timing buffer size to 600 to make sure the Fully loaded metric works better.
 
 * We finally fixed that last (known) problem with Chrome in Docker, that made Chrome fail to start sometimes. Thanks to the Selenium Docker team [that fixed it first](https://github.com/SeleniumHQ/docker-selenium/issues/87#issuecomment-250475864
-)
+).
 
 ## What's next
 Christmas is coming soon and we will take it easy and mostly focus on bug fixes, clean up the code and finalizing Browsertime 1.0 but there's a couple of other things coming.
@@ -69,6 +69,6 @@ Soon you will be able to [add an alias](https://github.com/sitespeedio/sitespeed
 Then we want to focus on [supporting InfluxDB](https://github.com/sitespeedio/sitespeed.io/issues/889). We have a base setup already and we would love help/feedback.
 
 ## How can you help out?
-It would be super cool if could have custom video player, maybe you can [help us out](https://github.com/sitespeedio/sitespeed.io/issues/1356)
+It would be super cool to have custom video player, maybe you can [help us out](https://github.com/sitespeedio/sitespeed.io/issues/1356).
 
 /Peter, Tobias, and Jonathan
