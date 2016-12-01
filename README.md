@@ -37,7 +37,7 @@ the first version to use node.js.
 Using Docker:
 
 ```bash
-$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --video --speedIndex https://www.sitespeed.io/
 ```
 
 Or install using npm:
@@ -75,6 +75,8 @@ There's a lot of things that we wanted to improve since 3.0. Here's some of the 
 * You can collect metrics from Chrome on an Android phone. In the current version you need to have it connected using USB to the server running sitespeed.io, lets see how we can make it better in the future.
 
 * Using our Docker container you will get support getting SpeedIndex and startRender using [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics). This is highly experimental at this stage.
+
+* We now support video and calculating SpeedIndex (since 4.1). Use our Docker container to get an easy ride.
 
 There are new things that will come also that isn't 100% implemented yet and you can help us.
 * InfluxDB support. We have started with a POC but need to implement it properly, see [889](https://github.com/sitespeedio/sitespeed.io/issues/889).
