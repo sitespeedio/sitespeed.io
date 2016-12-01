@@ -1,4 +1,10 @@
 # CHANGELOG - sitespeed.io
+
+## UNRELEASED
+
+### Added
+* Output preURL info on the runInfo box on each HTML page.
+
 ## 4.1.0 2016-12-01
 ### Fixed
 * Cli help options for Browsertime was very unclear and unspecific.
