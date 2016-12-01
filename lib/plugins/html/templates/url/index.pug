@@ -44,14 +44,18 @@ block content
               tr
                 td Requests:
                 td #{d.pagexray.pageSummary.requests}
-            if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.timings.firstPaint
+            if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.visualMetrics
+              tr
+                td First visual change:
+                td #{d.browsertime.pageSummary.statistics.visualMetrics.FirstVisualChange.median}
+            else if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.timings.firstPaint
               tr
                 td First Paint:
                 td #{d.browsertime.pageSummary.statistics.timings.firstPaint.median}
-            if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.visualMetrics.SpeedIndex
+            if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.visualMetrics
               tr
-                td SpeedIndex:
-                td #{d.browsertime.pageSummary.visualMetrics.SpeedIndex}
+                td Speed Index:
+                td #{d.browsertime.pageSummary.statistics.visualMetrics.SpeedIndex.median}
             else if d.browsertime && d.browsertime.pageSummary
               tr
                 td RUMSpeedIndex:
