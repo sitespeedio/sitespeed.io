@@ -228,6 +228,22 @@ Changing the engine type to tc (use tc when you run in Docker):
 $ sitespeed.io -c cable --browsertime.connectivity.engine tc https://www.sitespeed.io/
 ~~~
 
+### Speed Index and video
+In 4.1 we released support for recording a video of the browser screen and use that to calculate visual metrics like Speed Index. Use our Docker containers for a easy setup.
+
+If you only care about Speed Index and related metrics (first visual change etc) you can run like this:
+
+~~~bash
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --speedIndex https://www.sitespeed.io/
+~~~
+
+Sitespeed.io will then analyze the video and then remove it. If you wanna keep the video, add the video flag (and you can see it in the Browsertime tab):
+
+~~~bash
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --speedIndex --video https://www.sitespeed.io/
+~~~
+
+
 ### First party vs third party
 You can categorize requests as first or third parties by adding a regexp. You will then get the size & requests by type both in HTML and sent to Graphite.
 
