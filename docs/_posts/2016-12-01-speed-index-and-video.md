@@ -46,7 +46,7 @@ $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeed
 The browser will first access the preURL and then the URL you want to measure. If you have assets that are cached between requests, you will see that now. You have a more realistic way of measuring when your user first go to your sites start page and then access the next.
 
 ## Page cost dashboard
-We have a new dashboard that you can use to calculate the end user cost for your pages  [https://dashboard.sitespeed.io/dashboard/db/page-cost-estimator](https://dashboard.sitespeed.io/dashboard/db/page-cost-estimator).
+We have a new dashboard that you can use to calculate the end user cost for your pages:  [https://dashboard.sitespeed.io/dashboard/db/page-cost-estimator](https://dashboard.sitespeed.io/dashboard/db/page-cost-estimator). We hope this help people focus on page weight.
 
 ## Other changes
 We also have some other changes:
