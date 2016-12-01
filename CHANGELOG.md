@@ -4,6 +4,7 @@
 
 ### Added
 * Output preURL info on the runInfo box on each HTML page.
+* If we have first and last visual change add it to the HAR file so we can see it in the waterfall graph.
 
 ## Fixed
 * Output Speed Index and First Visual Change in page summary box (the logic was there for SpeedIndex before but failed).
