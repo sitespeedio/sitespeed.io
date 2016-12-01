@@ -1,20 +1,19 @@
 # CHANGELOG - sitespeed.io
-## UNRELEASED
+## 4.1.0 2016-12-01
 ### Fixed
 * Cli help options for Browsertime was very unclear and unspecific.
 * TSProxy is somehow broken together with Selenium. TC is now default connectivity engine when running in Docker.
 * Finally fixed the problem with Chrome that it sometimes didn't start in Docker: https://github.com/SeleniumHQ/docker-selenium/issues/87#issuecomment-250475864
 
-
 ### Added
-* Made the size table sorteable for PageXray metrics
+* Made the size table sortable for PageXray metrics
 * Upgraded the Docker container to use FF 50
-* Upgraded to latest Browsertime beta 12 with better video support
+* Upgraded to latest Browsertime beta 13 with official video support
 * Option to set your custom alias for connectivity thank you @jpvincent for the idea #1329
 * GPSI now uses mobile configuration so if you pass --mobile, it will use the mobile rules. #1342
 * Always send PerceptualSpeedIndex to Graphite as picked up by Browsertime/VisualMetrics
 * Added --video and --speedIndex to record a video and get SpeedIndex and related metrics using VisualMetrics. Use it in our Docker container.
-* If you configured to run a video you can see that in the Browsertime tab.
+* If you configured to run a video you can see the video in the Browsertime tab.
 
 ## 4.0.7 2016-11-13
 ### Fixed
