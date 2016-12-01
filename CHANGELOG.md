@@ -8,7 +8,7 @@
 
 ## Fixed
 * Output Speed Index and First Visual Change in page summary box (the logic was there for SpeedIndex before but failed).
-* Added missibg shorthand --preURL to the CLI options.
+* Added missing shorthand --preURL to the CLI options.
 
 ## 4.1.0 2016-12-01
 ### Fixed
