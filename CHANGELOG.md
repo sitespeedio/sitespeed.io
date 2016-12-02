@@ -1,12 +1,16 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Fixed
+* Color of tabs in waterfall graph is now white and readable. The URL in the tabs has the right letter spacing.
+
 ## 4.1.1 2016-12-02
 
 ### Added
 * Output preURL info on the runInfo box on each HTML page.
 * If we have first and last visual change add it to the HAR file so we can see it in the waterfall graph.
 
-## Fixed
+### Fixed
 * Output Speed Index and First Visual Change in page summary box (the logic was there for SpeedIndex before but failed).
 * Added missing shorthand --preURL to the CLI options.
 
