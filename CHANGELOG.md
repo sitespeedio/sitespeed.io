@@ -3,6 +3,7 @@
 ## UNRELEASED
 ### Fixed
 * Color of tabs in waterfall graph is now white and readable. The URL in the tabs has the right letter spacing.
+* Crash when all assets matched the specified first party regex. #1358
 
 ## 4.1.1 2016-12-02
 
