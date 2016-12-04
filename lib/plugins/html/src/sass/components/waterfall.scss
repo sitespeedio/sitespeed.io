@@ -28,6 +28,7 @@ svg.water-fall-chart {width:100%; overflow: visible;}
 
 .time-scale line {stroke:#0cc; stroke-width:1;}
 .time-scale text {font-weight:bold;}
+.time-scale line.sub-second-line {stroke: #ccc; opacity: 0.75; stroke-width:0.25;}
 
 .row-item .even {fill: #ccc; opacity: 0.05;}
 .row-item .odd {fill: #000; opacity: 0.05;}
