@@ -4,6 +4,9 @@
 ### Fixed
 * Color of tabs in waterfall graph is now white and readable. The URL in the tabs has the right letter spacing.
 
+### Added
+* New version of PerfCascade that gives us numbers on requests, image tab last and horizontel lines in subseconds.
+
 ## 4.1.1 2016-12-02
 
 ### Added
