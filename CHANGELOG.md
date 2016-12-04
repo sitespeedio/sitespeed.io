@@ -1,18 +1,18 @@
 # CHANGELOG - sitespeed.io
 
 ## UNRELEASED
+
+
+## 4.1.2 2016-12-04
 ### Fixed
 * Color of tabs in waterfall graph is now white and readable. The URL in the tabs has the right letter spacing.
 * Crash when all assets matched the specified first party regex. #1358
 
 ### Added
 * Additional checks to avoid generating invalid paths in Graphite. 
-
-### Added
 * New version of PerfCascade that gives us numbers on requests, image tab last and horizontel lines in subseconds.
 
 ## 4.1.1 2016-12-02
-
 ### Added
 * Output preURL info on the runInfo box on each HTML page.
 * If we have first and last visual change add it to the HAR file so we can see it in the waterfall graph.
