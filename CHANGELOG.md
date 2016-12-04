@@ -3,6 +3,10 @@
 ## UNRELEASED
 ### Fixed
 * Color of tabs in waterfall graph is now white and readable. The URL in the tabs has the right letter spacing.
+* Crash when all assets matched the specified first party regex. #1358
+
+### Added
+* Additional checks to avoid generating invalid paths in Graphite. 
 
 ### Added
 * New version of PerfCascade that gives us numbers on requests, image tab last and horizontel lines in subseconds.
