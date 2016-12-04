@@ -989,6 +989,11 @@ svg.water-fall-chart {
 .time-scale text {
   font-weight: bold; }
 
+.time-scale line.sub-second-line {
+  stroke: #ccc;
+  opacity: 0.75;
+  stroke-width: 0.25; }
+
 .row-item .even {
   fill: #ccc;
   opacity: 0.05; }
