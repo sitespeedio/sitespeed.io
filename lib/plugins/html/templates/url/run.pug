@@ -45,14 +45,21 @@ block content
               tr
                 td Requests:
                 td #{d.pagexray.run.requests}
-            if d.browsertime && d.browsertime.run && d.browsertime.run.timings.firstPaint
+            if d.browsertime && d.browsertime.run && d.browsertime.run.visualMetrics
+              tr
+                td First Visual Change:
+                td #{d.browsertime.run.visualMetrics.FirstVisualChange}  
+            else if d.browsertime && d.browsertime.run && d.browsertime.run.timings.firstPaint
               tr
                 td First Paint:
                 td #{d.browsertime.run.timings.firstPaint}
-            if d.browsertime && d.browsertime.run && d.browsertime.run.visualMetrics && d.browsertime.run.visualMetrics.SpeedIndex
+            if d.browsertime && d.browsertime.run && d.browsertime.run.visualMetrics
               tr
                 td SpeedIndex:
                 td #{d.browsertime.run.visualMetrics.SpeedIndex}
+              tr
+                td Last Visual Change:
+                td #{d.browsertime.run.visualMetrics.LastVisualChange}
             else if d.browsertime && d.browsertime.run
               tr
                 td RUMSpeedIndex:
