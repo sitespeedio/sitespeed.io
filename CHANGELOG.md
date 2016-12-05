@@ -1,7 +1,11 @@
 # CHANGELOG - sitespeed.io
 
 ## UNRELEASED
-
+### Added
+* SpeedIndex, First/Last Visual change is now in the help section
+* Show SpeedIndex, First/Last Visual change on the detailed summary page
+* Show last visual change in the summary
+* Color the first/last change 
 
 ## 4.1.2 2016-12-04
 ### Fixed
@@ -9,7 +13,7 @@
 * Crash when all assets matched the specified first party regex. #1358
 
 ### Added
-* Additional checks to avoid generating invalid paths in Graphite. 
+* Additional checks to avoid generating invalid paths in Graphite.
 * New version of PerfCascade that gives us numbers on requests, image tab last and horizontel lines in subseconds.
 
 ## 4.1.1 2016-12-02
