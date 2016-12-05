@@ -13,6 +13,9 @@ svg.water-fall-chart {width:100%; overflow: visible;}
 .water-fall-chart .line-holder.active {stroke: #69009e; stroke-width:2; stroke-opacity:1;}
 .water-fall-chart .type-onload .line-holder  {stroke: #c0c0ff;}
 .water-fall-chart .type-oncontentload .line-holder  {stroke: #d888df;}
+.water-fall-chart .type-firstPaint .line-holder  {stroke: #d888df;}
+.water-fall-chart .type-firstVisualChange .line-holder  {stroke: #c0c0ff;}
+.water-fall-chart .type-lastVisualChange .line-holder  {stroke: #d888df;}
 
 .water-fall-chart .labels {width:100%;}
 .water-fall-chart .labels .inner-label {pointer-events: none;}
