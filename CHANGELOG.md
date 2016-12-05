@@ -4,8 +4,9 @@
 ### Added
 * SpeedIndex, First/Last Visual change is now in the help section
 * Show SpeedIndex, First/Last Visual change on the detailed summary page
-* Show last visual change in the summary
-* Color the first/last change 
+* Show last visual change in the summary box
+* Color the first/last change line in the waterfall graph 
+* Show legend for the waterfall graph
 
 ## 4.1.2 2016-12-04
 ### Fixed

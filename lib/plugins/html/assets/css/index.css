@@ -1356,6 +1356,80 @@ svg.water-fall-chart {
   display: table;
   clear: both; }
 
+.info-overlay-holder .no-colour,
+.info-overlay-holder .serverrtt,
+.info-overlay-holder .allcombined,
+.info-overlay-holder .connect {
+  border-right: solid 5px #e58226;
+  padding-right: 5px; }
+
+.info-overlay-holder .blocked {
+  border-right: solid 5px #ccc;
+  padding-right: 5px; }
+
+.info-overlay-holder .ssl {
+  border-right: solid 5px #c141cd;
+  padding-right: 5px; }
+
+.info-overlay-holder .send {
+  border-right: solid 5px #1fe110;
+  padding-right: 5px; }
+
+.info-overlay-holder .wait {
+  border-right: solid 5px #1fe11f;
+  padding-right: 5px; }
+
+.info-overlay-holder .receive {
+  border-right: solid 5px #1977dd;
+  padding-right: 5px; }
+
+.info-overlay-holder .dns {
+  border-right: solid 5px #1f7c83;
+  padding-right: 5px; }
+
+/** Legend */
+.resource-legend {
+  margin: 0;
+  padding: 0;
+  font-size: 0.75em;
+  line-height: 1.5em;
+  display: inline-block; }
+
+.resource-legend li {
+  margin: 0 1em 0 0;
+  padding: 0;
+  white-space: nowrap;
+  display: inline-block; }
+
+.resource-legend li:before {
+  content: '';
+  width: 1em;
+  height: 1em;
+  margin: 0 0.5em 0 0;
+  vertical-align: text-top;
+  display: inline-block; }
+
+.resource-legend .legend-blocked:before {
+  background: #ccc; }
+
+.resource-legend .legend-dns:before {
+  background: #1f7c83; }
+
+.resource-legend .legend-connect:before {
+  background: #e58226; }
+
+.resource-legend .legend-ssl:before {
+  background: #c141cd; }
+
+.resource-legend .legend-send:before {
+  background: #1fe110; }
+
+.resource-legend .legend-wait:before {
+  background: #c141cd; }
+
+.resource-legend .legend-receive:before {
+  background: #1977dd; }
+
 @media screen and (max-width: 400px) {
   select {
     max-width: 100%; } }
