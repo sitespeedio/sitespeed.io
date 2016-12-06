@@ -1,20 +1,50 @@
 # CHANGELOG - sitespeed.io
-## UNRELEASED
+
+## 4.1.3 2016-12-05
+### Fixed
+* If you tested multiple runs, the video was overrun by the last URL, see https://github.com/sitespeedio/browsertime/issues/237
+
+### Added
+* SpeedIndex, First/Last Visual change is now in the help section
+* Show SpeedIndex, First/Last Visual change on the detailed summary page
+* Show last visual change in the summary box
+* Color the first/last change line in the waterfall graph
+* Show legend for the waterfall graph
+* Added breakdown of 1st vs 3rd party content types
+
+## 4.1.2 2016-12-04
+### Fixed
+* Color of tabs in waterfall graph is now white and readable. The URL in the tabs has the right letter spacing.
+* Crash when all assets matched the specified first party regex. #1358
+
+### Added
+* Additional checks to avoid generating invalid paths in Graphite.
+* New version of PerfCascade that gives us numbers on requests, image tab last and horizontel lines in subseconds.
+
+## 4.1.1 2016-12-02
+### Added
+* Output preURL info on the runInfo box on each HTML page.
+* If we have first and last visual change add it to the HAR file so we can see it in the waterfall graph.
+
+### Fixed
+* Output Speed Index and First Visual Change in page summary box (the logic was there for SpeedIndex before but failed).
+* Added missing shorthand --preURL to the CLI options.
+
+## 4.1.0 2016-12-01
 ### Fixed
 * Cli help options for Browsertime was very unclear and unspecific.
 * TSProxy is somehow broken together with Selenium. TC is now default connectivity engine when running in Docker.
 * Finally fixed the problem with Chrome that it sometimes didn't start in Docker: https://github.com/SeleniumHQ/docker-selenium/issues/87#issuecomment-250475864
 
-
 ### Added
-* Made the size table sorteable for PageXray metrics
+* Made the size table sortable for PageXray metrics
 * Upgraded the Docker container to use FF 50
-* Upgraded to latest Browsertime beta 12 with better video support
+* Upgraded to latest Browsertime beta 13 with official video support
 * Option to set your custom alias for connectivity thank you @jpvincent for the idea #1329
 * GPSI now uses mobile configuration so if you pass --mobile, it will use the mobile rules. #1342
 * Always send PerceptualSpeedIndex to Graphite as picked up by Browsertime/VisualMetrics
 * Added --video and --speedIndex to record a video and get SpeedIndex and related metrics using VisualMetrics. Use it in our Docker container.
-* If you configured to run a video you can see that in the Browsertime tab.
+* If you configured to run a video you can see the video in the Browsertime tab.
 
 ## 4.0.7 2016-11-13
 ### Fixed

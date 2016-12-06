@@ -616,28 +616,23 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
   font-size: 3.0rem;
-  line-height: 1.2;
-  letter-spacing: -0.1rem; }
+  line-height: 1.2; }
 
 h2 {
   font-size: 2.8rem;
-  line-height: 1.25;
-  letter-spacing: -0.1rem; }
+  line-height: 1.25; }
 
 h3 {
   font-size: 2.6rem;
-  line-height: 1.3;
-  letter-spacing: -0.1rem; }
+  line-height: 1.3; }
 
 h4 {
   font-size: 2.4rem;
-  line-height: 1.35;
-  letter-spacing: -0.08rem; }
+  line-height: 1.35; }
 
 h5 {
   font-size: 1.8rem;
-  line-height: 1.5;
-  letter-spacing: -0.05rem; }
+  line-height: 1.5; }
 
 h6 {
   font-size: 1.5rem;
@@ -958,6 +953,15 @@ svg.water-fall-chart {
 .water-fall-chart .type-oncontentload .line-holder {
   stroke: #d888df; }
 
+.water-fall-chart .type-firstPaint .line-holder {
+  stroke: #d888df; }
+
+.water-fall-chart .type-firstVisualChange .line-holder {
+  stroke: #c0c0ff; }
+
+.water-fall-chart .type-lastVisualChange .line-holder {
+  stroke: #d888df; }
+
 .water-fall-chart .labels {
   width: 100%; }
 
@@ -993,6 +997,11 @@ svg.water-fall-chart {
 
 .time-scale text {
   font-weight: bold; }
+
+.time-scale line.sub-second-line {
+  stroke: #ccc;
+  opacity: 0.75;
+  stroke-width: 0.50; }
 
 .row-item .even {
   fill: #ccc;
@@ -1278,6 +1287,7 @@ svg.water-fall-chart {
   display: inline-block; }
 
 .info-overlay-holder button {
+  color: #fff;
   background: transparent;
   outline: 0;
   border: 0;
@@ -1346,9 +1356,92 @@ svg.water-fall-chart {
   display: table;
   clear: both; }
 
+.info-overlay-holder .no-colour,
+.info-overlay-holder .serverrtt,
+.info-overlay-holder .allcombined,
+.info-overlay-holder .connect {
+  border-right: solid 5px #e58226;
+  padding-right: 5px; }
+
+.info-overlay-holder .blocked {
+  border-right: solid 5px #ccc;
+  padding-right: 5px; }
+
+.info-overlay-holder .ssl {
+  border-right: solid 5px #c141cd;
+  padding-right: 5px; }
+
+.info-overlay-holder .send {
+  border-right: solid 5px #1fe110;
+  padding-right: 5px; }
+
+.info-overlay-holder .wait {
+  border-right: solid 5px #1fe11f;
+  padding-right: 5px; }
+
+.info-overlay-holder .receive {
+  border-right: solid 5px #1977dd;
+  padding-right: 5px; }
+
+.info-overlay-holder .dns {
+  border-right: solid 5px #1f7c83;
+  padding-right: 5px; }
+
+/** Legend */
+.resource-legend {
+  margin: 0;
+  padding: 0;
+  font-size: 0.75em;
+  line-height: 1.5em;
+  display: inline-block; }
+
+.resource-legend li {
+  margin: 0 1em 0 0;
+  padding: 0;
+  white-space: nowrap;
+  display: inline-block; }
+
+.resource-legend li:before {
+  content: '';
+  width: 1em;
+  height: 1em;
+  margin: 0 0.5em 0 0;
+  vertical-align: text-top;
+  display: inline-block; }
+
+.resource-legend .legend-blocked:before {
+  background: #ccc; }
+
+.resource-legend .legend-dns:before {
+  background: #1f7c83; }
+
+.resource-legend .legend-connect:before {
+  background: #e58226; }
+
+.resource-legend .legend-ssl:before {
+  background: #c141cd; }
+
+.resource-legend .legend-send:before {
+  background: #1fe110; }
+
+.resource-legend .legend-wait:before {
+  background: #c141cd; }
+
+.resource-legend .legend-receive:before {
+  background: #1977dd; }
+
 @media screen and (max-width: 400px) {
   select {
     max-width: 100%; } }
+
+.water-fall-chart .type-firstPaint .line-holder {
+  stroke: #d888df; }
+
+.water-fall-chart .type-firstVisualChange .line-holder {
+  stroke: #c0c0ff; }
+
+.water-fall-chart .type-lastVisualChange .line-holder {
+  stroke: #d888df; }
 
 .screenshot {
   padding: 4px;

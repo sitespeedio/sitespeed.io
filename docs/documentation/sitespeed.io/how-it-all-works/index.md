@@ -27,6 +27,7 @@ For more detailed info read the [developers guide]({{site.baseurl}}/documentatio
 Sitespeed.io uses a lot of other Open Source tools massive love to those projects:
 
  * [Selenium](http://www.seleniumhq.org/)
+ * [Visual Metrics](https://github.com/WPO-Foundation/visualmetrics)
  * [TSProxy](https://github.com/WPO-Foundation/tsproxy)
  * [HAR Export Trigger](https://github.com/firebug/har-export-trigger)
  * [PerfCascade](https://github.com/micmro/PerfCascade)

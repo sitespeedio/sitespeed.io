@@ -1,7 +1,7 @@
 version: '2'
 services:
     sitespeed.io:
-      image: sitespeedio/sitespeed.io:4.0.7
+      image: sitespeedio/sitespeed.io
       privileged: true
       volumes:
             - ./sitespeed-result/:/sitespeed.io/sitespeed-result

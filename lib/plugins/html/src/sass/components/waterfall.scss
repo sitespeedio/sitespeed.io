@@ -13,6 +13,9 @@ svg.water-fall-chart {width:100%; overflow: visible;}
 .water-fall-chart .line-holder.active {stroke: #69009e; stroke-width:2; stroke-opacity:1;}
 .water-fall-chart .type-onload .line-holder  {stroke: #c0c0ff;}
 .water-fall-chart .type-oncontentload .line-holder  {stroke: #d888df;}
+.water-fall-chart .type-firstPaint .line-holder  {stroke: #d888df;}
+.water-fall-chart .type-firstVisualChange .line-holder  {stroke: #c0c0ff;}
+.water-fall-chart .type-lastVisualChange .line-holder  {stroke: #d888df;}
 
 .water-fall-chart .labels {width:100%;}
 .water-fall-chart .labels .inner-label {pointer-events: none;}
@@ -28,6 +31,7 @@ svg.water-fall-chart {width:100%; overflow: visible;}
 
 .time-scale line {stroke:#0cc; stroke-width:1;}
 .time-scale text {font-weight:bold;}
+.time-scale line.sub-second-line {stroke: #ccc; opacity: 0.75; stroke-width:0.50;}
 
 .row-item .even {fill: #ccc; opacity: 0.05;}
 .row-item .odd {fill: #000; opacity: 0.05;}
@@ -148,7 +152,7 @@ svg.water-fall-chart {width:100%; overflow: visible;}
 .info-overlay-holder h3 strong {font-size: 1.1em;}
 .info-overlay-holder .tab-nav ul {margin: 0; padding: 0;}
 .info-overlay-holder .tab-nav li {margin: 0; padding: 0; display: inline-block;}
-.info-overlay-holder button { background: transparent; outline:0; border:0; border-bottom: solid 2px transparent;
+.info-overlay-holder button { color: #fff; background: transparent; outline:0; border:0; border-bottom: solid 2px transparent;
   padding: 0.5em 1em; margin:0 0.25em;}
 .info-overlay-holder li:first-child  button {margin-left: 1em;}
 .info-overlay-holder button:focus,.info-overlay-holder button:hover {border-color: rgba(255,255,255, 0.6);}
@@ -165,6 +169,31 @@ svg.water-fall-chart {width:100%; overflow: visible;}
 .info-overlay-holder .tab pre {overflow-y: hidden;}
 .info-overlay-holder .tab .preview {width: auto; max-width: 100%; max-height: 500px; border: solid 1px #666;}
 .info-overlay-holder .tab dl:after {content: ""; display: table; clear: both;}
+
+.info-overlay-holder .no-colour,
+.info-overlay-holder .serverrtt,
+.info-overlay-holder .allcombined,
+.info-overlay-holder .connect {border-right: solid 5px #e58226; padding-right: 5px;}
+.info-overlay-holder .blocked {border-right: solid 5px #ccc; padding-right: 5px;}
+.info-overlay-holder .ssl {border-right: solid 5px #c141cd; padding-right: 5px;}
+.info-overlay-holder .send {border-right: solid 5px #1fe110; padding-right: 5px;}
+.info-overlay-holder .wait {border-right: solid 5px #1fe11f; padding-right: 5px;}
+.info-overlay-holder .receive {border-right: solid 5px #1977dd; padding-right: 5px;}
+.info-overlay-holder .dns {border-right: solid 5px #1f7c83; padding-right: 5px;}
+
+/** Legend */
+.resource-legend { margin: 0; padding: 0; font-size: 0.75em; line-height: 1.5em; display: inline-block;}
+.resource-legend li {margin: 0 1em 0 0; padding: 0; white-space: nowrap; display: inline-block;}
+.resource-legend li:before {content:''; width: 1em; height: 1em; margin: 0 0.5em 0 0; vertical-align: text-top; display: inline-block; }
+
+.resource-legend .legend-blocked:before { background: #ccc;}
+.resource-legend .legend-dns:before { background: #1f7c83;}
+.resource-legend .legend-connect:before { background: #e58226; }
+.resource-legend .legend-ssl:before { background: #c141cd; }
+.resource-legend .legend-send:before { background: #1fe110; }
+.resource-legend .legend-wait:before { background: #c141cd; }
+.resource-legend .legend-receive:before { background: #1977dd; }
+
 
 @media screen and (max-width: 400px) {
   select {

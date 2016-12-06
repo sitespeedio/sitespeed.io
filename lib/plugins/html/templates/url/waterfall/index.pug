@@ -15,16 +15,19 @@ if summaryPageHAR && dahar.log.pages.length === 1
 else
   a(href='data/browsertime.har') Download
   |  the HAR file.
+#legend-holder
 #output
 script(src= rootPath + 'js/perf-cascade.min.js')
 script(type='text/javascript').
   var outputHolderEl = document.getElementById("output");
   var pageSelectorEl = document.getElementById("page-selector");
+  var legendHolderEl = document.getElementById("legend-holder");
   var options = {
     rowHeight: 20, //default: 23
     showAlignmentHelpers : true, //default: true
     showIndicatorIcons: false, //default: true
     leftColumnWith: 30 ,//default: 25
+    legendHolder: legendHolderEl,
     pageSelector: pageSelectorEl
   };
   var har = !{JSON.stringify(dahar.log)};
