@@ -88,7 +88,7 @@
     "mkdirp": "0.5.1",
     "moment": "2.16.0",
     "node-slack": "0.0.7",
-    "pagexray": "0.13.1",
+    "pagexray": "0.14.1",
     "pug": "2.0.0-beta6",
     "simplecrawler": "1.0.1",
     "tape": "4.6.2",
