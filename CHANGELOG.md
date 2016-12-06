@@ -1,11 +1,14 @@
 # CHANGELOG - sitespeed.io
 
 ## UNRELEASED
+### Fixed
+* If you tested multiple runs, the video was overrun by the last URL, see https://github.com/sitespeedio/browsertime/issues/237
+
 ### Added
 * SpeedIndex, First/Last Visual change is now in the help section
 * Show SpeedIndex, First/Last Visual change on the detailed summary page
 * Show last visual change in the summary box
-* Color the first/last change line in the waterfall graph 
+* Color the first/last change line in the waterfall graph
 * Show legend for the waterfall graph
 
 ## 4.1.2 2016-12-04
