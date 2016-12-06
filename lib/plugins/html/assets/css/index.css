@@ -1377,13 +1377,6 @@ svg.water-fall-chart {
 * {
   box-sizing: border-box; }
 
-info-overlay-holder button {
-  color: #fff;
-  background: transparent;
-  outline: 0;
-  border: 0;
-  border-bottom: solid 2px transparent; }
-
 @media screen and (max-width: 400px) {
   select {
     max-width: 100%; } }
