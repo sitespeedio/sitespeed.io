@@ -10,6 +10,7 @@
 * Show last visual change in the summary box
 * Color the first/last change line in the waterfall graph
 * Show legend for the waterfall graph
+* Added breakdown of 1st vs 3rd party content types
 
 ## 4.1.2 2016-12-04
 ### Fixed
