@@ -1,3 +1,14 @@
 .water-fall-chart .type-firstPaint .line-holder  {stroke: #d888df;}
 .water-fall-chart .type-firstVisualChange .line-holder  {stroke: #c0c0ff;}
 .water-fall-chart .type-lastVisualChange .line-holder  {stroke: #d888df;}
+
+#page-selector {display: none; clear: both; margin: 1em 0;}
+
+* {box-sizing: border-box;}
+
+
+@media screen and (max-width: 400px) {
+  select {
+    max-width: 100%;
+  }
+}
