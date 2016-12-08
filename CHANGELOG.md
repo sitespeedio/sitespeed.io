@@ -4,6 +4,7 @@
 ### Added
 * Updated to browsertime beta14 with fix for to early firstVisualChange with preURL and display lastVisualChange in the video
 * Upgraded the Docker container to use Chrome 55.0
+* The metric lines (firstVisualChange etc) is now stronger and easier to spot
 
 ## 4.1.3 2016-12-05
 ### Fixed
