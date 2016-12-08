@@ -1363,25 +1363,27 @@ svg.water-fall-chart {
 .water-fall-chart .type-firstpaint .line-holder {
   stroke: #d888df;
   stroke-opacity: 1.0;
-  stroke-width: 2; }
+  stroke-width: 3; }
 
 .water-fall-chart .type-firstvisualchange .line-holder {
   stroke: #42f46e;
-  stroke-width: 2; }
+  stroke-opacity: 1.0;
+  stroke-width: 3; }
 
 .water-fall-chart .type-lastvisualchange .line-holder {
   stroke: #ee42f4;
-  stroke-width: 2; }
+  stroke-opacity: 1.0;
+  stroke-width: 3; }
 
 .water-fall-chart .type-onload .line-holder {
   stroke: #9c99e5;
   stroke-opacity: 1.0;
-  stroke-width: 2; }
+  stroke-width: 3; }
 
 .water-fall-chart .type-oncontentload .line-holder {
   stroke: #9842f4;
   stroke-opacity: 1.0;
-  stroke-width: 2; }
+  stroke-width: 3; }
 
 #page-selector {
   display: none;
