@@ -6,6 +6,9 @@
 * Upgraded the Docker container to use Chrome 55.0
 * The metric lines (firstVisualChange etc) is now stronger and easier to spot
 
+### Fixed
+* Running multiple URLs in WebPageTest failed because of a "feature" in the WebPageTest NodeJS API where options in s are change to ms. https://github.com/sitespeedio/sitespeed.io/issues/1367
+
 ## 4.1.3 2016-12-05
 ### Fixed
 * If you tested multiple runs, the video was overrun by the last URL, see https://github.com/sitespeedio/browsertime/issues/237
