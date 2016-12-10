@@ -2,22 +2,7 @@
 - var width = options.mobile ? 'max-width: 400px;' : 'width: 100%'
 
 div(style=width)
-  video#theVideo(controls, width='100%', height='auto', preload='metadata', playbackrate=0.5)
+  video.video-js.vjs-default-skin.vjs-big-play-centered(controls, width='100%', height='auto', preload='none', data-setup='{ "fluid": true, "playbackRates": [0.1, 0.2, 0.5, 1] ,"volumeControl": false }')
     source(src='data/video/' + videoIndex +'.mp4', type='video/mp4')
 
-  form(action='?')
-    input#pbr(type='range', value='0.5', min='0.1', max='2', step='0.1')
-    p
-      | Playback Rate
-      span#currentPbr &nbsp;1
-
-script.
-  window.onload = function () {
-  var v = document.getElementById("theVideo");
-  var p = document.getElementById("pbr");
-  var c = document.getElementById("currentPbr");
-  p.addEventListener('input',function(){
-  c.innerHTML = '&nbsp;' + p.value;
-  v.playbackRate = p.value;
-  },false);
-  };
+script(src= rootPath + 'js/video.min.js')
