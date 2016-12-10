@@ -911,6 +911,7 @@ ul.menu {
   -moz-hyphens: auto;
   hyphens: auto; }
 
+/*! github.com/micmro/PerfCascade Version:0.2.11 (10/12/2016) */
 * {
   box-sizing: border-box; }
 
@@ -1123,9 +1124,6 @@ svg.water-fall-chart {
   border: solid 1px #36c; }
 
 /* Info overlay SVG - timings tab */
-.info-overlay-holder .no-colour,
-.info-overlay-holder .serverrtt,
-.info-overlay-holder .allcombined,
 .info-overlay-holder .connect {
   border-right: solid 5px #fd9727;
   padding-right: 5px; }
@@ -1134,7 +1132,7 @@ svg.water-fall-chart {
   border-right: solid 5px #aaa;
   padding-right: 5px; }
 
-.info-overlay-holder .ssl {
+.info-overlay-holder .ssltls {
   border-right: solid 5px #c141cd;
   padding-right: 5px; }
 
@@ -1360,14 +1358,30 @@ svg.water-fall-chart {
 .resource-legend .legend-receive:before {
   background: #1eaaf1; }
 
-.water-fall-chart .type-firstPaint .line-holder {
-  stroke: #d888df; }
+.water-fall-chart .type-firstpaint .line-holder {
+  stroke: #42f46e;
+  stroke-opacity: 1.0;
+  stroke-width: 3; }
 
-.water-fall-chart .type-firstVisualChange .line-holder {
-  stroke: #c0c0ff; }
+.water-fall-chart .type-firstvisualchange .line-holder {
+  stroke: #42f46e;
+  stroke-opacity: 1.0;
+  stroke-width: 3; }
 
-.water-fall-chart .type-lastVisualChange .line-holder {
-  stroke: #d888df; }
+.water-fall-chart .type-lastvisualchange .line-holder {
+  stroke: #ee42f4;
+  stroke-opacity: 1.0;
+  stroke-width: 3; }
+
+.water-fall-chart .type-onload .line-holder {
+  stroke: #9c99e5;
+  stroke-opacity: 1.0;
+  stroke-width: 3; }
+
+.water-fall-chart .type-oncontentload .line-holder {
+  stroke: #9842f4;
+  stroke-opacity: 1.0;
+  stroke-width: 3; }
 
 #page-selector {
   display: none;

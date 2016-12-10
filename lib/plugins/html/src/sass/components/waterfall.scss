@@ -1,3 +1,4 @@
+/*! github.com/micmro/PerfCascade Version:0.2.11 (10/12/2016) */
 
 * {box-sizing: border-box;}
 
@@ -94,12 +95,9 @@ svg.water-fall-chart {width:100%; overflow: visible;}
 .info-overlay-close-btn:focus {border: solid 1px #36c;}
 
 /* Info overlay SVG - timings tab */
-.info-overlay-holder .no-colour,
-.info-overlay-holder .serverrtt,
-.info-overlay-holder .allcombined,
 .info-overlay-holder .connect {border-right: solid 5px #fd9727; padding-right: 5px;}
 .info-overlay-holder .blocked {border-right: solid 5px #aaa; padding-right: 5px;}
-.info-overlay-holder .ssl {border-right: solid 5px #c141cd; padding-right: 5px;}
+.info-overlay-holder .ssltls {border-right: solid 5px #c141cd; padding-right: 5px;}
 .info-overlay-holder .send {border-right: solid 5px #b0bec5; padding-right: 5px;}
 .info-overlay-holder .wait {border-right: solid 5px #1ec659; padding-right: 5px;}
 .info-overlay-holder .receive {border-right: solid 5px #1eaaf1; padding-right: 5px;}

@@ -2,7 +2,12 @@
 
 ## UNRELEASED
 ### Added
-* Updated to browsertime beta14 with fix for to early firstVisualChange with preURL and display lastVisualChange in the video
+* Updated to browsertime beta15 with fix for to early firstVisualChange with preURL and display lastVisualChange in the video
+* Upgraded the Docker container to use Chrome 55.0
+* The metric lines (firstVisualChange etc) is now stronger and easier to spot
+
+### Fixed
+* Running multiple URLs in WebPageTest failed because of a "feature" in the WebPageTest NodeJS API where options in s are change to ms. https://github.com/sitespeedio/sitespeed.io/issues/1367
 
 ## 4.1.3 2016-12-05
 ### Fixed
