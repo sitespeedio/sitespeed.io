@@ -2834,3 +2834,10 @@ video::-webkit-media-text-track-display {
 .video-js .vjs-control-bar {
   background-color: #0095d2; }
 
+.vjs-menu li {
+  background-color: #0095d2; }
+
+.vjs-menu li.vjs-menu-item:focus,
+.vjs-menu li.vjs-menu-item:hover {
+  background-color: #0073b0; }
+
