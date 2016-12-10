@@ -2828,3 +2828,9 @@ video::-webkit-media-text-track-display {
   .vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar {
     visibility: hidden; } }
 
+.video-js {
+  background-color: #0095d2; }
+
+.video-js .vjs-control-bar {
+  background-color: #0095d2; }
+
