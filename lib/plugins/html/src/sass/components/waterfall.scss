@@ -1,4 +1,4 @@
-#page-selector {display: none; clear: both; margin: 1em 0;}
+/*! github.com/micmro/PerfCascade Version:0.2.11 (10/12/2016) */
 
 * {box-sizing: border-box;}
 
@@ -13,9 +13,6 @@ svg.water-fall-chart {width:100%; overflow: visible;}
 .water-fall-chart .line-holder.active {stroke: #69009e; stroke-width:2; stroke-opacity:1;}
 .water-fall-chart .type-onload .line-holder  {stroke: #c0c0ff;}
 .water-fall-chart .type-oncontentload .line-holder  {stroke: #d888df;}
-.water-fall-chart .type-firstPaint .line-holder  {stroke: #d888df;}
-.water-fall-chart .type-firstVisualChange .line-holder  {stroke: #c0c0ff;}
-.water-fall-chart .type-lastVisualChange .line-holder  {stroke: #d888df;}
 
 .water-fall-chart .labels {width:100%;}
 .water-fall-chart .labels .inner-label {pointer-events: none;}
@@ -30,8 +27,8 @@ svg.water-fall-chart {width:100%; overflow: visible;}
 .left-fixed-holder .label-full-bg {fill: #fff; opacity: 0.9}
 
 .time-scale line {stroke:#0cc; stroke-width:1;}
-.time-scale text {font-weight:bold;}
 .time-scale line.sub-second-line {stroke: #ccc; opacity: 0.75; stroke-width:0.50;}
+.time-scale text {font-weight:bold;}
 
 .row-item .even {fill: #ccc; opacity: 0.05;}
 .row-item .odd {fill: #000; opacity: 0.05;}
@@ -61,7 +58,7 @@ svg.water-fall-chart {width:100%; overflow: visible;}
 
 .lables { overflow: hidden;}
 
-/*block colours*/
+/*block colours for MIME types*/
 .block-css {fill: #a6d18f;}
 .block-iframe,
 .block-html,
@@ -81,44 +78,30 @@ svg.water-fall-chart {width:100%; overflow: visible;}
 .block-plain,
 .block-other {fill: #b3b3b3;}
 
-.block-total {fill: #ccc;}
-.block-unload {fill: #909;}
-.block-redirect {fill: #ffff60;}
-.block-appcache {fill: #1f831f;}
-.block-dns {fill: #1f7c83;}
-.block-tcp {fill: #e58226;}
-.block-ttfb {fill: #1fe11f;}
-.block-response {fill: #1977dd;}
-.block-dom {fill: #9cc;}
-.block-dom-content-loaded {fill: #d888df;}
-.block-onload {fill: #c0c0ff;}
-
-.block-ssl {fill: #c141cd; }
-.block-ms-first-paint-event {fill: #8fbc83; }
-.block-dom-interactive-event {fill: #d888df; }
-.block-network-server {fill: #8cd18c; }
-.block-custom-measure {fill: #f00; }
-
-.block-navigation-api-total {fill: #ccc;}
-.block-blocking,
-.block-blocked {fill: #cdcdcd;}
-
-.block-undefined {fill: #0f0;}
-
-
-.block-blocked {fill: #ccc;} /*TODO: define colour*/
-.block-dns {fill: #1f7c83;}
-.block-connect {fill: #e58226;}
+/*block colours for Timing*/
+.block-blocked {fill: #aaa;}
+.block-dns {fill: #159588;}
+.block-connect {fill: #fd9727;}
 .block-ssl {fill:#c141cd;}
-.block-send {fill: #1fe110;} /*TODO: define colour*/
-.block-wait {fill: #1fe11f;} /*TODO: define colour*/
-.block-receive {fill: #1977dd;}
+.block-send {fill: #b0bec5;}
+.block-wait {fill: #1ec659;}
+.block-receive {fill: #1eaaf1;}
+.block-undefined {fill: #0f0;}
 
 /* Info overlay SVG - wrapper */
 .info-overlay {fill: #fff; stroke: #cdcdcd; }
-.info-overlay-close-btn {fill: rgba(205, 205, 205, 0.5); transform: translate(-23px, -23px); cursor: pointer;}
+.info-overlay-close-btn {fill: rgba(205, 205, 205, 0.8); transform: translate(-23px, -23px); cursor: pointer;}
 .info-overlay-close-btn text {fill: #111; pointer-events: none;}
 .info-overlay-close-btn:focus {border: solid 1px #36c;}
+
+/* Info overlay SVG - timings tab */
+.info-overlay-holder .connect {border-right: solid 5px #fd9727; padding-right: 5px;}
+.info-overlay-holder .blocked {border-right: solid 5px #aaa; padding-right: 5px;}
+.info-overlay-holder .ssltls {border-right: solid 5px #c141cd; padding-right: 5px;}
+.info-overlay-holder .send {border-right: solid 5px #b0bec5; padding-right: 5px;}
+.info-overlay-holder .wait {border-right: solid 5px #1ec659; padding-right: 5px;}
+.info-overlay-holder .receive {border-right: solid 5px #1eaaf1; padding-right: 5px;}
+.info-overlay-holder .dns {border-right: solid 5px #159588; padding-right: 5px;}
 
 /* Info overlay HTML - types */
 .type-css {background: #406B29;}/*a6d18f - 40%*/
@@ -170,33 +153,15 @@ svg.water-fall-chart {width:100%; overflow: visible;}
 .info-overlay-holder .tab .preview {width: auto; max-width: 100%; max-height: 500px; border: solid 1px #666;}
 .info-overlay-holder .tab dl:after {content: ""; display: table; clear: both;}
 
-.info-overlay-holder .no-colour,
-.info-overlay-holder .serverrtt,
-.info-overlay-holder .allcombined,
-.info-overlay-holder .connect {border-right: solid 5px #e58226; padding-right: 5px;}
-.info-overlay-holder .blocked {border-right: solid 5px #ccc; padding-right: 5px;}
-.info-overlay-holder .ssl {border-right: solid 5px #c141cd; padding-right: 5px;}
-.info-overlay-holder .send {border-right: solid 5px #1fe110; padding-right: 5px;}
-.info-overlay-holder .wait {border-right: solid 5px #1fe11f; padding-right: 5px;}
-.info-overlay-holder .receive {border-right: solid 5px #1977dd; padding-right: 5px;}
-.info-overlay-holder .dns {border-right: solid 5px #1f7c83; padding-right: 5px;}
-
 /** Legend */
 .resource-legend { margin: 0; padding: 0; font-size: 0.75em; line-height: 1.5em; display: inline-block;}
 .resource-legend li {margin: 0 1em 0 0; padding: 0; white-space: nowrap; display: inline-block;}
 .resource-legend li:before {content:''; width: 1em; height: 1em; margin: 0 0.5em 0 0; vertical-align: text-top; display: inline-block; }
 
-.resource-legend .legend-blocked:before { background: #ccc;}
-.resource-legend .legend-dns:before { background: #1f7c83;}
-.resource-legend .legend-connect:before { background: #e58226; }
+.resource-legend .legend-blocked:before { background: #aaa;}
+.resource-legend .legend-dns:before { background: #159588;}
+.resource-legend .legend-connect:before { background: #fd9727; }
 .resource-legend .legend-ssl:before { background: #c141cd; }
-.resource-legend .legend-send:before { background: #1fe110; }
-.resource-legend .legend-wait:before { background: #c141cd; }
-.resource-legend .legend-receive:before { background: #1977dd; }
-
-
-@media screen and (max-width: 400px) {
-  select {
-    max-width: 100%;
-  }
-}
+.resource-legend .legend-send:before { background: #b0bec5; }
+.resource-legend .legend-wait:before { background: #1ec659; }
+.resource-legend .legend-receive:before { background: #1eaaf1; }
