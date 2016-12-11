@@ -31,6 +31,13 @@ each view in ['firstView', 'repeatView']
           tr
           each value, key in median.userTimes
             +numberCell(key, value)
+      if (median.custom)
+        h5 Custom metrics
+        table
+          each key in median.custom
+            tr
+              td #{key}
+              td #{median[key]}
     h5 Waterfall
     img.u-max-full-width(src= median.images.waterfall, alt='Waterfall view')
     h5 Connection view
