@@ -2841,3 +2841,6 @@ video::-webkit-media-text-track-display {
 .vjs-menu li.vjs-menu-item:hover {
   background-color: #0073b0; }
 
+.videoWrapper {
+  margin-bottom: 2rem; }
+
