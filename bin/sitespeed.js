@@ -24,6 +24,7 @@ let budgetFailing = false;
 // hack for getting in the unchanged cli options
 parsed.options.explicitOptions = parsed.explicitOptions;
 parsed.options.urls = parsed.urls;
+parsed.options.urlsMetaData = parsed.urlsMetaData;
 
 return sitespeed.run(parsed.options)
   .then((result) => {
