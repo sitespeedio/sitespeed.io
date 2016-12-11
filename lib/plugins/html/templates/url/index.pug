@@ -2,9 +2,12 @@ extends ./layout.pug
 
 block content
   - var d = pageInfo.data
+  - var daTitle = daurlAlias ? daurlAlias : daurl
   h1 Page summary
 
-  h5.url #{daurl}
+  h5
+    a(href=daurl) #{daTitle}
+
   - var profile = options.mobile ? 'mobile' : 'desktop'
   p Tested using #{h.cap(options.browsertime.browser)}  #{h.plural(options.browsertime.iterations, 'run')} with #{profile} profile.
 
