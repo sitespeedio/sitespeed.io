@@ -5,6 +5,7 @@
 * Updated to browsertime beta15 with fix for to early firstVisualChange with preURL and display lastVisualChange in the video
 * Upgraded the Docker container to use Chrome 55.0
 * The metric lines (firstVisualChange etc) is now stronger and easier to spot
+* Slack: firstVisualChange, lastVisualChange and fullyLoaded metrics will be sent by default and you can now configure what metric you wanna use to decide if it is a warning/error message
 
 ### Fixed
 * Running multiple URLs in WebPageTest failed because of a "feature" in the WebPageTest NodeJS API where options in s are change to ms. https://github.com/sitespeedio/sitespeed.io/issues/1367
