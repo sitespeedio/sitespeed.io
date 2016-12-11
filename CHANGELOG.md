@@ -9,6 +9,8 @@
 
 ### Fixed
 * Running multiple URLs in WebPageTest failed because of a "feature" in the WebPageTest NodeJS API where options in s are change to ms. https://github.com/sitespeedio/sitespeed.io/issues/1367
+* The keys for assets in PageXray was broken when we sent them to Graphite, because we couldn't identify which asset we sent, instead of the URL we used the position in the array. We fixed that now, BUT: Please don't send all the assets to Graphite, it will fill your disk!
+
 
 ## 4.1.3 2016-12-05
 ### Fixed
