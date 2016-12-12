@@ -2,7 +2,7 @@
 
 ## UNRELEASED
 ### Added
-* Updated to browsertime beta15 with fix for to early firstVisualChange with preURL and display lastVisualChange in the video
+* Updated to browsertime beta16 with fix for to early firstVisualChange with preURL and display lastVisualChange in the video
 * Upgraded the Docker container to use Chrome 55.0
 * The metric lines (firstVisualChange etc) is now stronger and easier to spot
 * Slack: firstVisualChange, lastVisualChange and fullyLoaded metrics will be sent by default and you can now configure what metric you wanna use to decide if it is a warning/error message #1366
