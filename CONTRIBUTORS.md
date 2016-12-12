@@ -3,6 +3,7 @@ Many many many thanks to:
 * Moos (@moos)
 * Örjan Sjöholm (@orjan)
 * Abha Gupta (@abhagupta) 
+* jpvincent (@jpvincent)
 
 3.X and earlier:
 * Tom Sutton (@tomsutton1984)
