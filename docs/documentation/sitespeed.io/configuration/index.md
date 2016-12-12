@@ -144,6 +144,17 @@ http://www.yoursite.com/my/really/important/page/
 http://www.yoursite.com/where/we/are/
 ~~~
 
+Another feature of the plain text file is you can add aliases to the urls.txt file after each URL. To do this add a non-spaced string after each URL that you would like to alias.
+
+~~~
+http://www.yoursite.com/path/
+http://www.yoursite.com/my/really/important/page/ Important_Page
+http://www.yoursite.com/where/we/are/ Page2
+~~~
+*Note: Spaces are used to delimit between the URL and the alias which is why the alias cannot contain one.*
+
+Aliases are great in combination with sending metrics to a TSDB sucha as graphite for shortening the key sent to make they more readable.
+
 And run it:
 
 ~~~bash
