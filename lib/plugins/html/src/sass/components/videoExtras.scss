@@ -1,0 +1,20 @@
+.video-js {
+  background-color: $color--blue;
+}
+
+.video-js .vjs-control-bar {
+  background-color: $color--blue;
+}
+
+.vjs-menu li {
+  background-color: $color--blue;
+}
+
+.vjs-menu li.vjs-menu-item:focus,
+.vjs-menu li.vjs-menu-item:hover {
+  background-color: #0073b0;
+}
+
+.videoWrapper {
+  margin-bottom: 2rem;
+}
