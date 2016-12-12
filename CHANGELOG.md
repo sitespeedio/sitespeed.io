@@ -5,9 +5,14 @@
 * Updated to browsertime beta15 with fix for to early firstVisualChange with preURL and display lastVisualChange in the video
 * Upgraded the Docker container to use Chrome 55.0
 * The metric lines (firstVisualChange etc) is now stronger and easier to spot
+* Slack: firstVisualChange, lastVisualChange and fullyLoaded metrics will be sent by default and you can now configure what metric you wanna use to decide if it is a warning/error message
+* Use video.js as video player
+* Collect custom metrics in WebPageTest (and send them to Graphite when configured). Thank you https://github.com/jpvincent for the initial PR!
 
 ### Fixed
 * Running multiple URLs in WebPageTest failed because of a "feature" in the WebPageTest NodeJS API where options in s are change to ms. https://github.com/sitespeedio/sitespeed.io/issues/1367
+* The keys for assets in PageXray was broken when we sent them to Graphite, because we couldn't identify which asset we sent, instead of the URL we used the position in the array. We fixed that now, BUT: Please don't send all the assets to Graphite, it will fill your disk!
+* The key summary structure for metrics for WebPageTest just worked because of luck. It is now splitted in pageSummary and summary making it easier to configure and understand.
 
 ## 4.1.3 2016-12-05
 ### Fixed
