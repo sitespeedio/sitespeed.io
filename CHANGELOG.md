@@ -8,6 +8,7 @@
 * Slack: firstVisualChange, lastVisualChange and fullyLoaded metrics will be sent by default and you can now configure what metric you wanna use to decide if it is a warning/error message
 * Use video.js as video player
 * Collect custom metrics in WebPageTest (and send them to Graphite when configured). Thank you https://github.com/jpvincent for the initial PR!
+* Added ability to set a custom alias for URLs via the text file for shortening long page URLs. #1326
 
 ### Fixed
 * Running multiple URLs in WebPageTest failed because of a "feature" in the WebPageTest NodeJS API where options in s are change to ms. https://github.com/sitespeedio/sitespeed.io/issues/1367
