@@ -12,6 +12,7 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 Analyzing two pages using Chrome looks like this:
 
 ~~~ bash
-sitespeed.io https://en.wikipedia.org/wiki/Main_Page https://en.wikipedia.org/wiki/Barack_Obama -c cable -b chrome
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -c cable -b chrome --video --speedIndex https://en.wikipedia.org/wiki/Main_Page https://en.wikipedia.org/wiki/Barack_Obama
 ~~~
-Gives the following [report](http://examples.sitespeed.io/4.0/2016-08-27-15-53-11). Checkout our [example dashboard](https://dashboard.sitespeed.io) to see what it looks like to use sitespeed.io to continuously measure performance.
+
+Gives the following [report](http://examples.sitespeed.io/4.2/2016-12-13-12-50-13/). Checkout our [example dashboard](https://dashboard.sitespeed.io) to see what it looks like to use sitespeed.io to continuously measure performance.
