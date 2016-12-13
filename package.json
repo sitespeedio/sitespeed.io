@@ -68,7 +68,7 @@
     "cli-color": "1.1.0",
     "concurrent-queue": "7.0.1",
     "fast-stats": "0.0.3",
-    "fs-extra": "0.30.0",
+    "fs-extra": "1.0.0",
     "gpagespeed": "3.0.0",
     "influx": "5.0.3",
     "intel": "1.1.2",
