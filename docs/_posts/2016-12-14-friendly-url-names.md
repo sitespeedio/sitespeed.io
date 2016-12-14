@@ -36,6 +36,8 @@ Finally we support custom metrics for WebPageTest. You will see them on the HTML
 
 * Disable ipv6 for Firefox in Docker to make the tests run at normal speed.
 
+* The entries in the HAR using Chrome for sites using HTTP/2 could sometimes be in slightly wrong order.
+
 * The keys for assets in PageXray was broken when we sent them to Graphite, because we couldn't identify which asset we sent, instead of the URL we used the position in the array. We fixed that now, BUT: Please don't send all the assets to Graphite, it will fill your disk!
 
 * The key summary structure for metrics for WebPageTest just worked because of luck. It is now divided in pageSummary and summary making it easier to configure and understand.
