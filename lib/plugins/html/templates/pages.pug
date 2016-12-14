@@ -5,12 +5,10 @@ mixin rows(pages)
   each pageInfo, url in pages
     - p = pageInfo.data.pagexray ? pageInfo.data.pagexray.pageSummary : {}
     - t = p.contentTypes || {javascript: {transferSize: ''}, css: {transferSize: ''}, image: {transferSize: ''}}
-    - daAlias = options.urlsMetaData[url] ? options.urlsMetaData[url].alias : ""
+    - display = options.urlsMetaData[url] ? options.urlsMetaData[url].alias : url
     tr
       td.url.pagesurl(data-title='URL')
-        a(href= pageInfo.path + 'index.html')= url
-      td.alias
-        a(href= url)= daAlias
+        a(href= pageInfo.path + 'index.html')= display
       +kbSizeCell('Javascript size', h.get(t.javascript, 'transferSize'))
       +kbSizeCell('CSS size', h.get(t.css, 'transferSize'))
       +kbSizeCell('Image size', h.get(t.image, 'transferSize'))
@@ -29,6 +27,6 @@ block content
       include runInfo
       .responsive
         table(data-sortable, id='pages')
-          +rowHeading(['url', 'alias', 'js size (kb)', 'css size (kb)', 'image size (kb)',
+          +rowHeading(['url', 'js size (kb)', 'css size (kb)', 'image size (kb)',
             'total size (kb)', 'total requests', 'performance score'])
           +rows(pages)
