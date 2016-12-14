@@ -42,6 +42,8 @@ Finally we support custom metrics for WebPageTest. You will see them on the HTML
 
 * The key summary structure for metrics for WebPageTest just worked because of luck. It is now divided in pageSummary and summary making it easier to configure and understand.
 
+* Fixed encoding problems when storing URLs to disk #1346
+
 ## Other fixes
 * The Docker container now uses Chrome 55.0
 * We have a trap to catch when you wanna exit a Docker run. Now you can just exit instead of waiting for the test to finish.
