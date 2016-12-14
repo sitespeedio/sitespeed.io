@@ -1,9 +1,9 @@
 ---
 layout: default
 title: Alias for URLs and that Firefox bug
-description: The new 4.2 release brings alias for URLs and Firefox working 100% in Docker.
+description: The new 4.2 release brings alias for URLs.
 authorimage: /img/robot-head.png
-intro: In 4.2 we have some really great news again. Alias for URLs that makes it so much better in Grafana, new video and waterfall looks and finally fixed the bug that made Firefox slowish in Docker.
+intro: In 4.2 we have some really great news again. Alias for URLs that makes it so much better in Grafana, new video and waterfall looks and finally fixed the bug that made Firefox slowish in Docker running on OS X.
 
 keywords: sitespeed.io, speed, index, speed, webperf, performance, web, wpo
 nav: blog
@@ -11,7 +11,7 @@ nav: blog
 
 # Friendly URLs and finally Firefox works 100% in Docker
 
-We got some nice things in 4.2. First a long time bug finally fixed: Firefox added X seconds download time when running in Docker making the timings  not so good. The problem was a combination of ipv6 setting in Firefox and Docker.
+We got some nice things in 4.2. First a long time bug finally fixed: Firefox added X seconds download time when running in Docker on OS X making the timings not so good. The problem was a combination of ipv6 setting in Firefox and Docker.
 
 ## Alias for URLs
 Pushing data to Graphite and using our ready made dashboards for pages is nice but if you have long URLs the template look kind of bad in Grafana. With the latest release you can fix that by giving your URL a friendly alias. You do that by adding the alias after the URL in your text file.
@@ -34,7 +34,7 @@ Finally we support custom metrics for WebPageTest. You will see them on the HTML
 ## Important bug fixes
 * Running multiple URLs in WebPageTest failed because of a "feature" in the WebPageTest NodeJS API where options in s are change to ms.
 
-* Disable ipv6 for Firefox in Docker to make the tests run at normal speed.
+* Disable ipv6 for Firefox in Docker to make the tests run at normal speed on OS X.
 
 * The entries in the HAR using Chrome for sites using HTTP/2 could sometimes be in slightly wrong order.
 
