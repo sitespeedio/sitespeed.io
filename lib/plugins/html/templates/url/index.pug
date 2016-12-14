@@ -6,7 +6,7 @@ block content
   h1 Page summary
 
   h5
-    a(href=daurl) #{daTitle}
+    a(href=daurl) #{decodeURIComponent(daTitle)}
 
   - var profile = options.mobile ? 'mobile' : 'desktop'
   p Tested using #{h.cap(options.browsertime.browser)}  #{h.plural(options.browsertime.iterations, 'run')} with #{profile} profile.
