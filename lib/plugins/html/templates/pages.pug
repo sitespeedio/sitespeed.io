@@ -8,7 +8,7 @@ mixin rows(pages)
     - display = options.urlsMetaData[url] ? options.urlsMetaData[url].alias : url
     tr
       td.url.pagesurl(data-title='URL')
-        a(href= pageInfo.path + 'index.html')= display
+        a(href= pageInfo.path + 'index.html')= decodeURIComponent(display)
       +kbSizeCell('Javascript size', h.get(t.javascript, 'transferSize'))
       +kbSizeCell('CSS size', h.get(t.css, 'transferSize'))
       +kbSizeCell('Image size', h.get(t.image, 'transferSize'))
