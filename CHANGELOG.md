@@ -1,8 +1,8 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 4.2.0 2016-12-14
 ### Added
-* Updated to browsertime beta17 with fix for to early firstVisualChange with preURL and display lastVisualChange in the video. And fixed the extra 5s added to base request using Firefox in Docker.
+* Updated to browsertime beta18 with fix for to early firstVisualChange with preURL and display lastVisualChange in the video. And fixed the extra 5s added to base request using Firefox in Docker. And makes the order for assets more correct in Chrome for sites using HTTP/2
 * Upgraded the Docker container to use Chrome 55.0
 * The metric lines (firstVisualChange etc) is now stronger and easier to spot
 * Slack: firstVisualChange, lastVisualChange and fullyLoaded metrics will be sent by default and you can now configure what metric you wanna use to decide if it is a warning/error message #1366
@@ -17,6 +17,7 @@
 * Running multiple URLs in WebPageTest failed because of a "feature" in the WebPageTest NodeJS API where options in s are change to ms. #1367
 * The keys for assets in PageXray was broken when we sent them to Graphite, because we couldn't identify which asset we sent, instead of the URL we used the position in the array. We fixed that now, BUT: Please don't send all the assets to Graphite, it will fill your disk! #1341
 * The key summary structure for metrics for WebPageTest just worked because of luck. It is now divided in pageSummary and summary making it easier to configure and understand. #1377
+* Fixed encoding problems when storing to disk #1346
 
 ## 4.1.3 2016-12-05
 ### Fixed
