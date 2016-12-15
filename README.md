@@ -30,6 +30,9 @@ Individual page report:
 Collected metrics from a URL in Graphite/Grafana:
 <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/pagesummary-grafana.png">
 
+Video (if you use the Docker version):
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/video-example.gif">
+
 ## 4.0
 Version 4.0 is a ground-up rewrite for node.js 6.9.1 and newer. It builds on all our experience since shipping 3.0 in December 2014,
 the first version to use node.js.
