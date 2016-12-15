@@ -10,6 +10,7 @@
 * Collect custom metrics in WebPageTest (and send them to Graphite when configured). Thank you https://github.com/jpvincent for the initial PR! #1377
 * Added ability to set a custom alias for URLs via the text file for shortening long page URLs. #1326
 * Trap to catch when you wanna exit a Docker run. Now you can just exit.
+* Add support for pushing metrics to InfluxDB.
 * Latest coach (0.30.0).
 
 ### Fixed
