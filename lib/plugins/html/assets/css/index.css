@@ -1358,6 +1358,16 @@ svg.water-fall-chart {
 .resource-legend .legend-receive:before {
   background: #1eaaf1; }
 
+.icon {
+  fill: #666; }
+
+.icon-4xx,
+.icon-5xx,
+.icon-no-cache,
+.icon-no-gzip,
+.icon-warning {
+  fill: #b55; }
+
 .water-fall-chart .type-firstpaint .line-holder {
   stroke: #42f46e;
   stroke-opacity: 1.0;
