@@ -6,7 +6,7 @@ block content
   - var daTitle = daurlAlias ? daurlAlias : daurl
   h1 Run #{runNumber} summary
   h5
-    a(href=daurl) #{daTitle}
+    a(href=daurl) #{decodeURIComponent(daTitle)}
 
   - var profile = options.mobile ? 'mobile' : 'desktop'
   p Tested using #{h.cap(options.browsertime.browser)}  #{h.plural(options.browsertime.iterations, 'run')} with #{profile} profile.
@@ -50,7 +50,7 @@ block content
             if d.browsertime && d.browsertime.run && d.browsertime.run.visualMetrics
               tr
                 td First Visual Change:
-                td #{d.browsertime.run.visualMetrics.FirstVisualChange}  
+                td #{d.browsertime.run.visualMetrics.FirstVisualChange}
             else if d.browsertime && d.browsertime.run && d.browsertime.run.timings.firstPaint
               tr
                 td First Paint:
