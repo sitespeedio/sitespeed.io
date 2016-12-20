@@ -1,8 +1,8 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
-### Added
-* Updated PerfCascade (waterfall graph) with latest version containing new mime type icons.
+## 4.2.1 2016-12-20
+### Fixed
+* Custom metrics in from WebPageTest introduced a error running WebPageTest without custom metrics. #1389
 
 ## 4.2.0 2016-12-14
 ### Added
