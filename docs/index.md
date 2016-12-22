@@ -6,7 +6,7 @@ keywords: sitespeed.io, wpo, webperf, perfmatters, fast, site, speed, web perfor
 nav: start
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 ---
-<img src="{{site.baseurl}}/img/sitespeed.io-logo-large2.png" class="pull-left img-big" alt="Sitespeed.io logo" width="188" height="200" onLoad="window.performance.mark('logoTime');">
+<img src="{{site.baseurl}}/img/logo-christmas.png" class="pull-left img-big" alt="Sitespeed.io logo" width="188" height="221" onLoad="window.performance.mark('logoTime');">
 
 ## Welcome to the wonderful world of Web Performance
 
