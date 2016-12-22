@@ -1,5 +1,12 @@
 # CHANGELOG - sitespeed.io
 
+## 4.3.0 2016-12-22
+### Fixed
+* Upgraded to Browsertime beta-19 that fixes firstVisualChange happen to early when testing as mobile
+
+### Added
+* New version of PerfCascade with icons for content types, making it much easier to understand the waterfall graph. 
+
 ## 4.2.1 2016-12-20
 ### Fixed
 * Custom metrics in from WebPageTest introduced a error running WebPageTest without custom metrics. #1389
