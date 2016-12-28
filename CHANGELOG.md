@@ -1,11 +1,15 @@
 # CHANGELOG - sitespeed.io
 
+## 4.3.1 2016-12-28
+### Fixed
+* TAP and JUnit XML stopped working when changing to yargs 6.x (coerce has breaking changes). Rollback to yargs 5.0 and make a better fix after the holidays.
+
 ## 4.3.0 2016-12-22
 ### Fixed
 * Upgraded to Browsertime beta-19 that fixes firstVisualChange happen to early when testing as mobile
 
 ### Added
-* New version of PerfCascade with icons for content types, making it much easier to understand the waterfall graph. 
+* New version of PerfCascade with icons for content types, making it much easier to understand the waterfall graph.
 
 ## 4.2.1 2016-12-20
 ### Fixed
