@@ -19,7 +19,7 @@ twitterdescription: Web performance dashboard using sitespeed.io.
 We spent a lot of time making it easier in 4.x to install and run your own performance dashboard with pre made dashboards and a Docker compose file to rule them all. You can see the beauty [here](https://dashboard.sitespeed.io).
 
 # What you need
-You need [Docker](https://docs.docker.com/engine/installation/) and [Docker Compose](https://docs.docker.com/compose/install/).
+You need [Docker](https://docs.docker.com/engine/installation/) and [Docker Compose](https://docs.docker.com/compose/install/). If you haven't used Docker before, you can read [Getting started](https://docs.docker.com/engine/getstarted/). And you can also read/learn more about [Docker Compose](https://docs.docker.com/compose/gettingstarted/) to get a better start.
 
 # Up and running in 5 minutes
 
@@ -33,14 +33,17 @@ You need [Docker](https://docs.docker.com/engine/installation/) and [Docker Comp
 If you want to play with the dashboards the default login is sitespeedio and password is ...well checkout the docker-compose.yml file.
 
 ## Docker compose file
-We have prepared a Docker Compose file that downloads and setup Graphite/Grafana and sitespeed.io + a couple of example dashboards. It works perfect when you wanna try it out locally, but if you wanna run it in production you should modify it a bit.
+We have prepared a Docker Compose file that downloads and setup Graphite/Grafana and sitespeed.io + a couple of example dashboards. It works perfect when you wanna try it out locally, but if you wanna run it in production you should modify it by making sure that the metrics are stored outside of your container/volumes.
 
 ## Pre made dashboards
-We insert the pre made dashboards using a Docker container using curl. You can check it out: [https://github.com/sitespeedio/grafana-bootstrap-docker](https://github.com/sitespeedio/grafana-bootstrap-docker)
+We insert pre made dashboards with a Docker container using curl, that makes it easy for you to get started. You can check out the container with the dashboards here: [https://github.com/sitespeedio/grafana-bootstrap-docker](https://github.com/sitespeedio/grafana-bootstrap-docker)
 
 # Example dashboards
 
-The dashboards has a couple of templates (the drop downs at the top of the page). A dashboard that show metrics for a specific page has the following templates:
+The example dashboards are generic dashboards that will work with all data/metrics you collect using sitespeed.io. We worked hard to make them as good as possible and the great thing about them is that you can use them as base dashboards and then create the extra dashboards you like.
+
+The dashboards has a couple of templates (the drop downs at the top of the page) that makes the dashboard interactive and dynamic.
+A dashboard that show metrics for a specific page has the following templates:
 
 ![Page templates]({{site.baseurl}}/img/templates-page.png)
 {: .img-thumbnail}
@@ -50,7 +53,7 @@ The *path* is the first path after the namespace. Using default values the names
 When you choose one of the values in a template, the rest will be populated. You can choose checking metrics for a specific page, browser and connectivity.
 
 ## The namespace
-The default namespace is *sitespeed_io.default* and the example dashboards are built upon that the first part of the namespace is still *sitespeed_io* but feel free to change the second part. Keeping the first part will make the example dashboards work.
+The default namespace is *sitespeed_io.default* and the example dashboards are built upon a constant template variable called $base that is the first part of the namespace (that default is *sitespeed_io* but feel free to change that, and then change the constant).
 
 ## Page summary
 The page summary shows metrics for a specific URL/page.
