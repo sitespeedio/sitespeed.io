@@ -19,7 +19,7 @@ twitterdescription: Install sitespeed.io using npm, yarn or Docker.
 
 ## Mac & Linux
 
-Prerequisites: Install [NodeJS](https://nodejs.org/en/download/) ([Linux](https://github.com/creationix/nvm)) and make sure you have [npm](https://github.com/npm/npm) or [yarn](https://yarnpkg.com/) installed. You can also use [Docker](https://docs.docker.com/engine/installation/) if you prefer.
+Prerequisites: Install [NodeJS 6.9.1 or newer](https://nodejs.org/en/download/) ([Linux](https://github.com/creationix/nvm)) and make sure you have [npm](https://github.com/npm/npm) or [yarn](https://yarnpkg.com/) installed. You can also use [Docker](https://docs.docker.com/engine/installation/) if you prefer.
 
 ### npm
 If you prefer npm, just run:
