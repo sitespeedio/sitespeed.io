@@ -105,7 +105,9 @@ Do you need anything else? Since we store all the data in Graphite and use Grafa
 You have the dashboard and you need to collect metrics. Using the crontab works fine or whatever kind of scheduler you are using (or Jenkins per build or ... whatever suits you the best).
 
 Using the crontab (on a standalone server) you do like this:
-<code>crontab -e</code> to edit the crontab. Make sure you users cron can run Docker and change *my.graphite.host* to your Graphite host.
+<code>crontab -e</code> to edit the crontab. Make sure your cron user can run Docker and change *my.graphite.host* to your Graphite host. When you run this on a standalone server *my.graphite.host* will be the public ip adress of your server. The default port when sending metrics to graphite is 2003, so you don't have to include that.
+
+If you run the container and the cronjob locally you cannot use localhost since each docker container has it's own localhost. On a mac or linux system you can use <code>$ ifconfig</code>. This will output a list of all connected interfaces and let you see which one is currently being used. The one listed with an "inet" address that is not "127.0.0.1" is usually the interface that you're connected through.
 
 ~~~
 SHELL=/bin/bash
