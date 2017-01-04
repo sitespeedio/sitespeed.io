@@ -1,5 +1,5 @@
 # CHANGELOG - sitespeed.io
-## UNRELEASED
+## 4.3.2 2017-01-04
 ### Fixed
 * Updated the Docker container to use ImageMagick 6.9.7-2 to fix firstVisualChange that sometimes was picked up to early https://github.com/sitespeedio/browsertime/issues/247
 
