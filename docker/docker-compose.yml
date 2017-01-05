@@ -2,7 +2,9 @@ version: '2'
 services:
     sitespeed.io:
       image: sitespeedio/sitespeed.io
+      command: -V
       privileged: true
+      shm_size: 1g
       volumes:
             - ./sitespeed-result/:/sitespeed.io/sitespeed-result
     grafana:
