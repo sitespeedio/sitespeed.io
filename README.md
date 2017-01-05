@@ -19,6 +19,8 @@ Using sitespeed.io you can:
 * Create HTML-result pages or store the metrics in Graphite.
 * Write your own plugins that can do whatever tests you want/need.
 
+See all the latest changes in the [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md).
+
 And a lot of more things. But what does it look like?
 
 A summary report in HTML:
