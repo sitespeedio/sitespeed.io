@@ -1,4 +1,9 @@
 # CHANGELOG - sitespeed.io
+## 4.3.3 2017-01-05
+### Fixed
+* Upgraded browsertime with changed FFMPeg config to hopefully fix the too early firstVisualChange that sometimes happens for Chrome, updated Geckodriver (0.12.0), changed Firefox default settings to follow the Mozilla teams default ones when they do test automation,
+pickup changed request prio in Chrome (before only initial prio was used) and adding new connectivity profile 3gem for Emerging markets to keep in sync with WebPageTest.
+
 ## 4.3.2 2017-01-04
 ### Fixed
 * Updated the Docker container to use ImageMagick 6.9.7-2 to fix firstVisualChange that sometimes was picked up to early https://github.com/sitespeedio/browsertime/issues/247
