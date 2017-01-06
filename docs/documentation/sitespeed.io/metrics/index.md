@@ -102,6 +102,31 @@ $ sitespeed.io --metrics.list https://www.sitespeed.io -n 1 --metrics.filter coa
 
 It will log all metrics you will send to Graphite.
 
+#### Example: Add all Coach advice
+
+By default the total score for performance, accessibility and bestpractice is configured to send to Graphite. And previously we looked at sending all the score for the performance advice. If you want to send all the scores for all different advice, you can do that too, by adding all the three categories in the CLI:
+
+~~~ bash
+--metrics.filter coach.pageSummary.advice.performance.adviceList.*.score coach.pageSummary.advice.bestpractice.adviceList.*.score coach.pageSummary.advice.accessibility.adviceList.*.score
+~~~
+
+#### Example: Use JSON config to pass the metrics configuration
+If you have a lot of different metrics that you want to send to Graphite the command line will be overloaded. But hey, there's a solution to the problem: Use the JSON configuration option <code>--config</code> (read more [here]({{site.baseurl}}/documentation/sitespeed.io/configuration/#configuration-as-json)).
+
+If you wanna send the three coach metrics, you can add them as a config file like this and pass the filename to the <code>--config</code> parameter:
+
+~~~ json
+{
+  "metrics": {
+    "filter": [
+      "coach.pageSummary.advice.performance.adviceList.*.score",
+      "coach.pageSummary.advice.bestpractice.adviceList.*.score",
+      "coach.pageSummary.advice.accessibility.adviceList.*.score"
+    ]
+  }
+}
+~~~
+
 ### Remove metrics
 Sitespeed.io does not currently have support to remove single metrics, but you can
 remove all configured metrics with the parameter value *\*-*
