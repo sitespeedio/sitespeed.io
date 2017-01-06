@@ -311,6 +311,8 @@ If you wanna override and run the same configuration but using Firefox, you just
 $ sitespeed.io --config config.json -b firefox https://www.sitespeed.io
 ~~~
 
+CLI will always override your JSON config.
+
 ## Advanced
 
 ### Slack
