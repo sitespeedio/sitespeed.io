@@ -68,7 +68,7 @@ block content
                 td #{d.browsertime.pageSummary.statistics.timings.rumSpeedIndex.median}
 
         .one-half.column
-            if d.browsertime.pageSummary.screenshots
+            if d.browsertime && d.browsertime.pageSummary.screenshots
               - var width = options.mobile ? 150 : '100%';
               a(href='data/screenshots/0.png')
                 img.screenshot(src='data/screenshots/0.png', width=width, alt='Screenshot of run 0')
