@@ -1,4 +1,12 @@
 # CHANGELOG - sitespeed.io
+
+## UNRELEASED
+### Fixed (hopefully)
+* Upgraded to Browsertime beta 21 to finally once and for all fix the problem with the too early firstVisualChange that sometimes happend in Chrome: 
+  * We removed the center cropping of images when visual metrics checks if an image is orange/white. The cropping made us miss the small orange lines that sometimes appear only in Chrome.
+  * We also fine tuned (and made configurable) the number when the diff of two images (orange and white) is ... orange.
+  * We re-arranged how we record the screen to record as little extra video as possible
+
 ## 4.3.3 2017-01-05
 ### Fixed
 * Upgraded browsertime with changed FFMPeg config to hopefully fix the too early firstVisualChange that sometimes happens for Chrome, updated Geckodriver (0.12.0), changed Firefox default settings to follow the Mozilla teams default ones when they do test automation,
