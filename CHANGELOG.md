@@ -1,7 +1,9 @@
 # CHANGELOG - sitespeed.io
-## Unreleased
+## 4.3.5 2017-01-10
 ### Fixed
 * Running only WebPageTest generated errors in the HTML plugin #1398, fixed in #1413 
+* New Browsertime (beta 22) with changed configuration for Chrome to detect orange frames
+* New Coach and Browsertime that is cleaned up to make our Docker containers smaller again 726 -> 547 mb
 
 ## 4.3.4 2017-01-09
 ### Fixed (hopefully)
