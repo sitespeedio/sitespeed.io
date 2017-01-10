@@ -1,13 +1,17 @@
 # CHANGELOG - sitespeed.io
+## 4.3.6 2017-01-10
+### Fixed
+* New Browsertime that fixes the too early firstVisualRender in Firefox introduced in 4.3.5.
+
 ## 4.3.5 2017-01-10
 ### Fixed
-* Running only WebPageTest generated errors in the HTML plugin #1398, fixed in #1413 
+* Running only WebPageTest generated errors in the HTML plugin #1398, fixed in #1413
 * New Browsertime (beta 22) with changed configuration for Chrome to detect orange frames
 * New Coach and Browsertime that is cleaned up to make our Docker containers smaller again 726 -> 547 mb
 
 ## 4.3.4 2017-01-09
 ### Fixed (hopefully)
-* Upgraded to [Browsertime beta 21](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#version-100-beta21-2017-01-09) to finally once and for all fix the problem with the too early firstVisualChange that sometimes happend in Chrome: 
+* Upgraded to [Browsertime beta 21](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#version-100-beta21-2017-01-09) to finally once and for all fix the problem with the too early firstVisualChange that sometimes happend in Chrome:
   * We removed the center cropping of images when visual metrics checks if an image is orange/white. The cropping made us miss the small orange lines that sometimes appear only in Chrome.
   * We also fine tuned (and made configurable) the number when the diff of two images (orange and white) is ... orange.
   * We re-arranged how we record the screen to record as little extra video as possible
