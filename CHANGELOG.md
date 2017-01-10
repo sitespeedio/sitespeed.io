@@ -1,4 +1,7 @@
 # CHANGELOG - sitespeed.io
+## Unreleased
+### Fixed
+* Running only WebPageTest generated errors in the HTML plugin #1398, fixed in #1413 
 
 ## 4.3.4 2017-01-09
 ### Fixed (hopefully)
