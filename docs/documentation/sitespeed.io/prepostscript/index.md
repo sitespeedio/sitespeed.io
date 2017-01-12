@@ -45,7 +45,7 @@ module.exports = {
           loginInput.sendKeys(userName);
           var passwordInput = driver.findElement(webdriver.By.id('wpPassword1'));
           passwordInput.sendKeys(password);
-          loginForm.submit();
+          loginForm.click();
         });
     })
   }
