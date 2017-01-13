@@ -1,4 +1,8 @@
 # CHANGELOG - sitespeed.io
+## 4.3.7 2017-01-13
+### Fixed
+* Google is overloading User Timing marks see [#257](https://github.com/sitespeedio/browsertime/issues/257). This is quick fix, lets make a better fix in the future.
+
 ## 4.3.6 2017-01-10
 ### Fixed
 * New Browsertime that fixes the too early firstVisualRender in Firefox introduced in 4.3.5.
