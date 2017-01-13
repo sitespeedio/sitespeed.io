@@ -1,4 +1,8 @@
 # CHANGELOG - sitespeed.io
+## UNRELEASED
+## Added
+* Updated to latst PerfCascade that will pickup changed resource prio in Chrome.
+
 ## 4.3.7 2017-01-13
 ### Fixed
 * Google is overloading User Timing marks see [#257](https://github.com/sitespeedio/browsertime/issues/257). This is quick fix, lets make a better fix in the future.
