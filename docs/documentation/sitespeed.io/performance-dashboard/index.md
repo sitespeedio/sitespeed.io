@@ -103,10 +103,10 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 0,30 * * * * docker run --privileged --rm sitespeedio/sitespeed.io:4.0 -n 5 --graphite.host my.graphite.host -c cable -b chrome https://en.wikipedia.org/wiki/Sweden >> /tmp/sitespeed-output.txt 2>&1
 ~~~
 
-# Configuration Graphite
+# Configure Graphite
 We provides an example Graphite Docker container and you probably need to change the configuration depending on how often you want to run your tests, how long you want to keep the result and how much disk space you want to use.
 
-With 4.x we try to send a moderated number of metrics per URL but you can [change that yourself]({{site.baseurl}}/documentation/sitespeed.io/metrics/). 
+With 4.x we try to send a moderated number of metrics per URL but you can [change that yourself]({{site.baseurl}}/documentation/sitespeed.io/metrics/).
 
 When you store metrics for a URL in Graphite you decide from the beginning how long time you want to store the data and how often in [storage-schemas.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-schemas.conf). In our example Graphite setup every key under sitespeed_io is caught by the configuration in storage-schemas.conf that looks like:
 <pre>
