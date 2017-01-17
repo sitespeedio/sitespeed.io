@@ -122,9 +122,7 @@ Depending on how often you run your analyze you wanna change the storage-schemas
 One thing to know if you change your Graphite configuration: ["Any existing metrics created will not automatically adopt the new schema. You must use whisper-resize.py to modify the metrics to the new schema. The other option is to delete existing whisper files (/opt/graphite/storage/whisper) and restart carbon-cache.py for the files to get recreated again."](http://mirabedini.com/blog/?p=517)
 
 ## Crawling and Graphite
-Normally we don't recommend crawling and sending the metrics to Graphite because each URL will take the full amount of space meaning if you test one URL only once, it will still take the same amount of space as if you test it multiple times (following the configuration).
-
-If you don't want to store the metrics for so long time,  say keeping one week of data, you can configure that in storage-schemas.conf and each tested URL will take a smaller space than the default config. It all depends on how often you want to run and how long time you want to store the metrics. You could set up another namespace (start of the key) and catch metrics that you only store for a short time.
+If you crawl a site that is not static you will pick up new pages each run or each day and that will make the Graphite database grow each day. Either you make sure you have a massive amount of storage or you change the storage-schemas.conf so that you don't keep the metrics for so long. You could do that by setting up another namespace (start of the key) and catch metrics that you only store for a short time.
 
 # Production
 To run this in production you should do a couple of modifications.
