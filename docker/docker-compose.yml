@@ -33,7 +33,7 @@ services:
       volumes:
         - graphite:/opt/graphite/storage/whisper
     grafana-setup:
-      image: sitespeedio/grafana-bootstrap:grafana-4.1.1
+      image: sitespeedio/grafana-bootstrap:grafana-4.1.1-2
       links:
         - grafana
       environment:
