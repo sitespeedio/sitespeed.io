@@ -1,4 +1,8 @@
 # CHANGELOG - sitespeed.io
+## UNRELEASED
+## Fixed
+* Worst case scenario if Browsertime missing a HAR file, the HTML summary rendering failed [#1424](https://github.com/sitespeedio/sitespeed.io/issues/1424)
+
 ## 4.3.8 2017-01-19
 ## Fixed
 * Updated to latest PerfCascade that will pickup changed resource prio in Chrome and some bug fixes.
