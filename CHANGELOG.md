@@ -1,7 +1,11 @@
 # CHANGELOG - sitespeed.io
 ## UNRELEASED
-## Added
-* Updated to latst PerfCascade that will pickup changed resource prio in Chrome.
+## Fixed
+* Worst case scenario if Browsertime missing a HAR file, the HTML summary rendering failed [#1424](https://github.com/sitespeedio/sitespeed.io/issues/1424)
+
+## 4.3.8 2017-01-19
+## Fixed
+* Updated to latest PerfCascade that will pickup changed resource prio in Chrome and some bug fixes.
 * Google is still overloading User Timing marks see [#257](https://github.com/sitespeedio/browsertime/issues/257). This fix mute the marks from WebPageTest so they aren't sent to Graphite.
 
 ## 4.3.7 2017-01-13

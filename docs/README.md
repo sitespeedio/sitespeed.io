@@ -7,4 +7,4 @@ If you run on a Mac OS make sure you have xcode-select installed: <code>xcode-se
 
 To run it locally: <code>bundle install && bundle exec jekyll serve --baseurl ''</code>. 
 
-Checkout https://localhost:4000/
+Checkout http://localhost:4000/
