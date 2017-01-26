@@ -1,4 +1,9 @@
 # CHANGELOG - sitespeed.io
+## 4.3.9 2017-01-26
+## Fixed
+* Worst case scenario if Browsertime missing a HAR file, the HTML summary rendering failed [#1424](https://github.com/sitespeedio/sitespeed.io/issues/1424)
+* If we have a site that is missing expire headers, the HTML generation failed [1430](https://github.com/sitespeedio/sitespeed.io/issues/1430)
+
 ## 4.3.8 2017-01-19
 ## Fixed
 * Updated to latest PerfCascade that will pickup changed resource prio in Chrome and some bug fixes.

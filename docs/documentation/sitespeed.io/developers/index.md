@@ -36,11 +36,13 @@ The flow looks like this:
 ### Contributing to the Documentation
 First make sure you have Bundler: <code>gem install bundler</code>
 
+You should probably upgrade your ruby gems too: <code>gem update --system</code>
+
 *If you run on a Mac OS make sure you have xcode-select installed: <code>xcode-select --install</code>*
 
 To run the documentation server locally execute the following from within the /docs directory after cloning the repo locally: <code>bundle install && bundle exec jekyll serve --baseurl ''</code>.
 
-Vist https://localhost:4000/ in the browser of your choice.
+Vist http://localhost:4000/ in the browser of your choice.
 
 
 ### Debugging with Chrome

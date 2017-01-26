@@ -48,11 +48,12 @@ h3 Expires and last modified stats
 .responsive
   table
     +rowHeading(['type', 'min', 'median', 'max'])
-    tr
-      td(data-title='Type') Expires
-      +durationCell('min', expire.min)
-      +durationCell('median', expire.median)
-      +durationCell('max', expire.max)
+    if expire
+      tr
+        td(data-title='Type') Expires
+        +durationCell('min', expire.min)
+        +durationCell('median', expire.median)
+        +durationCell('max', expire.max)
     if lastModified
       tr
         td(data-title='Type') Last modified

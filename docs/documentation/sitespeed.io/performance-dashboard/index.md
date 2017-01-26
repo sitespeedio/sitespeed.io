@@ -104,7 +104,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 ~~~
 
 # Configure Graphite
-We provides an example Graphite Docker container and you probably need to change the configuration depending on how often you want to run your tests, how long you want to keep the result and how much disk space you want to use.
+We provide an example Graphite Docker container and you should probably change the configuration depending on how often you want to run your tests, how long you want to keep the result and how much disk space you want to use.
 
 With 4.x we try to send a moderated number of metrics per URL but you can [change that yourself]({{site.baseurl}}/documentation/sitespeed.io/metrics/).
 
@@ -124,8 +124,10 @@ One thing to know if you change your Graphite configuration: ["Any existing metr
 ## Crawling and Graphite
 If you crawl a site that is not static you will pick up new pages each run or each day and that will make the Graphite database grow each day. Either you make sure you have a massive amount of storage or you change the storage-schemas.conf so that you don't keep the metrics for so long. You could do that by setting up another namespace (start of the key) and catch metrics that you only store for a short time.
 
+The Graphite DB size is determined by the number of unique data points and the frequency of them within configured time periods, meaning you can optimise how much space you need. If the majority of the URLs you need to test are static and are tested often, you should find there's a maximum DB size depending on your storage-schemas.conf settings.
+
 # Production
-To run this in production you should do a couple of modifications.
+To run this in a production environment you should consider/make some modifications.
 
 1. Always run sitespeed.io on a standalone instance
     - This avoids causing discrepancies in results due to things like competing resources or network traffic.
@@ -134,3 +136,15 @@ To run this in production you should do a couple of modifications.
 4. Map the Graphite volume to a physical directory outside of Docker to have better control.
 5. Remove the sitespeedio/grafana-bootstrap from the Docker compose file, you only need that for the first run.
 6. Optional: Disable anonymous users access
+
+## Memory
+You should keep an eye on performance of the sitespeed docker container if you're running in a more memory constrained environment. Generally 2GB would be considered too low for Chrome/Firefox.
+If your environment doesn't have much available memory you may need to alter the NodeJS `MAX_OLD_SPACE_SIZE`, currently this is set at 2gb. You can do this using a docker environment variable e.g.
+
+```yaml
+services:
+    sitespeed.io:
+      environment:
+        - MAX_OLD_SPACE_SIZE=1024
+
+```
