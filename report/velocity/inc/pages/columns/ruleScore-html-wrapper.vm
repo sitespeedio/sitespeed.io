@@ -1,3 +1,0 @@
-<span class="label label-#getRuleColor($columnName $results.getChild("o").getValue())">
-#parse("report/velocity/inc/pages/columns/${columnName}.vm")
-</span>##

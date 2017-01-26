@@ -1,0 +1,32 @@
+extends ./layout.pug
+
+mixin box(box)
+  if (box.url)
+    - url = 'help.html#' + box.url
+    a.summaries(href=url)
+      .summarybox(class=box.label)= box.name
+        .summarynumber #{box.median}&nbsp;
+          span.summarysmall (#{box.p90})
+  else
+    .summarybox(class=box.label)= box.name
+      .summarynumber #{box.median}&nbsp;
+        span.summarysmall (#{box.p90})
+
+block content
+    include runInfo
+
+    each rows in boxes
+      .row
+        each box in rows
+          - var length = rows.length
+          case length
+            when 3
+              .one-third.column
+                +box(box)
+            when 2
+              .one-half.column
+                +box(box)
+            default
+              +box(box)
+
+    p.small * The value inside of the parentheses are the 90th percentile (90% of the time, the number is below this amount)

@@ -1,8 +1,0 @@
-#set($hosts = [])##
-#foreach ($asset in $results.getChild("comps").getChildren())##
-#set($theHost = $host.getHost($asset.getChild("url").getValue()))##
-#if (!$hosts.contains($theHost))##	
-#set($swallow = $hosts.add($theHost))##
-#end##   
-#end##
-$hosts.size()##

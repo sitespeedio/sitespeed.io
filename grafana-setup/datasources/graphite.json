@@ -1,0 +1,10 @@
+{
+  "name": "${DS_GRAPHITE}",
+  "type": "graphite",
+  "url": "http://graphite:80",
+  "access": "proxy",
+  "isDefault": true,
+  "basicAuth": true,
+  "basicAuthUser":"guest",
+  "basicAuthPassword":"guest"
+}

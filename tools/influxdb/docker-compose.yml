@@ -1,0 +1,21 @@
+version: '2'
+services:
+    grafana:
+        image: grafana/grafana
+        depends_on:
+            - influxdb
+        links:
+            - influxdb
+        ports:
+            - "3000:3000"
+    influxdb:
+        image: tutum/influxdb
+        environment:
+            - PRE_CREATE_DB="sitespeed"
+            - ADMIN_USER="root"
+            - INFLUXDB_INIT_PWD="root"
+        ports:
+            - "8083:8083"
+            - "8086:8086"
+            - "8090:8090"
+            - "8099:8099"

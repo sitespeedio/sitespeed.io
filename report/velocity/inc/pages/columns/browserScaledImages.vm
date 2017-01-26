@@ -1,5 +1,0 @@
-#if($!{results.getChild("g").getChild("avoidscalingimages")})##
-$results.getChild("g").getChild("avoidscalingimages").getChild("components").getChildren("item").size()##
-#else##
-0##
-#end##

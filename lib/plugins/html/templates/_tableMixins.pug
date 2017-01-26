@@ -1,0 +1,22 @@
+mixin rowHeading(items)
+  thead
+    tr
+      each item in items
+        th= item
+
+mixin numberCell(title, number)
+  td.number(data-title=title)= number
+
+mixin durationCell(title, duration)
+  td.number(data-title=title, data-value= duration)= h.time.duration(duration)
+
+mixin kbSizeCell(title, size)
+  td.number(data-title=title, data-value= size)= h.size.asKb(size)
+
+mixin sizeCell(title, size)
+  td.number(data-title=title, data-value= size)= h.size.format(size)
+
+mixin statsCell(stats, name, stat)
+  - stat = stat ? stat : 'median'
+  - value = stats ? stats[stat] : 0
+  td.number(data-title=name, data-value=value)= value

@@ -1,2 +1,0 @@
-#set($tooltipDomainsText = "The number of domains used on the page")
-#columnHeaderHTML("domains","float",$tooltipDomainsText,"")##

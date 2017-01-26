@@ -1,0 +1,32 @@
+---
+layout: default
+title: Sitespeed.io - Release notes 2.2
+description: Sitespeed.io 2.2 release focus on packaging for Homebrew.
+author: Peter Hedenskog
+keywords: sitespeed.io, release, release-notes, 2.2
+nav:
+image:  https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+twitterdescription: Sitespeed.io 2.2 release focus on packaging for Homebrew.
+---
+<div class="page-header">
+  <h1>Sitespeed.io 2.2 release notes</h1>
+</div>
+
+<p>This release contains a couple of fixes for making it easier to package sitespeed.io:</p>
+<ul>
+<li><strong>Important</strong>: All scripts has been moved to the bin folder, making it easier to package</li>
+<li><strong>Important</strong>: The sites & the JUnit scripts has been renamed <em>sitespeed.io-sites</em> & <em>sitespeed.io-junit</em></li>
+<li>All scripts has been cleaned to use absolute paths, making it easier to package for Homebrew</li>
+<li><em>sitespeed-sites.io</em> always need to have the filename of the text file containing all the URLS (before there was a default file name)</li>
+<li>New BrowserTime (0.3) version including metrics <em>backEndTime</em> & <em>frontEndTime</em></li>
+<li>Changed default summary page to show backend & frontend time (removed redirectionTime & domInteractiveTime)</li>
+<li>Increased timeout for the crawler for really slow pages (now 60 seconds)</li>
+</ul>
+  And one bug fix:
+<ul>
+<li>The fix for removing invalid XML caharcters created by GA, sometimes broke the analyze, now fixed (<a href="https://github.com/sitespeedio/sitespeed.io/issues/304" target="_blank">#304</a>)</li>
+</ul>
+<hr>
+<p>
+See the <a href="https://github.com/soulgalore/sitespeed.io/blob/master/CHANGELOG">changelog</a> for changes done in the past.
+</p>

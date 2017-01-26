@@ -1,2 +1,0 @@
-#set($tooltipCriticalPathText = "The score for the rendering critical path")
-#columnHeaderHTML("critical path score","int",$tooltipCriticalPathText,"")##

@@ -1,4 +1,11 @@
 Many many many thanks to:
+* Matthew Harrison-Jones (@matthojo)
+* Moos (@moos)
+* Örjan Sjöholm (@orjan)
+* Abha Gupta (@abhagupta) 
+* jpvincent (@jpvincent)
+
+3.X and earlier:
 * Tom Sutton (@tomsutton1984)
 * Roberto Maisl (@rob-m)
 * Guillaume Lederrey (@gehel)
@@ -11,3 +18,13 @@ Many many many thanks to:
 * Chris Southam (@ChrisSoutham)
 * JoongSeob Vito Kim (@dorajistyle)
 * Zack Tollman (@tollmanz)
+* Steffen Persch (@n3o77)
+* Matt Flower (@MattFlower)
+* Stefan Judis (@stefanjudis)
+* Peter Elmered (@pelmered)
+* Jeroen Van den Berghe (@JeroenVdb)
+* Eike (@EikeDawid)
+* Jesse Zoldak (@jzoldak)
+* Devrim Tufan (@tufandevrim)
+* Keith Cirkel (@keithamus)
+* Jonathan Lee (@beenanner)

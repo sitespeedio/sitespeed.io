@@ -1,0 +1,40 @@
+if pageInfo.data.browsertime
+  - var btStatistics = pageInfo.data.browsertime.pageSummary.statistics
+  h2 Timings Summary
+  - timingMetrics = ['firstPaint', 'fullyLoaded', 'rumSpeedIndex']
+  .responsive
+    table
+      thead
+        tr
+          th metric
+          th min
+          th median
+          th mean
+          th max
+      each timing in timingMetrics
+        if btStatistics.timings[timing]
+          tr
+            td(data-title='metric') #{timing}
+            td.number(data-title='min') #{btStatistics.timings[timing].min}
+            td.number(data-title='median') #{btStatistics.timings[timing].median}
+            td.number(data-title='mean') #{btStatistics.timings[timing].mean}
+            td.number(data-title='max') #{btStatistics.timings[timing].max}
+      if btStatistics.timings.userTimings
+        if btStatistics.timings.userTimings.marks
+          each userTimings, name in btStatistics.timings.userTimings.marks
+            tr
+              td(data-title= name) #{name}
+              td.number(data-title='min') #{userTimings.min}
+              td.number(data-title='median') #{userTimings.median}
+              td.number(data-title='mean') #{userTimings.mean}
+              td.number(data-title='max') #{userTimings.max}
+      if btStatistics.visualMetrics
+        each visualMetric, name in btStatistics.visualMetrics
+          tr
+            td(data-title= name) #{name} (visual metric)
+            td.number(data-title='min') #{visualMetric.min}
+            td.number(data-title='median') #{visualMetric.median}
+            td.number(data-title='mean') #{visualMetric.mean}
+            td.number(data-title='max') #{visualMetric.max}
+else
+  p Missing browsertime data

@@ -1,5 +1,0 @@
-#if($!{results.getChild("stats").getChild("js").getChild("r")})##
-$results.getChild("stats").getChild("js").getChild("r").getValue()##
-#else##
-0##
-#end##

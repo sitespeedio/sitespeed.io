@@ -1,2 +1,0 @@
-#set($tooltipSpofText = "The number of possible frontend single point of failures, be sure to avoid 3rd party assets")
-#columnHeaderHTML("spof","int",$tooltipSpofText,"")##

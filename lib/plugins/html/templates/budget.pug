@@ -1,0 +1,24 @@
+extends ./layout.pug
+include _tableMixins
+
+mixin row(budget)
+  each results, url in budget
+    each result in results
+      tr
+        td
+          a(href=url)= url
+          td #{result.type}.#{result.metric} with value #{result.value} limit #{result.limitType} #{result.limit}
+
+block content
+    h2 The budget
+    p The result of the performance budget. We got #{totalFailing} failing and #{totalWorking} working.
+
+    h3 Failing budgets [#{totalFailing}]
+    table
+        +rowHeading(['url', 'result'])
+        +row(budget.failing)
+
+    h3 Working budgets [#{totalWorking}]
+    table
+        +rowHeading(['url', 'result'])
+        +row(budget.working)

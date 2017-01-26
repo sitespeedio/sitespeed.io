@@ -1,2 +1,0 @@
-#set($tooltipTotalCSSSizeText = "The total size of CSS files on the page (kb)")
-#columnHeaderHTML("total css size","double",$tooltipTotalCSSSizeText,"")##

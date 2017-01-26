@@ -1,0 +1,51 @@
+//
+// SUMMARY BOX
+// ===============
+// Boxes on the start summary page
+//
+
+.summarybox {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+
+  &.ok {
+    color: #468847;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+  }
+
+  &.warning {
+    color: #c09853;
+    background-color: #fcf8e3;
+    border-color: #fbeed5;
+  }
+
+  &.error {
+    color: #b94a48;
+    background-color: #f2dede;
+    border-color: #eed3d7;
+  }
+
+  &.info {
+    background-color: #D9EDF7;
+    border-color: #BCE8F1;
+    color: #3A87AD;
+  }
+}
+
+a.summaries {
+  text-decoration: none;
+}
+
+.summarynumber {
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: bold;
+}
+
+.summarysmall {
+  font-size: 1rem;
+  line-height: 1;
+}

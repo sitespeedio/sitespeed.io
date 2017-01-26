@@ -1,2 +1,0 @@
-#set($tooltipJsSyncText = "The number of js loaded synchronously inside of head")
-#columnHeaderHTML("sync js","int",$tooltipJsSyncText,"")##

@@ -1,5 +1,0 @@
-#if($!{results.getChild("g").getChild("spof")})##
-$results.getChild("g").getChild("spof").getChild("components").getChildren("item").size()##
-#else##
-0##
-#end##

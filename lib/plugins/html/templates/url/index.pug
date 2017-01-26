@@ -1,0 +1,99 @@
+extends ./layout.pug
+
+block content
+  - var d = pageInfo.data
+  - var daTitle = daurlAlias ? daurlAlias : daurl
+  h1 Page summary
+
+  h5
+    a(href=daurl) #{decodeURIComponent(daTitle)}
+
+  - var profile = options.mobile ? 'mobile' : 'desktop'
+  p Tested using #{h.cap(options.browsertime.browser)}  #{h.plural(options.browsertime.iterations, 'run')} with #{profile} profile.
+
+  p
+    .large All runs:&nbsp;
+      each val, index in runPages
+        - value = Number(index) + 1
+        a(href='./' + index + '.html') #{value}
+        if (value !== Object.keys(runPages).length)
+          | &nbsp;-&nbsp;
+
+  if pageInfo.errors
+    h4 Errors
+    .errors= JSON.stringify(pageInfo.errors, null, 2)
+
+  else
+    include ./tabs.pug
+
+    section#summary-panel
+      h2 Summary
+      p.small Summary of some of the most important metrics.
+      .row
+        .one-half.column
+          table
+            tr
+              th Metric
+              th Value
+            if d.coach && d.coach.pageSummary
+              tr
+                td Performance score:
+                td #{d.coach.pageSummary.advice.performance.score}
+            if d.pagexray && d.pagexray.pageSummary
+              tr
+                td Total page size:
+                td #{h.size.format(d.pagexray.pageSummary.transferSize)}
+            if d.pagexray && d.pagexray.pageSummary
+              tr
+                td Requests:
+                td #{d.pagexray.pageSummary.requests}
+            if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.visualMetrics
+              tr
+                td First visual change:
+                td #{d.browsertime.pageSummary.statistics.visualMetrics.FirstVisualChange.median}
+            else if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.timings.firstPaint
+              tr
+                td First Paint:
+                td #{d.browsertime.pageSummary.statistics.timings.firstPaint.median}
+            if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.visualMetrics
+              tr
+                td Speed Index:
+                td #{d.browsertime.pageSummary.statistics.visualMetrics.SpeedIndex.median}
+              tr
+                td Last visual change:
+                td #{d.browsertime.pageSummary.statistics.visualMetrics.LastVisualChange.median}
+            else if d.browsertime && d.browsertime.pageSummary
+              tr
+                td RUMSpeedIndex:
+                td #{d.browsertime.pageSummary.statistics.timings.rumSpeedIndex.median}
+
+        .one-half.column
+            if d.browsertime && d.browsertime.pageSummary.screenshots
+              - var width = options.mobile ? 150 : '100%';
+              a(href='data/screenshots/0.png')
+                img.screenshot(src='data/screenshots/0.png', width=width, alt='Screenshot of run 0')
+
+      include ./summaryBox.pug
+
+      if d.browsertime && d.browsertime.har
+        include ./waterfall/index.pug
+
+    if d.coach && d.coach.pageSummary
+      section#coach-panel
+        include ./coach/index.pug
+
+    if d.browsertime && d.browsertime.pageSummary
+      section#browsertime-panel
+        include ./browsertime/index.pug
+
+    if d.pagexray && d.pagexray.pageSummary
+      section#pagexray-panel
+        include ./pagexray/index.pug
+
+    if d.webpagetest
+      section#webpagetest-panel
+        include ./webpagetest/index.pug
+
+    if d.gpsi
+      section#gpsi-panel
+        include ./gpsi/index.pug
