@@ -1,12 +1,14 @@
 version: '2'
 services:
     sitespeed.io:
-      image: sitespeedio/sitespeed.io:4.0.7
+      image: sitespeedio/sitespeed.io
+      command: -V
       privileged: true
+      shm_size: 1g
       volumes:
             - ./sitespeed-result/:/sitespeed.io/sitespeed-result
     grafana:
-      image: grafana/grafana
+      image: grafana/grafana:4.1.1
       depends_on:
         - graphite
       links:
@@ -31,7 +33,7 @@ services:
       volumes:
         - graphite:/opt/graphite/storage/whisper
     grafana-setup:
-      image: sitespeedio/grafana-bootstrap
+      image: sitespeedio/grafana-bootstrap:grafana-4.0
       links:
         - grafana
       environment:

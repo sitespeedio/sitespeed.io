@@ -19,27 +19,31 @@ twitterdescription: Web performance dashboard using sitespeed.io.
 We spent a lot of time making it easier in 4.x to install and run your own performance dashboard with pre made dashboards and a Docker compose file to rule them all. You can see the beauty [here](https://dashboard.sitespeed.io).
 
 # What you need
-You need [Docker](https://docs.docker.com/engine/installation/) and [Docker Compose](https://docs.docker.com/compose/install/).
+You need [Docker](https://docs.docker.com/engine/installation/) and [Docker Compose](https://docs.docker.com/compose/install/). If you haven't used Docker before, you can read [Getting started](https://docs.docker.com/engine/getstarted/). And you can also read/learn more about [Docker Compose](https://docs.docker.com/compose/gettingstarted/) to get a better start.
 
 # Up and running in 5 minutes
 
 1. Download our new Docker compose file: <code>curl -O https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/docker-compose.yml</code>
-2. Run: <code>docker-compose up</code> (make sure you run the latest [Docker compose](https://docs.docker.com/compose/install/) version)
+2. Run: <code>docker-compose up -d</code> (make sure you run the latest [Docker compose](https://docs.docker.com/compose/install/) version)
 3. Run sitespeed to get some metrics: <code> docker-compose run sitespeed.io https://www.sitespeed.io/ --graphite.host=graphite</code>
 4. Access the dashboard: http://127.0.0.1:3000
+5. When you are done you can shutdown and remove all the docker containers by running <code>docker-compose stop && docker-compose rm</code>
 
 
 If you want to play with the dashboards the default login is sitespeedio and password is ...well checkout the docker-compose.yml file.
 
 ## Docker compose file
-We have prepared a Docker Compose file that downloads and setup Graphite/Grafana and sitespeed.io + a couple of example dashboards. It works perfect when you wanna try it out locally, but if you wanna run it in production you should modify it a bit.
+We have prepared a Docker Compose file that downloads and setup Graphite/Grafana and sitespeed.io + a couple of example dashboards. It works perfect when you wanna try it out locally, but if you wanna run it in production you should modify it by making sure that the metrics are stored outside of your container/volumes.
 
 ## Pre made dashboards
-We insert the pre made dashboards using a Docker container using curl. You can check it out: [https://github.com/sitespeedio/grafana-bootstrap-docker](https://github.com/sitespeedio/grafana-bootstrap-docker)
+We insert pre made dashboards with a Docker container using curl, that makes it easy for you to get started. You can check out the container with the dashboards here: [https://github.com/sitespeedio/grafana-bootstrap-docker](https://github.com/sitespeedio/grafana-bootstrap-docker)
 
 # Example dashboards
 
-The dashboards has a couple of templates (the drop downs at the top of the page). A dashboard that show metrics for a specific page has the following templates:
+The example dashboards are generic dashboards that will work with all data/metrics you collect using sitespeed.io. We worked hard to make them as good as possible and the great thing about them is that you can use them as base dashboards and then create the extra dashboards you like.
+
+The dashboards has a couple of templates (the drop downs at the top of the page) that makes the dashboard interactive and dynamic.
+A dashboard that show metrics for a specific page has the following templates:
 
 ![Page templates]({{site.baseurl}}/img/templates-page.png)
 {: .img-thumbnail}
@@ -49,7 +53,7 @@ The *path* is the first path after the namespace. Using default values the names
 When you choose one of the values in a template, the rest will be populated. You can choose checking metrics for a specific page, browser and connectivity.
 
 ## The namespace
-The default namespace is *sitespeed_io.default* and the example dashboards are built upon that the first part of the namespace is still *sitespeed_io* but feel free to change the second part. Keeping the first part will make the example dashboards work.
+The default namespace is *sitespeed_io.default* and the example dashboards are built upon a constant template variable called $base that is the first part of the namespace (that default is *sitespeed_io* but feel free to change that, and then change the constant).
 
 ## Page summary
 The page summary shows metrics for a specific URL/page.
@@ -61,18 +65,6 @@ The page summary shows metrics for a specific URL/page.
 The site summary show metrics for a site (a summary of all URLs tested for that domain).
 
 [![Site summary in Grafana]({{site.baseurl}}/img/sitesummary-grafana.png)](https://dashboard.sitespeed.io/dashboard/db/site-summary)
-{: .img-thumbnail}
-
-## Timings
-The Timings dashboard shows how you can look at timings for URL.
-
-[![Timings in Grafana]({{site.baseurl}}/img/timings-grafana.png)](https://dashboard.sitespeed.io/dashboard/db/timings)
-{: .img-thumbnail}
-
-## Visual metrics
-We are working on getting SpeedIndex and other VisualMetrics into sitespeed.io and you can try it out but it is still experimental.
-
-[![Visual Metrics]({{site.baseurl}}/img/visualmetrics.png)](https://dashboard.sitespeed.io/dashboard/db/visual-metrics)
 {: .img-thumbnail}
 
 ## 3rd vs. 1st party
@@ -101,7 +93,9 @@ Do you need anything else? Since we store all the data in Graphite and use Grafa
 You have the dashboard and you need to collect metrics. Using the crontab works fine or whatever kind of scheduler you are using (or Jenkins per build or ... whatever suits you the best).
 
 Using the crontab (on a standalone server) you do like this:
-<code>crontab -e</code> to edit the crontab. Make sure you users cron can run Docker and change *my.graphite.host* to your Graphite host.
+<code>crontab -e</code> to edit the crontab. Make sure your cron user can run Docker and change *my.graphite.host* to your Graphite host. When you run this on a standalone server *my.graphite.host* will be the public ip adress of your server. The default port when sending metrics to graphite is 2003, so you don't have to include that.
+
+If you run the container and the cronjob locally you cannot use localhost since each docker container has it's own localhost. On a mac or linux machine you can use <code>$ ifconfig</code> to retrieve your ip adress. This will output a list of all connected interfaces and let you see which one is currently being used. The one listed with an "inet" address that is not "127.0.0.1" is usually the interface that you're connected through.
 
 ~~~
 SHELL=/bin/bash
@@ -109,12 +103,48 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 0,30 * * * * docker run --privileged --rm sitespeedio/sitespeed.io:4.0 -n 5 --graphite.host my.graphite.host -c cable -b chrome https://en.wikipedia.org/wiki/Sweden >> /tmp/sitespeed-output.txt 2>&1
 ~~~
 
+# Configure Graphite
+We provide an example Graphite Docker container and you should probably change the configuration depending on how often you want to run your tests, how long you want to keep the result and how much disk space you want to use.
+
+With 4.x we try to send a moderated number of metrics per URL but you can [change that yourself]({{site.baseurl}}/documentation/sitespeed.io/metrics/).
+
+When you store metrics for a URL in Graphite you decide from the beginning how long time you want to store the data and how often in [storage-schemas.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-schemas.conf). In our example Graphite setup every key under sitespeed_io is caught by the configuration in storage-schemas.conf that looks like:
+<pre>
+[sitespeed]
+pattern = ^sitespeed_io\.
+retentions = 10m:60d,30m:90d
+</pre>
+
+Every metric that is sent to Graphite following the pattern (the namespace starting with sitespeed_io), Graphite prepares storage for it every ten minutes the first 60 days, after that Graphite uses the configuration in [storage-aggregation.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-aggregation.conf) to aggregate/downsize the metrics the next 90 days.
+
+Depending on how often you run your analyze you wanna change the storage-schemas.conf. With the current config, if you analyze the same URL within 10 minutes, one of the runs will be discarded. But if you know you only run once an hour, you could increase the setting. Etsy has [good documentation](https://github.com/etsy/statsd/blob/master/docs/graphite.md) on how to configure Graphite.
+
+One thing to know if you change your Graphite configuration: ["Any existing metrics created will not automatically adopt the new schema. You must use whisper-resize.py to modify the metrics to the new schema. The other option is to delete existing whisper files (/opt/graphite/storage/whisper) and restart carbon-cache.py for the files to get recreated again."](http://mirabedini.com/blog/?p=517)
+
+## Crawling and Graphite
+If you crawl a site that is not static you will pick up new pages each run or each day and that will make the Graphite database grow each day. Either you make sure you have a massive amount of storage or you change the storage-schemas.conf so that you don't keep the metrics for so long. You could do that by setting up another namespace (start of the key) and catch metrics that you only store for a short time.
+
+The Graphite DB size is determined by the number of unique data points and the frequency of them within configured time periods, meaning you can optimise how much space you need. If the majority of the URLs you need to test are static and are tested often, you should find there's a maximum DB size depending on your storage-schemas.conf settings.
+
 # Production
-To run this in production you should do a couple of modifications.
+To run this in a production environment you should consider/make some modifications.
 
 1. Always run sitespeed.io on a standalone instance
     - This avoids causing discrepancies in results due to things like competing resources or network traffic.
 2. Change the default user and password for Grafana.
-3. Map the Graphite volume to a physical directory outside of Docker to have better control.
-4. Remove the sitespeedio/grafana-bootstrap from the Docker compose file, you only need that for the first run.
-5. Optional: Disable anonymous users access
+3. Make sure you have configured storage-aggregation.conf in Graphite to fit your needs.
+4. Map the Graphite volume to a physical directory outside of Docker to have better control.
+5. Remove the sitespeedio/grafana-bootstrap from the Docker compose file, you only need that for the first run.
+6. Optional: Disable anonymous users access
+
+## Memory
+You should keep an eye on performance of the sitespeed docker container if you're running in a more memory constrained environment. Generally 2GB would be considered too low for Chrome/Firefox.
+If your environment doesn't have much available memory you may need to alter the NodeJS `MAX_OLD_SPACE_SIZE`, currently this is set at 2gb. You can do this using a docker environment variable e.g.
+
+```yaml
+services:
+    sitespeed.io:
+      environment:
+        - MAX_OLD_SPACE_SIZE=1024
+
+```

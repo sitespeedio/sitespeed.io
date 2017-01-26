@@ -17,30 +17,32 @@ twitterdescription: Hack on sitespeed.io
 {:toc}
 
 ## Start
-Start by looking at the image of [how it all works]({{site.baseurl}}/documentation/sitespeed.io/how-it-all-works/). It seems much but it isn't so complicated.
+Start by looking at the image of [how it all works]({{site.baseurl}}/documentation/sitespeed.io/how-it-all-works/). It seems like much, but it isn't that complicated.
 
 ### Plugins
-Everything in sitespeed.io (almost everything) is a plugin. Each plugin will be called on startup, for each message sent in the application and one call when everything is finished.
+Everything in sitespeed.io (well almost everything) is a plugin. Each plugin will be called at startup, for each message sent in the application and then called when everything is finished.
 
 The [plugin structure]({{site.baseurl}}/documentation/sitespeed.io/plugins/#create-your-own-plugin) looks like that.
 
 ### Analyzing a URL step by step
-The flow is like this:
+The flow looks like this:
 
 1. You start the application and feed it with a URL/URLs.
-2. The app will go through the configured plugins and start them and the plugins will wait for messages.
-3. The app will send the URLs as URL messages and the plugins that listens to that type of messages will act on that. When they are finished with what they do, they post other messages on with the findings they did.
-4. When all URLs are finished, the plugins will get a "close" call to say prepare what you have.
+2. The app will go through the configured plugins and start them while each plugin waits for messages.
+3. The app will send the URLs as URL messages and the plugins that listens to that type of messages will act on that. When a plugin is finished, it will post other messages on it's findings.
+4. When all URLs are finished, the plugins receive a "close" call to finalize and prepare their findings.
 5. Finish
 
 ### Contributing to the Documentation
 First make sure you have Bundler: <code>gem install bundler</code>
 
+You should probably upgrade your ruby gems too: <code>gem update --system</code>
+
 *If you run on a Mac OS make sure you have xcode-select installed: <code>xcode-select --install</code>*
 
 To run the documentation server locally execute the following from within the /docs directory after cloning the repo locally: <code>bundle install && bundle exec jekyll serve --baseurl ''</code>.
 
-Vist https://localhost:4000/ in the browser of your choice.
+Vist http://localhost:4000/ in the browser of your choice.
 
 
 ### Debugging with Chrome

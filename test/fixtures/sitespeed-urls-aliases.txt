@@ -1,0 +1,4 @@
+https://www.sitespeed.io Home_Page
+https://www.sitespeed.io/documentation/sitespeed.io/webpagetest/
+https://www.sitespeed.io/documentation/sitespeed.io/browsers/ Docs_Browsers
+https://www.sitespeed.io/faq FAQ

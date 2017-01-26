@@ -5,9 +5,10 @@ mixin rows(pages)
   each pageInfo, url in pages
     - p = pageInfo.data.pagexray ? pageInfo.data.pagexray.pageSummary : {}
     - t = p.contentTypes || {javascript: {transferSize: ''}, css: {transferSize: ''}, image: {transferSize: ''}}
+    - display = options.urlsMetaData[url] ? options.urlsMetaData[url].alias : url
     tr
       td.url.pagesurl(data-title='URL')
-        a(href= pageInfo.path + 'index.html')= url
+        a(href= pageInfo.path + 'index.html')= decodeURIComponent(display)
       +kbSizeCell('Javascript size', h.get(t.javascript, 'transferSize'))
       +kbSizeCell('CSS size', h.get(t.css, 'transferSize'))
       +kbSizeCell('Image size', h.get(t.image, 'transferSize'))

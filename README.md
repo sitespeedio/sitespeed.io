@@ -19,6 +19,8 @@ Using sitespeed.io you can:
 * Create HTML-result pages or store the metrics in Graphite.
 * Write your own plugins that can do whatever tests you want/need.
 
+See all the latest changes in the [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md).
+
 And a lot of more things. But what does it look like?
 
 A summary report in HTML:
@@ -30,14 +32,17 @@ Individual page report:
 Collected metrics from a URL in Graphite/Grafana:
 <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/pagesummary-grafana.png">
 
+Video (if you use the Docker version):
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/video-example.gif">
+
 ## 4.0
 Version 4.0 is a ground-up rewrite for node.js 6.9.1 and newer. It builds on all our experience since shipping 3.0 in December 2014,
 the first version to use node.js.
 
-Using Docker:
+Using Docker (requires 1.10+):
 
 ```bash
-$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --video --speedIndex https://www.sitespeed.io/
 ```
 
 Or install using npm:
@@ -83,6 +88,8 @@ There's a lot of things that we wanted to improve since 3.0. Here's some of the 
 * You can collect metrics from Chrome on an Android phone. In the current version you need to have it connected using USB to the server running sitespeed.io, lets see how we can make it better in the future.
 
 * Using our Docker container you will get support getting SpeedIndex and startRender using [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics). This is highly experimental at this stage.
+
+* We now support video and calculating SpeedIndex (since 4.1). Use our Docker container to get an easy ride.
 
 There are new things that will come also that isn't 100% implemented yet and you can help us.
 * InfluxDB support. We have started with a POC but need to implement it properly, see [889](https://github.com/sitespeedio/sitespeed.io/issues/889).

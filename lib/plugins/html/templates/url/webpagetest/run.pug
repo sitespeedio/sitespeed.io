@@ -33,6 +33,13 @@ each view in ['firstView', 'repeatView']
           tr
           each value, key in data.userTimes
             td.number(data-title= key) #{value}
+      if (data.custom)
+        h5 Custom metrics
+        table
+          each key in data.custom
+            tr
+              td #{key}
+              td #{data.custom[key]}
     h5 Waterfall
     img.u-max-full-width(src= data.images.waterfall, alt='Waterfall view')
     h5 Connection view

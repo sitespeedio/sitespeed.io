@@ -41,7 +41,7 @@ And run use it like this:
 $ sitespeed.io https://www.sitespeed.io -c cable
 ~~~
 
-If you use [tc](http://lartc.org/manpages/tc.txt) as connectivity engine, you will have the same upload/download numbers, however it will probably give you better and more stable numbers than running TSProxy. You turn it on by setting the engine like <code>--browsertime.connectivity.engine tc</code> (and it should work out of the box in our Docker container). 
+If you use [tc](http://lartc.org/manpages/tc.txt) as connectivity engine, you will have the same upload/download numbers, however it will probably give you better and more stable numbers than running TSProxy. You turn it on by setting the engine like <code>--browsertime.connectivity.engine tc</code> (and it should work out of the box in our Docker container).
 
 ## Choose when to end your test
 By default the browser will collect data until  [window.performance.timing.loadEventEnd happens + aprox 2 seconds more](https://github.com/sitespeedio/browsertime/blob/d68261e554470f7b9df28797502f5edac3ace2e3/lib/core/seleniumRunner.js#L15). That is perfectly fine for most sites, but if you do Ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (--browsertime.pageCompleteCheck). When the scripts returns true the browser will close or if the timeout time will be reached.
@@ -84,6 +84,14 @@ And in the summary and detailed summary section.
 {: .img-thumbnail}
 
 One more thing: All custom scripts values will be sent to Graphite, no extra configuration needed!
+
+## Visual Metrics
+
+Visual metrics (Speed Index, Perceptual Speed Index, first and last visual change) can be collected if you also record a video of the screen. This will work on desktop for Firefox & Chrome. And use our Docker container so you automagically get all the extra software needed.
+
+~~~bash
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --speedIndex --video https://www.sitespeed.io/
+~~~
 
 ## Using Browsertime
 Everything you can do in Browsertime, you can also do in sitespeed.io. Prefixing browsertime to a CLI parameter will pass that parameter on to Browsertime.

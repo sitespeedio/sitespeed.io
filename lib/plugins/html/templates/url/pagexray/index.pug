@@ -42,34 +42,58 @@ h3 Requests and sizes per content type
       +sizeCell('contentSize', totalContentSize)
       +numberCell('requests', totalRequests)
 
-if pagexray.firstParty.requests
-  h3 First Party vs Third Party
-  .responsive
-    table
-      +rowHeading(['Type', 'Transfer Size', 'Header Size', 'Content Size', 'Requests'])
-      - var types = ['firstParty', 'thirdParty']
-      each type in types
-        tr
-          td(data-title='type') #{type}
-          +sizeCell('transferSize', pagexray[type].transferSize)
-          +sizeCell('headerSize', pagexray[type].headerSize)
-          +sizeCell('contentSize', pagexray[type].contentSize)
-          +numberCell('requests', pagexray[type].requests)
-
 h3 Expires and last modified stats
 - expire = pagexray.expireStats
 - lastModified = pagexray.lastModifiedStats
 .responsive
   table
     +rowHeading(['type', 'min', 'median', 'max'])
-    tr
-      td(data-title='Type') Expires
-      +durationCell('min', expire.min)
-      +durationCell('median', expire.median)
-      +durationCell('max', expire.max)
+    if expire
+      tr
+        td(data-title='Type') Expires
+        +durationCell('min', expire.min)
+        +durationCell('median', expire.median)
+        +durationCell('max', expire.max)
     if lastModified
       tr
         td(data-title='Type') Last modified
         +durationCell('min', lastModified.min)
         +durationCell('median', lastModified.median)
         +durationCell('max', lastModified.max)
+
+if pagexray.firstParty.requests
+  h3 First party requests and sizes per content type
+  .responsive
+    table(data-sortable, id='contentSize')
+      +rowHeading(['Content', 'Header Size', 'Transfer Size', 'Content Size', 'Requests'])
+      each data, type in pagexray.firstParty.contentTypes
+        tr
+          td(data-title='type') #{type}
+          +sizeCell('headerSize', data.headerSize)
+          +sizeCell('transferSize', data.transferSize)
+          +sizeCell('contentSize', data.contentSize)
+          +numberCell('requests', data.requests)
+      tr
+        td(data-title='type') Total
+        +sizeCell('headerSize', pagexray.firstParty.headerSize)
+        +sizeCell('transferSize', pagexray.firstParty.transferSize)
+        +sizeCell('contentSize', pagexray.firstParty.contentSize)
+        +numberCell('requests', pagexray.firstParty.requests)
+
+  h3 Third party requests and sizes per content type
+  .responsive
+    table(data-sortable, id='contentSize')
+      +rowHeading(['Content', 'Header Size', 'Transfer Size', 'Content Size', 'Requests'])
+      each data, type in pagexray.thirdParty.contentTypes
+        tr
+          td(data-title='type') #{type}
+          +sizeCell('headerSize', data.headerSize)
+          +sizeCell('transferSize', data.transferSize)
+          +sizeCell('contentSize', data.contentSize)
+          +numberCell('requests', data.requests)
+      tr
+        td(data-title='type') Total
+        +sizeCell('headerSize', pagexray.thirdParty.headerSize)
+        +sizeCell('transferSize', pagexray.thirdParty.transferSize)
+        +sizeCell('contentSize', pagexray.thirdParty.contentSize)
+        +numberCell('requests', pagexray.thirdParty.requests)

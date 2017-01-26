@@ -1,15 +1,123 @@
 # CHANGELOG - sitespeed.io
-## UNRELEASED
+## 4.3.9 2017-01-26
+## Fixed
+* Worst case scenario if Browsertime missing a HAR file, the HTML summary rendering failed [#1424](https://github.com/sitespeedio/sitespeed.io/issues/1424)
+* If we have a site that is missing expire headers, the HTML generation failed [1430](https://github.com/sitespeedio/sitespeed.io/issues/1430)
+
+## 4.3.8 2017-01-19
+## Fixed
+* Updated to latest PerfCascade that will pickup changed resource prio in Chrome and some bug fixes.
+* Google is still overloading User Timing marks see [#257](https://github.com/sitespeedio/browsertime/issues/257). This fix mute the marks from WebPageTest so they aren't sent to Graphite.
+
+## 4.3.7 2017-01-13
 ### Fixed
-* Cli help options for Browsertime was very unclear and unspecific. 
+* Google is overloading User Timing marks see [#257](https://github.com/sitespeedio/browsertime/issues/257). This is quick fix, lets make a better fix in the future.
+
+## 4.3.6 2017-01-10
+### Fixed
+* New Browsertime that fixes the too early firstVisualRender in Firefox introduced in 4.3.5.
+
+## 4.3.5 2017-01-10
+### Fixed
+* Running only WebPageTest generated errors in the HTML plugin #1398, fixed in #1413
+* New Browsertime (beta 22) with changed configuration for Chrome to detect orange frames
+* New Coach and Browsertime that is cleaned up to make our Docker containers smaller again 726 -> 547 mb
+
+## 4.3.4 2017-01-09
+### Fixed (hopefully)
+* Upgraded to [Browsertime beta 21](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#version-100-beta21-2017-01-09) to finally once and for all fix the problem with the too early firstVisualChange that sometimes happend in Chrome:
+  * We removed the center cropping of images when visual metrics checks if an image is orange/white. The cropping made us miss the small orange lines that sometimes appear only in Chrome.
+  * We also fine tuned (and made configurable) the number when the diff of two images (orange and white) is ... orange.
+  * We re-arranged how we record the screen to record as little extra video as possible
+
+## 4.3.3 2017-01-05
+### Fixed
+* Upgraded browsertime with changed FFMPeg config to hopefully fix the too early firstVisualChange that sometimes happens for Chrome, updated Geckodriver (0.12.0), changed Firefox default settings to follow the Mozilla teams default ones when they do test automation,
+pickup changed request prio in Chrome (before only initial prio was used) and adding new connectivity profile 3gem for Emerging markets to keep in sync with WebPageTest.
+
+## 4.3.2 2017-01-04
+### Fixed
+* Updated the Docker container to use ImageMagick 6.9.7-2 to fix firstVisualChange that sometimes was picked up to early https://github.com/sitespeedio/browsertime/issues/247
+
+## 4.3.1 2016-12-28
+### Fixed
+* TAP and JUnit XML stopped working when changing to yargs 6.x (coerce has breaking changes). Rollback to yargs 5.0 and make a better fix after the holidays.
+
+## 4.3.0 2016-12-22
+### Fixed
+* Upgraded to Browsertime beta-19 that fixes firstVisualChange happen to early when testing as mobile
 
 ### Added
-* Made the size table sorteable for PageXray metrics
+* New version of PerfCascade with icons for content types, making it much easier to understand the waterfall graph.
+
+## 4.2.1 2016-12-20
+### Fixed
+* Custom metrics in from WebPageTest introduced a error running WebPageTest without custom metrics. #1389
+
+## 4.2.0 2016-12-14
+### Added
+* Updated to browsertime beta18 with fix for to early firstVisualChange with preURL and display lastVisualChange in the video. And fixed the extra 5s added to base request using Firefox in Docker. And makes the order for assets more correct in Chrome for sites using HTTP/2
+* Upgraded the Docker container to use Chrome 55.0
+* The metric lines (firstVisualChange etc) is now stronger and easier to spot
+* Slack: firstVisualChange, lastVisualChange and fullyLoaded metrics will be sent by default and you can now configure what metric you wanna use to decide if it is a warning/error message #1366
+* Use video.js as video player #1372
+* Collect custom metrics in WebPageTest (and send them to Graphite when configured). Thank you https://github.com/jpvincent for the initial PR! #1377
+* Added ability to set a custom alias for URLs via the text file for shortening long page URLs. #1326
+* Trap to catch when you wanna exit a Docker run. Now you can just exit.
+* Add support for pushing metrics to InfluxDB.
+* Latest coach (0.30.0).
+
+### Fixed
+* Running multiple URLs in WebPageTest failed because of a "feature" in the WebPageTest NodeJS API where options in s are change to ms. #1367
+* The keys for assets in PageXray was broken when we sent them to Graphite, because we couldn't identify which asset we sent, instead of the URL we used the position in the array. We fixed that now, BUT: Please don't send all the assets to Graphite, it will fill your disk! #1341
+* The key summary structure for metrics for WebPageTest just worked because of luck. It is now divided in pageSummary and summary making it easier to configure and understand. #1377
+* Fixed encoding problems when storing to disk #1346
+
+## 4.1.3 2016-12-05
+### Fixed
+* If you tested multiple runs, the video was overrun by the last URL, see https://github.com/sitespeedio/browsertime/issues/237
+
+### Added
+* SpeedIndex, First/Last Visual change is now in the help section
+* Show SpeedIndex, First/Last Visual change on the detailed summary page
+* Show last visual change in the summary box
+* Color the first/last change line in the waterfall graph
+* Show legend for the waterfall graph
+* Added breakdown of 1st vs 3rd party content types
+
+## 4.1.2 2016-12-04
+### Fixed
+* Color of tabs in waterfall graph is now white and readable. The URL in the tabs has the right letter spacing.
+* Crash when all assets matched the specified first party regex. #1358
+
+### Added
+* Additional checks to avoid generating invalid paths in Graphite.
+* New version of PerfCascade that gives us numbers on requests, image tab last and horizontel lines in subseconds.
+
+## 4.1.1 2016-12-02
+### Added
+* Output preURL info on the runInfo box on each HTML page.
+* If we have first and last visual change add it to the HAR file so we can see it in the waterfall graph.
+
+### Fixed
+* Output Speed Index and First Visual Change in page summary box (the logic was there for SpeedIndex before but failed).
+* Added missing shorthand --preURL to the CLI options.
+
+## 4.1.0 2016-12-01
+### Fixed
+* Cli help options for Browsertime was very unclear and unspecific.
+* TSProxy is somehow broken together with Selenium. TC is now default connectivity engine when running in Docker.
+* Finally fixed the problem with Chrome that it sometimes didn't start in Docker: https://github.com/SeleniumHQ/docker-selenium/issues/87#issuecomment-250475864
+
+### Added
+* Made the size table sortable for PageXray metrics
 * Upgraded the Docker container to use FF 50
-* Upgraded to latest Browsertime beta 12 with better video support
-* Option to set your custom alias for connectivity thank you @jpvincent for the idea #1329 
+* Upgraded to latest Browsertime beta 13 with official video support
+* Option to set your custom alias for connectivity thank you @jpvincent for the idea #1329
 * GPSI now uses mobile configuration so if you pass --mobile, it will use the mobile rules. #1342
 * Always send PerceptualSpeedIndex to Graphite as picked up by Browsertime/VisualMetrics
+* Added --video and --speedIndex to record a video and get SpeedIndex and related metrics using VisualMetrics. Use it in our Docker container.
+* If you configured to run a video you can see the video in the Browsertime tab.
 
 ## 4.0.7 2016-11-13
 ### Fixed
@@ -19,7 +127,7 @@
 ## 4.0.6 2016-11-13
 ### Added
 * Additional information added in the documentation around using connectivity engine `tc` for network throttling.
-* Additional information added in the FAQ section of the documentation mentioning Digital Ocean issue with pre-baked docker(1.12.3) instances and Firefox. 
+* Additional information added in the FAQ section of the documentation mentioning Digital Ocean issue with pre-baked docker(1.12.3) instances and Firefox.
 
 ## 4.0.5 2016-11-11
 ### Fixed
@@ -43,7 +151,7 @@ size for mdev fixing many numbers for SpeedIndex.
   * Export chrome perflog dumps as json in extraJson property of the result, instead of a string in the extras property. Only relevant to api users.
   * Upgraded sltc so we use 0.6.0 with simplified tc that actually works
   * We now run xvfb from inside NodeJS so we can set the screen size, making it easy to record the correct size for VisualMetrics. We also use environment variables that starts with BROWSERTIME so we can turn on xvfb easily on Docker.
-https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md 
+https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md
 
 ## 4.0.4 2016-11-04
 ### Fixed

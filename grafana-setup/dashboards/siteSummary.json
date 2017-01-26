@@ -698,7 +698,7 @@
                         "textEditor": false
                     }],
                     "thresholds": "",
-                    "title": "Javascript request (max)",
+                    "title": "JavaScript request (max)",
                     "type": "singlestat",
                     "valueFontSize": "80%",
                     "valueMaps": [{
