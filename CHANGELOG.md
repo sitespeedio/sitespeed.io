@@ -1,7 +1,7 @@
 # CHANGELOG - sitespeed.io
 ## UNRELEASED
 ## Added
-* Updated Docker container to use Chrome 56
+* Updated Docker container to use Chrome 56 and FF 51 BUT also added no-sandbox as default to make it work on Docker on OS X (new 56 thing).
 
 ## 4.3.9 2017-01-26
 ## Fixed
