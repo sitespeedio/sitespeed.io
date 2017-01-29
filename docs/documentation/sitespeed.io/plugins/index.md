@@ -58,10 +58,10 @@ $ sitespeed.io https://www.sitespeed.io --plugins.disable html screenshot --plug
 ## Add a plugin
 You can also add a plugin. Plugins you create yourself, plugins others has created or plugins that are not enabled by default.
 
-There's a plugin bundled with sitespeed.io called *analysisStorer* plugin that isn't enabled by default. It stores the original JSON data from all analyzers (from Browsertime, Coach data, WebPageTest etc) to disk. You can enable it like this:
+There's a plugin bundled with sitespeed.io called *analysisstorer* plugin that isn't enabled by default. It stores the original JSON data from all analyzers (from Browsertime, Coach data, WebPageTest etc) to disk. You can enable it like this:
 
 ~~~ bash
-$ sitespeed.io https://www.sitespeed.io --plugins.load analysisStorer
+$ sitespeed.io https://www.sitespeed.io --plugins.load analysisstorer
 ~~~
 
 If you want to run plugins that you created yourself or shared from others, you can either install the plugin using npm (locally) and load it by name or point out the directory where the plugin lives.

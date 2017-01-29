@@ -1,4 +1,8 @@
 # CHANGELOG - sitespeed.io
+## UNRELEASED
+## Added
+* Updated Docker container to use Chrome 56
+
 ## 4.3.9 2017-01-26
 ## Fixed
 * Worst case scenario if Browsertime missing a HAR file, the HTML summary rendering failed [#1424](https://github.com/sitespeedio/sitespeed.io/issues/1424)
