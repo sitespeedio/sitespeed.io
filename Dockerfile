@@ -1,7 +1,8 @@
-FROM sitespeedio/webbrowsers:firefox-50.1-chrome-55.0-1
+FROM sitespeedio/webbrowsers:firefox-51.0-chrome-56.0
 
 ENV SITESPEED_IO_BROWSERTIME__XVFB true
 ENV SITESPEED_IO_BROWSERTIME__CONNECTIVITY__ENGINE tc
+ENV SITESPEED_IO_BROWSERTIME__CHROME__ARGS no-sandbox
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app

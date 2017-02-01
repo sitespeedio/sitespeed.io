@@ -30,17 +30,19 @@ The flow looks like this:
 1. You start the application and feed it with a URL/URLs.
 2. The app will go through the configured plugins and start them while each plugin waits for messages.
 3. The app will send the URLs as URL messages and the plugins that listens to that type of messages will act on that. When a plugin is finished, it will post other messages on it's findings.
-4. When all URLs are finished, the plugins recieve a "close" call to finalize and prepare their findings.
+4. When all URLs are finished, the plugins receive a "close" call to finalize and prepare their findings.
 5. Finish
 
 ### Contributing to the Documentation
 First make sure you have Bundler: <code>gem install bundler</code>
 
+You should probably upgrade your ruby gems too: <code>gem update --system</code>
+
 *If you run on a Mac OS make sure you have xcode-select installed: <code>xcode-select --install</code>*
 
 To run the documentation server locally execute the following from within the /docs directory after cloning the repo locally: <code>bundle install && bundle exec jekyll serve --baseurl ''</code>.
 
-Vist https://localhost:4000/ in the browser of your choice.
+Vist http://localhost:4000/ in the browser of your choice.
 
 
 ### Debugging with Chrome

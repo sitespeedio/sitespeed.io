@@ -39,7 +39,7 @@ Video (if you use the Docker version):
 Version 4.0 is a ground-up rewrite for node.js 6.9.1 and newer. It builds on all our experience since shipping 3.0 in December 2014,
 the first version to use node.js.
 
-Using Docker:
+Using Docker (requires 1.10+):
 
 ```bash
 $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --video --speedIndex https://www.sitespeed.io/

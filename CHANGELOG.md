@@ -1,4 +1,22 @@
 # CHANGELOG - sitespeed.io
+## UNRELEASED
+## Added
+* Updated Docker container to use Chrome 56 and FF 51 BUT also added no-sandbox as default to make it work on Docker on OS X (new 56 thing).
+
+## 4.3.9 2017-01-26
+## Fixed
+* Worst case scenario if Browsertime missing a HAR file, the HTML summary rendering failed [#1424](https://github.com/sitespeedio/sitespeed.io/issues/1424)
+* If we have a site that is missing expire headers, the HTML generation failed [1430](https://github.com/sitespeedio/sitespeed.io/issues/1430)
+
+## 4.3.8 2017-01-19
+## Fixed
+* Updated to latest PerfCascade that will pickup changed resource prio in Chrome and some bug fixes.
+* Google is still overloading User Timing marks see [#257](https://github.com/sitespeedio/browsertime/issues/257). This fix mute the marks from WebPageTest so they aren't sent to Graphite.
+
+## 4.3.7 2017-01-13
+### Fixed
+* Google is overloading User Timing marks see [#257](https://github.com/sitespeedio/browsertime/issues/257). This is quick fix, lets make a better fix in the future.
+
 ## 4.3.6 2017-01-10
 ### Fixed
 * New Browsertime that fixes the too early firstVisualRender in Firefox introduced in 4.3.5.
