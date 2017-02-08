@@ -26,13 +26,14 @@ Internally sitespeed.io uses the [WebPageTest API](https://github.com/marceldura
 By default we have the following configuration options:
 
 ~~~ bash
---webpagetest.host          The domain of your WebPageTest instance.                                        
+--webpagetest.host          The domain of your WebPageTest instance.
 --webpagetest.key           The API key for you WebPageTest instance.
---webpagetest.location      The location for the test                                                                      
---webpagetest.connectivity  The connectivity for the test.                                                                
---webpagetest.runs          The number of runs per URL.                                                                           
+--webpagetest.location      The location for the test
+--webpagetest.connectivity  The connectivity for the test.
+--webpagetest.runs          The number of runs per URL.
 --webpagetest.custom        Execute arbitrary Javascript at the end of a test to collect custom metrics.
---webpagetest.script        Path to a script file
+--webpagetest.script        Direct WebPageTest script as a string
+--webpagetest.file          Path to a script file
 ~~~
 
 If you need anything else adding your own CLI parameter will propagate to the WebPageTest API. Checkout the different [options](https://github.com/marcelduran/webpagetest-api#test-works-for-test-command-only) for the API.
@@ -66,7 +67,7 @@ You can override these with parameters. If you want to change the location, just
 
 WebPageTest has scripting capability where you can automate a multi-step test (login as a user and do some interaction). That is supported by sitespeed.io by supplying the script. You can do so like this:
 
-Create your script file (checkout [WebPageTest documentation](https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/scripting) for what you can do). It can look something like this (wptScript.txt):
+You can create your script file (checkout [WebPageTest documentation](https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/scripting) for what you can do). It can look something like this (wptScript.txt):
 
 ~~~ bash
 logData    0
@@ -84,7 +85,13 @@ navigate    news.aol.com/world
 Then change your URL you want test (probably the last one) to \{\{\{URL\}\}\} and then all occurrences of \{\{\{URL\}\}\} will then be replaced with the current URL that should be tested. Then run sitespeed.io (and add the parameters as you usually do):
 
 ~~~ bash
-sitespeed.io --webpagetest.script wptScript.txt --webpagetest.host  my.wpt.host.com http://example.org
+sitespeed.io --webpagetest.file wptScript.txt --webpagetest.host my.wpt.host.com http://example.org
+~~~
+
+It is also possible to pass the WebPageTest script as a string into the `--webpagetest.script` flag. You can use the `scriptToString()` method provided in [webpagetest-api](https://github.com/marcelduran/webpagetest-api/#module-1) to create a string from a JSON object.
+
+~~~ bash
+sitespeed.io --webpagetest.script "navigate \t www.aol.com \n navigate \t {{{url}}}" --webpagetest.host my.wpt.host.com http://example.org
 ~~~
 
 ### Custom metrics
