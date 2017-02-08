@@ -85,7 +85,8 @@ WebPageTest
   --webpagetest.connectivity  The connectivity for the test.                                                                                           [default: "Cable"]
   --webpagetest.runs          The number of runs per URL.                                                                                                    [default: 3]
   --webpagetest.custom        Execute arbitrary Javascript at the end of a test to collect custom metrics.
-  --webpagetest.script        Path to a script file
+  --webpagetest.script        Direct WebPageTest script as a string                                                                                              [String]
+  --webpagetest.file          Path to a WebPageTest script file
 
 gpsi
   --gpsi.key  The key to use Google Page Speed Insight
