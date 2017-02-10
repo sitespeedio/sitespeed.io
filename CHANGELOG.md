@@ -9,6 +9,7 @@
 
 ## Fixed
 * Use connectivity native as default if no one is set in WebPageTest [#1447](https://github.com/sitespeedio/sitespeed.io/issues/1447)
+* Made it possible to set WebPageTest runs as non private [#1448](https://github.com/sitespeedio/sitespeed.io/issues/1448)
 
 ## 4.3.9 2017-01-26
 ## Fixed
