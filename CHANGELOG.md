@@ -4,6 +4,8 @@
 * Updated Docker container to use Chrome 56 and FF 51 BUT also added no-sandbox as default to make it work on Docker on OS X (new 56 thing).
 * Updated to PerfCascade 0.3.7 where you open/close the extra request info by clicking on the bar.
 * Use --webpagetest.script to supply your script as a string and --webpagetest.file as a file. But don't worry, it will work the same as before. Thank you Jeroen for the PR. See [#1445](https://github.com/sitespeedio/sitespeed.io/pull/1445)
+* Send the result HTML to S3 [#1349](https://github.com/sitespeedio/sitespeed.io/issues/1349)
+* Send annotations to Graphite with a link back to the HTML result [#1434](https://github.com/sitespeedio/sitespeed.io/pull/1434)
 
 ## 4.3.9 2017-01-26
 ## Fixed
