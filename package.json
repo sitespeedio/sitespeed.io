@@ -95,7 +95,7 @@
     "tape": "4.6.3",
     "text-table": "0.2.0",
     "uuid": "^3.0.0",
-    "webcoach": "0.30.4",
+    "webcoach": "0.31.0",
     "webpagetest": "0.3.4",
     "yargs": "6.6.0"
   }
