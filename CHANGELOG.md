@@ -7,6 +7,9 @@
 * Send the result HTML to S3 [#1349](https://github.com/sitespeedio/sitespeed.io/issues/1349)
 * Send annotations to Graphite with a link back to the HTML result [#1434](https://github.com/sitespeedio/sitespeed.io/pull/1434)
 
+## Fixed
+* Use connectivity native as default if no one is set in WebPageTest [#1447](https://github.com/sitespeedio/sitespeed.io/issues/1447)
+
 ## 4.3.9 2017-01-26
 ## Fixed
 * Worst case scenario if Browsertime missing a HAR file, the HTML summary rendering failed [#1424](https://github.com/sitespeedio/sitespeed.io/issues/1424)
