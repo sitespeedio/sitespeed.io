@@ -5,7 +5,7 @@ mixin rows(pages)
   each pageInfo, url in pages
     - p = pageInfo.data.pagexray ? pageInfo.data.pagexray.pageSummary : {}
     - t = p.contentTypes || {javascript: {transferSize: ''}, css: {transferSize: ''}, image: {transferSize: ''}}
-    - display = (options.urlsMetaData[url] && options.urlsMetaData[url].alias) ? options.urlsMetaData[url].alias : url
+    - display = (options.urlsMetaData && options.urlsMetaData[url] && options.urlsMetaData[url].alias) ? options.urlsMetaData[url].alias : url
     tr
       td.url.pagesurl(data-title='URL')
         a(href= pageInfo.path + 'index.html')= decodeURIComponent(display)
