@@ -76,14 +76,14 @@ How much impact to 3rd party code has on your page? To get this up and running y
 ## WebPageTest page summary
 Have we told you that we love WebPageTest? Yes we have and here are a default WebPagTest page summary where you can look at results for individual URLs.
 
-[![WebPageTest page summary]({{site.baseurl}}/img/webpagetestPageSummary.png)](https://dashboard.sitespeed.io/dashboard/db/webpagetest-page-summary)
+[![WebPageTest page summary]({{site.baseurl}}/img/webpagetestPageSummary2.png)](https://dashboard.sitespeed.io/dashboard/db/webpagetest-page-summary)
 {: .img-thumbnail}
 
 
 ## WebPageTest site summary
 And then also for all tested pages of a site.
 
-[![WebPageTest site summary]({{site.baseurl}}/img/webpagetestSiteSummary.png)](https://dashboard.sitespeed.io/dashboard/db/webpagetest-site-summary)
+[![WebPageTest site summary]({{site.baseurl}}/img/webpagetestSiteSummary2.png)](https://dashboard.sitespeed.io/dashboard/db/webpagetest-site-summary)
 {: .img-thumbnail}
 
 ## Whatever you want
