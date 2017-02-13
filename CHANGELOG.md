@@ -1,5 +1,5 @@
 # CHANGELOG - sitespeed.io
-## UNRELEASED
+## 4.4.0 2017-02-13
 ## Added
 * Updated Docker container to use Chrome 56 and FF 51 BUT also added no-sandbox as default to make it work on Docker on OS X (new 56 thing).
 * Updated to PerfCascade 0.3.7 where you open/close the extra request info by clicking on the bar.
