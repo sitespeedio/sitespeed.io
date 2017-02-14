@@ -17,7 +17,7 @@ With 4.4.0 we added support for some of what we think are really nice features: 
 
 ## User defined whitelisting of  user usertimings
 
-In a previous post on best practices for user timings we talked about concerns and how to manage your user timings by namespacing them. This feature
+In a [previous post]({{site.baseurl}}/usertimings-best-practices) on best practices for user timings we talked about concerns and how to manage your user timings by namespacing them. This feature
 allows you to now define that namespace to filter out all other that do not match. Yay! The following will whitelist and capture only user timings that are prefixed with `sitespeedio_`.
 
 ~~~ bash
