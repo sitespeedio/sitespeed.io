@@ -1,4 +1,9 @@
 # CHANGELOG - sitespeed.io
+## UNRELEASED
+## Fixed
+* New Browsertime that fixes a potential problem when generating the HAR for Chrome see [BT #272](https://github.com/sitespeedio/browsertime/issues/272)
+* Show graphite.auth and graphite.httpPort in the CLI to make it easier
+
 ## 4.4.1 2017-02-15
 ## Fixed
 * Make it possible to configure S3 uploads with: s3.maxAsyncS3, s3.s3RetryCount , s3.s3RetryDelay , s3.multipartUploadThreshold, s3.multipartUploadSize see https://www.npmjs.com/package/s3#create-a-client [#1456](https://github.com/sitespeedio/sitespeed.io/issues/1456)
