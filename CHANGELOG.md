@@ -1,4 +1,8 @@
 # CHANGELOG - sitespeed.io
+## 4.4.1 2017-02-15
+## Fixed
+* Make it possible to configure S3 uploads with: s3.maxAsyncS3, s3.s3RetryCount , s3.s3RetryDelay , s3.multipartUploadThreshold, s3.multipartUploadSize see https://www.npmjs.com/package/s3#create-a-client [#1456](https://github.com/sitespeedio/sitespeed.io/issues/1456)
+
 ## 4.4.0 2017-02-13
 ## Added
 * Updated Docker container to use Chrome 56 and FF 51, but also added no-sandbox as default to make it work on Docker on OS X (new 56 thing).
