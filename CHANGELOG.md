@@ -1,5 +1,5 @@
 # CHANGELOG - sitespeed.io
-## UNRELEASED
+## 4.4.2 2017-02-15
 ## Fixed
 * New Browsertime that fixes a potential problem when generating the HAR for Chrome see [BT #272](https://github.com/sitespeedio/browsertime/issues/272)
 * Show graphite.auth and graphite.httpPort in the CLI to make it easier
