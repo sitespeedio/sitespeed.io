@@ -84,6 +84,7 @@
     "lodash.pullall": "4.2.0",
     "lodash.reduce": "4.6.0",
     "lodash.set": "4.3.2",
+    "lodash.union": "4.6.0",
     "longjohn": "0.2.11",
     "mkdirp": "0.5.1",
     "moment": "2.17.1",
