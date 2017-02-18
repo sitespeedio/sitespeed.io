@@ -1,4 +1,8 @@
 # CHANGELOG - sitespeed.io
+## UNRELEASED
+## Added
+* Upgraded to PerfCascade 0.5 with UX fixes see [https://github.com/micmro/PerfCascade/releases/tag/v0.5.0](https://github.com/micmro/PerfCascade/releases/tag/v0.5.0)
+
 ## 4.4.2 2017-02-15
 ## Fixed
 * New Browsertime that fixes a potential problem when generating the HAR for Chrome see [BT #272](https://github.com/sitespeedio/browsertime/issues/272)
