@@ -90,7 +90,7 @@
     "moment": "2.17.1",
     "node-slack": "0.0.7",
     "pagexray": "0.14.1",
-    "pug": "2.0.0-beta6",
+    "pug": "2.0.0-beta11",
     "s3": "4.4.0",
     "simplecrawler": "1.0.3",
     "tape": "4.6.3",
