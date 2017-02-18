@@ -51,7 +51,7 @@
   "devDependencies": {
     "chai": "^3.5.0",
     "chai-as-promised": "^6.0.0",
-    "clean-css": "^3.4.17",
+    "clean-css-cli": "^4.0.7",
     "eclint": "^1.1.5",
     "eslint": "^3.10.2",
     "jsdoc": "^3.3.3",
