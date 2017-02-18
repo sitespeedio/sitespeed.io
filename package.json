@@ -92,7 +92,7 @@
     "pagexray": "0.14.1",
     "pug": "2.0.0-beta11",
     "s3": "4.4.0",
-    "simplecrawler": "1.0.4",
+    "simplecrawler": "1.0.5",
     "tape": "4.6.3",
     "text-table": "0.2.0",
     "uuid": "^3.0.0",
