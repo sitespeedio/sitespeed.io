@@ -1,7 +1,7 @@
 # CHANGELOG - sitespeed.io
 ## UNRELEASED
 ## Added
-* Upgraded to PerfCascade 0.5 with UX fixes see [https://github.com/micmro/PerfCascade/releases/tag/v0.5.0](https://github.com/micmro/PerfCascade/releases/tag/v0.5.0)
+* Upgraded to PerfCascade 0.5.1 with UX fixes see [https://github.com/micmro/PerfCascade/releases/tag/v0.5.0](https://github.com/micmro/PerfCascade/releases/tag/v0.5.0) and [https://github.com/micmro/PerfCascade/releases/tag/v0.5.1](https://github.com/micmro/PerfCascade/releases/tag/v0.5.1)
 
 ## 4.4.2 2017-02-15
 ## Fixed
