@@ -60,7 +60,7 @@ Crawler
 
 Graphite
   --graphite.host                The Graphite host used to store captured metrics.
-  --graphite.port                The Graphite port used to store captured metrics.                                                                               [default: 2003]
+  --graphite.httpPort            The Graphite port used to store captured metrics. Port 2003 is used for metrics and 8080 is used for annoations by default [metrics default: 2003]  [annotations default: 8080]
   --graphite.namespace           The namespace key added to all captured metrics.                                                              [default: "sitespeed_io.default"]
   --graphite.includeQueryParams  Whether to include query paramaters from the URL in the Graphite keys or not                                         [boolean] [default: false]
 
