@@ -1,5 +1,5 @@
-if pageInfo.data.browsertime
-  - var btStatistics = pageInfo.data.browsertime.pageSummary.statistics
+- btStatistics = h.get(pageInfo.data, 'browsertime.pageSummary.statistics')
+if btStatistics
   h2 Timings Summary
   - timingMetrics = ['firstPaint', 'fullyLoaded', 'rumSpeedIndex']
   .responsive
@@ -36,5 +36,3 @@ if pageInfo.data.browsertime
             td.number(data-title='median') #{visualMetric.median}
             td.number(data-title='mean') #{visualMetric.mean}
             td.number(data-title='max') #{visualMetric.max}
-else
-  p Missing browsertime data

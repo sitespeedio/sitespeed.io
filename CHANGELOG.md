@@ -1,7 +1,30 @@
 # CHANGELOG - sitespeed.io
 ## UNRELEASED
 ## Added
-* Updated Docker container to use Chrome 56 and FF 51 BUT also added no-sandbox as default to make it work on Docker on OS X (new 56 thing).
+* Upgraded to PerfCascade 0.5.1 with UX fixes see [https://github.com/micmro/PerfCascade/releases/tag/v0.5.0](https://github.com/micmro/PerfCascade/releases/tag/v0.5.0) and [https://github.com/micmro/PerfCascade/releases/tag/v0.5.1](https://github.com/micmro/PerfCascade/releases/tag/v0.5.1)
+
+## 4.4.2 2017-02-15
+## Fixed
+* New Browsertime that fixes a potential problem when generating the HAR for Chrome see [BT #272](https://github.com/sitespeedio/browsertime/issues/272)
+* Show graphite.auth and graphite.httpPort in the CLI to make it easier
+
+## 4.4.1 2017-02-15
+## Fixed
+* Make it possible to configure S3 uploads with: s3.maxAsyncS3, s3.s3RetryCount , s3.s3RetryDelay , s3.multipartUploadThreshold, s3.multipartUploadSize see https://www.npmjs.com/package/s3#create-a-client [#1456](https://github.com/sitespeedio/sitespeed.io/issues/1456)
+
+## 4.4.0 2017-02-13
+## Added
+* Updated Docker container to use Chrome 56 and FF 51, but also added no-sandbox as default to make it work on Docker on OS X (new 56 thing).
+* Updated to PerfCascade 0.3.7 where you open/close the extra request info by clicking on the bar.
+* Use --webpagetest.script to supply your script as a string and --webpagetest.file as a file. But don't worry, it will work the same as before. Thank you Jeroen for the PR. See [#1445](https://github.com/sitespeedio/sitespeed.io/pull/1445)
+* Send the result HTML to S3 [#1349](https://github.com/sitespeedio/sitespeed.io/issues/1349)
+* Send annotations to Graphite with a link back to the HTML result [#1434](https://github.com/sitespeedio/sitespeed.io/pull/1434)
+* Surfacing user defined whitelist from browsertime for user timings filtering [#1426](https://github.com/sitespeedio/sitespeed.io/issues/1426)
+
+## Fixed
+* Use connectivity native as default if no one is set in WebPageTest [#1447](https://github.com/sitespeedio/sitespeed.io/issues/1447)
+* Made it possible to set WebPageTest runs as non private [#1448](https://github.com/sitespeedio/sitespeed.io/issues/1448)
+* Fix for Template error with meta data aliases when not using the CLI [#1444](https://github.com/sitespeedio/sitespeed.io/issues/1444)
 
 ## 4.3.9 2017-01-26
 ## Fixed

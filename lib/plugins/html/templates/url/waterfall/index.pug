@@ -1,9 +1,6 @@
 a#waterfall
 h3 Waterfall
-if (pageInfo.data.browsertime.run && pageInfo.data.browsertime.run.har)
-  - var dahar = pageInfo.data.browsertime.run.har
-else
-  - var dahar = summaryPageHAR
+- dahar = h.get(pageInfo.data, 'browsertime.run.har', summaryPageHAR)
 
 if (dahar.log.pages.length > 1)
   p Choose HAR:
