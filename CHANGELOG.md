@@ -1,7 +1,9 @@
 # CHANGELOG - sitespeed.io
 ## UNRELEASED
 ## Added
-* Upgraded to PerfCascade 0.5.1 with UX fixes see [https://github.com/micmro/PerfCascade/releases/tag/v0.5.0](https://github.com/micmro/PerfCascade/releases/tag/v0.5.0) and [https://github.com/micmro/PerfCascade/releases/tag/v0.5.1](https://github.com/micmro/PerfCascade/releases/tag/v0.5.1)
+* Upgraded to PerfCascade 0.6.1 from 0.4.0 with UX fixes see [https://github.com/micmro/PerfCascade/releases/](https://github.com/micmro/PerfCascade/releases/).
+
+* Added CLI options for setting Firefox preferences, collect the repsonse body in the Firefox HAR and Chrome browser CLI args.
 
 ## 4.4.2 2017-02-15
 ## Fixed
