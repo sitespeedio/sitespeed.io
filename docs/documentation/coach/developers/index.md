@@ -40,7 +40,7 @@ The coach helps you with web performance and gives you advice about things you c
 
 ```javascript
 return {
-  id: 'uniqueid', // a uniqie id
+  id: 'uniqueid', // a unique id
   title: 'The title of the advice',
   description: 'More information of the advice',
   advice: 'Information of what the user should do to fix the problem',
