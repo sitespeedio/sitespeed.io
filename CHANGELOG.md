@@ -2,7 +2,8 @@
 ## UNRELEASED
 ## Added
 * Upgraded to PerfCascade 0.6.1 from 0.4.0 with UX fixes see [https://github.com/micmro/PerfCascade/releases/](https://github.com/micmro/PerfCascade/releases/).
-* Added CLI options for setting Firefox preferences, collect the response body in the Firefox HAR and Chrome browser CLI args.
+* Added CLI options for setting Firefox preferences, collect the response body in Firefox HAR and Chrome browser CLI args.
+* You can now collect the timeline log from Chrome (--browsertime.chrome.dumpTraceCategoriesLog) and set which traceCategories Chrome should collect.
 
 ## Fixed
 * Set region for your S3 bucket, thanks [@jjethwa](https://github.com/jjethwa) for the [PR](https://github.com/sitespeedio/sitespeed.io/pull/1469)!
