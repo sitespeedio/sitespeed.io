@@ -5,7 +5,7 @@ Many many many thanks to:
 * Abha Gupta (@abhagupta)
 * jpvincent (@jpvincent)
 * Jeroen Van den Berghe (@JeroenVdb)
-* Jordan Jethwa (@jethwa)
+* Jordan Jethwa (@jjethwa)
 
 3.X and earlier:
 * Tom Sutton (@tomsutton1984)
