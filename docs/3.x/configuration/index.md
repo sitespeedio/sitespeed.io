@@ -77,13 +77,13 @@ Options:
    --graphitePort <INTEGER>                               The Graphite port.  [2003]
    --graphiteNamespace <NAMESPACE>                        The namespace of the data sent to Graphite.  [sitespeed.io]
    --graphiteData                                         Choose which data to send to Graphite by a comma separated list. Default all data is sent. [summary,rules,pagemetrics,timings,requests,domains]  [all]
-   --graphiteUseQueryParameters                           Choose if you want to use query paramaters from the URL in the Graphite keys or not
+   --graphiteUseQueryParameters                           Choose if you want to use query parameters from the URL in the Graphite keys or not
    --graphiteUseNewDomainKeyStructure                     Use the updated domain section when sending data to Graphite "http.www.sitespeed.io" to "http.www_sitespeed_io" (issue #651)
    --gpsiKey                                              Your Google API Key, configure it to also fetch data from Google Page Speed Insights.
    --noYslow                                              Set to true to turn off collecting metrics using YSlow.
    --html                                                 Create HTML reports. Default to true. Set no-html to disable HTML reports.  [true]
    --wptConfig <FILE>                                     WebPageTest configuration, see https://github.com/marcelduran/webpagetest-api runTest method
-   --wptScript <FILE>                                     WebPageTest scripting. Every occurance of \{\{\{URL\}\}\} will be replaced with the real URL.
+   --wptScript <FILE>                                     WebPageTest scripting. Every occurrence of \{\{\{URL\}\}\} will be replaced with the real URL.
    --wptCustomMetrics <FILE>                              Fetch metrics from your page using Javascript
    --wptHost <domain>                                     The domain of your WebPageTest instance.
    --wptKey <KEY>                                         The API key if running on webpagetest on the public instances.

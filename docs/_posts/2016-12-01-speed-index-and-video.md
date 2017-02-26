@@ -15,7 +15,7 @@ One month ago we released 4.0 and we have now been able to concentrate on the on
 ## Speed Index and video
 In the new version you can record a video of the screen and we will calculate the SpeedIndex and start render from the video. We are able to do that thanks to [Patrick Meenan](https://twitter.com/patmeenan) that open sourced that part of WebPageTest as a standalone tool called [Visual Metrics](https://github.com/WPO-Foundation/visualmetrics). Without that we couldn't have done it.
 
-Recording a video and slicing and dicing the result needs alot of extra software (FFMpeg, ImageMagick, Pillow and pyssim), so use our Docker containers to get all those dependencies out of the box.
+Recording a video and slicing and dicing the result needs a lot of extra software (FFMpeg, ImageMagick, Pillow and pyssim), so use our Docker containers to get all those dependencies out of the box.
 
 If you wanna collect SpeedIndex (and First Visual Change, Last Visual Change and Perceptual Speed Index) you run like this:
 

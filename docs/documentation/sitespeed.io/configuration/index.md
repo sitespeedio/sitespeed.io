@@ -72,7 +72,7 @@ Graphite
   --graphite.auth                The Graphite user and password used for authentication. Format: user:password
   --graphite.httpPort            The Graphite port used to access the user interface and send annotations event                         [default: 8080]
   --graphite.namespace           The namespace key added to all captured metrics.                                     [default: "sitespeed_io.default"]
-  --graphite.includeQueryParams  Whether to include query paramaters from the URL in the Graphite keys or not                [boolean] [default: false]
+  --graphite.includeQueryParams  Whether to include query parameters from the URL in the Graphite keys or not                [boolean] [default: false]
 
 Plugins
   --plugins.list     List all configured plugins in the log.                                                                                  [boolean]
@@ -182,7 +182,7 @@ http://www.yoursite.com/where/we/are/ Page2
 ~~~
 *Note: Spaces are used to delimit between the URL and the alias which is why the alias cannot contain one.*
 
-Aliases are great in combination with sending metrics to a TSDB sucha as graphite for shortening the key sent to make they more readable.
+Aliases are great in combination with sending metrics to a TSDB such as graphite for shortening the key sent to make they more readable.
 
 And run it:
 
@@ -334,7 +334,7 @@ The run it like this:
 $ sitespeed.io --config config.json https://www.sitespeed.io
 ~~~
 
-If you wanna override and run the same configuration but using Firefox, you just override with the CLI paramater:
+If you wanna override and run the same configuration but using Firefox, you just override with the CLI parameter:
 
 ~~~bash
 $ sitespeed.io --config config.json -b firefox https://www.sitespeed.io
