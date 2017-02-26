@@ -11,7 +11,7 @@ p.small Collect timing metrics from your browser.
 if options.browsertime.video
   include ./videoElement.pug
 
-if options.browsertime.chrome.dumpTraceCategoriesLog
+if options.browsertime.chrome && options.browsertime.chrome.dumpTraceCategoriesLog
   p
     a(href='data/trace-' + (runNumber? runNumber-1 : 0) + '.json') Download timeline trace categories
 
