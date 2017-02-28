@@ -24,24 +24,60 @@ You will need Firefox 48+. We use the new [Geckodriver](https://github.com/mozil
 Chrome should work out of the box.
 
 ## Change connectivity
-You can throttle the connection to make the connectivity slower to make it easier to catch regressions. By default we use [TSProxy](https://github.com/WPO-Foundation/tsproxy) because it's only dependency is Python 2.7. But it is better to use tc when you use our Docker containers
+You can throttle the connection to make the connectivity slower to make it easier to catch regressions. The best way to do that is to setup a network bridge in Docker.
 
-Using TSProxy you can choose the following connectivity types:
+Default we use [TSProxy](https://github.com/WPO-Foundation/tsproxy) because it's only dependency is Python 2.7 but we have a problem with that together with Selenium, so that it is kind of unusable right now. Help us fix that in [#229](https://github.com/sitespeedio/browsertime/issues/229).
 
-* 3g - 1600/768 300 RTT
-* 3gfast - 1600/768 150 RTT
-* 3gslow - 780/330 200 RTT
-* 2g - 35/328 1300 RTT
-* cable - 5000/1000 28 RTT
-* native - your current connection
+If you run Docker you can use tc as connectivity engine but that will only set the latency, if you want to set the download speed you need to create a network bridge in Docker.
 
-And run use it like this:
+Here's an full example to setup up Docker network bridges on a server that has tc installed:
 
 ~~~bash
-$ sitespeed.io https://www.sitespeed.io -c cable
+#!/bin/bash
+echo 'Starting Docker networks'
+docker network create --driver bridge --subnet=192.168.33.0/24 --gateway=192.168.33.10 --opt "com.docker.network.bridge.name"="docker1" 3g
+tc qdisc add dev docker1 root handle 1: htb default 12
+tc class add dev docker1 parent 1:1 classid 1:12 htb rate 1.6mbit ceil 1.6mbit
+tc qdisc add dev docker1 parent 1:12 netem delay 300ms
+
+docker network create --driver bridge --subnet=192.168.34.0/24 --gateway=192.168.34.10 --opt "com.docker.network.bridge.name"="docker2" cable
+tc qdisc add dev docker2 root handle 1: htb default 12
+tc class add dev docker2 parent 1:1 classid 1:12 htb rate 5mbit ceil 5mbit
+tc qdisc add dev docker2 parent 1:12 netem delay 28ms
+
+docker network create --driver bridge --subnet=192.168.35.0/24 --gateway=192.168.35.10 --opt "com.docker.network.bridge.name"="docker3" 3gfast
+tc qdisc add dev docker3 root handle 1: htb default 12
+tc class add dev docker3 parent 1:1 classid 1:12 htb rate 1.6mbit ceil 1.6mbit
+tc qdisc add dev docker3 parent 1:12 netem delay 150ms
+
+docker network create --driver bridge --subnet=192.168.36.0/24 --gateway=192.168.36.10 --opt "com.docker.network.bridge.name"="docker4" 3gem
+tc qdisc add dev docker4 root handle 1: htb default 12
+tc class add dev docker4 parent 1:1 classid 1:12 htb rate 0.4mbit ceil 0.4mbit
+tc qdisc add dev docker4 parent 1:12 netem delay 400ms
 ~~~
 
-If you use [tc](http://lartc.org/manpages/tc.txt) as connectivity engine, you will have the same upload/download numbers, however it will probably give you better and more stable numbers than running TSProxy. You turn it on by setting the engine like <code>--browsertime.connectivity.engine tc</code> (and it should work out of the box in our Docker container).
+Then when you run your container you add the network with <code>--network cable</code>. You should also tell Browsertime that you set the connectivity external from BT. A full example running running with cable:
+
+~~~bash
+$ docker run --privileged --shm-size=1g --network=cable --rm sitespeedio/sitespeed.io -c cable --browsertime.connectivity.engine external https://www.sitespeed.io/
+~~~
+
+And using the 3g network:
+
+~~~bash
+$ docker run --privileged --shm-size=1g --network=3g --rm sitespeedio/sitespeed.io -c 3g --browsertime.connectivity.engine external https://www.sitespeed.io/
+~~~
+
+And if you want to remove the networks:
+
+~~~bash
+#!/bin/bash
+echo 'Stopping Docker networks'
+docker network rm 3g
+docker network rm 3gfast
+docker network rm 3gem
+docker network rm cable
+~~~
 
 ## Choose when to end your test
 By default the browser will collect data until  [window.performance.timing.loadEventEnd happens + aprox 2 seconds more](https://github.com/sitespeedio/browsertime/blob/d68261e554470f7b9df28797502f5edac3ace2e3/lib/core/seleniumRunner.js#L15). That is perfectly fine for most sites, but if you do Ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (--browsertime.pageCompleteCheck). When the scripts returns true the browser will close or if the timeout time will be reached.
