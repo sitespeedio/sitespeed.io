@@ -4,6 +4,8 @@
 * Upgraded to PerfCascade 0.6.1 from 0.4.0 with UX fixes see [https://github.com/micmro/PerfCascade/releases/](https://github.com/micmro/PerfCascade/releases/).
 * Added CLI options for setting Firefox preferences, collect the response body in Firefox HAR and Chrome browser CLI args.
 * You can now collect the timeline log from Chrome (--browsertime.chrome.dumpTraceCategoriesLog) and set which traceCategories Chrome should collect.
+* If you collect the timeline from WebPageTest (--webpagetest.timeline) it will automatically be stored in your data folder and linked from that runs HTML page.
+* New Browsertime where you can set the connectivity type to external, more about that soon.
 
 ## Fixed
 * Set region for your S3 bucket, thanks [@jjethwa](https://github.com/jjethwa) for the [PR](https://github.com/sitespeedio/sitespeed.io/pull/1469)!
