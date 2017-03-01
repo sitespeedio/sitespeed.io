@@ -1,5 +1,5 @@
 # CHANGELOG - sitespeed.io
-## UNRELEASED
+## 4.5.1 2017-03-01
 ## Fixed
 * Rolling forward to Chrome 57 beta since 56 isn't working correct with our video, see [#284](https://github.com/sitespeedio/browsertime/issues/284)
 
