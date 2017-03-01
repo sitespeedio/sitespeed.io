@@ -14,7 +14,6 @@ script(type='text/javascript').
     selectedPage: #{runIndex || 0}
   };
 
-
   if (window["fetch"]) {
       window["fetch"]('data/browsertime.har')
       .then(f => f.json().then(j => {
