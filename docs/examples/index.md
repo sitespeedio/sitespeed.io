@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Example of a sitespeed.io run.
-description: Here is examples of what the result looks like, when you run sitesspeed.io.
+description: Here is examples of what the result looks like, when you run sitespeed.io.
 keywords: sitespeed.io, examples, results, wpo, web performance optimization
 nav: examples
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png

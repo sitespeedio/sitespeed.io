@@ -42,7 +42,7 @@ When we started 4.0 there was a couple of things that we wanted to fix:
 
  * Testing a page as a logged in user. The number one feature requested by users in sitespeed.io was to be able to login a user and test the performance as that logged in user.
 
- * Don't overload Graphite with metrics. One of the things I (Peter) did wrong in 3.x was send all the metrics we collected to Graphite. Unfortunetly Graphite got overloaded. Instead in 4.0 we decided to pick the most important one and make it possible for the user to add/remove the ones they want.
+ * Don't overload Graphite with metrics. One of the things I (Peter) did wrong in 3.x was send all the metrics we collected to Graphite. Unfortunately Graphite got overloaded. Instead in 4.0 we decided to pick the most important one and make it possible for the user to add/remove the ones they want.
 
 There was a lot of more that we wanted to fix, but those where the most important ones we wanted to share.
 
@@ -105,7 +105,7 @@ We already got some really cool PRs for 4.0. [Moos](https://github.com/moos) add
 If you are used to just browsing through the logs, this adds some real extra value.
 
 ## Graphite keys - generic dashboards
-We have changed the key structure of the keys in Graphite. Yes that means you will need to redo your dashboards, BUT we did it because we wanted to support generic dashboards. You can share dashboards between project/sites. We aslso created a couple of default ones for you.
+We have changed the key structure of the keys in Graphite. Yes that means you will need to redo your dashboards, BUT we did it because we wanted to support generic dashboards. You can share dashboards between project/sites. We also created a couple of default ones for you.
 
 ## Dashboard in 2 seconds
 Well almost 2 seconds :) Using our new Docker compose script and ready made dashboards you can get it up and running as fast as the containers are downloaded. We also worked to get the Graphite key structure re-usable between web sites, so it's easy to share dashboards.

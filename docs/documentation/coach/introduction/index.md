@@ -19,7 +19,7 @@ twitterdescription:
 
 ## Do my page need coaching?
 
-You know, it's hard to get everything right! The world is complex: HTTP/1 vs HTTP/2. Some of the previous performance best practices are now considered bad practice. Luckly for you the coach will detect that the page is accessed using HTTP/2, and adjust its advice accordingly.
+You know, it's hard to get everything right! The world is complex: HTTP/1 vs HTTP/2. Some of the previous performance best practices are now considered bad practice. Luckily for you the coach will detect that the page is accessed using HTTP/2, and adjust its advice accordingly.
 
 
 ## Why we love the coach

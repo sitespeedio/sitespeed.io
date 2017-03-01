@@ -17,7 +17,7 @@ Two kind of big releases in the same week with two important new things:
 
  * Custom wait scripts is now implemented for PhantomJS/SlimerJS and all the browsers. What? You can now configure when to end your test. If your browser supports the Navigation Timing API (PhantomJS 2 supports that), it will by default wait for the *window.performance.timing.loadEventEnd* event to happen + 2 seconds. The cool thing is that you now can change that and it will affect all different steps of the testing. This will help you if you have a ajax heavy site and there a specific event your are waiting on to happen and you really want to catch. The waitScript needs to return true when the wait is fulfilled, else just return false.
 
- We haven't updated to PhantomJS 2 yet (since it isn't fully availible as binaries on Linux). If you want to use it today accross all the tests, you can either use SlimerJS:
+ We haven't updated to PhantomJS 2 yet (since it isn't fully available as binaries on Linux). If you want to use it today across all the tests, you can either use SlimerJS:
 
 ~~~ bash
 sitespeed.io -u http://www.example.com --headless slimerjs -b chrome

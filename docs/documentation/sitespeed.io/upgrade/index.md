@@ -76,7 +76,7 @@ A lot changed in the CLI and the easiest way for you is just to run sitespeed.io
 | `--graphitePort <INTEGER>` | `--graphite.port <INTEGER>` | The Graphite port.  [2003] |
 | `--graphiteNamespace <NAMESPACE>` | `--graphite.namespace <NAMESPACE>` | The namespace of the data sent to Graphite.  [sitespeed.io] |
 | `--graphiteData` | `--metrics.filter` | Choose which data to send to Graphite by a comma separated list. Default all data is sent. [summary,rules,pagemetrics,timings,requests,domains]  [all] |
-| `--graphiteUseQueryParameters` | `--graphite.includeQueryParams` | Choose if you want to use query paramaters from the URL in the Graphite keys or not |
+| `--graphiteUseQueryParameters` | `--graphite.includeQueryParams` | Choose if you want to use query parameters from the URL in the Graphite keys or not |
 | `--graphiteUseNewDomainKeyStructure` | N/A | Use the updated domain section when sending data to Graphite "http.www.sitespeed.io" to "http.www_sitespeed_io" (issue #651) |
 | `--gpsiKey` | `--gpsi.key` | Your Google API Key, configure it to also fetch data from Google Page Speed Insights. |
 | `--noYslow` | N/A | Set to true to turn off collecting metrics using YSlow. |

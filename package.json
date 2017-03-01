@@ -1,7 +1,7 @@
 {
   "name": "sitespeed.io",
   "bin": "./bin/sitespeed.js",
-  "version": "4.4.2-spokeo.1",
+  "version": "4.5.1-spokeo.1",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -64,7 +64,7 @@
   "main": "./lib/sitespeed.js",
   "dependencies": {
     "bluebird": "3.4.7",
-    "browsertime": "1.0.0-beta.26",
+    "browsertime": "1.0.0-beta.28",
     "cli-color": "1.1.0",
     "concurrent-queue": "7.0.1",
     "fast-stats": "0.0.3",
