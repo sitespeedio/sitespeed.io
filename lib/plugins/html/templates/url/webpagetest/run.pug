@@ -7,7 +7,6 @@ if options.webpagetest.timeline
   p
     a(href='data/trace-' + (runNumber? runNumber : 1) + '.json.gz') Download timeline trace categories
 
-
 each view in ['firstView', 'repeatView']
   - var data = wpt[view];
   if data
