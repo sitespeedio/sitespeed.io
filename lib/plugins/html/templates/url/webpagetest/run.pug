@@ -3,6 +3,10 @@ h2 WebPageTest
 p.small Metrics & data collected using WebPageTest.org (or your private instance).
 - var wpt = pageInfo.data.webpagetest.run;
 
+if options.webpagetest.timeline
+  p
+    a(href='data/trace-' + (runNumber? runNumber : 1) + '.json.gz') Download timeline trace categories
+
 each view in ['firstView', 'repeatView']
   - var data = wpt[view];
   if data
@@ -43,4 +47,4 @@ each view in ['firstView', 'repeatView']
     h5 Waterfall
     img.u-max-full-width(src= data.images.waterfall, alt='Waterfall view')
     h5 Connection view
-    img.u-max-full-width(src= data.images.connectionView, alt='Connnection view')
+    img.u-max-full-width(src= data.images.connectionView, alt='Connection view')
