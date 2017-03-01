@@ -1,7 +1,7 @@
 # CHANGELOG - sitespeed.io
 ## UNRELEASED
 ## Fixed
-* Rolling back to Chrome 55 since 56 isn't working correct with our video.
+* Rolling back to Chrome 55 since 56 isn't working correct with our video, see [#284](https://github.com/sitespeedio/browsertime/issues/284)
 
 ## 4.5.0 2017-03-01
 ## Added
