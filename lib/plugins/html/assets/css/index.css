@@ -1401,6 +1401,11 @@ ul.menu {
   stroke-opacity: 1.0;
   stroke-width: 3; }
 
+.water-fall-chart .type-visualcomplete85 .line-holder {
+  stroke: #ee7777;
+  stroke-opacity: 1.0;
+  stroke-width: 3; }
+
 .water-fall-chart .type-lastvisualchange .line-holder {
   stroke: #ee42f4;
   stroke-opacity: 1.0;
