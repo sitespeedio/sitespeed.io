@@ -1,0 +1,24 @@
+script(src= rootPath + 'js/fetch.js')
+script(src= rootPath + 'js/perf-cascade.min.js')
+script(type='text/javascript').
+  var outputHolderEl = document.getElementById("output");
+  var pageSelectorEl = document.getElementById("page-selector");
+  var legendHolderEl = document.getElementById("legend-holder");
+  var options = {
+    rowHeight: 23,
+    showAlignmentHelpers : true,
+    showIndicatorIcons: false,
+    showMimeTypeIcon: true,
+    leftColumnWith: 30,
+    legendHolder: legendHolderEl,
+    selectedPage: #{runIndex || 0}
+  };
+
+  if (window["fetch"]) {
+      window["fetch"]('data/browsertime.har')
+      .then(f => f.json().then(j => {
+        var har = j.log;
+        var perfCascadeSvg = perfCascade.fromHar(har, options);
+        outputHolderEl.appendChild(perfCascadeSvg);
+      }))
+  }

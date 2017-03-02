@@ -1347,7 +1347,7 @@ ul.menu {
   display: inline-block; }
 
 .resource-legend li {
-  margin: 0 1em 0 0;
+  margin: 0 1em 1em 0;
   padding: 0;
   white-space: nowrap;
   display: inline-block; }
