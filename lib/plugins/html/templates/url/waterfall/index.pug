@@ -1,11 +1,10 @@
 a#waterfall
 h3 Waterfall
-- dahar = h.get(pageInfo.data, 'browsertime.run.har', summaryPageHAR)
 
-if (dahar.log.pages.length > 1)
+if (options.browsertime.iterations > 1)
   p Choose HAR:
 select#page-selector
-if summaryPageHAR && dahar.log.pages.length === 1
+if summaryPageHAR && options.browsertime.iterations === 1
   p HAR from first run (
     a(href='data/browsertime.har') download
     |):
@@ -14,20 +13,8 @@ else
   |  the HAR file.
 #legend-holder
 #output
-script(src= rootPath + 'js/perf-cascade.min.js')
-script(type='text/javascript').
-  var outputHolderEl = document.getElementById("output");
-  var pageSelectorEl = document.getElementById("page-selector");
-  var legendHolderEl = document.getElementById("legend-holder");
-  var options = {
-    rowHeight: 23,
-    showAlignmentHelpers : true,
-    showIndicatorIcons: false,
-    showMimeTypeIcon: true,
-    leftColumnWith: 30,
-    legendHolder: legendHolderEl,
-    pageSelector: pageSelectorEl
-  };
-  var har = !{JSON.stringify(dahar.log)};
-  var perfCascadeSvg =  perfCascade.fromHar(har, options);
-  outputHolderEl.appendChild(perfCascadeSvg);
+
+if options.html.fetchHARFiles
+  include ./fetchHAR.pug
+else
+  include ./includeHARinHTML.pug
