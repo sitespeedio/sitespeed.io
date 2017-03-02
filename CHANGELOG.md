@@ -4,7 +4,7 @@
 * Upgraded to PerfCascade 0.8.0 that is smarter when drawing time lines see [PerfCascade #160](https://github.com/micmro/PerfCascade/issues/160)
 
 ## Added
-* --html.fetchHARFiles
+* You can now choose to load the HAR file using the fetch API instead of inlining it in the HTML file. Use --html.fetchHARFiles [#1484](https://github.com/sitespeedio/sitespeed.io/pull/1484)
 
 ## 4.5.1 2017-03-01
 ## Fixed
