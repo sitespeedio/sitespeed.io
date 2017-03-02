@@ -1,4 +1,11 @@
 # CHANGELOG - sitespeed.io
+## UNRELEASED
+## Fixed
+* Upgraded to PerfCascade 0.8.0 that is smarter when drawing time lines see [PerfCascade #160](https://github.com/micmro/PerfCascade/issues/160)
+
+## Added
+* --html.fetchHARFiles
+
 ## 4.5.1 2017-03-01
 ## Fixed
 * Rolling forward to Chrome 57 beta since 56 isn't working correct with our video, see [#284](https://github.com/sitespeedio/browsertime/issues/284)
