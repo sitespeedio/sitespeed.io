@@ -60,6 +60,9 @@ block content
                 td Speed Index:
                 td #{d.browsertime.pageSummary.statistics.visualMetrics.SpeedIndex.median}
               tr
+                td Visual Complete 85%:
+                td #{d.browsertime.pageSummary.statistics.visualMetrics.VisualComplete85.median}
+              tr
                 td Last visual change:
                 td #{d.browsertime.pageSummary.statistics.visualMetrics.LastVisualChange.median}
             else if d.browsertime && d.browsertime.pageSummary
