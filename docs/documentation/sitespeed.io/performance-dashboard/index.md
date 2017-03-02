@@ -105,20 +105,22 @@ Our *run.sh* file (we read which URLs we wanna test from files):
 
 ~~~
 #!/bin/bash
-DOCKER_CONTAINER=sitespeedio/sitespeed.io:4.4.0
-DOCKER_SETUP="--privileged --shm-size=1g --rm -v /root/config:/sitespeed.io"
+DOCKER_CONTAINER=sitespeedio/sitespeed.io:4.5.1
+DOCKER_SETUP="--privileged --shm-size=1g --rm -v /root/config:/sitespeed.io -v /result:/result"
+THREEG="--network 3g"
+CABLE="--network cable"
 CONFIG="--config /sitespeed.io/default.json"
-docker run $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/wikipedia.org.txt $CONFIG >> /tmp/s.log 2>&1
-docker run $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/wikipedia.org.txt -b firefox $CONFIG >> /tmp/s.log 2>&1
-docker run $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/ryanair.com.txt --firstParty ".ryanair.com" $CONFIG >> /tmp/s.log 2>&1
-docker run $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/m.wikipedia.org.txt --graphite.namespace sitespeed_io.emulatedMobile -c 3g --mobile true $CONFIG >> /tmp/s.log 2>&1
-docker run $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/nytimes.com.txt --webpagetest.key SECRET_KEY $CONFIG >> /tmp/s.log 2>&1
-docker run $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/sitespeed.io.txt -b firefox $CONFIG >> /tmp/s.log 2>&1
-docker run $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/sitespeed.io.txt $CONFIG >> /tmp/s.log 2>&1
-docker run $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/wikipedia.org-second.txt $CONFIG --graphite.namespace sitespeed_io.desktopSecond --preURL https://en.wikipedia.org/wiki/Main_Page >> /tmp/s.log 2>&1
-docker run $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/wikipedia.org-second.txt $CONFIG --graphite.namespace sitespeed_io.desktopSecond -b firefox --preURL https://en.wikipedia.org/wiki/Main_Page >> /tmp/s.log 2>&1
-docker run $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/m.wikipedia.org-second.txt $CONFIG --graphite.namespace sitespeed_io.emulatedMobileSecond -c 3g --mobile true --preURL https://en.m.wikipedia.org/wiki/Main_Page >> /tmp/s.log 2>&1
-docker run $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/wikipedia.org-login-urls.txt --preScript /sitespeed.io/wikpedia.org-login.txt $CONFIG --graphite.namespace sitespeed_io.desktopLoggedIn >> /tmp/s.log 2>&1
+docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER --browsertime.chrome.dumpTraceCategoriesLog /sitespeed.io/wikipedia.org.txt $CONFIG >> /tmp/s.log 2>&1
+docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER --browsertime.firefox.includeResponseBodies /sitespeed.io/wikipedia.org.txt -b firefox $CONFIG >> /tmp/s.log 2>&1
+docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/ryanair.com.txt -n 3 --firstParty ".ryanair.com" $CONFIG >> /tmp/s.log 2>&1
+docker run $THREEG $DOCKER_SETUP $DOCKER_CONTAINER --browsertime.chrome.dumpTraceCategoriesLog /sitespeed.io/m.wikipedia.org.txt --graphite.namespace sitespeed_io.emulatedMobile -c 3g --mobile true $CONFIG >> /tmp/s.log 2>&1
+docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/nytimes.com.txt -n 3 --webpagetest.key 09d4f36ebc3a4bdfb05c9e8402b38524 $CONFIG >> /tmp/s.log 2>&1
+docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/sitespeed.io.txt -b firefox $CONFIG >> /tmp/s.log 2>&1
+docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/sitespeed.io.txt $CONFIG >> /tmp/s.log 2>&1
+docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/wikipedia.org-second.txt $CONFIG --graphite.namespace sitespeed_io.desktopSecond --preURL https://en.wikipedia.org/wiki/Main_Page >> /tmp/s.log 2>&1
+docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/wikipedia.org-second.txt $CONFIG --graphite.namespace sitespeed_io.desktopSecond -b firefox --preURL https://en.wikipedia.org/wiki/Main_Page >> /tmp/s.log 2>&1
+docker run $THREEG $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/m.wikipedia.org-second.txt $CONFIG --graphite.namespace sitespeed_io.emulatedMobileSecond -c 3g --mobile true --preURL https://en.m.wikipedia.org/wiki/Main_Page >> /tmp/s.log 2>&1
+docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/wikipedia.org-login-urls.txt --preScript /sitespeed.io/wikpedia.org -login.txt $CONFIG --graphite.namespace sitespeed_io.desktopLoggedIn >> /tmp/s.log 2>&1
 ~~~
 
 It is then triggered from the crontab:
@@ -135,8 +137,8 @@ And our default configuration is in *default.json*.
 {
   "browsertime": {
     "connectivity": {
-      "engine": "tc",
-      "profile": "cable"
+      "engine": "external",
+      "profile": "cable",
     },
     "iterations": 5,
     "browser": "chrome",
@@ -161,6 +163,34 @@ And our default configuration is in *default.json*.
 }
 ~~~
 
+And we setup the following Docker networks:
+~~~
+#!/bin/bash
+echo 'Starting Docker networks'
+docker network create --driver bridge --subnet=192.168.33.0/24 --gateway=192.168.33.10 --opt "com.docker.network.bridge.name"="docker1" 3g
+tc qdisc del dev docker1 root
+tc qdisc add dev docker1 root handle 1: htb default 12
+tc class add dev docker1 parent 1:1 classid 1:12 htb rate 1.6mbit ceil 1.6mbit
+tc qdisc add dev docker1 parent 1:12 netem delay 300ms
+
+docker network create --driver bridge --subnet=192.168.34.0/24 --gateway=192.168.34.10 --opt "com.docker.network.bridge.name"="docker2" cable
+tc qdisc del dev docker2 root
+tc qdisc add dev docker2 root handle 1: htb default 12
+tc class add dev docker2 parent 1:1 classid 1:12 htb rate 5mbit ceil 5mbit
+tc qdisc add dev docker2 parent 1:12 netem delay 28ms
+
+docker network create --driver bridge --subnet=192.168.35.0/24 --gateway=192.168.35.10 --opt "com.docker.network.bridge.name"="docker3" 3gfast
+tc qdisc del dev docker3 root
+tc qdisc add dev docker3 root handle 1: htb default 12
+tc class add dev docker3 parent 1:1 classid 1:12 htb rate 1.6mbit ceil 1.6mbit
+tc qdisc add dev docker3 parent 1:12 netem delay 150ms
+
+docker network create --driver bridge --subnet=192.168.36.0/24 --gateway=192.168.36.10 --opt "com.docker.network.bridge.name"="docker4" 3gem
+tc qdisc del dev docker4 root
+tc qdisc add dev docker4 root handle 1: htb default 12
+tc class add dev docker4 parent 1:1 classid 1:12 htb rate 0.4mbit ceil 0.4mbit
+tc qdisc add dev docker4 parent 1:12 netem delay 400ms
+~~~
 
 # Configure Graphite
 We provide an example Graphite Docker container and you should probably change the configuration depending on how often you want to run your tests, how long you want to keep the result and how much disk space you want to use.
