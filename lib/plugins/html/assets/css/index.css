@@ -1347,7 +1347,7 @@ ul.menu {
   display: inline-block; }
 
 .resource-legend li {
-  margin: 0 1em 0 0;
+  margin: 0 1em 1em 0;
   padding: 0;
   white-space: nowrap;
   display: inline-block; }
@@ -1398,6 +1398,11 @@ ul.menu {
 
 .water-fall-chart .type-firstvisualchange .line-holder {
   stroke: #42f46e;
+  stroke-opacity: 1.0;
+  stroke-width: 3; }
+
+.water-fall-chart .type-visualcomplete85 .line-holder {
+  stroke: #ee7777;
   stroke-opacity: 1.0;
   stroke-width: 3; }
 

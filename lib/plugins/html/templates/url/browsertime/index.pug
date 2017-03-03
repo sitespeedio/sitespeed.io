@@ -34,6 +34,10 @@ table
       td.number #{visualMetrics.PerceptualSpeedIndex.toFixed(0)}
     tr
       td
+        a(href=baseHelpURL + 'VisualComplete85') Visual Complete 85%
+      td.number #{visualMetrics.VisualComplete85.toFixed(0)}
+    tr
+      td
         a(href=baseHelpURL + 'LastVisualChange') Last Visual Change
       td.number #{visualMetrics.LastVisualChange.toFixed(0)}
   each value, name in timings.pageTimings

@@ -1,4 +1,13 @@
 # CHANGELOG - sitespeed.io
+## UNRELEASED
+## Fixed
+* Upgraded to PerfCascade 0.8.0 that is smarter when drawing time lines see [PerfCascade #160](https://github.com/micmro/PerfCascade/issues/160)
+
+## Added
+* You can now choose to load the HAR file using the fetch API instead of inlining it in the HTML file. Use --html.fetchHARFiles [#1484](https://github.com/sitespeedio/sitespeed.io/pull/1484)
+* New version of Browsertime that has a new metric VisualComplete 85% (or more), thank you [@jeroenvdb](https://github.com/JeroenVdb)! You can see the metric in the Waterfall graph and it will automatically be sent to Graphite.
+* Pickup the number of script tags on the page (from the Coach) and display it in the Coach section and send by default to Graphite.
+
 ## 4.5.1 2017-03-01
 ## Fixed
 * Rolling forward to Chrome 57 beta since 56 isn't working correct with our video, see [#284](https://github.com/sitespeedio/browsertime/issues/284)
