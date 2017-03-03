@@ -1,6 +1,8 @@
 - var videoIndex = runIndex ? runIndex : 0;
 - var width = options.mobile ? 'max-width: 400px;' : 'width: 100%'
 
+a#video
+h3 Video
 .videoWrapper(style=width)
   - screenshotName = 'data/screenshots/' + videoIndex + '.png'
   video.video-js.vjs-default-skin.vjs-big-play-centered(controls, preload='none', poster=screenshotName, data-setup='{ "fluid": true, "playbackRates": [0.1, 0.2, 0.5, 1] ,"volumeControl": false}')

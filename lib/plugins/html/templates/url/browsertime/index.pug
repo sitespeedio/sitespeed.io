@@ -6,6 +6,7 @@
 a
 h3 Browsertime
 
+
 p.small Collect timing metrics from your browser.
 
 if options.browsertime.video
@@ -15,6 +16,8 @@ if options.browsertime.chrome && options.browsertime.chrome.dumpTraceCategoriesL
   p
     a(href='data/trace-' + (runNumber? runNumber-1 : 0) + '.json.gz') Download timeline trace categories
 
+a#metrics
+h3 Metrics
 table
   tr
     th name
@@ -70,7 +73,8 @@ table
         td #{value.name}
         td.number #{value.startTime.toFixed(1)}
 
-h4 Custom scripts
+a#custom-scripts
+h3 Custom scripts
 if browsertime.custom
   table
     tr
