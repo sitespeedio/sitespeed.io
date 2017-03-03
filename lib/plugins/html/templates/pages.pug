@@ -4,16 +4,22 @@ include _tableMixins
 mixin rows(pages)
   each pageInfo, url in pages
     - p = pageInfo.data.pagexray ? pageInfo.data.pagexray.pageSummary : {}
+    - b = pageInfo.data.browsertime ? pageInfo.data.browsertime.pageSummary : {}
     - t = p.contentTypes || {javascript: {transferSize: ''}, css: {transferSize: ''}, image: {transferSize: ''}}
     - display = (options.urlsMetaData && options.urlsMetaData[url] && options.urlsMetaData[url].alias) ? options.urlsMetaData[url].alias : url
     tr
       td.url.pagesurl(data-title='URL')
         a(href= pageInfo.path + 'index.html')= decodeURIComponent(display)
-      +kbSizeCell('Javascript size', h.get(t.javascript, 'transferSize'))
-      +kbSizeCell('CSS size', h.get(t.css, 'transferSize'))
-      +kbSizeCell('Image size', h.get(t.image, 'transferSize'))
       +kbSizeCell('Total size', p.transferSize)
       +numberCell('Requests', p.requests)
+      if options.speedIndex
+        +numberCell('First Visual Change', b.visualMetrics[0].FirstVisualChange)
+        +numberCell('Speed Index', b.visualMetrics[0].SpeedIndex)
+        +numberCell('Last Visual Change', b.visualMetrics[0].LastVisualChange)
+      else
+        +kbSizeCell('Javascript size', h.get(t.javascript, 'transferSize'))
+        +kbSizeCell('CSS size', h.get(t.css, 'transferSize'))
+        +kbSizeCell('Image size', h.get(t.image, 'transferSize'))
       if pageInfo.data.coach
         - score = pageInfo.data.coach.pageSummary.advice.performance.score
         td.number(data-title='Performance score', data-value= score)
@@ -22,11 +28,16 @@ mixin rows(pages)
       else
         td
 block content
+  - headings = ['url', 'total size (kb)', 'total requests']
+  if options.speedIndex
+    - headings.push('First Visual Change', 'Speed Index', 'Last Visual Change')
+  else
+    - headings.push('js size (kb)', 'css size (kb)', 'image size (kb)')
+  - headings.push('performance score')
   .row
     .column
       include runInfo
       .responsive
         table(data-sortable, id='pages')
-          +rowHeading(['url', 'js size (kb)', 'css size (kb)', 'image size (kb)',
-            'total size (kb)', 'total requests', 'performance score'])
+          +rowHeading(headings)
           +rows(pages)
