@@ -7,6 +7,7 @@
 * You can now choose to load the HAR file using the fetch API instead of inlining it in the HTML file. Use --html.fetchHARFiles [#1484](https://github.com/sitespeedio/sitespeed.io/pull/1484)
 * New version of Browsertime that has a new metric VisualComplete 85% (or more), thank you [@jeroenvdb](https://github.com/JeroenVdb)! You can see the metric in the Waterfall graph and it will automatically be sent to Graphite.
 * Pickup the number of script tags on the page (from the Coach) and display it in the Coach section and send by default to Graphite.
+* Show SpeedIndex, FirstVisualChange and LastVisualChange in colums for pages (so you can sort them). 
 
 ## 4.5.1 2017-03-01
 ## Fixed
