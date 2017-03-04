@@ -8,6 +8,7 @@
 * New version of Browsertime that has a new metric VisualComplete 85% (or more), thank you [@jeroenvdb](https://github.com/JeroenVdb)! You can see the metric in the Waterfall graph and it will automatically be sent to Graphite.
 * Pickup the number of script tags on the page (from the Coach) and display it in the Coach section and send by default to Graphite.
 * Show SpeedIndex, FirstVisualChange and LastVisualChange in colums for pages (so you can sort them). 
+* Send number of script tags, local storage size and number of cookies by default to Graphite.
 
 ## 4.5.1 2017-03-01
 ## Fixed
