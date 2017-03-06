@@ -3,4 +3,4 @@
   h2.url #{h.plural(noPages,'page')} analyzed for #{h.short(options.urls[0], 30)}
   p.small Tested #{timestamp} using #{h.cap(options.browsertime.browser)} #{h.get(options, 'browsertime.chrome.android.package', '')}
     | #{options.preURL ? 'preURL ' + h.short(options.preURL, 60) : ''}&nbsp;
-    | #{h.plural(options.browsertime.iterations, 'run')} with #{profile} profile and connectivity #{options.connectivity}.
+    | #{h.plural(options.browsertime.iterations, 'run')} with #{profile} profile and connectivity #{options.browsertime.connectivity.profile}.

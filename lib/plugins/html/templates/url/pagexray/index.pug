@@ -7,6 +7,7 @@ p.small Xrays your page and let you know all about how the page is built.
 
 p The page uses #{pagexray.httpVersion}
 
+a#requests-per-response-code
 h3 Requests per response code
 table
   +rowHeading(['Response code', 'Total'])
@@ -19,6 +20,7 @@ table
 - totalTransferSize = 0
 - totalHeaderSize = 0
 - totalRequests = 0
+a#requests-and-sizes-per-content-type
 h3 Requests and sizes per content type
 .responsive
   table(data-sortable, id='contentSize')
@@ -42,6 +44,7 @@ h3 Requests and sizes per content type
       +sizeCell('contentSize', totalContentSize)
       +numberCell('requests', totalRequests)
 
+a#expires-and-last-modfied-stats
 h3 Expires and last modified stats
 - expire = pagexray.expireStats
 - lastModified = pagexray.lastModifiedStats
@@ -62,6 +65,7 @@ h3 Expires and last modified stats
         +durationCell('max', lastModified.max)
 
 if pagexray.firstParty.requests
+  a#first-party
   h3 First party requests and sizes per content type
   .responsive
     table(data-sortable, id='contentSize')
@@ -80,6 +84,7 @@ if pagexray.firstParty.requests
         +sizeCell('contentSize', pagexray.firstParty.contentSize)
         +numberCell('requests', pagexray.firstParty.requests)
 
+  a#third-party      
   h3 Third party requests and sizes per content type
   .responsive
     table(data-sortable, id='contentSize')

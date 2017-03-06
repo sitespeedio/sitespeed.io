@@ -210,3 +210,7 @@ blockquote span:before {
   content : "-";
   margin-right : 3px;
 }
+
+#upgradeTable {
+  overflow-x: auto;
+}
