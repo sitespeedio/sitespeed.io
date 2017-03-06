@@ -25,5 +25,19 @@ Make Chrome run without the sandbox and it will work. Pass the following argumen
 --browsertime.chrome.args no-sandbox
 ~~~
 
+## Running Sitespeed 4.0 with Docker + Proxy + Custom Login Script + Create Custom Folder (date/time stamped)?
+
+Thank you [Keyur Shah](https://github.com/softwareklinic) for sharing your setup:
+
+"Here is an example that finally worked for me with lot of tweaks that runs using the Sitespeed 4.0 docker, behind corporate proxy, saving the HTML summary reports in customer folder marked with date/timestamp and avoiding the HAR trigger error by using the --browsertime.pageCompleteCheck option with custom javascript
+
+ Below is a cron job definition that runs ever 45th minute of an hour:
+"
+
+~~~ bash
+ 45 * * * * docker run --privileged -v /app/sitespeed.io:/sitespeed.io sitespeedio/sitespeed.io <url|text file with list of urls> --preScript prescript.js -n 1 -b firefox  --graphite.host <graphiteip-host> --graphite.namespace <graphite-namespace>  --browsertime.proxy.http=proxy.xxxx.xxxxxxxx.com:80 --browsertime.proxy.https=proxy.xxxx.xxxxxxxx.com:80 --outputFolder sitespeed-result/<customfoldername>/$(date +\%Y-\%m-\%d-\%H-\%M-\%S) --browsertime.pageCompleteCheck 'return (function() {try { return (Date.now() - window.performance.timing.loadEventEnd) > 10000;} catch(e) {} return true;})()'
+~~~
+
+
 ## I can't get Firefox to work in Docker on Digital Ocean what's wrong?
 Do you get a lot of "Browser failed to start in time, trying one more time." in your log? There's some kind of problem with the "One click app" for Docker 1.12.3 and Ubuntu, it makes Firefox crash. However if you install Ubuntu 16 standalone and then manually installs Docker, it works fine.
