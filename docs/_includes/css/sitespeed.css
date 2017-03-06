@@ -212,5 +212,5 @@ blockquote span:before {
 }
 
 #upgradeTable {
-  overflow-y: auto;
+  overflow-x: auto;
 }
