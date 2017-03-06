@@ -188,7 +188,7 @@ The Graphite DB size is determined by the number of unique data points and the f
 # Using S3 for HTML and video
 You can store the HTML result on your local agent that runs sitespeed.io or you can dump the data to S3 and serve it from there. To use S3, you need to first [setup a S3 bucket](http://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html).
 
-Then you just configure sitespeed.io to send the data to S3 by configuring the bucket name (and key/secret if that's not availible on your server).
+Then you just configure sitespeed.io to send the data to S3 by configuring the bucket name (and key/secret if that's not available on your server).
 
 You have the result on S3 and you are almost done. You should also configure to send annotations to Graphite for each run.
 

@@ -13,7 +13,7 @@ twitterdescription: The new sitespeed.io has support for driving multiple WebPag
 After releasing 3.0 we felt that there was one big thing that we missed. You could only run one location/browser or use one connectivity per run when fetching data from WebPageTest! We have fixed that in 3.1
 
 ## Run multiple locations of WebPageTest
-You can now test multiple locations/browesers/connectivities for WebPageTest in one and the same run for sitespeed.io. You do that with the <code>wptConfig</code> parameter. If you want to run multiple instances, configure an array with different configurations:
+You can now test multiple locations/browsers/connectivities for WebPageTest in one and the same run for sitespeed.io. You do that with the <code>wptConfig</code> parameter. If you want to run multiple instances, configure an array with different configurations:
 
 ~~~
 [
@@ -37,7 +37,7 @@ Running only one, you can do as before and only configure one configuration obje
 }
 ~~~
 
-Everything will work as before except that the keys in Graphite for WebPageTest will include location, browser and connectivity meaning after you installed the new version you need to go into your grafical interface (Grafana) and change the keys for WebPageTest.
+Everything will work as before except that the keys in Graphite for WebPageTest will include location, browser and connectivity meaning after you installed the new version you need to go into your graphical interface (Grafana) and change the keys for WebPageTest.
 
 
 ## Hello SlimerJS!
