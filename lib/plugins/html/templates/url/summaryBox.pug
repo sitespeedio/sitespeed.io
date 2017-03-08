@@ -1,4 +1,13 @@
+mixin getLink(path, name, metric, type)
+  - isSet = false
+  each run, index in path
+    if (run[name] === metric[type] && isSet === false)
+      - isSet = true
+      td.number(data-title=type)
+        a(href='./' + index + '.html') #{metric[type]}
+
 - btStatistics = h.get(pageInfo.data, 'browsertime.pageSummary.statistics')
+
 if btStatistics
   h2 Timings Summary
   - timingMetrics = ['firstPaint', 'fullyLoaded', 'rumSpeedIndex']
@@ -32,7 +41,7 @@ if btStatistics
         each visualMetric, name in btStatistics.visualMetrics
           tr
             td(data-title= name) #{name} (visual metric)
-            td.number(data-title='min') #{visualMetric.min}
-            td.number(data-title='median') #{visualMetric.median}
+            +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'min')
+            +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'median')
             td.number(data-title='mean') #{visualMetric.mean}
-            td.number(data-title='max') #{visualMetric.max}
+            +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'max')
