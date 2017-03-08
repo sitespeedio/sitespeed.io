@@ -2,8 +2,8 @@
 ## UNRELEASED
 ## Fixed
 * Upgraded to PerfCascade 0.8.1 that is smarter when drawing time lines see [PerfCascade #160](https://github.com/micmro/PerfCascade/issues/160)
-* Make sure we show preURL and connectivty type for all result pages #1493
-* Making regions for S3 work #1486
+* Make sure we show preURL and connectivty type for all result pages [#1493](https://github.com/sitespeedio/sitespeed.io/issues/1494)
+* Making regions for S3 work [#1486](https://github.com/sitespeedio/sitespeed.io/issues/1486)
 
 ## Added
 * You can now choose to load the HAR file using the fetch API instead of inlining it in the HTML file. Use --html.fetchHARFiles [#1484](https://github.com/sitespeedio/sitespeed.io/pull/1484)
@@ -11,6 +11,7 @@
 * Pickup the number of script tags on the page (from the Coach) and display it in the Coach section and send by default to Graphite.
 * Show SpeedIndex, FirstVisualChange and LastVisualChange in colums for pages (so you can sort them). 
 * Send number of script tags, local storage size and number of cookies by default to Graphite.
+* Link VisualMetrics from the page summary selection so you easily can go from Grafana to a specific run [#1457](https://github.com/sitespeedio/sitespeed.io/issues/1457)
 
 ## 4.5.1 2017-03-01
 ## Fixed
