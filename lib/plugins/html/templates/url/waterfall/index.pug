@@ -1,16 +1,11 @@
 a#waterfall
 h3 Waterfall
 
-if (options.browsertime.iterations > 1)
+if (options.html.showAllWaterfallSummary === true)
   p Choose HAR:
-select#page-selector
-if summaryPageHAR && options.browsertime.iterations === 1
-  p HAR from first run (
-    a(href='data/browsertime.har') download
-    |):
-else
-  a(href='data/browsertime.har') Download
-  |  the HAR file.
+  select#page-selector
+a(href='data/browsertime.har') Download
+|  the HAR file.
 #legend-holder
 #output
 
