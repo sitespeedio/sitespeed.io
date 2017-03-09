@@ -9,7 +9,7 @@ mixin getLink(path, name, metric, type)
 mixin getLinkTimings(path, name, metric, type)
   - isSet = false
   each run, index in path
-    if (run.timings[name].toFixed() == metric[name][type] && isSet === false)
+    if (Number(run.timings[name]).toFixed(0) === Number(metric[name][type]).toFixed(0) && isSet === false)
       - isSet = true
       td.number(data-title=type)
         a(href='./' + index + '.html') #{metric[name][type]}
