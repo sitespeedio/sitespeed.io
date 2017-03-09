@@ -12,6 +12,7 @@
 * Show SpeedIndex, FirstVisualChange and LastVisualChange in colums for pages (so you can sort them). 
 * Send number of script tags, local storage size and number of cookies by default to Graphite.
 * Link VisualMetrics from the page summary selection so you easily can go from Grafana to a specific run [#1457](https://github.com/sitespeedio/sitespeed.io/issues/1457)
+* Updated to Firefox 52.0 in the Docker container. 
 
 ## 4.5.1 2017-03-01
 ## Fixed
