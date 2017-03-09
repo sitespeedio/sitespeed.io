@@ -1,7 +1,7 @@
 # CHANGELOG - sitespeed.io
 ## UNRELEASED
 ## Fixed
-* Upgraded to PerfCascade 0.8.1 that is smarter when drawing time lines see [PerfCascade #160](https://github.com/micmro/PerfCascade/issues/160)
+* Upgraded to PerfCascade 0.9.0 that is smarter when drawing time lines see [PerfCascade #160](https://github.com/micmro/PerfCascade/issues/160)
 * Make sure we show preURL and connectivty type for all result pages [#1493](https://github.com/sitespeedio/sitespeed.io/issues/1494)
 * Making regions for S3 work [#1486](https://github.com/sitespeedio/sitespeed.io/issues/1486)
 
