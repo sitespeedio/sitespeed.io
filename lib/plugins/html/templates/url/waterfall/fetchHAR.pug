@@ -1,3 +1,4 @@
+#output(class='loader')
 script(src= rootPath + 'js/fetch.js')
 script(src= rootPath + 'js/perf-cascade.min.js')
 script(type='text/javascript').
@@ -19,6 +20,7 @@ script(type='text/javascript').
       .then(f => f.json().then(j => {
         var har = j.log;
         var perfCascadeSvg = perfCascade.fromHar(har, options);
+        document.getElementById('output').classList.remove('loader');
         outputHolderEl.appendChild(perfCascadeSvg);
       }))
   }
