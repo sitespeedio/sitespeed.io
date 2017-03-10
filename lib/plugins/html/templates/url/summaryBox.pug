@@ -1,18 +1,24 @@
 mixin getLink(path, name, metric, type)
   - isSet = false
-  each run, index in path
-    if (run[name] === metric[type] && isSet === false)
-      - isSet = true
-      td.number(data-title=type)
-        a(href='./' + index + '.html') #{metric[type]}
+  if options.browsertime.iterations % 2 == 0 && type === 'median'
+    td.number(data-title=type) #{metric[type]}
+  else
+    each run, index in path
+      if (run[name] === metric[type] && isSet === false)
+        - isSet = true
+        td.number(data-title=type)
+          a(href='./' + index + '.html') #{metric[type]}
 
 mixin getLinkTimings(path, name, metric, type)
   - isSet = false
-  each run, index in path
-    if (Number(run.timings[name]).toFixed(0) === Number(metric[name][type]).toFixed(0) && isSet === false)
-      - isSet = true
-      td.number(data-title=type)
-        a(href='./' + index + '.html') #{metric[name][type]}
+  if options.browsertime.iterations % 2 == 0 && type === 'median'
+    td.number(data-title=type) #{metric[name][type]}
+  else
+    each run, index in path
+      if (Number(run.timings[name]).toFixed(0) === Number(metric[name][type]).toFixed(0) && isSet === false)
+        - isSet = true
+        td.number(data-title=type)
+          a(href='./' + index + '.html') #{metric[name][type]}
 
 - btStatistics = h.get(pageInfo.data, 'browsertime.pageSummary.statistics')
 
