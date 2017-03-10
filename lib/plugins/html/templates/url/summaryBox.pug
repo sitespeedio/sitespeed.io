@@ -1,6 +1,6 @@
 mixin getLink(path, name, metric, type)
   - isSet = false
-  if options.browsertime.iterations % 2 == 0 && type === 'median'
+  if options.browsertime.iterations % 2 === 0 && type === 'median'
     td.number(data-title=type) #{metric[type]}
   else
     each run, index in path
@@ -11,7 +11,7 @@ mixin getLink(path, name, metric, type)
 
 mixin getLinkTimings(path, name, metric, type)
   - isSet = false
-  if options.browsertime.iterations % 2 == 0 && type === 'median'
+  if options.browsertime.iterations % 2 === 0 && type === 'median'
     td.number(data-title=type) #{metric[name][type]}
   else
     each run, index in path
