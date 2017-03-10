@@ -15,4 +15,4 @@ Analyzing two pages using Chrome looks like this:
 $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -c cable -b chrome --video --speedIndex https://en.wikipedia.org/wiki/Main_Page https://en.wikipedia.org/wiki/Barack_Obama
 ~~~
 
-Gives the following [report](http://examples.sitespeed.io/4.2/2016-12-14-13-24-05/). Checkout our [example dashboard](https://dashboard.sitespeed.io) to see what it looks like to use sitespeed.io to continuously measure performance.
+Gives the following [report](http://examples.sitespeed.io/4.6/2017-03-10-21-12-26/). Checkout our [example dashboard](https://dashboard.sitespeed.io) to see what it looks like to use sitespeed.io to continuously measure performance.
