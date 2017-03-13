@@ -98,6 +98,6 @@
     "uuid": "^3.0.0",
     "webcoach": "0.31.0",
     "webpagetest": "0.3.4",
-    "yargs": "6.6.0"
+    "yargs": "7.0.2"
   }
 }
