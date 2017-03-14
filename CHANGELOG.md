@@ -4,6 +4,10 @@
 ### Fixed
 * Link User Timings in Page Summary (so you easy can find min/median/max of your User Timings).
 
+## Added
+* Design: Make it easy to see which run you are looking at on by highlighting that run on the run list. Unified metrics naming.
+* Made it possible to gzip the HAR files.
+
 ## 4.6.1 2017-03-11
 
 ### Fixed
