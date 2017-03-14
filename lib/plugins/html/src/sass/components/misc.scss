@@ -34,6 +34,10 @@
   background-color: #d9534f;
 }
 
+.info {
+  background-color: $color--blue;
+}
+
 ul.menu {
   list-style: none;
   font-size: 125%;
@@ -63,20 +67,4 @@ ul.menu {
   -ms-hyphens: auto;
   -moz-hyphens: auto;
   hyphens: auto;
-}
-
-
-.buttonlike {
-  color: $color--white;
-  background-color: $color--blue;
-  border-color: $color--blue;
-  height: 28px;
-  line-height: 28px;
-  padding: 0 8px;
-  font-size: 1.333rem;
-  margin-bottom: 0rem;
-  font-weight: normal;
-  text-align: center;
-  border-radius: 4px;
-  border: 1px solid $color--grey;
 }

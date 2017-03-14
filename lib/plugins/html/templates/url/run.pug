@@ -9,13 +9,12 @@ block content
     a(href=daurl) #{decodeURIComponent(daTitle)}
 
   include pageRunInfo
-
   p
     .large All runs:&nbsp;
       each val, index in runPages
         - value = Number(index) + 1
         if (runNumber === value)
-          span.buttonlike(href='./' + index + '.html') #{value}
+          span(class='label normal info') #{value}
         else
           a(href='./' + index + '.html') #{value}
         if (value !== Object.keys(runPages).length)
