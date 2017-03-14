@@ -14,7 +14,10 @@ block content
     .large All runs:&nbsp;
       each val, index in runPages
         - value = Number(index) + 1
-        a(href='./' + index + '.html') #{value}
+        if (runNumber === value)
+          span.buttonlike(href='./' + index + '.html') #{value}
+        else
+          a(href='./' + index + '.html') #{value}
         if (value !== Object.keys(runPages).length)
           | &nbsp;-&nbsp;
   .index-link

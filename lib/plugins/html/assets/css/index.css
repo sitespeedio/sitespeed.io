@@ -911,6 +911,20 @@ ul.menu {
   -moz-hyphens: auto;
   hyphens: auto; }
 
+.buttonlike {
+  color: #ffffff;
+  background-color: #0095d2;
+  border-color: #0095d2;
+  height: 28px;
+  line-height: 28px;
+  padding: 0 8px;
+  font-size: 1.333rem;
+  margin-bottom: 0rem;
+  font-weight: normal;
+  text-align: center;
+  border-radius: 4px;
+  border: 1px solid #e1e1e1; }
+
 /*! github.com/micmro/PerfCascade Version:0.5.0 (18/02/2017) */
 .water-fall-chart {
   width: 100%;
