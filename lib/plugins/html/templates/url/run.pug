@@ -59,7 +59,7 @@ block content
                 td #{d.browsertime.run.timings.firstPaint}
             if d.browsertime && d.browsertime.run && d.browsertime.run.visualMetrics
               tr
-                td SpeedIndex:
+                td Speed Index:
                 td #{d.browsertime.run.visualMetrics.SpeedIndex}
               tr
                 td Visual Complete 85%:
@@ -69,7 +69,7 @@ block content
                 td #{d.browsertime.run.visualMetrics.LastVisualChange}
             else if d.browsertime && d.browsertime.run
               tr
-                td RUMSpeedIndex:
+                td RUM Speed Index:
                 td #{d.browsertime.run.timings.rumSpeedIndex}
 
         .one-half.column

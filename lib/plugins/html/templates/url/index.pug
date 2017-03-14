@@ -36,11 +36,11 @@ block content
               th Value
             if d.coach && d.coach.pageSummary
               tr
-                td Performance score:
+                td Performance Score:
                 td #{d.coach.pageSummary.advice.performance.score}
             if d.pagexray && d.pagexray.pageSummary
               tr
-                td Total page size:
+                td Total Page Size:
                 td #{h.size.format(d.pagexray.pageSummary.transferSize)}
             if d.pagexray && d.pagexray.pageSummary
               tr
@@ -48,7 +48,7 @@ block content
                 td #{d.pagexray.pageSummary.requests}
             if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.visualMetrics
               tr
-                td First visual change:
+                td First Visual Change:
                 td #{d.browsertime.pageSummary.statistics.visualMetrics.FirstVisualChange.median}
             else if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.timings.firstPaint
               tr
@@ -62,11 +62,11 @@ block content
                 td Visual Complete 85%:
                 td #{d.browsertime.pageSummary.statistics.visualMetrics.VisualComplete85.median}
               tr
-                td Last visual change:
+                td Last Visual Change:
                 td #{d.browsertime.pageSummary.statistics.visualMetrics.LastVisualChange.median}
             else if d.browsertime && d.browsertime.pageSummary
               tr
-                td RUMSpeedIndex:
+                td RUM Speed Index:
                 td #{d.browsertime.pageSummary.statistics.timings.rumSpeedIndex.median}
 
         .one-half.column
