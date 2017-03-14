@@ -46,6 +46,14 @@ if btStatistics
           th median
           th mean
           th max
+      if btStatistics.visualMetrics
+        each visualMetric, name in btStatistics.visualMetrics
+          tr
+            td(data-title= name) #{name}
+            +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'min')
+            +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'median')
+            td.number(data-title='mean') #{visualMetric.mean}
+            +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'max')
       each timing in timingMetrics
         if btStatistics.timings[timing]
           tr
@@ -63,11 +71,3 @@ if btStatistics
               +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'median')
               td.number(data-title='mean') #{userTimings.mean}
               +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'max')
-      if btStatistics.visualMetrics
-        each visualMetric, name in btStatistics.visualMetrics
-          tr
-            td(data-title= name) #{name} (visual metric)
-            +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'min')
-            +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'median')
-            td.number(data-title='mean') #{visualMetric.mean}
-            +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'max')
