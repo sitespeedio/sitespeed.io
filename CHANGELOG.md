@@ -1,4 +1,9 @@
 # CHANGELOG - sitespeed.io
+
+## Unreleased
+### Fixed
+* Link User Timings in Page Summary (so you easy can find min/median/max of your User Timings).
+
 ## 4.6.1 2017-03-11
 
 ### Fixed

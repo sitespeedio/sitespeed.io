@@ -20,6 +20,18 @@ mixin getLinkTimings(path, name, metric, type)
         td.number(data-title=type)
           a(href='./' + index + '.html') #{metric[name][type]}
 
+mixin getUserTimings(path, name, metric, type)
+  - isSet = false
+  if options.browsertime.iterations % 2 === 0 && type === 'median'
+    td.number(data-title=type) #{metric[type]}
+  else
+    each run, index in path
+      each marks in run.timings.userTimings.marks
+          if (marks.name === name && Number(marks.startTime).toFixed(0) === Number(metric[type]).toFixed(0) && isSet === false)
+            - isSet = true
+            td.number(data-title=type)
+              a(href='./' + index + '.html') #{metric[type]}
+
 - btStatistics = h.get(pageInfo.data, 'browsertime.pageSummary.statistics')
 
 if btStatistics
@@ -47,10 +59,10 @@ if btStatistics
           each userTimings, name in btStatistics.timings.userTimings.marks
             tr
               td(data-title= name) #{name}
-              td.number(data-title='min') #{userTimings.min}
-              td.number(data-title='median') #{userTimings.median}
+              +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'min')
+              +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'median')
               td.number(data-title='mean') #{userTimings.mean}
-              td.number(data-title='max') #{userTimings.max}
+              +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'max')
       if btStatistics.visualMetrics
         each visualMetric, name in btStatistics.visualMetrics
           tr
