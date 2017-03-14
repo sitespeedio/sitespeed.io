@@ -14,7 +14,7 @@ block content
       each val, index in runPages
         - value = Number(index) + 1
         if (runNumber === value)
-          span(class='label normal info') #{value}
+          span.label.normal.info #{value}
         else
           a(href='./' + index + '.html') #{value}
         if (value !== Object.keys(runPages).length)
