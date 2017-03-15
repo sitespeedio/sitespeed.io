@@ -1,10 +1,11 @@
 # CHANGELOG - sitespeed.io
 
-## Unreleased
+## 4.7.0 2017-03-15
 ### Fixed
 * Link User Timings in Page Summary (so you easy can find min/median/max of your User Timings).
 * Slack missed URL specific information introduced in the 4.6.1 release. Now you get info per URL again.
 * Default values for warning and error in Slack was wrong. Before warning was 80 and error 90, now warning is 90 and error 80.
+* Setting a speedIndex/firstVisualChange as a warning/error value for Slack didn't work.
 
 ## Added
 * Design: Make it easy to see which run you are looking at on by highlighting that run on the run list. Unified metrics naming.
