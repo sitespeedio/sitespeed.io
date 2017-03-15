@@ -1,3 +1,4 @@
+.loader#output
 script(src= rootPath + 'js/fetch.min.js')
 script(src= rootPath + 'js/perf-cascade.min.js')
 script(type='text/javascript').
@@ -14,7 +15,6 @@ script(type='text/javascript').
     pageSelector: pageSelectorEl,
     selectedPage: #{runIndex || 0}
   };
-
 if options.gzipHAR
     script(src= rootPath + 'js/gunzip.min.js')
     script(type='text/javascript').
@@ -27,6 +27,7 @@ if options.gzipHAR
             var string = new TextDecoder("utf-8").decode(decompressedArray);
             var har = JSON.parse(string);
             var perfCascadeSvg = perfCascade.fromHar(har, options);
+            document.getElementById('output').classList.remove('loader');
             outputHolderEl.appendChild(perfCascadeSvg);
           })
       }
@@ -36,6 +37,7 @@ else
        window["fetch"]('data/browsertime.har')
        .then(f => f.json()).then(har => {
          var perfCascadeSvg = perfCascade.fromHar(har, options);
+         document.getElementById('output').classList.remove('loader');
          outputHolderEl.appendChild(perfCascadeSvg);
        })
       }
