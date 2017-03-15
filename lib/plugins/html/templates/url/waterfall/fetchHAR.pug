@@ -1,5 +1,5 @@
 .loader#output
-script(src= rootPath + 'js/fetch.js')
+script(src= rootPath + 'js/fetch.min.js')
 script(src= rootPath + 'js/perf-cascade.min.js')
 script(type='text/javascript').
   var outputHolderEl = document.getElementById("output");
@@ -12,15 +12,32 @@ script(type='text/javascript').
     showMimeTypeIcon: true,
     leftColumnWith: 30,
     legendHolder: legendHolderEl,
+    pageSelector: pageSelectorEl,
     selectedPage: #{runIndex || 0}
   };
-
-  if (window["fetch"]) {
-      window["fetch"]('data/browsertime.har')
-      .then(f => f.json().then(j => {
-        var har = j.log;
-        var perfCascadeSvg = perfCascade.fromHar(har, options);
-        document.getElementById('output').classList.remove('loader');
-        outputHolderEl.appendChild(perfCascadeSvg);
-      }))
-  }
+if options.gzipHAR
+    script(src= rootPath + 'js/gunzip.min.js')
+    script(type='text/javascript').
+      if (window["fetch"]) {
+          window["fetch"]('data/browsertime.har.gz')
+          .then(f => f.arrayBuffer()).then(arrayBuffer => {
+            var byteArray = new Uint8Array(arrayBuffer);
+            var gunzip = new Zlib.Gunzip(byteArray);
+            var decompressedArray = gunzip.decompress();
+            var string = new TextDecoder("utf-8").decode(decompressedArray);
+            var har = JSON.parse(string);
+            var perfCascadeSvg = perfCascade.fromHar(har, options);
+            document.getElementById('output').classList.remove('loader');
+            outputHolderEl.appendChild(perfCascadeSvg);
+          })
+      }
+else
+    script(type='text/javascript').
+      if (window["fetch"]) {
+       window["fetch"]('data/browsertime.har')
+       .then(f => f.json()).then(har => {
+         var perfCascadeSvg = perfCascade.fromHar(har, options);
+         document.getElementById('output').classList.remove('loader');
+         outputHolderEl.appendChild(perfCascadeSvg);
+       })
+      }

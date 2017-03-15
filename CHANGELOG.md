@@ -1,44 +1,65 @@
 # CHANGELOG - sitespeed.io
-## UNRELEASED
-## Fixed
-* Upgraded to PerfCascade 0.9.0 that is smarter when drawing time lines see [PerfCascade #160](https://github.com/micmro/PerfCascade/issues/160)
-* Make sure we show preURL and connectivty type for all result pages [#1493](https://github.com/sitespeedio/sitespeed.io/issues/1494)
-* Making regions for S3 work [#1486](https://github.com/sitespeedio/sitespeed.io/issues/1486)
+
+## Unreleased
+### Fixed
+* Link User Timings in Page Summary (so you easy can find min/median/max of your User Timings).
 
 ## Added
+* Design: Make it easy to see which run you are looking at on by highlighting that run on the run list. Unified metrics naming.
+* Made it possible to gzip the HAR files.
+* Made it easy to download WebPageTest HAR files.
+
+## 4.6.1 2017-03-11
+
+### Fixed
+* New Chromedriver 2.28.0 that fixes "Cannot get automation extension from unknown error: page could not be found ..."
+* The help for budget had wrong example parameter. Use --budget.configPath for path to the config.
+
+## 4.6.0 2017-03-10
+
+### Added
 * You can now choose to load the HAR file using the fetch API instead of inlining it in the HTML file. Use --html.fetchHARFiles [#1484](https://github.com/sitespeedio/sitespeed.io/pull/1484)
 * New version of Browsertime that has a new metric VisualComplete 85% (or more), thank you [@jeroenvdb](https://github.com/JeroenVdb)! You can see the metric in the Waterfall graph and it will automatically be sent to Graphite.
+* Browsertime is now using https://github.com/sitespeedio/chrome-har to generate the HAR.
 * Pickup the number of script tags on the page (from the Coach) and display it in the Coach section and send by default to Graphite.
-* Show SpeedIndex, FirstVisualChange and LastVisualChange in colums for pages (so you can sort them). 
+* Show SpeedIndex, FirstVisualChange and LastVisualChange in colums for pages (so you can sort them).
 * Send number of script tags, local storage size and number of cookies by default to Graphite.
 * Link VisualMetrics from the page summary selection so you easily can go from Grafana to a specific run [#1457](https://github.com/sitespeedio/sitespeed.io/issues/1457)
+* Updated to Firefox 52.0 and stable Chrome 57 in the Docker container.
+* Upgraded Grafana dashboards to use the latest metrics.
+
+### Fixed
+* Upgraded to PerfCascade 0.9.0 that is smarter when drawing time lines see [PerfCascade #160](https://github.com/micmro/PerfCascade/issues/160)
+* Make sure we show preURL and connectivity type for all result pages [#1493](https://github.com/sitespeedio/sitespeed.io/issues/1494)
+* Making regions for S3 work [#1486](https://github.com/sitespeedio/sitespeed.io/issues/1486)
+* Annotation timestamp and metrics timestamps are now in sync [#1497](https://github.com/sitespeedio/sitespeed.io/issues/1497)
 
 ## 4.5.1 2017-03-01
-## Fixed
+### Fixed
 * Rolling forward to Chrome 57 beta since 56 isn't working correct with our video, see [#284](https://github.com/sitespeedio/browsertime/issues/284)
 
 ## 4.5.0 2017-03-01
-## Added
+### Added
 * Upgraded to PerfCascade 0.6.1 from 0.4.0 with UX fixes see [https://github.com/micmro/PerfCascade/releases/](https://github.com/micmro/PerfCascade/releases/).
 * Added CLI options for setting Firefox preferences (--browsertime.firefox.preference), collect the response body in Firefox HAR (--browsertime.firefox.includeResponseBodies) and Chrome browser CLI args (--browsertime.chrome.args).
 * You can now collect the timeline log from Chrome (--browsertime.chrome.dumpTraceCategoriesLog) and set which traceCategories Chrome should collect.
 * If you collect the timeline from WebPageTest (--webpagetest.timeline) it will automatically be stored in your data folder and linked from that runs HTML page.
 * New Browsertime release where you can set the connectivity type to external, that makes it possible to use Docker network bridges for setting up connectivity, more about that soon in the blog post. Thank you [@worenga](https://github.com/worenga) for higlighting the problem!
 
-## Fixed
+### Fixed
 * Set region for your S3 bucket, thanks [@jjethwa](https://github.com/jjethwa) for the [PR](https://github.com/sitespeedio/sitespeed.io/pull/1469)!
 
 ## 4.4.2 2017-02-15
-## Fixed
+### Fixed
 * New Browsertime that fixes a potential problem when generating the HAR for Chrome see [BT #272](https://github.com/sitespeedio/browsertime/issues/272)
 * Show graphite.auth and graphite.httpPort in the CLI to make it easier
 
 ## 4.4.1 2017-02-15
-## Fixed
+### Fixed
 * Make it possible to configure S3 uploads with: s3.maxAsyncS3, s3.s3RetryCount , s3.s3RetryDelay , s3.multipartUploadThreshold, s3.multipartUploadSize see https://www.npmjs.com/package/s3#create-a-client [#1456](https://github.com/sitespeedio/sitespeed.io/issues/1456)
 
 ## 4.4.0 2017-02-13
-## Added
+### Added
 * Updated Docker container to use Chrome 56 and FF 51, but also added no-sandbox as default to make it work on Docker on OS X (new 56 thing).
 * Updated to PerfCascade 0.3.7 where you open/close the extra request info by clicking on the bar.
 * Use --webpagetest.script to supply your script as a string and --webpagetest.file as a file. But don't worry, it will work the same as before. Thank you Jeroen for the PR. See [#1445](https://github.com/sitespeedio/sitespeed.io/pull/1445)
@@ -46,18 +67,18 @@
 * Send annotations to Graphite with a link back to the HTML result [#1434](https://github.com/sitespeedio/sitespeed.io/pull/1434)
 * Surfacing user defined whitelist from browsertime for user timings filtering [#1426](https://github.com/sitespeedio/sitespeed.io/issues/1426)
 
-## Fixed
+### Fixed
 * Use connectivity native as default if no one is set in WebPageTest [#1447](https://github.com/sitespeedio/sitespeed.io/issues/1447)
 * Made it possible to set WebPageTest runs as non private [#1448](https://github.com/sitespeedio/sitespeed.io/issues/1448)
 * Fix for Template error with meta data aliases when not using the CLI [#1444](https://github.com/sitespeedio/sitespeed.io/issues/1444)
 
 ## 4.3.9 2017-01-26
-## Fixed
+### Fixed
 * Worst case scenario if Browsertime missing a HAR file, the HTML summary rendering failed [#1424](https://github.com/sitespeedio/sitespeed.io/issues/1424)
 * If we have a site that is missing expire headers, the HTML generation failed [1430](https://github.com/sitespeedio/sitespeed.io/issues/1430)
 
 ## 4.3.8 2017-01-19
-## Fixed
+### Fixed
 * Updated to latest PerfCascade that will pickup changed resource prio in Chrome and some bug fixes.
 * Google is still overloading User Timing marks see [#257](https://github.com/sitespeedio/browsertime/issues/257). This fix mute the marks from WebPageTest so they aren't sent to Graphite.
 

@@ -886,6 +886,9 @@ a.summaries {
 .error {
   background-color: #d9534f; }
 
+.info {
+  background-color: #0095d2; }
+
 ul.menu {
   list-style: none;
   font-size: 125%;

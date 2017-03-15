@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-google-chrome-beta --version
+google-chrome --version
 firefox --version
 
 # Here's a hack for fixing the problem with Chrome not starting in time

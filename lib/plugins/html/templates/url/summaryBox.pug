@@ -1,10 +1,36 @@
 mixin getLink(path, name, metric, type)
   - isSet = false
-  each run, index in path
-    if (run[name] === metric[type] && isSet === false)
-      - isSet = true
-      td.number(data-title=type)
-        a(href='./' + index + '.html') #{metric[type]}
+  if options.browsertime.iterations % 2 === 0 && type === 'median'
+    td.number(data-title=type) #{metric[type]}
+  else
+    each run, index in path
+      if (run[name] === metric[type] && isSet === false)
+        - isSet = true
+        td.number(data-title=type)
+          a(href='./' + index + '.html') #{metric[type]}
+
+mixin getLinkTimings(path, name, metric, type)
+  - isSet = false
+  if options.browsertime.iterations % 2 === 0 && type === 'median'
+    td.number(data-title=type) #{metric[name][type]}
+  else
+    each run, index in path
+      if (Number(run.timings[name]).toFixed(0) === Number(metric[name][type]).toFixed(0) && isSet === false)
+        - isSet = true
+        td.number(data-title=type)
+          a(href='./' + index + '.html') #{metric[name][type]}
+
+mixin getUserTimings(path, name, metric, type)
+  - isSet = false
+  if options.browsertime.iterations % 2 === 0 && type === 'median'
+    td.number(data-title=type) #{metric[type]}
+  else
+    each run, index in path
+      each marks in run.timings.userTimings.marks
+          if (marks.name === name && Number(marks.startTime).toFixed(0) === Number(metric[type]).toFixed(0) && isSet === false)
+            - isSet = true
+            td.number(data-title=type)
+              a(href='./' + index + '.html') #{metric[type]}
 
 - btStatistics = h.get(pageInfo.data, 'browsertime.pageSummary.statistics')
 
@@ -20,28 +46,28 @@ if btStatistics
           th median
           th mean
           th max
+      if btStatistics.visualMetrics
+        each visualMetric, name in btStatistics.visualMetrics
+          tr
+            td(data-title= name) #{name}
+            +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'min')
+            +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'median')
+            td.number(data-title='mean') #{visualMetric.mean}
+            +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'max')
       each timing in timingMetrics
         if btStatistics.timings[timing]
           tr
             td(data-title='metric') #{timing}
-            td.number(data-title='min') #{btStatistics.timings[timing].min}
-            td.number(data-title='median') #{btStatistics.timings[timing].median}
+            +getLinkTimings(pageInfo.data.browsertime.pageSummary.browserScripts, timing, btStatistics.timings, 'min')
+            +getLinkTimings(pageInfo.data.browsertime.pageSummary.browserScripts, timing, btStatistics.timings, 'median')
             td.number(data-title='mean') #{btStatistics.timings[timing].mean}
-            td.number(data-title='max') #{btStatistics.timings[timing].max}
+            +getLinkTimings(pageInfo.data.browsertime.pageSummary.browserScripts, timing, btStatistics.timings, 'max')
       if btStatistics.timings.userTimings
         if btStatistics.timings.userTimings.marks
           each userTimings, name in btStatistics.timings.userTimings.marks
             tr
               td(data-title= name) #{name}
-              td.number(data-title='min') #{userTimings.min}
-              td.number(data-title='median') #{userTimings.median}
+              +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'min')
+              +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'median')
               td.number(data-title='mean') #{userTimings.mean}
-              td.number(data-title='max') #{userTimings.max}
-      if btStatistics.visualMetrics
-        each visualMetric, name in btStatistics.visualMetrics
-          tr
-            td(data-title= name) #{name} (visual metric)
-            +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'min')
-            +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'median')
-            td.number(data-title='mean') #{visualMetric.mean}
-            +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'max')
+              +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'max')
