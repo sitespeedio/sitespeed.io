@@ -1,20 +1,17 @@
 {
   "browsertime.pageSummary": [{
     "metric": "statistics.timings.firstPaint.median",
-    "max": 1000,
-    "unit": "ms"
-  }, {
+    "max": 1000
+    }, {
     "metric": "statistics.visualMetrics.FirstVisualChange.median",
-    "max": 1000,
-    "unit": "ms"
+    "max": 1000
   }],
   "coach.pageSummary": [{
     "metric": "advice.performance.score",
-    "min": 75,
-    "unit": "percentage"
+    "min": 75
   }, {
     "metric": "advice.info.domElements",
-    "max": 200
+    "max": 500
   }, {
     "metric": "advice.info.domDepth.max",
     "max": 10
@@ -27,8 +24,7 @@
   }],
   "pagexray.pageSummary": [{
     "metric": "transferSize",
-    "max": 100000,
-    "unit": "bytes"
+    "max": 100000
   }, {
     "metric": "requests",
     "max": 20
@@ -40,8 +36,7 @@
     "max": 1
   }, {
     "metric": "contentTypes.image.transferSize",
-    "max": 100000,
-    "unit": "bytes"
+    "max": 100000
   },{
     "metric": "documentRedirects",
     "max":0
