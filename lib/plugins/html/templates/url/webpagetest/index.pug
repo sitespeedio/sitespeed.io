@@ -7,9 +7,13 @@ p.small Metrics & data collected using WebPageTest.org (or your private instance
 - var medianRun = data.median
 
 p Test run from !{data.from} using #{medianRun.firstView.browser_name} - #{medianRun.firstView.browser_version}.
-p Check the&nbsp;
-  a(href= data.summary) result page on WebPageTest
-  | .
+
+- var harName = options.gzipHAR ? 'data/webpagetest.har.gz' : 'data/webpagetest.har'
+a(href=harName) Download
+|  the HAR file.&nbsp;
+a(href= data.summary) Check
+| &nbsp;the result page on WebPageTest.
+
 each view in ['firstView', 'repeatView']
   - var median = medianRun[view];
   if median
