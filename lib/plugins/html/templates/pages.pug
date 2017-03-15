@@ -28,12 +28,12 @@ mixin rows(pages)
       else
         td
 block content
-  - headings = ['url', 'total size (kb)', 'total requests']
+  - headings = ['URL', 'Total Size (kb)', 'Total Requests']
   if options.speedIndex
     - headings.push('First Visual Change', 'Speed Index', 'Last Visual Change')
   else
-    - headings.push('js size (kb)', 'css size (kb)', 'image size (kb)')
-  - headings.push('performance score')
+    - headings.push('JS size (kb)', 'CSS size (kb)', 'Image size (kb)')
+  - headings.push('Performance score')
   .row
     .column
       include runInfo

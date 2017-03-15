@@ -3,6 +3,10 @@ h2 WebPageTest
 p.small Metrics & data collected using WebPageTest.org (or your private instance).
 - var wpt = pageInfo.data.webpagetest.run;
 
+- var harName = options.gzipHAR ? 'data/webpagetest.har.gz' : 'data/webpagetest.har'
+a(href=harName) Download
+|  the HAR file.
+
 if options.webpagetest.timeline
   p
     a(href='data/trace-' + (runNumber? runNumber : 1) + '.json.gz') Download timeline trace categories

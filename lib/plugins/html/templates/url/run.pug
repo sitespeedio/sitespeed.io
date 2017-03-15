@@ -9,12 +9,14 @@ block content
     a(href=daurl) #{decodeURIComponent(daTitle)}
 
   include pageRunInfo
-
   p
     .large All runs:&nbsp;
       each val, index in runPages
         - value = Number(index) + 1
-        a(href='./' + index + '.html') #{value}
+        if (runNumber === value)
+          span.label.normal.info #{value}
+        else
+          a(href='./' + index + '.html') #{value}
         if (value !== Object.keys(runPages).length)
           | &nbsp;-&nbsp;
   .index-link
@@ -56,7 +58,7 @@ block content
                 td #{d.browsertime.run.timings.firstPaint}
             if d.browsertime && d.browsertime.run && d.browsertime.run.visualMetrics
               tr
-                td SpeedIndex:
+                td Speed Index:
                 td #{d.browsertime.run.visualMetrics.SpeedIndex}
               tr
                 td Visual Complete 85%:
@@ -66,7 +68,7 @@ block content
                 td #{d.browsertime.run.visualMetrics.LastVisualChange}
             else if d.browsertime && d.browsertime.run
               tr
-                td RUMSpeedIndex:
+                td RUM Speed Index:
                 td #{d.browsertime.run.timings.rumSpeedIndex}
 
         .one-half.column

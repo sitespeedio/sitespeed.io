@@ -1,7 +1,7 @@
 {
   "name": "sitespeed.io",
   "bin": "./bin/sitespeed.js",
-  "version": "4.6.0",
+  "version": "4.6.1",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -63,8 +63,8 @@
   },
   "main": "./lib/sitespeed.js",
   "dependencies": {
-    "bluebird": "3.4.7",
-    "browsertime": "1.0.0-beta.30",
+    "bluebird": "3.5.0",
+    "browsertime": "1.0.0-beta.31",
     "cli-color": "1.1.0",
     "concurrent-queue": "7.0.1",
     "fast-stats": "0.0.3",
@@ -92,7 +92,7 @@
     "pagexray": "0.14.1",
     "pug": "2.0.0-beta11",
     "s3": "4.4.0",
-    "simplecrawler": "1.0.5",
+    "simplecrawler": "1.1.0",
     "tape": "4.6.3",
     "text-table": "0.2.0",
     "uuid": "^3.0.0",

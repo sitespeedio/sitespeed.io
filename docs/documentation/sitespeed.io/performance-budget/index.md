@@ -97,7 +97,7 @@ You can read more about the metrics/data structure in the [metrics section]({{si
 Then run it like this:
 
 ~~~bash
-$ sitespeed.io https://www.sitespeed.io/ --budget myBudget.json -b chrome -n 11
+$ sitespeed.io https://www.sitespeed.io/ --budget.configPath myBudget.json -b chrome -n 11
 ~~~
 
 And if the budget fails the exit status will be > 0. You can also choose to report the budget as JUnitXML (Jenkins) and TAP.
@@ -106,7 +106,7 @@ And if the budget fails the exit status will be > 0. You can also choose to repo
 You can output a JUnit XML file from the budget result like this.
 
 ~~~bash
-$ sitespeed.io https://www.sitespeed.io/ --budget myBudget.json --budget.output junit -b chrome -n 5
+$ sitespeed.io https://www.sitespeed.io/ --budget.configPath myBudget.json --budget.output junit -b chrome -n 5
 ~~~
 
 It will create a *junit.xml* in the outputFolder.
@@ -115,7 +115,7 @@ It will create a *junit.xml* in the outputFolder.
 If you would instead like to use TAP, you can do so like this:
 
 ~~~bash
-$ sitespeed.io https://www.sitespeed.io/ --budget myBudget.json --budget.output tap -b chrome -n 5
+$ sitespeed.io https://www.sitespeed.io/ --budget.configPath myBudget.json --budget.output tap -b chrome -n 5
 ~~~
 
 It will create a *budget.tap* in the outputFolder.
