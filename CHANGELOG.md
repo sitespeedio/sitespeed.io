@@ -3,11 +3,13 @@
 ## Unreleased
 ### Fixed
 * Link User Timings in Page Summary (so you easy can find min/median/max of your User Timings).
+* Slack missed URL specific information introduced in the 4.6.1 release. Now you get info per URL again.
 
 ## Added
 * Design: Make it easy to see which run you are looking at on by highlighting that run on the run list. Unified metrics naming.
 * Made it possible to gzip the HAR files.
 * Made it easy to download WebPageTest HAR files.
+* A loader indicating that we are waiting in the HAR when it is fetched.
 
 ## 4.6.1 2017-03-11
 
