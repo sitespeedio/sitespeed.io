@@ -95,4 +95,6 @@ block content
 
     if d.webpagetest && d.webpagetest.run
       section#webpagetest-panel
-        include ./webpagetest/run.pug
+        - var wpt = pageInfo.data.webpagetest.run;
+        - var wptRoot = pageInfo.data.webpagetest;
+        include ./webpagetest/index.pug

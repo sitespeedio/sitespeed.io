@@ -94,6 +94,8 @@ block content
 
     if d.webpagetest
       section#webpagetest-panel
+        - var wpt = pageInfo.data.webpagetest.pageSummary.data.median
+        - var wptRoot = pageInfo.data.webpagetest.pageSummary.data;
         include ./webpagetest/index.pug
 
     if d.gpsi
