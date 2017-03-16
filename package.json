@@ -68,7 +68,7 @@
     "cli-color": "1.1.0",
     "concurrent-queue": "7.0.1",
     "fast-stats": "0.0.3",
-    "fs-extra": "2.0.0",
+    "fs-extra": "2.1.2",
     "gpagespeed": "3.0.0",
     "influx": "5.0.4",
     "intel": "1.1.2",
@@ -96,7 +96,7 @@
     "tape": "4.6.3",
     "text-table": "0.2.0",
     "uuid": "^3.0.0",
-    "webcoach": "0.31.0",
+    "webcoach": "0.32.0",
     "webpagetest": "0.3.4",
     "yargs": "6.6.0"
   }
