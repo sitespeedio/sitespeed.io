@@ -1,4 +1,9 @@
 # CHANGELOG - sitespeed.io
+## Unreleased
+
+### Added
+* Rework of the WebPageTest result page: More metrics, requests per content type, requests per domain and screenshot.
+* Rework of PageXray result page: requests per content type, requests per domain, cookies stats
 
 ## 4.7.0 2017-03-15
 ### Fixed
@@ -7,7 +12,7 @@
 * Default values for warning and error in Slack was wrong. Before warning was 80 and error 90, now warning is 90 and error 80.
 * Setting a speedIndex/firstVisualChange as a warning/error value for Slack didn't work.
 
-## Added
+### Added
 * Design: Make it easy to see which run you are looking at on by highlighting that run on the run list. Unified metrics naming.
 * Made it possible to gzip the HAR files.
 * Made it easy to download WebPageTest HAR files.
