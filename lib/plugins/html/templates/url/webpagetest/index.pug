@@ -2,7 +2,10 @@ include ../../_tableMixins
 
 a
 h2 WebPageTest
-p.small Metrics & data collected using #{options.webpagetest.host}
+p.small Metrics & data collected using #{options.webpagetest.host}.&nbsp;
+  if wptRoot.summary
+    a(href= wptRoot.summary) Check
+    | &nbsp;the result page on WebPageTest.
 
 .row
   .one-half.column
@@ -40,21 +43,14 @@ p.small Metrics & data collected using #{options.webpagetest.host}
           td Last Visual Change (repeat view):
           td #{wpt.repeatView.lastVisualChange}
 
-
   .one-half.column
     img.u-max-full-width(src= wpt.firstView.images.screenShot, alt='Screenshot')
 
 - var harName = options.gzipHAR ? 'data/webpagetest.har.gz' : 'data/webpagetest.har'
-a(href=harName) Download
-|  the HAR file.&nbsp;
-
+a.button.button-download(href=harName) Download HAR
 if options.webpagetest.timeline
-  p
-    a(href='data/trace-' + (runNumber? runNumber : 1) + '.json.gz') Download timeline trace categories
-
-if wptRoot.summary
-  a(href= wptRoot.summary) Check
-  | &nbsp;the result page on WebPageTest.
+  - var tracePath = 'data/trace-' + (runNumber? runNumber : 1) + '.json.gz'
+  a.button.button-download(href=tracePath) Download timeline
 
 each view in ['firstView', 'repeatView']
   - var median = wpt[view];

@@ -721,6 +721,17 @@ pre > code {
     background-color: #0087be;
     border-color: #0087be; }
 
+.button-download {
+  color: #ffffff;
+  background-color: #ec971f;
+  border-color: #eb9316;
+  padding: 0 10px;
+  margin-right: 1rem; }
+  .button-download:hover, .button-download:focus, .button-download:active {
+    color: #ffffff;
+    background-color: #e38d13;
+    border-color: #da8813; }
+
 .navgrid {
   width: 100%;
   min-width: 0;
