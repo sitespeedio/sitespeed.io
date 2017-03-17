@@ -2,33 +2,64 @@ include ../../_tableMixins
 
 a
 h2 WebPageTest
+p.small Metrics & data collected using #{options.webpagetest.host}
 
 .row
   .one-half.column
-    p.small Metrics & data collected using WebPageTest.org (or your private instance).
+    table
+      tr
+        th Metric
+        th Value
+      if wptRoot.from
+        tr
+          td From:
+          td !{wptRoot.from}
+      tr
+        td Browser:
+        td #{wpt.firstView.browser_name}
+      tr
+        td Version:
+        td #{wpt.firstView.browser_version}
+      tr
+        td Render (first view):
+        td #{wpt.firstView.render}
+      tr
+        td Speed Index (first view):
+        td #{wpt.firstView.SpeedIndex}
+      tr
+        td Last Visual Change (first view):
+        td #{wpt.firstView.lastVisualChange}
+      if wpt.repeatView
+        tr
+          td Render (repeat view):
+          td #{wpt.repeatView.render}
+        tr
+          td SpeedIndex (repeat view):
+          td #{wpt.repeatView.SpeedIndex}
+        tr
+          td Last Visual Change (repeat view):
+          td #{wpt.repeatView.lastVisualChange}
 
-    if wptRoot
-      p Test run from !{wptRoot.from} using #{wpt.firstView.browser_name} - #{wpt.firstView.browser_version}.
-
-    - var harName = options.gzipHAR ? 'data/webpagetest.har.gz' : 'data/webpagetest.har'
-    a(href=harName) Download
-    |  the HAR file.&nbsp;
-
-    if options.webpagetest.timeline
-      p
-        a(href='data/trace-' + (runNumber? runNumber : 1) + '.json.gz') Download timeline trace categories
-
-    if wptRoot.summary
-      a(href= wptRoot.summary) Check
-      | &nbsp;the result page on WebPageTest.
 
   .one-half.column
     img.u-max-full-width(src= wpt.firstView.images.screenShot, alt='Screenshot')
 
+- var harName = options.gzipHAR ? 'data/webpagetest.har.gz' : 'data/webpagetest.har'
+a(href=harName) Download
+|  the HAR file.&nbsp;
+
+if options.webpagetest.timeline
+  p
+    a(href='data/trace-' + (runNumber? runNumber : 1) + '.json.gz') Download timeline trace categories
+
+if wptRoot.summary
+  a(href= wptRoot.summary) Check
+  | &nbsp;the result page on WebPageTest.
+
 each view in ['firstView', 'repeatView']
   - var median = wpt[view];
   if median
-    h4 #{view}
+    h2 #{view === 'firstView' ? 'First View': 'Repeat View'}
 
     .row
       .one-half.column
