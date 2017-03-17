@@ -4,12 +4,13 @@ h3 Waterfall
 if (options.html.showAllWaterfallSummary === true)
   p Choose HAR:
   select#page-selector
-- var harName = options.gzipHAR ? 'data/browsertime.har.gz' : 'data/browsertime.har'
-a(href=harName) Download
-|  the HAR file.
+
 #legend-holder
 
 if options.html.fetchHARFiles
   include ./fetchHAR.pug
 else
   include ./includeHARinHTML.pug
+
+- var harName = options.gzipHAR ? 'data/browsertime.har.gz' : 'data/browsertime.har'
+a.button.button-download(href=harName) Download HAR

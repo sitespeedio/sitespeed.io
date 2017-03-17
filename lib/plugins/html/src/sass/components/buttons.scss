@@ -39,3 +39,19 @@
     border-color: darken($color--blue, 4%);
   }
 }
+
+.button-download {
+  color: $color--white;
+  background-color: #ec971f;
+  border-color: #eb9316;
+  padding: 0 10px;
+  margin-right: 1rem;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $color--white;
+    background-color: darken(#ec971f, 4%);
+    border-color: darken(#eb9316, 4%);
+  }
+}
