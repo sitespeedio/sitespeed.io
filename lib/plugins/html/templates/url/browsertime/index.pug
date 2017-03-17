@@ -18,6 +18,10 @@ if options.browsertime.chrome && options.browsertime.chrome.dumpTraceCategoriesL
   - var tracePath = 'data/trace-' + (runNumber? runNumber-1 : 0) + '.json.gz'
   a.button.button-download(href=tracePath) Download timeline
 
+if options.browsertime.video
+  - var tracePath = 'data/video/' + (runIndex ? runIndex : 0) +'.mp4'
+  a.button.button-download(href=tracePath) Download video
+
 a#metrics
 h3 Metrics
 table
