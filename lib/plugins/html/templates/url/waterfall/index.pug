@@ -13,4 +13,4 @@ else
   include ./includeHARinHTML.pug
 
 - var harName = options.gzipHAR ? 'data/browsertime.har.gz' : 'data/browsertime.har'
-a.button.button-download(href=harName) Download HAR
+a.button.button-download(href=harName, download) Download HAR
