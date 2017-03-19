@@ -2,8 +2,10 @@
 ## Unreleased
 
 ### Added
-* Rework of the WebPageTest result page: More metrics, requests per content type, requests per domain and screenshot.
-* Rework of PageXray result page: requests per content type, requests per domain, cookies stats
+* Rework of the WebPageTest result tab: More metrics, requests per content type, requests per domain and screenshot.
+* Rework of PageXray result tab: requests per content type, requests per domain, cookies stats
+* Rework of Browsertime result tab: easier to find the most important metrics
+* HTML tuning for smaller devices.
 
 ## 4.7.0 2017-03-15
 ### Fixed
