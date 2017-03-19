@@ -51,9 +51,15 @@ if options.browsertime.speedIndex
             a(href=baseHelpURL + 'LastVisualChange') Last Visual Change
           td.number #{visualMetrics.LastVisualChange.toFixed(0)}
     .one-half.column
-      // VisualProgress":"0=0%, 250=76%, 333=98%, 350=100%"
-      // p #{JSON.stringify(browsertime.visualMetrics.VisualProgress)}
-      // Which library should we use do show the visual progress?
+      table
+        tr
+          th(colspan='2') Visual Progress
+        - var allRows = browsertime.visualMetrics.VisualProgress.split(',')
+        each eachRow in allRows
+          - var row = eachRow.split('=')
+          tr
+            td #{row[1]}
+            td #{row[0]} ms
 a#browsermetrics
 h3 Browser Metrics
 .row
