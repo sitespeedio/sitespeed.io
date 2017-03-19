@@ -49,7 +49,7 @@ if btStatistics
       if btStatistics.visualMetrics
         each visualMetric, name in btStatistics.visualMetrics
           tr
-            td(data-title= name) #{name}
+            td(data-title='metric') #{name}
             +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'min')
             +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'median')
             td.number(data-title='mean') #{visualMetric.mean}
@@ -66,7 +66,7 @@ if btStatistics
         if btStatistics.timings.userTimings.marks
           each userTimings, name in btStatistics.timings.userTimings.marks
             tr
-              td(data-title= name) #{name}
+              td(data-title= 'User Timing') #{name}
               +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'min')
               +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'median')
               td.number(data-title='mean') #{userTimings.mean}
