@@ -1,6 +1,5 @@
 include ../../_tableMixins
 
-a
 h2 WebPageTest
 p.small Metrics & data collected using #{options.webpagetest.host}.&nbsp;
   if wptRoot.summary
@@ -57,37 +56,62 @@ each view in ['firstView', 'repeatView']
   if median
     h2 #{view === 'firstView' ? 'First View': 'Repeat View'}
 
+    if options.webpagetest.video
+      a#visualmetrics
+      h3 Visual Metrics
+      .row
+        .one-half.column
+          table
+            tr
+              th(colspan='2') Visual Metrics
+            tr
+              td Render
+              +numberCell('Render', median.render)
+            tr
+              td Speed Index
+              +numberCell('SpeedIndex', median.SpeedIndex)
+            tr
+              td Visual Complete 85%
+              +numberCell('Visual Complete 85%', median.visualComplete85)
+            tr
+              td Last Visual Change
+              +numberCell('Last Visual Change', median.lastVisualChange)
+        .one-half.column
+          table
+            tr
+              th(colspan='2') Visual Progress
+              - var lastProgress = -1
+            each frame in median.videoFrames
+              if lastProgress !== frame.VisuallyComplete
+                - lastProgress = frame.VisuallyComplete
+                tr
+                  td #{frame.VisuallyComplete}
+                  td #{frame.time} ms
+
+    a#timingsandpagemetrics
+    h3 Timing and page metrics
     .row
       .one-half.column
-        table(data-sortable, id='timingMetrics')
-          +rowHeading(['Timings', 'Value'])
+        table
+          th(colspan='2') Timings
           tr
             td TTFB
             +numberCell('TTFB', median.TTFB)
           tr
-            td Render
-            +numberCell('Render', median.render)
-          tr
             td First paint
             +numberCell('First Paint', median.firstPaint)
+          tr
+            td DOM loading
+            +numberCell('DOM loading', median.domLoading)
           tr
             td DOM interactive
             +numberCell('DOM interactive', median.domInteractive)
           tr
-            td Speed Index
-            +numberCell('SpeedIndex', median.SpeedIndex)
-          tr
-            td Visual Complete 85%
-            +numberCell('Visual Complete 85%', median.visualComplete85)
-          tr
-            td Last Visual Change
-            +numberCell('Last Visual Change', median.lastVisualChange)
+            td Load Time
+            +numberCell('Load Time', median.loadTime)
           tr
             td Fully Loaded
             +numberCell('Fully Loaded', median.fullyLoaded)
-          tr
-            td Load Time
-            +numberCell('Load Time', median.loadTime)
           if (median.userTimes)
             each value, key in median.userTimes
               tr
@@ -95,7 +119,8 @@ each view in ['firstView', 'repeatView']
                 +numberCell(key, value)
       .one-half.column
         table
-          +rowHeading(['Metric', 'Value'])
+          tr
+            th(colspan='2') Page metrics
           tr
             td Requests
             +numberCell('Requests', median.requestsFull)
@@ -105,6 +130,9 @@ each view in ['firstView', 'repeatView']
           tr
             td DOM Elements
             +numberCell('DOM Elements', median.domElements)
+          tr
+            td Total image size
+            +sizeCell('Image total', median.image_total)
           tr
             td bytesOut
             +sizeCell('bytesOut', median.bytesOut)
@@ -117,9 +145,10 @@ each view in ['firstView', 'repeatView']
           tr
             td bytesInDoc
             +sizeCell('bytesInDoc', median.bytesInDoc)
-          tr
-            td Certificates
-            +sizeCell('certificate_bytes', median.certificate_bytes)
+          if median.certificate_bytes
+            tr
+              td Certificates size
+              +sizeCell('certificate_bytes', median.certificate_bytes)
 
       if (median.custom)
         h5 Custom metrics
@@ -135,21 +164,23 @@ each view in ['firstView', 'repeatView']
     img.u-max-full-width(src= median.images.connectionView, alt='Connection view')
 
     h3 Request per content type
-    table(data-sortable, id='contentSize')
-      +rowHeading(['Type', 'size', 'size uncompressed', 'requests'])
-      each value, contentType in median.breakdown
-        tr
-          td #{contentType}
-          +sizeCell('size', median.breakdown[contentType].bytes)
-          +sizeCell('size', median.breakdown[contentType].bytesUncompressed)
-          +numberCell('requests', median.breakdown[contentType].requests)
+    .responsive
+      table(data-sortable, id='contentSize')
+        +rowHeading(['Type', 'size', 'size uncompressed', 'requests'])
+        each value, contentType in median.breakdown
+          tr
+            +numberCell('Content Type', contentType)
+            +sizeCell('Size', median.breakdown[contentType].bytes)
+            +sizeCell('Size uncompressed', median.breakdown[contentType].bytesUncompressed)
+            +numberCell('Requests', median.breakdown[contentType].requests)
 
     h3 Request and size per domain
-    table(data-sortable, id='contentSizePerDomain')
-      +rowHeading(['Domain', 'size', 'requests', 'connections'])
-      each value, domain in median.domains
-        tr
-          td #{domain}
-          +sizeCell('size', median.domains[domain].bytes)
-          +numberCell('requests', median.domains[domain].requests)
-          +numberCell('connections', median.domains[domain].connections)
+    .responsive
+      table(data-sortable, id='contentSizePerDomain')
+        +rowHeading(['Domain', 'size', 'requests', 'connections'])
+        each value, domain in median.domains
+          tr
+            +numberCell('Domain', domain)
+            +sizeCell('Size', median.domains[domain].bytes)
+            +numberCell('Requests', median.domains[domain].requests)
+            +numberCell('Connections', median.domains[domain].connections)
