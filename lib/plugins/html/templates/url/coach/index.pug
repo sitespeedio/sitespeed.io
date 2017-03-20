@@ -118,7 +118,7 @@ script(type='text/javascript').
           each value, key in advice.info.resourceHints
             if value && value.length > 0
               tr
-                td(colspan='2').subtableheader #{key}
+                td.subtableheader(colspan='2') #{key}
               each url in value
                 tr
                   td.url(colspan='2') #{url}
