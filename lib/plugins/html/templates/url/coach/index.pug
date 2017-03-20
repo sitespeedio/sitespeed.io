@@ -71,9 +71,13 @@ script(type='text/javascript').
 
         +adviceInfo('Best practice advice','Your best practice score is perfect!', advice.bestpractice)
 
-        a#info
-        h2 Page info
+    a#info
+    h2 Page info
+    .row
+      .one-half.column
         table
+            tr
+              th(colspan='2') Page info
             tr
               td Title
               td #{advice.info.documentTitle}
@@ -107,16 +111,17 @@ script(type='text/javascript').
             tr
               td HTML vs AMP
               td #{advice.info.amp?'This is an AMP page':'Plain good HTML page'}
-        h3 Resource hints
+      .one-half.column
         table
+          tr
+            th(colspan='2') Resource Hints
           each value, key in advice.info.resourceHints
             if value && value.length > 0
               tr
-                td #{key}
-                td.url
-                  ul
-                    each url in value
-                      li #{url}
+                td(colspan='2').subtableheader #{key}
+              each url in value
+                tr
+                  td.url(colspan='2') #{url}
             else
               tr
                 td(colspan='2') No URLs for #{key}
