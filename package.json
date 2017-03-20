@@ -69,7 +69,7 @@
     "concurrent-queue": "7.0.1",
     "fast-stats": "0.0.3",
     "fs-extra": "2.1.2",
-    "gpagespeed": "3.0.0",
+    "gpagespeed": "4.0.2",
     "influx": "5.0.4",
     "intel": "1.1.2",
     "junit-report-builder": "1.1.1",
