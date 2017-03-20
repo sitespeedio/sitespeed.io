@@ -1,5 +1,6 @@
 include ../../_tableMixins
 
+a
 h2 WebPageTest
 p.small Metrics & data collected using #{options.webpagetest.host}.&nbsp;
   if wptRoot.summary
@@ -150,13 +151,25 @@ each view in ['firstView', 'repeatView']
               td Certificates size
               +sizeCell('certificate_bytes', median.certificate_bytes)
 
-      if (median.custom)
-        h5 Custom metrics
-        table
-          each key in median.custom
-            tr
-              td #{key}
-              td #{median[key]}
+      .row
+        .one-half.column
+          //- You need to have timeline or right trace categories to get the timings
+          if (median.chromeUserTiming)
+                table
+                  tr
+                    th(colspan='2') Chrome User Timings
+                  each timing in median.chromeUserTiming
+                    tr
+                      td #{timing.name}
+                      td #{timing.time}
+        .one-half.column
+          if (median.custom)
+            table
+              th(colspan='2') Custom metrics
+              each key in median.custom
+                tr
+                  td #{key}
+                  td #{median[key]}
 
     h3 Waterfall
     img.u-max-full-width(src= median.images.waterfall, alt='Waterfall view')
