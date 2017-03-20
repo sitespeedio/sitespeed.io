@@ -70,13 +70,34 @@ block content
               tr
                 td RUM Speed Index:
                 td #{d.browsertime.run.timings.rumSpeedIndex}
+            if !d.browsertime && d.webpagetest
+              tr
+                td Render (first view):
+                td #{d.webpagetest.run.firstView.render}
+              tr
+                td Speed Index (first view):
+                td #{d.webpagetest.run.firstView.SpeedIndex}
+              tr
+                td Visual Complete 85% (first view):
+                td #{d.webpagetest.run.firstView.visualComplete85}
+              tr
+                td Last Visual Change (first view):
+                td #{d.webpagetest.run.firstView.lastVisualChange}
+              tr
+                td Requests:
+                td #{d.webpagetest.run.firstView.requestsFull}
 
         .one-half.column
             //- No good way to detect if we have screenshots or not right now for a run
-            - screenshotName = 'data/screenshots/' + runIndex + '.png'
-            - var width = options.mobile ? 150 : '100%';
-            a(href=screenshotName)
-              img.screenshot(src=screenshotName, width=width, alt='Screenshot')
+            if d.browsertime
+              - screenshotName = 'data/screenshots/' + runIndex + '.png'
+              - var width = options.mobile ? 150 : '100%';
+              a(href=screenshotName)
+                img.screenshot(src=screenshotName, width=width, alt='Screenshot')
+            else if !d.browsertime && d.webpagetest
+              - screenshotName = 'data/screenshots/wpt-' + (Number(runIndex)+1) + '-firstView.png'
+              a(href=screenshotName)
+                img.screenshot(src=screenshotName, alt='Screenshot')
 
       if d.browsertime && d.browsertime.run && d.browsertime.run.har
         include ./waterfall/index.pug
