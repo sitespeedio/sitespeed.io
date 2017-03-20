@@ -182,7 +182,7 @@ each view in ['firstView', 'repeatView']
         +rowHeading(['Type', 'size', 'size uncompressed', 'requests'])
         each value, contentType in median.breakdown
           tr
-            +numberCell('Content Type', contentType)
+            td(data-title='Content Type') #{contentType}
             +sizeCell('Size', median.breakdown[contentType].bytes)
             +sizeCell('Size uncompressed', median.breakdown[contentType].bytesUncompressed)
             +numberCell('Requests', median.breakdown[contentType].requests)
@@ -193,7 +193,7 @@ each view in ['firstView', 'repeatView']
         +rowHeading(['Domain', 'size', 'requests', 'connections'])
         each value, domain in median.domains
           tr
-            +numberCell('Domain', domain)
+            td(data-title='Domain') #{domain}
             +sizeCell('Size', median.domains[domain].bytes)
             +numberCell('Requests', median.domains[domain].requests)
             +numberCell('Connections', median.domains[domain].connections)
