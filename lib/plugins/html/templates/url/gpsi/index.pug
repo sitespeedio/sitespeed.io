@@ -2,7 +2,55 @@ a
 h2 Google Page Speed Insights
 p.small Googles implementation of finding potential performance problems on your site.
 
-h4 Total performance score #{pageInfo.data.gpsi.pageSummary.ruleGroups.SPEED.score}
+- var gpsiSummary = pageInfo.data.gpsi.pageSummary
+
+h3 Page metrics
+.row
+  .one-half.column
+    table
+      thead
+        tr
+          th(colspan='2') Resources
+        tr
+          td Requests
+          +numberCell('', gpsiSummary.pageStats.numberResources)
+        tr
+          td Static Requests
+          +numberCell('', gpsiSummary.pageStats.numberStaticResources)
+        tr
+          td CSS Requests
+          +numberCell('', gpsiSummary.pageStats.numberCssResources)
+        tr
+          td JavaScript Requests
+          +numberCell('', gpsiSummary.pageStats.numberJsResources)
+        tr
+          td Hosts
+          +numberCell('', gpsiSummary.pageStats.numberHosts)
+  .one-half.column
+    table
+      thead
+        tr
+          th(colspan='2') Sizes
+        tr
+          td Total request size
+          +sizeCell('', gpsiSummary.pageStats.totalRequestBytes)
+        tr
+          td HTML size
+          +sizeCell('', gpsiSummary.pageStats.htmlResponseBytes)
+        tr
+          td Images size
+          +sizeCell('', gpsiSummary.pageStats.imageResponseBytes)
+        tr
+          td CSS size
+          +sizeCell('', gpsiSummary.pageStats.cssResponseBytes)
+        tr
+          td JavaScript size
+          +sizeCell('', gpsiSummary.pageStats.javascriptResponseBytes)
+        tr
+          td Others size
+          +sizeCell('', gpsiSummary.pageStats.otherResponseBytes)
+
+h3 Total performance score #{gpsiSummary.ruleGroups.SPEED.score}
 
 .responsive
   table
@@ -12,7 +60,7 @@ h4 Total performance score #{pageInfo.data.gpsi.pageSummary.ruleGroups.SPEED.sco
         th Summary
         th Impact
     tbody
-    each rule, name in pageInfo.data.gpsi.pageSummary.formattedResults.ruleResults
+    each rule, name in gpsiSummary.formattedResults.ruleResults
       if (rule.ruleImpact > 0)
         tr
           td(data-title='Name') #{rule.localizedRuleName}
