@@ -5,16 +5,37 @@ h2 PageXray
 p.small Xrays your page and let you know all about how the page is built.
 - var pagexray = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
 
-p The page uses #{pagexray.httpVersion}
+a#pagexray-summary
+.row
+  .one-half.column
+    table
+      th(colspan='2') Summary
+        tr
+          td HTTP version
+          td #{pagexray.httpVersion}
+        tr
+          td Total requests
+          +numberCell('', pagexray.requests)
+        tr
+          td Total domains
+          +numberCell('', pagexray.totalDomains)
+        tr
+          td Total transfer size
+          +sizeCell('', pagexray.transferSize)
+        tr
+          td Total content size
+          +sizeCell('', pagexray.contentSize)
+        tr
+          td Responses missing compression
+          +numberCell('', pagexray.missingCompression)
 
-a#requests-per-response-code
-h3 Requests per response code
-table
-  +rowHeading(['Response code', 'Total'])
-  each total, code in pagexray.responseCodes
-    tr
-      td #{code}
-      td #{total}
+  .one-half.column
+    table
+      th(colspan='2') Requests per response code
+      each total, code in pagexray.responseCodes
+        tr
+          td #{code}
+          td #{total}
 
 - totalContentSize = 0
 - totalTransferSize = 0
