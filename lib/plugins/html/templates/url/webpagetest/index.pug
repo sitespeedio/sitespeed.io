@@ -46,14 +46,15 @@ p.small Metrics & data collected using #{options.webpagetest.host}.&nbsp;
   .one-half.column
     img.u-max-full-width(src='data/screenshots/wpt-' + wptRun  + '-firstView.png', alt='Screenshot')
 
-- var harName = options.gzipHAR ? 'data/webpagetest.har.gz' : 'data/webpagetest.har'
-a.button.button-download(href=harName, download) Download HAR
-if options.webpagetest.timeline
-  - var tracePath = 'data/trace-' + wptRun  + '-wpt-firstView.json.gz'
-  a.button.button-download(href=tracePath, download) Download first view timeline
-  if wpt.repeatView
-    - var tracePathRepeat = 'data/trace-' + wptRun  + '-wpt-repeatView.json.gz'
-    a.button.button-download(href=tracePathRepeat, download) Download repeat view timeline
+.downloads
+  - var harName = options.gzipHAR ? 'data/webpagetest.har.gz' : 'data/webpagetest.har'
+  a.button.button-download(href=harName, download) Download HAR
+  if options.webpagetest.timeline
+    - var tracePath = 'data/trace-' + wptRun  + '-wpt-firstView.json.gz'
+    a.button.button-download(href=tracePath, download) Download first view timeline
+    if wpt.repeatView
+      - var tracePathRepeat = 'data/trace-' + wptRun  + '-wpt-repeatView.json.gz'
+      a.button.button-download(href=tracePathRepeat, download) Download repeat view timeline
 
 each view in ['firstView', 'repeatView']
   - var median = wpt[view];
