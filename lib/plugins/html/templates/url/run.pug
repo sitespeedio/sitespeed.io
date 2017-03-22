@@ -4,6 +4,8 @@ block content
   - var d = pageInfo.data
   - runNumber = Number(runIndex)+1
   - var daTitle = daurlAlias ? daurlAlias : daurl
+  - var downloadName = (daTitle + '-' + runNumber + '-' + timestamp).replace(/(https?\:\/\/)|( )|(:)/ig, '')
+
   h1 Run #{runNumber} summary
   h5.url
     a(href=daurl) #{decodeURIComponent(daTitle)}

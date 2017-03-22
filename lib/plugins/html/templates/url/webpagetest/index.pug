@@ -47,14 +47,17 @@ p.small Metrics & data collected using #{options.webpagetest.host}.&nbsp;
     img.u-max-full-width(src='data/screenshots/wpt-' + wptRun  + '-firstView.png', alt='Screenshot')
 
 .downloads
-  - var harName = options.gzipHAR ? 'data/webpagetest.har.gz' : 'data/webpagetest.har'
-  a.button.button-download(href=harName, download) Download HAR
+  - var harEnding = options.gzipHAR ? '.har.gz' : '.har'
+  - var harName = 'data/webpagetest' + harEnding
+  - var harDownloadName = downloadName + '-webpagetest-' + harEnding
+
+  a.button.button-download(href=harName, download=downloadName) Download HAR
   if options.webpagetest.timeline
     - var tracePath = 'data/trace-' + wptRun  + '-wpt-firstView.json.gz'
-    a.button.button-download(href=tracePath, download) Download first view timeline
+    a.button.button-download(href=tracePath, download=downloadName + 'trace-' + wptRun  + '-wpt-firstView.json.gz') Download first view timeline
     if wpt.repeatView
       - var tracePathRepeat = 'data/trace-' + wptRun  + '-wpt-repeatView.json.gz'
-      a.button.button-download(href=tracePathRepeat, download) Download repeat view timeline
+      a.button.button-download(href=tracePathRepeat, download=downloadName + 'trace-' + wptRun  + '-wpt-repeatView.json.gz') Download repeat view timeline
 
 each view in ['firstView', 'repeatView']
   - var median = wpt[view];
