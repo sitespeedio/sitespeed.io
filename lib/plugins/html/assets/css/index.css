@@ -570,7 +570,7 @@ td.offendingurl {
     top: -9999px;
     left: -9999px; }
   .responsive tr {
-    border: 4px solid #e1e1e1; }
+    border: 2px solid #e1e1e1; }
   .responsive td {
     /* Behave  like a "row" */
     border: none;
