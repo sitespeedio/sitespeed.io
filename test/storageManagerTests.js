@@ -1,12 +1,11 @@
 'use strict';
 
-const StorageManager = require('../lib/support/storageManager'),
-  os = require('os'),
-  moment = require('moment'),
-  expect = require('chai').expect;
+const resultsStorage = require('../lib/support/resultsStorage');
+const moment = require('moment');
+const expect = require('chai').expect;
 
-function createManager(url) {
-  return new StorageManager(url, moment(), {resultBaseDir: os.tmpdir()});
+function createManager(url, outputFolder) {
+  return resultsStorage(url, moment(), outputFolder).storageManager;
 }
 
 describe('storageManager', function() {
@@ -24,24 +23,10 @@ describe('storageManager', function() {
     });
   });
 
-  describe('#pathFromRootToPageDir', function() {
-    it('should create path from site root', function() {
-      const storageManager = createManager('http://www.foo.bar');
-      const path = storageManager.pathFromRootToPageDir('http://www.foo.bar');
-      expect(path).to.equal('pages/www.foo.bar/');
-    });
-
+  describe('#getStoragePrefix', function() {
     it('should create path from url', function() {
-      const storageManager = createManager('http://www.foo.bar');
-      const path = storageManager.pathFromRootToPageDir('http://www.foo.bar/x/y/z.html');
-      expect(path).to.equal('pages/www.foo.bar/x/y/z.html/');
+      const storageManager = createManager('http://www.foo.bar', '/tmp/sitespeed.io/foo');
+      expect(storageManager.getStoragePrefix()).to.equal('foo');
     });
-
-    it('should create path from url with query string', function() {
-      const storageManager = createManager('http://www.foo.bar');
-      const path = storageManager.pathFromRootToPageDir('http://www.foo.bar/x/y/z?foo=bar');
-      expect(path).to.equal('pages/www.foo.bar/x/y/z/query-115ffe20/');
-    });
-
   });
 });
