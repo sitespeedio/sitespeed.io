@@ -80,7 +80,7 @@ script(type='text/javascript').
               th(colspan='2') Page info
             tr
               td Title
-              td #{advice.info.documentTitle}
+              td.right #{advice.info.documentTitle}
             tr
               td Width
               td.number #{advice.info.documentWidth}
@@ -110,7 +110,7 @@ script(type='text/javascript').
               +sizeCell('', advice.info.sessionStorageSize)
             tr
               td HTML vs AMP
-              td #{advice.info.amp?'This is an AMP page':'Plain good HTML page'}
+              td.right #{advice.info.amp?'This is an AMP page':'Plain good HTML page'}
       .one-half.column
         table
           tr

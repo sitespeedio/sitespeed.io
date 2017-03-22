@@ -527,6 +527,9 @@ th {
 td.number {
   text-align: right; }
 
+td.right {
+  text-align: right; }
+
 /* Hack for long URLs in tables, please help us with a better way to do this! */
 td.url {
   overflow-wrap: break-word;
