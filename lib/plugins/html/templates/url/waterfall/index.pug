@@ -13,8 +13,10 @@ else
   include ./includeHARinHTML.pug
 
 .downloads
-  - var harName = options.gzipHAR ? 'data/browsertime.har.gz' : 'data/browsertime.har'
-  a.button.button-download(href=harName, download) Download HAR
+  - var harEnding = options.gzipHAR ? '.har.gz' : '.har'
+  - var harName = 'data/browsertime' + harEnding
+  - var harDownloadName = downloadName + harEnding
+  a.button.button-download(href=harName, download=harDownloadName) Download HAR
 
   if options.html.logDownloadLink
     a.button.button-download(href='../../logs/sitespeed.io.log', download) Download run log
