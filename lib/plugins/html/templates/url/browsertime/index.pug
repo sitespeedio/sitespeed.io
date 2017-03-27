@@ -1,12 +1,14 @@
-- var browsertime = pageInfo.data.browsertime.run || pageInfo.data.browsertime.pageSummary.browserScripts[run]
+- var browsertime = pageInfo.data.browsertime.run || pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex]
 - var timings = browsertime.timings;
 - var visualMetrics = browsertime.visualMetrics;
 - baseHelpURL = rootPath + 'help.html#';
 
 a
-h3 Browsertime
+h2 Browsertime
 
-p.small Collect timing metrics from your browser.
+p.small Collect timing metrics from your browser using&nbsp;
+  a(href='https://github.com/sitespeedio/browsertime') Browsertime
+  | .
 
 if options.browsertime.video
   include ./videoElement.pug

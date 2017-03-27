@@ -1,6 +1,14 @@
 a#waterfall
 h3 Waterfall
 
+//- on the summary page, display which run that was chosen for the HAR
+if medianRun
+  p.small Run&nbsp;
+    a(href='./' + medianRun.runIndex + '.html') #{(medianRun.runIndex + 1)}
+    | &nbsp;#{medianRun.name}
+    if !medianRun.default
+      | &nbsp;median
+
 if (options.html.showAllWaterfallSummary === true)
   p Choose HAR:
   select#page-selector
