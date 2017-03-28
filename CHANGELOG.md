@@ -15,6 +15,7 @@
 
 ### Changed
 * The default upload path in S3 buckets no longer includes the prefix 'sitespeed-result'
+* Set Graphite tags as arrays (--graphite.arrayTags) needed for Graphite 1.0
 
 ### Fixed
 * Waterfall graphs loaded in Safari iOS didn't work.
