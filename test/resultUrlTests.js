@@ -30,8 +30,13 @@ describe('resultUrls', function() {
       expect(resultUrls.reportSummaryUrl())
         .to.equal(`http://results.com/www.foo.bar/${timestampString}`);
     });
-    it('should create url with custom output folder', function() {
+    it('should create url with absolute output folder', function() {
       const resultUrls = createResultUrls('http://www.foo.bar', '/root/leaf', 'http://results.com');
+      expect(resultUrls.reportSummaryUrl())
+        .to.equal('http://results.com/leaf');
+    });
+    it('should create url with relative output folder', function() {
+      const resultUrls = createResultUrls('http://www.foo.bar', '../leaf', 'http://results.com');
       expect(resultUrls.reportSummaryUrl())
         .to.equal('http://results.com/leaf');
     });
@@ -42,8 +47,13 @@ describe('resultUrls', function() {
       expect(resultUrls.absoluteSummaryPageUrl('http://www.foo.bar/xyz'))
         .to.equal(`http://results.com/www.foo.bar/${timestampString}/pages/www.foo.bar/xyz/`);
     });
-    it('should create url with custom output folder', function() {
+    it('should create url with absolute output folder', function() {
       const resultUrls = createResultUrls('http://www.foo.bar', '/root/leaf', 'http://results.com');
+      expect(resultUrls.absoluteSummaryPageUrl('http://www.foo.bar/xyz'))
+        .to.equal('http://results.com/leaf/pages/www.foo.bar/xyz/');
+    });
+    it('should create url with relative output folder', function() {
+      const resultUrls = createResultUrls('http://www.foo.bar', '../leaf', 'http://results.com');
       expect(resultUrls.absoluteSummaryPageUrl('http://www.foo.bar/xyz'))
         .to.equal('http://results.com/leaf/pages/www.foo.bar/xyz/');
     });
@@ -54,8 +64,13 @@ describe('resultUrls', function() {
       expect(resultUrls.relativeSummaryPageUrl('http://www.foo.bar/xyz'))
         .to.equal('pages/www.foo.bar/xyz/');
     });
-    it('should create url with custom output folder', function() {
+    it('should create url with absolute output folder', function() {
       const resultUrls = createResultUrls('http://www.foo.bar', '/root/leaf', 'http://results.com');
+      expect(resultUrls.relativeSummaryPageUrl('http://www.foo.bar/xyz'))
+        .to.equal('pages/www.foo.bar/xyz/');
+    });
+    it('should create url with relative output folder', function() {
+      const resultUrls = createResultUrls('http://www.foo.bar', '../leaf', 'http://results.com');
       expect(resultUrls.relativeSummaryPageUrl('http://www.foo.bar/xyz'))
         .to.equal('pages/www.foo.bar/xyz/');
     });
