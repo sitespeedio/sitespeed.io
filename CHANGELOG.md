@@ -11,15 +11,10 @@
 * HTML tuning for smaller devices.
 * Added proxy parameters in the CLI from Browsertime.
 * Updated to [PerfCascade 1.2.2](https://github.com/micmro/PerfCascade/releases) (from 1.0.0)
-* Add new s3.path option, to override the default storage path in the S3 bucket.
-
-### Changed
-* The default upload path in S3 buckets no longer includes the prefix 'sitespeed-result'
 * Set Graphite tags as arrays (--graphite.arrayTags) needed for Graphite 1.0
 
 ### Fixed
 * Waterfall graphs loaded in Safari iOS didn't work.
-* Allow S3 upload even when using custom outputFolder.
 
 ## 4.7.0 2017-03-15
 ### Fixed
