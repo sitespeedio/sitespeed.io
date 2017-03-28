@@ -11,6 +11,7 @@
 * HTML tuning for smaller devices.
 * Added proxy parameters in the CLI from Browsertime.
 * Updated to [PerfCascade 1.2.2](https://github.com/micmro/PerfCascade/releases) (from 1.0.0)
+* Set Graphite tags as arrays (--graphite.arrayTags) needed for Graphite 1.0
 
 ### Fixed
 * Waterfall graphs loaded in Safari iOS didn't work.
