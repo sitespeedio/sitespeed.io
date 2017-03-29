@@ -1,4 +1,5 @@
 - var profile = options.mobile ? 'mobile' : 'desktop'
-p.small Tested #{timestamp} using #{h.cap(options.browsertime.browser)} #{h.get(options, 'browsertime.chrome.android.package', '')}
+- var runTime = pageInfo.data.browsertime.run ? pageInfo.data.browsertime.run.timestamp : timestamp
+p.small Tested #{runTime} using #{h.cap(options.browsertime.browser)} #{h.get(options, 'browsertime.chrome.android.package', '')}
   | #{options.preURL ? 'preURL ' + h.short(options.preURL, 60) + ' ': ''}
   | #{h.plural(options.browsertime.iterations, 'run')} with #{profile} profile and connectivity #{options.browsertime.connectivity.profile}.
