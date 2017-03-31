@@ -1,14 +1,14 @@
 ---
 layout: default
-title: Documentation for sitespeed.io 4.x
-description: Read about all you can do we with sitespeed.io.
+title: Documentation sitespeed.io 5.x
+description: Read about all you can do with sitespeed.io.
 keywords: tools, documentation, web performance
 nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: Documentation for the sitespeed.io.
+twitterdescription: Documentation for sitespeed.io.
 ---
 
-# Documentation v4
+# Documentation v5
 
 <img src="{{site.baseurl}}/img/logos/sitespeed.io.png" class="pull-right img-big" alt="Browsertime logo" width="200" height="214">
 
