@@ -3,7 +3,7 @@ layout: default
 title: Releasing with confidence
 description: How we work to keep sitespeed.io releases as bug free as possible.
 authorimage: /img/aboutus/peter.jpg
-intro: We release often and try to have as few bugs as possible (suprised) and we do that by running tests .
+intro: We release often and try to have as few bugs as possible (surprised!) and we do that by ...
 keywords: sitespeed.io, sitespeed, release, pipeline, test, slack
 nav: blog
 ---
