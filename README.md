@@ -71,7 +71,7 @@ There's a lot of things that we wanted to improve since 3.0. Here's some of the 
 
 * New HAR files rock! In the old version we use BrowserMobProxy as a proxy in front of the browser to collect the HAR. In the new version we collect the HAR directly from the browser. For Firefox we use the [HAR export trigger](https://github.com/firebug/har-export-trigger) and in Chrome we generates it from the performance log.
 
-* Stability: We have a new completely rewritten version of [Browsertime](https://github.com/tobli/browsertime) that makes it easier for us to catch errors from the browser, drivers and environment problems.  
+* Stability: We have a new completely rewritten version of [Browsertime](https://github.com/tobli/browsertime) that makes it easier for us to catch errors from the browser, drivers and environment problems.
 
 * Speed: Yep we dropped Java (it was needed for BrowserMobProxy) and most things are happening in parallel with the new version.
 
@@ -93,7 +93,7 @@ We have a [special page](HELP.md) for you!
 [travis-url]: https://travis-ci.org/sitespeedio/sitespeed.io
 [stars-url]: https://github.com/sitespeedio/sitespeed.io/stargazers
 [stars-image]: https://img.shields.io/github/stars/sitespeedio/sitespeed.io.svg?style=flat-square
-[downloads-image]: http://img.shields.io/npm/dm/sitespeed.io.svg?style=flat-square
+[downloads-image]: https://img.shields.io/npm/dt/sitespeed.io.svg?style=flat-square
 [downloads-url]: https://npmjs.org/package/sitespeed.io
 [docker-image]: https://img.shields.io/docker/pulls/sitespeedio/sitespeed.io.svg
 [docker-url]: https://hub.docker.com/r/sitespeedio/sitespeed.io/
