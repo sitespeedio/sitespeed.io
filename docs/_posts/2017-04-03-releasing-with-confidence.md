@@ -20,7 +20,7 @@ With all that said let us go back in time and see how we did things from the beg
 The first years I was doing the development by myself and getting very few PRs. Keeping the bug level low was simply a matter of how much time I spent testing most use cases before each release. It worked ok, I had a list of URLs in a shell script that I manually started before each release to check that they worked, some bugs were found before the release, and some later on. It worked fairly well for the code base at that time.
 
 ## Today
-We are a three member team, with more PRs (but we want even more!), and a larger code base since we have five web performance tools that we built. We needed to have a more automated setup today to be able to release often.
+We are a [three member team]({{site.baseurl}}/aboutus/), with more PRs (but we want even more!), and a larger code base since we have five web performance tools that we built. We needed to have a more automated setup today to be able to release often.
 
 ### Workflow
 Let us show exactly what happens when we push code:
@@ -50,7 +50,7 @@ Let us show exactly what happens when we push code:
 
  You can checkout the result on [dashboard.sitespeed.io](https://dashboard.sitespeed.io) and by clicking the *runs* checkbox you can access the HTML result pages served by S3. The code that generates these metrics are always the latest commits. You can always check yourself how we are doing :)
 
- ![Go from Grafana to S3 HTML result]({{site.baseurl}}/img/grafana-runs-to-s3.png)
+ [![Go from Grafana to S3 HTML result]({{site.baseurl}}/img/grafana-runs-to-s3.png)](https://dashboard.sitespeed.io/dashboard/db/page-summary?orgId=1)
  {: .img-thumbnail-center}
  <p class="image-info">
   <em class="small center">Go from Grafana to the HTML result uploaded in S3.</em>
@@ -82,4 +82,4 @@ If you have ideas on how we can test better, please [create an issue at Github](
 
 /Peter
 
-P.S We will soon release 5.0, it will be a blast!
+P.S We will soon release Browsertime 1.0 and sitespeed.io 5.0, it will be a blast!
