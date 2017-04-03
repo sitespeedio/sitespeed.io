@@ -16,7 +16,7 @@ If you don't find the answer here or in the [documentation]({{site.baseurl}}/doc
 {:toc}
 
 ## Should I use TSProxy or tc as connectivity engine?
-If you run our Docker containers (and you really should do that) it seems that you get more stable values using the tc. We use that on the [dashboard](https://dashboard.sitespeed.io). However the Chrome team uses TSProxy in some of their test tools, so it should be good. But testing on Linux/MacOS X it seems like the [numbers differs](https://github.com/WPO-Foundation/tsproxy/issues/10). Help us if you see the same!
+No should always use the Docker network setup described [here]({{site.baseurl}}/documentation/sitespeed.io/browsers/#change-connectivity).
 
 ## Chrome doesn't work on RHEL7 (or some other *nix flavor)
 Make Chrome run without the sandbox and it will work. Pass the following argument to sitespeed.io:
@@ -24,6 +24,8 @@ Make Chrome run without the sandbox and it will work. Pass the following argumen
 ~~~ bash
 --browsertime.chrome.args no-sandbox
 ~~~
+
+When you use our Docker container that argument is set by default.
 
 ## Running Sitespeed 4.0 with Docker + Proxy + Custom Login Script + Create Custom Folder (date/time stamped)?
 
