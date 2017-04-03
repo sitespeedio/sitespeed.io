@@ -10,7 +10,7 @@ nav: blog
 
 # Releasing with confidence
 
-Some people say we release sitespeed.io too often. That is partly true. We release often, but we don't release too often. :) We've been releasing new functions as they are completed for the last 4.5 years (sitespeed.io will turn 5 years in October!). We've had some bugs, but we have worked out a system where we usually discover them before we release.
+Some people say we release sitespeed.io too often. That is partly true. We release often, but we don't release too often :) We've been releasing new functions as they are completed for the last 4.5 years (sitespeed.io will turn 5 years in October!). We've had some bugs, but we have worked out a system where we usually discover them before we release.
 
 If you have trouble keeping track on when we update and release, please follow [us on Twitter](https://twitter.com/sitespeedio). We always tweet about the new release and if there are a serious bug fix we will highlight that.
 
@@ -42,8 +42,8 @@ Let us show exactly what happens when we push code:
 
  We use Digital Ocean to run [dashboard.sitespeed.io](https://dashboard.sitespeed.io) (Graphite/Grafana on one server and another server running sitespeed.io). From there we run sitespeed.io with the setup described [here](https://www.sitespeed.io/documentation/sitespeed.io/performance-dashboard/#get-the-metrics). We test 20+ URLs every hour:
 
-   * Five URLs for Wikipedia (both with Chrome and Firefox) at 5 runs each.
-   * Two URLs as logged in on Wikipedia and 3 URLs for a second view (first access one page to fill the browser cache and then measure the next URL).
+   * Five URLs for [Wikipedia](https://www.wikipedia.org/) (both with Chrome and Firefox) at 5 runs each.
+   * Two URLs as a logged in user on  [Wikipedia](https://www.wikipedia.org/) and 3 URLs for a second view (first access one page to fill the browser cache and then measure the next URL).
    * We test [https://www.sitespeed.io](https://www.sitespeed.io) with both Chrome & Firefox for five runs.
    * Three pages both for first and second view of the mobile version of Wikipedia.
    * We also test [https://www.ryanair.com/us/en/](https://www.ryanair.com/us/en/) and [https://www.nytimes.com/](https://www.nytimes.com/) to include websites with ads.
@@ -62,13 +62,13 @@ Having a server continuously running the latest code, pushing the metrics to Gra
 When we release (= a new version to npm and a new tag to the Docker hub) we use [this](https://github.com/sitespeedio/sitespeed.io/blob/master/release.sh) super simple release script. Before we release we always let the latest code run for a while on our test server and wait for errors on our Slack channel. We also manually browse the logs before a release and verify the HTML result pages on S3.
 
 ### How you should upgrade sitespeed.io
-If you use Docker (and you should) make sure that you run a tagged versions and by tag we don't mean latest. Use a version tag guarantees you are running that exact version. If you use the latest tag you can accidentally update sitespeed.io.
+If you use Docker (and you should) make sure that you run a tagged versions and by tag we don't mean latest. Pull by setting the versiom number just like this:
 
 ~~~bash
 $ docker pull sitespeedio/sitespeed.io:4.7.0
 ~~~
 
-When when you upgrade, read the [changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) and Docker pull the new version and then change your run script/yml file (or whatever you use to start sitespeed.io).
+When you upgrade, read the [changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) and Docker pull the new version and then change your run script/yml file (or whatever you use to start sitespeed.io) so that it matches the new version number.
 
 
 ## What can we do better
