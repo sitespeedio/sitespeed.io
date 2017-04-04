@@ -2,14 +2,12 @@ language: node_js
 node_js:
 - '6'
 - '7'
-env:
-  - CXX=g++-4.8
 sudo: required
 dist: trusty
 cache:
   apt: true
   directories:
-    - node_modules
+  - node_modules
 addons:
   apt:
     sources:
@@ -18,24 +16,29 @@ addons:
     packages:
     - g++-4.8
     - google-chrome-stable
-  firefox: "latest"
+  firefox: latest
 before_install:
 - firefox --version 2>/dev/null
 - google-chrome --product-version
 - export DISPLAY=:99.0
-- "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1600x1024x16"
+- /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile
+  --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1600x1024x16
 script:
 - npm run travis
 - npm run build:css && test -z "$(git status --porcelain lib/plugins/html/assets/css/index.css)"
-- bin/sitespeed.js -b firefox -n 2 http://www.browsertime.net
-- bin/sitespeed.js -b chrome -n 2 https://www.sitespeed.io --preScript test/prepostscripts/preSample.js --postScript test/prepostscripts/postSample.js
-- bin/sitespeed.js -b chrome -n 2 https://www.sitespeed.io --webpagetest.key $WPTKEY
-
+- bin/sitespeed.js -b firefox -n 2 --budget.configPath test/budget.json https://www.sitespeed.io/
+- bin/sitespeed.js -b chrome -n 2 https://www.sitespeed.io/ --preScript test/prepostscripts/preSample.js
+  --postScript test/prepostscripts/postSample.js
+- bin/sitespeed.js -b chrome -n 2 --browsertime.chrome.dumpTraceCategoriesLog https://www.sitespeed.io/
+  --webpagetest.key $WPTKEY
+- node test/runWithoutCli.js
 env:
   global:
+  - CXX=g++-4.8
   - secure: ZCqHD+/PhHNVFWoqir66Xd9YeJRcTHDJYvNL9j4+GTKDEI1h94twhAjQ7Z9DhlCnXwL1lsfEcIjvNCWd3ir/FNy2oZsUzu6kMpFF/niugurFbS551moJ2ObNEfOdj93/sTo4UWH2MZouC9eYeuj1vNYbAev6wBIptL95X/ArldQ=
   - secure: ZmEirO6J+rY+6T6eQWRNxqiqRNOYJktqQWaeUDR6WvzoR80oPdgKoNRS012dk4aCGr2+Dxf/KP6Iu2qbDE3YP3QD7PhoexicTVB6MTl81hZfX/eN0lt4lZknTYtjnAAWQB/aWAM6OVLjh8rAzq9PTBzl5EtAeMMJWmnhz6r+cLc=
-
 notifications:
   slack:
-    secure: Bo/bgmtFVGj6I2XnkvERfGnoM+t73WQSsP5eMlGM0jhUSKPqIc7Hf2zjYil3amMY3awFnoA6prILcMBzyUURj3jc5VRsWBCf6aQZ3bM+xzAcuTMcoiAKS7Ru1HQj1WY8G7VycDWuNeF8dCT0kt2QhcSneAUQ0qqyclWjcOK22kw=
+    on_success: change
+    on_failure: always
+    secure: 3Ca5MzTVkgeZDKk7xuiXnGnl0u4UgBXQtn72xIBwb1nked0JSdwZ4MVgNTVRTlIvwbTdTaYcTo7Pm4+rSrfFx2T1juawq3TkUStJ4AmZHH2gGrAr46snEauWCovHmgo3mMAOwz3fJknz8VfIu7WmtiCH/GO9h20aNmjE1UT3pTE=

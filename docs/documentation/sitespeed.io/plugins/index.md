@@ -58,10 +58,10 @@ $ sitespeed.io https://www.sitespeed.io --plugins.disable html screenshot --plug
 ## Add a plugin
 You can also add a plugin. Plugins you create yourself, plugins others has created or plugins that are not enabled by default.
 
-There's a plugin bundled with sitespeed.io called *analysisStorer* plugin that isn't enabled by default. It stores the original JSON data from all analyzers (from Browsertime, Coach data, WebPageTest etc) to disk. You can enable it like this:
+There's a plugin bundled with sitespeed.io called *analysisstorer* plugin that isn't enabled by default. It stores the original JSON data from all analyzers (from Browsertime, Coach data, WebPageTest etc) to disk. You can enable it like this:
 
 ~~~ bash
-$ sitespeed.io https://www.sitespeed.io --plugins.load analysisStorer
+$ sitespeed.io https://www.sitespeed.io --plugins.load analysisstorer
 ~~~
 
 If you want to run plugins that you created yourself or shared from others, you can either install the plugin using npm (locally) and load it by name or point out the directory where the plugin lives.
@@ -70,18 +70,38 @@ If you want to run plugins that you created yourself or shared from others, you 
 $ sitespeed.io https://www.sitespeed.io --plugins.load ../my/super/plugin
 ~~~
 
-### Plugin in Docker
+## Plugins in Docker
 
-If you run in Docker you need to mount your plugin as a volume. Practically you should clone your repo on your server and then mount it like this.
+If you run in Docker and you should. :-) You should mount your plugin directory as a volume. This is the recommended best practice. Practically you should clone your repo on your server and then mount it like this.
 
 ~~~ bash
 docker run -v /Users/peter/git/myplugin/:/myplugin sitespeedio/sitespeed.io -b firefox --plugins.load /myplugin -n 1 https://www.sitespeed.io/
 ~~~
 
-# Create your own plugin
+If you want to create an image of sitespeedio with your plugins pre-baked for sharing you can also do so using the following Dockerfile.
+
+~~~ bash
+FROM sitespeedio/sitespeed.io:<insert version here>
+
+COPY <path to your plugin> /my-custom-plugin
+~~~
+
+Then build the docker image
+
+~~~ bash
+docker build -t my-custom-sitespeedio ./plugins
+~~~
+
+Finally you can run it the same way as mentioned above without the volume mount.
+
+~~~ bash
+docker run my-custom-sitespeedio firefox --plugins.load /my-custom-plugin --my-custom-plugin.option test -n 1 https://www.sitespeed.io/
+~~~
+
+## Create your own plugin
 You can create your own plugin! Share it with others by publish it to npm or just use Github.
 
-## Basic structure
+### Basic structure
 Your plugin needs to follow this structure.
 
 ~~~ javascript
@@ -181,5 +201,5 @@ const messageMaker = require('sitespeed.io/lib/support/messageMaker');
 ### close(options, errors)
 When all URLs is analyzed, the close function is called once for each plugin. You can use that to store data that you collected.
 
-### What's missing
+## What's missing
 There's no way for a plugin to tell the CLI about what type of configuration/options that's needed, but there's an [issue](https://github.com/sitespeedio/sitespeed.io/issues/1065) for that.

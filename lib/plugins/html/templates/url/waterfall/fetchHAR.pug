@@ -1,0 +1,91 @@
+.loader#output
+script(src= rootPath + 'js/fetch.min.js')
+script(src= rootPath + 'js/perf-cascade.min.js')
+script(type='text/javascript').
+  var outputHolderEl = document.getElementById("output");
+  var pageSelectorEl = document.getElementById("page-selector");
+  var legendHolderEl = document.getElementById("legend-holder");
+  var options = {
+    rowHeight: 23,
+    showAlignmentHelpers : false,
+    showIndicatorIcons: false,
+    showMimeTypeIcon: true,
+    leftColumnWith: 30,
+    legendHolder: legendHolderEl,
+    pageSelector: pageSelectorEl,
+    selectedPage: #{runIndex || medianRun.runIndex}
+  };
+if options.gzipHAR
+    script(src= rootPath + 'js/gunzip.min.js')
+    script(type='text/javascript').
+      if (window["fetch"]) {
+          window["fetch"]('data/browsertime.har.gz')
+          .then(f => f.arrayBuffer()).then(arrayBuffer => {
+            var byteArray = new Uint8Array(arrayBuffer);
+            var gunzip = new Zlib.Gunzip(byteArray);
+            var decompressedArray = gunzip.decompress();
+            var string = '';
+            // only way to make it work on Safari iOS?
+            try {
+              string = new TextDecoder("utf-8").decode(decompressedArray);
+            }
+            catch(e) {
+              /* utf.js - UTF-8 <=> UTF-16 convertion
+               *
+               * Copyright (C) 1999 Masanao Izumo <iz@onicos.co.jp>
+               * Version: 1.0
+               * LastModified: Dec 25 1999
+               * This library is free.  You can redistribute it and/or modify it.
+               */
+
+              function Utf8ArrayToStr(array) {
+                  var out, i, len, c;
+                  var char2, char3;
+
+                  out = "";
+                  len = array.length;
+                  i = 0;
+                  while(i < len) {
+                  c = array[i++];
+                  switch(c >> 4)
+                  {
+                    case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:
+                      // 0xxxxxxx
+                      out += String.fromCharCode(c);
+                      break;
+                    case 12: case 13:
+                      // 110x xxxx   10xx xxxx
+                      char2 = array[i++];
+                      out += String.fromCharCode(((c & 0x1F) << 6) | (char2 & 0x3F));
+                      break;
+                    case 14:
+                      // 1110 xxxx  10xx xxxx  10xx xxxx
+                      char2 = array[i++];
+                      char3 = array[i++];
+                      out += String.fromCharCode(((c & 0x0F) << 12) |
+                                     ((char2 & 0x3F) << 6) |
+                                     ((char3 & 0x3F) << 0));
+                      break;
+                  }
+                  }
+
+                  return out;
+              }
+              string = Utf8ArrayToStr(decompressedArray);
+            }
+            var har = JSON.parse(string);
+            var perfCascadeSvg = perfCascade.fromHar(har, options);
+            document.getElementById('output').classList.remove('loader');
+            outputHolderEl.appendChild(perfCascadeSvg);
+          })
+      }
+else
+    script(type='text/javascript').
+      if (window["fetch"]) {
+       window["fetch"]('data/browsertime.har')
+       .then(f => f.json()).then(har => {
+         var perfCascadeSvg = perfCascade.fromHar(har, options);
+         document.getElementById('output').classList.remove('loader');
+         outputHolderEl.appendChild(perfCascadeSvg);
+       })
+      }

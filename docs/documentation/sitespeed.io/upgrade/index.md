@@ -23,6 +23,8 @@ The keys in Graphite has a new structure. The reason is that we wants to have a 
 ## CLI mapping
 A lot changed in the CLI and the easiest way for you is just to run sitespeed.io with <code>--help</code> to see what you can use. You can also check this mapping.
 
+<div id="upgradeTable" markdown="1">
+
 | 3.x      | 4.0         | Description |
 |:------------|:-------------------|:-------------|
 | `-u <URL>, --url <URL>` | N/A     | The start url that will be used when crawling. |
@@ -76,7 +78,7 @@ A lot changed in the CLI and the easiest way for you is just to run sitespeed.io
 | `--graphitePort <INTEGER>` | `--graphite.port <INTEGER>` | The Graphite port.  [2003] |
 | `--graphiteNamespace <NAMESPACE>` | `--graphite.namespace <NAMESPACE>` | The namespace of the data sent to Graphite.  [sitespeed.io] |
 | `--graphiteData` | `--metrics.filter` | Choose which data to send to Graphite by a comma separated list. Default all data is sent. [summary,rules,pagemetrics,timings,requests,domains]  [all] |
-| `--graphiteUseQueryParameters` | `--graphite.includeQueryParams` | Choose if you want to use query paramaters from the URL in the Graphite keys or not |
+| `--graphiteUseQueryParameters` | `--graphite.includeQueryParams` | Choose if you want to use query parameters from the URL in the Graphite keys or not |
 | `--graphiteUseNewDomainKeyStructure` | N/A | Use the updated domain section when sending data to Graphite "http.www.sitespeed.io" to "http.www_sitespeed_io" (issue #651) |
 | `--gpsiKey` | `--gpsi.key` | Your Google API Key, configure it to also fetch data from Google Page Speed Insights. |
 | `--noYslow` | N/A | Set to true to turn off collecting metrics using YSlow. |
@@ -89,6 +91,8 @@ A lot changed in the CLI and the easiest way for you is just to run sitespeed.io
 | `--requestHeaders <FILE>|<HEADER>` | N/A | Any request headers to use, a file or a header string with JSON form of {"name":"value","name2":"value"}. Not supported for WPT & GPSI. |
 | `--postURL <URL>` | N/A | The full URL where the result JSON will be sent by POST. Warning: Testing many pages can make the result JSON massive. |
 | `--phantomjsPath <PATH>` | N/A | The full path to the phantomjs binary, to override the supplied version |
+
+</div>
 
 ## Docker
 

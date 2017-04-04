@@ -1,12 +1,10 @@
-/*! github.com/micmro/PerfCascade Version:0.2.11 (10/12/2016) */
-
-* {box-sizing: border-box;}
-
-#output {margin: 2em 0; font-size: 12px; line-height: 1em;}
+/*! github.com/micmro/PerfCascade Version:0.5.0 (18/02/2017) */
+.water-fall-chart {width:100%; overflow: visible; font-size: 12px; line-height: 1em;}
+.water-fall-chart * {box-sizing: border-box;}
+.water-fall-chart button {cursor: pointer;}
 
 .water-fall-holder {fill:#ccc;}
 
-svg.water-fall-chart {width:100%; overflow: visible;}
 .water-fall-chart .left-fixed-holder {overflow: visible;}
 .water-fall-chart .marker-holder {width:100%;}
 .water-fall-chart .line-holder {stroke-width:1; stroke: #ccc; stroke-opacity:0.5;}
@@ -22,7 +20,7 @@ svg.water-fall-chart {width:100%; overflow: visible;}
 .water-fall-chart .line-end.active,
 .water-fall-chart .line-start.active {display: block;}
 
-.water-fall-chart .mark-holder text {-webkit-writing-mode: tb; writing-mode:vertical-lr; writing-mode: tb;}
+.water-fall-chart .mark-holder text {writing-mode:vertical-lr;}
 
 .left-fixed-holder .label-full-bg {fill: #fff; opacity: 0.9}
 
@@ -30,6 +28,7 @@ svg.water-fall-chart {width:100%; overflow: visible;}
 .time-scale line.sub-second-line {stroke: #ccc; opacity: 0.75; stroke-width:0.50;}
 .time-scale text {font-weight:bold;}
 
+.row-item {cursor: pointer}
 .row-item .even {fill: #ccc; opacity: 0.05;}
 .row-item .odd {fill: #000; opacity: 0.05;}
 .row-item:hover .odd,
@@ -56,7 +55,7 @@ svg.water-fall-chart {width:100%; overflow: visible;}
 .row-item.status3xx:hover .odd {opacity: 0.5}
 
 
-.lables { overflow: hidden;}
+.labels { overflow: hidden;}
 
 /*block colours for MIME types*/
 .block-css {fill: #a6d18f;}
@@ -129,14 +128,19 @@ svg.water-fall-chart {width:100%; overflow: visible;}
 .info-overlay-holder body .wrapper { height: 450px; width: 100%; overflow: scroll;}
 
 /* Info overlay HTML - header */
-.info-overlay-holder header {color: #fff; box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.25);}
+.info-overlay-holder header {position: relative; box-shadow: 0px 0px 2px 2px rgba(0,0,0,0.25);}
+.info-overlay-holder header,
+.info-overlay-holder header a,
+.info-overlay-holder header button {color: #fff; text-decoration: none;}
+.info-overlay-holder header a:hover,
+.info-overlay-holder header a:focus {text-decoration: underline;}
 .info-overlay-holder .requestID {font-weight: bold;}
-.info-overlay-holder h3 {font-size: 1.1em; padding: 1em; margin:0; font-weight: normal;}
+.info-overlay-holder h3,
+.info-overlay-holder h3 a {font-size: 1.1em; padding: 1em; margin:0; font-weight: normal;}
 .info-overlay-holder h3 strong {font-size: 1.1em;}
 .info-overlay-holder .tab-nav ul {margin: 0; padding: 0;}
 .info-overlay-holder .tab-nav li {margin: 0; padding: 0; display: inline-block;}
-.info-overlay-holder button { color: #fff; background: transparent; outline:0; border:0; border-bottom: solid 2px transparent;
-  padding: 0.5em 1em; margin:0 0.25em;}
+.info-overlay-holder button { background: transparent; outline:0; border:0; border-bottom: solid 2px transparent; padding: 0.5em 1em; margin:0 0.25em;}
 .info-overlay-holder li:first-child  button {margin-left: 1em;}
 .info-overlay-holder button:focus,.info-overlay-holder button:hover {border-color: rgba(255,255,255, 0.6);}
 .info-overlay-holder button.active {border-color: #fff; cursor: default;}
@@ -149,13 +153,16 @@ svg.water-fall-chart {width:100%; overflow: visible;}
 
 .info-overlay-holder .tab {float: left; width:100%; height: 350px; padding:12px 12px 24px;}
 .info-overlay-holder .tab h2 {font-size: 1.2em; margin:0.5em 0 0; padding: 0.5em 0 0.5em 1em; clear: both; border-top: solid 1px #efefef;}
-.info-overlay-holder .tab pre {overflow-y: hidden;}
+.info-overlay-holder .tab h2:first-child {border-top: 0; padding-top: 0;}
+.info-overlay-holder .tab pre {overflow-y: hidden; width:100%; min-height: 100%;}
 .info-overlay-holder .tab .preview {width: auto; max-width: 100%; max-height: 500px; border: solid 1px #666;}
 .info-overlay-holder .tab dl:after {content: ""; display: table; clear: both;}
+.info-overlay-holder .tab.raw-data {padding: 0;}
+.info-overlay-holder .tab.raw-data pre {padding:12px 12px 24px;}
 
 /** Legend */
 .resource-legend { margin: 0; padding: 0; font-size: 0.75em; line-height: 1.5em; display: inline-block;}
-.resource-legend li {margin: 0 1em 0 0; padding: 0; white-space: nowrap; display: inline-block;}
+.resource-legend li {margin: 0 1em 1em 0; padding: 0; white-space: nowrap; display: inline-block;}
 .resource-legend li:before {content:''; width: 1em; height: 1em; margin: 0 0.5em 0 0; vertical-align: text-top; display: inline-block; }
 
 .resource-legend .legend-blocked:before { background: #aaa;}

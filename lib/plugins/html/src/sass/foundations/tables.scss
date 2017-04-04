@@ -42,6 +42,10 @@ td.number {
   text-align: right;
 }
 
+td.right {
+  text-align: right;
+}
+
 /* Hack for long URLs in tables, please help us with a better way to do this! */
 td.url {
   overflow-wrap: break-word;
@@ -92,7 +96,7 @@ td.offendingurl {
     left: -9999px;
   }
 
-  .responsive tr { border: 4px solid $color--grey; }
+  .responsive tr { border: 2px solid $color--grey; }
 
   .responsive td {
     /* Behave  like a "row" */

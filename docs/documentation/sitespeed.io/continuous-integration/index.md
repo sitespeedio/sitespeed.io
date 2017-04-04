@@ -37,6 +37,9 @@ docker run --privileged -v ${WORKSPACE}:/sitespeed.io sitespeedio/sitespeed.io -
 ![HTML reports]({{site.baseurl}}/img/html-reports.png)
 {: .img-thumbnail}
 
+ The HTML result pages runs Javascript so you need to change the [Jenkins Content Security Policy](https://wiki.jenkins-ci.org/display/JENKINS/Configuring+Content+Security+Policy) for them to work with the plugin.
+
+ When you start Jenkins make sure to set the environment variable <code>-Dhudson.model.DirectoryBrowserSupport.CSP="sandbox allow-scripts; style-src 'unsafe-inline' *;script-src 'unsafe-inline' *;"</code>.
 
 * If you want to break your build, you should generate a JUnit XML and use the built in post task *Publish JUnit test result report*. Make sure to make the budget file available inside the Docker container. In this example we have it inside the Jenkins workspace.
 
@@ -57,4 +60,4 @@ We have an example project for setting up Travis [https://github.com/sitespeedio
 Checkout the [grunt plugin](https://github.com/sitespeedio/grunt-sitespeedio)!
 
 ## Gulp plugin
-Checkout Ankit Singhals [gulp plugin](https://github.com/dreamzmaster/gulp-sitespeedio) (hopefully supporting sitespeed.io 4.0 soon). 
+Checkout Ankit Singhals [gulp plugin](https://github.com/dreamzmaster/gulp-sitespeedio) (hopefully supporting sitespeed.io 4.0 soon).

@@ -31,7 +31,9 @@ mixin adviceInfo(name, perfectScore, node)
 
 a
 h2 Coach
-p.small The coach helps you find performance problems on your web page using web performance best practice rules. And gives you advice on accessibility and best practices.
+p.small
+  a(href='https://github.com/sitespeedio/coach') The coach
+  | &nbsp;helps you find performance problems on your web page using web performance best practice rules. And gives you advice on accessibility and best practices.
 
 script(type='text/javascript').
   function toggleRow(toggleElement) {
@@ -47,7 +49,8 @@ script(type='text/javascript').
   .column
     .row
       .four.columns
-        img.u-max-full-width(src= rootPath + 'img/coach.png', alt='I am the coach')
+        a(href='https://github.com/sitespeedio/coach')
+          img.u-max-full-width(src= rootPath + 'img/coach.png', alt='I am the coach')
       .eight.columns
         h3 Coach score
         ul
@@ -71,12 +74,16 @@ script(type='text/javascript').
 
         +adviceInfo('Best practice advice','Your best practice score is perfect!', advice.bestpractice)
 
-        a#info
-        h2 Page info
+    a#info
+    h2 Page info
+    .row
+      .one-half.column
         table
             tr
+              th(colspan='2') Page info
+            tr
               td Title
-              td #{advice.info.documentTitle}
+              td.right #{advice.info.documentTitle}
             tr
               td Width
               td.number #{advice.info.documentWidth}
@@ -96,6 +103,9 @@ script(type='text/javascript').
               td Iframes
               td.number #{advice.info.iframes}
             tr
+              td Script tags
+              td.number #{advice.info.scripts}
+            tr
               td Local storage
               +sizeCell('', advice.info.localStorageSize)
             tr
@@ -103,17 +113,18 @@ script(type='text/javascript').
               +sizeCell('', advice.info.sessionStorageSize)
             tr
               td HTML vs AMP
-              td #{advice.info.amp?'This is an AMP page':'Plain good HTML page'}
-        h3 Resource hints
+              td.right #{advice.info.amp?'This is an AMP page':'Plain good HTML page'}
+      .one-half.column
         table
+          tr
+            th(colspan='2') Resource Hints
           each value, key in advice.info.resourceHints
             if value && value.length > 0
               tr
-                td #{key}
-                td.url
-                  ul
-                    each url in value
-                      li #{url}
+                td.subtableheader(colspan='2') #{key}
+              each url in value
+                tr
+                  td.url(colspan='2') #{url}
             else
               tr
                 td(colspan='2') No URLs for #{key}

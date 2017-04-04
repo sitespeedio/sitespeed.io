@@ -53,7 +53,7 @@ Checkout the [examples](https://github.com/sitespeedio/browsertime/tree/master/d
 
 ## How does it work
 
-Browsertime uses Selenium NodeJS to drive the browser. It starts the browser, load a URL, executes configurable Javacsripts to collect metrics, collect a HAR file.
+Browsertime uses Selenium NodeJS to drive the browser. It starts the browser, load a URL, executes configurable Javascripts to collect metrics, collect a HAR file.
 
 To get the HAR from Firefox we use the [HAR Export Trigger](https://github.com/firebug/har-export-trigger) and Chrome we parse the timeline log and generates the HAR file.
 

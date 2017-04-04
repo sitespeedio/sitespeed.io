@@ -34,6 +34,10 @@
   background-color: #d9534f;
 }
 
+.info {
+  background-color: $color--blue;
+}
+
 ul.menu {
   list-style: none;
   font-size: 125%;
@@ -43,6 +47,10 @@ ul.menu {
 .errors {
   margin-bottom: 1.333em;
   background: lightpink;
+}
+
+.subtableheader {
+ background: #FFE3EB;
 }
 
 /* Large */

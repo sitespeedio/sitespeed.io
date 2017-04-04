@@ -109,9 +109,32 @@ max-width: 100%;
 height: auto;
 }
 
+.img-thumbnail-center {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.img-thumbnail-center img {
+  max-width: 600px;
+  padding: 4px;
+  line-height: 1.428571429;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  display: inline-block;
+  height: auto;
+}
+
 .small {
   font-size: 0.8em;
   line-height: 1.2em;
+}
+
+.image-info {
+  text-align: center;
+  margin-top: 0px;
 }
 
 footer ul {
@@ -209,4 +232,8 @@ blockquote span {
 blockquote span:before {
   content : "-";
   margin-right : 3px;
+}
+
+#upgradeTable {
+  overflow-x: auto;
 }

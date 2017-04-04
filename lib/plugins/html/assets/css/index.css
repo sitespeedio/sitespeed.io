@@ -527,6 +527,9 @@ th {
 td.number {
   text-align: right; }
 
+td.right {
+  text-align: right; }
+
 /* Hack for long URLs in tables, please help us with a better way to do this! */
 td.url {
   overflow-wrap: break-word;
@@ -567,7 +570,7 @@ td.offendingurl {
     top: -9999px;
     left: -9999px; }
   .responsive tr {
-    border: 4px solid #e1e1e1; }
+    border: 2px solid #e1e1e1; }
   .responsive td {
     /* Behave  like a "row" */
     border: none;
@@ -720,6 +723,17 @@ pre > code {
     color: #ffffff;
     background-color: #0087be;
     border-color: #0087be; }
+
+.button-download {
+  color: #ffffff;
+  background-color: #ec971f;
+  border-color: #eb9316;
+  padding: 0 10px;
+  margin-right: 1rem; }
+  .button-download:hover, .button-download:focus, .button-download:active {
+    color: #ffffff;
+    background-color: #e38d13;
+    border-color: #da8813; }
 
 .navgrid {
   width: 100%;
@@ -886,6 +900,9 @@ a.summaries {
 .error {
   background-color: #d9534f; }
 
+.info {
+  background-color: #0095d2; }
+
 ul.menu {
   list-style: none;
   font-size: 125%;
@@ -894,6 +911,9 @@ ul.menu {
 .errors {
   margin-bottom: 1.333em;
   background: lightpink; }
+
+.subtableheader {
+  background: #FFE3EB; }
 
 /* Large */
 .large {
@@ -911,21 +931,21 @@ ul.menu {
   -moz-hyphens: auto;
   hyphens: auto; }
 
-/*! github.com/micmro/PerfCascade Version:0.2.11 (10/12/2016) */
-* {
-  box-sizing: border-box; }
-
-#output {
-  margin: 2em 0;
+/*! github.com/micmro/PerfCascade Version:0.5.0 (18/02/2017) */
+.water-fall-chart {
+  width: 100%;
+  overflow: visible;
   font-size: 12px;
   line-height: 1em; }
 
+.water-fall-chart * {
+  box-sizing: border-box; }
+
+.water-fall-chart button {
+  cursor: pointer; }
+
 .water-fall-holder {
   fill: #ccc; }
-
-svg.water-fall-chart {
-  width: 100%;
-  overflow: visible; }
 
 .water-fall-chart .left-fixed-holder {
   overflow: visible; }
@@ -970,9 +990,7 @@ svg.water-fall-chart {
   display: block; }
 
 .water-fall-chart .mark-holder text {
-  -webkit-writing-mode: tb;
-  writing-mode: vertical-lr;
-  writing-mode: tb; }
+  writing-mode: vertical-lr; }
 
 .left-fixed-holder .label-full-bg {
   fill: #fff;
@@ -989,6 +1007,9 @@ svg.water-fall-chart {
 
 .time-scale text {
   font-weight: bold; }
+
+.row-item {
+  cursor: pointer; }
 
 .row-item .even {
   fill: #ccc;
@@ -1040,7 +1061,7 @@ svg.water-fall-chart {
 .row-item.status3xx:hover .odd {
   opacity: 0.5; }
 
-.lables {
+.labels {
   overflow: hidden; }
 
 /*block colours for MIME types*/
@@ -1221,13 +1242,24 @@ svg.water-fall-chart {
 
 /* Info overlay HTML - header */
 .info-overlay-holder header {
-  color: #fff;
+  position: relative;
   box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.25); }
+
+.info-overlay-holder header,
+.info-overlay-holder header a,
+.info-overlay-holder header button {
+  color: #fff;
+  text-decoration: none; }
+
+.info-overlay-holder header a:hover,
+.info-overlay-holder header a:focus {
+  text-decoration: underline; }
 
 .info-overlay-holder .requestID {
   font-weight: bold; }
 
-.info-overlay-holder h3 {
+.info-overlay-holder h3,
+.info-overlay-holder h3 a {
   font-size: 1.1em;
   padding: 1em;
   margin: 0;
@@ -1246,7 +1278,6 @@ svg.water-fall-chart {
   display: inline-block; }
 
 .info-overlay-holder button {
-  color: #fff;
   background: transparent;
   outline: 0;
   border: 0;
@@ -1301,8 +1332,14 @@ svg.water-fall-chart {
   clear: both;
   border-top: solid 1px #efefef; }
 
+.info-overlay-holder .tab h2:first-child {
+  border-top: 0;
+  padding-top: 0; }
+
 .info-overlay-holder .tab pre {
-  overflow-y: hidden; }
+  overflow-y: hidden;
+  width: 100%;
+  min-height: 100%; }
 
 .info-overlay-holder .tab .preview {
   width: auto;
@@ -1315,6 +1352,12 @@ svg.water-fall-chart {
   display: table;
   clear: both; }
 
+.info-overlay-holder .tab.raw-data {
+  padding: 0; }
+
+.info-overlay-holder .tab.raw-data pre {
+  padding: 12px 12px 24px; }
+
 /** Legend */
 .resource-legend {
   margin: 0;
@@ -1324,7 +1367,7 @@ svg.water-fall-chart {
   display: inline-block; }
 
 .resource-legend li {
-  margin: 0 1em 0 0;
+  margin: 0 1em 1em 0;
   padding: 0;
   white-space: nowrap;
   display: inline-block; }
@@ -1375,6 +1418,11 @@ svg.water-fall-chart {
 
 .water-fall-chart .type-firstvisualchange .line-holder {
   stroke: #42f46e;
+  stroke-opacity: 1.0;
+  stroke-width: 3; }
+
+.water-fall-chart .type-visualcomplete85 .line-holder {
+  stroke: #ee7777;
   stroke-opacity: 1.0;
   stroke-width: 3; }
 
@@ -2853,4 +2901,59 @@ video::-webkit-media-text-track-display {
 
 .videoWrapper {
   margin-bottom: 2rem; }
+
+.loader,
+.loader:before,
+.loader:after {
+  background: #000000;
+  -webkit-animation: load1 1s infinite ease-in-out;
+  animation: load1 1s infinite ease-in-out;
+  width: 1em;
+  height: 4em; }
+
+.loader {
+  color: #000000;
+  text-indent: -9999em;
+  margin: 88px auto;
+  position: relative;
+  font-size: 11px;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s; }
+
+.loader:before,
+.loader:after {
+  position: absolute;
+  top: 0;
+  content: ''; }
+
+.loader:before {
+  left: -1.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s; }
+
+.loader:after {
+  left: 1.5em; }
+
+@-webkit-keyframes load1 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0;
+    height: 4em; }
+  40% {
+    box-shadow: 0 -2em;
+    height: 5em; } }
+
+@keyframes load1 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0;
+    height: 4em; }
+  40% {
+    box-shadow: 0 -2em;
+    height: 5em; } }
 
