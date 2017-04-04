@@ -23,8 +23,7 @@ docker-compose up --build grafana-setup
 ```
 
 ## Run Sitespeed.io
-The local Sitespeed.io container with Linux includes all dependencies for connection shaping
-(e.g. simulating 3G speeds), and recording videos.
+The local Sitespeed.io container with Linux making it easy to record videos.
 
 Other containers (such as graphite) can be referenced via name on the Docker internal network
 as in the following example.
@@ -34,7 +33,8 @@ docker-compose build sitespeed
 docker-compose run sitespeed http://www.sitespeed.io --graphite.host=graphite
 ```
 
-Send data to influxdb
+If you want to send data to influxdb:
+
 ```
 docker-compose run sitespeed http://www.idg.se --influxdb.host=influxdb --influxdb.database sitespeedio -n 1
 ```
