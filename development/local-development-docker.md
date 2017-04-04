@@ -33,3 +33,8 @@ as in the following example.
 docker-compose build sitespeed
 docker-compose run sitespeed http://www.sitespeed.io --graphite.host=graphite
 ```
+
+Send data to influxdb
+```
+docker-compose run sitespeed http://www.idg.se --influxdb.host=influxdb --influxdb.database sitespeedio -n 1
+```

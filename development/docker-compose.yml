@@ -1,7 +1,7 @@
 version: '2'
 services:
     sitespeed:
-        build: .
+        build: ../
         command: -V
         volumes:
             - ./sitespeed-result/:/sitespeed.io/sitespeed-result
