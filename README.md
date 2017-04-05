@@ -33,6 +33,7 @@ Collected metrics from a URL in Graphite/Grafana:
 <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/pagesummary-grafana.png">
 
 Video - easiest using Docker. This gif is optimized, the quality is much better IRL:
+
 <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/barack.gif">
 
 ## 4.0
