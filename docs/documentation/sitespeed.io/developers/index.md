@@ -19,12 +19,12 @@ twitterdescription: Hack on sitespeed.io
 ## Start
 Start by looking at the image of [how it all works]({{site.baseurl}}/documentation/sitespeed.io/how-it-all-works/). It seems like much, but it isn't that complicated.
 
-### Plugins
+## Plugins
 Everything in sitespeed.io (well almost everything) is a plugin. Each plugin will be called at startup, for each message sent in the application and then called when everything is finished.
 
 The [plugin structure]({{site.baseurl}}/documentation/sitespeed.io/plugins/#create-your-own-plugin) looks like that.
 
-### Analyzing a URL step by step
+## Analyzing a URL step by step
 The flow looks like this:
 
 1. You start the application and feed it with a URL/URLs.
@@ -33,7 +33,7 @@ The flow looks like this:
 4. When all URLs are finished, the plugins receive a "close" call to finalize and prepare their findings.
 5. Finish
 
-### Using Pug
+## Using Pug
 We use [Pug](https://pugjs.org) as template for the HTML. If you are used to debug with console.log we have a special feature for you. We pass on JSON to the template, so if you want to output the data structure in the HTML you can do that by just adding:
 
 ~~~
@@ -42,7 +42,10 @@ p #{JSON.stringify(pageInfo)}
 
 Where pageInfo is the data structure that you wanna inspect.
 
-### Contributing to the Documentation
+## Use sitespeed.io from NodeJS
+If you want to integrate sitespeed.io into your NodeJS application you can checkout how we do that in [our Grunt plugin](https://github.com/sitespeedio/grunt-sitespeedio/blob/master/tasks/sitespeedio.js). It is a working example :)
+
+## Contributing to the Documentation
 First make sure you have Bundler: <code>gem install bundler</code>
 
 You should probably upgrade your ruby gems too: <code>gem update --system</code>
@@ -53,7 +56,7 @@ To run the documentation server locally execute the following from within the /d
 
 Visit http://localhost:4000/ in the browser of your choice.
 
-### Debugging with Chrome
+## Debugging with Chrome
 You can debug sitespeed.io using Chrome and NodeJS > 6. Thanks [@moos](https://github.com/moos) for sharing.
 
 ~~~ bash
