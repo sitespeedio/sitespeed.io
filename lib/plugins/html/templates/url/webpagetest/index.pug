@@ -85,16 +85,19 @@ each view in ['firstView', 'repeatView']
               td Last Visual Change
               +numberCell('Last Visual Change', median.lastVisualChange)
         .one-half.column
-          table
-            tr
-              th(colspan='2') Visual Progress
-              - var lastProgress = -1
-            each frame in median.videoFrames
-              if lastProgress !== frame.VisuallyComplete
-                - lastProgress = frame.VisuallyComplete
-                tr
-                  td #{frame.VisuallyComplete}
-                  td #{frame.time} ms
+          if median.videoFrames
+            table
+              tr
+                th(colspan='2') Visual Progress
+                - var lastProgress = -1
+              each frame in median.videoFrames
+                if lastProgress !== frame.VisuallyComplete
+                  - lastProgress = frame.VisuallyComplete
+                  tr
+                    td #{frame.VisuallyComplete}
+                    td #{frame.time} ms
+          else
+            p Missing WebPageTest visual metrics
 
     a#timingsandpagemetrics
     h3 Timing and page metrics

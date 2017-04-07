@@ -1,5 +1,5 @@
 - var videoIndex = runIndex ? runIndex : 0;
-- var width = options.mobile ? 'max-width: 400px;' : 'width: 100%'
+- var width = options.mobile ? 'max-width: 400px;' : h.get(options, 'browsertime.chrome.android.package') ? 'max-width: 400px;' : 'width: 100%'
 
 a#video
 h3 Video

@@ -10,7 +10,7 @@
 * Better HTML page titles, showing what's tested and when, that makes it easier when you share URLs.
 * HTML tuning for smaller devices.
 * Added proxy parameters in the CLI from Browsertime.
-* Updated to [PerfCascade 1.2.2](https://github.com/micmro/PerfCascade/releases) (from 1.0.0)
+* Updated to [PerfCascade 1.4.0](https://github.com/micmro/PerfCascade/releases) (from 1.0.0)
 * Add new s3.path option, to override the default storage path in the S3 bucket.
 * Pickup timestamp from each run and display on each run page
 * Added possibility to set the graphite web host (--graphite.webHost)
