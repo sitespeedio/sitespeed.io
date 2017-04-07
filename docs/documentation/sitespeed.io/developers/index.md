@@ -42,7 +42,7 @@ You should probably upgrade your ruby gems too: <code>gem update --system</code>
 
 To run the documentation server locally execute the following from within the /docs directory after cloning the repo locally: <code>bundle install && bundle exec jekyll serve --baseurl ''</code>.
 
-Vist http://localhost:4000/ in the browser of your choice.
+Visit http://localhost:4000/ in the browser of your choice.
 
 
 ### Debugging with Chrome
