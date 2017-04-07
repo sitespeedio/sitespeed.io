@@ -211,9 +211,11 @@ Depending on how often you run your analyze you wanna change the storage-schemas
 One thing to know if you change your Graphite configuration: ["Any existing metrics created will not automatically adopt the new schema. You must use whisper-resize.py to modify the metrics to the new schema. The other option is to delete existing whisper files (/opt/graphite/storage/whisper) and restart carbon-cache.py for the files to get recreated again."](http://mirabedini.com/blog/?p=517)
 
 ## Crawling and Graphite
-If you crawl a site that is not static you will pick up new pages each run or each day and that will make the Graphite database grow each day. Either you make sure you have a massive amount of storage or you change the storage-schemas.conf so that you don't keep the metrics for so long. You could do that by setting up another namespace (start of the key) and catch metrics that you only store for a short time.
+If you crawl a site that is not static you will pick up new pages each run or each day and that will make the Graphite database grow each day. When you add metrics to Graphite, it will prepare space for that metrics depending on your storage configuration (in Graphite). If you configured Graphite to store individual metrics every 15 minutes for 60 days, Graphite will allocate storage for that URL: 4 (per hour) * 24 (hours per day) * 60 (days) even though you maybe will only test that URL once.
 
-The Graphite DB size is determined by the number of unique data points and the frequency of them within configured time periods, meaning you can optimise how much space you need. If the majority of the URLs you need to test are static and are tested often, you should find there's a maximum DB size depending on your storage-schemas.conf settings.
+Either you make sure you have a massive amount of storage or you change the storage-schemas.conf so that you don't keep the metrics for so long. You could do that by setting up another namespace (start of the key) and catch metrics that you only store for a short time.
+
+The Graphite DB size is determined by the number of unique data points and the frequency of them within configured time periods, meaning you can optimize how much space you need. If the majority of the URLs you need to test are static and are tested often, you should find there's a maximum DB size depending on your storage-schemas.conf settings.
 
 # Using S3 for HTML and video
 You can store the HTML result on your local agent that runs sitespeed.io or you can dump the data to S3 and serve it from there. To use S3, you need to first [setup a S3 bucket](http://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html).
