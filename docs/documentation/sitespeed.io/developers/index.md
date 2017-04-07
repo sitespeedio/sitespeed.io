@@ -33,6 +33,15 @@ The flow looks like this:
 4. When all URLs are finished, the plugins receive a "close" call to finalize and prepare their findings.
 5. Finish
 
+### Using Pug
+We use [Pug](https://pugjs.org) as template for the HTML. If you are used to debug with console.log we have a special feature for you. We pass on JSON to the template, so if you want to output the data structure in the HTML you can do that by just adding:
+
+~~~
+p #{JSON.stringify(pageInfo)}
+~~~
+
+Where pageInfo is the data structure that you wanna inspect.
+
 ### Contributing to the Documentation
 First make sure you have Bundler: <code>gem install bundler</code>
 
@@ -43,7 +52,6 @@ You should probably upgrade your ruby gems too: <code>gem update --system</code>
 To run the documentation server locally execute the following from within the /docs directory after cloning the repo locally: <code>bundle install && bundle exec jekyll serve --baseurl ''</code>.
 
 Visit http://localhost:4000/ in the browser of your choice.
-
 
 ### Debugging with Chrome
 You can debug sitespeed.io using Chrome and NodeJS > 6. Thanks [@moos](https://github.com/moos) for sharing.
