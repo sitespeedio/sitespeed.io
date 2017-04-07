@@ -65,6 +65,7 @@ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io
 
 If you want to feed sitespeed.io with a file with URLs or if you want the HTML result, you should setup a volume. Sitespeed.io will do all the work inside the container in a directory located */sitespeed.io*. To setup your current working directory add the *-v "$(pwd)":/sitespeed.io* to your parameter list. Using "$(pwd)" will default to the root user directory. In order to specify the location, simply define an absolute path: *-v /Users/user/path:/sitespeed.io*
 
+If you run on Windows, it could be that you need to map a absolute path. If you have problems on Windows please check [https://docs.docker.com/docker-for-windows/](https://docs.docker.com/docker-for-windows/).
 
 ## Update (download a newer sitespeed.io)
 Updating to a newer version is easy, change X.Y.Z to the version you want to use:
