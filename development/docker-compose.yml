@@ -1,11 +1,10 @@
 version: '2'
 services:
     sitespeed:
-        build: .
+        build: ../
         command: -V
         volumes:
             - ./sitespeed-result/:/sitespeed.io/sitespeed-result
-        privileged: true
         shm_size: 1g
 #    caddy:
 #        image: abiosoft/caddy
@@ -14,7 +13,7 @@ services:
 #        volumes:
 #            - ./sitespeed-result/:/srv
     grafana:
-        image: grafana/grafana:4.0.2
+        image: grafana/grafana:4.2.0
         links:
             - graphite
             - influxdb
@@ -29,10 +28,9 @@ services:
     graphite:
         image: sitespeedio/graphite
     influxdb:
-        image: tutum/influxdb
-        environment:
-            - PRE_CREATE_DB="sitespeed"
-            - ADMIN_USER="root"
-            - INFLUXDB_INIT_PWD="root"
+        image: influxdb:1.2.2
+        ports:
+           - "8086:8086"
+           - "8083:8083"
 volumes:
     grafana:

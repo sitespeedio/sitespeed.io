@@ -7,5 +7,5 @@
   "basicAuth": false,
   "basicAuthUser":"admin",
   "basicAuthPassword":"admin",
-  "database": "_internal"
+  "database": "sitespeedio"
 }
