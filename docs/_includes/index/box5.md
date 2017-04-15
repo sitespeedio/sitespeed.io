@@ -1,4 +1,4 @@
-## Upgrade to sitespeed.io 4.0!
+## Upgrade to sitespeed.io 5.0!
 * * *
 
  * HTTP/2 support
