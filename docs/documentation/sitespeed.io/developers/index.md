@@ -19,6 +19,22 @@ twitterdescription: Hack on sitespeed.io
 ## Start
 Start by looking at the image of [how it all works]({{site.baseurl}}/documentation/sitespeed.io/how-it-all-works/). It seems like much, but it isn't that complicated.
 
+## Setup
+On your local you need:
+* [Install NodeJS](https://nodejs.org/en/download/) latest LTS version
+* Fork [sitespeed.io](https://github.com/sitespeedio/sitespeed.io) and clone the forked repository
+* Go to the cloned directory and run *npm install*
+
+Then you are ready. To run locally: *bin/sitespeed.io https://www.sitespeed.io -n 1* do changes to the pug and re-run.
+
+To run the Docker version:
+* Install [Docker Community Edition](https://docs.docker.com/engine/installation/)
+* You need to fork and clone [sitespeed.io](https://github.com/sitespeedio/sitespeed.io).
+* Go to *development/* in the cloned dir and read the index.md file
+* Build the sitespeed.io container: *docker-compose build sitespeed*
+* Run: *docker-compose run sitespeed http://www.sitespeed.io --video --speedIndex -n 1*
+* Make your changes and rebuild the container *docker-compose build sitespeed*
+
 ## Plugins
 Everything in sitespeed.io (well almost everything) is a plugin. Each plugin will be called at startup, for each message sent in the application and then called when everything is finished.
 
