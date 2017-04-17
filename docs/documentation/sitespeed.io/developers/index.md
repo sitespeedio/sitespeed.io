@@ -30,9 +30,13 @@ Then you are ready. To run locally: *bin/sitespeed.io https://www.sitespeed.io -
 To run the Docker version:
 * Install [Docker Community Edition](https://docs.docker.com/engine/installation/)
 * You need to fork and clone [sitespeed.io](https://github.com/sitespeedio/sitespeed.io).
+* Run *docker build sitespeedio/sitespeed.io .* in the cloned directory to build the container
+* Run *docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/*
+
+If you want to test and push to Graphite/InfluxDB:
 * Go to *development/* in the cloned dir and read the index.md file
 * Build the sitespeed.io container: *docker-compose build sitespeed*
-* Run: *docker-compose run sitespeed http://www.sitespeed.io --video --speedIndex -n 1*
+* Run: *docker-compose run sitespeed http://www.sitespeed.io --video --speedIndex -n 1 --graphite.host=graphite* to push the data to Graphite
 * Make your changes and rebuild the container *docker-compose build sitespeed*
 
 ## Plugins
