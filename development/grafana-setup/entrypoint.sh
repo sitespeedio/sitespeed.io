@@ -1,6 +1,7 @@
 #!/bin/sh
 
 GF_API=${GF_API:-http://grafana:3000/api}
+INFLUXDB_API=${INFLUXDB_API:-http://influxdb:8086/query}
 
 echo "Waiting for Grafana API..."
 
@@ -11,6 +12,9 @@ while [ $? -ne 0 ]; do
 done
 
 echo "Up!"
+
+echo "Adding database for InfluxDB"
+curl -i -XPOST ${INFLUXDB_API} --data-urlencode "q=CREATE DATABASE sitespeedio"
 
 echo "Adding datasources..."
 
