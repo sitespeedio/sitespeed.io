@@ -7,7 +7,7 @@ If you code, write documentation or do UX you can check the [help section](https
 
 [These people](https://github.com/sitespeedio/sitespeed.io/blob/master/CONTRIBUTORS.md) has already improved sitespeed.io with pull requests or ideas (massive love!).
 
-Or you can join the sitespeed.io team and get your photo on the wall of fame:
+And if you are into a long time commitment you can also join the sitespeed.io team:
 
 <a href="https://twitter.com/beenanner"><img src="{{site.baseurl}}/img/aboutus/jonathan.jpg" class="photo pull-left" width="100" height="100"></a>
 

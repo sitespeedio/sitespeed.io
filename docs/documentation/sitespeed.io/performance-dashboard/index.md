@@ -33,7 +33,7 @@ You need [Docker](https://docs.docker.com/engine/installation/) and [Docker Comp
 If you want to play with the dashboards the default login is sitespeedio and password is ...well checkout the docker-compose.yml file.
 
 ## Docker compose file
-We have prepared a Docker Compose file that downloads and setup Graphite/Grafana and sitespeed.io + a couple of example dashboards. It works perfect when you wanna try it out locally, but if you wanna run it in production you should modify it by making sure that the metrics are stored outside of your container/volumes.
+We have prepared a Docker Compose file that downloads and setup Graphite/Grafana and sitespeed.io + a couple of example dashboards. It works perfect when you wanna try it out locally, but if you wanna run it in production you should modify it by making sure that the metrics are stored outside of your container/volumes. If you prefer InfluxDB before Graphite, you can use that too, but right now we only have one ready made dashboard for InfluxDB.
 
 ## Pre made dashboards
 We insert pre made dashboards with a Docker container using curl, that makes it easy for you to get started. You can check out the container with the dashboards here: [https://github.com/sitespeedio/grafana-bootstrap-docker](https://github.com/sitespeedio/grafana-bootstrap-docker)
