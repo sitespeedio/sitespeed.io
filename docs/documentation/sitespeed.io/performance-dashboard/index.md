@@ -16,7 +16,7 @@ twitterdescription: Web performance dashboard using sitespeed.io.
 * Lets place the TOC here
 {:toc}
 
-We spent a lot of time making it easier in 4.x to install and run your own performance dashboard with pre made dashboards and a Docker compose file to rule them all. You can see the beauty [here](https://dashboard.sitespeed.io). In 4.4 and later you can also send the result (HTML/video) to S3 and add links in Grafana to go from you dashboard to the result pages.
+We spent a lot of time making it easier in version 4 to install and run your own performance dashboard with pre made dashboards and a Docker compose file to rule them all. You can see the beauty [here](https://dashboard.sitespeed.io). In 4.4 and later you can also send the result (HTML/video) to S3 and add links in Grafana to go from you dashboard to the result pages.
 
 # What you need
 You need [Docker](https://docs.docker.com/engine/installation/) and [Docker Compose](https://docs.docker.com/compose/install/). If you haven't used Docker before, you can read [Getting started](https://docs.docker.com/engine/getstarted/). And you can also read/learn more about [Docker Compose](https://docs.docker.com/compose/gettingstarted/) to get a better start.
@@ -195,7 +195,7 @@ tc qdisc add dev docker4 parent 1:12 netem delay 400ms
 # Configure Graphite
 We provide an example Graphite Docker container and you should probably change the configuration depending on how often you want to run your tests, how long you want to keep the result and how much disk space you want to use.
 
-With 4.x we try to send a moderated number of metrics per URL but you can [change that yourself]({{site.baseurl}}/documentation/sitespeed.io/metrics/).
+With version 4 we tried to send a moderated number of metrics per URL but you can [change that yourself]({{site.baseurl}}/documentation/sitespeed.io/metrics/).
 
 When you store metrics for a URL in Graphite you decide from the beginning how long time you want to store the data and how often in [storage-schemas.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-schemas.conf). In our example Graphite setup every key under sitespeed_io is caught by the configuration in storage-schemas.conf that looks like:
 <pre>
