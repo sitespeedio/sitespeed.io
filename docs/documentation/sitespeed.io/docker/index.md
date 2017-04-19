@@ -94,6 +94,10 @@ Full example:
 $ docker run --rm -v "$(pwd)":/sitespeed.io -v /etc/localtime:/etc/localtime:ro sitespeedio/sitespeed.io -b firefox https://www.sitespeed.io/
 ~~~
 
+## Change connectivity
+
+To change connectvity you should use Docker networks, read all about it [here]({{site.baseurl}}/documentation/sitespeed.io/browsers/#change-connectivity).
+
 ## Access localhost
 
 If you run a server local on your machine and want to access it with sitespeed.io you can do that on your Mac by using the Docker fixed ip 192.168.65.1:
