@@ -94,6 +94,14 @@ Full example:
 $ docker run --rm -v "$(pwd)":/sitespeed.io -v /etc/localtime:/etc/localtime:ro sitespeedio/sitespeed.io -b firefox https://www.sitespeed.io/
 ~~~
 
+## Access localhost
+
+If you run a server local on your machine and want to access it with sitespeed.io you can do that on your Mac by using the Docker fixed ip 192.168.65.1:
+
+~~~ bash
+$ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -b firefox http://192.168.65.1:4000/
+~~~
+
 ## Troubleshooting
 
 ### Inspect the container
