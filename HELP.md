@@ -2,7 +2,7 @@
 We want to make sitespeed.io the best web performance tool in the world and we hope you can to help us!
 
 ## Developers
-We love to have more people involved in making sitespeed.io better. We are constantly working on adding more documentation and trying to write more information in the issues so its easier to help out. If there's an [issue](https://github.com/sitespeedio/sitespeed.io/issues) that you want to take on, ping the the issue and we can help you get started. You can also [join our Slack channel](https://sitespeedio.slack.com/shared_invite/MTY5ODMzNjAwNTEyLTE0OTI0OTgzOTUtYWJjNDhiNzI2ZA) if you need help!
+We love to have more people involved in making sitespeed.io better. We are constantly working on adding more documentation and trying to write more information in the issues so its easier to help out. If there's an [issue](https://github.com/sitespeedio/sitespeed.io/issues) that you want to take on, ping the the issue and we can help you get started. You can also [join our Slack channel](https://sitespeedio.herokuapp.com/) if you need help!
 
 ## Designers
 As a designer there's a lot you can do: You can make the HTML result pages look better. Maybe we should restructure the metrics? Maybe we should have graphs? Or could the header/footer look better? You could also have look at [https://www.sitespeed.io](https://www.sitespeed.io) where we have all the documentation. Make it look phab. You can pretty much help us with everything, no one in the core team got design skills :)
