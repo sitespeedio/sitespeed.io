@@ -6,7 +6,7 @@ Many many many thanks to:
 * jpvincent (@jpvincent)
 * Jeroen Van den Berghe (@JeroenVdb)
 * Jordan Jethwa (@jjethwa)
-* Pascal Borelli (@pborelli)
+* Pascal Borreli (@pborreli)
 
 3.X and earlier:
 * Tom Sutton (@tomsutton1984)
