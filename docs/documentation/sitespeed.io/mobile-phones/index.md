@@ -31,16 +31,16 @@ twitterdescription: Test your page using a mobile phone
  * Plugin your phone using the USB port on your desktop computer.
  * When you plugin your phone, click OK on the "Allow USB debugging?" popup.
 
-## Run
+# Run
 You are now ready to run your and test on your phone:
 
- ~~~bash
- $ sitespeed.io --browsertime.chrome.android.package com.android.chrome https://www.sitespeed.io
- ~~~
+~~~bash
+$ sitespeed.io --browsertime.chrome.android.package com.android.chrome https://www.sitespeed.io
+~~~
 
 You will get result as you would with running this normally with summaries and waterfall graphs.
 
-## Connectivity
+# Connectivity
 If you run by default, the phone will use the current connection. The connectivity flag is currently not supported (would love a PR for that!) but you can set connectivity by using [TSProxy](https://github.com/WPO-Foundation/tsproxy).
 
 1. Download [TSProxy](https://github.com/WPO-Foundation/tsproxy) and make sure you have at least Python 2.7 installed.
@@ -50,7 +50,7 @@ If you run by default, the phone will use the current connection. The connectivi
 
 You could also use [phuedxs](https://github.com/phuedx) [Micro Device Lab](https://github.com/phuedx/micro-device-lab) but that is more work at the moment.
 
-## Video and SpeedIndex
+# Video and SpeedIndex
 You can also collect a video and get Visual Metrics from your run. The current version doesn't support Docker so you need to install the requirements for [VisualMetrics](https://github.com/sitespeedio/docker-visualmetrics-deps/blob/master/Dockerfile) yourself on your machine before you start. If you have everything setup you can run:
 
 ~~~bash
