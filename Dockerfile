@@ -1,4 +1,4 @@
-FROM sitespeedio/webbrowsers:firefox-52.0.1-chrome-57.0
+FROM sitespeedio/webbrowsers:firefox-53.0-chrome-58.0
 
 ENV SITESPEED_IO_BROWSERTIME__XVFB true
 ENV SITESPEED_IO_BROWSERTIME__CHROME__ARGS no-sandbox
