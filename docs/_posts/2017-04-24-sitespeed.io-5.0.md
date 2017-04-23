@@ -81,7 +81,7 @@ As we mentioned before you can now download the logs easily from the HTML by add
 
 We have had a long time goal to support one other TSDB than Graphite and now we officially support InfluxDB. We have [one example dashboard](https://dashboard.sitespeed.io/dashboard/db/wip-influxdb?orgId=1) that you can use and maybe we can have more example dashboards in the future.
 
-This is extremely new so it could be miss out on functionality, if that's the case, create an issue and we will fix that!
+This is extremely new so it could be miss out on functionality, if that's the case, create an issue and we will work to fix that!
 
 A special thank you [@theist](https://github.com/theist) and [@eripa](https://github.com/eripa) who helped us fix the InfluxDB integration so the structure is better than we had in the original version.
 
@@ -89,7 +89,7 @@ A special thank you [@theist](https://github.com/theist) and [@eripa](https://gi
 {: .img-thumbnail}
 
 ## Browsertime 1.1
-Sitespeed.io 5.0 used Browsertime 1.1. And what a ride it has been for the first beta 1.0 of Browsertime eight months ago! We will soon do a blog post about 1.0 but I want to talk about the latest thing we added before releasing that final version.
+Sitespeed.io 5.0 uses Browsertime 1.1 that we released yesterday. And what a ride it has been for the first beta 1.0 of Browsertime eight months ago and now 1.1! We will soon do a blog post about 1.0 but I want to talk about the latest thing we added before releasing that final version.
 
 ### Video and SpeedIndex from your Android device
 I would still call it experimental support for video and SpeedIndex for Chrome on Android. We need help to test it out on different devices. Right now you need to setup the dependencies needed for VisualMetrics yourself so it some work to get that going. Check out the [how to](https://github.com/sitespeedio/browsertime#test-on-your-mobile-device) what you need to setup.
