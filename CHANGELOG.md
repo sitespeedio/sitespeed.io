@@ -26,7 +26,7 @@
 * Allow S3 upload even when using custom outputFolder.
 
 ### Not backward compatible changes in 5.0
-There's one change in 5.0 that changes the default behavior: TSProxy isn't default for connectivity since it doesn't work as we want together with Selenium. We also removed tc as default running Docker. When you change connectivity you should use our [Docker network setup](https://www.sitespeed.io/documentation/sitespeed.io/browsers/#change-connectivity)!
+There's one change in 5.0 that changes the default behavior: TSProxy isn't default for connectivity since it doesn't work as we want together with Selenium. We also removed tc as default running Docker. When you change connectivity you should use our [Docker network setup](https://www.sitespeed.io/documentation/sitespeed.io/browsers/#change-connectivity)! If you used to use TSProxy or tc, please switch to Docker networks for now.
 
 ## 4.7.0 2017-03-15
 ### Fixed
