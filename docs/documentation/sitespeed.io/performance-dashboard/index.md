@@ -105,22 +105,35 @@ Our *run.sh* file (we read which URLs we wanna test from files):
 
 ~~~
 #!/bin/bash
-DOCKER_CONTAINER=sitespeedio/sitespeed.io:4.5.1
-DOCKER_SETUP="--privileged --shm-size=1g --rm -v /root/config:/sitespeed.io -v /result:/result"
+DOCKER_CONTAINER=sitespeedio/sitespeed.io:5.0.0
+DOCKER_SETUP="--privileged --shm-size=1g --rm -v /root/config:/sitespeed.io -v /result:/result -v /etc/localtime:/etc/localtime:ro"
 THREEG="--network 3g"
 CABLE="--network cable"
 CONFIG="--config /sitespeed.io/default.json"
-docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER --browsertime.chrome.dumpTraceCategoriesLog /sitespeed.io/wikipedia.org.txt $CONFIG >> /tmp/s.log 2>&1
-docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER --browsertime.firefox.includeResponseBodies /sitespeed.io/wikipedia.org.txt -b firefox $CONFIG >> /tmp/s.log 2>&1
-docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/ryanair.com.txt -n 3 --firstParty ".ryanair.com" $CONFIG >> /tmp/s.log 2>&1
-docker run $THREEG $DOCKER_SETUP $DOCKER_CONTAINER --browsertime.chrome.dumpTraceCategoriesLog /sitespeed.io/m.wikipedia.org.txt --graphite.namespace sitespeed_io.emulatedMobile -c 3g --mobile true $CONFIG >> /tmp/s.log 2>&1
-docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/nytimes.com.txt -n 3 --webpagetest.key 09d4f36ebc3a4bdfb05c9e8402b38524 $CONFIG >> /tmp/s.log 2>&1
+echo 'Start run ' >> /tmp/s.log 2>&1
+docker network ls >> /tmp/s.log 2>&1
+docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER --browsertime.cacheClearRaw --browsertime.chrome.collectTracingEvents /sitespeed.io/wiki
+pedia.org.txt $CONFIG >> /tmp/s.log 2>&1
+docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/wikipedia.org.txt -b firefox $CONFIG >> /tmp/s.log 2>&1
+docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER --influxdb.host INFLUX_HOST --influxdb.database sitespeedio --influxdb.username INFLUX_USER --influxdb.password INFLUX_PW --gzipHAR false /sitespeed.io/ryanair.com.txt -n 3 --firstParty ".ryanair.com" $
+CONFIG >> /tmp/s.log 2>&1
+docker run $THREEG $DOCKER_SETUP $DOCKER_CONTAINER --browsertime.chrome.collectTracingEvents /sitespeed.io/m.wikipedia.org.txt --graphite.
+namespace sitespeed_io.emulatedMobile -c 3g --mobile true $CONFIG >> /tmp/s.log 2>&1
+docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER --influxdb.host INFLUX_HOST --influxdb.database sitespeedio --influxdb.username INFLUX_USER --influxdb.password INFLUX_PW /sitespeed.io/nytimes.com.txt -n 3 --webpagetest.key WPT_KEY
+38524 $CONFIG >> /tmp/s.log 2>&1
 docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/sitespeed.io.txt -b firefox $CONFIG >> /tmp/s.log 2>&1
 docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/sitespeed.io.txt $CONFIG >> /tmp/s.log 2>&1
-docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/wikipedia.org-second.txt $CONFIG --graphite.namespace sitespeed_io.desktopSecond --preURL https://en.wikipedia.org/wiki/Main_Page >> /tmp/s.log 2>&1
-docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/wikipedia.org-second.txt $CONFIG --graphite.namespace sitespeed_io.desktopSecond -b firefox --preURL https://en.wikipedia.org/wiki/Main_Page >> /tmp/s.log 2>&1
-docker run $THREEG $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/m.wikipedia.org-second.txt $CONFIG --graphite.namespace sitespeed_io.emulatedMobileSecond -c 3g --mobile true --preURL https://en.m.wikipedia.org/wiki/Main_Page >> /tmp/s.log 2>&1
-docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/wikipedia.org-login-urls.txt --preScript /sitespeed.io/wikpedia.org -login.txt $CONFIG --graphite.namespace sitespeed_io.desktopLoggedIn >> /tmp/s.log 2>&1
+docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/wikipedia.org-second.txt $CONFIG --graphite.namespace sitespeed_io.desktop
+Second --preURL https://en.wikipedia.org/wiki/Main_Page >> /tmp/s.log 2>&1
+docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/wikipedia.org-second.txt $CONFIG --graphite.namespace sitespeed_io.desktop
+Second -b firefox --preURL https://en.wikipedia.org/wiki/Main_Page >> /tmp/s.log 2>&1
+echo 'Finished desktop second runs' >> /tmp/s.log 2>&1
+#docker run $THREEG $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/m.wikipedia.org-second.txt $CONFIG --graphite.namespace sitespeed_io.emu
+latedMobileSecond -c 3g --mobile true --preURL https://en.m.wikipedia.org/wiki/Main_Page >> /tmp/s.log 2>&1
+echo 'Finished mobile second runs' >> /tmp/s.log 2>&1
+docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/wikipedia.org-login-urls.txt --preScript /sitespeed.io/wikpedia.org-login.
+txt $CONFIG --graphite.namespace sitespeed_io.desktopLoggedIn >> /tmp/s.log 2>&1
+echo 'Finished all the runs' >> /tmp/s.log 2>&1
 ~~~
 
 It is then triggered from the crontab:
@@ -138,22 +151,26 @@ And our default configuration is in *default.json*.
   "browsertime": {
     "connectivity": {
       "engine": "external",
-      "profile": "cable",
+      "profile": "cable"
     },
     "iterations": 5,
     "browser": "chrome",
     "speedIndex": true
   },
   "graphite": {
-    "host": "my.graphite.host",
+    "host": "GRAPHITE_HOST",
     "namespace": "sitespeed_io.desktop",
-    "auth": "LOGIN:PASSWORD"
+    "auth": "GRAPHITE_AUTH"
   },
   "slack": {
     "hookUrl": "https://hooks.slack.com/services/MY_SERVICE"
   },
   "resultBaseURL": "https://results.sitespeed.io",
   "video": true,
+  "gzipHAR": true,
+  "html": {
+    "fetchHARFiles": true
+  },
   "s3": {
      "key": "AWS_KEY",
      "secret": "AWS_SECRET",
@@ -161,9 +178,11 @@ And our default configuration is in *default.json*.
      "removeLocalResult": true
   }
 }
+
 ~~~
 
 And we setup the following Docker networks:
+
 ~~~
 #!/bin/bash
 echo 'Starting Docker networks'
