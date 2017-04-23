@@ -31,14 +31,28 @@ twitterdescription: Test your page using a mobile phone
  * Plugin your phone using the USB port on your desktop computer.
  * When you plugin your phone, click OK on the "Allow USB debugging?" popup.
 
-## Connectivity
-If you run by default, the phone will use the current connection. The connectivity flag is currently not supported (would love a PR for that!) but you can use [phuedxs](https://github.com/phuedx) [Micro Device Lab](https://github.com/phuedx/micro-device-lab) and connect your phone to the wifi you want to use. There you can choose what kind of connectivity profile you want to use.
-
-## Run
+# Run
 You are now ready to run your and test on your phone:
 
 ~~~bash
-$ sitespeed.io --browsertime.chrome.android.package com.android.chrome https://www.sitespeed.io  
+$ sitespeed.io --browsertime.chrome.android.package com.android.chrome https://www.sitespeed.io
 ~~~
 
 You will get result as you would with running this normally with summaries and waterfall graphs.
+
+# Connectivity
+If you run by default, the phone will use the current connection. The connectivity flag is currently not supported (would love a PR for that!) but you can set connectivity by using [TSProxy](https://github.com/WPO-Foundation/tsproxy).
+
+1. Download [TSProxy](https://github.com/WPO-Foundation/tsproxy) and make sure you have at least Python 2.7 installed.
+2. Check the local IP of your machine (in this example the IP is 10.0.1.7 and the default port for TSProxy is 1080).
+3. Start TSProxy and bind it to your IP: <code>python tsproxy.py --bind 10.0.1.7 --rtt=200 --inkbps=1600 --outkbps=768</code>
+4. Run <code>$ sitespeed.io --browsertime.chrome.android.package com.android.chrome --chrome.args proxy-server="socks://10.0.1.7:1080" https://www.sitespeed.io</code>
+
+You could also use [phuedxs](https://github.com/phuedx) [Micro Device Lab](https://github.com/phuedx/micro-device-lab) but that is more work at the moment.
+
+# Video and SpeedIndex
+You can also collect a video and get Visual Metrics from your run. The current version doesn't support Docker so you need to install the requirements for [VisualMetrics](https://github.com/sitespeedio/docker-visualmetrics-deps/blob/master/Dockerfile) yourself on your machine before you start. If you have everything setup you can run:
+
+~~~bash
+$ sitespeed.io --browsertime.chrome.android.package com.android.chrome --video --speedIndex https://www.sitespeed.io
+~~~
