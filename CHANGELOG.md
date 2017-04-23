@@ -15,6 +15,8 @@
 * Pickup timestamp from each run and display on each run page
 * Added possibility to set the graphite web host (--graphite.webHost)
 * Set Graphite tags as arrays (--graphite.arrayTags) needed for Graphite 1.0
+* Add request headers with -r name:value (Chrome only in this release)
+* Block domains with --block my.domain.com (Chrome only in this release)
 
 ### Changed
 * The default upload path in S3 buckets no longer includes the prefix 'sitespeed-result'
@@ -22,6 +24,9 @@
 ### Fixed
 * Waterfall graphs loaded in Safari iOS didn't work.
 * Allow S3 upload even when using custom outputFolder.
+
+### Not backward compatible changes in 5.0
+There's one change in 5.0 that changes the default behavior: TSProxy isn't default for connectivity since it doesn't work as we want together with Selenium. We also removed tc as default running Docker. When you change connectivity you should use our [Docker network setup](https://www.sitespeed.io/documentation/sitespeed.io/browsers/#change-connectivity)!
 
 ## 4.7.0 2017-03-15
 ### Fixed
