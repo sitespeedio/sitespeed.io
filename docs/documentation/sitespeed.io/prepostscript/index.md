@@ -36,16 +36,20 @@ module.exports = {
           // http://seleniumhq.github.io/selenium/docs/api/javascript/index.html
 
           // we fetch the selenium webdriver from context
-          var webdriver = context.webdriver;
+          const webdriver = context.webdriver;
+          // and get hold of some goodies we want to use
+          const until = webdriver.until;
+          const By = webdriver.By;
+
           // before you start, make your username and password
-          var userName = 'YOUR_USERNAME_HERE';
-          var password = 'YOUR_PASSWORD_HERE';
-          var loginForm = driver.findElement(webdriver.By.css('form'));
-          var loginInput = driver.findElement(webdriver.By.id('wpName1'));
-          loginInput.sendKeys(userName);
-          var passwordInput = driver.findElement(webdriver.By.id('wpPassword1'));
-          passwordInput.sendKeys(password);
-          return loginForm.submit();
+          const userName = 'YOUR_USERNAME_HERE';
+          const password = 'YOUR_PASSWORD_HERE';
+          const loginForm = driver.findElement(webdriver.By.name('userlogin'));
+          driver.findElement(webdriver.By.id('wpName1')).sendKeys(userName);
+          driver.findElement(webdriver.By.id('wpPassword1')).sendKeys(password);
+          loginForm.submit();
+          // we wait for something on the page that verifies that we are logged in
+          return driver.wait(until.elementLocated(By.id('pt-userpage')), 3000);
         });
     })
   }
@@ -70,7 +74,10 @@ Checkout the magic row:
 var webdriver = context.webdriver;
 ~~~
 
-From the context object you get a hold of the Selenium [Webdriver object](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html) that you can use to find elements on the page.
+From the context object you get a hold of the Selenium [Webdriver object](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html) so you easy can get hold of
+the mechanisms for locating an element on the page.
+
+Note: Use the supplied *driver* object to go to a specific page.
 
 ## Test a page with primed cache
 One other thing you can do with a pre script is simulate a user that browsed a couple of pages and then measure the performance of a page (by default the cache is emptied when you use sitespeed.io).
@@ -83,7 +90,7 @@ module.exports = {
     return context.runWithDriver((driver) => {
       // Go to the start page of sitespeed.io
       return driver.get('https://www.sitespeed.io/');
-    });    
+    });
   }
 };
 ~~~
