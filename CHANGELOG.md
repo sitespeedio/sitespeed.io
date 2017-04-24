@@ -1,5 +1,5 @@
 # CHANGELOG - sitespeed.io
-## Unreleased
+## 5.0.0 2017-04-24
 
 ### Added
 * Rework of the WebPageTest result tab: More metrics, requests per content type, requests per domain and screenshot.
