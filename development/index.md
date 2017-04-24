@@ -22,6 +22,12 @@ run the following to push the updated dashboards to Grafana.
 docker-compose up --build grafana-setup
 ```
 
+## Shutdown and remove containers
+
+When you are done you can shutdown and remove all the docker containers by running `docker-compose stop && docker-compose rm`
+
+NOTE: This will close and remove all containers but the data will not be removed. To remove the Graphite and Grafana data volumes and start from scratch you need to run `docker volume rm performancedashboard_graphite performancedashboard_grafana`.
+
 ## Run Sitespeed.io
 The local Sitespeed.io container with Linux making it easy to record videos.
 
