@@ -3,7 +3,7 @@
 ## UNRELEASED
 
 ### Fixed
-* Verify that you add the host when you want to send metrics to Graphite [#15879(https://github.com/sitespeedio/sitespeed.io/issues/1587)
+* Verify that you add the host when you want to send metrics to Graphite [#15879](https://github.com/sitespeedio/sitespeed.io/issues/1587)
 
 
 ## 5.0.0 2017-04-24
