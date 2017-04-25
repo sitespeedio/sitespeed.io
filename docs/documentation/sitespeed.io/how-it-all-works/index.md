@@ -32,7 +32,7 @@ This is the super simple version, leaving out all other tools that are used:
 ## The big picture (with all the tools)
 The big picture looks something like this:
 
-![How it all works]({{site.baseurl}}/img/sitespeed-universe.png)
+![How it all works]({{site.baseurl}}/img/sitespeed-universe-5.png)
 {: .img-thumbnail}
 
 ### Built upon Open Source
