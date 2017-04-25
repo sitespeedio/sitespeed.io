@@ -214,7 +214,7 @@ http://www.yoursite.com/where/we/are/ Page2
 ~~~
 *Note: Spaces are used to delimit between the URL and the alias which is why the alias cannot contain one.*
 
-Aliases are great in combination with sending metrics to a TSDB such as graphite for shortening the key sent to make they more readable.
+Aliases are great in combination with sending metrics to a TSDB such as graphite for shortening the key sent to make them more user friendly and readable.
 
 And run it:
 
@@ -244,13 +244,9 @@ Choose which browser to use (default is Chrome):
 $ sitespeed.io https://www.sitespeed.io -b firefox
 ~~~
 
-~~~bash
-$ sitespeed.io https://www.sitespeed.io -b chrome
-~~~
-
 ### Connectivity
 
-You should throttle the connection when you are fetching metrics. The best way to do that is to add network to your Docker container:
+You should throttle the connection when you are fetching metrics. The best way to do that is to use Docker and  add a network to your Docker container:
 
 ~~~bash
 docker network create --driver bridge --subnet=192.168.34.0/24 --gateway=192.168.34.10 --opt "com.docker.network.bridge.name"="docker2" cable
@@ -290,7 +286,7 @@ Mobile testing is always best on an actual mobile devices. You can [test on Andr
 
 ### Connectivity
 
-You can fake the connectivity for the browser. By default we use [TSProxy](https://github.com/WPO-Foundation/tsproxy) so you need Python 2.7 to work but you can also set the connectivity engine to [tc](http://lartc.org/manpages/tc.txt) if that works better for you.
+You can fake the connectivity for the browser. By default we expect an external tool to handle the connectivity, but you can also set the connectivity engine to [tc](http://lartc.org/manpages/tc.txt) or [TSProxy](https://github.com/WPO-Foundation/tsproxy), but you need Python 2.7 for that to work work if either of those works better for you.
 
 Setting the connectivity to cable:
 
@@ -305,7 +301,7 @@ $ sitespeed.io -c cable --browsertime.connectivity.engine tc https://www.sitespe
 ~~~
 
 ### Speed Index and video
-In 4.1 we released support for recording a video of the browser screen and use that to calculate visual metrics like Speed Index. Use our Docker containers for a easy setup.
+In 4.1 we released support for recording a video of the browser screen and use that to calculate visual metrics like Speed Index. Thsi is one of the main benefits for using our Docker images as it make for an easy setup. Without Docker you would need to install all these [dependencies](https://github.com/WPO-Foundation/visualmetrics) first.
 
 If you only care about Speed Index and related metrics (first visual change etc) you can run like this:
 
@@ -376,12 +372,12 @@ If you wanna override and run the same configuration but using Firefox, you just
 $ sitespeed.io --config config.json -b firefox https://www.sitespeed.io
 ~~~
 
-CLI will always override your JSON config.
+The CLI will always override a JSON config.
 
 ## Advanced
 
 ### Slack
-You can send the result of a run to Slack. First setup a webhook in the slack API (https://<your team>.slack.com/apps/manage/custom-integrations) and then configure it:
+You can send the result of a run to Slack. First setup a webhook in the Slack API (https://<your team>.slack.com/apps/manage/custom-integrations) and then configure it:
 
 ~~~bash
 $ sitespeed.io https://www.sitespeed.io/ --slack.hookUrl https://hooks.slack.com/services/YOUR/HOOK/URL

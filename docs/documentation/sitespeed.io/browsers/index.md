@@ -26,7 +26,7 @@ Chrome should work out of the box.
 ## Change connectivity
 You can throttle the connection to make the connectivity slower to make it easier to catch regressions. The best way to do that is to setup a network bridge in Docker.
 
-Default we use [TSProxy](https://github.com/WPO-Foundation/tsproxy) because it's only dependency is Python 2.7 but we have a problem with that together with Selenium, so that it is kind of unusable right now. Help us fix that in [#229](https://github.com/sitespeedio/browsertime/issues/229).
+By default we expect an external tool to handled connectivity. In the past we used [TSProxy](https://github.com/WPO-Foundation/tsproxy) because it's only dependency was Python 2.7, but unfortunetly we have a problem with it and Selenium, so it was removed as the default due to it's instability. Help us fix that in [#229](https://github.com/sitespeedio/browsertime/issues/229).
 
 If you run Docker you can use tc as connectivity engine but that will only set the latency, if you want to set the download speed you need to create a network bridge in Docker.
 
@@ -56,16 +56,16 @@ tc class add dev docker4 parent 1:1 classid 1:12 htb rate 0.4mbit ceil 0.4mbit
 tc qdisc add dev docker4 parent 1:12 netem delay 400ms
 ~~~
 
-Then when you run your container you add the network with <code>--network cable</code>. You should also tell Browsertime that you set the connectivity external from BT. A full example running running with cable:
+When you run your container you add the network with <code>--network cable</code>. A full example running running with cable:
 
 ~~~bash
-$ docker run --privileged --shm-size=1g --network=cable --rm sitespeedio/sitespeed.io -c cable --browsertime.connectivity.engine external https://www.sitespeed.io/
+$ docker run --privileged --shm-size=1g --network=cable --rm sitespeedio/sitespeed.io -c cable https://www.sitespeed.io/
 ~~~
 
 And using the 3g network:
 
 ~~~bash
-$ docker run --privileged --shm-size=1g --network=3g --rm sitespeedio/sitespeed.io -c 3g --browsertime.connectivity.engine external https://www.sitespeed.io/
+$ docker run --privileged --shm-size=1g --network=3g --rm sitespeedio/sitespeed.io -c 3g https://www.sitespeed.io/
 ~~~
 
 And if you want to remove the networks:
@@ -80,24 +80,24 @@ docker network rm cable
 ~~~
 
 ## Choose when to end your test
-By default the browser will collect data until  [window.performance.timing.loadEventEnd happens + aprox 2 seconds more](https://github.com/sitespeedio/browsertime/blob/d68261e554470f7b9df28797502f5edac3ace2e3/lib/core/seleniumRunner.js#L15). That is perfectly fine for most sites, but if you do Ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (--browsertime.pageCompleteCheck). When the scripts returns true the browser will close or if the timeout time will be reached.
+By default the browser will collect data until  [window.performance.timing.loadEventEnd happens + aprox 2 seconds more](https://github.com/sitespeedio/browsertime/blob/d68261e554470f7b9df28797502f5edac3ace2e3/lib/core/seleniumRunner.js#L15). That is perfectly fine for most sites, but if you do Ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (--browsertime.pageCompleteCheck). When the scripts returns true the browser will close or if the timeout time is reached.
 
-In this we wait 10 seconds until loadEventEnd happens but you can also choose to trigger it at a specific event.
+In this example we wait 10 seconds until the loadEventEnd happens, but you can also choose to trigger it at a specific event.
 
 ~~~bash
 $ sitespeed.io https://www.sitespeed.io --browsertime.pageCompleteCheck 'return (function() {try { return (Date.now() - window.performance.timing.loadEventEnd) > 10000;} catch(e) {} return true;})()'
 ~~~
 
-We use Selenium in the backend to drive the browsers and right now Selenium/drivers doesn't support the *pageLoadStrategies* where you can change when Selenium will give control to the user. Right now we always wait on the pageLoadEvent, meaning pages that doesn't fire that event will fail. Track the progress to fix that [here](https://github.com/sitespeedio/browsertime/issues/186).
+We use Selenium in the backend to drive the browsers and right now Selenium/drivers doesn't support the *pageLoadStrategies* where you can change when Selenium will give control to the user. Right now we always wait on the pageLoadEvent, meaning pages that do not fire that event will fail. Track the progress to fix that [here](https://github.com/sitespeedio/browsertime/issues/186).
 {: .note .note-warning}
 
 ## Custom metrics
 
-You can collect your own metrics in the browser by supplying Javascript file(s). By default we collect all metrics inside [these folders](https://github.com/sitespeedio/browsertime/tree/master/browserscripts) but you might have something else you want to collect.
+You can collect your own metrics in the browser by supplying Javascript file(s). By default we collect all metrics inside [these folders](https://github.com/sitespeedio/browsertime/tree/master/browserscripts), but you might have something else you want to collect.
 
 Each javascript file need to return a metric/value which will be picked up and returned in the JSON. If you return a number, statistics will automatically be generated for the value (like median/percentiles etc).
 
-Say we have one file called scripts.js that checks how many scripts tags exist on a page. The script looks like this:
+For example say we have one file called scripts.js that checks how many scripts tags exist on a page. The script would look like this:
 
 ~~~bash
 (function() {
@@ -105,7 +105,7 @@ Say we have one file called scripts.js that checks how many scripts tags exist o
 })();
 ~~~
 
-Then to pick up the script, run like this:
+Then to pick up the script, you would run it like this:
 
 ~~~bash
 sitespeed.io https://www.sitespeed.io --browsertime.script scripts.js -b firefox
@@ -119,11 +119,11 @@ And in the summary and detailed summary section.
 ![Summary page]({{site.baseurl}}/img/summary.png)
 {: .img-thumbnail}
 
-One more thing: All custom scripts values will be sent to Graphite, no extra configuration needed!
+Bonus: All custom scripts values will be sent to Graphite, no extra configuration needed!
 
 ## Visual Metrics
 
-Visual metrics (Speed Index, Perceptual Speed Index, first and last visual change) can be collected if you also record a video of the screen. This will work on desktop for Firefox & Chrome. And use our Docker container so you automagically get all the extra software needed.
+Visual metrics (Speed Index, Perceptual Speed Index, first and last visual change) can be collected if you also record a video of the screen. This will work on desktop for Firefox & Chrome. If you use our Docker container you automagically get all the extra software needed!
 
 ~~~bash
 $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --speedIndex --video https://www.sitespeed.io/
@@ -134,4 +134,4 @@ Everything you can do in Browsertime, you can also do in sitespeed.io. Prefixing
 
 You can check what Browsertime can do [here](https://github.com/sitespeedio/browsertime/blob/master/lib/support/cli.js).
 
-For example you wanna pass on an extra Chrome arguments to Chrome. In standalone Browsertime you do that with <code>--chrome.args</code>. If you wanna do that through sitespeed.io you just prefix browsertime to the param: <code>--browsertime.chrome.args</code>. Yes we know, pretty sweet! :)
+For example if you want to pass on an extra native arguments to Chrome. In standalone Browsertime you do that with <code>--chrome.args</code>. If you want to do that through sitespeed.io you just prefix browsertime to the param: <code>--browsertime.chrome.args</code>. Yes we know, pretty sweet! :)

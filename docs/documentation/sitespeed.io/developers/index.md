@@ -17,10 +17,10 @@ twitterdescription: Hack on sitespeed.io
 {:toc}
 
 ## Start
-Start by looking at the image of [how it all works]({{site.baseurl}}/documentation/sitespeed.io/how-it-all-works/). It seems like much, but it isn't that complicated.
+Start by looking at the image of [how it all works]({{site.baseurl}}/documentation/sitespeed.io/how-it-all-works/). It may seems like a lot, but it isn't that complicated.
 
 ## Setup
-On your local you need:
+On your local machine you need:
 * [Install NodeJS](https://nodejs.org/en/download/) latest LTS version
 * Fork [sitespeed.io](https://github.com/sitespeedio/sitespeed.io) and clone the forked repository
 * Go to the cloned directory and run *npm install*
@@ -54,7 +54,7 @@ The flow looks like this:
 5. Finish
 
 ## Using Pug
-We use [Pug](https://pugjs.org) as template for the HTML. If you are used to debug with console.log we have a special feature for you. We pass on JSON to the template, so if you want to output the data structure in the HTML you can do that by just adding:
+We use [Pug](https://pugjs.org) as template for the HTML. If you are use to debug with console.log we have a special feature for you. We pass on JSON to the template, so if you want to output the data structure in the HTML you can do that by just adding:
 
 ~~~
 p #{JSON.stringify(pageInfo)}
@@ -63,7 +63,7 @@ p #{JSON.stringify(pageInfo)}
 Where pageInfo is the data structure that you wanna inspect.
 
 ## Use sitespeed.io from NodeJS
-If you want to integrate sitespeed.io into your NodeJS application you can checkout how we do that in [our Grunt plugin](https://github.com/sitespeedio/grunt-sitespeedio/blob/master/tasks/sitespeedio.js). It is a working example :)
+If you want to integrate sitespeed.io into your NodeJS application you can checkout how we do that in [our Grunt plugin](https://github.com/sitespeedio/grunt-sitespeedio/blob/master/tasks/sitespeedio.js). It's a great working example. :)
 
 ## Contributing to the Documentation
 First make sure you have Bundler: <code>gem install bundler</code>

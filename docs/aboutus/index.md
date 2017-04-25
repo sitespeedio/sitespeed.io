@@ -9,7 +9,7 @@ nav: aboutus
 
 # About Us
 
-We are a three member team that works on sitespeed.io in our free time. New contributors and team members are very welcomed!
+We are a three member team that works on sitespeed.io in our free time. New contributors and team members are very much welcome!
 
 ## Jonathan Lee
 <a href="https://twitter.com/beenanner"><img src="{{site.baseurl}}/img/aboutus/jonathan.jpg" class="photo pull-left" width="200" height="200"></a> I discovered sitespeed.io version 3 in 2015 while exploring the latest trending tools in web performance.  I was intrigued by this tool and decided to learn more. Wanting to contribute back to the open source community that has giving me so much over the last decade, I reached out to Peter and Tobias to assist with the development of version 4.0.  
