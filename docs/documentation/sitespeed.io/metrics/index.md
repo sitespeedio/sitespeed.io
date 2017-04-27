@@ -20,12 +20,14 @@ twitterdescription: Configuring metrics to use
 Sitespeed.io collects a lot of metrics which are filtered before they are sent to Graphite. You can remove filters and/or add your own filters. Some sensible defaults have been set for you, if you have suggestions to change them create an [issue at Github](https://github.com/sitespeedio/sitespeed.io/issues/new).
 
 ## Summary vs pageSummary
-We group the metrics in two different groups: pageSummary encapsulates the metrics for a single page. For example if we test a single page 10 times, it will have the min/median/max here for values that change.
+The metrics are separated into two groups: 
+
+The pageSummary encapsulates the metrics for a single page. For example if we test a single page 10 times, it will have the min/median/max here for values that change.
 
 The summary holds information per group, or specifically per domain. If you test ten different pages on a site (same domain), the summary of those metrics will end up here.
 
 ## List configured metrics
-You can list the metrics that are configured by **\-\-metrics.filterList**. The list is dependent on which plugins you are loading, so you need to do an actual run to generate the list. The list is stored in the data folder in a file named **configuredMetrics.txt**.
+You can list the metrics that are configured by **\-\-metrics.filterList**. The list is dependent on which plugins you are loading, so you will need to do an actual run to generate the list. The list is stored in the data folder in a file named **configuredMetrics.txt**.
 
 ~~~ bash
 $ sitespeed.io https://www.sitespeed.io --metrics.filterList
@@ -94,26 +96,26 @@ $ tools/tcp-server.js
 $ Server listening on :::52860
 ~~~
 
-It will output the port, so use it when you run sitespeed.io:
+It will output the port, so you can then use it when you run sitespeed.io:
 
 ~~~ bash
 $ sitespeed.io --metrics.list https://www.sitespeed.io -n 1 --metrics.filter coach.pageSummary.advice.performance.adviceList.*.score --graphite.host 127.0.0.1 --graphite.port 52860
 ~~~
 
-It will log all metrics you will send to Graphite.
+The the previous example it will log all metrics you send to Graphite to the console.
 
 #### Example: Add all Coach advice
 
-By default the total score for performance, accessibility and bestpractice is configured to send to Graphite. And previously we looked at sending all the score for the performance advice. If you want to send all the scores for all different advice, you can do that too, by adding all the three categories in the CLI:
+By default the total score for performance, accessibility and bestpractice is configured to send to Graphite. Previously we looked at sending all the score for the performance advice. If you want to send all the scores for all advice, you can do that easily, by adding all three categories in the CLI:
 
 ~~~ bash
 --metrics.filter coach.pageSummary.advice.performance.adviceList.*.score coach.pageSummary.advice.bestpractice.adviceList.*.score coach.pageSummary.advice.accessibility.adviceList.*.score
 ~~~
 
 #### Example: Use JSON config to pass the metrics configuration
-If you have a lot of different metrics that you want to send to Graphite the command line will be overloaded. But hey, there's a solution to the problem: Use the JSON configuration option <code>--config</code> (read more [here]({{site.baseurl}}/documentation/sitespeed.io/configuration/#configuration-as-json)).
+If you have a lot of different metrics that you want to send to Graphite the command line will be overloaded. We have a solution to the problem: Use the JSON configuration option <code>--config</code> (read more [here]({{site.baseurl}}/documentation/sitespeed.io/configuration/#configuration-as-json)).
 
-If you wanna send the three coach metrics, you can add them as a config file like this and pass the filename to the <code>--config</code> parameter:
+If you want to send the three coach metrics, you can add them as a config file like this and pass the filename to the <code>--config</code> parameter:
 
 ~~~ json
 {
@@ -128,11 +130,9 @@ If you wanna send the three coach metrics, you can add them as a config file lik
 ~~~
 
 ### Remove metrics
-Sitespeed.io does not currently have support to remove single metrics, but you can
-remove all configured metrics with the parameter value *\*-*
+Sitespeed.io does not currently have support removal of a single metric, but you can
+remove all configured metrics with the parameter value *\*-*. Here is an example sending only the **coach.pageSummary.advice.performance.adviceList.\*.score** metrics.
 
 ~~~ bash
 $ sitespeed.io --metrics.list https://www.sitespeed.io -n 1 --metrics.filter *- coach.pageSummary.advice.performance.adviceList.*.score --graphite.host 127.0.0.1 --graphite.port 52860
 ~~~
-
-will send only the **coach.pageSummary.advice.performance.adviceList.\*.score** metrics.
