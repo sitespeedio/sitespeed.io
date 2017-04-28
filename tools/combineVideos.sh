@@ -16,7 +16,7 @@ fi
 TMP_VIDEO_DIR=tmp-video
 FILE1=$(basename $1)
 FILE2=$(basename $2)
-OUTPUT_FILE=${3:-output_slow.mp4}
+OUTPUT_FILE=${3:-$(basename $1 .mp4)-vs-$(basename $2)}
 SLOWDOWN=5.0
 
 # Move the videos to a tmp dir so it is easy to mount them in Docker
