@@ -3,7 +3,7 @@ extends ./layout.pug
 block content
   - var d = pageInfo.data
   - var daTitle = daurlAlias ? daurlAlias : daurl
-  - var downloadName = (daTitle + '-' + timestamp).replace(/(https?\:\/\/)|( )|(:)/ig, '')
+  - var downloadName = (daTitle + '-' + options.browser + '-' + timestamp).replace(/(https?\:\/\/)|( )|(:)/ig, '')
   h1 Page summary
 
   h5.url
