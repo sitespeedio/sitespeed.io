@@ -46,7 +46,7 @@ If you run by default, the phone will use the current connection. The connectivi
 1. Download [TSProxy](https://github.com/WPO-Foundation/tsproxy) and make sure you have at least Python 2.7 installed.
 2. Check the local IP of your machine (in this example the IP is 10.0.1.7 and the default port for TSProxy is 1080).
 3. Start TSProxy and bind it to your IP: <code>python tsproxy.py --bind 10.0.1.7 --rtt=200 --inkbps=1600 --outkbps=768</code>
-4. Run <code>$ sitespeed.io --browsertime.chrome.android.package com.android.chrome --chrome.args proxy-server="socks://10.0.1.7:1080" https://www.sitespeed.io</code>
+4. Run <code>$ sitespeed.io --browsertime.chrome.android.package com.android.chrome --browsertime.chrome.args proxy-server="socks://10.0.1.7:1080" https://www.sitespeed.io</code>
 
 You could also use [phuedxs](https://github.com/phuedx) [Micro Device Lab](https://github.com/phuedx/micro-device-lab) but that is more work at the moment.
 
