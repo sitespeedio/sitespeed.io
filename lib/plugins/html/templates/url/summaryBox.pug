@@ -31,7 +31,6 @@ mixin getLinkPageTimings(path, name, metric, type)
         td.number(data-title=type)
           a(href='./' + index + '.html', title='Go to the run with the ' + type + ' ' + name) #{metric[name][type]}
 
-
 mixin getUserTimings(path, name, metric, type)
   - isSet = false
   if options.browsertime.iterations % 2 === 0 && type === 'median'
