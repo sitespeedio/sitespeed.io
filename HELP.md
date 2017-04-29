@@ -19,6 +19,5 @@ Do you use sitespeed.io in your everyday work? Then we have a perfect propositio
 
 # Help wanted
 You can help us:
-* Make it possible to [drive Chrome on Android phones from Docker](https://github.com/sitespeedio/browsertime/issues/312).
 * [Add connectivity support](https://github.com/sitespeedio/browsertime/issues/313) for Android phones.
 * Help us make the documentation even better. We love your feedback and help [https://github.com/sitespeedio/sitespeed.io/tree/master/docs](https://github.com/sitespeedio/sitespeed.io/tree/master/docs).
