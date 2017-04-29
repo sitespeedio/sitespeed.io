@@ -18,7 +18,7 @@ twitterdescription: Test your page using a mobile phone
 # Prerequisites
 
 ## Desktop
- * Install the [Android SDK](http://developer.android.com/sdk/index.html#downloads) on your desktop (just the command line tools!). If you are in Mac and use [Homebrew](http://brew.sh/) just run: <code>brew install android-platform-tools</code>
+ * Install the [Android SDK](http://developer.android.com/sdk/index.html#downloads) on your desktop (just the command line tools!). If you are on a Mac and use [Homebrew](http://brew.sh/) just run: <code>brew install android-platform-tools</code>
  * Start the adb-server on your desktop: <code>adb start-server</code>
 
 ## On your phone
@@ -28,11 +28,11 @@ twitterdescription: Test your page using a mobile phone
  * Enable Stay awake
  * Enable USB debugging in the device system settings, under Developer options.
  * Install the [Stay Alive app](https://play.google.com/store/apps/details?id=com.synetics.stay.alive) and start it.
- * Plugin your phone using the USB port on your desktop computer.
+ * Plug in your phone using the USB port on your desktop computer.
  * When you plugin your phone, click OK on the "Allow USB debugging?" popup.
 
 # Run
-You are now ready to run your and test on your phone:
+You are now ready to test using your phone:
 
 ~~~bash
 $ sitespeed.io --browsertime.chrome.android.package com.android.chrome https://www.sitespeed.io
@@ -48,10 +48,10 @@ If you run by default, the phone will use the current connection. The connectivi
 3. Start TSProxy and bind it to your IP: <code>python tsproxy.py --bind 10.0.1.7 --rtt=200 --inkbps=1600 --outkbps=768</code>
 4. Run <code>$ sitespeed.io --browsertime.chrome.android.package com.android.chrome --browsertime.chrome.args proxy-server="socks://10.0.1.7:1080" https://www.sitespeed.io</code>
 
-You could also use [phuedxs](https://github.com/phuedx) [Micro Device Lab](https://github.com/phuedx/micro-device-lab) but that is more work at the moment.
+You could also use [phuedxs](https://github.com/phuedx) [Micro Device Lab](https://github.com/phuedx/micro-device-lab), but using that requires additional work.
 
 # Video and SpeedIndex
-You can also collect a video and get Visual Metrics from your run. The current version doesn't support Docker so you need to install the requirements for [VisualMetrics](https://github.com/sitespeedio/docker-visualmetrics-deps/blob/master/Dockerfile) yourself on your machine before you start. If you have everything setup you can run:
+You can also collect a video and get Visual Metrics. The current version doesn't support Docker so you need to install the requirements for [VisualMetrics](https://github.com/sitespeedio/docker-visualmetrics-deps/blob/master/Dockerfile) yourself on your machine before you start. If you have everything setup you can run:
 
 ~~~bash
 $ sitespeed.io --browsertime.chrome.android.package com.android.chrome --video --speedIndex https://www.sitespeed.io

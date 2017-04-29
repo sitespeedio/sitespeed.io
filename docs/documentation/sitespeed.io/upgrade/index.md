@@ -15,17 +15,17 @@ twitterdescription: Upgrade 3 -> 4
 * Lets place the TOC here
 {:toc}
 
-Upgrading is just updating to the new version. There's a couple of important thing that has changed.
+Upgrading to the newest version from 3.x? There are a couple of important things that have changed.
 
 ## Graphite keys
-The keys in Graphite has a new structure. The reason is that we wants to have a generic solution where we can use the same dashboards for whatever site and we want to follow the new data structure. If old data is important to you, you need to run multiple instances for a while, one with 3.x and one with 4 and have multiple dashboards, and then when you have the history, make the switch to the 4.0 dashboards.
+The keys in Graphite have a new structure. The reason for this is that we wants to have a generic solution where we can use the same dashboards for any site. If old data is important to you, you will need to run multiple instances for a while, one with 3.x and one with 4/5.x and have multiple dashboards, once you are comfortable with the newer dashboards and have the history, make the switch to the 4/5.x dashboards.
 
 ## CLI mapping
-A lot changed in the CLI and the easiest way for you is just to run sitespeed.io with <code>--help</code> to see what you can use. You can also check this mapping.
+A lot has changed in the CLI and the easiest way for you to understand what options are available is to just run sitespeed.io with <code>--help</code>. You can also check this mapping to get an idea of what has changed.
 
 <div id="upgradeTable" markdown="1">
 
-| 3.x      | 4.0         | Description |
+| 3.x      | 4.x / 5.x         | Description |
 |:------------|:-------------------|:-------------|
 | `-u <URL>, --url <URL>` | N/A     | The start url that will be used when crawling. |
 | `-f <FILE>, --file <FILE>` | N/A | The path to a plain text file with one URL on each row. Each URL will be analyzed. |
@@ -96,7 +96,7 @@ A lot changed in the CLI and the easiest way for you is just to run sitespeed.io
 
 ## Docker
 
-With the new container you don't need to tell it to start sitespeed.io, just do:
+With the 4/5.x containers you no longer need to tell it to start sitespeed.io:
 
 ~~~ bash
 $ docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
