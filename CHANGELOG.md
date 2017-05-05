@@ -9,6 +9,7 @@
 * Added a new script /tools/combineVideos.sh to combine two videos into one
 * Include the browser name in the file name when you download a file [#1594](https://github.com/sitespeedio/sitespeed.io/issues/1594)
 * Show backEndTime in Summary Timings (to make it easy to find runs with same backEndTime) [#1595](https://github.com/sitespeedio/sitespeed.io/issues/1595)
+* Always log the WebPageTest id in the error logs if WebPageTest fails.
 
 ## 5.0.0 2017-04-24
 
