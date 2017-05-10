@@ -15,9 +15,9 @@ twitterdescription: Create your own plugin for sitespeed.io
 * Lets place the TOC here
 {:toc}
 
-Sitespeed.io uses a plugin architecture where you can add/remove/create your own plugins that runs additional tests on URLs or do something else with the result, like store it to a database.
+Sitespeed.io uses a plugin architecture. This architecture allows you to add/remove/create your own plugins that can run additional tests on URLs or do othere things with the result, like store it to a database.
 
-The basic you can do is list configured plugins (which are currently used), disable one of the default plugin or add/enable more plugins.
+The most basic things you can do is list configured plugins (which are currently used), disable one of the default plugin, or add/enable more plugins.
 
 ## List configured plugins
 You can list the plugins that will be used when you do a run:
@@ -26,7 +26,7 @@ You can list the plugins that will be used when you do a run:
 $ sitespeed.io --plugins.list https://en.wikipedia.org/wiki/Barack_Obama
 ~~~
 
-And you will get a log entry looking something like this:
+And you will get a log entry that looks something like this:
 
 ~~~
 ...
@@ -34,37 +34,37 @@ The following plugins are enabled: assets,browsertime,coach,domains,html,screens
 ...
 ~~~
 
-These are the default plugins. The default plugins lives in the [plugin folder](https://github.com/sitespeedio/sitespeed.io/tree/master/lib/plugins) in the sitespeed.io source tree. That's a good start to look if you wanna build your own plugin.
+The default plugins lives in the [plugin folder](https://github.com/sitespeedio/sitespeed.io/tree/master/lib/plugins). This is a good starting place to look at if you wanna build your own plugin.
 
 ## Disable a plugin
-You can disable default plugins if you want. Maybe you don't want to output HTML and only want to send the data to Graphite or you don't need the screenshots.
+You can disable default plugins if needed. For instance you may not want to output HTML and strictly send the data to Graphite.
 
 ~~~ bash
 $ sitespeed.io https://www.sitespeed.io --plugins.disable html
 ~~~
 
-If you want to disable multiple plugins:
+If you want to disable multiple plugins say you don't need the html or screenshots:
 
 ~~~ bash
 $ sitespeed.io https://www.sitespeed.io --plugins.disable html screenshot
 ~~~
 
-And if you want to verify that it worked, add the plugins.list:
+At anytime if you want to verify that disabling worked, add the plugins.list to your command:
 
 ~~~ bash
 $ sitespeed.io https://www.sitespeed.io --plugins.disable html screenshot --plugins.list
 ~~~
 
 ## Add a plugin
-You can also add a plugin. Plugins you create yourself, plugins others has created or plugins that are not enabled by default.
+You can also add a plugin. This is great if you have plugins you created yourself, plugins others have created, or plugins that are not enabled by default.
 
-There's a plugin bundled with sitespeed.io called *analysisstorer* plugin that isn't enabled by default. It stores the original JSON data from all analyzers (from Browsertime, Coach data, WebPageTest etc) to disk. You can enable it like this:
+There's a plugin bundled with sitespeed.io called *analysisstorer* plugin that isn't enabled by default. It stores the original JSON data from all analyzers (from Browsertime, Coach data, WebPageTest etc) to disk. You can enable this plugin like so:
 
 ~~~ bash
 $ sitespeed.io https://www.sitespeed.io --plugins.load analysisstorer
 ~~~
 
-If you want to run plugins that you created yourself or shared from others, you can either install the plugin using npm (locally) and load it by name or point out the directory where the plugin lives.
+If you want to run plugins that you created yourself or that are shared from others, you can either install the plugin using npm (locally) and load it by name or point out the directory where the plugin lives.
 
 ~~~ bash
 $ sitespeed.io https://www.sitespeed.io --plugins.load ../my/super/plugin
@@ -72,10 +72,10 @@ $ sitespeed.io https://www.sitespeed.io --plugins.load ../my/super/plugin
 
 ## Plugins in Docker
 
-If you run in Docker and you should. :-) You should mount your plugin directory as a volume. This is the recommended best practice. Practically you should clone your repo on your server and then mount it like this.
+If you run in Docker and you should. You will need to mount your plugin directory as a volume. This is the recommended best practice. Practically you should clone your repo on your server and then mount it like this.
 
 ~~~ bash
-docker run -v /Users/peter/git/myplugin/:/myplugin sitespeedio/sitespeed.io -b firefox --plugins.load /myplugin -n 1 https://www.sitespeed.io/
+docker run -v /Users/sitespeedio/git/myplugin/:/myplugin sitespeedio/sitespeed.io -b firefox --plugins.load /myplugin -n 1 https://www.sitespeed.io/
 ~~~
 
 If you want to create an image of sitespeedio with your plugins pre-baked for sharing you can also do so using the following Dockerfile.
@@ -98,8 +98,10 @@ Finally you can run it the same way as mentioned above without the volume mount.
 docker run my-custom-sitespeedio firefox --plugins.load /my-custom-plugin --my-custom-plugin.option test -n 1 https://www.sitespeed.io/
 ~~~
 
-## Create your own plugin
-You can create your own plugin! Share it with others by publish it to npm or just use Github.
+Pretty cool, huh? :-)
+
+## How to create your own plugin
+First let us know about your cool plugin! Then share it with others by publish it to npm or just use Github.
 
 ### Basic structure
 Your plugin needs to follow this structure.
@@ -137,7 +139,7 @@ module.exports = {
 This is the name of your plugin. You can use the name when you want to target specific options to your plugin. If you're plugin name is *browsertime* you can make sure all your options start with that name.
 
 ### open(context, options)
-The open function is called once when sitespeed.io starts, it's here you can initialize whatever you need in your plugin. You will get the *context* and the *options*.
+The open function is called once when sitespeed.io starts, it's in this function you can initialize whatever you need within your plugin. You will get the *context* and the *options*.
 
 The *context* holds information for this specific run that generated at runtime and looks like this:
 
@@ -151,23 +153,23 @@ The *context* holds information for this specific run that generated at runtime 
 }
 ~~~
 
-You can checkout the [StorageManager](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/storageManager.js) and the [DataCollection](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/dataCollection.js) to get a feeling of what you can do.
+You can checkout the [StorageManager](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/storageManager.js) and the [DataCollection](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/dataCollection.js) to get a feel of what you can accomplish.
 
-The *options* are the options that you supply in the CLI, checkout the [CLI implementation](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/cli.js) to see all the options.
+The *options* are the options that a user will supply in the CLI, checkout the [CLI implementation](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/cli.js) to see all the options.
 
 ### processMessage(message, queue)
-The processMessage function in your plugin is called for each and every message that is passed in the application. So what's a message then? Everything is message in sitespeed.io :) A message contains the following information:
+The processMessage function in your plugin is called for each and every message that is passed in the application. So what's a message you may ask? Everything is a message in sitespeed.io.:) A message contains the following information:
 
  * **uuid** a unique id
- * **type** the type of a message, so you as a plugin know if you are interested in this message type or not.
+ * **type** the type of a message, so your plugin know if it is interested in this message type or not.
  * **timestamp** when the message was created
  * **source** who created the message
  * **data** the data that is sent in the message
  * **extras** whatever extra that you wanna include in a message
 
-When you start the application and feed it with URLs, each URL will generate a message if type URL and is sent to all configured plugins.
+When you start the application and feed it with URLs, each URL will generate a message of type URL and will be sent to all configured plugins.
 
-If you wanna catch it, you can do something like this:
+If you want to catch it, you can do something like this:
 
 ~~~
 switch (message.type) {
@@ -177,9 +179,9 @@ switch (message.type) {
     }
 ~~~
 
-Then when you are finished analyzing the URL, your plugin can then send a message with the result, so other plugins can use it.
+When you are finished analyzing the URL, your plugin can then send a message with the result, so other plugins can use it.
 
-Here's a snippet of when Browsertime sends the screenshots message (the actual screenshot is in *results.screenshots*):
+Here's a snippet of Browsertime sending the screenshots message (the actual screenshot is in *results.screenshots*):
 
 ~~~
 const messageMaker = require('support/messageMaker');
@@ -191,7 +193,7 @@ queue.postMessage(make('browsertime.screenshot', results.screenshots, {
 }));
 ~~~
 
-If you wanna send messages inside your plugin, your plugin needs to depend on sitespeed and you can require the message maker like this:
+If you want to send messages from within your plugin, the plugin will need to depend on sitespeed and you can use require to include the message maker like this:
 
 ~~~
 const messageMaker = require('sitespeed.io/lib/support/messageMaker');
@@ -199,7 +201,7 @@ const messageMaker = require('sitespeed.io/lib/support/messageMaker');
 
 
 ### close(options, errors)
-When all URLs is analyzed, the close function is called once for each plugin. You can use that to store data that you collected.
+When all URLs have been analyzed, the close function is called once for each plugin. You can use this function to store the data that you collected.
 
 ## What's missing
-There's no way for a plugin to tell the CLI about what type of configuration/options that's needed, but there's an [issue](https://github.com/sitespeedio/sitespeed.io/issues/1065) for that.
+There's no way for a plugin to tell the CLI about what type of configuration/options that are needed, but there's an [issue](https://github.com/sitespeedio/sitespeed.io/issues/1065) for that. Help us out if you have ideas!

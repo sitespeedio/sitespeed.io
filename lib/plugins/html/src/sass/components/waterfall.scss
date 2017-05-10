@@ -1,4 +1,4 @@
-/*! github.com/micmro/PerfCascade Version:0.5.0 (18/02/2017) */
+/*! github.com/micmro/PerfCascade Version:2.0.0 (06/05/2017) */
 .water-fall-chart {width:100%; overflow: visible; font-size: 12px; line-height: 1em;}
 .water-fall-chart * {box-sizing: border-box;}
 .water-fall-chart button {cursor: pointer;}
@@ -7,8 +7,11 @@
 
 .water-fall-chart .left-fixed-holder {overflow: visible;}
 .water-fall-chart .marker-holder {width:100%;}
-.water-fall-chart .line-holder {stroke-width:1; stroke: #ccc; stroke-opacity:0.5;}
+.water-fall-chart .line-label-holder {cursor: pointer;}
+.water-fall-chart .line-holder {stroke-width:1; stroke: #ccc; stroke-opacity:0.5; transition: all 60ms;}
+.water-fall-chart .line-holder .line-mark {fill: #69009e; opacity: 0.01; stroke-width: 0; transition: all 60ms;}
 .water-fall-chart .line-holder.active {stroke: #69009e; stroke-width:2; stroke-opacity:1;}
+.water-fall-chart .line-holder.active .line-mark { opacity: 0.4;}
 .water-fall-chart .type-onload .line-holder  {stroke: #c0c0ff;}
 .water-fall-chart .type-oncontentload .line-holder  {stroke: #d888df;}
 
@@ -20,15 +23,13 @@
 .water-fall-chart .line-end.active,
 .water-fall-chart .line-start.active {display: block;}
 
-.water-fall-chart .mark-holder text {writing-mode:vertical-lr;}
-
-.left-fixed-holder .label-full-bg {fill: #fff; opacity: 0.9}
+.left-fixed-holder .label-full-bg {fill: #fff; opacity: 0.9;}
 
 .time-scale line {stroke:#0cc; stroke-width:1;}
 .time-scale line.sub-second-line {stroke: #ccc; opacity: 0.75; stroke-width:0.50;}
 .time-scale text {font-weight:bold;}
 
-.row-item {cursor: pointer}
+.row-item {cursor: pointer;}
 .row-item .even {fill: #ccc; opacity: 0.05;}
 .row-item .odd {fill: #000; opacity: 0.05;}
 .row-item:hover .odd,
@@ -46,14 +47,21 @@
 .row-item.status4xx .even,
 .row-item.status4xx .odd,
 .row-item.status3xx .even,
-.row-item.status3xx .odd {opacity: 0.3}
+.row-item.status3xx .odd {opacity: 0.3;}
 .row-item.status5xx:hover .even,
 .row-item.status5xx:hover .odd,
 .row-item.status4xx:hover .even,
 .row-item.status4xx:hover .odd,
 .row-item.status3xx:hover .even,
-.row-item.status3xx:hover .odd {opacity: 0.5}
+.row-item.status3xx:hover .odd {opacity: 0.5;}
 
+/** overlay animation settings **/
+.water-fall-chart .line-label-holder,
+.row-item,
+.water-fall-chart .line-holder line,
+.time-scale line,
+.time-scale text {transition:transform 60ms;}
+.water-fall-chart.closing {transition-delay: 60ms;}
 
 .labels { overflow: hidden;}
 
@@ -88,7 +96,7 @@
 .block-undefined {fill: #0f0;}
 
 /* Info overlay SVG - wrapper */
-.info-overlay {fill: #fff; stroke: #cdcdcd; }
+.info-overlay-bg {fill: #fff; stroke: #cdcdcd;}
 .info-overlay-close-btn {fill: rgba(205, 205, 205, 0.8); transform: translate(-23px, -23px); cursor: pointer;}
 .info-overlay-close-btn text {fill: #111; pointer-events: none;}
 .info-overlay-close-btn:focus {border: solid 1px #36c;}
@@ -142,8 +150,11 @@
 .info-overlay-holder .tab-nav li {margin: 0; padding: 0; display: inline-block;}
 .info-overlay-holder button { background: transparent; outline:0; border:0; border-bottom: solid 2px transparent; padding: 0.5em 1em; margin:0 0.25em;}
 .info-overlay-holder li:first-child  button {margin-left: 1em;}
-.info-overlay-holder button:focus,.info-overlay-holder button:hover {border-color: rgba(255,255,255, 0.6);}
+.info-overlay-holder button:focus,
+.info-overlay-holder button.active:focus,
+.info-overlay-holder button:hover {border-color: rgba(255,255,255, 0.6);}
 .info-overlay-holder button.active {border-color: #fff; cursor: default;}
+.info-overlay-holder button.active:focus {border-color: rgba(255,255,255, 0.8);}
 
 /* Info overlay HTML - content */
 .info-overlay-holder dt {float: left; clear: both; margin-top: 0.5em; width: 25%; text-align: right; font-weight: bold; }
@@ -162,7 +173,7 @@
 
 /** Legend */
 .resource-legend { margin: 0; padding: 0; font-size: 0.75em; line-height: 1.5em; display: inline-block;}
-.resource-legend li {margin: 0 1em 1em 0; padding: 0; white-space: nowrap; display: inline-block;}
+.resource-legend li {margin: 0 1em 0 0; padding: 0; white-space: nowrap; display: inline-block;}
 .resource-legend li:before {content:''; width: 1em; height: 1em; margin: 0 0.5em 0 0; vertical-align: text-top; display: inline-block; }
 
 .resource-legend .legend-blocked:before { background: #aaa;}

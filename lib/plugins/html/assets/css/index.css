@@ -931,7 +931,7 @@ ul.menu {
   -moz-hyphens: auto;
   hyphens: auto; }
 
-/*! github.com/micmro/PerfCascade Version:0.5.0 (18/02/2017) */
+/*! github.com/micmro/PerfCascade Version:2.0.0 (06/05/2017) */
 .water-fall-chart {
   width: 100%;
   overflow: visible;
@@ -953,15 +953,28 @@ ul.menu {
 .water-fall-chart .marker-holder {
   width: 100%; }
 
+.water-fall-chart .line-label-holder {
+  cursor: pointer; }
+
 .water-fall-chart .line-holder {
   stroke-width: 1;
   stroke: #ccc;
-  stroke-opacity: 0.5; }
+  stroke-opacity: 0.5;
+  transition: all 60ms; }
+
+.water-fall-chart .line-holder .line-mark {
+  fill: #69009e;
+  opacity: 0.01;
+  stroke-width: 0;
+  transition: all 60ms; }
 
 .water-fall-chart .line-holder.active {
   stroke: #69009e;
   stroke-width: 2;
   stroke-opacity: 1; }
+
+.water-fall-chart .line-holder.active .line-mark {
+  opacity: 0.4; }
 
 .water-fall-chart .type-onload .line-holder {
   stroke: #c0c0ff; }
@@ -988,9 +1001,6 @@ ul.menu {
 .water-fall-chart .line-end.active,
 .water-fall-chart .line-start.active {
   display: block; }
-
-.water-fall-chart .mark-holder text {
-  writing-mode: vertical-lr; }
 
 .left-fixed-holder .label-full-bg {
   fill: #fff;
@@ -1061,6 +1071,17 @@ ul.menu {
 .row-item.status3xx:hover .odd {
   opacity: 0.5; }
 
+/** overlay animation settings **/
+.water-fall-chart .line-label-holder,
+.row-item,
+.water-fall-chart .line-holder line,
+.time-scale line,
+.time-scale text {
+  transition: transform 60ms; }
+
+.water-fall-chart.closing {
+  transition-delay: 60ms; }
+
 .labels {
   overflow: hidden; }
 
@@ -1128,7 +1149,7 @@ ul.menu {
   fill: #0f0; }
 
 /* Info overlay SVG - wrapper */
-.info-overlay {
+.info-overlay-bg {
   fill: #fff;
   stroke: #cdcdcd; }
 
@@ -1288,12 +1309,17 @@ ul.menu {
 .info-overlay-holder li:first-child button {
   margin-left: 1em; }
 
-.info-overlay-holder button:focus, .info-overlay-holder button:hover {
+.info-overlay-holder button:focus,
+.info-overlay-holder button.active:focus,
+.info-overlay-holder button:hover {
   border-color: rgba(255, 255, 255, 0.6); }
 
 .info-overlay-holder button.active {
   border-color: #fff;
   cursor: default; }
+
+.info-overlay-holder button.active:focus {
+  border-color: rgba(255, 255, 255, 0.8); }
 
 /* Info overlay HTML - content */
 .info-overlay-holder dt {
@@ -1367,7 +1393,7 @@ ul.menu {
   display: inline-block; }
 
 .resource-legend li {
-  margin: 0 1em 1em 0;
+  margin: 0 1em 0 0;
   padding: 0;
   white-space: nowrap;
   display: inline-block; }

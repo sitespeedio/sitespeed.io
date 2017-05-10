@@ -15,7 +15,7 @@ twitterdescription: How it all works.
 * Lets place the TOC here
 {:toc}
 
-## What happens when sitespeed.io analyzes a page (10 seconds version)
+## What happens when sitespeed.io analyzes a page (the 10 step version)
 This is the super simple version, leaving out all other tools that are used:
 
 1. sitespeed.io gets a URL from the user
@@ -27,16 +27,16 @@ This is the super simple version, leaving out all other tools that are used:
 7. Stop the video and close the browser
 8. Analyze the video to get metrics like FirstVisualChange and SpeedIndex
 9. Generate a HTML report and/or send the metrics to Graphite or store the metrics however you want, building your own plugin.
-
+10. Enjoy!
 
 ## The big picture (with all the tools)
 The big picture looks something like this:
 
-![How it all works]({{site.baseurl}}/img/sitespeed-universe.png)
+![How it all works]({{site.baseurl}}/img/sitespeed-universe-5.png)
 {: .img-thumbnail}
 
 ### Built upon Open Source
-Sitespeed.io uses a lot of other Open Source tools massive love to those projects:
+Sitespeed.io uses a lot of other Open Source tools so massive love to those projects and maintainers:
 
  * [Selenium](http://www.seleniumhq.org/)
  * [Visual Metrics](https://github.com/WPO-Foundation/visualmetrics)

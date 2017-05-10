@@ -115,16 +115,17 @@ script(type='text/javascript').
               td HTML vs AMP
               td.right #{advice.info.amp?'This is an AMP page':'Plain good HTML page'}
       .one-half.column
-        table
-          tr
-            th(colspan='2') Resource Hints
-          each value, key in advice.info.resourceHints
-            if value && value.length > 0
-              tr
-                td.subtableheader(colspan='2') #{key}
-              each url in value
+        if advice.info && advice.info.resourceHints
+          table
+            tr
+              th(colspan='2') Resource Hints
+            each value, key in advice.info.resourceHints
+              if value && value.length > 0
                 tr
-                  td.url(colspan='2') #{url}
-            else
-              tr
-                td(colspan='2') No URLs for #{key}
+                  td.subtableheader(colspan='2') #{key}
+                each url in value
+                  tr
+                    td.url(colspan='2') #{url}
+              else
+                tr
+                  td(colspan='2') No URLs for #{key}

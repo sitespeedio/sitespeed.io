@@ -26,12 +26,16 @@ parsed.options.explicitOptions = parsed.explicitOptions;
 parsed.options.urls = parsed.urls;
 parsed.options.urlsMetaData = parsed.urlsMetaData;
 
-return sitespeed.run(parsed.options)
-  .then((result) => {
+sitespeed
+  .run(parsed.options)
+  .then(result => {
     if (result.errors.length > 0) {
       throw new Error('Errors while running:\n' + result.errors.join('\n'));
     }
-    if (parsed.options.budget && Object.keys(result.budgetResult.failing).length > 0) {
+    if (
+      parsed.options.budget &&
+      Object.keys(result.budgetResult.failing).length > 0
+    ) {
       process.exitCode = 1;
       budgetFailing = true;
     }

@@ -34,7 +34,7 @@ We have have re-structure the data and the whole experience using 5.0 is way bet
 
 If you have tried sitespeed.io since we first introduced video support you have seen that we have a really crisp video. One cool thing is that we display the visual metrics in the video when it happens. The video now also includes Visual Complete 85%, so it is easier to see when that happens compared to the other metrics.
 
-We also made it easier to download the video. Checkout the yellow button for downloading. This now means you can download the video, the HAR files, Chrome timeline (if you configured that,) and the sitespeed.io log from each run. This is great if you have external tools that can leverage any of these files for alternative or additional analysis. 
+We also made it easier to download the video. Checkout the yellow button for downloading. This now means you can download the video, the HAR files, Chrome timeline (if you configured that,) and the sitespeed.io log from each run. This is great if you have external tools that can leverage any of these files for alternative or additional analysis.
 
 ![The video includes metrics by default]({{site.baseurl}}/img/video5.0.png)
 {: .img-thumbnail}
@@ -94,7 +94,7 @@ Sitespeed.io 5.0 uses Browsertime 1.1 that we released yesterday. What a ride it
 ### Video and SpeedIndex from your Android device
 While still in experimental support for video and SpeedIndex for Chrome on Android we need help to test it out on different devices. Right now you need to setup the dependencies needed for VisualMetrics yourself, so it some work to get that going. Check out the [how to](https://github.com/sitespeedio/browsertime#test-on-your-mobile-device) on what you need to setup.
 
-![Video and SpeedIndex on Android](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/barack.gif)
+![Video and SpeedIndex on Android]({{site.baseurl}}/img/barack-adnroid-video.gif)
 {: .img-thumbnail}
 
 Warning: This is really addictive! When I integrated the latest Browsertime in sitespeed.io I got stuck for a couple of hours testing different sites on my low end Huawei Android phone.

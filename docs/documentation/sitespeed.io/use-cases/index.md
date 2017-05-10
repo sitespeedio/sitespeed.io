@@ -18,7 +18,7 @@ twitterdescription: Use Cases for running sitespeed.io.
 ## Find performance problems in production
 One common use case is to crawl a site and analyze and measure the URLs. Crawling a site is good practice as it will find new pages that are linked from the pages you crawl.
 
-This is useful for sites where the content team creates new pages directly in a CMS and the developers don't have control over which pages exist. Crawling will make sure we pick up new pages and measure them. Use this to discover pages that could/should be faster or have problems.
+This is useful for sites where the content team creates new pages directly in a CMS and the developers don't have control over which pages will exist. Crawling will make sure we pick up new pages and measure them. Use this to discover pages that could/should be faster or have problems.
 
 Crawling too deep can take a considerable amount of time, so be aware.
 {: .note .note-warning}
@@ -27,20 +27,20 @@ Crawling too deep can take a considerable amount of time, so be aware.
 $ sitespeed.io http://www.nytimes.com/pages/sports/ -d 2
 ~~~
 
-Best practice is to not send crawl results to Graphite as it will probably create a lot of new URLS over time, making the size of the Graphite "database" grow indefinitely. Instead use it to verify deploys or that the content team following best practices. You can combine this with the [performance budget](../performance-budget/), making a test fail if any page crosses the limits.
+Best practice is to not send crawl results to Graphite as it will create a lot of new URLS over time, making the size of the Graphite "database" grow indefinitely. Instead use it to verify deploys or that the content team following best practices. You can combine this with the [performance budget](../performance-budget/), making a test fail if any page crosses the limits.
 
 ## Performance monitoring important URLs
 
-Testing the same URL over and over again is good practice, since this will allow you to benchmark it. This allows for continuous integration tool (to check the performance before changes is released) and when comparing sites to it's competitors (matching start pages, product pages, purchase flows, etc).
+Testing the same URL over and over again is good practice, since this will allow you to benchmark it. This allows for continuous integration tool (to check the performance before changes are released) and when comparing sites to it's competitors (matching start pages, product pages, purchase flows, etc).
 
 ### How to choose which URLs to test?
 
-If you use an Analytical tool check which pages are the most popular or talk to the business to check that you have the same understanding of which pages are the most important of the site.
+If you use an analytical tool, check which pages are the most popular or talk to the shareholders to determine that you have the same understanding of which pages are the most important to the business.
 
-If we going to test the URLss in our continuous integration, try to keep the list of URLs small, max of 10, so you can test each URL as many times as possible to get timings that are consistent between runs.
+If we going to test the URLs in our continuous integration, try to keep the list of URLs small, max of 10, so you can test each URL as many times as possible to get timings that are as consistent as possible between runs.
 
 ### What else do I need?
-You should do this continuously every X minutes/hours (depending how often you release/your content change). By default we support Graphite to store the data of a run and uses Grafana to make it look pretty.
+You should do this continuously every X minutes/hours (depending how often you release/your content change). We support Graphite and InfluxDB to store the data of a run and uses Grafana to make it look pretty. Here is an example setup using a text file, chrome with 5 runs and sending metrics to graphite.
 
 ### Setup
 
@@ -59,4 +59,4 @@ sitespeed.io amazon.txt -b chrome -n 5 --graphite.host my.graphite.host
 ~~~
 
 ## Find it before it reaches production
-Another way is to try to find problems before your code reached production. Do that by integrate sitespeed.io in [your continuous integration](../continuous-integration/).
+You can find problems before your code reached production by integrating sitespeed.io in [your continuous integration](../continuous-integration/).
