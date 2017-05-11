@@ -32,10 +32,6 @@ a[data-name=tabs]:before {
   // margin-right: 10px;
 }
 
-:target:before {
-  display: none;
-}
-
 a[data-name=tabs]:hover {
   color: #888;
   cursor: pointer;
