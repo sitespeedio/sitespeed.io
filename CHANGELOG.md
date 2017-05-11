@@ -4,6 +4,7 @@
 
 ### Fixed
 * Verify that you add the host when you want to send metrics to Graphite [#15879](https://github.com/sitespeedio/sitespeed.io/issues/1587)
+* Fix navigation making anchors miss target [#1609](https://github.com/sitespeedio/sitespeed.io/pull/1609). Thanks [Radu Micu](https://github.com/radum) for the PR!
 
 ### Added
 * Added a new script /tools/combineVideos.sh to combine two videos into one

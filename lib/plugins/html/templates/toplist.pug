@@ -31,9 +31,9 @@ block content
 
     each type in topLists
       if (assetsBySize[type] && assetsBySize[type].length > 1)
-        h3 Largest #{contentTypeNames[type]} files
+        h3(id=type) Largest #{contentTypeNames[type]} files
         .responsive
-          table(data-sortable, id=type)
+          table(data-sortable)
             +rowHeading(['url', 'time since last modified', 'cache time', 'size (kb)'])
             +rows(assetsBySize[type], false)
 
