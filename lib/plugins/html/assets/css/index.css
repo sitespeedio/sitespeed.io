@@ -1512,9 +1512,6 @@ a[data-name=tabs] {
 a[data-name=tabs]:before {
   font-weight: normal; }
 
-:target:before {
-  display: none; }
-
 a[data-name=tabs]:hover {
   color: #888;
   cursor: pointer; }
