@@ -28,7 +28,7 @@ You can throttle the connection to make the connectivity slower to make it easie
 
 By default we expect an external tool to handled connectivity. In the past we used [TSProxy](https://github.com/WPO-Foundation/tsproxy) because it's only dependency was Python 2.7, but unfortunetly we have a problem with it and Selenium, so it was removed as the default due to it's instability. Help us fix that in [#229](https://github.com/sitespeedio/browsertime/issues/229).
 
-If you run Docker you can use tc as connectivity engine but it will only set the latency and upload speed, download speed will be the same as upload. If you want to control the download speed you need to create a network bridge in Docker.
+If you run Docker you can use tc as connectivity engine but that will only set the latency, if you want to set the download speed you need to create a network bridge in Docker.
 
 Here's an full example to setup up Docker network bridges on a server that has tc installed:
 
