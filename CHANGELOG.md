@@ -1,18 +1,18 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 5.1.0 2017-05-14
 
 ### Fixed
-* Verify that you add the host when you want to send metrics to Graphite [#15879](https://github.com/sitespeedio/sitespeed.io/issues/1587)
+* Verify that you add the host when you want to send metrics to Graphite [#1587](https://github.com/sitespeedio/sitespeed.io/issues/1587)
 * Fix navigation making anchors miss target [#1609](https://github.com/sitespeedio/sitespeed.io/pull/1609). Thanks [Radu Micu](https://github.com/radum) for the PR!
 
 ### Added
-* Added a new script /tools/combineVideos.sh to combine two videos into one
+* Added a new script /tools/combineVideos.sh to combine two videos into one.
 * Include the browser name in the file name when you download a file [#1594](https://github.com/sitespeedio/sitespeed.io/issues/1594)
-* Show backEndTime in Summary Timings (to make it easy to find runs with same backEndTime) [#1595](https://github.com/sitespeedio/sitespeed.io/issues/1595)
+* Show backEndTime in Summary Timings (to make it easy to find runs with same backEndTime) [#1595](https://github.com/sitespeedio/sitespeed.io/issues/1595).
 * Always log the WebPageTest id in the error logs if WebPageTest fails.
 * Upgraded to [PerfCascade 2.0.0](https://github.com/micmro/PerfCascade/releases/tag/v2.0.0) with performance improvements and keyboard accessibility.
-* New Browsertime 1.2.0 with fine tuned video for Firefox and Basic Auth support in Chrome.
+* New Browsertime 1.2.5 with fine tuned video for Firefox, Basic Auth support in Chrome, fix for URLs containing commas and new version of VisualMetrics (thanks Pat) that can sort out the problem that started to happen with Chrome 58 running in emulated mode (or at least most of the times).
 
 ## 5.0.0 2017-04-24
 
