@@ -7,7 +7,7 @@ mixin rows(assets, showTiming)
       td.url.assetsurl(data-title='URL')
         a(href=asset.url)= h.shortAsset(asset.url)
         | &nbsp;
-        a(href=asset.page + 'index.html') &circlearrowleft;
+        a(href=asset.runPage + '.html') &circlearrowleft;
       +durationCell('last modified',asset.lastModification)
       +durationCell('cache time',asset.cacheTime)
       +kbSizeCell('size', asset.contentSize)
