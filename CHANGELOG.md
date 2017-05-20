@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+
+### Added
+* Upgraded to WebPageTest API 0.3.5
+
+
 ## 5.1.0 2017-05-14
 
 ### Fixed
