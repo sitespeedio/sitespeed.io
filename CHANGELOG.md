@@ -3,8 +3,7 @@
 ## UNRELEASED
 
 ### Added
-* Upgraded to WebPageTest API 0.3.5
-
+* Upgraded to WebPageTest API 0.3.5, VideoJS 6.1, PUG 2.0.0-rc1 and PerfCascade 2.0.1
 
 ## 5.1.0 2017-05-14
 
