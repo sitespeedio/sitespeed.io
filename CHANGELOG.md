@@ -1,9 +1,10 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 5.1.1 2017-05-23
 
-### Added
-* Upgraded to WebPageTest API 0.3.5, VideoJS 6.1, PUG 2.0.0-rc1 and PerfCascade 2.0.1
+### Fixed
+* Upgraded to WebPageTest API 0.3.5, VideoJS 6.1, PUG 2.0.0-rc1 and PerfCascade 2.0.1.
+* Upgraded to Browsertime 1.2.6 with a fix so that setting Firefox Preferences works as expected.
 
 ## 5.1.0 2017-05-14
 
