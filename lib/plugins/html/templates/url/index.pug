@@ -17,7 +17,8 @@ block content
         - value = Number(index) + 1
         a(href='./' + index + '.html') #{value}
         if (value !== Object.keys(runPages).length)
-          | &nbsp;-&nbsp;
+          | &nbsp;-
+          |
 
   if pageInfo.errors
     h4 Errors
