@@ -9,6 +9,7 @@
 
 ### Added
 * Added support for --s3.storageClass option (thanks [shakey2k2](https://github.com/shakey2k2)) [#1623](https://github.com/sitespeedio/sitespeed.io/pull/1623)
+* Show browser version on HTML run pages.
 
 ## 5.1.1 2017-05-23
 
