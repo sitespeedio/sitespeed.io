@@ -99,5 +99,5 @@ A lot has changed in the CLI and the easiest way for you to understand what opti
 With the 4/5.x containers you no longer need to tell it to start sitespeed.io:
 
 ~~~ bash
-$ docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
 ~~~

@@ -99,7 +99,7 @@ $ Server listening on :::52860
 It will output the port, so you can then use it when you run sitespeed.io:
 
 ~~~ bash
-$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --metrics.list https://www.sitespeed.io -n 1 --metrics.filter coach.pageSummary.advice.performance.adviceList.*.score --graphite.host 127.0.0.1 --graphite.port 52860
+$ docker run --privileged --net host --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --metrics.list https://www.sitespeed.io -n 1 --metrics.filter coach.pageSummary.advice.performance.adviceList.*.score --graphite.host 127.0.0.1 --graphite.port 52860
 ~~~
 
 The the previous example it will log all metrics you send to Graphite to the console.
@@ -134,5 +134,5 @@ Sitespeed.io does not currently have support removal of a single metric, but you
 remove all configured metrics with the parameter value *\*-*. Here is an example sending only the **coach.pageSummary.advice.performance.adviceList.\*.score** metrics.
 
 ~~~ bash
-$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --metrics.list https://www.sitespeed.io -n 1 --metrics.filter *- coach.pageSummary.advice.performance.adviceList.*.score --graphite.host 127.0.0.1 --graphite.port 52860
+$ docker run --privileged --net host --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --metrics.list https://www.sitespeed.io -n 1 --metrics.filter *- coach.pageSummary.advice.performance.adviceList.*.score --graphite.host 127.0.0.1 --graphite.port 52860
 ~~~
