@@ -16,7 +16,7 @@ If you don't find the answer here or in the [documentation]({{site.baseurl}}/doc
 {:toc}
 
 ## Should I use TSProxy or tc as connectivity engine?
-No should always use the Docker network setup described [here]({{site.baseurl}}/documentation/sitespeed.io/browsers/#change-connectivity).
+No you should always use the Docker network setup described [here]({{site.baseurl}}/documentation/sitespeed.io/browsers/#change-connectivity).
 
 ## Chrome doesn't work on RHEL7 (or some other *nix flavor)
 Make Chrome run without the sandbox and it will work. Pass the following argument to sitespeed.io:
