@@ -40,6 +40,8 @@ $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeed
 
 You will get result as you would with running this normally with summaries and waterfall graphs.
 
+If you want test coming Chrome versions you can use *com.chrome.beta* for latest beta and *com.chrome.dev* for latest development version (make sure installed them on your phone first).
+
 # Connectivity
 If you run by default, the phone will use the current connection. The connectivity flag is currently not supported (would love a PR for that!) but you can set connectivity by using [TSProxy](https://github.com/WPO-Foundation/tsproxy).
 
