@@ -1,15 +1,15 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 5.2.0 2017-05-24
 
 ### Fixed
 * Upgraded to Grafana 4.3.1 in the Docker compose file.
-* Too many runs broke the HTML [#1621](https://github.com/sitespeedio/sitespeed.io/issues/1621)
-* --summary and --summaryDetail is broken (thanks [gamerlv](https://github.com/gamerlv) for reporting) [#1622](https://github.com/sitespeedio/sitespeed.io/issues/1622)
+* Too many runs broke the HTML [#1621](https://github.com/sitespeedio/sitespeed.io/issues/1621).
+* When you used --summary and --summaryDetail it broke the run (thanks [gamerlv](https://github.com/gamerlv) for reporting) [#1622](https://github.com/sitespeedio/sitespeed.io/issues/1622).
 
 ### Added
-* Added support for --s3.storageClass option (thanks [shakey2k2](https://github.com/shakey2k2)) [#1623](https://github.com/sitespeedio/sitespeed.io/pull/1623)
-* Show browser version on HTML run pages.
+* Added support for --s3.storageClass option (thanks [shakey2k2](https://github.com/shakey2k2)) [#1623](https://github.com/sitespeedio/sitespeed.io/pull/1623).
+* Show browser version on HTML run pages (finally!).
 
 ## 5.1.1 2017-05-23
 
