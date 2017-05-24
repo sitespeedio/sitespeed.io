@@ -188,13 +188,13 @@ You can analyze a site either by crawling or by feeding sitespeed.io with a list
 The simplest way to run sitespeed.io is to give it a URL.
 
 ~~~bash
-$ docker run -it -v $(pwd):/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io
 ~~~
 
 If you wanna test multiple URLs just feed them:
 
 ~~~bash
-$ docker run -it -v $(pwd):/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io https://www.sitespeed.io/documentation/
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io https://www.sitespeed.io/documentation/
 ~~~
 
 You can also use a plain text file with one URL on each line. Create a file called urls.txt:
@@ -219,7 +219,7 @@ Aliases are great in combination with sending metrics to a TSDB such as graphite
 And run it:
 
 ~~~bash
-$ docker run -it -v $(pwd):/sitespeed.io sitespeedio/sitespeed.io urls.txt
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io urls.txt
 ~~~
 
 ### Analyze by crawling
@@ -227,21 +227,21 @@ $ docker run -it -v $(pwd):/sitespeed.io sitespeedio/sitespeed.io urls.txt
 If you wanna find pages that are not so performant it's a good idea to crawl. Sitespeed.io will start with the URL and fetch all links on that pages and continue to dig deeper into the site structure. You can choose how deep to crawl (1=only one page, 2=include links from first page, etc.):
 
 ~~~bash
-$ docker run -it -v $(pwd):/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -d 2
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -d 2
 ~~~
 
 ### How many runs per URL?
 When collecting timing metrics it's good to test the URL more than one time (default is three times). You can configure how many runs like this (five runs):
 
 ~~~bash
-$ docker run -it -v $(pwd):/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -n 5
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -n 5
 ~~~
 
 ### Choose browser
 Choose which browser to use (default is Chrome):
 
 ~~~bash
-$ docker run -it -v $(pwd):/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -b firefox
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -b firefox
 ~~~
 
 ### Connectivity
@@ -272,13 +272,13 @@ You can set the viewport & user agent, so that you can fake testing a site as a 
 Simplest way is to just add <code>--mobile</code> as a parameter. The viewport will be set to 360x640 and the User Agent will be Iphone6. If you use Chrome it will use the pre-set device Apple iPhone 6.
 
 ~~~bash
-$ docker run -it -v $(pwd):/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --mobile
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --mobile
 ~~~
 
 You can also set specific viewport and User Agent:
 
 ~~~bash
-$ docker run -it -v $(pwd):/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "UCWEB/2.0 (MIDP-2.0; U; Adr 4.4.4; en-US; XT1022) U2/1.0.0 UCBrowser/10.6.0.706 U2/1.0.0 Mobile"
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "UCWEB/2.0 (MIDP-2.0; U; Adr 4.4.4; en-US; XT1022) U2/1.0.0 UCBrowser/10.6.0.706 U2/1.0.0 Mobile"
 ~~~
 
 Mobile testing is always best on an actual mobile devices. You can [test on Android phones](../mobile-phones/) using sitespeed.io.
@@ -291,13 +291,13 @@ You can fake the connectivity for the browser. By default we expect an external 
 Setting the connectivity to cable:
 
 ~~~bash
-$ docker run -it -v $(pwd):/sitespeed.io sitespeedio/sitespeed.io -c cable https://www.sitespeed.io/
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -c cable https://www.sitespeed.io/
 ~~~
 
 Changing the engine type to tc:
 
 ~~~bash
-$ docker run -it -v $(pwd):/sitespeed.io sitespeedio/sitespeed.io -c cable --browsertime.connectivity.engine tc https://www.sitespeed.io/
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -c cable --browsertime.connectivity.engine tc https://www.sitespeed.io/
 ~~~
 
 ### Speed Index and video
@@ -320,14 +320,14 @@ $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeed
 You can categorize requests as first or third parties by adding a regexp. You will then get the size & requests by type both in HTML and sent to Graphite.
 
 ~~~bash
-$ docker run -it -v $(pwd):/sitespeed.io sitespeedio/sitespeed.io --firstParty ".ryanair.com" https://www.ryanair.com/us/en/
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --firstParty ".ryanair.com" https://www.ryanair.com/us/en/
 ~~~
 
 ### Output folder or where to store the result
 You can change where you want the data to be stored by setting the <code>--outputFolder</code> parameter. That is good in scenarios where you wanna change the default behavior and put the output in specific place.
 
 ~~~bash
-$ docker run -it -v $(pwd):/sitespeed.io sitespeedio/sitespeed.io --outputFolder /my/folder ".ryanair.com" https://www.sitespeed.io/
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --outputFolder /my/folder ".ryanair.com" https://www.sitespeed.io/
 ~~~
 
 ### Configuration as JSON
@@ -363,13 +363,13 @@ Create a config file and call it config.json:
 The run it like this:
 
 ~~~bash
-$ docker run -it -v $(pwd):/sitespeed.io sitespeedio/sitespeed.io --config config.json https://www.sitespeed.io
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --config config.json https://www.sitespeed.io
 ~~~
 
 If you wanna override and run the same configuration but using Firefox, you just override with the CLI parameter:
 
 ~~~bash
-$ docker run -it -v $(pwd):/sitespeed.io sitespeedio/sitespeed.io --config config.json -b firefox https://www.sitespeed.io
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --config config.json -b firefox https://www.sitespeed.io
 ~~~
 
 The CLI will always override a JSON config.
@@ -380,13 +380,13 @@ The CLI will always override a JSON config.
 You can send the result of a run to Slack. First setup a webhook in the Slack API (https://<your team>.slack.com/apps/manage/custom-integrations) and then configure it:
 
 ~~~bash
-$ docker run -it -v $(pwd):/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/ --slack.hookUrl https://hooks.slack.com/services/YOUR/HOOK/URL
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/ --slack.hookUrl https://hooks.slack.com/services/YOUR/HOOK/URL
 ~~~
 
 You can choose to send just a summary (the summary for all runs), individual runs (with url), only errors or all by choosing the <code>slack.type</code>.
 
 ~~~bash
-$ docker run -it -v $(pwd):/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/ --slack.hookUrl https://hooks.slack.com/services/YOUR/HOOK/URL --slack.type summary
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/ --slack.hookUrl https://hooks.slack.com/services/YOUR/HOOK/URL --slack.type summary
 ~~~
 
 ![Slack]({{site.baseurl}}/img/slack.png)
