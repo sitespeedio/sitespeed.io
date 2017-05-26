@@ -106,8 +106,8 @@ Our *run.sh* file (we read which URLs we wanna test from files):
 
 ~~~
 #!/bin/bash
-DOCKER_CONTAINER=sitespeedio/sitespeed.io:5.0.0
-DOCKER_SETUP="--privileged --shm-size=1g --rm -v /root/config:/sitespeed.io -v /result:/result -v /etc/localtime:/etc/localtime:ro"
+DOCKER_CONTAINER=sitespeedio/sitespeed.io:5.2.0
+DOCKER_SETUP="--privileged --shm-size=1g --rm -v /root/config:/sitespeed.io -v /result:/result -v /etc/localtime:/etc/localtime:ro --name sitespeed"
 THREEG="--network 3g"
 CABLE="--network cable"
 CONFIG="--config /sitespeed.io/default.json"
