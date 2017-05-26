@@ -1,4 +1,7 @@
 # CHANGELOG - sitespeed.io
+## UNRELEASED
+### Fixed
+* The link to the Chrome trace log is not working (however the trace log is broken since Chromedriver 2.28)
 
 ## 5.2.0 2017-05-24
 
