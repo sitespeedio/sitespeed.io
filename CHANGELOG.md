@@ -1,7 +1,8 @@
 # CHANGELOG - sitespeed.io
 ## UNRELEASED
 ### Fixed
-* The link to the Chrome trace log is not working (however the trace log is broken since Chromedriver 2.28)
+* The link to the Chrome trace log is not working (however the trace log is broken since Chromedriver 2.29)
+* Upgraded to Browsertime 1.2.7 that downgrades Chromedriver to 2.28 to make collecting trace logs work again.
 
 ## 5.2.0 2017-05-24
 
