@@ -62,7 +62,7 @@ Having a server continuously running the latest code, pushing the metrics to Gra
 When we release (= a new version to npm and a new tag to the Docker hub) we use [this](https://github.com/sitespeedio/sitespeed.io/blob/master/release.sh) super simple release script. Before we release we always let the latest code run for a while on our test server and wait for errors on our Slack channel. We also manually browse the logs before a release and verify the HTML result pages on S3.
 
 ### How you should upgrade sitespeed.io
-If you use Docker (and you should) make sure that you run a tagged versions and by tag we don't mean latest. Pull by setting the versiom number just like this:
+If you use Docker (and you should) make sure that you run a tagged versions and by tag we don't mean latest. Pull by setting the version number just like this:
 
 ~~~bash
 $ docker pull sitespeedio/sitespeed.io:4.7.0

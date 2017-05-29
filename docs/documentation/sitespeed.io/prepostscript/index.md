@@ -21,7 +21,7 @@ Before sitespeed.io loads and tests a URL you can run your own Selenium script. 
 We use the NodeJs version of Selenium, you can find the [API documentation here](http://seleniumhq.github.io/selenium/docs/api/javascript/index.html).
 
 ## Login example
-Create a script where you login the user. The followiing is an example to login the user at Wikipedia. Start by creating a file login.js with the following.
+Create a script where you login the user. The following is an example to login the user at Wikipedia. Start by creating a file login.js with the following.
 
 ~~~ bash
 module.exports = {
