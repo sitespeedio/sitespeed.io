@@ -84,7 +84,7 @@ A lot has changed in the CLI and the easiest way for you to understand what opti
 | `--noYslow` | N/A | Set to true to turn off collecting metrics using YSlow. |
 | `--html` | `--plugins.disable html` | Create HTML reports. Default to true. Set no-html to disable HTML reports.  [true] |
 | `--wptConfig <FILE>` | `--webpagetest.location, --webpagetest.connectivity, --webpagetest.runs` | WebPageTest configuration, see https://github.com/marcelduran/webpagetest-api runTest method
-| `--wptScript <FILE>` | `--webpagetest.script <FILE>` | WebPageTest scripting. Every occurance of \{\{\{URL\}\}\} will be replaced with the real URL. |
+| `--wptScript <FILE>` | `--webpagetest.script <FILE>` | WebPageTest scripting. Every occurrence of \{\{\{URL\}\}\} will be replaced with the real URL. |
 | `--wptCustomMetrics <FILE>` | `--webpagetest.custom <FILE>` | Fetch metrics from your page using Javascript |
 | `--wptHost <DOMAIN>` | `--webpagetest.host <DOMAIN>` | The domain of your WebPageTest instance. |
 | `--wptKey <KEY>` | `--webpagetest.key  <KEY>` | The API key if running on webpagetest on the public instances. |

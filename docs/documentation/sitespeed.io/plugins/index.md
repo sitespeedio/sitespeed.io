@@ -15,7 +15,7 @@ twitterdescription: Create your own plugin for sitespeed.io
 * Lets place the TOC here
 {:toc}
 
-Sitespeed.io uses a plugin architecture. This architecture allows you to add/remove/create your own plugins that can run additional tests on URLs or do othere things with the result, like store it to a database.
+Sitespeed.io uses a plugin architecture. This architecture allows you to add/remove/create your own plugins that can run additional tests on URLs or do other things with the result, like store it to a database.
 
 The most basic things you can do is list configured plugins (which are currently used), disable one of the default plugin, or add/enable more plugins.
 

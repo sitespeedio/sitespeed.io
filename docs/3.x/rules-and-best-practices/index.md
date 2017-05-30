@@ -1,6 +1,6 @@
 ---
 layout: default
-title: The performace best practices rules used by Sitespeed.io
+title: The performance best practices rules used by Sitespeed.io
 description: Here are the list of performance best practices rules used by sitespeed.io when analyzing your website. It will check for SPOF, synchronously loaded javascripts inside head and a lot of more things.
 author: Peter Hedenskog
 keywords: sitespeed.io, rules, wpo, fast, speed, web performance optimization, best practices

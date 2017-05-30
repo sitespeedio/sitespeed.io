@@ -50,7 +50,7 @@ The task will be called with the following:
 * **config** -  the sitespeed.io configuration object, contains info about the run and where to store the data
 * **cb** - the callback to call when you are finished.
 
-All post tasks runs in parallell.
+All post tasks runs in parallel.
 
 ## Create a new feature request
 If you have ideas of how sitespeed.io can be improved or if you have any features that you think is missing, please add it to the [issue list](https://github.com/sitespeedio/sitespeed.io/issues?labels=&amp;milestone=&amp;page=1&amp;state=open").
