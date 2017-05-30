@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Added
+* Added domInteractive and domContentLoaded to the waterfall graph [#1632](https://github.com/sitespeedio/sitespeed.io/issues/1632).
+* Show GPSI score on summary, detailed summary and pages columns [#1631](https://github.com/sitespeedio/sitespeed.io/issues/1631).
+
 ## 5.2.1 2017-05-26
 ### Fixed
 * The link in the HTML to the Chrome trace log is not working.
