@@ -106,7 +106,7 @@ The the previous example it will log all metrics you send to Graphite to the con
 
 #### Example: Add all Coach advice
 
-By default the total score for performance, accessibility and bestpractice is configured to send to Graphite. Previously we looked at sending all the score for the performance advice. If you want to send all the scores for all advice, you can do that easily, by adding all three categories in the CLI:
+By default the total score for performance, accessibility and best practice is configured to send to Graphite. Previously we looked at sending all the score for the performance advice. If you want to send all the scores for all advice, you can do that easily, by adding all three categories in the CLI:
 
 ~~~ bash
 --metrics.filter coach.pageSummary.advice.performance.adviceList.*.score coach.pageSummary.advice.bestpractice.adviceList.*.score coach.pageSummary.advice.accessibility.adviceList.*.score

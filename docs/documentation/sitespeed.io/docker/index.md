@@ -30,7 +30,7 @@ The structure looks like this:
 
 The first container installs NodeJS (latest LTS) on Ubuntu 16. The next one adds the dependencies (FFMpeg, ImageMagick and some Python libraries) needed to run [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics). We then install specific version of Firefox, Chrome and lastly xvfb. Then in last step, we add sitespeed and tag it to the sitespeed.io version number.
 
-We lock down the browsers to specific versions for maximum compatibility and stability with sitespeed.io's current feature set; upgrading once we verify browser compatibiilty.
+We lock down the browsers to specific versions for maximum compatibility and stability with sitespeed.io's current feature set; upgrading once we verify browser compatibility.
 {: .note .note-info}
 
 ## Running in Docker
@@ -62,7 +62,7 @@ Using `-v "$(pwd)":/sitespeed.io` will map the current directory inside Docker a
 
 ## More about volumes
 
-If you want to feed sitespeed.io with a file with URLs or if you want to store the HTML result, you should setup a volume. Sitespeed.io will do all the work inside the container in a directory located at */sitespeed.io*. To setup your current working directory add the *-v "$(pwd)":/sitespeed.io* to your parameter list. Using "$(pwd)" will default to the current directory. In order to specify a statci location, simply define an absolute path: *-v /Users/sitespeedio/html:/sitespeed.io*
+If you want to feed sitespeed.io with a file with URLs or if you want to store the HTML result, you should setup a volume. Sitespeed.io will do all the work inside the container in a directory located at */sitespeed.io*. To setup your current working directory add the *-v "$(pwd)":/sitespeed.io* to your parameter list. Using "$(pwd)" will default to the current directory. In order to specify a static location, simply define an absolute path: *-v /Users/sitespeedio/html:/sitespeed.io*
 
 If you run on Windows, it could be that you need to map a absolute path. If you have problems on Windows please check [https://docs.docker.com/docker-for-windows/](https://docs.docker.com/docker-for-windows/).
 
