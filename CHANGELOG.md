@@ -4,6 +4,10 @@
 ### Added
 * Added domInteractive and domContentLoaded to the waterfall graph [#1632](https://github.com/sitespeedio/sitespeed.io/issues/1632).
 * Show GPSI score on summary, detailed summary and pages columns [#1631](https://github.com/sitespeedio/sitespeed.io/issues/1631).
+* Upgraded to Browsertime 1.3.0 with:
+  * --browertime.preURLDelay (in ms) so you can choose how long time you want to wait until you hit the main URL after the pre URL.
+  * Fixed setting proxy using --proxy.http and --proxy.https [#338](https://github.com/sitespeedio/browsertime/issues/338)
+  * Updated to chrome-har 0.2.1 that: add "serverIPAddress" field to entries, set bodySize for requests correctly, set bodySize and compression for responses correctly, and add \_transferSize field for responses, just like Chrome does.
 
 ## 5.2.1 2017-05-26
 ### Fixed
