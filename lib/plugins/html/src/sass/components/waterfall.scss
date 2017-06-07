@@ -1,4 +1,4 @@
-/*! github.com/micmro/PerfCascade Version:2.0.1 (19/05/2017) */
+/*! github.com/micmro/PerfCascade Version:2.0.2 (07/06/2017) */
 .water-fall-chart {width:100%; overflow: visible; font-size: 12px; line-height: 1em;}
 .water-fall-chart * {box-sizing: border-box;}
 .water-fall-chart button {cursor: pointer;}
@@ -33,7 +33,12 @@
 .row-item .even {fill: #ccc; opacity: 0.05;}
 .row-item .odd {fill: #000; opacity: 0.05;}
 .row-item:hover .odd,
-.row-item:hover .even {fill: #000; opacity: 0.1}
+.row-item:hover .even {fill: #000; opacity: 0.1;}
+
+.row-item:focus {outline: solid 1.5px #aaa; outline-offset: -1.5px}
+.row-item:focus .odd,
+.row-item:focus .even {fill: #000; opacity: 0.2; }
+
 .row-item .rect-holder text {fill: #aaa}
 .row-item.status5xx .even {fill: #f66;}
 .row-item.status5xx .odd {fill: #f00;}
@@ -54,6 +59,13 @@
 .row-item.status4xx:hover .odd,
 .row-item.status3xx:hover .even,
 .row-item.status3xx:hover .odd {opacity: 0.5;}
+
+.tooltip-holder {overflow: visible;}
+.tooltip * {padding: 0; margin:0;}
+.tooltip html {font-size: 10px; line-height: 1.2em;}
+.tooltip body {position: relative;}
+.tooltip-payload {position: absolute; top:0; left:0; padding: 0.25em; font-size: 10px; display: inline-block;  background: rgba(255,255,255, 0.9); border: solid 1px #f0f0f0; word-break: break-all; overflow-wrap: break-word; transition: opacity 300ms;}
+.tooltip-payload.no-anim {transition: none;}
 
 /** overlay animation settings **/
 .water-fall-chart .line-label-holder,
@@ -144,7 +156,7 @@
 .info-overlay-holder header a:focus {text-decoration: underline;}
 .info-overlay-holder .requestID {font-weight: bold;}
 .info-overlay-holder h3,
-.info-overlay-holder h3 a {font-size: 1.1em; padding: 1em; margin:0; font-weight: normal;}
+.info-overlay-holder h3 a {font-size: 1.1em; padding: 1em; margin:0; font-weight: normal; overflow-wrap: break-word;}
 .info-overlay-holder h3 strong {font-size: 1.1em;}
 .info-overlay-holder .tab-nav ul {margin: 0; padding: 0;}
 .info-overlay-holder .tab-nav li {margin: 0; padding: 0; display: inline-block;}
