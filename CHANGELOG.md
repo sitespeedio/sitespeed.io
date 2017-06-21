@@ -4,6 +4,9 @@
 ### Added
 * Upgraded to PerfCascade 2.0.2
 
+### Fixed
+* Fixes for custom filters for PagXray [#1647](https://github.com/sitespeedio/sitespeed.io/issues/1647)
+
 ## 5.3.0 2017-06-03
 ### Added
 * Added domInteractive and domContentLoaded to the waterfall graph [#1632](https://github.com/sitespeedio/sitespeed.io/issues/1632).
