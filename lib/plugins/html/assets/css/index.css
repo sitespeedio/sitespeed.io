@@ -1517,6 +1517,11 @@ ul.menu {
   stroke-opacity: 1.0;
   stroke-width: 2; }
 
+.water-fall-chart .type-firstcontentfulpaint .line-holder {
+  stroke: #42f46e;
+  stroke-opacity: 1.0;
+  stroke-width: 2; }
+
 #page-selector {
   display: none;
   clear: both;
