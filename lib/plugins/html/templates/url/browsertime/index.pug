@@ -111,7 +111,7 @@ h3 Browser Metrics
           tr
             td #{value.name}
             td.number #{value.startTime.toFixed(0)}
-      if (Object.keys(timings.paintTiming).length > 0)
+      if (timings.paintTiming && Object.keys(timings.paintTiming).length > 0)
         each value, name in timings.paintTiming
           tr
             td #{name}
