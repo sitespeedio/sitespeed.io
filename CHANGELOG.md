@@ -3,6 +3,13 @@
 ## UNRELEASED
 ### Added
 * Upgraded to PerfCascade 2.0.2
+* You can now choose max number of items in the toplists. Do it with --html.topListSize. [#1639](https://github.com/sitespeedio/sitespeed.io/pull/1643).
+* You can now get a list of largest and slowest third party assets [#1613](https://github.com/sitespeedio/sitespeed.io/issues/1613)
+* Upgraded to latest Browsertime:
+  * Upgraded to Geckodriver 0.17.0 seems to fix [#321](https://github.com/sitespeedio/browsertime/issues/321)
+  * Pickup metrics from the Paint Timing API [#344](https://github.com/sitespeedio/browsertime/pull/344), will work in Chrome 60.
+  * Updated the Docker container to Firefox 54 and Chrome 60 (beta) to fix the background color problem. [Chrome bug 727046](https://bugs.chromium.org/p/chromium/issues/detail?id=727046)
+* If you run Chrome 60+ you will now see the metrics from the Paint Timing API in the Browsertime tab.
 
 ### Fixed
 * Fixes for custom filters for PagXray [#1647](https://github.com/sitespeedio/sitespeed.io/issues/1647)
