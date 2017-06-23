@@ -7,7 +7,7 @@ mixin rows(assets, showTiming)
       td.url.assetsurl(data-title='URL')
         a(href=asset.url)= h.shortAsset(asset.url)
         | &nbsp;
-        a(href=asset.page + 'index.html') &circlearrowleft;
+        a(href=asset.runPage + '.html') &circlearrowleft;
       +durationCell('last modified',asset.lastModification)
       +durationCell('cache time',asset.cacheTime)
       +kbSizeCell('size', asset.contentSize)
@@ -28,7 +28,11 @@ block content
             a(href='#' + type) Largest #{contentTypeNames[type]} files
       li.group-item
         a(href='#slowest') Slowest responses
-
+      if options.firstParty
+        li.group-item
+          a(href='#slowestThirdParty') Slowest third party responses
+        li.group-item
+          a(href='#largestThirdParty') Largest third party responses
     each type in topLists
       if (assetsBySize[type] && assetsBySize[type].length > 1)
         h3(id=type) Largest #{contentTypeNames[type]} files
@@ -43,3 +47,16 @@ block content
       table(data-sortable, id='slowest')
         +rowHeading(['url', 'time since last modified', 'cache time', 'size (kb)', 'timing (ms)'])
         +rows(slowestAssets, true)
+    if options.firstParty
+      h3 3rd party largest responses
+      .responsive
+        table(data-sortable, id='largestThirdParty')
+          +rowHeading(['url', 'time since last modified', 'cache time', 'size (kb)'])
+          +rows(thirdPartyAssetsBySize, false)
+
+      h3 3rd party slowest responses
+      p These are the 3rd party assets that took the longest time to download.
+      .responsive
+        table(data-sortable, id='slowestThirdParty')
+          +rowHeading(['url', 'time since last modified', 'cache time', 'size (kb)', 'timing (ms)'])
+          +rows(thirdPartySlowestAssets, true)

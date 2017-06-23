@@ -88,7 +88,12 @@ h3 Browser Metrics
     table
       tr
         th(colspan='2') Specials and User Timing
-      if timings.firstPaint > -1
+      if (timings.paintTiming && Object.keys(timings.paintTiming).length > 0)
+        each value, name in timings.paintTiming
+          tr
+            td #{name}
+            td.number #{value.toFixed(0)}
+      else if timings.firstPaint > -1
         tr
           td
             a(href=baseHelpURL + 'firstPaint') First paint
