@@ -22,7 +22,7 @@ if options.browsertime.video
 
   if options.browsertime.chrome && options.browsertime.chrome.collectTracingEvents
     - var tracePath = 'data/trace-' + (runNumber? runNumber-1 : 0) + '.json.gz'
-    a.button.button-download(href=tracePath, download=downloadName + 'timeline.json.gz') Download timeline
+    a.button.button-download(href=tracePath, download=downloadName + '-timeline.json.gz') Download timeline
 
   if options.browsertime.video
     - var tracePath = 'data/video/' + (runIndex ? runIndex : 0) +'.mp4'
