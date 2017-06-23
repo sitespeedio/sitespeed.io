@@ -1,5 +1,43 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Added
+* Upgraded to PerfCascade 2.0.2
+
+### Fixed
+* Fixes for custom filters for PagXray [#1647](https://github.com/sitespeedio/sitespeed.io/issues/1647)
+
+## 5.3.0 2017-06-03
+### Added
+* Added domInteractive and domContentLoaded to the waterfall graph [#1632](https://github.com/sitespeedio/sitespeed.io/issues/1632).
+* Show GPSI score on summary, detailed summary and pages columns [#1631](https://github.com/sitespeedio/sitespeed.io/issues/1631).
+* Upgraded to Browsertime 1.4.0:
+  * --browertime.preURLDelay (in ms) so you can choose how long time you want to wait until you hit the main URL after the pre URL.
+  * Fixed setting proxy using --proxy.http and --proxy.https [#338](https://github.com/sitespeedio/browsertime/issues/338)
+  * Updated to chrome-har 0.2.1 that: add "serverIPAddress" field to entries, set bodySize for requests correctly, set bodySize and compression for responses correctly, and add \_transferSize field for responses, just like Chrome does.
+
+## 5.2.1 2017-05-26
+### Fixed
+* The link in the HTML to the Chrome trace log is not working.
+* Upgraded to Browsertime 1.2.7 that downgrades Chromedriver to 2.28 to make collecting trace logs work again.
+
+## 5.2.0 2017-05-24
+
+### Fixed
+* Upgraded to Grafana 4.3.1 in the Docker compose file.
+* Too many runs broke the HTML [#1621](https://github.com/sitespeedio/sitespeed.io/issues/1621).
+* When you used --summary and --summaryDetail it broke the run (thanks [gamerlv](https://github.com/gamerlv) for reporting) [#1622](https://github.com/sitespeedio/sitespeed.io/issues/1622).
+
+### Added
+* Added support for --s3.storageClass option (thanks [shakey2k2](https://github.com/shakey2k2)) [#1623](https://github.com/sitespeedio/sitespeed.io/pull/1623).
+* Show browser version on HTML run pages (finally!).
+
+## 5.1.1 2017-05-23
+
+### Fixed
+* Upgraded to WebPageTest API 0.3.5, VideoJS 6.1, PUG 2.0.0-rc1 and PerfCascade 2.0.1.
+* Upgraded to Browsertime 1.2.6 with a fix so that setting Firefox Preferences works as expected.
+
 ## 5.1.0 2017-05-14
 
 ### Fixed

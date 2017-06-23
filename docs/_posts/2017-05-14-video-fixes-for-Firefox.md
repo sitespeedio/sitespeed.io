@@ -1,9 +1,9 @@
 ---
 layout: default
 title: sitespeed.io 5.1
-description: We have had some problems for a while that the video from Firefox was containing black borders and setting viewport didn't work perfectly with the video and Firefox. That is fixed in 5.1!
+description: We have had some problems for a while with the video from Firefox containing black borders as well as setting viewport in Firefox didn't work perfectly with the video. That is fixed in 5.1!
 authorimage: /img/aboutus/peter.jpg
-intro: We have had some problems for a while that the video from Firefox was containing black borders and setting viewport didn't work perfectly with the video and Firefox. That is fixed in 5.1!
+intro: We have had some problems for a while with the video from Firefox containing black borders as well as setting viewport in Firefox didn't work perfectly with the video. That is fixed in 5.1!
 keywords: sitespeed.io, sitespeed, release, 5.1
 nav: blog
 ---

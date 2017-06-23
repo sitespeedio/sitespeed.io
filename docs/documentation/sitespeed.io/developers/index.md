@@ -50,7 +50,7 @@ The flow looks like this:
 
 1. You start the application and feed it with a URL/URLs.
 2. The app will go through the configured plugins and start them while each plugin waits for messages.
-3. The app will send the URLs as URL messages and the plugins that listens to that type of messages will recieve them. When a plugin is finished, it will post other messages on it's findings.
+3. The app will send the URLs as URL messages and the plugins that listens to that type of messages will receive them. When a plugin is finished, it will post other messages on it's findings.
 4. When all URLs are finished, the plugins receive a "close" call to finalize and prepare their findings.
 5. Finish
 

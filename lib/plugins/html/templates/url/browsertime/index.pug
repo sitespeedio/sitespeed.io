@@ -20,7 +20,7 @@ if options.browsertime.video
 
   a.button.button-download(href=harName, download=harDownloadName) Download HAR
 
-  if options.browsertime.chrome && options.browsertime.chrome.dumpTraceCategoriesLog
+  if options.browsertime.chrome && options.browsertime.chrome.collectTracingEvents
     - var tracePath = 'data/trace-' + (runNumber? runNumber-1 : 0) + '.json.gz'
     a.button.button-download(href=tracePath, download=downloadName + 'timeline.json.gz') Download timeline
 
@@ -88,7 +88,12 @@ h3 Browser Metrics
     table
       tr
         th(colspan='2') Specials and User Timing
-      if timings.firstPaint > -1
+      if (timings.paintTiming && Object.keys(timings.paintTiming).length > 0)
+        each value, name in timings.paintTiming
+          tr
+            td #{name}
+            td.number #{value.toFixed(0)}
+      else if timings.firstPaint > -1
         tr
           td
             a(href=baseHelpURL + 'firstPaint') First paint

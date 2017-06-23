@@ -3,14 +3,14 @@ layout: default
 title: User timers Best Practices and New Whitelisting
 description: User timings can now be filtered using a user defined whitelist
 authorimage: /img/aboutus/jonathan.jpg
-intro: Recently Google started to heavily use User Timings to track some of their ads implemented on various sites. While generally I would commend anyone that takes advantage of the performance API, sometimes that can also have reprocussion and cause issues for other tools.
+intro: Recently Google started to heavily use User Timings to track some of their ads implemented on various sites. While generally I would commend anyone that takes advantage of the performance API, sometimes that can also have repercussions and cause issues for other tools.
 keywords: sitespeed.io, user timings,
 nav: blog
 ---
 
 # User timers Best Practices and New Whitelisting
 
-Recently Google started to heavily use User Timings to track some of their ads implemented on various sites. While generally I would commend anyone that takes advantage of the performance API, sometimes that can also have reprocussion and cause issues for other tools.
+Recently Google started to heavily use User Timings to track some of their ads implemented on various sites. While generally I would commend anyone that takes advantage of the performance API, sometimes that can also have repercussions and cause issues for other tools.
 
 What issues you say? Well implementing user timings with a unique id per ad in combination with a site capturing those timings in a performance tracking tools for trending analysis can cause issues. The biggest impact we have seen is the integration with a TSDB (time series database). If every user timer has a unique id it means you no longer have control of the size of your TSDB and it falls to the mercy of these user timings, growing unbounded forever ... well at least until you run out of disk space. ;-)
 

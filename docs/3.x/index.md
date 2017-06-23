@@ -12,7 +12,7 @@ twitterdescription: Documentation for the sitespeed.io.
 
  * [Introduction](/3.x/introduction/)
  * [Installation](/3.x/installation/) - install using npm, Vagrant or run our Docker containers.
- * [Configuration](/3.x/configuration/) - there's alot of things you can do with sitespeed.io, lets checkout how!
+ * [Configuration](/3.x/configuration/) - there's a lot of things you can do with sitespeed.io, lets checkout how!
  * [The result](/3.x/result/) - get the result as HTML, TAP, JUnit XML or send the metrics to Graphite.
  * [Rules and web performance best practice](/3.x/rules-and-best-practices/) - the rules used to create the sitespeed.io score.
  * [Browsers](/3.x/browsers/) - collect timings using real browsers. We support Firefox, Chrome, Internet Explorer and Safari.

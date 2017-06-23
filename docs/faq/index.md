@@ -16,9 +16,9 @@ If you don't find the answer here or in the [documentation]({{site.baseurl}}/doc
 {:toc}
 
 ## Should I use TSProxy or tc as connectivity engine?
-No should always use the Docker network setup described [here]({{site.baseurl}}/documentation/sitespeed.io/browsers/#change-connectivity).
+No you should always use the Docker network setup described [here]({{site.baseurl}}/documentation/sitespeed.io/browsers/#change-connectivity).
 
-## Chrome doesn't work on RHEL7 (or some other *nix flavor)
+## Chrome doesn't work on RHEL7 (or some other \*nix flavor)
 Make Chrome run without the sandbox and it will work. Pass the following argument to sitespeed.io:
 
 ~~~ bash
@@ -26,6 +26,12 @@ Make Chrome run without the sandbox and it will work. Pass the following argumen
 ~~~
 
 When you use our Docker container that argument is set by default.
+
+## How can I disable HTTP/2 (I want to test only HTTP/1)?
+On Chrome you just add the switches <code>--browsertime.chrome.args no-sandbox --browsertime.chrome.args disable-http2</code>.
+
+For Firefox you need to turn off HTTP/2 and SPDY, and you do that by setting the Firefox preferences:
+<code>--browsertime.firefox.preference network.http.spdy.enabled:false --browsertime.firefox.preference network.http.spdy.enabled.http2:false --browsertime.firefox.preference network.http.spdy.enabled.v3-1:false</code>
 
 ## Running Sitespeed 4.0 with Docker + Proxy + Custom Login Script + Create Custom Folder (date/time stamped)?
 
@@ -39,7 +45,3 @@ Thank you [Keyur Shah](https://github.com/softwareklinic) for sharing your setup
 ~~~ bash
  45 * * * * docker run --privileged -v /app/sitespeed.io:/sitespeed.io sitespeedio/sitespeed.io <url|text file with list of urls> --preScript prescript.js -n 1 -b firefox  --graphite.host <graphiteip-host> --graphite.namespace <graphite-namespace>  --browsertime.proxy.http=proxy.xxxx.xxxxxxxx.com:80 --browsertime.proxy.https=proxy.xxxx.xxxxxxxx.com:80 --outputFolder sitespeed-result/<customfoldername>/$(date +\%Y-\%m-\%d-\%H-\%M-\%S) --browsertime.pageCompleteCheck 'return (function() {try { return (Date.now() - window.performance.timing.loadEventEnd) > 10000;} catch(e) {} return true;})()'
 ~~~
-
-
-## I can't get Firefox to work in Docker on Digital Ocean what's wrong?
-Do you get a lot of "Browser failed to start in time, trying one more time." in your log? There's some kind of problem with the "One click app" for Docker 1.12.3 and Ubuntu, it makes Firefox crash. However if you install Ubuntu 16 standalone and then manually installs Docker, it works fine.
