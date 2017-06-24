@@ -7,6 +7,7 @@
 * You can now get a list of largest and slowest third party assets [#1613](https://github.com/sitespeedio/sitespeed.io/issues/1613).
 * Upgraded to latest Browsertime:
   * Upgraded to Geckodriver 0.17.0 seems to fix [#321](https://github.com/sitespeedio/browsertime/issues/321).
+  * Upgraded Chromedriver 2.30 with a very special hack to fix [#347](https://github.com/sitespeedio/browsertime/pull/347).
   * Pickup metrics from the Paint Timing API [#344](https://github.com/sitespeedio/browsertime/pull/344), will work in Chrome 60.
   * Updated the Docker container to Firefox 54 and Chrome 60 (beta) to fix the background color problem. [Chrome bug 727046](https://bugs.chromium.org/p/chromium/issues/detail?id=727046).
 * If you run Chrome 60+ you will now see the metrics from the Paint Timing API in the Browsertime tab.
