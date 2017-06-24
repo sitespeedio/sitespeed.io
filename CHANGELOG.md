@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 5.4.0 2017-06-24
 ### Added
 * Upgraded to PerfCascade 2.0.2
 * You can now choose max number of items in the toplists. Do it with --html.topListSize. [#1639](https://github.com/sitespeedio/sitespeed.io/pull/1643).
