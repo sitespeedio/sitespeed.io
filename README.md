@@ -22,7 +22,9 @@ Using sitespeed.io you can:
 See all the latest changes in the [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md).
 
 ## Vacation JULY - AUGUST
-We are going to take a long vacation this year to recharge and make sure we can make sitespeed.io even better this autumn. What does this mean? We will not answer issues within 24 hours that we usually do, but don't be scared: If we get any important bugs, we will fix them. And we will do maintenance releases when there's a new Chrome/Firefox.
+We are going to take a long vacation this year to recharge and make sure we can make sitespeed.io even better this autumn. What does this mean? We will not answer issues within 8 hours that we usually do, but don't be scared: If we get any important bugs, we will fix them. And we will do maintenance releases when there's a new Chrome/Firefox. And if you want a change, send us a PR :)
+
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/vacation.gif">
 
 ## Examples of what you can do
 

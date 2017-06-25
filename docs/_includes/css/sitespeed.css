@@ -120,7 +120,7 @@ height: auto;
 }
 
 .img-thumbnail-center img {
-  max-width: 600px;
+  max-width: 100%;
   padding: 4px;
   line-height: 1.428571429;
   background-color: #fff;
