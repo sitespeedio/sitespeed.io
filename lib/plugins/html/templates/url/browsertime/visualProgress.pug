@@ -1,0 +1,57 @@
+- var allRows = browsertime.visualMetrics.VisualProgress.split(',')
+- var labelsVisualProgress = [];
+- var seriesVisualProgress = [];
+each eachRow in allRows
+  - var row = eachRow.split('=')
+  - var oldPercentage = -1;
+  - var oldValue = -1;
+  - var newValue = (Number(row[0])/1000).toFixed(1)
+  //- Sometimes VisualMetrics report the same percentage multiple times after each other
+  // and since the original time is in ms we wanna remove entries on the same 0.1 s
+  if row[1] !== oldPercentage && newValue !== oldValue
+    - oldPercentage = row[1]
+    - oldValue = newValue
+    - labelsVisualProgress.push(newValue)
+    - seriesVisualProgress.push(Number(row[1].replace('%','')))
+script(type='text/javascript').
+  document.addEventListener("DOMContentLoaded", function() {
+      var visualProgressChart = new Chartist.Line('#ct-visualprogress', {
+        labels: !{JSON.stringify(labelsVisualProgress)},
+        series: [!{JSON.stringify(seriesVisualProgress)}],
+        }, {
+        showArea: true,
+        showPoint: false,
+         chartPadding: {
+          top: 0,
+          right: 0,
+          bottom: 30,
+          left: 0
+        },
+        axisY: {
+          onlyInteger: true
+        },
+        plugins: [
+          Chartist.plugins.ctAxisTitle({
+            axisX: {
+              axisTitle: 'Time (seconds)',
+              axisClass: 'ct-axis-title',
+              offset: {
+                x: 0,
+                y: 50
+              },
+              textAnchor: 'middle'
+            },
+            axisY: {
+              axisTitle: 'Visual progress %',
+              axisClass: 'ct-axis-title',
+              offset: {
+                x: 0,
+                y: 0
+              },
+              textAnchor: 'middle',
+              flipTitle: false
+            }
+            })
+          ]
+        });
+      });
