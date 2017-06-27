@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+
+### Fixed 
+* Updated the Docker container to contain fonts for Hindi, Thai, Japanese, Chinese and Korean.
+
 ## 5.4.0 2017-06-24
 ### Added
 * Upgraded to PerfCascade 2.0.2
