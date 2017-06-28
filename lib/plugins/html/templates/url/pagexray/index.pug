@@ -66,12 +66,11 @@ h3 Requests and sizes per content type
       - totalTransferSize += data.transferSize
       - totalHeaderSize += data.headerSize > 0 ? data.headerSize : 0
       - totalRequests += data.requests
-
       if data.requests > 0
         - numberOfRequestsLabels.push(type)
         - numberOfRequests.push(data.requests)
-        - transferSizeOfRequests.push(h.size.asKb(data.transferSize))
-        - contentSizeOfRequests.push(h.size.asKb(data.contentSize))
+        - transferSizeOfRequests.push({meta:'Transfer size (kb)', value: h.size.asKb(data.transferSize)})
+        - contentSizeOfRequests.push({meta:'Content size (kb)', value: h.size.asKb(data.contentSize)})
         tr
           td(data-title='Content Type') #{type}
           +sizeCell('headerSize', data.headerSize)

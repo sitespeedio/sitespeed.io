@@ -20,7 +20,7 @@ script(type='text/javascript').
         series: [!{JSON.stringify(seriesVisualProgress)}],
         }, {
         showArea: true,
-        showPoint: false,
+        showPoint: true,
         chartPadding: {
           top: 10,
           right: 0,
@@ -29,8 +29,9 @@ script(type='text/javascript').
         },
         axisX: {
           onlyInteger: true,
+          scaleMinSpace: 20,
           showGrid: false,
-          },
+        },
         axisY: {
           onlyInteger: true
         },
@@ -55,7 +56,8 @@ script(type='text/javascript').
               textAnchor: 'middle',
               flipTitle: false
             }
-            })
+            }),
+            Chartist.plugins.tooltip()
           ]
         });
       });

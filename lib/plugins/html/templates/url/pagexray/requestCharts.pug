@@ -6,7 +6,10 @@ script(type='text/javascript').
     };
 
     var options = {
-      distributeSeries: true
+      distributeSeries: true,
+      plugins: [
+          Chartist.plugins.tooltip()
+        ]
     };
 
     var responsiveOptions = [

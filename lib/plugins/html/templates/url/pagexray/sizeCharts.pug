@@ -10,7 +10,10 @@ script(type='text/javascript').
         labelInterpolationFnc: function(value) {
           return value + 'kb';
         }
-      }
+      },
+      plugins: [
+          Chartist.plugins.tooltip()
+        ]
     };
 
     var responsiveOptions = [
