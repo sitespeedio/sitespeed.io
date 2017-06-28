@@ -29,7 +29,6 @@ script(type='text/javascript').
         },
         axisX: {
           onlyInteger: true,
-          scaleMinSpace: 20,
           showGrid: false,
         },
         axisY: {
@@ -50,14 +49,14 @@ script(type='text/javascript').
               axisTitle: 'Visual progress %',
               axisClass: 'ct-axis-title',
               offset: {
-                x: 0,
+                x: -2,
                 y: 0
               },
               textAnchor: 'middle',
               flipTitle: false
             }
             }),
-            Chartist.plugins.tooltip()
+            Chartist.plugins.tooltip({transformTooltipTextFnc: function(text) {return text + '%'}})
           ]
         });
       });
