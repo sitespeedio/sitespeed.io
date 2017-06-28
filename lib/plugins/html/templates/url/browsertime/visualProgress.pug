@@ -59,7 +59,12 @@ script(type='text/javascript').
               flipTitle: false
             }
             }),
-            Chartist.plugins.tooltip({transformTooltipTextFnc: function(text) {var m = text.split(',');return m[0] + 's ' + m[1] + '%'}})
+            Chartist.plugins.tooltip({
+              transformTooltipTextFnc: function(text) {
+                var m = text.split(',');
+                return m[0] + 's ' + m[1] + '%';
+              }
+            })
           ]
         });
       });
