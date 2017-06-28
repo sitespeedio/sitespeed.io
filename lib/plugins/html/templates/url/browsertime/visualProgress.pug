@@ -30,6 +30,10 @@ script(type='text/javascript').
           type: Chartist.AutoScaleAxis,
           onlyInteger: false,
         },
+        lineSmooth: Chartist.Interpolation.step({
+          postpone: true,
+          fillHoles: true
+        }),
         axisY: {
           onlyInteger: true
         },
