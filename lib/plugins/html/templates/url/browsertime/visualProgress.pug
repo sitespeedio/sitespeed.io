@@ -1,10 +1,10 @@
 - var allRows = browsertime.visualMetrics.VisualProgress.split(',')
 - var labelsVisualProgress = [];
 - var seriesVisualProgress = [];
+- var oldPercentage = -1;
+- var oldValue = -1;
 each eachRow in allRows
   - var row = eachRow.split('=')
-  - var oldPercentage = -1;
-  - var oldValue = -1;
   - var newValue = (Number(row[0])/1000).toFixed(1)
   //- Sometimes VisualMetrics report the same percentage multiple times after each other
   // and since the original time is in ms we wanna remove entries on the same 0.1 s
@@ -22,10 +22,29 @@ script(type='text/javascript').
         showArea: true,
         showPoint: false,
          chartPadding: {
-          top: 0,
+          top: 10,
           right: 0,
           bottom: 30,
-          left: 0
+          left: 10
+        },
+         axisX: {
+          labelInterpolationFnc: function skipLabels(value, index, labels) {
+            if (labels.length > 100) {
+              return index % 10  === 0 ? value : null;
+            }
+            else if (labels.length > 40) {
+              return index % 5  === 0 ? value : null;
+            }
+            else if (labels.length > 20) {
+              return index % 4  === 0 ? value : null;
+            }
+            else if (labels.length > 10) {
+              return index % 2  === 0 ? value : null;
+            }
+            else {
+              return value;
+            }
+          }
         },
         axisY: {
           onlyInteger: true
