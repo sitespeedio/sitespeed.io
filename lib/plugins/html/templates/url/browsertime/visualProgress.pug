@@ -12,11 +12,10 @@ each eachRow in allRows
     - oldPercentage = row[1]
     - oldValue = newValue
     - labelsVisualProgress.push(newValue)
-    - seriesVisualProgress.push(Number(row[1].replace('%','')))
+    - seriesVisualProgress.push({x: newValue, y: Number(row[1].replace('%',''))})
 script(type='text/javascript').
   document.addEventListener("DOMContentLoaded", function() {
       var visualProgressChart = new Chartist.Line('#ct-visualprogress', {
-        labels: !{JSON.stringify(labelsVisualProgress)},
         series: [!{JSON.stringify(seriesVisualProgress)}],
         }, {
         showArea: true,
@@ -28,8 +27,8 @@ script(type='text/javascript').
           left: 10
         },
         axisX: {
-          onlyInteger: true,
-          showGrid: false,
+          type: Chartist.AutoScaleAxis,
+          onlyInteger: false,
         },
         axisY: {
           onlyInteger: true
@@ -49,14 +48,14 @@ script(type='text/javascript').
               axisTitle: 'Visual progress %',
               axisClass: 'ct-axis-title',
               offset: {
-                x: -2,
+                x: 0,
                 y: 0
               },
               textAnchor: 'middle',
               flipTitle: false
             }
             }),
-            Chartist.plugins.tooltip({transformTooltipTextFnc: function(text) {return text + '%'}})
+            Chartist.plugins.tooltip({transformTooltipTextFnc: function(text) {var m = text.split(',');return m[0] + 's ' + m[1] + '%'}})
           ]
         });
       });
