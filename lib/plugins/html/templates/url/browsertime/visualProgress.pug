@@ -21,31 +21,16 @@ script(type='text/javascript').
         }, {
         showArea: true,
         showPoint: false,
-         chartPadding: {
+        chartPadding: {
           top: 10,
           right: 0,
           bottom: 30,
           left: 10
         },
-         axisX: {
-          labelInterpolationFnc: function skipLabels(value, index, labels) {
-            if (labels.length > 100) {
-              return index % 10  === 0 ? value : null;
-            }
-            else if (labels.length > 40) {
-              return index % 5  === 0 ? value : null;
-            }
-            else if (labels.length > 20) {
-              return index % 4  === 0 ? value : null;
-            }
-            else if (labels.length > 10) {
-              return index % 2  === 0 ? value : null;
-            }
-            else {
-              return value;
-            }
-          }
-        },
+        axisX: {
+          onlyInteger: true,
+          showGrid: false,
+          },
         axisY: {
           onlyInteger: true
         },
