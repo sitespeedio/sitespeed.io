@@ -3282,17 +3282,17 @@ video::-webkit-media-text-track-display {
 
 .ct-bar {
   fill: none;
-  stroke-width: 16px; }
+  stroke-width: 10px; }
 
 .ct-slice-donut {
   fill: none;
   stroke-width: 60px; }
 
 .ct-series-a .ct-point, .ct-series-a .ct-line, .ct-series-a .ct-bar, .ct-series-a .ct-slice-donut {
-  stroke: #0073b0; }
+  stroke: #d70206; }
 
 .ct-series-a .ct-slice-pie, .ct-series-a .ct-slice-donut-solid, .ct-series-a .ct-area {
-  fill: #0095d2; }
+  fill: #d70206; }
 
 .ct-series-b .ct-point, .ct-series-b .ct-line, .ct-series-b .ct-bar, .ct-series-b .ct-slice-donut {
   stroke: #f05b4f; }
@@ -3793,8 +3793,8 @@ video::-webkit-media-text-track-display {
   opacity: 0;
   min-width: 5em;
   padding: .5em;
-  background: #0095d2;
-  color: white;
+  background: #F4C63D;
+  color: #453D3F;
   font-family: Oxygen,Helvetica,Arial,sans-serif;
   font-weight: 700;
   text-align: center;
@@ -3814,7 +3814,7 @@ video::-webkit-media-text-track-display {
   height: 0;
   margin-left: -15px;
   border: 15px solid transparent;
-  border-top-color: #0095d2; }
+  border-top-color: #F4C63D; }
 
 .chartist-tooltip.tooltip-show {
   opacity: 1; }
@@ -3823,4 +3823,19 @@ video::-webkit-media-text-track-display {
   pointer-events: none; }
 
 /*# sourceMappingURL=chartist-plugin-tooltip.css.map */
+.chartist-tooltip {
+  background: #0095d2;
+  color: white; }
+
+.chartist-tooltip:before {
+  border-top-color: #0095d2; }
+
+.ct-bar {
+  stroke-width: 16px; }
+
+.ct-series-a .ct-point, .ct-series-a .ct-line, .ct-series-a .ct-bar, .ct-series-a .ct-slice-donut {
+  stroke: #0073b0; }
+
+.ct-series-a .ct-slice-pie, .ct-series-a .ct-slice-donut-solid, .ct-series-a .ct-area {
+  fill: #0095d2; }
 

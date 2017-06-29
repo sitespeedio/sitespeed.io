@@ -1,0 +1,23 @@
+
+// chartist-plugin-tooltip
+.chartist-tooltip {
+  background: $color--blue;
+  color: white;
+}
+
+.chartist-tooltip:before {
+  border-top-color: $color--blue;
+}
+
+// chartist
+.ct-bar {
+ stroke-width: 16px;
+}
+
+.ct-series-a .ct-point, .ct-series-a .ct-line, .ct-series-a .ct-bar, .ct-series-a .ct-slice-donut {
+  stroke: #0073b0;
+}
+
+.ct-series-a .ct-slice-pie, .ct-series-a .ct-slice-donut-solid, .ct-series-a .ct-area {
+  fill: #0095d2;
+}
