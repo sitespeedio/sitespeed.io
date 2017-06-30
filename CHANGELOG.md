@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 5.4.1 2017-06-30
 
 ### Fixed 
 * Updated the Docker container to contain fonts for Hindi, Thai, Japanese, Chinese and Korean.
