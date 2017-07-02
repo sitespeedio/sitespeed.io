@@ -1,9 +1,11 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 5.4.1 2017-06-30
 
 ### Fixed 
 * Updated the Docker container to contain fonts for Hindi, Thai, Japanese, Chinese and Korean.
+
+* Updated to Browsertime 1.5.3 that includes a fix for faulty content types when getting the Chrome HAR file [#1654](https://github.com/sitespeedio/sitespeed.io/issues/1654)
 
 ## 5.4.0 2017-06-24
 ### Added
