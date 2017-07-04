@@ -21,7 +21,7 @@ Browsertime allows you to:
  1. Query timing data directly from the browser, to access [Navigation Timing](http://kaaes.github.io/timing/info.html), [User Timing](http://www.html5rocks.com/en/tutorials/webperformance/usertiming/),
 [Resource Timing](http://www.w3.org/TR/resource-timing/), first paint and [RUM Speed Index](https://github.com/WPO-Foundation/RUM-SpeedIndex).
  1. Generate [HAR](http://www.softwareishard.com/blog/har-12-spec/) files (using [HAR Export trigger](https://github.com/firebug/har-export-trigger) for Firefox and parsing the Chrome log for Chrome).
- 1. Run custom Javascript scripts in the browser and get statistics for each run.
+ 1. Run custom JavaScript scripts in the browser and get statistics for each run.
  1. Record a video of the screen and analyze the result to get First Visual Change, Speed Index, Visual Complete 85 % and Last Visual Change.
 
 ## A simple example
@@ -41,7 +41,7 @@ $ bin/browsertime.js https://www.sitespeed.io
 Load https://www.sitespeed.io/ in Chrome three times. Results are stored in a JSON file (browsertime.json) with the timing data, and a HAR file (browsertime.har) in browsertime-results/www.sitespeed.io/$date/
 
 ## I want more examples
-Checkout the [examples](https://github.com/sitespeedio/browsertime/blob/master/docs/examples/README.md).
+Check out the [examples](https://github.com/sitespeedio/browsertime/blob/master/docs/examples/README.md).
 
 ## Browsers
 Browsertime supports Firefox and Chrome on desktop. On Android we support Chrome.
@@ -49,21 +49,21 @@ Browsertime supports Firefox and Chrome on desktop. On Android we support Chrome
 But we want to [support Opera (on Android)](https://github.com/tobli/browsertime/issues/150)  and when(?!) iOS Safari supports WebDriver we will add that too.
 
 ## How does it work
-Browsertime uses Selenium NodeJS to drive the browser. It starts the browser, load a URL, executes configurable Javascripts to collect metrics, collect a HAR file.
+Browsertime uses Selenium NodeJS to drive the browser. It starts the browser, loads a URL, then executes configurable JavaScripts to collect both metrics and a HAR file.
 
-To get the HAR from Firefox we use the [HAR Export Trigger](https://github.com/firebug/har-export-trigger) and Chrome we use [Chrome-HAR](https://github.com/sitespeedio/chrome-har) to parse the timeline log and generate the HAR file.
+To get the HAR from Firefox, we use the [HAR Export Trigger](https://github.com/firebug/har-export-trigger) and in Chrome we use [Chrome-HAR](https://github.com/sitespeedio/chrome-har) to parse the timeline log and generate the HAR file.
 
-Oh and you can run your own Selenium script before (<code>--preScript</code>) and after (<code>--postScript</code>) a URL is accessed so you can login/logout or do whatever you want.
+Oh, and you can run your own Selenium script before (<code>--preScript</code>) and after (<code>--postScript</code>) a URL is accessed, so you can log in/log out or do whatever you want.
 
 # Speed Index and video
-It's easiest to run [our ready made Docker container](https://hub.docker.com/r/sitespeedio/browsertime/) to be able to record a video and calculate SpeedIndex because then you get all dependencies needed for free to run [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics).
+It's easiest to run [our ready-made Docker container](https://hub.docker.com/r/sitespeedio/browsertime/) to be able to record a video and calculate Speed Index because then you get all dependencies needed for free to run [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics).
 
 The default video will include a timer and showing when the metrics happens, but you can turn that off using <code>--videoRaw</code>.
 
 <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/video-example.gif">
 
 ## Test using Docker
-You can build and test changes using Docker locally.
+You can build and test changes using Docker locally:
 
 ~~~
 $ docker build -t sitespeedio/browsertime .
@@ -72,13 +72,13 @@ $ docker run --shm-size=1g --rm -v "$(pwd)":/browsertime-results sitespeedio/bro
 
 ## Connectivity
 
-You can throttle the connection to make the connectivity slower to make it easier to catch regressions. The best way to do that is to setup a network bridge in Docker.
+You can throttle the connection to make the connectivity slower to make it easier to catch regressions. The best way to do that is to set up a network bridge in Docker.
 
-Default we use [TSProxy](https://github.com/WPO-Foundation/tsproxy) because it's only dependency is Python 2.7 but we have a problem with that together with Selenium, so that it is kind of unusable right now. Help us fix that in [#229](https://github.com/sitespeedio/browsertime/issues/229).
+By default, we use [TSProxy](https://github.com/WPO-Foundation/tsproxy) because its only dependency is Python 2.7, but we have a problem with that together with Selenium, so that it is kind of unusable right now. Help us fix that in [#229](https://github.com/sitespeedio/browsertime/issues/229).
 
-If you run Docker you can use tc as connectivity engine but that will only set the latency, if you want to set the download speed you need to create a network bridge in Docker.
+If you run Docker you can use tc as connectivity engine but that will only set the latency; if you want to set the download speed you need to create a network bridge in Docker.
 
-Here's an full example to setup up Docker network bridges on a server that has tc installed:
+Here's a full example to set up Docker network bridges on a server that has tc installed:
 
 ~~~bash
 #!/bin/bash
