@@ -68,7 +68,7 @@ h3 Requests and sizes per content type
       - totalRequests += data.requests
       if data.requests > 0
         - numberOfRequestsLabels.push(type)
-        - numberOfRequests.push(data.requests)
+        - numberOfRequests.push({meta: type, value: data.requests})
         - transferSizeOfRequests.push({meta: type + ' transfer size (kb)', value: h.size.asKb(data.transferSize)})
         - contentSizeOfRequests.push({meta: type + ' content size (kb)', value: h.size.asKb(data.contentSize)})
         tr
