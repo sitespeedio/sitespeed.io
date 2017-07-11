@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Fixed
+* Docker container with NodeJS 6.11.1
+
+
 ## 5.4.1 2017-06-30
 
 ### Fixed 
