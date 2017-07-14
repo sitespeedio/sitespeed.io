@@ -153,7 +153,7 @@ The *context* holds information for this specific run that generated at runtime 
 }
 ~~~
 
-You can checkout the [StorageManager](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/storageManager.js) and the [DataCollection](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/dataCollection.js) to get a feel of what you can accomplish.
+You can checkout the [StorageManager](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/resultsStorage/storageManager.js) and the [DataCollection](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/dataCollection.js) to get a feel of what you can accomplish.
 
 The *options* are the options that a user will supply in the CLI, checkout the [CLI implementation](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/cli.js) to see all the options.
 
