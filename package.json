@@ -1,7 +1,7 @@
 {
   "name": "sitespeed.io",
   "bin": "./bin/sitespeed.js",
-  "version": "5.4.1",
+  "version": "5.4.3",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -46,7 +46,7 @@
     "build:css": "node-sass lib/plugins/html/src/sass/main.scss > lib/plugins/html/assets/css/index.css && cleancss -o lib/plugins/html/assets/css/index.min.css lib/plugins/html/assets/css/index.css"
   },
   "engines": {
-    "node": ">=6.9.1"
+    "node": ">=6.11.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
