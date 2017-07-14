@@ -1,4 +1,6 @@
 # CHANGELOG - sitespeed.io
+## 5.4.3 2017-07-14
+* 5.4.2 failed with NodeJS 6.11.1 since our base Docker container didn't include npm. This is fixed now and we use 6.11.1.
 
 ## 5.4.2 2017-07-13
 ### Fixed
