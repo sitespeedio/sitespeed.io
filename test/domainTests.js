@@ -25,7 +25,7 @@ describe('domains', function() {
         aggregator.addToAggregate(har, 'http://www.vox.com');
         const summary = aggregator.summarize();
         const voxDomain = summary.groups.total['cdn1.vox-cdn.com'];
-        expect(voxDomain).to.have.deep.property('connect.max', '11');
+        expect(voxDomain).to.have.deep.property('connect.max', 11);
       });
     });
   });
