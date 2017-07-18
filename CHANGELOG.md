@@ -1,8 +1,16 @@
 # CHANGELOG - sitespeed.io
+## 5.4.3 2017-07-14
+* 5.4.2 failed with NodeJS 6.11.1 since our base Docker container didn't include npm. This is fixed now and we use 6.11.1.
+
+## 5.4.2 2017-07-13
+### Fixed
+* Docker container uses NodeJS 6.11.1
+* Latest Chrome beta 60.0.3112.66 in Docker
+* Set 6.11.1 as minimum engine.
 
 ## 5.4.1 2017-06-30
 
-### Fixed 
+### Fixed
 * Updated the Docker container to contain fonts for Hindi, Thai, Japanese, Chinese and Korean.
 
 * Updated to Browsertime 1.5.3 that includes a fix for faulty content types when getting the Chrome HAR file [#1654](https://github.com/sitespeedio/sitespeed.io/issues/1654)
