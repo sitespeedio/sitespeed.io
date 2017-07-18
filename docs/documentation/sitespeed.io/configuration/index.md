@@ -12,7 +12,7 @@ twitterdescription: Configuration for sitespeed.io.
 # Configuration
 {:.no_toc}
 
-* Lets place the TOC here
+* Let's place the TOC here
 {:toc}
 
 # Configuration
@@ -182,18 +182,18 @@ Read the docs at https://www.sitespeed.io/documentation/sitespeed.io/
 
 
 ## The basics
-If you installed with the global option run the command *sitespeed.io* else run the script *bin/sitespeed.js*.  In the examples we will use the globally installed version.
+If you installed with the global option, run the command *sitespeed.io* else run the script *bin/sitespeed.js*.  In the examples, we will use the globally installed version.
 
-You can analyze a site either by crawling or by feeding sitespeed.io with a list URL:s you want to analyze.
+You can analyze a site either by crawling or by feeding sitespeed.io with a list of URLs you want to analyze.
 
 ### Analyze by URLs
-The simplest way to run sitespeed.io is to give it a URL.
+The simplest way to run sitespeed.io is to give it a URL:
 
 ~~~bash
 $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io
 ~~~
 
-If you wanna test multiple URLs just feed them:
+If you want to test multiple URLs, just feed them:
 
 ~~~bash
 $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io https://www.sitespeed.io/documentation/
@@ -207,16 +207,16 @@ http://www.yoursite.com/my/really/important/page/
 http://www.yoursite.com/where/we/are/
 ~~~
 
-Another feature of the plain text file is you can add aliases to the urls.txt file after each URL. To do this add a non-spaced string after each URL that you would like to alias.
+Another feature of the plain text file is you can add aliases to the urls.txt file after each URL. To do this, add a non-spaced string after each URL that you would like to alias:
 
 ~~~
 http://www.yoursite.com/path/
 http://www.yoursite.com/my/really/important/page/ Important_Page
 http://www.yoursite.com/where/we/are/ Page2
 ~~~
-*Note: Spaces are used to delimit between the URL and the alias which is why the alias cannot contain one.*
+*Note: Spaces are used to delimit between the URL and the alias, which is why the alias cannot contain one.*
 
-Aliases are great in combination with sending metrics to a TSDB such as graphite for shortening the key sent to make them more user friendly and readable.
+Aliases are great in combination with sending metrics to a TSDB (such as Graphite) for shortening the key sent, to make them more user friendly and readable.
 
 And run it:
 
@@ -226,14 +226,14 @@ $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeed
 
 ### Analyze by crawling
 
-If you wanna find pages that are not so performant it's a good idea to crawl. Sitespeed.io will start with the URL and fetch all links on that pages and continue to dig deeper into the site structure. You can choose how deep to crawl (1=only one page, 2=include links from first page, etc.):
+If you want to find pages that are not so performant it's a good idea to crawl. Sitespeed.io will start with the URL and fetch all links on that page and continue to dig deeper into the site structure. You can choose how deep to crawl (1=only one page, 2=include links from first page, etc.):
 
 ~~~bash
 $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -d 2
 ~~~
 
 ### How many runs per URL?
-When collecting timing metrics it's good to test the URL more than one time (default is three times). You can configure how many runs like this (five runs):
+When collecting timing metrics, it's good to test the URL more than one time (default is three times). You can configure how many runs like this (five runs):
 
 ~~~bash
 $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -n 5
@@ -263,32 +263,32 @@ And then when you run your Docker container, add <code>--network cable</code> to
 $ docker run --privileged --shm-size=1g --network cable --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.connectivity.engine external -c cable https://www.sitespeed.io/
 ~~~
 
-Then you will use the network setup in your Docker network bridge, call it "cable" so that key will be used in HTML/graphite and set it the engine to external so that no connectivity is set inside the Docker container.
+Then you will use the network setup in your Docker network bridge; call it "cable" so that key will be used in HTML/Graphite, and set the engine to external so that no connectivity is set inside the Docker container.
 
-Read more [here]({{site.baseurl}}/documentation/sitespeed.io/browsers/#change-connectivity) how to set different connectivities.
+Read more [here]({{site.baseurl}}/documentation/sitespeed.io/browsers/#change-connectivity) about how to set different connectivities.
 
 ### Viewport/user agent and mobile
 
-You can set the viewport & user agent, so that you can fake testing a site as a mobile device.
+You can set the viewport & user agent, so you can fake testing a site as a mobile device.
 
-Simplest way is to just add <code>--mobile</code> as a parameter. The viewport will be set to 360x640 and the User Agent will be Iphone6. If you use Chrome it will use the pre-set device Apple iPhone 6.
+The simplest way is to just add <code>--mobile</code> as a parameter. The viewport will be set to 360x640 and the user agent will be Iphone6. If you use Chrome it will use the preset Apple iPhone 6 device.
 
 ~~~bash
 $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --mobile
 ~~~
 
-You can also set specific viewport and User Agent:
+You can also set a specific viewport and user agent:
 
 ~~~bash
 $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --browsertime.viewPort 400x400 --browsertime.userAgent "UCWEB/2.0 (MIDP-2.0; U; Adr 4.4.4; en-US; XT1022) U2/1.0.0 UCBrowser/10.6.0.706 U2/1.0.0 Mobile"
 ~~~
 
-Mobile testing is always best on an actual mobile devices. You can [test on Android phones](../mobile-phones/) using sitespeed.io.
+Mobile testing is always best on actual mobile devices. You can [test on Android phones](../mobile-phones/) using sitespeed.io.
 {: .note .note-warning}
 
 ### Connectivity
 
-You can fake the connectivity for the browser. By default we expect an external tool to handle the connectivity, but you can also set the connectivity engine to [tc](http://lartc.org/manpages/tc.txt) or [TSProxy](https://github.com/WPO-Foundation/tsproxy), but you need Python 2.7 for that to work work if either of those works better for you.
+You can fake the connectivity for the browser. By default, we expect an external tool to handle the connectivity, but you can also set the connectivity engine to [tc](http://lartc.org/manpages/tc.txt) or [TSProxy](https://github.com/WPO-Foundation/tsproxy). However, you need Python 2.7 for that to work, if either of those works better for you.
 
 Setting the connectivity to cable:
 
@@ -303,15 +303,15 @@ $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeed
 ~~~
 
 ### Speed Index and video
-In 4.1 we released support for recording a video of the browser screen and use that to calculate visual metrics like Speed Index. Thsi is one of the main benefits for using our Docker images as it make for an easy setup. Without Docker you would need to install all these [dependencies](https://github.com/WPO-Foundation/visualmetrics) first.
+In 4.1 we released support for recording a video of the browser screen and use that to calculate visual metrics like Speed Index. This is one of the main benefits for using our Docker images, as it makes for an easy setup. Without Docker, you would need to install all these [dependencies](https://github.com/WPO-Foundation/visualmetrics) first.
 
-If you only care about Speed Index and related metrics (first visual change etc) you can run like this:
+If you only care about Speed Index and related metrics (first visual change etc.,) you can run it like this:
 
 ~~~bash
 $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --speedIndex https://www.sitespeed.io/
 ~~~
 
-Sitespeed.io will then analyze the video and then remove it. If you wanna keep the video, add the video flag (and you can see it in the Browsertime tab):
+Sitespeed.io will then analyze the video and then remove it. If you want to keep the video, add the video flag (and you can see it in the Browsertime tab):
 
 ~~~bash
 $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --speedIndex --video https://www.sitespeed.io/
@@ -326,7 +326,7 @@ $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeed
 ~~~
 
 ### Output folder or where to store the result
-You can change where you want the data to be stored by setting the <code>--outputFolder</code> parameter. That is good in scenarios where you wanna change the default behavior and put the output in specific place.
+You can change where you want the data to be stored by setting the <code>--outputFolder</code> parameter. That is good in scenarios where you want to change the default behavior and put the output in a specific location:
 
 ~~~bash
 $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --outputFolder /my/folder ".ryanair.com" https://www.sitespeed.io/
@@ -362,13 +362,13 @@ Create a config file and call it config.json:
 }
 ~~~
 
-The run it like this:
+Then, run it like this:
 
 ~~~bash
 $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --config config.json https://www.sitespeed.io
 ~~~
 
-If you wanna override and run the same configuration but using Firefox, you just override with the CLI parameter:
+If you want to override and run the same configuration but using Firefox, you just override with the CLI parameter:
 
 ~~~bash
 $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --config config.json -b firefox https://www.sitespeed.io
@@ -379,13 +379,13 @@ The CLI will always override a JSON config.
 ## Advanced
 
 ### Slack
-You can send the result of a run to Slack. First setup a webhook in the Slack API (https://<your team>.slack.com/apps/manage/custom-integrations) and then configure it:
+You can send the result of a run to Slack. First, set up a webhook in the Slack API (https://<your team>.slack.com/apps/manage/custom-integrations) and then configure it:
 
 ~~~bash
 $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/ --slack.hookUrl https://hooks.slack.com/services/YOUR/HOOK/URL
 ~~~
 
-You can choose to send just a summary (the summary for all runs), individual runs (with url), only errors or all by choosing the <code>slack.type</code>.
+You can choose to send just a summary (the summary for all runs), individual runs (with URL), only errors, or everything, by choosing the respective <code>slack.type</code>.
 
 ~~~bash
 $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/ --slack.hookUrl https://hooks.slack.com/services/YOUR/HOOK/URL --slack.type summary
@@ -394,5 +394,5 @@ $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeed
 ![Slack]({{site.baseurl}}/img/slack.png)
 {: .img-thumbnail}
 
-### Login the user
+### Log in the user
 We have added a [special section](../prepostscript) for that!
