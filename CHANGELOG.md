@@ -3,6 +3,7 @@
 ## UNRELEASED
 ### Fixed
 * Upgrading node-sass to work when installing on Windows 10 [#1671](https://github.com/sitespeedio/sitespeed.io/issues/1671) 
+* Upgrading to Browsertime 1.5.4 checkout [https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#version-154-2017-07-19](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#version-154-2017-07-19)
 
 ## 5.4.3 2017-07-14
 ### Fixed
