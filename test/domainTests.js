@@ -13,10 +13,14 @@ describe('domains', function() {
     let har;
 
     beforeEach(function() {
-      return fs.readFileAsync(path.resolve(__dirname, 'fixtures', 'www-theverge-com.har'), 'utf8')
+      return fs
+        .readFileAsync(
+          path.resolve(__dirname, 'fixtures', 'www-theverge-com.har'),
+          'utf8'
+        )
         .then(JSON.parse)
-        .tap((data) => {
-          har = data
+        .tap(data => {
+          har = data;
         });
     });
 

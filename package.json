@@ -35,14 +35,15 @@
     "url": "https://github.com/sitespeedio/sitespeed.io/issues"
   },
   "scripts": {
-    "lint": "npm run eslint && npm run pug-lint",
-    "eslint": "eslint .",
+    "lint": "eslint . && npm run pug-lint",
+    "lint:fix": "eslint . --fix",
+    "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "eclint": "eclint check * lib/**/* bin/**/* tools/**/* !*.iml",
     "eclint:fix": "eclint fix * lib/**/* bin/**/* tools/**/* !*.iml",
     "pug-lint": "pug-lint lib/plugins/html/templates",
     "test": "mocha",
     "check-licenses": "tools/check-licenses.js",
-    "travis": "npm run lint && npm run test",
+    "travis": "npm run eslint-check && npm run lint && npm run test",
     "build:css": "node-sass lib/plugins/html/src/sass/main.scss > lib/plugins/html/assets/css/index.css && cleancss -o lib/plugins/html/assets/css/index.min.css lib/plugins/html/assets/css/index.css"
   },
   "engines": {
@@ -53,11 +54,14 @@
     "chai-as-promised": "^6.0.0",
     "clean-css-cli": "^4.0.7",
     "eclint": "^1.1.5",
-    "eslint": "^3.10.2",
+    "eslint": "^4.2.0",
+    "eslint-config-prettier": "^2.3.0",
+    "eslint-plugin-prettier": "^2.1.2",
     "jsdoc": "^3.3.3",
     "license-checker": "^5.1.2",
     "mocha": "^3.1.2",
     "node-sass": "^4.5.0",
+    "prettier": "^1.5.3",
     "pug-lint": "^2.3.0",
     "pug-lint-config-clock": "^2.0.0"
   },
