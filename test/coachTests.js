@@ -11,7 +11,7 @@ const coachRun = JSON.parse(fs.readFileSync(coachRunPath, 'utf8'));
 describe('coach', function() {
   describe('aggregator', function() {
     it('should summarize data', function() {
-      aggregator.addToAggregate(coachRun,'www.sitespeed.io');
+      aggregator.addToAggregate(coachRun, 'www.sitespeed.io');
 
       expect(aggregator.summarize()).to.not.be.empty;
     });

@@ -1,5 +1,5 @@
 module.exports = {
-    run(context) {
-      context.log.info('In posttask!!!');
-    }
-  };
+  run(context) {
+    context.log.info('In posttask!!!');
+  }
+};
