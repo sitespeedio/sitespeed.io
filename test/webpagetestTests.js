@@ -5,7 +5,11 @@ const aggregator = require('../lib/plugins/webpagetest/aggregator'),
   path = require('path'),
   expect = require('chai').expect;
 
-const wptResultPath = path.resolve(__dirname, 'fixtures', 'webpagetest.data.json');
+const wptResultPath = path.resolve(
+  __dirname,
+  'fixtures',
+  'webpagetest.data.json'
+);
 const wptResult = JSON.parse(fs.readFileSync(wptResultPath, 'utf8'));
 
 describe('webpagetest', function() {

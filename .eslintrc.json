@@ -1,0 +1,21 @@
+{
+    "root": true,
+    "env": {
+        "node": true,
+        "es6": true
+    },
+    "plugins": [
+        "prettier"
+    ],
+    "extends": "eslint:recommended",
+    "rules": {
+        "prettier/prettier": [
+            "error",
+            {
+                "singleQuote": true
+            }
+        ],
+        "no-extra-semi": 0,
+        "no-mixed-spaces-and-tabs": 0
+    }
+}
