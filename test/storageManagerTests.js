@@ -16,13 +16,17 @@ describe('storageManager', function() {
   describe('#rootPathFromUrl', function() {
     it('should create path from url', function() {
       const storageManager = createManager('http://www.foo.bar');
-      const path = storageManager.rootPathFromUrl('http://www.foo.bar/x/y/z.html');
+      const path = storageManager.rootPathFromUrl(
+        'http://www.foo.bar/x/y/z.html'
+      );
       expect(path).to.equal('../../../../../');
     });
 
     it('should create path from url with query string', function() {
       const storageManager = createManager('http://www.foo.bar');
-      const path = storageManager.rootPathFromUrl('http://www.foo.bar/x/y/z?foo=bar');
+      const path = storageManager.rootPathFromUrl(
+        'http://www.foo.bar/x/y/z?foo=bar'
+      );
       expect(path).to.equal('../../../../../../');
     });
   });
@@ -30,10 +34,15 @@ describe('storageManager', function() {
   describe('#getBaseDir', function() {
     it('should create base dir with default output folder', function() {
       const storageManager = createManager('http://www.foo.bar');
-      expect(storageManager.getBaseDir()).to.equal(path.resolve('sitespeed-result', 'www.foo.bar', timestampString));
+      expect(storageManager.getBaseDir()).to.equal(
+        path.resolve('sitespeed-result', 'www.foo.bar', timestampString)
+      );
     });
     it('should create base dir with custom output folder', function() {
-      const storageManager = createManager('http://www.foo.bar', '/tmp/sitespeed.io/foo');
+      const storageManager = createManager(
+        'http://www.foo.bar',
+        '/tmp/sitespeed.io/foo'
+      );
       expect(storageManager.getBaseDir()).to.equal('/tmp/sitespeed.io/foo');
     });
   });
@@ -41,10 +50,15 @@ describe('storageManager', function() {
   describe('#getStoragePrefix', function() {
     it('should create prefix with default output folder', function() {
       const storageManager = createManager('http://www.foo.bar');
-      expect(storageManager.getStoragePrefix()).to.equal(path.join('www.foo.bar', timestampString));
+      expect(storageManager.getStoragePrefix()).to.equal(
+        path.join('www.foo.bar', timestampString)
+      );
     });
     it('should create prefix with custom output folder', function() {
-      const storageManager = createManager('http://www.foo.bar', '/tmp/sitespeed.io/foo');
+      const storageManager = createManager(
+        'http://www.foo.bar',
+        '/tmp/sitespeed.io/foo'
+      );
       expect(storageManager.getStoragePrefix()).to.equal('foo');
     });
   });
