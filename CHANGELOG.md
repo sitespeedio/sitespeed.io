@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Fixed
+* Upgrading the Docker container to use Chrome stable 60 (instead of beta 60)
+
 ## 5.4.4 2017-07-21
 ### Fixed
 * Upgrading node-sass to work when installing on Windows 10 [#1671](https://github.com/sitespeedio/sitespeed.io/issues/1671) 
