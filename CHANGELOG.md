@@ -3,6 +3,7 @@
 ## UNRELEASED
 ### Fixed
 * Upgrading the Docker container to use Chrome stable 60 (instead of beta 60)
+* Upgradding to Browsertime 1.6.0 that gives support for adding request headers, blocking domains and basic auth in Firefox.
 
 ## 5.4.4 2017-07-21
 ### Fixed
