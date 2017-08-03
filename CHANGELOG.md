@@ -5,6 +5,7 @@
 * Upgrading the Docker container to use Chrome stable 60 (instead of beta 60)
 * Upgradding to Browsertime 1.6.0 that gives support for adding request headers, blocking domains and basic auth in Firefox.
 * When one WebPageTest run failed, it could break collecting metrics, it seems to happen on sites with many requsts. We now catch the error. See [#1685](https://github.com/sitespeedio/sitespeed.io/issues/1685).
+* Updated to Coach 0.36
 
 ## 5.4.4 2017-07-21
 ### Fixed
