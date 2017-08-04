@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Fixed
+* Show in the CLI that requestheaders, blocking domains and basic auth work in Firefox.
+
 ## 5.4.5 2017-08-03
 ### Fixed
 * Upgrading the Docker container to use Chrome stable 60 (instead of beta 60)
