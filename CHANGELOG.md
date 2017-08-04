@@ -4,6 +4,9 @@
 ### Fixed
 * Show in the CLI that requestheaders, blocking domains and basic auth work in Firefox.
 
+### Added 
+* Include firstParty info in the HAR
+
 ## 5.4.5 2017-08-03
 ### Fixed
 * Upgrading the Docker container to use Chrome stable 60 (instead of beta 60)
