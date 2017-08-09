@@ -150,7 +150,9 @@ s3
   --s3.path               Override the default folder path in the bucket where the results are uploaded. By default it's "DOMAIN_OR_FILENAME/TIMESTAMP", or the name of the
                           folder if --outputFolder is specified.
   --s3.region             The S3 region. Optional depending on your settings.
-  --s3.removeLocalResult  Remove all the local result files after they have been uploaded to S3                                                     [boolean] [default: false]
+  --s3.clientSettings     Extra settings to pass to the s3 client, see: https://github.com/andrewrk/node-s3-client#create-a-client                                             [string] [default: "{}"]
+  --s3.uploadSettings     Extra settings to pass when uploading files to s3, see: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#putObject-property            [string] [default: "{}"]
+  --s3.removeLocalResult  Remove all the local result files after they have been uploaded to S3                                                                                                                      [boolean] [default: false]
 
 HTML
   --html.showAllWaterfallSummary  Set to true to show all waterfalls on page summary HTML report                                                    [boolean] [default: false]
