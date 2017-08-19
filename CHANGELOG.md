@@ -2,8 +2,24 @@
 
 ## UNRELEASED
 ### Fixed
+* Show in the CLI that requestheaders, blocking domains and basic auth work in Firefox.
+* Upgraded to Browsertime 1.6.1 with a newer version of VisualMetrics. 
+
+### Added 
+* Include firstParty info in the HAR
+
+## 5.4.5 2017-08-03
+### Fixed
+* Upgrading the Docker container to use Chrome stable 60 (instead of beta 60)
+* Upgrading to Browsertime 1.6.0 that gives support for adding request headers, blocking domains and basic auth in Firefox.
+* When one WebPageTest run failed, it could break collecting metrics, it seems to happen on sites with many requsts. We now catch the error. See [#1685](https://github.com/sitespeedio/sitespeed.io/issues/1685).
+* Upgraded to Coach 0.36.0
+
+## 5.4.4 2017-07-21
+### Fixed
 * Upgrading node-sass to work when installing on Windows 10 [#1671](https://github.com/sitespeedio/sitespeed.io/issues/1671) 
 * Upgrading to Browsertime 1.5.4 checkout [https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#version-154-2017-07-19](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#version-154-2017-07-19)
+* Always add the first asset to the size list [#1676](https://github.com/sitespeedio/sitespeed.io/issues/1676) 
 
 ## 5.4.3 2017-07-14
 ### Fixed

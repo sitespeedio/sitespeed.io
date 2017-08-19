@@ -10,13 +10,13 @@ nav: faq
 # FAQ
 {:.no_toc}
 
-If you don't find the answer here or in the [documentation]({{site.baseurl}}/documentation/), please ping us on [Twitter](https://twitter.com/SiteSpeedio) or add an issue on [Github](https://github.com/sitespeedio/sitespeed.io/issues?state=open).
+If you don't find the answer here or in the [documentation]({{site.baseurl}}/documentation/), please ping us on [Twitter](https://twitter.com/SiteSpeedio) or add an issue on [GitHub](https://github.com/sitespeedio/sitespeed.io/issues?state=open).
 
-* Lets place the TOC here
+* Let's place the TOC here
 {:toc}
 
-## Should I use TSProxy or tc as connectivity engine?
-No you should always use the Docker network setup described [here]({{site.baseurl}}/documentation/sitespeed.io/browsers/#change-connectivity).
+## Should I use TSProxy or tc as the connectivity engine?
+No, you should always use the Docker network setup described [here]({{site.baseurl}}/documentation/sitespeed.io/browsers/#change-connectivity).
 
 ## Chrome doesn't work on RHEL7 (or some other \*nix flavor)
 Make Chrome run without the sandbox and it will work. Pass the following argument to sitespeed.io:
@@ -25,21 +25,21 @@ Make Chrome run without the sandbox and it will work. Pass the following argumen
 --browsertime.chrome.args no-sandbox
 ~~~
 
-When you use our Docker container that argument is set by default.
+When you use our Docker container, that argument is set by default.
 
-## How can I disable HTTP/2 (I want to test only HTTP/1)?
-On Chrome you just add the switches <code>--browsertime.chrome.args no-sandbox --browsertime.chrome.args disable-http2</code>.
+## How can I disable HTTP/2 (I only want to test HTTP/1.x)?
+On Chrome, you just add the switches <code>--browsertime.chrome.args no-sandbox --browsertime.chrome.args disable-http2</code>.
 
-For Firefox you need to turn off HTTP/2 and SPDY, and you do that by setting the Firefox preferences:
+For Firefox, you need to turn off HTTP/2 and SPDY, and you do that by setting the Firefox preferences:
 <code>--browsertime.firefox.preference network.http.spdy.enabled:false --browsertime.firefox.preference network.http.spdy.enabled.http2:false --browsertime.firefox.preference network.http.spdy.enabled.v3-1:false</code>
 
 ## Running Sitespeed 4.0 with Docker + Proxy + Custom Login Script + Create Custom Folder (date/time stamped)?
 
 Thank you [Keyur Shah](https://github.com/softwareklinic) for sharing your setup:
 
-"Here is an example that finally worked for me with lot of tweaks that runs using the Sitespeed 4.0 docker, behind corporate proxy, saving the HTML summary reports in customer folder marked with date/timestamp and avoiding the HAR trigger error by using the --browsertime.pageCompleteCheck option with custom javascript
+"Here is an example that finally worked for me with lot of tweaks that runs using the Sitespeed 4.0 docker, behind corporate proxy, saving the HTML-summary reports in customer folder marked with date/timestamp, and avoiding the HAR trigger error by using the --browsertime.pageCompleteCheck option with custom javascript
 
- Below is a cron job definition that runs ever 45th minute of an hour:
+ Below is a cron-job definition that runs every 45th minute of an hour:
 "
 
 ~~~ bash
