@@ -16,7 +16,7 @@ addons:
     packages:
     - g++-4.8
     - google-chrome-stable
-  firefox: latest
+  firefox: "54.0"
 before_install:
 - firefox --version 2>/dev/null
 - google-chrome --product-version
