@@ -3,6 +3,7 @@
 ## UNRELEASED
 ### Fixed
 * Show in the CLI that requestheaders, blocking domains and basic auth work in Firefox.
+* Upgraded to Browsertime 1.6.1 with a newer version of VisualMetrics. 
 
 ### Added 
 * Include firstParty info in the HAR
