@@ -7,6 +7,7 @@
 
 ### Added 
 * Include firstParty info in the HAR
+* Also slack the screenshot of the run [#1658](https://github.com/sitespeedio/sitespeed.io/pull/1658)
 
 ## 5.4.5 2017-08-03
 ### Fixed
