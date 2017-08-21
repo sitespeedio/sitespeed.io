@@ -1,13 +1,13 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 5.6.0 2017-08-21
 ### Fixed
 * Show in the CLI that requestheaders, blocking domains and basic auth work in Firefox.
-* Upgraded to Browsertime 1.6.1 with a newer version of VisualMetrics. 
+* Upgraded to Browsertime 1.6.1 with a newer version of VisualMetrics that hopefully fixes the sometimes 0 metrics for some sites. [#1961](https://github.com/sitespeedio/sitespeed.io/issues/1691)
 
 ### Added 
-* Include firstParty info in the HAR
-* Also slack the screenshot of the run [#1658](https://github.com/sitespeedio/sitespeed.io/pull/1658)
+* Include firstParty info in the HAR (more info about this soon).
+* Also slack the screenshot of the run [#1658](https://github.com/sitespeedio/sitespeed.io/pull/1658).
 
 ## 5.4.5 2017-08-03
 ### Fixed
