@@ -12,15 +12,15 @@ twitterdescription: Performance budget with sitespeed.io.
 # Performance Budget
 {:.no_toc}
 
-* Lets place the TOC here
+* Let's place the TOC here
 {:toc}
 
 ## Performance budget
-Have you heard of a performance budget? If not, please go read these excellent posts by Tim Kadlec. Don't worry we will be here when you get back. [Setting a performance budget](http://timkadlec.com/2013/01/setting-a-performance-budget/) and [Fast enough](http://timkadlec.com/2014/01/fast-enough/). You should also read Daniel Malls [How to make a performance budget](http://danielmall.com/articles/how-to-make-a-performance-budget/). Welcome back, let's continue the setup of sitespeed.io performance budgets. :)
+Have you heard of a performance budget? If not, please go read these excellent posts by Tim Kadlec. Don't worry, we'll be here when you get back. [Setting a performance budget](http://timkadlec.com/2013/01/setting-a-performance-budget/) and [Fast enough](http://timkadlec.com/2014/01/fast-enough/). You should also read Daniel Malls' [How to make a performance budget](http://danielmall.com/articles/how-to-make-a-performance-budget/). Welcome back - let's continue the setup of sitespeed.io performance budgets. :)
 
 
 ### How it works
-When you run sitespeed.io configured with a budget, the script will exit with a exit status > 0 if the budget fails. It will log all budget items regardless if they pass or fail and generate a HTML report.
+When you run sitespeed.io configured with a budget, the script will exit with an exit status > 0 if the budget fails. It will log all budget items regardless if they pass or fail and generate a HTML report.
 
 The log will look something like this:
 
@@ -100,10 +100,10 @@ Then run it like this:
 $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/ --budget.configPath myBudget.json -b chrome -n 11
 ~~~
 
-And if the budget fails the exit status will be > 0. You can also choose to report the budget as JUnitXML (Jenkins) or TAP.
+And, if the budget fails, the exit status will be > 0. You can also choose to report the budget as JUnitXML (Jenkins) or TAP.
 
 ### JUnit XML
-You can output a JUnit XML file from the budget result like this.
+You can output a JUnit XML file from the budget result like this:
 
 ~~~bash
 $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/ --budget.configPath myBudget.json --budget.output junit -b chrome -n 5
