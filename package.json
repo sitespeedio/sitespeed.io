@@ -94,14 +94,14 @@
     "mkdirp": "0.5.1",
     "moment": "2.17.1",
     "node-slack": "0.0.7",
-    "pagexray": "0.14.3",
+    "pagexray": "1.0.0",
     "pug": "2.0.0-rc.2",
     "s3": "4.4.0",
     "simplecrawler": "1.1.0",
     "tape": "4.6.3",
     "text-table": "0.2.0",
     "uuid": "^3.0.0",
-    "webcoach": "0.36.0",
+    "webcoach": "0.37.0",
     "webpagetest": "0.3.5",
     "yargs": "6.6.0"
   }
