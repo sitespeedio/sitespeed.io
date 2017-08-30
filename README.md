@@ -52,6 +52,8 @@ Or install using npm:
 $ npm i -g sitespeed.io
 ```
 
+_Don't forget the `.io`! There's another package out there named just `sitespeed`, which we don't maintain._
+
 Or clone the repo and test the latest changes:
 
 ```bash
