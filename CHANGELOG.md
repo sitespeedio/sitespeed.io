@@ -3,6 +3,7 @@
 ## Unreleased
 ### Fixed
 * You can now run WebPageTest without Browsertime [#1700](https://github.com/sitespeedio/sitespeed.io/issues/1700).
+* Use SpeedIndex to decide if a WebPageTest run works instead of fullyLoadd [#1699](https://github.com/sitespeedio/sitespeed.io/pull/1699)
 
 ## 5.5.0 2017-08-21
 ### Fixed
