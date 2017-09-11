@@ -1,9 +1,13 @@
 # CHANGELOG - sitespeed.io
 
 ## Unreleased
+
+### Added
+* Use load time as of the default metrics for data storage when you use WebPageTest [#1704](https://github.com/sitespeedio/sitespeed.io/issues/1704)
+
 ### Fixed
 * You can now run WebPageTest without Browsertime [#1700](https://github.com/sitespeedio/sitespeed.io/issues/1700).
-* Use SpeedIndex to decide if a WebPageTest run works instead of fullyLoadd [#1699](https://github.com/sitespeedio/sitespeed.io/pull/1699)
+* Use SpeedIndex to decide if a WebPageTest run works instead of fullyLoaded [#1699](https://github.com/sitespeedio/sitespeed.io/pull/1699)
 
 ## 5.5.0 2017-08-21
 ### Fixed
