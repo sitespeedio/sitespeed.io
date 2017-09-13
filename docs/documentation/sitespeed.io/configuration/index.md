@@ -341,15 +341,8 @@ Create a config file and call it config.json:
 ~~~
 {
   "browsertime": {
-    "connectivity": {
-      "engine": "tc",
-      "profile": "cable"
-    },
     "iterations": 5,
-    "browser": "chrome",
-    "experimental": {
-      "video": true
-    }
+    "browser": "chrome"
   },
   "graphite": {
     "host": "my.graphite.host",
