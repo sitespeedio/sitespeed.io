@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## Unreleased
+## 5.6.0 2017-09-13
 
 ### Added
 * Use load time as of the default metrics for data storage when you use WebPageTest [#1704](https://github.com/sitespeedio/sitespeed.io/issues/1704)
