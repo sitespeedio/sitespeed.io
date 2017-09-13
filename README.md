@@ -21,6 +21,8 @@ Using sitespeed.io you can:
 
 See all the latest changes in the [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md).
 
+If you use Firefox 55 (or later) please have a look at https://github.com/sitespeedio/browsertime/issues/358. When 57 is released we think there will be a easy way to fix it :)
+
 ## Examples of what you can do
 
 Checkout our example [dashboard.sitespeed.io](https://dashboard.sitespeed.io/dashboard/db/page-summary)
