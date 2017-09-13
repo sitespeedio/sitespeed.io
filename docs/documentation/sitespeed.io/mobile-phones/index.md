@@ -20,6 +20,7 @@ Driving Android from Docker only works on a Linux host since there's is no way a
 
 ## Desktop
 If you don't use Docker you need to:
+
  * Install the [Android SDK](http://developer.android.com/sdk/index.html#downloads) on your desktop (just the command line tools!). If you are on a Mac and use [Homebrew](http://brew.sh/) just run: <code>brew install android-platform-tools</code>
  * Start the adb-server on your desktop: <code>adb start-server</code>
 
@@ -66,6 +67,8 @@ You can also collect a video and get Visual Metrics. Running on Mac or without D
 ~~~bash
 $ sitespeed.io --browsertime.chrome.android.package com.android.chrome --video --speedIndex https://www.sitespeed.io
 ~~~
+
+And using Docker:
 
 ~~~bash
 $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.xvfb false --browsertime.chrome.android.package com.android.chrome --video --speedIndex https://www.sitespeed.io
