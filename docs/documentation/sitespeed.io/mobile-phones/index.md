@@ -16,9 +16,10 @@ twitterdescription: Test your page using a mobile phone
 {:toc}
 
 # Prerequisites
-To test on Android using Docker you need to be on Linux (tested on Ubuntu). It will not work on OS X since there is no way to map the USB ports at the moment.
+Driving Android from Docker only works on a Linux host since there's is no way at the moment to map USB on Mac!
 
 ## Desktop
+If you don't use Docker you need to:
  * Install the [Android SDK](http://developer.android.com/sdk/index.html#downloads) on your desktop (just the command line tools!). If you are on a Mac and use [Homebrew](http://brew.sh/) just run: <code>brew install android-platform-tools</code>
  * Start the adb-server on your desktop: <code>adb start-server</code>
 
@@ -36,7 +37,13 @@ To test on Android using Docker you need to be on Linux (tested on Ubuntu). It w
 You are now ready to test using your phone:
 
 ~~~bash
-$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --xvfb false --browsertime.chrome.android.package com.android.chrome https://www.sitespeed.io
+$ sitespeed.io --browsertime.chrome.android.package com.android.chrome https://www.sitespeed.io
+~~~
+
+Remember: To test on Android using Docker you need to be on Linux (tested on Ubuntu). It will not work on OS X.
+
+~~~bash
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.xvfb false --browsertime.chrome.android.package com.android.chrome https://www.sitespeed.io
 ~~~
 
 You will get result as you would with running this normally with summaries and waterfall graphs.
@@ -54,8 +61,12 @@ If you run by default, the phone will use the current connection. The connectivi
 You could also use [phuedxs](https://github.com/phuedx) [Micro Device Lab](https://github.com/phuedx/micro-device-lab), but using that requires additional work.
 
 # Video and SpeedIndex
-You can also collect a video and get Visual Metrics. The current version doesn't support Docker so you need to install the requirements for [VisualMetrics](https://github.com/sitespeedio/docker-visualmetrics-deps/blob/master/Dockerfile) yourself on your machine before you start. If you have everything setup you can run:
+You can also collect a video and get Visual Metrics. Running on Mac or without Docker you need to install the requirements for [VisualMetrics](https://github.com/sitespeedio/docker-visualmetrics-deps/blob/master/Dockerfile) yourself on your machine before you start. If you have everything setup you can run:
 
 ~~~bash
-$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --xvfb false --browsertime.chrome.android.package com.android.chrome --video --speedIndex https://www.sitespeed.io
+$ sitespeed.io --browsertime.chrome.android.package com.android.chrome --video --speedIndex https://www.sitespeed.io
+~~~
+
+~~~bash
+$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.xvfb false --browsertime.chrome.android.package com.android.chrome --video --speedIndex https://www.sitespeed.io
 ~~~
