@@ -16,6 +16,7 @@ twitterdescription: Test your page using a mobile phone
 {:toc}
 
 # Prerequisites
+To test on Android using Docker you need to be on Linux (tested on Ubuntu). It will not work on OS X since there is no way to map the USB ports at the moment.
 
 ## Desktop
  * Install the [Android SDK](http://developer.android.com/sdk/index.html#downloads) on your desktop (just the command line tools!). If you are on a Mac and use [Homebrew](http://brew.sh/) just run: <code>brew install android-platform-tools</code>
