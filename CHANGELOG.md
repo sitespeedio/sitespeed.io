@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Fixed
+* Rollbacked to Chrome 60 to fix the flickers that happens on emulated mobile
+
+
 ## 5.6.1 2017-09-15
 ### Fixed
 * Showing the timer as default in the video that was accidentall changed in latest release. Thanks https://github.com/kkopachev for reporting! 
