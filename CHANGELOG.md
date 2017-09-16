@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 5.6.1 2017-09-15
+### Fixed
+* Showing the timer as default in the video that was accidentall changed in latest release. Thanks https://github.com/kkopachev for reporting! 
+
 ## 5.6.0 2017-09-13
 
 ### Added
