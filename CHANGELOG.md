@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## Unreleased
+### Fixed
+* When you run sitespeed.io using Docker we now always set no-sandbox to Chrome (so you don't need to do that yourself).
+
 ## 5.6.2 2017-09-17
 ### Fixed
 * Rollbacked to Chrome 60 to fix the flicker that happens on emulated mobile and makes lastVisualChange happens later than it should [#367](https://github.com/sitespeedio/browsertime/issues/367).
@@ -8,7 +12,7 @@
 
 ## 5.6.1 2017-09-15
 ### Fixed
-* Showing the timer as default in the video that was accidentally changed in latest release. Thanks https://github.com/kkopachev for reporting! 
+* Showing the timer as default in the video that was accidentally changed in latest release. Thanks https://github.com/kkopachev for reporting!
 
 ## 5.6.0 2017-09-13
 
