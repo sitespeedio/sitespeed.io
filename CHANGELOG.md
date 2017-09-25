@@ -3,6 +3,8 @@
 ## Unreleased
 ### Fixed
 * When you run sitespeed.io using Docker we now always set no-sandbox to Chrome (so you don't need to do that yourself).
+* Custom metrics in WebPageTest broke the HTML [#1722](https://github.com/sitespeedio/sitespeed.io/issues/1722)
+
 
 ## 5.6.2 2017-09-17
 ### Fixed
