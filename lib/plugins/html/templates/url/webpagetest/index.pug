@@ -173,7 +173,7 @@ each view in ['firstView', 'repeatView']
                 td #{timing.name}
                 td #{timing.time}
     //- WebPageTest.org has custom metrics by default
-    if (median.custom)
+    if (Object.keys(median.custom).length > 0)
     .row
       .column
         table
