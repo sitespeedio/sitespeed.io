@@ -5,13 +5,11 @@
 
 const checker = require('license-checker');
 
-const INCOMPATIBLE_LICENCE_REGEX = /GPL/;
-
 checker.init(
   {
     start: '.'
   },
-  function(json, err) {
+  function(err, json) {
     if (err) {
       console.error(err.message);
       process.exit(1);
@@ -21,7 +19,18 @@ checker.init(
 
         if (!Array.isArray(licenses)) licenses = [licenses];
 
-        if (licenses.find(license => license.match(INCOMPATIBLE_LICENCE_REGEX)))
+        if (
+          licenses
+            .filter(
+              license =>
+                !(
+                  license.match(/LGPL/) ||
+                  license.match(/MIT/) ||
+                  license.match(/BSD/)
+                )
+            )
+            .find(license => license.match(/GPL/))
+        )
           return packageName;
       });
 
