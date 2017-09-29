@@ -69,7 +69,7 @@
   "dependencies": {
     "bluebird": "3.5.0",
     "browsertime": "1.9.3",
-    "cli-color": "1.1.0",
+    "cli-color": "1.2.0",
     "concurrent-queue": "7.0.2",
     "fast-stats": "0.0.3",
     "gpagespeed": "4.0.2",
