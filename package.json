@@ -70,7 +70,7 @@
     "bluebird": "3.5.0",
     "browsertime": "1.9.3",
     "cli-color": "1.1.0",
-    "concurrent-queue": "7.0.1",
+    "concurrent-queue": "7.0.2",
     "fast-stats": "0.0.3",
     "fs-extra": "2.1.2",
     "gpagespeed": "4.0.2",
