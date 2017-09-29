@@ -37,7 +37,7 @@
   "scripts": {
     "lint": "eslint . && npm run pug-lint",
     "lint:fix": "eslint . --fix",
-    "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
+    "eslint-check": "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
     "eclint": "eclint check * lib/**/* bin/**/* tools/**/* !*.iml",
     "eclint:fix": "eclint fix * lib/**/* bin/**/* tools/**/* !*.iml",
     "pug-lint": "pug-lint lib/plugins/html/templates",
