@@ -2,6 +2,7 @@
 
 ## Unreleased
 ### Fixed
+* Fix issue where coach, pagexray and browsertime data on summary pages might contain just a subset of data for tests with urls from multiple domains.
 * Avoid crash if Google PageSpeed Insights request fails (e.g. due to incorrect API key).
 * When you run sitespeed.io using Docker we now always set no-sandbox to Chrome (so you don't need to do that yourself).
 * Custom metrics in WebPageTest broke the HTML [#1722](https://github.com/sitespeedio/sitespeed.io/issues/1722)
