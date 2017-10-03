@@ -18,22 +18,22 @@ describe('cliUtil', function() {
   describe('getAliases', function() {
     it('should extract aliases', function() {
       let aliases = cliUtil.getAliases(['test/fixtures/sitespeed-urls.txt']);
-      expect(aliases['https://www.sitespeed.io']).to.be.empty;
+      expect(aliases['https://www.sitespeed.io']).to.be.undefined;
       expect(
         aliases[
           'https://www.sitespeed.io/documentation/sitespeed.io/webpagetest/'
         ]
-      ).to.be.empty;
+      ).to.be.undefined;
 
       aliases = cliUtil.getAliases([
         'test/fixtures/sitespeed-urls-aliases.txt'
       ]);
-      expect(aliases['https://www.sitespeed.io'].alias === 'Home_Page');
+      expect(aliases['https://www.sitespeed.io'].alias).to.equal('Home_Page');
       expect(
         aliases[
           'https://www.sitespeed.io/documentation/sitespeed.io/webpagetest/'
         ]
-      ).to.be.empty;
+      ).to.be.undefined;
     });
   });
 });

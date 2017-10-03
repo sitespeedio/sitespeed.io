@@ -1,9 +1,37 @@
 # CHANGELOG - sitespeed.io
 
-## Unreleased
+## UNRELEASED 6.0 ALPHA
+
+We plan to release 6.0 sometimes after Firefox 57 is released (November 14?).
+
+
+### Breaking changes
+* Update to PageXray 1.0. For 99% of the users this will not change anything but if you where sending assets timings to Graphite/InfluxDB (as we told you not to do, these you know got blocked, dns, connect, send, wait and recieve instead of just the total time [#1693](https://github.com/sitespeedio/sitespeed.io/pull/1693).
+
+## 5.6.3 2017-10-03
+### Fixed
+* Fix issue where coach, pagexray and browsertime data on summary pages might contain just a subset of data for tests with urls from multiple domains.
+* Avoid crash if Google PageSpeed Insights request fails (e.g. due to incorrect API key).
+* When you run sitespeed.io using Docker we now always set no-sandbox to Chrome (so you don't need to do that yourself).
+* Custom metrics in WebPageTest broke the HTML [#1722](https://github.com/sitespeedio/sitespeed.io/issues/1722)
+* Skip storing faulty toplists on disk when using the analysisstorer plugin. The lists is generated from the raw data, so if you need them yourself as JSON, you can generate them [#1721](https://github.com/sitespeedio/sitespeed.io/pull/1721)
+* Upgraded to latest shining [Browsertime](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#version-193-2017-09-29)
+
+## 5.6.2 2017-09-17
+### Fixed
+* Rollbacked to Chrome 60 to fix the flicker that happens on emulated mobile and makes lastVisualChange happens later than it should [#367](https://github.com/sitespeedio/browsertime/issues/367).
+* Better logs when using WebPageTest.
+* More finetuning in Browsertime (1.8.1) to pickup right last visual change on emulated mobile for Chrome.
+
+## 5.6.1 2017-09-15
+### Fixed
+* Showing the timer as default in the video that was accidentally changed in latest release. Thanks https://github.com/kkopachev for reporting!
+
+## 5.6.0 2017-09-13
 
 ### Added
 * Use load time as of the default metrics for data storage when you use WebPageTest [#1704](https://github.com/sitespeedio/sitespeed.io/issues/1704)
+* Upgraded Browsertime to 1.8.0 with [all these changes](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#version-180-2017-09-13)
 
 ### Fixed
 * You can now run WebPageTest without Browsertime [#1700](https://github.com/sitespeedio/sitespeed.io/issues/1700).

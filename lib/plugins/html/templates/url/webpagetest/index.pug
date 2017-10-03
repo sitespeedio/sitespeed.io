@@ -161,25 +161,27 @@ each view in ['firstView', 'repeatView']
               td Certificates size
               +sizeCell('certificate_bytes', median.certificate_bytes)
 
+    //- You need to have timeline or right trace categories to get the timings
+    if (median.chromeUserTiming)
       .row
-        .one-half.column
-          //- You need to have timeline or right trace categories to get the timings
-          if (median.chromeUserTiming)
-                table
-                  tr
-                    th(colspan='2') Chrome User Timings
-                  each timing in median.chromeUserTiming
-                    tr
-                      td #{timing.name}
-                      td #{timing.time}
-        .one-half.column
-          if (median.custom)
-            table
-              th(colspan='2') Custom metrics
-              each key in median.custom
-                tr
-                  td #{key}
-                  td #{median[key]}
+        .column
+          table
+            tr
+              th(colspan='2') Chrome User Timings
+            each timing in median.chromeUserTiming
+              tr
+                td #{timing.name}
+                td #{timing.time}
+    //- WebPageTest.org has custom metrics by default
+    if (median.custom && Object.keys(median.custom).length > 0)
+    .row
+      .column
+        table
+          th(colspan='2') Custom metrics
+          each key in median.custom
+            tr
+              td #{key}
+              td.break #{median[key]}
 
     h3 Waterfall
     img.u-max-full-width(src='data/waterfall/wpt-waterfall-' + wptRun + '-' + view + '.png', alt='Waterfall view')
