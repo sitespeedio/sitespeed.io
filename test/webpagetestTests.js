@@ -1,9 +1,10 @@
 'use strict';
 
-const aggregator = require('../lib/plugins/webpagetest/aggregator'),
-  fs = require('fs'),
-  path = require('path'),
-  expect = require('chai').expect;
+const plugin = require('../lib/plugins/webpagetest');
+const aggregator = require('../lib/plugins/webpagetest/aggregator');
+const fs = require('fs');
+const path = require('path');
+const expect = require('chai').expect;
 
 const wptResultPath = path.resolve(
   __dirname,
@@ -12,10 +13,32 @@ const wptResultPath = path.resolve(
 );
 const wptResult = JSON.parse(fs.readFileSync(wptResultPath, 'utf8'));
 
-describe('webpagetest', function() {
-  describe('aggregator', function() {
-    it('should summarize data', function() {
-      aggregator.addToAggregate('www.sitespeed.io', wptResult);
+describe('webpagetest', () => {
+  describe('plugin', () => {
+    it('should require key for default server', () => {
+      expect(() => plugin.open({}, {})).to.throw();
+    });
+    it('should require key for public server', () => {
+      expect(() =>
+        plugin.open({}, { webpagetest: { host: 'www.webpagetest.org' } })
+      ).to.throw();
+    });
+    it('should not require key for private server', () => {
+      expect(() =>
+        plugin.open({}, { webpagetest: { host: 'http://myserver.foo' } })
+      ).to.not.throw();
+    });
+  });
+
+  describe('aggregator', () => {
+    it('should summarize data', () => {
+      aggregator.addToAggregate(
+        'www.sitespeed.io',
+        wptResult,
+        'native',
+        'Test',
+        { video: true }
+      );
 
       expect(aggregator.summarize()).to.not.be.empty;
     });

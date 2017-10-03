@@ -11,17 +11,20 @@ table {
   background-color: $color--grey;
 }
 
-th, td {
+th,
+td {
   padding: 4px 1rem;
   vertical-align: top;
   text-align: left;
 }
 
-th:first-child, td:first-child {
+th:first-child,
+td:first-child {
   padding-left: 1rem;
 }
 
-th:last-child, td:last-child {
+th:last-child,
+td:last-child {
   padding-right: 1rem;
 }
 
@@ -68,12 +71,15 @@ td.offendingurl {
   max-width: 900px;
 }
 
+td.break {
+  word-break: break-all;
+}
+
 /** Responsive tables, wrap them in a div
 * We use Chris Coyiers (old) hide the table
 * solution https://css-tricks.com/responsive-data-tables/
 */
 @media only screen and (max-width: 800px) {
-
   /* Force table to not be like tables anymore */
   .responsive table,
   .responsive thead,
@@ -96,7 +102,9 @@ td.offendingurl {
     left: -9999px;
   }
 
-  .responsive tr { border: 2px solid $color--grey; }
+  .responsive tr {
+    border: 2px solid $color--grey;
+  }
 
   .responsive td {
     /* Behave  like a "row" */
@@ -105,7 +113,7 @@ td.offendingurl {
     position: relative;
     padding-left: 50%;
     white-space: normal;
-    text-align:left;
+    text-align: left;
     max-width: none;
   }
 
@@ -118,18 +126,20 @@ td.offendingurl {
     width: 30%;
     padding-right: 10px;
     white-space: nowrap;
-    text-align:left;
+    text-align: left;
     font-weight: bold;
   }
 
   /*
   Label the data
   */
-  .responsive td:before { content: attr(data-title); }
+  .responsive td:before {
+    content: attr(data-title);
+  }
 
   .responsive td.url.offendingurl {
-     word-break: break-all;
-     padding-left: 2px;
+    word-break: break-all;
+    padding-left: 2px;
   }
 
   .hidden-small {
