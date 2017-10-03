@@ -7,6 +7,7 @@
 * When you run sitespeed.io using Docker we now always set no-sandbox to Chrome (so you don't need to do that yourself).
 * Custom metrics in WebPageTest broke the HTML [#1722](https://github.com/sitespeedio/sitespeed.io/issues/1722)
 * Skip storing faulty toplists on disk when using the analysisstorer plugin. The lists is generated from the raw data, so if you need them yourself as JSON, you can generate them [#1721](https://github.com/sitespeedio/sitespeed.io/pull/1721)
+* Upgraded to latest shining [Browsertime](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#version-193-2017-09-29)
 
 ## 5.6.2 2017-09-17
 ### Fixed
