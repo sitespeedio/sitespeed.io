@@ -1,0 +1,19 @@
+script(type='text/javascript').
+  document.addEventListener("DOMContentLoaded", function() {
+    var data = {
+      labels: !{JSON.stringify(numberOfRequestsLabels)},
+      series: !{JSON.stringify(numberOfRequests)}
+    };
+
+    var options = {
+      showLabel: false,
+      plugins: [
+          Chartist.plugins.tooltip()
+        ]
+    };
+
+    var responsiveOptions = [ ];
+
+    var requestChart = new Chartist.Pie('#ct-requests-chart', data, options, responsiveOptions);
+
+  });

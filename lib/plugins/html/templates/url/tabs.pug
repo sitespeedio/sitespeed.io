@@ -34,9 +34,20 @@ script(type='text/javascript').
   }
 
   function selectTab(el) {
+    console.log('Selecting tab ' + el);
     var sel = document.querySelector('[data-name=tabs][selected]');
     if (sel) sel.removeAttribute('selected');
     select(el);
+
+    var charts = document.querySelectorAll(".ct-chart");
+    for (i = 0; i < charts.length; i++) {
+      if (charts[i].__chartist__) {
+        charts[i].__chartist__.update();
+      }
+    }
+
+    // window.document.querySelector('.ct-chart').__chartist__.update();
+    //window.document.querySelector('.ct-chart2').__chartist__.update();
     if (history.replaceState) {
       history.replaceState(null, null, el.href);
       return false;

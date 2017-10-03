@@ -45,15 +45,32 @@ a#pagexray-summary
 - totalRequests = 0
 a#requests-and-sizes-per-content-type
 h3 Requests and sizes per content type
+
+.row
+  .one-half.column
+    h4 Transfer vs content size
+    .ct-chart.ct-golden-section#ct-size-chart
+  .one-half.column
+    h4 Requests
+    .ct-chart.ct-golden-section#ct-requests-chart
+
 .responsive
   table(data-sortable, id='contentSize')
     +rowHeading(['Content', 'Header Size', 'Transfer Size', 'Content Size', 'Requests'])
+    - numberOfRequestsLabels = []
+    - numberOfRequests = []
+    - transferSizeOfRequests = []
+    - contentSizeOfRequests = []
     each data, type in pagexray.contentTypes
       - totalContentSize += data.contentSize
       - totalTransferSize += data.transferSize
       - totalHeaderSize += data.headerSize > 0 ? data.headerSize : 0
       - totalRequests += data.requests
       if data.requests > 0
+        - numberOfRequestsLabels.push(type)
+        - numberOfRequests.push({meta: type, value: data.requests})
+        - transferSizeOfRequests.push({meta: type + ' transfer size (kb)', value: h.size.asKb(data.transferSize)})
+        - contentSizeOfRequests.push({meta: type + ' content size (kb)', value: h.size.asKb(data.contentSize)})
         tr
           td(data-title='Content Type') #{type}
           +sizeCell('headerSize', data.headerSize)
@@ -145,3 +162,5 @@ h3 Expires, last modified and cookies stats
         +numberCell('min', cookies.min)
         +numberCell('median', cookies.median)
         +numberCell('max', cookies.max)
+include ./sizeCharts.pug
+include ./requestCharts.pug
