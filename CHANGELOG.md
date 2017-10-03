@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## Unreleased
+## 5.6.3 2017-10-03
 ### Fixed
 * Fix issue where coach, pagexray and browsertime data on summary pages might contain just a subset of data for tests with urls from multiple domains.
 * Avoid crash if Google PageSpeed Insights request fails (e.g. due to incorrect API key).
