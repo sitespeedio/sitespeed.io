@@ -1,5 +1,13 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED 6.0 ALPHA
+
+We plan to release 6.0 sometimes after Firefox 57 is released (November 14?).
+
+
+### Breaking changes
+* Update to PageXray 1.0. For 99% of the users this will not change anything but if you where sending assets timings to Graphite/InfluxDB (as we told you not to do, these you know got blocked, dns, connect, send, wait and recieve instead of just the total time [#1693](https://github.com/sitespeedio/sitespeed.io/pull/1693).
+
 ## 5.6.3 2017-10-03
 ### Fixed
 * Fix issue where coach, pagexray and browsertime data on summary pages might contain just a subset of data for tests with urls from multiple domains.
