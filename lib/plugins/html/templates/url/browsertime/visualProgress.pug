@@ -1,0 +1,69 @@
+- var allRows = browsertime.visualMetrics.VisualProgress.split(',')
+- var seriesVisualProgress = [];
+- var oldPercent = -1;
+- var oldValue = -1;
+each eachRow in allRows
+  - var row = eachRow.split('=')
+  - var newValue = (Number(row[0])/1000).toFixed(1)
+  - var percent = row[1]
+  //- Sometimes VisualMetrics report the same percentage multiple times after each other
+  // and since the original time is in ms we wanna remove entries on the same 0.1 s
+  if percent !== oldPercent &&  newValue !== oldValue
+    - oldPercent = percent
+    - oldValue = newValue
+    - seriesVisualProgress.push({x: newValue, y: Number(percent.replace('%',''))})
+script(type='text/javascript').
+  document.addEventListener("DOMContentLoaded", function() {
+      var visualProgressChart = new Chartist.Line('#ct-visualprogress', {
+        series: [!{JSON.stringify(seriesVisualProgress)}],
+        }, {
+        showArea: true,
+        showPoint: true,
+        chartPadding: {
+          top: 10,
+          right: 0,
+          bottom: 30,
+          left: 10
+        },
+        axisX: {
+          type: Chartist.AutoScaleAxis,
+          onlyInteger: false,
+        },
+        lineSmooth: Chartist.Interpolation.step({
+          postpone: true,
+          fillHoles: false
+        }),
+        axisY: {
+          onlyInteger: true
+        },
+        plugins: [
+          Chartist.plugins.ctAxisTitle({
+            axisX: {
+              axisTitle: 'Time (seconds)',
+              axisClass: 'ct-axis-title',
+              offset: {
+                x: 0,
+                y: 50
+              },
+              textAnchor: 'middle'
+            },
+            axisY: {
+              axisTitle: 'Visual progress %',
+              axisClass: 'ct-axis-title',
+              offset: {
+                x: 0,
+                y: -4
+              },
+              textAnchor: 'middle',
+              flipTitle: false
+            }
+            }),
+            Chartist.plugins.tooltip({
+              transformTooltipTextFnc: function(text) {
+                var m = text.split(',');
+                return m[0] + 's ' + m[1] + '%';
+              }
+            })
+          ]
+        });
+      });

@@ -12,7 +12,7 @@ mixin rows(assets, showTiming)
       +durationCell('cache time',asset.cacheTime)
       +kbSizeCell('size', asset.contentSize)
       if showTiming
-        +numberCell('timing', asset.timing.toFixed(0))
+        +numberCell('timing', asset.totalTime.toFixed(0))
 
 block content
   include runInfo

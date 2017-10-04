@@ -11,6 +11,8 @@
 
 ## Welcome to the wonderful world of web performance!
 
+*IMPORTANT*: Master is now the coming 6.0. If you need to a patch release, use the [5.x branch](https://github.com/sitespeedio/sitespeed.io/tree/5.x). 6.0 is going to be released sometimes after Firefox 57.
+
 Using sitespeed.io you can:
 * Test your web site against Web Performance best practices using the [Coach](https://github.com/sitespeedio/coach).
 * Collect Navigation Timing API, User Timing API and Visual Metrics from Firefox/Chrome using [Browsertime](https://github.com/sitespeedio/browsertime).

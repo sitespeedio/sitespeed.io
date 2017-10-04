@@ -65,19 +65,8 @@ if options.browsertime.speedIndex
             a(href=baseHelpURL + 'LastVisualChange') Last Visual Change
           td.number #{visualMetrics.LastVisualChange.toFixed(0)}
     .one-half.column
-      table
-        tr
-          th(colspan='2') Visual Progress
-        - var allRows = browsertime.visualMetrics.VisualProgress.split(',')
-        - var oldPercentage = -1;
-        each eachRow in allRows
-          - var row = eachRow.split('=')
-          //- Sometimes VisualMetrics report the same percentage multiple times after each other
-          if row[1] !== oldPercentage
-            - oldPercentage = row[1]
-            tr
-              td #{row[1]}
-              td #{row[0]} ms
+      .ct-chart.ct-minor-sixth#ct-visualprogress
+      include ./visualProgress.pug
 
 a#browsermetrics
 h3 Browser Metrics
