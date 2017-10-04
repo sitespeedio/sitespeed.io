@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## Unreleased
+### Fixed
+* Upgraded to Browsertime 1.9.4 with latest Chromedriver that fixes launching Chrome > 61
+
 ## 5.6.3 2017-10-03
 ### Fixed
 * Fix issue where coach, pagexray and browsertime data on summary pages might contain just a subset of data for tests with urls from multiple domains.
