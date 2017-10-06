@@ -34,6 +34,7 @@ services:
       - MAX_CREATES_PER_MINUTE=inf
       volumes:
         - whisper:/opt/graphite/storage/whisper
+        - ./graphite/graphite.db:/opt/graphite/storage/graphite.db
         - ./graphite/conf/storage-schemas.conf:/opt/graphite/conf/storage-schemas.conf
         - ./graphite/conf/storage-aggregation.conf:/opt/graphite/conf/storage-aggregation.conf
         - ./graphite/conf/carbon.conf:/opt/graphite/conf/carbon.conf
