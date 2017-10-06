@@ -30,8 +30,6 @@ services:
         - "2003:2003"
         - "8080:80"
       restart: always
-      environment:
-      - MAX_CREATES_PER_MINUTE=inf
       volumes:
         - whisper:/opt/graphite/storage/whisper
         - ./graphite/graphite.db:/opt/graphite/storage/graphite.db
