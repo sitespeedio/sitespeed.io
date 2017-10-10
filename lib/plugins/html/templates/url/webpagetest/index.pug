@@ -173,15 +173,16 @@ each view in ['firstView', 'repeatView']
                 td #{timing.name}
                 td #{timing.time}
     //- WebPageTest.org has custom metrics by default
-    if (median.custom && Object.keys(median.custom).length > 0)
-    .row
-      .column
-        table
-          th(colspan='2') Custom metrics
-          each key in median.custom
+    if (median.custom)
+     .row
+       .column
+         table
+           tr
+            th(colspan='2') Custom metrics
+           each key in median.custom
             tr
-              td #{key}
-              td.break #{median[key]}
+             td #{key}
+             td.break #{median[key]}
 
     h3 Waterfall
     img.u-max-full-width(src='data/waterfall/wpt-waterfall-' + wptRun + '-' + view + '.png', alt='Waterfall view')
