@@ -32,10 +32,10 @@ services:
       restart: always
       volumes:
         - whisper:/opt/graphite/storage/whisper
-        - ./graphite/graphite.db:/opt/graphite/storage/graphite.db
-        - ./graphite/conf/storage-schemas.conf:/opt/graphite/conf/storage-schemas.conf
-        - ./graphite/conf/storage-aggregation.conf:/opt/graphite/conf/storage-aggregation.conf
-        - ./graphite/conf/carbon.conf:/opt/graphite/conf/carbon.conf
+        #- ./graphite/graphite.db:/opt/graphite/storage/graphite.db
+        #- ./graphite/conf/storage-schemas.conf:/opt/graphite/conf/storage-schemas.conf
+        #- ./graphite/conf/storage-aggregation.conf:/opt/graphite/conf/storage-aggregation.conf
+        #- ./graphite/conf/carbon.conf:/opt/graphite/conf/carbon.conf
     grafana-setup:
       image: sitespeedio/grafana-bootstrap:sitespeed.io-4.6
       links:
