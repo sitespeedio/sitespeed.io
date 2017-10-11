@@ -1,8 +1,8 @@
 # CHANGELOG - sitespeed.io
 
-## Unreleased
-### Fixed
+### 5.6.4 2017-10-11
 * Upgraded to Browsertime 1.9.4 with latest Chromedriver that fixes launching Chrome > 61
+* Fixed custom metrics problem with WebPageTest [#1737](https://github.com/sitespeedio/sitespeed.io/issues/1737)
 
 ## 5.6.3 2017-10-03
 ### Fixed
