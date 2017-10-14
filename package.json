@@ -71,7 +71,7 @@
   "main": "./lib/sitespeed.js",
   "dependencies": {
     "bluebird": "3.5.0",
-    "browsertime": "1.9.4",
+    "browsertime": "1.9.5",
     "cli-color": "1.2.0",
     "concurrent-queue": "7.0.2",
     "fast-stats": "0.0.3",
@@ -104,7 +104,7 @@
     "tape": "4.8.0",
     "text-table": "0.2.0",
     "uuid": "^3.0.0",
-    "webcoach": "0.37.0",
+    "webcoach": "0.38.0",
     "webpagetest": "0.3.5",
     "yargs": "6.6.0"
   }
