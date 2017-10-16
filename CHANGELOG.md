@@ -7,6 +7,8 @@ We plan to release 6.0 sometimes after Firefox 57 is released (November 14?).
 ### Added
 * Use Chartist to display visual progress and size/requests to make it easier for users [#1659](https://github.com/sitespeedio/sitespeed.io/pull/1659).
 
+* The HTML pages now works better on larger screens [#1740](https://github.com/sitespeedio/sitespeed.io/pull/1740).
+
 ### Breaking changes
 * Update to PageXray 1.0. For 99% of the users this will not change anything but if you where sending assets timings to Graphite/InfluxDB (as we told you not to do, these you know got blocked, dns, connect, send, wait and receive instead of just the total time [#1693](https://github.com/sitespeedio/sitespeed.io/pull/1693).
 
