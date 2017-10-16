@@ -500,6 +500,16 @@ hr {
   .offset-by-one-half.column, .offset-by-one-half.columns {
     margin-left: 52%; } }
 
+@media (min-width: 1550px) {
+  .container {
+    max-width: 1400px;
+    font-size: 1.2em; } }
+
+@media (min-width: 1900px) {
+  .container {
+    max-width: 1800px;
+    font-size: 1.4em; } }
+
 table {
   width: 100%;
   margin-bottom: 2.5rem;
@@ -621,13 +631,18 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #222222; }
 
-h1, h2, h3, h4, h5, h6 {
-  margin-top: 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 1rem;
   margin-bottom: 2rem;
   font-weight: 300; }
 
 h1 {
-  font-size: 3.0rem;
+  font-size: 3rem;
   line-height: 1.2; }
 
 h2 {
@@ -708,10 +723,10 @@ pre > code {
   margin-bottom: 1rem;
   color: #222222;
   text-align: center;
-  font-size: 11px;
+  font-size: 80%;
   font-weight: 600;
   line-height: 38px;
-  letter-spacing: .1rem;
+  letter-spacing: 0.1rem;
   text-transform: uppercase;
   text-decoration: none;
   white-space: nowrap;
@@ -761,7 +776,6 @@ pre > code {
     margin: 0;
     background-color: #0095d2; }
   .nav li {
-    font-size: 1em;
     line-height: 40px;
     height: 40px;
     border-bottom: none;
@@ -817,7 +831,6 @@ pre > code {
       border-bottom: none;
       height: 50px;
       line-height: 50px;
-      font-size: 1em;
       float: left;
       display: inline-block;
       margin-right: 0; }
@@ -839,6 +852,14 @@ pre > code {
     /* fixed header height*/
     margin: -50px 0 0;
     /* negative fixed header height */ } }
+
+@media (min-width: 1550px) {
+  .nav li {
+    font-size: 1.2em; } }
+
+@media (min-width: 1900px) {
+  .nav li {
+    font-size: 1.4em; } }
 
 table[data-sortable] th[data-sorted="true"] {
   color: #3a87ad;
@@ -1488,43 +1509,46 @@ ul.menu {
 
 .water-fall-chart .type-firstpaint .line-holder {
   stroke: #42f46e;
-  stroke-opacity: 1.0;
+  stroke-opacity: 1;
   stroke-width: 3; }
 
 .water-fall-chart .type-firstvisualchange .line-holder {
   stroke: #42f46e;
-  stroke-opacity: 1.0;
+  stroke-opacity: 1;
   stroke-width: 3; }
 
 .water-fall-chart .type-visualcomplete85 .line-holder {
   stroke: #ee7777;
-  stroke-opacity: 1.0;
+  stroke-opacity: 1;
   stroke-width: 3; }
 
 .water-fall-chart .type-lastvisualchange .line-holder {
   stroke: #ee42f4;
-  stroke-opacity: 1.0;
+  stroke-opacity: 1;
   stroke-width: 3; }
 
 .water-fall-chart .type-onload .line-holder {
   stroke: #9c99e5;
-  stroke-opacity: 1.0;
+  stroke-opacity: 1;
   stroke-width: 3; }
 
 .water-fall-chart .type-oncontentload .line-holder {
   stroke: #9842f4;
-  stroke-opacity: 1.0;
+  stroke-opacity: 1;
   stroke-width: 3; }
 
 .water-fall-chart .type-dominteractivetime .line-holder {
   stroke: #1842f4;
-  stroke-opacity: 1.0;
+  stroke-opacity: 1;
   stroke-width: 2; }
 
 .water-fall-chart .type-domcontentloadedtime .line-holder {
   stroke: #1212f4;
-  stroke-opacity: 1.0;
+  stroke-opacity: 1;
   stroke-width: 2; }
+
+.water-fall-chart {
+  font-size: 80%; }
 
 #page-selector {
   display: none;

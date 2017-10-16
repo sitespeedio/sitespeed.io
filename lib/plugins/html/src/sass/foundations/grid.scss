@@ -182,3 +182,17 @@
   }
  }
 }
+
+@media (min-width: 1550px) {
+ .container {
+  max-width: 1400px;
+  font-size: 1.2em;
+ }
+}
+
+@media (min-width: 1900px) {
+ .container {
+  max-width: 1800px;
+  font-size: 1.4em;
+ }
+}
