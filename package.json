@@ -71,7 +71,7 @@
   "main": "./lib/sitespeed.js",
   "dependencies": {
     "bluebird": "3.5.0",
-    "browsertime": "1.9.4",
+    "browsertime": "1.9.5",
     "cli-color": "1.2.0",
     "concurrent-queue": "7.0.2",
     "fast-stats": "0.0.3",
@@ -97,14 +97,14 @@
     "mkdirp": "0.5.1",
     "moment": "2.18.1",
     "node-slack": "0.0.7",
-    "pagexray": "1.0.0",
+    "pagexray": "1.0.1",
     "pug": "2.0.0-rc.2",
     "s3": "4.4.0",
     "simplecrawler": "1.1.5",
     "tape": "4.8.0",
     "text-table": "0.2.0",
     "uuid": "^3.0.0",
-    "webcoach": "0.37.0",
+    "webcoach": "0.38.0",
     "webpagetest": "0.3.5",
     "yargs": "6.6.0"
   }
