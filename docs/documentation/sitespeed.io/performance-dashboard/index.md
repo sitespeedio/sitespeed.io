@@ -256,10 +256,12 @@ To run this in a production environment, you should consider/make some modificat
     - This avoids causing discrepancies in results, due to things like competing resources or network traffic.
 2. Change the default user and password for Grafana.
 3. Change the default [user and password for Graphite](https://hub.docker.com/r/sitespeedio/graphite/).
-4. Make sure you have configured storage-aggregation.conf in Graphite to fit your needs.
-5. Map the Graphite volume to a physical directory outside of Docker to have better control (both Whisper and graphite.db)
-6. Remove the sitespeedio/grafana-bootstrap from the Docker compose file, you only need that for the first run.
-7. Optional: Disable anonymous users access
+4. Make sure you have [configured storage-aggregation.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/graphite/conf/storage-aggregation.conf) in Graphite to fit your needs.
+5. Configure your [storage-schemas.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/graphite/conf/storage-schemas.conf) hoe long you wanna store your metrics.
+6. *MAX_CREATES_PER_MINUTE* is usually quite low in [carbon.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/graphite/conf/carbon.conf). That means you will not get all the metrics created for the first run, so you can increase it.
+7. Map the Graphite volume to a physical directory outside of Docker to have better control (both Whisper and [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/master/docker/graphite/graphite.db))
+8. Remove the sitespeedio/grafana-bootstrap from the Docker compose file, you only need that for the first run.
+9. Optional: Disable anonymous users access
 
 ## Memory & CPU
 How large will your instances need to be? On dashboard.sitespeed.io, we use an $80 instance on Digital Ocean (8GB memory, 4 Core processors) we use that large of an instance because Chrome and Firefox need a lot memory and CPU. It also depends on how complex your site is: if you have a lot of JavaScript/CSS, the browser will need more memory.
