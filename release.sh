@@ -4,6 +4,8 @@ set -e
 # Remove the local sitespeed-result dir and node modules to start clean
 rm -fR sitespeed-result node_modules
 
+bin/sitespeed.js --help >> docs/documentation/sitespeed.io/configuration/config.md
+
 # login early 
 docker login
 
