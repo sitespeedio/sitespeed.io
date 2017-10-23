@@ -11,6 +11,8 @@ We plan to release 6.0 sometimes after Firefox 57 is released (November 14?).
 
 * We upgraded to use the official Graphite Docker container and using Graphite 1.X as default [#1735](https://github.com/sitespeedio/sitespeed.io/pull/1735).
 
+* Log the full URL to your result, makes it easy to map logs vs result  [#1744](https://github.com/sitespeedio/sitespeed.io/issues/1744). 
+
 ### Breaking changes
 * Update to PageXray 1.0. For 99% of the users this will not change anything but if you where sending assets timings to Graphite/InfluxDB (as we told you not to do, these you know got blocked, dns, connect, send, wait and receive instead of just the total time [#1693](https://github.com/sitespeedio/sitespeed.io/pull/1693).
 
