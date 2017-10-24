@@ -4,9 +4,10 @@ set -e
 # Remove the local sitespeed-result dir and node modules to start clean
 rm -fR sitespeed-result node_modules
 
-bin/sitespeed.js --help >> docs/documentation/sitespeed.io/configuration/config.md
+# Generate the help for the docs
+bin/sitespeed.js --help > docs/documentation/sitespeed.io/configuration/config.md
 
-# login early 
+# Login early 
 docker login
 
 # Super simple release script for sitespeed.io
@@ -21,3 +22,6 @@ docker build --no-cache -t sitespeedio/sitespeed.io:$PACKAGE_VERSION -t sitespee
 
 docker push sitespeedio/sitespeed.io:$PACKAGE_VERSION
 docker push sitespeedio/sitespeed.io:latest
+
+# Update to latet version in the docs
+bin/sitespeed.js --version > docs/version/sitespeed.io.txt
