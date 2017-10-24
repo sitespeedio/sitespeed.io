@@ -1,1 +1,1 @@
-sitespeed.io 6.0.0-alpha1
+6.0.0-alpha1
