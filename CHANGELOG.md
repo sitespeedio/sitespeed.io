@@ -22,6 +22,8 @@ data you can just follow the old [DataCollector structure](https://github.com/si
 
 * We now default to Graphite 1.x so if you send annotations to Graphite < 1.0 you need to configure arrayTags to false *--graphite.arrayTags false*
 
+* We now output only the version number (and not package and version number) on --version.
+
 ## 5.6.4 2017-10-11
 ### Fixed
 * Upgraded to Browsertime 1.9.4 with latest Chromedriver that fixes launching Chrome > 61
