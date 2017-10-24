@@ -1,10 +1,11 @@
 ---
 layout: default
-title: PageXray
-description:
+title: Use PageXray to convert your HAR file to a more readable format.
+description: You can use PageXray from NodeJS or directly in JavaScript.
 keywords: tools, documentation, web performance
 author: Peter Hedenskog
 nav: documentation
+category: pagexray
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription:
 ---

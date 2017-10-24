@@ -5,6 +5,7 @@ description: Use sitespeed.io in your Continuous Integration setup with Jenkins,
 keywords:  Continuous Integration, jenkins, grunt, team city, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
+category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Use sitespeed.io in your Continuous Integration setup.
 ---

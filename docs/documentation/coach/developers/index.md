@@ -1,10 +1,11 @@
 ---
 layout: default
-title: Coach
-description:
-keywords: coach, documentation, web performance
+title: Coach for developers.
+description: What you need to know to do changes to the coach.
+keywords: coach, documentation, developers, web performance
 author: Peter Hedenskog
 nav: documentation
+category: coach
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription:
 ---

@@ -4,6 +4,7 @@ title: How it all works.
 description: Have you ever wondered what exactly sitespeed.io do?
 keywords: installation, documentation, web performance, sitespeed.io
 nav: documentation
+category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: How it all works.
 ---

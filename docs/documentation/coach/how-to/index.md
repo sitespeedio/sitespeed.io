@@ -1,10 +1,11 @@
 ---
 layout: default
-title: Coach
-description:
+title: How to use the coach.
+description: Run the coach in Docker or use npm nodejs.
 keywords: coach, documentation, web performance
 author: Peter Hedenskog
 nav: documentation
+category: coach
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription:
 ---

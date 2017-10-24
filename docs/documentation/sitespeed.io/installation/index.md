@@ -4,6 +4,7 @@ title: Install sitespeed.io using npm/yarn or Docker.
 description: Install "npm install sitespeed.io -g" or "yarn global add sitespeed.io".
 keywords: installation, documentation, web performance, sitespeed.io, yarn, npm, docker
 nav: documentation
+category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Install sitespeed.io using npm, yarn or Docker.
 ---

@@ -4,6 +4,7 @@ title: Web Performance Dashboards with sitespeed.io
 description: Setup you dashboard using Docker Compose, it cannot be simpler.
 keywords: dashboard, docker, documentation, web performance, sitespeed.io
 nav: documentation
+category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Web performance dashboard using sitespeed.io.
 ---
