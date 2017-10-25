@@ -2,7 +2,7 @@
 layout: default
 title: Use Firefox, Chrome or Chrome on Android to collect metrics.
 description: You can use Firefox, Chrome and Chrome on Android to collect metrics. You need make sure you have a set connectivity when you test, and you do that with Docker networks or throttle.
-keywords: browsers, documentation, web performance, sitespeed.io, connectivity, throttle, Firefox, Chrome
+keywords: browsers, documentation, web performance, sitespeed.io, Firefox, Chrome
 nav: documentation
 category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
@@ -16,90 +16,13 @@ twitterdescription: You can use Firefox, Chrome and Chrome on Android to collect
 * Lets place the TOC here
 {:toc}
 
-You can fetch timings and execute your own Javascript. The following browsers are supported: Firefox, Chrome and Chrome on Android.
+You can fetch timings and execute your own JavaScript. The following browsers are supported: Firefox, Chrome and Chrome on Android.
 
 ## Firefox
 You will need Firefox 48+. We use the new [Geckodriver](https://github.com/mozilla/geckodriver) and it works only version 48 or later.
 
 ## Chrome
 Chrome should work out of the box.
-
-## Change connectivity
-You can throttle the connection to make the connectivity slower to make it easier to catch regressions. The best way to do that is to setup a network bridge in Docker or use our connectivity engine Throttle.
-
-
-### Docker networks
-Here's an full example to setup up Docker network bridges on a server that has tc installed:
-
-~~~bash
-#!/bin/bash
-echo 'Starting Docker networks'
-docker network create --driver bridge --subnet=192.168.33.0/24 --gateway=192.168.33.10 --opt "com.docker.network.bridge.name"="docker1" 3g
-tc qdisc add dev docker1 root handle 1: htb default 12
-tc class add dev docker1 parent 1:1 classid 1:12 htb rate 1.6mbit ceil 1.6mbit
-tc qdisc add dev docker1 parent 1:12 netem delay 300ms
-
-docker network create --driver bridge --subnet=192.168.34.0/24 --gateway=192.168.34.10 --opt "com.docker.network.bridge.name"="docker2" cable
-tc qdisc add dev docker2 root handle 1: htb default 12
-tc class add dev docker2 parent 1:1 classid 1:12 htb rate 5mbit ceil 5mbit
-tc qdisc add dev docker2 parent 1:12 netem delay 28ms
-
-docker network create --driver bridge --subnet=192.168.35.0/24 --gateway=192.168.35.10 --opt "com.docker.network.bridge.name"="docker3" 3gfast
-tc qdisc add dev docker3 root handle 1: htb default 12
-tc class add dev docker3 parent 1:1 classid 1:12 htb rate 1.6mbit ceil 1.6mbit
-tc qdisc add dev docker3 parent 1:12 netem delay 150ms
-
-docker network create --driver bridge --subnet=192.168.36.0/24 --gateway=192.168.36.10 --opt "com.docker.network.bridge.name"="docker4" 3gem
-tc qdisc add dev docker4 root handle 1: htb default 12
-tc class add dev docker4 parent 1:1 classid 1:12 htb rate 0.4mbit ceil 0.4mbit
-tc qdisc add dev docker4 parent 1:12 netem delay 400ms
-~~~
-
-When you run your container you add the network with <code>--network cable</code>. A full example running running with cable:
-
-~~~bash
-$ docker run --privileged --shm-size=1g --network=cable --rm sitespeedio/sitespeed.io -c cable https://www.sitespeed.io/
-~~~
-
-And using the 3g network:
-
-~~~bash
-$ docker run --privileged --shm-size=1g --network=3g --rm sitespeedio/sitespeed.io -c 3g https://www.sitespeed.io/
-~~~
-
-And if you want to remove the networks:
-
-~~~bash
-#!/bin/bash
-echo 'Stopping Docker networks'
-docker network rm 3g
-docker network rm 3gfast
-docker network rm 3gem
-docker network rm cable
-~~~
-
-### Throttle
-Throttle uses *tc* on Linux and *pfctl* on Mac to change the connectivity. Throttle will need sudo rights for the user running sitespeed.io to work.
-
-To use throttle, use set the connectivity engine by *--connectivity.engine throttle*.
-
-~~~bash
-$ browsertime --connectivity.engine throttle -c cable https://www.sitespeed.io/
-~~~
-
-You can also use Throttle inside of Docker but then the host need to be the same OS as in Docker. In practice you can only use it on Linux. And then make sure to run *sudo modprobe ifb numifbs=1* first and give the container the right privileges *--cap-add=NET_ADMIN*.
-
-If you run Docker on OS X, you need to run throttle outside of Docker. Install it and run like this:
-
-~~~bash
-# First install
-$ npm install @sitespeed.io/throttle -g
-
-# Then set the connectivity, run and stop
-$ throttle --up 330 --down 780 --rtt 200
-$ docker run --shm-size=1g --rm sitespeedio/sitespeed.io https://www.sitespeed.io/
-$ throttle --stop
-~~~
 
 ## Choose when to end your test
 By default the browser will collect data until  [window.performance.timing.loadEventEnd happens + aprox 2 seconds more](https://github.com/sitespeedio/browsertime/blob/d68261e554470f7b9df28797502f5edac3ace2e3/lib/core/seleniumRunner.js#L15). That is perfectly fine for most sites, but if you do Ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (--browsertime.pageCompleteCheck). When the scripts returns true the browser will close or if the timeout time is reached.
@@ -145,11 +68,13 @@ Bonus: All custom scripts values will be sent to Graphite, no extra configuratio
 
 ## Visual Metrics
 
-Visual metrics (Speed Index, Perceptual Speed Index, first and last visual change) can be collected if you also record a video of the screen. This will work on desktop for Firefox & Chrome. If you use our Docker container you automagically get all the extra software needed!
+Visual metrics (Speed Index, Perceptual Speed Index, First and Last visual complete, and 85-95-99% Visual Complete) can be collected if you also record a video of the screen. If you use our Docker container you automagically get all the extra software needed!
 
 ~~~bash
 $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --speedIndex --video https://www.sitespeed.io/
 ~~~
+
+On Android you need to follow [these instructions]({{site.baseurl}}http://127.0.0.1:4000/documentation/sitespeed.io/mobile-phones/#video-and-speedindex).
 
 ## Using Browsertime
 Everything you can do in Browsertime, you can also do in sitespeed.io. Prefixing browsertime to a CLI parameter will pass that parameter on to Browsertime.
