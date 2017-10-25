@@ -21,7 +21,7 @@ You can use the coach in a couple of different ways.
 
 ### Standalone
 
-You need Node.js 4.3.0 or later to run. And you need Chrome and/or Firefox installed.
+You need Node.js latest LTS. And you need Chrome and/or Firefox installed.
 
 If you want to use Chrome (Chrome is default):
 
@@ -63,11 +63,6 @@ Yes, you can do that!
 webcoach https://www.sitespeed.io -f json
 ```
 This will get you the full JSON, the same as if you integrate the coach into your tool.
-
-
-### sitespeed.io 4.0
-
-The coach is a part of the forthcoming [sitespeed.io 4.0](https://www.sitespeed.io). It will be released this summer, hallelujah!
 
 ### Bookmarklet
 
