@@ -1,4 +1,7 @@
 # CHANGELOG - sitespeed.io
+## 5.6.5 2017-10-25
+### Fixed
+* Added extra check for NaN values for expire and lastModified dates from PageXray [#1747](https://github.com/sitespeedio/sitespeed.io/issues/1747). The problem is originally from the backend servers, so we should handle it better in PageXray but now at least we don't break the runs.
 
 ## 5.6.4 2017-10-11
 ### Fixed
