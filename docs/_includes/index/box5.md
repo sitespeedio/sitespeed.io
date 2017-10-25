@@ -1,10 +1,6 @@
-## Get the latest versions
+## Be a performance hero!
 * * *
 
- * [sitespeed.io](/documentation/sitespeed.io/) {% include_relative version/sitespeed.io.txt %} [[Docker](https://hub.docker.com/r/sitespeedio/sitespeed.io/)/[npm](https://www.npmjs.com/package/sitespeed.io)]
- * [Browsertime](/documentation/browsertime/) {% include_relative version/browsertime.txt %} [[Docker](https://hub.docker.com/r/sitespeedio/browsertime/)/[npm](https://www.npmjs.com/package/browsertime)]
- * [Coach](/documentation/coach/) {% include_relative version/coach.txt %} [[Docker](https://hub.docker.com/r/sitespeedio/coach/)/[npm](https://www.npmjs.com/package/webcoach)]
- * [PageXray](/documentation/pagexray/) {% include_relative version/pagexray.txt %} [[npm](https://www.npmjs.com/package/pagexray)]
- * [Compare](https://compare.sitespeed.io/)
- * [Throttle](/documentation/throttle/) {% include_relative version/throttle.txt %} [[npm](https://www.npmjs.com/package/@sitespeed.io/throttle)]
-  * [Chrome-HAR](/documentation/chrome-har/) [[npm](https://www.npmjs.com/package/chrome-har)]
+[<img src="{{site.baseurl}}/img/pippi.png" class="pull-left img-big" alt="Pippi Longstocking a true hero" width="180" height="151">](https://dashboard.sitespeed.io)
+
+With sitespeed.io it's easy to become a performance hero! Check out our [example dashboard](https://dashboard.sitespeed.io), it's a great example that shows you what you can do. It's super easy to get that up and running. You can even use our [new Docker Compose file]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#docker-compose-file) to get Graphite/InfluxDB/Grafana with default dashboards up and running in less than 5 minutes!

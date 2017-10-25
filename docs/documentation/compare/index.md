@@ -13,13 +13,15 @@ twitterdescription:
 # Compare HAR files
 {:.no_toc}
 
+<img src="{{site.baseurl}}/img/logos/compare.png" class="pull-right img-big" alt="PageXray logo" width="200" height="204">
+
 Make it easier to find regressions by comparing your [HAR](http://www.softwareishard.com/blog/har-12-spec/) files. Test it out [https://compare.sitespeed.io](https://compare.sitespeed.io/) or look at [the video](https://youtu.be/dCThwpglIeE).
 
 ## First: Shout out!
 We couldn't built compare without the support or inspiration from the following people:
 
  * Thank you [Michael Mrowetz](https://twitter.com/MicMro)  for creating [PerfCascade](https://github.com/micmro/PerfCascade) (the SVG HAR waterfall viewer).
- * Thank you [Patrick Meenan](https://twitter.com/patmeenan) . Pat has built the HAR compare viewer in [WebPageTest](https://www.webpagetest.org/) that inspired us to the idea with the slider.
+ * Thank you [Patrick Meenan](https://twitter.com/patmeenan). Pat has built the HAR compare viewer in [WebPageTest](https://www.webpagetest.org/) that inspired us to the idea with the slider.
 
 If you like our project, please give them also some extra love :)
 

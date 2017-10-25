@@ -61,8 +61,14 @@ margin: 0;
 }
 
 a {
-color: #428bca;
-text-decoration: none;
+ color: #428bca;
+ cursor: pointer;
+ text-decoration: none;
+}
+
+a:hover {
+cursor: pointer;
+text-decoration: underline;
 }
 
 code {

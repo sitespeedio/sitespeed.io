@@ -69,7 +69,7 @@ You can also collect a video and get Visual Metrics. Running on Mac or without D
 $ sitespeed.io --browsertime.chrome.android.package com.android.chrome --video --speedIndex https://www.sitespeed.io
 ~~~
 
-And using Docker:
+And using Docker (remember, only works in Linux hosts):
 
 ~~~bash
 $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.xvfb false --browsertime.chrome.android.package com.android.chrome --video --speedIndex https://www.sitespeed.io

@@ -69,3 +69,5 @@ throttle.start({up: 360, down: 780, rtt: 200}).then(() => ...
 Make sure to run ```sudo modprobe ifb numifbs=1``` before you start the container.
 
 And then when you actually start your Docker container, give it the right privileges with ```--cap-add=NET_ADMIN```
+
+You can also [use Docker networks]({{site.baseurl}}/documentation/sitespeed.io/browsers/#docker-networks) to change connectivity when testing inside a container.
