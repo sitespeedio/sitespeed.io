@@ -7,4 +7,4 @@
  * [PageXray](/documentation/pagexray/) {% include_relative version/pagexray.txt %} [[npm](https://www.npmjs.com/package/pagexray)]
  * [Compare](https://compare.sitespeed.io/)
  * [Throttle](/documentation/throttle/) {% include_relative version/throttle.txt %} [[npm](https://www.npmjs.com/package/@sitespeed.io/throttle)]
-  * [Chrome-HAR](/documentation/chrome-har/) [[npm](https://www.npmjs.com/package/chrome-har]
+  * [Chrome-HAR](/documentation/chrome-har/) [[npm](https://www.npmjs.com/package/chrome-har)]

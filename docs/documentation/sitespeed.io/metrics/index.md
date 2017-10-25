@@ -1,10 +1,11 @@
 ---
 layout: default
-title: Configuring metrics to use
-description:
+title: Configure which metrics to use.
+description: sitespeed.io collects a lot of metrics which are filtered before they are sent to Graphite/InfluxDB. You can remove filters and/or add your own filters.
 keywords: configure, metrics, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
+category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Configuring metrics to use
 ---
@@ -17,10 +18,10 @@ twitterdescription: Configuring metrics to use
 {:toc}
 
 # Collected metrics
-Sitespeed.io collects a lot of metrics which are filtered before they are sent to Graphite. You can remove filters and/or add your own filters. Some sensible defaults have been set for you, if you have suggestions to change them create an [issue at Github](https://github.com/sitespeedio/sitespeed.io/issues/new).
+Sitespeed.io collects a lot of metrics which are filtered before they are sent to Graphite/InfluxDB. You can remove filters and/or add your own filters. Some sensible defaults have been set for you, if you have suggestions to change them create an [issue at Github](https://github.com/sitespeedio/sitespeed.io/issues/new).
 
 ## Summary vs pageSummary
-The metrics are separated into two groups: 
+The metrics are separated into two groups:
 
 The pageSummary encapsulates the metrics for a single page. For example if we test a single page 10 times, it will have the min/median/max here for values that change.
 

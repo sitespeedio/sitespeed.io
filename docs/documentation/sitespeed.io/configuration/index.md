@@ -4,6 +4,7 @@ title: How to configure sitespeed.io
 description: In the cli just run "sitespeed.io --help" to get the configuration options.
 keywords: configuration, documentation, web performance, sitespeed.io
 nav: documentation
+category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Configuration for sitespeed.io.
 ---

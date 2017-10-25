@@ -5,6 +5,7 @@ description: Drive WebPageTest using sitespeed.io and include the metrics in you
 keywords: webpagetest, wpt, documentation, web performance, sitespeed.io
 nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+category: sitespeed.io
 twitterdescription: Drive WebPageTest using sitespeed.io and include the metrics in your sitespeed.io report.
 ---
 [Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / WebPageTest

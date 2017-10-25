@@ -4,6 +4,7 @@ title: Performance Budget
 description: Performance budget with sitespeed.io.
 keywords: performance, budget, documentation, web performance, sitespeed.io
 nav: documentation
+category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Performance budget with sitespeed.io.
 ---

@@ -1,9 +1,10 @@
 ---
 layout: default
-title: Browsers sitespeed.io
-description: You can use Firefox, Chrome and Chrome on Android to collect metrics.
-keywords: browsers, documentation, web performance, sitespeed.io
+title: Use Firefox, Chrome or Chrome on Android to collect metrics.
+description: You can use Firefox, Chrome and Chrome on Android to collect metrics. You need make sure you have a set connectivity when you test, and you do that with Docker networks or throttle.
+keywords: browsers, documentation, web performance, sitespeed.io, connectivity, throttle, Firefox, Chrome
 nav: documentation
+category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: You can use Firefox, Chrome and Chrome on Android to collect metrics.
 ---
@@ -24,12 +25,10 @@ You will need Firefox 48+. We use the new [Geckodriver](https://github.com/mozil
 Chrome should work out of the box.
 
 ## Change connectivity
-You can throttle the connection to make the connectivity slower to make it easier to catch regressions. The best way to do that is to setup a network bridge in Docker.
+You can throttle the connection to make the connectivity slower to make it easier to catch regressions. The best way to do that is to setup a network bridge in Docker or use our connectivity engine Throttle.
 
-By default we expect an external tool to handled connectivity. In the past we used [TSProxy](https://github.com/WPO-Foundation/tsproxy) because it's only dependency was Python 2.7, but unfortunately we have a problem with it and Selenium, so it was removed as the default due to it's instability. Help us fix that in [#229](https://github.com/sitespeedio/browsertime/issues/229).
 
-If you run Docker you can use tc as connectivity engine but that will only set the latency, if you want to set the download speed you need to create a network bridge in Docker.
-
+### Docker networks
 Here's an full example to setup up Docker network bridges on a server that has tc installed:
 
 ~~~bash
@@ -77,6 +76,29 @@ docker network rm 3g
 docker network rm 3gfast
 docker network rm 3gem
 docker network rm cable
+~~~
+
+### Throttle
+Throttle uses *tc* on Linux and *pfctl* on Mac to change the connectivity. Throttle will need sudo rights for the user running sitespeed.io to work.
+
+To use throttle, use set the connectivity engine by *--connectivity.engine throttle*.
+
+~~~bash
+$ browsertime --connectivity.engine throttle -c cable https://www.sitespeed.io/
+~~~
+
+You can also use Throttle inside of Docker but then the host need to be the same OS as in Docker. In practice you can only use it on Linux. And then make sure to run *sudo modprobe ifb numifbs=1* first and give the container the right privileges *--cap-add=NET_ADMIN*.
+
+If you run Docker on OS X, you need to run throttle outside of Docker. Install it and run like this:
+
+~~~bash
+# First install
+$ npm install @sitespeed.io/throttle -g
+
+# Then set the connectivity, run and stop
+$ throttle --up 330 --down 780 --rtt 200
+$ docker run --shm-size=1g --rm sitespeedio/sitespeed.io https://www.sitespeed.io/
+$ throttle --stop
 ~~~
 
 ## Choose when to end your test
@@ -135,3 +157,9 @@ Everything you can do in Browsertime, you can also do in sitespeed.io. Prefixing
 You can check what Browsertime can do [here](https://github.com/sitespeedio/browsertime/blob/master/lib/support/cli.js).
 
 For example if you want to pass on an extra native arguments to Chrome. In standalone Browsertime you do that with <code>--chrome.args</code>. If you want to do that through sitespeed.io you just prefix browsertime to the param: <code>--browsertime.chrome.args</code>. Yes we know, pretty sweet! :)
+
+## How can I disable HTTP/2 (I only want to test HTTP/1.x)?
+On Chrome, you just add the switches <code>--browsertime.chrome.args no-sandbox --browsertime.chrome.args disable-http2</code>.
+
+For Firefox, you need to turn off HTTP/2 and SPDY, and you do that by setting the Firefox preferences:
+<code>--browsertime.firefox.preference network.http.spdy.enabled:false --browsertime.firefox.preference network.http.spdy.enabled.http2:false --browsertime.firefox.preference network.http.spdy.enabled.v3-1:false</code>

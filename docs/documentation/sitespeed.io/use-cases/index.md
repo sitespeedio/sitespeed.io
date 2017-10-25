@@ -4,6 +4,7 @@ title: Use Cases for using sitespeed.io
 description: Use Cases for running sitespeed.io.
 keywords: use case, documentation, web performance, sitespeed.io
 nav: documentation
+category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Use Cases for running sitespeed.io.
 ---

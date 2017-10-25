@@ -1,9 +1,10 @@
 ---
 layout: default
 title: Browsertime
-description:
-keywords: tools, documentation, web performance
+description: Access the Web Performance Timeline, from your browser, in your terminal!
+keywords: configuration, browsertime, firefox, chrome, video, speed index
 author: Peter Hedenskog
+category: browsertime
 nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription:

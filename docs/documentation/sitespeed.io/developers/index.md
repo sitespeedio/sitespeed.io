@@ -4,6 +4,7 @@ title: Hack on sitespeed.io
 description: Start here when you want to do PRs or create a plugin.
 keywords: docker, documentation, web performance, sitespeed.io
 nav: documentation
+category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Hack on sitespeed.io
 ---

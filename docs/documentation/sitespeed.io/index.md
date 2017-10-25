@@ -4,6 +4,7 @@ title: Documentation sitespeed.io 6.x
 description: Read about all you can do with sitespeed.io.
 keywords: tools, documentation, web performance
 nav: documentation
+category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Documentation for sitespeed.io.
 ---

@@ -5,6 +5,7 @@ description: What you can do with the video in sitespeed.io
 keywords: video, documentation, web performance, sitespeed.io
 nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+category: sitespeed.io
 twitterdescription: Use the video in sitespeed.io
 ---
 [Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / Video

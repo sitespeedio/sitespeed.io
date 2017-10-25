@@ -1,9 +1,10 @@
 ---
 layout: default
-title: Test your page using a mobile phone
-description:
-keywords: plugin, sitespeed.io
+title: Test your page using a Android mobile phone.
+description: You can use Chrome on your Android phone to test your pages (and get a video and Speed Index).
+keywords: mobile, android, browsertime, sitespeed.io
 nav: documentation
+category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Test your page using a mobile phone
 ---
