@@ -79,6 +79,12 @@ To use throttle, use set the connectivity engine by *--connectivity.engine throt
 $ browsertime --connectivity.engine throttle -c cable https://www.sitespeed.io/
 ~~~
 
+or for sitespeed.io:
+
+~~~bash
+$ sitespeed.io --browsertime.connectivity.engine throttle -c cable https://www.sitespeed.io/
+~~~
+
 You can also use Throttle inside of Docker but then the host need to be the same OS as in Docker. In practice you can only use it on Linux. And then make sure to run *sudo modprobe ifb numifbs=1* first and give the container the right privileges *--cap-add=NET_ADMIN*.
 
 If you run Docker on OS X, you need to run throttle outside of Docker. Install it and run like this:

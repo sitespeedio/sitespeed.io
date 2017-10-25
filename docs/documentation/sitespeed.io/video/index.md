@@ -1,7 +1,7 @@
 ---
 layout: default
 title:  Record a video of the browser screen and analyze it to get Visual Metrics.
-description: You can configure fps, the quality of the video and a couple of more things.
+description: You can configure frames per second (fps), the quality of the video and a couple of more things.
 keywords: video, documentation, web performance, sitespeed.io
 nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
@@ -20,6 +20,10 @@ twitterdescription: Use the video in sitespeed.io
 We use FFMpeg to record a video with 30 fps of the screen (but you can configure the number of frames per second). The easiest way is to use our Docker container with pre-installed FFMpeg but if you for some reason want to use the npm version, you can record a video too. As long as you install FFMpeg yourself.
 
 When we got the video we use [Visual Metrics](https://github.com/WPO-Foundation/visualmetrics) (built by Pat Meenan) to analyze the video and get SpeedIndex and other visual metrics from the video. If you use our Docker container you get that for free, else you need to install all the [Visual Metrics dependencies](https://github.com/sitespeedio/docker-visualmetrics-deps/blob/master/Dockerfile) yourself.
+
+We record the video in two steps: First we turn the background orange (that is used by VisualMetrics to know when
+ the navigation starts), sets the background to white and let the browser go to the URL. The video is recorded
+ lossless and then when the video has been analyzed, we remove the orange frames and convert the video to a compressed mp4.
 
 The video will look something like this:
 
