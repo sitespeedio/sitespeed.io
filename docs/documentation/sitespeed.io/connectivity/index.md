@@ -29,34 +29,34 @@ echo 'Starting Docker networks'
 docker network create --driver bridge --subnet=192.168.33.0/24 --gateway=192.168.33.10 --opt "com.docker.network.bridge.name"="docker1" 3g
 tc qdisc add dev docker1 root handle 1: htb default 12
 tc class add dev docker1 parent 1:1 classid 1:12 htb rate 1.6mbit ceil 1.6mbit
-tc qdisc add dev docker1 parent 1:12 netem delay 300ms
+tc qdisc add dev docker1 parent 1:12 netem delay 150ms
 
 docker network create --driver bridge --subnet=192.168.34.0/24 --gateway=192.168.34.10 --opt "com.docker.network.bridge.name"="docker2" cable
 tc qdisc add dev docker2 root handle 1: htb default 12
 tc class add dev docker2 parent 1:1 classid 1:12 htb rate 5mbit ceil 5mbit
-tc qdisc add dev docker2 parent 1:12 netem delay 28ms
+tc qdisc add dev docker2 parent 1:12 netem delay 14ms
 
 docker network create --driver bridge --subnet=192.168.35.0/24 --gateway=192.168.35.10 --opt "com.docker.network.bridge.name"="docker3" 3gfast
 tc qdisc add dev docker3 root handle 1: htb default 12
 tc class add dev docker3 parent 1:1 classid 1:12 htb rate 1.6mbit ceil 1.6mbit
-tc qdisc add dev docker3 parent 1:12 netem delay 150ms
+tc qdisc add dev docker3 parent 1:12 netem delay 75ms
 
 docker network create --driver bridge --subnet=192.168.36.0/24 --gateway=192.168.36.10 --opt "com.docker.network.bridge.name"="docker4" 3gem
 tc qdisc add dev docker4 root handle 1: htb default 12
 tc class add dev docker4 parent 1:1 classid 1:12 htb rate 0.4mbit ceil 0.4mbit
-tc qdisc add dev docker4 parent 1:12 netem delay 400ms
+tc qdisc add dev docker4 parent 1:12 netem delay 200ms
 ~~~
 
 When you run your container you add the network with <code>--network cable</code>. A full example running running with cable:
 
 ~~~bash
-$ docker run --privileged --shm-size=1g --network=cable --rm sitespeedio/sitespeed.io -c cable https://www.sitespeed.io/
+$ docker run --shm-size=1g --network=cable --rm sitespeedio/sitespeed.io -c cable https://www.sitespeed.io/
 ~~~
 
 And using the 3g network:
 
 ~~~bash
-$ docker run --privileged --shm-size=1g --network=3g --rm sitespeedio/sitespeed.io -c 3g https://www.sitespeed.io/
+$ docker run --shm-size=1g --network=3g --rm sitespeedio/sitespeed.io -c 3g https://www.sitespeed.io/
 ~~~
 
 And if you want to remove the networks:
