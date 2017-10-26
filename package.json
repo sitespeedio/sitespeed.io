@@ -1,7 +1,7 @@
 {
   "name": "sitespeed.io",
   "bin": "./bin/sitespeed.js",
-  "version": "6.0.0-alpha1",
+  "version": "6.0.0-alpha.1",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -49,9 +49,9 @@
   "engines": {
     "node": ">=8.6.0"
   },
-  "publishConfig": {		
-     "tag": "canary"			
-   },
+  "publishConfig": {
+    "tag": "canary"
+  },
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
@@ -71,7 +71,7 @@
   "main": "./lib/sitespeed.js",
   "dependencies": {
     "bluebird": "3.5.0",
-    "browsertime": "1.9.5",
+    "browsertime": "2.0.0-alpha.1",
     "cli-color": "1.2.0",
     "concurrent-queue": "7.0.2",
     "fast-stats": "0.0.3",
