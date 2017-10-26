@@ -13,6 +13,13 @@ We plan to release 6.0 sometimes after Firefox 57 is released (November 14?).
 
 * Log the full URL to your result, makes it easy to map logs vs result  [#1744](https://github.com/sitespeedio/sitespeed.io/issues/1744). 
 
+### Deprecations
+* The --plugins.load and -plugins.disable options are deprecated in favor of --plugins.add and -plugins.remove. The previous syntax was cumbersome to use since it allowed for multiple plugins to be separated by space. When using it before the url argument, e.g.
+```sh
+sitespeed.io -plugins.load foo http://sitespeed.io
+```
+the url would be treated as a plugin name, and the command would fail.
+
 ### Breaking changes
 * Update to PageXray 1.0. For 99% of the users this will not change anything but if you where sending assets timings to Graphite/InfluxDB (as we told you not to do, these you know got blocked, dns, connect, send, wait and receive instead of just the total time [#1693](https://github.com/sitespeedio/sitespeed.io/pull/1693).
 
