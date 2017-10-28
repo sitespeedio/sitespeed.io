@@ -23,7 +23,7 @@ You can set the download/upload speed and RTT. Upload/download is in kbit/s and 
 ## Install
 
 ```
-npm install @sitespeed.io/throttle -g
+$ npm install @sitespeed.io/throttle -g
 ```
 
 ## Start simulate a slower network connection
@@ -32,27 +32,27 @@ Here is an example for running with 3G connectivity. Remember: Throttle will use
 sudo rights.
 
 ```
-throttle --up 330 --down 780 --rtt 200
+$ throttle --up 330 --down 780 --rtt 200
 ```
 
 ## Stop simulate the network
 Stopping is as easy as giving the parameter *stop* to throttle.
 
 ```
-throttle --stop
+$ throttle --stop
 ```
 
 ## Add delay on your localhost (Linux only at the moment)
 This is useful if you run [WebPageReplay](https://github.com/catapult-project/catapult/blob/master/web_page_replay_go/README.md) and want to add som latency to your tests.
 
 ```
-throttle --rtt 200 --localhost
+$ throttle --rtt 200 --localhost
 ```
 
 ## Stop adding delay on localhost (Linux only)
 
 ```
-throttle --stop --localhost
+$ throttle --stop --localhost
 ```
 
 ## Use directly in NodeJS
@@ -69,3 +69,5 @@ throttle.start({up: 360, down: 780, rtt: 200}).then(() => ...
 Make sure to run ```sudo modprobe ifb numifbs=1``` before you start the container.
 
 And then when you actually start your Docker container, give it the right privileges with ```--cap-add=NET_ADMIN```
+
+You can also [use Docker networks]({{site.baseurl}}/documentation/sitespeed.io/browsers/#docker-networks) to change connectivity when testing inside a container.

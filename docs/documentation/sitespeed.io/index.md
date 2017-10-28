@@ -1,14 +1,15 @@
 ---
 layout: default
-title: Documentation sitespeed.io 5.x
+title: Documentation sitespeed.io 6.x
 description: Read about all you can do with sitespeed.io.
 keywords: tools, documentation, web performance
 nav: documentation
+category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Documentation for sitespeed.io.
 ---
 
-# Documentation v5
+# Documentation v6
 
 <img src="{{site.baseurl}}/img/logos/sitespeed.io.png" class="pull-right img-big" alt="Browsertime logo" width="200" height="214">
 
@@ -19,6 +20,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Configuration](configuration/) - there's a lot of things you can do with sitespeed.io, lets checkout how!
  * [How it all works](how-it-all-works/) - lets checkout how everything works.
  * [Browsers](browsers/) - collect timings using real browsers. We support Firefox, Chrome and Chrome on Android.
+ * [Connectivity](connectivity/) - set the connectivity to emulate real users network conditions.
  * [Use Cases](use-cases/) - find out best practices for testing a site, compare with other sites.
  * [Performance Dashboard](performance-dashboard/) - keep track of your metrics and performance.
  * [Performance Budget](performance-budget/) - make sure you are within your performance budget.

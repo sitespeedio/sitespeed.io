@@ -2,6 +2,7 @@
 set -e
 
 google-chrome --version
+google-chrome-beta --version
 firefox --version
 
 # Here's a hack for fixing the problem with Chrome not starting in time

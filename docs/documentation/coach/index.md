@@ -1,10 +1,11 @@
 ---
 layout: default
-title: Coach
-description:
+title: The coach - Clear Eyes. Full Hearts. Can’t Lose!
+description: Use the coach to find performance problems on your page.
 keywords: tools, documentation, web performance
 author: Peter Hedenskog
 nav: documentation
+category: coach
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription:
 ---

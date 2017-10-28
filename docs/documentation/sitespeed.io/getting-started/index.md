@@ -4,6 +4,7 @@ title: Getting Started
 description: Introduction for sitespeed.io.
 keywords: introduction, getting started, documentation, web performance, sitespeed.io
 nav: documentation
+category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Introduction for sitespeed.io.
 ---
@@ -28,7 +29,7 @@ SpeedCurve has a really low barrier of entry ... it's a bit of a evolution maybe
 
 Note: SpeedCurve is a paid service built on top on the Open Source tool  [WebPageTest](http://www.webpagetest.org/). If you love WebPageTest (we do!) you can [drive it](../webpagetest/) using sitespeed.io and collect the metrics and use it side by side with all the sitespeed.io metrics.
 
-To get started you need either [NodeJS](https://nodejs.org/en/download/) ([Linux](https://github.com/creationix/nvm)) and  [npm](https://github.com/npm/npm)/[yarn](https://yarnpkg.com/)) or [Docker](https://docs.docker.com/engine/installation/).
+To get started you need either [NodeJS](https://nodejs.org/en/download/) ([Linux](https://github.com/creationix/nvm)) and  [npm](https://github.com/npm/npm)/[yarn](https://yarnpkg.com/) or [Docker](https://docs.docker.com/engine/installation/).
 
 You also need [Firefox](https://www.mozilla.org/en-US/firefox/new/) and/or [Chrome](https://www.google.com/chrome/).
 

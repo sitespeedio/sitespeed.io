@@ -108,6 +108,10 @@ max-width: 250px;
     display: block;
   }
 
+  .nav a:hover {
+    text-decoration: none;
+  }
+
   .nav ul {
     list-style: none;
     text-align: center;

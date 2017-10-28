@@ -5,6 +5,7 @@ description: Create Chrome HAR files bases on events from the Chrome Debugging P
 keywords: Chrome HAR, documentation, web performance
 author: Peter Hedenskog
 nav: documentation
+category: chrome-har
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription:
 ---

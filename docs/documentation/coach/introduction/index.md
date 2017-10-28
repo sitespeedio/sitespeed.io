@@ -1,10 +1,11 @@
 ---
 layout: default
-title: Coach
-description:
-keywords: coach, documentation, web performance
+title: Coach Introduction
+description: Why do you need the coach.
+keywords: coach, documentation, web performance, yslow
 author: Peter Hedenskog
 nav: documentation
+category: coach
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription:
 ---

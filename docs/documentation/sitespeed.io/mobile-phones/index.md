@@ -1,9 +1,10 @@
 ---
 layout: default
-title: Test your page using a mobile phone
-description:
-keywords: plugin, sitespeed.io
+title: Test your page using a Android mobile phone.
+description: You can use Chrome on your Android phone to test your pages (and get a video and Speed Index).
+keywords: mobile, android, browsertime, sitespeed.io
 nav: documentation
+category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Test your page using a mobile phone
 ---
@@ -68,7 +69,7 @@ You can also collect a video and get Visual Metrics. Running on Mac or without D
 $ sitespeed.io --browsertime.chrome.android.package com.android.chrome --video --speedIndex https://www.sitespeed.io
 ~~~
 
-And using Docker:
+And using Docker (remember: only works in Linux hosts):
 
 ~~~bash
 $ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.xvfb false --browsertime.chrome.android.package com.android.chrome --video --speedIndex https://www.sitespeed.io

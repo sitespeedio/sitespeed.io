@@ -4,6 +4,7 @@ title: Pre/post scripts (log in the user)
 description: You can login the user to test pages as a logged in user.
 keywords: selenium, web performance, sitespeed.io
 nav: documentation
+category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Pre/post scripts (log in the user)
 ---

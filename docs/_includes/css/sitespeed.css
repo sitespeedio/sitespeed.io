@@ -61,8 +61,14 @@ margin: 0;
 }
 
 a {
-color: #428bca;
-text-decoration: none;
+ color: #428bca;
+ cursor: pointer;
+ text-decoration: none;
+}
+
+a:hover {
+cursor: pointer;
+text-decoration: underline;
 }
 
 code {
@@ -241,4 +247,13 @@ blockquote span:before {
 
 #upgradeTable {
   overflow-x: auto;
+}
+
+.input-field {
+  font-size: 25px;
+  margin: 30px auto 0;
+  display: block;
+  border: solid 1px #000000;
+  border-radius: 4px;
+  padding: 10px 20px;
 }

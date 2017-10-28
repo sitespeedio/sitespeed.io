@@ -1,9 +1,10 @@
 ---
 layout: default
 title: Use Docker to run sitespeed.io.
-description: With Docket you get a prebuilt container with sitespeed.io, Firefox, Chrome and XVFB.
-keywords: docker, documentation, web performance, sitespeed.io
+description: With Docker you get a prebuilt container with sitespeed.io, Firefox, Chrome and XVFB. It's super easy to record a video and get visual metrics like Speed Index and First Visual Change.
+keywords: docker, configuration, setup, documentation, web performance, sitespeed.io
 nav: documentation
+category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Use Docker to run sitespeed.io.
 ---
