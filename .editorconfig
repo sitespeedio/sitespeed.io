@@ -13,7 +13,7 @@ indent_size = 1
 # JavaScript
 [*.js]
 indent_style = space
-indent_size = 1
+indent_size = 2
 
 # YAML
 [*.yml]
