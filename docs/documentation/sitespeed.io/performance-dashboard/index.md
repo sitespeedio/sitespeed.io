@@ -1,9 +1,10 @@
 ---
 layout: default
 title: Web Performance Dashboards with sitespeed.io
-description: Setup you dashboard using Docker Compose, it cannot be simpler.
+description: Setup your dashboard using Docker Compose, and continuously test the performance of your web site.
 keywords: dashboard, docker, documentation, web performance, sitespeed.io
 nav: documentation
+category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Web performance dashboard using sitespeed.io.
 ---
@@ -16,14 +17,12 @@ twitterdescription: Web performance dashboard using sitespeed.io.
 * Let's place the TOC here
 {:toc}
 
-We spent a lot of time making it easier in version 4 to install and run your own performance dashboard with ready made dashboards and a Docker compose file to rule them all. You can see the beauty [here](https://dashboard.sitespeed.io). In 4.4 and later, you can also send the result (HTML/video) to S3 and add links in Grafana to go from your dashboard to the result pages.
-
 # What you need
 You need [Docker](https://docs.docker.com/engine/installation/) and [Docker Compose](https://docs.docker.com/compose/install/). If you haven't used Docker before, you can read [Getting started](https://docs.docker.com/engine/getstarted/). And you can also read/learn more about [Docker Compose](https://docs.docker.com/compose/gettingstarted/) to get a better start.
 
-# Up and running in 5 minutes
+# Up and running in (almost) 5 minutes
 
-1. Download our new Docker compose file: <code>curl -O https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/docker-compose.yml</code>
+1. Download our Docker compose file: <code>curl -O https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/docker-compose.yml</code>
 2. Run: <code>docker-compose up -d</code> (make sure you run the latest [Docker compose](https://docs.docker.com/compose/install/) version)
 3. Run sitespeed to get some metrics: <code> docker-compose run sitespeed.io https://www.sitespeed.io/ --graphite.host=graphite</code>
 4. Access the dashboard: http://127.0.0.1:3000
@@ -32,6 +31,8 @@ You need [Docker](https://docs.docker.com/engine/installation/) and [Docker Comp
 
 
 If you want to play with the dashboards, the default login is sitespeedio and password is ...well check out the docker-compose.yml file.
+
+When you run this in production make sure to checkout [our production guidelines](#production-guidelines).
 
 ## Docker compose file
 We have prepared a Docker Compose file that downloads and sets up Graphite/Grafana and sitespeed.io with a couple of example dashboards. It works perfectly when you want to try it out on localhost, but if you want to run it in production, you should modify it by making sure that the metrics are stored outside of your container/volumes. If you prefer InfluxDB over Graphite, you can use that too, but right now we only have one ready-made dashboard for InfluxDB.
@@ -53,13 +54,19 @@ The *path* is the first path after the namespace. Using the default values, the 
 
 When you choose one of the values in a template, the rest will be populated. You can choose from checking metrics for a specific page, browser, and connectivity.
 
-## The namespace
 The default namespace is *sitespeed_io.default* and the example dashboards are built upon a constant template variable called $base that is the first part of the namespace (that default is *sitespeed_io* but feel free to change that, and then change the constant).
 
 ## Page summary
 The page summary shows metrics for a specific URL/page.
 
 [![Page summary in Grafana]({{site.baseurl}}/img/pagesummary-grafana2.png)](https://dashboard.sitespeed.io/dashboard/db/page-summary)
+{: .img-thumbnail}
+
+# The page timings summary
+
+The page timings summary focus on Visual Metrics and is the number one dashboard you should use when you look for visual regressions.
+
+[![Page timing summary in Grafana]({{site.baseurl}}/img/dashboards/page-timing-metrics.png)](https://dashboard.sitespeed.io/dashboard/db/page-timing-metrics?orgId=1)
 {: .img-thumbnail}
 
 ## Site summary
@@ -74,14 +81,17 @@ How much does 3rd party code impact your page? To get this up and running, you s
 [![3rd vs 1st]({{site.baseurl}}/img/3rd.png)](https://dashboard.sitespeed.io/dashboard/db/3rd-vs-1st-party)
 {: .img-thumbnail}
 
-## WebPageTest page summary
+## WebPageTest dashboards
+We have two optional dashboards for WebPageTest to show how you can build them if you use WebPageTest through sitespeed.io.
+
+### WebPageTest page summary
 Have we told you that we love WebPageTest? Yes, we have and here is an example of a default WebPageTest page summary where you can look at results for individual URLs.
 
 [![WebPageTest page summary]({{site.baseurl}}/img/webpagetestPageSummary2.png)](https://dashboard.sitespeed.io/dashboard/db/webpagetest-page-summary)
 {: .img-thumbnail}
 
 
-## WebPageTest site summary
+### WebPageTest site summary
 And then also for all tested pages of a site.
 
 [![WebPageTest site summary]({{site.baseurl}}/img/webpagetestSiteSummary2.png)](https://dashboard.sitespeed.io/dashboard/db/webpagetest-site-summary)
@@ -191,25 +201,25 @@ docker network create --driver bridge --subnet=192.168.33.0/24 --gateway=192.168
 tc qdisc del dev docker1 root
 tc qdisc add dev docker1 root handle 1: htb default 12
 tc class add dev docker1 parent 1:1 classid 1:12 htb rate 1.6mbit ceil 1.6mbit
-tc qdisc add dev docker1 parent 1:12 netem delay 300ms
+tc qdisc add dev docker1 parent 1:12 netem delay 150ms
 
 docker network create --driver bridge --subnet=192.168.34.0/24 --gateway=192.168.34.10 --opt "com.docker.network.bridge.name"="docker2" cable
 tc qdisc del dev docker2 root
 tc qdisc add dev docker2 root handle 1: htb default 12
 tc class add dev docker2 parent 1:1 classid 1:12 htb rate 5mbit ceil 5mbit
-tc qdisc add dev docker2 parent 1:12 netem delay 28ms
+tc qdisc add dev docker2 parent 1:12 netem delay 14ms
 
 docker network create --driver bridge --subnet=192.168.35.0/24 --gateway=192.168.35.10 --opt "com.docker.network.bridge.name"="docker3" 3gfast
 tc qdisc del dev docker3 root
 tc qdisc add dev docker3 root handle 1: htb default 12
 tc class add dev docker3 parent 1:1 classid 1:12 htb rate 1.6mbit ceil 1.6mbit
-tc qdisc add dev docker3 parent 1:12 netem delay 150ms
+tc qdisc add dev docker3 parent 1:12 netem delay 75ms
 
 docker network create --driver bridge --subnet=192.168.36.0/24 --gateway=192.168.36.10 --opt "com.docker.network.bridge.name"="docker4" 3gem
 tc qdisc del dev docker4 root
 tc qdisc add dev docker4 root handle 1: htb default 12
 tc class add dev docker4 parent 1:1 classid 1:12 htb rate 0.4mbit ceil 0.4mbit
-tc qdisc add dev docker4 parent 1:12 netem delay 400ms
+tc qdisc add dev docker4 parent 1:12 netem delay 200ms
 ~~~
 
 # Configure Graphite
@@ -249,22 +259,23 @@ You can send annotations to Graphite to mark when a run happens so you can go fr
 
 You do that by configuring the URL that will serve the HTML with the CLI param *resultBaseURL* (the base URL for your S3 bucket) and configure the HTTP Basic auth username/password used by Graphite. You can do that by setting *--graphite.auth LOGIN:PASSWORD*.
 
-# Production
+# Production Guidelines
 To run this in a production environment, you should consider/make some modifications:
 
 1. Always run sitespeed.io on a stand-alone instance
     - This avoids causing discrepancies in results, due to things like competing resources or network traffic.
+    - Run Grafana/Graphite on another server instance.
 2. Change the default user and password for Grafana.
 3. Change the default [user and password for Graphite](https://hub.docker.com/r/sitespeedio/graphite/).
 4. Make sure you have [configured storage-aggregation.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/graphite/conf/storage-aggregation.conf) in Graphite to fit your needs.
-5. Configure your [storage-schemas.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/graphite/conf/storage-schemas.conf) hoe long you wanna store your metrics.
+5. Configure your [storage-schemas.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/graphite/conf/storage-schemas.conf) how long you wanna store your metrics.
 6. *MAX_CREATES_PER_MINUTE* is usually quite low in [carbon.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/graphite/conf/carbon.conf). That means you will not get all the metrics created for the first run, so you can increase it.
 7. Map the Graphite volume to a physical directory outside of Docker to have better control (both Whisper and [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/master/docker/graphite/graphite.db))
 8. Remove the sitespeedio/grafana-bootstrap from the Docker compose file, you only need that for the first run.
 9. Optional: Disable anonymous users access
 
 ## Memory & CPU
-How large will your instances need to be? On dashboard.sitespeed.io, we use an $80 instance on Digital Ocean (8GB memory, 4 Core processors) we use that large of an instance because Chrome and Firefox need a lot memory and CPU. It also depends on how complex your site is: if you have a lot of JavaScript/CSS, the browser will need more memory.
+How large will your instances need to be? You need to have enough memory for Chrome/Firefox (yep they can really use a lot of memory for some sites). Before we used a $80 instance on Digital Ocean (8GB memory, 4 Core processors) but we switched to use AWS c4.large for dashboard.sitespeed.io. The reason is that the metrics are so more stable on AWS than Digital Ocean. We have tried out most cloud providers and AWS gave us the most stable metrics.
 
 If you test a lot a pages (100+) in the same run, your NodeJS process can run out of memory (default memory for NodeJS is 1.76 GB). You can change and increase by setting MAX_OLD_SPACE_SIZE like this in your compose file:
 

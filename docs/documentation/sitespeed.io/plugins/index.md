@@ -1,9 +1,10 @@
 ---
 layout: default
 title: Create your own plugin for sitespeed.io
-description:
-keywords: plugin, sitespeed.io
+description: Create your own plugin to store metrics wherever you want or to test other things.
+keywords: plugin, create, sitespeed.io
 nav: documentation
+category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Create your own plugin for sitespeed.io
 ---

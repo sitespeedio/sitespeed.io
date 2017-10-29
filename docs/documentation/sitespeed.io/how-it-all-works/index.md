@@ -4,6 +4,7 @@ title: How it all works.
 description: Have you ever wondered what exactly sitespeed.io do?
 keywords: installation, documentation, web performance, sitespeed.io
 nav: documentation
+category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: How it all works.
 ---
@@ -40,7 +41,6 @@ Sitespeed.io uses a lot of other Open Source tools so massive love to those proj
 
  * [Selenium](http://www.seleniumhq.org/)
  * [Visual Metrics](https://github.com/WPO-Foundation/visualmetrics)
- * [TSProxy](https://github.com/WPO-Foundation/tsproxy)
  * [HAR Export Trigger](https://github.com/firebug/har-export-trigger)
  * [PerfCascade](https://github.com/micmro/PerfCascade)
  * [Skeleton](http://getskeleton.com)

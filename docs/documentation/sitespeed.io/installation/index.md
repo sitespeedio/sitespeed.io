@@ -4,6 +4,7 @@ title: Install sitespeed.io using npm/yarn or Docker.
 description: Install "npm install sitespeed.io -g" or "yarn global add sitespeed.io".
 keywords: installation, documentation, web performance, sitespeed.io, yarn, npm, docker
 nav: documentation
+category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Install sitespeed.io using npm, yarn or Docker.
 ---
@@ -19,7 +20,7 @@ twitterdescription: Install sitespeed.io using npm, yarn or Docker.
 
 ## Docker
 
-We have [Docker images](https://hub.docker.com/u/sitespeedio/) with sitespeed.io, Chrome, Firefox and Xvfb. They are super easy to use (Xvfb is started automatically when you start the container). Here's how to use the container with both Firefox & Chrome (install [Docker](https://docs.docker.com/engine/installation/) first).
+We have [Docker images](https://hub.docker.com/r/sitespeedio/sitespeed.io/) with sitespeed.io, Chrome, Firefox and Xvfb. They are super easy to use (Xvfb is started automatically when you start the container). Here's how to use the container with both Firefox & Chrome (install [Docker](https://docs.docker.com/engine/installation/) first).
 
 ### Mac & Linux
 
@@ -41,7 +42,7 @@ That will output the data from the run in the current directory. You can read mo
 
 ### Mac & Linux
 
-Prerequisites: Install [NodeJS 6.9.1 or newer](https://nodejs.org/en/download/) ([Linux](https://github.com/creationix/nvm)) and make sure you have [npm](https://github.com/npm/npm) or [yarn](https://yarnpkg.com/) installed.
+Prerequisites: Install [latest NodeJS LTS](https://nodejs.org/en/download/) ([Linux](https://github.com/creationix/nvm)) and make sure you have [npm](https://github.com/npm/npm) or [yarn](https://yarnpkg.com/) installed. Also install Chrome/Firefox.
 
 #### npm
 If you prefer npm, just run:
@@ -61,4 +62,4 @@ $ sitespeed.io --help
 
 ### Windows
 
-We support Windows using [Docker](https://docs.docker.com/engine/installation/windows/). To be able to support running on Windows with NodeJS we need more [core contributors](/aboutus/) that can focus on Windows.
+We support Windows using [Docker](https://docs.docker.com/engine/installation/windows/). To be able to support running on Windows with NodeJS we need at least one [core contributor](/aboutus/) that can focus on Windows. Are you that one? Please [get in touch](https://github.com/sitespeedio/sitespeed.io/issues/new)!
