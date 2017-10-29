@@ -13,6 +13,9 @@ We plan to release 6.0 sometimes after Firefox 57 is released (November 14?).
 
 * Log the full URL to your result, makes it easy to map logs vs result  [#1744](https://github.com/sitespeedio/sitespeed.io/issues/1744).
 
+* Make it easier do build plugins: Expose messageMaker in the context to plugins (so plugins easily can send messages in the queue) [#1760](https://github.com/sitespeedio/sitespeed.io/pull/1760). Expose filterRegistry in
+the context so plugins can register which metrics should be picked up by Graphite/InfluxDb etc [#1761](https://github.com/sitespeedio/sitespeed.io/pull/1761). Move core functionality to core folder [#1762](https://github.com/sitespeedio/sitespeed.io/pull/1762).
+
 ### Deprecations
 * The --plugins.load and -plugins.disable options are deprecated in favor of --plugins.add and -plugins.remove. The previous syntax was cumbersome to use since it allowed for multiple plugins to be separated by space. When using it before the url argument, e.g.
 ```sh
