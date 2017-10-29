@@ -1,6 +1,6 @@
 'use strict';
 
-const cliUtil = require('../lib/cli/cliUtil'),
+const cliUtil = require('../lib/cli/util'),
   expect = require('chai').expect;
 
 describe('cliUtil', function() {
