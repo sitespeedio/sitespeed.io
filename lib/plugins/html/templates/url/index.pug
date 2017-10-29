@@ -93,7 +93,7 @@ block content
               td #{d.webpagetest.pageSummary.data.median.firstView.requestsFull}
 
       .one-half.column
-          if d.browsertime && options.browsertime.screenshot && d.browsertime.pageSummary && d.browsertime.pageSummary.screenshots
+          if d.browsertime && hasScreenShots && d.browsertime.pageSummary && d.browsertime.pageSummary.screenshots
             - var width = options.mobile ? 150 : '100%';
             a(href='data/screenshots/0.png')
               img.screenshot(src='data/screenshots/0.png', width=width, alt='Screenshot of run 1')
