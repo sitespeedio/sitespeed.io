@@ -82,7 +82,6 @@
     "junit-report-builder": "1.2.0",
     "lodash.chunk": "4.2.0",
     "lodash.clonedeep": "4.5.0",
-    "lodash.difference": "4.5.0",
     "lodash.flatten": "4.4.0",
     "lodash.foreach": "4.5.0",
     "lodash.get": "4.4.2",
