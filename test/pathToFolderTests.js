@@ -1,6 +1,6 @@
 'use strict';
 
-const pathFromRootToPageDir = require('../lib/support/resultsStorage/pathToFolder');
+const pathFromRootToPageDir = require('../lib/core/resultsStorage/pathToFolder');
 const expect = require('chai').expect;
 
 describe('pathFromRootToPageDir', function() {
