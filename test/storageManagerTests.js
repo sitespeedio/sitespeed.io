@@ -1,6 +1,6 @@
 'use strict';
 
-const resultsStorage = require('../lib/support/resultsStorage');
+const resultsStorage = require('../lib/core/resultsStorage');
 const moment = require('moment');
 const path = require('path');
 const expect = require('chai').expect;
