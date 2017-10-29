@@ -28,7 +28,7 @@ the url would be treated as a plugin name, and the command would fail.
 
 * We removed the generic [DataCollector](https://github.com/sitespeedio/sitespeed.io/blob/5.x/lib/plugins/datacollector/index.js) that collected data for each run and instead each plugin should collect the data
 it needs [#1731](https://github.com/sitespeedio/sitespeed.io/pull/1731). If you have written a plugin that collect it owns
-data you can just follow the old [DataCollector structure](https://github.com/sitespeedio/sitespeed.io/blob/5.x/lib/plugins/datacollector/index.js) and move the code you need to your plugin.
+data you can just follow the old [DataCollector structure](https://github.com/sitespeedio/sitespeed.io/blob/5.x/lib/plugins/datacollector/index.js) and move the code you need to your plugin. Also [#1767](https://github.com/sitespeedio/sitespeed.io/pull/1767) is a follow up to remove DataCollector.
 
 * We now default to Graphite 1.x so if you send annotations to Graphite < 1.0 you need to configure arrayTags to false *--graphite.arrayTags false*
 
