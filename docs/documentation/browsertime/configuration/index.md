@@ -25,9 +25,3 @@ You have the following options when running sitespeed.io within docker (run <cod
 ~~~help
 {% include_relative config.md %}
 ~~~
-
-
-## The basics
-If you installed with the global option, run the command *sitespeed.io* else run the script *bin/sitespeed.js*.  In the examples, we will use the globally installed version.
-
-You can analyze a site either by crawling or by feeding sitespeed.io with a list of URLs you want to analyze.

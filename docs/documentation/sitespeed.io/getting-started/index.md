@@ -16,11 +16,11 @@ twitterdescription: Introduction for sitespeed.io.
 * Let's place the TOC here
 {:toc}
 
-Sitespeed.io is an Open Source tool that helps you measuring the performance of your website. You can [install](../installation/) it using [npm](https://www.npmjs.org/)/[yarn](https://yarnpkg.com/)/[Docker](https://www.docker.com/).
+Sitespeed.io is an Open Source tool that helps you measuring the performance of your website. You can [install](../installation/) it using [npm](https://www.npmjs.org/)/[yarn](https://yarnpkg.com/)/[Docker](https://www.docker.com/). The first version was released 2012.
 
 You can test your site against web-performance best-practice rules (using the [Coach]({{site.baseurl}}/documentation/coach/)) or collect timing metrics from Chrome/Firefox (using [Browsertime]({{site.baseurl}}/documentation/browsertime/)) and get a report on how your site is performing. You can generate a HTML report (check out the [examples](/examples/) section to see what it looks like). You can even use the Graphite plugin and build graphs with Grafana; check out our example site [https://dashboard.sitespeed.io](https://dashboard.sitespeed.io). If that isn't enough, you can build your own plugin that handles all the metrics that are collected in any way you can imagine.
 
-In October 2016 we released 4.0 (sitespeed.io is 4 years old). One of the main goals with 4.0 was to make it easier for people to contribute and use. We have already had more contributions than ever before. With 3.X we got the following feedback in the [Toolsday](http://www.toolsday.io/) podcast:
+In December 2017 we released 6.0 (sitespeed.io is 5 years old).  With 3.X we got the following feedback in the [Toolsday](http://www.toolsday.io/) podcast:
 
 <blockquote cite="http://www.toolsday.io/episodes/performance.html">
 SpeedCurve has a really low barrier of entry ... it's a bit of a evolution maybe ... if you need something more advanced look into sitespeed.io"
