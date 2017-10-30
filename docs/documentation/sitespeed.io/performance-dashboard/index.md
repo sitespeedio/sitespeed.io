@@ -215,7 +215,7 @@ tc qdisc add dev docker3 root handle 1: htb default 12
 tc class add dev docker3 parent 1:1 classid 1:12 htb rate 1.6mbit ceil 1.6mbit
 tc qdisc add dev docker3 parent 1:12 netem delay 75ms
 
-docker network create --driver bridge --subnet=192.168.36.0/24 --gateway=192.168.36.10 --opt "com.docker.network.bridge.name"="docker4" 3gem
+docker network create --driver bridge --subnet=192.168.36.0/24 --gateway=192.168.36.10 --opt "com.docker.network.bridge.name"="docker4" 3slow
 tc qdisc del dev docker4 root
 tc qdisc add dev docker4 root handle 1: htb default 12
 tc class add dev docker4 parent 1:1 classid 1:12 htb rate 0.4mbit ceil 0.4mbit
