@@ -7,4 +7,4 @@ $ docker pull sitespeedio/sitespeed.io
 $ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/ -b firefox --speedIndex --video
 ~~~
 
-To set the connectivity follow our [connectivity guide]({{site.baseurl}}/documentation/sitespeed.io/browsers/#change-connectivity) for Docker.
+To set the connectivity follow our [connectivity guide]({{site.baseurl}}/documentation/sitespeed.io/connectivity) for Docker.
