@@ -97,8 +97,7 @@ block content
               td #{d.webpagetest.run.firstView.requestsFull}
 
       .one-half.column
-          //- No good way to detect if we have screenshots or not right now for a run
-          if d.browsertime && hasScreenShots
+          if hasScreenShots
             - screenshotName = 'data/screenshots/' + runIndex + '.png'
             - var width = options.mobile ? 150 : '100%';
             a(href=screenshotName)
