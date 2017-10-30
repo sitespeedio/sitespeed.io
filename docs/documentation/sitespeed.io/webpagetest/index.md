@@ -94,8 +94,10 @@ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio
 
 It is also possible to pass the WebPageTest script as a string into the `--webpagetest.script` flag. You can use the `scriptToString()` method provided in [webpagetest-api](https://github.com/marcelduran/webpagetest-api/#module-1) to create a string from a JSON object.
 
+{% assign bashURLString = '{{{URL}}}}' %}
+
 ~~~ bash
-docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --webpagetest.script "navigate \t www.aol.com \n navigate \t {{{url}}}" --webpagetest.host my.wpt.host.com http://example.org
+docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --webpagetest.script "navigate \t www.aol.com \n navigate \t {{bashURLString}}" --webpagetest.host my.wpt.host.com http://example.org
 ~~~
 
 ### Custom metrics
