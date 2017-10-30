@@ -19,7 +19,7 @@ twitterdescription: You can use Firefox, Chrome and Chrome on Android to collect
 You can fetch timings and execute your own JavaScript. The following browsers are supported: Firefox, Chrome and Chrome on Android.
 
 ## Firefox
-You will need Firefox 48+. We use the new [Geckodriver](https://github.com/mozilla/geckodriver) and it works only version 48 or later.
+You will need Firefox 57+.
 
 ## Chrome
 Chrome should work out of the box.
