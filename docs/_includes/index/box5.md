@@ -1,6 +1,5 @@
-## Be a performance hero!
+## There's a new Coach in town
 * * *
+[<img src="{{site.baseurl}}/img/logos/coach.png" class="pull-left img-big" alt="I'm the coach" width="155" height="180">]({{site.baseurl}}/documentation/coach)
 
-[<img src="{{site.baseurl}}/img/pippi.png" class="pull-left img-big" alt="Pippi Longstocking a true hero" width="180" height="151">](https://dashboard.sitespeed.io)
-
-With sitespeed.io it's easy to become a performance hero! Check out our [example dashboard](https://dashboard.sitespeed.io), it's a great example that shows you what you can do. It's super easy to get that up and running. You can even use our [new Docker Compose file]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#docker-compose-file) to get Graphite/InfluxDB/Grafana with default dashboards up and running in less than 5 minutes!
+The Godfather of web performance tools [YSlow is dead](http://4.bp.blogspot.com/-gEqiZsYvoV4/T2FM-E7UvcI/AAAAAAAAIeE/Sg0GxV2hVLE/s1600/PDVD_138.BMP). It died a couple of years after the first release and finally there's something new that can guide you in the web performance jungle: [The Coach]({{site.baseurl}}/documentation/coach/) gives you advice on how you can make your web page more performant.

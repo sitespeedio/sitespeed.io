@@ -35,6 +35,24 @@ sudo rights.
 $ throttle --up 330 --down 780 --rtt 200
 ```
 
+## Pre made profiles
+To make it easier we have pre made profiles, check them out by *throttle --help*:
+
+```
+--profile         Premade profiles, set to one of the following
+                     3g: up:768 down:1600 rtt:150
+                     3gfast: up:768 down:1600 rtt:75
+                     3gslow: up:400 down:400 rtt:200
+                     2g: up:32 down:35 rtt:650
+                     cable: up:1000 down:5000 rtt:14
+```
+
+You can start throttle with one of the pre-made profiles:
+
+```
+throttle --profile 3gslow
+```
+
 ## Stop simulate the network
 Stopping is as easy as giving the parameter *stop* to throttle.
 
@@ -70,4 +88,4 @@ Make sure to run ```sudo modprobe ifb numifbs=1``` before you start the containe
 
 And then when you actually start your Docker container, give it the right privileges with ```--cap-add=NET_ADMIN```
 
-You can also [use Docker networks]({{site.baseurl}}/documentation/sitespeed.io/browsers/#docker-networks) to change connectivity when testing inside a container.
+You can also [use Docker networks]({{site.baseurl}}/documentation/sitespeed.io/connectivity/#docker-networks) to change connectivity when testing inside a container.

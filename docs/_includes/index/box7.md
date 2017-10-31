@@ -5,6 +5,5 @@ Sitespeed.io is built upon Open Source tools, we have a special place in our hea
  * [Selenium](http://www.seleniumhq.org/)
  * [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics)
  * [PerfCascade](https://github.com/micmro/PerfCascade)
- * [TSProxy](https://github.com/WPO-Foundation/tsproxy)
  * [Skeleton](http://getskeleton.com)
  * [Simple crawler](https://github.com/cgiffard/node-simplecrawler)
