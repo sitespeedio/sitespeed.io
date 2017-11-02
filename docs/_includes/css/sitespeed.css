@@ -1,7 +1,12 @@
 .white {
   background-color: #ffffff;
+}
+
+.lightblue {
+  background-color: #e1e4fd;
   padding-bottom: 20px;
 }
+
 
 .copy {
   padding-top: 20px;
@@ -90,6 +95,10 @@ border: 1px solid #ccc;
 border-radius: 4px;
 font-family: Monaco,Menlo,Consolas,"Courier New",monospace;
 white-space: pre-wrap;
+}
+
+.language-bash code:before {
+    content: '$ ';
 }
 
 .note-info {

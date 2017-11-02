@@ -19,8 +19,8 @@ Recording a video and slicing and dicing the result needs a lot of extra softwar
 
 If you wanna collect SpeedIndex (and First Visual Change, Last Visual Change and Perceptual Speed Index) you run like this:
 
-~~~ bash
-$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --video --speedIndex -c cable https://www.sitespeed.io/
+~~~bash
+docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --video --speedIndex -c cable https://www.sitespeed.io/
 ~~~
 
 All metrics will automatically be shown in the result report and sent to Graphite if you run is configured to do that. You will also get a video on your Browsertime result tab that looks like this:
@@ -39,8 +39,8 @@ Also a very special thanks to [Walter Ebert](https://github.com/walterebert) tha
 ## Introducing pre URL and second view
 The other big thing in 4.1 is that we made it easy to test second view. Ehh, second view you say? Well many tools have the repeat view (they access the same URL twice), to make it easy to see how the cache works. In real user scenarios it's better to first access one URL and then go to another that you want to measure (exactly as a user would do). In 4.0 we had support for that, but you needed to supply your own preScript. In 4.1 we made it super easy, just add the URL in the cli:
 
-~~~ bash
-$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -c cable --preURL https://www.sitespeed.io/ https://www.sitespeed.io/documentation/
+~~~bash
+docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -c cable --preURL https://www.sitespeed.io/ https://www.sitespeed.io/documentation/
 ~~~
 
 The browser will first access the preURL and then the URL you want to measure. If you have assets that are cached between requests, you can see that now. With this update you will now have a more realistic way of measuring when your user first go to your sites start page and then accesses the next.

@@ -2,15 +2,22 @@ Use our [Docker container](https://hub.docker.com/r/sitespeedio/sitespeed.io/) t
 
 **Docker**
 
-~~~ bash
-$ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
+~~~bash
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
 ~~~
 
 **npm**
 
-~~~ bash
-$ npm install -g sitespeed.io
-$ sitespeed.io -h
+Install sitespeed.io globally:
+
+~~~bash
+npm install -g sitespeed.io
+~~~
+
+And then run help to see what you can do:
+
+~~~bash
+sitespeed.io --help
 ~~~
 
 Follow our [connectivity guide]({{site.baseurl}}/documentation/sitespeed.io/connectivity) when to emulate real users connectivity.

@@ -81,8 +81,13 @@ Visit http://localhost:4000/ in the browser of your choice.
 ## Debugging with Chrome
 You can debug sitespeed.io using Chrome and NodeJS > 6. Thanks [@moos](https://github.com/moos) for sharing.
 
-~~~ bash
-$ node --inspect --debug-brk bin/sitespeed.js -m25 -n1 http://0.0.0.0:8082
+~~~bash
+node --inspect --debug-brk bin/sitespeed.js -m25 -n1 http://0.0.0.0:8082
+~~~
+
+And you will get something like this:
+
+~~~
 Debugger listening on port 9229.
 Warning: This is an experimental feature and could change at any time.
 To start debugging, open the following URL in Chrome:

@@ -24,14 +24,13 @@ We have [Docker images](https://hub.docker.com/r/sitespeedio/sitespeed.io/) with
 
 ### Mac & Linux
 
-~~~ bash
-$ docker pull sitespeedio/sitespeed.io
-$ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -b firefox
+~~~bash
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -b firefox
 ~~~
 
 ### Windows
 
-~~~ bash
+~~~
 C:\Users\Vicky> docker pull sitespeedio/sitespeed.io
 C:\Users\Vicky> docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -b firefox
 ~~~
@@ -47,17 +46,15 @@ Prerequisites: Install [latest NodeJS LTS](https://nodejs.org/en/download/) ([Li
 #### npm
 If you prefer npm, just run:
 
-~~~ bash
-$ npm install sitespeed.io -g
-$ sitespeed.io --help
+~~~bash
+npm install sitespeed.io -g
 ~~~
 
 #### yarn
 Or with [yarn](https://yarnpkg.com/):
 
-~~~ bash
-$ yarn global add sitespeed.io
-$ sitespeed.io --help
+~~~bash
+yarn global add sitespeed.io
 ~~~
 
 ### Windows

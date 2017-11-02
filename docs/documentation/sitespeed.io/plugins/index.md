@@ -23,8 +23,8 @@ The most basic things you can do is list configured plugins (which are currently
 ## List configured plugins
 You can list the plugins that will be used when you do a run:
 
-~~~ bash
-$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --plugins.list https://en.wikipedia.org/wiki/Barack_Obama
+~~~bash
+docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --plugins.list https://en.wikipedia.org/wiki/Barack_Obama
 ~~~
 
 And you will get a log entry that looks something like this:
@@ -40,20 +40,20 @@ The default plugins lives in the [plugin folder](https://github.com/sitespeedio/
 ## Disable a plugin
 You can disable default plugins if needed. For instance you may not want to output HTML and strictly send the data to Graphite.
 
-~~~ bash
-$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --plugins.disable html
+~~~bash
+docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --plugins.disable html
 ~~~
 
 If you want to disable multiple plugins say you don't need the html or screenshots:
 
-~~~ bash
-$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --plugins.disable html screenshot
+~~~bash
+docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --plugins.disable html screenshot
 ~~~
 
 At anytime if you want to verify that disabling worked, add the plugins.list to your command:
 
-~~~ bash
-$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --plugins.disable html screenshot --plugins.list
+~~~bash
+docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --plugins.disable html screenshot --plugins.list
 ~~~
 
 ## Add a plugin
@@ -61,27 +61,27 @@ You can also add a plugin. This is great if you have plugins you created yoursel
 
 There's a plugin bundled with sitespeed.io called *analysisstorer* plugin that isn't enabled by default. It stores the original JSON data from all analyzers (from Browsertime, Coach data, WebPageTest etc) to disk. You can enable this plugin like so:
 
-~~~ bash
-$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --plugins.load analysisstorer
+~~~bash
+docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --plugins.load analysisstorer
 ~~~
 
 If you want to run plugins that you created yourself or that are shared from others, you can either install the plugin using npm (locally) and load it by name or point out the directory where the plugin lives.
 
 If you run in Docker and you should. You will need to mount your plugin directory as a volume. This is the recommended best practice. Practically you should clone your repo on your server and then mount it like this.
 
-~~~ bash
+~~~bash
 docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -b firefox --plugins.load /sitespeed.io/myplugin -n 1 https://www.sitespeed.io/
 ~~~
 
 If you are running outside of docker you can load it relative locally.
 
-~~~ bash
-$ sitespeed.io https://www.sitespeed.io --plugins.load ../my/super/plugin
+~~~bash
+sitespeed.io https://www.sitespeed.io --plugins.load ../my/super/plugin
 ~~~
 
 If you want to create an image of sitespeedio with your plugins pre-baked for sharing you can also do so using the following Dockerfile.
 
-~~~ bash
+~~~
 FROM sitespeedio/sitespeed.io:<insert version here>
 
 COPY <path to your plugin> /my-custom-plugin
@@ -89,13 +89,13 @@ COPY <path to your plugin> /my-custom-plugin
 
 Then build the docker image
 
-~~~ bash
+~~~bash
 docker build -t my-custom-sitespeedio ./plugins
 ~~~
 
 Finally you can run it the same way as mentioned above without the volume mount.
 
-~~~ bash
+~~~bash
 docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io my-custom-sitespeedio firefox --plugins.load /my-custom-plugin --my-custom-plugin.option test -n 1 https://www.sitespeed.io/
 ~~~
 
@@ -107,7 +107,7 @@ First let us know about your cool plugin! Then share it with others by publish i
 ### Basic structure
 Your plugin needs to follow this structure.
 
-~~~ javascript
+~~~javascript
 const path = require('path');
 
 module.exports = {

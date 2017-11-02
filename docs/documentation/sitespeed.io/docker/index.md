@@ -38,22 +38,22 @@ We lock down the browsers to specific versions for maximum compatibility and sta
 
 The simplest way to run using Chrome:
 
-~~~ bash
-$ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -b chrome https://www.sitespeed.io/
+~~~bash
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -b chrome https://www.sitespeed.io/
 ~~~
 
 Note: The shm-size increases the memory for the GPU (default is 64mb and that is too small) see [https://github.com/elgalu/docker-selenium/issues/20](https://github.com/elgalu/docker-selenium/issues/20).
 
 In the real world you should always specify the exact version (tag) of the Docker container to make sure you use the same version for every run. If you use the latest tag you will download newer version of sitespeed.io as they become available, meaning you can have major changes between test runs (version upgrades, dependencies updates, browser versions, etc). So you should always specify a tag after the container name(X.Y.Z). Know that the tag/version number will be the same number as the sitespeed.io release:
 
-~~~ bash
+~~~bash
 docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:X.Y.Z -b chrome https://www.sitespeed.io/
 ~~~
 
 If you want to use Firefox:
 
-~~~ bash
-$ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:X.Y.Z -b firefox https://www.sitespeed.io/
+~~~bash
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:X.Y.Z -b firefox https://www.sitespeed.io/
 ~~~
 
 Using `-v "$(pwd)":/sitespeed.io` will map the current directory inside Docker and output the result directory there.
@@ -70,7 +70,7 @@ If you run on Windows, it could be that you need to map a absolute path. If you 
 ## Update (download a newer sitespeed.io)
 When using Docker upgrading to a newer version is super easy, change X.Y.Z to the version you want to use:
 
-~~~ bash
+~~~bash
 docker pull sitespeedio/sitespeed.io:X.Y.Z
 ~~~
 
@@ -82,8 +82,8 @@ If you want to make sure your containers have the same time as the host, you can
 
 Full example:
 
-~~~ bash
-$ docker run --rm -v "$(pwd)":/sitespeed.io -v /etc/localtime:/etc/localtime:ro sitespeedio/sitespeed.io -b firefox https://www.sitespeed.io/
+~~~bash
+docker run --rm -v "$(pwd)":/sitespeed.io -v /etc/localtime:/etc/localtime:ro sitespeedio/sitespeed.io -b firefox https://www.sitespeed.io/
 ~~~
 
 ## Change connectivity
@@ -94,8 +94,8 @@ To change connectivity you should use Docker networks, read all about it [here](
 
 If you run a server local on your machine and want to access it with sitespeed.io you can do that on your Mac by using the Docker fixed ip 192.168.65.1:
 
-~~~ bash
-$ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -b firefox http://192.168.65.1:4000/
+~~~bash
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -b firefox http://192.168.65.1:4000/
 ~~~
 
 ## Troubleshooting
@@ -103,7 +103,7 @@ $ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -b firefox 
 ### Inspect the container
 In 4.0 we autostart sitespeed.io. If you want to check what's in the container, you can do that by changing the entry point.
 
-~~~ bash
+~~~bash
 docker run -it --entrypoint bash sitespeedio/sitespeed.io:4.0.0
 ~~~
 

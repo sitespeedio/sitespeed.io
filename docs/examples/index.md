@@ -17,8 +17,8 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 
 Sitespeed.io uses Browsertime, the Coach and PageXray to collect and generate the result, so looking at result pages from sitespeed.io will give you a idea of what you can get from all tools. Analyzing two pages using Chrome looks like this:
 
-~~~ bash
-$ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -b chrome --video --speedIndex https://en.wikipedia.org/wiki/Main_Page https://en.wikipedia.org/wiki/Barack_Obama
+~~~bash
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -b chrome --video --speedIndex https://en.wikipedia.org/wiki/Main_Page https://en.wikipedia.org/wiki/Barack_Obama
 ~~~
 
 Gives the following [report](https://examples.sitespeed.io/5.0/2017-04-24-04-44-04/). The standard use case for sitespeed.io is to run it continously and send the data to Graphite/Grafana and create dashboards looking like this:
@@ -30,8 +30,8 @@ Checkout our [example dashboard](https://dashboard.sitespeed.io/dashboard/db/pag
 ## Browsertime
 Browsertime collects metrics using JavaScript and will record the browser window using FFMPED and produce a JSON file with the metrics collected, a HAR file that describes the request/responses and video and screenshots.
 
-~~~ bash
-$ docker run --shm-size=1g --rm -v "$(pwd)":/browsertime sitespeedio/browsertime --video --speedIndex https://www.sitespeed.io/
+~~~bash
+docker run --shm-size=1g --rm -v "$(pwd)":/browsertime sitespeedio/browsertime --video --speedIndex https://www.sitespeed.io/
 ~~~
 
 ## Coach
@@ -46,8 +46,8 @@ PageXray will convert your HAR file to a new JSON format. If your HAR file is fr
 
 Run it locally in NodeJS or in the browser:
 
-~~~ bash
-$ pagexray --pretty /path/to/my.har
+~~~bash
+pagexray --pretty /path/to/my.har
 ~~~
 
 Will convert the HAR to the following structure:
