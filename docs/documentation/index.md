@@ -9,12 +9,12 @@ twitterdescription: Documentation for the sitespeed.io.
 ---
 # Documentation
 
-You should use the latest LTS release (8.x) of NodeJS to run the sitespeed.io tools.
+Use Docker or the latest LTS release (8.x) of NodeJS to run the sitespeed.io tools.
 
- * [sitespeed.io]({{site.baseurl}}/documentation/sitespeed.io/) - get all the performance aspects of your site.
- * [Coach]({{site.baseurl}}/documentation/coach/) - get the advice you need to make your page as fast as possible.
- * [Browsertime]({{site.baseurl}}/documentation/browsertime/) - run your own Javascript in your own browser, testing your page.
- * [Compare]({{site.baseurl}}/documentation/compare/) - compare HAR files.
- * [PageXray]({{site.baseurl}}/documentation/pagexray/) - make those HAR files readable.
- * [Throttle]({{site.baseurl}}/documentation/throttle/) - throttle your connection speed.
+ * [sitespeed.io]({{site.baseurl}}/documentation/sitespeed.io/) - continuously monitor your web sites web performance  (including the Coach, Browsertime, PageXray and the rest).
+ * [Coach]({{site.baseurl}}/documentation/coach/) - get help from the Coach how you can make your web page faster.
+ * [Browsertime]({{site.baseurl}}/documentation/browsertime/) - collect metrics using JavaScript/video/HAR from Chrome/Firefox.
+ * [Compare]({{site.baseurl}}/documentation/compare/) - compare two HAR files with each other and find regressions.
+ * [PageXray]({{site.baseurl}}/documentation/pagexray/) - convert HAR files to a more usable format.
+ * [Throttle]({{site.baseurl}}/documentation/throttle/) - simulate slow network connections on Linux and Mac OS X.
  * [Chrome-HAR]({{site.baseurl}}/documentation/chrome-har/) - create Chrome HAR files bases on events from the Chrome Debugging Protocol.

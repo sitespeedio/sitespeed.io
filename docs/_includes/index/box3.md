@@ -1,5 +1,6 @@
-## There's a new Coach in town
+## What tool should I use?
 * * *
-[<img src="{{site.baseurl}}/img/logos/coach.png" class="pull-left img-big" alt="I'm the coach" width="155" height="180">]({{site.baseurl}}/documentation/coach)
 
-The Godfather of web performance tools [YSlow is dead](http://4.bp.blogspot.com/-gEqiZsYvoV4/T2FM-E7UvcI/AAAAAAAAIeE/Sg0GxV2hVLE/s1600/PDVD_138.BMP). It died a couple of years after the first release and finally there's something new that can guide you in the web performance jungle: [The Coach]({{site.baseurl}}/documentation/coach/) gives you advice on how you can make your web page more performant.
+[<img src="{{site.baseurl}}/img/pippi.png" class="pull-left img-big" alt="The power of sitespeed.io" width="180" height="151">](https://dashboard.sitespeed.io)
+
+[The coach]({{site.baseurl}}/documentation/coach/) gives you performance advice based on best practices for your site. [Browsertime]({{site.baseurl}}/documentation/browsertime/) collects metrics, HAR files and records a video of your browser. [Chrome-HAR](https://github.com/sitespeedio/chrome-har) creates a HAR file from Chrome Debugging Protocol data. [Compare](https://compare.sitespeed.io) makes it easy to find regressions comparing HAR files. [PageXray]({{site.baseurl}}/documentation/pagexray/) converts a HAR file to a usable JSON structure that tells you more about your page. [Throttle]({{site.baseurl}}/documentation/throttle/) helps you simulate slow network connections on Linux and Mac OS X. And finally [sitespeed.io]({{site.baseurl}}/documentation/sitespeed.io/) is the main tool that uses all the previously mentioned tools and add supports for testing multiple pages as well as adds the ability to report the metrics to a TSDB (Graphite and InfluxDB).
