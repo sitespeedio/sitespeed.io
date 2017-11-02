@@ -19,13 +19,13 @@ Two kind of big releases in the same week with two important new things:
 
  We haven't updated to PhantomJS 2 yet (since it isn't fully available as binaries on Linux). If you want to use it today across all the tests, you can either use SlimerJS:
 
-~~~ bash
+~~~bash
 sitespeed.io -u http://www.example.com --headless slimerjs -b chrome
 ~~~
 
  or install PhantomJS 2 on the side and feed it to sitespeed like this:
 
-~~~ bash
+~~~bash
 sitespeed.io -u http://www.example.com --phantomjsPath /path/to/phantomjs -b chrome
 ~~~
 

@@ -24,7 +24,7 @@ We use the NodeJs version of Selenium, you can find the [API documentation here]
 ## Login example
 Create a script where you login the user. The following is an example to login the user at Wikipedia. Start by creating a file login.js with the following.
 
-~~~ bash
+~~~
 module.exports = {
   run(context) {
     return context.runWithDriver((driver) => {
@@ -62,8 +62,8 @@ Make sure to change the username & password
 
 Then run it like this:
 
-~~~ bash
-$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --preScript /sitespeed.io/login.js https://en.wikipedia.org/wiki/Barack_Obama
+~~~bash
+docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --preScript /sitespeed.io/login.js https://en.wikipedia.org/wiki/Barack_Obama
 ~~~
 
 The script will then login the user and access https://en.wikipedia.org/wiki/Barack_Obama and measure that page.
@@ -84,7 +84,7 @@ One other thing you can do with a pre script is simulate a user that browsed a c
 
 Create a pre script (pre.js):
 
-~~~ bash
+~~~
 module.exports = {
   run(context) {
     return context.runWithDriver((driver) => {
@@ -97,8 +97,8 @@ module.exports = {
 
 And then run it like this:
 
-~~~ bash
-$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --preScript /sitespeed.io/pre.js -b chrome https://www.sitespeed.io/documentation/
+~~~bash
+docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --preScript /sitespeed.io/pre.js -b chrome https://www.sitespeed.io/documentation/
 ~~~
 
 The browser will first access https://www.sitespeed.io/, this will fill the cache and then go to https://www.sitespeed.io/documentation/ where it will collect all the metrics.

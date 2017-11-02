@@ -24,14 +24,13 @@ We have [Docker images](https://hub.docker.com/r/sitespeedio/browsertime/) with 
 
 ### Mac & Linux
 
-~~~ bash
-$ docker pull sitespeedio/browsertime
-$ docker run --shm-size=1g --rm -v "$(pwd)":/browsertime sitespeedio/browsertime --video --speedIndex https://www.sitespeed.io/
+~~~bash
+docker run --shm-size=1g --rm -v "$(pwd)":/browsertime sitespeedio/browsertime --video --speedIndex https://www.sitespeed.io/
 ~~~
 
 ### Windows
 
-~~~ bash
+~~~
 C:\Users\Vicky> docker pull sitespeedio/browsertime
 C:\Users\Vicky> docker run --rm -v "$(pwd)":/browsertime sitespeedio/browsertime https://www.sitespeed.io -b firefox
 ~~~
@@ -47,17 +46,15 @@ Prerequisites: Install [latest NodeJS LTS](https://nodejs.org/en/download/) ([Li
 #### npm
 If you prefer npm, just run:
 
-~~~ bash
-$ npm install browsertime -g
-$ browsertime --help
+~~~bash
+npm install browsertime -g
 ~~~
 
 #### yarn
 Or with [yarn](https://yarnpkg.com/):
 
-~~~ bash
-$ yarn global add browsertime
-$ browsertime --help
+~~~bash
+yarn global add browsertime
 ~~~
 
 ### Windows
