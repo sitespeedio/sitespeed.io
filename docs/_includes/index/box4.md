@@ -1,9 +1,5 @@
-## Docker makes it easy!
+## We believe in privacy
 * * *
-Use our [Docker container](https://hub.docker.com/r/sitespeedio/sitespeed.io/) to get an environment with Firefox, Chrome, XVFB and sitespeed.io up and running as fast as you can download them.
+We take your privacy really serious: Our [documentation site](https://www.sitespeed.io/), our [dashboard](https://dashboard.sitespeed.io) and our [compare tool](https://dashboard.sitespeed.io) do not use any tracking software at all (no Google Analytics or any other tracking software). None of the sitespeed.io tools call home.
 
-~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/ -b firefox
-~~~
-
-To set the connectivity follow our [connectivity guide]({{site.baseurl}}/documentation/sitespeed.io/connectivity) for Docker.
+But beware: Chrome and Firefox can call home (we know for fact that Chrome do). We would love PRs and tips how to make sure browsers don't call home when you run your tests.

@@ -1,12 +1,13 @@
-Use our [Docker container](https://hub.docker.com/r/sitespeedio/sitespeed.io/) to get an environment with Firefox, Chrome, XVFB and sitespeed.io up and running as fast as you can download them.
 
-**Docker**
+#### Docker
+
+Use our [Docker container](https://hub.docker.com/r/sitespeedio/sitespeed.io/) to get an environment with Firefox, Chrome, XVFB and sitespeed.io up and running as fast as you can download them. They work [extremely well](({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/) ) together with Graphite/InfluxDB and Grafana.
 
 ~~~bash
 docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
 ~~~
 
-**npm**
+#### npm
 
 Install sitespeed.io globally:
 
@@ -14,10 +15,10 @@ Install sitespeed.io globally:
 npm install -g sitespeed.io
 ~~~
 
-And then run help to see what you can do:
+And then run:
 
 ~~~bash
-sitespeed.io --help
+sitespeed.io https://www.sitespeed.io/
 ~~~
 
-Follow our [connectivity guide]({{site.baseurl}}/documentation/sitespeed.io/connectivity) when to emulate real users connectivity.
+Follow our [connectivity guide]({{site.baseurl}}/documentation/sitespeed.io/connectivity) to emulate real users connectivity.
