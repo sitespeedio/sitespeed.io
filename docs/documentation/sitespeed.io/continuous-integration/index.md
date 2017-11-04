@@ -31,7 +31,7 @@ The most convenient way to run in Jenkins is to use the pre-built Docker contain
 * We then map the Jenkins workspace's output folder in Docker to the Host, so that the HTML result is visible outside of the container.
 
 ~~~bash
-docker run --privileged -v ${WORKSPACE}:/sitespeed.io sitespeedio/sitespeed.io --outputFolder output https://www.sitespeed.io/ -n 1
+docker run -v ${WORKSPACE}:/sitespeed.io sitespeedio/sitespeed.io --outputFolder output https://www.sitespeed.io/ -n 1
 ~~~
 
 * You can then install the **Publish HTML Reports** plugin to make the reports easy available in Jenkins. You can add it as a *Post-build Actions* and set the **HTML directory to archive** to *${WORKSPACE}/output/*.
@@ -45,7 +45,7 @@ docker run --privileged -v ${WORKSPACE}:/sitespeed.io sitespeedio/sitespeed.io -
 * If you want to break your build, you should generate a JUnit XML and use the built-in post task *Publish JUnit test result report*. Make sure to make the budget file available inside the Docker container. In this example we have it inside the Jenkins workspace.
 
 ~~~bash
-docker run --privileged -v ${WORKSPACE}:/sitespeed.io sitespeedio/sitespeed.io --outputFolder output --budget /sitespeed.io/budget.json --budget.output junit https://www.sitespeed.io/ -n 1
+docker run -v ${WORKSPACE}:/sitespeed.io sitespeedio/sitespeed.io --outputFolder output --budget /sitespeed.io/budget.json --budget.output junit https://www.sitespeed.io/ -n 1
 ~~~
 
 * Setup the JUnit report:

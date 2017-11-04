@@ -101,10 +101,10 @@ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -b firefox ht
 ## Troubleshooting
 
 ### Inspect the container
-In 4.0 we autostart sitespeed.io. If you want to check what's in the container, you can do that by changing the entry point.
+We autostart sitespeed.io when you run the container. If you want to check what's in the container, you can do that by changing the entry point.
 
 ~~~bash
-docker run -it --entrypoint bash sitespeedio/sitespeed.io:4.0.0
+docker run -it --entrypoint bash sitespeedio/sitespeed.io:6.0.0
 ~~~
 
 ### Visualize your test in XVFB
@@ -113,7 +113,7 @@ The docker containers have `x11vnc` installed which enables visualization of the
 - You will need to run the sitespeed.io image by exposing a PORT for vnc server. By default this port is 5900. If you plan to change your port for VNC server, then you need to expose that port.
 
 ~~~bash
-docker run --shm-size=512m --privileged --rm -v "$(pwd)":/sitespeed.io -p 5900:5900 sitespeedio/sitespeed.io https://www.sitespeed.io/ -b chrome
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io -p 5900:5900 sitespeedio/sitespeed.io https://www.sitespeed.io/ -b chrome
 ~~~
 
 - Find the container id of the docker container for sitespeed by running:

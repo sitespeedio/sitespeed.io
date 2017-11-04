@@ -30,7 +30,7 @@ By default the browser will collect data until  [window.performance.timing.loadE
 In this example we wait 10 seconds until the loadEventEnd happens, but you can also choose to trigger it at a specific event.
 
 ~~~bash
-$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --browsertime.pageCompleteCheck 'return (function() {try { return (Date.now() - window.performance.timing.loadEventEnd) > 10000;} catch(e) {} return true;})()'
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --browsertime.pageCompleteCheck 'return (function() {try { return (Date.now() - window.performance.timing.loadEventEnd) > 10000;} catch(e) {} return true;})()'
 ~~~
 
 We use Selenium in the backend to drive the browsers and right now Selenium/drivers doesn't support the *pageLoadStrategies* where you can change when Selenium will give control to the user. Right now we always wait on the pageLoadEvent, meaning pages that do not fire that event will fail. Track the progress to fix that [here](https://github.com/sitespeedio/browsertime/issues/186).
@@ -53,7 +53,7 @@ For example say we have one file called scripts.js that checks how many scripts 
 Then to pick up the script, you would run it like this:
 
 ~~~bash
-docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --browsertime.script scripts.js -b firefox
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --browsertime.script scripts.js -b firefox
 ~~~
 
 You will get a custom script section in the Browsertime tab.
@@ -71,7 +71,7 @@ Bonus: All custom scripts values will be sent to Graphite, no extra configuratio
 Visual metrics (Speed Index, Perceptual Speed Index, First and Last visual complete, and 85-95-99% Visual Complete) can be collected if you also record a video of the screen. If you use our Docker container you automagically get all the extra software needed!
 
 ~~~bash
-$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --speedIndex --video https://www.sitespeed.io/
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --speedIndex --video https://www.sitespeed.io/
 ~~~
 
 On Android you need to follow [these instructions]({{site.baseurl}}http://127.0.0.1:4000/documentation/sitespeed.io/mobile-phones/#video-and-speedindex).
