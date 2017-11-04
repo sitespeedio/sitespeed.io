@@ -1,8 +1,8 @@
-mixin headerLink(id, name)
-  if (headers[id])
+mixin headerLink(header)
+  if (headers[header.pug])
     li
-      - active = menu===id ? 'active' : ''
-      a(href= rootPath + id + '.html', class=active)= name
+      - active = menu===header.pug ? 'active' : ''
+      a(href= rootPath + header.pug + '.html', class=active)= header.name
 
 .darkblue.nav
   .navgrid
@@ -10,11 +10,5 @@ mixin headerLink(id, name)
         a(href='https://www.sitespeed.io')
           img.navbar-brand(src= rootPath + 'img/sitespeed.io-logo.png', width='162', height='50', alt='sitespeed.io logo')
     ul
-      +headerLink('index', 'Summary')
-      +headerLink('detailed', 'Detailed Summary')
-      +headerLink('pages', 'Pages')
-      +headerLink('domains', 'Domains')
-      +headerLink('toplist', 'Toplist')
-      +headerLink('assets', 'Assets')
-      +headerLink('budget', 'Budget')
-      +headerLink('errors', 'Errors')
+      each headers in headerLinks
+       +headerLink(headers)
