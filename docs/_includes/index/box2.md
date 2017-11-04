@@ -5,6 +5,6 @@
  * [Browsertime](/documentation/browsertime/) {% include_relative version/browsertime.txt %} [[Docker](https://hub.docker.com/r/sitespeedio/browsertime/)/[npm](https://www.npmjs.com/package/browsertime)]
  * [Coach](/documentation/coach/) {% include_relative version/coach.txt %} [[Docker](https://hub.docker.com/r/sitespeedio/coach/)/[npm](https://www.npmjs.com/package/webcoach)]
  * [PageXray](/documentation/pagexray/) {% include_relative version/pagexray.txt %} [[npm](https://www.npmjs.com/package/pagexray)]
- * [Compare](https://compare.sitespeed.io/)
+ * [Compare](https://compare.sitespeed.io/) {% include_relative version/compare.txt %} [[npm](https://www.npmjs.com/package/@sitespeed.io/compare)]
  * [Throttle](/documentation/throttle/) {% include_relative version/throttle.txt %} [[npm](https://www.npmjs.com/package/@sitespeed.io/throttle)]
-  * [Chrome-HAR](/documentation/chrome-har/) [[npm](https://www.npmjs.com/package/chrome-har)]
+ * [Chrome-HAR](/documentation/chrome-har/) {% include_relative version/chrome-har.txt %} [[npm](https://www.npmjs.com/package/chrome-har)]
