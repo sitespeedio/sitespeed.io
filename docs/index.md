@@ -6,12 +6,11 @@ keywords: sitespeed.io, wpo, webperf, perfmatters, fast, site, speed, web perfor
 nav: start
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 ---
-<img src="{{site.baseurl}}/img/team.png" class="pull-left img-big" alt="Sitespeed.io - a friendship that is magic" title="Sitespeed.io - a friendship that is magic" width="300" height="256">
 
-## Welcome to the wonderful world of Web Performance
+# Welcome to the wonderful world of Web Performance
 
 Sitespeed.io is a [set of Open Source tools](/documentation/) that makes it easy to monitor and measure the performance of your web site.
 
-Measuring performance shouldn't be hard: you should be able to have full control of your metrics, own your own data and you should be able to do it without paying big dollars.
+Measuring performance shouldn't be hard: you should be able to have full control of your metrics, own your own data and you should be able to do it without paying top dollars.
 
 That's why we created sitespeed.io.

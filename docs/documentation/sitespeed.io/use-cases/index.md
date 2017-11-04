@@ -25,7 +25,7 @@ Crawling too deep can take a considerable amount of time, so be aware.
 {: .note .note-warning}
 
 ~~~bash
-$ docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io http://www.nytimes.com/pages/sports/ -d 2
+docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io http://www.nytimes.com/pages/sports/ -d 2
 ~~~
 
 Best practice is to not send crawl results to Graphite as it will create a lot of new URLS over time, making the size of the Graphite "database" grow indefinitely. Instead use it to verify deploys or that the content team following best practices. You can combine this with the [performance budget](../performance-budget/), making a test fail if any page crosses the limits.

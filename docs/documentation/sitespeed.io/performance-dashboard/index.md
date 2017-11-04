@@ -30,7 +30,7 @@ You need [Docker](https://docs.docker.com/engine/installation/) and [Docker Comp
 6. To start from scratch, also remove the Graphite and Grafana data volumes by running `docker volume rm performancedashboard_graphite performancedashboard_grafana`.
 
 
-If you want to play with the dashboards, the default login is sitespeedio and password is ...well check out the docker-compose.yml file.
+If you want to play with the dashboards, the default login is sitespeedio and password is ...well check out the [docker-compose.yml file](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/docker-compose.yml<).
 
 When you run this in production make sure to checkout [our production guidelines](#production-guidelines).
 
@@ -62,7 +62,7 @@ The page summary shows metrics for a specific URL/page.
 [![Page summary in Grafana]({{site.baseurl}}/img/pagesummary-grafana2.png)](https://dashboard.sitespeed.io/dashboard/db/page-summary)
 {: .img-thumbnail}
 
-# The page timings summary
+## The page timings summary
 
 The page timings summary focus on Visual Metrics and is the number one dashboard you should use when you look for visual regressions.
 
@@ -100,61 +100,56 @@ And then also for all tested pages of a site.
 ## Whatever you want
 Do you need anything else? Since we store all the data in Graphite and use Grafana you can create your own dashboards, which is super simple!
 
-# Get the metrics
+# Configuration setup
 You have the dashboard and you need to collect metrics. Using the crontab works fine or whatever kind of scheduler you are using (or Jenkins per build or ... whatever suits you best).
 
 Using the crontab (on a standalone server) you do like this:
 <code>crontab -e</code> to edit the crontab. Make sure your cron user can run Docker and change *my.graphite.host* to your Graphite host. When you run this on a standalone server *my.graphite.host* will be the public IP address of your server. The default port when sending metrics to Graphite is 2003, so you don't have to include that.
 
-If you run the container and the cronjob locally you cannot use localhost since each docker container has it's own localhost. On a Mac or Linux machine you can use <code>$ ifconfig</code> to retrieve your IP address. This will output a list of all connected interfaces and let you see which one is currently being used. The one listed with an "inet" address that is *not* "127.0.0.1" is usually the interface that you're connected through.
-
 On [dashboard.sitespeed.io](https://dashboard.sitespeed.io) we have the following setup:
 
-We have a small shell script that runs the test that we run. It is triggered from the cron and uses a configuration file (default.json) where we have the default configuration used for all tests we run (we then override some config values directly when we start the test).
+We have a small shell script that runs the tests. It is triggered from the cron and uses a configuration file (default.json) where we have the default configuration used for all tests (we then override some config values directly when we start the test). We also have a bash file that sets up the network.
 
 Our *run.sh* file (we read which URLs we want to test from files):
 
+## Shell script
 ~~~
 #!/bin/bash
-DOCKER_CONTAINER=sitespeedio/sitespeed.io:5.2.0
-DOCKER_SETUP="--privileged --shm-size=1g --rm -v /root/config:/sitespeed.io -v /result:/result -v /etc/localtime:/etc/localtime:ro --name sitespeed"
+# Specify the exact version of sitespeed.io. When you upgrade to the next version, pull it down and the chage the tag
+DOCKER_CONTAINER=sitespeedio/sitespeed.io:6.0.0
+
+# Setup the network and default ones we wanna use
+sudo /home/ubuntu/startNetworks.sh
 THREEG="--network 3g"
 CABLE="--network cable"
+
+# Simplify some configurations
 CONFIG="--config /sitespeed.io/default.json"
-echo 'Start run ' >> /tmp/s.log 2>&1
-docker network ls >> /tmp/s.log 2>&1
-docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER --browsertime.cacheClearRaw --browsertime.chrome.collectTracingEvents /sitespeed.io/wiki
-pedia.org.txt $CONFIG >> /tmp/s.log 2>&1
-docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/wikipedia.org.txt -b firefox $CONFIG >> /tmp/s.log 2>&1
-docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER --influxdb.host INFLUX_HOST --influxdb.database sitespeedio --influxdb.username INFLUX_USER --influxdb.password INFLUX_PW --gzipHAR false /sitespeed.io/ryanair.com.txt -n 3 --firstParty ".ryanair.com" $
-CONFIG >> /tmp/s.log 2>&1
-docker run $THREEG $DOCKER_SETUP $DOCKER_CONTAINER --browsertime.chrome.collectTracingEvents /sitespeed.io/m.wikipedia.org.txt --graphite.
-namespace sitespeed_io.emulatedMobile -c 3g --mobile true $CONFIG >> /tmp/s.log 2>&1
-docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER --influxdb.host INFLUX_HOST --influxdb.database sitespeedio --influxdb.username INFLUX_USER --influxdb.password INFLUX_PW /sitespeed.io/nytimes.com.txt -n 3 --webpagetest.key WPT_KEY
-38524 $CONFIG >> /tmp/s.log 2>&1
-docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/sitespeed.io.txt -b firefox $CONFIG >> /tmp/s.log 2>&1
-docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/sitespeed.io.txt $CONFIG >> /tmp/s.log 2>&1
-docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/wikipedia.org-second.txt $CONFIG --graphite.namespace sitespeed_io.desktop
-Second --preURL https://en.wikipedia.org/wiki/Main_Page >> /tmp/s.log 2>&1
-docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/wikipedia.org-second.txt $CONFIG --graphite.namespace sitespeed_io.desktop
-Second -b firefox --preURL https://en.wikipedia.org/wiki/Main_Page >> /tmp/s.log 2>&1
-echo 'Finished desktop second runs' >> /tmp/s.log 2>&1
-#docker run $THREEG $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/m.wikipedia.org-second.txt $CONFIG --graphite.namespace sitespeed_io.emu
-latedMobileSecond -c 3g --mobile true --preURL https://en.m.wikipedia.org/wiki/Main_Page >> /tmp/s.log 2>&1
-echo 'Finished mobile second runs' >> /tmp/s.log 2>&1
-docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER /sitespeed.io/wikipedia.org-login-urls.txt --preScript /sitespeed.io/wikpedia.org-login.
-txt $CONFIG --graphite.namespace sitespeed_io.desktopLoggedIn >> /tmp/s.log 2>&1
-echo 'Finished all the runs' >> /tmp/s.log 2>&1
+DOCKER_SETUP="--shm-size=1g --rm -v /home/ubuntu/config:/sitespeed.io -v /result:/result -v /etc/localtime:/etc/localtime:ro --name sitespeed"
+
+# Start running the tests
+# We run more tests on our test server but this gives you an idea of how you can configure it
+docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER -n 11 --browsertime.viewPort 1920x1080 --browsertime.cacheClearRaw --browsertime.chrome.collectTracingEvents /sitespeed.io/wikipedia.org.txt $CONFIG
+docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER -n 11 --browsertime.viewPort 1920x1080 /sitespeed.io/wikipedia.org.txt -b firefox $CONFIG
+docker run $THREEG $DOCKER_SETUP $DOCKER_CONTAINER --graphite.namespace sitespeed_io.emulatedMobile --browsertime.chrome.collectTracingEvents /sitespeed.io/m.wikipedia.org.txt -c 3g --mobile true $CONFIG
+
+# We remove all docker stuff to get a clean next run
+docker system prune --all --volumes -f
+
+# Get the container so we have it the next time we wanna use it
+docker pull $DOCKER_CONTAINER
 ~~~
 
-It is then triggered from the crontab:
+## Crontab
+We trigger the script from the crontab. We run the script every hour.
 
 ~~~
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-0 * * * * /root/runs.sh
+0 * * * * /root/runs.sh >> /tmp/sitespeed.io.log 2>&1
 ~~~
 
+## default.json
 And our default configuration is in *default.json*:
 
 ~~~
@@ -192,31 +187,28 @@ And our default configuration is in *default.json*:
 
 ~~~
 
-And we set up the following Docker networks:
+## Docker networks
+And we set up the following Docker networks (*startNetworks.sh*):
 
 ~~~
 #!/bin/bash
 echo 'Starting Docker networks'
 docker network create --driver bridge --subnet=192.168.33.0/24 --gateway=192.168.33.10 --opt "com.docker.network.bridge.name"="docker1" 3g
-tc qdisc del dev docker1 root
 tc qdisc add dev docker1 root handle 1: htb default 12
 tc class add dev docker1 parent 1:1 classid 1:12 htb rate 1.6mbit ceil 1.6mbit
 tc qdisc add dev docker1 parent 1:12 netem delay 150ms
 
 docker network create --driver bridge --subnet=192.168.34.0/24 --gateway=192.168.34.10 --opt "com.docker.network.bridge.name"="docker2" cable
-tc qdisc del dev docker2 root
 tc qdisc add dev docker2 root handle 1: htb default 12
 tc class add dev docker2 parent 1:1 classid 1:12 htb rate 5mbit ceil 5mbit
 tc qdisc add dev docker2 parent 1:12 netem delay 14ms
 
 docker network create --driver bridge --subnet=192.168.35.0/24 --gateway=192.168.35.10 --opt "com.docker.network.bridge.name"="docker3" 3gfast
-tc qdisc del dev docker3 root
 tc qdisc add dev docker3 root handle 1: htb default 12
 tc class add dev docker3 parent 1:1 classid 1:12 htb rate 1.6mbit ceil 1.6mbit
 tc qdisc add dev docker3 parent 1:12 netem delay 75ms
 
 docker network create --driver bridge --subnet=192.168.36.0/24 --gateway=192.168.36.10 --opt "com.docker.network.bridge.name"="docker4" 3slow
-tc qdisc del dev docker4 root
 tc qdisc add dev docker4 root handle 1: htb default 12
 tc class add dev docker4 parent 1:1 classid 1:12 htb rate 0.4mbit ceil 0.4mbit
 tc qdisc add dev docker4 parent 1:12 netem delay 200ms
@@ -228,11 +220,12 @@ We provide an example Graphite Docker container which you should probably change
 Starting with version 4 we tried to send a moderated number of metrics per URL but you can [change that yourself]({{site.baseurl}}/documentation/sitespeed.io/metrics/).
 
 When you store metrics for a URL in Graphite, you decide from the beginning how long and how often you want to store the data, in [storage-schemas.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-schemas.conf). In our example Graphite setup, every key under sitespeed_io is caught by the configuration in storage-schemas.conf that looks like:
-<pre>
+
+~~~
 [sitespeed]
 pattern = ^sitespeed_io\.
 retentions = 10m:60d,30m:90d
-</pre>
+~~~
 
 Every metric that is sent to Graphite following the pattern (the namespace starting with sitespeed_io), Graphite prepares storage for it every ten minutes the first 60 days; after that Graphite uses the configuration in [storage-aggregation.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-aggregation.conf) to aggregate/downsize the metrics the next 90 days.
 
@@ -260,10 +253,14 @@ You can send annotations to Graphite to mark when a run happens so you can go fr
 You do that by configuring the URL that will serve the HTML with the CLI param *resultBaseURL* (the base URL for your S3 bucket) and configure the HTTP Basic auth username/password used by Graphite. You can do that by setting *--graphite.auth LOGIN:PASSWORD*.
 
 # Production Guidelines
+
+Here are a couple of things you should check before you setup sitespeed.io for production.
+
+## Setup (important!)
 To run this in a production environment, you should consider/make some modifications:
 
 1. Always run sitespeed.io on a stand-alone instance
-    - This avoids causing discrepancies in results, due to things like competing resources or network traffic.
+    - This avoids causing discrepancies in results, due to things like competing resources or network traffic. Then you just run sitespeed.io with docker run ... (only docker compose for Graphite/Grafana).
     - Run Grafana/Graphite on another server instance.
 2. Change the default user and password for Grafana.
 3. Change the default [user and password for Graphite](https://hub.docker.com/r/sitespeedio/graphite/).
@@ -288,3 +285,33 @@ services:
         - MAX_OLD_SPACE_SIZE=3072
 
 ```
+
+## Cost
+Sitespeed.io is Open Source and totally free. But what does it cost to have an instance of sitespeed.io up and running?
+
+Setting up an [AWS instance](https://aws.amazon.com/) C4.large has an upfront price $515 for a year (it is much cheaper to pay upfront). You also need to pay for S3 (to store the videos and HTML). For [https://dashboard.sitespeed.io](https://dashboard.sitespeed.io) we pay $10-15 per month (depending how long time you want to store the data).
+
+Do your organisation already use Graphite/InfluxDB and Grafana? Then use what you have. Else you need to have a server hosting Graphite/Grafana. We pay $20 per month at Digital Ocean for that. Depending on how many metrics and for how long time you wanna store them, you maybe need and extra disk. And you should also always backup your data.
+
+How many runs can you do per month? Many of the paid services you also pay per run or have a maximum amount of runs. With our one instance at AWS we do 11 runs for 9 different URLs then we run 5 runs for 4 other URLs. That is 119 runs per hour. 2856 per day and 85680. We test Wikipedia at our instance so it can be that your site is a little slower, then you will not be able to make the same amount of runs per month.
+
+Total cost:
+
+ * $515 per AWS agent (80000+  per month per agent) per year
+ * S3 $10-15 with data
+ * Server for Graphite/Grafana
+
+You also need to think of the time it takes for you to set it up and upgrade new Docker containers when there are new browser versions and new versions of sitespeed.io. Updating to a new Docker container on one server usually takes less than 2 minutes :)
+
+## Keeping your instance updated
+We constantly do new Docker release: bug fixes, new functionality and new versions of the browser. To keep your instance updated, follow the following work flow.
+
+Log into your instance and pull the latest version of sitespeed.io:
+
+~~~bash
+docker pull sitespeedio/sitespeed.io:6.1.0
+~~~
+
+Then update your script so it uses the new version (6.1.0 in this case). The next time sitespeed.io runs, it will use the new version.
+
+Go into the Grafana dashboard and create a new annotation, telling your team mates that you updated to the new version. This is real important so you can keep track of browser updates and other changes that can affect your metrics.
