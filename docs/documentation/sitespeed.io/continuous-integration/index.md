@@ -34,8 +34,8 @@ The most convenient way to run in Jenkins is to use the pre-built Docker contain
 docker run -v ${WORKSPACE}:/sitespeed.io sitespeedio/sitespeed.io --outputFolder output https://www.sitespeed.io/ -n 1
 ~~~
 
-* You can then install the **Publish HTML Reports** plugin to make the reports easy available in Jenkins. You can add it as a *Post-build Actions* and set the **HTML directory to archive** to *${WORKSPACE}/output/*.
-![HTML reports]({{site.baseurl}}/img/html-reports.png)
+* You can then install the **Publish HTML Reports** plugin to make the reports easy available in Jenkins. You can add it as a *Post-build Actions* and set the **HTML directory to archive** to *output/* (it is relative to the workspace).
+![HTML reports]({{site.baseurl}}/img/html-publisher.png)
 {: .img-thumbnail}
 
  The HTML result pages runs Javascript, so you need to change the [Jenkins Content Security Policy](https://wiki.jenkins-ci.org/display/JENKINS/Configuring+Content+Security+Policy) for them to work with the plugin.
