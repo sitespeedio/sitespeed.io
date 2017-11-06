@@ -42,7 +42,7 @@ We insert ready-made dashboards with a Docker container using curl, making it ea
 
 # Example dashboards
 
-The example dashboards are generic dashboards that will work with all data/metrics you collect using sitespeed.io. We worked hard to make them and the great thing is that you can use them as base dashboards, then create additional dashboards if you like.
+The [example dashboards](https://dashboard.sitespeed.io) are generic dashboards that will work with all data/metrics you collect using sitespeed.io. We worked hard to make them and the great thing is that you can use them as base dashboards, then create additional dashboards if you like.
 
 The dashboards has a couple of templates (the dropdowns at the top of the page) that makes the dashboard interactive and dynamic.
 A dashboard that show metrics for a specific page has the following templates:
@@ -57,45 +57,30 @@ When you choose one of the values in a template, the rest will be populated. You
 The default namespace is *sitespeed_io.default* and the example dashboards are built upon a constant template variable called $base that is the first part of the namespace (that default is *sitespeed_io* but feel free to change that, and then change the constant).
 
 ## Page summary
-The page summary shows metrics for a specific URL/page.
+The [page summary](https://dashboard.sitespeed.io/dashboard/db/page-summary) shows metrics for a specific URL/page.
 
-[![Page summary in Grafana]({{site.baseurl}}/img/pagesummary-grafana2.png)](https://dashboard.sitespeed.io/dashboard/db/page-summary)
-{: .img-thumbnail}
 
 ## The page timings summary
 
-The page timings summary focus on Visual Metrics and is the number one dashboard you should use when you look for visual regressions.
+The [page timings summary](https://dashboard.sitespeed.io/dashboard/db/page-timing-metrics) focus on Visual Metrics and is the number one dashboard you should use when you look for visual regressions.
 
-[![Page timing summary in Grafana]({{site.baseurl}}/img/dashboards/page-timing-metrics.png)](https://dashboard.sitespeed.io/dashboard/db/page-timing-metrics?orgId=1)
-{: .img-thumbnail}
 
 ## Site summary
-The site summary show metrics for a site (a summary of all URLs tested for that domain).
-
-[![Site summary in Grafana]({{site.baseurl}}/img/sitesummary-grafana2.png)](https://dashboard.sitespeed.io/dashboard/db/site-summary)
-{: .img-thumbnail}
+The [site summary](https://dashboard.sitespeed.io/dashboard/db/site-summary) show metrics for a site (a summary of all URLs tested for that domain).
 
 ## 3rd vs. 1st party
 How much does 3rd party code impact your page? To get this up and running, you should only need to configure the <code>--firstParty</code> parameter/regex when you run.
 
-[![3rd vs 1st]({{site.baseurl}}/img/3rd.png)](https://dashboard.sitespeed.io/dashboard/db/3rd-vs-1st-party)
-{: .img-thumbnail}
+You can see the [3rd vs. 1st party dashboard here](https://dashboard.sitespeed.io/dashboard/db/3rd-vs-1st-party).
 
 ## WebPageTest dashboards
 We have two optional dashboards for WebPageTest to show how you can build them if you use WebPageTest through sitespeed.io.
 
 ### WebPageTest page summary
-Have we told you that we love WebPageTest? Yes, we have and here is an example of a default WebPageTest page summary where you can look at results for individual URLs.
-
-[![WebPageTest page summary]({{site.baseurl}}/img/webpagetestPageSummary2.png)](https://dashboard.sitespeed.io/dashboard/db/webpagetest-page-summary)
-{: .img-thumbnail}
-
+Have we told you that we love WebPageTest? Yes, we have and here is an example of a default [WebPageTest page summary](https://dashboard.sitespeed.io/dashboard/db/webpagetest-page-summary) where you can look at results for individual URLs.
 
 ### WebPageTest site summary
-And then also for all tested pages of a site.
-
-[![WebPageTest site summary]({{site.baseurl}}/img/webpagetestSiteSummary2.png)](https://dashboard.sitespeed.io/dashboard/db/webpagetest-site-summary)
-{: .img-thumbnail}
+And then there is also a dashboard for [all tested pages of a site](https://dashboard.sitespeed.io/dashboard/db/webpagetest-site-summary).
 
 ## Whatever you want
 Do you need anything else? Since we store all the data in Graphite and use Grafana you can create your own dashboards, which is super simple!
