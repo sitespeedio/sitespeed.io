@@ -17,45 +17,80 @@ twitterdescription: Hack on sitespeed.io
 * Lets place the TOC here
 {:toc}
 
-## Start
-You can start by looking at the image of [how it all works]({{site.baseurl}}/documentation/sitespeed.io/how-it-all-works/). It may seems like a lot, but it isn't really that complicated.
+## How it all works
+Almost everything we do is written in NodeJS (use [latest LTS](https://nodejs.org/en/)).
 
-## Setup
+### Built upon Open Source
+Sitespeed.io uses a lot of other Open Source tools so massive love to those projects and maintainers:
+
+ * [Selenium](http://www.seleniumhq.org/)
+ * [Visual Metrics](https://github.com/WPO-Foundation/visualmetrics)
+ * [PerfCascade](https://github.com/micmro/PerfCascade)
+ * [Skeleton](http://getskeleton.com)
+ * [Simple crawler](https://github.com/cgiffard/node-simplecrawler)
+ * [Pug](https://www.npmjs.com/package/pug)
+ * all other projects in the [package.json](https://github.com/sitespeedio/sitespeed.io/blob/master/package.json).
+
+And we also have plugins so that you can use:
+
+ * [WebPageTest](https://www.webpagetest.org) through the [WebPageTest API](https://github.com/marcelduran/webpagetest-api)
+ * [gpagespeed](https://www.npmjs.com/package/gpagespeed)
+
+And of course we use all the tools in the [sitespeed.io suite](({{site.baseurl}}/documentation/).
+
+### Analyse a page, what happens (10 step version)
+This is the super simple version, leaving out all other tools that are used:
+
+1. sitespeed.io gets a URL from the user.
+2. Open the browser
+3. Start record a video of the screen.
+4. Access the URL in the browser.
+5. When the page is finished, take a screenshot of the page.
+6. Run some JavaScripts to analyse the page (using Coach and Browsertime scripts).
+7. Stop the video and close the browser.
+8. Analyse the video to get metrics like FirstVisualChange and SpeedIndex.
+9. Generate a HTML report and/or send the metrics to Graphite or store the metrics however you want, with your own plugin.
+10. Enjoy!
+
+### The big picture (with all the tools)
+The big picture looks something like this:
+
+![How it all works]({{site.baseurl}}/img/sitespeed-universe-5.png)
+{: .img-thumbnail}
+
+## Developing on sitespeed.io
+
+### Setup
 On your local machine you need:
 
-- [Install NodeJS](https://nodejs.org/en/download/) latest LTS version
-- Fork [sitespeed.io](https://github.com/sitespeedio/sitespeed.io) and clone the forked repository
+- [Install NodeJS](https://nodejs.org/en/download/) latest LTS version.
+- You need Git and fork [sitespeed.io](https://github.com/sitespeedio/sitespeed.io) and clone the forked repository.
+- Install Chrome/Firefox
 - Go to the cloned directory and run *npm install*
-- You are ready to go! To run locally: *bin/sitespeed.io https://www.sitespeed.io -n 1
-- Now make some changes to the pug templates and re-run.
+- You are ready to go! To run locally: *bin/sitespeed.io https://www.sitespeed.io -n 1*
+- You can change the log level by adding the verbose flag. Verbose mode prints progress messages to the console. Enter up to three times (-vvv) to increase the level of detail: *bin/sitespeed.io https://www.sitespeed.io -n 1* -v
+
 
 To run the Docker version:
+
 - Install [Docker Community Edition](https://docs.docker.com/engine/installation/)
 - You need to fork and clone [sitespeed.io](https://github.com/sitespeedio/sitespeed.io).
 - Run *docker build sitespeedio/sitespeed.io .* in the cloned directory to build the container
 - Run *docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/*
 
 If you want to test and push to Graphite/InfluxDB:
-- Go to *development/* in the cloned dir and read the index.md file
-- Build the sitespeed.io container: *docker-compose build sitespeed*
-- Run: *docker-compose run sitespeed http://www.sitespeed.io --video --speedIndex -n 1 --graphite.host=graphite* to push the data to Graphite
-- Make your changes and rebuild the container *docker-compose build sitespeed*
 
-## Plugins
+- Go to *docker/* in the cloned dir and start the container: *docker-compose up*
+- Go back one level and run *docker build sitespeedio/sitespeed.io .* in the cloned directory to build the container
+- Run: *docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.iohttp://www.sitespeed.io -n 1 --graphite.host=192.168.65.1* to push the data to Graphite. The IP is the localhost IP if you run on a Mac.
+- Check the metrics at [http://127.0.0.1:3000/](http://127.0.0.1:3000/).
+
+### Plugins
 Everything in sitespeed.io (well almost everything) is a plugin. Each plugin will be called, for each message sent in the application and then called when everything is finished.
 
 The [plugin structure]({{site.baseurl}}/documentation/sitespeed.io/plugins/#create-your-own-plugin) looks like that.
 
-## Analyzing a URL step by step
-The flow looks like this:
-
-1. You start the application and feed it with a URL/URLs.
-2. The app will go through the configured plugins and start them while each plugin waits for messages.
-3. The app will send the URLs as URL messages and the plugins that listens to that type of messages will receive them. When a plugin is finished, it will post other messages on it's findings.
-4. When all URLs are finished, the plugins receive a "close" call to finalize and prepare their findings.
-5. Finish
-
-## Using Pug
+### Using Pug
 We use [Pug](https://pugjs.org) as template for the HTML. If you are use to debug with console.log we have a special feature for you. We pass on JSON to the templates, so if you want to output the data structure in the HTML you can easily do that by just adding:
 
 ~~~
@@ -64,10 +99,15 @@ p #{JSON.stringify(pageInfo)}
 
 Where pageInfo is the data structure that you wanna inspect.
 
-## Use sitespeed.io from NodeJS
+### Before you send a PR
+Always make sure your code follow our lint rule by running: *npm run lint*
+
+### Use sitespeed.io from NodeJS
 If you want to integrate sitespeed.io into your NodeJS application you can checkout how we do that in [our Grunt plugin](https://github.com/sitespeedio/grunt-sitespeedio/blob/master/tasks/sitespeedio.js). It's a great working example. :)
 
-## Contributing to the Documentation
+### Contributing to the documentation
+The documention lives in your cloned directory under *docs/*.
+
 First make sure you have Bundler: <code>gem install bundler</code>
 
 You should upgrade your ruby gems too: <code>gem update --system</code>
@@ -78,7 +118,7 @@ To run the documentation server locally execute the following from within the /d
 
 Visit http://localhost:4000/ in the browser of your choice.
 
-## Debugging with Chrome
+### Debugging with Chrome
 You can debug sitespeed.io using Chrome and NodeJS > 6. Thanks [@moos](https://github.com/moos) for sharing.
 
 ~~~bash

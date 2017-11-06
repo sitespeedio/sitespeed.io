@@ -17,6 +17,7 @@ twitterdescription: Install sitespeed.io using npm, yarn or Docker.
 {:toc}
 
 # Install
+You can run sitespeed.io using our Docker containers or using NodeJS.
 
 ## Docker
 
@@ -41,7 +42,7 @@ That will output the data from the run in the current directory. You can read mo
 
 ### Mac & Linux
 
-Prerequisites: Install [latest NodeJS LTS](https://nodejs.org/en/download/) ([Linux](https://github.com/creationix/nvm)) and make sure you have [npm](https://github.com/npm/npm) or [yarn](https://yarnpkg.com/) installed. Also install Chrome/Firefox.
+Prerequisites: Install [latest NodeJS LTS](https://nodejs.org/en/download/) ([Linux](https://github.com/creationix/nvm)) and make sure you have [npm](https://github.com/npm/npm) or [yarn](https://yarnpkg.com/) installed. Also install Chrome/Firefox (you need them to collect metrics).
 
 #### npm
 If you prefer npm, just run:

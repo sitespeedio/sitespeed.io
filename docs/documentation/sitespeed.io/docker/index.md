@@ -17,19 +17,17 @@ twitterdescription: Use Docker to run sitespeed.io.
 {:toc}
 
 ## Containers
-Docker is the preferred installation method because almost every dependency is handled for you for all the features in sitespeed.io!
+Docker is the preferred installation method because every dependency is handled for you for all the features in sitespeed.io.
 
- * [Chrome, Firefox & Xvfb](https://hub.docker.com/r/sitespeedio/sitespeed.io/)
-
-It also contains FFMpeg and Imagemagick, so we can record a video and get metrics like SpeedIndex using [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics).
+We have a ready made container with [Chrome, Firefox & Xvfb](https://hub.docker.com/r/sitespeedio/sitespeed.io/). It also contains FFMpeg and Imagemagick, so we can record a video and get metrics like SpeedIndex using [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics).
 
 ### Structure
-The structure looks like this:
+The Docker structure looks like this:
 
 [NodeJS with Ubuntu 17](https://github.com/sitespeedio/docker-node) -> [VisualMetrics dependencies](https://github.com/sitespeedio/docker-visualmetrics-deps) ->
 [Firefox/Chrome/xvfb](https://github.com/sitespeedio/docker-browsers) -> [sitespeed.io](https://github.com/sitespeedio/sitespeed.io/blob/master/Dockerfile)
 
-The first container installs NodeJS (latest LTS) on Ubuntu 17. The next one adds the dependencies (FFMpeg, ImageMagick and some Python libraries) needed to run [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics). We then install specific version of Firefox, Chrome and lastly xvfb. Then in last step, we add sitespeed and tag it to the sitespeed.io version number.
+The first container installs NodeJS (latest LTS) on Ubuntu 17. The next one adds the dependencies (FFMpeg, ImageMagick and some Python libraries) needed to run [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics). We then install specific version of Firefox, Chrome and lastly xvfb. Then in last step, we add sitespeed.io and tag it to the sitespeed.io version number.
 
 We lock down the browsers to specific versions for maximum compatibility and stability with sitespeed.io's current feature set; upgrading once we verify browser compatibility.
 {: .note .note-info}
@@ -60,7 +58,6 @@ Using `-v "$(pwd)":/sitespeed.io` will map the current directory inside Docker a
 {: .note .note-info}
 
 
-
 ## More about volumes
 
 If you want to feed sitespeed.io with a file with URLs or if you want to store the HTML result, you should setup a volume. Sitespeed.io will do all the work inside the container in a directory located at */sitespeed.io*. To setup your current working directory add the *-v "$(pwd)":/sitespeed.io* to your parameter list. Using "$(pwd)" will default to the current directory. In order to specify a static location, simply define an absolute path: *-v /Users/sitespeedio/html:/sitespeed.io*
@@ -76,7 +73,7 @@ docker pull sitespeedio/sitespeed.io:X.Y.Z
 
 Then change your start script (or where you start your container) to use the new version number.
 
-## Synchronize docker machines time with host
+## Synchronise docker machines time with host
 
 If you want to make sure your containers have the same time as the host, you can do that by adding <code>-v /etc/localtime:/etc/localtime:ro</code> (Note: This is specific to Linux).
 
@@ -100,6 +97,8 @@ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -b firefox ht
 
 ## Troubleshooting
 
+If something doesn't work, it's hard to guess what't wrong. Then hook up x11vnc with xvfb so that you can see what happens on your screen.
+
 ### Inspect the container
 We autostart sitespeed.io when you run the container. If you want to check what's in the container, you can do that by changing the entry point.
 
@@ -107,8 +106,8 @@ We autostart sitespeed.io when you run the container. If you want to check what'
 docker run -it --entrypoint bash sitespeedio/sitespeed.io:6.0.0
 ~~~
 
-### Visualize your test in XVFB
-The docker containers have `x11vnc` installed which enables visualization of the test running inside `Xvfb`. To view the tests, follow these steps:
+### Visualise your test in XVFB
+The docker containers have `x11vnc` installed which enables visualisation of the test running inside `Xvfb`. To view the tests, follow these steps:
 
 - You will need to run the sitespeed.io image by exposing a PORT for vnc server. By default this port is 5900. If you plan to change your port for VNC server, then you need to expose that port.
 

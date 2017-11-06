@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Continuous integration - Documentation - sitespeed.io
+title: Run sitespeed.io in your continuous integration
 description: Use sitespeed.io in your Continuous Integration setup with Jenkins, Grunt or Team City.
 keywords:  Continuous Integration, jenkins, grunt, team city, documentation, web performance, sitespeed.io
 author: Peter Hedenskog
@@ -58,7 +58,7 @@ Remember that you can also send the metrics to Graphite to keep a closer eye on 
 We have an example project for setting up Travis [https://github.com/sitespeedio/travis/](https://github.com/sitespeedio/travis/blob/master/.travis.yml). You should not try to use timings in your budget, simply because they tend to vary and be highly unreliable. We suggest using metrics that do not vary greatly and will be the same between runs like Coach score or number of requests.
 
 ## Grunt plugin
-Checkout the [grunt plugin](https://github.com/sitespeedio/grunt-sitespeedio)!
+Checkout the [grunt plugin](https://github.com/sitespeedio/grunt-sitespeedio).
 
 ## Gulp plugin
-Checkout Ankit Singhals [gulp plugin](https://github.com/dreamzmaster/gulp-sitespeedio) (hopefully supporting sitespeed.io 4.0 soon).
+Checkout Ankit Singhals [gulp plugin](https://github.com/dreamzmaster/gulp-sitespeedio).
