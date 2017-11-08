@@ -18,6 +18,10 @@ the context so plugins can register which metrics should be picked up by Graphit
 
 * Running Docker adds --video and --speedIndex by default to make it easier for beginners.
 
+### Bug fixes
+* We finally exit with 1 (error) if one of the URLs fails.[#1267](https://github.com/sitespeedio/sitespeed.io/issues/1267) and [#1779](https://github.com/sitespeedio/sitespeed.io/pull/1779).
+
+
 ### Deprecations
 * The --plugins.load and -plugins.disable options are deprecated in favor of --plugins.add and -plugins.remove. The previous syntax was cumbersome to use since it allowed for multiple plugins to be separated by space. When using it before the url argument, e.g.
 ```sh
