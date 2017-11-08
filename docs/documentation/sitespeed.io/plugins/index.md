@@ -67,19 +67,24 @@ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io
 
 If you want to run plugins that you created yourself or that are shared from others, you can either install the plugin using npm (locally) and load it by name or point out the directory where the plugin lives.
 
+
+### Mount your plugin in Docker
+
 If you run in Docker and you should. You will need to mount your plugin directory as a volume. This is the recommended best practice. Practically you should clone your repo on your server and then mount it like this.
 
 ~~~bash
 docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -b firefox --plugins.load /sitespeed.io/myplugin -n 1 https://www.sitespeed.io/
 ~~~
 
-If you are running outside of docker you can load it relative locally.
+### Relative using NodeJS
+If you are running outside of Docker you can load it relative locally.
 
 ~~~bash
 sitespeed.io https://www.sitespeed.io --plugins.load ../my/super/plugin
 ~~~
 
-If you want to create an image of sitespeedio with your plugins pre-baked for sharing you can also do so using the following Dockerfile.
+### Pre-baked Docker file
+If you want to create an image of sitespeed.io with your plugins pre-baked for sharing you can also do so using the following Dockerfile.
 
 ~~~
 FROM sitespeedio/sitespeed.io:<insert version here>
@@ -140,21 +145,25 @@ module.exports = {
 This is the name of your plugin. You can use the name when you want to target specific options to your plugin. If you're plugin name is *browsertime* you can make sure all your options start with that name.
 
 ### open(context, options)
-The open function is called once when sitespeed.io starts, it's in this function you can initialize whatever you need within your plugin. You will get the *context* and the *options*.
+The open function is called once when sitespeed.io starts, it's in this function you can initialise whatever you need within your plugin. You will get the *context* and the *options*.
 
 The *context* holds information for this specific run that generated at runtime and looks like this:
 
 ~~~
 {
-  storageManager, // The storage manager is what you use to store data to disk
-  dataCollection, // a shared collection of the collected data
+  storageManager,  // The storage manager is what you use to store data to disk
+  resultUrls,
   timestamp, // The timestamp of when you started the run
   budget, // If you run with budget, the result will be here
-  log // The logger used in sitespeed.io, use it to log https://github.com/seanmonstar/intel
+  name, // The name of the run (the start URL )
+  log, // The logger used in sitespeed.io, use it to log https://github.com/seanmonstar/intel
+  messageMaker, // Help methods to send messages in the queue
+  filterRegistry // Register metrics that will be sent to Graphite/InfluxDB
 }
 ~~~
 
-You can checkout the [StorageManager](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/resultsStorage/storageManager.js) and the [DataCollection](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/dataCollection.js) to get a feel of what you can accomplish.
+You can checkout the [StorageManager](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/core/resultsStorage/storageManager.js),
+[messageMaker](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/messageMaker.js) and [filterRegistry](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/filterRegistry.js) to get feel how you can use them.
 
 The *options* are the options that a user will supply in the CLI, checkout the [CLI implementation](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/cli.js) to see all the options.
 
@@ -176,16 +185,16 @@ If you want to catch it, you can do something like this:
 switch (message.type) {
   case 'url':
     {
-      // do some analyze on the URL
+      // do some analyse on the URL
     }
 ~~~
 
-When you are finished analyzing the URL, your plugin can then send a message with the result, so other plugins can use it.
+When you are finished analysing the URL, your plugin can then send a message with the result, so other plugins can use it.
 
 Here's a snippet of Browsertime sending the screenshots message (the actual screenshot is in *results.screenshots*):
 
 ~~~
-const messageMaker = require('support/messageMaker');
+const messageMaker = context.messageMaker;
 ...
 
 queue.postMessage(make('browsertime.screenshot', results.screenshots, {
@@ -194,15 +203,25 @@ queue.postMessage(make('browsertime.screenshot', results.screenshots, {
 }));
 ~~~
 
-If you want to send messages from within your plugin, the plugin will need to depend on sitespeed and you can use require to include the message maker like this:
+If you want to send messages from within your plugin, you get it from the context.
 
 ~~~
-const messageMaker = require('sitespeed.io/lib/support/messageMaker');
+const messageMaker = context.messageMaker;
 ~~~
 
 
 ### close(options, errors)
-When all URLs have been analyzed, the close function is called once for each plugin. You can use this function to store the data that you collected.
+When all URLs have been analysed, the close function is called once for each plugin. The idea with the close function is to close down assets that your plugin created. Normally the close function is nothing you need to implement.
+
+### Messages to act on
+There are a couple of pre defined messages that will always passed around in the queue.
+
+* **sitespeedio.setup** - is the first message that will be passed to all plugins. When you get this message you can pass on information to other plugins. For example if you send pug files to the HTML plugin or JavaSript to browsertime.
+* **sitespeedio.summarize** - all URLs are analysed and the plugins need to summarise the metrics.
+* **sitespeedio.render** - it is time to render (=write data to disk).
+
+Plugins also pass on message to each other. The HTML plugin also sends a **html.finished** message when the HTML is written to disk. The S3 plugin listens for that message and when it gets it it uploads the files and then sends a **s3.finished** message. And then the Slack plugin listens on **s3.finished** messages and then sends a Slack message.
+
 
 ## What's missing
 There's no way for a plugin to tell the CLI about what type of configuration/options that are needed, but there's an [issue](https://github.com/sitespeedio/sitespeed.io/issues/1065) for that. Help us out if you have ideas!

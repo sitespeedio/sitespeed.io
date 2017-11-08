@@ -28,9 +28,8 @@ You have the following options when running sitespeed.io within docker (run <cod
 
 
 ## The basics
-If you installed with the global option, run the command *sitespeed.io* else run the script *bin/sitespeed.js*.  In the examples, we will use the globally installed version.
 
-You can analyse a site either by crawling or by feeding sitespeed.io with a list of URLs you want to analyze.
+You can analyse a site either by crawling or by feeding sitespeed.io with a list of URLs you want to analyse.
 
 ### Analyse by URLs
 The simplest way to run sitespeed.io is to give it a URL:
@@ -56,9 +55,9 @@ http://www.yoursite.com/where/we/are/
 Another feature of the plain text file is you can add aliases to the urls.txt file after each URL. To do this, add a non-spaced string after each URL that you would like to alias:
 
 ~~~
-http://www.yoursite.com/path/
+http://www.yoursite.com/ Start_page
 http://www.yoursite.com/my/really/important/page/ Important_Page
-http://www.yoursite.com/where/we/are/ Page2
+http://www.yoursite.com/where/we/are/ We_are
 ~~~
 *Note: Spaces are used to delimit between the URL and the alias, which is why the alias cannot contain one.*
 
@@ -139,7 +138,7 @@ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io
 ~~~
 
 ### Output folder or where to store the result
-You can change where you want the data to be stored by setting the <code>--outputFolder</code> parameter. That is good in scenarios where you want to change the default behavior and put the output in a specific location:
+You can change where you want the data to be stored by setting the <code>--outputFolder</code> parameter. That is good in scenarios where you want to change the default behaviour and put the output in a specific location:
 
 ~~~bash
 docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --outputFolder /my/folder ".ryanair.com" https://www.sitespeed.io/
@@ -147,7 +146,7 @@ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io
 
 ### Configuration as JSON
 
-You can keep all your configuration in a JSON file and then pass it on to sitespeed, and override with CLI parameters.
+You can keep all your configuration in a JSON file and then pass it on to sitespeed.io, and override with CLI parameters.
 
 Create a config file and call it config.json:
 
@@ -180,7 +179,7 @@ If you want to override and run the same configuration but using Firefox, you ju
 docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --config config.json -b firefox https://www.sitespeed.io
 ~~~
 
-The CLI will always override a JSON config.
+The CLI will always override the JSON config.
 
 ## Advanced
 

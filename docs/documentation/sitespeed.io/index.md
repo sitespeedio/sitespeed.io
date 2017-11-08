@@ -18,11 +18,11 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Getting started](getting-started/) - get up and running with sitespeed.io
  * [Installation](installation/) - install using npm, yarn or run our Docker containers.
  * [Configuration](configuration/) - there's a lot of things you can do with sitespeed.io, lets checkout how!
- * [How it all works](how-it-all-works/) - lets checkout how everything works.
  * [Browsers](browsers/) - collect timings using real browsers. We support Firefox, Chrome and Chrome on Android.
  * [Connectivity](connectivity/) - set the connectivity to emulate real users network conditions.
  * [Use Cases](use-cases/) - find out best practices for testing a site, compare with other sites.
  * [Performance Dashboard](performance-dashboard/) - keep track of your metrics and performance.
+ * [F.A.Q and Best Practice](best-practice/) - here we keep track of questions we get in Slack.
  * [Performance Budget](performance-budget/) - make sure you are within your performance budget.
  * [Plugins](plugins/) - list/disable/enable or create your own plugin.
  * [Pre/post scripting](prepostscript/) - run Selenium scripts before/after you test a URL.
@@ -30,7 +30,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Continuous Integration](continuous-integration/) - generate JUnit XML/TAP and use Jenkins, Grunt or the Gulp plugin.
  * [Docker](docker/) - how to use our Docker containers.
  * [Video](video/) - all that you can do with the video.
- * [Upgrade](upgrade/) - upgrading from 3.x to 4.0 check out our guide here.
+ * [Upgrade](upgrade/) - upgrading from 5.x to 6.0 check out our guide here.
  * [Mobile phones](mobile-phones/) - test using your mobile phone (Android only).
  * [WebPageTest](webpagetest/) - drive WebPageTest and fetch metrics and graph them.
  * [Developers](developers/) - start here when you want to do PRs or create a plugin.

@@ -1,38 +1,112 @@
 ---
 layout: default
-title: Best practice using sitespeed.io
-description:
-keywords: best practice
+title: F.A.Q. and best practice using sitespeed.io
+description: Here we keep questions that gets asked on our Slack channel or frequently on Github.
+keywords: best practice, faq
 nav: documentation
 category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription:
 ---
-[Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / Best Practice
+[Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / F.A.Q. and Best Practice
 
-# Best Practice
+# F.A.Q and Best Practice
 {:.no_toc}
 
 * Lets place the TOC here
 {:toc}
 
-## Test cached pages
+Here we keep questions that are frequently asked at Slack or at Github.
 
-## Setting a cookie
+## Running tests
 
-## Test multiple pages
+### How do I test cached pages?
+How do I test cached pages? The easiest way to do that is to use the **--preURL** parameter:
 
-## Choosing servers to run
-Cloud vs bare metal
+~~~bash
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --preURL https://www.sitespeed.io/documentation/ https://www.sitespeed.io/
+~~~
 
-## Running tests from multiple locations
+In the example the browser will first go to https://www.sitespeed.io/documentation/ and then with a primed cache navigate to https://www.sitespeed.io/.
 
-## Changing CPU
+### How do I set a cookie?
+The current way to set cookies is to add a request header using **-r**. We may want to add specific cookie functionality in the future!
 
-## Should I choose Graphite or InfluxDB?
+### How do I test multiple pages in the same run?
 
-## Throttle or not throttle your connection
+If you want to test multiple URLs, you can used line them up in the cli:
 
-## Handling the massive amount of data
+~~~bash
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io https://www.sitespeed.io/documentation/
+~~~
+
+You can also use a plain text file with one URL on each line. Create a file called urls.txt (but you can call it whatever uoy want):
+
+~~~
+http://www.yoursite.com/path/
+http://www.yoursite.com/my/really/important/page/
+http://www.yoursite.com/where/we/are/
+~~~
+
+Another feature of the plain text file is you can add aliases to the urls.txt file after each URL. To do this, add a non-spaced string after each URL that you would like to alias:
+
+~~~
+http://www.yoursite.com/ Start_page
+http://www.yoursite.com/my/really/important/page/ Important_Page
+http://www.yoursite.com/where/we/are/ We_are
+~~~
+
+And then you give feed the file to sitespeed.io:
+
+~~~bash
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io urls.txt
+~~~
+
+### How many runs should I do on the same page to get stable metrics?
+How many runs depends on your site, and what you want to collect. Pat told us about how he is doing five runs when testing for Chrome. Hitting a URL 3-5 times is often ok when you want to fetch timing metrics, but increasing to 7-11 can give better values. Start low and if you see a lot of variations between runs, increase until you get some solid values.
+
+Getting timing metrics is one thing, but it’s also important to collect how your page is built. You need to keep track of the size of pages, how many synchronously loaded javascript you have and so on. For that kind of information you only need one run per URL.
+
+You should also try out our new setup with WebPageReplay.
+
+### I want to test a user journey (multiple pages) how do I do that?
+We currently don't support that but feel free to do a PR in Browsertime.
+
+### I want to test on different CPUs how do I do that?
+We currently don't built in support for changing the CPU. What we do know is that you should not use the built in support in Chrome or try to simulate slow CPUs by running on slow AWS instance. What should do is what WPTAgent do. You can check the code at [https://github.com/WPO-Foundation/wptagent/blob/master/wptagent.py](https://github.com/WPO-Foundation/wptagent/blob/master/wptagent.py) and do the same before you start a run and then remove it after the run.
+
+### Throttle or not throttle your connection?
+You should always limit the connectivity and try to emulate the connectivity of your users because it will make it easier for you to find regressions. Check out or [connectivity guide]({{site.baseurl}}/documentation/sitespeed.io/connectivity/).
+
+## Servers
+
+### Cloud providers
+We've been testing out different cloud providers (AWS, Google Cloud, Digital Ocean, Linode etc) and the winner for us has been AWS. We've been using c4.large and testing the same size (or bigger) instances on other providers doesn't give the same stable metric overtime.
+
+One important learning is that you can run on <60% usage on your server, and everything looks fine but the metrics will not be stable since your instance is not isolated from other things that runs on your servers.
+
+### Bare metal
+We haven't tested on bare metal so if you have, please let us know how it worked out.
+
+### Running tests from multiple locations
+Can I test the same URLs from different locations and how do I make sure they don't override each others data in Graphite?
+
+You should set different namespaces depending on location (**--graphite.namespace**). If you run one test from London, set the namespace to **--graphite.namespace sitespeed_io.london**. Then you can choose individual locations in the dropdown in the pre-made dashboards.
+
+## Store the data
+
+### Should I choose Graphite or InfluxDB?
+If your organisation is running Graphite, use that. If your used to InfluxDB, use that. If you don't use any of them then use Graphite since we have more ready made dashboards for Graphite.
+
+### Handling the massive amount of data
+sitespeed.io will generate  lots of metrics and data, how do I handle that?
+
+#### Graphite
+Make sure to edit your *storage-schemas.conf* to match your metrics and how long time you want to keep them. See [Graphite setup in production]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#setup-important).
+
+#### S3
+When you create your buckets at S3, you can configure how long time it will keep your data (HTML/screenshots/videos). Make it match how long time you keep your metrics in Graphite or how long back in time you think you need it. Usually that is shorter than you think :) When you find an regression (hopefully within an hour or at least day) you want to compare that data with what it looked like before. Storing things at S3 for 2 weeks should be ok, but you choose yourself.
 
 ## Alerting
+
+We've been trying out alerts in Grafana for a while and it works really good for us. Checkout the [alert section]({{site.baseurl}}/documentation/sitespeed.io/alerts/) in the docs.

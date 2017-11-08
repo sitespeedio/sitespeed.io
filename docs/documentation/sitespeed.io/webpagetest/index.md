@@ -17,12 +17,14 @@ twitterdescription: Drive WebPageTest using sitespeed.io and include the metrics
 {:toc}
 
 ## Using WebPageTest
-We still love [WebPageTest](https://www.webpagetest.org/) (WPT), so you can drive WebPageTest through sitespeed.io. When including WPT you will get a tab for each result and if you are using Graphite, WebPageTest metrics will be automatically sent.
+We love [WebPageTest](https://www.webpagetest.org/) (WPT), so we have integrated WebPageTest with sitespeed.io (it's a plugin). When including WPT you will get a tab for each result and if you are using Graphite, WebPageTest metrics will be automatically sent.
 
 To use WPT you have a few options
 - You can get an [API key](https://www.webpagetest.org/getkey.php) (sponsored by Akamai) for the public version
 - Follow Pat Meenans instructions on how to get [a private version up and running in 5 minutes](http://calendar.perfplanet.com/2014/webpagetest-private-instances-in-five-minutes/).
 - Read how [WikiMedia setup an instance using AWS](https://wikitech.wikimedia.org/wiki/WebPageTest).
+
+You should use if you wanna need to run tests on browsers that WebPageTest supports but not sitespeed.io (Safari on Iphone and Microsoft browsers).
 
 ## Configuration
 Internally sitespeed.io uses the [WebPageTest API](https://github.com/marcelduran/webpagetest-api), so you can do almost all the same thing as with the standalone API.

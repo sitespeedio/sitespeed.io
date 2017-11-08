@@ -102,6 +102,3 @@ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io
 ~~~
 
 The browser will first access https://www.sitespeed.io/, this will fill the cache and then go to https://www.sitespeed.io/documentation/ where it will collect all the metrics.
-
-Firefox (and/or the HAR Export trigger) has a bug that reports requests in the HAR file as 200 not flagging that they are from the local browser cache. Follow the [bug here](https://github.com/sitespeedio/browsertime/issues/121). We recommend you use Chrome until this is fixed.
-{: .note .note-warning}
