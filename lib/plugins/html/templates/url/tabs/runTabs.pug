@@ -1,0 +1,20 @@
+a#summary(href='#summary', data-name='tabs', onclick='return selectTab(this)', if-not-selected)
+  img(src= rootPath + 'img/summary64.png', height=32, alt='Summary')
+  | Summary
+if d.coach && (d.coach.pageSummary || d.coach.run)
+  a#coach(href='#coach', data-name='tabs', onclick='return selectTab(this)')
+    img(src= rootPath + 'img/coach64.png', height=32, alt='Coach')
+    | Coach
+if d.browsertime && (d.browsertime.pageSummary || d.browsertime.run)
+  a#browsertime(href='#browsertime', data-name='tabs', onclick='return selectTab(this)')
+    img(src= rootPath + 'img/browsertime64.png', height=32, alt='Browsertime')
+    | Browsertime
+if d.pagexray && (d.pagexray.pageSummary || d.pagexray.run)
+  a#pagexray(href='#pagexray', data-name='tabs', onclick='return selectTab(this)')
+    img(src= rootPath + 'img/xray64.png', height=32, alt='PageXray')
+    | PageXray
+each pageRun in pageRuns
+  a(id=pageRun href='#' + pageRun, data-name='tabs', onclick='return selectTab(this, \"' + pageRun + '-panel\"' +')')
+   | #{pageRun}
+
+include ./scripts
