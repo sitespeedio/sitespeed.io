@@ -117,12 +117,7 @@ block content
     section#pagexray-panel
       include ./pagexray/index.pug
 
-  if d.webpagetest
-    section#webpagetest-panel
-      - var wpt = pageInfo.data.webpagetest.pageSummary.data.median
-      - var wptRoot = pageInfo.data.webpagetest.pageSummary.data;
-      include ./webpagetest/index.pug
-
-  if d.gpsi
-    section#gpsi-panel
-      include ./gpsi/index.pug
+  each pageSummary in pageSummaries
+    - var panelName = pageSummary + '-panel'
+    section(id=panelName)
+      p !{pugs[pageSummary]}

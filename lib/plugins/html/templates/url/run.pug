@@ -28,7 +28,7 @@ block content
 
   if pageInfo.error
     .error= pageInfo.error
-  include ./tabs.pug
+  include ./runTabs.pug
 
   section#summary-panel
     h2 Summary
@@ -122,8 +122,7 @@ block content
     section#pagexray-panel
       include ./pagexray/index.pug
 
-  if d.webpagetest && d.webpagetest.run
-    section#webpagetest-panel
-      - var wpt = pageInfo.data.webpagetest.run;
-      - var wptRoot = pageInfo.data.webpagetest;
-      include ./webpagetest/index.pug
+  each pageRun in pageRuns
+    - var panelName = pageRun + '-panel'
+    section(id=panelName)
+      p !{pugs[pageRun]}
