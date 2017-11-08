@@ -1,18 +1,17 @@
-FROM sitespeedio/sitespeed.io:latest
+FROM sitespeedio/sitespeed.io:5.6.5
 
 # Install Go, WebPageReplay and the webpagereplay wrapper
 
 WORKDIR /work
-RUN sudo apt-get update && sudo apt-get install libnss3-tools \
+RUN apt-get update && apt-get install libnss3-tools \
   curl \
   git \
-  iproute2 \
-  iptables -y && \
+  iproute2 -y && \
   mkdir -p $HOME/.pki/nssdb && \
   certutil -d $HOME/.pki/nssdb -N && \
   curl -O https://storage.googleapis.com/golang/go1.9.linux-amd64.tar.gz && \
   tar -xvf go1.9.linux-amd64.tar.gz && \
-  sudo mv go /usr/local
+  mv go /usr/local
 
 ENV PATH="/usr/local/go/bin:${PATH}"
 
