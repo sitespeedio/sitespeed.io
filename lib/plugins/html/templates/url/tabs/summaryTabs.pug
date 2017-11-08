@@ -14,7 +14,7 @@ if d.pagexray && (d.pagexray.pageSummary || d.pagexray.run)
     img(src= rootPath + 'img/xray64.png', height=32, alt='PageXray')
     | PageXray
 each pageSummary in pageSummaries
-  a(id=pageSummary href='#' + pageSummary, data-name='tabs', onclick='return selectTab(this, \"' + pageSummary + '-panel\"' +')')
+  a(id=pageSummary, href='#' + pageSummary, data-name='tabs', onclick='return selectTab(this, \"' + pageSummary + '-panel\"' +')')
    | #{pageSummary}
 
 include ./scripts
