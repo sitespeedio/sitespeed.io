@@ -118,6 +118,6 @@ block content
       include ./pagexray/index.pug
 
   each pageSummary in pageSummaries
-    - var panelName = pageSummary + '-panel'
+    - var panelName = pageSummary.id + '-panel'
     section(id=panelName)
-      p !{pugs[pageSummary]}
+      p !{pugs[pageSummary.id]}

@@ -123,6 +123,6 @@ block content
       include ./pagexray/index.pug
 
   each pageRun in pageRuns
-    - var panelName = pageRun + '-panel'
+    - var panelName = pageRun.id + '-panel'
     section(id=panelName)
-      p !{pugs[pageRun]}
+      p !{pugs[pageRun.id]}

@@ -14,6 +14,11 @@ script(type='text/javascript').
     if (sel) sel.removeAttribute('selected');
     select(el);
 
+    var sections = document.getElementsByTagName('section');
+     for (i = 0; i < sections.length; i++) {
+      sections[i].style.display = 'none';
+     }
+
     if (panelId) {
      var panel = document.getElementById(panelId);
      panel.style.display = 'block';
