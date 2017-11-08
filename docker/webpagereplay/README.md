@@ -1,0 +1,1 @@
+docker run --cap-add=NET_ADMIN --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/wpr https://www.sitespeed.io
