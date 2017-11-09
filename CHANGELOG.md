@@ -20,6 +20,8 @@ the context so plugins can register which metrics should be picked up by Graphit
 
 * You can now create plugins that can generate HTML (per run or per page summary). [#1784](https://github.com/sitespeedio/sitespeed.io/pull/1784).
 
+* You can now override/add CSS from your plugin by sending message of the type *html.css* [#1787](https://github.com/sitespeedio/sitespeed.io/pull/1787)
+
 ### Bug fixes
 * We finally exit with 1 (error) if one of the URLs fails.[#1267](https://github.com/sitespeedio/sitespeed.io/issues/1267) and [#1779](https://github.com/sitespeedio/sitespeed.io/pull/1779).
 
