@@ -110,3 +110,18 @@ When you create your buckets at S3, you can configure how long time it will keep
 ## Alerting
 
 We've been trying out alerts in Grafana for a while and it works really good for us. Checkout the [alert section]({{site.baseurl}}/documentation/sitespeed.io/alerts/) in the docs.
+
+## Difference in metrics between WebPageTest and sitespeed.io
+Now and then it pops up an issue on Github where users ask why some metrics differs between WebPageTest and sitespeed.io.
+
+There's a couple of things to know that differs between WebPageTest and Browsertime/sitespeed.io but first I wanna say that it is wrong to compare between tools, it is right to continuously compare within the same tool to find regressions :)
+
+WPT and sitespeed.io differs by default when they end the tests. WPT ends when there hasn't been any networks traffic for 2 seconds (if I remember correctly). sitespeed.io ends 2 seconds after loadEventEnd. Both tools are configurable.
+
+WebPageTest on Windows (old version) records the video with 10 fps. 5.x of sitespeed.io uses 60 fps, coming sitespeed.io 6.0 will have 30 fps per default. New WebPageTest on Linux will have 30 fps per default. Running 60 fps will give you more correct numbers but then you need to have a server that can record a video of that pace.
+
+And a couple of generic things that will make your metrics differ:
+
+ * **Connectivity matters** -  You need to set the connectivity.
+ * **CPU matters** -  Running the same tests with the same tool on different machines will give different results.
+ * **Your page matters** - It could happen that your page has different sweat spots on connectivity (that makes the page render faster) so even a small change, will make the page much slower (we have that scenario on Wikipedia).
