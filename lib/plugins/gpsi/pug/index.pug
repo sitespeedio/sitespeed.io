@@ -1,6 +1,11 @@
+mixin numberCell(title, number)
+  td.number(data-title=title)= number
+
+mixin sizeCell(title, size)
+  td.number(data-title=title, data-value= size)= h.size.format(size)
+
 a
 h2 Google Page Speed Insights
-p.small Googles implementation of finding potential performance problems on your site.
 
 - var gpsiSummary = pageInfo.data.gpsi.pageSummary
 

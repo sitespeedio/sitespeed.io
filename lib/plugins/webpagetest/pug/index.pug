@@ -1,5 +1,19 @@
-include ../../_tableMixins
+mixin rowHeading(items)
+  thead
+    tr
+      each item in items
+        th= item
+
+mixin numberCell(title, number)
+  td.number(data-title=title)= number
+
+mixin sizeCell(title, size)
+  td.number(data-title=title, data-value= size)= h.size.format(size)
+
+- var wpt = pageInfo.data.webpagetest.run ? pageInfo.data.webpagetest.run : pageInfo.data.webpagetest.pageSummary.data.median
+- var wptRoot = pageInfo.data.webpagetest.run ? pageInfo.data.webpagetest : pageInfo.data.webpagetest.pageSummary.data;
 - var wptRun  = runNumber? runNumber : 1
+
 a
 h2 WebPageTest
 p.small Metrics & data collected using #{options.webpagetest.host}.&nbsp;
@@ -187,7 +201,7 @@ each view in ['firstView', 'repeatView']
     h3 Waterfall
     img.u-max-full-width(src='data/waterfall/wpt-waterfall-' + wptRun + '-' + view + '.png', alt='Waterfall view')
     h3 Connection view
-    img.u-max-full-width(src='data/waterfall/wpt-waterfall-connection-' + wptRun + '-' + view + '.png', alt='Connection view')
+    img.u-max-full-width(src='data/waterfall/wpt-waterfall-connection' + wptRun + '-' + view + '.png', alt='Connection view')
 
     h3 Request per content type
     .responsive
