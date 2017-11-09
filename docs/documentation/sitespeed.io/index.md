@@ -22,6 +22,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Connectivity](connectivity/) - set the connectivity to emulate real users network conditions.
  * [Use Cases](use-cases/) - find out best practices for testing a site, compare with other sites.
  * [Performance Dashboard](performance-dashboard/) - keep track of your metrics and performance.
+ * [Alerts](alerts/) - send alerts (email/Slack/PagerDuty etc) when you get a performance regression.
  * [F.A.Q and Best Practice](best-practice/) - here we keep track of questions we get in Slack.
  * [Performance Budget](performance-budget/) - make sure you are within your performance budget.
  * [Plugins](plugins/) - list/disable/enable or create your own plugin.
