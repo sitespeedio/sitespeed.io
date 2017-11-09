@@ -213,7 +213,7 @@ const messageMaker = context.messageMaker;
 ### close(options, errors)
 When all URLs have been analysed, the close function is called once for each plugin. The idea with the close function is to close down assets that your plugin created. Normally the close function is nothing you need to implement.
 
-### Messages to act on
+### Important messages
 There are a couple of pre defined messages that will always passed around in the queue.
 
 * **sitespeedio.setup** - is the first message that will be passed to all plugins. When you get this message you can pass on information to other plugins. For example if you send pug files to the HTML plugin or JavaSript to browsertime.
@@ -222,6 +222,50 @@ There are a couple of pre defined messages that will always passed around in the
 
 Plugins also pass on message to each other. The HTML plugin also sends a **html.finished** message when the HTML is written to disk. The S3 plugin listens for that message and when it gets it it uploads the files and then sends a **s3.finished** message. And then the Slack plugin listens on **s3.finished** messages and then sends a Slack message.
 
+### Create HTML for your plugin
+
+Since 6.0 your plugin can generate HTML. You can either generate HTML per run or per page. The first thing you need to do is to report your PUG file to the HTML plugin. You do that by sending a message to the HTML plugin.
+
+#### Send your pug file to the HTML plugin
+
+You start by listening to the generic setup message **sitespeedio.setup**. When you get that, you should send your pug file with a message called **html.pug**. That message needs to have four fields:
+
+ * id = the id of the plugin, need to be unique
+ * name = the friendly name displayed in the tab showing the data
+ * pug = the pug file as a String
+ * type = can be run or pageSummary. **run** is data you collect on every run and it will be a tab on each run page. **pageSummary** is data for a specific page and will generate a tab on the page summary page.
+
+Sending a pug looks something like this:
+
+~~~
+case 'sitespeedio.setup': {
+ queue.postMessage(
+  make('html.pug', {
+   id: 'gpsi',
+   name: 'GPSI',
+   pug: this.pug,
+   type: 'pageSummary'
+  })
+ );
+ break;
+}
+~~~
+
+#### Send the data
+The HTML plugin will automatically pickup data sent with the types of \*.run and \*.pageSummary. All these needs to have the URL so that it can be mapped to the right place.
+
+A message can look like this:
+
+~~~
+queue.postMessage(
+  make('gpsi.pageSummary', result, {
+    url,
+    group
+   })
+);
+~~~
+
+You can look at the [WebPageTest plugin](https://github.com/sitespeedio/sitespeed.io/tree/master/lib/plugins/webpagetest) as an example plugin that both sends run and pageSummary data.
 
 ## What's missing
 There's no way for a plugin to tell the CLI about what type of configuration/options that are needed, but there's an [issue](https://github.com/sitespeedio/sitespeed.io/issues/1065) for that. Help us out if you have ideas!
