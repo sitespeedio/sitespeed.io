@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Important information on how we work in sitespeed.io and related projects.
-description: Start here if you are new to sitespeed.io or web performance testing.
-keywords: introduction, getting started, documentation, web performance, sitespeed.io
+title: How we work.
+description: Learn more on how we work with privacy, COC and sustainability.
+keywords: privacy, code of conduct, open source, sustainability, sitespeed.io
 nav: documentation
 category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: Introduction for sitespeed.io.
+twitterdescription: Learn more on how we work with privacy, COC and sustainability.
 ---
 
 # Important
@@ -42,7 +42,7 @@ We work on the project after hours and usually that is enough to keep it going. 
 
 We have stayed away from taking money contributions so far (except an award from the [The Swedish Internet Infrastructure Foundation](https://www.iis.se/english/about-iis/)). That helps us to be independent (and that is important for us), but we aren't totally closing the door for money. But we prefer people helping out with PRs instead.
 
-## We wants to help you
+## We want to help you
 We really (yes I mean really) focus on helping you as a user. If you have a problem please [create an issue](https://github.com/sitespeedio/sitespeed.io/issues/new) or talk to us on our [Slack channel](https://sitespeedio.herokuapp.com/).
 
 If there's a common problem or a bug and we talk about it on Slack we will kindly ask you to create an issue. Issues are great because it helps people that has the same problem.
