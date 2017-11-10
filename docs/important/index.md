@@ -21,7 +21,7 @@ A couple of important things to know about our projects:
  - We always keep a CHANGELOG in the root of directory of the project. [Here's](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) the one we have for sitespeed.io. We always write down the changes we do in the project.
  - We always use [semantic versioning](http://semver.org/) when we do a release.
  - We try to release things as soon as the functionality is tested and ready (we release often). For sitespeed.io we try to do one major release each year.
- - We highly rely on testing on Travic-ci and our [own automatic testing](https://www.sitespeed.io/releasing-with-confidence/).
+ - We highly rely on testing on [Travic-CI](https://travis-ci.org/) and our [own automatic testing](https://www.sitespeed.io/releasing-with-confidence/).
 
 ## Privacy
 
@@ -30,13 +30,17 @@ We take your privacy really serious: Our [documentation site](https://www.sitesp
 But beware: Chrome and Firefox can call home (we know for fact that Chrome do). We would love PRs and tips how to make sure browsers don't call home when you run your tests.
 
 ## Code of Conduct
-Please follow our [Code Of Conduct](https://github.com/sitespeedio/sitespeed.io/blob/master/CODE_OF_CONDUCT.md).
+When you create issues, do PRs, use our Slack channel or contact us on email, please follow our [Code Of Conduct](https://github.com/sitespeedio/sitespeed.io/blob/master/CODE_OF_CONDUCT.md).
 
 ## Open Source
-We release our software under the [MIT License](https://github.com/sitespeedio/sitespeed.io/blob/master/LICENSE).
+We release our software under the [MIT License](https://github.com/sitespeedio/sitespeed.io/blob/master/LICENSE). Please respect it and respect our work: We ask you not to change the logo or the contribution to the project. Please do this to pay the respect to the many hours we put down into the project.
 
 ## Sustainability
-We've been releasing sitespeed.io since 2012 and we plan to continue do it. We have't
+We've been releasing sitespeed.io since 2012 and we plan to continue do it for a long time. At the moment we are a [three member team](../aboutus/) and we love to get more people involved!
+
+We work on the project after hours and usually that is enough to keep it going. Peter has been taking a couple of weeks off work each year to prepare for larger releases.
+
+We have stayed away from taking money contributions so far (except an award from the [The Swedish Internet Infrastructure Foundation](https://www.iis.se/english/about-iis/)). That helps us to be independent (and that is important for us), but we aren't totally closing the door for money. But we prefer people helping out with PRs instead.
 
 ## We wants to help you
 We really (yes I mean really) focus on helping you as a user. If you have a problem please [create an issue](https://github.com/sitespeedio/sitespeed.io/issues/new) or talk to us on our [Slack channel](https://sitespeedio.herokuapp.com/).
@@ -47,13 +51,13 @@ It sometimes happens that we get get contacted about issues privately via email 
 
 ## Who uses sitespeed.io
 
-We had plus one million downloads so far and still counting. We know that mul
+We had over one million downloads so far and still counting. We have companies in the Alexa top 10 that uses we sitespeed.io. We have students at the university that uses our tools. We are pretty sure sitespeed.io will work out good for you too.
 
-With 3.X we got the following feedback in the [Toolsday](http://www.toolsday.io/) podcast:
+With the old 3.X we got the following feedback in the [Toolsday](http://www.toolsday.io/) podcast:
 
 <blockquote cite="http://www.toolsday.io/episodes/performance.html">
 SpeedCurve has a really low barrier of entry ... it's a bit of a evolution maybe ... if you need something more advanced look into sitespeed.io"
  <span>By Taylor Jones (IBM) on the podcast Toolsday http://www.toolsday.io/episodes/performance.html</span>
 </blockquote>
 
-Note: SpeedCurve is a paid service built on top on the Open Source tool  [WebPageTest](http://www.webpagetest.org/). If you love WebPageTest (we do!) you can [drive it](/documentation/sitespeedio/webpagetest/) using sitespeed.io and collect the metrics and use it side by side with all the sitespeed.io metrics.
+Note: SpeedCurve is a paid service built on top on the Open Source tool  [WebPageTest](http://www.webpagetest.org/). If you love WebPageTest (we do!) you can [drive it](../documentation/sitespeed.io/webpagetest/) using sitespeed.io and collect the metrics and use it side by side with all the sitespeed.io metrics.
