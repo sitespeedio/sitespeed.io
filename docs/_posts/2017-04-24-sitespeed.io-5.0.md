@@ -107,13 +107,13 @@ We have finally been able to add support for your own request headers as well as
 Adding a request header:
 
 ~~~bash
-$ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/ -r Name:Value
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/ -r Name:Value
 ~~~
 
 Blocking all request on my.example.com:
 
 ~~~bash
-$ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/ --block my.example.com
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/ --block my.example.com
 ~~~
 
 ## Non backward compatible changes in 5.0

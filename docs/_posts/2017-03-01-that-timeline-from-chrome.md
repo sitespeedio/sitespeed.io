@@ -14,7 +14,7 @@ No that is not true! 4.5 got some awesome things that will help us all.
 ## New best practice for setting up connectivity
 As [reported](https://github.com/sitespeedio/browsertime/issues/271) by [Benedikt Christoph Wolters](https://github.com/worenga) the connectivity setup for tc for Docker wasn't perfect, it only added latency and limited upload. [Jonathan](https://twitter.com/beenanner) has created better way to do this by setting up Docker network bridges. Here's quick one on how you do that:
 
-~~~bash
+~~~
 docker network create --driver bridge --subnet=192.168.34.0/24 --gateway=192.168.34.10 --opt "com.docker.network.bridge.name"="docker2" cable
 tc qdisc add dev docker2 root handle 1: htb default 12
 tc class add dev docker2 parent 1:1 classid 1:12 htb rate 5mbit ceil 5mbit
@@ -24,7 +24,7 @@ tc qdisc add dev docker2 parent 1:12 netem delay 28ms
 You then have network called cable that you can use from your Docker container by adding <code>--network=cable</code> to your Docker commands.
 
 ~~~bash
-$ docker run --privileged --shm-size=1g --network=cable --rm sitespeedio/sitespeed.io -c cable --browsertime.connectivity.engine external https://www.sitespeed.io/
+docker run --privileged --shm-size=1g --network=cable --rm sitespeedio/sitespeed.io -c cable --browsertime.connectivity.engine external https://www.sitespeed.io/
 ~~~
 
 You have more examples [here]({{site.baseurl}}/documentation/sitespeed.io/browsers/#change-connectivity) and would love feedback and PRs on how to do the same on platforms not supporting tc.
