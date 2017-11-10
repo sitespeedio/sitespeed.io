@@ -54,7 +54,7 @@ When you as user choose to test a URL, this is what happens on a high level:
     7. Analyse the video to get Visual Metrics like First Visual Change and Speed Index.
     8. Browsertime passes all metrics and data on the queue so other plugins can use it.
  3. The HTML/Graphite/InfluxDB plugin collects the metrics in queue.
- 4. When all URLs are tested, sitespeed sends a message telling plugins to summarise the metrics and then render it
- 5. Plugins pickup the render message and the HTML plugin writes the HTML to disk
+ 4. When all URLs are tested, sitespeed sends a message telling plugins to summarise the metrics and then render it.
+ 5. Plugins pickup the render message and the HTML plugin writes the HTML to disk.
 
 Now it's time for you to [install and run sitespeed.io](../installation/).
