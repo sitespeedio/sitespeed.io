@@ -15,7 +15,12 @@ twitterdescription:
 
 <img src="{{site.baseurl}}/img/logos/compare.png" class="pull-right img-big" alt="PageXray logo" width="200" height="204">
 
-Make it easier to find regressions by comparing your [HAR](http://www.softwareishard.com/blog/har-12-spec/) files. Test it out [https://compare.sitespeed.io](https://compare.sitespeed.io/) or look at [the video](https://youtu.be/dCThwpglIeE).
+* Lets place the TOC here
+{:toc}
+
+## Introduction
+
+Compare makes it easy to find regressions by comparing your [HAR](http://www.softwareishard.com/blog/har-12-spec/) files. Test it out [https://compare.sitespeed.io](https://compare.sitespeed.io/) or look at [the video](https://youtu.be/dCThwpglIeE).
 
 ## First: Shout out!
 We couldn't built compare without the support or inspiration from the following people:
@@ -26,7 +31,10 @@ We couldn't built compare without the support or inspiration from the following 
 If you like our project, please give them also some extra love :)
 
 ## Comparing
+Compare two different HAR files and the result will look something like this:
+
 ![Compare two different HAR files](https://raw.githubusercontent.com/sitespeedio/compare/master/docs/img/compare.png)
+{: .img-thumbnail}
 
 ## How it works
 As long as your HAR files follow the [HAR specification](http://www.softwareishard.com/blog/har-12-spec/) you can use them in Compare. Standard HARs will give you some basic functionality and HARs from WebPageTest and sitespeed.io will give you more.
@@ -45,6 +53,7 @@ If you deploy your result from your sitespeed.io run to a server and use **--res
 If you also run with **--firstParty** (adding a regex that show which assets that are first/third parties) we will will show data grouped by party.
 
 ![First Party vs Third Party!](https://raw.githubusercontent.com/sitespeedio/compare/master/docs/img/firstparty.png)
+{: .img-thumbnail-center}
 
 ## How to use it
 You can either upload two HAR files (drag/drop) or give the URL to two URLs hosted online.
@@ -52,10 +61,11 @@ You can either upload two HAR files (drag/drop) or give the URL to two URLs host
 If you host your sitespeed.io result pages, you can copy/paste the URL to a page or to a specific run and Compare will automagically find the URL to the HAR file.
 
 ## How to contribute a.k.a what are we looking for?
-Send us a PR/create an issue. If you have big change coming up, please discuss it with us in an issue first.
+Send us a PR/[create an issue](https://github.com/sitespeedio/compare/issues/new). If you have big change coming up, please discuss it with us in an issue first.
 
 ## Deploy your own version
 Deploying your own version is easy:
+
 1. Clone the repo: `git clone git@github.com:sitespeedio/compare.git`
 2. Build: `cd compare && npm run build`
 3. Copy everything in *build/* to your server
