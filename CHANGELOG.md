@@ -22,6 +22,8 @@ the context so plugins can register which metrics should be picked up by Graphit
 
 * You can now override/add CSS from your plugin by sending message of the type *html.css* [#1787](https://github.com/sitespeedio/sitespeed.io/pull/1787)
 
+* Major work on the documentation: [https://www.sitespeed.io/](https://www.sitespeed.io/)
+
 ### Bug fixes
 * We finally exit with 1 (error) if one of the URLs fails.[#1267](https://github.com/sitespeedio/sitespeed.io/issues/1267) and [#1779](https://github.com/sitespeedio/sitespeed.io/pull/1779).
 
@@ -45,7 +47,7 @@ data you can just follow the old [DataCollector structure](https://github.com/si
 * We now output only the version number (and not package and version number) on --version.
 
 * As a first step to make it possible for plugins to generate HTML, we removed the hooks and instead only communicates with messages see: [#1732](https://github.com/sitespeedio/sitespeed.io/pull/1732) [#1758](https://github.com/sitespeedio/sitespeed.io/pull/1758). We now have three messages sent by the queue:
-*sitespeedio.setup* - The first message on the queue. A plugin can pickup this message and communicate with other plugins (send pugs to the HTML plugin, send JavaScript to Browsertime etc). The next message is *sitespeedio.summarize* (old summarize) that tells the plugins that all URLs are analyzed and you can now summarize the metrics. The last message is *sitespeedio.render* which tells the plugins to render content to disk. The HTML plugin pickup *sitespeedio.render*, render the HTML and then sends a *html.finished* message, that then other plugins can pickup.
+*sitespeedio.setup* - The first message on the queue. A plugin can pickup this message and communicate with other plugins (send pugs to the HTML plugin, send JavaScript to Browsertime etc). The next message is *sitespeedio.summarize* (old summarize) that tells the plugins that all URLs are analysed and you can now summarise the metrics. The last message is *sitespeedio.render* which tells the plugins to render content to disk. The HTML plugin pickup *sitespeedio.render*, render the HTML and then sends a *html.finished* message, that then other plugins can pickup.
 
 ## 5.6.4 2017-10-11
 ### Fixed
