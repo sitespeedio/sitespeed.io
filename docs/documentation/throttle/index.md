@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Throttle
+title: Throttle - Simulate slow network connections
 description: Simulate slow network connections on Linux and Mac OS X.
 keywords: throttle, documentation, web performance
 author: Peter Hedenskog
@@ -12,11 +12,21 @@ twitterdescription:
 # Throttle
 {:.no_toc}
 
-Simulate slow network connections on Linux and Mac OS X.
+* Lets place the TOC here
+{:toc}
 
-Inspired by [tylertreat/Comcast](https://github.com/tylertreat/Comcast), the [connectivity setting in the WPTAgent](https://github.com/WPO-Foundation/wptagent/blob/master/internal/traffic_shaping.py) and [sltc](https://github.com/sitespeedio/sltc).
+## Introduction
 
-Throttle uses *pfctl* on Mac and *tc* on Linux to simulate different network speeds.
+**Throttle lets you *simulate slow network connections* on Linux and Mac OS X.**
+
+Throttle uses *pfctl* on Mac and *tc* on Linux to simulate different network speeds and is inspired by [tylertreat/Comcast](https://github.com/tylertreat/Comcast), the [connectivity setting in the WPTAgent](https://github.com/WPO-Foundation/wptagent/blob/master/internal/traffic_shaping.py) and [sltc](https://github.com/sitespeedio/sltc).
+
+**What is Throttle good for?**
+
+It is usually used for two different things:
+
+ - You run it as a standalone tool setting simulate different connection speeds.
+ - You integrate it in your (web performance) tool to simulate different connections.
 
 You can set the download/upload speed and RTT. Upload/download is in kbit/s and RTT in ms.
 
@@ -53,7 +63,7 @@ You can start throttle with one of the pre-made profiles:
 throttle --profile 3gslow
 ```
 
-## Stop simulate the network
+## Stop simulate the slow network
 Stopping is as easy as giving the parameter *stop* to throttle.
 
 ```
