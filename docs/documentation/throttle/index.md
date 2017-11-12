@@ -32,56 +32,56 @@ You can set the download/upload speed and RTT. Upload/download is in kbit/s and 
 
 ## Install
 
-```
-$ npm install @sitespeed.io/throttle -g
-```
+~~~bash
+npm install @sitespeed.io/throttle -g
+~~~
 
 ## Start simulate a slower network connection
 
 Here is an example for running with 3G connectivity. Remember: Throttle will use sudo so your user will need
 sudo rights.
 
-```
-$ throttle --up 330 --down 780 --rtt 200
-```
+~~~bash
+throttle --up 330 --down 780 --rtt 200
+~~~
 
 ## Pre made profiles
 To make it easier we have pre made profiles, check them out by *throttle --help*:
 
-```
+~~~
 --profile         Premade profiles, set to one of the following
                      3g: up:768 down:1600 rtt:150
                      3gfast: up:768 down:1600 rtt:75
                      3gslow: up:400 down:400 rtt:200
                      2g: up:32 down:35 rtt:650
                      cable: up:1000 down:5000 rtt:14
-```
+~~~
 
 You can start throttle with one of the pre-made profiles:
 
-```
+~~~bash
 throttle --profile 3gslow
-```
+~~~
 
 ## Stop simulate the slow network
 Stopping is as easy as giving the parameter *stop* to throttle.
 
-```
-$ throttle --stop
-```
+~~~bash
+throttle --stop
+~~~
 
 ## Add delay on your localhost (Linux only at the moment)
 This is useful if you run [WebPageReplay](https://github.com/catapult-project/catapult/blob/master/web_page_replay_go/README.md) and want to add som latency to your tests.
 
-```
-$ throttle --rtt 200 --localhost
-```
+~~~bash
+throttle --rtt 200 --localhost
+~~~
 
 ## Stop adding delay on localhost (Linux only)
 
-```
-$ throttle --stop --localhost
-```
+~~~bash
+throttle --stop --localhost
+~~~
 
 ## Use directly in NodeJS
 
