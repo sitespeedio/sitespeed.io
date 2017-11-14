@@ -1,22 +1,22 @@
 #tabs
-  a#summary(href='#summary', onclick='return selectTab(this)')
+  a(id='summary', href='#summary', onclick='selectTab(this); return false;')
     img(src= rootPath + 'img/summary64.png', height=32, alt='Summary')
     | Summary
   if d.coach && d.coach.pageSummary
-    a#coach(href='#coach', onclick='return selectTab(this)')
+    a(id='coach', href='#coach', onclick='selectTab(this); return false;')
       img(src= rootPath + 'img/coach64.png', height=32, alt='Coach')
       | Coach
   if d.browsertime && d.browsertime.pageSummary
-    a#browsertime(href='#browsertime', onclick='return selectTab(this)')
+    a(id='browsertime', href='#browsertime', onclick='selectTab(this); return false;')
       img(src= rootPath + 'img/browsertime64.png', height=32, alt='Browsertime')
       | Browsertime
   if d.pagexray && d.pagexray.pageSummary
-    a#pagexray(href='#pagexray', onclick='return selectTab(this)')
       img(src= rootPath + 'img/xray64.png', height=32, alt='PageXray')
+    a(id='pagexray', href='#pagexray', onclick='selectTab(this); return false;')
       | PageXray
-  each pageSummary in pageSummaries
-    a(id=pageSummary.id, href='#' + pageSummary.id, onclick='return selectTab(this)')
-     | #{pageSummary.name}
+each pageSummary in pageSummaries
+  a(id=pageSummary.id, href='#' + pageSummary.id, onclick='selectTab(this); return false;')
+    | #{pageSummary.name}
 
 script(type='text/javascript')
   include ./scripts.js
