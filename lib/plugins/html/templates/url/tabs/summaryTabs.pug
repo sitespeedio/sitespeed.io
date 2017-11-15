@@ -1,20 +1,22 @@
-a#summary(href='#summary', data-name='tabs', onclick='return selectTab(this, \"summary-panel\")', if-not-selected)
-  img(src= rootPath + 'img/summary64.png', height=32, alt='Summary')
-  | Summary
-if d.coach && (d.coach.pageSummary || d.coach.run)
-  a#coach(href='#coach', data-name='tabs', onclick='return selectTab(this, \"coach-panel\")')
-    img(src= rootPath + 'img/coach64.png', height=32, alt='Coach')
-    | Coach
-if d.browsertime && (d.browsertime.pageSummary || d.browsertime.run)
-  a#browsertime(href='#browsertime', data-name='tabs', onclick='return selectTab(this, \"browsertime-panel\")')
-    img(src= rootPath + 'img/browsertime64.png', height=32, alt='Browsertime')
-    | Browsertime
-if d.pagexray && (d.pagexray.pageSummary || d.pagexray.run)
-  a#pagexray(href='#pagexray', data-name='tabs', onclick='return selectTab(this, \"pagexray-panel\")')
-    img(src= rootPath + 'img/xray64.png', height=32, alt='PageXray')
-    | PageXray
+#tabs
+  a(id='summary', href='#summary', onclick='return selectTab(this, true);')
+    img(src= rootPath + 'img/summary64.png', height=32, alt='Summary')
+    | Summary
+  if d.coach && d.coach.pageSummary
+    a(id='coach', href='#coach', onclick='return selectTab(this, true);')
+      img(src= rootPath + 'img/coach64.png', height=32, alt='Coach')
+      | Coach
+  if d.browsertime && d.browsertime.pageSummary
+    a(id='browsertime', href='#browsertime', onclick='return selectTab(this, true);')
+      img(src= rootPath + 'img/browsertime64.png', height=32, alt='Browsertime')
+      | Browsertime
+  if d.pagexray && d.pagexray.pageSummary
+    a(id='pagexray', href='#pagexray', onclick='return selectTab(this, true);')
+      img(src= rootPath + 'img/pagexray64.png', height=32, alt='PageXray')
+      | PageXray
 each pageSummary in pageSummaries
-  a(id=pageSummary.id, href='#' + pageSummary.id, data-name='tabs', onclick='return selectTab(this, \"' + pageSummary.id + '-panel\"' +')')
-   | #{pageSummary.name}
+  a(id=pageSummary.id, href='#' + pageSummary.id, onclick='return selectTab(this, true);')
+    | #{pageSummary.name}
 
-include ./scripts
+script(type='text/javascript')
+  include ./scripts.js

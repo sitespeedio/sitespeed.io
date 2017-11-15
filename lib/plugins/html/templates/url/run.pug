@@ -30,99 +30,100 @@ block content
     .error= pageInfo.error
   include ./tabs/runTabs.pug
 
-  section#summary-panel
-    h2 Summary
-    p.small Summary of some of the most important metrics.
-    .row
-      .one-half.column
-        table
-          tr
-            th Metric
-            th Value
-          if d.coach && d.coach.run
-            tr
-              td Performance score:
-              td #{d.coach.run.advice.performance.score}
-          if d.pagexray && d.pagexray.run
-            tr
-              td Total page size:
-              td #{h.size.format(d.pagexray.run.transferSize)}
-          if d.pagexray && d.pagexray.run
-            tr
-              td Requests:
-              td #{d.pagexray.run.requests}
-          if d.browsertime && d.browsertime.run && d.browsertime.run.visualMetrics
-            tr
-              td First Visual Change:
-              td #{d.browsertime.run.visualMetrics.FirstVisualChange}
-          else if d.browsertime && d.browsertime.run && d.browsertime.run.timings.firstPaint
-            tr
-              td First Paint:
-              td #{d.browsertime.run.timings.firstPaint}
-          if d.browsertime && d.browsertime.run && d.browsertime.run.visualMetrics
-            tr
-              td Speed Index:
-              td #{d.browsertime.run.visualMetrics.SpeedIndex}
-            tr
-              td Visual Complete 85%:
-              td #{d.browsertime.run.visualMetrics.VisualComplete85}
-            tr
-              td Visual Complete 95%:
-              td #{d.browsertime.run.visualMetrics.VisualComplete95}
-            tr
-              td Visual Complete 99%:
-              td #{d.browsertime.run.visualMetrics.VisualComplete99}
-            tr
-              td Last Visual Change:
-              td #{d.browsertime.run.visualMetrics.LastVisualChange}
-          else if d.browsertime && d.browsertime.run
-            tr
-              td RUM Speed Index:
-              td #{d.browsertime.run.timings.rumSpeedIndex}
-          if !d.browsertime && d.webpagetest
-            tr
-              td Render (first view):
-              td #{d.webpagetest.run.firstView.render}
-            tr
-              td Speed Index (first view):
-              td #{d.webpagetest.run.firstView.SpeedIndex}
-            tr
-              td Visual Complete 85% (first view):
-              td #{d.webpagetest.run.firstView.visualComplete85}
-            tr
-              td Last Visual Change (first view):
-              td #{d.webpagetest.run.firstView.lastVisualChange}
-            tr
-              td Requests:
-              td #{d.webpagetest.run.firstView.requestsFull}
+  #tabSections
+    section#summary-panel
+       h2 Summary
+       p.small Summary of some of the most important metrics.
+       .row
+         .one-half.column
+           table
+             tr
+               th Metric
+               th Value
+             if d.coach && d.coach.run
+               tr
+                 td Performance score:
+                 td #{d.coach.run.advice.performance.score}
+             if d.pagexray && d.pagexray.run
+               tr
+                 td Total page size:
+                 td #{h.size.format(d.pagexray.run.transferSize)}
+             if d.pagexray && d.pagexray.run
+               tr
+                 td Requests:
+                 td #{d.pagexray.run.requests}
+             if d.browsertime && d.browsertime.run && d.browsertime.run.visualMetrics
+               tr
+                 td First Visual Change:
+                 td #{d.browsertime.run.visualMetrics.FirstVisualChange}
+             else if d.browsertime && d.browsertime.run && d.browsertime.run.timings.firstPaint
+               tr
+                 td First Paint:
+                 td #{d.browsertime.run.timings.firstPaint}
+             if d.browsertime && d.browsertime.run && d.browsertime.run.visualMetrics
+               tr
+                 td Speed Index:
+                 td #{d.browsertime.run.visualMetrics.SpeedIndex}
+               tr
+                 td Visual Complete 85%:
+                 td #{d.browsertime.run.visualMetrics.VisualComplete85}
+               tr
+                 td Visual Complete 95%:
+                 td #{d.browsertime.run.visualMetrics.VisualComplete95}
+               tr
+                 td Visual Complete 99%:
+                 td #{d.browsertime.run.visualMetrics.VisualComplete99}
+               tr
+                 td Last Visual Change:
+                 td #{d.browsertime.run.visualMetrics.LastVisualChange}
+             else if d.browsertime && d.browsertime.run
+               tr
+                 td RUM Speed Index:
+                 td #{d.browsertime.run.timings.rumSpeedIndex}
+             if !d.browsertime && d.webpagetest
+               tr
+                 td Render (first view):
+                 td #{d.webpagetest.run.firstView.render}
+               tr
+                 td Speed Index (first view):
+                 td #{d.webpagetest.run.firstView.SpeedIndex}
+               tr
+                 td Visual Complete 85% (first view):
+                 td #{d.webpagetest.run.firstView.visualComplete85}
+               tr
+                 td Last Visual Change (first view):
+                 td #{d.webpagetest.run.firstView.lastVisualChange}
+               tr
+                 td Requests:
+                 td #{d.webpagetest.run.firstView.requestsFull}
 
-      .one-half.column
-          if hasScreenShots
-            - screenshotName = 'data/screenshots/' + runIndex + '.png'
-            - var width = options.mobile ? 150 : '100%';
-            a(href=screenshotName)
-              img.screenshot(src=screenshotName, width=width, alt='Screenshot')
-          else if !d.browsertime && d.webpagetest
-            - screenshotName = 'data/screenshots/wpt-' + (Number(runIndex)+1) + '-firstView.png'
-            a(href=screenshotName)
-              img.screenshot(src=screenshotName, alt='Screenshot')
+         .one-half.column
+             if hasScreenShots
+               - screenshotName = 'data/screenshots/' + runIndex + '.png'
+               - var width = options.mobile ? 150 : '100%';
+               a(href=screenshotName)
+                 img.screenshot(src=screenshotName, width=width, alt='Screenshot')
+             else if !d.browsertime && d.webpagetest
+               - screenshotName = 'data/screenshots/wpt-' + (Number(runIndex)+1) + '-firstView.png'
+               a(href=screenshotName)
+                 img.screenshot(src=screenshotName, alt='Screenshot')
 
-    if d.browsertime && d.browsertime.run && d.browsertime.run.har
-      include ./waterfall/index.pug
+       if d.browsertime && d.browsertime.run && d.browsertime.run.har
+         include ./waterfall/index.pug
 
-  if d.coach && d.coach.run
-    section#coach-panel
-      include ./coach/index.pug
+    if d.coach && d.coach.run
+      section#coach-panel
+        include ./coach/index.pug
 
-  if d.browsertime && d.browsertime.run
-    section#browsertime-panel
-      include ./browsertime/index.pug
+    if d.browsertime && d.browsertime.run
+      section#browsertime-panel
+        include ./browsertime/index.pug
 
-  if d.pagexray && d.pagexray.run
-    section#pagexray-panel
-      include ./pagexray/index.pug
+    if d.pagexray && d.pagexray.run
+      section#pagexray-panel
+        include ./pagexray/index.pug
 
-  each pageRun in pageRuns
-    - var panelName = pageRun.id + '-panel'
-    section(id=panelName)
-      p !{pugs[pageRun.id]}
+    each pageRun in pageRuns
+      - var panelName = pageRun.id + '-panel'
+      section(id=panelName)
+        p !{pugs[pageRun.id]}
