@@ -19,7 +19,7 @@ twitterdescription: You can use Firefox, Chrome and Chrome on Android to collect
 You can fetch timings and execute your own JavaScript. The following browsers are supported: Firefox, Chrome and Chrome on Android. If you run our Docker containers, we always update them when we tested the latest stable release of the browsers.
 
 ## Firefox
-You will need Firefox 57+. In Firefox 55 the HAR export trigger was broken, so we are not backward compatible to older version of Firefox.
+You will need Firefox 54. In Firefox 55 the HAR export trigger was broken, and people at Mozilla say it will be a working version again sometimes Q4. You can run Firefox 57 (or later) but then you need to add *--browsertime.skipHar* to make it work (but you will miss a HAR until Mozilla release a new way to get the HAR).
 
 ## Chrome
 The latest version of Chrome should work out of the box.
