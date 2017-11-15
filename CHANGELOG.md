@@ -18,6 +18,16 @@ the context so plugins can register which metrics should be picked up by Graphit
 
 * Running Docker adds --video and --speedIndex by default to make it easier for beginners.
 
+* You can now create plugins that can generate HTML (per run or per page summary). [#1784](https://github.com/sitespeedio/sitespeed.io/pull/1784).
+
+* You can now override/add CSS from your plugin by sending message of the type *html.css* [#1787](https://github.com/sitespeedio/sitespeed.io/pull/1787)
+
+* Major work on the documentation: [https://www.sitespeed.io/](https://www.sitespeed.io/)
+
+### Bug fixes
+* We finally exit with 1 (error) if one of the URLs fails.[#1267](https://github.com/sitespeedio/sitespeed.io/issues/1267) and [#1779](https://github.com/sitespeedio/sitespeed.io/pull/1779).
+
+
 ### Deprecations
 * The --plugins.load and -plugins.disable options are deprecated in favor of --plugins.add and -plugins.remove. The previous syntax was cumbersome to use since it allowed for multiple plugins to be separated by space. When using it before the url argument, e.g.
 ```sh
@@ -26,7 +36,7 @@ sitespeed.io -plugins.load foo http://sitespeed.io
 the url would be treated as a plugin name, and the command would fail.
 
 ### Breaking changes
-* Update to PageXray 1.0. For 99% of the users this will not change anything but if you where sending assets timings to Graphite/InfluxDB (as we told you not to do, these you know got blocked, dns, connect, send, wait and receive instead of just the total time [#1693](https://github.com/sitespeedio/sitespeed.io/pull/1693).
+* Update to PageXray 1.0. For 99% of the users this will not change anything but if you where sending assets timings to Graphite/InfluxDB (as we told you not to do, these you now get blocked, dns, connect, send, wait and receive instead of just the total time [#1693](https://github.com/sitespeedio/sitespeed.io/pull/1693).
 
 * We removed the generic [DataCollector](https://github.com/sitespeedio/sitespeed.io/blob/5.x/lib/plugins/datacollector/index.js) that collected data for each run and instead each plugin should collect the data
 it needs [#1731](https://github.com/sitespeedio/sitespeed.io/pull/1731). If you have written a plugin that collect it owns
@@ -37,7 +47,7 @@ data you can just follow the old [DataCollector structure](https://github.com/si
 * We now output only the version number (and not package and version number) on --version.
 
 * As a first step to make it possible for plugins to generate HTML, we removed the hooks and instead only communicates with messages see: [#1732](https://github.com/sitespeedio/sitespeed.io/pull/1732) [#1758](https://github.com/sitespeedio/sitespeed.io/pull/1758). We now have three messages sent by the queue:
-*sitespeedio.setup* - The first message on the queue. A plugin can pickup this message and communicate with other plugins (send pugs to the HTML plugin, send JavaScript to Browsertime etc). The next message is *sitespeedio.summarize* (old summarize) that tells the plugins that all URLs are analyzed and you can now summarize the metrics. The last message is *sitespeedio.render* which tells the plugins to render content to disk. The HTML plugin pickup *sitespeedio.render*, render the HTML and then sends a *html.finished* message, that then other plugins can pickup.
+*sitespeedio.setup* - The first message on the queue. A plugin can pickup this message and communicate with other plugins (send pugs to the HTML plugin, send JavaScript to Browsertime etc). The next message is *sitespeedio.summarize* (old summarize) that tells the plugins that all URLs are analysed and you can now summarise the metrics. The last message is *sitespeedio.render* which tells the plugins to render content to disk. The HTML plugin pickup *sitespeedio.render*, render the HTML and then sends a *html.finished* message, that then other plugins can pickup.
 
 ## 5.6.4 2017-10-11
 ### Fixed

@@ -14,7 +14,7 @@ twitterdescription:
 
 <img src="{{site.baseurl}}/img/logos/pagexray.png" class="pull-right img-big" alt="PageXray logo" width="365" height="200">
 
-We love the HAR file but it's hard to actually see what the page includes only looking at the file. The PageXray converts a HAR file to a JSON format that is easier to read. We use the format internally in the coach and sitespeed.io. And with PageXray you can use it standalone in your browser (we do for [https://compare.sitespeed.io/](https://compare.sitespeed.io/)).
+We love HAR files but it's hard to actually see how the page is composed only looking at the file. PageXray converts a HAR file to a JSON format that is easier to read and easier to use. We use the format internally in the Coach and sitespeed.io (using NodeJS) and directly in the browser in [https://compare.sitespeed.io/](https://compare.sitespeed.io/).
 
 * Lets place the TOC here
 {:toc}
@@ -25,7 +25,7 @@ We love the HAR file but it's hard to actually see what the page includes only l
  * The size and requests per domain.
  * The number of requests per response code.
  * The base domain and the httpVersion used for the base asset (the main HTML document).
- * All assets (responses) with the following data: type, url, size, expires (a normalized expires converting max-age/expires to just expires in seconds), status (response code), timeSinceLastModified (using the last modified field in the response header and normalizing to seconds), httpVersion and all request and response headers.
+ * All assets (responses) with the following data: type, url, size, expires (a normalized expires converting max-age/expires to just expires in seconds), status (response code), timeSinceLastModified (using the last modified field in the response header and normalising to seconds), httpVersion and all request and response headers.
  * If you use a HAR from WebPageTest we also get SpeedIndex and other VisualMetrics.
  * If your HAR is from sitespeed.io you will also get some extra metrics like SpeedIndex.
 
