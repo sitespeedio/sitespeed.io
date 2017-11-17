@@ -71,7 +71,7 @@
   "main": "./lib/sitespeed.js",
   "dependencies": {
     "bluebird": "3.5.0",
-    "browsertime": "2.0.0-alpha.3",
+    "browsertime": "2.0.0-alpha.4",
     "cli-color": "1.2.0",
     "concurrent-queue": "7.0.2",
     "fast-stats": "0.0.3",
