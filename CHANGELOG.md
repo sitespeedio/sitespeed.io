@@ -24,6 +24,8 @@ the context so plugins can register which metrics should be picked up by Graphit
 
 * Major work on the documentation: [https://www.sitespeed.io/](https://www.sitespeed.io/)
 
+* The Coach 1.0 with tweaked advice about Google Analytics and Google Tag Manager and more.
+
 ### Bug fixes
 * We finally exit with 1 (error) if one of the URLs fails.[#1267](https://github.com/sitespeedio/sitespeed.io/issues/1267) and [#1779](https://github.com/sitespeedio/sitespeed.io/pull/1779).
 
