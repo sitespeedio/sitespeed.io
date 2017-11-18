@@ -14,9 +14,9 @@
     a(id='pagexray', href='#pagexray', onclick='return selectTab(this, true);')
       img(src= rootPath + 'img/pagexray64.png', height=32, alt='PageXray')
       | PageXray
-each pageSummary in pageSummaries
-  a(id=pageSummary.id, href='#' + pageSummary.id, onclick='return selectTab(this, true);')
-    | #{pageSummary.name}
+  each pageSummary in pageSummaries
+    a(id=pageSummary.id, href='#' + pageSummary.id, onclick='return selectTab(this, true);')
+      | #{pageSummary.name}
 
 script(type='text/javascript')
   include ./scripts.js
