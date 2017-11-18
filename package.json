@@ -103,7 +103,7 @@
     "tape": "4.8.0",
     "text-table": "0.2.0",
     "uuid": "^3.0.0",
-    "webcoach": "0.38.0",
+    "webcoach": "1.0.0",
     "webpagetest": "0.3.5",
     "yargs": "6.6.0"
   }
