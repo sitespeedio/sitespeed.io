@@ -156,14 +156,16 @@ The *context* holds information for this specific run that generated at runtime 
   timestamp, // The timestamp of when you started the run
   budget, // If you run with budget, the result will be here
   name, // The name of the run (the start URL )
-  log, // The logger used in sitespeed.io, use it to log https://github.com/seanmonstar/intel
-  messageMaker, // Help methods to send messages in the queue
+  intel, // The log system that is used within sitespeed.io https://github.com/seanmonstar/intel
+  messageMaker, // Help methods to send messages in the queue,
+  statsHelpers, // Help methods to collect data per domain/tests instead of per URL
   filterRegistry // Register metrics that will be sent to Graphite/InfluxDB
 }
 ~~~
 
 You can checkout the [StorageManager](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/core/resultsStorage/storageManager.js),
-[messageMaker](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/messageMaker.js) and [filterRegistry](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/filterRegistry.js) to get feel how you can use them.
+[messageMaker](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/messageMaker.js),
+[statsHelpers](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/statsHelpers.js) and [filterRegistry](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/filterRegistry.js) to get feel how you can use them.
 
 The *options* are the options that a user will supply in the CLI, checkout the [CLI implementation](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/cli.js) to see all the options.
 
@@ -265,7 +267,7 @@ queue.postMessage(
 );
 ~~~
 
-You can look at the [WebPageTest plugin](https://github.com/sitespeedio/sitespeed.io/tree/master/lib/plugins/webpagetest) as an example plugin that both sends run and pageSummary data.
+You can look at the standalone [GPSI plugin](https://github.com/sitespeedio/plugin-gpsi) or the [WebPageTest plugin](https://github.com/sitespeedio/sitespeed.io/tree/master/lib/plugins/webpagetest) as an example plugin that both sends run and pageSummary data.
 
 ## What's missing
 There's no way for a plugin to tell the CLI about what type of configuration/options that are needed, but there's an [issue](https://github.com/sitespeedio/sitespeed.io/issues/1065) for that. Help us out if you have ideas!
