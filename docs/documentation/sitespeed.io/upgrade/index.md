@@ -26,6 +26,9 @@ We have switched to Graphite 1.x by default (from Graphite 0.x). When Graphite m
 ### Video and Speed Index default in the Docker containers
 In the new version we have video and Speed Index turned on by default when you run in our Docker containers. If you want to turn them off add ```--video false``` and ```--speedIndex false``` to your run.
 
+### npm/yarn
+If you don't use our Docker containers (you should!) and install via npm/yarn, we know use latest LTS of NodeJS 8.9.1 (so you should upgrade your NodeJS version too).
+
 ### Assets timings with more in details info
 For 99.9% of the users this will not change anything but if you are sending assets timings to Graphite/InfluxDB (as we told you **not** to do) we changed so instead of getting the total time you now get: blocked, dns, connect, send, wait and receive timings [#1693](https://github.com/sitespeedio/sitespeed.io/pull/1693).
 
