@@ -29,6 +29,9 @@ In the new version we have video and Speed Index turned on by default when you r
 ### Assets timings with more in details info
 For 99.9% of the users this will not change anything but if you are sending assets timings to Graphite/InfluxDB (as we told you **not** to do) we changed so instead of getting the total time you now get: blocked, dns, connect, send, wait and receive timings [#1693](https://github.com/sitespeedio/sitespeed.io/pull/1693).
 
+### GPSI users
+We have moved the GPSI outside of sitespeed.io and you can find it [here](https://github.com/sitespeedio/plugin-gpsi). To run in along with sitespeed.io you just follow [the instructions how to add a plugin](https://www.sitespeed.io/documentation/sitespeed.io/plugins/#add-a-plugin). We moved it outside of sitespeed.io to make the code base cleaner and with the hope that we can find a maintainer who can give it more love.
+
 ## Plugin makers
 We have made some changes to plugins to make it possible for plugins to generate HTML and to talk to each other before sitespeed.io starts to test URLs.
 
