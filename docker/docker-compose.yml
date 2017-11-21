@@ -3,7 +3,6 @@ services:
     sitespeed.io:
       image: sitespeedio/sitespeed.io
       command: -V
-      privileged: true
       shm_size: 1g
       volumes:
             - ./sitespeed-result/:/sitespeed.io/sitespeed-result
@@ -32,6 +31,8 @@ services:
       restart: always
       volumes:
         - whisper:/opt/graphite/storage/whisper
+        # In production you should configure/map these to your container
+        # Download from https://github.com/sitespeedio/sitespeed.io/tree/master/docker/graphite
         #- ./graphite/graphite.db:/opt/graphite/storage/graphite.db
         #- ./graphite/conf/storage-schemas.conf:/opt/graphite/conf/storage-schemas.conf
         #- ./graphite/conf/storage-aggregation.conf:/opt/graphite/conf/storage-aggregation.conf
