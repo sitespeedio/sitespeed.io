@@ -94,7 +94,7 @@ Can I test the same URLs from different locations and how do I make sure they do
 You should set different namespaces depending on location (**--graphite.namespace**). If you run one test from London, set the namespace to **--graphite.namespace sitespeed_io.london**. Then you can choose individual locations in the dropdown in the pre-made dashboards.
 
 ## Clear browser cache between runs
-By default Browsertime creates a new profile for each run you do, but for Firefox 57 there has been [problems with the cache or at least Navigation Timing metrics has been wrong](https://bugzilla.mozilla.org/show_bug.cgi?id=1417308). To make really sure everything is cleared between runs you can use our WebExtension to clear the browser cache by adding  **--browsertime.cacheClearRaw**.
+By default Browsertime creates a new profile for each run you do and if you really want to be sure sure everything is cleared between runs you can use our WebExtension to clear the browser cache by adding  **--browsertime.cacheClearRaw**.
 
 ## Store the data
 
