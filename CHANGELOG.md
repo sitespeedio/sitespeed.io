@@ -2,7 +2,7 @@
 
 ## UNRELEASED 6.0 ALPHA
 
-We plan to release 6.0 sometimes after Firefox 57 is released (November 14?).
+We plan to release 6.0 sometimes after Firefox 57 is released (November 14?). Before you upgrade, please read our [upgrade guide](https://www.sitespeed.io/documentation/sitespeed.io/upgrade/).
 
 ### Added
 * Use Chartist to display visual progress and size/requests to make it easier for users [#1659](https://github.com/sitespeedio/sitespeed.io/pull/1659).
@@ -16,7 +16,7 @@ We plan to release 6.0 sometimes after Firefox 57 is released (November 14?).
 * Make it easier do build plugins: Expose messageMaker in the context to plugins (so plugins easily can send messages in the queue) [#1760](https://github.com/sitespeedio/sitespeed.io/pull/1760). Expose filterRegistry in
 the context so plugins can register which metrics should be picked up by Graphite/InfluxDb etc [#1761](https://github.com/sitespeedio/sitespeed.io/pull/1761). Move core functionality to core folder [#1762](https://github.com/sitespeedio/sitespeed.io/pull/1762).
 
-* Running Docker adds --video and --speedIndex by default to make it easier for beginners.
+* Running Docker adds ```--video``` and ```--speedIndex``` by default to make it easier for beginners.
 
 * You can now create plugins that can generate HTML (per run or per page summary). [#1784](https://github.com/sitespeedio/sitespeed.io/pull/1784).
 
@@ -24,12 +24,15 @@ the context so plugins can register which metrics should be picked up by Graphit
 
 * Major work on the documentation: [https://www.sitespeed.io/](https://www.sitespeed.io/)
 
+* The Coach 1.0 with tweaked advice about Google Analytics and Google Tag Manager and more.
+
 ### Bug fixes
 * We finally exit with 1 (error) if one of the URLs fails.[#1267](https://github.com/sitespeedio/sitespeed.io/issues/1267) and [#1779](https://github.com/sitespeedio/sitespeed.io/pull/1779).
 
 
 ### Deprecations
-* The --plugins.load and -plugins.disable options are deprecated in favor of --plugins.add and -plugins.remove. The previous syntax was cumbersome to use since it allowed for multiple plugins to be separated by space. When using it before the url argument, e.g.
+* The ```--plugins.load``` and ```--plugins.disable``` options are deprecated in favour of ```--plugins.add``` and ```--plugins.remove```. The previous syntax was cumbersome to use since it allowed for multiple plugins to be separated by space. When using it before the url argument, e.g.
+
 ```sh
 sitespeed.io -plugins.load foo http://sitespeed.io
 ```
@@ -42,7 +45,7 @@ the url would be treated as a plugin name, and the command would fail.
 it needs [#1731](https://github.com/sitespeedio/sitespeed.io/pull/1731). If you have written a plugin that collect it owns
 data you can just follow the old [DataCollector structure](https://github.com/sitespeedio/sitespeed.io/blob/5.x/lib/plugins/datacollector/index.js) and move the code you need to your plugin. Also [#1767](https://github.com/sitespeedio/sitespeed.io/pull/1767) is a follow up to remove DataCollector.
 
-* We now default to Graphite 1.x so if you send annotations to Graphite < 1.0 you need to configure arrayTags to false *--graphite.arrayTags false*
+* We now default to Graphite 1.x so if you send annotations to Graphite < 1.0 you need to configure arrayTags to false ```--graphite.arrayTags false```
 
 * We now output only the version number (and not package and version number) on --version.
 

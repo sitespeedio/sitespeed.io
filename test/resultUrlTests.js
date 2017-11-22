@@ -70,7 +70,9 @@ describe('resultUrls', function() {
       expect(
         resultUrls.absoluteSummaryPageUrl('http://www.foo.bar/xyz')
       ).to.equal(
-        `http://results.com/www.foo.bar/${timestampString}/pages/www.foo.bar/xyz/`
+        `http://results.com/www.foo.bar/${
+          timestampString
+        }/pages/www.foo.bar/xyz/`
       );
     });
     it('should create url with absolute output folder', function() {

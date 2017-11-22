@@ -1,12 +1,14 @@
 'use strict';
 
 const plugin = require('../lib/plugins/webpagetest');
-const aggregator = require('../lib/plugins/webpagetest/aggregator');
+const Aggregator = require('../lib/plugins/webpagetest/aggregator');
 const fs = require('fs');
 const path = require('path');
 const expect = require('chai').expect;
+const intel = require('intel');
 const messageMaker = require('../lib/support/messageMaker');
 const filterRegistry = require('../lib/support/filterRegistry');
+const statsHelpers = require('../lib/support/statsHelpers');
 
 const wptResultPath = path.resolve(
   __dirname,
@@ -16,7 +18,7 @@ const wptResultPath = path.resolve(
 const wptResult = JSON.parse(fs.readFileSync(wptResultPath, 'utf8'));
 
 describe('webpagetest', () => {
-  const context = { messageMaker, filterRegistry };
+  const context = { messageMaker, filterRegistry, intel, statsHelpers };
 
   describe('plugin', () => {
     it('should require key for default server', () => {
@@ -34,6 +36,10 @@ describe('webpagetest', () => {
     });
   });
 
+  const aggregator = new Aggregator(
+    statsHelpers,
+    intel.getLogger('sitespeedio.plugin.webpagetest')
+  );
   describe('aggregator', () => {
     it('should summarize data', () => {
       aggregator.addToAggregate(
