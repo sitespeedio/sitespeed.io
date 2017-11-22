@@ -269,6 +269,43 @@ queue.postMessage(
 
 You can look at the standalone [GPSI plugin](https://github.com/sitespeedio/plugin-gpsi) or the [WebPageTest plugin](https://github.com/sitespeedio/sitespeed.io/tree/master/lib/plugins/webpagetest) as an example plugin that both sends run and pageSummary data.
 
+## Let your plugin collect metrics using Browsertime
+
+One new feature in 6.0 is that your plugin can tell Browsertime to run JavaScript on the page you test to
+collect metrics.
+
+You do that by in the setup phase, send the JavaScript you want to run to sitespeed.io
+
+~~~
+case 'sitespeedio.setup': {
+ queue.postMessage(
+   make('browsertime.scripts', {
+     category: 'yourplugin',
+     scripts: {
+       userAgent: '(function() {return navigator.userAgent;})();',
+       title: '(function() {return document.title;})();'
+     }
+   })
+ )
+ break;
+}
+~~~
+
+You can then get the metrics back by listening on **browsertime.run** messages.
+
+~~~
+case 'browsertime.run': {
+  console.log(message.data.yourplugin);
+  break;
+}
+~~~
+
+And if you want to use it in your pug template you will find it under **pageInfo.data.browsertime.run.yourplugin**. In this example, if you want to print the title you can do like this.
+
+~~~
+#{pageInfo.data.browsertime.run.yourplugin.title}
+~~~
+
 ## Testing your plugin
 If your plugin lives on Github you should check out our [example Travis-ci file](https://github.com/sitespeedio/plugin-gpsi/blob/master/.travis.yml) for the GPSI plugin. In the example, we checkout the sitespeed.io project and run the plugin against the latest master (we also run it daily in the Travis crontab).
 
