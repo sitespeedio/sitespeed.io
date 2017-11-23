@@ -6,7 +6,11 @@ function run() {
     .run({
       urls,
       browsertime: {
-        iterations: 1
+        iterations: 1,
+        browser: 'chrome',
+        connectivity: {
+          profile: 'native'
+        }
       }
     })
     .then(results => {
