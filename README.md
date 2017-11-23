@@ -11,7 +11,7 @@
 
 ## Welcome to the wonderful world of web performance!
 
-*IMPORTANT*: Master is now the coming 6.0. If you need to a patch release, use the [5.x branch](https://github.com/sitespeedio/sitespeed.io/tree/5.x). 6.0 is going to be released sometimes after Firefox 57.
+We have worked a lot on our documentation so you should head over to [https://www.sitespeed.io/documentation/sitespeed.io/](https://www.sitespeed.io/documentation/sitespeed.io/) and read what you can do with sitespeed.io.
 
 Using sitespeed.io you can:
 * Test your web site against Web Performance best practices using the [Coach](https://github.com/sitespeedio/coach).
@@ -23,7 +23,7 @@ Using sitespeed.io you can:
 
 See all the latest changes in the [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md).
 
-If you use Firefox 55 (or later) please have a look at https://github.com/sitespeedio/browsertime/issues/358. When 57 is released we think there will be a easy way to fix it :)
+If you use Firefox 55 (or later) please have a look at https://github.com/sitespeedio/browsertime/issues/358. We are waiting on the new extension from Mozilla to be able to export the HAR.
 
 ## Examples of what you can do
 
@@ -47,7 +47,7 @@ Video - easiest using Docker. This gif is optimized, the quality is much better 
 Using Docker (requires 1.10+):
 
 ```bash
-$ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --video --speedIndex https://www.sitespeed.io/
+$ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
 ```
 
 Or install using npm:

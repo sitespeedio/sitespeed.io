@@ -1,8 +1,8 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED 6.0 ALPHA
+## 6.0.0 2017-11-24
 
-We plan to release 6.0 sometimes after Firefox 57 is released (November 14?). Before you upgrade, please read our [upgrade guide](https://www.sitespeed.io/documentation/sitespeed.io/upgrade/).
+Before you upgrade, please read our [upgrade guide](https://www.sitespeed.io/documentation/sitespeed.io/upgrade/).
 
 ### Added
 * Use Chartist to display visual progress and size/requests to make it easier for users [#1659](https://github.com/sitespeedio/sitespeed.io/pull/1659).
