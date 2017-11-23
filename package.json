@@ -96,6 +96,7 @@
     "moment": "2.18.1",
     "node-slack": "0.0.7",
     "pagexray": "2.0.0",
+    "promise-ftp": "1.3.4",
     "pug": "2.0.0-rc.4",
     "s3": "4.4.0",
     "simplecrawler": "1.1.5",
