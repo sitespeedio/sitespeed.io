@@ -2,7 +2,7 @@
 set -e
 
 # Remove the local sitespeed-result dir and node modules to start clean
-rm -fR sitespeed-result node_modules
+rm -fR sitespeed-result
 
 # Generate the help for the docs
 bin/sitespeed.js --help > docs/documentation/sitespeed.io/configuration/config.md
