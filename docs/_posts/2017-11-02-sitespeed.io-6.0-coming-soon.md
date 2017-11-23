@@ -36,10 +36,8 @@ Let's list out a few of the upcoming improvements:
 
 * More to come ...
 
-One other thing around plugins is since we are working on a complete rewrite of the plugin system we also want to allow easier integration with sitespeed and the HTML rendered results for external community plugins! 
+One other thing around plugins is since we are working on a complete rewrite of the plugin system we also want to allow easier integration with sitespeed and the HTML rendered results for external community plugins!
 
 If you have any thoughts on what could be improved from 5.x to 6.0 join the discussion and let us know via [#1719](https://github.com/sitespeedio/sitespeed.io/issues/1719).
-
-To follow the release of 6.0 you can track [#1763](https://github.com/sitespeedio/sitespeed.io/issues/1763).
 
 /Jonathan
