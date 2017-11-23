@@ -54,6 +54,11 @@ The queries for the three URLs looks like this:
 {: .img-thumbnail}
 
 
+And change the axes unit to show percent: 0.0-1.0.
+
+![Axes setup]({{site.baseurl}}/img/alerts/axes.png)
+{: .img-thumbnail-center}
+
 ### The alert
 After that you need to create the alert. Take the median, choose a timespan and the percentage when you want to alert. In our example we do AND queries (all URLs must change) but if you are interested in specific URLs changing, you can also do OR alert queries.
 
