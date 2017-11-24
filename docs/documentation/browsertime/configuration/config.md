@@ -28,6 +28,7 @@ firefox
   --firefox.developer              Use Firefox Developer. Works on OS X. For Linux you need to set the binary path.  [boolean]
   --firefox.preference             Extra command line arguments to pass Firefox preferences by the format key:value To add multiple preferences, repeat --firefox.preference once per argument.
   --firefox.includeResponseBodies  Include response bodies in HAR  [boolean]
+  --firefox.acceptInsecureCerts    Accept insecure certs  [boolean]
 
 selenium
   --selenium.url  URL to a running Selenium server (e.g. to run a browser on another machine).
@@ -40,6 +41,7 @@ video
   --videoParams.filmstripFullSize  Keep original sized screenshots. Will make the run take longer time  [boolean] [default: false]
   --videoParams.filmstripQuality   The quality of the filmstrip screenshots. 0-100.  [default: 75]
   --videoParams.createFilmstrip    Create filmstrip screenshots.  [boolean] [default: true]
+  --videoParams.combine            Combine preScript/postScript with the tested URL in the video. Turn this on and you will record the all scripts.  [boolean] [default: false]
 
 proxy
   --proxy.http   Http proxy (host:port)  [string]

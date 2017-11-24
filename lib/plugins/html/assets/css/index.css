@@ -628,7 +628,7 @@ body {
   font-size: 1em;
   line-height: 1.6;
   font-weight: 400;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #222222; }
 
 h1,
@@ -1580,11 +1580,11 @@ http://codepen.io/oknoblich/pen/tfjFl
   box-sizing: border-box; }
 
 section {
-  display: none;
+  display: block;
   padding: 20px 0 0;
   border-top: 1px solid #ddd; }
 
-a[data-name="tabs"] {
+#tabs a {
   display: inline-block;
   margin: 0 0 -1px;
   padding: 15px 22px;
@@ -1594,37 +1594,31 @@ a[data-name="tabs"] {
   border: 1px solid transparent;
   text-decoration: none; }
 
-a[data-name="tabs"]:before {
+#tabs a:before {
   font-weight: normal; }
 
-a[data-name="tabs"]:hover {
+#tabs a:hover {
   color: #888;
   cursor: pointer; }
 
-a[data-name="tabs"]:target:focus {
+#tabs a:target:focus {
   outline: none; }
 
-a[selected] {
+#tabs a[selected] {
   color: #555;
   border: 1px solid #ddd;
   border-top: 2px solid #0095d2;
   border-bottom: 1px solid #fff; }
 
-#summary[selected] ~ #summary-panel,
-#coach[selected] ~ #coach-panel,
-#browsertime[selected] ~ #browsertime-panel,
-#pagexray[selected] ~ #pagexray-panel {
-  display: block; }
-
 @media screen and (max-width: 650px) {
-  a[data-name="tabs"] {
+  #tabs a {
     font-size: 0; }
-  a[data-name="tabs"]:before {
+  #tabs a:before {
     margin: 0;
     font-size: 18px; } }
 
 @media screen and (max-width: 400px) {
-  a[data-name="tabs"] {
+  #tabs a {
     padding: 13px; } }
 
 .group-item {

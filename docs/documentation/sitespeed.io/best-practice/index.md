@@ -88,10 +88,16 @@ One important learning is that you can run on <60% usage on your server, and eve
 ### Bare metal
 We haven't tested on bare metal so if you have, please let us know how it worked out.
 
+### Kubernetes
+On Kubernetes you cannot use tc or Docker networks to set the connectivity but there has been tries with [TSProxy](https://github.com/WPO-Foundation/tsproxy), check out [#1829](https://github.com/sitespeedio/sitespeed.io/issues/1819).
+
 ### Running tests from multiple locations
 Can I test the same URLs from different locations and how do I make sure they don't override each others data in Graphite?
 
 You should set different namespaces depending on location (**--graphite.namespace**). If you run one test from London, set the namespace to **--graphite.namespace sitespeed_io.london**. Then you can choose individual locations in the dropdown in the pre-made dashboards.
+
+## Clear browser cache between runs
+By default Browsertime creates a new profile for each run you do and if you really want to be sure sure everything is cleared between runs you can use our WebExtension to clear the browser cache by adding  **--browsertime.cacheClearRaw**.
 
 ## Store the data
 

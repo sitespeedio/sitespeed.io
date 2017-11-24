@@ -24,7 +24,7 @@
   }],
   "pagexray.pageSummary": [{
     "metric": "transferSize",
-    "max": 100000
+    "max": 200000
   }, {
     "metric": "requests",
     "max": 20
@@ -36,7 +36,7 @@
     "max": 1
   }, {
     "metric": "contentTypes.image.transferSize",
-    "max": 100000
+    "max": 200000
   },{
     "metric": "documentRedirects",
     "max":0
