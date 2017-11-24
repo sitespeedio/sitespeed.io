@@ -7,8 +7,7 @@ Browser
   --browsertime.connectivity.downstreamKbps, --downstreamKbps  This option requires --connectivity be set to "custom".
   --browsertime.connectivity.upstreamKbps, --upstreamKbps      This option requires --connectivity be set to "custom".
   --browsertime.connectivity.latency, --latency                This option requires --connectivity be set to "custom".
-  --browsertime.connectivity.tsproxy.port                      The port used for TSProxy  [default: 1080]
-  --browsertime.connectivity.engine                            The engine for connectivity. TC (Linux Traffic Control) needs tc work but will only setup upload and latency. Use external if you set the connectivity outside of Browsertime. The best way do to this is described in https://github.com/sitespeedio/browsertime#connectivity  [choices: "tc", "tsproxy", "external"] [default: "external"]
+  --browsertime.connectivity.engine                            Throttle works on Mac and tc based Linux (it is experimental so please use with care). Use external if you set the connectivity outside of Browsertime. The best way do to this is described in https://github.com/sitespeedio/browsertime#connectivity  [choices: "throttle", "external"] [default: "external"]
   --browsertime.pageCompleteCheck                              Supply a Javascript that decides when the browser is finished loading the page and can start to collect metrics. The Javascript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd.
   --browsertime.script, --script                               Add custom Javascript that collect metrics and run after the page has finished loading. Note that --script can be passed multiple times if you want to collect multiple metrics. The metrics will automatically be pushed to the summary/detailed summary and each individual page + sent to Graphite/InfluxDB.
   --browsertime.selenium.url                                   Configure the path to the Selenium server when fetching timings using browsers. If not configured the supplied NodeJS/Selenium version is used.
@@ -19,11 +18,13 @@ Browser
   --browsertime.delay                                          Delay between runs, in milliseconds. Use it if your web server needs to rest between runs :)
   --browsertime.speedIndex, --speedIndex                       Calculate SpeedIndex. Requires FFMpeg and python dependencies  [boolean]
   --browsertime.video, --video                                 Record a video. Requires FFMpeg to be installed  [boolean]
-  --browsertime.preURL, --preURL                               A URL that will be accessed first by the browser before the URL that you wanna analyze. Use it to fill the cache.
+  --browsertime.videoParams.framerate, --fps                   Frames per second in the video  [default: 30]
+  --browsertime.videoParams.crf                                Constant rate factor for the end result video, see https://trac.ffmpeg.org/wiki/Encode/H.264#crf  [default: 23]
+  --browsertime.videoParams.addTimer                           Add timer and metrics to the video  [boolean] [default: true]
   --browsertime.userTimingWhitelist, --userTimingWhitelist     This option takes a regex that will whitelist which userTimings to capture in the results. All userTimings are captured by default. T
   --browsertime.firefox.preference                             Extra command line arguments to pass Firefox preferences by the format key:value To add multiple preferences, repeat --browsertime.firefox.preference once per argument.
   --browsertime.firefox.includeResponseBodies                  Include response bodies in HAR when using Firefox.  [boolean]
-  --browsertime.chrome.args                                    Extra command line arguments to pass to the Chrome process (e.g. --no-sandbox). To add multiple arguments to Chrome, repeat --browsertime.chrome.args once per argument.
+  --browsertime.chrome.args                                    Extra command line arguments to pass to the Chrome process. Always leave out the starting -- (--no-sandbox will be no-sandbox). To add multiple arguments to Chrome, repeat --browsertime.chrome.args once per argument.
   --browsertime.chrome.collectTracingEvents                    Collect Chromes traceCategories  [boolean]
   --browsertime.chrome.android.package                         Run Chrome on your Android device. Set to com.android.chrome for default Chrome version. You need to run adb start-server before you start.
   --browsertime.chrome.android.deviceSerial                    Choose which device to use. If you do not set it, the first found device will be used.
@@ -52,9 +53,9 @@ Graphite
   --graphite.arrayTags           Send the tags as Array or a String. In Graphite 1.0 the tags is a array. Before a String  [boolean] [default: true]
 
 Plugins
-  --plugins.list     List all configured plugins in the log.  [boolean]
-  --plugins.disable  Disable a plugin. Use it to disable generating html or screenshots.  [array]
-  --plugins.load     Extra plugins that you want to run. Relative or absolute path to the plugin.  [array]
+  --plugins.list    List all configured plugins in the log.  [boolean]
+  --plugins.add     Extra plugins that you want to run. Relative or absolute path to the plugin. Specify multiple plugin names separated by comma, or repeat the --plugins.add option
+  --plugins.remove  Extra plugins that you want to run. Relative or absolute path to the plugin. Specify multiple plugin names separated by comma, or repeat the --plugins.remove option
 
 Budget
   --budget.configPath  Path to the JSON budget file.
@@ -87,9 +88,6 @@ WebPageTest
   --webpagetest.script             The WebPageTest script as a string.
   --webpagetest.includeRepeatView  Do repeat or single views  [boolean] [default: false]
   --webpagetest.private            Wanna keep the runs private or not  [boolean] [default: true]
-
-gpsi
-  --gpsi.key  The key to use Google Page Speed Insight
 
 Slack
   --slack.hookUrl       WebHook url for the Slack team (check https://<your team>.slack.com/apps/manage/custom-integrations).

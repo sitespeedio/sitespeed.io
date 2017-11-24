@@ -38,7 +38,7 @@ C:\Users\Vicky> docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.
 
 That will output the data from the run in the current directory. You can read more about running the containers [here](/documentation/sitespeed.io/docker/).
 
-## Standalone
+## Node JS
 
 ### Mac & Linux
 

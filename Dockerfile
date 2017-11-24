@@ -1,4 +1,4 @@
-FROM sitespeedio/webbrowsers:firefox-54.0-chrome-62.0-chrome-beta-3
+FROM sitespeedio/webbrowsers:firefox-54.0-chrome-62.0-2
 
 ENV SITESPEED_IO_BROWSERTIME__XVFB true
 ENV SITESPEED_IO_BROWSERTIME__DOCKER true
@@ -8,7 +8,7 @@ ENV SITESPEED_IO_BROWSERTIME__speedIndex true
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-COPY package.json /usr/src/app/
+COPY package.* /usr/src/app/
 RUN npm install --production
 COPY . /usr/src/app
 

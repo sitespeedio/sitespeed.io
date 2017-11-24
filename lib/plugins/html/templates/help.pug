@@ -72,6 +72,9 @@ block content
     h5(id='serverConnectionTime') ServerConnectionTime
     p How long time it takes to connect to the server. Collected using the Navigation Timing API with the definition: connectEnd - connectStart
 
+    h5(id='serverResponseTime') ServerResponseTime
+    p The time it takes for the server to send the response. Collected using the Navigation Timing API with the definition: responseEnd - requestStart
+
     h5(id='firstPaint') FirstPaint
     p This is when the first paint happens on the screen. If the browser support this metric (only supported in Chrome), we use that.
 

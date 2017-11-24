@@ -197,7 +197,7 @@ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io
 ~~~
 
 ![Slack]({{site.baseurl}}/img/slack.png)
-{: .img-thumbnail}
+{: .img-thumbnail-center}
 
 ### Log in the user
 We have added a [special section](../prepostscript) for that!

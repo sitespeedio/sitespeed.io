@@ -35,7 +35,6 @@ Ten reasons why we love the coach and you will too:
  - The coach is open-source. The advice is public, you can check it, change it, or add to it yourself. Help us make the coach even better!
  - The coach can combine knowledge from the DOM with HAR to give you super powerful advice.
  - The CLI output is pretty nice. You can configure how much you want to see. Use it as a fast way to check the performance of your page.
- - The coach is a part of sitespeed.io 4.0!
 
 ## Work in progress!
 We know you want the coach to help you, but right now YOU need to help the coach! The coach is new and needs more advice. Send a PR with a new advice, so the coach gets more knowledge! Check out the [issues](https://github.com/sitespeedio/coach/issues), try the project and give us feedback!
