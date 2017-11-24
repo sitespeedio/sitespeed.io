@@ -1,7 +1,7 @@
 {
   "name": "sitespeed.io",
   "bin": "./bin/sitespeed.js",
-  "version": "6.0.0-alpha.1",
+  "version": "6.0.0",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -47,10 +47,7 @@
     "build:css": "node-sass lib/plugins/html/src/sass/main.scss > lib/plugins/html/assets/css/index.css && cleancss -o lib/plugins/html/assets/css/index.min.css lib/plugins/html/assets/css/index.css"
   },
   "engines": {
-    "node": ">=8.6.0"
-  },
-  "publishConfig": {
-    "tag": "canary"
+    "node": ">=8.9.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
@@ -71,7 +68,7 @@
   "main": "./lib/sitespeed.js",
   "dependencies": {
     "bluebird": "3.5.0",
-    "browsertime": "2.0.0-beta.3",
+    "browsertime": "2.0.0",
     "cli-color": "1.2.0",
     "concurrent-queue": "7.0.2",
     "fast-stats": "0.0.3",
@@ -103,7 +100,7 @@
     "tape": "4.8.0",
     "text-table": "0.2.0",
     "uuid": "^3.0.0",
-    "webcoach": "1.0.0",
+    "webcoach": "1.1.0",
     "webpagetest": "0.3.5",
     "yargs": "6.6.0"
   }

@@ -20,7 +20,7 @@ Upgrading to 6.x from 5.x? There are a couple of important things that have chan
 ## Regular user
 As a regular user there are a couple of changes you need to know about. Nothing will break there's a few configuration changes you should do.
 
-## Default 30 fps for the video
+### Default 30 fps for the video
 In older versions the default frames per second for the video was 60. On cloud services that could be too much, introducing unstable metrics. If you still want to use 60fps you can do that by adding ```--videoParams.framerate 60``` to your run.
 
 Do a test run with 30fps and check what happens to your Visual Metrics.
