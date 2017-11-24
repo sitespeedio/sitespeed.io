@@ -32,7 +32,7 @@ But beware: Chrome and Firefox can call home (we know for fact that Chrome do). 
 When you create issues, do PRs, use our Slack channel or contact us on email, please follow our [Code Of Conduct](https://github.com/sitespeedio/sitespeed.io/blob/master/CODE_OF_CONDUCT.md).
 
 ### Open Source
-We release our software under the [MIT License](https://github.com/sitespeedio/sitespeed.io/blob/master/LICENSE). Please respect it and respect our work: We ask you not to change the logo or the contribution to the project. Please do this to pay the respect to the many hours we put down into the project.
+We release our software under the [MIT License](https://github.com/sitespeedio/sitespeed.io/blob/master/LICENSE) or [Apache License 2.0](https://github.com/sitespeedio/browsertime/blob/master/LICENSE). Please respect it and respect our work: We ask you not to change the logo or the contribution to the project. Please do this to pay the respect to the many hours we put down into the project.
 
 ### Code and releases
 We try to have issues for everything we do (sometimes when there are small technical changes we miss that), we do PRs. Big PRs we always review them within the team.
