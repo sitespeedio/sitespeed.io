@@ -3,7 +3,7 @@ layout: default
 title: Just in time for Christmas!
 description: We got some big news - sitespeed.io 6.0, Browsertime 2.0, The Coach 1.0 and PageXray 2.0 is here!
 authorimage: /img/aboutus/jonathan.jpg
-intro: We got some big news - sitespeed.io 6.0, Browsertime 2.0, The Coach 1.0 and PageXray 2.0 is here. We moved to NodeJS 8, made a lot of small improvements and focused a lot on making plugins more powerful.
+intro: We got some big news - sitespeed.io 6.0, Browsertime 2.0, The Coach 1.0 and PageXray 2.0 is here. We moved to NodeJS 8, made a lot of small improvements and focused on making plugins more powerful.
 keywords: sitespeed.io, sitespeed, 6.0
 nav: blog
 ---
