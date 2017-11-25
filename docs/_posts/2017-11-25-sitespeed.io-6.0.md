@@ -1,9 +1,9 @@
 ---
 layout: default
-title: New versions of everything.
+title: Just in time for Christmas!
 description: We got some big news - sitespeed.io 6.0, Browsertime 2.0, The Coach 1.0 and PageXray 2.0 is here!
 authorimage: /img/aboutus/jonathan.jpg
-intro: We got some big news - sitespeed.io 6.0, Browsertime 2.0, The Coach 1.0 and PageXray 2.0 is here!
+intro: We got some big news - sitespeed.io 6.0, Browsertime 2.0, The Coach 1.0 and PageXray 2.0 is here. We moved to NodeJS 8, made a lot of small improvements and focused a lot on making plugins more powerful.
 keywords: sitespeed.io, sitespeed, 6.0
 nav: blog
 ---
@@ -15,7 +15,7 @@ The last weeks we've been releasing sitespeed.io 6.0, Browsertime 2.0, PageXray 
 One of the biggest things we done for all these releases is updating the documentation. It was ok before but missing out on so many things. You really should check out [the new version](https://www.sitespeed.io/documentation/) of the documentation.
 
 ## Sitespeed.io 6.0
-The main focus for 6.0 has been to update the plugin structure so it's easier to write better plugins. With the new version, plugins communicate with each other using the queue. There's a new queue phase called *sitespeedio.setup* where plugins can talk with the others. For example a plugin can register a PUG file to the HTML plugin, so that the metrics the plugin produces can be [showed in the HTML](https://www.sitespeed.io/documentation/sitespeed.io/plugins/#create-html-for-your-plugin). Another cool thing is that the Browsertime plugin [listens to JavaScript setup messages](https://www.sitespeed.io/documentation/sitespeed.io/plugins/#let-your-plugin-collect-metrics-using-browsertime), so other plugins can run JavaScript on the tested page (through Browsertime), and use the data.
+The main focus for 6.0 has been to update the plugin structure so it's easier to write more powerful plugins. With the new version, plugins communicate with each other using the queue. There's a new queue phase called *sitespeedio.setup* where plugins can talk with the others. For example a plugin can register a PUG file to the HTML plugin, so that the metrics the plugin produces can be [showed in the HTML](https://www.sitespeed.io/documentation/sitespeed.io/plugins/#create-html-for-your-plugin). Another cool thing is that the Browsertime plugin [listens to JavaScript setup messages](https://www.sitespeed.io/documentation/sitespeed.io/plugins/#let-your-plugin-collect-metrics-using-browsertime), so other plugins can run JavaScript on the tested page (through Browsertime), and use the data.
 
 We also moved out the [GPSI plugin](https://github.com/sitespeedio/plugin-gpsi) to be a standalone (example) plugin. That means if you want to use GPSI, you need to follow the [instructions](https://www.sitespeed.io/documentation/sitespeed.io/plugins/#add-a-plugin) in how to add a plugin.
 
