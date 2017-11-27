@@ -14,6 +14,9 @@ The last few weeks we've been releasing sitespeed.io 6.0, Browsertime 2.0, PageX
 
 One of the biggest things we done for all these releases is updating the documentation. It was good before but missed out on capturing so many smaller things. You really should check out [the new version](https://www.sitespeed.io/documentation/) of the documentation.
 
+![Our feelings about 6.0]({{site.baseurl}}/img/6.0-finally.gif)
+{: .img-thumbnail-center}
+
 ## Sitespeed.io 6.0
 The main focus for 6.0 has been to update the plugin structure so it's easier to write more powerful plugins. The new version, allows plugins  to communicate with each other using the queue. This means there is a new queue phase called *sitespeedio.setup* where plugins can talk with the others! For example a plugin can register a PUG file to the HTML plugin, so that the metrics the plugin produces can be [showed in the HTML output](https://www.sitespeed.io/documentation/sitespeed.io/plugins/#create-html-for-your-plugin). Another cool thing is that the Browsertime plugin [listens to JavaScript setup messages](https://www.sitespeed.io/documentation/sitespeed.io/plugins/#let-your-plugin-collect-metrics-using-browsertime), so other plugins can run JavaScript on the tested page (through Browsertime), and use that data.
 
