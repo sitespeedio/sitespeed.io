@@ -232,10 +232,10 @@ Since 6.0 your plugin can generate HTML. You can either generate HTML per run or
 
 You start by listening to the generic setup message **sitespeedio.setup**. When you get that, you should send your pug file with a message called **html.pug**. That message needs to have four fields:
 
- * id = the id of the plugin, need to be unique
- * name = the friendly name displayed in the tab showing the data
- * pug = the pug file as a String
- * type = can be run or pageSummary. **run** is data you collect on every run and it will be a tab on each run page. **pageSummary** is data for a specific page and will generate a tab on the page summary page.
+ * id = the id of the plugin, need to be unique.
+ * name = the friendly name displayed in the tab showing the data.
+ * pug = the pug file as a String.
+ * type = can be run or pageSummary. **run** is data you collect on every run and it will be a tab on each run page. **pageSummary** is data for a specific page and will generate a tab on the page summary page. Most cases you will only need pageSummary data but if you have a tool that do multiple runs, then you should send the data per run (as Browsertime and WebPageTest do).
 
 Sending a pug looks something like this:
 
@@ -253,10 +253,12 @@ case 'sitespeedio.setup': {
 }
 ~~~
 
+The HTML plugin will then listen to metrics sent with the type of the id and type, in this case *gpsi.pageSummary*.
+
 #### Send the data
 The HTML plugin will automatically pickup data sent with the types of \*.run and \*.pageSummary. All these needs to have the URL so that it can be mapped to the right place.
 
-A message can look like this:
+A message can look like this (the HTML plugin will pickup messages sent by combining the id + type):
 
 ~~~
 queue.postMessage(
@@ -308,6 +310,9 @@ And if you want to use it in your pug template you will find it under **pageInfo
 
 ## Testing your plugin
 If your plugin lives on Github you should check out our [example Travis-ci file](https://github.com/sitespeedio/plugin-gpsi/blob/master/.travis.yml) for the GPSI plugin. In the example, we checkout the sitespeed.io project and run the plugin against the latest master (we also run it daily in the Travis crontab).
+
+## Example plugin(s)
+You can look at the standalone [GPSI plugin](https://github.com/sitespeedio/plugin-gpsi) or the [WebPageTest plugin](https://github.com/sitespeedio/sitespeed.io/tree/master/lib/plugins/webpagetest).
 
 ## Find plugins
 We keep a list of plugins at [https://github.com/sitespeedio/plugins](https://github.com/sitespeedio/plugins). If you wanna add your plugin, send a PR!

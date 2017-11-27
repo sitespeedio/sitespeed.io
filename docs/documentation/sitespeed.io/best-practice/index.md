@@ -88,6 +88,9 @@ One important learning is that you can run on <60% usage on your server, and eve
 ### Bare metal
 We haven't tested on bare metal so if you have, please let us know how it worked out.
 
+### Kubernetes
+On Kubernetes you cannot use tc or Docker networks to set the connectivity but there has been tries with [TSProxy](https://github.com/WPO-Foundation/tsproxy), check out [#1829](https://github.com/sitespeedio/sitespeed.io/issues/1819).
+
 ### Running tests from multiple locations
 Can I test the same URLs from different locations and how do I make sure they don't override each others data in Graphite?
 
