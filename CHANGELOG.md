@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## 6.0.1 2017-11-27
+
+### Fixed
+* Fixed a bug adding/removing multiple plugins see [#1831](https://github.com/sitespeedio/sitespeed.io/issues/1831).
+
 ## 6.0.0 2017-11-24
 
 Before you upgrade, please read our [upgrade guide](https://www.sitespeed.io/documentation/sitespeed.io/upgrade/).
