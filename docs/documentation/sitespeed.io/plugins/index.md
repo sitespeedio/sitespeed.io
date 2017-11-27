@@ -311,6 +311,9 @@ And if you want to use it in your pug template you will find it under **pageInfo
 ## Testing your plugin
 If your plugin lives on Github you should check out our [example Travis-ci file](https://github.com/sitespeedio/plugin-gpsi/blob/master/.travis.yml) for the GPSI plugin. In the example, we checkout the sitespeed.io project and run the plugin against the latest master (we also run it daily in the Travis crontab).
 
+## Example plugin(s)
+You can look at the standalone [GPSI plugin](https://github.com/sitespeedio/plugin-gpsi) or the [WebPageTest plugin](https://github.com/sitespeedio/sitespeed.io/tree/master/lib/plugins/webpagetest).
+
 ## Find plugins
 We keep a list of plugins at [https://github.com/sitespeedio/plugins](https://github.com/sitespeedio/plugins). If you wanna add your plugin, send a PR!
 
