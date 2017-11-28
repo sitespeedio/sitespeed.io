@@ -4,6 +4,7 @@
 
 ### Fixed
 * Remove the unused unminified CSS file from the result [#1835](https://github.com/sitespeedio/sitespeed.io/pull/1835)
+* Updated to Browsertime 2.0.1 with [fixes for Android](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#version-201-2017-11-28).
 
 ## 6.0.2 2017-11-28
 
