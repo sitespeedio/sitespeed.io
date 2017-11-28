@@ -1,9 +1,14 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+
+### Fixed
+* Remove the unused unminified CSS file from the result [#1835](https://github.com/sitespeedio/sitespeed.io/pull/1835)
+
 ## 6.0.2 2017-11-28
 
 ### Fixed
-Yesterdays fix broke the functionality of adding/removing plugins with a comma-separated list [#1833](https://github.com/sitespeedio/sitespeed.io/pull/1833).
+* Yesterdays fix broke the functionality of adding/removing plugins with a comma-separated list [#1833](https://github.com/sitespeedio/sitespeed.io/pull/1833).
 
 ## 6.0.1 2017-11-27
 
