@@ -71,3 +71,16 @@ The easiest (but a little ugly) way to migrate is to move the old [DataCollector
 
 You can see the changes we did in
  [#1731](https://github.com/sitespeedio/sitespeed.io/pull/1731) and [#1767](https://github.com/sitespeedio/sitespeed.io/pull/1767).
+
+
+### StorageManager API changes
+
+Several parts of the [StorageManager](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/core/resultsStorage/storageManager.js) API have been updated to fit better together. The following changes may break code written using the 5.x API:
+
+- `createDataDir(directoryName)` is now `createDirectory(...directoryNames)` and takes any number of directory names (which will be joined together) as arguments.
+- `writeData(filename, data)` has reversed the order of its arguments. It is now `writeData(data, filename)`.
+- `writeHtml(filename, html)` has reversed the order of its arguments. It is now `writeHtml(html, filename)`.
+- `writeDataForUrl(data, filename, url, subDir)` no longer has a fifth argument indicating whether output should be gzipped.
+- `writeHtmlForUrl(html, filename, url)` no longer has a fourth argument indicating whether output should be gzipped.
+
+Note that all compression functionality has been removed. If you need compressed output, your plugin should handle gzipping itself. See the [`harstorer` plugin](https://github.com/sitespeedio/sitespeed.io/blob/56bfc48bac7ccfe1cfe35c829b4dd11987a375e4/lib/plugins/harstorer/index.js#L19-L28) for an example.
