@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## 6.0.2 2017-11-28
+
+### Fixed
+Yesterdays fix broke the functionality of adding/removing plugins with a comma-separated list [#1833](https://github.com/sitespeedio/sitespeed.io/pull/1833).
+
 ## 6.0.1 2017-11-27
 
 ### Fixed
