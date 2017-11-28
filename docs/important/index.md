@@ -26,7 +26,7 @@ We always use [semantic versioning](http://semver.org/) when we do a release.
 ### Privacy
 We take your privacy really serious: Our [documentation site](https://www.sitespeed.io/), our [dashboard](https://dashboard.sitespeed.io) and our [compare tool](https://dashboard.sitespeed.io) do not use any tracking software at all (no Google Analytics or any other tracking software). None of the sitespeed.io tools call home.
 
-But beware: Chrome and Firefox can call home (we know for fact that Chrome do). We would love PRs and tips how to make sure browsers don't call home when you run your tests.
+But beware: Chrome and Firefox call home. We would love PRs and tips how to make sure browsers don't call home when you run your tests.
 
 ### Code of Conduct
 When you create issues, do PRs, use our Slack channel or contact us on email, please follow our [Code Of Conduct](https://github.com/sitespeedio/sitespeed.io/blob/master/CODE_OF_CONDUCT.md).
