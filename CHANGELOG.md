@@ -64,6 +64,16 @@ data you can just follow the old [DataCollector structure](https://github.com/si
 
 * We have moved the GPSI outside of sitespeed.io and you can find it [here](https://github.com/sitespeedio/plugin-gpsi). To run in along with sitespeed.io you just follow [the instructions how to add a plugin](https://www.sitespeed.io/documentation/sitespeed.io/plugins/#add-a-plugin). We moved it outside of sitespeed.io to make the code base cleaner and with the hope that we can find a maintainer who can give it more love.
 
+* The [StorageManager](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/core/resultsStorage/storageManager.js) API has been updated. The following changes may break code written using the 5.x API:
+
+  * `createDataDir(directoryName)` is now `createDirectory(...directoryNames)` and takes any number of directory names (which will be joined together) as arguments.
+  * `writeData(filename, data)` has reversed the order of its arguments. It is now `writeData(data, filename)`.
+  * `writeHtml(filename, html)` has reversed the order of its arguments. It is now `writeHtml(html, filename)`.
+  * `writeDataForUrl(data, filename, url, subDir)` no longer has a fifth argument indicating whether output should be gzipped.
+  * `writeHtmlForUrl(html, filename, url)` no longer has a fourth argument indicating whether output should be gzipped.
+
+  Note that all compression functionality has been removed. If you need compressed output, your plugin should handle gzipping itself. See the [`harstorer` plugin](https://github.com/sitespeedio/sitespeed.io/blob/56bfc48bac7ccfe1cfe35c829b4dd11987a375e4/lib/plugins/harstorer/index.js#L19-L28) for an example.
+
 ## 5.6.4 2017-10-11
 ### Fixed
 * Upgraded to Browsertime 1.9.4 with latest Chromedriver that fixes launching Chrome > 61
