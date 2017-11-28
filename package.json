@@ -44,7 +44,7 @@
     "test": "mocha",
     "check-licenses": "tools/check-licenses.js",
     "travis": "npm run eslint-check && npm run lint && npm run test",
-    "build:css": "node-sass lib/plugins/html/src/sass/main.scss > lib/plugins/html/assets/css/index.css && cleancss -o lib/plugins/html/assets/css/index.min.css lib/plugins/html/assets/css/index.css"
+    "build:css": "node-sass lib/plugins/html/src/sass/main.scss > lib/plugins/html/assets/css/index.css && cleancss -o lib/plugins/html/assets/css/index.min.css lib/plugins/html/assets/css/index.css && rm lib/plugins/html/assets/css/index.css"
   },
   "engines": {
     "node": ">=8.9.0"
