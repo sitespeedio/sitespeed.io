@@ -62,7 +62,7 @@ And change the axes unit to show percent: 0.0-1.0.
 ### The alert
 After that you need to create the alert. Take the median, choose a timespan and the percentage when you want to alert. In our example we do AND queries (all URLs must change) but if you are interested in specific URLs changing, you can also do OR alert queries.
 
-![Alert setup]({{site.baseurl}}/img/alerts/alert-setup.png)
+![Alert setup]({{site.baseurl}}/img/alerts/alert-setup2.png)
 {: .img-thumbnail-center}
 
 You see that we run the alerts once an hour. It depends on how often you do releases or you content changes. You want to make sure that you catch the alerts within at least couple of hours.
@@ -86,10 +86,9 @@ And then we make sure we show the last 7 days.
 
 You can do the same with all the metrics you want. On mobile Wikipedia metrics is more stable and the First Visual Change looks like this:
 
-![First visual change]({{site.baseurl}}/img/alerts/first-visual-change.png)
+![First visual change]({{site.baseurl}}/img/alerts/first-visual-change2.png)
 {: .img-thumbnail}
 
-Here we can have alerts on 1% or a diff even smaller.
 
 You can also add alerts for non 200 responses, changes in size/number or requests or whatever fits your needs.
 
