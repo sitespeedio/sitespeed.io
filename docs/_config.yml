@@ -1,11 +1,10 @@
 permalink: /:title/
-ftp_host: ftp.soulislove.com
-ftp_dir: /
 baseurl: 
 markdown: kramdown
 compress_html:
   clippings: all
   endings: all
+include: ["_headers"]
 kramdown:
     enable_coderay: false
     coderay:
@@ -16,4 +15,4 @@ kramdown:
     coderay_bold_every:        10
     coderay_css:               style
 gems:
-  - jemoji
+
