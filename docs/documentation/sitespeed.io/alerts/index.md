@@ -42,7 +42,7 @@ In the left part of the image you see a horizontal red line, that is when an ale
 You want to create queries that measure the change in percentage over time and you want to create an alert when all of them are above a specific percentage.
 
 
-### Create the queries
+### Create queries
 
 To the left we have changes in percentage. These are the numbers where we add alerts. In this case we first create a query and take the moving median one day back (this is the number we will use and compare with) and then we take the moving median of the latest 5 hours. Depending on how steady metrics we have, we can do this different. If you run on a stable environment with a proxy you don't need to take the median of X hours, instead you can take the exact run.
 
@@ -67,6 +67,7 @@ After that you need to create the alert. Take the median, choose a timespan and 
 
 You see that we run the alerts once an hour. It depends on how often you do releases or you content changes. You want to make sure that you catch the alerts within at least couple of hours.
 
+
 ### History graph
 
 The history graph is pretty straight forward. You list the metrics you want and you configure how long back in time you want to graph them. We used to do 30 days (that is really good to see trends) but it was to long to see something when an actual regression was happening, now we use 7 days.
@@ -81,15 +82,38 @@ And then we make sure we show the last 7 days.
 ![Time range for the history graph]({{site.baseurl}}/img/alerts/history-time-range.png)
 {: .img-thumbnail}
 
+### More examples
 
-## Other metrics
+#### Alert on response size
+You can also create alerts that alerts when a response types size increase. Here we graph the JavaScript and CSS size.
+
+![Alert when the size increases]({{site.baseurl}}/img/alerts/by-size.png)
+{: .img-thumbnail-center}
+
+And the queries looks like this:
+
+![The size queries]({{site.baseurl}}/img/alerts/by-size-queries.png)
+{: .img-thumbnail}
+
+This is handy if you are not in full control of all the code that is pushed.
+
+#### Alert on 404
+
+We know it shouldn't happen but sometimes your page reference a 404 or an 50x. Let us alert on that!
+
+![Alert on errors]({{site.baseurl}}/img/alerts/response-code.png)
+{: .img-thumbnail-center}
+
+And the query looks like this:
+
+![Alert on error query]({{site.baseurl}}/img/alerts/response-code-query.png)
+{: .img-thumbnail}
+
+## Summary
 
 You can do the same with all the metrics you want. On mobile Wikipedia metrics is more stable and the First Visual Change looks like this:
 
 ![First visual change]({{site.baseurl}}/img/alerts/first-visual-change2.png)
 {: .img-thumbnail}
-
-
-You can also add alerts for non 200 responses, changes in size/number or requests or whatever fits your needs.
 
 If you have any questions about the alerts, feel free to [create an issue at Github](https://github.com/sitespeedio/sitespeed.io/issues/new?title=Alerts) or hit us on [Slack](https://sitespeedio.herokuapp.com).
