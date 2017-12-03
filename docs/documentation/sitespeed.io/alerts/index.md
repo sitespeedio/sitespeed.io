@@ -17,13 +17,8 @@ twitterdescription:
 {:toc}
 
 
-One of the best use cases with sending metrics to Graphite/InfluxDB and using Grafana is creating performance alerts that will alert you when SpeedIndex, First Visual Change or other metrics regresses on your site. Grafana supports [many different notification types](http://docs.grafana.org/alerting/notifications/).
+One of the best use cases with sending metrics to Graphite/InfluxDB and using Grafana is creating performance alerts that will alert you when SpeedIndex, First Visual Change or other metrics regress on your site. Grafana supports [many different notification types](http://docs.grafana.org/alerting/notifications/) and you can alert on all metrics that you send to Graphite/Grafana or if you have your own storage for metrics. This means you can alert on metrics from Browsertime like SpeedIndex and First/Last Visual Change, and all other plugins that sends data to your storage (WebPageTest, Coach, PageXray and [ChromeTrace](https://github.com/betit/chrometrace-sitespeedio-plugin)).
 
-
-<blockquote>
-I've spent a lot of time at work tuning and setting up web performance alerts and the best way so far has been to create one alert dashboard with changes in percentage and one dashboard with the history."
- <span>Peter Hedenskog - Wikipedia Performance Team</span>
-</blockquote>
 
 ## Example
 
@@ -99,12 +94,12 @@ This is handy if you are not in full control of all the code that is pushed.
 
 #### Alert on 404
 
-We know it shouldn't happen but sometimes your page reference a 404 or an 50x. Let us alert on that!
+We know it shouldn't happen but sometimes your page reference a 404 or a 50x. Let us alert on that!
 
 ![Alert on errors]({{site.baseurl}}/img/alerts/response-code.png)
 {: .img-thumbnail-center}
 
-And the query looks like this:
+And the query looks like this (modify the excludes so that it matches what you need):
 
 ![Alert on error query]({{site.baseurl}}/img/alerts/response-code-query.png)
 {: .img-thumbnail}
