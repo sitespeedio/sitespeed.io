@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 6.0.3 2017-11-29
 
 ### Fixed
 * Remove the unused unminified CSS file from the result [#1835](https://github.com/sitespeedio/sitespeed.io/pull/1835)
