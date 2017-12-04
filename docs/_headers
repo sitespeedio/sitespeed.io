@@ -1,5 +1,5 @@
 /*
-	Surrogate-Control: max-age=60
+	Surrogate-Control: max-age=86400
 /img/*
         Cache-Control: public, max-age=360000
 	Surrogate-Control: max-age=360000
