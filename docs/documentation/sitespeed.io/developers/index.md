@@ -82,7 +82,7 @@ If you want to test and push to Graphite/InfluxDB:
 
 - Go to *docker/* in the cloned dir and start the container: *docker-compose up*
 - Go back one level and run *docker build sitespeedio/sitespeed.io .* in the cloned directory to build the container
-- Run: *docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.iohttp://www.sitespeed.io -n 1 --graphite.host=192.168.65.1* to push the data to Graphite. The IP is the localhost IP if you run on a Mac.
+- Run: *docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 --graphite.host=192.168.65.1* to push the data to Graphite. The IP is the localhost IP if you run on a Mac.
 - Check the metrics at [http://127.0.0.1:3000/](http://127.0.0.1:3000/).
 
 ### Plugins
