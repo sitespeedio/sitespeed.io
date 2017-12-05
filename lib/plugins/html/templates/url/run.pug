@@ -99,7 +99,7 @@ block content
 
          .one-half.column
              if hasScreenShots
-               - screenshotName = 'data/screenshots/' + runIndex + '.png'
+               - screenshotName = 'data/screenshots/' + runIndex + '.' + screenShotType
                - var width = options.mobile ? 150 : '100%';
                a(href=screenshotName)
                  img.screenshot(src=screenshotName, width=width, alt='Screenshot')

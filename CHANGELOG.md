@@ -1,7 +1,17 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## Unreleased
+### Added
+* Let plugin register message types for budget [#1828](https://github.com/sitespeedio/sitespeed.io/pull/1828). With this you can add your plugin metrics to the budget. DOCS NEEDED
 
+* Let plugins run async JavaScript in Browsertime [#1841](https://github.com/sitespeedio/sitespeed.io/pull/1841). DOCS NEEDED
+
+* Use [sharp](http://sharp.dimens.io/) to change the size of the screenshot and choose between png/jpg [#1838](https://github.com/sitespeedio/sitespeed.io/pull/1838)
+
+### Fixed
+* Crawling now works with Badic Auth [#1845](https://github.com/sitespeedio/sitespeed.io/pull/1845) and [#1506](https://github.com/sitespeedio/sitespeed.io/issues/1506).
+
+## 6.0.3 2017-11-29
 ### Fixed
 * Remove the unused unminified CSS file from the result [#1835](https://github.com/sitespeedio/sitespeed.io/pull/1835)
 * Updated to Browsertime 2.0.1 with [fixes for Android](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#version-201-2017-11-28).
