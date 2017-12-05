@@ -273,7 +273,7 @@ You can look at the standalone [GPSI plugin](https://github.com/sitespeedio/plug
 
 ## Let your plugin collect metrics using Browsertime
 
-One new feature in 6.0 is that your plugin can tell Browsertime to run JavaScript on the page you test to
+One new feature in 6.0 is that your plugin can tell Browsertime to run synchronous JavaScript on the page you test to
 collect metrics.
 
 You do that by in the setup phase, send the JavaScript you want to run to sitespeed.io
@@ -292,6 +292,8 @@ case 'sitespeedio.setup': {
  break;
 }
 ~~~
+
+You can also let Browsertime run asynchronous scripts, follow the same pattern and change the key to *browsertime.asyncscripts*.
 
 You can then get the metrics back by listening on **browsertime.run** messages.
 
