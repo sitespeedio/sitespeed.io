@@ -1,7 +1,10 @@
 # CHANGELOG - sitespeed.io
 
-## 6.0.3 2017-11-29
+## Unreleased
+### Added
+* Let plugin register message types for budget [#1828](https://github.com/sitespeedio/sitespeed.io/pull/1828). With this you can add your plugin metrics to the budget.
 
+## 6.0.3 2017-11-29
 ### Fixed
 * Remove the unused unminified CSS file from the result [#1835](https://github.com/sitespeedio/sitespeed.io/pull/1835)
 * Updated to Browsertime 2.0.1 with [fixes for Android](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#version-201-2017-11-28).
