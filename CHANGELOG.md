@@ -8,6 +8,8 @@
 
 * Use [sharp](http://sharp.dimens.io/) to change the size of the screenshot and choose between png/jpg [#1838](https://github.com/sitespeedio/sitespeed.io/pull/1838)
 
+* Updated to Chrome 63 in the Docker container
+
 ### Fixed
 * Crawling now works with Badic Auth [#1845](https://github.com/sitespeedio/sitespeed.io/pull/1845) and [#1506](https://github.com/sitespeedio/sitespeed.io/issues/1506).
 
