@@ -1,0 +1,22 @@
+#tabs
+  a(id='summary', href='#summary', onclick='return selectTab(this, true);')
+    img(src= rootPath + 'img/summary64.png', height=32, alt='Summary')
+    | Summary
+  if d.coach && d.coach.pageSummary
+    a(id='coach', href='#coach', onclick='return selectTab(this, true);')
+      img(src= rootPath + 'img/coach64.png', height=32, alt='Coach')
+      | Coach
+  if d.browsertime && d.browsertime.pageSummary
+    a(id='browsertime', href='#browsertime', onclick='return selectTab(this, true);')
+      img(src= rootPath + 'img/browsertime64.png', height=32, alt='Browsertime')
+      | Browsertime
+  if d.pagexray && d.pagexray.pageSummary
+    a(id='pagexray', href='#pagexray', onclick='return selectTab(this, true);')
+      img(src= rootPath + 'img/pagexray64.png', height=32, alt='PageXray')
+      | PageXray
+  each pageSummary in pageSummaries
+    a(id=pageSummary.id, href='#' + pageSummary.id, onclick='return selectTab(this, true);')
+      | #{pageSummary.name}
+
+script(type='text/javascript')
+  include ./scripts.js

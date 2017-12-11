@@ -11,17 +11,17 @@ twitterdescription: Documentation for sitespeed.io.
 
 # Documentation v6
 
-<img src="{{site.baseurl}}/img/logos/sitespeed.io.png" class="pull-right img-big" alt="Browsertime logo" width="200" height="214">
+<img src="{{site.baseurl}}/img/logos/sitespeed.io.png" class="pull-right img-big" alt="sitespeed.io logo" width="200" height="214">
 
-Sitespeed.io is the complete toolbox to test the web performance of your web site. Use it to monitor your performance or checkout how your competition is doing. First version was created 2012 and been running on Linux since then. You can see all the latest changes in the [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) for the project.
+Sitespeed.io is the complete toolbox to test the web performance of your web site. Use it to monitor your performance or checkout how your competition is doing. You can see all the latest changes in the [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) for the project.
 
- * [Getting started](getting-started/) - get up and running with sitespeed.io
+ * [Introduction](introduction/) - start here if you are new to the project or web performance testing.
  * [Installation](installation/) - install using npm, yarn or run our Docker containers.
  * [Configuration](configuration/) - there's a lot of things you can do with sitespeed.io, lets checkout how!
  * [Browsers](browsers/) - collect timings using real browsers. We support Firefox, Chrome and Chrome on Android.
  * [Connectivity](connectivity/) - set the connectivity to emulate real users network conditions.
- * [Use Cases](use-cases/) - find out best practices for testing a site, compare with other sites.
  * [Performance Dashboard](performance-dashboard/) - keep track of your metrics and performance.
+ * [Alerts](alerts/) - send alerts (email/Slack/PagerDuty etc) when you get a performance regression.
  * [F.A.Q and Best Practice](best-practice/) - here we keep track of questions we get in Slack.
  * [Performance Budget](performance-budget/) - make sure you are within your performance budget.
  * [Plugins](plugins/) - list/disable/enable or create your own plugin.

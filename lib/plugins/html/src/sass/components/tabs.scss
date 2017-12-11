@@ -3,19 +3,22 @@ Thanks Oliver Knoblich
 http://codepen.io/oknoblich/pen/tfjFl
 */
 
-*, *:before, *:after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*,
+*:before,
+*:after {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
 }
 
 section {
-  display: none;
-  padding: 20px 0 0;
-  border-top: 1px solid #ddd;
+ display: block;
+ padding: 20px 0 0;
+ border-top: 1px solid #ddd;
 }
 
-a[data-name=tabs] {
+#tabs {
+ a {
   display: inline-block;
   margin: 0 0 -1px;
   padding: 15px 22px;
@@ -24,51 +27,45 @@ a[data-name=tabs] {
   color: #bbb;
   border: 1px solid transparent;
   text-decoration: none;
-}
+ }
 
-a[data-name=tabs]:before {
+ a:before {
   //font-family: fontawesome;
   font-weight: normal;
   // margin-right: 10px;
-}
+ }
 
-a[data-name=tabs]:hover {
+ a:hover {
   color: #888;
   cursor: pointer;
-}
+ }
 
-a[data-name=tabs]:target:focus {
+ a:target:focus {
   outline: none;
-}
+ }
 
-a[selected] {
+ a[selected] {
   color: #555;
   border: 1px solid #ddd;
   border-top: 2px solid $color--blue;
   border-bottom: 1px solid #fff;
-}
-
-#summary[selected] ~ #summary-panel,
-#coach[selected] ~ #coach-panel,
-#browsertime[selected] ~ #browsertime-panel,
-#pagexray[selected] ~ #pagexray-panel,
-#webpagetest[selected] ~ #webpagetest-panel,
-#gpsi[selected] ~ #gpsi-panel {
-  display: block;
+ }
 }
 
 @media screen and (max-width: 650px) {
-  a[data-name=tabs] {
-    font-size: 0;
+ #tabs {
+  a {
+   font-size: 0;
   }
-  a[data-name=tabs]:before {
-    margin: 0;
-    font-size: 18px;
+  a:before {
+   margin: 0;
+   font-size: 18px;
   }
+ }
 }
 
 @media screen and (max-width: 400px) {
-  a[data-name=tabs] {
-    padding: 13px;
-  }
+ #tabs a {
+  padding: 13px;
+ }
 }

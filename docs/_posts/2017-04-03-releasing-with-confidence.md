@@ -65,7 +65,7 @@ When we release (= a new version to npm and a new tag to the Docker hub) we use 
 If you use Docker (and you should) make sure that you run a tagged versions and by tag we don't mean latest. Pull by setting the version number just like this:
 
 ~~~bash
-$ docker pull sitespeedio/sitespeed.io:4.7.0
+docker pull sitespeedio/sitespeed.io:4.7.0
 ~~~
 
 When you upgrade, read the [changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) and Docker pull the new version and then change your run script/yml file (or whatever you use to start sitespeed.io) so that it matches the new version number.

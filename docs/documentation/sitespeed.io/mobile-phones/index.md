@@ -72,5 +72,5 @@ sitespeed.io --browsertime.chrome.android.package com.android.chrome --video --s
 And using Docker (remember: only works in Linux hosts):
 
 ~~~bash
-docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --browsertime.xvfb false --browsertime.chrome.android.package com.android.chrome --video --speedIndex https://www.sitespeed.io
+docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io  -n 1 --browsertime.chrome.android.package com.android.chrome --browsertime.xvfb false https://www.sitespeed.io
 ~~~

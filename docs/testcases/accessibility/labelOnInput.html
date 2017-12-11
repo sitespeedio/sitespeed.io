@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Label on input</title>
+</head>
+<body>
+  <h1>Curtis Mayfield - Right On For The Darkness</h1>
+  <pre>I am blind and I cannot see
+You are there, your petty evil don't bother me
+Playing all the clothes you wear
+Laugh at me, pressed and clean, and I don't care
+
+Right on for the darkness
+Right on for the darkness
+
+You pity fools, you pity fools
+You better have some sympathy, yeah
+'Cause this educated people
+Running the lives of high society
+
+Making up the blues
+Holding back schools
+Lot of greed, lot of temptation
+Proof of one thing, we're a hell of a nation
+
+Right on for the darkness
+Right on, right on
+
+Right on, right on
+Right on, right on
+Right on, right on for the darkness
+Right on for the darkness
+
+I am blind and I can't see how to understand
+What do we need for justice
+Is there really enough room to demand?
+Old man you know too well us
+You gain all your children's trust
+
+Right on for the darkness
+Right on for the darkness
+Right on for the darkness
+
+Right on, right on
+Right on, right on for the darkness
+Right on
+
+Well the message with the tears
+Through the eyes is everyone will see
+I can hear the people's fears
+[Incomprehensible] everywhere to me
+
+Right on for the darkness
+Right on, right on
+Right on, right on for the darkness
+
+I am blind and I cannot see
+You are there, your petty evil don't bother me
+Playing all the clothes you wear
+Laugh at me, pressed and clean, and I don't care
+
+Right on for the darkness
+Right on for the darkness
+Right on for the darkness
+ </pre>
+  <form>
+    <label for="test-checkbox"><input type="checkbox" id="test-checkbox"> Label</label>
+
+    <label for="test-color">Label</label>
+    <input type="color" id="test-color">
+
+    <label for="test-date">Label</label>
+    <input type="date" id="test-date">
+
+    <label for="test-datetime">Label</label>
+    <input type="datetime" id="test-datetime">
+
+    <label for="test-datetime-local">Label</label>
+    <input type="datetime-local" id="test-datetime-local">
+
+    <label for="test-email">Label</label>
+    <input type="email" id="test-email">
+
+    <label for="test-file">Label</label>
+    <input type="file" id="test-file">
+
+    <label for="test-image">Label</label>
+    <input type="image" id="test-image">
+
+    <label for="test-month">Label</label>
+    <input type="month" id="test-month">
+
+    <label for="test-number">Label</label>
+    <input type="number" id="test-number">
+
+    <label for="test-password">Label</label>
+    <input type="password" id="test-password">
+
+    <label for="test-radio"><input type="radio" id="test-radio"> Label</label>
+
+    <label for="test-range">Label</label>
+    <input type="range" id="test-range">
+
+    <label for="test-search">Label</label>
+    <input type="search" id="test-search">
+
+    <label for="test-tel">Label</label>
+    <input type="tel" id="test-tel">
+
+    <label for="test-text">Click me</label>
+    <input type="text" id="test-text">
+
+    <label for="test-time">Label</label>
+    <input type="time" id="test-time">
+
+    <label for="test-url">Label</label>
+    <input type="url" id="test-url">
+
+    <label for="test-week">Label</label>
+    <input type="week" id="test-week">
+
+    <label for="test-select">Label</label>
+    <select id="test-select"></select>
+
+    <label for="test-textarea">Label</label>
+    <textarea id="test-textarea"></textarea>
+
+    <!-- Those should be ignored -->
+    <input type="button" id="test-button">
+    <input type="hidden" id="test-hidden">
+    <input type="reset" id="test-reset">
+    <input type="submit" id="test-submit">
+
+    <!-- Those should be offending -->
+    <input type="text" id="test-text-missing">
+    <input type="url" name="missingUrl">
+    <select id="test-select-missing"></select>
+    <textarea id="test-textarea-missing"></textarea>
+  </form>
+</body>
+</html>

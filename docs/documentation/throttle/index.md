@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Throttle
+title: Throttle - Simulate slow network connections
 description: Simulate slow network connections on Linux and Mac OS X.
 keywords: throttle, documentation, web performance
 author: Peter Hedenskog
@@ -12,66 +12,76 @@ twitterdescription:
 # Throttle
 {:.no_toc}
 
-Simulate slow network connections on Linux and Mac OS X.
+* Lets place the TOC here
+{:toc}
 
-Inspired by [tylertreat/Comcast](https://github.com/tylertreat/Comcast), the [connectivity setting in the WPTAgent](https://github.com/WPO-Foundation/wptagent/blob/master/internal/traffic_shaping.py) and [sltc](https://github.com/sitespeedio/sltc).
+## Introduction
 
-Throttle uses *pfctl* on Mac and *tc* on Linux to simulate different network speeds.
+**Throttle lets you *simulate slow network connections* on Linux and Mac OS X.**
+
+Throttle uses *pfctl* on Mac and *tc* on Linux (you also need *ip* and *route* for Throttle to work on Linux) to simulate different network speeds and is inspired by [tylertreat/Comcast](https://github.com/tylertreat/Comcast), the [connectivity setting in the WPTAgent](https://github.com/WPO-Foundation/wptagent/blob/master/internal/traffic_shaping.py) and [sltc](https://github.com/sitespeedio/sltc).
+
+**What is Throttle good for?**
+
+It is usually used for two different things:
+
+ - You run it as a standalone tool setting simulate different connection speeds.
+ - You integrate it in your (web performance) tool to simulate different connections.
 
 You can set the download/upload speed and RTT. Upload/download is in kbit/s and RTT in ms.
 
 ## Install
 
-```
-$ npm install @sitespeed.io/throttle -g
-```
+~~~bash
+npm install @sitespeed.io/throttle -g
+~~~
 
 ## Start simulate a slower network connection
 
 Here is an example for running with 3G connectivity. Remember: Throttle will use sudo so your user will need
 sudo rights.
 
-```
-$ throttle --up 330 --down 780 --rtt 200
-```
+~~~bash
+throttle --up 330 --down 780 --rtt 200
+~~~
 
 ## Pre made profiles
 To make it easier we have pre made profiles, check them out by *throttle --help*:
 
-```
+~~~
 --profile         Premade profiles, set to one of the following
                      3g: up:768 down:1600 rtt:150
                      3gfast: up:768 down:1600 rtt:75
                      3gslow: up:400 down:400 rtt:200
                      2g: up:32 down:35 rtt:650
                      cable: up:1000 down:5000 rtt:14
-```
+~~~
 
 You can start throttle with one of the pre-made profiles:
 
-```
+~~~bash
 throttle --profile 3gslow
-```
+~~~
 
-## Stop simulate the network
+## Stop simulate the slow network
 Stopping is as easy as giving the parameter *stop* to throttle.
 
-```
-$ throttle --stop
-```
+~~~bash
+throttle --stop
+~~~
 
 ## Add delay on your localhost (Linux only at the moment)
 This is useful if you run [WebPageReplay](https://github.com/catapult-project/catapult/blob/master/web_page_replay_go/README.md) and want to add som latency to your tests.
 
-```
-$ throttle --rtt 200 --localhost
-```
+~~~bash
+throttle --rtt 200 --localhost
+~~~
 
 ## Stop adding delay on localhost (Linux only)
 
-```
-$ throttle --stop --localhost
-```
+~~~bash
+throttle --stop --localhost
+~~~
 
 ## Use directly in NodeJS
 

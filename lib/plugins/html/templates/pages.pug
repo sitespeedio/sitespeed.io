@@ -20,11 +20,6 @@ mixin rows(pages)
         +kbSizeCell('Javascript size', h.get(t.javascript, 'transferSize'))
         +kbSizeCell('CSS size', h.get(t.css, 'transferSize'))
         +kbSizeCell('Image size', h.get(t.image, 'transferSize'))
-      if pageInfo.data.gpsi
-        - gscore = pageInfo.data.gpsi.pageSummary.ruleGroups.SPEED.score
-        td.number(data-title='GPSI score', data-value= gscore)
-          - label = 'label ' +  h.scoreLabel(gscore)
-          span(class=label) #{gscore}
       if pageInfo.data.coach
         - score = pageInfo.data.coach.pageSummary.advice.performance.score
         td.number(data-title='Performance score', data-value= score)
@@ -38,8 +33,6 @@ block content
     - headings.push('First Visual Change', 'Speed Index', 'Last Visual Change')
   else
     - headings.push('JS size (kb)', 'CSS size (kb)', 'Image size (kb)')
-  if options.gpsi
-    - headings.push('GPSI')
   - headings.push('Performance score')
   .row
     .column
