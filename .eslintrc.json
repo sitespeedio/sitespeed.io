@@ -1,21 +1,22 @@
 {
-    "root": true,
-    "env": {
-        "node": true,
-        "es6": true
-    },
-    "plugins": [
-        "prettier"
+  "root": true,
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 8
+  },
+  "plugins": ["prettier"],
+  "extends": "eslint:recommended",
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true
+      }
     ],
-    "extends": "eslint:recommended",
-    "rules": {
-        "prettier/prettier": [
-            "error",
-            {
-                "singleQuote": true
-            }
-        ],
-        "no-extra-semi": 0,
-        "no-mixed-spaces-and-tabs": 0
-    }
+    "no-extra-semi": 0,
+    "no-mixed-spaces-and-tabs": 0
+  }
 }

@@ -41,9 +41,9 @@ function runWebPageReplay() {
 
   if [ $BROWSER = 'chrome' ]
   then
-    $BROWSERTIME -b $BROWSER -n 1 --browsertime.chrome.args host-resolver-rules="MAP *:$HTTP_PORT 127.0.0.1:$HTTP_PORT,MAP *:$HTTPS_PORT 127.0.0.1:$HTTPS_PORT,EXCLUDE localhost" --browsertime.pageCompleteCheck "return true;" "$@"
+    $BROWSERTIME --browsertime.browser $BROWSER -n 1 --browsertime.chrome.args host-resolver-rules="MAP *:$HTTP_PORT 127.0.0.1:$HTTP_PORT,MAP *:$HTTPS_PORT 127.0.0.1:$HTTPS_PORT,EXCLUDE localhost" --browsertime.pageCompleteCheck "return true;" "$@"
   else
-    $BROWSERTIME -b $BROWSER -n 1 --browsertime.firefox.preference network.dns.forceResolve:127.0.0.1 --browsertime.firefox.acceptInsecureCerts --browsertime.skipHar --browsertime.pageCompleteCheck "return true;" "$@"
+    $BROWSERTIME --browsertime.browser $BROWSER -n 1 --browsertime.firefox.preference network.dns.forceResolve:127.0.0.1 --browsertime.firefox.acceptInsecureCerts --browsertime.skipHar --browsertime.pageCompleteCheck "return true;" "$@"
   fi
 
   webpagereplaywrapper record --stop $WPR_PARAMS
