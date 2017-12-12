@@ -29,9 +29,7 @@ function setupADB(){
 
 function runWebPageReplay() {
 
-  RUNS="${RUNS:-5}"
   LATENCY=${LATENCY:-100}
-  BROWSER=${BROWSER:-'chrome'}
   HTTP_PORT=80
   HTTPS_PORT=443
   WPR_PATH=/root/go/src/github.com/catapult-project/catapult/web_page_replay_go
@@ -39,23 +37,13 @@ function runWebPageReplay() {
 
   webpagereplaywrapper record --start $WPR_PARAMS
 
-  if [ $BROWSER = 'chrome' ]
-  then
-    $BROWSERTIME --browsertime.browser $BROWSER -n 1 --browsertime.chrome.args host-resolver-rules="MAP *:$HTTP_PORT 127.0.0.1:$HTTP_PORT,MAP *:$HTTPS_PORT 127.0.0.1:$HTTPS_PORT,EXCLUDE localhost" --browsertime.pageCompleteCheck "return true;" "$@"
-  else
-    $BROWSERTIME --browsertime.browser $BROWSER -n 1 --browsertime.firefox.preference network.dns.forceResolve:127.0.0.1 --browsertime.firefox.acceptInsecureCerts --browsertime.skipHar --browsertime.pageCompleteCheck "return true;" "$@"
-  fi
+  $BROWSERTIME --browsertime.chrome.args host-resolver-rules="MAP *:$HTTP_PORT 127.0.0.1:$HTTP_PORT,MAP *:$HTTPS_PORT 127.0.0.1:$HTTPS_PORT,EXCLUDE localhost" --browsertime.firefox.preference network.dns.forceResolve:127.0.0.1 --browsertime.firefox.acceptInsecureCerts --browsertime.skipHar --browsertime.pageCompleteCheck "return true;" "$@"
 
   webpagereplaywrapper record --stop $WPR_PARAMS
 
   webpagereplaywrapper replay --start $WPR_PARAMS
 
-  if [ $BROWSER = 'chrome' ]
-  then
-    $SITESPEEDIO -b $BROWSER -n $RUNS --browsertime.chrome.args host-resolver-rules="MAP *:$HTTP_PORT 127.0.0.1:$HTTP_PORT,MAP *:$HTTPS_PORT 127.0.0.1:$HTTPS_PORT,EXCLUDE localhost" --video --speedIndex --browsertime.pageCompleteCheck "return true;" --browsertime.connectivity.engine throttle --browsertime.connectivity.throttle.localhost --browsertime.connectivity.profile custom --browsertime.connectivity.latency $LATENCY "$@"
-  else
-    $SITESPEEDIO -b $BROWSER -n $RUNS --browsertime.firefox.preference network.dns.forceResolve:127.0.0.1 --video --speedIndex --browsertime.pageCompleteCheck "return true;" --browsertime.connectivity.engine throttle --browsertime.connectivity.throttle.localhost --browsertime.connectivity.profile custom --browsertime.skipHar --browsertime.firefox.acceptInsecureCerts --browsertime.connectivity.latency $LATENCY  "$@"
-  fi
+  $SITESPEEDIO --browsertime.firefox.acceptInsecureCerts --browsertime.firefox.preference network.dns.forceResolve:127.0.0.1 --browsertime.chrome.args host-resolver-rules="MAP *:$HTTP_PORT 127.0.0.1:$HTTP_PORT,MAP *:$HTTPS_PORT 127.0.0.1:$HTTPS_PORT,EXCLUDE localhost" --video --speedIndex --browsertime.pageCompleteCheck "return true;" --browsertime.connectivity.engine throttle --browsertime.connectivity.throttle.localhost --browsertime.connectivity.profile custom --browsertime.connectivity.latency $LATENCY "$@"
 
   webpagereplaywrapper replay --stop $WPR_PARAMS
 }

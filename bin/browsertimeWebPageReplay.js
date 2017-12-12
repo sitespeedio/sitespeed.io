@@ -5,7 +5,8 @@
 let yargs = require('yargs'),
   browsertime = require('browsertime'),
   merge = require('lodash.merge'),
-  getURLs = require('../lib/cli/util').getURLs;
+  getURLs = require('../lib/cli/util').getURLs,
+  browsertimeConfig = require('../lib/plugins/browsertime/index').config;
 
 async function testURL(engine, url) {
   await engine
@@ -15,7 +16,21 @@ async function testURL(engine, url) {
 }
 
 async function runBrowsertime() {
-  let parsed = yargs.env('SITESPEED_IO').require(1, 'urlOrFile');
+  let parsed = yargs
+    .env('SITESPEED_IO')
+    .require(1, 'urlOrFile')
+    .option('browsertime.browser', {
+      alias: ['b', 'browser'],
+      default: browsertimeConfig.browser,
+      describe: 'Choose which Browser to use when you test.',
+      choices: ['chrome', 'firefox'],
+      group: 'Browser'
+    })
+    .option('browsertime.viewPort', {
+      default: browsertimeConfig.viewPort,
+      describe: 'The browser view port size WidthxHeight like 400x300',
+      group: 'Browser'
+    });
 
   const defaultConfig = {
     iterations: 1,
