@@ -310,6 +310,19 @@ And if you want to use it in your pug template you will find it under **pageInfo
 #{pageInfo.data.browsertime.run.yourplugin.title}
 ~~~
 
+## Let your plugin add metrics to the performance budget
+
+In the *sitespeedio.config* phase (where plugins can talk to each other) make sure to tell the budget plugin that you want it to collect metrics from your plugin. Do that by sending a message of the type *budget.addMessageType* and add the type of the metrics message you want it to collect.
+
+In this example we tell the budget plugin that it should collect metrics of the type *gpsi.pagesummary*.
+
+~~~
+const messageMaker = context.messageMaker;
+...
+
+queue.postMessage(make('budget.addMessageType', {type: 'gpsi.pagesummary'}));
+~~~
+
 ## Testing your plugin
 If your plugin lives on Github you should check out our [example Travis-ci file](https://github.com/sitespeedio/plugin-gpsi/blob/master/.travis.yml) for the GPSI plugin. In the example, we checkout the sitespeed.io project and run the plugin against the latest master (we also run it daily in the Travis crontab).
 

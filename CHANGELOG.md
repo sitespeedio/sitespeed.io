@@ -1,17 +1,17 @@
 # CHANGELOG - sitespeed.io
 
-## Unreleased
+## 6.1.0 2017-12-12
 ### Added
-* Let plugin register message types for budget [#1828](https://github.com/sitespeedio/sitespeed.io/pull/1828). With this you can add your plugin metrics to the budget. DOCS NEEDED
+* Let plugin register message types for budget [#1828](https://github.com/sitespeedio/sitespeed.io/pull/1828). With this you can add your plugin metrics to the budget.
 
-* Let plugins run async JavaScript in Browsertime [#1841](https://github.com/sitespeedio/sitespeed.io/pull/1841). DOCS NEEDED
+* Let plugins run async JavaScript in Browsertime [#1841](https://github.com/sitespeedio/sitespeed.io/pull/1841).
 
 * Use [sharp](http://sharp.dimens.io/) to change the size of the screenshot and choose between png/jpg [#1838](https://github.com/sitespeedio/sitespeed.io/pull/1838)
 
-* Updated to Chrome 63 in the Docker container
+* Updated to Chrome 63 in the Docker container.
 
 ### Fixed
-* Crawling now works with Badic Auth [#1845](https://github.com/sitespeedio/sitespeed.io/pull/1845) and [#1506](https://github.com/sitespeedio/sitespeed.io/issues/1506).
+* Crawling now works with Basic Auth [#1845](https://github.com/sitespeedio/sitespeed.io/pull/1845) and [#1506](https://github.com/sitespeedio/sitespeed.io/issues/1506).
 * Fix broken metrics list [#1850](https://github.com/sitespeedio/sitespeed.io/issues/1850). Thank you https://github.com/suratovvlad for reporting.
 
 ## 6.0.3 2017-11-29
