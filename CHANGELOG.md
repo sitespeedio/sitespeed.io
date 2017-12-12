@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 6.1.1 2017-12-12
+### Fixed
+* Better check for when the page has finished loading when you run WebPageReplay (load event end + 2 s).
+
 ## 6.1.0 2017-12-12
 ### Added
 * Let plugin register message types for budget [#1828](https://github.com/sitespeedio/sitespeed.io/pull/1828). With this you can add your plugin metrics to the budget.
