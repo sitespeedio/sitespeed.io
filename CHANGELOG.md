@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Fixed
+* We finally fixed (we hope) the SigV4 problem on uploading to S3 see [#1689](https://github.com/sitespeedio/sitespeed.io/issues/1689)
+
 ## 6.1.1 2017-12-12
 ### Fixed
 * Better check for when the page has finished loading when you run WebPageReplay (load event end + 2 s).
