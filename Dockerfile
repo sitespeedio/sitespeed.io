@@ -1,9 +1,12 @@
-FROM sitespeedio/webbrowsers:firefox-54.0-chrome-62.0-2
+FROM sitespeedio/webbrowsers:firefox-54.0-chrome-63.0
 
 ENV SITESPEED_IO_BROWSERTIME__XVFB true
 ENV SITESPEED_IO_BROWSERTIME__DOCKER true
 ENV SITESPEED_IO_BROWSERTIME__VIDEO true
 ENV SITESPEED_IO_BROWSERTIME__speedIndex true
+
+# This is needed for Sharp to compile
+RUN sudo apt-get update && sudo apt-get install build-essential -y --no-install-recommends
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app

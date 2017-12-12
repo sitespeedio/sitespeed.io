@@ -38,22 +38,22 @@ The following plugins are enabled: assets,browsertime,coach,domains,html,screens
 The default plugins lives in the [plugin folder](https://github.com/sitespeedio/sitespeed.io/tree/master/lib/plugins). This is a good starting place to look at if you wanna build your own plugin.
 
 ## Disable a plugin
-You can disable default plugins if needed. For instance you may not want to output HTML and strictly send the data to Graphite.
+You can remove/disable default plugins if needed. For instance you may not want to output HTML and strictly send the data to Graphite.
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --plugins.disable html
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --plugins.remove html
 ~~~
 
 If you want to disable multiple plugins say you don't need the html or screenshots:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --plugins.disable html screenshot
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --plugins.remove html screenshot
 ~~~
 
 At anytime if you want to verify that disabling worked, add the plugins.list to your command:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --plugins.disable html screenshot --plugins.list
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --plugins.remove html screenshot --plugins.list
 ~~~
 
 ## Add a plugin
@@ -62,7 +62,7 @@ You can also add a plugin. This is great if you have plugins you created yoursel
 There's a plugin bundled with sitespeed.io called *analysisstorer* plugin that isn't enabled by default. It stores the original JSON data from all analyzers (from Browsertime, Coach data, WebPageTest etc) to disk. You can enable this plugin like so:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --plugins.load analysisstorer
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --plugins.add analysisstorer
 ~~~
 
 If you want to run plugins that you created yourself or that are shared from others, you can either install the plugin using npm (locally) and load it by name or point out the directory where the plugin lives.
@@ -73,14 +73,14 @@ If you want to run plugins that you created yourself or that are shared from oth
 If you run in Docker and you should. You will need to mount your plugin directory as a volume. This is the recommended best practice. Practically you should clone your repo on your server and then mount it like this.
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -b firefox --plugins.load /sitespeed.io/myplugin -n 1 https://www.sitespeed.io/
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -b firefox --plugins.add /sitespeed.io/myplugin -n 1 https://www.sitespeed.io/
 ~~~
 
 ### Relative using NodeJS
 If you are running outside of Docker you can load it relative locally.
 
 ~~~bash
-sitespeed.io https://www.sitespeed.io --plugins.load ../my/super/plugin
+sitespeed.io https://www.sitespeed.io --plugins.add ../my/super/plugin
 ~~~
 
 ### Pre-baked Docker file
@@ -101,7 +101,7 @@ docker build -t my-custom-sitespeedio ./plugins
 Finally you can run it the same way as mentioned above without the volume mount.
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io my-custom-sitespeedio firefox --plugins.load /my-custom-plugin --my-custom-plugin.option test -n 1 https://www.sitespeed.io/
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io my-custom-sitespeedio firefox --plugins.add /my-custom-plugin --my-custom-plugin.option test -n 1 https://www.sitespeed.io/
 ~~~
 
 Pretty cool, huh? :-)
@@ -273,7 +273,7 @@ You can look at the standalone [GPSI plugin](https://github.com/sitespeedio/plug
 
 ## Let your plugin collect metrics using Browsertime
 
-One new feature in 6.0 is that your plugin can tell Browsertime to run JavaScript on the page you test to
+One new feature in 6.0 is that your plugin can tell Browsertime to run synchronous JavaScript on the page you test to
 collect metrics.
 
 You do that by in the setup phase, send the JavaScript you want to run to sitespeed.io
@@ -293,6 +293,8 @@ case 'sitespeedio.setup': {
 }
 ~~~
 
+You can also let Browsertime run asynchronous scripts, follow the same pattern and change the key to *browsertime.asyncscripts*.
+
 You can then get the metrics back by listening on **browsertime.run** messages.
 
 ~~~
@@ -308,8 +310,24 @@ And if you want to use it in your pug template you will find it under **pageInfo
 #{pageInfo.data.browsertime.run.yourplugin.title}
 ~~~
 
+## Let your plugin add metrics to the performance budget
+
+In the *sitespeedio.config* phase (where plugins can talk to each other) make sure to tell the budget plugin that you want it to collect metrics from your plugin. Do that by sending a message of the type *budget.addMessageType* and add the type of the metrics message you want it to collect.
+
+In this example we tell the budget plugin that it should collect metrics of the type *gpsi.pagesummary*.
+
+~~~
+const messageMaker = context.messageMaker;
+...
+
+queue.postMessage(make('budget.addMessageType', {type: 'gpsi.pagesummary'}));
+~~~
+
 ## Testing your plugin
 If your plugin lives on Github you should check out our [example Travis-ci file](https://github.com/sitespeedio/plugin-gpsi/blob/master/.travis.yml) for the GPSI plugin. In the example, we checkout the sitespeed.io project and run the plugin against the latest master (we also run it daily in the Travis crontab).
+
+## Example plugin(s)
+You can look at the standalone [GPSI plugin](https://github.com/sitespeedio/plugin-gpsi) or the [WebPageTest plugin](https://github.com/sitespeedio/sitespeed.io/tree/master/lib/plugins/webpagetest).
 
 ## Find plugins
 We keep a list of plugins at [https://github.com/sitespeedio/plugins](https://github.com/sitespeedio/plugins). If you wanna add your plugin, send a PR!

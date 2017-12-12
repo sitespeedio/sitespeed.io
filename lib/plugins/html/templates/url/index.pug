@@ -96,8 +96,9 @@ block content
         .one-half.column
             if hasScreenShots
               - var width = options.mobile ? 150 : '100%';
-              a(href='data/screenshots/0.png')
-                img.screenshot(src='data/screenshots/0.png', width=width, alt='Screenshot of run 1')
+              - var screenshotName = 'data/screenshots/0.' + screenShotType
+              a(href=screenshotName)
+                img.screenshot(src=screenshotName, width=width, alt='Screenshot of run 1')
             else if !d.browsertime && d.webpagetest
               a(href='data/screenshots/0.png')
                 img.screenshot(src='data/screenshots/wpt-1-firstView.png', alt='Screenshot of run 1')

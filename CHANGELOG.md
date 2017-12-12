@@ -1,5 +1,34 @@
 # CHANGELOG - sitespeed.io
 
+## 6.1.0 2017-12-12
+### Added
+* Let plugin register message types for budget [#1828](https://github.com/sitespeedio/sitespeed.io/pull/1828). With this you can add your plugin metrics to the budget.
+
+* Let plugins run async JavaScript in Browsertime [#1841](https://github.com/sitespeedio/sitespeed.io/pull/1841).
+
+* Use [sharp](http://sharp.dimens.io/) to change the size of the screenshot and choose between png/jpg [#1838](https://github.com/sitespeedio/sitespeed.io/pull/1838)
+
+* Updated to Chrome 63 in the Docker container.
+
+### Fixed
+* Crawling now works with Basic Auth [#1845](https://github.com/sitespeedio/sitespeed.io/pull/1845) and [#1506](https://github.com/sitespeedio/sitespeed.io/issues/1506).
+* Fix broken metrics list [#1850](https://github.com/sitespeedio/sitespeed.io/issues/1850). Thank you https://github.com/suratovvlad for reporting.
+
+## 6.0.3 2017-11-29
+### Fixed
+* Remove the unused unminified CSS file from the result [#1835](https://github.com/sitespeedio/sitespeed.io/pull/1835)
+* Updated to Browsertime 2.0.1 with [fixes for Android](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#version-201-2017-11-28).
+
+## 6.0.2 2017-11-28
+
+### Fixed
+* Yesterdays fix broke the functionality of adding/removing plugins with a comma-separated list [#1833](https://github.com/sitespeedio/sitespeed.io/pull/1833).
+
+## 6.0.1 2017-11-27
+
+### Fixed
+* Fixed a bug adding/removing multiple plugins see [#1831](https://github.com/sitespeedio/sitespeed.io/issues/1831).
+
 ## 6.0.0 2017-11-24
 
 Before you upgrade, please read our [upgrade guide](https://www.sitespeed.io/documentation/sitespeed.io/upgrade/).
@@ -53,6 +82,16 @@ data you can just follow the old [DataCollector structure](https://github.com/si
 *sitespeedio.setup* - The first message on the queue. A plugin can pickup this message and communicate with other plugins (send pugs to the HTML plugin, send JavaScript to Browsertime etc). The next message is *sitespeedio.summarize* (old summarize) that tells the plugins that all URLs are analysed and you can now summarise the metrics. The last message is *sitespeedio.render* which tells the plugins to render content to disk. The HTML plugin pickup *sitespeedio.render*, render the HTML and then sends a *html.finished* message, that then other plugins can pickup.
 
 * We have moved the GPSI outside of sitespeed.io and you can find it [here](https://github.com/sitespeedio/plugin-gpsi). To run in along with sitespeed.io you just follow [the instructions how to add a plugin](https://www.sitespeed.io/documentation/sitespeed.io/plugins/#add-a-plugin). We moved it outside of sitespeed.io to make the code base cleaner and with the hope that we can find a maintainer who can give it more love.
+
+* The [StorageManager](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/core/resultsStorage/storageManager.js) API has been updated. The following changes may break code written using the 5.x API:
+
+  * `createDataDir(directoryName)` is now `createDirectory(...directoryNames)` and takes any number of directory names (which will be joined together) as arguments.
+  * `writeData(filename, data)` has reversed the order of its arguments. It is now `writeData(data, filename)`.
+  * `writeHtml(filename, html)` has reversed the order of its arguments. It is now `writeHtml(html, filename)`.
+  * `writeDataForUrl(data, filename, url, subDir)` no longer has a fifth argument indicating whether output should be gzipped.
+  * `writeHtmlForUrl(html, filename, url)` no longer has a fourth argument indicating whether output should be gzipped.
+
+  Note that all compression functionality has been removed. If you need compressed output, your plugin should handle gzipping itself. See the [`harstorer` plugin](https://github.com/sitespeedio/sitespeed.io/blob/56bfc48bac7ccfe1cfe35c829b4dd11987a375e4/lib/plugins/harstorer/index.js#L19-L28) for an example.
 
 ## 5.6.4 2017-10-11
 ### Fixed

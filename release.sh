@@ -25,3 +25,6 @@ bin/sitespeed.js --version > docs/version/sitespeed.io.txt
 
 # Generate the help for the docs
 bin/sitespeed.js --help > docs/documentation/sitespeed.io/configuration/config.md
+
+docker build -f Dockerfile.wpr --no-cache -t sitespeedio/sitespeed.io:${PACKAGE_VERSION}-wpr-alpha .
+docker push sitespeedio/sitespeed.io:${PACKAGE_VERSION}-wpr-alpha
