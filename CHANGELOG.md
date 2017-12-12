@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 6.1.2 2017-12-12
 ### Fixed
 * We finally fixed (we hope) the SigV4 problem on uploading to S3 see [#1689](https://github.com/sitespeedio/sitespeed.io/issues/1689)
 
