@@ -62,6 +62,12 @@ Budget
   --budget.config      The JSON budget config as a string.
   --budget.output      The output format of the budget.  [choices: "junit", "tap"]
 
+Screenshot
+  --screenshot.type                  Set the file type of the screenshot  [choices: "png", "jpg"] [default: "png"]
+  --screenshot.png.compressionLevel  zlib compression level  [default: 6]
+  --screenshot.jpg.quality           Quality of the JPEG screenshot. 1-100  [default: 80]
+  --screenshot.maxSize               The max size of the screenshot (width and height).  [default: 2000]
+
 InfluxDB
   --influxdb.protocol            The protocol used to store connect to the InfluxDB host.  [default: "http"]
   --influxdb.host                The InfluxDB host used to store captured metrics.
