@@ -12,6 +12,7 @@
 
 ### Fixed
 * Crawling now works with Badic Auth [#1845](https://github.com/sitespeedio/sitespeed.io/pull/1845) and [#1506](https://github.com/sitespeedio/sitespeed.io/issues/1506).
+* Fix broken metrics list [#1850](https://github.com/sitespeedio/sitespeed.io/issues/1850). Thank you https://github.com/suratovvlad for reporting.
 
 ## 6.0.3 2017-11-29
 ### Fixed
