@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+
+### Fixed
+* Make it possible to stop runs from your command line in the new alpha WebPageReplay docker container
+
 ## 6.1.2 2017-12-12
 ### Fixed
 * We finally fixed (we hope) the SigV4 problem on uploading to S3 see [#1689](https://github.com/sitespeedio/sitespeed.io/issues/1689)

@@ -29,6 +29,13 @@ function setupADB(){
 
 function runWebPageReplay() {
 
+  # Inspired by docker-selenium way of shutting down
+  function shutdown {
+    kill -s SIGTERM ${PID}
+    wait $PID
+    webpagereplaywrapper replay --stop $WPR_PARAMS
+  }
+
   LATENCY=${LATENCY:-100}
   HTTP_PORT=80
   HTTPS_PORT=443
@@ -43,8 +50,12 @@ function runWebPageReplay() {
 
   webpagereplaywrapper replay --start $WPR_PARAMS
 
-  $SITESPEEDIO --browsertime.firefox.acceptInsecureCerts --browsertime.firefox.preference network.dns.forceResolve:127.0.0.1 --browsertime.chrome.args host-resolver-rules="MAP *:$HTTP_PORT 127.0.0.1:$HTTP_PORT,MAP *:$HTTPS_PORT 127.0.0.1:$HTTPS_PORT,EXCLUDE localhost" --video --speedIndex --browsertime.pageCompleteCheck "return (function() {try { if (performance.now() > ((performance.timing.loadEventEnd - performance.timing.navigationStart) + 2000)) {return true;} else return false;} catch(e) {return true;}})()" --browsertime.connectivity.engine throttle --browsertime.connectivity.throttle.localhost --browsertime.connectivity.profile custom --browsertime.connectivity.latency $LATENCY "$@"
+  exec $SITESPEEDIO --browsertime.firefox.acceptInsecureCerts --browsertime.firefox.preference network.dns.forceResolve:127.0.0.1 --browsertime.chrome.args host-resolver-rules="MAP *:$HTTP_PORT 127.0.0.1:$HTTP_PORT,MAP *:$HTTPS_PORT 127.0.0.1:$HTTPS_PORT,EXCLUDE localhost" --video --speedIndex --browsertime.pageCompleteCheck "return (function() {try { if (performance.now() > ((performance.timing.loadEventEnd - performance.timing.navigationStart) + 2000)) {return true;} else return false;} catch(e) {return true;}})()" --browsertime.connectivity.engine throttle --browsertime.connectivity.throttle.localhost --browsertime.connectivity.profile custom --browsertime.connectivity.latency $LATENCY "$@" &
 
+  PID=$!
+
+  trap shutdown SIGTERM SIGINT
+  wait $PID
   webpagereplaywrapper replay --stop $WPR_PARAMS
 }
 
