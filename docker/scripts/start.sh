@@ -31,9 +31,9 @@ function runWebPageReplay() {
 
   # Inspired by docker-selenium way of shutting down
   function shutdown {
+    webpagereplaywrapper replay --stop $WPR_PARAMS
     kill -s SIGTERM ${PID}
     wait $PID
-    webpagereplaywrapper replay --stop $WPR_PARAMS
   }
 
   LATENCY=${LATENCY:-100}
