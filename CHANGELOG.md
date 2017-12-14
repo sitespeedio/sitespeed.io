@@ -1,9 +1,11 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 6.1.3 2017-12-14
 
 ### Fixed
 * Make it possible to stop runs from your command line in the new alpha WebPageReplay docker container
+
+* Fixed bug with configuring pageCompleteCheck (and probably other problems too) in the Docker container [#1858](https://github.com/sitespeedio/sitespeed.io/issues/1858).
 
 ## 6.1.2 2017-12-12
 ### Fixed

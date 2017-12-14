@@ -81,7 +81,7 @@ setupADB
 
 if [ $REPLAY ]
 then
-  runWebPageReplay $@
+  runWebPageReplay "$@"
 else
-  runSitespeedio $@
+  runSitespeedio "$@"
 fi
