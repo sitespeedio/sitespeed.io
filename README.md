@@ -11,7 +11,72 @@
 
 ## Welcome to the wonderful world of web performance!
 
-We have worked a lot on our documentation so you should head over to [https://www.sitespeed.io/documentation/sitespeed.io/](https://www.sitespeed.io/documentation/sitespeed.io/) and read what you can do with sitespeed.io.
+**Sitespeed.io is a *complete web performance tool* that helps you measure the performance of your website. What exactly does that mean?**
+
+We think of a complete web performance tool as having three key capabilities:
+
+ - It test web sites using real browsers, simulating real users connectivity and collect important user centric metrics like Speed Index and First Visual Render.
+ - It analyse how your page is built and give feedback how you can make it faster for the end user.
+ - It collect and keep data how your pages is built so you easily can track changes.
+
+**What is sitespeed.io good for?**
+
+It is usually used in two different areas:
+
+ - Running in your continuous integration to find web performance regressions early: on commits or when you move code to your test environment
+ - Monitoring your performance in production, alerting on regressions.
+
+To understand how sitespeed.io does these things, let's talk about how it works.
+
+First a few key concepts:
+
+ - Sitespeed.io is built upon a couple of other Open Source tools in the sitespeed.io suite.
+ - [Browsertime](https://github.com/sitespeedio/browsertime) is the tool that drives the browser and collect metrics.
+ - [The Coach](https://github.com/sitespeedio/coach) knows how to build fast websites and analyse your page and give you feedback what you should change.
+ - Visual Metrics is metrics collected from a video recording of the browser screen.
+ - Everything in sitespeed.io is a [plugin](https://www.sitespeed.io/documentation/sitespeed.io/plugins/) and they communicate by passing messages on a queue.
+
+When you as user choose to test a URL, this is what happens on a high level:
+
+ 1. sitespeed.io starts and initialise all configured plugins.
+ 2. The URL is passed around the plugins through the queue.
+    1. Browsertime gets the URL and opens the browser.
+    2. It starts to record a video of the browser screen.
+    3. The browser access the URL.
+    4. When the page is finished, Browsertime takes a screenshot of the page.
+    5. Then run some JavaScripts to analyse the page (using Coach and Browsertime scripts).
+    6. Stop the video and close the browser.
+    7. Analyse the video to get Visual Metrics like First Visual Change and Speed Index.
+    8. Browsertime passes all metrics and data on the queue so other plugins can use it.
+ 3. The HTML/Graphite/InfluxDB plugin collects the metrics in queue.
+ 4. When all URLs are tested, sitespeed sends a message telling plugins to summarise the metrics and then render it.
+ 5. Plugins pickup the render message and the HTML plugin writes the HTML to disk.
+
+ ## Lets try it out
+
+ Using Docker (use latest Docker):
+
+ ```bash
+ $ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
+ ```
+
+ Or install using npm:
+
+ ```bash
+ $ npm i -g sitespeed.io
+ ```
+
+ Or clone the repo and test the latest changes:
+
+ ```bash
+ $ git clone https://github.com/sitespeedio/sitespeed.io.git
+ $ cd sitespeed.io
+ $ npm install
+ $ bin/sitespeed.js --help
+ $ bin/sitespeed.js https://www.sitespeed.io/
+ ```
+
+## More details
 
 Using sitespeed.io you can:
 * Test your web site against Web Performance best practices using the [Coach](https://github.com/sitespeedio/coach).
@@ -24,8 +89,6 @@ Using sitespeed.io you can:
 See all the latest changes in the [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md).
 
 If you use Firefox 55 (or later) please have a look at https://github.com/sitespeedio/browsertime/issues/358. We are waiting on the new extension from Mozilla to be able to export the HAR.
-
-## Examples of what you can do
 
 Checkout our example [dashboard.sitespeed.io](https://dashboard.sitespeed.io/dashboard/db/page-summary)
 
@@ -42,60 +105,30 @@ Video - easiest using Docker. This gif is optimized, the quality is much better 
 
 <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/barack.gif">
 
-## Lets try it out
+## Using WebPageReplay
+We have a special Docker container that comes with [WebPageReplay](https://github.com/catapult-project/catapult/blob/master/web_page_replay_go/README.md) installed. This is a really early alpha release but we think you should try it out.
 
-Using Docker (requires 1.10+):
+WebPageReplay will let you replay your page locally (getting rid of server latency etc) and makes it easier to find front end regressions.
 
-```bash
-$ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
+It works like this:
+1. The start script starts WebPageReplay in record mode
+2. Then starts Browsertime accessing the URL you choose one time (so it is recorded)
+3. WebPageReplay is closed down
+4. WebPageReplay in replay mode is started
+5. Sitespeed.io access the URL so many times you choose
+6. WebPageReplay in replay mode is closed down
+
+You can change latency by setting a Docker environment variable. Use REPLAY to turn on the reply functionality.
+
+Default browser is Chrome:
+
+```
+docker run --cap-add=NET_ADMIN --shm-size=1g --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true sitespeedio/sitespeed.io:6.1.3-wpr-alpha -n 5 -b chrome https://en.wikipedia.org/wiki/Barack_Obama
 ```
 
-Or install using npm:
+Use Firefox:
 
-```bash
-$ npm i -g sitespeed.io
 ```
-
-Or clone the repo and test the latest changes:
-
-```bash
-$ git clone https://github.com/sitespeedio/sitespeed.io.git
-$ cd sitespeed.io
-$ npm install
-$ bin/sitespeed.js --help
-$ bin/sitespeed.js https://www.sitespeed.io/
+docker run --cap-add=NET_ADMIN --shm-size=1g --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true sitespeedio/sitespeed.io:6.1.3-wpr-alpha -n 11 --browsertime.skipHar -b firefox https://en.wikipedia.org/wiki/Barack_Obama
 ```
-
-## I want to help!
-We have a [special page](HELP.md) for you!
-
-## Contributors
-All the love in the world to our contributors:
-
-[<img alt="mcdado" src="https://avatars2.githubusercontent.com/u/898057?v=4&s=117" width="117">](https://github.com/mcdado)[<img alt="unadat" src="https://avatars3.githubusercontent.com/u/2950381?v=4&s=117" width="117">](https://github.com/unadat)[<img alt="stefanjudis" src="https://avatars3.githubusercontent.com/u/962099?v=4&s=117" width="117">](https://github.com/stefanjudis)[<img alt="shakey2k2" src="https://avatars1.githubusercontent.com/u/5218401?v=4&s=117" width="117">](https://github.com/shakey2k2)[<img alt="lbod" src="https://avatars1.githubusercontent.com/u/733371?v=4&s=117" width="117">](https://github.com/lbod)[<img alt="tollmanz" src="https://avatars3.githubusercontent.com/u/921795?v=4&s=117" width="117">](https://github.com/tollmanz)
-
-[<img alt="laer" src="https://avatars3.githubusercontent.com/u/233972?v=4&s=117" width="117">](https://github.com/laer)[<img alt="pixelsonly" src="https://avatars1.githubusercontent.com/u/1099513?v=4&s=117" width="117">](https://github.com/pixelsonly)[<img alt="pelmered" src="https://avatars2.githubusercontent.com/u/680058?v=4&s=117" width="117">](https://github.com/pelmered)[<img alt="staabm" src="https://avatars2.githubusercontent.com/u/120441?v=4&s=117" width="117">](https://github.com/staabm)[<img alt="alimony" src="https://avatars3.githubusercontent.com/u/331091?v=4&s=117" width="117">](https://github.com/alimony)[<img alt="krukru" src="https://avatars3.githubusercontent.com/u/10072630?v=4&s=117" width="117">](https://github.com/krukru)
-
-[<img alt="AD7six" src="https://avatars0.githubusercontent.com/u/33387?v=4&s=117" width="117">](https://github.com/AD7six)[<img alt="abhagupta" src="https://avatars3.githubusercontent.com/u/825965?v=4&s=117" width="117">](https://github.com/abhagupta)[<img alt="adamstac" src="https://avatars1.githubusercontent.com/u/2933?v=4&s=117" width="117">](https://github.com/adamstac)[<img alt="svetlyak40wt" src="https://avatars2.githubusercontent.com/u/24827?v=4&s=117" width="117">](https://github.com/svetlyak40wt)[<img alt="antonbabenko" src="https://avatars3.githubusercontent.com/u/393243?v=4&s=117" width="117">](https://github.com/antonbabenko)[<img alt="akupila" src="https://avatars0.githubusercontent.com/u/540683?v=4&s=117" width="117">](https://github.com/akupila)
-
-[<img alt="bbvmedia" src="https://avatars2.githubusercontent.com/u/613914?v=4&s=117" width="117">](https://github.com/bbvmedia)[<img alt="cgoldberg" src="https://avatars0.githubusercontent.com/u/1113081?v=4&s=117" width="117">](https://github.com/cgoldberg)[<img alt="danielsamuels" src="https://avatars0.githubusercontent.com/u/1781176?v=4&s=117" width="117">](https://github.com/danielsamuels)[<img alt="marcbachmann" src="https://avatars3.githubusercontent.com/u/431376?v=4&s=117" width="117">](https://github.com/marcbachmann)[<img alt="EikeDawid" src="https://avatars3.githubusercontent.com/u/638502?v=4&s=117" width="117">](https://github.com/EikeDawid)[<img alt="emilb" src="https://avatars2.githubusercontent.com/u/86359?v=4&s=117" width="117">](https://github.com/emilb)
-
-[<img alt="gehel" src="https://avatars1.githubusercontent.com/u/1415765?v=4&s=117" width="117">](https://github.com/gehel)[<img alt="Ixl123" src="https://avatars2.githubusercontent.com/u/2118956?v=4&s=117" width="117">](https://github.com/Ixl123)[<img alt="jeremy-green" src="https://avatars3.githubusercontent.com/u/1375140?v=4&s=117" width="117">](https://github.com/jeremy-green)[<img alt="jerodsanto" src="https://avatars0.githubusercontent.com/u/8212?v=4&s=117" width="117">](https://github.com/jerodsanto)[<img alt="jjethwa" src="https://avatars0.githubusercontent.com/u/4575316?v=4&s=117" width="117">](https://github.com/jjethwa)[<img alt="keithamus" src="https://avatars3.githubusercontent.com/u/118266?v=4&s=117" width="117">](https://github.com/keithamus)
-
-[<img alt="omegahm" src="https://avatars1.githubusercontent.com/u/178448?v=4&s=117" width="117">](https://github.com/omegahm)[<img alt="schmilblick" src="https://avatars1.githubusercontent.com/u/31208?v=4&s=117" width="117">](https://github.com/schmilblick)[<img alt="rob-m" src="https://avatars2.githubusercontent.com/u/641076?v=4&s=117" width="117">](https://github.com/rob-m)[<img alt="atdt" src="https://avatars0.githubusercontent.com/u/376462?v=4&s=117" width="117">](https://github.com/atdt)[<img alt="matthojo" src="https://avatars1.githubusercontent.com/u/367517?v=4&s=117" width="117">](https://github.com/matthojo)[<img alt="orjan" src="https://avatars3.githubusercontent.com/u/124032?v=4&s=117" width="117">](https://github.com/orjan)
-
-[<img alt="moos" src="https://avatars2.githubusercontent.com/u/233047?v=4&s=117" width="117">](https://github.com/moos)[<img alt="radum" src="https://avatars2.githubusercontent.com/u/46779?v=4&s=117" width="117">](https://github.com/radum)[<img alt="JeroenVdb" src="https://avatars0.githubusercontent.com/u/657797?v=4&s=117" width="117">](https://github.com/JeroenVdb)[<img alt="pborreli" src="https://avatars2.githubusercontent.com/u/77759?v=4&s=117" width="117">](https://github.com/pborreli)[<img alt="jzoldak" src="https://avatars2.githubusercontent.com/u/2338889?v=4&s=117" width="117">](https://github.com/jzoldak)[<img alt="n3o77" src="https://avatars3.githubusercontent.com/u/321891?v=4&s=117" width="117">](https://github.com/n3o77)
-
-[<img alt="stephendonner" src="https://avatars3.githubusercontent.com/u/387249?v=4&s=117" width="117">](https://github.com/stephendonner)
-
-
-[travis-image]: https://img.shields.io/travis/sitespeedio/sitespeed.io.svg?style=flat-square
-[travis-url]: https://travis-ci.org/sitespeedio/sitespeed.io
-[stars-url]: https://github.com/sitespeedio/sitespeed.io/stargazers
-[stars-image]: https://img.shields.io/github/stars/sitespeedio/sitespeed.io.svg?style=flat-square
-[downloads-image]: https://img.shields.io/npm/dt/sitespeed.io.svg?style=flat-square
-[downloads-url]: https://npmjs.org/package/sitespeed.io
-[docker-image]: https://img.shields.io/docker/pulls/sitespeedio/sitespeed.io.svg
-[docker-url]: https://hub.docker.com/r/sitespeedio/sitespeed.io/
-[changelog-image]: https://img.shields.io/badge/changelog-%23212-lightgrey.svg?style=flat-square
-[changelog-url]: https://changelog.com/212
+IMPORTANT: We use Firefox 57 for WebPageReplay because we need to run a higher version than 54, that means we cannot get a HAR file until Mozilla releases the new way of getting that HAR. That's why you need to add *--skipHar* for Firefox.
