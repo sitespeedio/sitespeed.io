@@ -123,13 +123,13 @@ You can change latency by setting a Docker environment variable. Use REPLAY to t
 Default browser is Chrome:
 
 ```
-docker run --cap-add=NET_ADMIN --shm-size=1g --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true sitespeedio/sitespeed.io:6.1.3-wpr-alpha -n 5 -b chrome https://en.wikipedia.org/wiki/Barack_Obama
+docker run --cap-add=NET_ADMIN --shm-size=1g --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io:6.1.3-wpr-alpha -n 5 -b chrome https://en.wikipedia.org/wiki/Barack_Obama
 ```
 
 Use Firefox:
 
 ```
-docker run --cap-add=NET_ADMIN --shm-size=1g --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true sitespeedio/sitespeed.io:6.1.3-wpr-alpha -n 11 --browsertime.skipHar -b firefox https://en.wikipedia.org/wiki/Barack_Obama
+docker run --cap-add=NET_ADMIN --shm-size=1g --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io:6.1.3-wpr-alpha -n 11 --browsertime.skipHar -b firefox https://en.wikipedia.org/wiki/Barack_Obama
 ```
 IMPORTANT: We use Firefox 57 for WebPageReplay because we need to run a higher version than 54, that means we cannot get a HAR file until Mozilla releases the new way of getting that HAR. That's why you need to add *--skipHar* for Firefox.
 
