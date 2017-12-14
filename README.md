@@ -105,20 +105,20 @@ Video - easiest using Docker. This gif is optimized, the quality is much better 
 
 <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/barack.gif">
 
-## Using WebPageReplay
+## Test using WebPageReplay
 We have a special Docker container that comes with [WebPageReplay](https://github.com/catapult-project/catapult/blob/master/web_page_replay_go/README.md) installed. This is a really early alpha release but we think you should try it out.
 
-WebPageReplay will let you replay your page locally (getting rid of server latency etc) and makes it easier to find front end regressions.
+WebPageReplay will let you replay your page locally (getting rid of server latency etc) and makes it easier to have stable metrics and find front end regressions.
 
 It works like this:
-1. The start script starts WebPageReplay in record mode
-2. Then starts Browsertime accessing the URL you choose one time (so it is recorded)
+1. WebPageReplay is started in record mode
+2. Browsertime access the URLs you choose one time (so it is recorded)
 3. WebPageReplay is closed down
 4. WebPageReplay in replay mode is started
-5. Sitespeed.io access the URL so many times you choose
+5. Sitespeed.io (using Browsertime) test the URL so many times you choose
 6. WebPageReplay in replay mode is closed down
 
-You can change latency by setting a Docker environment variable. Use REPLAY to turn on the reply functionality.
+You can change latency by setting a Docker environment variable. Use REPLAY to turn on the replay functionality.
 
 Default browser is Chrome:
 
