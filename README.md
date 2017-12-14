@@ -132,3 +132,15 @@ Use Firefox:
 docker run --cap-add=NET_ADMIN --shm-size=1g --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true sitespeedio/sitespeed.io:6.1.3-wpr-alpha -n 11 --browsertime.skipHar -b firefox https://en.wikipedia.org/wiki/Barack_Obama
 ```
 IMPORTANT: We use Firefox 57 for WebPageReplay because we need to run a higher version than 54, that means we cannot get a HAR file until Mozilla releases the new way of getting that HAR. That's why you need to add *--skipHar* for Firefox.
+
+
+[travis-image]: https://img.shields.io/travis/sitespeedio/sitespeed.io.svg?style=flat-square
+[travis-url]: https://travis-ci.org/sitespeedio/sitespeed.io
+[stars-url]: https://github.com/sitespeedio/sitespeed.io/stargazers
+[stars-image]: https://img.shields.io/github/stars/sitespeedio/sitespeed.io.svg?style=flat-square
+[downloads-image]: https://img.shields.io/npm/dt/sitespeed.io.svg?style=flat-square
+[downloads-url]: https://npmjs.org/package/sitespeed.io
+[docker-image]: https://img.shields.io/docker/pulls/sitespeedio/sitespeed.io.svg
+[docker-url]: https://hub.docker.com/r/sitespeedio/sitespeed.io/
+[changelog-image]: https://img.shields.io/badge/changelog-%23212-lightgrey.svg?style=flat-square
+[changelog-url]: https://changelog.com/212
