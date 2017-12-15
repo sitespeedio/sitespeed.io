@@ -86,7 +86,7 @@ And then there is also a dashboard for [all tested pages of a site](https://dash
 Do you need anything else? Since we store all the data in Graphite and use Grafana you can create your own dashboards, which is super simple!
 
 # Configuration setup
-You have the dashboard and you need to collect metrics. Using the crontab works fine or whatever kind of scheduler you are using (or Jenkins per build or ... whatever suits you best).
+You have the dashboard and you need to collect metrics. Using the crontab works fine or or you can just run an infinite loop.
 
 Using the crontab (on a standalone server) you do like this:
 <code>crontab -e</code> to edit the crontab. Make sure your cron user can run Docker and change *my.graphite.host* to your Graphite host. When you run this on a standalone server *my.graphite.host* will be the public IP address of your server. The default port when sending metrics to Graphite is 2003, so you don't have to include that.
@@ -101,7 +101,7 @@ Our *run.sh* file (we read which URLs we want to test from files):
 ~~~
 #!/bin/bash
 # Specify the exact version of sitespeed.io. When you upgrade to the next version, pull it down and the chage the tag
-DOCKER_CONTAINER=sitespeedio/sitespeed.io:6.0.0
+DOCKER_CONTAINER=sitespeedio/sitespeed.io:6.1.3
 
 # Setup the network and default ones we wanna use
 sudo /home/ubuntu/startNetworks.sh
@@ -132,6 +132,61 @@ We trigger the script from the crontab. We run the script every hour.
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 0 * * * * /root/runs.sh >> /tmp/sitespeed.io.log 2>&1
+~~~
+
+## Infinite loop
+Another way is to just run the script in an infinite loop and then have a file that you remove (so the run stops) when you want to update your instance.
+
+~~~
+#!/bin/bash
+
+CONTROL_FILE=/home/ubuntu/sitespeed.run
+
+if [ -f "$CONTROL_FILE" ]
+then
+  echo "$CONTROL_FILE exist, do you have running tests?" >> /tmp/s.log 2>&1
+  exit 1;
+else
+  touch $CONTROL_FILE
+fi
+
+DOCKER_CONTAINER=sitespeedio/sitespeed.io:6.1.3
+
+function cleanup() {
+  docker system prune --all --volumes -f  >> /tmp/s.log 2>&1
+  docker pull $DOCKER_CONTAINER >> /tmp/s.log 2>&1
+}
+
+function control() {
+  if [ -f "$CONTROL_FILE" ]
+  then
+    echo "$CONTROL_FILE found. Make another run ..." >> /tmp/s.log 2>&1
+  else
+    echo "$CONTROL_FILE not found - stopping after cleaning up ..." >> /tmp/s.log 2>&1
+    cleanup
+    echo "Exit" >> /tmp/s.log 2>&1
+    exit 0;
+  fi
+}
+
+while true
+do
+
+  DOCKER_SETUP="--shm-size=1g --rm -v /home/ubuntu/config:/sitespeed.io -v /result:/result -v /etc/localtime:/etc/localtime:ro "
+  THREEG="--network 3g"
+  THREEGEM="--network 3gem"
+  CABLE="--network cable"
+  CONFIG="--config /sitespeed.io/default.json"
+  echo 'Start a new loop ' >> /tmp/s.log 2>&1
+  echo "Start the networks ..." >> /tmp/s.log 2>&1
+  sudo /home/ubuntu/startNetworks.sh >> /tmp/s.log 2>&1
+  docker network ls >> /tmp/s.log 2>&1
+
+  docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER -n 7 --browsertime.viewPort 1920x1080 --browsertime.cacheClearRaw true /sitespeed.io/wikipedia.org.txt $CONFIG >> /tmp/s.log 2>&1
+  control
+  docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER -n 7 --browsertime.viewPort 1920x1080 /sitespeed.io/wikipedia.org.txt -b firefox $CONFIG >> /tmp/s.log 2>&1
+  cleanup
+done
 ~~~
 
 ## default.json
