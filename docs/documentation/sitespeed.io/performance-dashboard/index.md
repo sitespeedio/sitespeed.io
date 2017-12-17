@@ -139,12 +139,13 @@ Another way is to just run the script in an infinite loop and then have a file t
 
 ~~~
 #!/bin/bash
-
+LOGFILE=/tmp/s.log
+exec > $LOGFILE 2>&1
 CONTROL_FILE=/home/ubuntu/sitespeed.run
 
 if [ -f "$CONTROL_FILE" ]
 then
-  echo "$CONTROL_FILE exist, do you have running tests?" >> /tmp/s.log 2>&1
+  echo "$CONTROL_FILE exist, do you have running tests?"
   exit 1;
 else
   touch $CONTROL_FILE
@@ -153,18 +154,18 @@ fi
 DOCKER_CONTAINER=sitespeedio/sitespeed.io:6.1.3
 
 function cleanup() {
-  docker system prune --all --volumes -f  >> /tmp/s.log 2>&1
-  docker pull $DOCKER_CONTAINER >> /tmp/s.log 2>&1
+  docker system prune --all --volumes -f
+  docker pull $DOCKER_CONTAINER
 }
 
 function control() {
   if [ -f "$CONTROL_FILE" ]
   then
-    echo "$CONTROL_FILE found. Make another run ..." >> /tmp/s.log 2>&1
+    echo "$CONTROL_FILE found. Make another run ..."
   else
-    echo "$CONTROL_FILE not found - stopping after cleaning up ..." >> /tmp/s.log 2>&1
+    echo "$CONTROL_FILE not found - stopping after cleaning up ..."
     cleanup
-    echo "Exit" >> /tmp/s.log 2>&1
+    echo "Exit"
     exit 0;
   fi
 }
@@ -177,14 +178,14 @@ do
   THREEGEM="--network 3gem"
   CABLE="--network cable"
   CONFIG="--config /sitespeed.io/default.json"
-  echo 'Start a new loop ' >> /tmp/s.log 2>&1
-  echo "Start the networks ..." >> /tmp/s.log 2>&1
-  sudo /home/ubuntu/startNetworks.sh >> /tmp/s.log 2>&1
-  docker network ls >> /tmp/s.log 2>&1
+  echo 'Start a new loop '
+  echo "Start the networks ..."
+  sudo /home/ubuntu/startNetworks.sh
+  docker network ls
 
-  docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER -n 7 --browsertime.viewPort 1920x1080 --browsertime.cacheClearRaw true /sitespeed.io/wikipedia.org.txt $CONFIG >> /tmp/s.log 2>&1
+  docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER -n 7 --browsertime.viewPort 1920x1080 --browsertime.cacheClearRaw true /sitespeed.io/wikipedia.org.txt $CONFIG
   control
-  docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER -n 7 --browsertime.viewPort 1920x1080 /sitespeed.io/wikipedia.org.txt -b firefox $CONFIG >> /tmp/s.log 2>&1
+  docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER -n 7 --browsertime.viewPort 1920x1080 /sitespeed.io/wikipedia.org.txt -b firefox $CONFIG
   cleanup
 done
 ~~~
