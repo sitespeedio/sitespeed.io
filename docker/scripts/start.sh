@@ -24,6 +24,11 @@ function setupADB(){
   if [ -n "$START_ADB_SERVER" ] ; then
     sudo adb start-server
     sudo adb devices
+
+    if [ $REPLAY ] ; then
+      sudo adb reverse tcp:80 tcp:80
+      sudo adb reverse tcp:443 tcp:443
+    fi
   fi
 }
 
