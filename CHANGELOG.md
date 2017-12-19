@@ -5,6 +5,9 @@
 * Use Chromedriver 2.34
 * Configure the page complete time when you use WebPageReplay. Add -e WAIT 5000 to wait 5000 ms.
 
+### Fixed
+* Upgraded to PageXray 2.0.1 that fixes Chrome # problem.
+
 ## 6.1.3 2017-12-14
 
 ### Fixed
