@@ -1,12 +1,12 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 6.2.0 2017-12-20
 ### Added 
 * Use Chromedriver 2.34
 * Configure the page complete time when you use WebPageReplay. Add -e WAIT 5000 to wait 5000 ms.
 
 ### Fixed
-* Upgraded to PageXray 2.0.1 that fixes Chrome # problem.
+* Upgraded to PageXray 2.0.1 that fixes the Chrome problem with URLs that includes a #. 
 
 ## 6.1.3 2017-12-14
 
