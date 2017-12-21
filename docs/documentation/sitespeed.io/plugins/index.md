@@ -218,7 +218,7 @@ When all URLs have been analysed, the close function is called once for each plu
 ### Important messages
 There are a couple of pre defined messages that will always passed around in the queue.
 
-* **sitespeedio.setup** - is the first message that will be passed to all plugins. When you get this message you can pass on information to other plugins. For example if you send pug files to the HTML plugin or JavaSript to browsertime.
+* **sitespeedio.setup** - is the first message that will be passed to all plugins. When you get this message you can pass on information to other plugins. For example if you send pug files to the HTML plugin or JavaScript to browsertime.
 * **sitespeedio.summarize** - all URLs are analysed and the plugins need to summarise the metrics.
 * **sitespeedio.render** - it is time to render (=write data to disk).
 
