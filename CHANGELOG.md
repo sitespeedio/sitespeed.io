@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 6.2.2 2017-12-22
+### Fixed
+* The Docker container was missing the node MAX_OLD_SPACE_SIZE switch (so you can increase memory for NodeJS) [#1861](https://github.com/sitespeedio/sitespeed.io/issues/1861). 
+
 ## 6.2.1 2017-12-21
 ### Fixed
 * Screenshot URLs in the HAR file was hardcoded to png, see [https://github.com/sitespeedio/compare/issues/11](https://github.com/sitespeedio/compare/issues/11). That made jpg image links broken in compare.sitespeed.io.
