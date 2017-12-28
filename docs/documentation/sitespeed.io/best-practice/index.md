@@ -24,7 +24,7 @@ Here we keep questions that are frequently asked at Slack or at Github.
 How do I test cached pages? The easiest way to do that is to use the **--preURL** parameter:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --preURL https://www.sitespeed.io/documentation/ https://www.sitespeed.io/
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --preURL https://www.sitespeed.io/documentation/ https://www.sitespeed.io/
 ~~~
 
 In the example the browser will first go to https://www.sitespeed.io/documentation/ and then with a primed cache navigate to https://www.sitespeed.io/.
@@ -37,7 +37,7 @@ The current way to set cookies is to add a request header using **-r**. We may w
 If you want to test multiple URLs, you can used line them up in the cli:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io https://www.sitespeed.io/documentation/
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io https://www.sitespeed.io/documentation/
 ~~~
 
 You can also use a plain text file with one URL on each line. Create a file called urls.txt (but you can call it whatever uoy want):
@@ -59,7 +59,7 @@ http://www.yoursite.com/where/we/are/ We_are
 And then you give feed the file to sitespeed.io:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io urls.txt
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} urls.txt
 ~~~
 
 ### How many runs should I do on the same page to get stable metrics?

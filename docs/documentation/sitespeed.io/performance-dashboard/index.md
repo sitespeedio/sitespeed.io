@@ -101,7 +101,7 @@ Our *run.sh* file (we read which URLs we want to test from files):
 ~~~
 #!/bin/bash
 # Specify the exact version of sitespeed.io. When you upgrade to the next version, pull it down and the chage the tag
-DOCKER_CONTAINER=sitespeedio/sitespeed.io:6.1.3
+DOCKER_CONTAINER=sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}
 
 # Setup the network and default ones we wanna use
 sudo /home/ubuntu/startNetworks.sh
@@ -151,7 +151,7 @@ else
   touch $CONTROL_FILE
 fi
 
-DOCKER_CONTAINER=sitespeedio/sitespeed.io:6.1.3
+DOCKER_CONTAINER=sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}
 
 function cleanup() {
   docker system prune --all --volumes -f
@@ -352,9 +352,9 @@ We constantly do new Docker release: bug fixes, new functionality and new versio
 Log into your instance and pull the latest version of sitespeed.io:
 
 ~~~bash
-docker pull sitespeedio/sitespeed.io:6.1.0
+docker pull sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}
 ~~~
 
-Then update your script so it uses the new version (6.1.0 in this case). The next time sitespeed.io runs, it will use the new version.
+Then update your script so it uses the new version ({% include version/sitespeed.io.txt %} in this case). The next time sitespeed.io runs, it will use the new version.
 
 Go into the Grafana dashboard and create a new annotation, telling your team mates that you updated to the new version. This is real important so you can keep track of browser updates and other changes that can affect your metrics.
