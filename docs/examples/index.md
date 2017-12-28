@@ -18,7 +18,7 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 Sitespeed.io uses Browsertime, the Coach and PageXray to collect and generate the result, so looking at result pages from sitespeed.io will give you a idea of what you can get from all tools. Analyzing two pages using Chrome looks like this:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -b chrome https://en.wikipedia.org/wiki/Main_Page https://en.wikipedia.org/wiki/Barack_Obama
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b chrome https://en.wikipedia.org/wiki/Main_Page https://en.wikipedia.org/wiki/Barack_Obama
 ~~~
 
 Gives the following [report](https://examples.sitespeed.io/6.0/2017-11-23-23-43-35/). The standard use case for sitespeed.io is to run it continously and send the data to Graphite/Grafana and create dashboards looking like this:
@@ -31,7 +31,7 @@ Checkout our [example dashboard](https://dashboard.sitespeed.io/dashboard/db/pag
 Browsertime collects metrics using JavaScript and will record the browser window using FFMPEG and produce a JSON file with the metrics collected, a HAR file that describes the request/responses and video and screenshots.
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/browsertime sitespeedio/browsertime https://www.sitespeed.io/
+docker run --shm-size=1g --rm -v "$(pwd)":/browsertime sitespeedio/browsertime:{% include version/browsertime.txt %} https://www.sitespeed.io/
 ~~~
 
 It will generate a HAR file, a video and a browsertime.json that hold all the metrics.
@@ -592,7 +592,7 @@ The coach collect metrics and return advice what you should change to make your 
 Using Docker you can run the Coach like this:
 
 ~~~bash
-docker run sitespeedio/coach https://www.sitespeed.io -b firefox -f json
+docker run sitespeedio/coach:{% include version/coach.txt %} https://www.sitespeed.io -b firefox -f json
 ~~~
 
 And it will generate a JSON that looks something like this:
