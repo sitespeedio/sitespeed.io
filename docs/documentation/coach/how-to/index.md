@@ -32,8 +32,13 @@ webcoach https://www.sitespeed.io
 Try it with Firefox:
 
 ```bash
-npm install webcoach -g
-webcoach https://www.sitespeed.io --browser firefox
+npm install webcoach -g && webcoach https://www.sitespeed.io --browser firefox
+```
+
+Or if you prefer Docker:
+
+```bash
+docker run sitespeedio/coach:{% include version/coach.txt %} https://www.sitespeed.io
 ```
 
 If you also want to show the offending assets/details and the description of the advice:
