@@ -26,14 +26,14 @@ We have [Docker images](https://hub.docker.com/r/sitespeedio/browsertime/) with 
 ### Mac & Linux
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/browsertime sitespeedio/browsertime --video --speedIndex https://www.sitespeed.io/
+docker run --shm-size=1g --rm -v "$(pwd)":/browsertime sitespeedio/browsertime:{% include version/browsertime.txt %} --video --speedIndex https://www.sitespeed.io/
 ~~~
 
 ### Windows
 
 ~~~
 C:\Users\Vicky> docker pull sitespeedio/browsertime
-C:\Users\Vicky> docker run --rm -v "$(pwd)":/browsertime sitespeedio/browsertime https://www.sitespeed.io -b firefox
+C:\Users\Vicky> docker run --rm -v "$(pwd)":/browsertime sitespeedio/browsertime:{% include version/browsertime.txt %} https://www.sitespeed.io -b firefox
 ~~~
 
 That will output the data from the run in the current directory.
