@@ -63,7 +63,7 @@ Make sure to change the username & password
 Then run it like this:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --preScript /sitespeed.io/login.js https://en.wikipedia.org/wiki/Barack_Obama
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --preScript /sitespeed.io/login.js https://en.wikipedia.org/wiki/Barack_Obama
 ~~~
 
 The script will then login the user and access https://en.wikipedia.org/wiki/Barack_Obama and measure that page.
@@ -98,7 +98,7 @@ module.exports = {
 And then run it like this:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --preScript /sitespeed.io/pre.js -b chrome https://www.sitespeed.io/documentation/
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --preScript /sitespeed.io/pre.js -b chrome https://www.sitespeed.io/documentation/
 ~~~
 
 The browser will first access https://www.sitespeed.io/, this will fill the cache and then go to https://www.sitespeed.io/documentation/ where it will collect all the metrics.
