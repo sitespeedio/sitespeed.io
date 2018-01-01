@@ -1,7 +1,7 @@
 ---
 layout: default
-title: How to run and what you will get.
-description: Examples of what you will get if you run sitespeed.io, browsertime, coach and PageXray.
+title: Results and examples of what you will get if you run sitespeed.io, browsertime, coach or PageXray.
+description: There's a lot of different things and metrics you can get with all the tools, these are some examples.
 keywords: sitespeed.io, examples, results, wpo, web performance optimization
 nav: examples
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
