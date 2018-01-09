@@ -48,7 +48,8 @@ module.exports = {
           const loginForm = driver.findElement(By.name('userlogin'));
           driver.findElement(By.id('wpName1')).sendKeys(userName);
           driver.findElement(By.id('wpPassword1')).sendKeys(password);
-          loginForm.submit();
+          var loginButton = driver.findElement(webdriver.By.id('wpLoginAttempt'));
+          loginButton.click();
           // we wait for something on the page that verifies that we are logged in
           return driver.wait(until.elementLocated(By.id('pt-userpage')), 3000);
         });
