@@ -102,7 +102,7 @@
     "text-table": "0.2.0",
     "uuid": "^3.0.0",
     "webcoach": "1.1.2",
-    "webpagetest": "0.3.5",
+    "webpagetest": "0.3.8",
     "yargs": "6.6.0"
   }
 }
