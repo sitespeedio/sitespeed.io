@@ -57,7 +57,7 @@ connectivity
   --connectivity.throttle.localhost  Add latency/delay on localhost. Perfect for testing with WebPageReplay  [boolean] [default: false]
 
 Options:
-  --video                Record a video. Requires FFMpeg to be installed  [boolean]
+  --video                Record a video and store the video. Set it to false to remove the video that is created by turning on speedIndex. Requires FFMpeg to be installed.  [boolean]
   --speedIndex           Calculate SpeedIndex. Requires FFMpeg and python dependencies  [boolean]
   --browser, -b          Specify browser  [choices: "chrome", "firefox"] [default: "chrome"]
   --screenshot           Save one screen shot per iteration.  [boolean]

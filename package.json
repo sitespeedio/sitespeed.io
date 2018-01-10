@@ -69,7 +69,7 @@
   "dependencies": {
     "aws-sdk": "2.168.0",
     "bluebird": "3.5.0",
-    "browsertime": "2.1.2",
+    "browsertime": "2.1.3",
     "cli-color": "1.2.0",
     "concurrent-queue": "7.0.2",
     "fast-stats": "0.0.3",
