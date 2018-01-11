@@ -22,7 +22,7 @@ Driving Android from Docker only works on a Linux host since there's is no way a
 ## Desktop
 If you don't use Docker you need to:
 
- * Install the [Android SDK](http://developer.android.com/sdk/index.html#downloads) on your desktop (just the command line tools!). If you are on a Mac and use [Homebrew](http://brew.sh/) just run: <code>brew install android-platform-tools</code>
+ * Install the [Android SDK](http://developer.android.com/sdk/index.html#downloads) on your desktop (just the command line tools!). If you are on a Mac and use [Homebrew](http://brew.sh/) just run: <code>brew tap caskroom/cask && brew cask install android-platform-tools</code>
  * Start the adb-server on your desktop: <code>adb start-server</code>
 
 ## On your phone
