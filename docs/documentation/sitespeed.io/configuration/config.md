@@ -94,9 +94,6 @@ WebPageTest
   --webpagetest.script             The WebPageTest script as a string.
   --webpagetest.includeRepeatView  Do repeat or single views  [boolean] [default: false]
   --webpagetest.private            Wanna keep the runs private or not  [boolean] [default: true]
-  --webpagetest.timeline           Activates chrome tracing. More Useful metrics but can slow down the test itself  [boolean] [default: false]
-  --webpagetest.domainsDashboard   Record weight and requests for each domain to populate the grafana dashboard. Will take more disk space in graphite [boolean] [default: false]
-
 
 Slack
   --slack.hookUrl       WebHook url for the Slack team (check https://<your team>.slack.com/apps/manage/custom-integrations).
