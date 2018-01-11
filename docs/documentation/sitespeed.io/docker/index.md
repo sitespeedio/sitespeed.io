@@ -80,7 +80,7 @@ If you want to make sure your containers have the same time as the host, you can
 Full example:
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io -v /etc/localtime:/etc/localtime:ro sitespeedio/sitespeed.io{% include version/sitespeed.io.txt %} -b firefox https://www.sitespeed.io/
+docker run --rm -v "$(pwd)":/sitespeed.io -v /etc/localtime:/etc/localtime:ro sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox https://www.sitespeed.io/
 ~~~
 
 ## Change connectivity
@@ -92,7 +92,7 @@ To change connectivity you should use Docker networks, read all about it [here](
 If you run a server local on your machine and want to access it with sitespeed.io you can do that on your Mac by using the Docker fixed ip 192.168.65.1:
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io{% include version/sitespeed.io.txt %} -b firefox http://192.168.65.1:4000/
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox http://192.168.65.1:4000/
 ~~~
 
 ## Troubleshooting

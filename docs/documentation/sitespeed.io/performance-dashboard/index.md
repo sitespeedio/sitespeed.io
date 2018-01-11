@@ -30,7 +30,7 @@ You need [Docker](https://docs.docker.com/engine/installation/) and [Docker Comp
 6. To start from scratch, also remove the Graphite and Grafana data volumes by running `docker volume rm performancedashboard_graphite performancedashboard_grafana`.
 
 
-If you want to play with the dashboards, the default login is sitespeedio and password is ...well check out the [docker-compose.yml file](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/docker-compose.yml<).
+If you want to play with the dashboards, the default login is sitespeedio and password is ...well check out the [docker-compose.yml file](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/docker-compose.yml).
 
 When you run this in production make sure to checkout [our production guidelines](#production-guidelines).
 

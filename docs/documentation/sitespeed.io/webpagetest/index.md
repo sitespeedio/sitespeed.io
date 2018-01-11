@@ -33,7 +33,7 @@ By default we have the following configuration options:
 
 ~~~
 --webpagetest.host          The domain of your WebPageTest instance.
---webpagetest.key           The API key for you WebPageTest instance.
+--webpagetest.key           The API key for your WebPageTest instance.
 --webpagetest.location      The location for the test
 --webpagetest.connectivity  The connectivity for the test.
 --webpagetest.runs          The number of runs per URL.
@@ -130,3 +130,11 @@ You can then run sitespeed.io to pick up the new custom metrics:
 ~~~bash
 docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --webpagetest.custom /sitespeed.io/myScriptFile.txt --webpagetest.host my.wpt.host.com https://www.sitespeed.io
 ~~~
+
+
+## Advanced dashboards
+
+If you use the grafana dashboards, you will notice that by default some of them can be empty. You must set to true two options
+
+* `webpagetest.timeline` : It activates chrome tracing, if you're running chrome. It contains super useful metrics like the Navigation Timing API and chrome specific metrics like FirstMeaningfulPaint.
+

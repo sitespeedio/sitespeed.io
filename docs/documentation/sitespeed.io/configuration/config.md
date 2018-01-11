@@ -85,7 +85,7 @@ Metrics
 
 WebPageTest
   --webpagetest.host               The domain of your WebPageTest instance.  [default: "https://www.webpagetest.org"]
-  --webpagetest.key                The API key for you WebPageTest instance.
+  --webpagetest.key                The API key for your WebPageTest instance.
   --webpagetest.location           The location for the test  [default: "Dulles:Chrome"]
   --webpagetest.connectivity       The connectivity for the test.  [default: "Cable"]
   --webpagetest.runs               The number of runs per URL.  [default: 3]
