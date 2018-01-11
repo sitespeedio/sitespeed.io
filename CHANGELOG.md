@@ -6,6 +6,8 @@
 
 * Better default metrics for WebPageTest data in data storage. We now collect more metrics than before, see [#1871](https://github.com/sitespeedio/sitespeed.io/pull/1871). Thank you [Jean-Pierre Vincent](https://github.com/jpvincent) for contributing with your better defaukt values. We will also soonish and better dashboards contributed by Jean-Pierre.
 
+* Upgraded to VideoJS 6.6 with smoother progress bar [#1864](https://github.com/sitespeedio/sitespeed.io/pull/1864).
+
 ### Fixed
 * Upgraded to Browsertime 2.1.3 with [new bug fixes](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md).
 
