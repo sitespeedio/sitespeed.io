@@ -4,6 +4,8 @@
 ### Added
 * Added filenames to the video when you combine two videos in combineVideos.sh
 
+* Better default metrics for WebPageTest data in data storage. We now collect more metrics than before, see [#1871](https://github.com/sitespeedio/sitespeed.io/pull/1871). Thank you [Jean-Pierre Vincent](https://github.com/jpvincent) for contributing with your better defaukt values. We will also soonish and better dashboards contributed by Jean-Pierre.
+
 ##  6.2.3 2017-12-29
 ### Fixed
 * Upgraded to PageXray 2.0.2 and Coach 1.1.2 that fixes [#1861](https://github.com/sitespeedio/sitespeed.io/issues/1861). Redirect chains that redirected back to the main page caused out of memory.
