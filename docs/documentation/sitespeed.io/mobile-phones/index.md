@@ -27,10 +27,10 @@ If you don't use Docker you need to:
 
 ## On your phone
  * Install Chrome
- * Enable developer USB access to your phone: Go to About device, tap it, scroll down to the Build number, tap it seven (7) times.
+ * Enable developer USB access to your phone: Go to *About device* (or *About phone*) in your settings, tap it, scroll down to the *Build number*, tap it seven (7) times.
  * Disable screen lock on your device.
- * Enable Stay awake
- * Enable USB debugging in the device system settings, under Developer options.
+ * Enable *Stay awake* in *Developer options*.
+ * Enable USB debugging in the device system settings, under *Developer options*.
  * Install the [Stay Alive app](https://play.google.com/store/apps/details?id=com.synetics.stay.alive) and start it.
  * Plug in your phone using the USB port on your desktop computer.
  * When you plugin your phone, click OK on the "Allow USB debugging?" popup.
