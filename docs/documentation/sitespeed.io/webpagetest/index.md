@@ -137,5 +137,4 @@ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io
 If you use the grafana dashboards, you will notice that by default some of them can be empty. You must set to true two options
 
 * `webpagetest.timeline` : It activates chrome tracing, if you're running chrome. It contains super useful metrics like the Navigation Timing API and chrome specific metrics like FirstMeaningfulPaint.
-* `webpagetest.domainsDashboard` : to have the "3rd party vs 1st party" dashboard populated. It will record weight and requests so it will take more disk space in the graphite docker machine.
 
