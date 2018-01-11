@@ -15,6 +15,8 @@ fi
 
 TMP_VIDEO_DIR=tmp-video
 FILE1=$(basename $1)
+NAME1=$(basename $1 .mp4)
+NAME2=$(basename $2 .mp4)
 FILE2=$(basename $2)
 OUTPUT_FILE=${3:-$(basename $1 .mp4)-vs-$(basename $2)}
 SLOWDOWN=5.0
@@ -38,7 +40,7 @@ docker run -v "$(pwd)":/video sitespeedio/visualmetrics-deps ffmpeg \
 
 echo "Slow down the video"
 
-docker run -v "$(pwd)":/video sitespeedio/visualmetrics-deps ffmpeg -i /video/$TMP_VIDEO_DIR/output.mp4 -filter:v "setpts=$SLOWDOWN*PTS" /video/${OUTPUT_FILE}  > /dev/null 2>&1
+docker run -v "$(pwd)":/video sitespeedio/visualmetrics-deps ffmpeg -i /video/$TMP_VIDEO_DIR/output.mp4 -filter:v "setpts=$SLOWDOWN*PTS" -vf drawtext="text='$NAME1 vs $NAME2':fontcolor=white:fontsize=60:box=1:boxcolor=0x000000AA:x=(w-tw)/2: y=40" /video/${OUTPUT_FILE}  > /dev/null 2>&1
 # Cleanup
 rm -fR $TMP_VIDEO_DIR
 

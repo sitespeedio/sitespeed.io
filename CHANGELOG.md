@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Added
+* Added filenames to the video when you combine two videos in combineVideos.sh
+
 ##  6.2.3 2017-12-29
 ### Fixed
 * Upgraded to PageXray 2.0.2 and Coach 1.1.2 that fixes [#1861](https://github.com/sitespeedio/sitespeed.io/issues/1861). Redirect chains that redirected back to the main page caused out of memory.
