@@ -74,3 +74,26 @@ And using Docker (remember: only works in Linux hosts):
 ~~~bash
 docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  -n 1 --browsertime.chrome.android.package com.android.chrome --browsertime.xvfb false https://www.sitespeed.io
 ~~~
+
+# Collect trace log
+One important thing when testing on mobile is to analyze the Chrome trace log. You can get that with *browsertime.chrome.collectTracingEvents*: 
+
+~~~bash
+sitespeed.io --browsertime.chrome.android.package com.android.chrome --browsertime.chrome.collectTracingEvents --video --speedIndex https://www.sitespeed.io
+~~~
+
+You can also change which categories to get. In this example we only get the devtools.timeline category.
+
+~~~bash
+sitespeed.io --browsertime.chrome.android.package com.android.chrome --browsertime.chrome.collectTracingEvents --browsertime.chrome.traceCategories "devtools.timeline" https://www.sitespeed.io
+~~~
+
+
+# Collect the net log
+If you really want to deep dive into the what happens you can use the Chrome net log. You collect it with *browsertime.chrome.collectNetLog*:
+
+~~~bash
+sitespeed.io --browsertime.chrome.android.package com.android.chrome --browsertime.chrome.collectNetLog https://www.sitespeed.io
+~~~
+
+
