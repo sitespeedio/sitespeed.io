@@ -10,6 +10,8 @@
 
 * Browsertime and WebPageTest plugin now sends browsertime.setup or webpagetest.setup when they are in the setup phase, so other plugins know that they will run [#1875](https://github.com/sitespeedio/sitespeed.io/pull/1875)
 
+* If you run WebPageTest standalone (without Browsertime) you will now get the the domains section using data from WebPageTest [#1876](https://github.com/sitespeedio/sitespeed.io/pull/1876)
+
 ### Fixed
 * Upgraded to Browsertime 2.1.3 with [new bug fixes](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md).
 
