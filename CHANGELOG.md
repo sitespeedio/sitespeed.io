@@ -8,6 +8,8 @@
 
 * Upgraded to VideoJS 6.6 with smoother progress bar [#1864](https://github.com/sitespeedio/sitespeed.io/pull/1864).
 
+* Browsertime and WebPageTest plugin now sends browsertime.setup or webpagetest.setup when they are in the setup phase, so other plugins know that they will run [#1875](https://github.com/sitespeedio/sitespeed.io/pull/1875)
+
 ### Fixed
 * Upgraded to Browsertime 2.1.3 with [new bug fixes](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md).
 
