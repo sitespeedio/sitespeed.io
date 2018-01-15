@@ -19,6 +19,7 @@ twitterdescription:
 Here we keep questions that are frequently asked at Slack or at Github.
 
 ## Running tests
+Read this before you start to collect metrics.
 
 ### How do I test cached pages?
 How do I test cached pages? The easiest way to do that is to use the **--preURL** parameter:
@@ -78,7 +79,11 @@ We currently don't built in support for changing the CPU. What we do know is tha
 ### Throttle or not throttle your connection?
 You should always limit the connectivity and try to emulate the connectivity of your users because it will make it easier for you to find regressions. Check out or [connectivity guide]({{site.baseurl}}/documentation/sitespeed.io/connectivity/).
 
+### Clear browser cache between runs
+By default Browsertime creates a new profile for each run you do and if you really want to be sure sure everything is cleared between runs you can use our WebExtension to clear the browser cache by adding  <code>--browsertime.cacheClearRaw</code>.
+
 ## Servers
+What you should know before you choose where to run sitespeed.io.
 
 ### Cloud providers
 We've been testing out different cloud providers (AWS, Google Cloud, Digital Ocean, Linode etc) and the winner for us has been AWS. We've been using c4.large and testing the same size (or bigger) instances on other providers doesn't give the same stable metric overtime.
@@ -94,10 +99,7 @@ On Kubernetes you cannot use tc or Docker networks to set the connectivity but t
 ### Running tests from multiple locations
 Can I test the same URLs from different locations and how do I make sure they don't override each others data in Graphite?
 
-You should set different namespaces depending on location (**--graphite.namespace**). If you run one test from London, set the namespace to **--graphite.namespace sitespeed_io.london**. Then you can choose individual locations in the dropdown in the pre-made dashboards.
-
-## Clear browser cache between runs
-By default Browsertime creates a new profile for each run you do and if you really want to be sure sure everything is cleared between runs you can use our WebExtension to clear the browser cache by adding  **--browsertime.cacheClearRaw**.
+You should set different namespaces depending on location (**--graphite.namespace**). If you run one test from London, set the namespace to <code>--graphite.namespace sitespeed_io.london</code>. Then you can choose individual locations in the dropdown in the pre-made dashboards.
 
 ## Store the data
 By default you can choose to store your metrics in a time series database (Graphite or InfluxDB).
@@ -105,8 +107,40 @@ By default you can choose to store your metrics in a time series database (Graph
 ### Should I choose Graphite or InfluxDB?
 If your organisation is running Graphite, use that. If your used to InfluxDB, use that. If you don't use any of them then use Graphite since we have more ready made dashboards for Graphite.
 
-### Handling the massive amount of data
-sitespeed.io will generate  lots of metrics and data, how do I handle that?
+### Handling big amount of data
+sitespeed.io will generate lots of metrics and data, how do I handle that?
+
+#### Configuring features
+If you you want to store less data from sitespeed.io one way is to configure and compress data more.
+
+The heaviest data that sitespeed.io generates is the video, screenshot and video filmstrip screenshots. You can disable those features but it will make it harder for you to verify that everything works ok and to pinpoint regressions.
+
+If you have limited space (and do not store the data on S3 and configure it to automatically remove old data) you can use the following configurations.
+
+##### Video
+You can change the [Constant rate factor](https://trac.ffmpeg.org/wiki/Encode/H.264#crf). Default is 23. If you change that you can have videos with lower quality but it will take less space. Use <code>--browsertime.videoParams.crf</code>.
+
+You can also change the quality of the video filmstrip screenshots. Default it is set to 75 but you can set a value between 0 - 100. Use <code>--browsertime.videoParams.filmstripQuality</code>.
+
+If you dont use the filmstrip (at the moment the filmstrip screenshots isn't used within the sitespeed.io result pages) you can disable it. <code>--browsertime.videoParams.createFilmstrip false</code> will disable the filmstrip.
+
+##### Screenshot
+If you want to decrease the size of the screenshots, you should first enable screenshots with jpg instead of png. <code>--screenshot.type jpg</code> will do that.
+
+You can then also set the jpg quality. Default is 80 but you can set the value between 0-100. Use <code>--screenshot.jpg.quality</code>.
+
+As a last thing: You can set the max size of the screenshot (in pixels, max in both width and height). Default is 2000 meaning you the screenshot will probably be full sized (depending on how you configured your viewport). Change it with <code>--screenshot.maxSize</code>.
+
+#### Disabling features/plugins
+Another alternative to minimize the amount of data is to disable plugins. You should be really careful doing that since it will make it harder for you to verify that everything works ok and to pinpoint regressions.
+
+You can list which plugins that are running by adding the flag <code>--plugins.list</code> and in the log you will see something like.
+
+~~~
+INFO: The following plugins are enabled: assets, browsertime, budget, coach, domains, harstorer, html, metrics, pagexray, screenshot, text, tracestorer
+~~~
+
+If you want to disable the screenshot plugin (that stores screenshots to disk) you do that by adding <code>--plugins.remove screenshot</code>.
 
 #### Graphite
 Make sure to edit your *storage-schemas.conf* to match your metrics and how long time you want to keep them. See [Graphite setup in production]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#setup-important).
