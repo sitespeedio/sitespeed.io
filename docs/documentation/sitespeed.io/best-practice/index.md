@@ -100,6 +100,7 @@ You should set different namespaces depending on location (**--graphite.namespac
 By default Browsertime creates a new profile for each run you do and if you really want to be sure sure everything is cleared between runs you can use our WebExtension to clear the browser cache by adding  **--browsertime.cacheClearRaw**.
 
 ## Store the data
+By default you can choose to store your metrics in a time series database (Graphite or InfluxDB).
 
 ### Should I choose Graphite or InfluxDB?
 If your organisation is running Graphite, use that. If your used to InfluxDB, use that. If you don't use any of them then use Graphite since we have more ready made dashboards for Graphite.
