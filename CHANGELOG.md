@@ -21,6 +21,8 @@
 
 * Fixed the start script so that you on Ubuntu can run WebPageReplay in the Docker container for your Android phone.
 
+* Chrome user timings was empty in the HTML output from WebPageTest [#1879](https://github.com/sitespeedio/sitespeed.io/issues/1879).
+
 ##  6.2.3 2017-12-29
 ### Fixed
 * Upgraded to PageXray 2.0.2 and Coach 1.1.2 that fixes [#1861](https://github.com/sitespeedio/sitespeed.io/issues/1861). Redirect chains that redirected back to the main page caused out of memory.
