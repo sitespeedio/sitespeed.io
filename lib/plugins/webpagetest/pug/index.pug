@@ -176,16 +176,17 @@ each view in ['firstView', 'repeatView']
               +sizeCell('certificate_bytes', median.certificate_bytes)
 
     //- You need to have timeline or right trace categories to get the timings
+    //- that is default now on WebPageTest.org
     if (median.chromeUserTiming)
       .row
         .column
           table
             tr
               th(colspan='2') Chrome User Timings
-            each timing in median.chromeUserTiming
+            each value, key in median.chromeUserTiming
               tr
-                td #{timing.name}
-                td #{timing.time}
+                td #{key}
+                td #{value}
     //- WebPageTest.org has custom metrics by default
     if (median.custom)
      .row
