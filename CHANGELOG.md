@@ -10,14 +10,14 @@
 
 * Browsertime and WebPageTest plugin now sends browsertime.setup or webpagetest.setup when they are in the setup phase, so other plugins know that they will run [#1875](https://github.com/sitespeedio/sitespeed.io/pull/1875).
 
-* If you run WebPageTest standalone (without Browsertime) you will now get the the domains section using data from WebPageTest [#1876](https://github.com/sitespeedio/sitespeed.io/pull/1876).
+* If you run WebPageTest standalone (without Browsertime) you will now get the the domains section using data from WebPageTest [#1876](https://github.com/sitespeedio/sitespeed.io/pull/1876) and you will get annotations in Grafana [#1884](https://github.com/sitespeedio/sitespeed.io/pull/1884).
 
 * PageXray is now a standalone plugin (before it was bundled with the coach). This makes it easier to use PageXray on HAR files from other tools (WebPageTest at the moment). [#1877](https://github.com/sitespeedio/sitespeed.io/pull/1877).
 
 * PageXray is now xraying WebPageTest HAR files (if you run WebPageTest standalone). This will add the PageXray tab per URL/run + the toplist and the assets tab [#1880](https://github.com/sitespeedio/sitespeed.io/pull/1880).
 
 ### Fixed
-* Upgraded to Browsertime 2.1.3 with [new bug fixes](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md).
+* Upgraded to Browsertime 2.1.4 with [new bug fixes](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md) and newer Chromedriver.
 
 * Fixed the start script so that you on Ubuntu can run WebPageReplay in the Docker container for your Android phone.
 
@@ -26,22 +26,22 @@
 ##  6.2.3 2017-12-29
 ### Fixed
 * Upgraded to PageXray 2.0.2 and Coach 1.1.2 that fixes [#1861](https://github.com/sitespeedio/sitespeed.io/issues/1861). Redirect chains that redirected back to the main page caused out of memory.
- 
+
 ## 6.2.2 2017-12-22
 ### Fixed
-* The Docker container was missing the node MAX_OLD_SPACE_SIZE switch (so you can increase memory for NodeJS) [#1861](https://github.com/sitespeedio/sitespeed.io/issues/1861). 
+* The Docker container was missing the node MAX_OLD_SPACE_SIZE switch (so you can increase memory for NodeJS) [#1861](https://github.com/sitespeedio/sitespeed.io/issues/1861).
 
 ## 6.2.1 2017-12-21
 ### Fixed
 * Screenshot URLs in the HAR file was hardcoded to png, see [https://github.com/sitespeedio/compare/issues/11](https://github.com/sitespeedio/compare/issues/11). That made jpg image links broken in compare.sitespeed.io.
 
 ## 6.2.0 2017-12-20
-### Added 
+### Added
 * Use Chromedriver 2.34
 * Configure the page complete time when you use WebPageReplay. Add -e WAIT 5000 to wait 5000 ms.
 
 ### Fixed
-* Upgraded to PageXray 2.0.1 that fixes the Chrome problem with URLs that includes a #. 
+* Upgraded to PageXray 2.0.1 that fixes the Chrome problem with URLs that includes a #.
 
 ## 6.1.3 2017-12-14
 
