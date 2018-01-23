@@ -16,6 +16,8 @@
 
 * PageXray is now xraying WebPageTest HAR files (if you run WebPageTest standalone). This will add the PageXray tab per URL/run + the toplist and the assets tab [#1880](https://github.com/sitespeedio/sitespeed.io/pull/1880).
 
+* Upgraded the Docker base container to Ubuntu 17.10, NodeJS 8.9.4 and the WebPageReplay container with Firefox 58.
+
 ### Fixed
 * Upgraded to Browsertime 2.1.4 with [new bug fixes](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md) and newer Chromedriver.
 
