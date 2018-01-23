@@ -1,8 +1,6 @@
 <!--
 Thanks for reporting issues back to sitespeed.io!
 
-During the holidays it will take longer time than usual to get an answer on your issue, we'll
-be back a couple of weeks into January.
 
 Make sure you run the latest stable version, we move quite fast and fixes things.
 

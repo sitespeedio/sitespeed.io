@@ -89,10 +89,19 @@ To change connectivity you should use Docker networks, read all about it [here](
 
 ## Access localhost
 
-If you run a server local on your machine and want to access it with sitespeed.io you can do that on your Mac by using the Docker fixed ip 192.168.65.1:
+If you run a server local on your machine and want to access it with sitespeed.io you can do that on your Mac by first finding your localhost IP in Docker:
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox http://192.168.65.1:4000/
+docker run -it alpine nslookup docker.for.mac.localhost
+nslookup: can't resolve '(null)': Name does not resolve
+Name:      docker.for.mac.localhost
+Address 1: 192.168.65.2
+~~~
+
+And then using that IP (in this case 192.168.65.2):
+
+~~~bash
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox http://192.168.65.2:4000/
 ~~~
 
 ## Troubleshooting
