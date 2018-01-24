@@ -1,11 +1,11 @@
 ---
 layout: default
 title: sitespeed.io 6.3 with WebPageTest focus.
-description: In the new release we focused to make the WebPaeTest experience better,
- a lot of thanks to JPVincent who contributed a lot to this release.
+description: In the new release we focused to make the WebPageTest experience better,
+ a lot of thanks to Jean-Pierre Vincent who contributed a lot to this release!
 authorimage: /img/aboutus/peter.jpg
-intro: In the new release we focused to make the WebPaeTest experience better,
- a lot of thanks to JPVincent who contributed a lot to this release.
+intro: In the new release we focused to make the WebPageTest experience better,
+ a lot of thanks to Jean-Pierre Vincent who contributed a lot to this release.
 keywords: sitespeed.io, sitespeed, 6.3
 nav: blog
 ---
@@ -23,12 +23,12 @@ We made some internal changes to make it possible for the PageXray plugin to run
 
 First off: Browsertime and WebPageTest plugin now sends browsertime.setup or webpagetest.setup messages when they are in the setup phase, so other plugins know that they will run [#1875](https://github.com/sitespeedio/sitespeed.io/pull/1875). This makes it possible for other plugins to act differently depending on which metric sources that are configured.
 
-We moved PageXray to a standalone plugin (before it was bundled with the coach). This makes it easier to use PageXray on HAR files from other tools (WebPageTest at the moment). [#1877](https://github.com/sitespeedio/sitespeed.io/pull/1877).
+We moved PageXray to a standalone plugin (before it was bundled with the coach). This makes it easier to use PageXray on HAR files from other tools (WebPageTest at the moment) [#1877](https://github.com/sitespeedio/sitespeed.io/pull/1877).
 
-PageXray is now xraying WebPageTest HAR files (if you run WebPageTest standalone). This will add the PageXray tab per URL/run + the toplist and the assets tab [#1880](https://github.com/sitespeedio/sitespeed.io/pull/1880) and ypu will alsoe get the domains section using data from WebPageTest [#1876](https://github.com/sitespeedio/sitespeed.io/pull/1876).
+PageXray is now xraying WebPageTest HAR files (if you run WebPageTest standalone). This will add the PageXray tab per URL/run + the toplist and the assets tab [#1880](https://github.com/sitespeedio/sitespeed.io/pull/1880) and you will also get the domains section using data from WebPageTest [#1876](https://github.com/sitespeedio/sitespeed.io/pull/1876).
 
 ## New example dashbooards for WebPageTest
-[Jean-Pierre Vincent](https://github.com/jpvincent) again contributed with new WebPageTest dashboards. You can get them from [https://github.com/sitespeedio/grafana-bootstrap-docker](https://github.com/sitespeedio/grafana-bootstrap-docker) and checkout [#14](https://github.com/sitespeedio/grafana-bootstrap-docker/pull/14) for the full hiostory of additions.
+[Jean-Pierre Vincent](https://github.com/jpvincent) again contributed with new WebPageTest dashboards. You can get them from [https://github.com/sitespeedio/grafana-bootstrap-docker](https://github.com/sitespeedio/grafana-bootstrap-docker) and checkout [#14](https://github.com/sitespeedio/grafana-bootstrap-docker/pull/14) for the full history of additions.
 
 ## Video news
 We have upgraded to latest video.js 6.6 with smoother progress bar [#1864](https://github.com/sitespeedio/sitespeed.io/pull/1864).
@@ -36,7 +36,7 @@ We have upgraded to latest video.js 6.6 with smoother progress bar [#1864](https
 And we added filenames to the video when you combine two videos in combineVideos.sh. By naming your video wisely, you can now make it easier understand what you actually compare.
 
 ## Fixes
-We upgraded to latest Browsertime 2.1.3 with [new bug fixes](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md).
+We upgraded to latest Browsertime 2.1.4 with [new bug fixes](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md).
 
 We also fixed the start script so that you on Ubuntu can run WebPageReplay in the Docker container for your Android phone.
 
