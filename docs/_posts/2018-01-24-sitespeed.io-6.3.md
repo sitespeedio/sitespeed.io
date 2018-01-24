@@ -1,12 +1,12 @@
 ---
 layout: default
-title: sitespeed.io 6.3 with WebPageTest focus.
-description: In the new release we focused to make the WebPageTest experience better,
- a lot of thanks to Jean-Pierre Vincent who contributed a lot to this release!
+title: sitespeed.io 6.3 with WebPageTest focus
+description: In the new release we focused to make the WebPageTest experience better.
+ Many thanks to Jean-Pierre Vincent who contributed a lot to this release!
 authorimage: /img/aboutus/peter.jpg
-intro: In the new release we focused to make the WebPageTest experience better,
- a lot of thanks to Jean-Pierre Vincent who contributed a lot to this release.
-keywords: sitespeed.io, sitespeed, 6.3
+intro: In the new release we focused to make the WebPageTest experience better. 
+ Many thanks to Jean-Pierre Vincent who contributed a lot to this release!
+keywords: sitespeed.io, sitespeed, 6.3, webpagetest
 nav: blog
 ---
 
@@ -25,10 +25,26 @@ First off: Browsertime and WebPageTest plugin now sends browsertime.setup or web
 
 We moved PageXray to a standalone plugin (before it was bundled with the coach). This makes it easier to use PageXray on HAR files from other tools (WebPageTest at the moment) [#1877](https://github.com/sitespeedio/sitespeed.io/pull/1877).
 
-PageXray is now xraying WebPageTest HAR files (if you run WebPageTest standalone). This will add the PageXray tab per URL/run + the toplist and the assets tab [#1880](https://github.com/sitespeedio/sitespeed.io/pull/1880) and you will also get the domains section using data from WebPageTest [#1876](https://github.com/sitespeedio/sitespeed.io/pull/1876).
+![PageXray and WebPageTest]({{site.baseurl}}/img/6.3/pagexray-webpagetest.png)
+{: .img-thumbnail-center}
+
+PageXray is now xraying WebPageTest HAR files (if you run WebPageTest standalone). This will add the PageXray tab per URL/run + the toplist, the assets tab [#1880](https://github.com/sitespeedio/sitespeed.io/pull/1880) and you will also get the domains section using data from WebPageTest [#1876](https://github.com/sitespeedio/sitespeed.io/pull/1876)!
+
+![Domain info for WebPageTest]({{site.baseurl}}/img/6.3/domains.png)
+{: .img-thumbnail-center}
+
+![Asset info for WebPageTest]({{site.baseurl}}/img/6.3/assets.png)
+{: .img-thumbnail-center}
+
+![Toplist info for WebPageTest]({{site.baseurl}}/img/6.3/toplist.png)
+{: .img-thumbnail-center}
+
 
 ## New example dashbooards for WebPageTest
-[Jean-Pierre Vincent](https://github.com/jpvincent) again contributed with new WebPageTest dashboards. You can get them from [https://github.com/sitespeedio/grafana-bootstrap-docker](https://github.com/sitespeedio/grafana-bootstrap-docker) and checkout [#14](https://github.com/sitespeedio/grafana-bootstrap-docker/pull/14) for the full history of additions.
+[Jean-Pierre Vincent](https://github.com/jpvincent) contributed with new WebPageTest dashboards. You can get them from [https://github.com/sitespeedio/grafana-bootstrap-docker](https://github.com/sitespeedio/grafana-bootstrap-docker) and checkout [#14](https://github.com/sitespeedio/grafana-bootstrap-docker/pull/14) for the full history of additions.
+
+![Example dashboard]({{site.baseurl}}/img/6.3/dashboard.png)
+{: .img-thumbnail-center}
 
 ## Video news
 We have upgraded to latest video.js 6.6 with smoother progress bar [#1864](https://github.com/sitespeedio/sitespeed.io/pull/1864).
