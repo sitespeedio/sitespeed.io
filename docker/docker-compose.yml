@@ -38,7 +38,7 @@ services:
         #- ./graphite/conf/storage-aggregation.conf:/opt/graphite/conf/storage-aggregation.conf
         #- ./graphite/conf/carbon.conf:/opt/graphite/conf/carbon.conf
     grafana-setup:
-      image: sitespeedio/grafana-bootstrap:6.0
+      image: sitespeedio/grafana-bootstrap:6.3
       links:
         - grafana
       environment:

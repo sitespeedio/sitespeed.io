@@ -1,10 +1,8 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 6.3.0 2017-01-24
 ### Added
-* Added filenames to the video when you combine two videos in combineVideos.sh
-
-* Better default metrics for WebPageTest data in data storage. We now collect more metrics than before, see [#1871](https://github.com/sitespeedio/sitespeed.io/pull/1871). Thank you [Jean-Pierre Vincent](https://github.com/jpvincent) for contributing with your better default values. We will also soonish and better dashboards contributed by Jean-Pierre.
+* Better default metrics for WebPageTest data in data storage. We now collect more metrics than before, see [#1871](https://github.com/sitespeedio/sitespeed.io/pull/1871). Thank you [Jean-Pierre Vincent](https://github.com/jpvincent) for contributing with your better default values. Jean-Pierre has also contributed with [better dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker) for WebPageTest.
 
 * Upgraded to VideoJS 6.6 with smoother progress bar [#1864](https://github.com/sitespeedio/sitespeed.io/pull/1864).
 
@@ -17,6 +15,10 @@
 * PageXray is now xraying WebPageTest HAR files (if you run WebPageTest standalone). This will add the PageXray tab per URL/run + the toplist and the assets tab [#1880](https://github.com/sitespeedio/sitespeed.io/pull/1880).
 
 * Upgraded the Docker base container to Ubuntu 17.10, NodeJS 8.9.4 and the WebPageReplay container with Firefox 58.
+
+* Added filenames to the video when you combine two videos in combineVideos.sh
+
+* New version of the Coach that now knows if you include Facebook in your page.
 
 ### Fixed
 * Upgraded to Browsertime 2.1.4 with [new bug fixes](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md) and newer Chromedriver.
