@@ -1,6 +1,7 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 6.3.1 2017-02-01
+
 ### Fixed
 * In last release we accidently changed to only send first view metrics (by default) per page when you are using WebPagetest. We changed that and now send metrics for both first and second view. Thanks [@wolframkriesing](https://github.com/wolframkriesing) for letting us now.
 
