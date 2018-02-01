@@ -30,7 +30,7 @@ Browser
   --browsertime.chrome.android.deviceSerial                    Choose which device to use. If you do not set it, the first found device will be used.
   --browsertime.chrome.collectNetLog                           Collect network log from Chrome and save to disk.  [boolean]
   --browsertime.chrome.traceCategories                         Set the trace categories.  [string]
-  --browsertime.requestheader, -r                              Request header that will be added to the request. Add multiple instances to add multiple request headers.
+  --browsertime.requestheader, -r                              Request header that will be added to the request. Add multiple instances to add multiple request headers. Use the following format key:value
   --browsertime.block                                          Domain to block. Add multiple instances to add multiple domains that will be blocked.
   --browsertime.basicAuth, --basicAuth                         Use it if your server is behind Basic Auth. Format: username@password.
 
