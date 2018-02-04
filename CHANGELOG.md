@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+
+### Fixed
+* There are user timings that broke the HTML output see https://github.com/sitespeedio/sitespeed.io/issues/1900
+
 ## 6.3.1 2017-02-01
 
 ### Fixed

@@ -87,5 +87,6 @@ if btStatistics
               td(data-title= 'User Timing') #{name}
               +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'min')
               +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'median')
-              td.number(data-title='mean') #{userTimings.mean}
+              +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'mean')
+              td.number(data-title='mean') #{userTimings ? userTimings.mean: ''}
               +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'max')
