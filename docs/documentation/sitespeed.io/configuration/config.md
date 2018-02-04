@@ -30,7 +30,7 @@ Browser
   --browsertime.chrome.android.deviceSerial                    Choose which device to use. If you do not set it, the first found device will be used.
   --browsertime.chrome.collectNetLog                           Collect network log from Chrome and save to disk.  [boolean]
   --browsertime.chrome.traceCategories                         Set the trace categories.  [string]
-  --browsertime.requestheader, -r                              Request header that will be added to the request. Add multiple instances to add multiple request headers.
+  --browsertime.requestheader, -r                              Request header that will be added to the request. Add multiple instances to add multiple request headers. Use the following format key:value
   --browsertime.block                                          Domain to block. Add multiple instances to add multiple domains that will be blocked.
   --browsertime.basicAuth, --basicAuth                         Use it if your server is behind Basic Auth. Format: username@password.
 
@@ -62,6 +62,12 @@ Budget
   --budget.config      The JSON budget config as a string.
   --budget.output      The output format of the budget.  [choices: "junit", "tap"]
 
+Screenshot
+  --screenshot.type                  Set the file type of the screenshot  [choices: "png", "jpg"] [default: "png"]
+  --screenshot.png.compressionLevel  zlib compression level  [default: 6]
+  --screenshot.jpg.quality           Quality of the JPEG screenshot. 1-100  [default: 80]
+  --screenshot.maxSize               The max size of the screenshot (width and height).  [default: 2000]
+
 InfluxDB
   --influxdb.protocol            The protocol used to store connect to the InfluxDB host.  [default: "http"]
   --influxdb.host                The InfluxDB host used to store captured metrics.
@@ -88,6 +94,7 @@ WebPageTest
   --webpagetest.script             The WebPageTest script as a string.
   --webpagetest.includeRepeatView  Do repeat or single views  [boolean] [default: false]
   --webpagetest.private            Wanna keep the runs private or not  [boolean] [default: true]
+  --webpagetest.timeline           Activates Chrome tracing and get the devtools.timeline (only works for Chrome).  [boolean] [default: false]
 
 Slack
   --slack.hookUrl       WebHook url for the Slack team (check https://<your team>.slack.com/apps/manage/custom-integrations).

@@ -1,7 +1,7 @@
 {
   "name": "sitespeed.io",
   "bin": "./bin/sitespeed.js",
-  "version": "6.0.3",
+  "version": "6.3.1",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -67,8 +67,9 @@
   },
   "main": "./lib/sitespeed.js",
   "dependencies": {
+    "aws-sdk": "2.168.0",
     "bluebird": "3.5.0",
-    "browsertime": "2.0.1",
+    "browsertime": "2.1.4",
     "cli-color": "1.2.0",
     "concurrent-queue": "7.0.2",
     "fast-stats": "0.0.3",
@@ -92,7 +93,7 @@
     "mkdirp": "0.5.1",
     "moment": "2.18.1",
     "node-slack": "0.0.7",
-    "pagexray": "2.0.0",
+    "pagexray": "2.0.4",
     "pug": "2.0.0-rc.4",
     "s3": "4.4.0",
     "sharp": "0.18.4",
@@ -100,8 +101,8 @@
     "tape": "4.8.0",
     "text-table": "0.2.0",
     "uuid": "^3.0.0",
-    "webcoach": "1.1.0",
-    "webpagetest": "0.3.5",
+    "webcoach": "1.2.0",
+    "webpagetest": "0.3.8",
     "yargs": "6.6.0"
   }
 }

@@ -30,7 +30,7 @@ You need [Docker](https://docs.docker.com/engine/installation/) and [Docker Comp
 6. To start from scratch, also remove the Graphite and Grafana data volumes by running `docker volume rm performancedashboard_graphite performancedashboard_grafana`.
 
 
-If you want to play with the dashboards, the default login is sitespeedio and password is ...well check out the [docker-compose.yml file](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/docker-compose.yml<).
+If you want to play with the dashboards, the default login is sitespeedio and password is ...well check out the [docker-compose.yml file](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/docker-compose.yml).
 
 When you run this in production make sure to checkout [our production guidelines](#production-guidelines).
 
@@ -86,7 +86,7 @@ And then there is also a dashboard for [all tested pages of a site](https://dash
 Do you need anything else? Since we store all the data in Graphite and use Grafana you can create your own dashboards, which is super simple!
 
 # Configuration setup
-You have the dashboard and you need to collect metrics. Using the crontab works fine or whatever kind of scheduler you are using (or Jenkins per build or ... whatever suits you best).
+You have the dashboard and you need to collect metrics. Using the crontab works fine or or you can just run an infinite loop.
 
 Using the crontab (on a standalone server) you do like this:
 <code>crontab -e</code> to edit the crontab. Make sure your cron user can run Docker and change *my.graphite.host* to your Graphite host. When you run this on a standalone server *my.graphite.host* will be the public IP address of your server. The default port when sending metrics to Graphite is 2003, so you don't have to include that.
@@ -101,7 +101,7 @@ Our *run.sh* file (we read which URLs we want to test from files):
 ~~~
 #!/bin/bash
 # Specify the exact version of sitespeed.io. When you upgrade to the next version, pull it down and the chage the tag
-DOCKER_CONTAINER=sitespeedio/sitespeed.io:6.0.0
+DOCKER_CONTAINER=sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}
 
 # Setup the network and default ones we wanna use
 sudo /home/ubuntu/startNetworks.sh
@@ -132,6 +132,62 @@ We trigger the script from the crontab. We run the script every hour.
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 0 * * * * /root/runs.sh >> /tmp/sitespeed.io.log 2>&1
+~~~
+
+## Infinite loop
+Another way is to just run the script in an infinite loop and then have a file that you remove (so the run stops) when you want to update your instance.
+
+~~~
+#!/bin/bash
+LOGFILE=/tmp/s.log
+exec > $LOGFILE 2>&1
+CONTROL_FILE=/home/ubuntu/sitespeed.run
+
+if [ -f "$CONTROL_FILE" ]
+then
+  echo "$CONTROL_FILE exist, do you have running tests?"
+  exit 1;
+else
+  touch $CONTROL_FILE
+fi
+
+DOCKER_CONTAINER=sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}
+
+function cleanup() {
+  docker system prune --all --volumes -f
+  docker pull $DOCKER_CONTAINER
+}
+
+function control() {
+  if [ -f "$CONTROL_FILE" ]
+  then
+    echo "$CONTROL_FILE found. Make another run ..."
+  else
+    echo "$CONTROL_FILE not found - stopping after cleaning up ..."
+    cleanup
+    echo "Exit"
+    exit 0;
+  fi
+}
+
+while true
+do
+
+  DOCKER_SETUP="--shm-size=1g --rm -v /home/ubuntu/config:/sitespeed.io -v /result:/result -v /etc/localtime:/etc/localtime:ro "
+  THREEG="--network 3g"
+  THREEGEM="--network 3gem"
+  CABLE="--network cable"
+  CONFIG="--config /sitespeed.io/default.json"
+  echo 'Start a new loop '
+  echo "Start the networks ..."
+  sudo /home/ubuntu/startNetworks.sh
+  docker network ls
+
+  docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER -n 7 --browsertime.viewPort 1920x1080 --browsertime.cacheClearRaw true /sitespeed.io/wikipedia.org.txt $CONFIG
+  control
+  docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER -n 7 --browsertime.viewPort 1920x1080 /sitespeed.io/wikipedia.org.txt -b firefox $CONFIG
+  cleanup
+done
 ~~~
 
 ## default.json
@@ -296,9 +352,9 @@ We constantly do new Docker release: bug fixes, new functionality and new versio
 Log into your instance and pull the latest version of sitespeed.io:
 
 ~~~bash
-docker pull sitespeedio/sitespeed.io:6.1.0
+docker pull sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}
 ~~~
 
-Then update your script so it uses the new version (6.1.0 in this case). The next time sitespeed.io runs, it will use the new version.
+Then update your script so it uses the new version ({% include version/sitespeed.io.txt %} in this case). The next time sitespeed.io runs, it will use the new version.
 
 Go into the Grafana dashboard and create a new annotation, telling your team mates that you updated to the new version. This is real important so you can keep track of browser updates and other changes that can affect your metrics.

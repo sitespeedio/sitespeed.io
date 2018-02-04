@@ -24,7 +24,7 @@ The most basic things you can do is list configured plugins (which are currently
 You can list the plugins that will be used when you do a run:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --plugins.list https://en.wikipedia.org/wiki/Barack_Obama
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --plugins.list https://en.wikipedia.org/wiki/Barack_Obama
 ~~~
 
 And you will get a log entry that looks something like this:
@@ -41,19 +41,19 @@ The default plugins lives in the [plugin folder](https://github.com/sitespeedio/
 You can remove/disable default plugins if needed. For instance you may not want to output HTML and strictly send the data to Graphite.
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --plugins.remove html
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.remove html
 ~~~
 
 If you want to disable multiple plugins say you don't need the html or screenshots:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --plugins.remove html screenshot
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.remove html screenshot
 ~~~
 
 At anytime if you want to verify that disabling worked, add the plugins.list to your command:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --plugins.remove html screenshot --plugins.list
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.remove html screenshot --plugins.list
 ~~~
 
 ## Add a plugin
@@ -62,7 +62,7 @@ You can also add a plugin. This is great if you have plugins you created yoursel
 There's a plugin bundled with sitespeed.io called *analysisstorer* plugin that isn't enabled by default. It stores the original JSON data from all analyzers (from Browsertime, Coach data, WebPageTest etc) to disk. You can enable this plugin like so:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io --plugins.add analysisstorer
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.add analysisstorer
 ~~~
 
 If you want to run plugins that you created yourself or that are shared from others, you can either install the plugin using npm (locally) and load it by name or point out the directory where the plugin lives.
@@ -73,7 +73,7 @@ If you want to run plugins that you created yourself or that are shared from oth
 If you run in Docker and you should. You will need to mount your plugin directory as a volume. This is the recommended best practice. Practically you should clone your repo on your server and then mount it like this.
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -b firefox --plugins.add /sitespeed.io/myplugin -n 1 https://www.sitespeed.io/
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox --plugins.add /sitespeed.io/myplugin -n 1 https://www.sitespeed.io/
 ~~~
 
 ### Relative using NodeJS
@@ -218,7 +218,7 @@ When all URLs have been analysed, the close function is called once for each plu
 ### Important messages
 There are a couple of pre defined messages that will always passed around in the queue.
 
-* **sitespeedio.setup** - is the first message that will be passed to all plugins. When you get this message you can pass on information to other plugins. For example if you send pug files to the HTML plugin or JavaSript to browsertime.
+* **sitespeedio.setup** - is the first message that will be passed to all plugins. When you get this message you can pass on information to other plugins. For example if you send pug files to the HTML plugin or JavaScript to browsertime.
 * **sitespeedio.summarize** - all URLs are analysed and the plugins need to summarise the metrics.
 * **sitespeedio.render** - it is time to render (=write data to disk).
 

@@ -6,7 +6,7 @@ keywords: configuration, documentation, web performance, browsertime
 nav: documentation
 category: browsertime
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: Configuration for bBrowsertime.
+twitterdescription: Configuration for Browsertime.
 ---
 [Documentation]({{site.baseurl}}/documentation/browsertime/) / Configuration
 

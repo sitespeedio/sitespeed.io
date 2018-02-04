@@ -7,7 +7,7 @@ services:
       volumes:
             - ./sitespeed-result/:/sitespeed.io/sitespeed-result
     grafana:
-      image: grafana/grafana:4.6.2
+      image: grafana/grafana:4.6.3
       depends_on:
         - graphite
       links:
@@ -38,7 +38,7 @@ services:
         #- ./graphite/conf/storage-aggregation.conf:/opt/graphite/conf/storage-aggregation.conf
         #- ./graphite/conf/carbon.conf:/opt/graphite/conf/carbon.conf
     grafana-setup:
-      image: sitespeedio/grafana-bootstrap:sitespeed.io-4.6
+      image: sitespeedio/grafana-bootstrap:6.3
       links:
         - grafana
       environment:

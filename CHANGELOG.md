@@ -1,5 +1,74 @@
 # CHANGELOG - sitespeed.io
 
+## 6.3.1 2017-02-01
+
+### Fixed
+* In last release we accidently changed to only send first view metrics (by default) per page when you are using WebPagetest. We changed that and now send metrics for both first and second view. Thanks [@wolframkriesing](https://github.com/wolframkriesing) for letting us now.
+
+* Guard against missing WPT data see [#1897](https://github.com/sitespeedio/sitespeed.io/issues/1897) and [#1899](https://github.com/sitespeedio/sitespeed.io/pull/1899).
+
+## 6.3.0 2017-01-24
+### Added
+* Better default metrics for WebPageTest data in data storage. We now collect more metrics than before, see [#1871](https://github.com/sitespeedio/sitespeed.io/pull/1871). Thank you [Jean-Pierre Vincent](https://github.com/jpvincent) for contributing with your better default values. Jean-Pierre has also contributed with [better dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker) for WebPageTest.
+
+* Upgraded to VideoJS 6.6 with smoother progress bar [#1864](https://github.com/sitespeedio/sitespeed.io/pull/1864).
+
+* Browsertime and WebPageTest plugin now sends browsertime.setup or webpagetest.setup when they are in the setup phase, so other plugins know that they will run [#1875](https://github.com/sitespeedio/sitespeed.io/pull/1875).
+
+* If you run WebPageTest standalone (without Browsertime) you will now get the the domains section using data from WebPageTest [#1876](https://github.com/sitespeedio/sitespeed.io/pull/1876) and you will get annotations in Grafana [#1884](https://github.com/sitespeedio/sitespeed.io/pull/1884).
+
+* PageXray is now a standalone plugin (before it was bundled with the coach). This makes it easier to use PageXray on HAR files from other tools (WebPageTest at the moment). [#1877](https://github.com/sitespeedio/sitespeed.io/pull/1877).
+
+* PageXray is now xraying WebPageTest HAR files (if you run WebPageTest standalone). This will add the PageXray tab per URL/run + the toplist and the assets tab [#1880](https://github.com/sitespeedio/sitespeed.io/pull/1880).
+
+* Upgraded the Docker base container to Ubuntu 17.10, NodeJS 8.9.4 and the WebPageReplay container with Firefox 58.
+
+* Added filenames to the video when you combine two videos in combineVideos.sh
+
+* New version of the Coach that now knows if you include Facebook in your page.
+
+### Fixed
+* Upgraded to Browsertime 2.1.4 with [new bug fixes](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md) and newer Chromedriver.
+
+* Fixed the start script so that you on Ubuntu can run WebPageReplay in the Docker container for your Android phone.
+
+* Chrome user timings was empty in the HTML output from WebPageTest [#1879](https://github.com/sitespeedio/sitespeed.io/issues/1879).
+
+##  6.2.3 2017-12-29
+### Fixed
+* Upgraded to PageXray 2.0.2 and Coach 1.1.2 that fixes [#1861](https://github.com/sitespeedio/sitespeed.io/issues/1861). Redirect chains that redirected back to the main page caused out of memory.
+
+## 6.2.2 2017-12-22
+### Fixed
+* The Docker container was missing the node MAX_OLD_SPACE_SIZE switch (so you can increase memory for NodeJS) [#1861](https://github.com/sitespeedio/sitespeed.io/issues/1861).
+
+## 6.2.1 2017-12-21
+### Fixed
+* Screenshot URLs in the HAR file was hardcoded to png, see [https://github.com/sitespeedio/compare/issues/11](https://github.com/sitespeedio/compare/issues/11). That made jpg image links broken in compare.sitespeed.io.
+
+## 6.2.0 2017-12-20
+### Added
+* Use Chromedriver 2.34
+* Configure the page complete time when you use WebPageReplay. Add -e WAIT 5000 to wait 5000 ms.
+
+### Fixed
+* Upgraded to PageXray 2.0.1 that fixes the Chrome problem with URLs that includes a #.
+
+## 6.1.3 2017-12-14
+
+### Fixed
+* Make it possible to stop runs from your command line in the new alpha WebPageReplay docker container
+
+* Fixed bug with configuring pageCompleteCheck (and probably other problems too) in the Docker container [#1858](https://github.com/sitespeedio/sitespeed.io/issues/1858).
+
+## 6.1.2 2017-12-12
+### Fixed
+* We finally fixed (we hope) the SigV4 problem on uploading to S3 see [#1689](https://github.com/sitespeedio/sitespeed.io/issues/1689)
+
+## 6.1.1 2017-12-12
+### Fixed
+* Better check for when the page has finished loading when you run WebPageReplay (load event end + 2 s).
+
 ## 6.1.0 2017-12-12
 ### Added
 * Let plugin register message types for budget [#1828](https://github.com/sitespeedio/sitespeed.io/pull/1828). With this you can add your plugin metrics to the budget.

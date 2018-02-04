@@ -45,7 +45,7 @@ docker run -v ${WORKSPACE}:/sitespeed.io sitespeedio/sitespeed.io --outputFolder
 * If you want to break your build, you should generate a JUnit XML and use the built-in post task *Publish JUnit test result report*. Make sure to make the budget file available inside the Docker container. In this example we have it inside the Jenkins workspace.
 
 ~~~bash
-docker run -v ${WORKSPACE}:/sitespeed.io sitespeedio/sitespeed.io --outputFolder output --budget /sitespeed.io/budget.json --budget.output junit https://www.sitespeed.io/ -n 1
+docker run -v ${WORKSPACE}:/sitespeed.io sitespeedio/sitespeed.io --outputFolder output --budget.configPath /sitespeed.io/budget.json --budget.output junit https://www.sitespeed.io/ -n 1
 ~~~
 
 * Setup the JUnit report:
