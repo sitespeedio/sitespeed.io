@@ -20,9 +20,9 @@ twitterdescription: Introduction for sitespeed.io.
 
 We think of a complete web performance tool as having three key capabilities:
 
- - It test web sites using real browsers, simulating real users connectivity and collect important user centric metrics like Speed Index and First Visual Render.
- - It analyse how your page is built and give feedback how you can make it faster for the end user.
- - It collect and keep data how your pages is built so you easily can track changes.
+ - It should test web sites using real browsers, simulating real users connectivity and collect important user centric metrics like Speed Index and First Visual Render.
+ - It should analyse how your page is built and give feedback how you can make it faster for the end user.
+ - It should collect and keep data on how your pages are built so you can easily track changes.
 
 **What is sitespeed.io good for?**
 
