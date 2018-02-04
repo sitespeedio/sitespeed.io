@@ -4,9 +4,10 @@
       /* Use 75% for 4:3 videos */
       height: 0;
       overflow: hidden;
-      max-width: 100%;
+      max-width: 800px;
       background: #000;
-      margin: 5px;
+      text-align: center;
+      margin: 5px auto;
   }
 
   .youtube-player iframe {
