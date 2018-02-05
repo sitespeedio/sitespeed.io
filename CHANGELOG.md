@@ -1,9 +1,10 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 6.3.2 2017-02-05
 
 ### Fixed
-* There are user timings that broke the HTML output see https://github.com/sitespeedio/sitespeed.io/issues/1900
+* Adding back the -preURL options that mystically has been removed from the CLI (--browsertime.preURL still worked though). Thanks [@aerwin](https://github.com/aerwin) for reporting - [#1904](https://github.com/sitespeedio/sitespeed.io/issues/1904)
+* There are user timings that broke the HTML output see [#1900](https://github.com/sitespeedio/sitespeed.io/issues/1900)
 
 ## 6.3.1 2017-02-01
 
