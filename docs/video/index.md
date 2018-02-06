@@ -13,6 +13,11 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 * Lets place the TOC here
 {:toc}
 
+## Getting started with Sitespeed.io using Docker
+Jonathan do a quick run how you can use Docker to run sitespeed.io.
+
+<div class="youtube-player" data-id="0xAdxCUX2Po"></div>
+
 ## Compare HAR files using compare.sitespeed.io
 Peter shows us how you can compare HAR files using [https://compare.sitespeed.io](https://compare.sitespeed.io).
 
