@@ -124,17 +124,18 @@ text
   --summary-detail  Show longer text summary to stdout  [boolean] [default: false]
 
 Options:
-  --version, -V    Show version number  [boolean]
-  --debug          Debug mode logs all internal messages to the console.  [boolean] [default: false]
-  --verbose, -v    Verbose mode prints progress messages to the console. Enter up to three times (-vvv) to increase the level of detail.  [count]
-  --mobile         Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Apple iPhone 6.  [boolean] [default: false]
-  --resultBaseURL  The base URL to the server serving the HTML result. In the format of https://result.sitespeed.io
-  --gzipHAR        Compress the HAR files with GZIP.  [boolean] [default: false]
-  --outputFolder   The folder where the result will be stored.
-  --firstParty     A regex running against each request and categorize it as first vs third party URL. (ex: ".*sitespeed.*")
-  --utc            Use Coordinated Universal Time for timestamps  [boolean] [default: false]
-  --config         Path to JSON config file
-  --help, -h       Show help  [boolean]
+  --version, -V                   Show version number  [boolean]
+  --debug                         Debug mode logs all internal messages to the console.  [boolean] [default: false]
+  --verbose, -v                   Verbose mode prints progress messages to the console. Enter up to three times (-vvv) to increase the level of detail.  [count]
+  --browsertime.preURL, --preURL  A URL that will be accessed first by the browser before the URL that you wanna analyze. Use it to fill the cache.
+  --mobile                        Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Apple iPhone 6.  [boolean] [default: false]
+  --resultBaseURL                 The base URL to the server serving the HTML result. In the format of https://result.sitespeed.io
+  --gzipHAR                       Compress the HAR files with GZIP.  [boolean] [default: false]
+  --outputFolder                  The folder where the result will be stored.
+  --firstParty                    A regex running against each request and categorize it as first vs third party URL. (ex: ".*sitespeed.*")
+  --utc                           Use Coordinated Universal Time for timestamps  [boolean] [default: false]
+  --config                        Path to JSON config file
+  --help, -h                      Show help  [boolean]
 
 Read the docs at https://www.sitespeed.io/documentation/sitespeed.io/
 
