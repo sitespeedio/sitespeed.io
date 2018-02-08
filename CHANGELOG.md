@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+
+### Fixed
+* There's been a major slowdown between 5 -> 6 when you generated HTML as reported in [#1901](https://github.com/sitespeedio/sitespeed.io/issues/1901). This has been fixed by [#1909](https://github.com/sitespeedio/sitespeed.io/pull/1909) and [#1910](https://github.com/sitespeedio/sitespeed.io/pull/1910).
+
 ## 6.3.2 2017-02-05
 
 ### Fixed
