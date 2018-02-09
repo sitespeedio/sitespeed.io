@@ -73,7 +73,7 @@ On your local machine you need:
 
 To run the Docker version:
 
-- Install [Docker Community Edition](https://docs.docker.com/engine/installation/)
+- Install [Docker Community Edition](https://docs.docker.com/install/)
 - You need to fork and clone [sitespeed.io](https://github.com/sitespeedio/sitespeed.io).
 - Run <code>docker build -t sitespeedio/sitespeed.io .</code> in the cloned directory to build the container
 - Run <code>docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/</code>
