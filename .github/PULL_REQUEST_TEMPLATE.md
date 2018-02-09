@@ -4,7 +4,7 @@ Please review the [guidelines for contributing](CONTRIBUTING.md) to this reposit
 - [ ] I'm making a big change or adding functionality so I've already opened an issue proposing the change to other contributors, so I got feedback on the idea before took the time to write precious code
 - [ ] Check that your change/fix has corresponding unit tests (if applicable)
 - [ ] Squash commits so it looks sane
-- [ ] Update the documentation https://github.com/sitespeedio/sitespeed.io/tree/master/docs
+- [ ] Update the documentation https://github.com/sitespeedio/sitespeed.io/tree/master/docs in another PR
 - [ ] Verify that the test works by running `npm test` and test linting by `npm run lint`
 
 
