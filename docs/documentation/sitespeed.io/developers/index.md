@@ -58,7 +58,7 @@ The big picture looks something like this:
 ![How it all works]({{site.baseurl}}/img/sitespeed-universe-5.png)
 {: .img-thumbnail}
 
-## Developing on sitespeed.io
+## Developing sitespeed.io
 
 ### Setup
 On your local machine you need:
@@ -66,23 +66,23 @@ On your local machine you need:
 - [Install NodeJS](https://nodejs.org/en/download/) latest LTS version.
 - You need Git and fork [sitespeed.io](https://github.com/sitespeedio/sitespeed.io) and clone the forked repository.
 - Install Chrome/Firefox
-- Go to the cloned directory and run *npm install*
-- You are ready to go! To run locally: *bin/sitespeed.io https://www.sitespeed.io -n 1*
-- You can change the log level by adding the verbose flag. Verbose mode prints progress messages to the console. Enter up to three times (-vvv) to increase the level of detail: *bin/sitespeed.io https://www.sitespeed.io -n 1* -v
+- Go to the cloned directory and run <code>npm install</code>
+- You are ready to go! To run locally: <code>bin/sitespeed.io https://www.sitespeed.io -n 1</code>
+- You can change the log level by adding the verbose flag. Verbose mode prints progress messages to the console. Enter up to three times (-vvv) to increase the level of detail: <code>bin/sitespeed.io https://www.sitespeed.io -n 1 -v</code>
 
 
 To run the Docker version:
 
 - Install [Docker Community Edition](https://docs.docker.com/engine/installation/)
 - You need to fork and clone [sitespeed.io](https://github.com/sitespeedio/sitespeed.io).
-- Run *docker build sitespeedio/sitespeed.io .* in the cloned directory to build the container
-- Run *docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/*
+- Run <code>docker build -t sitespeedio/sitespeed.io .</code> in the cloned directory to build the container
+- Run <code>docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/</code>
 
 If you want to test and push to Graphite/InfluxDB:
 
-- Go to *docker/* in the cloned dir and start the container: *docker-compose up*
-- Go back one level and run *docker build sitespeedio/sitespeed.io .* in the cloned directory to build the container
-- Run: *docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 --graphite.host=192.168.65.1* to push the data to Graphite. The IP is the localhost IP if you run on a Mac.
+- Go to *docker/* in the cloned dir and start the container: <code>docker-compose up</code>
+- Go back one level and run <code>docker build -t sitespeedio/sitespeed.io .</code> in the cloned directory to build the container
+- Run: <code>docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 --graphite.host=192.168.65.1</code> to push the data to Graphite. The IP is the localhost IP if you run on a Mac.
 - Check the metrics at [http://127.0.0.1:3000/](http://127.0.0.1:3000/).
 
 ### Plugins
@@ -99,8 +99,24 @@ p #{JSON.stringify(pageInfo)}
 
 Where pageInfo is the data structure that you wanna inspect.
 
-### Before you send a PR
-Always make sure your code follow our lint rule by running: *npm run lint*
+### Make a pull request
+ 
+ We love pull requests and before you make a big change or add functionality, please open an issue proposing the change to other contributors so you got feedback on the idea before take the time to write precious code!
+
+#### Before you send the pull request 
+
+Before you send the PR make sure you: 
+ * Squash your commits so it looks sane
+ * Make sure your code follow our lint rule by running: <code>npm run lint</code>
+ * Make sure your code don't break any tests: <code>npm test</code>
+ * Update the documentation [https://github.com/sitespeedio/sitespeed.io/tree/master/docs](https://github.com/sitespeedio/sitespeed.io/tree/master/docs) in another pull request. When we merge the PR the documentaion will automatically be updated so we do that when we push the next release
+
+### Do a release
+When you become a member of the sitespeed.io team you can push releases. You do that by running the release bash script in root: <code>./release.sh</code>
+
+To do a release you need to first install np (a better *npm publish*): <code>npm install --global np</code>
+
+Then run the bash script. It will push your new release to npm and the Docker hub. Remember to let ypur latest code change run a couple of hours on our test server before you push the release (the latest code is automatically deployed on the test server).
 
 ### Use sitespeed.io from NodeJS
 If you want to integrate sitespeed.io into your NodeJS application you can checkout how we do that in [our Grunt plugin](https://github.com/sitespeedio/grunt-sitespeedio/blob/master/tasks/sitespeedio.js). It's a great working example. :)
@@ -119,21 +135,22 @@ To run the documentation server locally execute the following from within the /d
 Visit http://localhost:4000/ in the browser of your choice.
 
 ### Debugging with Chrome
-You can debug sitespeed.io using Chrome and NodeJS > 6. Thanks [@moos](https://github.com/moos) for sharing.
+You can debug sitespeed.io using Chrome and NodeJS > 8. Thanks [@moos](https://github.com/moos) for sharing.
 
 ~~~bash
-node --inspect --debug-brk bin/sitespeed.js -m25 -n1 http://0.0.0.0:8082
+node --inspect-brk bin/sitespeed.js -n 1 https://www.sitespeed.io
 ~~~
 
 And you will get something like this:
 
 ~~~
-Debugger listening on port 9229.
-Warning: This is an experimental feature and could change at any time.
-To start debugging, open the following URL in Chrome:
-    chrome-devtools://devtools/remote/serve_file/@62cd277117e6f8ec53e31b1be5829 a6f7ab42ef/inspector.html?experiments=true&v8only=true&ws=localhost:9229/node
+Debugger listening on ws://127.0.0.1:9229/28ca21e5-1300-45ee-a455-481cb96220eb
+For help see https://nodejs.org/en/docs/inspector
+Debugger attached.
 ~~~
 
-Then copy&paste the URL in chrome and you're in inspect mode. <code>--debug-brk</code> ensures a breakpoint as soon as the code is entered. From there, you can start any of the profiles under the Profile tab.
+
+Then copy&paste <code>chrome://inspect/</code> Chrome and then choose *Open dedicated DevTools for Node*
+. <code>--inspect-brk</code> ensures a breakpoint as soon as the code is entered. From there, you can start any of the profiles under the Profile tab.
 
 Use it when you want to debug functionality or check memory usage.
