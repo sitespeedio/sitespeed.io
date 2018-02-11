@@ -1,4 +1,3 @@
 --require ./test/helpers/first
 --reporter spec
 --timeout 60s
---check-leaks
