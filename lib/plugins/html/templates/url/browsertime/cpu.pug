@@ -1,0 +1,24 @@
+a#cpu
+h3 CPU
+
+if browsertime.cpu.categories
+  h4 Categories
+  table
+    tr
+      th name
+      th value
+    each value, name in browsertime.cpu.categories
+      tr
+        td #{name}
+        td #{value}
+
+if browsertime.cpu.events
+  h4 Events
+  table
+    tr
+      th name
+      th value
+    each value, name in browsertime.cpu.events
+      tr
+        td #{name}
+        td #{value}        
