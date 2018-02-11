@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## 6.3.4 2017-02-11
+
+### Fixed
+* Changing the metrics filter didn't work since 6.x, there was an assumption about messages that was wrong. [#1912](https://github.com/sitespeedio/sitespeed.io/pull/1912).
+
 ## 6.3.3 2017-02-08
 
 ### Fixed
