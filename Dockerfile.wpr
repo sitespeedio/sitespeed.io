@@ -5,29 +5,23 @@ ENV SITESPEED_IO_BROWSERTIME__DOCKER true
 ENV SITESPEED_IO_BROWSERTIME__VIDEO true
 ENV SITESPEED_IO_BROWSERTIME__speedIndex true
 
-# Install Go, WebPageReplay and the webpagereplay wrapper
+COPY docker/webpagereplay/wpr /usr/local/bin/
+COPY docker/webpagereplay/wpr_cert.pem /webpagereplay/certs/
+COPY docker/webpagereplay/wpr_key.pem /webpagereplay/certs/
+COPY docker/webpagereplay/deterministic.js /webpagereplay/scripts/deterministic.js
+COPY docker/webpagereplay/LICENSE /webpagereplay/
 
-WORKDIR /work
+# build-essential is needed for Sharp to compile
 RUN sudo apt-get update && sudo apt-get install libnss3-tools \
-  curl \
-  git \
-  build-essential \
-  iproute2 -y && \
+  iproute2 build-essential -y --no-install-recommends && \
   mkdir -p $HOME/.pki/nssdb && \
-  certutil -d $HOME/.pki/nssdb -N && \
-  curl -O https://storage.googleapis.com/golang/go1.9.linux-amd64.tar.gz && \
-  tar -xvf go1.9.linux-amd64.tar.gz && \
-  sudo mv go /usr/local
+  certutil -d $HOME/.pki/nssdb -N
 
-ENV PATH="/usr/local/go/bin:${PATH}"
+ENV PATH="/usr/local/bin:${PATH}"
 
-RUN go get github.com/urfave/cli && \
-  go get golang.org/x/net/http2 && \
-  go get github.com/catapult-project/catapult/web_page_replay_go/src/webpagereplay && \
-  npm install webpagereplaywrapper -g
+RUN npm install webpagereplaywrapper -g
 
-WORKDIR /root/go/src/github.com/catapult-project/catapult/web_page_replay_go
-RUN go run src/wpr.go installroot
+RUN wpr installroot --https_cert_file /webpagereplay/certs/wpr_cert.pem --https_key_file /webpagereplay/certs/wpr_key.pem
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
