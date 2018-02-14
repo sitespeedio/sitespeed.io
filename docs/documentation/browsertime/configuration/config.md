@@ -17,9 +17,11 @@ chrome
   --chrome.android.package             Run Chrome on your Android device. Set to com.android.chrome for default Chrome version. You need to run adb start-server before you start.
   --chrome.android.deviceSerial        Choose which device to use. If you do not set it, first device will be used.
   --chrome.collectTracingEvents        Include Tracing events in the performance log (implies chrome.collectPerfLog).  [boolean]
+  --chrome.collectCPUMetrics           Collect CPU metrics. You need to have Python installed + collect the devtools.timeline for this to work.  [boolean]
   --chrome.traceCategories             A comma separated list of Tracing event categories to include in the performance log (implies chrome.collectTracingEvents).  [string]
   --chrome.collectPerfLog              Collect performance log from Chrome with Page and Network events and save to disk.  [boolean]
   --chrome.collectNetLog               Collect network log from Chrome and save to disk.  [boolean]
+  --chrome.collectConsoleLog           Collect Chromes console log and save to disk.  [boolean]
 
 firefox
   --firefox.binaryPath             Path to custom Firefox binary (e.g. Firefox Nightly). On OS X, the path should be to the binary inside the app bundle, e.g. /Applications/Firefox.app/Contents/MacOS/firefox-bin
@@ -65,7 +67,7 @@ Options:
   --iterations, -n       Number of times to test the url (restarting the browser between each test)  [number] [default: 3]
   --prettyPrint          Enable to print json/har with spaces and indentation. Larger files, but easier on the eye.  [boolean] [default: false]
   --delay                Delay between runs, in milliseconds  [number] [default: 0]
-  --requestheader, -r    Request header that will be added to the request. Add multiple instances to add multiple request headers.
+  --requestheader, -r    Request header that will be added to the request. Add multiple instances to add multiple request headers. Use the following format key:value
   --block                Domain to block. Add multiple instances to add multiple domains that will be blocked.
   --cacheClearRaw        Use internal browser functionality to clear browser cache between runs instead of only using Selenium.  [boolean] [default: false]
   --basicAuth            Use it if your server is behind Basic Auth. Format: username@password (Only Chrome at the moment).

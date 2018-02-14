@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 6.3.5 2017-02-13
+### Fixed
+* Adding --filterList as parameter made changing the metrics filter fail [#1915](https://github.com/sitespeedio/sitespeed.io/pull/1915).
+
 ## 6.3.4 2017-02-11
 
 ### Fixed

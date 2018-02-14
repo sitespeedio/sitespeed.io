@@ -12,6 +12,11 @@ MAX_OLD_SPACE_SIZE="${MAX_OLD_SPACE_SIZE:-2048}"
 HTTP_PORT=80
 HTTPS_PORT=443
 
+CERT_FILE=/webpagereplay/certs/wpr_cert.pem
+KEY_FILE=/webpagereplay/certs/wpr_key.pem
+
+SCRIPTS=/webpagereplay/scripts/deterministic.js
+
 if [ -n "$START_ADB_SERVER" ] ; then
   WPR_HTTP_PORT=8080
   WPR_HTTPS_PORT=8081
@@ -55,8 +60,7 @@ function runWebPageReplay() {
   }
 
   LATENCY=${LATENCY:-100}
-  WPR_PATH=/root/go/src/github.com/catapult-project/catapult/web_page_replay_go
-  WPR_PARAMS="--path $WPR_PATH --http $WPR_HTTP_PORT --https $WPR_HTTPS_PORT"
+  WPR_PARAMS="--http $WPR_HTTP_PORT --https $WPR_HTTPS_PORT --certFile $CERT_FILE --keyFile $KEY_FILE --injectScripts $SCRIPTS"
   WAIT=${WAIT:-2000}
 
   webpagereplaywrapper record --start $WPR_PARAMS
