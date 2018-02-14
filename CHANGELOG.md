@@ -3,6 +3,7 @@
 ## UNRELEASED
 ### Fixed
 * New cleaner pre-compiled WebPageReplay in the WebPageReplay Docker container
+* Updated to latest Browsertime
 
 ## 6.3.5 2017-02-13
 ### Fixed
