@@ -5,6 +5,9 @@
 * New cleaner pre-compiled WebPageReplay in the WebPageReplay Docker container
 * Updated to latest Browsertime
 
+### Added
+* We now show CPU stats for Chrome if you configure Browsertime [#1914](https://github.com/sitespeedio/sitespeed.io/pull/1914).
+
 ## 6.3.5 2017-02-13
 ### Fixed
 * Adding --filterList as parameter made changing the metrics filter fail [#1915](https://github.com/sitespeedio/sitespeed.io/pull/1915).
