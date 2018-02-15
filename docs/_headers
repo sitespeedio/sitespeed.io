@@ -1,5 +1,8 @@
 /*
-	Surrogate-Control: max-age=86400
+	X-Content-Type-Options: nosniff
+	x-frame-options: SAMEORIGIN
+	X-XSS-Protection: 1; mode=block
+	Referrer-Policy: no-referrer	
+
 /img/*
         Cache-Control: public, max-age=360000
-	Surrogate-Control: max-age=360000
