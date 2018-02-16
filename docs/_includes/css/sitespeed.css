@@ -85,9 +85,12 @@ vertical-align: middle;
 width: 32px;
 }
 
-.fastly {
-vertical-align: middle;
-height: 32px;
+.edit {
+  float: right;
+  font-size: 0.8rem;
+  line-height: 1.0;
+  letter-spacing: 0;
+  padding: 5px;
 }
 
 .digitalocean {
