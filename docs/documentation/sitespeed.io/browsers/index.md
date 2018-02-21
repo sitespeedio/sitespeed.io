@@ -88,3 +88,10 @@ In Chrome, you just add the switches <code>--browsertime.chrome.args disable-htt
 
 For Firefox, you need to turn off HTTP/2 and SPDY, and you do that by setting the Firefox preferences:
 <code>--browsertime.firefox.preference network.http.spdy.enabled:false --browsertime.firefox.preference network.http.spdy.enabled.http2:false --browsertime.firefox.preference network.http.spdy.enabled.v3-1:false</code>
+
+## Collect trace logs
+Today only Chrome supports getting the trace log (like the devtools.timeline) but there are work in Firefox to make the same availible through the WebDriver. You can turn that on in Chrome with <code>--browsertime.chrome.collectTracingEvent</code> and choose which categories by <code>--browsertime.chrome.traceCategories</code>.
+
+~~~bash
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  --browsertime.chrome.collectTracingEvent --browsertime.chrome.traceCategories='-*,disabled-by-default-devtools.timeline' https://www.sitespeed.io/
+~~~
