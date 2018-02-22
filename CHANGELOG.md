@@ -3,7 +3,7 @@
 ## UNRELEASED
 ### Fixed
 * New cleaner pre-compiled WebPageReplay in the WebPageReplay Docker container
-* Updated to latest Browsertime
+* Updated to latest Browsertime 2.2.2
 
 ### Added
 * We now show CPU stats for Chrome if you configure Browsertime [#1914](https://github.com/sitespeedio/sitespeed.io/pull/1914).
