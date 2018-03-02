@@ -1,11 +1,14 @@
 #!/bin/bash
-set -e
+
+trap "exit" INT TERM ERR
+trap "kill 0" EXIT
 
 google-chrome --version
 firefox --version
 
 BROWSERTIME=/usr/src/app/bin/browsertimeWebPageReplay.js
 SITESPEEDIO=/usr/src/app/bin/sitespeed.js
+export DBUS_SESSION_BUS_ADDRESS=/dev/null
 
 MAX_OLD_SPACE_SIZE="${MAX_OLD_SPACE_SIZE:-2048}"
 
@@ -28,6 +31,17 @@ fi
 # Here's a hack for fixing the problem with Chrome not starting in time
 # See https://github.com/SeleniumHQ/docker-selenium/issues/87#issuecomment-250475864
 function chromeSetup() {
+
+  # Kill process by command
+  function killProcessByCommand() {
+    list=$(ps aux | grep ${1} | awk '{ print $2 }' ORS=' ')
+    if [ "${list}" != "" ]; then
+      killall ${1} > /dev/null 2>/dev/null
+    fi
+  }
+  service dbus stop > /dev/null
+  killProcessByCommand /usr/bin/dbus-daemon
+  killProcessByCommand /usr/lib/at-spi2-core/at-spi-bus-launcher
   sudo rm -f /var/lib/dbus/machine-id
   sudo mkdir -p /var/run/dbus
   sudo service dbus restart > /dev/null
