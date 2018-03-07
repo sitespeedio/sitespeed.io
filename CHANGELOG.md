@@ -1,4 +1,8 @@
 # CHANGELOG - sitespeed.io
+## UNRELEASED
+### Fixex
+* Upgraded from pug 2.0.0-rc4 to pug 2.0.0
+
 
 ## 6.4.0 2017-03-07
 ### Fixed
