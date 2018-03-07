@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 6.4.0 2017-03-07
 ### Fixed
 * New cleaner pre-compiled WebPageReplay in the WebPageReplay Docker container
 * Updated to latest Browsertime 2.2.2, checkout the [changelog](https://github.com/sitespeedio/browsertime/blob/2.x/CHANGELOG.md#version-222-2018-02-22)
