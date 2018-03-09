@@ -43,7 +43,7 @@ sitespeed
   .then(() => {
     if (
       !budgetFailing ||
-      (parsed.options.budget && parsed.options.budget.supressExitCode)
+      (parsed.options.budget && parsed.options.budget.suppressExitCode)
     ) {
       process.exitCode = 0;
     }
