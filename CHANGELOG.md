@@ -1,6 +1,15 @@
 # CHANGELOG - sitespeed.io
 
 ## UNRELEASED
+
+### Added
+* You can now choose if sitespeed.io will return an error exit code if your budget fails with --budget.suppressExitCode  see [#1934](https://github.com/sitespeedio/sitespeed.io/issues/1934) and [#1936](https://github.com/sitespeedio/sitespeed.io/pull/1936)
+
+##  6.4.1 2017-03-07
+### Fixed
+* Upgraded from pug 2.0.0-rc4 to pug 2.0.0
+
+## 6.4.0 2017-03-07
 ### Fixed
 * New cleaner pre-compiled WebPageReplay in the WebPageReplay Docker container
 * Updated to latest Browsertime 2.2.2, checkout the [changelog](https://github.com/sitespeedio/browsertime/blob/2.x/CHANGELOG.md#version-222-2018-02-22)

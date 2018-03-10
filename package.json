@@ -1,7 +1,7 @@
 {
   "name": "sitespeed.io",
   "bin": "./bin/sitespeed.js",
-  "version": "6.3.5",
+  "version": "6.4.1",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -94,7 +94,7 @@
     "moment": "2.18.1",
     "node-slack": "0.0.7",
     "pagexray": "2.0.4",
-    "pug": "2.0.0-rc.4",
+    "pug": "2.0.0",
     "s3": "4.4.0",
     "sharp": "0.18.4",
     "simplecrawler": "1.1.5",
