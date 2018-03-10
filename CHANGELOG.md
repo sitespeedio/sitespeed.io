@@ -1,6 +1,12 @@
 # CHANGELOG - sitespeed.io
+
+## UNRELEASED
+
+### Added
+* You can now choose if sitespeed.io will return an error exit code if your budget fails with --budget.suppressExitCode  see [#1934](https://github.com/sitespeedio/sitespeed.io/issues/1934) and [#1936](https://github.com/sitespeedio/sitespeed.io/pull/1936)
+
 ##  6.4.1 2017-03-07
-### Fixex
+### Fixed
 * Upgraded from pug 2.0.0-rc4 to pug 2.0.0
 
 ## 6.4.0 2017-03-07
