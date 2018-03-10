@@ -41,7 +41,10 @@ sitespeed
     }
   })
   .then(() => {
-    if (!budgetFailing) {
+    if (
+      !budgetFailing ||
+      (parsed.options.budget && parsed.options.budget.suppressExitCode)
+    ) {
       process.exitCode = 0;
     }
   })
