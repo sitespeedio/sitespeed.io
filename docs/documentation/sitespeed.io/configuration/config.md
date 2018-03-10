@@ -111,7 +111,6 @@ s3
   --s3.bucketname         Name of the S3 bucket
   --s3.path               Override the default folder path in the bucket where the results are uploaded. By default it's "DOMAIN_OR_FILENAME/TIMESTAMP", or the name of the folder if --outputFolder is specified.
   --s3.region             The S3 region. Optional depending on your settings.
-  --s3.acl                The S3 canned ACL to set, optional depending on your settings.
   --s3.removeLocalResult  Remove all the local result files after they have been uploaded to S3  [boolean] [default: false]
 
 HTML
