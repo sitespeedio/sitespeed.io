@@ -5,6 +5,12 @@
 ### Added
 * You can now choose if sitespeed.io will return an error exit code if your budget fails with --budget.suppressExitCode  see [#1934](https://github.com/sitespeedio/sitespeed.io/issues/1934) and [#1936](https://github.com/sitespeedio/sitespeed.io/pull/1936)
 
+* You can now set ACL for S3 uploads [#1937](https://github.com/sitespeedio/sitespeed.io/pull/1937). Thank you [lbod](https://github.com/lbod] for the PR.
+
+### Fixed
+* If WebPageTest fails, we now catch those errors better [#1942](https://github.com/sitespeedio/sitespeed.io/pull/1942). Thank you [Lorenzo Urbini](https://github.com/siteriaitaliana) for the PR!
+
+
 ##  6.4.1 2017-03-07
 ### Fixed
 * Upgraded from pug 2.0.0-rc4 to pug 2.0.0
