@@ -10,6 +10,7 @@
 ### Fixed
 * If WebPageTest fails, we now catch those errors better [#1942](https://github.com/sitespeedio/sitespeed.io/pull/1942). Thank you [Lorenzo Urbini](https://github.com/siteriaitaliana) for the PR!
 
+* Upgraded to Pug 2.0.1
 
 ##  6.4.1 2017-03-07
 ### Fixed
