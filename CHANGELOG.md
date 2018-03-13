@@ -10,7 +10,9 @@
 ### Fixed
 * If WebPageTest fails, we now catch those errors better [#1942](https://github.com/sitespeedio/sitespeed.io/pull/1942). Thank you [Lorenzo Urbini](https://github.com/siteriaitaliana) for the PR!
 
-* Upgraded to Pug 2.0.1
+* Running WebPageTest without Browsertime made the pages.pug fail [#1945](https://github.com/sitespeedio/sitespeed.io/issues/1945).
+
+* Upgraded to Pug 2.0.1 fixing various Pug problems caused by Pug internal version problems, see https://github.com/pugjs/pug/issues/2978
 
 ##  6.4.1 2017-03-07
 ### Fixed
