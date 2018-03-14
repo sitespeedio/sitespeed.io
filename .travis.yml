@@ -24,16 +24,9 @@ before_install:
 - /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile
   --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1600x1024x16
 script:
-- npm run travis
-- npm run build:css && test -z "$(git status --porcelain lib/plugins/html/assets/css/index.css)"
-- bin/sitespeed.js -b firefox -n 2 --budget.configPath test/budget.json --summary https://www.sitespeed.io/
-- bin/sitespeed.js -b chrome -n 2 https://www.sitespeed.io/ --preScript test/prepostscripts/preSample.js
-  --postScript test/prepostscripts/postSample.js
- - bin/sitespeed.js -b chrome -n 2 --summaryDetail --browsertime.chrome.dumpTraceCategoriesLog https://www.sitespeed.io/ --webpagetest.key $WPTKEY
-# - 'if [ "$WPTKEY" != "false" ]; then bash bin/sitespeed.js -b chrome -n 2 --summaryDetail --browsertime.chrome.dumpTraceCategoriesLog https://www.sitespeed.io/ --webpagetest.key $WPTKEY; fi'
-# - test "$TRAVIS_PULL_REQUEST_SLUG" = "" -o "$TRAVIS_PULL_REQUEST_SLUG" = "sitespeedio/sitespeed.io" && bin/sitespeed.js -b chrome -n 2 --summaryDetail --browsertime.chrome.dumpTraceCategoriesLog https://www.sitespeed.io/
-#  --webpagetest.key $WPTKEY
-- node test/runWithoutCli.js
+- ./travis/defaultTests.sh
+- ./travis/wptTests.sh
+
 env:
   global:
   - CXX=g++-4.8
