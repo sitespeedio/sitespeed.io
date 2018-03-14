@@ -12,7 +12,7 @@ mixin rows(pages)
         a(href= pageInfo.path + 'index.html')= decodeURIComponent(display)
       +kbSizeCell('Total size', p.transferSize)
       +numberCell('Requests', p.requests)
-      if options.speedIndex
+      if b.visualMetrics && b.visualMetrics[0]
         +numberCell('First Visual Change', b.visualMetrics[0].FirstVisualChange)
         +numberCell('Speed Index', b.visualMetrics[0].SpeedIndex)
         +numberCell('Last Visual Change', b.visualMetrics[0].LastVisualChange)
