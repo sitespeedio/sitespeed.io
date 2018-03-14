@@ -29,9 +29,8 @@ script:
 - bin/sitespeed.js -b firefox -n 2 --budget.configPath test/budget.json --summary https://www.sitespeed.io/
 - bin/sitespeed.js -b chrome -n 2 https://www.sitespeed.io/ --preScript test/prepostscripts/preSample.js
   --postScript test/prepostscripts/postSample.js
-- 'if [ "$WPTKEY" != "false" ]; then bash bin/sitespeed.js -b chrome -n 2 --summaryDetail --browsertime.chrome.dumpTraceCategoriesLog https://www.sitespeed.io/ --webpagetest.key $WPTKEY; fi'
-# - bin/sitespeed.js -b chrome -n 2 --summaryDetail --browsertime.chrome.dumpTraceCategoriesLog https://www.sitespeed.io/ --webpagetest.key $WPTKEY
-
+ - bin/sitespeed.js -b chrome -n 2 --summaryDetail --browsertime.chrome.dumpTraceCategoriesLog https://www.sitespeed.io/ --webpagetest.key $WPTKEY
+# - 'if [ "$WPTKEY" != "false" ]; then bash bin/sitespeed.js -b chrome -n 2 --summaryDetail --browsertime.chrome.dumpTraceCategoriesLog https://www.sitespeed.io/ --webpagetest.key $WPTKEY; fi'
 # - test "$TRAVIS_PULL_REQUEST_SLUG" = "" -o "$TRAVIS_PULL_REQUEST_SLUG" = "sitespeedio/sitespeed.io" && bin/sitespeed.js -b chrome -n 2 --summaryDetail --browsertime.chrome.dumpTraceCategoriesLog https://www.sitespeed.io/
 #  --webpagetest.key $WPTKEY
 - node test/runWithoutCli.js
