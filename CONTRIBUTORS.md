@@ -9,6 +9,8 @@ Many many many thanks to:
 * Pascal Borreli (@pborreli)
 * Radu Micu (@radum)
 * shakey2k2 (@shakey2k2)
+* lbod (@lbod)
+* Lorenzo Urbini (@siteriaitaliana)
 
 3.X and earlier:
 * Tom Sutton (@tomsutton1984)
