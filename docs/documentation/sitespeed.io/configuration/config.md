@@ -58,9 +58,10 @@ Plugins
   --plugins.remove  Extra plugins that you want to run. Relative or absolute path to the plugin. Specify multiple plugin names separated by comma, or repeat the --plugins.remove option
 
 Budget
-  --budget.configPath  Path to the JSON budget file.
-  --budget.config      The JSON budget config as a string.
-  --budget.output      The output format of the budget.  [choices: "junit", "tap"]
+  --budget.configPath        Path to the JSON budget file.
+  --budget.suppressExitCode  By default sitespeed.io returns a failure exit code, if the budget fails. Set this to true and sitespeed.io will return exit code 0 independent of the budget.
+  --budget.config            The JSON budget config as a string.
+  --budget.output            The output format of the budget.  [choices: "junit", "tap"]
 
 Screenshot
   --screenshot.type                  Set the file type of the screenshot  [choices: "png", "jpg"] [default: "png"]
@@ -111,6 +112,7 @@ s3
   --s3.bucketname         Name of the S3 bucket
   --s3.path               Override the default folder path in the bucket where the results are uploaded. By default it's "DOMAIN_OR_FILENAME/TIMESTAMP", or the name of the folder if --outputFolder is specified.
   --s3.region             The S3 region. Optional depending on your settings.
+  --s3.acl                The S3 canned ACL to set. Optional depending on your settings .
   --s3.removeLocalResult  Remove all the local result files after they have been uploaded to S3  [boolean] [default: false]
 
 HTML
