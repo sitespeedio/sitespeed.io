@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 6.5.0 2017-03-20
 
 ### Added
 * You can now choose if sitespeed.io will return an error exit code if your budget fails with --budget.suppressExitCode  see [#1934](https://github.com/sitespeedio/sitespeed.io/issues/1934) and [#1936](https://github.com/sitespeedio/sitespeed.io/pull/1936)
