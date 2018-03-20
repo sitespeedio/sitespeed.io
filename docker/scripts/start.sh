@@ -1,7 +1,5 @@
 #!/bin/bash
 
-trap "exit" INT TERM ERR
-
 google-chrome --version
 firefox --version
 
@@ -31,6 +29,7 @@ fi
 # See https://github.com/SeleniumHQ/docker-selenium/issues/87#issuecomment-250475864
 function chromeSetup() {
 
+  # In Browsertime 3.0 we can kill the Chrome process hard and skip most of this 
   # Kill process by command
   function killProcessByCommand() {
     list=$(ps aux | grep ${1} | awk '{ print $2 }' ORS=' ')
