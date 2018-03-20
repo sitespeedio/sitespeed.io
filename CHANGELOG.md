@@ -16,6 +16,8 @@
 
 * Bumped dependencies [#1952](https://github.com/sitespeedio/sitespeed.io/pull/1952).
 
+* Fix HTML output summary for User Timings within Timing Summary table.
+
 ##  6.4.1 2017-03-07
 ### Fixed
 * Upgraded from pug 2.0.0-rc4 to pug 2.0.0
