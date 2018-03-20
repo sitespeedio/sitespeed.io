@@ -18,6 +18,8 @@
 
 * Fix HTML output summary for User Timings within Timing Summary table.
 
+* Docker: Kill some left over processes when you start a new URL, thanks [Vitaliy Honcharenko](https://github.com/vgoncharenko) [#1952](https://github.com/sitespeedio/sitespeed.io/pull/1924). We will fix this in another way in coming Browsertime 3.0.
+
 ##  6.4.1 2017-03-07
 ### Fixed
 * Upgraded from pug 2.0.0-rc4 to pug 2.0.0
