@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## 6.5.1 2017-03-22
+
+### Fixed
+* If the WebPageTest location contained a space, we sent that space to Graphite. That deosn't work, so we now make the location a safe key [#1958](https://github.com/sitespeedio/sitespeed.io/issues/1958).
+
 ## 6.5.0 2017-03-20
 
 ### Added
