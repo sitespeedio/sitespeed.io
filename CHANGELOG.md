@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELESED
+### Fixed
+* Upgraded PageXray to 2.2.1 that fixed measuring the size of 304 responses [#1963](https://github.com/sitespeedio/sitespeed.io/issues/1963).
+
 ## 6.5.1 2017-03-22
 
 ### Fixed
