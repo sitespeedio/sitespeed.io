@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+## Added
+* Upgraded to Browsertime 2.4.1
+
 ## 6.5.2 2018-03-30
 ### Fixed
 * Upgraded PageXray to 2.2.1 that fixed measuring the size of 304 responses [#1963](https://github.com/sitespeedio/sitespeed.io/issues/1963).
