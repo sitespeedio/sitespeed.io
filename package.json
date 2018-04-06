@@ -37,14 +37,16 @@
   "scripts": {
     "lint": "eslint . && npm run pug-lint",
     "lint:fix": "eslint . --fix",
-    "eslint-check": "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
+    "eslint-check":
+      "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
     "eclint": "eclint check lib/**/* bin/**/* tools/**/*",
     "eclint:fix": "eclint fix * lib/**/* bin/**/* tools/**/* !*.iml",
     "pug-lint": "pug-lint lib/plugins/html/templates",
     "test": "mocha",
     "check-licenses": "tools/check-licenses.js",
     "travis": "npm run eslint-check && npm run lint && npm run test",
-    "build:css": "node-sass lib/plugins/html/src/sass/main.scss > lib/plugins/html/assets/css/index.css && cleancss -o lib/plugins/html/assets/css/index.min.css lib/plugins/html/assets/css/index.css && rm lib/plugins/html/assets/css/index.css"
+    "build:css":
+      "node-sass lib/plugins/html/src/sass/main.scss > lib/plugins/html/assets/css/index.css && cleancss -o lib/plugins/html/assets/css/index.min.css lib/plugins/html/assets/css/index.css && rm lib/plugins/html/assets/css/index.css"
   },
   "engines": {
     "node": ">=8.9.0"
@@ -69,7 +71,7 @@
   "dependencies": {
     "aws-sdk": "2.168.0",
     "bluebird": "3.5.1",
-    "browsertime": "2.4.1",
+    "browsertime": "3.0.0-alpha.1",
     "cli-color": "1.2.0",
     "concurrent-queue": "7.0.2",
     "fast-stats": "0.0.3",
@@ -96,7 +98,6 @@
     "pagexray": "2.2.1",
     "pug": "2.0.1",
     "s3": "4.4.0",
-    "sharp": "0.20.0",
     "simplecrawler": "1.1.6",
     "tape": "4.9.0",
     "text-table": "0.2.0",
