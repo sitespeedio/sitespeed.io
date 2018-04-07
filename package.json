@@ -69,7 +69,7 @@
   "dependencies": {
     "aws-sdk": "2.168.0",
     "bluebird": "3.5.1",
-    "browsertime": "2.5.0",
+    "browsertime": "3.0.0-alpha.1",
     "cli-color": "1.2.0",
     "concurrent-queue": "7.0.2",
     "fast-stats": "0.0.3",
@@ -96,7 +96,6 @@
     "pagexray": "2.2.1",
     "pug": "2.0.1",
     "s3": "4.4.0",
-    "sharp": "0.20.0",
     "simplecrawler": "1.1.6",
     "tape": "4.9.0",
     "text-table": "0.2.0",
