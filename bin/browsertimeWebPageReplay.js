@@ -9,10 +9,12 @@ let yargs = require('yargs'),
   browsertimeConfig = require('../lib/plugins/browsertime/index').config;
 
 async function testURL(engine, url) {
-  await engine
-    .start()
-    .then(() => engine.run(url))
-    .finally(() => engine.stop());
+  try {
+    await engine.start();
+    await engine.run(url);
+  } finally {
+    engine.stop();
+  }
 }
 
 async function runBrowsertime() {
