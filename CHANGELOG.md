@@ -1,5 +1,21 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELASED 7.0
+We are working on the new 7.0 that will include Browsertime 3.0. More info soon.
+
+## Changed
+* To collect the Chrome timeline you should now use --browsertime.chrome.timeline instead of the old --browsertime.chrome.collectTracingEvents
+
+* To collect Visual Metrics add --visualMetrics (instead of the old --speedIndex)
+
+* You can now choose for what kind of content you want to include the response bodies when you use Firefox: --browsertime.firefox.includeResponseBodies 'none', 'all', 'html'
+
+## Breaking changes
+
+### Plugin makers
+* The screenshot is not passed as messages anymore to decrease the memory impact.
+* The Chrome trace log is not passed as messages anymore to decrease the memory impact.
+
 ## 6.5.3 2018-04-07
 ## Added
 * Upgraded to Browsertime 2.5.0 with fixes for the HAR in Chrome 66 and fix with User Timing measurements. Thanks [@knaos](https://github.com/knaos) for reporting and finding the issue.
