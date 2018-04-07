@@ -1,8 +1,8 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 6.5.3 2018-04-07
 ## Added
-* Upgraded to Browsertime 2.4.1
+* Upgraded to Browsertime 2.5.0 with fixes for the HAR in Chrome 66 and fix with User Timing measurements. Thanks [@knaos](https://github.com/knaos) for reporting and finding the issue.
 
 ## 6.5.2 2018-03-30
 ### Fixed
