@@ -5,8 +5,24 @@ ENV SITESPEED_IO_BROWSERTIME__DOCKER true
 ENV SITESPEED_IO_BROWSERTIME__VIDEO true
 ENV SITESPEED_IO_BROWSERTIME__speedIndex true
 
-# This is needed for Sharp to compile
-RUN sudo apt-get update && sudo apt-get install build-essential -y --no-install-recommends
+COPY docker/webpagereplay/wpr /usr/local/bin/
+COPY docker/webpagereplay/wpr_cert.pem /webpagereplay/certs/
+COPY docker/webpagereplay/wpr_key.pem /webpagereplay/certs/
+COPY docker/webpagereplay/deterministic.js /webpagereplay/scripts/deterministic.js
+COPY docker/webpagereplay/LICENSE /webpagereplay/
+
+# build-essential is needed for Sharp to compile
+RUN sudo apt-get update && sudo apt-get install libnss3-tools \
+ build-essential \
+ iproute2 -y && \
+ mkdir -p $HOME/.pki/nssdb && \
+ certutil -d $HOME/.pki/nssdb -N
+
+ENV PATH="/usr/local/bin:${PATH}"
+
+RUN npm install webpagereplaywrapper -g
+
+RUN wpr installroot --https_cert_file /webpagereplay/certs/wpr_cert.pem --https_key_file /webpagereplay/certs/wpr_key.pem
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app

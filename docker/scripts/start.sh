@@ -29,7 +29,7 @@ fi
 # See https://github.com/SeleniumHQ/docker-selenium/issues/87#issuecomment-250475864
 function chromeSetup() {
 
-  # In Browsertime 3.0 we can kill the Chrome process hard and skip most of this 
+  # In Browsertime 3.0 we can kill the Chrome process hard and skip most of this
   # Kill process by command
   function killProcessByCommand() {
     list=$(ps aux | grep ${1} | awk '{ print $2 }' ORS=' ')
@@ -73,24 +73,47 @@ function runWebPageReplay() {
 
   LATENCY=${LATENCY:-100}
   WPR_PARAMS="--http $WPR_HTTP_PORT --https $WPR_HTTPS_PORT --certFile $CERT_FILE --keyFile $KEY_FILE --injectScripts $SCRIPTS"
-  WAIT=${WAIT:-2000}
+  WAIT=${WAIT:-5000}
+  REPLAY_WAIT=${REPLAY_WAIT:-5}
+  WAIT_SCRIPT="return (function() {try { var end = window.performance.timing.loadEventEnd; var start= window.performance.timing.navigationStart; return (end > 0) && (performance.now() > end - start + $WAIT);} catch(e) {return true;}})()"
 
+  declare -i RESULT=0
   webpagereplaywrapper record --start $WPR_PARAMS
 
-  $BROWSERTIME --browsertime.chrome.args host-resolver-rules="MAP *:$HTTP_PORT 127.0.0.1:$WPR_HTTP_PORT,MAP *:$HTTPS_PORT 127.0.0.1:$WPR_HTTPS_PORT,EXCLUDE localhost" --browsertime.firefox.preference network.dns.forceResolve:127.0.0.1 --browsertime.firefox.acceptInsecureCerts --browsertime.pageCompleteCheck "return (function() {try { if (performance.now() > ((performance.timing.loadEventEnd - performance.timing.navigationStart) + $WAIT)) {return true;} else return false;} catch(e) {return true;}})()" "$@"
+  $BROWSERTIME --browsertime.chrome.args host-resolver-rules="MAP *:$HTTP_PORT 127.0.0.1:$WPR_HTTP_PORT,MAP *:$HTTPS_PORT 127.0.0.1:$WPR_HTTPS_PORT,EXCLUDE localhost" --browsertime.firefox.preference network.dns.forceResolve:127.0.0.1 --browsertime.pageCompleteCheck "$WAIT_SCRIPT" --browsertime.connectivity.engine throttle --browsertime.connectivity.throttle.localhost --browsertime.connectivity.profile custom --browsertime.connectivity.latency $LATENCY "$@"
+  RESULT+=$?
 
   webpagereplaywrapper record --stop $WPR_PARAMS
+  RESULT+=$?
 
-  webpagereplaywrapper replay --start $WPR_PARAMS
+  if [ $RESULT -eq 0 ]
+    then
+      # The record server is slow on storing the replay file
+      sleep $REPLAY_WAIT
+      webpagereplaywrapper replay --start $WPR_PARAMS
 
-  exec node --max-old-space-size=$MAX_OLD_SPACE_SIZE $SITESPEEDIO --browsertime.firefox.acceptInsecureCerts --browsertime.firefox.preference network.dns.forceResolve:127.0.0.1 --browsertime.chrome.args host-resolver-rules="MAP *:$HTTP_PORT 127.0.0.1:$WPR_HTTP_PORT,MAP *:$HTTPS_PORT 127.0.0.1:$WPR_HTTPS_PORT,EXCLUDE localhost" --video --speedIndex --browsertime.pageCompleteCheck "return (function() {try { if (performance.now() > ((performance.timing.loadEventEnd - performance.timing.navigationStart) + $WAIT)) {return true;} else return false;} catch(e) {return true;}})()" --browsertime.connectivity.engine throttle --browsertime.connectivity.throttle.localhost --browsertime.connectivity.profile custom --browsertime.connectivity.latency $LATENCY "$@" &
+      if [ $? -eq 0 ]
+        then
+          exec node --max-old-space-size=$MAX_OLD_SPACE_SIZE $SITESPEEDIO --browsertime.firefox.preference security.OCSP.enabled:0 --browsertime.firefox.preference network.dns.forceResolve:127.0.0.1 --browsertime.chrome.args host-resolver-rules="MAP *:$HTTP_PORT 127.0.0.1:$WPR_HTTP_PORT,MAP *:$HTTPS_PORT 127.0.0.1:$WPR_HTTPS_PORT,EXCLUDE localhost" --video --visualMetrics --browsertime.pageCompleteCheck "$WAIT_SCRIPT" --browsertime.connectivity.engine throttle --browsertime.connectivity.throttle.localhost --browsertime.connectivity.profile custom --browsertime.connectivity.latency $LATENCY "$@" &
 
-  PID=$!
+          PID=$!
 
-  trap shutdown SIGTERM SIGINT
-  wait $PID
-  webpagereplaywrapper replay --stop $WPR_PARAMS
+          trap shutdown SIGTERM SIGINT
+          wait $PID
+
+          webpagereplaywrapper replay --stop $WPR_PARAMS
+
+        else
+          echo "Replay server didn't start correctly" >&2
+          exit 1
+        fi
+
+      else
+        echo "Recording or accessing the URL failed, will not replay" >&2
+        exit 1
+      fi
 }
+
 
 
 function runSitespeedio(){
