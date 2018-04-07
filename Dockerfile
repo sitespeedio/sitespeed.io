@@ -1,9 +1,9 @@
-FROM sitespeedio/webbrowsers:firefox-54.0-chrome-63.0-2
+FROM sitespeedio/webbrowsers:chrome-66-beta-firefox-61-nightly
 
 ENV SITESPEED_IO_BROWSERTIME__XVFB true
 ENV SITESPEED_IO_BROWSERTIME__DOCKER true
 ENV SITESPEED_IO_BROWSERTIME__VIDEO true
-ENV SITESPEED_IO_BROWSERTIME__speedIndex true
+ENV SITESPEED_IO_BROWSERTIME__visualMetrics true
 
 COPY docker/webpagereplay/wpr /usr/local/bin/
 COPY docker/webpagereplay/wpr_cert.pem /webpagereplay/certs/
