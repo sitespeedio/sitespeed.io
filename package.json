@@ -70,7 +70,7 @@
   },
   "main": "./lib/sitespeed.js",
   "dependencies": {
-    "aws-sdk": "2.168.0",
+    "aws-sdk": "2.222.1",
     "bluebird": "3.5.1",
     "browsertime": "3.0.0-alpha.1",
     "cli-color": "1.2.0",
