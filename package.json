@@ -3,6 +3,9 @@
   "bin": "./bin/sitespeed.js",
   "version": "6.5.3",
   "description": "Analyze the web performance of your site",
+  "publishConfig": {
+    "tag": "canary"
+  },
   "keywords": [
     "performance",
     "web",
