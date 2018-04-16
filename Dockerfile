@@ -6,7 +6,7 @@ ENV SITESPEED_IO_BROWSERTIME__VIDEO true
 ENV SITESPEED_IO_BROWSERTIME__speedIndex true
 
 # This is needed for Sharp to compile
-RUN sudo apt-get update && sudo apt-get install build-essential -y --no-install-recommends
+RUN sudo apt-get update && sudo apt-get install build-essential net-tools -y --no-install-recommends
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app

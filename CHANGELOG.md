@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+
+### Fixed
+* Include net-tools in the Docker file to be able to use throttle in Docker.
+
 ## 6.5.3 2018-04-07
 ## Added
 * Upgraded to Browsertime 2.5.0 with fixes for the HAR in Chrome 66 and fix with User Timing measurements. Thanks [@knaos](https://github.com/knaos) for reporting and finding the issue.
