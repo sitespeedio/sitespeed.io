@@ -1,9 +1,9 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 6.5.4 2018-04-16
 
 ### Fixed
-* Include net-tools in the Docker file to be able to use throttle in Docker.
+* Include net-tools in the Docker file to be able to use throttle in Docker [#1979](https://github.com/sitespeedio/sitespeed.io/issues/1979), thanks [Martino Trevisan](https://github.com/marty90).
 
 ## 6.5.3 2018-04-07
 ## Added
