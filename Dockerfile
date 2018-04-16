@@ -13,7 +13,7 @@ COPY docker/webpagereplay/LICENSE /webpagereplay/
 
 # build-essential is needed for Sharp to compile
 RUN sudo apt-get update && sudo apt-get install libnss3-tools \
- build-essential \
+ net-tools \
  iproute2 -y && \
  mkdir -p $HOME/.pki/nssdb && \
  certutil -d $HOME/.pki/nssdb -N
