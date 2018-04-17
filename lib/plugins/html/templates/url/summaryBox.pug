@@ -53,10 +53,10 @@ if btStatistics
       thead
         tr
           th metric
-          th min
-          th median
-          th mean
-          th max
+          th.number min
+          th.number median
+          th.number mean
+          th.number max
       if btStatistics.visualMetrics
         each visualMetric, name in btStatistics.visualMetrics
           tr
