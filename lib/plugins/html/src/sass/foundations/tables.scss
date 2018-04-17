@@ -41,7 +41,7 @@ th {
   background: lighten($color--blue, 56%);
 }
 
-td.number {
+td.number, th.number {
   text-align: right;
 }
 
