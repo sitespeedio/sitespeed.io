@@ -72,7 +72,7 @@
   "dependencies": {
     "aws-sdk": "2.222.1",
     "bluebird": "3.5.1",
-    "browsertime": "3.0.0-alpha.7",
+    "browsertime": "3.0.0-alpha.9",
     "cli-color": "1.2.0",
     "concurrent-queue": "7.0.2",
     "fast-stats": "0.0.3",
