@@ -10,13 +10,16 @@ h3 CPU
        each value, name in browsertime.cpu.categories
          tr
            td #{name}
-           td #{value.toFixed(3)}
+           td #{value.toFixed(1)}
   .one-half.column
    if browsertime.cpu.events
      table
        tr
          th(colspan='2') Events (ms)
-       each value, name in browsertime.cpu.events
+       - const cpuEvents = [] 
+       - for (let key of Object.keys(browsertime.cpu.events)) {cpuEvents.push({name: key, value: browsertime.cpu.events[key] })}
+       - cpuEvents.sort((a,b)=>{return b.value - a.value})   
+       each event in cpuEvents
          tr
-           td #{name}
-           td #{value}
+           td #{event.name}
+           td #{event.value}
