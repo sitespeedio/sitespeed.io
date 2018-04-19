@@ -34,6 +34,7 @@ block content
     section#summary-panel
        h2 Summary
        p.small Summary of some of the most important metrics.
+
        .row
          .one-half.column
            table
@@ -107,7 +108,8 @@ block content
                - screenshotName = 'data/screenshots/wpt-' + (Number(runIndex)+1) + '-firstView.png'
                a(href=screenshotName)
                  img.screenshot(src=screenshotName, alt='Screenshot')
-
+       .downloads
+        include ./downloads.pug
     if d.browsertime && d.browsertime.run && d.browsertime.run.har
       section#waterfall-panel
         include ../waterfall/index.pug
