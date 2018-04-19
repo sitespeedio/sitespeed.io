@@ -1,0 +1,36 @@
+- totalContentSize = 0
+- totalTransferSize = 0
+- totalHeaderSize = 0
+- totalRequests = 0
+a#requests-and-sizes-per-content-type
+h3 Requests and sizes per content type
+
+.responsive
+  table(data-sortable, id='contentSize')
+    +rowHeading(['Content', 'Header Size', 'Transfer Size', 'Content Size', 'Requests'])
+    - numberOfRequestsLabels = []
+    - numberOfRequests = []
+    - transferSizeOfRequests = []
+    - contentSizeOfRequests = []
+    each data, type in pagexray.contentTypes
+      - totalContentSize += data.contentSize
+      - totalTransferSize += data.transferSize
+      - totalHeaderSize += data.headerSize > 0 ? data.headerSize : 0
+      - totalRequests += data.requests
+      if data.requests > 0
+        - numberOfRequestsLabels.push(type)
+        - numberOfRequests.push({meta: type, value: data.requests})
+        - transferSizeOfRequests.push({meta: type + ' transfer size (kb)', value: h.size.asKb(data.transferSize)})
+        - contentSizeOfRequests.push({meta: type + ' content size (kb)', value: h.size.asKb(data.contentSize)})
+        tr
+          td(data-title='Content Type') #{type}
+          +sizeCell('headerSize', data.headerSize)
+          +sizeCell('transferSize', data.transferSize)
+          +sizeCell('contentSize', data.contentSize)
+          +numberCell('requests', data.requests)
+    tr
+      td(data-title='Total') Total
+      +sizeCell('headerSize', totalHeaderSize)
+      +sizeCell('transferSize', totalTransferSize)
+      +sizeCell('contentSize', totalContentSize)
+      +numberCell('requests', totalRequests)

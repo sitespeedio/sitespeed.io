@@ -1,0 +1,12 @@
+a#sizes-per-domain
+h3 Size and requests per domain
+.responsive
+  table(data-sortable, id='contentSizePerDomain')
+    +rowHeading(['Domain', 'Header Size', 'Transfer Size', 'Content Size', 'Requests'])
+    each data, domain in pagexray.domains
+      tr
+        td(data-title='Domain') #{domain}
+        +sizeCell('headerSize', data.headerSize)
+        +sizeCell('transferSize', data.transferSize)
+        +sizeCell('contentSize', data.contentSize)
+        +numberCell('requests', data.requests)
