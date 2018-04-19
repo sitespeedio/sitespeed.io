@@ -1,4 +1,4 @@
-extends ./layout.pug
+extends ../../layout.pug
 
 block content
   - var d = pageInfo.data
@@ -10,7 +10,7 @@ block content
   h5.url
     a(href=daurl) #{decodeURIComponent(daTitle)}
 
-  include pageRunInfo
+  include ../includes/pageRunInfo
   p
     .large All runs:&nbsp;
       each val, index in runPages
@@ -28,7 +28,7 @@ block content
 
   if pageInfo.error
     .error= pageInfo.error
-  include ./tabs/runTabs.pug
+  include ./tabs.pug
 
   #tabSections
     section#summary-panel
@@ -108,20 +108,25 @@ block content
                a(href=screenshotName)
                  img.screenshot(src=screenshotName, alt='Screenshot')
 
-       if d.browsertime && d.browsertime.run && d.browsertime.run.har
-         include ./waterfall/index.pug
+    if d.browsertime && d.browsertime.run && d.browsertime.run.har
+      section#waterfall-panel
+        include ../waterfall/index.pug
+    
+    if options.browsertime.video
+      section#video-panel
+        include ../video/index.pug
 
     if d.coach && d.coach.run
       section#coach-panel
-        include ./coach/index.pug
+        include ../coach/index.pug
 
     if d.browsertime && d.browsertime.run
-      section#browsertime-panel
-        include ./browsertime/index.pug
+      section#metrics-panel
+        include ../metrics/index.pug
 
     if d.pagexray && d.pagexray.run
       section#pagexray-panel
-        include ./pagexray/index.pug
+        include ../pagexray/index.pug
 
     each pageRun in pageRuns
       - var panelName = pageRun.id + '-panel'
