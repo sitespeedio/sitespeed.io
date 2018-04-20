@@ -30,7 +30,10 @@ mixin adviceInfo(name, perfectScore, node)
 - var advice = pageInfo.data.coach.run ? pageInfo.data.coach.run.advice : pageInfo.data.coach.pageSummary.advice;
 
 h2 Coach
-
+p.small
+  a(href='https://github.com/sitespeedio/coach') The coach
+  | &nbsp;helps you find performance problems on your web page using web performance best practice rules. And gives you advice on accessibility and best practices.
+  
 script(type='text/javascript').
   function toggleRow(toggleElement) {
     var rows = toggleElement.nextSibling.getElementsByClassName("u-hideable");
