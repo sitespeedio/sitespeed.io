@@ -9,3 +9,6 @@ h3 Video
     source(src='data/video/' + videoIndex +'.mp4', type='video/mp4')
 
 script(src= rootPath + 'js/video.novtt.min.js')
+
+- var videoPath = 'data/video/' + (runIndex ? (Number(runIndex)+1) : 1) +'.mp4'
+a.button.button-download(href=videoPath, download=downloadName + '-video.mp4') Download video

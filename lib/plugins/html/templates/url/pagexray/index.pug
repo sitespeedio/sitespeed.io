@@ -2,11 +2,8 @@ include ../../_tableMixins
 
 a
 h2 PageXray
-p.small
-  a(href='https://github.com/sitespeedio/pagexray') Xrays your page
-  | &nbsp;and let you know all about how the page is built.
 - var pagexray = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
-
+p.small Hard facts about the page.
 a#pagexray-summary
 .row
   .one-half.column
@@ -39,102 +36,12 @@ a#pagexray-summary
           td #{code}
           td #{total}
 
-- totalContentSize = 0
-- totalTransferSize = 0
-- totalHeaderSize = 0
-- totalRequests = 0
-a#requests-and-sizes-per-content-type
-h3 Requests and sizes per content type
+include ./perContentType.pug
 
-.row
-  .one-half.column
-    h4 Transfer vs content size
-    .ct-chart.ct-golden-section#ct-size-chart
-  .one-half.column
-    h4 Requests
-    .ct-chart.ct-golden-section#ct-requests-chart
-
-.responsive
-  table(data-sortable, id='contentSize')
-    +rowHeading(['Content', 'Header Size', 'Transfer Size', 'Content Size', 'Requests'])
-    - numberOfRequestsLabels = []
-    - numberOfRequests = []
-    - transferSizeOfRequests = []
-    - contentSizeOfRequests = []
-    each data, type in pagexray.contentTypes
-      - totalContentSize += data.contentSize
-      - totalTransferSize += data.transferSize
-      - totalHeaderSize += data.headerSize > 0 ? data.headerSize : 0
-      - totalRequests += data.requests
-      if data.requests > 0
-        - numberOfRequestsLabels.push(type)
-        - numberOfRequests.push({meta: type, value: data.requests})
-        - transferSizeOfRequests.push({meta: type + ' transfer size (kb)', value: h.size.asKb(data.transferSize)})
-        - contentSizeOfRequests.push({meta: type + ' content size (kb)', value: h.size.asKb(data.contentSize)})
-        tr
-          td(data-title='Content Type') #{type}
-          +sizeCell('headerSize', data.headerSize)
-          +sizeCell('transferSize', data.transferSize)
-          +sizeCell('contentSize', data.contentSize)
-          +numberCell('requests', data.requests)
-    tr
-      td(data-title='Total') Total
-      +sizeCell('headerSize', totalHeaderSize)
-      +sizeCell('transferSize', totalTransferSize)
-      +sizeCell('contentSize', totalContentSize)
-      +numberCell('requests', totalRequests)
-
-a#sizes-per-domain
-h3 Size and requests per domain
-.responsive
-  table(data-sortable, id='contentSizePerDomain')
-    +rowHeading(['Domain', 'Header Size', 'Transfer Size', 'Content Size', 'Requests'])
-    each data, domain in pagexray.domains
-      tr
-        td(data-title='Domain') #{domain}
-        +sizeCell('headerSize', data.headerSize)
-        +sizeCell('transferSize', data.transferSize)
-        +sizeCell('contentSize', data.contentSize)
-        +numberCell('requests', data.requests)
+include ./perDomain.pug
 
 if pagexray.firstParty.requests
-  a#first-party
-  h3 First party requests and sizes per content type
-  .responsive
-    table(data-sortable, id='contentSizeFirstParty')
-      +rowHeading(['Content', 'Header Size', 'Transfer Size', 'Content Size', 'Requests'])
-      each data, type in pagexray.firstParty.contentTypes
-        tr
-          td(data-title='Content Type') #{type}
-          +sizeCell('headerSize', data.headerSize)
-          +sizeCell('transferSize', data.transferSize)
-          +sizeCell('contentSize', data.contentSize)
-          +numberCell('requests', data.requests)
-      tr
-        td(data-title='Total') Total
-        +sizeCell('headerSize', pagexray.firstParty.headerSize)
-        +sizeCell('transferSize', pagexray.firstParty.transferSize)
-        +sizeCell('contentSize', pagexray.firstParty.contentSize)
-        +numberCell('requests', pagexray.firstParty.requests)
-
-  a#third-party
-  h3 Third party requests and sizes per content type
-  .responsive
-    table(data-sortable, id='contentSizeThirdParty')
-      +rowHeading(['Content', 'Header Size', 'Transfer Size', 'Content Size', 'Requests'])
-      each data, type in pagexray.thirdParty.contentTypes
-        tr
-          td(data-title='Content Type') #{type}
-          +sizeCell('headerSize', data.headerSize)
-          +sizeCell('transferSize', data.transferSize)
-          +sizeCell('contentSize', data.contentSize)
-          +numberCell('requests', data.requests)
-      tr
-        td(data-title='Total') Total
-        +sizeCell('headerSize', pagexray.thirdParty.headerSize)
-        +sizeCell('transferSize', pagexray.thirdParty.transferSize)
-        +sizeCell('contentSize', pagexray.thirdParty.contentSize)
-        +numberCell('requests', pagexray.thirdParty.requests)
+  include ./firstParty.pug
 
 a#expires-and-last-modified-stats
 h3 Expires, last modified and cookies stats
@@ -162,5 +69,3 @@ h3 Expires, last modified and cookies stats
         +numberCell('min', cookies.min)
         +numberCell('median', cookies.median)
         +numberCell('max', cookies.max)
-include ./sizeCharts.pug
-include ./requestCharts.pug
