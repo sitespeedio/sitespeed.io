@@ -1,0 +1,16 @@
+- let haveHints = false
+each value, key in advice.info.resourceHints
+    if value && value.length > 0
+        - haveHints = true
+if haveHints
+    table
+        tr
+            th Resource Hints
+        each value, key in advice.info.resourceHints
+            if value && value.length > 0
+                tr
+                    td 
+                        b #{key}
+                each url in value
+                    tr
+                        td.url #{url}

@@ -1,0 +1,49 @@
+a#info
+h2 Page info
+.row
+    .one-half.column
+        table
+            tr
+                th(colspan='2') Page info
+            tr
+                td Title
+                td.right #{advice.info.documentTitle}
+            tr
+                td Width
+                td.number #{advice.info.documentWidth}
+            tr
+                td Height
+                td.number #{advice.info.documentHeight}
+            tr
+                td DOM elements
+                td.number #{advice.info.domElements}
+            tr
+                td Avg DOM depth
+                td.number #{advice.info.domDepth.avg}
+            tr
+                td Max DOM depth
+                td.number #{advice.info.domDepth.max}
+            tr
+                td Iframes
+                td.number #{advice.info.iframes}
+            tr
+                td Script tags
+                td.number #{advice.info.scripts}
+            tr
+                td Local storage
+                +sizeCell('', advice.info.localStorageSize)
+            tr
+                td Session storage
+                +sizeCell('', advice.info.sessionStorageSize)
+            tr
+                td HTML vs AMP
+                td.right #{advice.info.amp?'This is an AMP page':'Plain good HTML page'}
+
+    .one-half.column
+        if advice.info && advice.info.resourceHints
+            include ./resourceHints.pug
+
+        include ./thirdParty.pug
+
+            
+
