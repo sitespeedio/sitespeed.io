@@ -101,7 +101,7 @@ Individual page report:
 <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/page.png">
 
 Collected metrics from a URL in Graphite/Grafana:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/grafana-page-summary.png">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/grafana-readme.png">
 
 Video - easiest using Docker. This gif is optimized, the quality is much better IRL:
 
