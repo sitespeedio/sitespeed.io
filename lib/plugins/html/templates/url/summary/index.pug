@@ -44,10 +44,6 @@ block content
                 td Total Page Transfer Size:
                 td #{h.size.format(d.pagexray.pageSummary.transferSize)}
             if d.pagexray && d.pagexray.pageSummary
-            tr
-              td Total Page Size:
-              td #{h.size.format(d.pagexray.pageSummary.contentSize)}
-            if d.pagexray && d.pagexray.pageSummary
               tr
                 td Requests:
                 td #{d.pagexray.pageSummary.requests}
