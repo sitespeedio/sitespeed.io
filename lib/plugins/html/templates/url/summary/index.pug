@@ -51,7 +51,7 @@ block content
               tr
                 td First Visual Change [median]:
                 td #{d.browsertime.pageSummary.statistics.visualMetrics.FirstVisualChange.median}
-            else if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.timings.firstPaint
+            else if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics && d.browsertime.pageSummary.statistics.timings && d.browsertime.pageSummary.statistics.timings.firstPaint
               tr
                 td First Paint [median]:
                 td #{d.browsertime.pageSummary.statistics.timings.firstPaint.median}
@@ -71,7 +71,7 @@ block content
               tr
                 td Last Visual Change [median]:
                 td #{d.browsertime.pageSummary.statistics.visualMetrics.LastVisualChange.median}
-            else if d.browsertime && d.browsertime.pageSummary
+            else if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics && d.browsertime.pageSummary.statistics.timings && d.browsertime.pageSummary.statistics.timings.rumSpeedIndex
               tr
                 td RUM Speed Index [median]:
                 td #{d.browsertime.pageSummary.statistics.timings.rumSpeedIndex.median}
