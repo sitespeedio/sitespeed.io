@@ -51,6 +51,8 @@ Graphite
   --graphite.namespace           The namespace key added to all captured metrics.  [default: "sitespeed_io.default"]
   --graphite.includeQueryParams  Whether to include query parameters from the URL in the Graphite keys or not  [boolean] [default: false]
   --graphite.arrayTags           Send the tags as Array or a String. In Graphite 1.0 the tags is a array. Before a String  [boolean] [default: true]
+  --graphite.statsd              Uses the StatsD interface [boolean] [default: false]
+  --graphite.bulkSize            Break up number of metrics to send with each request. Null means send everything at once [number] [default: null]
 
 Plugins
   --plugins.list    List all configured plugins in the log.  [boolean]
