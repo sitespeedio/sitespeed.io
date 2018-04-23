@@ -18,7 +18,7 @@ block content
         if (runNumber === value)
           span.label.normal.info #{value}
         else
-          a(href='./' + index + '.html') #{value}
+          a(href='./' + value + '.html') #{value}
         if (value !== Object.keys(runPages).length)
           | &nbsp;-
           |
@@ -112,7 +112,7 @@ block content
     if d.browsertime && d.browsertime.run && d.browsertime.run.har
       section#waterfall-panel
         include ../waterfall/index.pug
-    
+
     if options.browsertime.video
       section#video-panel
         include ../video/index.pug
