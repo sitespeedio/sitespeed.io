@@ -95,13 +95,13 @@ If you use Firefox 55 (or later) please have a look at https://github.com/sitesp
 Checkout our example [dashboard.sitespeed.io](https://dashboard.sitespeed.io/dashboard/db/page-summary)
 
 A summary report in HTML:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/html-summary.png">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/start-readme.png">
 
 Individual page report:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/page.png">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/start-url-readme.png">
 
 Collected metrics from a URL in Graphite/Grafana:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/grafana-page-summary.png">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/grafana-readme.png">
 
 Video - easiest using Docker. This gif is optimized, the quality is much better IRL:
 
