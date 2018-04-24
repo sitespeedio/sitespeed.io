@@ -1,4 +1,5 @@
 Many many many thanks to:
+* Michael J. Mitchell (@mitchtech)
 * Omri (@omrilotan)
 * Matthew Harrison-Jones (@matthojo)
 * Moos (@moos)
