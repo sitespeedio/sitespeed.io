@@ -65,22 +65,23 @@ if btStatistics
             +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'median')
             td.number(data-title='mean') #{visualMetric.mean}
             +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'max')
-      tr
-        td(data-title='metric') backEndTime
-        +getLinkPageTimings(pageInfo.data.browsertime.pageSummary.browserScripts, 'backEndTime', btStatistics.timings.pageTimings, 'min')
-        +getLinkPageTimings(pageInfo.data.browsertime.pageSummary.browserScripts, 'backEndTime', btStatistics.timings.pageTimings, 'median')
-        td.number(data-title='mean') #{btStatistics.timings.pageTimings.backEndTime.mean}
-        +getLinkPageTimings(pageInfo.data.browsertime.pageSummary.browserScripts, 'backEndTime', btStatistics.timings.pageTimings, 'max')
+      if btStatistics.timings && btStatistics.timings.pageTimings
+        tr
+          td(data-title='metric') backEndTime
+          +getLinkPageTimings(pageInfo.data.browsertime.pageSummary.browserScripts, 'backEndTime', btStatistics.timings.pageTimings, 'min')
+          +getLinkPageTimings(pageInfo.data.browsertime.pageSummary.browserScripts, 'backEndTime', btStatistics.timings.pageTimings, 'median')
+          td.number(data-title='mean') #{btStatistics.timings.pageTimings.backEndTime.mean}
+          +getLinkPageTimings(pageInfo.data.browsertime.pageSummary.browserScripts, 'backEndTime', btStatistics.timings.pageTimings, 'max')
 
-      each timing in timingMetrics
-        if btStatistics.timings[timing]
-          tr
-            td(data-title='metric') #{timing}
-            +getLinkTimings(pageInfo.data.browsertime.pageSummary.browserScripts, timing, btStatistics.timings, 'min')
-            +getLinkTimings(pageInfo.data.browsertime.pageSummary.browserScripts, timing, btStatistics.timings, 'median')
-            td.number(data-title='mean') #{btStatistics.timings[timing].mean}
-            +getLinkTimings(pageInfo.data.browsertime.pageSummary.browserScripts, timing, btStatistics.timings, 'max')
-      if btStatistics.timings.userTimings
+        each timing in timingMetrics
+          if btStatistics.timings[timing]
+            tr
+              td(data-title='metric') #{timing}
+              +getLinkTimings(pageInfo.data.browsertime.pageSummary.browserScripts, timing, btStatistics.timings, 'min')
+              +getLinkTimings(pageInfo.data.browsertime.pageSummary.browserScripts, timing, btStatistics.timings, 'median')
+              td.number(data-title='mean') #{btStatistics.timings[timing].mean}
+              +getLinkTimings(pageInfo.data.browsertime.pageSummary.browserScripts, timing, btStatistics.timings, 'max')
+      if btStatistics.timings && btStatistics.timings.userTimings
         if btStatistics.timings.userTimings.marks
           each userTimings, name in btStatistics.timings.userTimings.marks
             tr
