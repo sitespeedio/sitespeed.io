@@ -20,8 +20,6 @@ RUN sudo apt-get update && sudo apt-get install libnss3-tools \
 
 ENV PATH="/usr/local/bin:${PATH}"
 
-RUN npm install webpagereplaywrapper -g
-
 RUN wpr installroot --https_cert_file /webpagereplay/certs/wpr_cert.pem --https_key_file /webpagereplay/certs/wpr_key.pem
 
 RUN mkdir -p /usr/src/app

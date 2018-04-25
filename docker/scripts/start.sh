@@ -66,31 +66,38 @@ function runWebPageReplay() {
 
   # Inspired by docker-selenium way of shutting down
   function shutdown {
-    webpagereplaywrapper replay --stop $WPR_PARAMS
+    kill -2 $replay_pid
+    wait $replay_pid 
     kill -s SIGTERM ${PID}
     wait $PID
   }
 
   LATENCY=${LATENCY:-100}
-  WPR_PARAMS="--http $WPR_HTTP_PORT --https $WPR_HTTPS_PORT --certFile $CERT_FILE --keyFile $KEY_FILE --injectScripts $SCRIPTS"
+  WPR_PARAMS="--http_port $WPR_HTTP_PORT --https_port $WPR_HTTPS_PORT --https_cert_file $CERT_FILE --https_key_file $KEY_FILE --inject_scripts $SCRIPTS /tmp/archive.wprgo"
   WAIT=${WAIT:-5000}
-  REPLAY_WAIT=${REPLAY_WAIT:-5}
+  REPLAY_WAIT=${REPLAY_WAIT:-3}
+  RECORD_WAIT=${RECORD_WAIT:-3}
   WAIT_SCRIPT="return (function() {try { var end = window.performance.timing.loadEventEnd; var start= window.performance.timing.navigationStart; return (end > 0) && (performance.now() > end - start + $WAIT);} catch(e) {return true;}})()"
 
   declare -i RESULT=0
-  webpagereplaywrapper record --start $WPR_PARAMS
+  echo 'Start WebPageReplay Record'
+  wpr record $WPR_PARAMS > /tmp/wpr-record.log 2>&1 &
+  record_pid=$!
+  sleep $RECORD_WAIT
 
   $BROWSERTIME --browsertime.chrome.args host-resolver-rules="MAP *:$HTTP_PORT 127.0.0.1:$WPR_HTTP_PORT,MAP *:$HTTPS_PORT 127.0.0.1:$WPR_HTTPS_PORT,EXCLUDE localhost" --browsertime.firefox.preference network.dns.forceResolve:127.0.0.1 --browsertime.pageCompleteCheck "$WAIT_SCRIPT" --browsertime.connectivity.engine throttle --browsertime.connectivity.throttle.localhost --browsertime.connectivity.profile custom --browsertime.connectivity.latency $LATENCY "$@"
   RESULT+=$?
 
-  webpagereplaywrapper record --stop $WPR_PARAMS
+  kill -2 $record_pid
   RESULT+=$?
+  wait $record_pid
+  echo 'Stopped WebPageReplay record'
 
   if [ $RESULT -eq 0 ]
     then
-      # The record server is slow on storing the replay file
-      sleep $REPLAY_WAIT
-      webpagereplaywrapper replay --start $WPR_PARAMS
+      echo 'Start WebPageReplay Replay'
+      wpr replay $WPR_PARAMS > /tmp/wpr-replay.log 2>&1 &
+      replay_pid=$!
 
       if [ $? -eq 0 ]
         then
@@ -101,7 +108,8 @@ function runWebPageReplay() {
           trap shutdown SIGTERM SIGINT
           wait $PID
 
-          webpagereplaywrapper replay --stop $WPR_PARAMS
+          kill -s SIGTERM $replay_pid
+          wait $replay_pid
 
         else
           echo "Replay server didn't start correctly" >&2
