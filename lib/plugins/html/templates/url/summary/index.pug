@@ -15,7 +15,7 @@ block content
     .large All runs:&nbsp;
       each val, index in runPages
         - value = Number(index) + 1
-        a(href='./' + index + '.html') #{value}
+        a(href='./' + value + '.html') #{value}
         if (value !== Object.keys(runPages).length)
           | &nbsp;-
           |
@@ -109,11 +109,11 @@ block content
     if d.browsertime && d.browsertime.har
       section#waterfall-panel
         include ../waterfall/index.pug
-    
+
     if options.browsertime.video
       section#video-panel
         include ../video/index.pug
-    
+
     if d.coach && d.coach.pageSummary
       section#coach-panel
         include ../coach/index.pug

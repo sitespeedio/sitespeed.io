@@ -3,6 +3,12 @@
 ## UNRELASED 7.0
 We are working on the new 7.0 that will include Browsertime 3.0. More info soon.
 
+## Fixes
+* InfluxDB event annotations overwrite within test session. Thanks [Michael J. Mitchell](https://github.com/mitchtech) for the PR [#1966](https://github.com/sitespeedio/sitespeed.io/issues/1966).
+
+## Added
+* Add StatsD support (with bulking). Thank you [Omri](https://github.com/omrilotan) for the PR [#1994](https://github.com/sitespeedio/sitespeed.io/pull/1994).
+
 ## Changed
 * To collect the Chrome timeline you should now use --browsertime.chrome.timeline instead of the old --browsertime.chrome.collectTracingEvents
 
