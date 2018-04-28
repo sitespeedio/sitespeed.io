@@ -2,7 +2,7 @@ extends ../../layout.pug
 
 block content
   - var d = pageInfo.data
-  - runNumber = Number(runIndex)+1
+  - runNumber = iteration
   - var daTitle = daurlAlias ? daurlAlias : daurl
   - var downloadName = (daTitle + '-' + runNumber + '-' + options.browser + '-' + timestamp).replace(/(https?\:\/\/)|( )|(:)/ig, '')
 
@@ -99,12 +99,12 @@ block content
 
          .one-half.column
              if hasScreenShots
-               - screenshotName = 'data/screenshots/' + (Number(runIndex)+1) + '.' + screenShotType
+               - screenshotName = 'data/screenshots/' + iteration + '.' + screenShotType
                - var width = options.mobile ? 150 : '100%';
                a(href=screenshotName)
                  img.screenshot(src=screenshotName, width=width, alt='Screenshot')
              else if !d.browsertime && d.webpagetest
-               - screenshotName = 'data/screenshots/wpt-' + (Number(runIndex)+1) + '-firstView.png'
+               - screenshotName = 'data/screenshots/wpt-' + iteration + '-firstView.png'
                a(href=screenshotName)
                  img.screenshot(src=screenshotName, alt='Screenshot')
        .downloads

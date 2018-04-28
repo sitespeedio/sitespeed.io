@@ -7,7 +7,7 @@ mixin getLink(path, name, metric, type)
       if (run[name] === metric[type] && isSet === false)
         - isSet = true
         td.number(data-title=type)
-          a(href='./' + index + '.html', title='Go to the run with the ' + type + ' ' + name) #{metric[type]}
+          a(href='./' + (index+1) + '.html', title='Go to the run with the ' + type + ' ' + name) #{metric[type]}
 
 mixin getLinkTimings(path, name, metric, type)
   - isSet = false
@@ -18,7 +18,7 @@ mixin getLinkTimings(path, name, metric, type)
       if (Number(run.timings[name]).toFixed(0) === Number(metric[name][type]).toFixed(0) && isSet === false)
         - isSet = true
         td.number(data-title=type)
-          a(href='./' + index + '.html', title='Go to the run with the ' + type + ' ' + name) #{metric[name][type]}
+          a(href='./' + (index+1) + '.html', title='Go to the run with the ' + type + ' ' + name) #{metric[name][type]}
 
 mixin getLinkPageTimings(path, name, metric, type)
   - isSet = false
@@ -29,7 +29,7 @@ mixin getLinkPageTimings(path, name, metric, type)
       if (Number(run.timings.pageTimings[name]).toFixed(0) === Number(metric[name][type]).toFixed(0) && isSet === false)
         - isSet = true
         td.number(data-title=type)
-          a(href='./' + index + '.html', title='Go to the run with the ' + type + ' ' + name) #{metric[name][type]}
+          a(href='./' + (index+1) + '.html', title='Go to the run with the ' + type + ' ' + name) #{metric[name][type]}
 
 mixin getUserTimings(path, name, metric, type)
   - isSet = false
@@ -41,7 +41,7 @@ mixin getUserTimings(path, name, metric, type)
           if (marks.name === name && Number(marks.startTime).toFixed(0) === Number(metric[type]).toFixed(0) && isSet === false)
             - isSet = true
             td.number(data-title=type)
-              a(href='./' + index + '.html', title='Go to the run with the ' + type + ' ' + name) #{metric[type]}
+              a(href='./' + (index+1) + '.html', title='Go to the run with the ' + type + ' ' + name) #{metric[type]}
 
 - btStatistics = h.get(pageInfo.data, 'browsertime.pageSummary.statistics')
 
