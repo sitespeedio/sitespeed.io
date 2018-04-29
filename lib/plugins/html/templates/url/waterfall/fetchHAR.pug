@@ -13,7 +13,7 @@ script(type='text/javascript').
     leftColumnWidth: 30,
     legendHolder: legendHolderEl,
     pageSelector: pageSelectorEl,
-    selectedPage: #{runIndex || medianRun.runIndex}
+    selectedPage: #{iteration || medianRun.runIndex}
   };
 if options.gzipHAR
     script(src= rootPath + 'js/gunzip.min.js')
