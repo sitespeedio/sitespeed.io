@@ -80,7 +80,13 @@ We currently don't built in support for changing the CPU. What we do know is tha
 **PLEASE, YOU NEED TO ALWAYS THROTTLE YOUR CONNECTION!** You should always throttle/limit the connectivity because it will make it easier for you to find regressions. If you don't do it, you can run your tests with different connectivity profiles and regresseions/improvements that you see is caused by your servers flakey internet connection. Check out our [connectivity guide]({{site.baseurl}}/documentation/sitespeed.io/connectivity/).
 
 ### Clear browser cache between runs
-By default Browsertime creates a new profile for each run you do and if you really want to be sure sure everything is cleared between runs you can use our WebExtension to clear the browser cache by adding  <code>--browsertime.cacheClearRaw</code>.
+By default Browsertime creates a new profile for each iteration you do, meaning the cache is cleared through the webdriver. If you really want to be sure sure everything is cleared between runs you can use our WebExtension to clear the browser cache by adding  <code>--browsertime.cacheClearRaw</code>.
+
+That means if you test *https://www.sitespeed.io* with 5 runs/iterations, the browser cache is cleared between each run, so the browser has no cached assets between the runs.
+
+When you run <code>--preURL</code> the browser starts, then access the preURL and then the URL you want to test within the same session and not clearing the cache. Use this if you want to measure more realistic metrics if your user first hit your start page and then another page (with responses in the cache if the URL has the correct cache headers).
+
+If you use the <code>--preScript</code> feature, it is the same behavior, we don't clear the cache between preScript and the URL you want to test.
 
 ## Servers
 What you should know before you choose where to run sitespeed.io.
