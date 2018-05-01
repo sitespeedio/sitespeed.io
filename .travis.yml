@@ -16,7 +16,10 @@ addons:
     - g++-4.8
     - google-chrome-stable
   firefox: 'latest-nightly'
+install:
+  - npm ci
 before_install:
+- npm i -g npm@latest
 - firefox --version 2>/dev/null
 - google-chrome --product-version
 - python --version
