@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 6.x
+## Added
+* Support StatsD with bulking. `graphite.statsd`(boolean) `graphite.bulkSize`(number) [#1994](https://github.com/sitespeedio/sitespeed.io/pull/1994)
+
 ## 6.5.4 2018-04-16
 
 ### Fixed
