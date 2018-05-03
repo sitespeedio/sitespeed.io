@@ -162,7 +162,7 @@ describe('graphite', function() {
     const formatEntry = require('../lib/plugins/graphite/helpers/format-entry');
 
     it('Should retrieve the format of statsd', function() {
-      expect(formatEntry('statsd')).to.equal('%s:%s|t');
+      expect(formatEntry('statsd')).to.equal('%s:%s|ms');
     });
 
     it('Should retrieve the default format of graphite', function() {
