@@ -100,7 +100,7 @@ describe('graphite', function() {
       var data = generator.dataFromMessage(message, moment());
 
       expect(data).to.match(
-        /ns.summary.sub_domain_com.chrome.cable.domains.www.sitespeed.io.dns.median:[\d]{1,}\|t/
+        /ns.summary.sub_domain_com.chrome.cable.domains.www.sitespeed.io.dns.median:[\d]{1,}\|ms/
       );
     });
   });
