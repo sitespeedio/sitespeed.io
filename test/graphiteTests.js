@@ -98,8 +98,9 @@ describe('graphite', function() {
         graphite: { statsd: true }
       });
       var data = generator.dataFromMessage(message, moment());
+
       expect(data).to.match(
-        /ns.summary.sub_domain_com.chrome.cable.domains.www.sitespeed.io.dns.median:[\d]{1,}\|t/
+        /ns.summary.sub_domain_com.chrome.cable.domains.www.sitespeed.io.dns.median:[\d]{1,}\|ms/
       );
     });
   });
@@ -161,7 +162,7 @@ describe('graphite', function() {
     const formatEntry = require('../lib/plugins/graphite/helpers/format-entry');
 
     it('Should retrieve the format of statsd', function() {
-      expect(formatEntry('statsd')).to.equal('%s:%s|t');
+      expect(formatEntry('statsd')).to.equal('%s:%s|ms');
     });
 
     it('Should retrieve the default format of graphite', function() {
