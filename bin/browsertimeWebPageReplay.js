@@ -11,7 +11,13 @@ const browsertimeConfig = require('../lib/plugins/browsertime/index').config;
 async function testURL(engine, url) {
   try {
     await engine.start();
-    await engine.run(url);
+    const result = await engine.run(url);
+    // check for errors
+    for (let errors of result.errors) {
+      if (errors.length > 0) {
+        process.exitCode = 1;
+      }
+    }
   } finally {
     engine.stop();
   }
@@ -59,6 +65,7 @@ async function runBrowsertime() {
   for (let url of urls) {
     await testURL(engine, url);
   }
+  process.exit();
 }
 
 runBrowsertime();
