@@ -42,7 +42,6 @@ To understand how Browsertime does these things, let's talk about how it works. 
 5. When the page is finished loading (you can define yourself when that happens), Browsertime executes the default JavaScript timing metrics and collects:
    - [Navigation Timing metrics](http://kaaes.github.io/timing/info.html)
    - [User Timing metrics](http://www.html5rocks.com/en/tutorials/webperformance/usertiming/)
-   - [Resource Timing data](http://www.w3.org/TR/resource-timing/)
    - First paint
    - [RUM Speed Index](https://github.com/WPO-Foundation/RUM-SpeedIndex).
 6. It also collects a [HAR](http://www.softwareishard.com/blog/har-12-spec/) file that shows all requests/responses on the page.

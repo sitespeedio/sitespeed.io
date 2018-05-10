@@ -21,12 +21,12 @@ You can run Browsertime using our Docker container or using NodeJS.
 
 ## Docker
 
-We have [Docker images](https://hub.docker.com/r/sitespeedio/browsertime/) with Browsertime, Chrome, Firefox and Xvfb. It is super easy to use (Xvfb is started automatically when you start the container). Here's how to use the container with both Firefox 54 & Chrome (install [Docker](https://docs.docker.com/engine/installation/) first).
+We have [Docker images](https://hub.docker.com/r/sitespeedio/browsertime/) with Browsertime, Chrome, Firefox and Xvfb. It is super easy to use (Xvfb is started automatically when you start the container). Here's how to use the container with both Firefox & Chrome (install [Docker](https://docs.docker.com/engine/installation/) first).
 
 ### Mac & Linux
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/browsertime sitespeedio/browsertime:{% include version/browsertime.txt %} --video --speedIndex https://www.sitespeed.io/
+docker run --shm-size=1g --rm -v "$(pwd)":/browsertime sitespeedio/browsertime:{% include version/browsertime.txt %} --video --visualMetrics https://www.sitespeed.io/
 ~~~
 
 ### Windows
