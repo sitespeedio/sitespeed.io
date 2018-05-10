@@ -1,7 +1,7 @@
 # CHANGELOG - sitespeed.io
 
 ## UNRELASED 7.0
-We are working on the new 7.0 that will include Browsertime 3.0. More info soon.
+We are working on the new 7.0 that will include Browsertime 3.0. You can read about [Browsertime 3.0](https://www.sitespeed.io/browsertime-3.0/) and check the [changelog](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#300).
 
 ## Fixes
 * InfluxDB event annotations overwrite within test session. Thanks [Michael J. Mitchell](https://github.com/mitchtech) for the PR [#1966](https://github.com/sitespeedio/sitespeed.io/issues/1966).
@@ -9,12 +9,18 @@ We are working on the new 7.0 that will include Browsertime 3.0. More info soon.
 ## Added
 * Add StatsD support (with bulking). Thank you [Omri](https://github.com/omrilotan) for the PR [#1994](https://github.com/sitespeedio/sitespeed.io/pull/1994).
 
+* We upgraded to [Browsertime 3.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#300).
+
+* We upgraded the S3 plugin that fixes (all) the problems we have seen with large files failing to upload [#2013](https://github.com/sitespeedio/sitespeed.io/pull/2013).
+
 ## Changed
-* To collect the Chrome timeline you should now use --browsertime.chrome.timeline instead of the old --browsertime.chrome.collectTracingEvents
+* To collect the Chrome timeline you should now use ```--browsertime.chrome.timeline``` instead of the old ```--browsertime.chrome.collectTracingEvents```
 
-* To collect Visual Metrics add --visualMetrics (instead of the old --speedIndex)
+* To collect Visual Metrics add ```--visualMetrics``` (instead of the old ```--speedIndex```)
 
-* You can now choose for what kind of content you want to include the response bodies when you use Firefox: --browsertime.firefox.includeResponseBodies 'none', 'all', 'html'
+* You can now choose for what kind of content you want to include the response bodies when you use Firefox: ```--browsertime.firefox.includeResponseBodies``` 'none', 'all', 'html'
+
+* We finetuned the tabs in the result pages and followed Browsertime and make all output 1 based instead of 0. 
 
 ## Breaking changes
 
