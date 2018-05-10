@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Documentation browsertime 6.x
+title: Documentation Browsertime 3
 description: Read about all you can do with Browsertime.
 keywords: tools, documentation, web performance
 nav: documentation
