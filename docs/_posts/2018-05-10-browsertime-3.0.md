@@ -10,9 +10,9 @@ nav: blog
 
 # Browsertime 3.0
 
-We have built 3.0 mainly for ourselves: The old version (2.x) was built with Promises. Promises was good compared to the old callback hell, but moving to *async/await* was essential for us to be able to move fast: fix bugs and add more funcionality. In the new version the main work flow is built with async/await it will help us a lot in the future.
+We have built 3.0 mainly for ourselves: The old version (2.x) was built with Promises. Promises were good compared to the old callback hell, but moving to *async/await* was essential for us to be able to move fast: fix bugs and add more functionality. In the new version the main workflow is built with async/await it will help us a lot in the future.
 
-But why should **you** upgrade? We also added a couple of fixes/new functionallity:
+But why should **you** upgrade? We also added a couple of fixes/new functionality:
 
 - [Less memory usage/less CPU usage = more stable metrics](#less-memory-usageless-cpu-usage--more-stable-metrics)
 - [New Firefox with new way of getting the HAR](#new-firefox-with-new-way-of-getting-the-har)
@@ -34,9 +34,9 @@ But why should **you** upgrade? We also added a couple of fixes/new functionalli
 
 
 ### Less memory usage/less CPU usage = more stable metrics
-In the new version we store metrics and data to disk between runs. That means screenshots/ tracelogs and other metrics are stored to disk immediatley. This makes Browsertime use less memory when you do many runs. See [#308](https://github.com/sitespeedio/browsertime/issues/308) for a use case where that helps. 
+In the new version we store metrics and data to disk between runs. That means screenshots/ tracelogs and other metrics are stored to disk immediately. This makes Browsertime use less memory when you do many runs. See [#308](https://github.com/sitespeedio/browsertime/issues/308) for a use case where that helps. 
 
-The CPU usage is alo decreased, mainly since we switched to the new version of Firefox. Here's an example of when we deployed an early version of 3.0 on AWS.
+The CPU usage is also decreased, mainly since we switched to the new version of Firefox. Here's an example of when we deployed an early version of 3.0 on AWS.
 
 ![CPU usage]({{site.baseurl}}/img/bt-3.0/cpu-usage.png)
 {: .img-thumbnail-center}
@@ -62,7 +62,7 @@ We now use pageLoadStrategy *none*. That means if you run your own pageCompleteC
 ### WebPageReplay support using Docker
 We had it in alpha/beta for a while and now it's there in our default container: [WebPageReplay](https://github.com/catapult-project/catapult/blob/master/web_page_replay_go/README.md).
 
-WebPageReplay is proxy that first record your web site and then replay it locally. That can help you find performance regression in the front end code easier: Latency/server timings are constant.
+WebPageReplay is proxy that first records your web site and then replay it locally. That can help you find performance regression in the front-end code easier: Latency/server timings are constant.
 
 You can run like this:
 <code>
@@ -70,7 +70,7 @@ docker run --cap-add=NET_ADMIN --shm-size=1g --rm -v "$(pwd)":/browsertime -e RE
 </code>
 
 
-Here's a couple of examples from our real world tests. We test on Digital Ocean Optimized Droplets 4 gb memory with 2 vCPUs. We test both with connectivity set to cable (to try to minimize the impact of flakey internet) and one tests using WebPageReplay. We tests with the same amount of runs on the same machine.
+Here are a couple of examples from our real world tests. We test on Digital Ocean Optimized Droplets 4 gb memory with 2 vCPUs. We test both with connectivity set to cable (to try to minimize the impact of flakey internet) and one tests using WebPageReplay. We tests with the same amount of runs on the same machine.
 
 
 Here's an example from one of the sites we test. Here we test with connectivity set to cable.
@@ -85,7 +85,7 @@ The same site using WebPageReplay, the same amount of runs:
 ![Replay example 1]({{site.baseurl}}/img/bt-3.0/replay-example-1.png)
 {: .img-thumbnail}
 <p class="image-info">
- <em class="small center">The difference is now less that 100 ms. </em>
+ <em class="small center">The difference is now less than 100 ms. </em>
 </p>
 
 Here's another site, setting connectivity:
@@ -107,13 +107,13 @@ And then with WebPageReplay:
 Using WebPageReplay we get more stable metrics. This is super useful if you want to make sure you find front end performance regressions. However testing **without** a proxy is good since you will then get the same variations as your user will get.
 
 ### Screenshots as jpeg or png
-We use [sharp](http://sharp.pixelplumbing.com/) to store/convert screenshots. Screenshots are now located in the screenshots folder, named after each run. Default are jpg screenshots. [#468](https://github.com/sitespeedio/browsertime/pull/468).
+We use [sharp](http://sharp.pixelplumbing.com/) to store/convert screenshots. Screenshots are now located in the screenshots folder, named after each run. Default is jpeg screenshots. [#468](https://github.com/sitespeedio/browsertime/pull/468).
 
 ### 1 based file names
-One of the most annyoing things in older Browsertime versions has been that the file names has been 0 based.File names are now based on 1 and not 0 so the first file from the first iteration is named something with -1. [#536](https://github.com/sitespeedio/browsertime/pull/536).
+One of the most annoying things in older Browsertime versions has been that the file names has been 0-based. File names are now based on 1 and not 0 so the first file from the first iteration is named something with -1. [#536](https://github.com/sitespeedio/browsertime/pull/536).
 
 ### Better error handling
-Browsertime now catch most errors and there's a error array in the JSON output that holds errors that has happened within each run. The array is an array of arrays, potentially you could have multiple errors per run.
+Browsertime now catch most errors and there's an error array in the JSON output that holds errors that has happened within each run. The array is an array of arrays, potentially you could have multiple errors per run.
 
 ### DOMContentLoaded in the video
 You can now see when DOMContentLoaded happens in the video.
@@ -128,7 +128,7 @@ You can now see when DOMContentLoaded happens in the video.
 We try to stora all large files and gzipped from the new version. You can also gzip the HAR file by adding <code>--gzipHar</code> to your run.
 
 ### Shorter(!) videos
-Move video out of pre/post scripts. When we first started with the video we used the pre/post structure. That was ok to move fast but one of the negatives is that stopping the video happen after we collected all metrics. We now stop the video exactly when the the page is finished loading [#448](https://github.com/sitespeedio/browsertime/pull/448).
+Move video out of pre/post scripts. When we first started with the video we used the pre/post structure. That was ok to move fast but one of the negatives is that stopping the video happen after we collected all metrics. We now stop the video exactly when the page is finished loading [#448](https://github.com/sitespeedio/browsertime/pull/448).
 
 ### Emulating mobile in Chrome works better than ever
 Better handling of Chrome emulated mobile: We now set the correct window size for phones [#528](https://github.com/sitespeedio/browsertime/pull/528).
@@ -149,7 +149,7 @@ Checkout the full [Changelog](https://github.com/sitespeedio/browsertime/blob/ma
 We got some breaking changes, please read about them before you upgrade.
 
 * Since we updated to Firefox Quantum (and the new HAR Export trigger) timing metrics will change for you. Quantum is faster/slower for your site. 
-* Store extra JSON and screenshots per run (and collect stats between runs). We want to make Browsertime as mean and clean as possible: Store all extra JSONs (chrome trace categories, console log and more), and the screenshots between runs (before they where stored on exit). This is good because it will decrease the memory impact but it is non backward compatible change! Sitespeed.io and other tools need to change how they handle extra JSONs and the screenshot. Browsertime users that uses browsertime from the command line will not see any change. We also moved most stats to be collected between runs, that is needed for CPU stats since we store the data and throws it away between runs [#449](https://github.com/sitespeedio/browsertime/pull/449).
+* Store extra JSON and screenshots per run (and collect stats between runs). We want to make Browsertime as mean and clean as possible: Store all extra JSONs (chrome trace categories, console log and more), and the screenshots between runs (before they where stored on exit). This is good because it will decrease the memory impact but it is non-backward compatible change! Sitespeed.io and other tools need to change how they handle extra JSONs and the screenshot. Browsertime users that use browsertime from the command line will not see any change. We also moved most stats to be collected between runs, that is needed for CPU stats since we store the data and throws it away between runs [#449](https://github.com/sitespeedio/browsertime/pull/449).
 * We disabled the old HAR Export trigger (max Firefox 54). And we now uses the new [https://github.com/devtools-html/har-export-trigger/](https://github.com/devtools-html/har-export-trigger/) that needs Firefox 61 or later to work.
 * We renamed the options to get Visual Metrics to be <code>--visualMetrics</code> instead of --speedIndex. When we first introduced Visual Metrics Speed Index was more known, but it has always been a thorn in the side to call the option that. In Docker we collect Visual Metrics by default.
 * We use [sharp](http://sharp.pixelplumbing.com/) to store/convert screenshots. Screenshots are now located in the screenshots folder, named after each run. Default are now jpg screenshots. [#468](https://github.com/sitespeedio/browsertime/pull/468). Before it was png.
@@ -159,9 +159,11 @@ We got some breaking changes, please read about them before you upgrade.
 * We now use pageLoadStrategy **none**. That means if you run your own pageCompleteCheck you can now end your test whenever you want (before onLoad if you want) [#501](https://github.com/sitespeedio/browsertime/pull/501).
 * We changed how we change between orange to white when we record a video. Depending on your machine, Selenium/WebDriver introduced latency the old way we did the switch [#503](https://github.com/sitespeedio/browsertime/pull/503).
 * We removed collecting Resource Timing data as default [#505](https://github.com/sitespeedio/browsertime/pull/505). If you still need the metrics, you can still run the script: [https://github.com/sitespeedio/browsertime/blob/2.x/browserscripts/timings/resourceTimings.js](https://github.com/sitespeedio/browsertime/blob/2.x/browserscripts/timings/resourceTimings.js).
-* You can now choose what kind of response bodies you want to store in your HAR file . Instead of using --firefox.includeResponseBodies to include all bodies you can now use <code>--firefox.includeResponseBodies</code> [none,all,html][#518](https://github.com/sitespeedio/browsertime/pull/518).
+* You can now choose what kind of response bodies you want to store in your HAR file. Instead of using --firefox.includeResponseBodies to include all bodies you can now use <code>--firefox.includeResponseBodies</code> [none,all,html][#518](https://github.com/sitespeedio/browsertime/pull/518).
 * We cleaned up how you collect trace logs from Chrome. If you want the devtools.timeline log (and CPU spent metrics), just use <code>--chrome.timeline</code>. If you want to configure trace categories yourself, use --chrome.traceCategories
 * File names are now based on 1 and not 0 so the first file from the first iteration is named something with -1. [#536](https://github.com/sitespeedio/browsertime/pull/536).
 * Store the Chromedriver log in the result directory (before it was stored where you run Browsertime) [#452](https://github.com/sitespeedio/browsertime/pull/452).
+* In some cases we leaked Bluebird promises, they are now native promises.
+* Running the engine took a promise that eventually became the scripts. Now you need to run with the scripts directly (no promises) to simplify the flow.
 
-
+And by the way: the master branch of sitespeed.io is using 3.0 and we plan to release the next major of in a month or so.
