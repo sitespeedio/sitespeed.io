@@ -1,0 +1,10 @@
+h3 Console log
+.responsive
+    table
+        tr
+            th Level
+            th Message     
+        each consoleLog in pageInfo.data.browsertime.console
+            tr
+                td(data-title='Level') #{consoleLog.level} 
+                td.url(data-title='Message') #{consoleLog.message}

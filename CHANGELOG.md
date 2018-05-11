@@ -13,6 +13,8 @@ We are working on the new 7.0 that will include Browsertime 3.0. You can read ab
 
 * We upgraded the S3 plugin that fixes (all) the problems we have seen with large files failing to upload [#2013](https://github.com/sitespeedio/sitespeed.io/pull/2013).
 
+* Get console messages from Chrome in the HTML output and send the number of errors to Graphite/InfluxDB by default.
+
 ## Changed
 * To collect the Chrome timeline you should now use ```--browsertime.chrome.timeline``` instead of the old ```--browsertime.chrome.collectTracingEvents```
 
@@ -26,7 +28,7 @@ We are working on the new 7.0 that will include Browsertime 3.0. You can read ab
 
 ### Plugin makers
 * The screenshot is not passed as messages anymore to decrease the memory impact.
-* The Chrome trace log is not passed as messages anymore to decrease the memory impact.
+* The Chrome trace log is not passed as messages anymore to decrease the memory impact by default. Add ```--postChromeTrace``` to pass around the Chrome trace to other plugins.
 
 ## 6.5.3 2018-04-07
 ## Added
