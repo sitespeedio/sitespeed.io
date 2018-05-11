@@ -332,7 +332,9 @@ services:
 ## Cost
 Sitespeed.io is Open Source and totally free. But what does it cost to have an instance of sitespeed.io up and running?
 
-Setting up an [AWS instance](https://aws.amazon.com/) C4.large has an upfront price $515 for a year (it is much cheaper to pay upfront). You also need to pay for S3 (to store the videos and HTML). For [https://dashboard.sitespeed.io](https://dashboard.sitespeed.io) we pay $10-15 per month (depending how long time you want to store the data).
+Setting up an [AWS instance](https://aws.amazon.com/) C4.large has an upfront price $515 for a year (it is much cheaper to pay upfront). Or you can use a Optimized Droplet for $40 a month at [Digital Ocean](https://www.digitalocean.com/) (they have served us well in our testing).
+
+You also need to pay for S3 (to store the videos and HTML). For [https://dashboard.sitespeed.io](https://dashboard.sitespeed.io) we pay $10-15 per month (depending how long time you want to store the data).
 
 Do your organisation already use Graphite/InfluxDB and Grafana? Then use what you have. Else you need to have a server hosting Graphite/Grafana. We pay $20 per month at Digital Ocean for that. Depending on how many metrics and for how long time you wanna store them, you maybe need and extra disk. And you should also always backup your data.
 
@@ -340,7 +342,7 @@ How many runs can you do per month? Many of the paid services you also pay per r
 
 Total cost:
 
- * $515 per AWS agent (80000+  per month per agent) per year
+ * $515 per AWS agent or $480 on Digital Ocean (80000+ tests per month per agent) per year
  * S3 $10-15 with data
  * Server for Graphite/Grafana
 
