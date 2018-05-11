@@ -78,6 +78,8 @@ InfluxDB
   --influxdb.database            The database name used to store captured metrics.  [default: "sitespeed"]
   --influxdb.tags                A comma separated list of tags and values added to each metric  [default: "category=default"]
   --influxdb.includeQueryParams  Whether to include query parameters from the URL in the InfluxDB keys or not  [boolean] [default: false]
+  --influxdb.regexp.tag.group	 Sets the regular expression that identifies the characters that will be replaced by the _ character in the tag group
+  
 
 Metrics
   --metrics.list        List all possible metrics in the data folder (metrics.txt).  [boolean] [default: false]
