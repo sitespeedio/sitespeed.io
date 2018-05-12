@@ -27,6 +27,9 @@ a#pagexray-summary
         tr
           td Responses missing compression
           +numberCell('', pagexray.missingCompression)
+        tr 
+          td Fully loaded
+          +timeCell('', pagexray.fullyLoaded.toFixed(0)) 
 
   .one-half.column
     table
@@ -72,3 +75,5 @@ h3 Expires, last modified and cookies stats
 
 if pageInfo.data.browsertime && pageInfo.data.browsertime.console
     include ./console.pug
+
+include ./after.pug
