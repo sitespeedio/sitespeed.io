@@ -96,7 +96,7 @@
     "mkdirp": "0.5.1",
     "moment": "2.21.0",
     "node-slack": "0.0.7",
-    "pagexray": "2.2.2",
+    "pagexray": "2.3.0",
     "pug": "2.0.1",
     "p-limit": "1.2.0",
     "recursive-readdir": "2.2.2",
