@@ -72,7 +72,7 @@
   "dependencies": {
     "aws-sdk": "2.222.1",
     "bluebird": "3.5.1",
-    "browsertime": "3.0.0",
+    "browsertime": "3.0.1",
     "cli-color": "1.2.0",
     "concurrent-queue": "7.0.2",
     "fast-stats": "0.0.3",
@@ -104,7 +104,7 @@
     "tape": "4.9.0",
     "text-table": "0.2.0",
     "uuid": "3.2.1",
-    "webcoach": "2.0.0",
+    "webcoach": "2.0.2",
     "webpagetest": "0.3.8",
     "yargs": "6.6.0"
   }
