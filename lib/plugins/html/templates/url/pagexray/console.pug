@@ -1,0 +1,14 @@
+h3 Console log
+if pageInfo.data.browsertime.console.length > 0
+    p The page logs the following messages to the console.
+    .responsive
+        table
+            tr
+                th Level
+                th Message     
+            each consoleLog in pageInfo.data.browsertime.console
+                tr
+                    td(data-title='Level') #{consoleLog.level} 
+                    td.url(data-title='Message') #{consoleLog.message}
+else 
+    p No console log messages.
