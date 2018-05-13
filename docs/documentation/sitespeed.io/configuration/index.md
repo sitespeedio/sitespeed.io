@@ -159,9 +159,9 @@ Create a config file and call it config.json:
     "host": "my.graphite.host",
     "namespace": "sitespeed_io.desktopFirstView"
   },
-"plugins": {
-	"disable": ["html"]
-	},
+  "plugins": {
+    "disable": ["html"]
+  },
   "utc": true
 }
 ~~~
