@@ -14,6 +14,11 @@ describe('pathFromRootToPageDir', function() {
     expect(path).to.equal('pages/www.foo.bar/x/y/z.html/');
   });
 
+  it('should create path from url with sanitized characters', function() {
+    const path = pathFromRootToPageDir('http://www.foo.bar/x/y/z:200.html');
+    expect(path).to.equal('pages/www.foo.bar/x/y/z-200.html/');
+  });
+
   it('should create path from url with query string', function() {
     const path = pathFromRootToPageDir('http://www.foo.bar/x/y/z?foo=bar');
     expect(path).to.equal('pages/www.foo.bar/x/y/z/query-115ffe20/');
