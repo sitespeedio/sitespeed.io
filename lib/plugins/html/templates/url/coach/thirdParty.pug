@@ -1,0 +1,21 @@
+table
+    tr
+        th(colspan='2') Third party
+    tr
+        td JQuery
+        td.right #{advice.info.thirdparty.jquery?advice.info.thirdparty.jquery:'No'}
+    tr
+        td Google Analytics
+        td.right #{advice.info.thirdparty.ga?'Yes':'No'}
+    tr
+        td Google Tag Manager
+        td.right #{advice.info.thirdparty.gtm?'Yes':'No'}
+    tr
+        td Piwik
+        td.right #{advice.info.thirdparty.piwik?advice.info.thirdparty.piwik:'No'}
+    tr
+        td Boomerang
+        td.right #{advice.info.thirdparty.boomerang?advice.info.thirdparty.boomerang:'No'}
+    tr
+        td New Relic
+        td.right #{advice.info.thirdparty.newrelic?'Yes':'No'}

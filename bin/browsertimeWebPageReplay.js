@@ -2,17 +2,25 @@
 
 'use strict';
 
-let yargs = require('yargs'),
-  browsertime = require('browsertime'),
-  merge = require('lodash.merge'),
-  getURLs = require('../lib/cli/util').getURLs,
-  browsertimeConfig = require('../lib/plugins/browsertime/index').config;
+const yargs = require('yargs');
+const browsertime = require('browsertime');
+const merge = require('lodash.merge');
+const getURLs = require('../lib/cli/util').getURLs;
+const browsertimeConfig = require('../lib/plugins/browsertime/index').config;
 
 async function testURL(engine, url) {
-  await engine
-    .start()
-    .then(() => engine.run(url))
-    .finally(() => engine.stop());
+  try {
+    await engine.start();
+    const result = await engine.run(url);
+    // check for errors
+    for (let errors of result.errors) {
+      if (errors.length > 0) {
+        process.exitCode = 1;
+      }
+    }
+  } finally {
+    engine.stop();
+  }
 }
 
 async function runBrowsertime() {
@@ -44,7 +52,7 @@ async function runBrowsertime() {
     viewPort: '1366x708',
     delay: 0,
     video: false,
-    speedIndex: false,
+    visualMetrics: false,
     resultDir: '/tmp/browsertime'
   };
 
@@ -57,6 +65,7 @@ async function runBrowsertime() {
   for (let url of urls) {
     await testURL(engine, url);
   }
+  process.exit();
 }
 
 runBrowsertime();

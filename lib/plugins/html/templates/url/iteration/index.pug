@@ -1,0 +1,135 @@
+extends ../../layout.pug
+
+block content
+  - var d = pageInfo.data
+  - runNumber = iteration
+  - var daTitle = daurlAlias ? daurlAlias : daurl
+  - var downloadName = (daTitle + '-' + runNumber + '-' + options.browser + '-' + timestamp).replace(/(https?\:\/\/)|( )|(:)/ig, '')
+
+  h1 Run #{runNumber} summary
+  h5.url
+    a(href=daurl) #{decodeURIComponent(daTitle)}
+
+  include ../includes/pageRunInfo
+  p
+    .large All runs:&nbsp;
+      each val, index in runPages
+        - value = Number(index) + 1
+        if (runNumber === value)
+          span.label.normal.info #{value}
+        else
+          a(href='./' + value + '.html') #{value}
+        if (value !== Object.keys(runPages).length)
+          | &nbsp;-
+          |
+
+  .index-link
+    a.button.button--primary(href=urlLink) Back to summary
+
+  if pageInfo.error
+    .error= pageInfo.error
+  include ./tabs.pug
+
+  #tabSections
+    section#summary-panel
+       h2 Summary
+
+       .row
+         .one-half.column
+           table
+             tr
+               th Metric
+               th Value
+             if d.coach && d.coach.run
+               tr
+                 td Performance score:
+                 td #{d.coach.run.advice.performance.score}
+             if d.pagexray && d.pagexray.run
+               tr
+                 td Total page size:
+                 td #{h.size.format(d.pagexray.run.transferSize)}
+             if d.pagexray && d.pagexray.run
+               tr
+                 td Requests:
+                 td #{d.pagexray.run.requests}
+             if d.browsertime && d.browsertime.run && d.browsertime.run.visualMetrics
+               tr
+                 td First Visual Change:
+                 td #{d.browsertime.run.visualMetrics.FirstVisualChange}
+             else if d.browsertime && d.browsertime.run && d.browsertime.run.timings.firstPaint
+               tr
+                 td First Paint:
+                 td #{d.browsertime.run.timings.firstPaint}
+             if d.browsertime && d.browsertime.run && d.browsertime.run.visualMetrics
+               tr
+                 td Speed Index:
+                 td #{d.browsertime.run.visualMetrics.SpeedIndex}
+               tr
+                 td Visual Complete 85%:
+                 td #{d.browsertime.run.visualMetrics.VisualComplete85}
+               tr
+                 td Visual Complete 95%:
+                 td #{d.browsertime.run.visualMetrics.VisualComplete95}
+               tr
+                 td Visual Complete 99%:
+                 td #{d.browsertime.run.visualMetrics.VisualComplete99}
+               tr
+                 td Last Visual Change:
+                 td #{d.browsertime.run.visualMetrics.LastVisualChange}
+             else if d.browsertime && d.browsertime.run
+               tr
+                 td RUM Speed Index:
+                 td #{d.browsertime.run.timings.rumSpeedIndex}
+             if !d.browsertime && d.webpagetest
+               tr
+                 td Render (first view):
+                 td #{d.webpagetest.run.firstView.render}
+               tr
+                 td Speed Index (first view):
+                 td #{d.webpagetest.run.firstView.SpeedIndex}
+               tr
+                 td Visual Complete 85% (first view):
+                 td #{d.webpagetest.run.firstView.visualComplete85}
+               tr
+                 td Last Visual Change (first view):
+                 td #{d.webpagetest.run.firstView.lastVisualChange}
+               tr
+                 td Requests:
+                 td #{d.webpagetest.run.firstView.requestsFull}
+
+         .one-half.column
+             if hasScreenShots
+               - screenshotName = 'data/screenshots/' + iteration + '.' + screenShotType
+               - var width = options.mobile ? 150 : '100%';
+               a(href=screenshotName)
+                 img.screenshot(src=screenshotName, width=width, alt='Screenshot')
+             else if !d.browsertime && d.webpagetest
+               - screenshotName = 'data/screenshots/wpt-' + iteration + '-firstView.png'
+               a(href=screenshotName)
+                 img.screenshot(src=screenshotName, alt='Screenshot')
+       .downloads
+        include ./downloads.pug
+    if d.browsertime && d.browsertime.run && d.browsertime.run.har
+      section#waterfall-panel
+        include ../waterfall/index.pug
+
+    if options.browsertime.video
+      section#video-panel
+        include ../video/index.pug
+
+    if d.coach && d.coach.run
+      section#coach-panel
+        include ../coach/index.pug
+
+    if d.browsertime && d.browsertime.run
+      section#metrics-panel
+        include ../metrics/index.pug
+
+    if d.pagexray && d.pagexray.run
+      section#pagexray-panel
+        include ../pagexray/index.pug
+
+    each pageRun in pageRuns
+      - var panelName = pageRun.id + '-panel'
+      section(id=panelName)
+        p !{pugs[pageRun.id]}

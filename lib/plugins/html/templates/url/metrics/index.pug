@@ -1,0 +1,117 @@
+- var browsertime = pageInfo.data.browsertime.run || pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex]
+
+if  browsertime
+  - var timings = browsertime.timings;
+  - var visualMetrics = browsertime.visualMetrics;
+  - baseHelpURL = rootPath + 'help.html#';
+
+  if options.browsertime.visualMetrics && visualMetrics
+    a#visualmetrics
+    h3 Visual Metrics
+    .row
+      .one-half.column
+        table
+          tr
+            th(colspan='2') Visual Metrics
+          tr
+            td
+              a(href=baseHelpURL + 'FirstVisualChange') First Visual Change
+            td.number #{visualMetrics.FirstVisualChange.toFixed(0)}
+          tr
+            td
+              a(href=baseHelpURL + 'SpeedIndex') Speed Index
+            td.number #{visualMetrics.SpeedIndex.toFixed(0)}
+          tr
+            td
+              a(href=baseHelpURL + 'PerceptualSpeedIndex') Perceptual Speed Index
+            td.number #{visualMetrics.PerceptualSpeedIndex.toFixed(0)}
+          tr
+            td
+              a(href=baseHelpURL + 'VisualComplete85') Visual Complete 85%
+            td.number #{visualMetrics.VisualComplete85.toFixed(0)}
+          tr
+            td
+              a(href=baseHelpURL + 'VisualComplete95') Visual Complete 95%
+            td.number #{visualMetrics.VisualComplete95.toFixed(0)}
+          tr
+            td
+              a(href=baseHelpURL + 'VisualComplete99') Visual Complete 99%
+            td.number #{visualMetrics.VisualComplete99.toFixed(0)}
+          tr
+            td
+              a(href=baseHelpURL + 'LastVisualChange') Last Visual Change
+            td.number #{visualMetrics.LastVisualChange.toFixed(0)}
+      .one-half.column
+        .ct-chart.ct-minor-sixth#ct-visualprogress
+        include ./visualProgress.pug
+
+  a#browsermetrics
+  h3 Browser Metrics
+  .row
+    .one-half.column
+      table
+        tr
+          th(colspan='2') Navigation Timing
+        each value, name in timings.pageTimings
+          tr
+            - url = baseHelpURL + name
+            td
+              a(href=url) #{name}
+            td.number #{value}
+    .one-half.column
+      table
+        tr
+          th(colspan='2') Specials and User Timing
+        if (timings.paintTiming && Object.keys(timings.paintTiming).length > 0)
+          each value, name in timings.paintTiming
+            tr
+              td #{name}
+              td.number #{value.toFixed(0)}
+        else if timings.firstPaint > -1
+          tr
+            td
+              a(href=baseHelpURL + 'firstPaint') First paint
+            td.number #{timings.firstPaint.toFixed(0)}
+        tr
+          td
+            a(href=baseHelpURL + 'rumSpeedIndex') RUM Speed Index
+          td.number #{timings.rumSpeedIndex.toFixed(0)}
+        tr
+          td
+            a(href=baseHelpURL + 'fullyLoaded') Fully loaded
+          td.number #{timings.fullyLoaded.toFixed(0)}
+        if (Object.keys(timings.userTimings.marks).length > 0)
+          each value, name in timings.userTimings.marks
+            tr
+              td #{value.name}
+              td.number #{value.startTime.toFixed(0)}
+        if (Object.keys(timings.userTimings.measures).length > 0)
+          each value, name in timings.userTimings.measures
+            tr
+              td #{value.name}
+              td.number #{value.startTime.toFixed(0)}
+
+  if options.browsertime.chrome && options.browsertime.chrome.timeline
+    include ./cpu.pug
+
+  a#custom-scripts
+  h3 Custom scripts
+  if browsertime.custom
+    table
+      tr
+        th name
+        th value
+      each value, name in browsertime.custom
+        tr
+          td #{name}
+          td #{value}
+  else
+    p There are no custom configured scripts.
+
+  .downloads
+
+    if options.browsertime.chrome && options.browsertime.chrome.timeline
+      - var tracePath = 'data/trace-' + (runNumber? runNumber : 1) + '.json.gz'
+      a.button.button-download(href=tracePath, download=downloadName + '-timeline.json.gz') Download timeline
+else 
+  p Missing data from Browsertime.

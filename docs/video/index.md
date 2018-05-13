@@ -18,6 +18,13 @@ Jonathan do a quick run how you can use Docker to run sitespeed.io.
 
 <div class="youtube-player" data-id="0xAdxCUX2Po"></div>
 
+
+## Simulate slow networks using Docker and custom networks
+Jonathan shows up how to simulate slow networks.
+
+<div class="youtube-player" data-id="eJ9apclVo7Q"></div>
+
+
 ## Compare HAR files using compare.sitespeed.io
 Peter shows us how you can compare HAR files using [https://compare.sitespeed.io](https://compare.sitespeed.io).
 

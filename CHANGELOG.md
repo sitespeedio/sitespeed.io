@@ -1,15 +1,49 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELESED
+## UNRELASED 7.0
+We are working on the new 7.0 that will include Browsertime 3.0. You can read about [Browsertime 3.0](https://www.sitespeed.io/browsertime-3.0/) and check the [changelog](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#300).
+
+## Fixes
+* InfluxDB event annotations overwrite within test session. Thanks [Michael J. Mitchell](https://github.com/mitchtech) for the PR [#1966](https://github.com/sitespeedio/sitespeed.io/issues/1966).
+
+## Added
+* Add StatsD support (with bulking). Thank you [Omri](https://github.com/omrilotan) for the PR [#1994](https://github.com/sitespeedio/sitespeed.io/pull/1994).
+
+* We upgraded to [Browsertime 3.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#300).
+
+* We upgraded the S3 plugin that fixes (all) the problems we have seen with large files failing to upload [#2013](https://github.com/sitespeedio/sitespeed.io/pull/2013).
+
+* Get console messages from Chrome in the HTML output and send the number of errors to Graphite/InfluxDB by default.
+
+## Changed
+* To collect the Chrome timeline you should now use ```--browsertime.chrome.timeline``` instead of the old ```--browsertime.chrome.collectTracingEvents```
+
+* To collect Visual Metrics add ```--visualMetrics``` (instead of the old ```--speedIndex```)
+
+* You can now choose for what kind of content you want to include the response bodies when you use Firefox: ```--browsertime.firefox.includeResponseBodies``` 'none', 'all', 'html'
+
+* We finetuned the tabs in the result pages and followed Browsertime and make all output 1 based instead of 0. 
+
+## Breaking changes
+
+### Plugin makers
+* The screenshot is not passed as messages anymore to decrease the memory impact.
+* The Chrome trace log is not passed as messages anymore to decrease the memory impact by default. Add ```--postChromeTrace``` to pass around the Chrome trace to other plugins.
+
+## 6.5.3 2018-04-07
+## Added
+* Upgraded to Browsertime 2.5.0 with fixes for the HAR in Chrome 66 and fix with User Timing measurements. Thanks [@knaos](https://github.com/knaos) for reporting and finding the issue.
+
+## 6.5.2 2018-03-30
 ### Fixed
 * Upgraded PageXray to 2.2.1 that fixed measuring the size of 304 responses [#1963](https://github.com/sitespeedio/sitespeed.io/issues/1963).
 
-## 6.5.1 2017-03-22
+## 6.5.1 2018-03-22
 
 ### Fixed
 * If the WebPageTest location contained a space, we sent that space to Graphite. That deosn't work, so we now make the location a safe key [#1958](https://github.com/sitespeedio/sitespeed.io/issues/1958).
 
-## 6.5.0 2017-03-20
+## 6.5.0 2018-03-20
 
 ### Added
 * You can now choose if sitespeed.io will return an error exit code if your budget fails with --budget.suppressExitCode  see [#1934](https://github.com/sitespeedio/sitespeed.io/issues/1934) and [#1936](https://github.com/sitespeedio/sitespeed.io/pull/1936)
@@ -29,11 +63,11 @@
 
 * Docker: Kill some left over processes when you start a new URL, thanks [Vitaliy Honcharenko](https://github.com/vgoncharenko) [#1952](https://github.com/sitespeedio/sitespeed.io/pull/1924). We will fix this in another way in coming Browsertime 3.0.
 
-##  6.4.1 2017-03-07
+##  6.4.1 2018-03-07
 ### Fixed
 * Upgraded from pug 2.0.0-rc4 to pug 2.0.0
 
-## 6.4.0 2017-03-07
+## 6.4.0 2018-03-07
 ### Fixed
 * New cleaner pre-compiled WebPageReplay in the WebPageReplay Docker container
 * Updated to latest Browsertime 2.2.2, checkout the [changelog](https://github.com/sitespeedio/browsertime/blob/2.x/CHANGELOG.md#version-222-2018-02-22)
@@ -41,34 +75,34 @@
 ### Added
 * We now show CPU stats for Chrome in the HTML and send it to Graphite if you configure Browsertime to collect it [#1914](https://github.com/sitespeedio/sitespeed.io/pull/1914).
 
-## 6.3.5 2017-02-13
+## 6.3.5 2018-02-13
 ### Fixed
 * Adding --filterList as parameter made changing the metrics filter fail [#1915](https://github.com/sitespeedio/sitespeed.io/pull/1915).
 
-## 6.3.4 2017-02-11
+## 6.3.4 2018-02-11
 
 ### Fixed
 * Changing the metrics filter didn't work since 6.x, there was an assumption about messages that was wrong. [#1912](https://github.com/sitespeedio/sitespeed.io/pull/1912).
 
-## 6.3.3 2017-02-08
+## 6.3.3 2018-02-08
 
 ### Fixed
 * There's been a major slowdown between 5 -> 6 when you generated HTML as reported in [#1901](https://github.com/sitespeedio/sitespeed.io/issues/1901). This has been fixed by [#1909](https://github.com/sitespeedio/sitespeed.io/pull/1909) and made faster than in 5.x by [#1910](https://github.com/sitespeedio/sitespeed.io/pull/1910).
 
-## 6.3.2 2017-02-05
+## 6.3.2 2018-02-05
 
 ### Fixed
 * Adding back the -preURL options that mystically has been removed from the CLI (--browsertime.preURL still worked though). Thanks [@aerwin](https://github.com/aerwin) for reporting - [#1904](https://github.com/sitespeedio/sitespeed.io/issues/1904)
 * There are user timings that broke the HTML output see [#1900](https://github.com/sitespeedio/sitespeed.io/issues/1900)
 
-## 6.3.1 2017-02-01
+## 6.3.1 2018-02-01
 
 ### Fixed
 * In last release we accidently changed to only send first view metrics (by default) per page when you are using WebPagetest. We changed that and now send metrics for both first and second view. Thanks [@wolframkriesing](https://github.com/wolframkriesing) for letting us now.
 
 * Guard against missing WPT data see [#1897](https://github.com/sitespeedio/sitespeed.io/issues/1897) and [#1899](https://github.com/sitespeedio/sitespeed.io/pull/1899).
 
-## 6.3.0 2017-01-24
+## 6.3.0 2018-01-24
 ### Added
 * Better default metrics for WebPageTest data in data storage. We now collect more metrics than before, see [#1871](https://github.com/sitespeedio/sitespeed.io/pull/1871). Thank you [Jean-Pierre Vincent](https://github.com/jpvincent) for contributing with your better default values. Jean-Pierre has also contributed with [better dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker) for WebPageTest.
 

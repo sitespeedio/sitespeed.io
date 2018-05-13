@@ -11,6 +11,8 @@
 
 ## Welcome to the wonderful world of web performance!
 
+**Warning**: Master is hot for coming 7.0. If you want to push changes to current 6.x use the [6.x](https://github.com/sitespeedio/sitespeed.io/tree/6.x) branch.
+
 **Sitespeed.io is a *complete web performance tool* that helps you measure the performance of your website. What exactly does that mean?**
 
 We think of a complete web performance tool as having three key capabilities:
@@ -93,13 +95,13 @@ If you use Firefox 55 (or later) please have a look at https://github.com/sitesp
 Checkout our example [dashboard.sitespeed.io](https://dashboard.sitespeed.io/dashboard/db/page-summary)
 
 A summary report in HTML:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/html-summary.png">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/start-readme.png">
 
 Individual page report:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/page.png">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/start-url-readme.png">
 
 Collected metrics from a URL in Graphite/Grafana:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/grafana-page-summary.png">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/grafana-readme.png">
 
 Video - easiest using Docker. This gif is optimized, the quality is much better IRL:
 

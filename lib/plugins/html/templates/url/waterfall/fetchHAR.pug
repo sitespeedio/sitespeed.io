@@ -10,10 +10,10 @@ script(type='text/javascript').
     showAlignmentHelpers : false,
     showIndicatorIcons: false,
     showMimeTypeIcon: true,
-    leftColumnWith: 30,
+    leftColumnWidth: 30,
     legendHolder: legendHolderEl,
     pageSelector: pageSelectorEl,
-    selectedPage: #{runIndex || medianRun.runIndex}
+    selectedPage: #{iteration || medianRun.runIndex}
   };
 if options.gzipHAR
     script(src= rootPath + 'js/gunzip.min.js')
