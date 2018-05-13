@@ -1,4 +1,6 @@
 Many many many thanks to:
+* Icecold777 (@Icecold777)
+* amic81 (@amic81)
 * Ryan Siddle (@rsiddle)
 * Michael J. Mitchell (@mitchtech)
 * Omri (@omrilotan)

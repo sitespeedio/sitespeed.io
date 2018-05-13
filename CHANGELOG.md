@@ -8,6 +8,9 @@ We are working on the new 7.0 that will include Browsertime 3.0. You can read ab
 
 * Sanitize path segments when creating folder (taking care of bad characters when creating new folders) - Thank you [Ryan Siddle](https://github.com/rsiddle) for the PR! [#1961](https://github.com/sitespeedio/sitespeed.io/pull/1961)
 
+* If you are a InfluxDB user, your tags now will hold more info (not only category tags). Thank you [Icecold777](https://github.com/Icecold777) for the PR [#2031](https://github.com/sitespeedio/sitespeed.io/pull/2031)
+
+
 ## Added
 * Add StatsD support (with bulking). Thank you [Omri](https://github.com/omrilotan) for the PR [#1994](https://github.com/sitespeedio/sitespeed.io/pull/1994).
 
@@ -16,6 +19,8 @@ We are working on the new 7.0 that will include Browsertime 3.0. You can read ab
 * We upgraded the S3 plugin that fixes (all) the problems we have seen with large files failing to upload [#2013](https://github.com/sitespeedio/sitespeed.io/pull/2013).
 
 * Get console messages from Chrome in the HTML output and send the number of errors to Graphite/InfluxDB by default.
+
+* You can now change safe char for groups/domain in InfluxDB with --influxdb.groupSeparator. Thank you [amic87](https://github.com/amic81) for your PR!
 
 ## Changed
 * To collect the Chrome timeline you should now use ```--browsertime.chrome.timeline``` instead of the old ```--browsertime.chrome.collectTracingEvents```
