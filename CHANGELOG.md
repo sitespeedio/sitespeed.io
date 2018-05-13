@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED 7.0.0
+
+### Fixed
+* Wrong index when showing the HAR. The first HAR waterfall wasn't correct.
+
+
 ## 7.0.0-alpha.1
 We are working on the new 7.0 that will include Browsertime 3.0. You can read about [Browsertime 3.0](https://www.sitespeed.io/browsertime-3.0/) and check the [changelog](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#300).
 
