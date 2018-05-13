@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELASED 7.0
+## 7.0.0-alpha.1
 We are working on the new 7.0 that will include Browsertime 3.0. You can read about [Browsertime 3.0](https://www.sitespeed.io/browsertime-3.0/) and check the [changelog](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#300).
 
 ## Fixed
@@ -35,8 +35,10 @@ We are working on the new 7.0 that will include Browsertime 3.0. You can read ab
 
 ## Breaking changes
 
+As a sitespeed.io user there shouldn't be any breaking changes upgrading from 6.x to 7. However since Browsertime (and latest Firefox) is so much leaner and cleaner you will probably notice that most of your timing metrics will be lower than before.
+
 ### Plugin makers
-* The screenshot is not passed as messages anymore to decrease the memory impact.
+* The screenshot is not passed as messages anymore to decrease the memory impact. If you need them, you need to get them from disk instead of the queue.
 * The Chrome trace log is not passed as messages anymore to decrease the memory impact by default. Add ```--postChromeTrace``` to pass around the Chrome trace to other plugins.
 
 ## 6.5.3 2018-04-07
