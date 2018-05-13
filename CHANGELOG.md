@@ -3,8 +3,10 @@
 ## UNRELASED 7.0
 We are working on the new 7.0 that will include Browsertime 3.0. You can read about [Browsertime 3.0](https://www.sitespeed.io/browsertime-3.0/) and check the [changelog](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#300).
 
-## Fixes
+## Fixed
 * InfluxDB event annotations overwrite within test session. Thanks [Michael J. Mitchell](https://github.com/mitchtech) for the PR [#1966](https://github.com/sitespeedio/sitespeed.io/issues/1966).
+
+* Sanitize path segments when creating folder (taking care of bad characters when creating new folders) - Thank you [Ryan Siddle](https://github.com/rsiddle) for the PR! [#1961](https://github.com/sitespeedio/sitespeed.io/pull/1961)
 
 ## Added
 * Add StatsD support (with bulking). Thank you [Omri](https://github.com/omrilotan) for the PR [#1994](https://github.com/sitespeedio/sitespeed.io/pull/1994).
@@ -23,6 +25,8 @@ We are working on the new 7.0 that will include Browsertime 3.0. You can read ab
 * You can now choose for what kind of content you want to include the response bodies when you use Firefox: ```--browsertime.firefox.includeResponseBodies``` 'none', 'all', 'html'
 
 * We finetuned the tabs in the result pages and followed Browsertime and make all output 1 based instead of 0. 
+
+* We tried to make CLI parameters the same as with Browsertime, so that you can use the same for both tools (meaning most of the parameters you don't need to append with *browsertime*. Check sitespeed.io --help
 
 ## Breaking changes
 
