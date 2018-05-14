@@ -67,7 +67,7 @@ function runWebPageReplay() {
   # Inspired by docker-selenium way of shutting down
   function shutdown {
     kill -2 $replay_pid
-    wait $replay_pid 
+    wait $replay_pid
     kill -s SIGTERM ${PID}
     wait $PID
   }
@@ -109,7 +109,6 @@ function runWebPageReplay() {
           wait $PID
 
           kill -s SIGTERM $replay_pid
-          wait $replay_pid
 
         else
           echo "Replay server didn't start correctly" >&2
