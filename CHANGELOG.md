@@ -2,6 +2,10 @@
 
 ## UNRELEASED 7.0.0
 
+### Fixed 
+* Updated to PageXray 2.3.1 (bug fix when WebPageTest misses a run).
+* Fixed exit code when using WebPageReplay + ability to choose ports. Fixed broken license file.
+
 ## 7.0.0-alpha.2
 
 ### Fixed
