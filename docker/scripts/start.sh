@@ -18,11 +18,11 @@ KEY_FILE=/webpagereplay/certs/wpr_key.pem
 SCRIPTS=/webpagereplay/scripts/deterministic.js
 
 if [ -n "$START_ADB_SERVER" ] ; then
-  WPR_HTTP_PORT=8080
-  WPR_HTTPS_PORT=8081
+  WPR_HTTP_PORT=${WPR_HTTP_PORT:-8080}
+  WPR_HTTPS_PORT=${WPR_HTTPS_PORT:-8081}
 else
-  WPR_HTTP_PORT=80
-  WPR_HTTPS_PORT=443
+  WPR_HTTP_PORT=${WPR_HTTP_PORT:-80}
+  WPR_HTTPS_PORT=${WPR_HTTPS_PORT:-443}
 fi
 
 # Here's a hack for fixing the problem with Chrome not starting in time
