@@ -1,10 +1,12 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED 7.0.0
+## 7.0.0-alpha.3
 
 ### Fixed 
 * Updated to PageXray 2.3.1 (bug fix when WebPageTest misses a run).
 * Fixed exit code when using WebPageReplay + ability to choose ports. Fixed broken license file.
+* New Browsertime that fixes problem naviating with Firefox on Linux in Docker (see https://github.com/sitespeedio/sitespeed.io/issues/2040).
+* Upgraded to Firefox 61b5 (from 61b3) in the Docker container.
 
 ## 7.0.0-alpha.2
 
