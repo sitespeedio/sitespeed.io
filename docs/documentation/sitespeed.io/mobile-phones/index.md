@@ -45,7 +45,7 @@ sitespeed.io --browsertime.chrome.android.package com.android.chrome https://www
 Remember: To test on Android using Docker you need to be on Linux (tested on Ubuntu). It will not work on OS X.
 
 ~~~bash
-docker run --privileged --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --browsertime.xvfb false --browsertime.chrome.android.package com.android.chrome https://www.sitespeed.io
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --browsertime.xvfb false --browsertime.chrome.android.package com.android.chrome https://www.sitespeed.io
 ~~~
 
 You will get result as you would with running this normally with summaries and waterfall graphs.
