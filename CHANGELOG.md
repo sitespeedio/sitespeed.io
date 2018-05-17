@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Fixed
+* Upgraded to Browsertime 3.0.5 that use the official HAR Export plugin, better error logs and safer wait on navigation.
+
 ## 7.0.0-alpha.3
 
 ### Fixed 
