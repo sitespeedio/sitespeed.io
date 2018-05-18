@@ -2,7 +2,10 @@
 
 ## UNRELEASED
 ### Fixed
-* Upgraded to Browsertime 3.0.5 that use the official HAR Export plugin, better error logs and safer wait on navigation.
+* Upgraded to Browsertime 3.0.7 that use the official HAR Export plugin, better error logs and safer wait on navigation. And fixes the problem if you try to write ther result to the same dir with --output that made sitesped.io hang.
+
+### Added
+* Link directly to each individual run if you use WebPageTest [#2045](https://github.com/sitespeedio/sitespeed.io/pull/2045).
 
 ## 7.0.0-alpha.3
 
