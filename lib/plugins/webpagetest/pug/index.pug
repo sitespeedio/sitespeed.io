@@ -20,6 +20,9 @@ p.small Metrics & data collected using #{options.webpagetest.host}.&nbsp;
   if wptRoot.summary
     a(href= wptRoot.summary) Check
     | &nbsp;the result page on WebPageTest.
+  else
+    a(href= pageInfo.data.webpagetest.run.firstView.pages.details) Check
+    | &nbsp;the result page on WebPageTest.
 
 .row
   .one-half.column
@@ -77,7 +80,6 @@ each view in ['firstView', 'repeatView']
   - var median = wpt[view];
   if median
     h2 #{view === 'firstView' ? 'First View': 'Repeat View'}
-
     if options.webpagetest.video
       a#visualmetrics
       h3 Visual Metrics
