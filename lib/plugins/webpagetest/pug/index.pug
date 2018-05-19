@@ -185,10 +185,18 @@ each view in ['firstView', 'repeatView']
           table
             tr
               th(colspan='2') Chrome User Timings
-            each value, key in median.chromeUserTiming
-              tr
-                td #{key}
-                td #{value}
+            //- The WebPageTest APi isn't concistent
+            //- Per run it is an array
+            if Array.isArray(median.chromeUserTiming)
+              each value in median.chromeUserTiming
+                tr
+                  td #{value.name}
+                  td #{value.time}
+            else
+              each value, key in median.chromeUserTiming
+                tr
+                  td #{key}
+                  td #{value}
     //- WebPageTest.org has custom metrics by default
     if (median.custom)
      .row
