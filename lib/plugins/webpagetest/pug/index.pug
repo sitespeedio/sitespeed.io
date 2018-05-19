@@ -248,3 +248,27 @@ each view in ['firstView', 'repeatView']
               tr
                 td #{key}
                 td.break #{median[key]}
+    //- Not a great fan of JSON with dots ...
+    if (median['lighthouse.BestPractices'])
+      h3 Lighthouse
+      .row
+        .column
+            table
+                tr
+                    td Best Practices Score
+                    td #{median['lighthouse.BestPractices']}
+                tr
+                    td Estimated Input Latency
+                    td #{median['lighthouse.Performance.estimated-input-latency']}
+                tr
+                    td First Interactive
+                    td #{median['lighthouse.Performance.first-interactive']}
+                tr
+                    td Accessibility Score
+                    td #{median['lighthouse.Accessibility']}
+                tr
+                    td SEO Score
+                    td #{median['lighthouse.SEO']}
+                tr
+                    td Progressive Web App Score
+                    td #{median['lighthouse.ProgressiveWebApp']}
