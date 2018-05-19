@@ -16,13 +16,13 @@ mixin sizeCell(title, size)
 
 a
 h2 WebPageTest
-p.small Metrics & data collected using #{options.webpagetest.host}.&nbsp;
+p.small Metrics and data collected using #{options.webpagetest.host}.&nbsp;
   if wptRoot.summary
     a(href= wptRoot.summary) Check
     | &nbsp;the result page on WebPageTest.
   else
     a(href= pageInfo.data.webpagetest.run.firstView.pages.details) Check
-    | &nbsp;the result page on WebPageTest.
+    | &nbsp;the individual result page on WebPageTest.
 
 .row
   .one-half.column
