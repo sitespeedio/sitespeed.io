@@ -206,18 +206,6 @@ each view in ['firstView', 'repeatView']
                 tr
                   td #{key}
                   td #{value}
-    //- WebPageTest.org has custom metrics by default
-    if (median.custom)
-     .row
-       .column
-         table
-          tr
-           th(colspan='2') Custom metrics
-          each key in median.custom
-           tr
-            td #{key}
-            td.break #{median[key]}
-
     h3 Waterfall
     img.u-max-full-width(src='data/waterfall/wpt-waterfall-' + wptRun + '-' + view + '.png', alt='Waterfall view')
     h3 Connection view
@@ -250,3 +238,13 @@ each view in ['firstView', 'repeatView']
               +numberCell('Connections', median.domains[domain].connections)
       else
         p Missing domain data
+    //- WebPageTest.org has custom metrics by default
+    if (median.custom)
+      h3 Custom metrics
+      .row
+        .column
+          table
+            each key in median.custom
+              tr
+                td #{key}
+                td.break #{median[key]}
