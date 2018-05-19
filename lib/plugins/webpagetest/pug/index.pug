@@ -34,6 +34,15 @@ p.small Metrics and data collected using #{options.webpagetest.host}.&nbsp;
         tr
           td From:
           td !{wptRoot.from}
+      if wptRoot.id
+        tr
+          td Id:
+          td
+            a(href= wptRoot.summary) #{wptRoot.id}
+      if wptRoot.tester
+          tr
+            td Tester:
+            td #{wptRoot.tester}      
       tr
         td Browser:
         td #{wpt.firstView.browser_name}
