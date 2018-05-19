@@ -109,6 +109,19 @@ each view in ['firstView', 'repeatView']
             tr
               td Last Visual Change
               +numberCell('Last Visual Change', median.lastVisualChange)
+            if median.FirstInteractive
+              tr
+                td First Interactive
+                +numberCell('First Interactive', median.FirstInteractive)
+            if median.TimeToInteractive
+              tr
+                td Time To Interactive
+                +numberCell('Time To Interactive', median.TimeToInteractive)
+            if median.LastInteractive
+              tr
+                td Last Interactive
+                +numberCell('Last Interactive', median.LastInteractive)
+
         .one-half.column
           if median.videoFrames
             table
