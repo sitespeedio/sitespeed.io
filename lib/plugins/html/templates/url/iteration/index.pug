@@ -98,15 +98,15 @@ block content
                  td #{d.webpagetest.run.firstView.requestsFull}
 
          .one-half.column
-             if hasScreenShots
+             if !d.browsertime && d.webpagetest
+               - screenshotName = 'data/screenshots/wpt-' + iteration + '-firstView.png'
+               a(href=screenshotName)
+                 img.screenshot(src=screenshotName, alt='Screenshot')
+             else if hasScreenShots
                - screenshotName = 'data/screenshots/' + iteration + '.' + screenShotType
                - var width = options.mobile ? 150 : '100%';
                a(href=screenshotName)
                  img.screenshot(src=screenshotName, width=width, alt='Screenshot')
-             else if !d.browsertime && d.webpagetest
-               - screenshotName = 'data/screenshots/wpt-' + iteration + '-firstView.png'
-               a(href=screenshotName)
-                 img.screenshot(src=screenshotName, alt='Screenshot')
        .downloads
         include ./downloads.pug
     if d.browsertime && d.browsertime.run && d.browsertime.run.har
