@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 7.0.0-alpha.5
+### Added
+* A lot of love for WebPageTest: Bugfix for getting Chrome timing metrics per run [#2046](https://github.com/sitespeedio/sitespeed.io/pull/2046), show the WebPageTests id and tester name in the HTML [#2047](https://github.com/sitespeedio/sitespeed.io/pull/2047), use WebPageTest screenshot if you don't run Browsertime [#2048](https://github.com/sitespeedio/sitespeed.io/pull/2048), show some Lighthouse metrics you use Lighthouse [#2049](https://github.com/sitespeedio/sitespeed.io/pull/2049) and show some of those interactive metrics if they exists [#2050](https://github.com/sitespeedio/sitespeed.io/pull/2050).
+
 ## 7.0.0-alpha.4
 ### Fixed
 * Upgraded to Browsertime 3.0.7 that use the official HAR Export plugin, better error logs and safer wait on navigation. And fixes the problem if you try to write ther result to the same dir with --output that made sitesped.io hang.

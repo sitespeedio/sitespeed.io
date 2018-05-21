@@ -16,13 +16,13 @@ mixin sizeCell(title, size)
 
 a
 h2 WebPageTest
-p.small Metrics & data collected using #{options.webpagetest.host}.&nbsp;
+p.small Metrics and data collected using #{options.webpagetest.host}.&nbsp;
   if wptRoot.summary
     a(href= wptRoot.summary) Check
     | &nbsp;the result page on WebPageTest.
   else
     a(href= pageInfo.data.webpagetest.run.firstView.pages.details) Check
-    | &nbsp;the result page on WebPageTest.
+    | &nbsp;the individual result page on WebPageTest.
 
 .row
   .one-half.column
@@ -34,6 +34,15 @@ p.small Metrics & data collected using #{options.webpagetest.host}.&nbsp;
         tr
           td From:
           td !{wptRoot.from}
+      if wptRoot.id
+        tr
+          td Id:
+          td
+            a(href= wptRoot.summary) #{wptRoot.id}
+      if wptRoot.tester
+          tr
+            td Tester:
+            td #{wptRoot.tester}      
       tr
         td Browser:
         td #{wpt.firstView.browser_name}
@@ -100,6 +109,19 @@ each view in ['firstView', 'repeatView']
             tr
               td Last Visual Change
               +numberCell('Last Visual Change', median.lastVisualChange)
+            if median.FirstInteractive
+              tr
+                td First Interactive
+                +numberCell('First Interactive', median.FirstInteractive)
+            if median.TimeToInteractive
+              tr
+                td Time To Interactive
+                +numberCell('Time To Interactive', median.TimeToInteractive)
+            if median.LastInteractive
+              tr
+                td Last Interactive
+                +numberCell('Last Interactive', median.LastInteractive)
+
         .one-half.column
           if median.videoFrames
             table
@@ -126,7 +148,7 @@ each view in ['firstView', 'repeatView']
             +numberCell('TTFB', median.TTFB)
           tr
             td First paint
-            +numberCell('First Paint', median.firstPaint)
+            +numberCell('First Paint', median.firstPaint.toFixed(0))
           tr
             td DOM loading
             +numberCell('DOM loading', median.domLoading)
@@ -185,22 +207,18 @@ each view in ['firstView', 'repeatView']
           table
             tr
               th(colspan='2') Chrome User Timings
-            each value, key in median.chromeUserTiming
-              tr
-                td #{key}
-                td #{value}
-    //- WebPageTest.org has custom metrics by default
-    if (median.custom)
-     .row
-       .column
-         table
-          tr
-           th(colspan='2') Custom metrics
-          each key in median.custom
-           tr
-            td #{key}
-            td.break #{median[key]}
-
+            //- The WebPageTest APi isn't concistent
+            //- Per run it is an array
+            if Array.isArray(median.chromeUserTiming)
+              each value in median.chromeUserTiming
+                tr
+                  td #{value.name}
+                  td #{value.time}
+            else
+              each value, key in median.chromeUserTiming
+                tr
+                  td #{key}
+                  td #{value}
     h3 Waterfall
     img.u-max-full-width(src='data/waterfall/wpt-waterfall-' + wptRun + '-' + view + '.png', alt='Waterfall view')
     h3 Connection view
@@ -233,3 +251,37 @@ each view in ['firstView', 'repeatView']
               +numberCell('Connections', median.domains[domain].connections)
       else
         p Missing domain data
+    //- WebPageTest.org has custom metrics by default
+    if (median.custom)
+      h3 Custom metrics
+      .row
+        .column
+          table
+            each key in median.custom
+              tr
+                td #{key}
+                td.break #{median[key]}
+    //- Not a great fan of JSON with dots ...
+    if (median['lighthouse.BestPractices'])
+      h3 Lighthouse
+      .row
+        .column
+            table
+                tr
+                    td Best Practices Score
+                    td #{median['lighthouse.BestPractices']}
+                tr
+                    td Estimated Input Latency
+                    td #{median['lighthouse.Performance.estimated-input-latency']}
+                tr
+                    td First Interactive
+                    td #{median['lighthouse.Performance.first-interactive']}
+                tr
+                    td Accessibility Score
+                    td #{median['lighthouse.Accessibility']}
+                tr
+                    td SEO Score
+                    td #{median['lighthouse.SEO']}
+                tr
+                    td Progressive Web App Score
+                    td #{median['lighthouse.ProgressiveWebApp']}
