@@ -1,4 +1,6 @@
 # CHANGELOG - sitespeed.io
+## 7.0.0-beta.1
+* Same as alpha.5 except updated Browsertime with some bug fixes.
 
 ## 7.0.0-alpha.5
 ### Added
