@@ -1,33 +1,15 @@
 # CHANGELOG - sitespeed.io
-## 7.0.0-beta.1
-* Same as alpha.5 except updated Browsertime with some bug fixes.
+## 7.0.0 - 2018-05-24
+Read more about [sitespeed.io 7.0](https://www.sitespeed.io/sitespeed.io-7.0/).
 
-## 7.0.0-alpha.5
 ### Added
 * A lot of love for WebPageTest: Bugfix for getting Chrome timing metrics per run [#2046](https://github.com/sitespeedio/sitespeed.io/pull/2046), show the WebPageTests id and tester name in the HTML [#2047](https://github.com/sitespeedio/sitespeed.io/pull/2047), use WebPageTest screenshot if you don't run Browsertime [#2048](https://github.com/sitespeedio/sitespeed.io/pull/2048), show some Lighthouse metrics you use Lighthouse [#2049](https://github.com/sitespeedio/sitespeed.io/pull/2049) and show some of those interactive metrics if they exists [#2050](https://github.com/sitespeedio/sitespeed.io/pull/2050).
-
-## 7.0.0-alpha.4
-### Fixed
-* Upgraded to Browsertime 3.0.7 that use the official HAR Export plugin, better error logs and safer wait on navigation. And fixes the problem if you try to write ther result to the same dir with --output that made sitesped.io hang.
-
-### Added
 * Link directly to each individual run if you use WebPageTest [#2045](https://github.com/sitespeedio/sitespeed.io/pull/2045).
-
-## 7.0.0-alpha.3
-
-### Fixed 
-* Updated to PageXray 2.3.1 (bug fix when WebPageTest misses a run).
-* Fixed exit code when using WebPageReplay + ability to choose ports. Fixed broken license file.
-* New Browsertime that fixes problem naviating with Firefox on Linux in Docker (see https://github.com/sitespeedio/sitespeed.io/issues/2040).
-* Upgraded to Firefox 61b5 (from 61b3) in the Docker container.
-
-## 7.0.0-alpha.2
-
-### Fixed
-* Wrong index when showing the HAR. The first HAR waterfall wasn't correct.
-
-## 7.0.0-alpha.1
-We are working on the new 7.0 that will include Browsertime 3.0. You can read about [Browsertime 3.0](https://www.sitespeed.io/browsertime-3.0/) and check the [changelog](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#300).
+* Add StatsD support (with bulking). Thank you [Omri](https://github.com/omrilotan) for the PR [#1994](https://github.com/sitespeedio/sitespeed.io/pull/1994).
+* We upgraded to [Browsertime 3.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#300).
+* We upgraded the S3 plugin that fixes (all) the problems we have seen with large files failing to upload [#2013](https://github.com/sitespeedio/sitespeed.io/pull/2013).
+* Get console messages from Chrome in the HTML output and send the number of errors to Graphite/InfluxDB by default.
+* You can now change safe char for groups/domain in InfluxDB with --influxdb.groupSeparator. Thank you [amic87](https://github.com/amic81) for your PR!
 
 ## Fixed
 * InfluxDB event annotations overwrite within test session. Thanks [Michael J. Mitchell](https://github.com/mitchtech) for the PR [#1966](https://github.com/sitespeedio/sitespeed.io/issues/1966).
@@ -36,19 +18,9 @@ We are working on the new 7.0 that will include Browsertime 3.0. You can read ab
 
 * If you are a InfluxDB user, your tags now will hold more info (not only category tags). Thank you [Icecold777](https://github.com/Icecold777) for the PR [#2031](https://github.com/sitespeedio/sitespeed.io/pull/2031)
 
-
-## Added
-* Add StatsD support (with bulking). Thank you [Omri](https://github.com/omrilotan) for the PR [#1994](https://github.com/sitespeedio/sitespeed.io/pull/1994).
-
-* We upgraded to [Browsertime 3.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#300).
-
-* We upgraded the S3 plugin that fixes (all) the problems we have seen with large files failing to upload [#2013](https://github.com/sitespeedio/sitespeed.io/pull/2013).
-
-* Get console messages from Chrome in the HTML output and send the number of errors to Graphite/InfluxDB by default.
-
-* You can now change safe char for groups/domain in InfluxDB with --influxdb.groupSeparator. Thank you [amic87](https://github.com/amic81) for your PR!
-
 ## Changed
+* We upgraded Browsertime to [3.0](https://www.sitespeed.io/browsertime-3.0/).
+
 * To collect the Chrome timeline you should now use ```--browsertime.chrome.timeline``` instead of the old ```--browsertime.chrome.collectTracingEvents```
 
 * To collect Visual Metrics add ```--visualMetrics``` (instead of the old ```--speedIndex```)

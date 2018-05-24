@@ -18,12 +18,12 @@ PACKAGE_VERSION=$(node -e 'console.log(require("./package").version)')
 docker build --no-cache -t sitespeedio/sitespeed.io:$PACKAGE_VERSION -t sitespeedio/sitespeed.io:latest .
 
 docker push sitespeedio/sitespeed.io:$PACKAGE_VERSION
-# docker push sitespeedio/sitespeed.io:latest
+docker push sitespeedio/sitespeed.io:latest
 
 # Update to latet version in the docs
-#bin/sitespeed.js --version | tr -d '\n' > docs/_includes/version/sitespeed.io.txt
+bin/sitespeed.js --version | tr -d '\n' > docs/_includes/version/sitespeed.io.txt
 
 # Generate the help for the docs
-#bin/sitespeed.js --help > docs/documentation/sitespeed.io/configuration/config.md
+bin/sitespeed.js --help > docs/documentation/sitespeed.io/configuration/config.md
 
 
