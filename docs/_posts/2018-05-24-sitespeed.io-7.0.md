@@ -11,18 +11,35 @@ nav: blog
 # sitespeed.io 7.0
 A couple of weeks ago we released [Browsertime 3.0](/browsertime-3.0/) completely rewritten and now we are ready to push sitespeed.io 7.0 using the latest version of Browsertime.
 
-## Most important things first: Breaking changes
+
+- [New in 7.0](#new-in-70)
+    - [Most important things first: Breaking changes](#most-important-things-first-breaking-changes)
+    - [Browsertime 3](#browsertime-3)
+    - [New Chrome and latest Firefox 61](#new-chrome-and-latest-firefox-61)
+    - [WebPageReplay support using Docker](#webpagereplay-support-using-docker)
+    - [A lot of love for WebPageTest](#a-lot-of-love-for-webpagetest)
+    - [Statsd support](#statsd-support)
+    - [New S3 plugin](#new-s3-plugin)
+    - [Console messages from Chrome](#console-messages-from-chrome)
+    - [Use the same parameters Browsertime/sitespeed.io](#use-the-same-parameters-browsertimesitespeedio)
+    - [CPU data from Chrome](#cpu-data-from-chrome)
+    - [Fixes](#fixes)
+    - [Breaking changes for plugin makers](#breaking-changes-for-plugin-makers)
+- [What's next](#whats-next)
+
+## New in 7.0
+Let me walk you through what's new. The most important thing is the new version of Browsertime.
+
+### Most important things first: Breaking changes
 As a Docker user of sitespeed.io there shouldn't be any breaking changes upgrading from latest 6 version.
 
 If you don't use our Docker container (you should!) you need to use Firefox 61 (beta) to get the HAR from Firefox, since the new [HAR Export trigger](https://github.com/devtools-html/har-export-trigger) needs that version (the Docker container already contains 61).
 
-One important thing: The upgrade to Firefox 61 in the Docker container and that we made Browsertime so much leaner and cleaner your timing metrics will possible decrease when you switch to 7.0.
+One important thing: The upgrade to Firefox 61 in the Docker container and that we made Browsertime so much leaner and cleaner will probably make your timing metrics decrease when you switch to 7.0.
 
 If you use custom made plugins that uses screenshots or the trace log from Chrome you should read [this](#breaking-changes-for-plugin-makers) since the behavior how those are handled have changed.
 
 
-## New in 7.0
-Let me walk you through what's new. The most important thing is the new version of Browsertime.
 
 ### Browsertime 3
 In the new version we store metrics and data to disk between runs. That means screenshots/ tracelogs and other metrics are stored to disk immediately. This makes Browsertime use less memory when you do many runs. See [#308](https://github.com/sitespeedio/browsertime/issues/308) for a use case where that helps.
