@@ -12,18 +12,22 @@ nav: blog
 A couple of weeks ago we released [Browsertime 3.0](/browsertime-3.0/) completely rewritten and now we are ready to push sitespeed.io 7.0 using the latest version of Browsertime.
 
 ## Most important things first: Breaking changes
-As a user of sitespeed.io there shouldn't be any breaking changes upgrading from latest 6 version. However: We upgraded to coming Firefox 61 in the Docker container and made Browsertime so much leaner so when you upgrade your timing metrics will probably decrease.
+As a Docker user of sitespeed.io there shouldn't be any breaking changes upgrading from latest 6 version.
 
-If you use custom made plugins that uses screenshots or the trace log from Chrome you should read [this](#breaking-changes-for-plugin-makers) since the behaviour how those are handled have changed.
+If you don't use our Docker container (you should!) you need to use Firefox 61 (beta) to get the HAR from Firefox, since the new [HAR Export trigger](https://github.com/devtools-html/har-export-trigger) needs that version (the Docker container already contains 61).
+
+One important thing: The upgrade to Firefox 61 in the Docker container and that we made Browsertime so much leaner and cleaner your timing metrics will possible decrease when you switch to 7.0.
+
+If you use custom made plugins that uses screenshots or the trace log from Chrome you should read [this](#breaking-changes-for-plugin-makers) since the behavior how those are handled have changed.
 
 
 ## New in 7.0
-Let me walk you through what's new. The most important thing is the new version of Browsertime that we are using.
+Let me walk you through what's new. The most important thing is the new version of Browsertime.
 
 ### Browsertime 3
 In the new version we store metrics and data to disk between runs. That means screenshots/ tracelogs and other metrics are stored to disk immediately. This makes Browsertime use less memory when you do many runs. See [#308](https://github.com/sitespeedio/browsertime/issues/308) for a use case where that helps.
 
-The CPU usage is also decreased, mainly since we switched to the new version of Firefox. Here's an example of when we deployed an early version of 3.0 on AWS.
+The CPU usage has also decreased, mainly since we switched to the new version of Firefox. Here's an example of when we deployed an early version of 3.0 on AWS.
 
 ![CPU usage]({{site.baseurl}}/img/bt-3.0/cpu-usage.png)
 {: .img-thumbnail-center}
@@ -35,7 +39,7 @@ The CPU usage is also decreased, mainly since we switched to the new version of 
 The decreased memory and CPU usage makes your metrics more stable.
 
 
-Read more about the changes in [Browsertime 3.0](/browsertime-3.0/).
+Read more about the all changes in [Browsertime 3.0](/browsertime-3.0/).
 
 ### New Chrome and latest Firefox 61
 The Docker container uses the latest release of Chrome stable and a beta release of Firefox 61. We use Firefox 61 so that the new [HAR Export trigger](https://github.com/devtools-html/har-export-trigger) works.
@@ -91,14 +95,14 @@ Using WebPageReplay we get more stable metrics. This is super useful if you want
 
 
 ### A lot of love for WebPageTest
-We fixed a couple of bugs using WebPageTest and addes some small extra things.
+We fixed a couple of bugs using WebPageTest and added some extras.
 
-We now display Chrome timing metrics per run [#2046](https://github.com/sitespeedio/sitespeed.io/pull/2046), show the WebPageTests id and tester name in the HTML [#2047](https://github.com/sitespeedio/sitespeed.io/pull/2047), use WebPageTest screenshot if you don't run Browsertime [#2048](https://github.com/sitespeedio/sitespeed.io/pull/2048), show some Lighthouse metrics you use Lighthouse [#2049](https://github.com/sitespeedio/sitespeed.io/pull/2049) and show some of those interactive metrics if they exists [#2050](https://github.com/sitespeedio/sitespeed.io/pull/2050). We also link directly to each individual run if you use WebPageTest [#2045](https://github.com/sitespeedio/sitespeed.io/pull/2045).
+We now display Chrome timing metrics per run [#2046](https://github.com/sitespeedio/sitespeed.io/pull/2046), show the WebPageTests id and tester name in the HTML [#2047](https://github.com/sitespeedio/sitespeed.io/pull/2047), use WebPageTest screenshot if you don't run Browsertime [#2048](https://github.com/sitespeedio/sitespeed.io/pull/2048), show some Lighthouse summary metrics you use Lighthouse [#2049](https://github.com/sitespeedio/sitespeed.io/pull/2049) and show some of those interactive metrics if they exists [#2050](https://github.com/sitespeedio/sitespeed.io/pull/2050). We also link directly to each individual run if you use WebPageTest [#2045](https://github.com/sitespeedio/sitespeed.io/pull/2045).
 
-Small changes but make the WebPageTest HTML report page more usable.
+Small changes but it makes the WebPageTest HTML report page more usable.
 
 ### Statsd support 
-[Omri](https://github.com/omrilotan) made a PR ([#1994](https://github.com/sitespeedio/sitespeed.io/pull/1994)) that add StatsD support (with bulking)! Thank you [Omri](https://github.com/omrilotan) for the nice PR!
+[Omri](https://github.com/omrilotan) made a PR ([#1994](https://github.com/sitespeedio/sitespeed.io/pull/1994)) that adds StatsD support (with bulking)! Thank you [Omri](https://github.com/omrilotan) for the nice PR!
 
 ### New S3 plugin
 We upgraded/rewrote the S3 plugin that fixes (all) the problems we have seen with large files failing to upload [#2013](https://github.com/sitespeedio/sitespeed.io/pull/2013). Since we upgraded on our test servers we haven't seen any S3 problems at all.
@@ -107,7 +111,7 @@ We upgraded/rewrote the S3 plugin that fixes (all) the problems we have seen wit
 In the new version of Browsertime you can collect console messages from Chrome. Add <code>--chrome.collectConsoleLog</code> to your run and you can see that extra info on the PageXray tab for each individual run. We also send the number of errors to Graphite/InfluxDB by default, making it easy to create alerts on console errors.
 
 ### Use the same parameters Browsertime/sitespeed.io
-We tried to make CLI parameters the same as with Browsertime, so that you can use the same for both tools (meaning most of the parameters you don't need to append with *browsertime*. Check <code>sitespeed.io --help</code>
+We tried to make CLI parameters the same as with Browsertime, so that you can use the same for both tools (meaning most of the parameters you don't need to prepend with *browsertime*. Check <code>sitespeed.io --help</code>
 
 ### CPU data from Chrome
 We have a new project called [Chrome trace](https://github.com/sitespeedio/chrome-trace) built by [Tobias](https://github.com/tobli) that parses the Chrome trace log and check the time spent. Use it by add <code>--chrome.timeline</code> to your run. For a brief period we did use the [Trace parser](https://github.com/WPO-Foundation/trace-parser) project but moving to our own will open up for us to add more metrics and do bug fixes faster.
@@ -115,7 +119,6 @@ We have a new project called [Chrome trace](https://github.com/sitespeedio/chrom
 If you turn it on, the metrics will automatically be sent to Graphite. Just update your dashboards so you can see it!
 
 ### Fixes
-And a couple of more fixes. 
 
 * InfluxDB event annotations overwrite within test session. Thanks [Michael J. Mitchell](https://github.com/mitchtech) for the PR [#1966](https://github.com/sitespeedio/sitespeed.io/issues/1966).
 
@@ -123,21 +126,24 @@ And a couple of more fixes.
 
 * If you are a InfluxDB user, your tags now will hold more info (not only category tags). Thank you [Icecold777](https://github.com/Icecold777) for the PR [#2031](https://github.com/sitespeedio/sitespeed.io/pull/2031).
 
-* You can now change safe char for groups/domain in InfluxDB with --influxdb.groupSeparator. Thank you [amic87](https://github.com/amic81) for your PR!
+* You can now change safe char for groups/domain in InfluxDB with ```--influxdb.groupSeparator```. Thank you [amic87](https://github.com/amic81) for your PR!
 
 * To collect the Chrome timeline you should now use ```--browsertime.chrome.timeline``` instead of the old deprecated ```--browsertime.chrome.collectTracingEvents```
 
 * To collect Visual Metrics add ```--visualMetrics``` (instead of the old ```--speedIndex```)
 
-* You can now choose for what kind of content you want to include the response bodies when you use Firefox: ```--browsertime.firefox.includeResponseBodies``` 'none', 'all', 'html'
+* You can now choose for what kind of content you want to include the response bodies when you use Firefox: ```--browsertime.firefox.includeResponseBodies``` with the value *none*, *all*, *html*. 
 
-* We finetuned the tabs in the result pages and followed Browsertime and make all output 1 based instead of 0. 
+* We finetuned the tabs in the result pages and followed Browsertime and make all output files 1 based instead of 0. The first run will now have files named with 1. Yep as it should :)
 
 ## Breaking changes for plugin makers
 For plugin makers or plugin users that uses screenshots or Chrome trace logs there are a couple of changes:
 
 * The screenshot is not passed as messages anymore to decrease the memory impact. If you need them, you need to get them from disk instead of the queue.
 * The Chrome trace log is not passed as messages anymore to decrease the memory impact by default. Add ```--postChromeTrace``` to pass around the Chrome trace to other plugins.
+
+## What's next
+The coming weeks/month we going to take care of bugs, concentrate on making a better guide to deploy sitespeed.io and then it's time for summer vacation :)
 
 Checkout the full [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) for all changes.
 
