@@ -33,4 +33,5 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Upgrade](upgrade/) - upgrading from 5.x to 6.0 check out our guide here.
  * [Mobile phones](mobile-phones/) - test using your mobile phone (Android only).
  * [WebPageTest](webpagetest/) - drive WebPageTest and fetch metrics and graph them.
+ * [WebPageReplay](webpagereplay/) - WebPageReplay is proxy that first records your web site and then replay it locally. That can help you find performance regression in the front-end code easier: Latency/server timings are constant.
  * [Developers](developers/) - start here when you want to do PRs or create a plugin.
