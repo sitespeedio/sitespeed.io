@@ -31,7 +31,7 @@ A couple of weeks ago we released [Browsertime 3.0](/browsertime-3.0/) completel
 Let me walk you through what's new. The most important thing is the new version of Browsertime.
 
 ### Most important things first: Breaking changes
-As a Docker user of sitespeed.io there shouldn't be any breaking changes upgrading from latest 6 version.
+As a Docker user of sitespeed.io there shouldn't be any breaking changes upgrading from latest 6 version. If you are using a preScript to login the user, you need to wait/verify that the page has actually loaded before you try to manipulate the page, since Browsertime 3.0 change pageLoadStrategy from *normal* to *none* meaning you will be in control direct after the navigation. 
 
 If you don't use our Docker container (you should!) you need to use Firefox 61 (beta) to get the HAR from Firefox, since the new [HAR Export trigger](https://github.com/devtools-html/har-export-trigger) needs that version (the Docker container already contains 61).
 
