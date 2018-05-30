@@ -1,4 +1,9 @@
 # CHANGELOG - sitespeed.io
+## 7.0.1 - 2018-05-30
+### Fixed
+* Upgraded to latest Browsertime (3.0.16) containing two fixes: Using Throttle changing networks failed in Docker for multiple runs [#2063](https://github.com/sitespeedio/sitespeed.io/issues/2063) and HTTP2 push assests missing sometimes in the waterfall for Chrome [Chrome-HAR #21](https://github.com/sitespeedio/chrome-har/pull/21).
+
+
 ## 7.0.0 - 2018-05-24
 Read more about [sitespeed.io 7.0](https://www.sitespeed.io/sitespeed.io-7.0/).
 
