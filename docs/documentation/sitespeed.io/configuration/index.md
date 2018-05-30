@@ -114,18 +114,18 @@ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io
 Mobile testing is always best on actual mobile devices. You can [test on Android phones](../mobile-phones/) using sitespeed.io.
 {: .note .note-warning}
 
-### Speed Index and video
-In 4.1 we released support for recording a video of the browser screen and use that to calculate visual metrics like Speed Index. This is one of the main benefits for using our Docker images, as it makes for an easy setup. Without Docker, you would need to install all these [dependencies](https://github.com/WPO-Foundation/visualmetrics) first.
+### Visual metrics and video
+In 4.1 we released support for recording a video of the browser screen and use that to calculate visual metrics like Speed Index. This is one of the main benefits for using our Docker images, as it makes for an easy setup. Without Docker, you would need to install all the [dependencies](https://github.com/WPO-Foundation/visualmetrics).
 
-In 6.0 video and Speed Index is turned on by default, and if you want to turn them off you do like this:
+In 6.0 video and Visual Metrics is turned on by default, and if you want to turn them off you do like this:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --speedIndex false https://www.sitespeed.io/
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --visualMetrics false https://www.sitespeed.io/
 ~~~
 
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --speedIndex false --video false https://www.sitespeed.io/
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --visualMetrics false --video false https://www.sitespeed.io/
 ~~~
 
 
