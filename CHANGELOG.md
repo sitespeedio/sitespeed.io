@@ -1,4 +1,9 @@
 # CHANGELOG - sitespeed.io
+
+## UNRELEASED
+### Fixed
+* We reverted the change of using pageLoadStrategy *none* as default (we now use normal as we done since day 1). This means it is easier for users that uses pre/post script = you will get control when the page has finished loading instead of when navigation starts. You can still use the none option by adding ```--pageLoadStrategy none``` to your run (that is useful if you want to end your tests earlier).
+
 ## 7.0.1 - 2018-05-30
 ### Fixed
 * Upgraded to latest Browsertime (3.0.16) containing two fixes: Using Throttle changing networks failed in Docker for multiple runs [#2063](https://github.com/sitespeedio/sitespeed.io/issues/2063) and HTTP2 push assests missing sometimes in the waterfall for Chrome [Chrome-HAR #21](https://github.com/sitespeedio/chrome-har/pull/21).
