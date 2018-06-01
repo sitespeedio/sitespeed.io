@@ -1,4 +1,7 @@
 # CHANGELOG - sitespeed.io
+## UNRELEASED
+### Fixed
+* Upgraded to PerfCasacde 2.5.2 that fixes Edge tab bug.
 
 ##  7.0.2 - 2018-06-01
 ### Fixed
