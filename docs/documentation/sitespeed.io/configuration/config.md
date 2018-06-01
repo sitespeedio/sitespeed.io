@@ -16,7 +16,8 @@ Browser
   --browsertime.preScript, --preScript                                 Selenium script(s) to run before you test your URL (use it for login, warm the cache, etc). Note that --preScript can be passed multiple times.
   --browsertime.postScript, --postScript                               Selenium script(s) to run after you test your URL (use it for logout etc). Note that --postScript can be passed multiple times.
   --browsertime.delay, --delay                                         Delay between runs, in milliseconds. Use it if your web server needs to rest between runs :)
-  --browsertime.visualMetrics, --visualMetrics, --speedIndex           Calculate Visual Metrics like SpeedIndex, First Visual Change and Last Visuaö Change. Requires FFMpeg and Python dependencies  [boolean]
+  --browsertime.pageLoadStrategy, --pageLoadStrategy                   The Page Load Strategy decides when you have control of the page load. Default is normal meaning you will have control after onload. You can change that to none to get control direct after navigation.  [choices: "normal", "none"] [default: "normal"]
+  --browsertime.visualMetrics, --visualMetrics, --speedIndex           Calculate Visual Metrics like SpeedIndex, First Visual Change and Last Visual Change. Requires FFMpeg and Python dependencies  [boolean]
   --browsertime.video, --video                                         Record a video and store the video. Set it to false to remove the video that is created by turning on visualMetrics. To remove fully turn off video recordings, make sure to set video and visualMetrics to false. Requires FFMpeg to be installed.  [boolean]
   --browsertime.videoParams.framerate, --videoParams.framerate, --fps  Frames per second in the video  [default: 30]
   --browsertime.videoParams.crf, --videoParams.crf                     Constant rate factor for the end result video, see https://trac.ffmpeg.org/wiki/Encode/H.264#crf  [default: 23]
