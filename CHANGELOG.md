@@ -2,7 +2,6 @@
 ## UNRELEASED
 ### Fixed
 * Upgraded to PerfCasacde 2.5.2 that fixes Edge tab bug.
-* Upgraded from Chrome 66 to Chrome 67 in Docker.
 * Upgraded to Browsertime 3.1.0 with new Chromedriver (2.39).
 * Upgraded to Browsertime 3.1.1 with a fix for HTTP2 pushes in Chrome [#2068](https://github.com/sitespeedio/sitespeed.io/issues/2068).
 
