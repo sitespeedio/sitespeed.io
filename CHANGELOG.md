@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+##  7.0.2 - 2018-06-01
 ### Fixed
 * We reverted the change of using pageLoadStrategy *none* as default (we now use normal as we done since day 1). This means it is easier for users that uses pre/post script = you will get control when the page has finished loading instead of when navigation starts. You can still use the none option by adding ```--pageLoadStrategy none``` to your run (that is useful if you want to end your tests earlier).
 
@@ -45,7 +45,7 @@ Read more about [sitespeed.io 7.0](https://www.sitespeed.io/sitespeed.io-7.0/).
 
 As a sitespeed.io user there shouldn't be any breaking changes upgrading from 6.x to 7. However since Browsertime (and latest Firefox) is so much leaner and cleaner you will probably notice that most of your timing metrics will be lower than before.
 
-If you are using a preScript to login the user, you need to wait/verify that the page has actually loaded before you try to manipulate the page, since Browsertime 3.0 change pageLoadStrategy from *normal* to *none* meaning you will be in control direct after the navigation. 
+<strike>If you are using a preScript to login the user, you need to wait/verify that the page has actually loaded before you try to manipulate the page, since Browsertime 3.0 change pageLoadStrategy from *normal* to *none* meaning you will be in control direct after the navigation.</strike> - We reverted this in 7.0.2.
 
 ### Plugin makers
 * The screenshot is not passed as messages anymore to decrease the memory impact. If you need them, you need to get them from disk instead of the queue.
