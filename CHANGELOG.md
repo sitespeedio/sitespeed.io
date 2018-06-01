@@ -2,6 +2,7 @@
 ## UNRELEASED
 ### Fixed
 * Upgraded to PerfCasacde 2.5.2 that fixes Edge tab bug.
+* Upgraded from Chrome 66 to Chrome 67 in Docker.
 
 ##  7.0.2 - 2018-06-01
 ### Fixed
