@@ -1,4 +1,9 @@
 # CHANGELOG - sitespeed.io
+
+## UNRELEASED
+### Added
+* Upgraded to Chrome 67 see [#2069](https://github.com/sitespeedio/sitespeed.io/issues/2069).
+
 ## 7.0.3 - 2018-06-02
 ### Fixed
 * Upgraded to PerfCasacde 2.5.2 that fixes Edge tab bug.
