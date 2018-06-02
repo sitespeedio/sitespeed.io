@@ -1,5 +1,5 @@
 # CHANGELOG - sitespeed.io
-## UNRELEASED
+## 7.0.3 - 2018-06-02
 ### Fixed
 * Upgraded to PerfCasacde 2.5.2 that fixes Edge tab bug.
 * Upgraded to Browsertime 3.1.0 with new Chromedriver (2.39).
