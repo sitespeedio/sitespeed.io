@@ -42,13 +42,6 @@ module.exports = {
           const until = webdriver.until;
           const By = webdriver.By;
 
-          // Since 7.0 we use Selenium pageLoadStrategy none
-          // meaning you will be in control right after the navigation
-          // so we need to wait until the page has finished loading
-          // in this case we waith for the login element but you could
-          // also wait for onload to happen.
-          driver.wait(until.elementLocated(By.id('wpName1')), 5000);
-
           // before you start, make your username and password
           const userName = 'YOUR_USERNAME_HERE';
           const password = 'YOUR_PASSWORD_HERE';
