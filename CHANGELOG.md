@@ -3,6 +3,10 @@
 ## UNRELEASED
 ### Added
 * Upgraded to Chrome 67 see [#2069](https://github.com/sitespeedio/sitespeed.io/issues/2069).
+* Upgraded to Browsertime 3.1.2 with Chromedriver 2.40
+* Upgraded to Firefox 61 beta13
+* Upgraded ADB to work together with Chromedriver > 2.38, making driving Chrome on Android from Ubuntu Docker container work again.
+* Added compare link to compare.sitespeed.io from each URL result in the HTML
 
 ## 7.0.3 - 2018-06-02
 ### Fixed
