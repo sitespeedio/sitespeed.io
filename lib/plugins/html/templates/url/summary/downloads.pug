@@ -11,6 +11,3 @@ if d.browsertime && d.browsertime.har
     - var harName = 'data/browsertime' + harEnding
     - var harDownloadName = downloadName + harEnding
     a.button.button-download(href=harName, download=harDownloadName) Download HAR    
-
-    if options.resultBaseURL
-        a.button.button-download(href='https://compare.sitespeed.io?har1=' + absoluteSummaryPageUrl + harName + '&compare=1', download=harDownloadName) Compare HAR
