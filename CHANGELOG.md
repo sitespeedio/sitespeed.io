@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 7.1.1 - 2018-06-12
+### Fixed
+* Based on correct Docker container to get the right ADB version.
+
 ## 7.1.0 - 2018-06-12
 ### Added
 * Upgraded to Chrome 67 see [#2069](https://github.com/sitespeedio/sitespeed.io/issues/2069) about possible performance regressions. At least for Wikipedia some URLs are slower on 67 than 66. And since 67 now rolled out to a lot of people, you probably want to test with that version. See https://bugs.chromium.org/p/chromium/issues/detail?id=849108
