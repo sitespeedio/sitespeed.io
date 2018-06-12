@@ -64,7 +64,7 @@ Using WebPageReplay in Docker and your Android phone only works on Linux. This i
 Using sitespeed.io:
 
 ```
-docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --cap-add=NET_ADMIN --shm-size=1g --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://en.m.wikipedia.org/wiki/Barack_Obama --chrome.android.package com.android.chrome --xvfb false --chrome.args ignore-certificate-errors-spki-list=PhrPvGIaAMmd29hj8BCZOq096yj7uMpRNHpn5PDxI6I= --chrome.args user-data-dir=/data/tmp/chrome -n 11
+docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --cap-add=NET_ADMIN --shm-size=1g --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://en.m.wikipedia.org/wiki/Barack_Obama --browsertime.chrome.android.package com.android.chrome --browsertime.xvfb false --browsertime.chrome.args ignore-certificate-errors-spki-list=PhrPvGIaAMmd29hj8BCZOq096yj7uMpRNHpn5PDxI6I= --browsertime.chrome.args user-data-dir=/data/tmp/chrome -n 11
 ```
 
 Using Browsertime:
