@@ -1,12 +1,11 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 7.1.0 - 2018-06-12
 ### Added
-* Upgraded to Chrome 67 see [#2069](https://github.com/sitespeedio/sitespeed.io/issues/2069).
+* Upgraded to Chrome 67 see [#2069](https://github.com/sitespeedio/sitespeed.io/issues/2069) about possible performance regressions. At least for Wikipedia some URLs are slower on 67 than 66. And since 67 now rolled out to a lot of people, you probably want to test with that version. See https://bugs.chromium.org/p/chromium/issues/detail?id=849108
 * Upgraded to Browsertime 3.1.2 with Chromedriver 2.40
 * Upgraded to Firefox 61 beta13
 * Upgraded ADB to work together with Chromedriver > 2.38, making driving Chrome on Android from Ubuntu Docker container work again.
-
 
 ## 7.0.3 - 2018-06-02
 ### Fixed
