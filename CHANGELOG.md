@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 7.1.1 - 2018-06-12
+## 7.1.2 - 2018-06-12
 ### Fixed
 * Based on correct Docker container to get the right ADB version.
 
