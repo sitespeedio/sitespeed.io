@@ -52,7 +52,8 @@ function chromeSetup() {
 function setupADB(){
   # Start adb server and list connected devices
   if [ -n "$START_ADB_SERVER" ] ; then
-    sudo adb start-server
+    ADB_PORT=${ADB_PORT:-5037}
+    sudo adb -P $ADB_PORT start-server
     sudo adb devices
 
     if [ $REPLAY ] ; then
