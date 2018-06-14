@@ -75,6 +75,8 @@ And using Docker (remember: only works in Linux hosts):
 docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  -n 1 --browsertime.chrome.android.package com.android.chrome --browsertime.xvfb false https://www.sitespeed.io
 ~~~
 
+If you want to run Docker on Mac OS X, you can follow Appiums [setup](https://github.com/appium/appium-docker-android) by creating a docker-machine, give ut USB access and then run the container from that Docker machine.
+
 # Collect trace log
 One important thing when testing on mobile is to analyze the Chrome trace log. You can get that with *browsertime.chrome.collectTracingEvents*: 
 
