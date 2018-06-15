@@ -45,7 +45,7 @@ sitespeed.io --browsertime.chrome.android.package com.android.chrome https://www
 Remember: To test on Android using Docker you need to be on Linux (tested on Ubuntu). It will not work on OS X.
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --browsertime.xvfb false --browsertime.chrome.android.package com.android.chrome https://www.sitespeed.io
+docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  -n 1 --browsertime.chrome.android.package com.android.chrome --browsertime.xvfb false https://www.sitespeed.io
 ~~~
 
 You will get result as you would with running this normally with summaries and waterfall graphs.
@@ -76,7 +76,7 @@ docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --
 ~~~
 
 # Collect trace log
-One important thing when testing on mobile is to analyze the Chrome trace log. You can get that with *browsertime.chrome.collectTracingEvents*: 
+One important thing when testing on mobile is to analyze the Chrome trace log. You can get that with *browsertime.chrome.collectTracingEvents*:
 
 ~~~bash
 sitespeed.io --browsertime.chrome.android.package com.android.chrome --browsertime.chrome.collectTracingEvents --video --speedIndex https://www.sitespeed.io
@@ -85,7 +85,7 @@ sitespeed.io --browsertime.chrome.android.package com.android.chrome --browserti
 You can also change which categories to get. In this example we only get the devtools.timeline category.
 
 ~~~bash
-sitespeed.io --browsertime.chrome.android.package com.android.chrome --browsertime.chrome.collectTracingEvents --browsertime.chrome.traceCategories "devtools.timeline" https://www.sitespeed.io
+sitespeed.io --browsertime.chrome.android.package com.android.chrome --chrome.timeline https://www.sitespeed.io
 ~~~
 
 
