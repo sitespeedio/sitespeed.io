@@ -3,6 +3,7 @@
 ## UNRELESED
 ### Fixed
 * Copy assets first before generating assets, making pages work even if parts fail [#2081](https://github.com/sitespeedio/sitespeed.io/pull/2081).
+* The Docker container now uses Firefox 61 stable
 
 ## 7.1.2 - 2018-06-12
 ### Fixed
