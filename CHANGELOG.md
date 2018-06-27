@@ -1,10 +1,13 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELESED
+##  7.1.3 - 2018-06-27
 ### Fixed
 * Copy assets first before generating assets, making pages work even if parts fail [#2081](https://github.com/sitespeedio/sitespeed.io/pull/2081).
 * The Docker container uses Firefox 61 stable.
-* Upgraded to Browsertime 3.1.4 and Coach 2.0.4.
+* Upgraded to [Browsertime 3.1.4](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#314---2018-06-25) including latest Geckodriver.
+* Upgraded the [Coach to 2.0.4](https://github.com/sitespeedio/coach/blob/master/CHANGELOG.md#204---2018-06-25) with a fix that makes sitespeed.io faster when generating the result if you you are using many runs.
+
+and Coach 2.0.4.
 
 ## 7.1.2 - 2018-06-12
 ### Fixed
