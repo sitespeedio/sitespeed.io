@@ -74,7 +74,13 @@ When you as user choose to test a URL, this is what happens on a high level:
  $ npm install
  $ bin/sitespeed.js --help
  $ bin/sitespeed.js https://www.sitespeed.io/
- ```
+```
+
+## Vacation July - August
+
+<img src="https://www.sitespeed.io/img/vacation.gif">
+
+We are going to take a long vacation this year again to recharge and make sure we can make sitespeed.io even better this autumn. What does this mean? We will not answer issues within 8 hours that we usually do, but don’t be scared: If we get any important bugs, we will fix them. And we will do maintenance releases when there’s a new Chrome/Firefox. And if you want a change, send us a PR :)
 
 ## More details
 
