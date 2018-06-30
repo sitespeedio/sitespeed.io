@@ -76,6 +76,7 @@ Options:
   --prettyPrint                  Enable to print json/har with spaces and indentation. Larger files, but easier on the eye.  [boolean] [default: false]
   --delay                        Delay between runs, in milliseconds  [number] [default: 0]
   --requestheader, -r            Request header that will be added to the request. Add multiple instances to add multiple request headers. Use the following format key:value
+  --cookie                       Cookie that will be added to the request. Add multiple instances to add multiple request cookies. Use the following format cookieName=cookieValue
   --block                        Domain to block. Add multiple instances to add multiple domains that will be blocked.
   --percentiles                  The percentile values within the data browsertime will calculate and report.  [array] [default: [0,10,90,99,100]]
   --decimals                     The decimal points browsertime statistics round to.  [number] [default: 0]
