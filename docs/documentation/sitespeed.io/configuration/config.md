@@ -148,6 +148,7 @@ Options:
   --debug                             Debug mode logs all internal messages to the console.  [boolean] [default: false]
   --verbose, -v                       Verbose mode prints progress messages to the console. Enter up to three times (-vvv) to increase the level of detail.  [count]
   --browsertime.preURL, --preURL      A URL that will be accessed first by the browser before the URL that you wanna analyze. Use it to fill the cache.
+  --browsertime.cookie, --cookie      Cookie that will be added to the request. Use the following format cookieName=cookieValue
   --browsertime.headless, --headless  Run the browser in headless mode. This is the browser internal headless mode, meaning you cannot collect visual metrics or in Chrome run any WebExtension.  [boolean] [default: false]
   --mobile                            Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Apple iPhone 6.  [boolean] [default: false]
   --resultBaseURL                     The base URL to the server serving the HTML result. In the format of https://result.sitespeed.io
