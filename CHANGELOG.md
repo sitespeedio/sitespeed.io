@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Added
+* Use Browsertime 3.2.0 that fixed Firefox browsertim extension support and added support for easily adding a cookie: ```--cookie name=value```
+
 ##  7.1.3 - 2018-06-27
 ### Fixed
 * Copy assets first before generating assets, making pages work even if parts fail [#2081](https://github.com/sitespeedio/sitespeed.io/pull/2081).
