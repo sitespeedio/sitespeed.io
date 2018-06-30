@@ -31,7 +31,7 @@ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io
 In the example the browser will first go to https://www.sitespeed.io/documentation/ and then with a primed cache navigate to https://www.sitespeed.io/.
 
 ### How do I set a cookie?
-The current way to set cookies is to add a request header using **-r**. We may want to add specific cookie functionality in the future!
+Since 7.2.0 the best way to add a cookie is by using <code>--cookie name=value</code> where the name is the name of the cookie and the value ... the value :) The cookie will be set on the domain that you test.
 
 ### How do I test multiple pages in the same run?
 
