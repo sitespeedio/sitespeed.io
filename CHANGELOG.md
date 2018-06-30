@@ -1,8 +1,8 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+##  7.2.0 - 2018-06-30
 ### Added
-* Use Browsertime 3.2.0 that fixed Firefox browsertim extension support and added support for easily adding a cookie: ```--cookie name=value```
+* Use Browsertime 3.2.0 that fixed Firefox browsertime extension support (broken in Firefox when we upgraded to 61 since FF changed the API) and added support for easily adding a cookie: ```--cookie name=value```
 
 ##  7.1.3 - 2018-06-27
 ### Fixed
