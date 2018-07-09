@@ -135,7 +135,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 ~~~
 
 ## Infinite loop
-Another way is to just run the script in an infinite loop and then have a file that you remove (so the run stops) when you want to update your instance.
+Another way is to just run the script in an infinite loop and then have a file that you remove (so the run stops) when you want to update your instance. This example script is on Ubuntu.
 
 ~~~
 #!/bin/bash
@@ -189,6 +189,13 @@ do
   cleanup
 done
 ~~~
+
+And make sure the script start on server restart. Edit the crontab <code>crontab -e</code> and add (loop.sh is the name of your loop script file):
+
+~~~
+@reboot rm /home/ubuntu/sitespeed.run;/home/ubuntu/loop.sh
+~~~
+
 
 ## default.json
 And our default configuration is in *default.json*:
