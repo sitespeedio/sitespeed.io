@@ -104,7 +104,8 @@ Finally you can run it the same way as mentioned above without the volume mount.
 docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io my-custom-sitespeedio firefox --plugins.add /my-custom-plugin --my-custom-plugin.option test -n 1 https://www.sitespeed.io/
 ~~~
 
-Pretty cool, huh? :-)
+Pretty cool, huh? :-) Make sure that when you use <code>--plugins.add</code> that the path is absolute to your plugin, that will make it easier to find (relative works too but then that is usually harder to work out).
+
 
 ## How to create your own plugin
 First let us know about your cool plugin! Then share it with others by publish it to npm or just use Github.
