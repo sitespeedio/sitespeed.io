@@ -2,6 +2,7 @@
 ## UNRELEASED
 ### Fixed
 * Updated Browsertime with 3.2.1 that fixes multiple cookies support and refreshed browsertime extension.
+* Firefox sometimes creates a HAR that is broken, guard our code against HAR with null response content size [#2096](https://github.com/sitespeedio/sitespeed.io/pull/2096).
 
 ##  7.2.0 - 2018-06-30
 ### Added
