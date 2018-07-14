@@ -1,4 +1,7 @@
 # CHANGELOG - sitespeed.io
+## UNRELEASED
+### Fixed
+* Updated Browsertime with 3.2.1 that fixes multiple cookies support and refreshed browsertime extension.
 
 ##  7.2.0 - 2018-06-30
 ### Added
