@@ -160,7 +160,7 @@ Create a config file and call it config.json:
     "namespace": "sitespeed_io.desktopFirstView"
   },
   "plugins": {
-    "disable": ["html"]
+    "remove": ["html"]
   },
   "utc": true
 }
