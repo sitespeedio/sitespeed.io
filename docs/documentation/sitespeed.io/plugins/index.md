@@ -225,6 +225,21 @@ There are a couple of pre defined messages that will always passed around in the
 
 Plugins also pass on message to each other. The HTML plugin also sends a **html.finished** message when the HTML is written to disk. The S3 plugin listens for that message and when it gets it it uploads the files and then sends a **s3.finished** message. And then the Slack plugin listens on **s3.finished** messages and then sends a Slack message.
 
+### Debug/log
+You can use the sitespeed.io log to log messages. We use [intel](https://www.npmjs.com/package/intel) for logging.
+
+You get the log object in the context object (so there's no need to require the log) but you you should get a specfic instance so that you can filter the log/see which part of sitespeed.io that writes to the log.
+
+In the [open](#opencontext-options) function you can add something like this:
+
+~~~
+// Register a logger for this plugin, a unique name so we can filter the log
+// And save the log for later
+this.log = context.intel.getLogger('sitespeedio.plugin.PLUGIN_NAME');
+this.log.info('Plugin PLUGIN_NAME started');
+~~~
+
+
 ### Create HTML for your plugin
 
 Since 6.0 your plugin can generate HTML. You can either generate HTML per run or per page. The first thing you need to do is to report your PUG file to the HTML plugin. You do that by sending a message to the HTML plugin.
