@@ -80,6 +80,21 @@ From the context object you get a hold of the Selenium [Webdriver object](http:/
 
 Note: Use the supplied *driver* object to go to a specific page.
 
+## Debug/log from your script
+In your script you can get hold of the log object from sitespeed.io. This is super useful when you want to test your script and verify that everything works as it should. We use [intel](https://www.npmjs.com/package/intel) for logging.
+
+~~~
+module.exports = {
+  run(context) {
+    return context.runWithDriver((driver) => {
+      // Simple example to add a log message
+      // Remember that you can log message on different levels
+      context.log.info('Log message from the task');
+    });
+  }
+};
+~~~
+
 ## Test a page with primed cache
 One other thing you can do with a pre script is simulate a user that browsed a couple of pages and then measure the performance of a page (by default the cache is emptied when you use sitespeed.io).
 
