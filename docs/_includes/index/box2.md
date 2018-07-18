@@ -8,3 +8,4 @@
  * [Compare](https://compare.sitespeed.io/) {% include version/compare.txt %} [[npm](https://www.npmjs.com/package/@sitespeed.io/compare)/[changelog](https://github.com/sitespeedio/compare/blob/master/CHANGELOG.md)]
  * [Throttle](/documentation/throttle/) {% include version/throttle.txt %} [[npm](https://www.npmjs.com/package/@sitespeed.io/throttle)/[changelog](https://github.com/sitespeedio/throttle/blob/master/CHANGELOG.md)]
  * [Chrome-HAR](/documentation/chrome-har/) {% include version/chrome-har.txt %} [[npm](https://www.npmjs.com/package/chrome-har)/[changelog](https://github.com/sitespeedio/chrome-har/blob/master/CHANGELOG.md)]
+  * Chrome-trace {% include version/chrome-trace.txt %} [[npm](https://www.npmjs.com/package/chrome-trace)/[changelog](https://github.com/sitespeedio/chrome-trace/blob/master/CHANGELOG.md)]
