@@ -1,4 +1,8 @@
 # CHANGELOG - sitespeed.io
+## UNRELEASED
+### Fixed
+* Updated to Browsertime 3.2.3 with two important fixes: Fix error log when you remove the video and keep visual metrics [Browsertime #621](https://github.com/sitespeedio/browsertime/pull/621) and changed timeout from 5s to 50s when waiting on navigation [#623](https://github.com/sitespeedio/browsertime/pull/623).
+
 ## 7.2.1 - 2018-07-15
 ### Fixed
 * Updated Browsertime with 3.2.1 that fixes multiple cookies support and refreshed browsertime extension. Also fixes User Timing metrics using dots.
