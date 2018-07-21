@@ -58,7 +58,7 @@ module.exports = {
 };
 ~~~
 
-Make sure to change the username & password
+Make sure to change the username & password!
 {: .note .note-warning}
 
 Then run it like this:
@@ -73,12 +73,38 @@ The script will then login the user and access https://en.wikipedia.org/wiki/Bar
 Checkout the magic row:
 
 ~~~
-var webdriver = context.webdriver;
+const webdriver = context.webdriver;
 ~~~
 
-From the context object you get a hold of the Selenium [Webdriver object](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html) and the  mechanisms for locating an element on the page.
+From the context object you get a hold of the Selenium [Webdriver object](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html) and the mechanisms for locating an element on the page.
 
 Note: Use the supplied *driver* object to go to a specific page.
+
+## Data to the pre/post script
+
+Your pre/post script is fed with the Selenium **driver** (that you use if you need to navigate to a page) and a batch of other objects in the context object.
+
+~~~
+ const context = {
+      url,
+      options,
+      log,
+      storageManager: this.storageManager,
+      taskData: {},
+      index,
+      webdriver,
+      runWithDriver: function(driverScript) {
+        return browser.runWithDriver(driverScript);
+      }
+    };
+~~~
+
+The important objects that you can use are:
+* *url* - The URL of the page that you are going to test
+* *options* - The options object that is created from the CLI. Here you can get hold of all paramaters you pass on to sitespeed.io
+* *log* - this is the internal log object we use in sitespeed.io to write the log output. We use [intel](https://www.npmjs.com/package/intel) for logging.
+* *index* - which index of the runs (first, second etc).
+* *webdriver* - the Selenium [Webdriver object](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html) that is the way to get hold of the Selenium objects that you need.
 
 ## Debug/log from your script
 In your script you can get hold of the log object from sitespeed.io. This is super useful when you want to test your script and verify that everything works as it should. We use [intel](https://www.npmjs.com/package/intel) for logging.
@@ -93,6 +119,19 @@ module.exports = {
     });
   }
 };
+~~~
+
+## Pass your own options to your pre/post scripts
+You can add your own parameters to the options object (by adding a parameter) and then pick them up in the pre/post script. The scripts runs in the context of browsertime, so you need to 
+pass it on in that context.
+
+For example: you wanna pass on a password to your script, you can do that by adding <code>--browsertime.my.password MY_PASSWORD</code> and then in your code get hold of that with: 
+
+~~~
+...
+// We are in browsertime context so you can skip that from your options object
+context.log.info(context.options.my.password);
+...
 ~~~
 
 ## Test a page with primed cache
