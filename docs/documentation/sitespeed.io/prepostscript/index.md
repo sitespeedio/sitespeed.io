@@ -121,6 +121,10 @@ module.exports = {
 };
 ~~~
 
+If you run in Docker it can sometimes be hard to see/know what happens. To verify that your pre/post script works as they should (and the page loads as you think), you can enable a video of the full run (pre/post scripts and the test). Do that by adding: <code>--browsertime.videoParams.combine</code>
+
+Then your video will include all your steps. Perfect for debugging.
+
 ## Pass your own options to your pre/post scripts
 You can add your own parameters to the options object (by adding a parameter) and then pick them up in the pre/post script. The scripts runs in the context of browsertime, so you need to 
 pass it on in that context.
