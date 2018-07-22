@@ -125,6 +125,9 @@ If you run in Docker it can sometimes be hard to see/know what happens. To verif
 
 Then your video will include all your steps. Perfect for debugging.
 
+You need to have video turned on (in Docker it is on by default) to be able to combine the video.
+{: .note .note-warning}
+
 ## Pass your own options to your pre/post scripts
 You can add your own parameters to the options object (by adding a parameter) and then pick them up in the pre/post script. The scripts runs in the context of browsertime, so you need to 
 pass it on in that context.
