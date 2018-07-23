@@ -1,0 +1,54 @@
+---
+layout: default
+title: How to create issues
+description: When you create a bug report for a sitespeed.io project, there are a couple of things that you can do to help us.
+authorimage: /img/aboutus/peter.jpg
+intro: When you create an bug report for a sitespeed.io project, there are a couple of things that you can do to help us.
+keywords: issues, bug, sitespeed.io, sitespeed, browsertime
+nav: blog
+---
+
+# How to create bug reports
+
+<b>TL;DR - Please create reproducable bug reports!</b>
+
+
+- [Explain how to reproduce your issue](#explain-how-to-reproduce-your-issue)
+- [What else you can do](#what-else-you-can-do)
+
+
+We love when you create a new issue for one the sitespeed.io projects. New issues helps us getting the project better. It also good to create the issues in Github instead of hitting us on [Slack](https://sitespeedio.herokuapp.com/), since [Github](https://github.com/sitespeedio/sitespeed.io/issues/new) is searchable and help other people who have the same problem. In other words, we love issues. We have even more love for PRs but an issue is a good start :)
+
+Sometimes we get a really detailed issue: You describe exactly how you do when you get the problem, you share the logs, you write down what you have tested, share screenshots, share videos. When I get an issue like that, it always jump to my number one prioritization. If you put down all the time and effort to really describe the issue, I want to put all my effort to fixing it.
+
+It also happens (quite often) that we get issues that misses important information, so we need to ask you again and again about the problem (like how to reproduce). Sometimes we need to do that as two/three/four times within that issue. Issues that misses vital information takes longer time to fix/close and that makes us spend more time asking questions instead of fixing actual bugs or creating new functionallity. 
+
+We use a [issue template](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/.github/ISSUE_TEMPLATE.md) with a comment of what we need but it doesn't seems to be the best way so let us instead show you what we need.
+
+## Explain how to reproduce your issue
+The best way to make sure we can fix your issue, is to make sure we can reproduce the problem you have. If we can reproduce the problem, we can verify that we actually have fixed it with our code change.
+
+**Exactly** what do we mean by making it reproducable? We should be able to copy/paste your example CLI parameters and try on our local machine.
+
+To help us reproduce your problem there are a couple of things we need:
+* Show us exactly how you run your tests (all parameters, all configuration). Mask out any passwords. But please do not leave out things from the configuration.
+* Include the URL that causes the problem. If the URL isn't public, please try to reproduce the problem on another URL that we can test. If the URL is super secret, you can share that to us in an email (write it in the issue and you can get the address). But we prefer public URLs so others also can reproduce the problem.
+* Include the log output from your run. If you share a long log, share it in a [gist](https://gist.github.com/).
+* Give us the exact version of sitespeed.io you are using (so we know we use the same version when we try to reproduce it).
+* Tell us what OS you are using and if you are using Docker (you should!) give us the base OS where you run your container. 
+* If you don't use Docker: Include the browser version you are using.
+
+If you give us this information we can usually fix your issue faster.
+
+## What else you can do
+
+* Best case you can fix the issue and send us a PR with a fix. We love PR for bugs :) But of course that is only best case scenario.
+
+* Search current [Github issues](https://github.com/sitespeedio/sitespeed.io/issues). Is this bug reported before? Does it lack info? Please add your own comment to that issue if it is open. If you aren't sure that your bug is the same as the other bug, please create another issue. Do not hihack issues. Do not comment on closed issue, please create a new issue instead and add a reference to the old issue.
+
+* Do you think this is somehow related to Docker (generic Docker issues etc)? Then please [search](https://duckduckgo.com/) for the that problem or head over to [forums.docker.com](https://forums.docker.com/) and have a look there first.
+
+* Is there a problem with the video? Then make sure to enable the full original video so you can share that with us, do that by adding <code>--browsertime.videoParams.keepOriginalVideo</code> to your run (or if you use Browsertime: <code>--videoParams.keepOriginalVideo</code>).
+
+
+/Peter
