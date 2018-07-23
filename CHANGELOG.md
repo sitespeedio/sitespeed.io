@@ -1,4 +1,9 @@
 # CHANGELOG - sitespeed.io
+
+## UNRELEASED
+### Fixed
+* Wrong formating for date for statsd in some cases as reported in [#2106](https://github.com/sitespeedio/sitespeed.io/issues/2106). Fixed with [#2107](https://github.com/sitespeedio/sitespeed.io/pull/2107) by [Omri](https://github.com/omrilotan) -  much love :)
+
 ## 7.2.2 - 2018-07-20
 ### Fixed
 * Updated to Browsertime 3.2.3 with two important fixes: Fix error log when you remove the video and keep visual metrics [Browsertime #621](https://github.com/sitespeedio/browsertime/pull/621) and changed timeout from 5s to 50s when waiting on navigation [#623](https://github.com/sitespeedio/browsertime/pull/623).
