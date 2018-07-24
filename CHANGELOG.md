@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Fixed
+* Added missing grups for a couple of Browsertime cli params so that when you run help all parameters are sorted in the right group [#2113](https://github.com/sitespeedio/sitespeed.io/pull/2113).
+
 ## 7.2.3 - 2018-07-23
 ### Fixed
 * Wrong formating for date for statsd in some cases as reported in [#2106](https://github.com/sitespeedio/sitespeed.io/issues/2106). Fixed with [#2107](https://github.com/sitespeedio/sitespeed.io/pull/2107) by [Omri](https://github.com/omrilotan) -  much love :)
