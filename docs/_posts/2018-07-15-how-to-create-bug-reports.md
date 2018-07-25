@@ -25,6 +25,8 @@ It also happens (quite often) that we get issues that misses important informati
 
 We use a [issue template](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/.github/ISSUE_TEMPLATE.md) with a comment of what we need but it doesn't seems to be the best way so let us instead show you what we need.
 
+Before you start creating a issue, you should make sure you have read through our [F.A.Q and Best Practice](https://www.sitespeed.io/documentation/sitespeed.io/best-practice/).
+
 ## Explain how to reproduce your issue
 The best way to make sure we can fix your issue, is to make sure we can reproduce the problem you have. If we can reproduce the problem, we can verify that we actually have fixed it with our code change.
 
