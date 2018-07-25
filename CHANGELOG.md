@@ -1,5 +1,13 @@
 # CHANGELOG - sitespeed.io
 
+## 7.3.0 - 2018-07-25
+### Fixed
+* Added missing grups for a couple of Browsertime cli params so that when you run help all parameters are sorted in the right group [#2113](https://github.com/sitespeedio/sitespeed.io/pull/2113).
+
+### Added
+* You can now append text and HTML to the annotation sent to Graphite. This is useful if you want to add extra info to the annotation. Use it like this ```--graphite.annotationMessage``` [#2114](https://github.com/sitespeedio/sitespeed.io/pull/2114). Thanks to [@svampen](https://github.com/Svampen) that had the idea in [#2102](https://github.com/sitespeedio/sitespeed.io/issues/2102).
+* You can also add extra tags to the annotation ```--graphite.annotationTag``` [#2112](https://github.com/sitespeedio/sitespeed.io/pull/2112).
+
 ## 7.2.3 - 2018-07-23
 ### Fixed
 * Wrong formating for date for statsd in some cases as reported in [#2106](https://github.com/sitespeedio/sitespeed.io/issues/2106). Fixed with [#2107](https://github.com/sitespeedio/sitespeed.io/pull/2107) by [Omri](https://github.com/omrilotan) -  much love :)
