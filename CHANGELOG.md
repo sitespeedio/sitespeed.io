@@ -6,6 +6,7 @@
 
 ### Added
 * You can now append text and HTML to the annotation sent to Graphite. This is useful if you want to add extra info to the annotation. Use it like this ```--graphite.annotationMessage``` [#2114](https://github.com/sitespeedio/sitespeed.io/pull/2114).
+* You can also add extra tags to the annotation ```--graphite.annotationTag``` [#2112](https://github.com/sitespeedio/sitespeed.io/pull/2112).
 
 ## 7.2.3 - 2018-07-23
 ### Fixed
