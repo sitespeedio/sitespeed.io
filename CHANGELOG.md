@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Fixed
+* Updated to Chrome 68 in the Docker container.
+
 ## 7.3.0 - 2018-07-25
 ### Fixed
 * Added missing grups for a couple of Browsertime cli params so that when you run help all parameters are sorted in the right group [#2113](https://github.com/sitespeedio/sitespeed.io/pull/2113).
