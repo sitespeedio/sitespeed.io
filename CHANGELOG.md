@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 7.3.2 - 2018-07-26
+### Fixed
+* 7.3.1 got stuck at npm :(
+
 ## 7.3.1 - 2018-07-26
 ### Fixed
 * There was a bug in 7.3.0 that broke the annotation link.
