@@ -1,8 +1,8 @@
 # CHANGELOG - sitespeed.io
 
-## 7.3.3 - 2018-07-26
+## 7.3.4 - 2018-07-26
 ### Fixed
-* 7.3.1 and 7.3.2 got stuck at npm :(
+* 7.3.1, 7.3.2, 7.3.3  got stuck at npm :(
 
 ## 7.3.1 - 2018-07-26
 ### Fixed
