@@ -1,8 +1,8 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 7.3.1 - 2018-07-26
 ### Fixed
-* Updated to Chrome 68 in the Docker container.
+* There was a bug in 7.3.0 that broke the annotation link.
 
 ## 7.3.0 - 2018-07-25
 ### Fixed
