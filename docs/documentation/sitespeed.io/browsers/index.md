@@ -173,3 +173,13 @@ In Chrome, you just add the switches <code>--browsertime.chrome.args disable-htt
 
 For Firefox, you need to turn off HTTP/2 and SPDY, and you do that by setting the Firefox preferences:
 <code>--browsertime.firefox.preference network.http.spdy.enabled:false --browsertime.firefox.preference network.http.spdy.enabled.http2:false --browsertime.firefox.preference network.http.spdy.enabled.v3-1:false</code>
+
+## How does it work behind the scene?
+We use [Browsertime](https://github.com/sitespeedio/browsertime) to drive the browser. The simplest version of testing a URL works like this: 
+
+1. Ask the browser to navigate to the URL (using JavaScript).
+2. Check if the URL has changed to URL check every 500 ms (time out after 50 s).
+3. Loop to 2. until the URL has changed.
+4. Check if the page has finished loading using the **pageCompleteCheck** or **pageCompleteCheckInactivity**.
+5. Loop to 4 until the check is done (return true).
+6. Collect all the metrics using JavaScript.
