@@ -4,7 +4,7 @@ title: How to Write a Good Bug Report
 description: When you create a bug report for a sitespeed.io project, there are a couple of things that you can do to help us.
 keywords: issues, bug, sitespeed.io, sitespeed, browsertime
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: You can use Firefox, Chrome and Chrome on Android to collect metrics.
+twitterdescription: When you create a bug report for a sitespeed.io project, there are a couple of things that you can do to help us.
 nav: documentation
 category: sitespeed.io
 ---
@@ -19,23 +19,24 @@ category: sitespeed.io
 {:toc}
 
 ## We love a new bug report
-We love when you create a new issue for sitespeed.io! We really do. New issues helps us getting the project better and it will help other users. It also good to create the issues in Github instead of hitting us on [Slack](https://sitespeedio.herokuapp.com/), since [Github](https://github.com/sitespeedio/sitespeed.io/issues/new) is searchable and help other people who have the same problem. In other words, we love issues.
+We love when you create a new issue for sitespeed.io! We really do. New issues helps us getting the project better and it will help other users. In other words, we love issues.
 
-Sometimes we get a really detailed issue: You describe exactly how you do when you get the problem, you share the logs, you write down what you have tested, share screenshots, share videos. When I get an issue like that, it always jump to my number one prioritization. If you put down all the time and effort to really describe the issue, I want to put all my effort to fixing it.
+Sometimes we get a really detailed issue: You describe exactly how you do when you get the problem, you share the log, you write down what you have tested, share screenshots, share videos. You even tries to understand why you get this bug. When we get an issue like that, it always jump to my number one prioritization. If you put down all the time and effort to really describe the issue, we want to put all my effort to fixing it.
 
-It also happens (quite often) that we get issues that misses important information, so we need to ask you again and again about the problem (like how to reproduce). Sometimes we need to do that as two/three/four times within that issue. Issues that misses vital information takes longer time to fix/close and that makes us spend more time asking questions instead of fixing actual bugs or creating new functionallity. 
+It also happens (quite often) that we get issues that misses important information, so we need to ask you again and again about the problem (like how to reproduce the issue). Sometimes we need to do that two/three/four times within that issue. Issues that misses vital information takes longer time to fix/close and that makes us spend more time asking questions instead of fixing actual bugs or creating new functionallity. 
 
-We use a [issue template](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/.github/ISSUE_TEMPLATE.md) with a comment of what we need but it doesn't seems to be the best way so let us instead show you what we need.
+We use a [issue template](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/.github/ISSUE_TEMPLATE.md) with a comment of what we need write but it seems that is not the best way so let us instead show you what we need!
 
 Before you start creating a issue, you should make sure you have read through our [F.A.Q and Best Practice](https://www.sitespeed.io/documentation/sitespeed.io/best-practice/).
 
 ## Explain how to reproduce your issue
 The best way to make sure we can fix your issue, is to make sure we can reproduce the problem you have. If we can reproduce the problem, we can verify that we actually have fixed it with our code change.
 
-**Exactly** what do we mean by making it reproducable? We should be able to copy/paste your example CLI parameters and try on our local machine.
+**Exactly** what do we mean by making it reproducable? We should be able to copy/paste your example CLI parameters and try on our local machine and then get the same problem that you have.
 
 To help us reproduce your problem there are a couple of things we need:
-* Show us exactly how you run your tests (all parameters, all configuration). Mask out any passwords. But please do not leave out things from the configuration.
+
+* Show us exactly how you run your tests (all parameters, all configuration). Mask out any passwords. But please do not leave out things from the configuration!
 * Include the URL that causes the problem. If the URL isn't public, please try to reproduce the problem on another URL that we can test. If the URL is super secret, you can share that to us in an email (write it in the issue and you can get the address). But we prefer public URLs so others also can reproduce the problem.
 * Include the log output from your run. If you share a long log, share it in a [gist](https://gist.github.com/).
 * Give us the exact version of sitespeed.io you are using (so we know we use the same version when we try to reproduce it).
