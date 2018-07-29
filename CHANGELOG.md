@@ -1,5 +1,16 @@
 # CHANGELOG - sitespeed.io
 
+## 7.3.5 - 2018-07-29
+* Updated the Docker container to use Chrome 68.
+
+## 7.3.4 - 2018-07-26
+### Fixed
+* 7.3.1, 7.3.2, 7.3.3  got stuck at npm :(
+
+## 7.3.1 - 2018-07-26
+### Fixed
+* There was a bug in 7.3.0 that broke the annotation link.
+
 ## 7.3.0 - 2018-07-25
 ### Fixed
 * Added missing grups for a couple of Browsertime cli params so that when you run help all parameters are sorted in the right group [#2113](https://github.com/sitespeedio/sitespeed.io/pull/2113).
