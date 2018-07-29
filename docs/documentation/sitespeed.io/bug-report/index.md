@@ -1,23 +1,25 @@
 ---
 layout: default
-title: How to create issues
+title: How to Write a Good Bug Report
 description: When you create a bug report for a sitespeed.io project, there are a couple of things that you can do to help us.
-authorimage: /img/aboutus/peter.jpg
-intro: When you create an bug report for a sitespeed.io project, there are a couple of things that you can do to help us.
 keywords: issues, bug, sitespeed.io, sitespeed, browsertime
-nav: blog
+image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+twitterdescription: You can use Firefox, Chrome and Chrome on Android to collect metrics.
+nav: documentation
+category: sitespeed.io
 ---
+[Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / How to Write a Good Bug Report
 
-# How to create bug reports
+# How to Write a Good Bug Report
+{:.no_toc}
 
-<b>TL;DR - Please create reproducable bug reports!</b>
+<b>TL;DR - Please create a reproducable bug report!</b>
 
+* Lets place the TOC here
+{:toc}
 
-- [Explain how to reproduce your issue](#explain-how-to-reproduce-your-issue)
-- [What else you can do](#what-else-you-can-do)
-
-
-We love when you create a new issue for one the sitespeed.io projects. New issues helps us getting the project better. It also good to create the issues in Github instead of hitting us on [Slack](https://sitespeedio.herokuapp.com/), since [Github](https://github.com/sitespeedio/sitespeed.io/issues/new) is searchable and help other people who have the same problem. In other words, we love issues. We have even more love for PRs but an issue is a good start :)
+## We love a new bug report
+We love when you create a new issue for sitespeed.io! We really do. New issues helps us getting the project better and it will help other users. It also good to create the issues in Github instead of hitting us on [Slack](https://sitespeedio.herokuapp.com/), since [Github](https://github.com/sitespeedio/sitespeed.io/issues/new) is searchable and help other people who have the same problem. In other words, we love issues.
 
 Sometimes we get a really detailed issue: You describe exactly how you do when you get the problem, you share the logs, you write down what you have tested, share screenshots, share videos. When I get an issue like that, it always jump to my number one prioritization. If you put down all the time and effort to really describe the issue, I want to put all my effort to fixing it.
 
@@ -52,5 +54,3 @@ If you give us this information we can usually fix your issue faster.
 
 * Is there a problem with the video? Then make sure to enable the full original video so you can share that with us, do that by adding <code>--browsertime.videoParams.keepOriginalVideo</code> to your run (or if you use Browsertime: <code>--videoParams.keepOriginalVideo</code>).
 
-
-/Peter

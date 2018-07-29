@@ -36,3 +36,4 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [WebPageTest](webpagetest/) - drive WebPageTest and fetch metrics and graph them.
  * [WebPageReplay](webpagereplay/) - WebPageReplay is proxy that first records your web site and then replay it locally. That can help you find performance regression in the front-end code easier: Latency/server timings are constant.
  * [Developers](developers/) - start here when you want to do PRs or create a plugin.
+ * [How to Write a Good Bug Report](bug-report/) - if you write a good bug report, we will spend more time helping you fixing the problem instead of asking questions.
