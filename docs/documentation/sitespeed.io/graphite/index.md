@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Store your metrics in Graphite.
-description: Setup your dashboard using Docker Compose, and continuously test the performance of your web site.
+description: How to configure Graphite, best practices and how to use StatsD or DataDog.
 keywords: graphite, documentation, web performance, sitespeed.io
 nav: documentation
 category: sitespeed.io

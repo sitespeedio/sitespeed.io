@@ -30,7 +30,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Metrics](metrics/) - configure which metrics you want to use.
  * [Continuous Integration](continuous-integration/) - generate JUnit XML/TAP and use Jenkins, Grunt or the Gulp plugin.
  * [Docker](docker/) - how to use our Docker containers.
- * [Graphite](graphite/) - how to store your metrics in Graphite.
+ * [Graphite](graphite/) - how to configure and store your metrics in Graphite (and using StatsD).
  * [Video](video/) - all that you can do with the video.
  * [Upgrade](upgrade/) - upgrading from 5.x to 6.0 check out our guide here.
  * [Mobile phones](mobile-phones/) - test using your mobile phone (Android only).
