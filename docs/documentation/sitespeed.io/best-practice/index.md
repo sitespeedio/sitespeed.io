@@ -88,6 +88,11 @@ When you run <code>--preURL</code> the browser starts, then access the preURL an
 
 If you use the <code>--preScript</code> feature, it is the same behavior, we don't clear the cache between preScript and the URL you want to test.
 
+### My pre/post script doesn't work?
+We use Selenium pre/post script navigation. You can [read more](/documentation/sitespeed.io/prepostscript/) about of our pre/post script setup and focus on the [debug section](/documentation/sitespeed.io/prepostscript/#debuglog-from-your-script) if you have any problem.
+
+If you have problem with Selenium (getting the right element etc), PLEASE do not create issues in sitespeed.io. Head over to the [Selenium community](https://docs.seleniumhq.org/) and they can help you.
+
 ## Servers
 What you should know before you choose where to run sitespeed.io.
 
