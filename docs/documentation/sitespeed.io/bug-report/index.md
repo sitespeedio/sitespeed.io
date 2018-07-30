@@ -55,3 +55,5 @@ If you give us this information we can usually fix your issue faster.
 
 * Is there a problem with the video? Then make sure to enable the full original video so you can share that with us, do that by adding <code>--browsertime.videoParams.keepOriginalVideo</code> to your run (or if you use Browsertime: <code>--videoParams.keepOriginalVideo</code>).
 
+* Is your problem related to that you are behind a proxy? Then we kindly recommend that you run your tests without a proxy. Run the tests on a network where you don't need to use a proxy.
+
