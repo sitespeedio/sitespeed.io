@@ -175,7 +175,7 @@ For Firefox, you need to turn off HTTP/2 and SPDY, and you do that by setting th
 <code>--browsertime.firefox.preference network.http.spdy.enabled:false --browsertime.firefox.preference network.http.spdy.enabled.http2:false --browsertime.firefox.preference network.http.spdy.enabled.v3-1:false</code>
 
 ## How does it work behind the scene?
-We use [Browsertime](https://github.com/sitespeedio/browsertime) to drive the browser. The flow:
+We use [Browsertime](https://github.com/sitespeedio/browsertime) to drive the browser. This is the flow per URL you test:
 
 1. We setup connectivity for the browser using different engines depending on [your configuration](/documentation/sitespeed.io/connectivity/).
 2. Open the browser with a new user session (cleared cache etc).
