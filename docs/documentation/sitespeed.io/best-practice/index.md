@@ -93,7 +93,7 @@ We use Selenium pre/post script navigation. You can [read more](/documentation/s
 
 If you have problem with Selenium (getting the right element etc), PLEASE do not create issues in sitespeed.io. Head over to the [Selenium community](https://docs.seleniumhq.org/) and they can help you.
 
-### How do you pass HTML as a CLI parameter?
+### How do you pass HTML/JavaScript as a CLI parameter?
 The easiest way to pass HTML to the CLI is to pass on the whole message as a String (use a quotation mark to start and end the String) and then do not use quotation marks inside the HTML.
 
 Say that you want to pass on your own link as an annotation message, then do like this:
