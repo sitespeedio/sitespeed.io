@@ -36,7 +36,7 @@ And we also have plugins so that you can use:
  * [WebPageTest](https://www.webpagetest.org) through the [WebPageTest API](https://github.com/marcelduran/webpagetest-api)
  * [gpagespeed](https://www.npmjs.com/package/gpagespeed)
 
-And of course we use all the tools in the [sitespeed.io suite](({{site.baseurl}}/documentation/).
+And of course we use all the tools in the [sitespeed.io suite]({{site.baseurl}}/documentation/).
 
 ### Analyse a page, what happens (10 step version)
 This is the super simple version, leaving out all other tools that are used:
