@@ -184,8 +184,8 @@ We use [Browsertime](https://github.com/sitespeedio/browsertime) to drive the br
 5. If you configured a <code>--preURL</code> the browser navigates to that URL (you should only do that if you don't use a **preScript**).
 6. If you configured the video, the video starts to record the screen.
 7. We ask the browser to navigate to the URL (using JavaScript).
-8. Check if the URL has changed to URL check every 500 ms (time out after 50 s).
-9. Loop to 2. until the URL has changed.
+8. Check if the URL in the browser has changed to configured URL (check every 500 ms, time out after 50 s).
+9. Loop to 2. until the URL in the browser has changed.
 10. Check if the page has finished loading using the pre configured **pageCompleteCheck** or <code>--pageCompleteCheck</code> or <code>--pageCompleteCheckInactivity</code>.
 11. Loop to 4 until the check is done (return true).
 12. Stop the video.
