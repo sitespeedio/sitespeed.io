@@ -52,6 +52,8 @@ This is the super simple version, leaving out all other tools that are used:
 9. Generate a HTML report and/or send the metrics to Graphite or store the metrics however you want, with your own plugin.
 10. Enjoy!
 
+Checkout the [full version](/documentation/sitespeed.io/browsers/#how-does-it-work-behind-the-scene).
+
 ### The big picture (with all the tools)
 The big picture looks something like this:
 
