@@ -175,11 +175,21 @@ For Firefox, you need to turn off HTTP/2 and SPDY, and you do that by setting th
 <code>--browsertime.firefox.preference network.http.spdy.enabled:false --browsertime.firefox.preference network.http.spdy.enabled.http2:false --browsertime.firefox.preference network.http.spdy.enabled.v3-1:false</code>
 
 ## How does it work behind the scene?
-We use [Browsertime](https://github.com/sitespeedio/browsertime) to drive the browser. The simplest version of testing a URL works like this: 
+We use [Browsertime](https://github.com/sitespeedio/browsertime) to drive the browser. This is the flow per URL you test:
 
-1. Ask the browser to navigate to the URL (using JavaScript).
-2. Check if the URL has changed to URL check every 500 ms (time out after 50 s).
-3. Loop to 2. until the URL has changed.
-4. Check if the page has finished loading using the **pageCompleteCheck** or **pageCompleteCheckInactivity**.
-5. Loop to 4 until the check is done (return true).
-6. Collect all the metrics using JavaScript.
+1. We setup connectivity for the browser using different engines depending on [your configuration](/documentation/sitespeed.io/connectivity/).
+2. Open the browser with a new user session (cleared cache etc).
+3. If you add a request header, a cookie, use Basic Auth, block domains or clear the cache browser side the browser will open the [Browsertime extension](https://github.com/sitespeedio/browsertime-extension) and do what you asked.
+4. If you configured a <code>--preScript</code> it runs next.
+5. If you configured a <code>--preURL</code> the browser navigates to that URL (you should only do that if you don't use a **preScript**).
+6. If you configured the video, the video starts to record the screen.
+7. We ask the browser to navigate to the URL (using JavaScript).
+8. Check if the URL in the browser has changed to configured URL (check every 500 ms, time out after 50 s).
+9. Loop to 2. until the URL in the browser has changed.
+10. Check if the page has finished loading using the pre configured **pageCompleteCheck** or <code>--pageCompleteCheck</code> or <code>--pageCompleteCheckInactivity</code>.
+11. Loop to 4 until the check is done (return true).
+12. Stop the video.
+13. Collect all the default metrics using JavaScript and your own configured scripts <code>--script</code>.
+14. If you configured a <code>--postScript</code> it runs next.
+15. The browser is closed.
+16. Start over in step 2 for the next run for that URL.
