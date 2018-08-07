@@ -1,6 +1,11 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Fixed
+* Updated the CLI to link to how to setup connectivity.
+
 ## 7.3.5 - 2018-07-29
+### Fixed
 * Updated the Docker container to use Chrome 68.
 
 ## 7.3.4 - 2018-07-26
