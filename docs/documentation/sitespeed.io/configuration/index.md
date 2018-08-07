@@ -93,7 +93,7 @@ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io
 
 ### Connectivity
 
-You should throttle the connection when you are fetching metrics. We have a [special section]({{site.baseurl}}/documentation/sitespeed.io/connectivity) on how you emulate connectivity for real users.
+You should throttle the connection when you are fetching metrics. We have a [special section]({{site.baseurl}}/documentation/sitespeed.io/connectivity) on how you emulate connectivity for real users. Make sure you read that parts of the documentation!
 
 ### Viewport/user agent and mobile
 
