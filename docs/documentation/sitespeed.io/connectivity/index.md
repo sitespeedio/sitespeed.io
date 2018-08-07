@@ -50,13 +50,13 @@ tc qdisc add dev docker4 parent 1:12 netem delay 200ms
 When you run your container you add the network with <code>--network cable</code>. A full example running running with cable:
 
 ~~~bash
-docker run --shm-size=1g --network=cable --rm sitespeedio/sitespeed.io -c cable https://www.sitespeed.io/
+docker run --shm-size=1g --network=cable --rm sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -c cable https://www.sitespeed.io/
 ~~~
 
 And using the 3g network:
 
 ~~~bash
-docker run --shm-size=1g --network=3g --rm sitespeedio/sitespeed.io -c 3g https://www.sitespeed.io/
+docker run --shm-size=1g --network=3g --rm sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -c 3g https://www.sitespeed.io/
 ~~~
 
 And if you want to remove the networks:
@@ -87,6 +87,12 @@ sitespeed.io --browsertime.connectivity.engine throttle -c cable https://www.sit
 
 You can also use Throttle inside of Docker but then the host need to be the same OS as in Docker. In practice you can only use it on Linux. And then make sure to run *sudo modprobe ifb numifbs=1* first and give the container the right privileges *--cap-add=NET_ADMIN*.
 
+~~~
+$ sudo modprobe ifb numifbs=1
+$ docker run --cap-add=NET_ADMIN --shm-size=1g --rm sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -c 3g --browsertime.connectivity.engine=throttle https://www.sitespeed.io/
+~~~
+
+
 If you run Docker on OS X, you need to run throttle outside of Docker. Install it and run like this:
 
 ~~~
@@ -95,6 +101,6 @@ $ npm install @sitespeed.io/throttle -g
 
 # Then set the connectivity, run and stop
 $ throttle --up 330 --down 780 --rtt 200
-$ docker run --shm-size=1g --rm sitespeedio/sitespeed.io https://www.sitespeed.io/
+$ docker run --shm-size=1g --rm sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/
 $ throttle --stop
 ~~~
