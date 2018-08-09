@@ -3,6 +3,7 @@
 ## UNRELEASED
 ### Fixed
 * Updated the CLI to link to how to setup connectivity.
+* Detailed and summary page show wrong metrics if you test on multiple domains [#2134](https://github.com/sitespeedio/sitespeed.io/issues/2134).
 
 ## 7.3.5 - 2018-07-29
 ### Fixed
