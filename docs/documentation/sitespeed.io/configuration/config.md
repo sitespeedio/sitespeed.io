@@ -3,7 +3,7 @@ bin/sitespeed.js [options] <url>/<file>
 Browser
   --browsertime.browser, -b, --browser                                      Choose which Browser to use when you test.  [choices: "chrome", "firefox"] [default: "chrome"]
   --browsertime.iterations, -n                                              How many times you want to test each page  [default: 3]
-  --browsertime.connectivity.profile, -c, --connectivity                    The connectivity profile.  [choices: "3g", "3gfast", "3gslow", "3gem", "2g", "cable", "native", "custom"] [default: "native"]
+  --browsertime.connectivity.profile, -c, --connectivity                    The connectivity profile. To actually set the connectivity you can choose between Docker networks or Throttle, read https://www.sitespeed.io/documentation/sitespeed.io/connectivity/  [choices: "3g", "3gfast", "3gslow", "3gem", "2g", "cable", "native", "custom"] [default: "native"]
   --browsertime.connectivity.downstreamKbps, --downstreamKbps               This option requires --connectivity be set to "custom".
   --browsertime.connectivity.upstreamKbps, --upstreamKbps                   This option requires --connectivity be set to "custom".
   --browsertime.connectivity.latency, --latency                             This option requires --connectivity be set to "custom".
