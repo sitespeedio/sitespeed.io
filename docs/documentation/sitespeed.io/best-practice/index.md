@@ -93,6 +93,17 @@ We use Selenium pre/post script navigation. You can [read more](/documentation/s
 
 If you have problem with Selenium (getting the right element etc), PLEASE do not create issues in sitespeed.io. Head over to the [Selenium community](https://docs.seleniumhq.org/) and they can help you.
 
+### How do you pass HTML/JavaScript as a CLI parameter?
+The easiest way to pass HTML to the CLI is to pass on the whole message as a String (use a quotation mark to start and end the String) and then do not use quotation marks inside the HTML.
+
+Say that you want to pass on your own link as an annotation message, then do like this:
+
+~~~
+--graphite.annotationMessage "TEXT <a href='https://github.com/***' target='blank'>link-text</a>"
+~~~
+
+If you need to debug CLI parameters the best way is to turn on verbose logging. Do that by adding **-vv** to your run and check the log for the message that starts with **Config options**. Then you will see all parameters that gets from the CLI to sitespeed.io and that they are interpreted the right way.
+
 ## Servers
 What you should know before you choose where to run sitespeed.io.
 

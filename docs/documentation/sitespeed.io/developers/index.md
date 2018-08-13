@@ -36,21 +36,11 @@ And we also have plugins so that you can use:
  * [WebPageTest](https://www.webpagetest.org) through the [WebPageTest API](https://github.com/marcelduran/webpagetest-api)
  * [gpagespeed](https://www.npmjs.com/package/gpagespeed)
 
-And of course we use all the tools in the [sitespeed.io suite](({{site.baseurl}}/documentation/).
+And of course we use all the tools in the [sitespeed.io suite]({{site.baseurl}}/documentation/).
 
-### Analyse a page, what happens (10 step version)
-This is the super simple version, leaving out all other tools that are used:
+### Analyse a page, what happens
 
-1. sitespeed.io gets a URL from the user.
-2. Open the browser
-3. Start record a video of the screen.
-4. Access the URL in the browser.
-5. When the page is finished, take a screenshot of the page.
-6. Run some JavaScripts to analyse the page (using Coach and Browsertime scripts).
-7. Stop the video and close the browser.
-8. Analyse the video to get metrics like FirstVisualChange and SpeedIndex.
-9. Generate a HTML report and/or send the metrics to Graphite or store the metrics however you want, with your own plugin.
-10. Enjoy!
+Checkout the [description](/documentation/sitespeed.io/browsers/#how-does-it-work-behind-the-scene) in the browser docs.
 
 ### The big picture (with all the tools)
 The big picture looks something like this:
@@ -116,7 +106,9 @@ When you become a member of the sitespeed.io team you can push releases. You do 
 
 To do a release you need to first install np (a better *npm publish*): <code>npm install --global np</code>
 
-Then run the bash script. It will push your new release to npm and the Docker hub. Remember to let ypur latest code change run a couple of hours on our test server before you push the release (the latest code is automatically deployed on the test server).
+Then run the bash script. It will push your new release to npm and the Docker hub. Remember to let your latest code change run a couple of hours on our test server before you push the release (the latest code is automatically deployed on the test server).
+
+To be able to deploy a new version you new to have access to our Docker account, npm, our Github repos and use 2FA.
 
 ### Use sitespeed.io from NodeJS
 If you want to integrate sitespeed.io into your NodeJS application you can checkout how we do that in [our Grunt plugin](https://github.com/sitespeedio/grunt-sitespeedio/blob/master/tasks/sitespeedio.js). It's a great working example. :)

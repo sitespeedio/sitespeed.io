@@ -1,6 +1,13 @@
 # CHANGELOG - sitespeed.io
 
+## 7.3.6 - 2018-08-09
+### Fixed
+* Updated the CLI to link to how to setup connectivity.
+* Detailed and summary page show wrong metrics if you test on multiple domains [#2134](https://github.com/sitespeedio/sitespeed.io/issues/2134).
+* Updated [fix release](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#331---2018-08-09) of Browsertime that makes the log cleaner and easier to use.
+
 ## 7.3.5 - 2018-07-29
+### Fixed
 * Updated the Docker container to use Chrome 68.
 
 ## 7.3.4 - 2018-07-26
