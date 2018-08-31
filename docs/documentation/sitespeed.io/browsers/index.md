@@ -22,9 +22,9 @@ You can fetch timings, run your own JavaScript and record a video of the screen.
 You will need Firefox 61 or later (current beta). In Firefox 55 the HAR export trigger was broken, and there's [a new version](https://github.com/devtools-html/har-export-trigger) that works in Firefox 61. You can use older Firefoxes but you will then miss out on the HAR file.
 
 ### Firefox profile setup
-At the moment we setup a new profile for each run the browser do. We set up the profiles preferences like [this](https://github.com/sitespeedio/browsertime/blob/master/lib/firefox/webdriver/firefoxPreferences.js). We use Mozillas [own configuration](https://searchfox.org/mozilla-central/source/testing/talos/talos/config.py) as default with some changes + some extra configuration for performance and privacy. 
+At the moment we setup a new profile for each run the browser do. We set up the profiles preferences like [this](https://github.com/sitespeedio/browsertime/blob/master/lib/firefox/webdriver/firefoxPreferences.js). We use Mozillas [own configuration](https://searchfox.org/mozilla-central/source/testing/talos/talos/config.py) as default with some changes + some extra configuration for performance and privacy.
 
-We try to disable all Firefox ping home: 
+We try to disable all Firefox ping home:
  * We disables [heartbeat](https://wiki.mozilla.org/Firefox/Shield/Heartbeat).
  * We disables the call to detectportal.firefox.com.
  * We turn off [telemetry](https://wiki.mozilla.org/Telemetry/Testing).
@@ -34,27 +34,27 @@ For performance and deterministic reasons we disable the [Tracking protection](h
 
 You can also [configure your own preferences](#set-your-own-firefox-preferences) for the profile.
 
-Starting with a total blank profile isn't supported at the moment but if you need it, please [create an issue](https://github.com/sitespeedio/browsertime/issues/new) and let us know!  
+Starting with a total blank profile isn't supported at the moment but if you need it, please [create an issue](https://github.com/sitespeedio/browsertime/issues/new) and let us know!
 
 ### Collecting the HAR
-To collect the HAR from Firefox we use [HAR Export trigger](https://github.com/devtools-html/har-export-trigger). It needs Firefox 61 to work (if you run a earlier version you will automatically not get the HAR). The trigger is in OMHO a superior version of getting the HAR than parsing the MOZ HTTP log since it adds less overhead to metrics. 
+To collect the HAR from Firefox we use [HAR Export trigger](https://github.com/devtools-html/har-export-trigger). It needs Firefox 61 to work (if you run a earlier version you will automatically not get the HAR). The trigger is in OMHO a superior version of getting the HAR than parsing the MOZ HTTP log since it adds less overhead to metrics.
 
 If you for some reason don't need the HAR you can disable it by ```--browsertime.skipHar```.
 
 #### What to include in the HAR
 If you use Firefox you can choose to include response bodies in the HAR file. The HAR file will be larger but it can make things easier to debug on your site.
 
-You can choose what do include by 
+You can choose what do include by
 ```--firefox.includeResponseBodies``` and choose between  **none** (default) , **all** (all response bodies for the type text/JS/CSS or **html** (only save the body of the HTML response).
 
 ### Choosing Firefox version
 
-Running Firefox on Mac OS X you can easilty what version to run with sitespeed.io:
+Running Firefox on Mac OS X you can choose what version to run with sitespeed.io:
 
-```--firefox``` will use stable,  ```--firefox.nightly```, ```--firefox.beta``` or ```--firefox.developer``` will choose between the others. Remember that you need to install them first before you use them :) 
+```--firefox``` will use stable,  ```--firefox.nightly```, ```--firefox.beta``` or ```--firefox.developer``` will choose between the others. Remember that you need to install them first before you use them :)
 
 If you run on Linux you need to set the full path to the binary:
-```--firefox.binaryPath``` 
+```--firefox.binaryPath```
 
 The current default Docker container only contains one version of Firefox. If you want to test on more versions, [let us know](https://github.com/sitespeedio/browsertime/issues/new) so we can fix that.
 
@@ -71,7 +71,7 @@ You can turn on [Firefox HTTP log](https://developer.mozilla.org/en-US/docs/Mozi
 It is setup with ```timestamp,nsHttp:5,cache2:5,nsSocketTransport:5,nsHostResolver:5``` and will create one HTTP log file per run.
 
 ### Accept insecure certificates
-If you want to accept insecure certificates add ```--firefox.acceptInsecureCerts``` to your run. 
+If you want to accept insecure certificates add ```--firefox.acceptInsecureCerts``` to your run.
 
 ### Collect trace logs
 We have no way to get trace data from Firefox today (by trace data we mean time spent in JavaScript/paint etc). You can follow the [upstream request](https://bugzilla.mozilla.org/show_bug.cgi?id=1250290) to make that happen.
@@ -83,7 +83,7 @@ The latest version of Chrome should work out of the box.
 When we start Chrome it is setup with [these](https://github.com/sitespeedio/browsertime/blob/master/lib/chrome/webdriver/chromeOptions.js) command line switches.
 
 ### Add your own Chrome args
-Chrome has a [long list](https://peter.sh/experiments/chromium-command-line-switches/) of command line switches that you can use to make Chrome act differently than the default setup. You can add those switched to Chrome with ```--chrome.args``` (repeat the argument if you have multiple arguments). 
+Chrome has a [long list](https://peter.sh/experiments/chromium-command-line-switches/) of command line switches that you can use to make Chrome act differently than the default setup. You can add those switched to Chrome with ```--chrome.args``` (repeat the argument if you have multiple arguments).
 
 When you add your command line switched you should skip the minus. For example: You want to use ```--deterministic-fetch``` then add it like ```--chrome.args deterministic-fetch```.
 
@@ -116,8 +116,8 @@ In this example we wait 10 seconds until the loadEventEnd happens, but you can a
 docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --browsertime.pageCompleteCheck 'return (function() {try { return (Date.now() - window.performance.timing.loadEventEnd) > 10000;} catch(e) {} return true;})()'
 ~~~
 
-Yoy can also choose to end the test after 5 seconds of inactivity that happens after loadEventEnd. Do that by adding 
-```--browsertime.pageCompleteCheckInactivity``` to your run. The test will then wait for loadEventEnd to happen and no requests in the Resource Timing API the last 5 seconds. Be-aware though that the script will empty the resource timing API data for every check so if you have your own script collecting data using the Resource Timing API it will fail. 
+Yoy can also choose to end the test after 5 seconds of inactivity that happens after loadEventEnd. Do that by adding
+```--browsertime.pageCompleteCheckInactivity``` to your run. The test will then wait for loadEventEnd to happen and no requests in the Resource Timing API the last 5 seconds. Be-aware though that the script will empty the resource timing API data for every check so if you have your own script collecting data using the Resource Timing API it will fail.
 
 If you add your own complete check you can also choose when your check is run. By default we wait until onLoad happens (by using pageLoadStrategy normal). If you want control direct after the navigation, you can get that by adding ```--pageLoadStrategy none``` to your run.
 

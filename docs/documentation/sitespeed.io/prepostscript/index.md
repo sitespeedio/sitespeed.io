@@ -19,66 +19,21 @@ twitterdescription: Pre/post scripts (log in the user)
 # Selenium
 Before sitespeed.io loads and tests a URL you can run your own Selenium script. Do you want to access a URL and pre-load the cache or maybe you want to login as a user and then measure a URL?
 
-We use the NodeJs version of Selenium, you can find the [API documentation here](http://seleniumhq.github.io/selenium/docs/api/javascript/index.html).
+We use the NodeJs version of Selenium, you can find the [API documentation here](http://seleniumhq.github.io/selenium/docs/api/javascript/index.html). You need to go into the docs to see how to select the elements you need to do the magic on your page.
 
-## Login example
-Create a script where you login the user. The following is an example to login the user at Wikipedia. Start by creating a file login.js with the following.
+Your script needs to follow a specific pattern to be able to run as a pre/post script. The simplest version of a script looks like this:
 
 ~~~
 module.exports = {
   run(context) {
     return context.runWithDriver((driver) => {
-      // Go to Wikipedias login URL
-      return driver.get('https://en.wikipedia.org/w/index.php?title=Special:UserLogin&returnto=Main+Page')
-        .then(() => {
-          // You need to find the form, the login input fields and the
-          // password field. Just add you name and password and submit the form
-          // For more docs, checkout the NodeJS Selenium version
-          // http://seleniumhq.github.io/selenium/docs/api/javascript/index.html
-
-          // we fetch the selenium webdriver from context
-          const webdriver = context.webdriver;
-          // and get hold of some goodies we want to use
-          const until = webdriver.until;
-          const By = webdriver.By;
-
-          // before you start, make your username and password
-          const userName = 'YOUR_USERNAME_HERE';
-          const password = 'YOUR_PASSWORD_HERE';
-          const loginForm = driver.findElement(By.name('userlogin'));
-          driver.findElement(By.id('wpName1')).sendKeys(userName);
-          driver.findElement(By.id('wpPassword1')).sendKeys(password);
-          var loginButton = driver.findElement(webdriver.By.id('wpLoginAttempt'));
-          loginButton.click();
-          // we wait for something on the page that verifies that we are logged in
-          return driver.wait(until.elementLocated(By.id('pt-userpage')), 3000);
-        });
-    })
+      // Add your own code here
+    });
   }
 };
 ~~~
 
-Make sure to change the username & password!
-{: .note .note-warning}
-
-Then run it like this:
-
-~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --preScript /sitespeed.io/login.js https://en.wikipedia.org/wiki/Barack_Obama
-~~~
-
-The script will then login the user and access https://en.wikipedia.org/wiki/Barack_Obama and measure that page.
-
-
-Checkout the magic row:
-
-~~~
-const webdriver = context.webdriver;
-~~~
-
-From the context object you get a hold of the Selenium [Webdriver object](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html) and the mechanisms for locating an element on the page.
-
-Note: Use the supplied *driver* object to go to a specific page.
+Move on to read about the data that is passed in the context object and how you can use it to get hold of the Selenium objects you need to interact with the page.
 
 ## Data to the pre/post script
 
@@ -127,6 +82,65 @@ Then your video will include all your steps. Perfect for debugging.
 
 You need to have video turned on (in Docker it is on by default) to be able to combine the video.
 {: .note .note-warning}
+
+## Login example
+Create a script where you login the user. The following is an example to login the user at Wikipedia. Start by creating a file login.js with the following.
+
+~~~
+module.exports = {
+  run(context) {
+    return context.runWithDriver((driver) => {
+      // Go to Wikipedias login URL
+      return driver.get('https://en.wikipedia.org/w/index.php?title=Special:UserLogin&returnto=Main+Page')
+        .then(() => {
+          // You need to find the form, the login input fields and the
+          // password field. Just add you name and password and submit the form
+          // For more docs, checkout the NodeJS Selenium version
+          // http://seleniumhq.github.io/selenium/docs/api/javascript/index.html
+
+          // we fetch the selenium webdriver from context
+          const webdriver = context.webdriver;
+          // and get hold of some goodies we want to use
+          const until = webdriver.until;
+          const By = webdriver.By;
+
+          // before you start, make your username and password
+          const userName = 'YOUR_USERNAME_HERE';
+          const password = 'YOUR_PASSWORD_HERE';
+          const loginForm = driver.findElement(By.name('userlogin'));
+          driver.findElement(By.id('wpName1')).sendKeys(userName);
+          driver.findElement(By.id('wpPassword1')).sendKeys(password);
+          const loginButton = driver.findElement(webdriver.By.id('wpLoginAttempt'));
+          loginButton.click();
+          // we wait for something on the page that verifies that we are logged in
+          return driver.wait(until.elementLocated(By.id('pt-userpage')), 3000);
+        });
+    })
+  }
+};
+~~~
+
+Make sure to change the username & password if you try this on Wikipedia. And of course change the full script to make it work on your site.
+{: .note .note-warning}
+
+Then run it like this:
+
+~~~bash
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --preScript /sitespeed.io/login.js https://en.wikipedia.org/wiki/Barack_Obama
+~~~
+
+The script will then login the user and access https://en.wikipedia.org/wiki/Barack_Obama and measure that page.
+
+
+Checkout the magic row:
+
+~~~
+const webdriver = context.webdriver;
+~~~
+
+From the context object you get a hold of the Selenium [Webdriver object](http://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html) and the mechanisms for locating an element on the page.
+
+Note: Use the supplied *driver* object to go to a specific page.
 
 ## Pass your own options to your pre/post scripts
 You can add your own parameters to the options object (by adding a parameter) and then pick them up in the pre/post script. The scripts runs in the context of browsertime, so you need to 

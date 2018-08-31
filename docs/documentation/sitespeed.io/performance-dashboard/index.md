@@ -196,6 +196,11 @@ And make sure the script start on server restart. Edit the crontab <code>crontab
 @reboot rm /home/ubuntu/sitespeed.run;/home/ubuntu/loop.sh
 ~~~
 
+And start it like this:
+
+~~~
+nohup /home/ubuntu/loop.sh &
+~~~
 
 ## default.json
 And our default configuration is in *default.json*:
