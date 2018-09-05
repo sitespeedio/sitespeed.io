@@ -1,7 +1,8 @@
 # CHANGELOG - sitespeed.io
 ## UNRELEASED
 ### Added
-* Upgraded to Chrome 69 in the Docker container
+* Upgraded to Chrome 69 in the Docker container.
+* Upgraded to Firefox 62 in the Docker container.
 
 ## 7.3.6 - 2018-08-09
 ### Fixed
