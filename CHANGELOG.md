@@ -4,6 +4,11 @@
 * Upgraded to Chrome 69 in the Docker container.
 * Upgraded to Firefox 62 in the Docker container.
 
+### Fixed
+* Upgraded to Browsertime 3.4.1: There have been several [reports on bugs](https://github.com/sitespeedio/sitespeed.io/issues/1949) when using a preScript to login and then measure a page. The problem has been how we find the first frame + a bug that didn't make the video with orange frames between different pages. Thats been fixed now in [#633](https://github.com/sitespeedio/browsertime/pull/633).
+
+* The was a bug that made it impossible to set your own device name when running Chrome in emulated mode [#2146](https://github.com/sitespeedio/sitespeed.io/pull/2146).
+
 ## 7.3.6 - 2018-08-09
 ### Fixed
 * Updated the CLI to link to how to setup connectivity.
