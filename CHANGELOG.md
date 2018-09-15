@@ -1,8 +1,14 @@
 # CHANGELOG - sitespeed.io
-## UNRELEASED
+## 7.4.0 - 2018-09-14
+
 ### Added
 * Upgraded to Chrome 69 in the Docker container.
 * Upgraded to Firefox 62 in the Docker container.
+
+### Fixed
+* Upgraded to Browsertime 3.4.1: There have been several [bugs](https://github.com/sitespeedio/sitespeed.io/issues/1949) when using a preScript to login and then measure a page, resulting in errors. The problem has been how we find the first frame + a bug that didn't make the video with orange frames between different pages. Thats been fixed in [#633](https://github.com/sitespeedio/browsertime/pull/633). Thank you [Grigory Kurmaev](https://github.com/Pe4enie) who shared the exact setup to reproduce the bug!
+
+* There was a bug that made it impossible to set your own device name when running Chrome in emulated mode [#2146](https://github.com/sitespeedio/sitespeed.io/pull/2146).
 
 ## 7.3.6 - 2018-08-09
 ### Fixed
