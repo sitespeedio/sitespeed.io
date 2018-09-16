@@ -25,6 +25,21 @@ if  browsertime
             td
               a(href=baseHelpURL + 'PerceptualSpeedIndex') Perceptual Speed Index
             td.number #{visualMetrics.PerceptualSpeedIndex.toFixed(0)}
+          if visualMetrics.LargestImage   
+            tr
+              td
+                a(href=baseHelpURL + 'LargestImage') Largest Image
+              td.number #{visualMetrics.LargestImage.toFixed(0)}
+          if visualMetrics.Heading   
+            tr
+              td
+                a(href=baseHelpURL + 'Heading') Heading
+              td.number #{visualMetrics.Heading.toFixed(0)}
+          if visualMetrics.Logo  
+            tr
+              td
+                a(href=baseHelpURL + 'Logo') Logo
+              td.number #{visualMetrics.Logo.toFixed(0)}    
           tr
             td
               a(href=baseHelpURL + 'VisualComplete85') Visual Complete 85%
