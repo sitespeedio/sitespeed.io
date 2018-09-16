@@ -1,5 +1,29 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Added
+* Upgraded to Browsertime 3.5.0 with the following additions:
+  * We support timings for visual elements (by adding ```--visuaElements```). Browsertime picks up the largest image and the largest H1. You can also configure your own elements ```--scriptInput.visualElements```. First let give creds to the ones that deserves it: As far as we know [Sergey Chernyshev](https://twitter.com/sergeyche) was the first one that introduced the idea of measuring individual elements in his talk [Using Heat Maps to improve Web Performance Metrics](https://www.youtube.com/watch?v=t6l9U5bC8jA). A couple of years later this was implemented by the people behind [SpeedCurve](https://speedcurve.com/), that later on contributed back the implementation to WebPageTest (calling it "hero"-elements). [Patrick Meenan](https://twitter.com/patmeenan) (the creator of WebPageTest) moved on the implementation to [Visual Metrics](https://github.com/WPO-Foundation/visualmetrics) that Browsertime uses to pickup visual metrics from the video. We tuned the implementation a little and now it is ready to release.
+
+  * We also added a new feature: If you run your own custom script you can now feed it with different input by using ```--browsertime.scriptInput.*```. Say you have a script named myScript you can pass on data to it with ```--browsertime.scriptInput.myScript 'super-secret-string' ```. More about this in the documentation the coming weeks.
+
+  * Upgraded to Chromedriver 2.42.0
+
+* You can now include screenshots in annotations sent to Graphite/InfluxDB [#2144](https://github.com/sitespeedio/sitespeed.io/pull/2144). This makes it easy that from within Grafana see screenshots from every run.
+
+* When linking to a sitespeed.io result we now include index.html in the URL, so that you can use storages that doesn't automagically redirect from / to /index.html (a.k.a Digital Ocean storage).
+
+## 7.4.0 - 2018-09-14
+
+### Added
+* Upgraded to Chrome 69 in the Docker container.
+* Upgraded to Firefox 62 in the Docker container.
+
+### Fixed
+* Upgraded to Browsertime 3.4.1: There have been several [bugs](https://github.com/sitespeedio/sitespeed.io/issues/1949) when using a preScript to login and then measure a page, resulting in errors. The problem has been how we find the first frame + a bug that didn't make the video with orange frames between different pages. Thats been fixed in [#633](https://github.com/sitespeedio/browsertime/pull/633). Thank you [Grigory Kurmaev](https://github.com/Pe4enie) who shared the exact setup to reproduce the bug!
+
+* There was a bug that made it impossible to set your own device name when running Chrome in emulated mode [#2146](https://github.com/sitespeedio/sitespeed.io/pull/2146).
+
 ## 7.3.6 - 2018-08-09
 ### Fixed
 * Updated the CLI to link to how to setup connectivity.
