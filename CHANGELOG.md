@@ -13,6 +13,9 @@
 
 * When linking to a sitespeed.io result we now include index.html in the URL, so that you can use storages that doesn't automagically redirect from / to /index.html (a.k.a Digital Ocean storage).
 
+### Tech
+* We prepared for Grafana 5.4 that will have template support in Grafana annotations.
+
 ## 7.4.0 - 2018-09-14
 
 ### Added
