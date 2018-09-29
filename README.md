@@ -7,7 +7,7 @@
 [![Changelog #212][changelog-image]][changelog-url]
 
 
-[Website](https://www.sitespeed.io/) | [Documentation](https://www.sitespeed.io/documentation/) | [Twitter](https://twitter.com/SiteSpeedio)
+[Website](https://www.sitespeed.io/) | [Documentation](https://www.sitespeed.io/documentation/) | [Twitter](https://twitter.com/SiteSpeedio) | [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md)
 
 ## Welcome to the wonderful world of web performance!
 
