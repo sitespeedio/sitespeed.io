@@ -24,8 +24,7 @@
 
 * Chrome in some case(s) generates a HAR with broken timings that caused sitespeed.io to log error and not being able to collect timings per domain [#2159](https://github.com/sitespeedio/sitespeed.io/issues/2159). Fixed by [#2160](https://github.com/sitespeedio/sitespeed.io/pull/2160).
 
-### Tech
-* We prepared for Grafana 5.4 that will have template support in Grafana annotations.
+* We added support for Grafana annotations (instead of using Graphite/InfluxDB annotations). In Grafana 5.3.0-beta2 (and later) the annotations has template support. Use Grafana annotations by configure --grafana.host --grafana.port.
 
 ## 7.4.0 - 2018-09-14
 
