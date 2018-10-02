@@ -9,9 +9,20 @@
 
   * Upgraded to Chromedriver 2.42.0
 
-* You can now include screenshots in annotations sent to Graphite/InfluxDB [#2144](https://github.com/sitespeedio/sitespeed.io/pull/2144). This makes it easy that from within Grafana see screenshots from every run.
+* You can include screenshots in annotations sent to Graphite/InfluxDB [#2144](https://github.com/sitespeedio/sitespeed.io/pull/2144). This makes it easy that from within Grafana see screenshots from every run.
 
-* When linking to a sitespeed.io result we now include index.html in the URL, so that you can use storages that doesn't automagically redirect from / to /index.html (a.k.a Digital Ocean storage).
+* When linking to a sitespeed.io result we include index.html in the URL, so that you can use storages that doesn't automagically redirect from / to /index.html (a.k.a Digital Ocean storage).
+
+* You can use --injectJs to inject JavaScript into the current page (only Firefox at the moment) at document_start. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
+
+* Browsertime collects the Firefox only metric: timeToDomContentFlushed
+
+* All metrics are also reported with stddev (not only median stdev).
+
+### Fixed
+* Upgraded to Browsertime 3.7.0 that changed how Basic Auth is handled: We send a basic auth request header instead of using the build in Web Extension [#2151](https://github.com/sitespeedio/sitespeed.io/issues/2151).
+
+* Chrome in some case(s) generates a HAR with broken timings that caused sitespeed.io to log error and not being able to collect timings per domain [#2159](https://github.com/sitespeedio/sitespeed.io/issues/2159). Fixed by [#2160](https://github.com/sitespeedio/sitespeed.io/pull/2160).
 
 ### Tech
 * We prepared for Grafana 5.4 that will have template support in Grafana annotations.
@@ -133,7 +144,7 @@ Read more about [sitespeed.io 7.0](https://www.sitespeed.io/sitespeed.io-7.0/).
 
 * You can now choose for what kind of content you want to include the response bodies when you use Firefox: ```--browsertime.firefox.includeResponseBodies``` 'none', 'all', 'html'
 
-* We finetuned the tabs in the result pages and followed Browsertime and make all output 1 based instead of 0. 
+* We finetuned the tabs in the result pages and followed Browsertime and make all output 1 based instead of 0.
 
 * We tried to make CLI parameters the same as with Browsertime, so that you can use the same for both tools (meaning most of the parameters you don't need to append with *browsertime*. Check sitespeed.io --help
 
