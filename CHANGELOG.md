@@ -19,14 +19,14 @@
 
 * All metrics are also reported with stddev (not only median stdev).
 
-* There's a standalone Lighhouse pluging that can be used from 7.5: https://github.com/sitespeedio/plugin-lighthouse
+* There's a standalone Lighthouse pluging that can be used from 7.5: https://github.com/sitespeedio/plugin-lighthouse
+
+* We added support for Grafana annotations (instead of using Graphite/InfluxDB annotations). In Grafana 5.3.0-beta2 (and later) the annotations has template support. Use Grafana annotations by configure ```--grafana.host``` and ```--grafana.port```.
 
 ### Fixed
 * Upgraded to Browsertime 3.7.0 that changed how Basic Auth is handled: We send a basic auth request header instead of using the build in Web Extension [#2151](https://github.com/sitespeedio/sitespeed.io/issues/2151).
 
 * Chrome in some case(s) generates a HAR with broken timings that caused sitespeed.io to log error and not being able to collect timings per domain [#2159](https://github.com/sitespeedio/sitespeed.io/issues/2159). Fixed by [#2160](https://github.com/sitespeedio/sitespeed.io/pull/2160).
-
-* We added support for Grafana annotations (instead of using Graphite/InfluxDB annotations). In Grafana 5.3.0-beta2 (and later) the annotations has template support. Use Grafana annotations by configure ```--grafana.host``` and ```--grafana.port```.
 
 ### Tech
 * You can now use markdown in the pug templates - ```!{markdown.toHTML(value)}```
