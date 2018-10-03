@@ -25,21 +25,21 @@ if  browsertime
             td
               a(href=baseHelpURL + 'PerceptualSpeedIndex') Perceptual Speed Index
             td.number #{visualMetrics.PerceptualSpeedIndex.toFixed(0)}
-          if visualMetrics.LargestImage   
+          if visualMetrics.LargestImage
             tr
               td
                 a(href=baseHelpURL + 'LargestImage') Largest Image
               td.number #{visualMetrics.LargestImage.toFixed(0)}
-          if visualMetrics.Heading   
+          if visualMetrics.Heading
             tr
               td
                 a(href=baseHelpURL + 'Heading') Heading
               td.number #{visualMetrics.Heading.toFixed(0)}
-          if visualMetrics.Logo  
+          if visualMetrics.Logo
             tr
               td
                 a(href=baseHelpURL + 'Logo') Logo
-              td.number #{visualMetrics.Logo.toFixed(0)}    
+              td.number #{visualMetrics.Logo.toFixed(0)}
           tr
             td
               a(href=baseHelpURL + 'VisualComplete85') Visual Complete 85%
@@ -87,6 +87,11 @@ if  browsertime
             td
               a(href=baseHelpURL + 'firstPaint') First paint
             td.number #{timings.firstPaint.toFixed(0)}
+        if timings.timeToDomContentFlushed
+         tr
+            td
+              a(href=baseHelpURL + 'timeToDomContentFlushed') DOM Content Flushed
+            td.number #{timings.timeToDomContentFlushed.toFixed(0)}
         tr
           td
             a(href=baseHelpURL + 'rumSpeedIndex') RUM Speed Index
@@ -128,5 +133,5 @@ if  browsertime
     if options.browsertime.chrome && options.browsertime.chrome.timeline
       - var tracePath = 'data/trace-' + (runNumber? runNumber : 1) + '.json.gz'
       a.button.button-download(href=tracePath, download=downloadName + '-timeline.json.gz') Download timeline
-else 
+else
   p Missing data from Browsertime.
