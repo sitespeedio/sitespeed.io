@@ -95,11 +95,12 @@ block content
         .one-half.column
             if hasScreenShots
               - var width = options.mobile ? 150 : '100%';
-              - var screenshotName = 'data/screenshots/1.' + screenShotType
+              - var screenshotNo = medianRun ? medianRun.runIndex : 1
+              - var screenshotName = 'data/screenshots/' + screenshotNo + '.' + screenShotType
               a(href=screenshotName)
-                img.screenshot(src=screenshotName, width=width, alt='Screenshot of run 1')
+                img.screenshot(src=screenshotName, width=width, alt='Screenshot of run ' + screenshotNo)
             else if !d.browsertime && d.webpagetest
-              a(href='data/screenshots/0.png')
+              a(href='data/screenshots/wpt-1-firstView.png')
                 img.screenshot(src='data/screenshots/wpt-1-firstView.png', alt='Screenshot of run 1')
       include ./summaryBox.pug
 
