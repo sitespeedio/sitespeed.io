@@ -88,24 +88,33 @@ If you want to create an image of sitespeed.io with your plugins pre-baked for s
 
 ~~~
 FROM sitespeedio/sitespeed.io:<insert version here>
+ENV SITESPEED_IO_PLUGINS__ADD /my-custom-plugin
 
-COPY <path to your plugin> /my-custom-plugin
+# You need to have git to clone your repo
+RUN sudo apt-get update && sudo apt-get install git -y
+
+WORKDIR /my-custom-plugin
+RUN git clone https://path.to/my-custom-plugin .
+
+RUN npm install --production
+
+VOLUME /sitespeed.io
+WORKDIR /sitespeed.io
 ~~~
 
 Then build the docker image
 
 ~~~bash
-docker build -t my-custom-sitespeedio ./plugins
+docker build -t my-custom-sitespeedio .
 ~~~
 
-Finally you can run it the same way as mentioned above without the volume mount.
+Finally you can run it the same way as mentioned above without the volume mount and without adding your plugin (that was automatically fixed in your Docker file).
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io my-custom-sitespeedio firefox --plugins.add /my-custom-plugin --my-custom-plugin.option test -n 1 https://www.sitespeed.io/
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io my-custom-sitespeedio -b firefox --my-custom-plugin.option test -n 1 https://www.sitespeed.io/
 ~~~
 
-Pretty cool, huh? :-) Make sure that when you use <code>--plugins.add</code> that the path is absolute to your plugin, that will make it easier to find (relative works too but then that is usually harder to work out).
-
+Pretty cool, huh? :-)
 
 ## How to create your own plugin
 First let us know about your cool plugin! Then share it with others by publish it to npm or just use Github.
