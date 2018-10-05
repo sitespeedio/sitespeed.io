@@ -104,6 +104,16 @@ Say that you want to pass on your own link as an annotation message, then do lik
 
 If you need to debug CLI parameters the best way is to turn on verbose logging. Do that by adding **-vv** to your run and check the log for the message that starts with **Config options**. Then you will see all parameters that gets from the CLI to sitespeed.io and that they are interpreted the right way.
 
+
+### I want a JSON from Browsertime/Coach other tools, how do I get that?
+There's a plugin bundled with sitespeed.io called *analysisstorer* plugin that isn't enabled by default. It stores the original JSON data from all analyzers (from Browsertime, Coach data, WebPageTest etc) to disk. You can enable this plugin:
+
+~~~bash
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.add analysisstorer
+~~~
+
+The JSON files for the whole run (summary files) will end up in *$RESULT/data/*. JSON for each individual page is stored in *$RESULT/data/pages/$PAGE/data/*.
+
 ## Servers
 What you should know before you choose where to run sitespeed.io.
 
