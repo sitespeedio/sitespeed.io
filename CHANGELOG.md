@@ -13,18 +13,23 @@
 
 * When linking to a sitespeed.io result we include index.html in the URL, so that you can use storages that doesn't automagically redirect from / to /index.html (a.k.a Digital Ocean storage).
 
-* You can use --injectJs to inject JavaScript into the current page (only Firefox at the moment) at document_start. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
+* You can use ```--injectJs``` to inject JavaScript into the current page (only Firefox at the moment) at document_start. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
 
 * Browsertime collects the Firefox only metric: timeToDomContentFlushed
 
 * All metrics are also reported with stddev (not only median stdev).
+
+* There's a standalone Lighthouse pluging that can be used from 7.5: https://github.com/sitespeedio/plugin-lighthouse
+
+* We added support for Grafana annotations (instead of using Graphite/InfluxDB annotations). In Grafana 5.3.0-beta2 (and later) the annotations has template support. Use Grafana annotations by configure ```--grafana.host``` and ```--grafana.port```.
 
 ### Fixed
 * Upgraded to Browsertime 3.7.0 that changed how Basic Auth is handled: We send a basic auth request header instead of using the build in Web Extension [#2151](https://github.com/sitespeedio/sitespeed.io/issues/2151).
 
 * Chrome in some case(s) generates a HAR with broken timings that caused sitespeed.io to log error and not being able to collect timings per domain [#2159](https://github.com/sitespeedio/sitespeed.io/issues/2159). Fixed by [#2160](https://github.com/sitespeedio/sitespeed.io/pull/2160).
 
-* We added support for Grafana annotations (instead of using Graphite/InfluxDB annotations). In Grafana 5.3.0-beta2 (and later) the annotations has template support. Use Grafana annotations by configure --grafana.host --grafana.port.
+### Tech
+* You can now use markdown in the pug templates - ```!{markdown.toHTML(value)}```
 
 ## 7.4.0 - 2018-09-14
 
