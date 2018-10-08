@@ -25,7 +25,6 @@
 And we made it easy to use Lighthouse and the GPSI plugin by releasing the +1 Docker container [#2175](https://github.com/sitespeedio/sitespeed.io/pull/2175). You can run it with 
 ```docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:7.5.0-plus1 https://www.sitespeed.io/``` and you will also automatically run Lighthouse and GPSI. We will automatically release a new version of the container per release by adding *-plus1* to the tag. If you use Graphite/InfluxDb the score from Lighthouse and GPSI will be automatically stored. If you want to add functionallity pleae send PRs to https://github.com/sitespeedio/plugin-lighthouse and https://github.com/sitespeedio/plugin-gpsi.
 
-
 * We added support for Grafana annotations (instead of using Graphite/InfluxDB annotations). In Grafana 5.3.0-beta2 (and later) the annotations has template support. Use Grafana annotations by configure ```--grafana.host``` and ```--grafana.port```.
 
 * You can give alias for URLs in the CLI with ```--urlAlias```. The number of alias needs to match the number of URLs. If you add the cli parameter, it will override alias that you can give to an URL within a file [#2133](https://github.com/sitespeedio/sitespeed.io/pull/2133)
