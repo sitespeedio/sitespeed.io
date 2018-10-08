@@ -69,6 +69,15 @@ And run it:
 docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} urls.txt
 ~~~
 
+You can also add alias directly from the command line. Make yore that you pass on the same amount of alias and URLs.
+
+~~~bash
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --urlAlias doc https://www.sitespeed.io/documumentation/
+~~~
+
+Pass on multiple --urlAlias for multiple alias/URLs.
+
+
 ### Analyse by crawling
 
 If you want to find pages that are not so performant it's a good idea to crawl. Sitespeed.io will start with the URL and fetch all links on that page and continue to dig deeper into the site structure. You can choose how deep to crawl (1=only one page, 2=include links from first page, etc.):

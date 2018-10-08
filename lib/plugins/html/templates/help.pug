@@ -76,7 +76,10 @@ block content
     p The time it takes for the server to send the response. Collected using the Navigation Timing API with the definition: responseEnd - requestStart
 
     h5(id='firstPaint') FirstPaint
-    p This is when the first paint happens on the screen. If the browser support this metric (only supported in Chrome), we use that.
+    p This is when the first paint happens on the screen. In Firefox we use timeToNonBlankPaint (that is behind a Firefox preference).
+
+    h5(id='timeToDomContentFlushed') Time To DOM Content Flushed
+    p Firefox only metric.
 
     h5(id='fullyLoaded') FullyLoaded
     p The time when all assets in the page is downloaded. Calculated using the Resource Timing API.
