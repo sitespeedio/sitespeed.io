@@ -3,7 +3,7 @@
 ## UNRELEASED
 ### Added
 * Upgraded to Browsertime 3.5.0 with the following additions:
-  * We support timings for visual elements (by adding ```--visuaElements```). Browsertime picks up the largest image and the largest H1. You can also configure your own elements ```--scriptInput.visualElements```. First let give creds to the ones that deserves it: As far as we know [Sergey Chernyshev](https://twitter.com/sergeyche) was the first one that introduced the idea of measuring individual elements in his talk [Using Heat Maps to improve Web Performance Metrics](https://www.youtube.com/watch?v=t6l9U5bC8jA). A couple of years later this was implemented by the people behind [SpeedCurve](https://speedcurve.com/), that later on contributed back the implementation to WebPageTest (calling it "hero"-elements). [Patrick Meenan](https://twitter.com/patmeenan) (the creator of WebPageTest) moved on the implementation to [Visual Metrics](https://github.com/WPO-Foundation/visualmetrics) that Browsertime uses to pickup visual metrics from the video. We tuned the implementation a little and now it is ready to release.
+  * We support timings for visual elements (by adding ```--visuaElements```). Browsertime picks up the largest image and the largest H1. You can also configure your own elements ```--scriptInput.visualElements```. First let give creds to the ones that deserves it: As far as we know [Sergey Chernyshev](https://twitter.com/sergeyche) was the first one that introduced the idea of measuring individual elements in his talk [Using Heat Maps to improve Web Performance Metrics](https://www.youtube.com/watch?v=t6l9U5bC8jA). A couple of years later this was implemented by the [Joseph Wynn](https://twitter.com/joseph_wynn) of SpeedCurve, that later on contributed back the implementation to WebPageTest (calling it "hero"-elements). [Patrick Meenan](https://twitter.com/patmeenan) (the creator of WebPageTest) moved on the implementation to [Visual Metrics](https://github.com/WPO-Foundation/visualmetrics) that Browsertime uses to pickup visual metrics from the video. We removed the [hero naming]() and now it's ready to use.
 
   * We also added a new feature: If you run your own custom script you can now feed it with different input by using ```--browsertime.scriptInput.*```. Say you have a script named myScript you can pass on data to it with ```--browsertime.scriptInput.myScript 'super-secret-string' ```. More about this in the documentation the coming weeks.
 
@@ -15,22 +15,33 @@
 
 * You can use ```--injectJs``` to inject JavaScript into the current page (only Firefox at the moment) at document_start. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
 
-* Browsertime collects the Firefox only metric: timeToDomContentFlushed
+* Browsertime collects the Firefox only metric *timeToDomContentFlushed*. It is also pushed to Graphite/InfluxDB by deafult.
+
+* All metrics in the Paint Timing API (First Paint and First Contentful Paint in Chrome) are also pushed to Graphite/InfluxDB by deafult.
 
 * All metrics are also reported with stddev (not only median stdev).
 
 * There's a standalone Lighthouse pluging that can be used from 7.5: https://github.com/sitespeedio/plugin-lighthouse
+And we made it easy to use Lighthouse and the GPSI plugin by releasing the +1 Docker container [#2175](https://github.com/sitespeedio/sitespeed.io/pull/2175). You can run it with 
+```docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:7.5.0-plus1 https://www.sitespeed.io/``` and you will also automatically run Lighthouse and GPSI. We will automatically release a new version of the container per release by adding *-plus1* to the tag. If you use Graphite/InfluxDb the score from Lighthouse and GPSI will be automatically stored. If you want to add functionallity pleae send PRs to https://github.com/sitespeedio/plugin-lighthouse and https://github.com/sitespeedio/plugin-gpsi.
 
 * We added support for Grafana annotations (instead of using Graphite/InfluxDB annotations). In Grafana 5.3.0-beta2 (and later) the annotations has template support. Use Grafana annotations by configure ```--grafana.host``` and ```--grafana.port```.
+
+* You can give alias for URLs in the CLI with ```--urlAlias```. The number of alias needs to match the number of URLs. If you add the cli parameter, it will override alias that you can give to an URL within a file [#2133](https://github.com/sitespeedio/sitespeed.io/pull/2133)
+
+* We have been old and conservative in how we use # when creating URLs: From the beginning (6+ years ago) we always left out # from URLs when we decided if a URL is unique or not. Now you can choose yourself with ```--useHash``` [#2142](https://github.com/sitespeedio/sitespeed.io/pull/2142).
 
 ### Fixed
 * Upgraded to Browsertime 3.7.0 that changed how Basic Auth is handled: We send a basic auth request header instead of using the build in Web Extension [#2151](https://github.com/sitespeedio/sitespeed.io/issues/2151).
 
 * Chrome in some case(s) generates a HAR with broken timings that caused sitespeed.io to log error and not being able to collect timings per domain [#2159](https://github.com/sitespeedio/sitespeed.io/issues/2159). Fixed by [#2160](https://github.com/sitespeedio/sitespeed.io/pull/2160).
 
+* We updated to PageXray 2.4.0 that correctly pick up mime types for video/audio/xml and pdf (that was missed before).
+
+* Fixed the bug that made us show wrong video/screenshot on page summary[#2169](https://github.com/sitespeedio/sitespeed.io/pull/2169). Before we always showed the first screenshot/video. Now we show the median pick (so it correlates to the right waterfall and metrics tab).
+
 ### Tech
 * You can now use markdown in the pug templates - ```!{markdown.toHTML(value)}```
-
 ## 7.4.0 - 2018-09-14
 
 ### Added
