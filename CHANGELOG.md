@@ -15,7 +15,7 @@
 
 * You can use ```--injectJs``` to inject JavaScript into the current page (only Firefox at the moment) at document_start. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
 
-* Browsertime collects the Firefox only metric *timeToDomContentFlushed*. It is also pushed to Graphite/InfluxDB by deafult.
+* Browsertime collects the Firefox only metric *timeToDomContentFlushed*. It is also pushed to Graphite/InfluxDB by deafult. There are rumours saying that this metric will be betterthat time to non blank for some web sites.
 
 * All metrics in the Paint Timing API (First Paint and First Contentful Paint in Chrome) are also pushed to Graphite/InfluxDB by deafult.
 
@@ -31,6 +31,8 @@ And we made it easy to use Lighthouse and the GPSI plugin by releasing the +1 Do
 
 * We have been old and conservative in how we use # when creating URLs: From the beginning (6+ years ago) we always left out # from URLs when we decided if a URL is unique or not. Now you can choose yourself with ```--useHash``` [#2142](https://github.com/sitespeedio/sitespeed.io/pull/2142).
 
+* There's a new version of the dashboards for Graphite, trying to make it easier to find regressions: https://github.com/sitespeedio/grafana-bootstrap-docker
+
 ### Fixed
 * Upgraded to Browsertime 3.7.0 that changed how Basic Auth is handled: We send a basic auth request header instead of using the build in Web Extension [#2151](https://github.com/sitespeedio/sitespeed.io/issues/2151).
 
@@ -39,6 +41,8 @@ And we made it easy to use Lighthouse and the GPSI plugin by releasing the +1 Do
 * We updated to PageXray 2.4.0 that correctly pick up mime types for video/audio/xml and pdf (that was missed before).
 
 * Fixed the bug that made us show wrong video/screenshot on page summary[#2169](https://github.com/sitespeedio/sitespeed.io/pull/2169). Before we always showed the first screenshot/video. Now we show the median pick (so it correlates to the right waterfall and metrics tab).
+
+* There's been multiple problems with navigations with hash route see for example [#2091](https://github.com/sitespeedio/sitespeed.io/issues/2091). We fixed so we don't get that error + Chrome 69 changed the internal trace log so it (at least on our side) seems to work better. Please report back if you still see issues.
 
 ### Tech
 * You can now use markdown in the pug templates - ```!{markdown.toHTML(value)}```
