@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Run Lighthouse from sitespeed.io
+title: Run Lighthouse and Google PageSpeed Insights from sitespeed.io
 description: Since 7.5 you can also run Lighthouse from sitespeed.io
 keywords: lighthouse, sitespeed.io
 nav: documentation
 category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: Run Lighthouse from sitespeed.io.
+twitterdescription: Run Lighthouse and Google PageSpeed Insights from sitespeed.io.
 ---
 [Documentation](/documentation/sitespeed.io/) / Lighthouse
 

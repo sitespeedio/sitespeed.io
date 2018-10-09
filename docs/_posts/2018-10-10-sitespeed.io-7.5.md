@@ -58,7 +58,9 @@ You can run it with:
 docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:7.5.0-plus1 https://www.sitespeed.io/
 ``` 
 
-And you will also automatically run Lighthouse and GPSI. We will automatically release a new version of the container per release by adding *-plus1* to the tag. If you use Graphite/InfluxDb the score from Lighthouse and GPSI will be automatically stored. If you want to add functionality please send PRs to [https://github.com/sitespeedio/plugin-lighthouse](https://github.com/sitespeedio/plugin-lighthouse) and [https://github.com/sitespeedio/plugin-gpsi](https://github.com/sitespeedio/plugin-gpsi).
+And you will also automatically run Lighthouse and GPSI. We will release a new version of the container per release by adding *-plus1* to the tag. If you use Graphite/InfluxDb the score from Lighthouse and GPSI will be automatically stored.
+
+This is a really simple implementatiom and if you miss any functionality please send PRs to [https://github.com/sitespeedio/plugin-lighthouse](https://github.com/sitespeedio/plugin-lighthouse) and [https://github.com/sitespeedio/plugin-gpsi](https://github.com/sitespeedio/plugin-gpsi).
 
 ![Lighthouse]({{site.baseurl}}/img/lighthouse.png)
 {: .img-thumbnail-center}
@@ -114,6 +116,8 @@ There's a new version of the [page summary](https://github.com/sitespeedio/grafa
 * Chrome in some case(s) generates a HAR with broken timings that caused sitespeed.io to log error and not being able to collect timings per domain [#2159](https://github.com/sitespeedio/sitespeed.io/issues/2159). Fixed by [#2160](https://github.com/sitespeedio/sitespeed.io/pull/2160).
 
 * We updated to PageXray 2.4.0 that correctly pick up mime types for video/audio/xml and pdf (that was missed before). 
+
+* Updated to [Coach 2.3.0](https://github.com/sitespeedio/coach/blob/master/CHANGELOG.md) that fixes so that the CSS advice never can be a negative score.
 
 * Fixed the bug that made us show wrong video/screenshot on page summary[#2169](https://github.com/sitespeedio/sitespeed.io/pull/2169). Before we always showed the first screenshot/video. Now we show the median pick (so it correlates to the right waterfall and metrics tab).
 

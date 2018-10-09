@@ -35,7 +35,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Upgrade](upgrade/) - upgrading from 5.x to 6.0 check out our guide here.
  * [Mobile phones](mobile-phones/) - test using your mobile phone (Android only).
  * [WebPageTest](webpagetest/) - drive WebPageTest and fetch metrics and graph them.
- * [Lighthouse](lighthouse/) - run Lighthouse, fetch metrics and graph them.
+ * [Lighthouse](lighthouse/) - run Lighthouse and Google PageSpeed Insights from sitespeed.io.
  * [WebPageReplay](webpagereplay/) - WebPageReplay is proxy that first records your web site and then replay it locally. That can help you find performance regression in the front-end code easier: Latency/server timings are constant.
  * [Developers](developers/) - start here when you want to do PRs or create a plugin.
  * [How to Write a Good Bug Report](bug-report/) - if you write a good bug report, we can spend more time helping you fixing the problem instead of asking you questions.

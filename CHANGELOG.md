@@ -40,6 +40,8 @@ And we made it easy to use Lighthouse and the GPSI plugin by releasing the +1 Do
 
 * We updated to PageXray 2.4.0 that correctly pick up mime types for video/audio/xml and pdf (that was missed before).
 
+* Updated to [Coach 2.3.0](https://github.com/sitespeedio/coach/blob/master/CHANGELOG.md) that fixes so that the CSS advice never can be a negative score.
+
 * Fixed the bug that made us show wrong video/screenshot on page summary[#2169](https://github.com/sitespeedio/sitespeed.io/pull/2169). Before we always showed the first screenshot/video. Now we show the median pick (so it correlates to the right waterfall and metrics tab).
 
 * There have been multiple problems with navigations with hash route see for example [#2091](https://github.com/sitespeedio/sitespeed.io/issues/2091). We fixed so we don't get that error + Chrome 69 changed the internal trace log so it (at least on our side) seems to work better. Please report back if you still see issues.
