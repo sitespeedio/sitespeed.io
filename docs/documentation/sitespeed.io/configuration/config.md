@@ -11,6 +11,7 @@ Browser
   --browsertime.pageCompleteCheck, --pageCompleteCheck                      Supply a Javascript that decides when the browser is finished loading the page and can start to collect metrics. The Javascript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd.
   --browsertime.pageCompleteCheckInactivity, --pageCompleteCheckInactivity  Alternative way to choose when to end your test. This will wait for 2 seconds of inactivity that happens after loadEventEnd.  [boolean] [default: false]
   --browsertime.script, --script                                            Add custom Javascript that collect metrics and run after the page has finished loading. Note that --script can be passed multiple times if you want to collect multiple metrics. The metrics will automatically be pushed to the summary/detailed summary and each individual page + sent to Graphite/InfluxDB.
+  --browsertime.injectJs, --injectJs                                        Inject JavaScript into the current page (only Firefox at the moment) at document_start. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
   --browsertime.selenium.url                                                Configure the path to the Selenium server when fetching timings using browsers. If not configured the supplied NodeJS/Selenium version is used.
   --browsertime.viewPort, --viewPort                                        The browser view port size WidthxHeight like 400x300  [default: "1366x708"]
   --browsertime.userAgent, --userAgent                                      The full User Agent string, defaults to the User Agent used by the browsertime.browser option.
@@ -20,6 +21,8 @@ Browser
   --browsertime.delay, --delay                                              Delay between runs, in milliseconds. Use it if your web server needs to rest between runs :)
   --browsertime.pageLoadStrategy, --pageLoadStrategy                        The Page Load Strategy decides when you have control of the page load. Default is normal meaning you will have control after onload. You can change that to none to get control direct after navigation.  [choices: "normal", "none"] [default: "normal"]
   --browsertime.visualMetrics, --visualMetrics, --speedIndex                Calculate Visual Metrics like SpeedIndex, First Visual Change and Last Visual Change. Requires FFMpeg and Python dependencies  [boolean]
+  --browsertime.visualElements, --visualElements                            Collect Visual Metrics from elements. Works only with --visualMetrics turned on. By default you will get visual metrics from the largest image within the view port and the largest h1. You can also configure to pickup your own defined elements with --scriptInput.visualElements  [boolean]
+  --browsertime.scriptInput.visualElements, --scriptInput.visualElements    Include specific elements in visual elements. Give the element a name and select it with document.body.querySelector. Use like this: --scriptInput.visualElements name:domSelector . Add multiple instances to measure multiple elements. Visual Metrics will use these elements and calculate when they are visible and fully rendered.
   --browsertime.video, --video                                              Record a video and store the video. Set it to false to remove the video that is created by turning on visualMetrics. To remove fully turn off video recordings, make sure to set video and visualMetrics to false. Requires FFMpeg to be installed.  [boolean]
   --browsertime.videoParams.framerate, --videoParams.framerate, --fps       Frames per second in the video  [default: 30]
   --browsertime.videoParams.crf, --videoParams.crf                          Constant rate factor for the end result video, see https://trac.ffmpeg.org/wiki/Encode/H.264#crf  [default: 23]
@@ -42,7 +45,7 @@ Firefox
   --browsertime.firefox.collectMozLog, --firefox.collectMozLog                  Collect the MOZ HTTP log  [boolean]
 
 Chrome
-  --browsertime.chrome.args, --chrome.args                                  Extra command line arguments to pass to the Chrome process. Always leave out the starting -- (--no-sandbox will be no-sandbox). To add multiple arguments to Chrome, repeat --browsertime.chrome.args once per argument.
+  --browsertime.chrome.args, --chrome.args                                  Extra command line arguments to pass to the Chrome process. Always leave out the starting -- (--no-sandbox will be no-sandbox). To add multiple arguments to Chrome, repeat --browsertime.chrome.args once per argument. See https://peter.sh/experiments/chromium-command-line-switches/
   --browsertime.chrome.timeline, --chrome.timeline                          Collect the timeline data. Drag and drop the JSON in your Chrome detvools timeline panel or check out the CPU metrics.  [boolean]
   --browsertime.chrome.android.package, --chrome.android.package            Run Chrome on your Android device. Set to com.android.chrome for default Chrome version. You need to run adb start-server before you start.
   --browsertime.chrome.android.deviceSerial, --chrome.android.deviceSerial  Choose which device to use. If you do not set it, the first found device will be used.
@@ -59,19 +62,24 @@ Crawler
   --crawler.depth, -d     How deep to crawl (1=only one page, 2=include links from first page, etc.)
   --crawler.maxPages, -m  The max number of pages to test. Default is no limit.
 
+Grafana
+  --grafana.host  The Grafana host used when sending annotations.
+  --grafana.port  The Grafana port used when sending annotations to Grafana.  [default: 80]
+
 Graphite
-  --graphite.host                The Graphite host used to store captured metrics.
-  --graphite.port                The Graphite port used to store captured metrics.  [default: 2003]
-  --graphite.auth                The Graphite user and password used for authentication. Format: user:password
-  --graphite.httpPort            The Graphite port used to access the user interface and send annotations event  [default: 8080]
-  --graphite.webHost             The graphite-web host. If not specified graphite.host will be used.
-  --graphite.namespace           The namespace key added to all captured metrics.  [default: "sitespeed_io.default"]
-  --graphite.includeQueryParams  Whether to include query parameters from the URL in the Graphite keys or not  [boolean] [default: false]
-  --graphite.arrayTags           Send the tags as Array or a String. In Graphite 1.0 the tags is a array. Before a String  [boolean] [default: true]
-  --graphite.annotationMessage   Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
-  --graphite.statsd              Uses the StatsD interface  [boolean] [default: false]
-  --graphite.annotationTag       Add a extra tag to the annotation sent for a run. Repeat the --graphite.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
-  --graphite.bulkSize            Break up number of metrics to send with each request.  [number] [default: null]
+  --graphite.host                  The Graphite host used to store captured metrics.
+  --graphite.port                  The Graphite port used to store captured metrics.  [default: 2003]
+  --graphite.auth                  The Graphite user and password used for authentication. Format: user:password
+  --graphite.httpPort              The Graphite port used to access the user interface and send annotations event  [default: 8080]
+  --graphite.webHost               The graphite-web host. If not specified graphite.host will be used.
+  --graphite.namespace             The namespace key added to all captured metrics.  [default: "sitespeed_io.default"]
+  --graphite.includeQueryParams    Whether to include query parameters from the URL in the Graphite keys or not  [boolean] [default: false]
+  --graphite.arrayTags             Send the tags as Array or a String. In Graphite 1.0 the tags is a array. Before a String  [boolean] [default: true]
+  --graphite.annotationMessage     Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
+  --graphite.annotationScreenshot  Include screenshot (from Browsertime) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
+  --graphite.statsd                Uses the StatsD interface  [boolean] [default: false]
+  --graphite.annotationTag         Add a extra tag to the annotation sent for a run. Repeat the --graphite.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
+  --graphite.bulkSize              Break up number of metrics to send with each request.  [number] [default: null]
 
 Plugins
   --plugins.list    List all configured plugins in the log.  [boolean]
@@ -91,15 +99,16 @@ Screenshot
   --browsertime.screenshotParams.maxSize, --screenshot.maxSize                            The max size of the screenshot (width and height).  [default: 2000]
 
 InfluxDB
-  --influxdb.protocol            The protocol used to store connect to the InfluxDB host.  [default: "http"]
-  --influxdb.host                The InfluxDB host used to store captured metrics.
-  --influxdb.port                The InfluxDB port used to store captured metrics.  [default: 8086]
-  --influxdb.username            The InfluxDB username for your InfluxDB instance.
-  --influxdb.password            The InfluxDB password for your InfluxDB instance.
-  --influxdb.database            The database name used to store captured metrics.  [default: "sitespeed"]
-  --influxdb.tags                A comma separated list of tags and values added to each metric  [default: "category=default"]
-  --influxdb.includeQueryParams  Whether to include query parameters from the URL in the InfluxDB keys or not  [boolean] [default: false]
-  --influxdb.groupSeparator      Choose which character that will seperate a group/domain. Default is underscore, set it to a dot if you wanna keep the original domain name.  [default: "_"]
+  --influxdb.protocol              The protocol used to store connect to the InfluxDB host.  [default: "http"]
+  --influxdb.host                  The InfluxDB host used to store captured metrics.
+  --influxdb.port                  The InfluxDB port used to store captured metrics.  [default: 8086]
+  --influxdb.username              The InfluxDB username for your InfluxDB instance.
+  --influxdb.password              The InfluxDB password for your InfluxDB instance.
+  --influxdb.database              The database name used to store captured metrics.  [default: "sitespeed"]
+  --influxdb.tags                  A comma separated list of tags and values added to each metric  [default: "category=default"]
+  --influxdb.includeQueryParams    Whether to include query parameters from the URL in the InfluxDB keys or not  [boolean] [default: false]
+  --influxdb.groupSeparator        Choose which character that will seperate a group/domain. Default is underscore, set it to a dot if you wanna keep the original domain name.  [default: "_"]
+  --influxdb.annotationScreenshot  Include screenshot (from Browsertime) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
 
 Metrics
   --metrics.list        List all possible metrics in the data folder (metrics.txt).  [boolean] [default: false]
@@ -158,7 +167,9 @@ Options:
   --gzipHAR        Compress the HAR files with GZIP.  [boolean] [default: false]
   --outputFolder   The folder where the result will be stored.  [string]
   --firstParty     A regex running against each request and categorize it as first vs third party URL. (ex: ".*sitespeed.*")
+  --urlAlias       Use an alias for the URL (if you feed URLs from a file you can instead have the alias in the file). You need to pass on the same amount of alias as URLs. The alias is used as the name of the URL on the HTML report and in Graphite/InfluxDB. Pass on multiple --urlAlias for multiple alias/URLs. This will override alias in a file.  [string]
   --utc            Use Coordinated Universal Time for timestamps  [boolean] [default: false]
+  --useHash        If your site uses # for URLs and # give you unique URLs you need to turn on useHash. By default is it turned off, meaning URLs with hash and without hash are treated as the same URL  [boolean] [default: false]
   --config         Path to JSON config file
   --help, -h       Show help  [boolean]
 
