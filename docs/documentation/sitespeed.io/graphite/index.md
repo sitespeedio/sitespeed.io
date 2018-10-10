@@ -103,8 +103,17 @@ Append a message to the annotation with <code>--graphite.annotationMessage</code
 You can add extra tags with <code>--graphite.annotationTag</code>. For multiple tags, add the parameter multiple times. Just make sure that the tags doesn't collide with our internal tags.
 
 ![Annotations]({{site.baseurl}}/img/graphite-annotations.png)
-{: .img-thumbnail}
+{: .img-thumbnail-center}
 
+You can also include a screenshot from the run in the annotation by adding <code>--graphite.annotationScreenshot</code> to your configuration.
+
+![Annotation with screenshots]({{site.baseurl}}/img/annotation-with-screenshot.png)
+{: .img-thumbnail-center}
+
+### Use Grafana annotations
+Instead of using Graphite annotations you can use Grafana built in annotations since sitespeed.io 7.5 and Grafana 5.3.0.
+
+To use Grafana annotations, make sure you setup a *resultBaseURL* and add the host and port to Grafana: <code>--grafana.host</code> and <code>--grafana.port</code>.
 
 ## Warning: Crawling and Graphite
 If you crawl a site that is not static, you will pick up new pages each run or each day, which will make the Graphite database grow daily. When you add metrics to Graphite, it prepares space for those metrics ahead of time, depending on your storage configuration (in Graphite). If you configured Graphite to store individual metrics every 15 minutes for 60 days, Graphite will allocate storage for that URL: 4 (per hour) * 24 (hours per day) * 60 (days), even though you might only test that URL once.
