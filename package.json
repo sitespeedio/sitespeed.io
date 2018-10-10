@@ -98,6 +98,7 @@
     "p-limit": "2.0.0",
     "pagexray": "2.4.0",
     "pug": "2.0.3",
+    "punycode": "^2.1.1",
     "recursive-readdir": "2.2.2",
     "simplecrawler": "1.1.6",
     "tape": "4.9.1",
