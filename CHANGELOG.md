@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 7.5.1 - 2018-10-10
+## Fixed
+* Updated to Browsertime 3.7.1 that fixes the problem of setting User Agent in Firefox (and making --mobile fail when using Firefox).
+
 ## 7.5.0 - 2018-10-10
 ### Added
 * Upgraded to Browsertime 3.5.0 with the following additions:
