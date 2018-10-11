@@ -21,7 +21,7 @@ category: sitespeed.io
 ## We love a new bug report
 We love when you create a new issue for sitespeed.io! We really do. New issues helps us getting the project better and it will help other users. In other words, we love issues.
 
-Sometimes we get a really detailed issue: You describe exactly how you do when you get the problem, you share the log, you write down what you have tested, share screenshots, share videos. You even tries to understand why you get this bug. When we get an issue like that, it always jump to my number one prioritization. If you put down all the time and effort to really describe the issue, we want to put all my effort to fixing it.
+Sometimes we get a really detailed issue: You describe exactly how you do when you get the problem, you share the log, you write down what you have tested, share screenshots, share videos. You even tries to understand why you get this bug. When we get an issue like that, it always jump to my number one prioritization. If you put down all the time and effort to really describe the issue, we want to put all our effort to fix it.
 
 It also happens (quite often) that we get issues that misses important information, so we need to ask you again and again about the problem (like how to reproduce the issue). Sometimes we need to do that two/three/four times within that issue. Issues that misses vital information takes longer time to fix/close and that makes us spend more time asking questions instead of fixing actual bugs or creating new functionallity. 
 
