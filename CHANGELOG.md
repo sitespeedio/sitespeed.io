@@ -1,7 +1,11 @@
 # CHANGELOG - sitespeed.io
 
+## 7.5.2 - 2018-10-12
+### Fixed
+* The Lighthouse plugin always runs Lighthouse after Browsertime is finished (to make sure only one instance of Chrome runs at the same time).
+
 ## 7.5.1 - 2018-10-10
-## Fixed
+### Fixed
 * Updated to Browsertime 3.7.1 that fixes the problem of setting User Agent in Firefox (and making --mobile fail when using Firefox).
 
 ## 7.5.0 - 2018-10-10
