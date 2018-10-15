@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 7.6.1 - 2018-10-15
+### Fixed 
+*  In Browsertime 3.8.0 Firefox visual metrics was broken if you use the Browsertime extension (the first visual change was higher than it should). The problem was that orange div (that is used for video) didn't work with perfectly with the extension server [#649](https://github.com/sitespeedio/browsertime/pull/649).
+
 ##  7.6.0 - 2018-10-15
 ### Added
 * Upgraded to [Browsertime 3.8.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#380---2018-10-15). The new version changes how the change happen bewteen preURL/preScript and the URL being tested. Before we automatically turned the screen white between pre runs and the URL. Now we do not do that. The metrics will be the same but when you look at the video, it will start with the pre URL instead of a white screen. This fixes bugs like [#2091](https://github.com/sitespeedio/sitespeed.io/issues/2091) where routing through hash wasn't getting the right first visual change (and other bugs).
