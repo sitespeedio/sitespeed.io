@@ -1,8 +1,12 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Fixed
+* New Browsertime 3.8.2
+
 ## 7.6.1 - 2018-10-15
 ### Fixed 
-*  In Browsertime 3.8.0 Firefox visual metrics was broken if you use the Browsertime extension (the first visual change was higher than it should). The problem was that orange div (that is used for video) didn't work with perfectly with the extension server [#649](https://github.com/sitespeedio/browsertime/pull/649).
+* In Browsertime 3.8.0 Firefox visual metrics was broken if you use the Browsertime extension (the first visual change was higher than it should). The problem was that orange div (that is used for video) didn't work with perfectly with the extension server [#649](https://github.com/sitespeedio/browsertime/pull/649).
 
 ##  7.6.0 - 2018-10-15
 ### Added
