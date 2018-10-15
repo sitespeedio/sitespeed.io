@@ -1,8 +1,8 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 7.6.2 - 2018-10-15
 ### Fixed
-* New Browsertime 3.8.2
+* New [Browsertime 3.8.2](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#382) that finally fixes the problem for Firefox introduced in 7.6.0. 
 
 ## 7.6.1 - 2018-10-15
 ### Fixed 
