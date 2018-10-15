@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Added
+* Upgraded to Browsertime 3.8.0
+
 ## 7.5.2 - 2018-10-12
 ### Fixed
 * The Lighthouse plugin always runs Lighthouse after Browsertime is finished (to make sure only one instance of Chrome runs at the same time).
