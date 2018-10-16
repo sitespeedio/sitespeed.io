@@ -114,6 +114,22 @@ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io
 
 The JSON files for the whole run (summary files) will end up in *$RESULT/data/*. JSON for each individual page is stored in *$RESULT/data/pages/$PAGE/data/*.
 
+### How do I test pages with #-URLS?
+By default the # part of a URL is stripped off from your page. Yep we know, it isn't the best but in the old days the # rarely added any value and crawling a site linking to the same page with different sections made you test the same page over and over again.
+
+If you have pages that are generated differently depending of what's after you #-sign, you can use the <code>--useHash</code> switch. Then all pages will be tested as a unique page.
+
+~~~bash
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --useHash https://www.sitespeed.io/#/super 
+~~~
+
+You can also use the <code>--urlAlias</code> if you want to give the page a friendly name. Use it multiple times if you have multiple URLs.
+
+~~~bash
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --useHash --urlAlias super --urlAlias duper https://www.sitespeed.io/#/super https://www.sitespeed.io/#/duper
+~~~
+
+
 ## Servers
 What you should know before you choose where to run sitespeed.io.
 
