@@ -41,7 +41,7 @@ If you want to test multiple URLs, you can used line them up in the cli:
 docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io https://www.sitespeed.io/documentation/
 ~~~
 
-You can also use a plain text file with one URL on each line. Create a file called urls.txt (but you can call it whatever uoy want):
+You can also use a plain text file with one URL on each line. Create a file called urls.txt (but you can call it whatever you want):
 
 ~~~
 http://www.yoursite.com/path/
