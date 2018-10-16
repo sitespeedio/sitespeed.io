@@ -1,7 +1,7 @@
 # CHANGELOG - sitespeed.io
-## UNRELEASED
+## 7.6.3 - 2018-10-16
 ### Fixed
-* Screenshots for Grafana annotations wasn't working in earlier versions. Thank you julrich for reporting.
+* Screenshots for Grafana annotations wasn't working in earlier versions. Thank you Jonas Ulrich for reporting! [#2182](https://github.com/sitespeedio/sitespeed.io/pull/2182).
 
 ## 7.6.2 - 2018-10-15
 ### Fixed
