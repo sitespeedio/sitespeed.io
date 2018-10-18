@@ -60,6 +60,8 @@ You can either upload two HAR files (drag/drop) or give the URL to two URLs host
 
 If you host your sitespeed.io result pages, you can copy/paste the URL to a page or to a specific run and Compare will automagically find the URL to the HAR file.
 
+You can also compare two HAR files on the fly that are available on the internet. Add the parameters **?har1=FULL_URL1&har2=FULL_URL2&compare=1** and the two HAR files will be compared. The full URL will look like: https://compare.sitespeed.io?har1=https://PATH1&har2=https://PATH2&compare=1
+
 ## How to contribute a.k.a what are we looking for?
 Send us a PR/[create an issue](https://github.com/sitespeedio/compare/issues/new). If you have big change coming up, please discuss it with us in an issue first.
 
