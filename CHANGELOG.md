@@ -1,4 +1,9 @@
 # CHANGELOG - sitespeed.io
+
+## UNRELEASED
+### Fixed
+* New Browsertime 3.10.0 with latest Chromedriver and a fix for the bug when you set a cookie and the same time use --cacheClearRaw.
+
 ## 7.6.3 - 2018-10-16
 ### Fixed
 * Screenshots for Grafana annotations wasn't working in earlier versions. Thank you Jonas Ulrich for reporting! [#2182](https://github.com/sitespeedio/sitespeed.io/pull/2182).
