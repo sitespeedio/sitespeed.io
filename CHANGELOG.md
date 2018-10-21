@@ -1,8 +1,9 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 7.6.4 - 2018-10-22
 ### Fixed
 * New Browsertime 3.10.0 with latest Chromedriver and a fix for the bug when you set a cookie and the same time use --cacheClearRaw.
+* Upgraded to Perf Cascade 2.5.5
 
 ## 7.6.3 - 2018-10-16
 ### Fixed
