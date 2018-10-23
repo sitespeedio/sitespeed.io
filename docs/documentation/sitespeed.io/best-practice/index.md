@@ -153,7 +153,7 @@ You should set different namespaces depending on location (**--graphite.namespac
 By default you can choose to store your metrics in a time series database (Graphite or InfluxDB).
 
 ### Should I choose Graphite or InfluxDB?
-If your organisation is running Graphite, use that. If your used to InfluxDB, use that. If you don't use any of them then use Graphite since we have more ready made dashboards for Graphite.
+If your organisation is running Graphite, use that. If you're used to InfluxDB, use that. If you don't use any of them then use Graphite since we have more ready made dashboards for Graphite.
 
 ### Handling big amount of data
 sitespeed.io will generate lots of metrics and data, how do I handle that?
