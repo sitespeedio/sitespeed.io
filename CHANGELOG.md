@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Fixed
+* Multiple InfluxDB annotations bugs: The InfluxDb plugin sent a graphite.setup message to say it's alive (instead of influxdb.setup) doh [#2191](https://github.com/sitespeedio/sitespeed.io/pull/2191). The tag handling was broken for annotations [#2192](https://github.com/sitespeedio/sitespeed.io/pull/2192). 
+
 ## 7.7.1 - 2018-10-24
 ### Fixed
 * The wrong run was linked in the HAR file (and then wrongly displayed in compare.sitespeed.io) [#2188](https://github.com/sitespeedio/sitespeed.io/pull/2188).
