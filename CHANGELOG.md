@@ -4,6 +4,9 @@
 ### Fixed
 * The wrong run was linked in the HAR file (and then wrongly displayed in compare.sitespeed.io) [#2188](https://github.com/sitespeedio/sitespeed.io/pull/2188).
 
+### Added 
+* Use lates Coach 2.4.0
+
 ## 7.7.0 - 2018-10-22
 ### Fixed
 * New Browsertime 3.10.0 with latest Chromedriver and a fix for the bug when you set a cookie and the same time use --cacheClearRaw.
