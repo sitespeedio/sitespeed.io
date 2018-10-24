@@ -3,9 +3,10 @@
 ## UNRELEASED
 ### Fixed
 * The wrong run was linked in the HAR file (and then wrongly displayed in compare.sitespeed.io) [#2188](https://github.com/sitespeedio/sitespeed.io/pull/2188).
+* Updated to Browsertime 3.11.1 that fixes the higher deviation in visual metrics in Chrome introduced in earlier version [Browsertime #655](https://github.com/sitespeedio/browsertime/issues/655).
 
 ### Added 
-* Use lates Coach 2.4.0
+* Use latest Coach 2.4.0
 
 ## 7.7.0 - 2018-10-22
 ### Fixed
