@@ -1,11 +1,11 @@
 'use strict';
 
 const resultsStorage = require('../lib/core/resultsStorage');
-const moment = require('moment');
+const dayjs = require('dayjs');
 const path = require('path');
 const expect = require('chai').expect;
 
-const timestamp = moment();
+const timestamp = dayjs();
 const timestampString = timestamp.format('YYYY-MM-DD-HH-mm-ss');
 
 function createManager(url, outputFolder) {

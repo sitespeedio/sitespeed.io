@@ -1,7 +1,7 @@
 'use strict';
 
 const DataGenerator = require('../lib/plugins/influxdb/data-generator'),
-  moment = require('moment'),
+  dayjs = require('dayjs'),
   expect = require('chai').expect;
 
 describe('influxdb', function() {
@@ -354,7 +354,7 @@ describe('influxdb', function() {
         }
       });
 
-      var data = generator.dataFromMessage(message, moment());
+      var data = generator.dataFromMessage(message, dayjs());
 
       expect(data).to.not.be.empty;
 
