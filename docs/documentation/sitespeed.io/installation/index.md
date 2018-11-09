@@ -33,7 +33,7 @@ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.s
 
 ~~~
 C:\Users\Vicky> docker pull sitespeedio/sitespeed.io
-C:\Users\Vicky> docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -b firefox
+C:\Users\Vicky> docker run --rm -v "${pwd}":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -b firefox
 ~~~
 
 That will output the data from the run in the current directory. You can read more about running the containers [here](/documentation/sitespeed.io/docker/).
