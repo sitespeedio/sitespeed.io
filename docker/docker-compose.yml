@@ -7,7 +7,7 @@ services:
       volumes:
             - ./sitespeed-result/:/sitespeed.io/sitespeed-result
     grafana:
-      image: grafana/grafana:5.3.0
+      image: grafana/grafana:5.3.4
       depends_on:
         - graphite
       links:
