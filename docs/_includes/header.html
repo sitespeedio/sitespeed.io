@@ -1,38 +1,41 @@
-<div class="darkblue nav">
-<div class="grid">
-  <div class="col-1-1">
-    <div class="logo">
-    <a href="{{site.baseurl}}/"><img src="{{site.baseurl}}/img/sitespeed-logo-2c.png" class="navbar-brand" alt="Sitespeed.io - How speedy is your site?" width="162" height="50"/></a>
+<nav>
+  <div class="darkblue nav">
+    <div class="grid">
+      <div class="col-1-1">
+        <div class="logo">
+          <a href="{{site.baseurl}}/"><img src="{{site.baseurl}}/img/sitespeed-logo-2c.png" class="navbar-brand" alt="Sitespeed.io - How speedy is your site?"
+              width="162" height="50" /></a>
+        </div>
+        <ul>
+          <li>
+            <a href="{{site.baseurl}}/" {% if page.nav=='start' %}class="active" {% endif %}>Start</a>
+          </li>
+          <li>
+            <a href="{{site.baseurl}}/documentation/" {% if page.nav=='documentation' %}class="active" {% endif %}>Documentation</a>
+            <ul>
+              <li><a href="{{site.baseurl}}/documentation/sitespeed.io/">sitespeed.io</a></li>
+              <li><a href="{{site.baseurl}}/documentation/coach/">Coach</a></li>
+              <li><a href="{{site.baseurl}}/documentation/browsertime/">Browsertime</a></li>
+              <li><a href="{{site.baseurl}}/documentation/pagexray/">PageXray</a></li>
+              <li><a href="{{site.baseurl}}/documentation/throttle/">Throttle</a></li>
+              <li><a href="{{site.baseurl}}/documentation/compare/">Compare</a></li>
+              <li><a href="{{site.baseurl}}/documentation/chrome-har/">Chrome HAR</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="{{site.baseurl}}/examples/" {% if page.nav=='examples' %}class="active" {% endif %}>Examples</a>
+          </li>
+          <li>
+            <a href="{{site.baseurl}}/blog/" {% if page.nav=='blog' %}class="active" {% endif %}>Blog</a>
+          </li>
+          <li>
+            <a href="{{site.baseurl}}/video/" {% if page.nav=='video' %}class="active" {% endif %}>Videos</a>
+          </li>
+          <li>
+            <a href="{{site.baseurl}}/search/" {% if page.nav=='search' %}class="active" {% endif %}>Search</a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
-    <ul>
-      <li>
-         <a href="{{site.baseurl}}/" {% if page.nav == 'start' %}class="active" {% endif %}>Start</a>
-      </li>
-      <li>
-         <a href="{{site.baseurl}}/documentation/" {% if page.nav == 'documentation' %}class="active" {% endif %}>Documentation</a>
-         <ul>
-            <li><a href="{{site.baseurl}}/documentation/sitespeed.io/">sitespeed.io</a></li>
-            <li><a href="{{site.baseurl}}/documentation/coach/">Coach</a></li>
-            <li><a href="{{site.baseurl}}/documentation/browsertime/">Browsertime</a></li>
-            <li><a href="{{site.baseurl}}/documentation/pagexray/">PageXray</a></li>
-            <li><a href="{{site.baseurl}}/documentation/throttle/">Throttle</a></li>
-            <li><a href="{{site.baseurl}}/documentation/compare/">Compare</a></li>
-            <li><a href="{{site.baseurl}}/documentation/chrome-har/">Chrome HAR</a></li>
-          </ul>
-      </li>
-      <li>
-         <a href="{{site.baseurl}}/examples/" {% if page.nav == 'examples' %}class="active" {% endif %}>Examples</a>
-      </li>
-       <li>
-         <a href="{{site.baseurl}}/blog/" {% if page.nav == 'blog' %}class="active" {% endif %}>Blog</a>
-      </li>
-      <li>
-        <a href="{{site.baseurl}}/video/" {% if page.nav == 'video' %}class="active" {% endif %}>Videos</a>
-     </li>
-      <li>
-         <a href="{{site.baseurl}}/search/" {% if page.nav == 'search' %}class="active" {% endif %}>Search</a>
-      </li>
-    </ul>
-  </div>
-</div>
-</div>
+</nav>
