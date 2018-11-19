@@ -9,7 +9,7 @@
 	Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline';
 
 /video/*
-	Content-Security-Policy-Report-Only: default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; child-src https://www.youtube.com; img-src https://i.ytimg.com;
+	Content-Security-Policy-Report-Only: default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; child-src https://www.youtube.com; img-src 'self' https://i.ytimg.com;
 
 /img/*
         Cache-Control: public, max-age=360000
