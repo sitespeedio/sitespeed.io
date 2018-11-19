@@ -3,7 +3,6 @@
 	x-frame-options: SAMEORIGIN
 	X-XSS-Protection: 1; mode=block
 	Referrer-Policy: no-referrer	
-	Content-Security-Policy: default-src 'self'; child-src https://www.youtube.com;
 
 /img/*
         Cache-Control: public, max-age=360000
