@@ -33,7 +33,7 @@ If you like our project, please give them also some extra love :)
 ## Comparing
 Compare two different HAR files and the result will look something like this:
 
-![Compare two different HAR files](https://raw.githubusercontent.com/sitespeedio/compare/master/docs/img/compare.png)
+![Compare two different HAR files]({{site.baseurl}}/img/compare-full.png)
 {: .img-thumbnail}
 
 ## How it works
