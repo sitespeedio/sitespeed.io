@@ -3,13 +3,13 @@
 	x-frame-options: SAMEORIGIN
 	X-XSS-Protection: 1; mode=block
 	Referrer-Policy: no-referrer
-	Content-Security-Policy-Report-Only: default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'
+	Content-Security-Policy: default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'
 
 /search/*
-	Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline';
+	Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline';
 
 /video/*
-	Content-Security-Policy-Report-Only: default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; child-src https://www.youtube.com; img-src 'self' https://i.ytimg.com;
+	Content-Security-Policy: default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; child-src https://www.youtube.com; img-src 'self' https://i.ytimg.com;
 
 /img/*
         Cache-Control: public, max-age=360000
