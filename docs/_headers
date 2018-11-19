@@ -11,5 +11,8 @@
 /video/*
 	Content-Security-Policy: default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; child-src https://www.youtube.com; img-src 'self' https://i.ytimg.com;
 
+/testcases/*
+	Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self';
+
 /img/*
         Cache-Control: public, max-age=360000
