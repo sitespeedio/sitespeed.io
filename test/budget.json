@@ -14,7 +14,7 @@
     "max": 500
   }, {
     "metric": "advice.info.domDepth.max",
-    "max": 10
+    "max": 12
   }, {
     "metric": "advice.info.iframes",
     "max": 0
