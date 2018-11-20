@@ -57,6 +57,9 @@ Remember that you can also send the metrics to Graphite to keep a closer eye on 
 ## Travis
 We have an example project for setting up Travis [https://github.com/sitespeedio/travis/](https://github.com/sitespeedio/travis/blob/master/.travis.yml). You should not try to use timings in your budget, simply because they tend to vary and be highly unreliable. We suggest using metrics that do not vary greatly and will be the same between runs like Coach score or number of requests.
 
+## Gitlab CI
+Gitlab has prepared an easy way to test using sitespeed.io: [https://docs.gitlab.com/ee/ci/examples/browser_performance.html](https://docs.gitlab.com/ee/ci/examples/browser_performance.html). 
+
 ## Grunt plugin
 Checkout the [grunt plugin](https://github.com/sitespeedio/grunt-sitespeedio).
 
