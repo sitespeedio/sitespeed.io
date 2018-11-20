@@ -8,7 +8,7 @@
 
 ### Tech
 * Changed from moment to DayJS [#2200](https://github.com/sitespeedio/sitespeed.io/pull/2200).
-
+* Removed Bluebird and making suure we use native Promises and await/async [#2205](https://github.com/sitespeedio/sitespeed.io/pull/2205).
 
 ## 7.7.2 - 2018-10-25
 ### Fixed
