@@ -33,7 +33,7 @@ If you like our project, please give them also some extra love :)
 ## Comparing
 Compare two different HAR files and the result will look something like this:
 
-![Compare two different HAR files](https://raw.githubusercontent.com/sitespeedio/compare/master/docs/img/compare.png)
+![Compare two different HAR files]({{site.baseurl}}/img/compare-full.png)
 {: .img-thumbnail}
 
 ## How it works
@@ -52,7 +52,7 @@ If you deploy your result from your sitespeed.io run to a server and use **--res
 
 If you also run with **--firstParty** (adding a regex that show which assets that are first/third parties) we will will show data grouped by party.
 
-![First Party vs Third Party!](https://raw.githubusercontent.com/sitespeedio/compare/master/docs/img/firstparty.png)
+![First Party vs Third Party!]({{site.baseurl}}/img/compare-firstparty.png)
 {: .img-thumbnail-center}
 
 ## How to use it

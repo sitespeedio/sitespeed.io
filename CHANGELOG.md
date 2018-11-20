@@ -2,6 +2,10 @@
 
 ## UNRELEASED
 
+### Added
+* Upgraded to the Coach 3.0 see [https://www.sitespeed.io/coach-3.0/](https://www.sitespeed.io/coach-3.0/).
+* Upgraded to PageXray 2.5.
+
 ### Tech
 * Changed from moment to DayJS [#2200](https://github.com/sitespeedio/sitespeed.io/pull/2200).
 

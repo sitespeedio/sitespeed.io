@@ -1599,7 +1599,7 @@ And it will generate a JSON that looks something like this:
 
 
 ## Compare
-![Compare two different HAR files](https://raw.githubusercontent.com/sitespeedio/compare/master/docs/img/compare.png)
+![Compare two different HAR files]({{site.baseurl}}/img/compare-full.png)
 {: .img-thumbnail}
 
 ## PageXray

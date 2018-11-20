@@ -32,7 +32,7 @@ mixin adviceInfo(name, perfectScore, node)
 h2 Coach
 p.small
   a(href='https://github.com/sitespeedio/coach') The coach
-  | &nbsp;helps you find performance problems on your web page using web performance best practice rules. And gives you advice on accessibility and best practices.
+  | &nbsp;helps you find performance problems on your web page using web performance best practice rules. And gives you advice on accessibility, privacy and best practices.
   
 script(type='text/javascript').
   function toggleRow(toggleElement) {
@@ -55,12 +55,15 @@ script(type='text/javascript').
         ul
           - sLabel = 'label normal ' + h.scoreLabel(advice.score)
           - pLabel = 'label normal ' + h.scoreLabel(advice.performance.score)
+          - prLabel = 'label normal ' + h.scoreLabel(advice.privacy.score)
           - aLabel = 'label normal ' + h.scoreLabel(advice.accessibility.score)
           - bLabel = 'label normal ' +  h.scoreLabel(advice.bestpractice.score)
           li.group-item Total score&nbsp;
             span(class=sLabel) #{advice.score}
           li.group-item Performance score&nbsp;
             span(class=pLabel) #{advice.performance.score}
+          li.group-item Privacy score&nbsp;
+            span(class=prLabel) #{advice.privacy.score}  
           li.group-item Accessibility score&nbsp;
             span(class=aLabel) #{advice.accessibility.score}
           li.group-item Best practice score&nbsp;
@@ -73,4 +76,5 @@ script(type='text/javascript').
 
         +adviceInfo('Best practice advice','Your best practice score is perfect!', advice.bestpractice)
 
+        +adviceInfo('Privacy advice','Your privacy score is perfect!', advice.privacy)
     include ./pageInfo.pug

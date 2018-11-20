@@ -1,7 +1,7 @@
 ## What does it cost?
 * * *
 
-[<img src="{{site.baseurl}}/img/public.png" class="pull-left img-big" alt="The power of sitespeed.io" width="150" height="150">]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#cost)
+[<img src="{{site.baseurl}}/img/public.png" class="pull-left img-big" alt="The power of sitespeed.io" width="150" height="150" alt="sitespeed.io Public Enemy logo">]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#cost)
 
 Sitespeed.io is Open Source and totally free. But what does it cost to have an instance of sitespeed.io up and running?
 
