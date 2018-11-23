@@ -28,7 +28,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Pre/post scripting](prepostscript/) - run Selenium scripts before/after you test a URL.
  * [Setup S3](s3/) - how to setup S3 for your html result/videos and screenshots.
  * [Metrics](metrics/) - configure which metrics you want to use.
- * [Continuous Integration](continuous-integration/) - generate JUnit XML/TAP and use Jenkins, Grunt or the Gulp plugin.
+ * [Continuous Integration](continuous-integration/) - generate JUnit XML/TAP and use Jenkins, Circle CI, Gitlab CI,  Grunt or the Gulp plugin.
  * [Docker](docker/) - how to use our Docker containers.
  * [Graphite](graphite/) - how to configure and store your metrics in Graphite (and using StatsD).
  * [Video](video/) - all that you can do with the video.
