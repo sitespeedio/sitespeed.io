@@ -8,14 +8,15 @@ const merge = require('lodash.merge');
 const getURLs = require('../lib/cli/util').getURLs;
 const browsertimeConfig = require('../lib/plugins/browsertime/index').config;
 
-async function testURL(engine, url) {
+async function testURLs(engine, urls) {
   try {
     await engine.start();
-    const result = await engine.run(url);
-    // check for errors
-    for (let errors of result.errors) {
-      if (errors.length > 0) {
-        process.exitCode = 1;
+    for (let url of urls) {
+      const result = await engine.run(url);
+      for (let errors of result.errors) {
+        if (errors.length > 0) {
+          process.exitCode = 1;
+        }
       }
     }
   } finally {
@@ -62,9 +63,8 @@ async function runBrowsertime() {
   const engine = new browsertime.Engine(btOptions);
   const urls = getURLs(parsed.argv._);
 
-  for (let url of urls) {
-    await testURL(engine, url);
-  }
+  await testURLs(engine, urls);
+
   process.exit();
 }
 
