@@ -1,4 +1,4 @@
-FROM sitespeedio/webbrowsers:chrome-70-firefox-63-1
+FROM sitespeedio/webbrowsers:chrome-71-firefox-63
 
 ENV SITESPEED_IO_BROWSERTIME__XVFB true
 ENV SITESPEED_IO_BROWSERTIME__DOCKER true
