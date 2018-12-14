@@ -1,4 +1,4 @@
----
+z---
 layout: default
 title: Use Docker to run sitespeed.io.
 description: With Docker you get a prebuilt container with sitespeed.io, Firefox, Chrome and XVFB. It's super easy to record a video and get visual metrics like Speed Index and First Visual Change.
@@ -89,19 +89,10 @@ To change connectivity you should use Docker networks, read all about it [here](
 
 ## Access localhost
 
-If you run a server local on your machine and want to access it with sitespeed.io you can do that on your Mac by first finding your localhost IP in Docker:
+If you run a server local on your machine and want to access it with sitespeed.io you can do that on your Mac super easy if youa re usin Docker 18-3 or later by using *host.docker.internal*.
 
 ~~~bash
-docker run -it alpine nslookup docker.for.mac.localhost
-nslookup: can't resolve '(null)': Name does not resolve
-Name:      docker.for.mac.localhost
-Address 1: 192.168.65.2
-~~~
-
-And then using that IP (in this case 192.168.65.2):
-
-~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox http://192.168.65.2:4000/
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox http://host.docker.internal:4000/
 ~~~
 
 ## Troubleshooting
