@@ -1,4 +1,4 @@
-z---
+---
 layout: default
 title: Use Docker to run sitespeed.io.
 description: With Docker you get a prebuilt container with sitespeed.io, Firefox, Chrome and XVFB. It's super easy to record a video and get visual metrics like Speed Index and First Visual Change.
