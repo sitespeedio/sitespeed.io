@@ -1,7 +1,7 @@
 'use strict';
 
 const DataGenerator = require('../lib/plugins/influxdb/data-generator'),
-  dayjs = require('dayjs'),
+  dayjs = require('dayjs-ext'),
   expect = require('chai').expect;
 
 describe('influxdb', function() {
