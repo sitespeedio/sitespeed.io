@@ -2,7 +2,7 @@
 
 const DataGenerator = require('../lib/plugins/graphite/data-generator'),
   expect = require('chai').expect,
-  dayjs = require('dayjs');
+  dayjs = require('dayjs-ext');
 
 describe('graphite', function() {
   describe('dataGenerator', function() {
