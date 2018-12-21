@@ -15,6 +15,10 @@
 * Changed from moment to DayJS [#2200](https://github.com/sitespeedio/sitespeed.io/pull/2200).
 * Removed Bluebird and making suure we use native Promises and await/async [#2205](https://github.com/sitespeedio/sitespeed.io/pull/2205).
 
+## 7.7.3 - 2018-12-21
+### Fixed
+* Docker container updated with latest Firefox and Chrome (to fix the Firefox update popup [#2234](https://github.com/sitespeedio/sitespeed.io/issues/2234).
+
 ## 7.7.2 - 2018-10-25
 ### Fixed
 * Multiple InfluxDB annotations bugs: The InfluxDb plugin sent a graphite.setup message to say it's alive (instead of influxdb.setup) doh [#2191](https://github.com/sitespeedio/sitespeed.io/pull/2191). The tag handling was broken for annotations [#2192](https://github.com/sitespeedio/sitespeed.io/pull/2192). Bug [#2190](https://github.com/sitespeedio/sitespeed.io/issues/2190).
