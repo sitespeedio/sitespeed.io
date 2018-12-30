@@ -13,7 +13,7 @@ async function testURLs(engine, urls) {
     await engine.start();
     for (let url of urls) {
       const result = await engine.run(url);
-      for (let errors of result.errors) {
+      for (let errors of result[0].errors) {
         if (errors.length > 0) {
           process.exitCode = 1;
         }
