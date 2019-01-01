@@ -10,6 +10,7 @@
 ### Fixed
 * Tag CPU data and Lighthouse data smarter that is sent to InfluxDB. Pre this version you could get the CPU data but it was kind of hard to understand the tags. With this fix we add a cpu tag that either is category or event. That way it's easier to pickup (and understand) that data. We also added a audit tag for Lighthouse tests sent to InfluxDB. Before the fix we just sent "score" but no tag telling which score. We now add a tag named audit that tells which audit that is used for the score.[#2225](https://github.com/sitespeedio/sitespeed.io/pull/2225)
 * Fixed running multiple URLs when using WebPageReplay [#2228](https://github.com/sitespeedio/sitespeed.io/pull/2228).
+* Page names in URLs (used in Graphite etc) now get paratnhesis () replaced with an underscore [#2239](https://github.com/sitespeedio/sitespeed.io/pull/2239).
 
 ### Tech
 * Changed from moment to DayJS [#2200](https://github.com/sitespeedio/sitespeed.io/pull/2200).
