@@ -76,7 +76,7 @@ if  browsertime
     .one-half.column
       table
         tr
-          th(colspan='2') Specials and User Timing
+          th(colspan='2') Extra timings
         if (timings.paintTiming && Object.keys(timings.paintTiming).length > 0)
           each value, name in timings.paintTiming
             tr
@@ -100,6 +100,9 @@ if  browsertime
           td
             a(href=baseHelpURL + 'fullyLoaded') Fully loaded
           td.number #{timings.fullyLoaded.toFixed(0)}
+      table
+        tr
+          th(colspan='2') User timings
         if (Object.keys(timings.userTimings.marks).length > 0)
           each value, name in timings.userTimings.marks
             tr
@@ -109,7 +112,7 @@ if  browsertime
           each value, name in timings.userTimings.measures
             tr
               td #{value.name}
-              td.number #{value.startTime.toFixed(0)}
+              td.number #{value.startTime.toFixed(0)} 
 
   if options.browsertime.chrome && options.browsertime.chrome.timeline
     include ./cpu.pug
