@@ -1,7 +1,7 @@
 - const allRows = browsertime.visualMetrics.VisualProgress.split(',')
 - const seriesVisualProgress = [];
-- const oldPercent = -1;
-- const oldValue = -1;
+- let oldPercent = -1;
+- let oldValue = -1;
 each eachRow in allRows
   - const row = eachRow.split('=')
   - const newValue = (Number(row[0])/1000).toFixed(1)
