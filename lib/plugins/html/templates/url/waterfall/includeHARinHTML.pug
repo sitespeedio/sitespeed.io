@@ -5,10 +5,10 @@
 
 script(src= rootPath + 'js/perf-cascade.min.js')
 script(type='text/javascript').
-  var outputHolderEl = document.getElementById("output");
-  var pageSelectorEl = document.getElementById("page-selector");
-  var legendHolderEl = document.getElementById("legend-holder");
-  var options = {
+  const outputHolderEl = document.getElementById("output");
+  const pageSelectorEl = document.getElementById("page-selector");
+  const legendHolderEl = document.getElementById("legend-holder");
+  const options = {
     rowHeight: 23,
     showAlignmentHelpers : false,
     showIndicatorIcons: false,
@@ -19,6 +19,6 @@ script(type='text/javascript').
     pageSelector: pageSelectorEl
 
   };
-  var har = !{JSON.stringify(dahar.log)};
-  var perfCascadeSvg =  perfCascade.fromHar(har, options);
+  const har = !{JSON.stringify(dahar.log)};
+  const perfCascadeSvg =  perfCascade.fromHar(har, options);
   outputHolderEl.appendChild(perfCascadeSvg);

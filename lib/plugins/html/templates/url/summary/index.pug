@@ -1,9 +1,9 @@
 extends ./layout.pug
 
 block content
-  - var d = pageInfo.data
-  - var daTitle = daurlAlias ? daurlAlias : daurl
-  - var downloadName = (daTitle + '-' + options.browser + '-' + timestamp).replace(/(https?\:\/\/)|( )|(:)/ig, '')
+  - const d = pageInfo.data
+  - const daTitle = daurlAlias ? daurlAlias : daurl
+  - const downloadName = (daTitle + '-' + options.browser + '-' + timestamp).replace(/(https?\:\/\/)|( )|(:)/ig, '')
   h1 Page summary
 
   h5.url
@@ -94,9 +94,9 @@ block content
 
         .one-half.column
             if hasScreenShots
-              - var width = options.mobile ? 150 : '100%';
-              - var screenshotNo = medianRun ? medianRun.runIndex : 1
-              - var screenshotName = 'data/screenshots/' + screenshotNo + '.' + screenShotType
+              - const width = options.mobile ? 150 : '100%';
+              - const screenshotNo = medianRun ? medianRun.runIndex : 1
+              - const screenshotName = 'data/screenshots/' + screenshotNo + '.' + screenShotType
               a(href=screenshotName)
                 img.screenshot(src=screenshotName, width=width, alt='Screenshot of run ' + screenshotNo)
             else if !d.browsertime && d.webpagetest
@@ -128,6 +128,6 @@ block content
         include ../pagexray/index.pug
 
     each pageSummary in pageSummaries
-      - var panelName = pageSummary.id + '-panel'
+      - const panelName = pageSummary.id + '-panel'
       section(id=panelName)
         p !{pugs[pageSummary.id]}
