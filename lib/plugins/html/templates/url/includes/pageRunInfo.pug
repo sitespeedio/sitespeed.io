@@ -1,5 +1,5 @@
-- var profile = options.mobile ? 'mobile' : 'desktop'
-- var runTime = h.get(pageInfo, 'pageInfo.data.browsertime.run.timestamp', timestamp)
+- const profile = options.mobile ? 'mobile' : 'desktop'
+- const runTime = h.get(pageInfo, 'pageInfo.data.browsertime.run.timestamp', timestamp)
 p.small Tested #{runTime} using #{h.cap(options.browsertime.browser)} #{browser.version} for
   | #{ h.get(options, 'browsertime.chrome.android.package') ?  ' ' + h.get(options, 'browsertime.chrome.android.package') + ' ': ''}
   | #{options.preURL ? 'preURL ' + h.short(options.preURL, 60) + ' ': ''}

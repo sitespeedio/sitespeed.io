@@ -1,10 +1,10 @@
 extends ../../layout.pug
 
 block content
-  - var d = pageInfo.data
+  - const d = pageInfo.data
   - runNumber = iteration
-  - var daTitle = daurlAlias ? daurlAlias : daurl
-  - var downloadName = (daTitle + '-' + runNumber + '-' + options.browser + '-' + timestamp).replace(/(https?\:\/\/)|( )|(:)/ig, '')
+  - const daTitle = daurlAlias ? daurlAlias : daurl
+  - const downloadName = (daTitle + '-' + runNumber + '-' + options.browser + '-' + timestamp).replace(/(https?\:\/\/)|( )|(:)/ig, '')
 
   h1 Run #{runNumber} summary
   h5.url
@@ -104,7 +104,7 @@ block content
                  img.screenshot(src=screenshotName, alt='Screenshot')
              else if hasScreenShots
                - screenshotName = 'data/screenshots/' + iteration + '.' + screenShotType
-               - var width = options.mobile ? 150 : '100%';
+               - const width = options.mobile ? 150 : '100%';
                a(href=screenshotName)
                  img.screenshot(src=screenshotName, width=width, alt='Screenshot')
        .downloads
@@ -130,6 +130,6 @@ block content
         include ../pagexray/index.pug
 
     each pageRun in pageRuns
-      - var panelName = pageRun.id + '-panel'
+      - const panelName = pageRun.id + '-panel'
       section(id=panelName)
         p !{pugs[pageRun.id]}

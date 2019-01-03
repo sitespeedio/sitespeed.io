@@ -354,7 +354,7 @@ describe('influxdb', function() {
         }
       });
 
-      var data = generator.dataFromMessage(message, dayjs());
+      const data = generator.dataFromMessage(message, dayjs());
 
       expect(data).to.not.be.empty;
 
