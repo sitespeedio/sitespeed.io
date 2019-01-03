@@ -21,7 +21,7 @@ else
   include ./includeHARinHTML.pug
 
 .downloads
-  - var harEnding = options.gzipHAR ? '.har.gz' : '.har'
-  - var harName = 'data/browsertime' + harEnding
-  - var harDownloadName = downloadName + harEnding
+  - const harEnding = options.gzipHAR ? '.har.gz' : '.har'
+  - const harName = 'data/browsertime' + harEnding
+  - const harDownloadName = downloadName + harEnding
   a.button.button-download(href=harName, download=harDownloadName) Download HAR

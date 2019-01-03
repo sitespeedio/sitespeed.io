@@ -27,7 +27,7 @@ mixin adviceInfo(name, perfectScore, node)
   else
     p #{perfectScore}
 
-- var advice = pageInfo.data.coach.run ? pageInfo.data.coach.run.advice : pageInfo.data.coach.pageSummary.advice;
+- const advice = pageInfo.data.coach.run ? pageInfo.data.coach.run.advice : pageInfo.data.coach.pageSummary.advice;
 
 h2 Coach
 p.small
@@ -36,9 +36,9 @@ p.small
   
 script(type='text/javascript').
   function toggleRow(toggleElement) {
-    var rows = toggleElement.nextSibling.getElementsByClassName("u-hideable");
-    for (var i = 0; i < rows.length; ++i) {
-      var status = rows[i].currentStyle ? rows[i].currentStyle.display :
+    const rows = toggleElement.nextSibling.getElementsByClassName("u-hideable");
+    for (let i = 0; i < rows.length; ++i) {
+      const status = rows[i].currentStyle ? rows[i].currentStyle.display :
                               getComputedStyle(rows[i], null).display;
       rows[i].style.display = (status === 'none') ? "table-row" : "none";
     }

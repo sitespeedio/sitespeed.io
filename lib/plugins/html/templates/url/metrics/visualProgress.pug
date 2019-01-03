@@ -1,11 +1,11 @@
-- var allRows = browsertime.visualMetrics.VisualProgress.split(',')
-- var seriesVisualProgress = [];
-- var oldPercent = -1;
-- var oldValue = -1;
+- const allRows = browsertime.visualMetrics.VisualProgress.split(',')
+- const seriesVisualProgress = [];
+- const oldPercent = -1;
+- const oldValue = -1;
 each eachRow in allRows
-  - var row = eachRow.split('=')
-  - var newValue = (Number(row[0])/1000).toFixed(1)
-  - var percent = row[1]
+  - const row = eachRow.split('=')
+  - const newValue = (Number(row[0])/1000).toFixed(1)
+  - const percent = row[1]
   //- Sometimes VisualMetrics report the same percentage multiple times after each other
   // and since the original time is in ms we wanna remove entries on the same 0.1 s
   if percent !== oldPercent &&  newValue !== oldValue
@@ -14,7 +14,7 @@ each eachRow in allRows
     - seriesVisualProgress.push({x: newValue, y: Number(percent.replace('%',''))})
 script(type='text/javascript').
   document.addEventListener("DOMContentLoaded", function() {
-      var visualProgressChart = new Chartist.Line('#ct-visualprogress', {
+      const visualProgressChart = new Chartist.Line('#ct-visualprogress', {
         series: [!{JSON.stringify(seriesVisualProgress)}],
         }, {
         showArea: true,
@@ -60,7 +60,7 @@ script(type='text/javascript').
             }),
             Chartist.plugins.tooltip({
               transformTooltipTextFnc: function(text) {
-                var m = text.split(',');
+                const m = text.split(',');
                 return m[0] + 's ' + m[1] + '%';
               }
             })
