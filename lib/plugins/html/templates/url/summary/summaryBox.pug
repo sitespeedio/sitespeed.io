@@ -59,7 +59,7 @@ if btStatistics
           th.number max
       if btStatistics.visualMetrics
         tr 
-          td(colspan='5' class='extraheader') Visual Metrics
+          td.extraheader(colspan='5') Visual Metrics
         each visualMetric, name in btStatistics.visualMetrics
           tr
             td(data-title='metric') #{name}
@@ -69,7 +69,7 @@ if btStatistics
             +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'max')
       if btStatistics.timings && btStatistics.timings.pageTimings
         tr 
-          td(colspan='5' class='extraheader') RUM Timing Metrics
+          td.extraheader(colspan='5') RUM Timing Metrics
         tr
           td(data-title='metric') backEndTime
           +getLinkPageTimings(pageInfo.data.browsertime.pageSummary.browserScripts, 'backEndTime', btStatistics.timings.pageTimings, 'min')
@@ -88,7 +88,7 @@ if btStatistics
       if btStatistics.timings && btStatistics.timings.userTimings
         if btStatistics.timings.userTimings.marks
           tr 
-            td(colspan='5' class='extraheader') User Timing 
+            td.extraheader(colspan='5') User Timing 
           each userTimings, name in btStatistics.timings.userTimings.marks
             tr
               td(data-title= 'User Timing') #{name}
