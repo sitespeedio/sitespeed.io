@@ -96,11 +96,12 @@ if  browsertime
           td
             a(href=baseHelpURL + 'rumSpeedIndex') RUM Speed Index
           td.number #{timings.rumSpeedIndex.toFixed(0)}
-        tr
-          td
-            a(href=baseHelpURL + 'fullyLoaded') Fully loaded
-            - const pagexrayData = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
-          td.number #{pagexrayData.fullyLoaded.toFixed(0)}
+        if (pageInfo.data.pagexray) 
+          tr
+            td
+              a(href=baseHelpURL + 'fullyLoaded') Fully loaded
+              - const pagexrayData = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
+            td.number #{pagexrayData.fullyLoaded.toFixed(0)}
       table
         tr
           th(colspan='2') User timings
@@ -135,7 +136,7 @@ if  browsertime
   .downloads
 
     if options.browsertime.chrome && options.browsertime.chrome.timeline
-      - const tracePath = 'data/trace-' + (runNumber? runNumber : 1) + '.json.gz'
+      - consttracePath = 'data/trace-' + (runNumber? runNumber : 1) + '.json.gz'
       a.button.button-download(href=tracePath, download=downloadName + '-timeline.json.gz') Download timeline
   if options.browsertime.visualElements
    a#visual-elements
