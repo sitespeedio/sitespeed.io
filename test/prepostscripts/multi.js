@@ -1,5 +1,7 @@
-module.exports = async function(context) {
-  await context.h.measure('https://www.sitespeed.io');
-  await context.h.measure('https://www.sitespeed.io/examples/');
-  return context.h.measure('https://www.sitespeed.io/documentation/');
+module.exports = async function(context, commands) {
+  await commands.measure.startAndNavigate('https://www.sitespeed.io');
+  await commands.measure.startAndNavigate('https://www.sitespeed.io/examples/');
+  return commands.measure.startAndNavigate(
+    'https://www.sitespeed.io/documentation/'
+  );
 };

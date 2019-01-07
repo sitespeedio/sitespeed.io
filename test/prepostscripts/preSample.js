@@ -1,5 +1,5 @@
-module.exports = async function(context) {
+module.exports = async function(context, commands) {
   context.log.info('In pretask!!!');
-  await context.h.navigate('https://www.sitespeed.io/');
+  await commands.navigate('https://www.sitespeed.io/');
   context.taskData.loadedSitespeed = true;
 };
