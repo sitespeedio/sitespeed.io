@@ -47,6 +47,9 @@ block content
               tr
                 td Requests:
                 td #{d.pagexray.pageSummary.requests}
+              tr
+                td Fully Loaded:
+                td #{d.pagexray.pageSummary.fullyLoaded.toFixed(0)}  
             if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.visualMetrics
               tr
                 td First Visual Change [median]:
