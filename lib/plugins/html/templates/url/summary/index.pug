@@ -49,31 +49,31 @@ block content
                 td #{d.pagexray.pageSummary.requests}
               tr
                 td Fully Loaded:
-                td #{d.pagexray.pageSummary.fullyLoaded.toFixed(0)}  
+                td #{h.time.ms(d.pagexray.pageSummary.fullyLoaded.toFixed(0))}  
             if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.visualMetrics
               tr
                 td First Visual Change [median]:
-                td #{d.browsertime.pageSummary.statistics.visualMetrics.FirstVisualChange.median}
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.FirstVisualChange.median)}
             else if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics && d.browsertime.pageSummary.statistics.timings && d.browsertime.pageSummary.statistics.timings.firstPaint
               tr
                 td First Paint [median]:
-                td #{d.browsertime.pageSummary.statistics.timings.firstPaint.median}
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.timings.firstPaint.median)}
             if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.visualMetrics
               tr
                 td Speed Index [median]:
-                td #{d.browsertime.pageSummary.statistics.visualMetrics.SpeedIndex.median}
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.SpeedIndex.median)}
               tr
                 td Visual Complete 85% [median]:
-                td #{d.browsertime.pageSummary.statistics.visualMetrics.VisualComplete85.median}
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.VisualComplete85.median)}
               tr
                 td Visual Complete 95% [median]:
-                td #{d.browsertime.pageSummary.statistics.visualMetrics.VisualComplete95.median}
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.VisualComplete95.median)}
               tr
                 td Visual Complete 99% [median]:
-                td #{d.browsertime.pageSummary.statistics.visualMetrics.VisualComplete99.median}
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.VisualComplete99.median)}
               tr
                 td Last Visual Change [median]:
-                td #{d.browsertime.pageSummary.statistics.visualMetrics.LastVisualChange.median}
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.LastVisualChange.median)}
             else if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics && d.browsertime.pageSummary.statistics.timings && d.browsertime.pageSummary.statistics.timings.rumSpeedIndex
               tr
                 td RUM Speed Index [median]:
