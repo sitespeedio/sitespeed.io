@@ -55,31 +55,31 @@ block content
              if d.browsertime && d.browsertime.run && d.browsertime.run.visualMetrics
                tr
                  td First Visual Change:
-                 td #{d.browsertime.run.visualMetrics.FirstVisualChange}
+                 td #{h.time.ms(d.browsertime.run.visualMetrics.FirstVisualChange)}
              else if d.browsertime && d.browsertime.run && d.browsertime.run.timings.firstPaint
                tr
                  td First Paint:
-                 td #{d.browsertime.run.timings.firstPaint}
+                 td #{h.time.ms(d.browsertime.run.timings.firstPaint)}
              if d.browsertime && d.browsertime.run && d.browsertime.run.visualMetrics
                tr
                  td Speed Index:
-                 td #{d.browsertime.run.visualMetrics.SpeedIndex}
+                 td #{h.time.ms(d.browsertime.run.visualMetrics.SpeedIndex)}
                tr
                  td Visual Complete 85%:
-                 td #{d.browsertime.run.visualMetrics.VisualComplete85}
+                 td #{h.time.ms(d.browsertime.run.visualMetrics.VisualComplete85)}
                tr
                  td Visual Complete 95%:
-                 td #{d.browsertime.run.visualMetrics.VisualComplete95}
+                 td #{h.time.ms(d.browsertime.run.visualMetrics.VisualComplete95)}
                tr
                  td Visual Complete 99%:
-                 td #{d.browsertime.run.visualMetrics.VisualComplete99}
+                 td #{h.time.ms(d.browsertime.run.visualMetrics.VisualComplete99)}
                tr
                  td Last Visual Change:
-                 td #{d.browsertime.run.visualMetrics.LastVisualChange}
+                 td #{h.time.ms(d.browsertime.run.visualMetrics.LastVisualChange)}
              else if d.browsertime && d.browsertime.run
                tr
                  td RUM Speed Index:
-                 td #{d.browsertime.run.timings.rumSpeedIndex}
+                 td #{h.time.ms(d.browsertime.run.timings.rumSpeedIndex)}
              if !d.browsertime && d.webpagetest
                tr
                  td Render (first view):

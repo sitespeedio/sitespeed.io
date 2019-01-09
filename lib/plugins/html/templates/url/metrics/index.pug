@@ -16,46 +16,46 @@ if  browsertime
           tr
             td
               a(href=baseHelpURL + 'FirstVisualChange') First Visual Change
-            td.number #{visualMetrics.FirstVisualChange.toFixed(0)}
+            td.number #{h.time.ms(visualMetrics.FirstVisualChange.toFixed(0))}
           tr
             td
               a(href=baseHelpURL + 'SpeedIndex') Speed Index
-            td.number #{visualMetrics.SpeedIndex.toFixed(0)}
+            td.number #{h.time.ms(visualMetrics.SpeedIndex.toFixed(0))}
           tr
             td
               a(href=baseHelpURL + 'PerceptualSpeedIndex') Perceptual Speed Index
-            td.number #{visualMetrics.PerceptualSpeedIndex.toFixed(0)}
+            td.number #{h.time.ms(visualMetrics.PerceptualSpeedIndex.toFixed(0))}
           if visualMetrics.LargestImage
             tr
               td
                 a(href=baseHelpURL + 'LargestImage') Largest Image
-              td.number #{visualMetrics.LargestImage.toFixed(0)}
+              td.number #{h.time.ms(visualMetrics.LargestImage.toFixed(0))}
           if visualMetrics.Heading
             tr
               td
                 a(href=baseHelpURL + 'Heading') Heading
-              td.number #{visualMetrics.Heading.toFixed(0)}
+              td.number #{h.time.ms(visualMetrics.Heading.toFixed(0))}
           if visualMetrics.Logo
             tr
               td
                 a(href=baseHelpURL + 'Logo') Logo
-              td.number #{visualMetrics.Logo.toFixed(0)}
+              td.number #{h.time.ms(visualMetrics.Logo.toFixed(0))}
           tr
             td
               a(href=baseHelpURL + 'VisualComplete85') Visual Complete 85%
-            td.number #{visualMetrics.VisualComplete85.toFixed(0)}
+            td.number #{h.time.ms(visualMetrics.VisualComplete85.toFixed(0))}
           tr
             td
               a(href=baseHelpURL + 'VisualComplete95') Visual Complete 95%
-            td.number #{visualMetrics.VisualComplete95.toFixed(0)}
+            td.number #{h.time.ms(visualMetrics.VisualComplete95.toFixed(0))}
           tr
             td
               a(href=baseHelpURL + 'VisualComplete99') Visual Complete 99%
-            td.number #{visualMetrics.VisualComplete99.toFixed(0)}
+            td.number #{h.time.ms(visualMetrics.VisualComplete99.toFixed(0))}
           tr
             td
               a(href=baseHelpURL + 'LastVisualChange') Last Visual Change
-            td.number #{visualMetrics.LastVisualChange.toFixed(0)}
+            td.number #{h.time.ms(visualMetrics.LastVisualChange.toFixed(0))}
       .one-half.column
         .ct-chart.ct-minor-sixth#ct-visualprogress
         include ./visualProgress.pug
@@ -72,7 +72,7 @@ if  browsertime
             - url = baseHelpURL + name
             td
               a(href=url) #{name}
-            td.number #{value}
+            td.number #{h.time.ms(value)}
     .one-half.column
       table
         tr
@@ -81,27 +81,27 @@ if  browsertime
           each value, name in timings.paintTiming
             tr
               td #{name}
-              td.number #{value.toFixed(0)}
+              td.number #{h.time.ms(value.toFixed(0))}
         else if timings.firstPaint > -1
           tr
             td
               a(href=baseHelpURL + 'firstPaint') First paint
-            td.number #{timings.firstPaint.toFixed(0)}
+            td.number #{h.time.ms(timings.firstPaint.toFixed(0))}
         if timings.timeToDomContentFlushed
          tr
             td
               a(href=baseHelpURL + 'timeToDomContentFlushed') DOM Content Flushed
-            td.number #{timings.timeToDomContentFlushed.toFixed(0)}
+            td.number #{h.time.ms(timings.timeToDomContentFlushed.toFixed(0))}
         tr
           td
             a(href=baseHelpURL + 'rumSpeedIndex') RUM Speed Index
-          td.number #{timings.rumSpeedIndex.toFixed(0)}
+          td.number #{h.time.ms(timings.rumSpeedIndex.toFixed(0))}
         if (pageInfo.data.pagexray) 
           tr
             td
               a(href=baseHelpURL + 'fullyLoaded') Fully loaded
               - const pagexrayData = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
-            td.number #{pagexrayData.fullyLoaded.toFixed(0)}
+            td.number #{h.time.ms(pagexrayData.fullyLoaded.toFixed(0))}
       table
         tr
           th(colspan='2') User timings
@@ -109,12 +109,12 @@ if  browsertime
           each value, name in timings.userTimings.marks
             tr
               td #{value.name}
-              td.number #{value.startTime.toFixed(0)}
+              td.number #{h.time.ms(value.startTime.toFixed(0))}
         if (Object.keys(timings.userTimings.measures).length > 0)
           each value, name in timings.userTimings.measures
             tr
               td #{value.name}
-              td.number #{value.startTime.toFixed(0)} 
+              td.number #{h.time.ms(value.startTime.toFixed(0))} 
 
   if options.browsertime.chrome && options.browsertime.chrome.timeline
     include ./cpu.pug
