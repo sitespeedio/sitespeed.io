@@ -135,3 +135,4 @@ If you are a DataDog user you can use [DogStatsD](https://docs.datadoghq.com/dev
 4. Map the Graphite volume to a physical directory outside of Docker to have better control (both Whisper and [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/master/docker/graphite/graphite.db)). Map them like this on your physical server (make sure to copy the empty [grahite.db]((https://github.com/sitespeedio/sitespeed.io/blob/master/docker/graphite/graphite.db)) file):
  - /path/on/server/whisper:/opt/graphite/storage/whisper
  - /path/on/server/graphite.db:/opt/graphite/storage/graphite.db
+ If you use Grafana annotations, you should make sure grafana.db is outside of the container. Follow the documentation at [grafana.org](http://docs.grafana.org/installation/docker/#grafana-container-using-bind-mounts).
