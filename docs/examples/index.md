@@ -36,7 +36,7 @@ docker run --shm-size=1g --rm -v "$(pwd)":/browsertime sitespeedio/browsertime:{
 
 It will generate a HAR file, a video and a browsertime.json that hold all the metrics.
 
-~~~
+~~~json
 {
     "info": {
         "browsertime": {

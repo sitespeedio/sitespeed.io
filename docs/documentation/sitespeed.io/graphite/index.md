@@ -35,7 +35,7 @@ Starting from sitespeed.io version 4 we send a moderated number of metrics per U
 
 When you store metrics for a URL in Graphite, you decide from the beginning how long and how often you want to store the data, in [storage-schemas.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-schemas.conf). In our example Graphite setup, every key under sitespeed_io is caught by the configuration in storage-schemas.conf that looks like:
 
-~~~
+~~~shell
 [sitespeed]
 pattern = ^sitespeed_io\.
 retentions = 10m:60d,30m:90d

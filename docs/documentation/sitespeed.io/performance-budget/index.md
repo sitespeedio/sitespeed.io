@@ -25,7 +25,7 @@ When you run sitespeed.io configured with a budget, the script will exit with an
 
 The log will look something like this:
 
-~~~
+~~~shell
 [2016-10-24 10:53:01] Failing budget pagexray.pageSummary.transferSize for https://www.sitespeed.io/ with value 184.7 KB max limit 97.7 KB
 [2016-10-24 10:53:01] Failing budget pagexray.pageSummary.contentTypes.image.transferSize for https://www.sitespeed.io/ with value 157.3 KB max limit 97.7 KB
 [2016-10-24 10:53:01] Failing budget coach.pageSummary.advice.info.domElements for https://www.sitespeed.io/ with value 215 max limit 200
@@ -48,7 +48,7 @@ The current version can handle min/max values and works on the internal data str
 You can read more about the metrics/data structure in the [metrics section]({{site.baseurl}}/documentation/sitespeed.io/metrics/).
 
 
-~~~
+~~~json
 {
   "browsertime.pageSummary": [{
     "metric": "statistics.timings.firstPaint.median",
@@ -98,7 +98,7 @@ You can read more about the metrics/data structure in the [metrics section]({{si
 Then run it like this:
 
 ~~~bash
-$ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/ --budget.configPath myBudget.json -b chrome -n 11
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --budget.configPath myBudget.json -b chrome -n 11
 ~~~
 
 And, if the budget fails, the exit status will be > 0. You can also choose to report the budget as JUnitXML (Jenkins) or TAP.
@@ -107,7 +107,7 @@ And, if the budget fails, the exit status will be > 0. You can also choose to re
 You can output a JUnit XML file from the budget result like this:
 
 ~~~bash
-$ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/ --budget.configPath myBudget.json --budget.output junit -b chrome -n 5
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --budget.configPath myBudget.json --budget.output junit -b chrome -n 5
 ~~~
 
 It will create a *junit.xml* in the outputFolder.
@@ -116,7 +116,7 @@ It will create a *junit.xml* in the outputFolder.
 If you would instead like to use TAP, you can do so like this:
 
 ~~~bash
-$ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/ --budget.configPath myBudget.json --budget.output tap -b chrome -n 5
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --budget.configPath myBudget.json --budget.output tap -b chrome -n 5
 ~~~
 
 It will create a *budget.tap* in the outputFolder.
