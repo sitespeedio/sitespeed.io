@@ -47,7 +47,7 @@ block content
               tr
                 td Requests:
                 td #{d.pagexray.pageSummary.requests}
-            if d.browsertime && d.browsertime.pageSummary    
+            if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.timings.fullyLoaded   
               tr
                 td Fully Loaded [median]:
                 td #{h.time.ms(d.browsertime.pageSummary.statistics.timings.fullyLoaded.median)}
