@@ -96,7 +96,7 @@ if  browsertime
           td
             a(href=baseHelpURL + 'rumSpeedIndex') RUM Speed Index
           td.number #{h.time.ms(timings.rumSpeedIndex.toFixed(0))}
-        if (pageInfo.data.pagexray) 
+        if (timings.fullyLoaded) 
           tr
             td
               a(href=baseHelpURL + 'fullyLoaded') Fully loaded
