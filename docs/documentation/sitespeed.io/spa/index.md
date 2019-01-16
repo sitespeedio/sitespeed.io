@@ -1,12 +1,12 @@
 ---
 layout: default
 title: Test a single page application - SPA
-description: You can login the user to test pages as a logged in user.
+description: Instructions on how to use scripting to test your Single Page Application.
 keywords: selenium, web performance, sitespeed.io
 nav: documentation
 category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: Pre/post scripts (log in the user)
+twitterdescription: Test a single page application - SPA
 ---
 [Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / Single page applicatiom
 

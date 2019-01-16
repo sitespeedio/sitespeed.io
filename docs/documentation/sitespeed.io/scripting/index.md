@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Scripting
-description: You can login the user to test pages as a logged in user.
+title: Use scripts in sitespeed.io to measure a user journey.
+description: With scripts you can simulate a user visiting to miltiple pages, clicking on links, log in, adding items to the cart ... yeah do whatever you want!
 keywords: selenium, web performance, sitespeed.io
 nav: documentation
 category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: Pre/post scripts (log in the user)
+twitterdescription: Use scripts in sitespeed.io to measure a user journey.
 ---
 [Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / Scripting
 
@@ -20,7 +20,7 @@ twitterdescription: Pre/post scripts (log in the user)
 
 <img src="{{site.baseurl}}/img/user-journey.png" class="pull-right img-big" alt="The user journey" width="250">
 
-Test by scripting was introduced in sitespeed.io 8.0 and Browsertime 4.0 and makes it possible to measure a user journey. A user going to miltiple pahges, clicking on links, log in, adding items to the cart ... yeah do whatever you want.
+Test by scripting was introduced in sitespeed.io 8.0 and Browsertime 4.0 and makes it possible to measure a user journey. A user visiting multiple pages, clicking on links, log in, adding items to the cart ... yeah do whatever you want.
 
 Scripting work the same in Browsertime and sitespeed.io, the documentation here are for both of the tools.
 
