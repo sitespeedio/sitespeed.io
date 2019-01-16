@@ -100,8 +100,7 @@ if  browsertime
           tr
             td
               a(href=baseHelpURL + 'fullyLoaded') Fully loaded
-              - const pagexrayData = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
-            td.number #{h.time.ms(pagexrayData.fullyLoaded.toFixed(0))}
+            td.number #{h.time.ms(timings.fullyLoaded.toFixed(0))}
       if (Object.keys(timings.userTimings.marks).length > 0 || Object.keys(timings.userTimings.measures).length > 0)
         table
           tr

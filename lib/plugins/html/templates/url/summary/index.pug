@@ -47,9 +47,11 @@ block content
               tr
                 td Requests:
                 td #{d.pagexray.pageSummary.requests}
+            if d.browsertime && d.browsertime.pageSummary    
               tr
-                td Fully Loaded:
-                td #{h.time.ms(d.pagexray.pageSummary.fullyLoaded.toFixed(0))}  
+                td Fully Loaded [median]:
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.timings.fullyLoaded.median)}
+
             if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.visualMetrics
               tr
                 td First Visual Change [median]:
@@ -57,7 +59,7 @@ block content
             else if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics && d.browsertime.pageSummary.statistics.timings && d.browsertime.pageSummary.statistics.timings.firstPaint
               tr
                 td First Paint [median]:
-                td #{h.time.ms(d.browsertime.pageSummary.statistics.timings.firstPaint.median)}
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.timings.firstPaint.median)}                
             if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.visualMetrics
               tr
                 td Speed Index [median]:
