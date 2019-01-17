@@ -132,6 +132,43 @@ Then access the page that you want to test:
 sitespeed.io --preScript login.js https://en.wikipedia.org/wiki/Barack_Obama
 ~~~
 
+#### More complicated login example
+
+~~~javascript
+module.exports = async function(context, command) {
+  await command.navigate(
+    'https://example.org'
+  );
+  // Find the sign in button and click it
+  await command.click.byId('sign_in_button');
+  // Wait some time for the page to open a new login frame
+  await command.wait.byTime(2000);
+  // Switch to the login frame
+  await command.switch.toFrame('loginFrame');
+  // Find the usenrmane fields by xpath (just as an example)
+  await command.addText.byXpath(
+    'peter@example.org',
+    '//*[@id="userName"]'
+  );
+  // Click on the necx buttin
+  await command.click.byId('verifyUserButton');
+  // Wait for the gui to display the password field so we can select it
+  await command.wait.byTime(2000);
+  // Wait for the actual password field
+  await command.wait.byId('password', 5000);
+  // Fill in the password
+  await command.addText.byId('dejh8Ghgs6ga(1217)', 'password');
+  // Click the submit button
+  await command.click.byId('btnSubmit');
+  // In your implementation it is probably better to wait for an id
+  await command.wait.byTime(5000);
+  // Measure the next page as a logged in user
+  await command.measure.start(
+    'https://example.org/logged/in/page'
+  );
+};
+~~~
+
 ### Measure multiple pages
 
 Test multiple pages in a script:
@@ -246,7 +283,10 @@ There are two help commands that makes it easier to wait. Either you can wait on
 Wait for x ms.
 
 #### wait.byId(id,maxTime)
-Wait for an element with id to appear for maxTime. If the elemet do not appear within maxTime an error will be thrown.
+Wait for an element with id to appear before maxTime. If the elemet do not appear within maxTime an error will be thrown.
+
+#### byXpath(xpath, maxTime) {
+Wait for an element founmd by xpath to appear beforeYo maxTime. If the elemet do not appear within maxTime an error will be thrown.
 
 ### Run JavaScript
 You can run your own JavaScript in the browser from your script.
@@ -268,6 +308,21 @@ You can add text to input elements.
 
 #### addText.byId(text, id)
 Add the *text* to the element with the *id*. If the id is not found the command will throw an error.
+
+#### byXpath(text, xpath) 
+Add the *text* to the element by using *xpath*. If the xpath is not found the command will throw an error.
+
+### Switch 
+You can switch to iframes or windows if that is needed.
+
+#### toFrame(id)
+Switch to a frame by its id.
+
+#### toWindow(name) 
+Switch to window by name.
+
+#### toParentFrame
+Switch to the parent frame.
 
 ### Use Selenium directly
 You can use Selenium directly if you need to use things that are not availible through our commands.
