@@ -1,14 +1,16 @@
 # CHANGELOG - sitespeed.io
 
 ## UNRELEASED
+First beta of sitespeed.io 8.0 coming the 21 of January!
 
 ### Added
-* Upgraded to the Coach 3.0 see [https://www.sitespeed.io/coach-3.0/](https://www.sitespeed.io/coach-3.0/).
+* Upgraded to the Coach 3.0 with Privacy advice, see [https://www.sitespeed.io/coach-3.0/](https://www.sitespeed.io/coach-3.0/).
 * Upgraded to PageXray 2.5.
 * Upgraded to Chrome 71 and Firefox 64 in the Docker container
 * Use fully loaded metric from the HAR instead of the Resource Timing API [#2242](https://github.com/sitespeedio/sitespeed.io/pull/2242) and [#2244](https://github.com/sitespeedio/sitespeed.io/pull/2244).
 * Group metrics by type in HTML output [#2240](https://github.com/sitespeedio/sitespeed.io/pull/2240)
 * Show timing metrics in ms/s (instead of just ms) [#2245](https://github.com/sitespeedio/sitespeed.io/pull/2245)
+* Use Browsertime 4.0 that adds support for testing Single Page Applications and test multiple pages with scripting. See the [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#400-beta1---2019-01-14) [#2236](https://github.com/sitespeedio/sitespeed.io/pull/2236) 
 
 ### Fixed
 * Tag CPU data and Lighthouse data smarter that is sent to InfluxDB. Pre this version you could get the CPU data but it was kind of hard to understand the tags. With this fix we add a cpu tag that either is category or event. That way it's easier to pickup (and understand) that data. We also added a audit tag for Lighthouse tests sent to InfluxDB. Before the fix we just sent "score" but no tag telling which score. We now add a tag named audit that tells which audit that is used for the score.[#2225](https://github.com/sitespeedio/sitespeed.io/pull/2225)
