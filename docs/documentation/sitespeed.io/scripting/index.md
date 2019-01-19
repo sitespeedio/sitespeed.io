@@ -67,17 +67,25 @@ Here are a couple of examples on how you can use the scripting capabilities.
 
 ~~~javascript
 module.exports = async function(context, commands) {
+  // Navigate to a URL and do not measure the URL
   await commands.navigate(
     'https://en.wikipedia.org/w/index.php?title=Special:UserLogin&returnto=Main+Page'
   );
-  // Add text into an input field, finding the field by id
+ 
   try {
+  // Add text into an input field, finding the field by id
   await commands.addText.byId('login', 'wpName1');
   await commands.addText.byId('password', 'wpPassword1');
+
+  // Start the measurement and give it the alias login
+  // The alias will be useds when the metrics is sent to 
+  // Graphite/InfluxDB
   await commands.measure.start('login');
 
-  // find the sumbit button and click it
+  // Find the sumbit button and click it and wait for the
+  // page complete check to finish on the next loaded URL
   await commands.click.byIdAndWait('wpLoginAttempt');
+  // Stop and collect the metrics
   return commands.measure.stop();
   } catch (e) {
     // We try/catch so we will catch if the the input fields can't be found
@@ -137,12 +145,16 @@ module.exports = async function(context, commands) {
     'https://en.wikipedia.org/w/index.php?title=Special:UserLogin&returnto=Main+Page'
   );
 
+  try {
   await commands.addText.byId('login', 'wpName1');
   await commands.addText.byId('password', 'wpPassword1');
   // Click on the submit button with id wpLoginAttempt
   await commands.click.byIdAndWait('wpLoginAttempt');
   // wait on a specific id to appear on the page after you logged in
   return commands.wait.byId('pt-userpage', 10000);
+  } catch (e) {
+    // We try/catch so we will catch if the the input fields can't be found
+    // The error is automatically logged in Browsertime and re-thrown here
 };
 ~~~
 
@@ -159,33 +171,37 @@ module.exports = async function(context, command) {
   await command.navigate(
     'https://example.org'
   );
-  // Find the sign in button and click it
-  await command.click.byId('sign_in_button');
-  // Wait some time for the page to open a new login frame
-  await command.wait.byTime(2000);
-  // Switch to the login frame
-  await command.switch.toFrame('loginFrame');
-  // Find the usenrmane fields by xpath (just as an example)
-  await command.addText.byXpath(
-    'peter@example.org',
-    '//*[@id="userName"]'
+  try {
+    // Find the sign in button and click it
+    await command.click.byId('sign_in_button');
+    // Wait some time for the page to open a new login frame
+    await command.wait.byTime(2000);
+    // Switch to the login frame
+    await command.switch.toFrame('loginFrame');
+    // Find the usenrmane fields by xpath (just as an example)
+    await command.addText.byXpath(
+      'peter@example.org',
+      '//*[@id="userName"]'
+    );
+    // Click on the necx buttin
+    await command.click.byId('verifyUserButton');
+    // Wait for the gui to display the password field so we can select it
+    await command.wait.byTime(2000);
+    // Wait for the actual password field
+    await command.wait.byId('password', 5000);
+    // Fill in the password
+    await command.addText.byId('dejh8Ghgs6ga(1217)', 'password');
+    // Click the submit button
+    await command.click.byId('btnSubmit');
+    // In your implementation it is probably better to wait for an id
+    await command.wait.byTime(5000);
+    // Measure the next page as a logged in user
+    return  command.measure.start(
+      'https://example.org/logged/in/page'
   );
-  // Click on the necx buttin
-  await command.click.byId('verifyUserButton');
-  // Wait for the gui to display the password field so we can select it
-  await command.wait.byTime(2000);
-  // Wait for the actual password field
-  await command.wait.byId('password', 5000);
-  // Fill in the password
-  await command.addText.byId('dejh8Ghgs6ga(1217)', 'password');
-  // Click the submit button
-  await command.click.byId('btnSubmit');
-  // In your implementation it is probably better to wait for an id
-  await command.wait.byTime(5000);
-  // Measure the next page as a logged in user
-  await command.measure.start(
-    'https://example.org/logged/in/page'
-  );
+  } catch(e) {
+     // We try/catch so we will catch if the the input fields can't be found
+  }
 };
 ~~~
 
@@ -202,6 +218,8 @@ module.exports = async function(context, commands) {
 ~~~
 
 ### Log from your script
+
+You can log to the same log output as sitespeed.io:
 
 ~~~javascript
 module.exports = async function(context, commands) {
@@ -334,6 +352,9 @@ Add the *text* to the element by using *xpath*. If the xpath is not found the co
 
 ### Switch 
 You can switch to iframes or windows if that is needed.
+
+If frame/window is not found, an error will be thrown.
+{: .note .note-warning}
 
 #### toFrame(id)
 Switch to a frame by its id.
