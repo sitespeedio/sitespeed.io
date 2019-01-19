@@ -53,6 +53,13 @@ The commands object:
 * *[measure.start(alias)](#measurestartalias)* - Use this when you want to start to measure a page. This will start the video and prepare everything to collect metrics. But it will not navigate to the URL. The next URL that will be accessed will get the alias.
 * *[measure.stop()](#measurestop)* - Collect metrics for a page.
 
+And then you have a couple of help commands:
+* *[wait](#wait)* on a id to appear or wait x amountt of ms.
+* *[click](#click)* on a link and/or wait for the next page to load.
+* *[js](#run-javascript)* - run JavaScript in the browser.
+* *[switch](#switch)* to another frame or windo.
+
+
 ## Run
 You run your script by passing it to sitespeed.io and adding the parameter --multi. If you have multiple scripts, you can just pass them on too.
 
