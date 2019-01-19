@@ -61,7 +61,7 @@ And then you have a couple of help commands:
 
 
 ## Run
-You run your script by passing it to sitespeed.io and adding the parameter --multi. If you have multiple scripts, you can just pass them on too.
+You run your script by passing it to sitespeed.io and adding the parameter ```--multi```. If you have multiple scripts, you can just pass them on too.
 
 ~~~bash
 docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} script.js script2.js script3.js --multi
