@@ -26,11 +26,9 @@ When you run sitespeed.io configured with a budget, the script will exit with an
 The log will look something like this:
 
 ~~~shell
-[2016-10-24 10:53:01] Failing budget pagexray.pageSummary.transferSize for https://www.sitespeed.io/ with value 184.7 KB max limit 97.7 KB
-[2016-10-24 10:53:01] Failing budget pagexray.pageSummary.contentTypes.image.transferSize for https://www.sitespeed.io/ with value 157.3 KB max limit 97.7 KB
-[2016-10-24 10:53:01] Failing budget coach.pageSummary.advice.info.domElements for https://www.sitespeed.io/ with value 215 max limit 200
-[2016-10-24 10:53:01] Failing budget coach.pageSummary.advice.info.domDepth.max for https://www.sitespeed.io/ with value 11 max limit 10
-[2016-10-24 10:53:01] Budget: 8 working and 4 failing tests
+[2019-01-20 19:58:18] ERROR: Failing budget timings.firstPaint for https://www.sitespeed.io/documentation/ with value 462 ms max limit 100 ms
+[2019-01-20 19:58:18] ERROR: Failing budget size.total for https://www.sitespeed.io/documentation/ with value 23.6 KB max limit 1000 B
+[2019-01-20 19:58:18] INFO: Budget: 3 working and 2 failing tests
 ~~~
 
 
@@ -38,10 +36,73 @@ The report looks like this.
 ![Example of the budget]({{site.baseurl}}/img/budget.png)
 {: .img-thumbnail}
 
-Now let's see how you configure budgets.
-
-
 ### The budget file
+In 8.0 we introduced a new way of configuring budget. You can configure default values and specific for a URL.
+
+
+#### Simple budget file"
+The simplest version of a budget file that will check for SpeedIndex higher than 1000 ms looks like this:
+
+~~~json
+{
+ "budget": {
+    "timings": {
+      "SpeedIndex":1000
+    }
+ }
+}
+~~~
+
+#### Override per URL
+All URLs that you test then needs to have a SpeedIndex faster than 1000. But if you have one URL that you know are slower? You can override budget per URL. 
+
+~~~json
+{
+ "budget": {
+   "https://www.sitespeed.io/documentation/": {
+      "timings": {
+        "SpeedIndex": 3000
+      }
+    },
+    "timings": {
+      "SpeedIndex":1000
+    }
+ }
+}
+~~~
+
+#### Full budget file
+~~~json
+{
+ "budget": {
+    "timings": {
+      "firstPaint": 1000,
+      "fullyLoaded": 5500,
+      "FirstVisualChange": 1000,
+      "LastVisualChange": 1200,
+      "SpeedIndex": 1500,
+      "PerceptualSpeedIndex":
+        1500
+    },
+    "size": {
+      "total": 1000000
+    },
+    "requests": {
+      "total": 125
+    },
+     "thirdParty": {
+      "size": 10000,
+      "requests": 1
+    },
+    "score": {
+      "privacy": 100,
+      "performance": 100
+    }
+ }
+}
+~~~
+
+#### The old budget file
 The current version can handle min/max values and works on the internal data structure.
 
 
