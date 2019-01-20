@@ -28,19 +28,21 @@ script:
 - npm run build:css && test -z "$(git status --porcelain lib/plugins/html/assets/css/index.css)"
 - bin/sitespeed.js -b firefox -n 2 --budget.configPath test/budget.json --summary https://www.sitespeed.io/
 - bin/sitespeed.js --useHash -n 1 https://www.sitespeed.io/#heybaberia
-- bin/sitespeed.js --useAlias start --mobile -n 1 https://www.sitespeed.io/
+- bin/sitespeed.js --useAlias start --mobile -n 1 --utc https://www.sitespeed.io/
 - bin/sitespeed.js -b firefox  --metrics.list --mobile -n 1 https://www.sitespeed.io/
-- bin/sitespeed.js -b chrome -n 2 https://www.sitespeed.io/ --preScript test/prepostscripts/preSample.js
-  --postScript test/prepostscripts/postSample.js
+- bin/sitespeed.js --multi -b chrome -n 1 test/prepostscripts/preSample.js https://www.sitespeed.io/documentation/ test/prepostscripts/postSample.js
 - 'if [ "$TRAVIS_SECURE_ENV_VARS" = "true" ]; then bin/sitespeed.js -b chrome -n 2 --summaryDetail --browsertime.chrome.timeline https://www.sitespeed.io/ --webpagetest.key $WPTKEY; fi'
 - node test/runWithoutCli.js
+- bin/sitespeed.js --multi -n 1 https://www.sitespeed.io/ https://www.sitespeed.io/documentation/
+- bin/sitespeed.js --multi -n 3 test/prepostscripts/multi.js
+
 env:
   global:
   - CXX=g++-4.8
   - secure: ZCqHD+/PhHNVFWoqir66Xd9YeJRcTHDJYvNL9j4+GTKDEI1h94twhAjQ7Z9DhlCnXwL1lsfEcIjvNCWd3ir/FNy2oZsUzu6kMpFF/niugurFbS551moJ2ObNEfOdj93/sTo4UWH2MZouC9eYeuj1vNYbAev6wBIptL95X/ArldQ=
   - secure: ZmEirO6J+rY+6T6eQWRNxqiqRNOYJktqQWaeUDR6WvzoR80oPdgKoNRS012dk4aCGr2+Dxf/KP6Iu2qbDE3YP3QD7PhoexicTVB6MTl81hZfX/eN0lt4lZknTYtjnAAWQB/aWAM6OVLjh8rAzq9PTBzl5EtAeMMJWmnhz6r+cLc=
 notifications:
-  slack:
+  slack: 
     on_success: change
     on_failure: always
     secure: 3Ca5MzTVkgeZDKk7xuiXnGnl0u4UgBXQtn72xIBwb1nked0JSdwZ4MVgNTVRTlIvwbTdTaYcTo7Pm4+rSrfFx2T1juawq3TkUStJ4AmZHH2gGrAr46snEauWCovHmgo3mMAOwz3fJknz8VfIu7WmtiCH/GO9h20aNmjE1UT3pTE=

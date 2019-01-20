@@ -1,7 +1,10 @@
 {
   "name": "sitespeed.io",
   "bin": "./bin/sitespeed.js",
-  "version": "7.7.2",
+  "version": "8.0.0-alpha.0",
+  "publishConfig": {
+    "tag": "canary"
+  },
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -50,6 +53,7 @@
     "node": ">=8.9.0"
   },
   "devDependencies": {
+    "bluebird": "3.5.2",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
     "clean-css-cli": "^4.1.11",
@@ -67,14 +71,13 @@
   },
   "main": "./lib/sitespeed.js",
   "dependencies": {
-    "aws-sdk": "2.327.0",
-    "bluebird": "3.5.2",
-    "browsertime": "3.12.0",
-    "cli-color": "1.3.0",
+    "aws-sdk": "2.361.0",
+    "browsertime": "4.0.0-beta.3",
+    "cli-color": "1.4.0",
     "concurrent-queue": "7.0.2",
-    "dayjs": "1.7.7",
-    "fast-stats": "0.0.3",
-    "fs-extra": "7.0.0",
+    "dayjs-ext": "2.2.0",
+    "fast-stats": "0.0.4",
+    "fs-extra": "7.0.1",
     "influx": "5.0.7",
     "intel": "1.2.0",
     "jstransformer-markdown-it": "2.1.0",
@@ -91,19 +94,18 @@
     "lodash.reduce": "4.6.0",
     "lodash.set": "4.3.2",
     "lodash.union": "4.6.0",
-    "longjohn": "0.2.12",
     "markdown": "0.5.0",
     "mkdirp": "0.5.1",
     "node-slack": "0.0.7",
     "p-limit": "2.0.0",
-    "pagexray": "2.4.0",
+    "pagexray": "2.5.2",
     "pug": "2.0.3",
     "recursive-readdir": "2.2.2",
     "simplecrawler": "1.1.6",
     "tape": "4.9.1",
     "text-table": "0.2.0",
     "uuid": "3.3.2",
-    "webcoach": "2.4.0",
+    "webcoach": "3.0.0",
     "webpagetest": "0.3.9",
     "yargs": "6.6.0"
   }

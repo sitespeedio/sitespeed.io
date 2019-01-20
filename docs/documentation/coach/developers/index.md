@@ -202,4 +202,4 @@ bin/index.js https://www.sitespeed.io firefox
 # Add a new category
 When you browse the code you will see that the coach knows more than just performance.
 
-We have accessibility best practice, performance, and info today. Does the coach need to know something else? Let us know and we can create that category (it's as easy as create a new folder) and we can start add new advice there.
+We have accessibility, web best practice, privacy, performance, and info today. Does the coach need to know something else? Let us know and we can create that category (it's as easy as create a new folder) and we can start add new advice there.

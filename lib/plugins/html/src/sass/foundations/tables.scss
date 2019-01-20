@@ -75,6 +75,11 @@ td.break {
   word-break: break-all;
 }
 
+td.extraheader {
+  font-weight: bold;
+  background: whitesmoke;
+}
+
 /** Responsive tables, wrap them in a div
 * We use Chris Coyiers (old) hide the table
 * solution https://css-tricks.com/responsive-data-tables/

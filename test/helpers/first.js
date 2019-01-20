@@ -1,6 +1,6 @@
 'use strict';
 
-var Bluebird = require('bluebird'),
+const Bluebird = require('bluebird'),
   chai = require('chai'),
   chaiAsPromised = require('chai-as-promised');
 

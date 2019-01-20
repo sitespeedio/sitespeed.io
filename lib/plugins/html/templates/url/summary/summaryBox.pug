@@ -7,7 +7,7 @@ mixin getLink(path, name, metric, type)
       if (run[name] === metric[type] && isSet === false)
         - isSet = true
         td.number(data-title=type)
-          a(href='./' + (index+1) + '.html', title='Go to the run with the ' + type + ' ' + name) #{metric[type]}
+          a(href='./' + (index+1) + '.html', title='Go to the run with the ' + type + ' ' + name) #{h.time.ms(metric[type])}
 
 mixin getLinkTimings(path, name, metric, type)
   - isSet = false
@@ -18,7 +18,7 @@ mixin getLinkTimings(path, name, metric, type)
       if (Number(run.timings[name]).toFixed(0) === Number(metric[name][type]).toFixed(0) && isSet === false)
         - isSet = true
         td.number(data-title=type)
-          a(href='./' + (index+1) + '.html', title='Go to the run with the ' + type + ' ' + name) #{metric[name][type]}
+          a(href='./' + (index+1) + '.html', title='Go to the run with the ' + type + ' ' + name) #{h.time.ms(metric[name][type])}
 
 mixin getLinkPageTimings(path, name, metric, type)
   - isSet = false
@@ -29,7 +29,7 @@ mixin getLinkPageTimings(path, name, metric, type)
       if (Number(run.timings.pageTimings[name]).toFixed(0) === Number(metric[name][type]).toFixed(0) && isSet === false)
         - isSet = true
         td.number(data-title=type)
-          a(href='./' + (index+1) + '.html', title='Go to the run with the ' + type + ' ' + name) #{metric[name][type]}
+          a(href='./' + (index+1) + '.html', title='Go to the run with the ' + type + ' ' + name) #{h.time.ms(metric[name][type])}
 
 mixin getUserTimings(path, name, metric, type)
   - isSet = false
@@ -41,36 +41,40 @@ mixin getUserTimings(path, name, metric, type)
           if (marks.name === name && Number(marks.startTime).toFixed(0) === Number(metric[type]).toFixed(0) && isSet === false)
             - isSet = true
             td.number(data-title=type)
-              a(href='./' + (index+1) + '.html', title='Go to the run with the ' + type + ' ' + name) #{metric[type]}
+              a(href='./' + (index+1) + '.html', title='Go to the run with the ' + type + ' ' + name) #{h.time.ms(metric[type])}
 
 - btStatistics = h.get(pageInfo.data, 'browsertime.pageSummary.statistics')
 
 if btStatistics
   h2 Timings Summary
-  - timingMetrics = ['firstPaint', 'fullyLoaded', 'rumSpeedIndex']
+  - timingMetrics = ['firstPaint', 'rumSpeedIndex']
   .responsive
     table
       thead
         tr
-          th metric
+          th Metric
           th.number min
           th.number median
           th.number mean
           th.number max
       if btStatistics.visualMetrics
+        tr 
+          td.extraheader(colspan='5') Visual Metrics
         each visualMetric, name in btStatistics.visualMetrics
           tr
             td(data-title='metric') #{name}
             +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'min')
             +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'median')
-            td.number(data-title='mean') #{visualMetric.mean}
+            td.number(data-title='mean') #{h.time.ms(visualMetric.mean)}
             +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'max')
       if btStatistics.timings && btStatistics.timings.pageTimings
+        tr 
+          td.extraheader(colspan='5') RUM Timing Metrics
         tr
           td(data-title='metric') backEndTime
           +getLinkPageTimings(pageInfo.data.browsertime.pageSummary.browserScripts, 'backEndTime', btStatistics.timings.pageTimings, 'min')
           +getLinkPageTimings(pageInfo.data.browsertime.pageSummary.browserScripts, 'backEndTime', btStatistics.timings.pageTimings, 'median')
-          td.number(data-title='mean') #{btStatistics.timings.pageTimings.backEndTime.mean}
+          td.number(data-title='mean') #{h.time.ms(btStatistics.timings.pageTimings.backEndTime.mean)}
           +getLinkPageTimings(pageInfo.data.browsertime.pageSummary.browserScripts, 'backEndTime', btStatistics.timings.pageTimings, 'max')
 
         each timing in timingMetrics
@@ -79,14 +83,16 @@ if btStatistics
               td(data-title='metric') #{timing}
               +getLinkTimings(pageInfo.data.browsertime.pageSummary.browserScripts, timing, btStatistics.timings, 'min')
               +getLinkTimings(pageInfo.data.browsertime.pageSummary.browserScripts, timing, btStatistics.timings, 'median')
-              td.number(data-title='mean') #{btStatistics.timings[timing].mean}
+              td.number(data-title='mean') #{h.time.ms(btStatistics.timings[timing].mean)}
               +getLinkTimings(pageInfo.data.browsertime.pageSummary.browserScripts, timing, btStatistics.timings, 'max')
       if btStatistics.timings && btStatistics.timings.userTimings
         if btStatistics.timings.userTimings.marks
+          tr 
+            td.extraheader(colspan='5') User Timing 
           each userTimings, name in btStatistics.timings.userTimings.marks
             tr
               td(data-title= 'User Timing') #{name}
               +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'min')
               +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'median')
-              td.number(data-title='mean') #{userTimings ? userTimings.mean: ''}
+              td.number(data-title='mean') #{userTimings ? h.time.ms(userTimings.mean): ''}
               +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'max')

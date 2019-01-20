@@ -28,18 +28,6 @@ fi
 # Here's a hack for fixing the problem with Chrome not starting in time
 # See https://github.com/SeleniumHQ/docker-selenium/issues/87#issuecomment-250475864
 function chromeSetup() {
-
-  # In Browsertime 3.0 we can kill the Chrome process hard and skip most of this
-  # Kill process by command
-  function killProcessByCommand() {
-    list=$(ps aux | grep ${1} | awk '{ print $2 }' ORS=' ')
-    if [ "${list}" != "" ]; then
-      killall ${1} > /dev/null 2>/dev/null
-    fi
-  }
-  service dbus stop > /dev/null
-  killProcessByCommand /usr/bin/dbus-daemon
-  killProcessByCommand /usr/lib/at-spi2-core/at-spi-bus-launcher
   sudo rm -f /var/lib/dbus/machine-id
   sudo mkdir -p /var/run/dbus
   sudo service dbus restart > /dev/null

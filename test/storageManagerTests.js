@@ -1,7 +1,7 @@
 'use strict';
 
 const resultsStorage = require('../lib/core/resultsStorage');
-const dayjs = require('dayjs');
+const dayjs = require('dayjs-ext');
 const path = require('path');
 const expect = require('chai').expect;
 

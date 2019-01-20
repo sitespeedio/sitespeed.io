@@ -2,7 +2,7 @@
 
 const DataGenerator = require('../lib/plugins/graphite/data-generator'),
   expect = require('chai').expect,
-  dayjs = require('dayjs');
+  dayjs = require('dayjs-ext');
 
 describe('graphite', function() {
   describe('dataGenerator', function() {
@@ -31,7 +31,7 @@ describe('graphite', function() {
         connectivity: 'cable'
       });
 
-      var data = generator.dataFromMessage(message, dayjs());
+      const data = generator.dataFromMessage(message, dayjs());
       expect(data).to.match(/ns.pageSummary.sub_domain_com/);
       expect(data).to.match(/bar.gpsi.median/);
       expect(data).to.match(/foo_bar/);
@@ -63,7 +63,7 @@ describe('graphite', function() {
         browser: 'chrome',
         connectivity: 'cable'
       });
-      var data = generator.dataFromMessage(message, dayjs());
+      const data = generator.dataFromMessage(message, dayjs());
 
       expect(data).to.match(
         /ns.summary.sub_domain_com.chrome.cable.domains.www.sitespeed.io.dns.median [\d]{1,} [\d]*/
@@ -97,7 +97,7 @@ describe('graphite', function() {
         connectivity: 'cable',
         graphite: { statsd: true }
       });
-      var data = generator.dataFromMessage(message, dayjs());
+      const data = generator.dataFromMessage(message, dayjs());
 
       data.forEach(function(line) {
         expect(line).to.match(
