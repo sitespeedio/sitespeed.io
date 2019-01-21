@@ -72,7 +72,7 @@ And then you should also make sure that all the result files (HTML/videos/screen
 ## JSON configuration file
 If you use a JSON configuration file you should make sure you add this to get S3 to work:
 
-~~~
+~~~javascript
 {
   ...
   "resultBaseURL": "https://your.bucket.url",

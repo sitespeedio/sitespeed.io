@@ -43,8 +43,10 @@ layout: compress
 	<link type="application/atom+xml" href="https://www.sitespeed.io/feed/index.xml" rel="alternate" />
 
 	<style>{% include css/default.css %}</style>
+	<link rel="stylesheet" href="{{ "/css/prism-1.15.css" | prepend: site.baseurl }}">
 	<script type="text/javascript">{% include userTimings.js %}</script>
-	{% include analythics.js %}
+	<script src="{{ "/js/clipboard-2.0.4.min.js" | prepend: site.baseurl }}" defer></script>
+	<script src="{{ "/js/prism-1.15.js" | prepend: site.baseurl }}" defer></script>
 </head>
 
 <body>
@@ -53,7 +55,7 @@ layout: compress
 		<div class="grid">
 			<div class="col-1-1">
 				<main>
-					{{ content }}
+					{% include anchor_headings.html html=content anchorBody='#' anchorClass='anchor' h_max=4 h_min=2 %}
 				</main>
 			</div>
 			<section>

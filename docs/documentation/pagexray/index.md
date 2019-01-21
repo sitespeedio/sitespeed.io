@@ -32,29 +32,29 @@ We love HAR files but it's hard to actually see how the page is composed only lo
 ## Install
 
 ```bash
-$ npm install pagexray -g
+npm install pagexray -g
 ```
 
 ## Run
 
 ```bash
-$ pagexray /path/to/my.har
+pagexray /path/to/my.har
 ```
 
 Or if you want to prettify the HAR
 
 ```bash
-$ pagexray --pretty /path/to/my.har
+pagexray --pretty /path/to/my.har
 ```
 And if you want to get info per request/response:
 
 ```bash
-$ pagexray --includeAssets /path/to/my.har
+pagexray --includeAssets /path/to/my.har
 ```
 
 If you want to use it in node, use it like this:
 
-```node
+```javascript
 const pagexray = require('pagexray');
 const har = // your HAR
 const pages = pagexray.convert(har);

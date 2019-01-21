@@ -98,7 +98,7 @@ We have a small shell script that runs the tests. It is triggered from the cron 
 Our *run.sh* file (we read which URLs we want to test from files):
 
 ## Shell script
-~~~
+~~~shell
 #!/bin/bash
 # Specify the exact version of sitespeed.io. When you upgrade to the next version, pull it down and the chage the tag
 DOCKER_CONTAINER=sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}
@@ -128,7 +128,7 @@ docker pull $DOCKER_CONTAINER
 ## Crontab
 We trigger the script from the crontab. We run the script every hour.
 
-~~~
+~~~shell
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 0 * * * * /root/runs.sh >> /tmp/sitespeed.io.log 2>&1
@@ -137,7 +137,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 ## Infinite loop
 Another way is to just run the script in an infinite loop and then have a file that you remove (so the run stops) when you want to update your instance. This example script is on Ubuntu.
 
-~~~
+~~~shell
 #!/bin/bash
 LOGFILE=/tmp/s.log
 exec > $LOGFILE 2>&1
@@ -192,20 +192,20 @@ done
 
 And make sure the script start on server restart. Edit the crontab <code>crontab -e</code> and add (loop.sh is the name of your loop script file):
 
-~~~
+~~~shell
 @reboot rm /home/ubuntu/sitespeed.run;/home/ubuntu/loop.sh
 ~~~
 
 And start it like this:
 
-~~~
+~~~bash
 nohup /home/ubuntu/loop.sh &
 ~~~
 
 ## default.json
 And our default configuration is in *default.json*:
 
-~~~
+~~~json
 {
   "browsertime": {
     "connectivity": {
@@ -243,7 +243,7 @@ And our default configuration is in *default.json*:
 ## Docker networks
 And we set up the following Docker networks (*startNetworks.sh*):
 
-~~~
+~~~shell
 #!/bin/bash
 echo 'Starting Docker networks'
 docker network create --driver bridge --subnet=192.168.33.0/24 --gateway=192.168.33.10 --opt "com.docker.network.bridge.name"="docker1" 3g

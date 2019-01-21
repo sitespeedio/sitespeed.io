@@ -21,7 +21,7 @@ docker run --shm-size=1g --rm -v "$(pwd)":/browsertime-results sitespeedio/brows
 
 Then we pickup the median SpeedIndex from Browsertime and send it to your Graphite instance.
 
-~~~
+~~~shell
 echo "browsertime.your.key.SpeedIndex.median" $(cat tmp/browsertime.json | jq .statistics.visualMetrics.SpeedIndex.median) "`date +%s`" | nc -q0 my.graphite.com 2003
 ~~~
 

@@ -26,7 +26,7 @@ Chrome-HAR is for tool makers: Get the log from the Chrome Debugging Protocol an
 
 Convert your messages to a HAR file.
 
-~~~
+~~~javascript
 const parser = require('chrome-har');
 
 // you already have the message from Chrome Debugging Protocol

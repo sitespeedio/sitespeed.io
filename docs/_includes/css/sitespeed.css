@@ -126,12 +126,27 @@ a:hover {
 cursor: pointer;
 text-decoration: underline;
 }
+ 
 
+
+code {
+  font-size: 16px;
+  background-color: #f5f2f0;
+}
+
+pre code {
+  display: block;
+padding: 6px;
+}
+
+/*
 code {
   background-color: #eee;
   padding: 2px;
 }
 
+
+#
 pre code {
 display: block;
 padding: 9.5px;
@@ -147,6 +162,7 @@ border-radius: 4px;
 font-family: Monaco,Menlo,Consolas,"Courier New",monospace;
 white-space: pre-wrap;
 }
+*/
 
 .language-bash code:before {
     content: '$ ';
@@ -321,6 +337,11 @@ blockquote span:before {
 
 .red {
  color: red;
+}
+
+.anchor {
+  font-size: 80%;
+  color: grey;
 }
 
 .king img:hover {

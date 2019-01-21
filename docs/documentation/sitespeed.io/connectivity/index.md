@@ -23,7 +23,7 @@ You can throttle the connection to make the connectivity slower to make it easie
 ### Docker networks
 Here's an full example to setup up Docker network bridges on a server that has tc installed:
 
-~~~bash
+~~~shell
 #!/bin/bash
 echo 'Starting Docker networks'
 docker network create --driver bridge --subnet=192.168.33.0/24 --gateway=192.168.33.10 --opt "com.docker.network.bridge.name"="docker1" 3g
@@ -61,7 +61,7 @@ docker run --shm-size=1g --network=3g --rm sitespeedio/sitespeed.io:{% include v
 
 And if you want to remove the networks:
 
-~~~bash
+~~~shell
 #!/bin/bash
 echo 'Stopping Docker networks'
 docker network rm 3g
@@ -87,9 +87,15 @@ sitespeed.io --browsertime.connectivity.engine throttle -c cable https://www.sit
 
 You can also use Throttle inside of Docker but then the host need to be the same OS as in Docker. In practice you can only use it on Linux. And then make sure to run *sudo modprobe ifb numifbs=1* first and give the container the right privileges *--cap-add=NET_ADMIN*.
 
+Firt use modprobe:
+
+~~~bash
+sudo modprobe ifb numifbs=1
 ~~~
-$ sudo modprobe ifb numifbs=1
-$ docker run --cap-add=NET_ADMIN --shm-size=1g --rm sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -c 3g --browsertime.connectivity.engine=throttle https://www.sitespeed.io/
+
+And then then make user you use the right privileges:
+~~~bash
+docker run --cap-add=NET_ADMIN --rm sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -c 3g --browsertime.connectivity.engine=throttle https://www.sitespeed.io/
 ~~~
 
 

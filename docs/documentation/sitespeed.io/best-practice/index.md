@@ -1,7 +1,7 @@
 ---
 layout: default
 title: F.A.Q. and best practice using sitespeed.io
-description: Here we keep questions that gets asked on our Slack channel or frequently on Github.
+description: Here ewe keep questions that gets asked on our Slack channel or frequently on Github.
 keywords: best practice, faq
 nav: documentation
 category: sitespeed.io
@@ -38,7 +38,7 @@ Since 7.2.0 the best way to add a cookie is by using <code>--cookie name=value</
 If you want to test multiple URLs, you can used line them up in the cli:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io https://www.sitespeed.io/documentation/
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io https://www.sitespeed.io/documentation/
 ~~~
 
 You can also use a plain text file with one URL on each line. Create a file called urls.txt (but you can call it whatever you want):
@@ -68,10 +68,10 @@ How many runs depends on your site, and what you want to collect. Pat told us ab
 
 Getting timing metrics is one thing, but it’s also important to collect how your page is built. You need to keep track of the size of pages, how many synchronously loaded javascript you have and so on. For that kind of information you only need one run per URL.
 
-You should also try out our new setup with WebPageReplay.
+You should also try out our new setup with [WebPageReplay](../webpagereplay/).
 
 ### I want to test a user journey (multiple pages) how do I do that?
-We currently don't support that but feel free to do a PR in Browsertime.
+Checkout the [scripting capabilities](../scripting/) that makes it easy to test multiple pages.
 
 ### I want to test on different CPUs how do I do that?
 We currently don't built in support for changing the CPU. What we do know is that you should not use the built in support in Chrome or try to simulate slow CPUs by running on slow AWS instance. What should do is what WPTAgent do. You can check the code at [https://github.com/WPO-Foundation/wptagent/blob/master/wptagent.py](https://github.com/WPO-Foundation/wptagent/blob/master/wptagent.py) and do the same before you start a run and then remove it after the run.
@@ -86,7 +86,7 @@ That means if you test *https://www.sitespeed.io* with 5 runs/iterations, the br
 
 When you run <code>--preURL</code> the browser starts, then access the preURL and then the URL you want to test within the same session and not clearing the cache. Use this if you want to measure more realistic metrics if your user first hit your start page and then another page (with responses in the cache if the URL has the correct cache headers).
 
-If you use the <code>--preScript</code> feature, it is the same behavior, we don't clear the cache between preScript and the URL you want to test.
+If you use the <code>--preScript</code> or <code>--multi</code> feature, it is the same behavior, we don't clear the cache between the URL you want to test.
 
 ### My pre/post script doesn't work?
 We use Selenium pre/post script navigation. You can [read more](/documentation/sitespeed.io/prepostscript/) about of our pre/post script setup and focus on the [debug section](/documentation/sitespeed.io/prepostscript/#debuglog-from-your-script) if you have any problem.
@@ -128,7 +128,6 @@ You can also use the <code>--urlAlias</code> if you want to give the page a frie
 ~~~bash
 docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --useHash --urlAlias super --urlAlias duper https://www.sitespeed.io/#/super https://www.sitespeed.io/#/duper
 ~~~
-
 
 ## Servers
 What you should know before you choose where to run sitespeed.io.

@@ -24,7 +24,7 @@ The most basic things you can do is list configured plugins (which are currently
 You can list the plugins that will be used when you do a run:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --plugins.list https://en.wikipedia.org/wiki/Barack_Obama
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --plugins.list https://en.wikipedia.org/wiki/Barack_Obama
 ~~~
 
 And you will get a log entry that looks something like this:
@@ -41,19 +41,19 @@ The default plugins lives in the [plugin folder](https://github.com/sitespeedio/
 You can remove/disable default plugins if needed. For instance you may not want to output HTML and strictly send the data to Graphite.
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.remove html
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.remove html
 ~~~
 
 If you want to disable multiple plugins say you don't need the html or screenshots:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.remove html --plugins.remove screenshot
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.remove html --plugins.remove screenshot
 ~~~
 
 At anytime if you want to verify that disabling worked, add the plugins.list to your command:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.remove html --plugins.remove screenshot --plugins.list
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.remove html --plugins.remove screenshot --plugins.list
 ~~~
 
 ## Add a plugin
@@ -62,7 +62,7 @@ You can also add a plugin. This is great if you have plugins you created yoursel
 There's a plugin bundled with sitespeed.io called *analysisstorer* plugin that isn't enabled by default. It stores the original JSON data from all analyzers (from Browsertime, Coach data, WebPageTest etc) to disk. You can enable this plugin:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.add analysisstorer
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.add analysisstorer
 ~~~
 
 If you want to run plugins that you created yourself or that are shared from others, you can either install the plugin using npm (locally) and load it by name or point out the directory where the plugin lives.
@@ -73,7 +73,7 @@ If you want to run plugins that you created yourself or that are shared from oth
 If you run in Docker and you should. You will need to mount your plugin directory as a volume. This is the recommended best practice. Practically you should clone your repo on your server and then mount it like this.
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox --plugins.add /sitespeed.io/myplugin -n 1 https://www.sitespeed.io/
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox --plugins.add /sitespeed.io/myplugin -n 1 https://www.sitespeed.io/
 ~~~
 
 ### Relative using NodeJS
@@ -86,7 +86,7 @@ sitespeed.io https://www.sitespeed.io --plugins.add ../my/super/plugin
 ### Pre-baked Docker file
 If you want to create an image of sitespeed.io with your plugins pre-baked for sharing you can also do so using the following Dockerfile.
 
-~~~
+~~~docker
 FROM sitespeedio/sitespeed.io:<insert version here>
 ENV SITESPEED_IO_PLUGINS__ADD /my-custom-plugin
 
@@ -111,7 +111,7 @@ docker build -t my-custom-sitespeedio .
 Finally you can run it the same way as mentioned above without the volume mount and without adding your plugin (that was automatically fixed in your Docker file).
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io my-custom-sitespeedio -b firefox --my-custom-plugin.option test -n 1 https://www.sitespeed.io/
+docker run --rm -v "$(pwd)":/sitespeed.io my-custom-sitespeedio -b firefox --my-custom-plugin.option test -n 1 https://www.sitespeed.io/
 ~~~
 
 Pretty cool, huh? :-)
@@ -159,7 +159,7 @@ The open function is called once when sitespeed.io starts, it's in this function
 
 The *context* holds information for this specific run that generated at runtime and looks like this:
 
-~~~
+~~~javascript
 {
   storageManager,  // The storage manager is what you use to store data to disk
   resultUrls,
@@ -193,7 +193,7 @@ When you start the application and feed it with URLs, each URL will generate a m
 
 If you want to catch it, you can do something like this:
 
-~~~
+~~~javascript
 switch (message.type) {
   case 'url':
     {
@@ -205,7 +205,7 @@ When you are finished analysing the URL, your plugin can then send a message wit
 
 Here's a snippet of Browsertime sending the screenshots message (the actual screenshot is in *results.screenshots*):
 
-~~~
+~~~javascript
 const messageMaker = context.messageMaker;
 ...
 
@@ -217,7 +217,7 @@ queue.postMessage(make('browsertime.screenshot', results.screenshots, {
 
 If you want to send messages from within your plugin, you get it from the context.
 
-~~~
+~~~javascript
 const messageMaker = context.messageMaker;
 ~~~
 
@@ -241,7 +241,7 @@ You get the log object in the context object (so there's no need to require the 
 
 In the [open](#opencontext-options) function you can add something like this:
 
-~~~
+~~~javascript
 // Register a logger for this plugin, a unique name so we can filter the log
 // And save the log for later
 this.log = context.intel.getLogger('sitespeedio.plugin.PLUGIN_NAME');
@@ -264,7 +264,7 @@ You start by listening to the generic setup message **sitespeedio.setup**. When 
 
 Sending a pug looks something like this:
 
-~~~
+~~~javascript
 case 'sitespeedio.setup': {
  queue.postMessage(
   make('html.pug', {
@@ -285,7 +285,7 @@ The HTML plugin will automatically pickup data sent with the types of \*.run and
 
 A message can look like this (the HTML plugin will pickup messages sent by combining the id + type):
 
-~~~
+~~~javascript
 queue.postMessage(
   make('gpsi.pageSummary', result, {
     url,
@@ -303,7 +303,7 @@ collect metrics.
 
 You do that by in the setup phase, send the JavaScript you want to run to sitespeed.io
 
-~~~
+~~~javascript
 case 'sitespeedio.setup': {
  queue.postMessage(
    make('browsertime.scripts', {
@@ -322,7 +322,7 @@ You can also let Browsertime run asynchronous scripts, follow the same pattern a
 
 You can then get the metrics back by listening on **browsertime.run** messages.
 
-~~~
+~~~javascript
 case 'browsertime.run': {
   console.log(message.data.yourplugin);
   break;
@@ -331,7 +331,7 @@ case 'browsertime.run': {
 
 And if you want to use it in your pug template you will find it under **pageInfo.data.browsertime.run.yourplugin**. In this example, if you want to print the title you can do like this.
 
-~~~
+~~~javascript
 #{pageInfo.data.browsertime.run.yourplugin.title}
 ~~~
 
@@ -341,7 +341,7 @@ In the *sitespeedio.config* phase (where plugins can talk to each other) make su
 
 In this example we tell the budget plugin that it should collect metrics of the type *gpsi.pagesummary*.
 
-~~~
+~~~javascript
 const messageMaker = context.messageMaker;
 ...
 

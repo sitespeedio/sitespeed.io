@@ -91,7 +91,7 @@ When you add your command line switched you should skip the minus. For example: 
  You can get the trace log from Chrome by adding ```--chrome.timeline```. Doing that you will see how much time the CPU spend in different categories and a trace log file that you can drag and drop into your devtools timeline.
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --chrome.timeline https://www.sitespeed.io/
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --chrome.timeline https://www.sitespeed.io/
 ~~~
 
 You can also choose which Chrome trace categories you want to collect by adding ```--chrome.traceCategories```  to your parameters.
@@ -108,15 +108,17 @@ You can choose which version of Chrome you want to run by using the ```--chrome.
 Our Docker container only contains one version of Chrome and [let us know](https://github.com/sitespeedio/sitespeed.io/issues/new) if you need help to add more versions.
 
 ## Choose when to end your test
-By default the browser will collect data until  [window.performance.timing.loadEventEnd happens + aprox 2 seconds more](https://github.com/sitespeedio/browsertime/blob/d68261e554470f7b9df28797502f5edac3ace2e3/lib/core/seleniumRunner.js#L15). That is perfectly fine for most sites, but if you do Ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (--browsertime.pageCompleteCheck). When the scripts returns true the browser will close or if the timeout time is reached.
+By default the browser will collect data until  [window.performance.timing.loadEventEnd happens + aprox 5 seconds more](https://github.com/sitespeedio/browsertime/blob/d68261e554470f7b9df28797502f5edac3ace2e3/lib/core/seleniumRunner.js#L15). That is perfectly fine for most sites, but if you do Ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (```--browsertime.pageCompleteCheck```). When the scripts returns true the browser will close or if the timeout time is reached.
 
 In this example we wait 10 seconds until the loadEventEnd happens, but you can also choose to trigger it at a specific event.
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --browsertime.pageCompleteCheck 'return (function() {try { return (Date.now() - window.performance.timing.loadEventEnd) > 10000;} catch(e) {} return true;})()'
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --browsertime.pageCompleteCheck 'return (function() {try { return (Date.now() - window.performance.timing.loadEventEnd) > 10000;} catch(e) {} return true;})()'
 ~~~
 
-Yoy can also choose to end the test after 5 seconds of inactivity that happens after loadEventEnd. Do that by adding
+You can also configure how long time your current check will wait until completing with ```--pageCompleteWaitTime```. By default the pageCompleteCheck waits for 5000 ms after the onLoad event to happen. If you want to increase that to 10 seconds use ```--pageCompleteWaitTime 10000```. This is also useful if you test with *pageCompleteCheckInactivity* and it takes long time for the server to respond, you can use the *pageCompleteWaitTime* to wait longer than the default value.
+
+You can also choose to end the test after 5 seconds of inactivity that happens after loadEventEnd. Do that by adding
 ```--browsertime.pageCompleteCheckInactivity``` to your run. The test will then wait for loadEventEnd to happen and no requests in the Resource Timing API the last 5 seconds. Be-aware though that the script will empty the resource timing API data for every check so if you have your own script collecting data using the Resource Timing API it will fail.
 
 If you add your own complete check you can also choose when your check is run. By default we wait until onLoad happens (by using pageLoadStrategy normal). If you want control direct after the navigation, you can get that by adding ```--pageLoadStrategy none``` to your run.
@@ -129,7 +131,7 @@ Each javascript file need to return a metric/value which will be picked up and r
 
 For example say we have one file called scripts.js that checks how many scripts tags exist on a page. The script would look like this:
 
-~~~
+~~~javascript
 (function() {
   return document.getElementsByTagName("script").length;
 })();
@@ -138,7 +140,7 @@ For example say we have one file called scripts.js that checks how many scripts 
 Then to pick up the script, you would run it like this:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --browsertime.script scripts.js -b firefox
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --browsertime.script scripts.js -b firefox
 ~~~
 
 You will get a custom script section in the Browsertime tab.
@@ -156,7 +158,7 @@ Bonus: All custom scripts values will be sent to Graphite, no extra configuratio
 Visual metrics (Speed Index, Perceptual Speed Index, First and Last Visual Complete, and 85-95-99% Visual Complete) can be collected if you also record a video of the screen. If you use our Docker container you automagically get all what you need. Video and Visual Metrics is turned on by default.
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/
 ~~~
 
 On Android you need to follow [these instructions]({{site.baseurl}}/documentation/sitespeed.io/mobile-phones/#video-and-speedindex).
