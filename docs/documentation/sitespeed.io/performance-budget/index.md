@@ -37,10 +37,16 @@ The report looks like this.
 {: .img-thumbnail}
 
 ### The budget file
-In 8.0 we introduced a new way of configuring budget. You can configure default values and specific for a URL.
+In 8.0 we introduced a new way of configuring budget. You can configure default values and specific for a URL. In the budget file there are 5 couple of sections:
+
+* timings - are Visual and technical metrics and are configured in milliseconds (ms)
+* requests - the max number of requests per type or total
+* transferSize - the max transfer size (over the wire) per type or total
+* thirdPatrty - max number of requests or trasnferSize for third parties
+* score - minimum score for Coach advice 
 
 
-#### Simple budget file"
+#### Simple budget file
 The simplest version of a budget file that will check for SpeedIndex higher than 1000 ms looks like this:
 
 ~~~json
@@ -71,39 +77,56 @@ All URLs that you test then needs to have a SpeedIndex faster than 1000. But if 
 }
 ~~~
 
-#### Full budget file
+#### Full example
+
+Here is an example of a fully configurued budget file. It shows you what yiou *can* configure (but you shouldn't configure all of them). 
+
+
 ~~~json
 {
- "budget": {
+"budget": {
     "timings": {
       "firstPaint": 1000,
-      "fullyLoaded": 5500,
+      "fullyLoaded": 2000,
       "FirstVisualChange": 1000,
       "LastVisualChange": 1200,
-      "SpeedIndex": 1500,
-      "PerceptualSpeedIndex":
-        1500
-    },
-    "size": {
-      "total": 1000000
+      "SpeedIndex": 1200,
+      "PerceptualSpeedIndex":1200,
+      "VisualReadiness": 200,
+      "VisualComplete95": 1190
     },
     "requests": {
-      "total": 125
+      "total": 89,
+      "html": 1,
+      "javascript": 0,
+      "css": 1,
+      "image": 50,
+      "font": 0
     },
-     "thirdParty": {
-      "size": 10000,
-      "requests": 1
+    "transferSize": {
+      "total": 400000,
+      "html": 20000,
+      "javascript": 0,
+      "css": 10000,
+      "image": 200000,
+      "font": 0
+    },
+    "thirdParty": {
+      "transferSize": 0,
+      "requests": 0
     },
     "score": {
+      "accessibility": 100,
+      "bestpractice": 100,
       "privacy": 100,
       "performance": 100
     }
- }
+  }
 }
 ~~~
 
-#### The old budget file
-The current version can handle min/max values and works on the internal data structure.
+#### Budget configuration using the internal data structrure
+There's also an old version of settiung a budget where you can do it for all metrics collected by sitespeed.io and works on the internal data structure.
 
 
 You can read more about the metrics/data structure in the [metrics section]({{site.baseurl}}/documentation/sitespeed.io/metrics/).
