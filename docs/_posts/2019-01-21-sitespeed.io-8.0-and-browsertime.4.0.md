@@ -3,15 +3,16 @@ layout: default
 title: Sitespeed.io 8.0 and Browsertime 4.0
 description: Today we released new sitespeed.io and browsertime with support for testing multiple pages within the same browser session.
 authorimage: /img/aboutus/peter.jpg
-intro: Finally it is here, the most wanted feature by users ... test multiple pages within the same browser session, scripting the page and choosing your self when to run your tests.
+intro: Finally it is here, the most wanted feature by users ... test multiple pages within the same browser session, scripting the page and choosing yourself when to run your tests.
 keywords: sitespeed.io, browsertime, webperf
 nav: blog
 ---
 
 # Sitespeed.io 8.0 and Browsertime 4.0
 
-There are so many new and great thing in this release but we will focus on a couple of new things in this blog post and then you can read about the rest of the changes in the [changelog](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md) for Browsertime and the [changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) for sitespeed.io.
+There are so many new and great thing in this release and we will focus on a couple of new things in this blog post. You can read about the rest of the changes in the [changelog](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md) for Browsertime and the [changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) for sitespeed.io.
 
+Lets talk about:
 - [Testing multiple pages within a browser session](#testing-multiple-pages-within-a-browser-session)
 - [Testing a single page application](#testing-a-single-page-application)
 - [New privacy advice in Coach 3.0](#new-privacy-advice-in-coach-30)
@@ -24,11 +25,11 @@ There are so many new and great thing in this release but we will focus on a cou
 ## Testing multiple pages within a browser session
 <img src="{{site.baseurl}}/img/user-journey.png" class="pull-right img-big" alt="The user journey" width="250">
 
-In versions prior 8.0 you could test one page with the browser cache cleared, you could use a ```--preURL``` to pre warm the browser cache or a script, but you could only test one page at a time. With the new version you can pass on multiple URLs and choose to access them one by one within the same browser session without clearinbf the cache.
+In versions prior 8.0 you could test one page with the browser cache cleared, you could use a ```--preURL``` to pre warm the browser cache or a script, but you could only test one page at a time. With the new version you can pass on multiple URLs and choose to access them one by one within the same browser session without clearing the cache.
 
-Lets say tou want to test the following user journey: A user first visits the start page [https://www.sitespeed.io](https://www.sitespeed.io) then to [https://www.sitespeed.io/documentation/ ](https://www.sitespeed.io/documentation/) and last try out the [https://www.sitespeed.io/documentation/sitespeed.io](https://www.sitespeed.io/documentation/sitespeed.io/) page.
+Lets say tou want to test the following user journey: A user first visits the start page [https://www.sitespeed.io](https://www.sitespeed.io) then[https://www.sitespeed.io/documentation/ ](https://www.sitespeed.io/documentation/) and last goes to the [https://www.sitespeed.io/documentation/sitespeed.io](https://www.sitespeed.io/documentation/sitespeed.io/) page.
 
-You can do that now by just addin the ```--multi``` parameter:
+You can do that now by just adding the ```--multi``` parameter:
 
 ~~~bash
 docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --multi https://www.sitespeed.io https://www.sitespeed.io/documentation/ https://www.sitespeed.io/documentation/sitespeed.io/
@@ -51,7 +52,7 @@ And run it with
 docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --multi script.js
 ~~~
 
-The new scripting capablities ands a couple of commands to make scripting easier ([see the documentation](../documentation/sitespeed.io/scripting/)) and you can also use raw Selenium if you prefer that.
+The new scripting capabilities adds a couple of commands to make scripting easier ([see the documentation](../documentation/sitespeed.io/scripting/)). And you can still also use raw Selenium if you prefer that.
 
 Let us look at a little more complicated example. We want to measure the actual login page at Wikipedia and then measure the Barack Obama page as a logged in user.
 
@@ -96,7 +97,7 @@ You can check out [more examples](../documentation/sitespeed.io/scripting/#examp
 
 ## Testing a single page application
 
-Yeah, you can now test a SPA! When you test a single page application you should add the ```--spa``` parameter to your test pages, so that Browsertime/sitespeed.io knows. That will enable: 
+Yeah, you can now test a SPA! When you test a single page application you should add the ```--spa``` parameter so that Browsertime/sitespeed.io knows. That will enable: 
 * Automatically handle URLs with #.
 * End testing your page load after X seconds of no activity in the Resource Timing API. This makes sure that when you navigate to different pages, the navigation ends when everything finished loading.
 
@@ -157,7 +158,7 @@ We have updated our dashboards to include new metrics like Privacy score from th
 You can get the [updated dashboards from Github](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/master/dashboards/graphite) and check them out at [dashboard.sitespeed.io](https://dashboard.sitespeed.io/d/000000044/page-timing-metrics?orgId=1).
 
 ## New budget configuration
-One problem before 8.0 was that it was really hard to configure a performance budget: You needed to use the internal data structure and that sucks. Looking at other tools we could see that comfiguring a budget is usually hard. That's why we are introducing a new way in 8.0 (if you where using the old configuratiom pre 8.0, don't worry, that will continue to work).
+One problem before 8.0 was that it was really hard to configure a performance budget: You needed to use the internal data structure and that sucks. Looking at other tools we could see that configuring a budget is usually hard. That's why we are introducing a new way in 8.0 (if you where using the old configuration pre 8.0, don't worry, that will continue to work).
 
 You can configure default values and specific for a URL. In the budget file there are 5 couple of sections:
 
@@ -197,10 +198,10 @@ All URLs that you test then needs to have a SpeedIndex faster than 1000. But if 
 }
 ~~~
 
-Read the documentation on how to setup your budget file.
+[Read the documentation](/documentation/sitespeed.io/performance-budget/) on how to setup your budget file.
 
 ## Upgrading Browsertime
-There are a couple of breaking changes introduce in 4.0.
+There are a couple of breaking changes introduce in 4.0. This only matters if you run Browsertime as a standalone tool (without using sitespeed.io).
 
 1. New structure of the result JSON. In 4.0 we introduce the ability to test multiple pages. That means that instead of returning one result object, we return an array. In 3.x the result looks like this:
 ~~~json
@@ -243,7 +244,6 @@ Upgrading should be pretty straight forward and work out of the box. If you used
 And read the [new documentation about scripting](/documentation/sitespeed.io/scripting/).
 
 ## What you can do.
-
-Help us to try out the new versions and please create a [issue](https://github.com/sitespeedio/sitespeed.io/issues/new) when you find something that seems wrong.
+Sitespeed.io 8.0 and Browsertime 4.0 is a major major change. We need your help to try it out and please create [issues](https://github.com/sitespeedio/sitespeed.io/issues/new) when you find something that seems wrong.
 
 /Peter
