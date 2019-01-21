@@ -57,7 +57,7 @@ When you as user choose to test a URL, this is what happens on a high level:
  Using Docker (use latest Docker):
 
  ```bash
- $ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
+ $ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
  ```
 
  Or install using npm:
@@ -87,8 +87,6 @@ Using sitespeed.io you can:
 * Write your own plugins that can do whatever tests you want/need.
 
 See all the latest changes in the [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md).
-
-If you use Firefox 55 (or later) please have a look at https://github.com/sitespeedio/browsertime/issues/358. We are waiting on the new extension from Mozilla to be able to export the HAR.
 
 Checkout our example [dashboard.sitespeed.io](https://dashboard.sitespeed.io/dashboard/db/page-summary)
 
@@ -123,13 +121,13 @@ You can change latency by setting a Docker environment variable. Use REPLAY to t
 Default browser is Chrome:
 
 ```
-docker run --cap-add=NET_ADMIN --shm-size=1g --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io -n 5 -b chrome https://en.wikipedia.org/wiki/Barack_Obama
+docker run --cap-add=NET_ADMIN --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io -n 5 -b chrome https://en.wikipedia.org/wiki/Barack_Obama
 ```
 
 Use Firefox:
 
 ```
-docker run --cap-add=NET_ADMIN --shm-size=1g --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io -n 11 -b firefox https://en.wikipedia.org/wiki/Barack_Obama
+docker run --cap-add=NET_ADMIN --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io -n 11 -b firefox https://en.wikipedia.org/wiki/Barack_Obama
 ```
 
 
