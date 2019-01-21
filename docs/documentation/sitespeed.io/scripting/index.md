@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Use scripts in sitespeed.io to measure a user journey.
-description: With scripts you can simulate a user visiting to miltiple pages, clicking on links, log in, adding items to the cart ... yeah do whatever you want!
+description: With scripts you can simulate a user visiting to miltiple pages, clicking on links, log in, adding items to the cart ... almost measure whatever you want!
 keywords: selenium, web performance, sitespeed.io
 nav: documentation
 category: sitespeed.io
@@ -20,7 +20,7 @@ twitterdescription: Use scripts in sitespeed.io to measure a user journey.
 
 <img src="{{site.baseurl}}/img/user-journey.png" class="pull-right img-big" alt="The user journey" width="250">
 
-Test by scripting was introduced in sitespeed.io 8.0 and Browsertime 4.0 and makes it possible to measure a user journey. A user visiting multiple pages, clicking on links, log in, adding items to the cart ... yeah do whatever you want.
+Test by scripting was introduced in sitespeed.io 8.0 and Browsertime 4.0 and makes it possible to measure a user journey. A user visiting multiple pages, clicking on links, log in, adding items to the cart ... yeah almost measure whatever you want.
 
 Scripting work the same in Browsertime and sitespeed.io, the documentation here are for both of the tools.
 

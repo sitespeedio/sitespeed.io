@@ -17,7 +17,7 @@ twitterdescription: Test a single page application - SPA
 {:toc}
 
 # Test by scripting
-To test a single page application you probably want to measure more pages than the first page (that loads the framework). Add you do that by using the Browsertime command/scripting. Either you use our commands or Selenium scripts.
+To test a single page application you probably want to measure more pages than the first page (that loads the framework). You do that by using the Browsertime [command/scripting](/documentation/sitespeed.io/scripting/). Either you use our commands or Selenium scripts.
 
 When you test a single page application you should add the ```--spa``` parameter to your test pages, so that Browsertime/sitespeed.io knows. That will enable: 
 * Automatically handle URLs with #.
@@ -25,13 +25,13 @@ When you test a single page application you should add the ```--spa``` parameter
 
 
 ## Metrics
-Using a single page application make it harder to measure how fast a page load since since the navigation timing API will not work. Instead you can use the User Toming API and pick up visual metrics and metrics from the CPU.
+Using a single page application make it harder to measure how fast a page load since since the navigation timing API will not work. Instead you can use the User Timing API and pick up visual metrics and metrics from the CPU.
 
 ### Navigation timing metrics
 The navigation timing metrics are only useful for the first page that you test. The following pages in your SPA will not populate new navigation timing metrics.
 
 ### Visual Metrics
-Visual Metrics will work fine but depending on how you navigate *First Visual Change* can be when you click your link, so focus on *Last Visual Change* instead.
+Visual Metrics will work fine but depending on how you navigate *First Visual Change* can be when you click your link, so focus on *Last Visual Change* or one of the *VisualComplete* metrics instead.
 
 ### User Timing
 You need to instrument your code yourself or use a framework that do that automatically. [Read how LinkedIn](https://engineering.linkedin.com/blog/2017/02/measuring-and-optimizing-performance-of-single-page-applications) use User Timings to measure their SPA.
