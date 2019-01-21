@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Fixed
+* Added links to documentation to scripting/spa in the CLI.
+
 ## 8.0.1 - 2019-01-22
 ### Fixed
 * WebPageTest, GPSI and Lighthouse now logs that they cannot handle scripting/multiple pages at the moment (and Lighthouse upgraded to the latest version in the Docker file).
