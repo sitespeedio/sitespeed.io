@@ -2,9 +2,6 @@
   "name": "sitespeed.io",
   "bin": "./bin/sitespeed.js",
   "version": "8.0.0-alpha.0",
-  "publishConfig": {
-    "tag": "canary"
-  },
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -50,7 +47,7 @@
     "build:css": "node-sass lib/plugins/html/src/sass/main.scss > lib/plugins/html/assets/css/index.css && cleancss -o lib/plugins/html/assets/css/index.min.css lib/plugins/html/assets/css/index.css && rm lib/plugins/html/assets/css/index.css"
   },
   "engines": {
-    "node": ">=8.9.0"
+    "node": ">=10.13.0"
   },
   "devDependencies": {
     "bluebird": "3.5.2",
