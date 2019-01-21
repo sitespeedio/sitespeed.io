@@ -20,7 +20,7 @@ twitterdescription: Use scripts in sitespeed.io to measure a user journey.
 
 <img src="{{site.baseurl}}/img/user-journey.png" class="pull-right img-big" alt="The user journey" width="250">
 
-Test by scripting was introduced in sitespeed.io 8.0 and Browsertime 4.0 and makes it possible to measure a user journey. A user visiting multiple pages, clicking on links, log in, adding items to the cart ... yeah almost measure whatever you want.
+Test by scripting was introduced in sitespeed.io 8.0 and Browsertime 4.0 and makes it possible to measure a user journey. A user can visit multiple pages, clicking on links, log in, adding items to the cart ... yeah almost measure anything you want.
 
 Scripting work the same in Browsertime and sitespeed.io, the documentation here are for both of the tools.
 
@@ -39,42 +39,42 @@ Inside of that function you can use the context and commands objects.
 The context object:
 * *options* - All the options sent from the CLI to Browsertime.
 * *log* - an instance to the log system so you can log from your navigation script.
-* *index* - the index of the runs, so you can keep track of which run that is running.
-* *storageManager* - The Browsertime storage manager that can help you get read/store files to disk.
+* *index* - the index of the runs, so you can keep track of which run you are currently on.
+* *storageManager* - The Browsertime storage manager that can help you read/store files to disk.
 * *selenium.webdriver* -  The Selenium [WebDriver public API object](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html).
 * *selenium.driver* - The [instantiated version of the WebDriver](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebDriver.html) driving the current version of the browser.
 
 
 The commands object:
-* *[navigate(URL)](#navigateurl)* - Use this if you want to use the exact way as Browsertime navigates to a new URL (same settings with pageCompleteCheck etc). But that URL will not be measured automatically.
-* *[measure.start(URL)](#measurestarturl)* - Start measuring and navigate to a new page in one go and measure.
-* *[measure.start(URL,alias)](#measurestarturl-alias)* - Start measuring and navigate to a new page in one go and measure. And register an alias for that URL.
-* *[measure.start()](#measurestart)* - Use this when you want to start to measure a page. This will start the video and prepare everything to collect metrics. But it will not navigate to the URL.
-* *[measure.start(alias)](#measurestartalias)* - Use this when you want to start to measure a page. This will start the video and prepare everything to collect metrics. But it will not navigate to the URL. The next URL that will be accessed will get the alias.
+* *[navigate(URL)](#navigateurl)* - Use this if you want to use the exact way as Browsertime navigates to a new URL (same settings with pageCompleteCheck etc). Note: the URL will not be measured automatically.
+* *[measure.start(URL)](#measurestarturl)* - Start measuring and navigate to a new page in one go.
+* *[measure.start(URL,alias)](#measurestarturl-alias)* - Start measuring and navigate to a new page in one go, while register an alias for that URL.
+* *[measure.start()](#measurestart)* - Use this when you want to start to measure a page. This will start the video and prepare everything to collect metrics. Note: it will not navigate to the URL.
+* *[measure.start(alias)](#measurestartalias)* - Use this when you want to start to measure a page. This will start the video and prepare everything to collect metrics. Note: it will not navigate to the URL and the next URL that will be accessed will get the alias.
 * *[measure.stop()](#measurestop)* - Collect metrics for a page.
 
-And then you have a couple of help commands:
-* *[wait](#wait)* on a id to appear or wait x amountt of ms.
+And then you have a few help commands:
+* *[wait](#wait)* on a id to appear or wait x amount of ms.
 * *[click](#click)* on a link and/or wait for the next page to load.
 * *[js](#run-javascript)* - run JavaScript in the browser.
 * *[switch](#switch)* to another frame or windo.
 
 
 ## Run
-You run your script by passing it to sitespeed.io and adding the parameter ```--multi```. If you have multiple scripts, you can just pass them on too.
+Run your script by passing it to sitespeed.io and adding the parameter ```--multi```. If you have multiple scripts, you can just pass them in as well.
 
 ~~~bash
 docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} script.js script2.js script3.js --multi
 ~~~
 
 ## Examples
-Here are a couple of examples on how you can use the scripting capabilities. 
+Here are some examples on how you can use the scripting capabilities.
 
 ### Measure the actual login step
 
 ~~~javascript
 module.exports = async function(context, commands) {
-  // Navigate to a URL and do not measure the URL
+  // Navigate to a URL, but do not measure the URL
   await commands.navigate(
     'https://en.wikipedia.org/w/index.php?title=Special:UserLogin&returnto=Main+Page'
   );
@@ -85,11 +85,11 @@ module.exports = async function(context, commands) {
     await commands.addText.byId('password', 'wpPassword1');
 
     // Start the measurement and give it the alias login
-    // The alias will be useds when the metrics is sent to 
+    // The alias will be used when the metrics is sent to 
     // Graphite/InfluxDB
     await commands.measure.start('login');
 
-    // Find the sumbit button and click it and wait for the
+    // Find the submit button and click it and wait for the
     // page complete check to finish on the next loaded URL
     await commands.click.byIdAndWait('wpLoginAttempt');
     // Stop and collect the metrics
@@ -105,7 +105,7 @@ module.exports = async function(context, commands) {
 
 ~~~javascript
 module.exports = async function(context, commands) {
-  // We start by navigating to the login page. 
+  // We start by navigating to the login page.
   await commands.navigate(
     'https://en.wikipedia.org/w/index.php?title=Special:UserLogin&returnto=Main+Page'
   );
@@ -185,14 +185,14 @@ module.exports = async function(context, command) {
     await command.wait.byTime(2000);
     // Switch to the login frame
     await command.switch.toFrame('loginFrame');
-    // Find the usenrmane fields by xpath (just as an example)
+    // Find the username fields by xpath (just as an example)
     await command.addText.byXpath(
       'peter@example.org',
       '//*[@id="userName"]'
     );
-    // Click on the necx buttin
+    // Click on the next button
     await command.click.byId('verifyUserButton');
-    // Wait for the gui to display the password field so we can select it
+    // Wait for the GUI to display the password field so we can select it
     await command.wait.byTime(2000);
     // Wait for the actual password field
     await command.wait.byId('password', 5000);
@@ -226,7 +226,7 @@ module.exports = async function(context, commands) {
 
 ### Log from your script
 
-You can log to the same log output as sitespeed.io:
+You can log to the same output as sitespeed.io:
 
 ~~~javascript
 module.exports = async function(context, commands) {
@@ -236,9 +236,9 @@ module.exports = async function(context, commands) {
 ~~~
 
 ### Pass your own options to your script
-You can add your own parameters to the options object (by adding a parameter) and then pick them up in the script. The scripts runs in the context of browsertime, so you need to pass it on in that context.
+You can add your own parameters to the options object (by adding a parameter) and then pick them up in the script. The scripts runs in the context of browsertime, so you need to pass it in via that context.
 
-For example: you wanna pass on a password to your script, you can do that by adding <code>--browsertime.my.password MY_PASSWORD</code> and then in your code get hold of that with: 
+For example: you wanna pass on a password to your script, you can do that by adding <code>--browsertime.my.password MY_PASSWORD</code> and then in your code get a hold of that with:
 
 ~~~javascript
 module.exports = async function(context, commands) {
@@ -250,10 +250,10 @@ module.exports = async function(context, commands) {
 
 ## Commmands
 
-All commands will return a promise and you should await it to fullfil. If some command do not work, we will log that automatically and rethrow the error, so you can catch that and can act on that.
+All commands will return a promise and you should await it to fulfil. If some command do not work, we will log that automatically and rethrow the error, so you can catch that and can act on that.
 
 ### Measure
-The measure command will prepare everything for measuring a new URL (clearing internal metrics, starting the video etc). If you give an URL to the measure command it will start to measure and navigate to that URL. 
+The measure command will prepare everything for measuring a new URL (clearing internal metrics, starting the video etc). If you give an URL to the measure command it will start to measure and navigate to that URL.
 
 If you do not give it a URL, it will prepare everything and start the video. So it's up to you to navigate/click on a link/submit the page. You also need to stop the measurement so that Browsertime/sitespeed.io knows that you want the metrics.
 
@@ -270,14 +270,14 @@ Start to measure. Browsertime/sitespeed.io will pick up the next URL and measure
 Start to measure. Browsertime/sitespeed.io will pick up the next URL and measure that. You need to call the stop() function yourself. The page will also get the alias that will be used when you send the metrics to Graphite/InfluxDB. Use it when you have complex URLs.
 
 #### measure.stop()
-Stop measuring. This will collect technical metrics from the browser, stop the video recording, collect CPU data etc. 
- 
+Stop measuring. This will collect technical metrics from the browser, stop the video recording, collect CPU data etc.
+
 ### Click
 The click command will click on links.
 
 All click commands have two different versions: One that will return a promise when the link has been clicked and one that will return a promise that will be fullfilled when the link has been clicked and the browser navigated to the new URL and the pageCompleteCheck says ok.
 
-If it do not find the link, it will throw an error, so make sure to catch if you want an alternative flow.
+If it does not find the link, it will throw an error, so make sure to catch it if you want an alternative flow.
 {: .note .note-warning}
 
 #### click.byName(name)
@@ -375,7 +375,7 @@ Switch to the parent frame.
 ### Use Selenium directly
 You can use Selenium directly if you need to use things that are not availible through our commands.
 
-You get hold of the Selenium objects through the context.
+You get a hold of the Selenium objects through the context.
  The *selenium.webdriver* that is the Selenium [WebDriver public API object](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html). And *selenium.driver* that's the [instantiated version of the WebDriver](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebDriver.html) driving the current version of the browser.
 
 Checkout this example to see how you can use them.
