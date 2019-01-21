@@ -72,7 +72,7 @@
   "main": "./lib/sitespeed.js",
   "dependencies": {
     "aws-sdk": "2.361.0",
-    "browsertime": "4.0.0-beta.1",
+    "browsertime": "4.0.1",
     "cli-color": "1.4.0",
     "concurrent-queue": "7.0.2",
     "dayjs-ext": "2.2.0",
@@ -105,7 +105,7 @@
     "tape": "4.9.1",
     "text-table": "0.2.0",
     "uuid": "3.3.2",
-    "webcoach": "3.0.0",
+    "webcoach": "3.1.1",
     "webpagetest": "0.3.9",
     "yargs": "6.6.0"
   }

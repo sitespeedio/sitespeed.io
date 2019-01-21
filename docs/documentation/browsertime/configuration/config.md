@@ -1,4 +1,4 @@
-browsertime.js [options] <url>
+browsertime.js [options] <url>/<scriptFile>
 
 timeouts
   --timeouts.browserStart       Timeout when waiting for browser to start, in milliseconds  [number] [default: 60000]
@@ -39,11 +39,11 @@ video
   --videoParams.framerate          Frames per second  [default: 30]
   --videoParams.crf                Constant rate factor see https://trac.ffmpeg.org/wiki/Encode/H.264#crf  [default: 23]
   --videoParams.addTimer           Add timer and metrics to the video.  [boolean] [default: true]
-  --videoParams.keepOriginalVideo  [boolean] [default: false]
+  --videoParams.debug              Turn on debug to record a video with all pre/post and scripts/URLS you test in one iteration. Visual Metrics will then automatically be disabled.  [boolean] [default: false]
+  --videoParams.keepOriginalVideo  Keep the original video. Use it when you have a Visual Metrics bug and creates an issue at Github  [boolean] [default: false]
   --videoParams.filmstripFullSize  Keep original sized screenshots. Will make the run take longer time  [boolean] [default: false]
   --videoParams.filmstripQuality   The quality of the filmstrip screenshots. 0-100.  [default: 75]
   --videoParams.createFilmstrip    Create filmstrip screenshots.  [boolean] [default: true]
-  --videoParams.combine            Combine preScript/postScript with the tested URL in the video. Turn this on and you will record the all scripts.  [boolean] [default: false]
   --videoParams.nice               Use nice when running FFMPEG during the run. A value from -20 to 19  https://linux.die.net/man/1/nice  [default: 0]
 
 Screenshot
@@ -72,7 +72,9 @@ Options:
   --visuaElements                Collect Visual Metrics from elements. Works only with --visualMetrics turned on. By default you will get visual metrics from the largest image within the view port and the largest h1. You can also configure to pickup your own defined elements with --scriptInput.visualElements  [boolean]
   --scriptInput.visualElements   Include specific elements in visual elements. Give the element a name and select it with document.body.querySelector. Use like this: --scriptInput.visualElements name:domSelector see https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors. Add multiple instances to measure multiple elements. Visual Metrics will use these elements and calculate when they are visible and fully rendered.
   --browser, -b                  Specify browser  [choices: "chrome", "firefox"] [default: "chrome"]
+  --android                      Short key to use Android. Will automatically use com.android.chrome  [boolean] [default: false]
   --pageCompleteCheck            Supply a JavaScript (inline or JavaScript file) that decides when the browser is finished loading the page and can start to collect metrics. The JavaScript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd. By default the tests ends 2 seconds after loadEventEnd. Also checkout --pageCompleteCheckInactivity
+  --pageCompleteWaitTime         How long time you want to wait for your pageComplteteCheck to finish, after it is signaled to closed. Extra parameter passed on to your pageCompleteCheck.  [default: 5000]
   --pageCompleteCheckInactivity  Alternative way to choose when to end your test. This will wait for 2 seconds of inactivity that happens after loadEventEnd.  [boolean] [default: false]
   --iterations, -n               Number of times to test the url (restarting the browser between each test)  [number] [default: 3]
   --prettyPrint                  Enable to print json/har with spaces and indentation. Larger files, but easier on the eye.  [boolean] [default: false]
@@ -85,8 +87,8 @@ Options:
   --decimals                     The decimal points browsertime statistics round to.  [number] [default: 0]
   --cacheClearRaw                Use internal browser functionality to clear browser cache between runs instead of only using Selenium.  [boolean] [default: false]
   --basicAuth                    Use it if your server is behind Basic Auth. Format: username@password (Only Chrome at the moment).
-  --preScript                    Selenium script(s) to run before you test your URL (use it for login, warm the cache, etc). Note that --preScript can be passed multiple times.
-  --postScript                   Selenium script(s) to run after you test your URL (use it for logout etc). Note that --postScript can be passed multiple times.
+  --preScript                    Selenium script(s) to run before you test your URL/script. They will run outside of the analyze phase. Note that --preScript can be passed multiple times.
+  --postScript                   Selenium script(s) to run after you test your URL. They will run outside of the analyze phase. Note that --postScript can be passed multiple times.
   --script                       Add custom Javascript to run after the page has finished loading to collect metrics. If a single js file is specified, it will be included in the category named "custom" in the output json. Pass a folder to include all .js scripts in the folder, and have the folder name be the category. Note that --script can be passed multiple times.
   --userAgent                    Override user agent
   --silent, -q                   Only output info in the logs, not to the console. Enter twice to suppress summary line.  [count]
@@ -97,6 +99,7 @@ Options:
   --config                       Path to JSON config file
   --viewPort                     Size of browser window WIDTHxHEIGHT or "maximize". Note that "maximize" is ignored for xvfb.
   --resultDir                    Set result directory for the files produced by Browsertime
+  --useSameDir                   Store all files is the same structure and do not use the path structure released in 4.0. Use this only if you are testing ONE URL.
   --xvfb                         Start xvfb before the browser is started  [boolean] [default: false]
   --xvfbParams.display           The display used for xvfb  [default: 99]
   --preURL                       A URL that will be accessed first by the browser before the URL that you wanna analyze. Use it to fill the cache.
@@ -104,6 +107,6 @@ Options:
   --userTimingWhitelist          All userTimings are captured by default this option takes a regex that will whitelist which userTimings to capture in the results.
   --headless                     Run the browser in headless mode.  [boolean] [default: false]
   --extension                    Path to a WebExtension to be installed in the browser. Note that --extension can be passed multiple times.
+  --spa                          Convenient parameter to use if you test a SPA application: will automatically waity for X seconds after last network activity and use hash in file names.  [boolean] [default: false]
   -h, --help                     Show help  [boolean]
   -V, --version                  Show version number  [boolean]
-

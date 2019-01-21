@@ -52,6 +52,10 @@ block content
                tr
                  td Requests:
                  td #{d.pagexray.run.requests}
+             if d.browsertime && d.browsertime.run
+               tr
+                 td Fully loaded:
+                 td #{h.time.ms(d.browsertime.run.timings.fullyLoaded)}
              if d.browsertime && d.browsertime.run && d.browsertime.run.visualMetrics
                tr
                  td First Visual Change:
