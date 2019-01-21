@@ -3,12 +3,14 @@ bin/sitespeed.js [options] <url>/<file>
 Browser
   --browsertime.browser, -b, --browser                                      Choose which Browser to use when you test.  [choices: "chrome", "firefox"] [default: "chrome"]
   --browsertime.iterations, -n                                              How many times you want to test each page  [default: 3]
+  --browsertime.spa, --spa                                                  Convenient parameter to use if you test a SPA application: will automatically waity for X seconds after last network activity and use hash in file names.  [boolean] [default: false]
   --browsertime.connectivity.profile, -c, --connectivity                    The connectivity profile. To actually set the connectivity you can choose between Docker networks or Throttle, read https://www.sitespeed.io/documentation/sitespeed.io/connectivity/  [choices: "3g", "3gfast", "3gslow", "3gem", "2g", "cable", "native", "custom"] [default: "native"]
   --browsertime.connectivity.downstreamKbps, --downstreamKbps               This option requires --connectivity be set to "custom".
   --browsertime.connectivity.upstreamKbps, --upstreamKbps                   This option requires --connectivity be set to "custom".
   --browsertime.connectivity.latency, --latency                             This option requires --connectivity be set to "custom".
   --browsertime.connectivity.engine                                         Throttle works on Mac and tc based Linux (it is experimental so please use with care). Use external if you set the connectivity outside of Browsertime. The best way do to this is described in https://github.com/sitespeedio/browsertime#connectivity  [choices: "throttle", "external"] [default: "external"]
   --browsertime.pageCompleteCheck, --pageCompleteCheck                      Supply a Javascript that decides when the browser is finished loading the page and can start to collect metrics. The Javascript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd.
+  --browsertime.pageCompleteWaitTime, --pageCompleteWaitTime                How long time you want to wait for your pageComplteteCheck to finish, after it is signaled to closed. Extra parameter passed on to your pageCompleteCheck.  [default: 5000]
   --browsertime.pageCompleteCheckInactivity, --pageCompleteCheckInactivity  Alternative way to choose when to end your test. This will wait for 2 seconds of inactivity that happens after loadEventEnd.  [boolean] [default: false]
   --browsertime.script, --script                                            Add custom Javascript that collect metrics and run after the page has finished loading. Note that --script can be passed multiple times if you want to collect multiple metrics. The metrics will automatically be pushed to the summary/detailed summary and each individual page + sent to Graphite/InfluxDB.
   --browsertime.injectJs, --injectJs                                        Inject JavaScript into the current page (only Firefox at the moment) at document_start. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
@@ -16,8 +18,6 @@ Browser
   --browsertime.viewPort, --viewPort                                        The browser view port size WidthxHeight like 400x300  [default: "1366x708"]
   --browsertime.userAgent, --userAgent                                      The full User Agent string, defaults to the User Agent used by the browsertime.browser option.
   --browsertime.preURL, --preURL                                            A URL that will be accessed first by the browser before the URL that you wanna analyze. Use it to fill the cache.
-  --browsertime.preScript, --preScript                                      Selenium script(s) to run before you test your URL (use it for login, warm the cache, etc). Note that --preScript can be passed multiple times.
-  --browsertime.postScript, --postScript                                    Selenium script(s) to run after you test your URL (use it for logout etc). Note that --postScript can be passed multiple times.
   --browsertime.delay, --delay                                              Delay between runs, in milliseconds. Use it if your web server needs to rest between runs :)
   --browsertime.pageLoadStrategy, --pageLoadStrategy                        The Page Load Strategy decides when you have control of the page load. Default is normal meaning you will have control after onload. You can change that to none to get control direct after navigation.  [choices: "normal", "none"] [default: "normal"]
   --browsertime.visualMetrics, --visualMetrics, --speedIndex                Calculate Visual Metrics like SpeedIndex, First Visual Change and Last Visual Change. Requires FFMpeg and Python dependencies  [boolean]
@@ -65,6 +65,7 @@ Crawler
 Grafana
   --grafana.host  The Grafana host used when sending annotations.
   --grafana.port  The Grafana port used when sending annotations to Grafana.  [default: 80]
+  --grafana.auth  The Grafana auth/bearer value used when sending annotations to Grafana. See http://docs.grafana.org/http_api/auth/#authentication-api
 
 Graphite
   --graphite.host                  The Graphite host used to store captured metrics.
@@ -170,6 +171,7 @@ Options:
   --urlAlias       Use an alias for the URL (if you feed URLs from a file you can instead have the alias in the file). You need to pass on the same amount of alias as URLs. The alias is used as the name of the URL on the HTML report and in Graphite/InfluxDB. Pass on multiple --urlAlias for multiple alias/URLs. This will override alias in a file.  [string]
   --utc            Use Coordinated Universal Time for timestamps  [boolean] [default: false]
   --useHash        If your site uses # for URLs and # give you unique URLs you need to turn on useHash. By default is it turned off, meaning URLs with hash and without hash are treated as the same URL  [boolean] [default: false]
+  --multi          Test multiple URLs within the same browser session (same cache etc). Use this if you want to test multiple pages (use journey) or want to test multiple pages with scripts. You can mix URLs and scripts (the order will matter): login.js https://www.sitespeed.io/ logout.js  [boolean] [default: false]
   --config         Path to JSON config file
   --help, -h       Show help  [boolean]
 
