@@ -1,8 +1,12 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
-First beta of sitespeed.io 8.0 coming the 21 of January!
+## 8.0.1 - 2019-01-22
+### Fixed
+* WebPageTest, GPSI and Lighthouse now logs that they cannot handle scripting/multiple pages at the moment (and Lighthouse upgraded to the latest version in the Docker file).
 
+## 8.0.0 - 2019-01-21
+
+Read the blog post: [https://www.sitespeed.io/sitespeed.io-8.0-and-browsertime.4.0/](https://www.sitespeed.io/sitespeed.io-8.0-and-browsertime.4.0/).
 ### Added
 * Upgraded to the Coach 3.0 with Privacy advice, see [https://www.sitespeed.io/coach-3.0/](https://www.sitespeed.io/coach-3.0/).
 * Upgraded to PageXray 2.5.
