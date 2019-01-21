@@ -17,7 +17,7 @@ twitterdescription: Test a single page application - SPA
 {:toc}
 
 # Test by scripting
-To test a single page application you probably want to measure more pages than the first page (that loads the framework). Add you do that by using the Browsertime command/scripting. Either you use our commands or Selenium scri pts.
+To test a single page application you probably want to measure more pages than the first page (that loads the framework). Add you do that by using the Browsertime command/scripting. Either you use our commands or Selenium scripts.
 
 When you test a single page application you should add the ```--spa``` parameter to your test pages, so that Browsertime/sitespeed.io knows. That will enable: 
 * Automatically handle URLs with #.
