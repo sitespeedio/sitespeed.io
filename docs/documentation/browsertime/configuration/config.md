@@ -107,6 +107,6 @@ Options:
   --userTimingWhitelist          All userTimings are captured by default this option takes a regex that will whitelist which userTimings to capture in the results.
   --headless                     Run the browser in headless mode.  [boolean] [default: false]
   --extension                    Path to a WebExtension to be installed in the browser. Note that --extension can be passed multiple times.
-  --spa                          Convenient parameter to use if you test a SPA application: will automatically waity for X seconds after last network activity and use hash in file names.  [boolean] [default: false]
+  --spa                          Convenient parameter to use if you test a SPA application: will automatically waity for X seconds after last network activity and use hash in file names. Read more: https://www.sitespeed.io/documentation/sitespeed.io/spa/  [boolean] [default: false]
   -h, --help                     Show help  [boolean]
   -V, --version                  Show version number  [boolean]
