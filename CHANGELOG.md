@@ -3,6 +3,7 @@
 ## UNRELEASED
 ### Fixed
 * Added links to documentation to scripting/spa in the CLI.
+* Updated to Browsertime 4.0.2 with one fix for [#2259](https://github.com/sitespeedio/sitespeed.io/issues/2259).
 
 ## 8.0.1 - 2019-01-22
 ### Fixed
