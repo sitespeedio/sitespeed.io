@@ -248,6 +248,14 @@ module.exports = async function(context, commands) {
 ~~~
 
 
+## Debug
+There's a couple of way that makes it easier to debug your scripts: 
+* Make sure to [use the log](#log-from-your-script) so you can see what happens in your log output.
+* Either run the script locally on your desktop without XVFB so you can see in the browser window what happens or use  <code>--browsertime.videoParams.debug</code> when you record the video. That way you will get one full video of all your scripts (but no Visual Metrics).
+* Use try/catch and await promises so you catch things that doesn't work.
+* If you run into trouble, please make sure you make it easy for us to [reproduce your problem](/documentation/sitespeed.io/bug-report/#explain-how-to-reproduce-your-issue) when you report a issue.
+
+
 ## Commmands
 
 All commands will return a promise and you should await it to fulfil. If some command do not work, we will log that automatically and rethrow the error, so you can catch that and can act on that.
