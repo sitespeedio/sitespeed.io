@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 8.0.3 - 2019-01-23
+### Fixed
+* Testing URLs that redirects made GPSI/Lighthouse fail as reported in [#2260](https://github.com/sitespeedio/sitespeed.io/issues/2260). This is fixed in [#2262](https://github.com/sitespeedio/sitespeed.io/pull/2262).
+
 ## 8.0.2 - 2019-01-22
 ### Fixed
 * Added links to documentation to scripting/spa in the CLI.
