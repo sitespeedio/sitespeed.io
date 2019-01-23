@@ -91,13 +91,16 @@ See all the latest changes in the [Changelog](https://github.com/sitespeedio/sit
 Checkout our example [dashboard.sitespeed.io](https://dashboard.sitespeed.io/dashboard/db/page-summary)
 
 A summary report in HTML:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/start-readme.png">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/start-readme.jpg">
 
 Individual page report:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/start-url-readme.png">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/start-url-readme.jpg">
 
 Collected metrics from a URL in Graphite/Grafana:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/grafana-readme.png">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/grafana-readme.jpg">
+
+And look at trends in Grafana:
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/grafana-trends-readme.jpg">
 
 Video - easiest using Docker. This gif is optimized, the quality is much better IRL:
 
