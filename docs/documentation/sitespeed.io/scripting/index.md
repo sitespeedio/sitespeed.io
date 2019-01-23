@@ -224,6 +224,20 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
+### Measure multiple pages and start white
+
+If you test multiple pages you will see that the layout is kept in the browser until the first paint of the new page. You can hack that by remvoving the current body and set the backgroud color to white. Then every video will start white.
+
+~~~javascript
+module.exports = async function(context, commands) {
+    await commands.measure.start('https://www.sitespeed.io');
+    await commands.js.run('document.body.innerHTML = ""; document.body.style.backgroundColor = "white";');
+    await commands.measure.start('https://www.sitespeed.io/examples/');
+    await commands.js.run('document.body.innerHTML = ""; document.body.style.backgroundColor = "white";');
+    return commands.measure.start('https://www.sitespeed.io/documentation/');
+};
+~~~
+
 ### Log from your script
 
 You can log to the same output as sitespeed.io:
