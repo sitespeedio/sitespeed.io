@@ -13,7 +13,19 @@
 
 **Sitespeed.io is a *complete web performance tool* that helps you measure the performance of your website. What exactly does that mean?**
 
-We think of a complete web performance tool as having three key capabilities:
+Before we start telling you all about sitespeed.io you should just try it out:
+
+ ```bash
+ $ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
+ ```
+
+ Or using npm (you need Chrome or Firefox installed)
+
+ ```bash
+ $ npm i -g sitespeed.io && sitespeed.io https://www.sitespeed.io/
+ ```
+
+Ok, now you have tried it, let us tell you more about sitespeed.io. We think of a complete web performance tool as having three key capabilities:
 
  - It test web sites using real browsers, simulating real users connectivity and collect important user centric metrics like Speed Index and First Visual Render.
  - It analyse how your page is built and give feedback how you can make it faster for the end user.
