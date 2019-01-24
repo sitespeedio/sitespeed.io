@@ -25,7 +25,7 @@ Read this before you start to collect metrics.
 How do I test cached pages? The easiest way to do that is to use the **--preURL** parameter:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --preURL https://www.sitespeed.io/documentation/ https://www.sitespeed.io/
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --preURL https://www.sitespeed.io/documentation/ https://www.sitespeed.io/
 ~~~
 
 In the example the browser will first go to https://www.sitespeed.io/documentation/ and then with a primed cache navigate to https://www.sitespeed.io/.
@@ -60,7 +60,7 @@ http://www.yoursite.com/where/we/are/ We_are
 And then you give feed the file to sitespeed.io:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} urls.txt
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} urls.txt
 ~~~
 
 ### How many runs should I do on the same page to get stable metrics?
@@ -109,7 +109,7 @@ If you need to debug CLI parameters the best way is to turn on verbose logging. 
 There's a plugin bundled with sitespeed.io called *analysisstorer* plugin that isn't enabled by default. It stores the original JSON data from all analyzers (from Browsertime, Coach data, WebPageTest etc) to disk. You can enable this plugin:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.add analysisstorer
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.add analysisstorer
 ~~~
 
 The JSON files for the whole run (summary files) will end up in *$RESULT/data/*. JSON for each individual page is stored in *$RESULT/data/pages/$PAGE/data/*.
@@ -120,20 +120,20 @@ By default the # part of a URL is stripped off from your page. Yep we know, it i
 If you have pages that are generated differently depending of what's after you #-sign, you can use the <code>--useHash</code> switch. Then all pages will be tested as a unique page.
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --useHash https://www.sitespeed.io/#/super 
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --useHash https://www.sitespeed.io/#/super 
 ~~~
 
 You can also use the <code>--urlAlias</code> if you want to give the page a friendly name. Use it multiple times if you have multiple URLs.
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --useHash --urlAlias super --urlAlias duper https://www.sitespeed.io/#/super https://www.sitespeed.io/#/duper
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --useHash --urlAlias super --urlAlias duper https://www.sitespeed.io/#/super https://www.sitespeed.io/#/duper
 ~~~
 
 ## Servers
 What you should know before you choose where to run sitespeed.io.
 
 ### Cloud providers
-We've been testing out different cloud providers (AWS, Google Cloud, Digital Ocean, Linode etc) and the winner for us has been AWS. We've been using c4.large and testing the same size (or bigger) instances on other providers doesn't give the same stable metric overtime.
+We've been testing out different cloud providers (AWS, Google Cloud, Digital Ocean, Linode etc) and the winner for us has been AWS. We've been using c5.large and testing the same size (or bigger) instances on other providers doesn't give the same stable metric overtime.
 
 One important learning is that you can run on <60% usage on your server, and everything looks fine but the metrics will not be stable since your instance is not isolated from other things that runs on your servers.
 
