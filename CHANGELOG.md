@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 8.0.4 - 2019-01-24
 ### Fixed
 * New version of the Coach that catches if your firstParty regex doesn't match any requests.
 * New Browsertime 4.0.3 with two bug fixes:
