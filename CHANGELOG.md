@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 8.0.5 - 2019-01-27
+### Fixed
+* Bugfix: New Browsertime that fixes that the font in the video was to big when testing on mobile/emulated mobile in Chrome [#738](https://github.com/sitespeedio/browsertime/pull/738).
+
 ## 8.0.4 - 2019-01-24
 ### Fixed
 * New version of the Coach that catches if your firstParty regex doesn't match any requests.
