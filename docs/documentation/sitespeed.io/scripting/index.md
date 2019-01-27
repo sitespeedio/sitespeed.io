@@ -59,6 +59,8 @@ And then you have a few help commands:
 * *[js](#run-javascript)* - run JavaScript in the browser.
 * *[switch](#switch)* to another frame or windo.
 
+Scripting only works for Browsertime. It will not work (disable) Lighthouse/Google Page Speed Insigths and WebPageTest. If you need scripting for WebPageTest [read the WebPageTest scripting documentation](/documentation/sitespeed.io/webpagetest/#webpagetest-scripting).
+{: .note .note-info}
 
 ## Run
 Run your script by passing it to sitespeed.io and adding the parameter ```--multi```. If you have multiple scripts, you can just pass them in as well.
