@@ -148,11 +148,13 @@ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include ve
 
 
 ### First party vs third party
-You can categorise requests as first or third parties by adding a regexp. You will then get the size & requests by type both in HTML and sent to Graphite.
+By default we will categorise the current main domain as first party and the rest as a third party. And you probably wanna categorise requests yourself as first or third parties by adding a regex.
 
 ~~~bash
 docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --firstParty ".ryanair.com" https://www.ryanair.com/us/en/
 ~~~
+
+This is a JavaScript regex and if you need help you should test it out at [https://regexr.com](https://regexr.com) to see that it will match.
 
 ### Output folder or where to store the result
 You can change where you want the data to be stored by setting the <code>--outputFolder</code> parameter. That is good in scenarios where you want to change the default behaviour and put the output in a specific location:
