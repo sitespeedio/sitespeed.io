@@ -1,0 +1,138 @@
+extends ./layout.pug
+
+block content
+  - const d = pageInfo.data
+  - const daTitle = daurlAlias ? daurlAlias : daurl
+  - const downloadName = (daTitle + '-' + options.browser + '-' + timestamp).replace(/(https?\:\/\/)|( )|(:)/ig, '')
+  h1 Page summary
+
+  h5.url
+    a(href=daurl) #{decodeURIComponent(daTitle)}
+
+  include ../includes/pageRunInfo
+
+  p
+    .large All runs:&nbsp;
+      each val, index in runPages
+        - value = Number(index) + 1
+        a(href='./' + value + '.html') #{value}
+        if (value !== Object.keys(runPages).length)
+          | &nbsp;-
+          |
+
+  if pageInfo.errors
+    h4 Errors
+    .errors= JSON.stringify(pageInfo.errors, null, 2)
+
+  include ./tabs.pug
+
+  #tabSections
+    section#summary-panel
+      h2 Summary
+      .row
+        .one-half.column
+          table
+            tr
+              th Metric
+              th Value
+            if d.coach && d.coach.pageSummary
+              tr
+                td Performance Score:
+                td #{d.coach.pageSummary.advice.performance.score}
+            if d.pagexray && d.pagexray.pageSummary
+              tr
+                td Total Page Transfer Size:
+                td #{h.size.format(d.pagexray.pageSummary.transferSize)}
+            if d.pagexray && d.pagexray.pageSummary
+              tr
+                td Requests:
+                td #{d.pagexray.pageSummary.requests}
+            if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.timings.fullyLoaded   
+              tr
+                td Fully Loaded [median]:
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.timings.fullyLoaded.median)}
+
+            if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.visualMetrics
+              tr
+                td First Visual Change [median]:
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.FirstVisualChange.median)}
+            else if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics && d.browsertime.pageSummary.statistics.timings && d.browsertime.pageSummary.statistics.timings.firstPaint
+              tr
+                td First Paint [median]:
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.timings.firstPaint.median)}                
+            if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.visualMetrics
+              tr
+                td Speed Index [median]:
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.SpeedIndex.median)}
+              tr
+                td Visual Complete 85% [median]:
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.VisualComplete85.median)}
+              tr
+                td Visual Complete 95% [median]:
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.VisualComplete95.median)}
+              tr
+                td Visual Complete 99% [median]:
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.VisualComplete99.median)}
+              tr
+                td Last Visual Change [median]:
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.LastVisualChange.median)}
+            else if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics && d.browsertime.pageSummary.statistics.timings && d.browsertime.pageSummary.statistics.timings.rumSpeedIndex
+              tr
+                td RUM Speed Index [median]:
+                td #{d.browsertime.pageSummary.statistics.timings.rumSpeedIndex.median}
+            if !d.browsertime && d.webpagetest
+              tr
+                td Render (first view):
+                td #{d.webpagetest.pageSummary.data.median.firstView.render}
+              tr
+                td Speed Index (first view):
+                td #{d.webpagetest.pageSummary.data.median.firstView.SpeedIndex}
+              tr
+                td Visual Complete 85% (first view):
+                td #{d.webpagetest.pageSummary.data.median.firstView.visualComplete85}
+              tr
+                td Last Visual Change (first view):
+                td #{d.webpagetest.pageSummary.data.median.firstView.lastVisualChange}
+              tr
+                td Requests:
+                td #{d.webpagetest.pageSummary.data.median.firstView.requestsFull}
+
+        .one-half.column
+            if hasScreenShots
+              - const width = options.mobile ? 150 : '100%';
+              - const screenshotNo = medianRun ? medianRun.runIndex : 1
+              - const screenshotName = 'data/screenshots/' + screenshotNo + '.' + screenShotType
+              a(href=screenshotName)
+                img.screenshot(src=screenshotName, width=width, alt='Screenshot of run ' + screenshotNo)
+            else if !d.browsertime && d.webpagetest
+              a(href='data/screenshots/wpt-1-firstView.png')
+                img.screenshot(src='data/screenshots/wpt-1-firstView.png', alt='Screenshot of run 1')
+      include ./summaryBox.pug
+
+      .downloads
+        include ./downloads.pug
+
+    if d.browsertime && d.browsertime.har
+      section#waterfall-panel
+        include ../waterfall/index.pug
+
+    if options.browsertime.video
+      section#video-panel
+        include ../video/index.pug
+
+    if d.coach && d.coach.pageSummary
+      section#coach-panel
+        include ../coach/index.pug
+
+    if d.browsertime && d.browsertime.pageSummary
+      section#metrics-panel
+        include ../metrics/index.pug
+
+    if d.pagexray && d.pagexray.pageSummary
+      section#pagexray-panel
+        include ../pagexray/index.pug
+
+    each pageSummary in pageSummaries
+      - const panelName = pageSummary.id + '-panel'
+      section(id=panelName)
+        p !{pugs[pageSummary.id]}

@@ -1,0 +1,24 @@
+#tabs
+  a(id='summary', href='#summary', onclick='return selectTab(this, true);')
+    | Summary
+  if d.browsertime && d.browsertime.har
+    a(id='waterfall', href='#waterfall', onclick='return selectTab(this, true);')
+      | Waterfall   
+  if d.browsertime && d.browsertime.pageSummary
+    a(id='metrics', href='#metrics', onclick='return selectTab(this, true);')
+      | Metrics
+  if options.browsertime.video
+    a(id='video', href='#video', onclick='return selectTab(this, true);')
+      | Video 
+  if d.coach && d.coach.pageSummary
+    a(id='coach', href='#coach', onclick='return selectTab(this, true);')
+      | Coach
+  if d.pagexray && d.pagexray.pageSummary
+    a(id='pagexray', href='#pagexray', onclick='return selectTab(this, true);')
+      | PageXray
+  each pageSummary in pageSummaries
+    a(id=pageSummary.id, href='#' + pageSummary.id, onclick='return selectTab(this, true);')
+      | #{pageSummary.name}
+
+script(type='text/javascript')
+  include ../includes/tabScripts.js

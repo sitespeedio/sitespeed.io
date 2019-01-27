@@ -57,6 +57,48 @@ Remember that you can also send the metrics to Graphite to keep a closer eye on 
 ## Travis
 We have an example project for setting up Travis [https://github.com/sitespeedio/travis/](https://github.com/sitespeedio/travis/blob/master/.travis.yml). You should not try to use timings in your budget, simply because they tend to vary and be highly unreliable. We suggest using metrics that do not vary greatly and will be the same between runs like Coach score or number of requests.
 
+## Circle CI
+Setting up your sitespeed tests on Circle is a straight forward process. What works the best is to use Circle's [Linux VM](https://circleci.com/build-environments/linux/) which will spin-up a pre-configured VM made to run variations of Docker and pre-installed with lots of tools that you may need to get sitespeed up and running.
+
+1. Hook up your git project with Circle to get a `.circle` folder and `config.yml` file
+1. Create a job and be sure to flag the `machine` variable to true
+1. Define your working directory
+1. Run Linux commands to set up the environment for testing
+1. Place the sitespeed docker commands in a `- run: ` statement
+
+Here is a simple example of a git project that will checkout git project and run a standard sitespeed.io test with traffic shaping!
+
+```yaml
+version: 2
+jobs:
+  test-sitespeed:
+    machine: true
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run: sudo modprobe ifb numifbs=1
+
+      # 3G
+      - run: docker run --cap-add=NET_ADMIN --shm-size=1g --rm sitespeedio/sitespeed.io:7.7.2 -c 3g --browsertime.connectivity.engine=throttle https://www.sitespeed.io/
+
+      # No Traffic shaping
+      - run: docker run --shm-size=1g --rm sitespeedio/sitespeed.io:7.7.2 https://www.sitespeed.io/
+
+      # No traffic shaping with performance budget
+      - run: docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:7.7.2 -n 3 --budget.configPath myBudget.json https://www.sitespeed.io/
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - test-sitespeed
+```
+
+You will notice that the last run is reading the performance budget file that exists in the git repo that was checked out. This will only work if you mount the checked out repo as a volume for sitespeed. This makes is really efficient and convenient to allow sitespeed to pick up configuration files and to output results to a location where one can post-process with other scripts.
+
+## Gitlab CI
+Gitlab has prepared an easy way to test using sitespeed.io: [https://docs.gitlab.com/ee/ci/examples/browser_performance.html](https://docs.gitlab.com/ee/ci/examples/browser_performance.html). 
+
 ## Grunt plugin
 Checkout the [grunt plugin](https://github.com/sitespeedio/grunt-sitespeedio).
 

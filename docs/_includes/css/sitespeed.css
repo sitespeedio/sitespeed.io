@@ -1,3 +1,7 @@
+body {
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+}
+
 h1,
 h2,
 h3,
@@ -122,12 +126,27 @@ a:hover {
 cursor: pointer;
 text-decoration: underline;
 }
+ 
 
+
+code {
+  font-size: 16px;
+  background-color: #f5f2f0;
+}
+
+pre code {
+  display: block;
+padding: 6px;
+}
+
+/*
 code {
   background-color: #eee;
   padding: 2px;
 }
 
+
+#
 pre code {
 display: block;
 padding: 9.5px;
@@ -143,6 +162,7 @@ border-radius: 4px;
 font-family: Monaco,Menlo,Consolas,"Courier New",monospace;
 white-space: pre-wrap;
 }
+*/
 
 .language-bash code:before {
     content: '$ ';
@@ -318,3 +338,30 @@ blockquote span:before {
 .red {
  color: red;
 }
+
+.anchor {
+  font-size: 80%;
+  color: grey;
+}
+
+.king img:hover {
+    /* Start the shake animation and make the animation last for 0.5 seconds */
+    animation: shake 0.5s; 
+    /* When the animation is finished, start again */
+    animation-iteration-count: infinite; 
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+

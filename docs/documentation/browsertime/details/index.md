@@ -23,7 +23,7 @@ twitterdescription:
 Use our Docker image (with Chrome, Firefox, XVFB and the dependencies needed to record a video):
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/browsertime-results sitespeedio/browsertime:{% include version/browsertime.txt %} --video --speedIndex https://www.sitespeed.io/
+docker run --rm -v "$(pwd)":/browsertime-results sitespeedio/browsertime:{% include version/browsertime.txt %} --video --visualMetrics https://www.sitespeed.io/
 ~~~
 
 Or using NodeJS:
@@ -52,7 +52,7 @@ docker build -t sitespeedio/browsertime .
 And then just run it:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/browsertime-results sitespeedio/browsertime -n 1 --video --speedIndex https://www.sitespeed.io/
+docker run --rm -v "$(pwd)":/browsertime-results sitespeedio/browsertime -n 1 --video --visualMetrics https://www.sitespeed.io/
 ~~~
 
 ## Connectivity
@@ -70,5 +70,5 @@ The current version doesn't support Docker so you need to [install the requireme
 If you want to set connectivity you need to use something like [Pi Network Conditioner](https://github.com/phuedx/pinc).
 
 ~~~bash
-browsertime --browsertime.chrome.android.package com.android.chrome https://www.sitespeed.io --video --speedIndex
+browsertime --android https://www.sitespeed.io --video --visualMetrics
 ~~~

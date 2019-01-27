@@ -7,13 +7,25 @@
 [![Changelog #212][changelog-image]][changelog-url]
 
 
-[Website](https://www.sitespeed.io/) | [Documentation](https://www.sitespeed.io/documentation/) | [Twitter](https://twitter.com/SiteSpeedio)
+[Website](https://www.sitespeed.io/) | [Documentation](https://www.sitespeed.io/documentation/sitespeed.io/) | [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) | [Twitter](https://twitter.com/SiteSpeedio)
 
 ## Welcome to the wonderful world of web performance!
 
 **Sitespeed.io is a *complete web performance tool* that helps you measure the performance of your website. What exactly does that mean?**
 
-We think of a complete web performance tool as having three key capabilities:
+Before we start telling you all about sitespeed.io you should just try it out:
+
+ ```bash
+ $ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
+ ```
+
+ Or using npm (you need Chrome or Firefox installed)
+
+ ```bash
+ $ npm i -g sitespeed.io && sitespeed.io https://www.sitespeed.io/
+ ```
+
+Ok, now you have tried it, let us tell you more about sitespeed.io. We think of a complete web performance tool as having three key capabilities:
 
  - It test web sites using real browsers, simulating real users connectivity and collect important user centric metrics like Speed Index and First Visual Render.
  - It analyse how your page is built and give feedback how you can make it faster for the end user.
@@ -57,7 +69,7 @@ When you as user choose to test a URL, this is what happens on a high level:
  Using Docker (use latest Docker):
 
  ```bash
- $ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
+ $ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
  ```
 
  Or install using npm:
@@ -74,7 +86,7 @@ When you as user choose to test a URL, this is what happens on a high level:
  $ npm install
  $ bin/sitespeed.js --help
  $ bin/sitespeed.js https://www.sitespeed.io/
- ```
+```
 
 ## More details
 
@@ -88,18 +100,19 @@ Using sitespeed.io you can:
 
 See all the latest changes in the [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md).
 
-If you use Firefox 55 (or later) please have a look at https://github.com/sitespeedio/browsertime/issues/358. We are waiting on the new extension from Mozilla to be able to export the HAR.
-
 Checkout our example [dashboard.sitespeed.io](https://dashboard.sitespeed.io/dashboard/db/page-summary)
 
 A summary report in HTML:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/html-summary.png">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/start-readme.jpg">
 
 Individual page report:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/page.png">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/start-url-readme.jpg">
 
 Collected metrics from a URL in Graphite/Grafana:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/grafana-page-summary.png">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/grafana-readme.jpg">
+
+And look at trends in Grafana:
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/grafana-trends-readme.jpg">
 
 Video - easiest using Docker. This gif is optimized, the quality is much better IRL:
 
@@ -123,15 +136,14 @@ You can change latency by setting a Docker environment variable. Use REPLAY to t
 Default browser is Chrome:
 
 ```
-docker run --cap-add=NET_ADMIN --shm-size=1g --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io:6.1.3-wpr-alpha -n 5 -b chrome https://en.wikipedia.org/wiki/Barack_Obama
+docker run --cap-add=NET_ADMIN --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io -n 5 -b chrome https://en.wikipedia.org/wiki/Barack_Obama
 ```
 
 Use Firefox:
 
 ```
-docker run --cap-add=NET_ADMIN --shm-size=1g --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io:6.1.3-wpr-alpha -n 11 --browsertime.skipHar -b firefox https://en.wikipedia.org/wiki/Barack_Obama
+docker run --cap-add=NET_ADMIN --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io -n 11 -b firefox https://en.wikipedia.org/wiki/Barack_Obama
 ```
-IMPORTANT: We use Firefox 57 for WebPageReplay because we need to run a higher version than 54, that means we cannot get a HAR file until Mozilla releases the new way of getting that HAR. That's why you need to add *--skipHar* for Firefox.
 
 
 [travis-image]: https://img.shields.io/travis/sitespeedio/sitespeed.io.svg?style=flat-square

@@ -19,8 +19,4 @@ nav: blog
 
   [>> Read more]({{site.baseurl}}{{ post.url }})
 
-
-
-  * * *
-
 {% endfor %}

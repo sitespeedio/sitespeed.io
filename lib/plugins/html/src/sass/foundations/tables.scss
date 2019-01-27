@@ -41,7 +41,7 @@ th {
   background: lighten($color--blue, 56%);
 }
 
-td.number {
+td.number, th.number {
   text-align: right;
 }
 
@@ -73,6 +73,11 @@ td.offendingurl {
 
 td.break {
   word-break: break-all;
+}
+
+td.extraheader {
+  font-weight: bold;
+  background: whitesmoke;
 }
 
 /** Responsive tables, wrap them in a div

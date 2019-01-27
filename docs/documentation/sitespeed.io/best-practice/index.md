@@ -1,7 +1,7 @@
 ---
 layout: default
 title: F.A.Q. and best practice using sitespeed.io
-description: Here we keep questions that gets asked on our Slack channel or frequently on Github.
+description: Here ewe keep questions that gets asked on our Slack channel or frequently on Github.
 keywords: best practice, faq
 nav: documentation
 category: sitespeed.io
@@ -25,23 +25,23 @@ Read this before you start to collect metrics.
 How do I test cached pages? The easiest way to do that is to use the **--preURL** parameter:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --preURL https://www.sitespeed.io/documentation/ https://www.sitespeed.io/
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --preURL https://www.sitespeed.io/documentation/ https://www.sitespeed.io/
 ~~~
 
 In the example the browser will first go to https://www.sitespeed.io/documentation/ and then with a primed cache navigate to https://www.sitespeed.io/.
 
 ### How do I set a cookie?
-The current way to set cookies is to add a request header using **-r**. We may want to add specific cookie functionality in the future!
+Since 7.2.0 the best way to add a cookie is by using <code>--cookie name=value</code> where the name is the name of the cookie and the value ... the value :) The cookie will be set on the domain that you test.
 
 ### How do I test multiple pages in the same run?
 
 If you want to test multiple URLs, you can used line them up in the cli:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io https://www.sitespeed.io/documentation/
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io https://www.sitespeed.io/documentation/
 ~~~
 
-You can also use a plain text file with one URL on each line. Create a file called urls.txt (but you can call it whatever uoy want):
+You can also use a plain text file with one URL on each line. Create a file called urls.txt (but you can call it whatever you want):
 
 ~~~
 http://www.yoursite.com/path/
@@ -60,7 +60,7 @@ http://www.yoursite.com/where/we/are/ We_are
 And then you give feed the file to sitespeed.io:
 
 ~~~bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} urls.txt
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} urls.txt
 ~~~
 
 ### How many runs should I do on the same page to get stable metrics?
@@ -68,10 +68,10 @@ How many runs depends on your site, and what you want to collect. Pat told us ab
 
 Getting timing metrics is one thing, but it’s also important to collect how your page is built. You need to keep track of the size of pages, how many synchronously loaded javascript you have and so on. For that kind of information you only need one run per URL.
 
-You should also try out our new setup with WebPageReplay.
+You should also try out our new setup with [WebPageReplay](../webpagereplay/).
 
 ### I want to test a user journey (multiple pages) how do I do that?
-We currently don't support that but feel free to do a PR in Browsertime.
+Checkout the [scripting capabilities](../scripting/) that makes it easy to test multiple pages.
 
 ### I want to test on different CPUs how do I do that?
 We currently don't built in support for changing the CPU. What we do know is that you should not use the built in support in Chrome or try to simulate slow CPUs by running on slow AWS instance. What should do is what WPTAgent do. You can check the code at [https://github.com/WPO-Foundation/wptagent/blob/master/wptagent.py](https://github.com/WPO-Foundation/wptagent/blob/master/wptagent.py) and do the same before you start a run and then remove it after the run.
@@ -80,13 +80,60 @@ We currently don't built in support for changing the CPU. What we do know is tha
 **PLEASE, YOU NEED TO ALWAYS THROTTLE YOUR CONNECTION!** You should always throttle/limit the connectivity because it will make it easier for you to find regressions. If you don't do it, you can run your tests with different connectivity profiles and regresseions/improvements that you see is caused by your servers flakey internet connection. Check out our [connectivity guide]({{site.baseurl}}/documentation/sitespeed.io/connectivity/).
 
 ### Clear browser cache between runs
-By default Browsertime creates a new profile for each run you do and if you really want to be sure sure everything is cleared between runs you can use our WebExtension to clear the browser cache by adding  <code>--browsertime.cacheClearRaw</code>.
+By default Browsertime creates a new profile for each iteration you do, meaning the cache is cleared through the webdriver. If you really want to be sure sure everything is cleared between runs you can use our WebExtension to clear the browser cache by adding  <code>--browsertime.cacheClearRaw</code>.
+
+That means if you test *https://www.sitespeed.io* with 5 runs/iterations, the browser cache is cleared between each run, so the browser has no cached assets between the runs.
+
+When you run <code>--preURL</code> the browser starts, then access the preURL and then the URL you want to test within the same session and not clearing the cache. Use this if you want to measure more realistic metrics if your user first hit your start page and then another page (with responses in the cache if the URL has the correct cache headers).
+
+If you use the <code>--preScript</code> or <code>--multi</code> feature, it is the same behavior, we don't clear the cache between the URL you want to test.
+
+### My pre/post script doesn't work?
+We use Selenium pre/post script navigation. You can [read more](/documentation/sitespeed.io/prepostscript/) about of our pre/post script setup and focus on the [debug section](/documentation/sitespeed.io/prepostscript/#debuglog-from-your-script) if you have any problem.
+
+If you have problem with Selenium (getting the right element etc), PLEASE do not create issues in sitespeed.io. Head over to the [Selenium community](https://docs.seleniumhq.org/) and they can help you.
+
+### How do you pass HTML/JavaScript as a CLI parameter?
+The easiest way to pass HTML to the CLI is to pass on the whole message as a String (use a quotation mark to start and end the String) and then do not use quotation marks inside the HTML.
+
+Say that you want to pass on your own link as an annotation message, then do like this:
+
+~~~
+--graphite.annotationMessage "TEXT <a href='https://github.com/***' target='blank'>link-text</a>"
+~~~
+
+If you need to debug CLI parameters the best way is to turn on verbose logging. Do that by adding **-vv** to your run and check the log for the message that starts with **Config options**. Then you will see all parameters that gets from the CLI to sitespeed.io and that they are interpreted the right way.
+
+
+### I want a JSON from Browsertime/Coach other tools, how do I get that?
+There's a plugin bundled with sitespeed.io called *analysisstorer* plugin that isn't enabled by default. It stores the original JSON data from all analyzers (from Browsertime, Coach data, WebPageTest etc) to disk. You can enable this plugin:
+
+~~~bash
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.add analysisstorer
+~~~
+
+The JSON files for the whole run (summary files) will end up in *$RESULT/data/*. JSON for each individual page is stored in *$RESULT/data/pages/$PAGE/data/*.
+
+### How do I test pages with #-URLS?
+By default the # part of a URL is stripped off from your page. Yep we know, it isn't the best but in the old days the # rarely added any value and crawling a site linking to the same page with different sections made you test the same page over and over again.
+
+If you have pages that are generated differently depending of what's after you #-sign, you can use the <code>--useHash</code> switch. Then all pages will be tested as a unique page.
+
+~~~bash
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --useHash https://www.sitespeed.io/#/super 
+~~~
+
+You can also use the <code>--urlAlias</code> if you want to give the page a friendly name. Use it multiple times if you have multiple URLs.
+
+~~~bash
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --useHash --urlAlias super --urlAlias duper https://www.sitespeed.io/#/super https://www.sitespeed.io/#/duper
+~~~
 
 ## Servers
 What you should know before you choose where to run sitespeed.io.
 
 ### Cloud providers
-We've been testing out different cloud providers (AWS, Google Cloud, Digital Ocean, Linode etc) and the winner for us has been AWS. We've been using c4.large and testing the same size (or bigger) instances on other providers doesn't give the same stable metric overtime.
+We've been testing out different cloud providers (AWS, Google Cloud, Digital Ocean, Linode etc) and the winner for us has been AWS. We've been using c5.large and testing the same size (or bigger) instances on other providers doesn't give the same stable metric overtime.
 
 One important learning is that you can run on <60% usage on your server, and everything looks fine but the metrics will not be stable since your instance is not isolated from other things that runs on your servers.
 
@@ -105,7 +152,7 @@ You should set different namespaces depending on location (**--graphite.namespac
 By default you can choose to store your metrics in a time series database (Graphite or InfluxDB).
 
 ### Should I choose Graphite or InfluxDB?
-If your organisation is running Graphite, use that. If your used to InfluxDB, use that. If you don't use any of them then use Graphite since we have more ready made dashboards for Graphite.
+If your organisation is running Graphite, use that. If you're used to InfluxDB, use that. If you don't use any of them then use Graphite since we have more ready made dashboards for Graphite.
 
 ### Handling big amount of data
 sitespeed.io will generate lots of metrics and data, how do I handle that?

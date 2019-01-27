@@ -10,11 +10,6 @@ insert_final_newline = true
 indent_style = space
 indent_size = 1
 
-# JavaScript
-[*.js]
-indent_style = space
-indent_size = 2
-
 # YAML
 [*.yml]
 indent_style = space

@@ -1,10 +1,10 @@
 'use strict';
 
 const resultsStorage = require('../lib/core/resultsStorage');
-const moment = require('moment');
+const dayjs = require('dayjs');
 const expect = require('chai').expect;
 
-const timestamp = moment();
+const timestamp = dayjs();
 const timestampString = timestamp.format('YYYY-MM-DD-HH-mm-ss');
 
 function createResultUrls(url, outputFolder, resultBaseURL) {
@@ -70,9 +70,7 @@ describe('resultUrls', function() {
       expect(
         resultUrls.absoluteSummaryPageUrl('http://www.foo.bar/xyz')
       ).to.equal(
-        `http://results.com/www.foo.bar/${
-          timestampString
-        }/pages/www.foo.bar/xyz/`
+        `http://results.com/www.foo.bar/${timestampString}/pages/www.foo.bar/xyz/`
       );
     });
     it('should create url with absolute output folder', function() {

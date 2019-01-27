@@ -23,7 +23,7 @@ You can throttle the connection to make the connectivity slower to make it easie
 ### Docker networks
 Here's an full example to setup up Docker network bridges on a server that has tc installed:
 
-~~~bash
+~~~shell
 #!/bin/bash
 echo 'Starting Docker networks'
 docker network create --driver bridge --subnet=192.168.33.0/24 --gateway=192.168.33.10 --opt "com.docker.network.bridge.name"="docker1" 3g
@@ -50,18 +50,18 @@ tc qdisc add dev docker4 parent 1:12 netem delay 200ms
 When you run your container you add the network with <code>--network cable</code>. A full example running running with cable:
 
 ~~~bash
-docker run --shm-size=1g --network=cable --rm sitespeedio/sitespeed.io -c cable https://www.sitespeed.io/
+docker run --shm-size=1g --network=cable --rm sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -c cable https://www.sitespeed.io/
 ~~~
 
 And using the 3g network:
 
 ~~~bash
-docker run --shm-size=1g --network=3g --rm sitespeedio/sitespeed.io -c 3g https://www.sitespeed.io/
+docker run --shm-size=1g --network=3g --rm sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -c 3g https://www.sitespeed.io/
 ~~~
 
 And if you want to remove the networks:
 
-~~~bash
+~~~shell
 #!/bin/bash
 echo 'Stopping Docker networks'
 docker network rm 3g
@@ -73,7 +73,7 @@ docker network rm cable
 ### Throttle
 Throttle uses *tc* on Linux and *pfctl* on Mac to change the connectivity. Throttle will need sudo rights for the user running sitespeed.io to work.
 
-To use throttle, use set the connectivity engine by *--connectivity.engine throttle*.
+To use throttle, use set the connectivity engine by <code>--connectivity.engine throttle</code>.
 
 ~~~bash
 browsertime --connectivity.engine throttle -c cable https://www.sitespeed.io/
@@ -87,6 +87,18 @@ sitespeed.io --browsertime.connectivity.engine throttle -c cable https://www.sit
 
 You can also use Throttle inside of Docker but then the host need to be the same OS as in Docker. In practice you can only use it on Linux. And then make sure to run *sudo modprobe ifb numifbs=1* first and give the container the right privileges *--cap-add=NET_ADMIN*.
 
+Firt use modprobe:
+
+~~~bash
+sudo modprobe ifb numifbs=1
+~~~
+
+And then then make user you use the right privileges:
+~~~bash
+docker run --cap-add=NET_ADMIN --rm sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -c 3g --browsertime.connectivity.engine=throttle https://www.sitespeed.io/
+~~~
+
+
 If you run Docker on OS X, you need to run throttle outside of Docker. Install it and run like this:
 
 ~~~
@@ -95,6 +107,6 @@ $ npm install @sitespeed.io/throttle -g
 
 # Then set the connectivity, run and stop
 $ throttle --up 330 --down 780 --rtt 200
-$ docker run --shm-size=1g --rm sitespeedio/sitespeed.io https://www.sitespeed.io/
+$ docker run --shm-size=1g --rm sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/
 $ throttle --stop
 ~~~

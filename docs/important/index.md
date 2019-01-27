@@ -24,9 +24,7 @@ We always keep a CHANGELOG in the root of directory of the project. [Here's](htt
 We always use [semantic versioning](http://semver.org/) when we do a release.
 
 ### Privacy
-We take your online privacy really serious: Our [documentation site](https://www.sitespeed.io/), our [dashboard](https://dashboard.sitespeed.io) and our [compare tool](https://compare.sitespeed.io) do not use any tracking software at all (no Google Analytics or any other tracking software). We never use tracking software. None of the sitespeed.io tools call home.
-
-But beware: Chrome and Firefox call home. We would love PRs and tips how to make sure browsers don't call home when you run your tests!
+We take your online privacy really serious: Our [documentation site](https://www.sitespeed.io/), our [dashboard](https://dashboard.sitespeed.io) and our [compare tool](https://compare.sitespeed.io) do not use any tracking software at all (no Google Analytics or any other tracking software). We never use tracking software. None of the sitespeed.io tools call home. You can read more abour privace at our [Privacy Policy](../privacy-policy/) page.
 
 ### Code of Conduct
 When you create issues, do PRs, use our Slack channel or contact us on email, please follow our [Code Of Conduct](https://github.com/sitespeedio/sitespeed.io/blob/master/CODE_OF_CONDUCT.md).
@@ -58,7 +56,7 @@ We really (yes I mean really) focus on helping you as a user. If you have a prob
 
 If there's a common problem or a bug and we talk about it on Slack we will kindly ask you to create an issue. Issues are great because it helps people that has the same problem.
 
-It sometimes happens that we get get contacted about issues privately via email or DM on Twitter. Please don't do that, we want to keep everything as open as possible. Only contact us if we ask you to or if you have an important security issue.
+It sometimes happens that we get contacted about issues privately via email or DM on Twitter. Please don't do that, we want to keep everything as open as possible. Only contact us if we ask you to or if you have an important security issue.
 
 ## Who uses sitespeed.io
 

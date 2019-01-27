@@ -30,58 +30,77 @@ It is usually used for two different things:
 
 You can set the download/upload speed and RTT. Upload/download is in kbit/s and RTT in ms.
 
+
 ## Install
 
-~~~bash
+```bash
 npm install @sitespeed.io/throttle -g
-~~~
+```
+
+On OSX, add these lines to ```/etc/pf.conf``` if they don't exist, to prevent the ```pfctl: Syntax error in config file: pf rules not loaded``` error when you try to run throttle
+
+```shell
+pf_enable="YES"
+pflog_enable="YES"
+```
 
 ## Start simulate a slower network connection
 
 Here is an example for running with 3G connectivity. Remember: Throttle will use sudo so your user will need
 sudo rights.
 
-~~~bash
+```bash
 throttle --up 330 --down 780 --rtt 200
-~~~
+```
 
 ## Pre made profiles
 To make it easier we have pre made profiles, check them out by *throttle --help*:
 
-~~~
+```shell
 --profile         Premade profiles, set to one of the following
                      3g: up:768 down:1600 rtt:150
                      3gfast: up:768 down:1600 rtt:75
                      3gslow: up:400 down:400 rtt:200
                      2g: up:32 down:35 rtt:650
                      cable: up:1000 down:5000 rtt:14
-~~~
+```
 
-You can start throttle with one of the pre-made profiles:
+You can start throttle with one of the premade profiles:
 
-~~~bash
+```bash
 throttle --profile 3gslow
-~~~
+```
 
-## Stop simulate the slow network
+or even simpler
+```bash
+throttle 3gslow
+```
+
+## Stop simulate the network
 Stopping is as easy as giving the parameter *stop* to throttle.
 
-~~~bash
+```bash
 throttle --stop
-~~~
+```
+
+or
+
+```bash
+throttle stop
+```
 
 ## Add delay on your localhost (Linux only at the moment)
 This is useful if you run [WebPageReplay](https://github.com/catapult-project/catapult/blob/master/web_page_replay_go/README.md) and want to add som latency to your tests.
 
-~~~bash
+```bash
 throttle --rtt 200 --localhost
-~~~
+```
 
 ## Stop adding delay on localhost (Linux only)
 
-~~~bash
+```bash
 throttle --stop --localhost
-~~~
+```
 
 ## Use directly in NodeJS
 

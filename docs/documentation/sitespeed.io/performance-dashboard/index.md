@@ -98,7 +98,7 @@ We have a small shell script that runs the tests. It is triggered from the cron 
 Our *run.sh* file (we read which URLs we want to test from files):
 
 ## Shell script
-~~~
+~~~shell
 #!/bin/bash
 # Specify the exact version of sitespeed.io. When you upgrade to the next version, pull it down and the chage the tag
 DOCKER_CONTAINER=sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}
@@ -128,16 +128,16 @@ docker pull $DOCKER_CONTAINER
 ## Crontab
 We trigger the script from the crontab. We run the script every hour.
 
-~~~
+~~~shell
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 0 * * * * /root/runs.sh >> /tmp/sitespeed.io.log 2>&1
 ~~~
 
 ## Infinite loop
-Another way is to just run the script in an infinite loop and then have a file that you remove (so the run stops) when you want to update your instance.
+Another way is to just run the script in an infinite loop and then have a file that you remove (so the run stops) when you want to update your instance. This example script is on Ubuntu.
 
-~~~
+~~~shell
 #!/bin/bash
 LOGFILE=/tmp/s.log
 exec > $LOGFILE 2>&1
@@ -190,10 +190,22 @@ do
 done
 ~~~
 
+And make sure the script start on server restart. Edit the crontab <code>crontab -e</code> and add (loop.sh is the name of your loop script file):
+
+~~~shell
+@reboot rm /home/ubuntu/sitespeed.run;/home/ubuntu/loop.sh
+~~~
+
+And start it like this:
+
+~~~bash
+nohup /home/ubuntu/loop.sh &
+~~~
+
 ## default.json
 And our default configuration is in *default.json*:
 
-~~~
+~~~json
 {
   "browsertime": {
     "connectivity": {
@@ -231,7 +243,7 @@ And our default configuration is in *default.json*:
 ## Docker networks
 And we set up the following Docker networks (*startNetworks.sh*):
 
-~~~
+~~~shell
 #!/bin/bash
 echo 'Starting Docker networks'
 docker network create --driver bridge --subnet=192.168.33.0/24 --gateway=192.168.33.10 --opt "com.docker.network.bridge.name"="docker1" 3g
@@ -256,32 +268,7 @@ tc qdisc add dev docker4 parent 1:12 netem delay 200ms
 ~~~
 
 # Configure Graphite
-We provide an example Graphite Docker container and when you put that into production, you need to change the configuration.
-The configuration depends on how often you want to run your tests. How long you want to keep the result, and how much disk space you want to use.
-
-Starting with version 4 we tried to send a moderated number of metrics per URL but you can [change that yourself]({{site.baseurl}}/documentation/sitespeed.io/metrics/).
-
-When you store metrics for a URL in Graphite, you decide from the beginning how long and how often you want to store the data, in [storage-schemas.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-schemas.conf). In our example Graphite setup, every key under sitespeed_io is caught by the configuration in storage-schemas.conf that looks like:
-
-~~~
-[sitespeed]
-pattern = ^sitespeed_io\.
-retentions = 10m:60d,30m:90d
-~~~
-
-Every metric that is sent to Graphite following the pattern (the namespace starting with sitespeed_io), Graphite prepares storage for it every ten minutes the first 60 days; after that Graphite uses the configuration in [storage-aggregation.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/master/conf/graphite/storage-aggregation.conf) to aggregate/downsize the metrics the next 90 days.
-
-Depending on how often you run your analysis, you may want to change the storage-schemas.conf. With the current config, if you analyse the same URL within 10 minutes, one of the runs will be discarded. But if you know you only run once an hour, you could increase the setting. Etsy has some really [good documentation](https://github.com/etsy/statsd/blob/master/docs/graphite.md) on how to configure Graphite.
-
-One thing to know if you change your Graphite configuration: ["Any existing metrics created will not automatically adopt the new schema. You must use whisper-resize.py to modify the metrics to the new schema. The other option is to delete existing whisper files (/opt/graphite/storage/whisper) and restart carbon-cache.py for the files to get recreated again."](http://mirabedini.com/blog/?p=517)
-{: .note .note-warning}
-
-## Crawling and Graphite
-If you crawl a site that is not static, you will pick up new pages each run or each day, which will make the Graphite database grow daily. When you add metrics to Graphite, it prepares space for those metrics ahead of time, depending on your storage configuration (in Graphite). If you configured Graphite to store individual metrics every 15 minutes for 60 days, Graphite will allocate storage for that URL: 4 (per hour) * 24 (hours per day) * 60 (days), even though you might only test that URL once.
-
-You either need to make sure you have a massive amount of storage, or you should change the storage-schemas.conf so that you don't keep the metrics for so long. You could do that by setting up another namespace (start of the key) and catch metrics that you only want to store for a shorter time.
-
-The Graphite DB size is determined by the number of unique data points and the frequency of them within configured time periods, meaning you can easily optimize how much space you need. If the majority of the URLs you need to test are static and are tested often, you should find there's a maximum DB size depending on your storage-schemas.conf settings.
+We provide an example Graphite Docker container and when you put that into production, you need to change the configuration. Checkout our [Graphite documentation](/documentation/sitespeed.io/graphite/#configure-graphite).
 
 # Using S3 for HTML and video
 You can store the HTML result on your local agent that runs sitespeed.io, or you can dump the data to S3 and serve it from there. To use S3, you first need to [set up an S3 bucket](http://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html).
@@ -293,7 +280,12 @@ You now have the result on S3 and you're almost done. You should also configure 
 # Annotations
 You can send annotations to Graphite to mark when a run happens so you can go from the dashboard to any HTML-results page.
 
-You do that by configuring the URL that will serve the HTML with the CLI param *resultBaseURL* (the base URL for your S3 bucket) and configure the HTTP Basic auth username/password used by Graphite. You can do that by setting *--graphite.auth LOGIN:PASSWORD*.
+You do that by configuring the URL that will serve the HTML with the CLI param *resultBaseURL* (the base URL for your S3 bucket) and configure the HTTP Basic auth username/password used by Graphite. You can do that by setting <code>--graphite.auth LOGIN:PASSWORD</code>.
+
+You can also modify the annotation and append our own text/HTML and add your own tags.
+Append a message to the annotation with <code>--graphite.annotationMessage</code>. That way you can add links to a specific branch or whatever you feel that can help you.
+
+You can add extra tags with <code>--graphite.annotationTag</code>. For multiple tags, add the parameter multiple times. Just make sure that the tags doesn't collide with our internal tags.
 
 # Production Guidelines
 
@@ -310,14 +302,14 @@ To run this in a production environment, you should consider/make some modificat
 4. Make sure you have [configured storage-aggregation.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/graphite/conf/storage-aggregation.conf) in Graphite to fit your needs.
 5. Configure your [storage-schemas.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/graphite/conf/storage-schemas.conf) how long you wanna store your metrics.
 6. *MAX_CREATES_PER_MINUTE* is usually quite low in [carbon.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/graphite/conf/carbon.conf). That means you will not get all the metrics created for the first run, so you can increase it.
-7. Map the Graphite volume to a physical directory outside of Docker to have better control (both Whisper and [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/master/docker/graphite/graphite.db)). Map them like this on your physical server (make sure to copy the empty [grahite.db]((https://github.com/sitespeedio/sitespeed.io/blob/master/docker/graphite/graphite.db)) file):
+7. Map the Graphite volume to a physical directory outside of Docker to have better control (both Whisper and [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/master/docker/graphite/graphite.db)). Map them like this on your physical server (make sure to copy the empty [graphite.db]((https://github.com/sitespeedio/sitespeed.io/blob/master/docker/graphite/graphite.db)) file):
  - /path/on/server/whisper:/opt/graphite/storage/whisper
  - /path/on/server/graphite.db:/opt/graphite/storage/graphite.db
 8. Remove the sitespeedio/grafana-bootstrap from the Docker compose file, you only need that for the first run.
 9. Optional: Disable anonymous users access
 
 ## Memory & CPU
-How large will your instances need to be? You need to have enough memory for Chrome/Firefox (yep they can really use a lot of memory for some sites). Before we used a $80 instance on Digital Ocean (8GB memory, 4 Core processors) but we switched to use AWS c4.large for dashboard.sitespeed.io. The reason is that the metrics are so more stable on AWS than Digital Ocean. We have tried out most cloud providers and AWS gave us the most stable metrics.
+How large will your instances need to be? You need to have enough memory for Chrome/Firefox (yep they can really use a lot of memory for some sites). Before we used a $80 instance on Digital Ocean (8GB memory, 4 Core processors) but we switched to use AWS c5.large for dashboard.sitespeed.io. The reason is that the metrics are so more stable on AWS than Digital Ocean. We have tried out most cloud providers and AWS gave us the most stable metrics.
 
 If you test a lot a pages (100+) in the same run, your NodeJS process can run out of memory (default memory for NodeJS is 1.76 GB). You can change and increase by setting MAX_OLD_SPACE_SIZE like this in your compose file:
 
@@ -332,7 +324,9 @@ services:
 ## Cost
 Sitespeed.io is Open Source and totally free. But what does it cost to have an instance of sitespeed.io up and running?
 
-Setting up an [AWS instance](https://aws.amazon.com/) C4.large has an upfront price $515 for a year (it is much cheaper to pay upfront). You also need to pay for S3 (to store the videos and HTML). For [https://dashboard.sitespeed.io](https://dashboard.sitespeed.io) we pay $10-15 per month (depending how long time you want to store the data).
+Setting up an [AWS instance](https://aws.amazon.com/) c5.large has an upfront price $515 for a year (it is much cheaper to pay upfront). Or you can use a Optimized Droplet for $40 a month at [Digital Ocean](https://www.digitalocean.com/) (they have served us well in our testing).
+
+You also need to pay for S3 (to store the videos and HTML). For [https://dashboard.sitespeed.io](https://dashboard.sitespeed.io) we pay $10-15 per month (depending how long time you want to store the data).
 
 Do your organisation already use Graphite/InfluxDB and Grafana? Then use what you have. Else you need to have a server hosting Graphite/Grafana. We pay $20 per month at Digital Ocean for that. Depending on how many metrics and for how long time you wanna store them, you maybe need and extra disk. And you should also always backup your data.
 
@@ -340,7 +334,7 @@ How many runs can you do per month? Many of the paid services you also pay per r
 
 Total cost:
 
- * $515 per AWS agent (80000+  per month per agent) per year
+ * $515 per AWS agent or $480 on Digital Ocean (80000+ tests per month per agent) per year
  * S3 $10-15 with data
  * Server for Graphite/Grafana
 
