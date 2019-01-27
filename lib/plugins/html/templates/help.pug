@@ -76,10 +76,13 @@ block content
     p The time it takes for the server to send the response. Collected using the Navigation Timing API with the definition: responseEnd - requestStart
 
     h5(id='firstPaint') FirstPaint
-    p This is when the first paint happens on the screen. If the browser support this metric (only supported in Chrome), we use that.
+    p This is when the first paint happens on the screen. In Firefox we use timeToNonBlankPaint (that is behind a Firefox preference).
+
+    h5(id='timeToDomContentFlushed') Time To DOM Content Flushed
+    p Firefox only metric.
 
     h5(id='fullyLoaded') FullyLoaded
-    p The time when all assets in the page is downloaded. Calculated using the Resource Timing API.
+    p The time when all assets in the page is downloaded. The value comes from the latest response in the HAR file.
 
     h5(id='SpeedIndex') Speed Index
     p The Speed Index is the average time at which visible parts of the page are displayed. It is expressed in milliseconds and dependent on size of the view port. It was created by Pat Meenan and you can checkout the full documentation&nbsp;

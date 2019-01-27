@@ -5,14 +5,9 @@ compress_html:
   clippings: all
   endings: all
 include: ["_headers"]
+highlighter: none
 kramdown:
-    enable_coderay: false
-    coderay:
-    coderay_wrap:              div
-    coderay_line_numbers:      inline
-    coderay_line_number_start: 1
-    coderay_tab_width:         4
-    coderay_bold_every:        10
-    coderay_css:               style
+  syntax_highlighter_opts:
+      disable : true
 gems:
 

@@ -20,8 +20,8 @@ twitterdescription: Configuration for Browsertime.
 Browsertime is highly configurable, let's check it out!
 
 ## The options
-You have the following options when running sitespeed.io within docker (run <code>docker run sitespeedio/browsertime --help</code> to get the list on your command line):
+You have the following options when running Browsertime within docker (run <code>docker run sitespeedio/browsertime --help</code> to get the list on your command line):
 
-~~~help
+~~~shell
 {% include_relative config.md %}
 ~~~

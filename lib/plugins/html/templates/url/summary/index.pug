@@ -1,9 +1,9 @@
 extends ./layout.pug
 
 block content
-  - var d = pageInfo.data
-  - var daTitle = daurlAlias ? daurlAlias : daurl
-  - var downloadName = (daTitle + '-' + options.browser + '-' + timestamp).replace(/(https?\:\/\/)|( )|(:)/ig, '')
+  - const d = pageInfo.data
+  - const daTitle = daurlAlias ? daurlAlias : daurl
+  - const downloadName = (daTitle + '-' + options.browser + '-' + timestamp).replace(/(https?\:\/\/)|( )|(:)/ig, '')
   h1 Page summary
 
   h5.url
@@ -47,30 +47,35 @@ block content
               tr
                 td Requests:
                 td #{d.pagexray.pageSummary.requests}
+            if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.timings.fullyLoaded   
+              tr
+                td Fully Loaded [median]:
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.timings.fullyLoaded.median)}
+
             if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.visualMetrics
               tr
                 td First Visual Change [median]:
-                td #{d.browsertime.pageSummary.statistics.visualMetrics.FirstVisualChange.median}
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.FirstVisualChange.median)}
             else if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics && d.browsertime.pageSummary.statistics.timings && d.browsertime.pageSummary.statistics.timings.firstPaint
               tr
                 td First Paint [median]:
-                td #{d.browsertime.pageSummary.statistics.timings.firstPaint.median}
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.timings.firstPaint.median)}                
             if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.visualMetrics
               tr
                 td Speed Index [median]:
-                td #{d.browsertime.pageSummary.statistics.visualMetrics.SpeedIndex.median}
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.SpeedIndex.median)}
               tr
                 td Visual Complete 85% [median]:
-                td #{d.browsertime.pageSummary.statistics.visualMetrics.VisualComplete85.median}
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.VisualComplete85.median)}
               tr
                 td Visual Complete 95% [median]:
-                td #{d.browsertime.pageSummary.statistics.visualMetrics.VisualComplete95.median}
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.VisualComplete95.median)}
               tr
                 td Visual Complete 99% [median]:
-                td #{d.browsertime.pageSummary.statistics.visualMetrics.VisualComplete99.median}
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.VisualComplete99.median)}
               tr
                 td Last Visual Change [median]:
-                td #{d.browsertime.pageSummary.statistics.visualMetrics.LastVisualChange.median}
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.LastVisualChange.median)}
             else if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics && d.browsertime.pageSummary.statistics.timings && d.browsertime.pageSummary.statistics.timings.rumSpeedIndex
               tr
                 td RUM Speed Index [median]:
@@ -94,12 +99,13 @@ block content
 
         .one-half.column
             if hasScreenShots
-              - var width = options.mobile ? 150 : '100%';
-              - var screenshotName = 'data/screenshots/1.' + screenShotType
+              - const width = options.mobile ? 150 : '100%';
+              - const screenshotNo = medianRun ? medianRun.runIndex : 1
+              - const screenshotName = 'data/screenshots/' + screenshotNo + '.' + screenShotType
               a(href=screenshotName)
-                img.screenshot(src=screenshotName, width=width, alt='Screenshot of run 1')
+                img.screenshot(src=screenshotName, width=width, alt='Screenshot of run ' + screenshotNo)
             else if !d.browsertime && d.webpagetest
-              a(href='data/screenshots/0.png')
+              a(href='data/screenshots/wpt-1-firstView.png')
                 img.screenshot(src='data/screenshots/wpt-1-firstView.png', alt='Screenshot of run 1')
       include ./summaryBox.pug
 
@@ -127,6 +133,6 @@ block content
         include ../pagexray/index.pug
 
     each pageSummary in pageSummaries
-      - var panelName = pageSummary.id + '-panel'
+      - const panelName = pageSummary.id + '-panel'
       section(id=panelName)
         p !{pugs[pageSummary.id]}

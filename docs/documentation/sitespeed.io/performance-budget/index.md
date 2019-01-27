@@ -25,12 +25,10 @@ When you run sitespeed.io configured with a budget, the script will exit with an
 
 The log will look something like this:
 
-~~~
-[2016-10-24 10:53:01] Failing budget pagexray.pageSummary.transferSize for https://www.sitespeed.io/ with value 184.7 KB max limit 97.7 KB
-[2016-10-24 10:53:01] Failing budget pagexray.pageSummary.contentTypes.image.transferSize for https://www.sitespeed.io/ with value 157.3 KB max limit 97.7 KB
-[2016-10-24 10:53:01] Failing budget coach.pageSummary.advice.info.domElements for https://www.sitespeed.io/ with value 215 max limit 200
-[2016-10-24 10:53:01] Failing budget coach.pageSummary.advice.info.domDepth.max for https://www.sitespeed.io/ with value 11 max limit 10
-[2016-10-24 10:53:01] Budget: 8 working and 4 failing tests
+~~~shell
+[2019-01-20 19:58:18] ERROR: Failing budget timings.firstPaint for https://www.sitespeed.io/documentation/ with value 462 ms max limit 100 ms
+[2019-01-20 19:58:18] ERROR: Failing budget size.total for https://www.sitespeed.io/documentation/ with value 23.6 KB max limit 1000 B
+[2019-01-20 19:58:18] INFO: Budget: 3 working and 2 failing tests
 ~~~
 
 
@@ -38,17 +36,103 @@ The report looks like this.
 ![Example of the budget]({{site.baseurl}}/img/budget.png)
 {: .img-thumbnail}
 
-Now let's see how you configure budgets.
-
-
 ### The budget file
-The current version can handle min/max values and works on the internal data structure.
+In 8.0 we introduced a new way of configuring budget. You can configure default values and specific for a URL. In the budget file there are 5 couple of sections:
+
+* timings - are Visual and technical metrics and are configured in milliseconds (ms)
+* requests - the max number of requests per type or total
+* transferSize - the max transfer size (over the wire) per type or total
+* thirdPatrty - max number of requests or trasnferSize for third parties
+* score - minimum score for Coach advice 
+
+
+#### Simple budget file
+The simplest version of a budget file that will check for SpeedIndex higher than 1000 ms looks like this:
+
+~~~json
+{
+ "budget": {
+    "timings": {
+      "SpeedIndex":1000
+    }
+ }
+}
+~~~
+
+#### Override per URL
+All URLs that you test then needs to have a SpeedIndex faster than 1000. But if you have one URL that you know are slower? You can override budget per URL. 
+
+~~~json
+{
+ "budget": {
+   "https://www.sitespeed.io/documentation/": {
+      "timings": {
+        "SpeedIndex": 3000
+      }
+    },
+    "timings": {
+      "SpeedIndex":1000
+    }
+ }
+}
+~~~
+
+#### Full example
+
+Here is an example of a fully configurued budget file. It shows you what yiou *can* configure (but you shouldn't configure all of them). 
+
+
+~~~json
+{
+"budget": {
+    "timings": {
+      "firstPaint": 1000,
+      "fullyLoaded": 2000,
+      "FirstVisualChange": 1000,
+      "LastVisualChange": 1200,
+      "SpeedIndex": 1200,
+      "PerceptualSpeedIndex":1200,
+      "VisualReadiness": 200,
+      "VisualComplete95": 1190
+    },
+    "requests": {
+      "total": 89,
+      "html": 1,
+      "javascript": 0,
+      "css": 1,
+      "image": 50,
+      "font": 0
+    },
+    "transferSize": {
+      "total": 400000,
+      "html": 20000,
+      "javascript": 0,
+      "css": 10000,
+      "image": 200000,
+      "font": 0
+    },
+    "thirdParty": {
+      "transferSize": 0,
+      "requests": 0
+    },
+    "score": {
+      "accessibility": 100,
+      "bestpractice": 100,
+      "privacy": 100,
+      "performance": 100
+    }
+  }
+}
+~~~
+
+#### Budget configuration using the internal data structrure
+There's also an old version of settiung a budget where you can do it for all metrics collected by sitespeed.io and works on the internal data structure.
 
 
 You can read more about the metrics/data structure in the [metrics section]({{site.baseurl}}/documentation/sitespeed.io/metrics/).
 
 
-~~~
+~~~json
 {
   "browsertime.pageSummary": [{
     "metric": "statistics.timings.firstPaint.median",
@@ -98,7 +182,7 @@ You can read more about the metrics/data structure in the [metrics section]({{si
 Then run it like this:
 
 ~~~bash
-$ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/ --budget.configPath myBudget.json -b chrome -n 11
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --budget.configPath myBudget.json -b chrome -n 11
 ~~~
 
 And, if the budget fails, the exit status will be > 0. You can also choose to report the budget as JUnitXML (Jenkins) or TAP.
@@ -107,7 +191,7 @@ And, if the budget fails, the exit status will be > 0. You can also choose to re
 You can output a JUnit XML file from the budget result like this:
 
 ~~~bash
-$ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/ --budget.configPath myBudget.json --budget.output junit -b chrome -n 5
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --budget.configPath myBudget.json --budget.output junit -b chrome -n 5
 ~~~
 
 It will create a *junit.xml* in the outputFolder.
@@ -116,7 +200,7 @@ It will create a *junit.xml* in the outputFolder.
 If you would instead like to use TAP, you can do so like this:
 
 ~~~bash
-$ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/ --budget.configPath myBudget.json --budget.output tap -b chrome -n 5
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --budget.configPath myBudget.json --budget.output tap -b chrome -n 5
 ~~~
 
 It will create a *budget.tap* in the outputFolder.

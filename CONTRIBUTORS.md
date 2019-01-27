@@ -16,6 +16,7 @@ Many many many thanks to:
 * shakey2k2 (@shakey2k2)
 * lbod (@lbod)
 * Lorenzo Urbini (@siteriaitaliana)
+* George Haddad (@george-haddad)
 
 3.X and earlier:
 * Tom Sutton (@tomsutton1984)

@@ -7,7 +7,7 @@ services:
       volumes:
             - ./sitespeed-result/:/sitespeed.io/sitespeed-result
     grafana:
-      image: grafana/grafana:5.2.3
+      image: grafana/grafana:5.4.2
       depends_on:
         - graphite
       links:
@@ -24,21 +24,23 @@ services:
         - grafana:/var/lib/grafana
       restart: always
     graphite:
-      image: sitespeedio/graphite:1.0.2-2-b
+      image: sitespeedio/graphite:1.1.5-3
       ports:
         - "2003:2003"
         - "8080:80"
       restart: always
       volumes:
-        - whisper:/opt/graphite/storage/whisper
         # In production you should configure/map these to your container
-        # Download from https://github.com/sitespeedio/sitespeed.io/tree/master/docker/graphite
+        # Make sure whisper and graphite.db/grafana.db lives outside your containerr
+        # https://www.sitespeed.io/documentation/sitespeed.io/graphite/#graphite-for-production-important
+        - whisper:/opt/graphite/storage/whisper
+        # Download an empty graphite.db from https://github.com/sitespeedio/sitespeed.io/tree/master/docker/graphite
         #- ./graphite/graphite.db:/opt/graphite/storage/graphite.db
         #- ./graphite/conf/storage-schemas.conf:/opt/graphite/conf/storage-schemas.conf
         #- ./graphite/conf/storage-aggregation.conf:/opt/graphite/conf/storage-aggregation.conf
         #- ./graphite/conf/carbon.conf:/opt/graphite/conf/carbon.conf
     grafana-setup:
-      image: sitespeedio/grafana-bootstrap:7.0
+      image: sitespeedio/grafana-bootstrap:8.0
       links:
         - grafana
       environment:

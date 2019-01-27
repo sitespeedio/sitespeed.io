@@ -21,7 +21,7 @@ You can run sitespeed.io using our Docker containers or using NodeJS.
 
 ## Docker
 
-We have [Docker images](https://hub.docker.com/r/sitespeedio/sitespeed.io/) with sitespeed.io, Chrome, Firefox and Xvfb. It is super easy to use (Xvfb is started automatically when you start the container). Here's how to use the container with both Firefox & Chrome (install [Docker](https://docs.docker.com/engine/installation/) first).
+We have [Docker images](https://hub.docker.com/r/sitespeedio/sitespeed.io/) with sitespeed.io, Chrome, Firefox, Xvfb and all the software needed for recording a video of the browser screen and analyze it to get Visual Metrics. It is super easy to use). Here's how to use the container with both Firefox & Chrome (install [Docker](https://docs.docker.com/install/) first).
 
 ### Mac & Linux
 
@@ -33,7 +33,7 @@ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.s
 
 ~~~
 C:\Users\Vicky> docker pull sitespeedio/sitespeed.io
-C:\Users\Vicky> docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -b firefox
+C:\Users\Vicky> docker run --rm -v ${pwd}:/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -b firefox
 ~~~
 
 That will output the data from the run in the current directory. You can read more about running the containers [here](/documentation/sitespeed.io/docker/).
@@ -43,6 +43,8 @@ That will output the data from the run in the current directory. You can read mo
 ### Mac & Linux
 
 Prerequisites: Install [latest NodeJS LTS](https://nodejs.org/en/download/) ([Linux](https://github.com/creationix/nvm)) and make sure you have [npm](https://github.com/npm/npm) or [yarn](https://yarnpkg.com/) installed. Also install Chrome/Firefox (you need them to collect metrics).
+
+Make sure you install without sudo using sudo. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
 
 #### npm
 If you prefer npm, just run:

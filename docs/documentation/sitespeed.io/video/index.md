@@ -60,6 +60,16 @@ If you want to change the quality (compression level 0-100) of the images you do
 ### XVFB
 If you run the Docker container we will automatically setup XVFB as a virtual frame buffer. If you run without Docker but still want to use XVFB, you add <code>--xvfb</code> and sitespeed.io will then start XVFB automatically, you only need to make sure it is installed.
 
+### Collect visual elements metrics
+You can choose to collect when visual elements are visible (and on their final position) on the screen. Turn on with <code>--visualElement</code> and collect Visual Metrics from elements. Works only with <code>--visualMetrics</code> turned on (default in Docker). By default you will get visual metrics from the largest image within the view port and the largest H1. 
+
+You can also configure to pickup your own defined elements with <code>--scriptInput.visualElements</code>. Give the element a name
+and select it with <code>document.body.querySelector</code>. Use it like this: <code>--scriptInput.visualElements name:domSelector</code> . Add multiple instances to measure multiple elements. Visual Metrics will use these elements and calculate when they are visible and fully rendered. These metrics will also be included in HAR file so you can look at the waterfall and see when elements are visual within the viewport.
+ 
+
+ ![Visual elements in Graphite]({{site.baseurl}}/img/visual-elements-graphite.png)
+{: .img-thumbnail-center}
+
 ## Compare two video runs (combine two videos)
 One of the things we love with [WebPageTest](https://www.webpagetest.org/) is the video where you can compare two different runs. Since sitespeed.io is serverless, it is nothing you can do on the fly. Instead we created a simple tool you can use. Only thing you need is Docker!
 

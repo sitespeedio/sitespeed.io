@@ -10,9 +10,9 @@ mixin numberCell(title, number)
 mixin sizeCell(title, size)
   td.number(data-title=title, data-value= size)= h.size.format(size)
 
-- var wpt = pageInfo.data.webpagetest.run ? pageInfo.data.webpagetest.run : pageInfo.data.webpagetest.pageSummary.data.median
-- var wptRoot = pageInfo.data.webpagetest.run ? pageInfo.data.webpagetest : pageInfo.data.webpagetest.pageSummary.data;
-- var wptRun  = runNumber? runNumber : 1
+- const wpt = pageInfo.data.webpagetest.run ? pageInfo.data.webpagetest.run : pageInfo.data.webpagetest.pageSummary.data.median
+- const wptRoot = pageInfo.data.webpagetest.run ? pageInfo.data.webpagetest : pageInfo.data.webpagetest.pageSummary.data;
+- const wptRun  = runNumber? runNumber : 1
 
 a
 h2 WebPageTest
@@ -73,20 +73,20 @@ p.small Metrics and data collected using #{options.webpagetest.host}.&nbsp;
     img.u-max-full-width(src='data/screenshots/wpt-' + wptRun  + '-firstView.png', alt='Screenshot')
 
 .downloads
-  - var harEnding = options.gzipHAR ? '.har.gz' : '.har'
-  - var harName = 'data/webpagetest' + harEnding
-  - var harDownloadName = downloadName + '-webpagetest-' + harEnding
+  - const harEnding = options.gzipHAR ? '.har.gz' : '.har'
+  - const harName = 'data/webpagetest' + harEnding
+  - const harDownloadName = downloadName + '-webpagetest-' + harEnding
 
   a.button.button-download(href=harName, download=downloadName) Download HAR
   if options.webpagetest.timeline
-    - var tracePath = 'data/trace-' + wptRun  + '-wpt-firstView.json.gz'
+    - const tracePath = 'data/trace-' + wptRun  + '-wpt-firstView.json.gz'
     a.button.button-download(href=tracePath, download=downloadName + 'trace-' + wptRun  + '-wpt-firstView.json.gz') Download first view timeline
     if wpt.repeatView
-      - var tracePathRepeat = 'data/trace-' + wptRun  + '-wpt-repeatView.json.gz'
+      - const tracePathRepeat = 'data/trace-' + wptRun  + '-wpt-repeatView.json.gz'
       a.button.button-download(href=tracePathRepeat, download=downloadName + 'trace-' + wptRun  + '-wpt-repeatView.json.gz') Download repeat view timeline
 
 each view in ['firstView', 'repeatView']
-  - var median = wpt[view];
+  - const median = wpt[view];
   if median
     h2 #{view === 'firstView' ? 'First View': 'Repeat View'}
     if options.webpagetest.video
@@ -127,7 +127,7 @@ each view in ['firstView', 'repeatView']
             table
               tr
                 th(colspan='2') Visual Progress
-                - var lastProgress = -1
+                - let lastProgress = -1
               each frame in median.videoFrames
                 if lastProgress !== frame.VisuallyComplete
                   - lastProgress = frame.VisuallyComplete

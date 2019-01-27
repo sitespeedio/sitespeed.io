@@ -98,7 +98,7 @@ We have a small shell script that runs the tests. It is triggered from the cron 
 Our *run.sh* file (we read which URLs we want to test from files):
 
 ## Shell script
-~~~
+~~~shell
 #!/bin/bash
 # Specify the exact version of sitespeed.io. When you upgrade to the next version, pull it down and the chage the tag
 DOCKER_CONTAINER=sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}
@@ -128,7 +128,7 @@ docker pull $DOCKER_CONTAINER
 ## Crontab
 We trigger the script from the crontab. We run the script every hour.
 
-~~~
+~~~shell
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 0 * * * * /root/runs.sh >> /tmp/sitespeed.io.log 2>&1
@@ -137,7 +137,7 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 ## Infinite loop
 Another way is to just run the script in an infinite loop and then have a file that you remove (so the run stops) when you want to update your instance. This example script is on Ubuntu.
 
-~~~
+~~~shell
 #!/bin/bash
 LOGFILE=/tmp/s.log
 exec > $LOGFILE 2>&1
@@ -192,20 +192,20 @@ done
 
 And make sure the script start on server restart. Edit the crontab <code>crontab -e</code> and add (loop.sh is the name of your loop script file):
 
-~~~
+~~~shell
 @reboot rm /home/ubuntu/sitespeed.run;/home/ubuntu/loop.sh
 ~~~
 
 And start it like this:
 
-~~~
+~~~bash
 nohup /home/ubuntu/loop.sh &
 ~~~
 
 ## default.json
 And our default configuration is in *default.json*:
 
-~~~
+~~~json
 {
   "browsertime": {
     "connectivity": {
@@ -243,7 +243,7 @@ And our default configuration is in *default.json*:
 ## Docker networks
 And we set up the following Docker networks (*startNetworks.sh*):
 
-~~~
+~~~shell
 #!/bin/bash
 echo 'Starting Docker networks'
 docker network create --driver bridge --subnet=192.168.33.0/24 --gateway=192.168.33.10 --opt "com.docker.network.bridge.name"="docker1" 3g
@@ -309,7 +309,7 @@ To run this in a production environment, you should consider/make some modificat
 9. Optional: Disable anonymous users access
 
 ## Memory & CPU
-How large will your instances need to be? You need to have enough memory for Chrome/Firefox (yep they can really use a lot of memory for some sites). Before we used a $80 instance on Digital Ocean (8GB memory, 4 Core processors) but we switched to use AWS c4.large for dashboard.sitespeed.io. The reason is that the metrics are so more stable on AWS than Digital Ocean. We have tried out most cloud providers and AWS gave us the most stable metrics.
+How large will your instances need to be? You need to have enough memory for Chrome/Firefox (yep they can really use a lot of memory for some sites). Before we used a $80 instance on Digital Ocean (8GB memory, 4 Core processors) but we switched to use AWS c5.large for dashboard.sitespeed.io. The reason is that the metrics are so more stable on AWS than Digital Ocean. We have tried out most cloud providers and AWS gave us the most stable metrics.
 
 If you test a lot a pages (100+) in the same run, your NodeJS process can run out of memory (default memory for NodeJS is 1.76 GB). You can change and increase by setting MAX_OLD_SPACE_SIZE like this in your compose file:
 
@@ -324,7 +324,7 @@ services:
 ## Cost
 Sitespeed.io is Open Source and totally free. But what does it cost to have an instance of sitespeed.io up and running?
 
-Setting up an [AWS instance](https://aws.amazon.com/) C4.large has an upfront price $515 for a year (it is much cheaper to pay upfront). Or you can use a Optimized Droplet for $40 a month at [Digital Ocean](https://www.digitalocean.com/) (they have served us well in our testing).
+Setting up an [AWS instance](https://aws.amazon.com/) c5.large has an upfront price $515 for a year (it is much cheaper to pay upfront). Or you can use a Optimized Droplet for $40 a month at [Digital Ocean](https://www.digitalocean.com/) (they have served us well in our testing).
 
 You also need to pay for S3 (to store the videos and HTML). For [https://dashboard.sitespeed.io](https://dashboard.sitespeed.io) we pay $10-15 per month (depending how long time you want to store the data).
 
