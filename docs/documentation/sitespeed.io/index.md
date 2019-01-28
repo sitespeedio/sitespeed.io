@@ -27,7 +27,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
 
 ## More details
  * [Alerts](alerts/) - send alerts (email/Slack/PagerDuty etc) when you get a performance regression.
- * [Continuous Integration](continuous-integration/) - generate JUnit XML/TAP and use Jenkins, Circle CI, Gitlab CI,  Grunt or the Gulp plugin.
+ * [Continuous Integration](continuous-integration/) - generate JUnit XML/TAP and use Jenkins, Circle CI, Gitlab CI, Github Actions, Grunt or the Gulp plugin.
  * [Developers](developers/) - start here when you want to do PRs or create a plugin.
  * [Graphite](graphite/) - how to configure and store your metrics in Graphite (and using StatsD).
  * [How to Write a Good Bug Report](bug-report/) - if you write a good bug report, we can spend more time helping you fixing the problem instead of asking you questions
