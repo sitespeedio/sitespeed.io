@@ -42,7 +42,7 @@ In 8.0 we introduced a new way of configuring budget. You can configure default 
 * timings - are Visual and technical metrics and are configured in milliseconds (ms)
 * requests - the max number of requests per type or total
 * transferSize - the max transfer size (over the wire) per type or total
-* thirdPatrty - max number of requests or trasnferSize for third parties
+* thirdParty - max number of requests or transferSize for third parties
 * score - minimum score for Coach advice 
 
 

@@ -165,7 +165,7 @@ You can configure default values and specific for a URL. In the budget file ther
 * timings - are Visual and technical metrics and are configured in milliseconds (ms)
 * requests - the max number of requests per type or total
 * transferSize - the max transfer size (over the wire) per type or total
-* thirdPatrty - max number of requests or trasnferSize for third parties
+* thirdParty - max number of requests or transferSize for third parties
 * score - minimum score for Coach advice 
 
 
