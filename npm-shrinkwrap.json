@@ -658,9 +658,9 @@
       "integrity": "sha1-81HTKWnTL6XXpVZxVCY9korjvR8="
     },
     "browsertime": {
-      "version": "4.0.4",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-4.0.4.tgz",
-      "integrity": "sha512-Dvz6J1RAK5JTf3ce3t4UVkaSmXZGBUNvO5Gbba9Fa9oX5j8nFhqWFLbAXL6iHAvl/XUzepQEcX9h7cvYiR5S1A==",
+      "version": "4.0.5",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-4.0.5.tgz",
+      "integrity": "sha512-9A5oO64saiTs5x/xeQnANJm3lWHw83RpBjXHJ7sUsrHN4qnmSRL+8rlCbai4ohLogGD7GAUDVSK8tsd/MyS6FQ==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@sitespeed.io/chromedriver": "2.44.1",
