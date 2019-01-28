@@ -28,7 +28,7 @@ Setup a simple budget that check the URLs you test against number of requests, t
 }
 ```
 
-Then you can setup your action either via the Github GUI or using configuration. Make sure to setup your action to the right Docker file: ```docker://sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-action```.
+Then you can setup your action either via the Github GUI or using configuration. Make sure to setup your action to the right Docker file: ```docker://sitespeedio/sitespeed.io:8.0.6-action```.
 
 A simple setup looks something like this:
 
@@ -39,7 +39,7 @@ workflow "Testing stage environment" {
 }
 
 action "Run sitespeed.io" {
-  uses = "docker://sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-action"
+  uses = "docker://sitespeedio/sitespeed.io:8.0.6-action"
   args = "https://www.sitespeed.io -n 1 --budget.configPath /github/workspace/.github/budget.json"
 }
 ```
