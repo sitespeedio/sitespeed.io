@@ -9,7 +9,10 @@
       | Metrics
   if options.browsertime.video
     a(id='video', href='#video', onclick='return selectTab(this, true);')
-      | Video 
+      | Video
+  if options.browsertime.video && options.videoParams.createFilmstrip
+    a(id='filmstrip', href='#filmstrip', onclick='return selectTab(this, true);')
+      | Filmstrip      
   if d.coach && d.coach.pageSummary
     a(id='coach', href='#coach', onclick='return selectTab(this, true);')
       | Coach

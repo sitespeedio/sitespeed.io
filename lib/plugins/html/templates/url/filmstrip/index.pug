@@ -1,0 +1,59 @@
+mixin frame(filmstrip, iteration)
+    - const frameClass =  filmstrip[iteration].timings.length > 0 ? 'videoframe blue' : 'videoframe'
+    a(href=path + filmstrip[iteration].file)
+        img(src=path + filmstrip[iteration].file, alt='', class=frameClass)
+    span.videoframetime #{filmstrip[iteration].time} s
+    each timing in filmstrip[iteration].timings
+        span.videoframetext #{timing.metric} #{h.time.ms(timing.value)}
+
+a
+h2 Filmstrip
+
+- const videoIndex = medianRun ? medianRun.runIndex : iteration;
+- const path = 'data/video/images/' + videoIndex +'/';
+
+if (options.filmstrip && options.filmstrip.showAll)
+    p    
+        | Showing all the filmstrips. Set
+        code  --filmstrip.showAll
+        | to false to only show the ones that contains a change.
+else 
+    p
+        | Use 
+        code --filmstrip.showAll
+        |  to show all filmstrips.
+  
+
+if filmstrip
+    - for (let i=0; i<filmstrip.length; i=i+4)
+        .row
+            if options.mobile
+                .two.columns.filmstrip
+                    +frame(filmstrip, i)
+                if filmstrip[i+1]    
+                    .two.columns.filmstrip
+                        +frame(filmstrip, i+1)
+                if filmstrip[i+2] 
+                    .two.columns.filmstrip
+                        +frame(filmstrip, i+2)
+                if filmstrip[i+3]
+                    .two.columns.filmstrip          
+                        +frame(filmstrip, i+3)
+                if filmstrip[i+4]
+                    .two.columns.filmstrip          
+                        +frame(filmstrip, i+4)
+                if filmstrip[i+5]
+                    .two.columns.filmstrip          
+                        +frame(filmstrip, i+5)   
+            else
+                .three.columns.filmstrip
+                    +frame(filmstrip, i)
+                if filmstrip[i+1]    
+                    .three.columns.filmstrip
+                        +frame(filmstrip, i+1)
+                if filmstrip[i+2] 
+                    .three.columns.filmstrip
+                        +frame(filmstrip, i+2)
+                if filmstrip[i+3]
+                    .three.columns.filmstrip          
+                        +frame(filmstrip, i+3)
