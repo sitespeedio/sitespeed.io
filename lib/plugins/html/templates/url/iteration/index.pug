@@ -55,7 +55,7 @@ block content
              if d.browsertime && d.browsertime.run
                tr
                  td Fully loaded:
-                 td #{h.time.ms(d.browsertime.run.timings.fullyLoaded)}
+                 td #{h.time.ms(d.browsertime.run.fullyLoaded.toFixed(0))}
              if d.browsertime && d.browsertime.run && d.browsertime.run.visualMetrics
                tr
                  td First Visual Change:

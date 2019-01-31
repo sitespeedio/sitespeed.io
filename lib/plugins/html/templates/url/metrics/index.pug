@@ -96,11 +96,17 @@ if  browsertime
           td
             a(href=baseHelpURL + 'rumSpeedIndex') RUM Speed Index
           td.number #{h.time.ms(timings.rumSpeedIndex.toFixed(0))}
+         
         if (timings.fullyLoaded) 
           tr
             td
               a(href=baseHelpURL + 'fullyLoaded') Fully loaded
             td.number #{h.time.ms(timings.fullyLoaded.toFixed(0))}
+        else if (browsertime.fullyLoaded) 
+          tr
+            td
+              a(href=baseHelpURL + 'fullyLoaded') Fully loaded
+            td.number #{h.time.ms(browsertime.fullyLoaded.toFixed(0))}
       if (Object.keys(timings.userTimings.marks).length > 0 || Object.keys(timings.userTimings.measures).length > 0)
         table
           tr
@@ -119,6 +125,22 @@ if  browsertime
   if options.browsertime.chrome && options.browsertime.chrome.timeline
     include ./cpu.pug
 
+  a#server-timings
+  h3 Server timings
+  if timings.serverTimings.length > 0
+    table
+      tr
+        th name
+        th duration
+        th description
+      each serverTiming in timings.serverTimings
+        tr
+          td #{serverTiming.name}
+          td #{serverTiming.duration}
+          td #{serverTiming.description}
+  else
+    p There are no Server Timings.
+    
   a#custom-scripts
   h3 Custom scripts
   if browsertime.custom
