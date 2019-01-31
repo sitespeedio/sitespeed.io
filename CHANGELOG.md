@@ -1,5 +1,14 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED 8.1.0
+### Added
+* New tab showing the filmstrip (if you record a video and keep the screenshots). We had the screenshots forever but never done anything with them. Inspired by [Stefan Burnickis](https://github.com/sburnicki) work on https://github.com/iteratec/wpt-filmstrip [#2274](https://github.com/sitespeedio/sitespeed.io/pull/2274).
+* Show Server Timings in the metric section (if the page uses Server Timing) [#2277](https://github.com/sitespeedio/sitespeed.io/pull/2277).
+* Upgraded the Docker container to use Chrome 72 and Firefox 65.
+
+### Fixed
+* Show FullyLoaded instead of N/A on metric pages per run [#2278](https://github.com/sitespeedio/sitespeed.io/pull/2278).
+
 ## 8.0.6 - 2019-01-28
 ### Fixed
 * Bugfix: In Browsertime 4.0.3 upgrade of Visual Metrics removed a couple fixes that should be there [#740](https://github.com/sitespeedio/browsertime/pull/740).
