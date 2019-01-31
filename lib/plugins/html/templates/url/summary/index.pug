@@ -120,6 +120,10 @@ block content
       section#video-panel
         include ../video/index.pug
 
+    if options.browsertime.video && options.videoParams.createFilmstrip
+      section#filmstrip-panel
+        include ../filmstrip/index.pug    
+
     if d.coach && d.coach.pageSummary
       section#coach-panel
         include ../coach/index.pug
