@@ -52,7 +52,7 @@ block content
                tr
                  td Requests:
                  td #{d.pagexray.run.requests}
-             if d.browsertime && d.browsertime.run
+             if d.browsertime && d.browsertime.run && d.browsertime.run.fullyLoaded
                tr
                  td Fully loaded:
                  td #{h.time.ms(d.browsertime.run.fullyLoaded.toFixed(0))}
