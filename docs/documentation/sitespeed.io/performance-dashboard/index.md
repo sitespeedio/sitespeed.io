@@ -100,7 +100,7 @@ Our *run.sh* file (we read which URLs we want to test from files):
 ## Shell script
 ~~~shell
 #!/bin/bash
-# Specify the exact version of sitespeed.io. When you upgrade to the next version, pull it down and the chage the tag
+# Specify the exact version of sitespeed.io. When you upgrade to the next version, pull it down and the change the tag
 DOCKER_CONTAINER=sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}
 
 # Setup the network and default ones we wanna use
