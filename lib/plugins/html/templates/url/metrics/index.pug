@@ -131,7 +131,7 @@ if  browsertime
 
   a#server-timings
   h3 Server timings
-  if timings.serverTimings.length > 0
+  if timings.serverTimings && timings.serverTimings.length > 0
     table
       tr
         th name
