@@ -4,7 +4,8 @@ mixin frame(filmstrip, iteration)
         img(src=path + filmstrip[iteration].file, alt='', class=frameClass)
     span.videoframetime #{filmstrip[iteration].time} s
     each timing in filmstrip[iteration].timings
-        span.videoframetext #{timing.metric} #{h.time.ms(timing.value)}
+        span.videoframetext #{timing.metric} 
+            b #{h.time.ms(timing.value)}
 
 a
 h2 Filmstrip
