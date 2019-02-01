@@ -264,6 +264,40 @@ module.exports = async function(context, commands) {
 }
 ~~~
 
+## Getting correct Visual Metrics
+Visual metrics is the metrics that are collected using the video recording of the screen. In most cases that will work just out of the box. One thing to know is that when you go from one page to another page, the browser keeps the layout of the old page. That means that your video will start with the first page (instead of white) when yoy navigate to the next page.
+
+It will look like this:
+![Page to page]({{site.baseurl}}/img/filmstrip-multiple-pages.jpg)
+{: .img-thumbnail}
+
+This is perfectly fine in most cases. But if you want to start white (the metrics somehow isn't correct) or if you click a link and that click changes the layout and is catched as First Visual Change, there are workarounds.
+
+If you just want to start white and navigate to the next page you can just clear the HTML between pages:
+
+~~~javascript
+module.exports = async function(context, commands) {
+    await commands.measure.start('https://www.sitespeed.io');
+    // Renove the HTML and make sure the background is white
+    await commands.js.run('document.body.innerHTML = ""; document.body.style.backgroundColor = "white";');
+    return commands.measure.start('https://www.sitespeed.io/examples/');
+};
+~~~
+
+If you want to click a link and make sure the background is white, you can hide the HTML and then click the link. At the moment we use Selenium as backend and then you cannot click on hidden links. But you can use JavaScript:
+~~~javascript
+module.exports = async function(context, commands) {
+    await commands.measure.start('https://www.sitespeed.io');
+    // Hide everything
+    await commands.js.run('document.body.style.display = "none"');
+    // Start measurning
+    await commands.measure.start();
+    // Click on the link and wait on navigation to happen
+    await commands.js.runAndWait('document.querySelector("body > nav > div > div > div > ul > li:nth-child(2) > a").click();');
+    return commands.measure.stop();
+};
+~~~
+
 
 ## Debug
 There's a couple of way that makes it easier to debug your scripts: 
@@ -298,7 +332,7 @@ Start to measure. Browsertime/sitespeed.io will pick up the next URL and measure
 Stop measuring. This will collect technical metrics from the browser, stop the video recording, collect CPU data etc.
 
 ### Click
-The click command will click on links.
+The click command will click on visible links. If you need to click in hidden elements you need to use raw JavaScript using [js.runAndWait()](#jsrunandwaitjavascript).
 
 All click commands have two different versions: One that will return a promise when the link has been clicked and one that will return a promise that will be fullfilled when the link has been clicked and the browser navigated to the new URL and the pageCompleteCheck says ok.
 
