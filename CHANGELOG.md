@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 8.1.1 - 2019-02-01
+### Fixed 
+* Updated Coach to use latest Browsertime
+
 ## 8.1.0 - 2019-02-01
 ### Added
 * New tab showing the filmstrip (if you record a video and keep the screenshots). We had the screenshots forever but never done anything with them. Inspired by [Stefan Burnickis](https://github.com/sburnicki) work on https://github.com/iteratec/wpt-filmstrip [#2274](https://github.com/sitespeedio/sitespeed.io/pull/2274).
