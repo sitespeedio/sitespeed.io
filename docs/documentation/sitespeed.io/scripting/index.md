@@ -241,6 +241,42 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
+### Measure shopping/checkout process
+One of the really cool things with scripting is that you can measure all the pages in a checkout process. This is an example shop where you put one item in your cart and checkout as a guest.
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // Start by measuring the first page of the shop
+  await commands.measure.start('https://shop.example.org');
+
+  // Then the product page
+  await commands.measure.start('https://shop.example.org/prodcucs/theproduct');
+
+  // Add the item to your cart
+  await commands.js.run('document.querySelector(".add-to-cart").click();');
+
+  // Go to the cart (and measure it)
+  await commands.measure.start('https://shop.example.org/cart/');
+
+  // Checkout as guest but you could also login as a customer
+  // We hide the HTML to avoid that the click on the link will
+  // fire First Visual Change. Best case you don't need to but we 
+  // want an complex example
+  await commands.js.run('document.body.style.display = "none"');
+  await commands.measure.start('CheckoutAsGuest');
+  await commands.js.runAndWait('document.querySelector(".checkout-as-guest").click();');
+  // Make sure to stop measuring and collect the metrics for the CheckoutAsGuest step
+  await commands.measure.stop();
+
+  // Finish your checkout
+  await commands.js.run('document.body.style.display = "none"');
+  await commands.measure.start('FinishCheckout');
+  await commands.js.runAndWait('document.querySelector(".checkout-finish").click();');
+  // And collect metrics for the FinishCheckout step
+  return commands.measure.stop();
+};
+~~~
+
 ### Log from your script
 
 You can log to the same output as sitespeed.io:
