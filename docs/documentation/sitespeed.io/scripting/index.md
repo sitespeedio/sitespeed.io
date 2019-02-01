@@ -364,6 +364,9 @@ You can run your own JavaScript in the browser from your script.
 #### js.run(javascript)
 Run JavaScript. Will throw an error if the JavaScript fails.
 
+#### js.runAndWait(javascript)
+Run JavaScript and wait for page complete check. This is perfect if you wanna click on links with pure JavaScript and measure a URL. Will throw an error if the JavaScript fails.
+
 #### js.runAsync(javascript)
 Run async JavaScript. Will throw an error if the JavaScript fails.
 
