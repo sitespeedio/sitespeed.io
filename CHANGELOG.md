@@ -1,13 +1,15 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED 8.1.0
+## 8.1.0 - 2019-02-01
 ### Added
 * New tab showing the filmstrip (if you record a video and keep the screenshots). We had the screenshots forever but never done anything with them. Inspired by [Stefan Burnickis](https://github.com/sburnicki) work on https://github.com/iteratec/wpt-filmstrip [#2274](https://github.com/sitespeedio/sitespeed.io/pull/2274).
 * Show Server Timings in the metric section (if the page uses Server Timing) [#2277](https://github.com/sitespeedio/sitespeed.io/pull/2277).
 * Upgraded the Docker container to use Chrome 72 and Firefox 65.
+* Upgraded to [Browsertime 4.1](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#410---2019-01-31) with latest Chromedriver and Geckodriver. There's also a new command ```js.runAndWait('')``` that makes it possible to run your own JavaScript, click a link and wait on page navigation. 
 
 ### Fixed
 * Show FullyLoaded instead of N/A on metric pages per run [#2278](https://github.com/sitespeedio/sitespeed.io/pull/2278).
+* Added missing pre/post script in the CLI  (thanks Cheng Chi!) [#2282](https://github.com/sitespeedio/sitespeed.io/pull/2282).
 
 ## 8.0.6 - 2019-01-28
 ### Fixed
