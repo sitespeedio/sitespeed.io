@@ -250,6 +250,9 @@ module.exports = async function(context, commands) {
   await commands.measure.start('https://shop.example.org');
 
   // Then the product page
+  // Either your shop has a generic item used for testing that you can use 
+  // or in real life you maybe need to add a check that the item really exists in stock
+  // and if not, try another product
   await commands.measure.start('https://shop.example.org/prodcucs/theproduct');
 
   // Add the item to your cart
@@ -274,6 +277,10 @@ module.exports = async function(context, commands) {
   await commands.js.runAndWait('document.querySelector(".checkout-finish").click();');
   // And collect metrics for the FinishCheckout step
   return commands.measure.stop();
+  // In a real web shop you probably can't finish the last step or you can return the item
+  // so the stock is correct. Either you do that at the end or your script or you
+  // add the item id in the context object like context.itemId = yyyy. Then in your
+  // postScript you can do what's needed with that id.
 };
 ~~~
 
