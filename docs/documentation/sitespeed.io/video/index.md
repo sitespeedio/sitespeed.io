@@ -48,7 +48,12 @@ The video will by default include a timer and show when visual metrics happens. 
 
 ### Filmstrip parameters
 When the video is analyzed with [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics) screenshots for
-a filmstrip is also created.
+a filmstrip is also created. With sitespeed.io 8.1 you can see them in the HTML.
+
+![Page to page]({{site.baseurl}}/img/filmstrip-multiple-pages.jpg)
+{: .img-thumbnail}
+
+By default we only show screenshots that differs or have a metric that gets collected at the same time. If you want to see all the screenshots you can do that with <code>--filmstrip.showAll</code>.
 
 If you don't use those images you can turn them off with <code>--videoParams.createFilmstrip false</code>.
 

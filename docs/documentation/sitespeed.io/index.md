@@ -40,7 +40,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Pre/post scripting](prepostscript/) - run Selenium scripts before/after you test a URL.
  * [Setup S3](s3/) - how to setup S3 for your html result/videos and screenshots.
  * [Single Page Application](spa/) - how to test your single page application.
- * [Video](video/) - all that you can do with the video.
+ * [Video](video/) - all that you can do with the video and filmstrip.
  * [WebPageReplay](webpagereplay/) - WebPageReplay is proxy that first records your web site and then replay it locally. That can help you find performance regression in the front-end code easier: Latency/server timings are constant.
  * [WebPageTest](webpagetest/) - drive WebPageTest and fetch metrics and graph them.
 
