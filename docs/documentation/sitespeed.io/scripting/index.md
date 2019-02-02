@@ -278,7 +278,7 @@ module.exports = async function(context, commands) {
   // And collect metrics for the FinishCheckout step
   return commands.measure.stop();
   // In a real web shop you probably can't finish the last step or you can return the item
-  // so the stock is correct. Either you do that at the end or your script or you
+  // so the stock is correct. Either you do that at the end of your script or you
   // add the item id in the context object like context.itemId = yyyy. Then in your
   // postScript you can do what's needed with that id.
 };
