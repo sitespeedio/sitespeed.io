@@ -24,7 +24,15 @@ Test by scripting was introduced in sitespeed.io 8.0 and Browsertime 4.0 and mak
 
 Scripting work the same in Browsertime and sitespeed.io, the documentation here are for both of the tools.
 
-Your script will get access to two objects: The *context* object that holds information about the current run and the *commands* object that has commands/shortcuts to navigate in the page.
+You have three different choices when you create your script:
+* You can use our [commands objects](/documentation/sitespeed.io/scripting/#commmands). They are wrappers around plain JavaScript to make it easier to create your scripts. We prepared for many scenarios but if you need to do really complicated things, you also need [run plain JavaScript](/documentation/sitespeed.io/scripting/#jsrunjavascript) to be able to do what you want. But hey, that's easy!
+* Or you can run plain JavaScript to navigate or do what you need by using the command [js.run()](/documentation/sitespeed.io/scripting/#jsrunjavascript). That will make it easy to copy/paste your JavaScript from your browsers console and test what you want to do.
+* If you are used to do everything with Selenium you can [use ... Selenium](/documentation/sitespeed.io/scripting/#use-selenium-directly) :)
+
+If you use plain JavaScript or Selenium you will still need to use our [measure command](/documentation/sitespeed.io/scripting/#measure) to get measuring and collecting metrics correct.
+
+
+Independent of your implementation, your script will get access to two objects: The *context* object that holds information about the current run and the *commands* object that has commands/shortcuts to navigate in the page.
 
 The simplest version of a script looks like this:
 
@@ -58,6 +66,7 @@ And then you have a few help commands:
 * *[click](#click)* on a link and/or wait for the next page to load.
 * *[js](#run-javascript)* - run JavaScript in the browser.
 * *[switch](#switch)* to another frame or windo.
+* *[set](#set)* innerHthml, innerText or value to an element.
 
 Scripting only works for Browsertime. It will not work (disable) Lighthouse/Google Pagespeed Insights and WebPageTest. If you need scripting for WebPageTest [read the WebPageTest scripting documentation](/documentation/sitespeed.io/webpagetest/#webpagetest-scripting).
 {: .note .note-info}
@@ -256,7 +265,7 @@ module.exports = async function(context, commands) {
   await commands.measure.start('https://shop.example.org/prodcucs/theproduct');
 
   // Add the item to your cart
-  await commands.js.run('document.querySelector(".add-to-cart").click();');
+  await commands.click.bySelector('.add-to-cart');
 
   // Go to the cart (and measure it)
   await commands.measure.start('https://shop.example.org/cart/');
@@ -267,14 +276,14 @@ module.exports = async function(context, commands) {
   // want an complex example
   await commands.js.run('document.body.style.display = "none"');
   await commands.measure.start('CheckoutAsGuest');
-  await commands.js.runAndWait('document.querySelector(".checkout-as-guest").click();');
+  await commands.click.bySelectorAndWait('.checkout-as-guest');
   // Make sure to stop measuring and collect the metrics for the CheckoutAsGuest step
   await commands.measure.stop();
 
   // Finish your checkout
   await commands.js.run('document.body.style.display = "none"');
   await commands.measure.start('FinishCheckout');
-  await commands.js.runAndWait('document.querySelector(".checkout-finish").click();');
+  await commands.click.bySelectorAndWait('.checkout-finish');
   // And collect metrics for the FinishCheckout step
   return commands.measure.stop();
   // In a real web shop you probably can't finish the last step or you can return the item
@@ -327,7 +336,8 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
-If you want to click a link and make sure the background is white, you can hide the HTML and then click the link. At the moment we use Selenium as backend and then you cannot click on hidden links. But you can use JavaScript:
+If you want to click a link and make sure the background is white, you can hide the HTML and then click the link.
+
 ~~~javascript
 module.exports = async function(context, commands) {
     await commands.measure.start('https://www.sitespeed.io');
@@ -336,9 +346,23 @@ module.exports = async function(context, commands) {
     // Start measurning
     await commands.measure.start();
     // Click on the link and wait on navigation to happen
-    await commands.js.runAndWait('document.querySelector("body > nav > div > div > div > ul > li:nth-child(2) > a").click();');
+    await commands.click.bySelectorAndWait('body > nav > div > div > div > ul > li:nth-child(2) > a');
     return commands.measure.stop();
 };
+~~~
+
+
+## Getting values from your page
+In some scenirous you want to do different things dependent on what shows on your page. For example: You are testing a shop checkout and you need to verify that the item is in stock. You can run JavaScript and get the value back to your script.
+
+Here's an simple example, IRL you will need to get something from the page: 
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // We are in browsertime context so you can skip that from your options object
+  const secretValue = await commands.js.run('return 12');
+  // if secretValue === 12 ...
+}
 ~~~
 
 
@@ -347,6 +371,7 @@ There's a couple of way that makes it easier to debug your scripts:
 * Make sure to [use the log](#log-from-your-script) so you can see what happens in your log output.
 * Either run the script locally on your desktop without XVFB so you can see in the browser window what happens or use  <code>--browsertime.videoParams.debug</code> when you record the video. That way you will get one full video of all your scripts (but no Visual Metrics).
 * Use try/catch and await promises so you catch things that doesn't work.
+* If you use plain JavaScript you can copy/paste it and run it in your browsers console to make sure it really works.
 * If you run into trouble, please make sure you make it easy for us to [reproduce your problem](/documentation/sitespeed.io/bug-report/#explain-how-to-reproduce-your-issue) when you report a issue.
 
 
@@ -375,18 +400,12 @@ Start to measure. Browsertime/sitespeed.io will pick up the next URL and measure
 Stop measuring. This will collect technical metrics from the browser, stop the video recording, collect CPU data etc.
 
 ### Click
-The click command will click on visible links. If you need to click in hidden elements you need to use raw JavaScript using [js.runAndWait()](#jsrunandwaitjavascript).
+The click command will click on links.
 
-All click commands have two different versions: One that will return a promise when the link has been clicked and one that will return a promise that will be fullfilled when the link has been clicked and the browser navigated to the new URL and the pageCompleteCheck says ok.
+All click commands have two different versions: One that will return a promise when the link has been clicked and one that will return a promise that will be fullfilled when the link has been clicked and the browser navigated to the new URL and the pageCompleteCheck is done.
 
 If it does not find the link, it will throw an error, so make sure to catch it if you want an alternative flow.
 {: .note .note-warning}
-
-#### click.byName(name)
-Click on element that is found by name attribute that has the given value.
-
-#### click.byNameAndWait(name)
-Click on element that is found by name attribute that has the given value and wait for the pageLoadCompoleteCheck to happen.
 
 #### click.byClassName(className)
 Click on element that is found by specific class name.
@@ -419,10 +438,16 @@ Click on a link located by evaluating a JavaScript expression. The result of thi
 Click on a link located by evaluating a JavaScript expression. The result of this expression must be an element or list of elements. And wait for page complete check to finish.
 
 #### click.byId(id)
-Click on link located by the ID attribute. This locator uses the CSS selector *[id="$ID"], not document.getElementById.
+Click on link located by the ID attribute.
 
 #### click.byIdAndWait(id)
-Click on link located by the ID attribute. This locator uses the CSS selector *[id="$ID"], not document.getElementById. And wait for page complete check to finish.
+Click on link located by the ID attribute. And wait for page complete check to finish.
+
+#### click.bySelector(selector)
+Click on element that is found by the CSS selector that has the given value.
+
+#### click.bySelectorAndWait(seleector)
+Click on element that is found by name CSS selector that has the given value and wait for the pageLoadCompoleteCheck to happen.
 
 ### Wait
 There are two help commands that makes it easier to wait. Either you can wait on a specific id to appear or for x amount of milliseconds.
@@ -433,19 +458,26 @@ Wait for x ms.
 Wait for an element with id to appear before maxTime. If the elemet do not appear within maxTime an error will be thrown.
 
 #### byXpath(xpath, maxTime) {
-Wait for an element founmd by xpath to appear beforeYo maxTime. If the elemet do not appear within maxTime an error will be thrown.
+Wait for an element found by xpath to appear before maxTime. If the elemet do not appear within maxTime an error will be thrown.
 
 ### Run JavaScript
 You can run your own JavaScript in the browser from your script.
 
 #### js.run(javascript)
-Run JavaScript. Will throw an error if the JavaScript fails.
+Run JavaScript. Will throw an error if the JavaScript fails. 
+
+If you want to get values from the web page, this is your best friend. Make sure to return the value and you can use it in your script.
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // We are in browsertime context so you can skip that from your options object
+  const secretValue = await commands.js.run('return 12');
+  // if secretValue === 12 ...
+}
+~~~
 
 #### js.runAndWait(javascript)
 Run JavaScript and wait for page complete check. This is perfect if you wanna click on links with pure JavaScript and measure a URL. Will throw an error if the JavaScript fails.
-
-#### js.runAsync(javascript)
-Run async JavaScript. Will throw an error if the JavaScript fails.
 
 ### Navigate
 Navigate/go to a URL without measuring it.
@@ -476,6 +508,29 @@ Switch to window by name.
 
 #### toParentFrame
 Switch to the parent frame.
+
+### Set
+
+Raw set value of elements.
+
+#### innerHtml(html, selector)
+Use a CSS selector to find the element and set the html to innerHtml.
+
+#### innerHtmlById(html, id)
+
+Use the id to find the element and set the html to innerHtml.
+
+#### innerText(text, selector) 
+Use a CSS selector to find the element and set the text to innerText.
+
+#### innerTextById(text, id)
+Use the id to find the element and set the text to innerText.
+
+#### value(value, selector)
+Use a CSS selector to find the element and set the value to value.
+
+#### valueById(value, id)
+Use the id to find the element and set the value to value.
 
 ### Use Selenium directly
 You can use Selenium directly if you need to use things that are not availible through our commands.
