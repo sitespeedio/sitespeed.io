@@ -147,6 +147,7 @@ Slack
   --slack.limitMetric   The metric that will be used to set warning/error  [choices: "coachScore", "speedIndex", "firstVisualChange"] [default: "coachScore"]
 
 s3
+  --s3.endpoint           The S3 endpoint
   --s3.key                The S3 key
   --s3.secret             The S3 secret
   --s3.bucketname         Name of the S3 bucket
