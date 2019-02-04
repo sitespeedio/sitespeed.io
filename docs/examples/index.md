@@ -21,7 +21,7 @@ Sitespeed.io uses Browsertime, the Coach and PageXray to collect and generate th
 docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b chrome --chrome.timeline https://en.wikipedia.org/wiki/Main_Page https://en.wikipedia.org/wiki/Barack_Obama
 ~~~
 
-Gives the following [report](https://examples.sitespeed.io/8.x/en.wikipedia.org/2019-01-23-16-36-40/). The standard use case for sitespeed.io is to run it continously and send the data to Graphite/Grafana and create dashboards looking like this:
+Gives the following [report](https://examples.sitespeed.io/8.2/en.wikipedia.org/2019-02-04-22-46-14/). The standard use case for sitespeed.io is to run it continously and send the data to Graphite/Grafana and create dashboards looking like this:
 
 [![Example dashboard]({{site.baseurl}}/img/examples/dashboard-examples.png)](https://dashboard.sitespeed.io/dashboard/db/page-summary?orgId=1)
 {: .img-thumbnail}
