@@ -1,4 +1,7 @@
 # CHANGELOG - sitespeed.io
+## 8.2.1 2019-02-04
+### Fixed
+* New Browsertime [4.2.4](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#424---2019-02-04) with fixed bug for commands set.innerHtml and click.byXpath.
 
 ## 8.2.0 2019-02-04
 ### Added
