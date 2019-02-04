@@ -1,5 +1,15 @@
 # CHANGELOG - sitespeed.io
 
+## 8.2.0 UNRELEASED
+### Added
+* New Browsertime [4.2.3](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md) with: 
+  * Fixed so that ```js.run()``` returns whatever it gets back so you can script and get whatever you need from your page [#749](https://github.com/sitespeedio/browsertime/pull/749).
+  * New help command **set** to set innerHtml, innerText and value of element. [#750](https://github.com/sitespeedio/browsertime/pull/750). 
+  * Added click.bySelector and rewrote most of click methods to use plain JavaScript instead of Selenium (so it will work on hidden elements) [#751](https://github.com/sitespeedio/browsertime/pull/751). 
+  * The HAR file had wrong visual metrics as reported in [#754](https://github.com/sitespeedio/browsertime/issues/754). Fixed in [#756](https://github.com/sitespeedio/browsertime/pull/756).
+  * Fixed borders when running Visual Metrics to try to avoid small orange in the first frame for Chrome [#755](https://github.com/sitespeedio/browsertime/issues/755) fixed in [#757](https://github.com/sitespeedio/browsertime/pull/757).
+* Added endpoint as an configurable argument for s3 options, making it possible to use Digital Ocean for storage (and others)[#2285](https://github.com/sitespeedio/sitespeed.io/pull/2285)
+
 ## 8.1.1 - 2019-02-01
 ### Fixed 
 * Updated Coach to use latest Browsertime
