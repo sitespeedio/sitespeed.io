@@ -387,8 +387,25 @@ If you do not give it a URL, it will prepare everything and start the video. So 
 #### measure.start(url)
 Start and navigate to the URL and then automatically call the stop() function after the page has stopped navigating decided by the current pageCompleteCheck.
 
+~~~javascript
+module.exports = async function(context, commands) {
+  await commands.measure.start('https://www.sitespeed.io');
+  // If you want to measuure multiple URLs after each other
+  // you can just line them up
+  await commands.measure.start('https://www.sitespeed.io/examples/');
+  return commands.measure.start('https://www.sitespeed.io/documentation/');
+};
+~~~
+
 #### measure.start(url, alias)
 Start and navigate to the URL and then automatically call the stop() function after the page has stopped navigating decided by the current pageCompleteCheck. The page will also get the alias that will be used when you send the metrics to Graphite/InfluxDB. Use it when you have complex URLs.
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // Measure the page and give it the alias StartPage
+  return await commands.measure.start('https://www.sitespeed.io', 'StartPage');
+};
+~~~
 
 #### measure.start() 
 Start to measure. Browsertime/sitespeed.io will pick up the next URL and measure that. You need to call the stop() function yourself.
@@ -438,46 +455,46 @@ If it does not find the link, it will throw an error, so make sure to catch it i
 {: .note .note-warning}
 
 #### click.byClassName(className)
-Click on element that is found by specific class name.
+Click on element that is found by specific class name. Will use ```document.getElementsByClassName(className)``` and take the first result and click on it.
 
 #### click.byClassNameAndWait(className)
-Click on element that is found by specific class name and wait for page load complete check to finish.
+Click on element that is found by specific class name and wait for [page load complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to finish. Will use ```document.getElementsByClassName(className)``` and take the first result and click on it.
 
 #### click.byLinkText(text)
 Click on link whose visible text matches the given string.
 
 #### click.byLinkTextAndWait(text)
-Click on link whose visible text matches the given string and wait for pageCompleteCheck to finish.
+Click on link whose visible text matches the given string and wait for [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to finish.
 
 #### click.byPartialLinkText(text)
 Click on link whose visible text contains the given substring.
 
 #### click.byPartialLinkTextAndWait(text)
-Click on link whose visible text contains the given substring and wait for pageCompleteCheck to finish.
+Click on link whose visible text contains the given substring and wait for [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to finish.
 
 #### click.byXpath(xpath)
 Click on link that matches a XPath selector.
 
 #### click.byXpathAndWait(xpath)
-Click on link that matches a XPath selector and wait for page load complete check to finish.
+Click on link that matches a XPath selector and wait for [page load complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to finish.
 
 #### click.byJs(js)
 Click on a link located by evaluating a JavaScript expression. The result of this expression must be an element or list of elements.
 
 #### click.byJsAndWait(js)
-Click on a link located by evaluating a JavaScript expression. The result of this expression must be an element or list of elements. And wait for page complete check to finish.
+Click on a link located by evaluating a JavaScript expression. The result of this expression must be an element or list of elements. And wait for [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to finish.
 
 #### click.byId(id)
 Click on link located by the ID attribute.
 
 #### click.byIdAndWait(id)
-Click on link located by the ID attribute. And wait for page complete check to finish.
+Click on link located by the ID attribute. And wait for [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to finish.
 
 #### click.bySelector(selector)
 Click on element that is found by the CSS selector that has the given value.
 
 #### click.bySelectorAndWait(seleector)
-Click on element that is found by name CSS selector that has the given value and wait for the pageLoadCompoleteCheck to happen.
+Click on element that is found by name CSS selector that has the given value and wait for the [page cmplete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to happen.
 
 ### Wait
 There are two help commands that makes it easier to wait. Either you can wait on a specific id to appear or for x amount of milliseconds.
@@ -507,7 +524,7 @@ module.exports = async function(context, commands) {
 ~~~
 
 #### js.runAndWait(javascript)
-Run JavaScript and wait for page complete check. This is perfect if you wanna click on links with pure JavaScript and measure a URL. Will throw an error if the JavaScript fails.
+Run JavaScript and wait for [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test). This is perfect if you wanna click on links with pure JavaScript and measure a URL. Will throw an error if the JavaScript fails.
 
 ### Navigate
 Navigate/go to a URL without measuring it.
