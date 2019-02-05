@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 8.2.2 2019-02-05
 ### Fixed
 * Warn in the log if you try to run a script without a --multi parameter [#2288](https://github.com/sitespeedio/sitespeed.io/pull/2288).
 
