@@ -393,11 +393,35 @@ Start and navigate to the URL and then automatically call the stop() function af
 #### measure.start() 
 Start to measure. Browsertime/sitespeed.io will pick up the next URL and measure that. You need to call the stop() function yourself.
 
+~~~javascript
+module.exports = async function(context, commands) {
+  // Start by navigating to a page
+  await commands.navigate('https://www.example.org');
+  // Start a measurement
+  await commands.measure.start();
+  await commands.click.bySelectorAndWait('.important-link');
+  // Remember that when you start() a measurement without a URL you also needs to stop it! 
+  return commands.measure.stop();
+};
+~~~
+
 If you start a measurement without giving a URL you need to also call measure.stop() when you finished measuring.
 {: .note .note-warning}
 
 #### measure.start(alias)
 Start to measure. Browsertime/sitespeed.io will pick up the next URL and measure that. You need to call the stop() function yourself. The page will also get the alias that will be used when you send the metrics to Graphite/InfluxDB. Use it when you have complex URLs.
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // Start by navigating to a page
+  await commands.navigate('https://www.example.org');
+  // Start a measurement and give it an alias that is used if you send the metrics to Graphite/InfluxDB for the next URL
+  await commands.measure.start('FancyName');
+  await commands.click.bySelectorAndWait('.important-link');
+  // Remember that when you start() a measurement without a URL you also needs to stop it! 
+  return commands.measure.stop();
+};
+~~~
 
 If you start a measurement without giving a URL you need to also call measure.stop() when you finished measuring.
 {: .note .note-warning}
