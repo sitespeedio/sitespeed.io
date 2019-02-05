@@ -1,4 +1,9 @@
 # CHANGELOG - sitespeed.io
+
+## UNRELEASED
+### Fixed
+* Warn in the log if you try to run a script without a --multi parameter [#2288](https://github.com/sitespeedio/sitespeed.io/pull/2288).
+
 ## 8.2.1 2019-02-04
 ### Fixed
 * New Browsertime [4.2.4](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#424---2019-02-04) with fixed bug for commands set.innerHtml and click.byXpath.
