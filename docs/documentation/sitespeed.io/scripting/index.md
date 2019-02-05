@@ -393,8 +393,14 @@ Start and navigate to the URL and then automatically call the stop() function af
 #### measure.start() 
 Start to measure. Browsertime/sitespeed.io will pick up the next URL and measure that. You need to call the stop() function yourself.
 
+If you start a measurement without giving a URL you need to also call measure.stop() when you finished measuring.
+{: .note .note-warning}
+
 #### measure.start(alias)
 Start to measure. Browsertime/sitespeed.io will pick up the next URL and measure that. You need to call the stop() function yourself. The page will also get the alias that will be used when you send the metrics to Graphite/InfluxDB. Use it when you have complex URLs.
+
+If you start a measurement without giving a URL you need to also call measure.stop() when you finished measuring.
+{: .note .note-warning}
 
 #### measure.stop()
 Stop measuring. This will collect technical metrics from the browser, stop the video recording, collect CPU data etc.
