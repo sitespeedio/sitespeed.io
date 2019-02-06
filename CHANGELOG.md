@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 8.2.3 2019-02-06
+### Fixed
+* Upgraded to Browsertime [4.2.5](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#425---2019-02-06) that hopefully fixes the wrong metrics inserted into the HAR file if you run test multiple pages.
+
 ## 8.2.2 2019-02-05
 ### Fixed
 * Warn in the log if you try to run a script without a --multi parameter [#2288](https://github.com/sitespeedio/sitespeed.io/pull/2288).
