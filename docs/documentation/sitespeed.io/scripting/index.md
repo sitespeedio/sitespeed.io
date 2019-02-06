@@ -78,6 +78,86 @@ Run your script by passing it to sitespeed.io and adding the parameter ```--mult
 docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} script.js script2.js script3.js --multi
 ~~~
 
+
+## Getting correct Visual Metrics
+Visual metrics is the metrics that are collected using the video recording of the screen. In most cases that will work just out of the box. One thing to know is that when you go from one page to another page, the browser keeps the layout of the old page. That means that your video will start with the first page (instead of white) when yoy navigate to the next page.
+
+It will look like this:
+![Page to page]({{site.baseurl}}/img/filmstrip-multiple-pages.jpg)
+{: .img-thumbnail}
+
+This is perfectly fine in most cases. But if you want to start white (the metrics somehow isn't correct) or if you click a link and that click changes the layout and is catched as First Visual Change, there are workarounds.
+
+If you just want to start white and navigate to the next page you can just clear the HTML between pages:
+
+~~~javascript
+module.exports = async function(context, commands) {
+    await commands.measure.start('https://www.sitespeed.io');
+    // Renove the HTML and make sure the background is white
+    await commands.js.run('document.body.innerHTML = ""; document.body.style.backgroundColor = "white";');
+    return commands.measure.start('https://www.sitespeed.io/examples/');
+};
+~~~
+
+If you want to click a link and make sure the background is white, you can hide the HTML and then click the link.
+
+~~~javascript
+module.exports = async function(context, commands) {
+    await commands.measure.start('https://www.sitespeed.io');
+    // Hide everything
+    await commands.js.run('document.body.style.display = "none"');
+    // Start measurning
+    await commands.measure.start();
+    // Click on the link and wait on navigation to happen
+    await commands.click.bySelectorAndWait('body > nav > div > div > div > ul > li:nth-child(2) > a');
+    return commands.measure.stop();
+};
+~~~
+
+
+## Getting values from your page
+In some scenirous you want to do different things dependent on what shows on your page. For example: You are testing a shop checkout and you need to verify that the item is in stock. You can run JavaScript and get the value back to your script.
+
+Here's an simple example, IRL you will need to get something from the page: 
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // We are in browsertime context so you can skip that from your options object
+  const secretValue = await commands.js.run('return 12');
+  // if secretValue === 12 ...
+}
+~~~
+
+## Finding the right element
+
+One of the key things in your script is to be able to find the right element to invoke. If the elemnt has an id it's easy. If not you can use developer tools in your favourite browser. The all work mostly the same: Open devtools in the page you want to inspect, click on the element and right click on devtools for that element. Then you will see something like this:
+
+![Using Safari to find the selector]({{site.baseurl}}/img/selector-safari.png)
+{: .img-thumbnail-center}
+<p class="image-info">
+ <em class="small center">Using Safari to find the CSS Selector to the element</em>
+</p>
+
+![Using Firefox to find the selector]({{site.baseurl}}/img/selector-firefox.png)
+{: .img-thumbnail-center}
+<p class="image-info">
+ <em class="small center">Using Firefox to find the CSS Selector to the element</em>
+</p>
+
+![Using Chrome to find the selector]({{site.baseurl}}/img/selector-chrome.png)
+{: .img-thumbnail-center}
+<p class="image-info">
+ <em class="small center">Using Chrome to find the CSS Selector to the element</em>
+</p>
+
+## Debug
+There's a couple of way that makes it easier to debug your scripts: 
+* Make sure to [use the log](#log-from-your-script) so you can see what happens in your log output.
+* Either run the script locally on your desktop without XVFB so you can see in the browser window what happens or use  <code>--browsertime.videoParams.debug</code> when you record the video. That way you will get one full video of all your scripts (but no Visual Metrics).
+* Use try/catch and await promises so you catch things that doesn't work.
+* If you use plain JavaScript you can copy/paste it and run it in your browsers console to make sure it really works.
+* If you run into trouble, please make sure you make it easy for us to [reproduce your problem](/documentation/sitespeed.io/bug-report/#explain-how-to-reproduce-your-issue) when you report a issue.
+
 ## Examples
 Here are some examples on how you can use the scripting capabilities.
 
@@ -316,65 +396,6 @@ module.exports = async function(context, commands) {
 }
 ~~~
 
-## Getting correct Visual Metrics
-Visual metrics is the metrics that are collected using the video recording of the screen. In most cases that will work just out of the box. One thing to know is that when you go from one page to another page, the browser keeps the layout of the old page. That means that your video will start with the first page (instead of white) when yoy navigate to the next page.
-
-It will look like this:
-![Page to page]({{site.baseurl}}/img/filmstrip-multiple-pages.jpg)
-{: .img-thumbnail}
-
-This is perfectly fine in most cases. But if you want to start white (the metrics somehow isn't correct) or if you click a link and that click changes the layout and is catched as First Visual Change, there are workarounds.
-
-If you just want to start white and navigate to the next page you can just clear the HTML between pages:
-
-~~~javascript
-module.exports = async function(context, commands) {
-    await commands.measure.start('https://www.sitespeed.io');
-    // Renove the HTML and make sure the background is white
-    await commands.js.run('document.body.innerHTML = ""; document.body.style.backgroundColor = "white";');
-    return commands.measure.start('https://www.sitespeed.io/examples/');
-};
-~~~
-
-If you want to click a link and make sure the background is white, you can hide the HTML and then click the link.
-
-~~~javascript
-module.exports = async function(context, commands) {
-    await commands.measure.start('https://www.sitespeed.io');
-    // Hide everything
-    await commands.js.run('document.body.style.display = "none"');
-    // Start measurning
-    await commands.measure.start();
-    // Click on the link and wait on navigation to happen
-    await commands.click.bySelectorAndWait('body > nav > div > div > div > ul > li:nth-child(2) > a');
-    return commands.measure.stop();
-};
-~~~
-
-
-## Getting values from your page
-In some scenirous you want to do different things dependent on what shows on your page. For example: You are testing a shop checkout and you need to verify that the item is in stock. You can run JavaScript and get the value back to your script.
-
-Here's an simple example, IRL you will need to get something from the page: 
-
-~~~javascript
-module.exports = async function(context, commands) {
-  // We are in browsertime context so you can skip that from your options object
-  const secretValue = await commands.js.run('return 12');
-  // if secretValue === 12 ...
-}
-~~~
-
-
-## Debug
-There's a couple of way that makes it easier to debug your scripts: 
-* Make sure to [use the log](#log-from-your-script) so you can see what happens in your log output.
-* Either run the script locally on your desktop without XVFB so you can see in the browser window what happens or use  <code>--browsertime.videoParams.debug</code> when you record the video. That way you will get one full video of all your scripts (but no Visual Metrics).
-* Use try/catch and await promises so you catch things that doesn't work.
-* If you use plain JavaScript you can copy/paste it and run it in your browsers console to make sure it really works.
-* If you run into trouble, please make sure you make it easy for us to [reproduce your problem](/documentation/sitespeed.io/bug-report/#explain-how-to-reproduce-your-issue) when you report a issue.
-
-
 ## Commmands
 
 All commands will return a promise and you should await it to fulfil. If some command do not work, we will log that automatically and rethrow the error, so you can catch that and can act on that.
@@ -449,7 +470,7 @@ Stop measuring. This will collect technical metrics from the browser, stop the v
 ### Click
 The click command will click on links.
 
-All click commands have two different versions: One that will return a promise when the link has been clicked and one that will return a promise that will be fullfilled when the link has been clicked and the browser navigated to the new URL and the pageCompleteCheck is done.
+All click commands have two different versions: One that will return a promise when the link has been clicked and one that will return a promise that will be fullfilled when the link has been clicked and the browser navigated to the new URL and the [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) is done.
 
 If it does not find the link, it will throw an error, so make sure to catch it if you want an alternative flow.
 {: .note .note-warning}
@@ -461,7 +482,7 @@ Click on element that is found by specific class name. Will use ```document.getE
 Click on element that is found by specific class name and wait for [page load complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to finish. Will use ```document.getElementsByClassName(className)``` and take the first result and click on it.
 
 #### click.byLinkText(text)
-Click on link whose visible text matches the given string.
+Click on link whose visible text matches the given string. Internally we use an xpath expression to find the correct link.
 
 #### click.byLinkTextAndWait(text)
 Click on link whose visible text matches the given string and wait for [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to finish.
@@ -485,27 +506,28 @@ Click on a link located by evaluating a JavaScript expression. The result of thi
 Click on a link located by evaluating a JavaScript expression. The result of this expression must be an element or list of elements. And wait for [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to finish.
 
 #### click.byId(id)
-Click on link located by the ID attribute.
+Click on link located by the ID attribute. Internally we use  ```document.getElementById(id)``` to get the correct element.
 
 #### click.byIdAndWait(id)
-Click on link located by the ID attribute. And wait for [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to finish.
+Click on link located by the ID attribute. Internally we use  ```document.getElementById(id)``` to get the correct element. And wait for [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to finish.
 
 #### click.bySelector(selector)
-Click on element that is found by the CSS selector that has the given value.
+Click on element that is found by the CSS selector that has the given value. Internally we use  ```document.querySelector(selector)``` to get the correct element.
 
 #### click.bySelectorAndWait(seleector)
-Click on element that is found by name CSS selector that has the given value and wait for the [page cmplete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to happen.
+Click on element that is found by name CSS selector that has the given value and wait for the [page cmplete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to happen. Internally we use  ```document.querySelector(selector)``` to get the correct element.
 
 ### Wait
 There are two help commands that makes it easier to wait. Either you can wait on a specific id to appear or for x amount of milliseconds.
+
 #### wait.byTime(ms)
 Wait for x ms.
 
 #### wait.byId(id,maxTime)
-Wait for an element with id to appear before maxTime. If the elemet do not appear within maxTime an error will be thrown.
+Wait for an element with id to appear before maxTime. The element needs to be visible for the user. If the element do not appear within maxTime an error will be thrown.
 
 #### byXpath(xpath, maxTime) {
-Wait for an element found by xpath to appear before maxTime. If the elemet do not appear within maxTime an error will be thrown.
+Wait for an element found by xpath to appear before maxTime. The element needs to be visible for the user. If the elemet do not appear within maxTime an error will be thrown.
 
 ### Run JavaScript
 You can run your own JavaScript in the browser from your script.
@@ -530,7 +552,7 @@ Run JavaScript and wait for [page complete check](/documentation/sitespeed.io/br
 Navigate/go to a URL without measuring it.
 
 #### navigate(url)
-Navigate to a URL and do not measure it. It will use the default pageCompleteCheck.
+Navigate to a URL and do not measure it. It will use the default [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) and follow the exact same pattern for going to a page as normal Browsertime navigation except it will skip collecting any metrics.
 
 ### Add text 
 You can add text to input elements.
@@ -561,23 +583,23 @@ Switch to the parent frame.
 Raw set value of elements.
 
 #### innerHtml(html, selector)
-Use a CSS selector to find the element and set the html to innerHtml.
+Use a CSS selector to find the element and set the html to innerHtml. Internally it uses ```document.querySelector(selector)``` to find the right element.
 
 #### innerHtmlById(html, id)
 
-Use the id to find the element and set the html to innerHtml.
+Use the id to find the element and set the html to innerHtml. Internally it uses ```document.getElementById(id)``` to find the right element.
 
 #### innerText(text, selector) 
-Use a CSS selector to find the element and set the text to innerText.
+Use a CSS selector to find the element and set the text to innerText. Internally it uses ```document.querySelector(selector)``` to find the right element.
 
 #### innerTextById(text, id)
-Use the id to find the element and set the text to innerText.
+Use the id to find the element and set the text to innerText. Internally it uses ```document.getElementById(id)``` to find the right element.
 
 #### value(value, selector)
-Use a CSS selector to find the element and set the value to value.
+Use a CSS selector to find the element and set the value to value. Internally it uses ```document.querySelector(selector)``` to find the right element.
 
 #### valueById(value, id)
-Use the id to find the element and set the value to value.
+Use the id to find the element and set the value to value. Internally it uses ```document.getElementById(id)``` to find the right element.
 
 ### Use Selenium directly
 You can use Selenium directly if you need to use things that are not availible through our commands.
