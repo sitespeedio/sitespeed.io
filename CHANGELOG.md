@@ -4,6 +4,9 @@
 ### Added
 * Use alias from the script when displaying URLs in the HTML, reported by [banuady](https://github.com/banuady) in [#2296](https://github.com/sitespeedio/sitespeed.io/issues/2296) and fixed in [#2297](https://github.com/sitespeedio/sitespeed.io/pull/2297).
 
+### Fixed
+* Spelling for the script-reader message (was scrtipt-reader).
+
 ## 8.2.3 2019-02-06
 ### Fixed
 * Upgraded to Browsertime [4.2.5](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#425---2019-02-06) that hopefully fixes the wrong metrics inserted into the HAR file if you run test multiple pages.
