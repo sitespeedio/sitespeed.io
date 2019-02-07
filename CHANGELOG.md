@@ -4,6 +4,8 @@
 ### Added
 * Use alias from the script when displaying URLs in the HTML, reported by [banuady](https://github.com/banuady) in [#2296](https://github.com/sitespeedio/sitespeed.io/issues/2296) and fixed in [#2297](https://github.com/sitespeedio/sitespeed.io/pull/2297).
 
+* You can include the script your using the HTML output with ```--html.showScript``` [#2298](https://github.com/sitespeedio/sitespeed.io/pull/2298). Be careful though with passwords or other secrets.
+
 ### Fixed
 * Spelling for the script-reader message (was scrtipt-reader).
 
