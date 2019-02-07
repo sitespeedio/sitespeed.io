@@ -1,0 +1,15 @@
+extends ./layout.pug
+
+block content
+    .row
+        .column
+            include runInfo
+
+            if scripts.length > 0
+                h1 Scripting        
+                each script in scripts
+                    b #{script.name}
+                    pre
+                        code #{script.code}
+            else
+                p No configured scripts.
