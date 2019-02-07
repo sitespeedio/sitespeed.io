@@ -65,7 +65,7 @@ And then you have a few help commands:
 * *[wait](#wait)* on a id to appear or wait x amount of ms.
 * *[click](#click)* on a link and/or wait for the next page to load.
 * *[js](#run-javascript)* - run JavaScript in the browser.
-* *[switch](#switch)* to another frame or windo.
+* *[switch](#switch)* to another frame or window.
 * *[set](#set)* innerHthml, innerText or value to an element.
 
 Scripting only works for Browsertime. It will not work (disable) Lighthouse/Google Pagespeed Insights and WebPageTest. If you need scripting for WebPageTest [read the WebPageTest scripting documentation](/documentation/sitespeed.io/webpagetest/#webpagetest-scripting).
