@@ -514,7 +514,7 @@ Click on link located by the ID attribute. Internally we use  ```document.getEle
 #### click.bySelector(selector)
 Click on element that is found by the CSS selector that has the given value. Internally we use  ```document.querySelector(selector)``` to get the correct element.
 
-#### click.bySelectorAndWait(seleector)
+#### click.bySelectorAndWait(selector)
 Click on element that is found by name CSS selector that has the given value and wait for the [page cmplete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to happen. Internally we use  ```document.querySelector(selector)``` to get the correct element.
 
 ### Wait
@@ -526,7 +526,7 @@ Wait for x ms.
 #### wait.byId(id,maxTime)
 Wait for an element with id to appear before maxTime. The element needs to be visible for the user. If the element do not appear within maxTime an error will be thrown.
 
-#### byXpath(xpath, maxTime) {
+#### byXpath(xpath, maxTime)
 Wait for an element found by xpath to appear before maxTime. The element needs to be visible for the user. If the elemet do not appear within maxTime an error will be thrown.
 
 ### Run JavaScript
