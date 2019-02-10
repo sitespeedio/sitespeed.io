@@ -99,7 +99,7 @@ Budget
   --budget.configPath        Path to the JSON budget file.
   --budget.suppressExitCode  By default sitespeed.io returns a failure exit code, if the budget fails. Set this to true and sitespeed.io will return exit code 0 independent of the budget.
   --budget.config            The JSON budget config as a string.
-  --budget.output            The output format of the budget.  [choices: "junit", "tap"]
+  --budget.output            The output format of the budget.  [choices: "junit", "tap", "json"]
 
 Screenshot
   --browsertime.screenshotParams.type, --screenshot.type                                  Set the file type of the screenshot  [choices: "png", "jpg"] [default: "png"]
@@ -163,6 +163,7 @@ HTML
   --html.fetchHARFiles            Set to true to load HAR files using fetch instead of including them in the HTML. Turn this on if serve your pages using a server.  [boolean] [default: false]
   --html.logDownloadLink          Adds a link in the HTML so you easily can download the logs from the sitespeed.io run. If your server is public, be careful so you don't log passwords etc  [boolean] [default: false]
   --html.topListSize              Maximum number of assets to include in each toplist in the toplist tab  [default: 10]
+  --html.showScript               Show a link to the script you use to run. Be careful if your result is public and you keep passwords in your script.  [boolean] [default: false]
 
 Text
   --summary         Show brief text summary to stdout  [boolean] [default: false]
