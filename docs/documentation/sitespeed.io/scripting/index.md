@@ -555,13 +555,16 @@ Navigate/go to a URL without measuring it.
 Navigate to a URL and do not measure it. It will use the default [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) and follow the exact same pattern for going to a page as normal Browsertime navigation except it will skip collecting any metrics.
 
 ### Add text 
-You can add text to input elements.
+You can add text to input elements. The element needs to visible.
 
 #### addText.byId(text, id)
 Add the *text* to the element with the *id*. If the id is not found the command will throw an error.
 
 #### byXpath(text, xpath) 
 Add the *text* to the element by using *xpath*. If the xpath is not found the command will throw an error.
+
+#### addText.bySelector(text, selector) 
+Add the *text* to the element by using *CSS selector*. If the xpath is not found the command will throw an error.
 
 ### Switch 
 You can switch to iframes or windows if that is needed.
