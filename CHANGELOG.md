@@ -10,6 +10,8 @@
 
 * Upgraded to Browsertime [4.3.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#430-2019-02-10) with new addText.bySelector(text, selector) command + fixed so click.byJs and click.byJsAndWait works on elements that is hidden.
 
+* Added endpoint to s3 configurations to allow for pushing HTML reports to Digital Ocean's Spaces as it is S3 compatible. [#2072]
+
 ### Fixed
 * Upgraded to Browsertime [4.2.6](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#426-2019-02-08) with two fixes:
   * Command set value by id was broken, it used to set the value to the id [#761](https://github.com/sitespeedio/browsertime/pull/761). 

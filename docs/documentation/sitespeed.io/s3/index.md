@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Upload result to S3.
-description: You can upload the HTML/videos to S3. Here's how to do that.
-keywords: S3, aws, amazon, configure, sitespeed.io
+title: Upload result to S3 or Digital Ocean's Spaces.
+description: You can upload the HTML/videos to S3 or Digital Ocean's Spaces. Here's how to do that.
+keywords: S3, spaces, do, digital ocean, aws, amazon, configure, sitespeed.io
 author: Peter Hedenskog
 nav: documentation
 category: sitespeed.io
@@ -69,8 +69,13 @@ Screenshots are by default png but you probably want them to be jpg: ```--screen
 And then you should also make sure that all the result files (HTML/videos/screenshots) are removed from your local server and only exists on S3. Add ```--s3.removeLocalResult```.
 
 
+# Digital Ocean Spaces
+[Digital Ocean Spaces](https://developers.digitalocean.com/documentation/spaces/#aws-s3-compatibility)
+
+Digital Ocean is compatiable with the S3 api, so all that is required after setting up your space and aquiring a key and secret is to modify the endpoint that the s3 results are passed to as shown below.
+
 ## JSON configuration file
-If you use a JSON configuration file you should make sure you add this to get S3 to work:
+ If the endpoint is not passed this will default to AWS's endpoint. You may safely exclude it for AWS integration. If you use a JSON configuration file you should make sure you add this to get S3 to work:
 
 ~~~javascript
 {
@@ -81,6 +86,7 @@ If you use a JSON configuration file you should make sure you add this to get S3
     "fetchHARFiles": true
   },
   "s3": {
+     "endpoint": "OPTIONALLY_YOUR_ENDPOINT_FOR_DO_OR_AWS",
      "key": "YOUR_KEY",
      "secret": "YOUR_SECRET",
      "bucketname": "YOUR_BUCKETNAME",
