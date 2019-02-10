@@ -1,17 +1,20 @@
 # CHANGELOG - sitespeed.io
 
-## 8.3.0 UNRELEASED
+## 8.3.0 
 ### Added
 * Use alias from the script when displaying URLs in the HTML, reported by [banuady](https://github.com/banuady) in [#2296](https://github.com/sitespeedio/sitespeed.io/issues/2296) and fixed in [#2297](https://github.com/sitespeedio/sitespeed.io/pull/2297).
 
 * You can include the script your using the HTML output with ```--html.showScript``` [#2298](https://github.com/sitespeedio/sitespeed.io/pull/2298). Be careful though with passwords or other secrets.
 
-* Added json as output type for the budget. Set ```--budget.output json ``` and it will store *budget-result.json* in your result directory [#2299](https://github.com/sitespeedio/sitespeed.io/pull/2299).
+* Added json as output type for the budget. Set ```--budget.output json ``` and it will store *budgetResult.json* in your result directory [#2299](https://github.com/sitespeedio/sitespeed.io/pull/2299).
+
+* Upgraded to Browsertime [4.3.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#430-2019-02-10) with new addText.bySelector(text, selector) command + fixed so click.byJs and click.byJsAndWait works on elements that is hidden.
 
 ### Fixed
 * Upgraded to Browsertime [4.2.6](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#426-2019-02-08) with two fixes:
   * Command set value by id was broken, it used to set the value to the id [#761](https://github.com/sitespeedio/browsertime/pull/761). 
   * I've missed that for some URLs (as in this [login](https://github.com/sitespeedio/sitespeed.io/issues/2290#issuecomment-461601990) you could have an alias for an URL but the URL was actually slightly different. For example, you login to a site and the login step redirect to a URL and for that URL one value of a GET parameter differs. So with this fix we lock the alias tyo one specific URL. If your URL change and you use an alias, the first variation of the URL will be used [#763](https://github.com/sitespeedio/browsertime/pull/763).
+
 
 ### Fixed
 * Spelling for the script-reader message (was scrtipt-reader).
