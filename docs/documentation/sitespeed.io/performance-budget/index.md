@@ -204,3 +204,13 @@ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include ve
 ~~~
 
 It will create a *budget.tap* in the outputFolder.
+
+### JSON
+You can output the result of the budget as JSON:
+
+~~~bash
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --budget.configPath myBudget.json --budget.output json -b chrome -n 5
+~~~
+
+It will create a *budgetResult.json* in the outputFolder.
+
