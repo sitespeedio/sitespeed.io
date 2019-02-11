@@ -396,6 +396,14 @@ module.exports = async function(context, commands) {
 }
 ~~~
 
+## Tips and Tricks
+
+### Include the script in the HTML result
+If you wanna keep of what script you are running, you can include the script into the HTML result with ```--html.showScript```. You will then get a link to a page that show the script.
+
+![Page to page]({{site.baseurl}}/img/script-link.png)
+{: .img-thumbnail}
+
 ## Commmands
 
 All commands will return a promise and you should await it to fulfil. If some command do not work, we will log that automatically and rethrow the error, so you can catch that and can act on that.
