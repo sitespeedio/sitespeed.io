@@ -1,6 +1,10 @@
 # CHANGELOG - sitespeed.io
 
-## 8.3.0 
+## 8.4.0 - UNRELEASED
+### Fixed
+* Catch errors when creating the filmstrip, so that not the full test fails.
+
+## 8.3.0 - 2019-02-10
 ### Added
 * Use alias from the script when displaying URLs in the HTML, reported by [banuady](https://github.com/banuady) in [#2296](https://github.com/sitespeedio/sitespeed.io/issues/2296) and fixed in [#2297](https://github.com/sitespeedio/sitespeed.io/pull/2297).
 
