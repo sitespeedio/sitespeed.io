@@ -78,43 +78,6 @@ Run your script by passing it to sitespeed.io and adding the parameter ```--mult
 docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} script.js script2.js script3.js --multi
 ~~~
 
-
-## Getting correct Visual Metrics
-Visual metrics is the metrics that are collected using the video recording of the screen. In most cases that will work just out of the box. One thing to know is that when you go from one page to another page, the browser keeps the layout of the old page. That means that your video will start with the first page (instead of white) when yoy navigate to the next page.
-
-It will look like this:
-![Page to page]({{site.baseurl}}/img/filmstrip-multiple-pages.jpg)
-{: .img-thumbnail}
-
-This is perfectly fine in most cases. But if you want to start white (the metrics somehow isn't correct) or if you click a link and that click changes the layout and is catched as First Visual Change, there are workarounds.
-
-If you just want to start white and navigate to the next page you can just clear the HTML between pages:
-
-~~~javascript
-module.exports = async function(context, commands) {
-    await commands.measure.start('https://www.sitespeed.io');
-    // Renove the HTML and make sure the background is white
-    await commands.js.run('document.body.innerHTML = ""; document.body.style.backgroundColor = "white";');
-    return commands.measure.start('https://www.sitespeed.io/examples/');
-};
-~~~
-
-If you want to click a link and make sure the background is white, you can hide the HTML and then click the link.
-
-~~~javascript
-module.exports = async function(context, commands) {
-    await commands.measure.start('https://www.sitespeed.io');
-    // Hide everything
-    await commands.js.run('document.body.style.display = "none"');
-    // Start measurning
-    await commands.measure.start();
-    // Click on the link and wait on navigation to happen
-    await commands.click.bySelectorAndWait('body > nav > div > div > div > ul > li:nth-child(2) > a');
-    return commands.measure.stop();
-};
-~~~
-
-
 ## Getting values from your page
 In some scenirous you want to do different things dependent on what shows on your page. For example: You are testing a shop checkout and you need to verify that the item is in stock. You can run JavaScript and get the value back to your script.
 
@@ -403,6 +366,42 @@ If you wanna keep of what script you are running, you can include the script int
 
 ![Page to page]({{site.baseurl}}/img/script-link.png)
 {: .img-thumbnail}
+
+### Getting correct Visual Metrics
+Visual metrics is the metrics that are collected using the video recording of the screen. In most cases that will work just out of the box. One thing to know is that when you go from one page to another page, the browser keeps the layout of the old page. That means that your video will start with the first page (instead of white) when yoy navigate to the next page.
+
+It will look like this:
+![Page to page]({{site.baseurl}}/img/filmstrip-multiple-pages.jpg)
+{: .img-thumbnail}
+
+This is perfectly fine in most cases. But if you want to start white (the metrics somehow isn't correct) or if you click a link and that click changes the layout and is catched as First Visual Change, there are workarounds.
+
+If you just want to start white and navigate to the next page you can just clear the HTML between pages:
+
+~~~javascript
+module.exports = async function(context, commands) {
+    await commands.measure.start('https://www.sitespeed.io');
+    // Renove the HTML and make sure the background is white
+    await commands.js.run('document.body.innerHTML = ""; document.body.style.backgroundColor = "white";');
+    return commands.measure.start('https://www.sitespeed.io/examples/');
+};
+~~~
+
+If you want to click a link and make sure the background is white, you can hide the HTML and then click the link.
+
+~~~javascript
+module.exports = async function(context, commands) {
+    await commands.measure.start('https://www.sitespeed.io');
+    // Hide everything
+    await commands.js.run('document.body.style.display = "none"');
+    // Start measurning
+    await commands.measure.start();
+    // Click on the link and wait on navigation to happen
+    await commands.click.bySelectorAndWait('body > nav > div > div > div > ul > li:nth-child(2) > a');
+    return commands.measure.stop();
+};
+~~~
+
 
 ## Commmands
 
