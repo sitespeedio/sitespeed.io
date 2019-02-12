@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Fixed
+* Log if you try to use the new budget format on Lighthouse, WebPageTest or GPSI.
+
 ## 8.4.0 - 2019-02-12
 ### Added
 * Give your test a name with --name [#2302](https://github.com/sitespeedio/sitespeed.io/pull/2302). At the moment only used in the HTML.
