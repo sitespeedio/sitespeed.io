@@ -8,7 +8,7 @@
   * There are two new cache clear commands: cache.clearKeepCookies() and cache.clear() (only working on Desktop) [#769](https://github.com/sitespeedio/browsertime/pull/769).
   * Updated RUM Speed Index to include upstream fix [#766](https://github.com/sitespeedio/browsertime/pull/766).
   * Make sure the body of the page is shown when setting the fullscreen to orange (when recording the video) [#767](https://github.com/sitespeedio/browsertime/pull/767) 
-  * Testing redirect URLs was broken since 8.0. If you test a URL, use that URL and if you click on a link, use the URL from the browser [#768](https://github.com/sitespeedio/browsertime/pull/768).
+  * Testing redirect URLs was broken since 8.0. If you test a URL, use that URL and if you click on a link, use the URL from the browser [#768](https://github.com/sitespeedio/browsertime/pull/768). If you where testing a URL that redirected and did't give it an alias, your key in Graphite/InfluxDB will change (back to as it was pre 8.0).
 
 ### Fixed
 * Catch errors when creating the filmstrip, so that not the full test fails.
