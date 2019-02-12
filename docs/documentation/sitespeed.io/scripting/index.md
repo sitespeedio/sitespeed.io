@@ -611,6 +611,15 @@ Use a CSS selector to find the element and set the value to value. Internally it
 #### valueById(value, id)
 Use the id to find the element and set the value to value. Internally it uses ```document.getElementById(id)``` to find the right element.
 
+### Cache
+There's an experimental command for clearing the cache. The command works both for Chrome and Firefox on desktop but not on Chrome on Android since we are using a WebExtension.
+
+#### clear()
+Clear the browser cache. Remove cache and cookies.
+
+#### clearKeepCookies()
+Clear the browser cache but keep cookies.
+
 ### Use Selenium directly
 You can use Selenium directly if you need to use things that are not availible through our commands.
 
