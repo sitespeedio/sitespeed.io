@@ -182,6 +182,7 @@ Options:
   --utc            Use Coordinated Universal Time for timestamps  [boolean] [default: false]
   --useHash        If your site uses # for URLs and # give you unique URLs you need to turn on useHash. By default is it turned off, meaning URLs with hash and without hash are treated as the same URL  [boolean] [default: false]
   --multi          Test multiple URLs within the same browser session (same cache etc). Only works with Browsertime. Use this if you want to test multiple pages (use journey) or want to test multiple pages with scripts. You can mix URLs and scripts (the order will matter): login.js https://www.sitespeed.io/ logout.js - More details: https://www.sitespeed.io/documentation/sitespeed.io/scripting/  [boolean] [default: false]
+  --name           Give your test a name.
   --config         Path to JSON config file
   --help, -h       Show help  [boolean]
 
