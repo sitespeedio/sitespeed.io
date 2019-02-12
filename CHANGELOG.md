@@ -1,9 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 8.4.0 - UNRELEASED
-### Fixed
-* Catch errors when creating the filmstrip, so that not the full test fails.
-
+## 8.4.0 - 2019-02-12
 ### Added
 * Give your test a name with --name [#2302](https://github.com/sitespeedio/sitespeed.io/pull/2302). At the moment only used in the HTML.
 
@@ -11,7 +8,12 @@
   * There are two new cache clear commands: cache.clearKeepCookies() and cache.clear() (only working on Desktop) [#769](https://github.com/sitespeedio/browsertime/pull/769).
   * Updated RUM Speed Index to include upstream fix [#766](https://github.com/sitespeedio/browsertime/pull/766).
   * Make sure the body of the page is shown when setting the fullscreen to orange (when recording the video) [#767](https://github.com/sitespeedio/browsertime/pull/767) 
-  * Testing redirect URLs was broken since 8.0. If you test a URL, use that URL and if you click on a link, usethe URL from the browser [#768](https://github.com/sitespeedio/browsertime/pull/768).
+  * Testing redirect URLs was broken since 8.0. If you test a URL, use that URL and if you click on a link, use the URL from the browser [#768](https://github.com/sitespeedio/browsertime/pull/768).
+
+### Fixed
+* Catch errors when creating the filmstrip, so that not the full test fails.
+* Analysisstorer gives error when using script as reported in [#2305](https://github.com/sitespeedio/sitespeed.io/issues/2305)    and fixed in [#2306](https://github.com/sitespeedio/sitespeed.io/pull/2306).
+
 
 ## 8.3.0 - 2019-02-10
 ### Added
