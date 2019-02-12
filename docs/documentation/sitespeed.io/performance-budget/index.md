@@ -125,6 +125,8 @@ Here is an example of a fully configurued budget file. It shows you what yiou *c
 }
 ~~~
 
+If you want to use budget for your WebPageTest, Lighthouse or GPSI plugin, you need to use the internal data structrure at the moment.
+
 #### Budget configuration using the internal data structrure
 There's also an old version of settiung a budget where you can do it for all metrics collected by sitespeed.io and works on the internal data structure.
 
