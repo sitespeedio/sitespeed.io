@@ -356,7 +356,7 @@ For example: you wanna pass on a password to your script, you can do that by add
 module.exports = async function(context, commands) {
   // We are in browsertime context so you can skip that from your options object
   context.log.info(context.options.my.password);
-}
+};
 ~~~
 
 ## Tips and Tricks
@@ -402,6 +402,22 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
+### Test the same page multiple times within the same run
+
+If you for some reason want to test the same URL within the same run multiple times, it will not work out of the box since the current version create the result files using the URL. For example testing https://www.sitespeed.io/ two times, will break since the second access will try to overwrite the first one. 
+
+But there is a hack you can do. If you add a dummy query parameter (and give the page an alias) you can test them twice a
+
+~~~javascript
+module.exports = async function(context, commands) {
+    await commands.measure.start('https://www.sitespeed.io/', 'HomePage');
+    
+    // Do something smart that then make you need to test the same URL again
+    // ...
+
+    return commands.navigate('https://www.sitespeed.io/?dummy', 'BackToHomepage');
+};
+~~~
 
 ## Commmands
 
