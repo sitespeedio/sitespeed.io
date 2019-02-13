@@ -1,8 +1,14 @@
 # CHANGELOG - sitespeed.io
 
 ## UNRELEASED
+### Added
+* Support Lighthouse, WebPageTest or GPSI in the new budget format. See https://www.sitespeed.io/documentation/sitespeed.io/performance-budget/#full-example
+
 ### Fixed
-* Log if you try to use the new budget format on Lighthouse, WebPageTest or GPSI.
+* The produced JUnit file had an error reported [here](https://github.com/sitespeedio/sitespeed.io/issues/2307#issuecomment-463147211) and fixed in [#2311](https://github.com/sitespeedio/sitespeed.io/pull/2311)
+
+* Added extra guard when chrome.timeline data is missing, so that the HTML will not break issue [#2310](https://github.com/sitespeedio/sitespeed.io/issues/2310) and [fixed](https://github.com/sitespeedio/sitespeed.io/commit/427d28f7119327cdbc06bc51700d2b8488e472f8). 
+
 
 ## 8.4.0 - 2019-02-12
 ### Added
