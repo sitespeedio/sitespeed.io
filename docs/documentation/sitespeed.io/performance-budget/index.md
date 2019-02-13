@@ -81,7 +81,6 @@ All URLs that you test then needs to have a SpeedIndex faster than 1000. But if 
 
 Here is an example of a fully configurued budget file. It shows you what yiou *can* configure (but you shouldn't configure all of them). 
 
-
 ~~~json
 {
 "budget": {
@@ -125,7 +124,55 @@ Here is an example of a fully configurued budget file. It shows you what yiou *c
 }
 ~~~
 
-If you want to use budget for your WebPageTest, Lighthouse or GPSI plugin, you need to use the internal data structrure at the moment.
+If you use WebPageTest you can configure:
+
+~~~json
+{
+"budget": {
+  "webpagetest": {
+      "SpeedIndex": 1000,
+      "lastVisualChange": 2000,
+      "render": 800,
+      "visualComplete": 2000,
+      "visualComplete95": 2000,
+      "TTFB": 150,
+      "fullyLoaded": 3000
+    }
+  }
+}
+~~~
+
+If you use Lighthouse you can configure:
+
+~~~json
+{
+"budget": {
+  "lighthouse": {
+      "performance": 90,
+      "accessibility": 90,
+      "best-practices": 90,
+      "seo": 90,
+      "pwa": 90
+    }
+  }
+}
+~~~
+
+If you use GPSI you can configure:
+
+~~~json
+{
+"budget": {
+  "gpsi": {
+      "speedscore": 90
+    }
+  }
+}
+~~~
+
+And then you can always combine them all.
+
+If you need more metrics for your budget, either [create an issue](https://github.com/sitespeedio/sitespeed.io/issues/new) or look below for using the full internal data structure.
 
 #### Budget configuration using the internal data structrure
 There's also an old version of settiung a budget where you can do it for all metrics collected by sitespeed.io and works on the internal data structure.
