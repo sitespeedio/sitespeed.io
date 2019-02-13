@@ -9,6 +9,7 @@
 
 * Added extra guard when chrome.timeline data is missing, so that the HTML will not break issue [#2310](https://github.com/sitespeedio/sitespeed.io/issues/2310) and [fixed](https://github.com/sitespeedio/sitespeed.io/commit/427d28f7119327cdbc06bc51700d2b8488e472f8). 
 
+* Browsertime 4.4.1 with a fix so that the timings in the video correctly match what happens on the screen.
 
 ## 8.4.0 - 2019-02-12
 ### Added
