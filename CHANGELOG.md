@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 8.5.0 - UNRELEASED
+## 8.5.0 - 2019-02-13
 ### Added
 * Support Lighthouse, WebPageTest or GPSI in the new budget format. See https://www.sitespeed.io/documentation/sitespeed.io/performance-budget/#full-example
 
