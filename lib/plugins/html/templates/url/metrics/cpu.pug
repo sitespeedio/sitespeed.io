@@ -3,7 +3,7 @@ h3 Time spent
 
 .row
   .one-half.column
-   if browsertime.cpu.categories
+   if browsertime.cpu && browsertime.cpu.categories
      table
        tr
          th(colspan='2') Categories (ms)
@@ -12,7 +12,7 @@ h3 Time spent
            td #{name}
            td #{value.toFixed(1)}
   .one-half.column
-   if browsertime.cpu.events
+   if browsertime.cpu && browsertime.cpu.events
      table
        tr
          th(colspan='2') Events (ms)
