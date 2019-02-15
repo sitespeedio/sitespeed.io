@@ -1,5 +1,17 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELASED
+### Fixed
+* Show larger screenshots in filmstrip for mobile, fixing colliding metrics HTML and last screenshot showing twice [#2314](https://github.com/sitespeedio/sitespeed.io/pull/2314).
+
+* New Browsertime versions that fixes:
+ * If a Visual Element wasn't found, we used to log that as an error, instead log as info [#775](https://github.com/sitespeedio/browsertime/pull/775).
+ * When trying to find the last visual change, a 0.01 % difference in pixels are now OK. We had problems finding too small difference that was picked up by Visual Metrics [#774](https://github.com/sitespeedio/browsertime/pull/774).
+
+### Added
+* Send console warnings by default to Graphite/InfluxDB per page (we used to only send errors by default) [#2315]-(https://github.com/sitespeedio/sitespeed.io/pull/2315).
+
+
 ## 8.5.1 - 2013-02-14
 ### Fixed
 * Upgraded to Browsertime 4.4.2 that fixes the flickering of the timer in the video.
