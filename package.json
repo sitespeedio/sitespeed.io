@@ -69,7 +69,7 @@
   "main": "./lib/sitespeed.js",
   "dependencies": {
     "aws-sdk": "2.361.0",
-    "browsertime": "4.4.3",
+    "browsertime": "4.4.4",
     "cli-color": "1.4.0",
     "concurrent-queue": "7.0.2",
     "dayjs-ext": "2.2.0",
