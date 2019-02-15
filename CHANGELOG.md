@@ -3,6 +3,7 @@
 ## UNRELASED
 ### Fixed
 * Show larger screenshots in filmstrip for mobile, fixing colliding metrics HTML and last screenshot showing twice [#2314](https://github.com/sitespeedio/sitespeed.io/pull/2314).
+* Fix wrong count for errors/warnings for console log send to Graphite/InfluxDB. Before we sent 1 onstead of the actual number of logs per page [#2316](https://github.com/sitespeedio/sitespeed.io/pull/2316).
 
 * New Browsertime versions that fixes:
  * If a Visual Element wasn't found, we used to log that as an error, instead log as info [#775](https://github.com/sitespeedio/browsertime/pull/775).
