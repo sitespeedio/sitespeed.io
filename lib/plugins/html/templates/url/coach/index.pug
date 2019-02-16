@@ -12,12 +12,12 @@ mixin adviceInfo(name, perfectScore, node)
             th Advice
             th Score
         tbody
-          each advice, adviceName in node.adviceList
-            if advice.score < 100
-              tr
-                td(data-title='Title') #{advice.title} (#{adviceName})
-                td.url(data-title='Advice') #{advice.advice}
-                td.number(data-title='Score') #{advice.score}
+          each adviceName, idx in Object.getOwnPropertyNames(node.adviceList).filter(e => node.adviceList[e].score < 100)
+            - const advice = node.adviceList[adviceName]
+            tr(class=idx % 2 == 0 ? 'odd' : 'even')
+              td(data-title='Title') #{advice.title} (#{adviceName})
+              td.url(data-title='Advice') #{advice.advice}
+              td.number(data-title='Score') #{advice.score}
             if (advice.offending.length > 0)
               tr.u-hideable
                 td.url.offendingurl(colspan='3')
