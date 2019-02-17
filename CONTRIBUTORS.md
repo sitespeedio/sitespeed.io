@@ -17,6 +17,7 @@ Many many many thanks to:
 * lbod (@lbod)
 * Lorenzo Urbini (@siteriaitaliana)
 * George Haddad (@george-haddad)
+* Ferdinand Holzer (@fholzer)
 
 3.X and earlier:
 * Tom Sutton (@tomsutton1984)
