@@ -30,7 +30,7 @@ You should look at the full [changelog](https://github.com/sitespeedio/sitespeed
 
 * Added endpoint to s3 configurations to allow for pushing HTML reports to Digital Ocean's Spaces as it is S3 compatible. [#2072](https://github.com/sitespeedio/sitespeed.io/issues/2072) 
 
-* We upgraded a couple of Browsertime versions, now running 4.4.0 with some new features:
+* We upgraded a couple of Browsertime versions, now running 4.4.4 with some new features:
   * There are two new cache clear commands: cache.clearKeepCookies() and cache.clear() (only working on Desktop) [#769](https://github.com/sitespeedio/browsertime/pull/769).
 
   * New addText.bySelector(text, selector) command + fixed so click.byJs and click.byJsAndWait works on elements that is hidden.
