@@ -1,14 +1,15 @@
 # CHANGELOG - sitespeed.io
 
-## 8.6.0 - UNRELEASED
+## 8.6.0 - 2013-02-17
 ### Fixed
 * Show larger screenshots in filmstrip for mobile, fixing colliding metrics HTML and last screenshot showing twice [#2314](https://github.com/sitespeedio/sitespeed.io/pull/2314).
 * Fix wrong count for errors/warnings for console log send to Graphite/InfluxDB. Before we sent 1 onstead of the actual number of logs per page [#2316](https://github.com/sitespeedio/sitespeed.io/pull/2316).
 * Fix coach table colouring. Thank you [Ferdinand Holzer](https://github.com/fholzer) for the PR [#2317](https://github.com/sitespeedio/sitespeed.io/pull/2317)!
+* Removed [faulty guard](https://github.com/sitespeedio/sitespeed.io/commit/df3313540671406e570dbea30b909b8f0f22e75f) in budget that made sure only internal metrics worked for Lighthouse/GPSI/WebPageTest.
 
 * New Browsertime versions that fixes:
- * If a Visual Element wasn't found, we used to log that as an error, instead log as info [#775](https://github.com/sitespeedio/browsertime/pull/775).
- * When trying to find the last visual change, a 0.01 % difference in pixels are now OK. We had problems finding too small difference that was picked up by Visual Metrics [#774](https://github.com/sitespeedio/browsertime/pull/774).
+  * If a Visual Element wasn't found, we used to log that as an error, instead log as info [#775](https://github.com/sitespeedio/browsertime/pull/775).
+  * When trying to find the last visual change, a 0.01 % difference in pixels are now OK. We had problems finding too small difference that was picked up by Visual Metrics [#774](https://github.com/sitespeedio/browsertime/pull/774).
 
 ### Added
 * Send console warnings by default to Graphite/InfluxDB per page (we used to only send errors by default) [#2315]-(https://github.com/sitespeedio/sitespeed.io/pull/2315).
