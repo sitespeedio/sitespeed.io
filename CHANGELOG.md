@@ -4,7 +4,7 @@
 ### Fixed
 * Upgraded to Browsertime 4.4.5 that changed so that 0.05% of the pixels could differ (instead of 0.01%) when finding the last visual change.
 
-## 8.6.0 - 2013-02-17
+## 8.6.0 - 2019-02-17
 ### Fixed
 * Show larger screenshots in filmstrip for mobile, fixing colliding metrics HTML and last screenshot showing twice [#2314](https://github.com/sitespeedio/sitespeed.io/pull/2314).
 * Fix wrong count for errors/warnings for console log send to Graphite/InfluxDB. Before we sent 1 instead of the actual number of logs per page [#2316](https://github.com/sitespeedio/sitespeed.io/pull/2316).
@@ -21,7 +21,7 @@
 * Support for crawler exclude pattern, use ```--crawler.exclude```. Thank you [Ferdinand Holzer](https://github.com/fholzer) for the PR [#2319](https://github.com/sitespeedio/sitespeed.io/pull/2319).
 
 
-## 8.5.1 - 2013-02-14
+## 8.5.1 - 2019-02-14
 ### Fixed
 * Upgraded to Browsertime 4.4.2 that fixes the flickering of the timer in the video.
 
