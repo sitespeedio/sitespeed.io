@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Sitespeed.io 8.1
-description: TNew in 8.1 - Filmstrip, server timings and new command to run JavaScript and wait for the page to finish loading.
+description: New in 8.1 - Filmstrip, server timings and new command to run JavaScript and wait for the page to finish loading.
 authorimage: /img/aboutus/peter.jpg
 intro: New in 8.1 - Filmstrip, server timings and new command to run JavaScript and wait for the page to finish loading.
 keywords: sitespeed.io, browsertime, webperf
@@ -10,7 +10,7 @@ nav: blog
 
 # Sitespeed.io 8.1
 
-Yestearday we released 8.1! There's a couple really cool new things, read about what's new:
+Yesterday we released 8.1! There's a couple really cool new things, read about what's new:
 
 - [Filmstrip](#filmstrip)
 - [Server timings](#server-timings)

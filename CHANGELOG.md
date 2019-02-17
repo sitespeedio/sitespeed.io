@@ -3,7 +3,7 @@
 ## 8.6.0 - 2013-02-17
 ### Fixed
 * Show larger screenshots in filmstrip for mobile, fixing colliding metrics HTML and last screenshot showing twice [#2314](https://github.com/sitespeedio/sitespeed.io/pull/2314).
-* Fix wrong count for errors/warnings for console log send to Graphite/InfluxDB. Before we sent 1 onstead of the actual number of logs per page [#2316](https://github.com/sitespeedio/sitespeed.io/pull/2316).
+* Fix wrong count for errors/warnings for console log send to Graphite/InfluxDB. Before we sent 1 instead of the actual number of logs per page [#2316](https://github.com/sitespeedio/sitespeed.io/pull/2316).
 * Fix coach table colouring. Thank you [Ferdinand Holzer](https://github.com/fholzer) for the PR [#2317](https://github.com/sitespeedio/sitespeed.io/pull/2317)!
 * Removed [faulty guard](https://github.com/sitespeedio/sitespeed.io/commit/df3313540671406e570dbea30b909b8f0f22e75f) in budget that made sure only internal metrics worked for Lighthouse/GPSI/WebPageTest.
 
@@ -51,7 +51,7 @@
 ### Added
 * Use alias from the script when displaying URLs in the HTML, reported by [banuady](https://github.com/banuady) in [#2296](https://github.com/sitespeedio/sitespeed.io/issues/2296) and fixed in [#2297](https://github.com/sitespeedio/sitespeed.io/pull/2297).
 
-* You can include the script your using the HTML output with ```--html.showScript``` [#2298](https://github.com/sitespeedio/sitespeed.io/pull/2298). Be careful though with passwords or other secrets.
+* You can include the script your using in the HTML output with ```--html.showScript``` [#2298](https://github.com/sitespeedio/sitespeed.io/pull/2298). Be careful though with passwords or other secrets.
 
 * Added json as output type for the budget. Set ```--budget.output json ``` and it will store *budgetResult.json* in your result directory [#2299](https://github.com/sitespeedio/sitespeed.io/pull/2299).
 
