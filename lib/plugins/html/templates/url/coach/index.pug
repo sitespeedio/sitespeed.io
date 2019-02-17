@@ -33,7 +33,7 @@ h2 Coach
 p.small
   a(href='https://github.com/sitespeedio/coach') The coach
   | &nbsp;helps you find performance problems on your web page using web performance best practice rules. And gives you advice on accessibility, privacy and best practices.
-  
+
 script(type='text/javascript').
   function toggleRow(toggleElement) {
     const rows = toggleElement.nextSibling.getElementsByClassName("u-hideable");
@@ -49,7 +49,7 @@ script(type='text/javascript').
     .row
       .four.columns
         a(href='https://github.com/sitespeedio/coach')
-          img.u-max-full-width(src= rootPath + 'img/coach.png', alt='I am the coach')
+          img.u-max-full-width(src= assetsPath + 'img/coach.png', alt='I am the coach')
       .eight.columns
         h3 Coach score
         ul
@@ -63,7 +63,7 @@ script(type='text/javascript').
           li.group-item Performance score&nbsp;
             span(class=pLabel) #{advice.performance.score}
           li.group-item Privacy score&nbsp;
-            span(class=prLabel) #{advice.privacy.score}  
+            span(class=prLabel) #{advice.privacy.score}
           li.group-item Accessibility score&nbsp;
             span(class=aLabel) #{advice.accessibility.score}
           li.group-item Best practice score&nbsp;
