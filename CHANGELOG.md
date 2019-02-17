@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELASED
+## 8.6.0 - UNRELEASED
 ### Fixed
 * Show larger screenshots in filmstrip for mobile, fixing colliding metrics HTML and last screenshot showing twice [#2314](https://github.com/sitespeedio/sitespeed.io/pull/2314).
 * Fix wrong count for errors/warnings for console log send to Graphite/InfluxDB. Before we sent 1 onstead of the actual number of logs per page [#2316](https://github.com/sitespeedio/sitespeed.io/pull/2316).
@@ -12,6 +12,8 @@
 
 ### Added
 * Send console warnings by default to Graphite/InfluxDB per page (we used to only send errors by default) [#2315]-(https://github.com/sitespeedio/sitespeed.io/pull/2315).
+
+* Support for crawler exclude pattern, use ```--crawler.exclude```. Thank you [Ferdinand Holzer](https://github.com/fholzer) for the PR [#2319](https://github.com/sitespeedio/sitespeed.io/pull/2319).
 
 
 ## 8.5.1 - 2013-02-14
@@ -31,7 +33,7 @@
 
 ## 8.4.0 - 2019-02-12
 ### Added
-* Give your test a name with --name [#2302](https://github.com/sitespeedio/sitespeed.io/pull/2302). At the moment only used in the HTML.
+* Give your test a name with ```--name``` [#2302](https://github.com/sitespeedio/sitespeed.io/pull/2302). At the moment only used in the HTML.
 
 * Upgraded to Browsertime [4.4.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#440---2019-02-12):
   * There are two new cache clear commands: cache.clearKeepCookies() and cache.clear() (only working on Desktop) [#769](https://github.com/sitespeedio/browsertime/pull/769).
