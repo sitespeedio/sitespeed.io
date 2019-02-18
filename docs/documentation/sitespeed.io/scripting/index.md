@@ -393,7 +393,7 @@ If you want to click a link and make sure the background is white, you can hide 
 module.exports = async function(context, commands) {
     await commands.measure.start('https://www.sitespeed.io');
     // Hide everything
-    await commands.js.run('document.body.style.display = "none"');
+    await commands.js.run('document.body.style.display = "none";');
     // Start measurning
     await commands.measure.start();
     // Click on the link and wait on navigation to happen
