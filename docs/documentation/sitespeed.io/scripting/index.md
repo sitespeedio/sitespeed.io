@@ -628,7 +628,7 @@ Use a CSS selector to find the element and set the value to value. Internally it
 Use the id to find the element and set the value to value. Internally it uses ```document.getElementById(id)``` to find the right element.
 
 ### Cache
-There's an experimental command for clearing the cache. The command works both for Chrome and Firefox on desktop but not on Chrome on Android since we are using a WebExtension.
+There's an experimental command for clearing the cache. The command works both for Chrome and Firefox on desktop but not on Chrome on Android since we are using a [WebExtension](https://github.com/sitespeedio/browsertime-extension).
 
 #### clear()
 Clear the browser cache. Remove cache and cookies.

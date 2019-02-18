@@ -1,20 +1,27 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELASED
+## UNRELEASED
+### Fixed
+* Upgraded to Browsertime 4.4.5 that changed so that 0.05% of the pixels could differ (instead of 0.01%) when finding the last visual change.
+
+## 8.6.0 - 2019-02-17
 ### Fixed
 * Show larger screenshots in filmstrip for mobile, fixing colliding metrics HTML and last screenshot showing twice [#2314](https://github.com/sitespeedio/sitespeed.io/pull/2314).
-* Fix wrong count for errors/warnings for console log send to Graphite/InfluxDB. Before we sent 1 onstead of the actual number of logs per page [#2316](https://github.com/sitespeedio/sitespeed.io/pull/2316).
+* Fix wrong count for errors/warnings for console log send to Graphite/InfluxDB. Before we sent 1 instead of the actual number of logs per page [#2316](https://github.com/sitespeedio/sitespeed.io/pull/2316).
 * Fix coach table colouring. Thank you [Ferdinand Holzer](https://github.com/fholzer) for the PR [#2317](https://github.com/sitespeedio/sitespeed.io/pull/2317)!
+* Removed [faulty guard](https://github.com/sitespeedio/sitespeed.io/commit/df3313540671406e570dbea30b909b8f0f22e75f) in budget that made sure only internal metrics worked for Lighthouse/GPSI/WebPageTest.
 
 * New Browsertime versions that fixes:
- * If a Visual Element wasn't found, we used to log that as an error, instead log as info [#775](https://github.com/sitespeedio/browsertime/pull/775).
- * When trying to find the last visual change, a 0.01 % difference in pixels are now OK. We had problems finding too small difference that was picked up by Visual Metrics [#774](https://github.com/sitespeedio/browsertime/pull/774).
+  * If a Visual Element wasn't found, we used to log that as an error, instead log as info [#775](https://github.com/sitespeedio/browsertime/pull/775).
+  * When trying to find the last visual change, a 0.01 % difference in pixels are now OK. We had problems finding too small difference that was picked up by Visual Metrics [#774](https://github.com/sitespeedio/browsertime/pull/774).
 
 ### Added
 * Send console warnings by default to Graphite/InfluxDB per page (we used to only send errors by default) [#2315]-(https://github.com/sitespeedio/sitespeed.io/pull/2315).
 
+* Support for crawler exclude pattern, use ```--crawler.exclude```. Thank you [Ferdinand Holzer](https://github.com/fholzer) for the PR [#2319](https://github.com/sitespeedio/sitespeed.io/pull/2319).
 
-## 8.5.1 - 2013-02-14
+
+## 8.5.1 - 2019-02-14
 ### Fixed
 * Upgraded to Browsertime 4.4.2 that fixes the flickering of the timer in the video.
 
@@ -31,7 +38,7 @@
 
 ## 8.4.0 - 2019-02-12
 ### Added
-* Give your test a name with --name [#2302](https://github.com/sitespeedio/sitespeed.io/pull/2302). At the moment only used in the HTML.
+* Give your test a name with ```--name``` [#2302](https://github.com/sitespeedio/sitespeed.io/pull/2302). At the moment only used in the HTML.
 
 * Upgraded to Browsertime [4.4.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#440---2019-02-12):
   * There are two new cache clear commands: cache.clearKeepCookies() and cache.clear() (only working on Desktop) [#769](https://github.com/sitespeedio/browsertime/pull/769).
@@ -48,7 +55,7 @@
 ### Added
 * Use alias from the script when displaying URLs in the HTML, reported by [banuady](https://github.com/banuady) in [#2296](https://github.com/sitespeedio/sitespeed.io/issues/2296) and fixed in [#2297](https://github.com/sitespeedio/sitespeed.io/pull/2297).
 
-* You can include the script your using the HTML output with ```--html.showScript``` [#2298](https://github.com/sitespeedio/sitespeed.io/pull/2298). Be careful though with passwords or other secrets.
+* You can include the script your using in the HTML output with ```--html.showScript``` [#2298](https://github.com/sitespeedio/sitespeed.io/pull/2298). Be careful though with passwords or other secrets.
 
 * Added json as output type for the budget. Set ```--budget.output json ``` and it will store *budgetResult.json* in your result directory [#2299](https://github.com/sitespeedio/sitespeed.io/pull/2299).
 

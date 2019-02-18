@@ -1,7 +1,7 @@
 {
   "name": "sitespeed.io",
   "bin": "./bin/sitespeed.js",
-  "version": "8.5.1",
+  "version": "8.6.0",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -69,7 +69,7 @@
   "main": "./lib/sitespeed.js",
   "dependencies": {
     "aws-sdk": "2.361.0",
-    "browsertime": "4.4.4",
+    "browsertime": "4.4.5",
     "cli-color": "1.4.0",
     "concurrent-queue": "7.0.2",
     "dayjs-ext": "2.2.0",

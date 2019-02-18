@@ -1,6 +1,6 @@
 {
   "name": "sitespeed.io",
-  "version": "8.5.1",
+  "version": "8.6.0",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -2955,9 +2955,9 @@
       "integrity": "sha1-81HTKWnTL6XXpVZxVCY9korjvR8="
     },
     "browsertime": {
-      "version": "4.4.4",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-4.4.4.tgz",
-      "integrity": "sha512-gaP3Id7o4C4rHRk23cYbtYI506wbEErQomjC0ICA1tumJ6OzuHQITfi6+mK6aX3SHl9cw/ftnxsKU4FbUWY/dA==",
+      "version": "4.4.5",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-4.4.5.tgz",
+      "integrity": "sha512-rsKF0vo1n3Cx+HuE3wFHGY1ZWyI+8I/O1SYXeqjLbGtqQNRTBpLjjFBLqajN8cfrIqnjGKo0SIFECaEXgytykg==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@sitespeed.io/chromedriver": "2.45.0",
