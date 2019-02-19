@@ -1,8 +1,10 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+##  8.6.1 - 2019-02-19
 ### Fixed
 * Upgraded to Browsertime 4.4.5 that changed so that 0.05% of the pixels could differ (instead of 0.01%) when finding the last visual change.
+
+* Removed the Chrome specific setup in Chrome that was needed a long time ago [#2322](https://github.com/sitespeedio/sitespeed.io/pull/2322)
 
 ## 8.6.0 - 2019-02-17
 ### Fixed
