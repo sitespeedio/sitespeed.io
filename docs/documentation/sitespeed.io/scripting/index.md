@@ -402,6 +402,31 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
+### Test one page that need a much longer page complete check than others
+
+If you have one page that needs some special handling that maybe do a couple of late and really slow AJAX requests, you can catch that with your on wait for the page to finish.
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // First test a couple pages with default page complete check
+  await commands.measure.start('https://<page1>');
+  await commands.measure.start('https://<page2>');
+  await commands.measure.start('https://<page3>');
+
+  // Then we have a page that we know need to wait longer, start measuring
+  await command.measure.start('MySpecialPage');
+  // Go to the page  
+  await commands.navigate('https://<myspecialpage>'); 
+  // Then you need to wait on a specific element or event. In this case
+  // we wait for a id to appear but you could also run your custom JS
+  await commands.wait.byId('my-id', 20000);
+  // And then when you know that page has loaded stop the measurement
+  // = stop the video, collect metrics etc
+  return commands.measure.stop();
+};
+~~~
+
+
 ### Test the same page multiple times within the same run
 
 If you for some reason want to test the same URL within the same run multiple times, it will not work out of the box since the current version create the result files using the URL. For example testing https://www.sitespeed.io/ two times, will break since the second access will try to overwrite the first one. 
