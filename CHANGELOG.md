@@ -1,5 +1,5 @@
 # CHANGELOG - sitespeed.io
-## UNRELEASED
+##  8.6.2 - 2019-02-20
 ### Fixed
 * Upgraded to Browsertime 4.4.6 that adds better error handling if your multi script is broken or if a URL fails to load.
 
