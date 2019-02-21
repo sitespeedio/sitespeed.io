@@ -1,4 +1,9 @@
 # CHANGELOG - sitespeed.io
+
+## UNRELEASED
+### Fixed
+* When sending annotations with `--graphite.annotationMessage` and not providing a screenshot the message and the extraMessage used to get concatenated without any space. Thank you [Markus Liljedahl](https://github.com/mliljedahl) for the PR [#2332](https://github.com/sitespeedio/sitespeed.io/pull/2332) that fixes that.
+
 ## 8.6.3 - 2019-02-21
 ### Fixed
 * Upgraded to Browsertime 4.4.7 with fix for better finding last visual change in the video. 
