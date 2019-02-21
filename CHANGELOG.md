@@ -1,5 +1,5 @@
 # CHANGELOG - sitespeed.io
-## 8.6.3 - UNRELEASED
+## 8.6.3 - 2019-02-21
 ### Fixed
 * Upgraded to Browsertime 4.4.7 with fix for better finding last visual change in the video. 
 
