@@ -74,6 +74,7 @@
     "cli-color": "1.4.0",
     "concurrent-queue": "7.0.2",
     "dayjs-ext": "2.2.0",
+    "fast-crc32c": "1.0.4",
     "fast-stats": "0.0.4",
     "fs-extra": "7.0.1",
     "influx": "5.0.7",
