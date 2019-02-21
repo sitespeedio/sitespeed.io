@@ -85,6 +85,7 @@ Graphite
   --graphite.namespace             The namespace key added to all captured metrics.  [default: "sitespeed_io.default"]
   --graphite.includeQueryParams    Whether to include query parameters from the URL in the Graphite keys or not  [boolean] [default: false]
   --graphite.arrayTags             Send the tags as Array or a String. In Graphite 1.0 the tags is a array. Before a String  [boolean] [default: true]
+  --graphite.annotationTitle       Add a title to the annotation sent for a run. The message is attached after the default message and can contain HTML.
   --graphite.annotationMessage     Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
   --graphite.annotationScreenshot  Include screenshot (from Browsertime) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
   --graphite.statsd                Uses the StatsD interface  [boolean] [default: false]
