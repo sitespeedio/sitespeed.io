@@ -34,10 +34,12 @@ In the left part of the image you see a horizontal red line, that is when an ale
 
 ## Setup
 
-You want to create queries that measure the change in percentage over time and you want to create an alert when all of them are above a specific percentage.
+There's a couple of ways to create queries and alerts:
+* You want to create queries that measure the change in percentage over time and you want to create an alert when all of them are above a specific percentage.
+* Or you can fire alerts when a metric difference has been over a specific value for X amount of time
 
 
-### Create queries
+### Create percentage queries
 
 To the left we have changes in percentage. These are the numbers where we add alerts. In this case we first create a query and take the moving median one day back (this is the number we will use and compare with) and then we take the moving median of the latest 5 hours. Depending on how steady metrics we have, we can do this different. If you run on a stable environment with a proxy you don't need to take the median of X hours, instead you can take the exact run.
 
@@ -54,13 +56,31 @@ And change the axes unit to show percent: 0.0-1.0.
 ![Axes setup]({{site.baseurl}}/img/alerts/axes.png)
 {: .img-thumbnail-center}
 
-### The alert
+#### The alert
 After that you need to create the alert. Take the median, choose a timespan and the percentage when you want to alert. In our example we do AND queries (all URLs must change) but if you are interested in specific URLs changing, you can also do OR alert queries.
 
 ![Alert setup]({{site.baseurl}}/img/alerts/alert-setup2.png)
 {: .img-thumbnail-center}
 
 You see that we run the alerts once an hour. It depends on how often you do releases or you content changes. You want to make sure that you catch the alerts within at least couple of hours.
+
+
+### Create metrics queries
+The other way is to create alerts that alerts if a threshold is met. In this example we want to alert if the First Visual Change increased by 20 ms for three URLs. The Graph looks like this:
+
+![Alert graph]({{site.baseurl}}/img/alerts/alerts-difference-graph.png)
+{: .img-thumbnail-center}
+
+And setting up the graph is more straight forward then using percentages. You get the metric you want, differ the metric with X amount back in time and draw the difference.
+
+![Alert query setup]({{site.baseurl}}/img/alerts/alerts-difference.jpg)
+{: .img-thumbnail}
+
+#### The alert
+Then you setup the alert. In this example we run the alert query once every hour and it needs to fire twice within 2 hours, to actually send an alert. If we then make sure we run our tests at least every hour, we need two runs with higher values that the limit to fire the alert.
+
+![The actual alert]({{site.baseurl}}/img/alerts/alerts-difference-setup.png)
+{: .img-thumbnail-center}
 
 
 ### History graph
@@ -103,6 +123,22 @@ And the query looks like this (modify the excludes so that it matches what you n
 
 ![Alert on error query]({{site.baseurl}}/img/alerts/response-code-query.png)
 {: .img-thumbnail}
+
+#### Alert on console.error
+If you use Chrome in your testing you can also collect console log data. And then if you get a JavaScript error on a page you can alert on that.
+
+Setup your query something like this:
+
+![Alert on console error query]({{site.baseurl}}/img/alerts/console-alert-query.jpg)
+{: .img-thumbnail}
+
+And then your actual alert. Make sure to set 'If no data or all values are null* to *No data* or *Ok* so you don't fire alerts if you don't get any errors :)
+
+![Alert on console error query]({{site.baseurl}}/img/alerts/console-alert-setup.jpg)
+{: .img-thumbnail-center}
+
+
+
 
 ## Summary
 
