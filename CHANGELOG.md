@@ -1,4 +1,8 @@
 # CHANGELOG - sitespeed.io
+## 8.6.3 - 2019-02-21
+### Fixed
+* Upgraded to Browsertime 4.4.7 with fix for better finding last visual change in the video. 
+
 ##  8.6.2 - 2019-02-20
 ### Fixed
 * Upgraded to Browsertime 4.4.6 that adds better error handling if your multi script is broken or if a URL fails to load.
