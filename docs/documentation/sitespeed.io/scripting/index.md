@@ -459,7 +459,7 @@ Start and navigate to the URL and then automatically call the stop() function af
 ~~~javascript
 module.exports = async function(context, commands) {
   await commands.measure.start('https://www.sitespeed.io');
-  // If you want to measuure multiple URLs after each other
+  // If you want to measure multiple URLs after each other
   // you can just line them up
   await commands.measure.start('https://www.sitespeed.io/examples/');
   return commands.measure.start('https://www.sitespeed.io/documentation/');
