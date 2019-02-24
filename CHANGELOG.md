@@ -6,6 +6,8 @@
 
 * Better error messages when sending data to Grafana. Thank you again [Markus Liljedahl](https://github.com/mliljedahl) [#2334](https://github.com/sitespeedio/sitespeed.io/pull/2334).
 
+* Waterfall chart had colliding texts, the font is now slightly smaller [#2345](https://github.com/sitespeedio/sitespeed.io/pull/2345).
+
 ## 8.6.3 - 2019-02-21
 ### Fixed
 * Upgraded to Browsertime 4.4.7 with fix for better finding last visual change in the video. 
