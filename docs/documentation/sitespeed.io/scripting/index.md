@@ -393,7 +393,7 @@ If you want to click a link and make sure the background is white, you can hide 
 module.exports = async function(context, commands) {
     await commands.measure.start('https://www.sitespeed.io');
     // Hide everything
-    await commands.js.run('document.body.style.display = "none"');
+    await commands.js.run('document.body.style.display = "none";');
     // Start measurning
     await commands.measure.start();
     // Click on the link and wait on navigation to happen
@@ -401,6 +401,31 @@ module.exports = async function(context, commands) {
     return commands.measure.stop();
 };
 ~~~
+
+### Test one page that need a much longer page complete check than others
+
+If you have one page that needs some special handling that maybe do a couple of late and really slow AJAX requests, you can catch that with your on wait for the page to finish.
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // First test a couple pages with default page complete check
+  await commands.measure.start('https://<page1>');
+  await commands.measure.start('https://<page2>');
+  await commands.measure.start('https://<page3>');
+
+  // Then we have a page that we know need to wait longer, start measuring
+  await command.measure.start('MySpecialPage');
+  // Go to the page  
+  await commands.navigate('https://<myspecialpage>'); 
+  // Then you need to wait on a specific element or event. In this case
+  // we wait for a id to appear but you could also run your custom JS
+  await commands.wait.byId('my-id', 20000);
+  // And then when you know that page has loaded stop the measurement
+  // = stop the video, collect metrics etc
+  return commands.measure.stop();
+};
+~~~
+
 
 ### Test the same page multiple times within the same run
 
@@ -423,6 +448,8 @@ module.exports = async function(context, commands) {
 
 All commands will return a promise and you should await it to fulfil. If some command do not work, we will log that automatically and rethrow the error, so you can catch that and can act on that.
 
+The commands that ends with a **...AndWait** will wait for a new page to load, so use them only when you are clicking on a link and want a new page or view to load.
+
 ### Measure
 The measure command will prepare everything for measuring a new URL (clearing internal metrics, starting the video etc). If you give an URL to the measure command it will start to measure and navigate to that URL.
 
@@ -434,7 +461,7 @@ Start and navigate to the URL and then automatically call the stop() function af
 ~~~javascript
 module.exports = async function(context, commands) {
   await commands.measure.start('https://www.sitespeed.io');
-  // If you want to measuure multiple URLs after each other
+  // If you want to measure multiple URLs after each other
   // you can just line them up
   await commands.measure.start('https://www.sitespeed.io/examples/');
   return commands.measure.start('https://www.sitespeed.io/documentation/');
