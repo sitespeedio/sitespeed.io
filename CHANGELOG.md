@@ -1,4 +1,8 @@
 # CHANGELOG - sitespeed.io
+
+## 8.7.0 - UNRELEASED
+### Added
+
 ## 8.6.5 - 2019-02-28
 ### Fixed
 * [Gideon Pyzer](https://github.com/gidztech) fixed the broken config parameter for Lighthouse (if you use the Lighthouse container) in [#10](https://github.com/sitespeedio/plugin-lighthouse/pull/10).
