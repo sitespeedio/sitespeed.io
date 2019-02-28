@@ -1,8 +1,15 @@
 # CHANGELOG - sitespeed.io
+## 8.6.5 - 2019-02-28
+### Fixed
+* [Gideon Pyzer](https://github.com/gidztech) fixed the broken config parameter for Lighthouse (if you use the Lighthouse container) in [#10](https://github.com/sitespeedio/plugin-lighthouse/pull/10).
 
-## UNRELEASED
+## 8.6.4 - 2019-02-24
 ### Fixed
 * When sending annotations with `--graphite.annotationMessage` and not providing a screenshot the message and the extraMessage used to get concatenated without any space. Thank you [Markus Liljedahl](https://github.com/mliljedahl) for the PR [#2332](https://github.com/sitespeedio/sitespeed.io/pull/2332) that fixes that.
+
+* Better error messages when sending data to Grafana. Thank you again [Markus Liljedahl](https://github.com/mliljedahl) [#2334](https://github.com/sitespeedio/sitespeed.io/pull/2334).
+
+* Waterfall chart had colliding texts, the font is now slightly smaller [#2345](https://github.com/sitespeedio/sitespeed.io/pull/2345).
 
 ## 8.6.3 - 2019-02-21
 ### Fixed

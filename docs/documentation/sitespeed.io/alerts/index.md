@@ -137,8 +137,23 @@ And then your actual alert. Make sure to set 'If no data or all values are null*
 ![Alert on console error query]({{site.baseurl}}/img/alerts/console-alert-setup.jpg)
 {: .img-thumbnail-center}
 
+#### Alert on to low privacy
+
+One of the most important metrics you can get from the Coach is the privacy metric that helps you see how good you take care of your users and if you share their private information with other companies/web sites.
+
+![Alert graph on privacy]({{site.baseurl}}/img/alerts/alert-privacy-graph.jpg)
+{: .img-thumbnail-center}
 
 
+To get the metric, you query the Coach.
+
+![Alert privacy query]({{site.baseurl}}/img/alerts/alert-privacy-query.jpg)
+{: .img-thumbnail}
+
+And then when you setup the alert, make sure you alert on values *below* your current value.
+
+![Alert privacy setup]({{site.baseurl}}/img/alerts/alert-privacy.jpg)
+{: .img-thumbnail}
 
 ## Summary
 

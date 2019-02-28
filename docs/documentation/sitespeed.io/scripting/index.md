@@ -448,6 +448,8 @@ module.exports = async function(context, commands) {
 
 All commands will return a promise and you should await it to fulfil. If some command do not work, we will log that automatically and rethrow the error, so you can catch that and can act on that.
 
+The commands that ends with a **...AndWait** will wait for a new page to load, so use them only when you are clicking on a link and want a new page or view to load.
+
 ### Measure
 The measure command will prepare everything for measuring a new URL (clearing internal metrics, starting the video etc). If you give an URL to the measure command it will start to measure and navigate to that URL.
 
@@ -459,7 +461,7 @@ Start and navigate to the URL and then automatically call the stop() function af
 ~~~javascript
 module.exports = async function(context, commands) {
   await commands.measure.start('https://www.sitespeed.io');
-  // If you want to measuure multiple URLs after each other
+  // If you want to measure multiple URLs after each other
   // you can just line them up
   await commands.measure.start('https://www.sitespeed.io/examples/');
   return commands.measure.start('https://www.sitespeed.io/documentation/');
