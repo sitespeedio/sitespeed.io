@@ -95,6 +95,15 @@ If you run a server local on your machine and want to access it with sitespeed.i
 docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox http://host.docker.internal:4000/
 ~~~
 
+## CPU throttling
+
+If you want to limit the cpu usage for the running sitespeed tests, you can do that by adding <code>-t (number in percentage)</code> 
+
+Full example:
+~~~bash
+docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/ -t 100
+~~~
+
 ## Troubleshooting
 
 If something doesn't work, it's hard to guess what't wrong. Then hook up x11vnc with xvfb so that you can see what happens on your screen.
