@@ -18,6 +18,9 @@ RUN sudo apt-get update && sudo apt-get install libnss3-tools \
  mkdir -p $HOME/.pki/nssdb && \
  certutil -d $HOME/.pki/nssdb -N
 
+# For cpu throttling
+RUN sudo apt-get install cpulimit
+
 ENV PATH="/usr/local/bin:${PATH}"
 
 RUN wpr installroot --https_cert_file /webpagereplay/certs/wpr_cert.pem --https_key_file /webpagereplay/certs/wpr_key.pem
@@ -30,6 +33,9 @@ RUN npm install --production
 COPY . /usr/src/app
 
 COPY docker/scripts/start.sh /start.sh
+
+# Script for cpu throttling
+COPY docker/scripts/cpu-throttle.sh /cpu-throttle.sh
 
 ## This is to avoid click the OK button
 RUN mkdir -m 0750 /root/.android

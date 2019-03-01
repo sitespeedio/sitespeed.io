@@ -118,6 +118,25 @@ function runSitespeedio(){
 
 setupADB
 
+# Calling CPU throttle
+while getopts ":t:" opt; do
+case $opt in
+    t) arg_1="$OPTARG"
+    ;;
+    *) echo "Invalid argument."
+    ;;
+esac
+done
+
+printf "CPU throttled value is %s\n" "$arg_1"
+if [ -n "$arg_1" ]; then
+    echo "Starting cpu throttling..."
+    sh /cpu-throttle.sh $arg_1 & >> /cpu-throttle.out
+else
+    echo "No throttling. CPU runs at full capacity..."
+fi
+# End of cpu throttle
+
 if [ $REPLAY ]
 then
   runWebPageReplay "$@"
