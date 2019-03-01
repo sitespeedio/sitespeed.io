@@ -6,16 +6,16 @@ html(lang='en')
         title= pageTitle
         meta(name='description', content=pageDescription)
         meta(name='robots', content='noindex')
-        link(rel='stylesheet', href=rootPath + 'css/index.min.css')
+        link(rel='stylesheet', href=assetsPath + 'css/index.min.css')
         block inlineStyles
         style(type='text/css').
          #{css}
 
-        link(rel='apple-touch-icon-precomposed', sizes='144x144', href=rootPath + 'img/ico/sitespeed.io-144.png')
-        link(rel='apple-touch-icon-precomposed', sizes='114x114', href=rootPath + 'img/ico/sitespeed.io-114.png')
-        link(rel='apple-touch-icon-precomposed', sizes='72x72', href=rootPath + 'img/ico/sitespeed.io-72.png')
-        link(rel='apple-touch-icon-precomposed', href=rootPath + 'img/ico/sitespeed.io-57.png')
-        link(rel='shortcut icon', href=rootPath + 'img/ico/sitespeed.io.ico')
+        link(rel='apple-touch-icon-precomposed', sizes='144x144', href=assetsPath + 'img/ico/sitespeed.io-144.png')
+        link(rel='apple-touch-icon-precomposed', sizes='114x114', href=assetsPath + 'img/ico/sitespeed.io-114.png')
+        link(rel='apple-touch-icon-precomposed', sizes='72x72', href=assetsPath + 'img/ico/sitespeed.io-72.png')
+        link(rel='apple-touch-icon-precomposed', href=assetsPath + 'img/ico/sitespeed.io-57.png')
+        link(rel='shortcut icon', href=assetsPath + 'img/ico/sitespeed.io.ico')
     body
       include ./header.pug
       .container
@@ -23,7 +23,7 @@ html(lang='en')
         block content
 
         include ./footer.pug
-      script(src= rootPath + 'js/sortable.min.js')
-      script(src= rootPath + 'js/chartist.min.js')
-      script(src= rootPath + 'js/chartist-plugin-axistitle.min.js')
-      script(src= rootPath + 'js/chartist-plugin-tooltip.min.js')
+      script(src= assetsPath + 'js/sortable.min.js')
+      script(src= assetsPath + 'js/chartist.min.js')
+      script(src= assetsPath + 'js/chartist-plugin-axistitle.min.js')
+      script(src= assetsPath + 'js/chartist-plugin-tooltip.min.js')
