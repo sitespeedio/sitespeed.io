@@ -5,6 +5,7 @@
 * Added HTML link in the Coach result from each advice type to individual advice [#2344](https://github.com/sitespeedio/sitespeed.io/pull/2344)
 * Make it easy to use pageLoadTime in the new budget format [#2351](https://github.com/sitespeedio/sitespeed.io/pull/2351).
 * Set your own annotation title [#2333](https://github.com/sitespeedio/sitespeed.io/pull/2333), thank you [Markus Liljedahl](https://github.com/mliljedahl) for the PR.
+* Set where to serve your assets with `--html.assetsBaseURL`. This is useful if you want to minimize the data stored and store the assets (JS/CSS/Images) on the side of your result folder. Thank you [Ferdinand Holzer](https://github.com/fholzer) for the PR [#2321](https://github.com/sitespeedio/sitespeed.io/pull/2321)
 
 ## 8.6.5 - 2019-02-28
 ### Fixed
