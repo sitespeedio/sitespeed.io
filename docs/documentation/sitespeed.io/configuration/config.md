@@ -159,6 +159,14 @@ s3
   --s3.params             Extra params passed when you do the S3.upload: https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#upload-property - Example: --s3.params.Expires=31536000 to set expire to one year.
   --s3.options            Extra options passed when you create the S3 object: https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#constructor-property - Example: add --s3.options.apiVersion=2006-03-01 to lock to a specific API version.
 
+GoogleCloudStorage
+  --gcs.projectId          The Google Cloud storage Project ID
+  --gcs.key                The Google Cloud storage service account key
+  --gcs.bucketname         Name of the Google Cloud storage bucket
+  --gcs.public             Make uploaded results to Google Cloud storage publicly readable.  [boolean] [default: false]
+  --gcs.path               Override the default folder path in the bucket where the results are uploaded. By default it's DOMAIN_OR_FILENAME/TIMESTAMP", or the name of the folder if --outputFolder is specified.
+  --gcs.removeLocalResult  Remove all the local result files after they have been uploaded to Google Cloud storage.  [boolean] [default: false]
+
 HTML
   --html.showAllWaterfallSummary  Set to true to show all waterfalls on page summary HTML report  [boolean] [default: false]
   --html.fetchHARFiles            Set to true to load HAR files using fetch instead of including them in the HTML. Turn this on if serve your pages using a server.  [boolean] [default: false]

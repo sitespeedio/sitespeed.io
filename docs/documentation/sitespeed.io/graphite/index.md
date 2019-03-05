@@ -95,7 +95,7 @@ You can read about the keys and the metrics that we send to Graphite in the [met
 ### Annotations
 You can send annotations to Graphite to mark when a run happens so you can go from the dashboard to any HTML-results page.
 
-You do that by configuring the URL that will serve the HTML with the CLI param *resultBaseURL* (the base URL for your S3 bucket) and configure the HTTP Basic auth username/password used by Graphite. You can do that by setting <code>--graphite.auth LOGIN:PASSWORD</code>.
+You do that by configuring the URL that will serve the HTML with the CLI param *resultBaseURL* (the base URL for your S3 or GCS bucket) and configure the HTTP Basic auth username/password used by Graphite. You can do that by setting <code>--graphite.auth LOGIN:PASSWORD</code>.
 
 You can also modify the annotation and append our own text/HTML and add your own tags.
 Append a message to the annotation with <code>--graphite.annotationMessage</code>. That way you can add links to a specific branch or whatever you feel that can help you.

@@ -271,16 +271,16 @@ tc qdisc add dev docker4 parent 1:12 netem delay 200ms
 We provide an example Graphite Docker container and when you put that into production, you need to change the configuration. Checkout our [Graphite documentation](/documentation/sitespeed.io/graphite/#configure-graphite).
 
 # Using S3 for HTML and video
-You can store the HTML result on your local agent that runs sitespeed.io, or you can dump the data to S3 and serve it from there. To use S3, you first need to [set up an S3 bucket](http://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html).
+You can store the HTML result on your local agent that runs sitespeed.io, or you can dump the data to S3 or GCS and serve it from there. To use S3, you first need to [set up an S3 bucket](http://docs.aws.amazon.com/AmazonS3/latest/gsg/CreatingABucket.html). And to set up a [Google Cloud storage](https://cloud.google.com/storage/docs/creating-buckets) (GCS) bucket.
 
-Then you configure sitespeed.io to send the data to S3 by configuring the bucket name (and AWS key/secret if that's not available on your server).
+Then you configure sitespeed.io to send the data to S3 by configuring the bucket name (and AWS key/secret if that's not available on your server). For GCS you need to provide the name of the bucket, service account key and the project id.
 
-You now have the result on S3 and you're almost done. You should also configure to send annotations to Graphite for each run.
+You now have the result on S3 or GCS and you're almost done. You should also configure to send annotations to Graphite for each run.
 
 # Annotations
 You can send annotations to Graphite to mark when a run happens so you can go from the dashboard to any HTML-results page.
 
-You do that by configuring the URL that will serve the HTML with the CLI param *resultBaseURL* (the base URL for your S3 bucket) and configure the HTTP Basic auth username/password used by Graphite. You can do that by setting <code>--graphite.auth LOGIN:PASSWORD</code>.
+You do that by configuring the URL that will serve the HTML with the CLI param *resultBaseURL* (the base URL for your S3 or GCS bucket) and configure the HTTP Basic auth username/password used by Graphite. You can do that by setting <code>--graphite.auth LOGIN:PASSWORD</code>.
 
 You can also modify the annotation and append our own text/HTML and add your own tags.
 Append a message to the annotation with <code>--graphite.annotationMessage</code>. That way you can add links to a specific branch or whatever you feel that can help you.
