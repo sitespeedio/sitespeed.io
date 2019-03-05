@@ -4,6 +4,7 @@ node_modules
 *.iml
 .vscode
 sitespeed-result
+assets
 configs
 docs/_site
 yarn.lock

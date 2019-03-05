@@ -1,6 +1,6 @@
 {
   "name": "sitespeed.io",
-  "version": "8.6.4",
+  "version": "8.6.5",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -2966,9 +2966,9 @@
       "integrity": "sha1-81HTKWnTL6XXpVZxVCY9korjvR8="
     },
     "browsertime": {
-      "version": "4.4.7",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-4.4.7.tgz",
-      "integrity": "sha512-aOBGyS4pIKHdNOByXvs/uBeOSNMzH30CIj1aKuqPMkuGbgysOSk4EP2DeUACmmp1JB0QVbb6/937UG0cfJBgng==",
+      "version": "4.4.8",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-4.4.8.tgz",
+      "integrity": "sha512-yoeENwsgv5i0MYBdtZRN+zpdcI5tnsSnmZWa61nRGRdSgRRV7mh1WlGQn8fdP7kc4dudnfyEbZA+fauKD6aG4w==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@sitespeed.io/chromedriver": "2.45.0",
@@ -7101,9 +7101,9 @@
       }
     },
     "pagexray": {
-      "version": "2.5.2",
-      "resolved": "https://registry.npmjs.org/pagexray/-/pagexray-2.5.2.tgz",
-      "integrity": "sha512-byO4CQ9bozI8fKUA8N9DQTPz22E2i0EPMnZ2epdrpfOhjc6C0sxgAJw1vLgBvXomLmeIAmHZfLj/XGZFAyTmSA==",
+      "version": "2.5.4",
+      "resolved": "https://registry.npmjs.org/pagexray/-/pagexray-2.5.4.tgz",
+      "integrity": "sha512-0cUxz4vPrV1o3J731tzwysHg97g159lggHbhT3f5MGOOOSsLHLqmOQpTLRTk1L9PeUvuAEQbq2ujzM81g7gr3g==",
       "requires": {
         "minimist": "1.2.0"
       }

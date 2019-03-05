@@ -1,7 +1,7 @@
 {
   "name": "sitespeed.io",
   "bin": "./bin/sitespeed.js",
-  "version": "8.6.4",
+  "version": "8.6.5",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -44,7 +44,8 @@
     "test": "mocha",
     "check-licenses": "tools/check-licenses.js",
     "travis": "npm run eslint-check && npm run lint && npm run test",
-    "build:css": "node-sass lib/plugins/html/src/sass/main.scss > lib/plugins/html/assets/css/index.css && cleancss -o lib/plugins/html/assets/css/index.min.css lib/plugins/html/assets/css/index.css && rm lib/plugins/html/assets/css/index.css"
+    "build:css": "node-sass lib/plugins/html/src/sass/main.scss > lib/plugins/html/assets/css/index.css && cleancss -o lib/plugins/html/assets/css/index.min.css lib/plugins/html/assets/css/index.css && rm lib/plugins/html/assets/css/index.css",
+    "generate:assets": "mkdir -p assets/$npm_package_version && cp -R lib/plugins/html/assets/ assets/$npm_package_version/"
   },
   "engines": {
     "node": ">=10.13.0"
@@ -69,7 +70,7 @@
   "main": "./lib/sitespeed.js",
   "dependencies": {
     "aws-sdk": "2.361.0",
-    "browsertime": "4.4.7",
+    "browsertime": "4.4.8",
     "cli-color": "1.4.0",
     "concurrent-queue": "7.0.2",
     "dayjs-ext": "2.2.0",
@@ -95,7 +96,7 @@
     "mkdirp": "0.5.1",
     "node-slack": "0.0.7",
     "p-limit": "2.0.0",
-    "pagexray": "2.5.2",
+    "pagexray": "2.5.4",
     "pug": "2.0.3",
     "recursive-readdir": "2.2.2",
     "simplecrawler": "1.1.6",

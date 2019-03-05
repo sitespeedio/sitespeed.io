@@ -1,4 +1,21 @@
 # CHANGELOG - sitespeed.io
+
+## 8.7.0 - UNRELEASED
+### Added
+* Added HTML link in the Coach result from each advice type to individual advice [#2344](https://github.com/sitespeedio/sitespeed.io/pull/2344)
+* Make it easy to use pageLoadTime in the new budget format [#2351](https://github.com/sitespeedio/sitespeed.io/pull/2351).
+* Set your own annotation title [#2333](https://github.com/sitespeedio/sitespeed.io/pull/2333), thank you [Markus Liljedahl](https://github.com/mliljedahl) for the PR.
+* Set where to serve your assets with `--html.assetsBaseURL`. This is useful if you want to minimize the data stored and store the assets (JS/CSS/Images) on the side of your result folder. Thank you [Ferdinand Holzer](https://github.com/fholzer) for the PR [#2321](https://github.com/sitespeedio/sitespeed.io/pull/2321)
+
+### Fixed
+* Upgraded to PageXray 2.5.4 that categorise first party using the actual domain instead of the full URL (as reported by [arunthilak](https://github.com/arunthilak)).
+* Upgraded to [Browsertime 4.4.8](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#448---2019-03-04).
+
+
+## 8.6.5 - 2019-02-28
+### Fixed
+* [Gideon Pyzer](https://github.com/gidztech) fixed the broken config parameter for Lighthouse (if you use the Lighthouse container) in [#10](https://github.com/sitespeedio/plugin-lighthouse/pull/10).
+
 ## 8.6.4 - 2019-02-24
 ### Fixed
 * When sending annotations with `--graphite.annotationMessage` and not providing a screenshot the message and the extraMessage used to get concatenated without any space. Thank you [Markus Liljedahl](https://github.com/mliljedahl) for the PR [#2332](https://github.com/sitespeedio/sitespeed.io/pull/2332) that fixes that.
