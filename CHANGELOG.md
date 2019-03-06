@@ -10,7 +10,7 @@
 ### Fixed
 * Upgraded to PageXray 2.5.4 that categorise first party using the actual domain instead of the full URL (as reported by [arunthilak](https://github.com/arunthilak)).
 * Upgraded to [Browsertime 4.4.8](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#448---2019-03-04).
-
+* Lighthouse audit tag for InfluxDB, thank you [Semyon](https://github.com/SemyonLosmakov) for the PR [#2359](https://github.com/sitespeedio/sitespeed.io/pull/2359)
 
 ## 8.6.5 - 2019-02-28
 ### Fixed
