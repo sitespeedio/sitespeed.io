@@ -86,6 +86,7 @@ Here is an example of a fully configurued budget file. It shows you what yiou *c
 "budget": {
     "timings": {
       "firstPaint": 1000,
+      "pageLoadTime": 2000,
       "fullyLoaded": 2000,
       "FirstVisualChange": 1000,
       "LastVisualChange": 1200,
