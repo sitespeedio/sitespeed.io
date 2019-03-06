@@ -148,10 +148,10 @@ Slack
   --slack.limitMetric   The metric that will be used to set warning/error  [choices: "coachScore", "speedIndex", "firstVisualChange"] [default: "coachScore"]
 
 s3
-  --s3.endpoint           The S3 endpoint
-  --s3.key                The S3 key
-  --s3.secret             The S3 secret
-  --s3.bucketname         Name of the S3 bucket
+  --s3.endpoint           The S3 endpoint. Optional depending on your settings.
+  --s3.key                The S3 key.
+  --s3.secret             The S3 secret.
+  --s3.bucketname         Name of the S3 bucket,
   --s3.path               Override the default folder path in the bucket where the results are uploaded. By default it's "DOMAIN_OR_FILENAME/TIMESTAMP", or the name of the folder if --outputFolder is specified.
   --s3.region             The S3 region. Optional depending on your settings.
   --s3.acl                The S3 canned ACL to set. Optional depending on your settings.
