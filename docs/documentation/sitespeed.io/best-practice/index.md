@@ -120,7 +120,7 @@ By default the # part of a URL is stripped off from your page. Yep we know, it i
 If you have pages that are generated differently depending of what's after you #-sign, you can use the <code>--useHash</code> switch. Then all pages will be tested as a unique page.
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --useHash https://www.sitespeed.io/#/super 
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --useHash https://www.sitespeed.io/#/super
 ~~~
 
 You can also use the <code>--urlAlias</code> if you want to give the page a friendly name. Use it multiple times if you have multiple URLs.
@@ -162,7 +162,7 @@ If you you want to store less data from sitespeed.io one way is to configure and
 
 The heaviest data that sitespeed.io generates is the video, screenshot and video filmstrip screenshots. You can disable those features but it will make it harder for you to verify that everything works ok and to pinpoint regressions.
 
-If you have limited space (and do not store the data on S3 and configure it to automatically remove old data) you can use the following configurations.
+If you have limited space (and do not store the data on S3 or in GCS and configure it to automatically remove old data) you can use the following configurations.
 
 ##### Video
 You can change the [Constant rate factor](https://trac.ffmpeg.org/wiki/Encode/H.264#crf). Default is 23. If you change that you can have videos with lower quality but it will take less space. Use <code>--browsertime.videoParams.crf</code>.
@@ -192,8 +192,8 @@ If you want to disable the screenshot plugin (that stores screenshots to disk) y
 #### Graphite
 Make sure to edit your *storage-schemas.conf* to match your metrics and how long time you want to keep them. See [Graphite setup in production]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#setup-important).
 
-#### S3
-When you create your buckets at S3, you can configure how long time it will keep your data (HTML/screenshots/videos). Make it match how long time you keep your metrics in Graphite or how long back in time you think you need it. Usually that is shorter than you think :) When you find an regression (hopefully within an hour or at least day) you want to compare that data with what it looked like before. Storing things at S3 for 2 weeks should be ok, but you choose yourself.
+#### S3 and GCS
+When you create your buckets at S3 or GCS, you can configure how long time it will keep your data (HTML/screenshots/videos). Make it match how long time you keep your metrics in Graphite or how long back in time you think you need it. Usually that is shorter than you think :) When you find an regression (hopefully within an hour or at least day) you want to compare that data with what it looked like before. Storing things in the bucket for 2 weeks should be ok, but you choose yourself.
 
 ## Alerting
 
