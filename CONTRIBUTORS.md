@@ -1,4 +1,5 @@
 Many many many thanks to:
+* [Semyon](https://github.com/SemyonLosmakov) 
 * [Markus Liljedahl](https://github.com/mliljedahl)
 * [Ferdinand Holzer](https://github.com/fholzer)
 * [George Haddad](https://github.com/george-haddad)
