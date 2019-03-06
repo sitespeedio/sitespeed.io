@@ -7,6 +7,7 @@
 * Set your own annotation title [#2333](https://github.com/sitespeedio/sitespeed.io/pull/2333), thank you [Markus Liljedahl](https://github.com/mliljedahl) for the PR.
 * Set where to serve your assets with `--html.assetsBaseURL`. This is useful if you want to minimize the data stored and store the assets (JS/CSS/Images) on the side of your result folder. Thank you [Ferdinand Holzer](https://github.com/fholzer) for the PR [#2321](https://github.com/sitespeedio/sitespeed.io/pull/2321)
 * You can now run your extra start script in the Docker container: `docker run -e EXTRA_START_SCRIPT=/sitespeed.io/test.sh --rm -v "$(pwd)":/sitespeed.io ...`. Thank you [Gideon Pyzer](https://github.com/gidztech) for the initial idea and version! See [#2363](https://github.com/sitespeedio/sitespeed.io/pull/2363).
+* Support for uploading result to Google Cloud Storage. Thank you [Markus Liljedahl](https://github.com/mliljedahl) for the PR [#2360](https://github.com/sitespeedio/sitespeed.io/pull/2360)!
 
 ### Fixed
 * Upgraded to PageXray 2.5.4 that categorise first party using the actual domain instead of the full URL (as reported by [arunthilak](https://github.com/arunthilak)).
