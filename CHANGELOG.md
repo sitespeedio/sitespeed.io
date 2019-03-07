@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 8.7.3 - 2019-03-07
+### Fixed
+* Fix for getting the GCS to work [#2368](https://github.com/sitespeedio/sitespeed.io/pull/2368).
+
 ## 8.7.2 - 2019-03-07
 ### Fixed
 * Added back the HTML folder for assets that was faulty excluded from git.
