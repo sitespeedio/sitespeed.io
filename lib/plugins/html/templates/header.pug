@@ -8,7 +8,7 @@ mixin headerLink(id, name)
   .navgrid
     .logo
         a(href='https://www.sitespeed.io')
-          img.navbar-brand(src= rootPath + 'img/sitespeed.io-logo.png', width='162', height='50', alt='sitespeed.io logo')
+          img.navbar-brand(src= assetsPath + 'img/sitespeed.io-logo.png', width='162', height='50', alt='sitespeed.io logo')
     ul
       +headerLink('index', 'Summary')
       +headerLink('detailed', 'Detailed Summary')

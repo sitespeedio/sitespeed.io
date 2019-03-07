@@ -317,7 +317,7 @@ module.exports = async function(context, commands) {
   // We hide the HTML to avoid that the click on the link will
   // fire First Visual Change. Best case you don't need to but we 
   // want an complex example
-  await commands.js.run('document.body.style.display = "none"');
+  await commands.js.run('for (let node of document.body.childNodes) { if (node.style) node.style.display = "none";}');
   await commands.measure.start('CheckoutAsGuest');
   await commands.click.bySelectorAndWait('.checkout-as-guest');
   // Make sure to stop measuring and collect the metrics for the CheckoutAsGuest step
@@ -387,13 +387,15 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
-If you want to click a link and make sure the background is white, you can hide the HTML and then click the link.
+If you want to click a link and want to make sure that the HTML doesn't change when you click the link, you can try to hide the HTML and then click the link. 
 
 ~~~javascript
 module.exports = async function(context, commands) {
     await commands.measure.start('https://www.sitespeed.io');
     // Hide everything
-    await commands.js.run('document.body.style.display = "none";');
+    // We do not hide the body since the body needs to be visibile when we do the magic to find the staret of the 
+    // navigation by adding a layer of orange on top of the page
+    await commands.js.run('for (let node of document.body.childNodes) { if (node.style) node.style.display = "none";}');
     // Start measurning
     await commands.measure.start();
     // Click on the link and wait on navigation to happen
@@ -401,6 +403,8 @@ module.exports = async function(context, commands) {
     return commands.measure.stop();
 };
 ~~~
+
+
 
 ### Test one page that need a much longer page complete check than others
 
@@ -448,6 +452,8 @@ module.exports = async function(context, commands) {
 
 All commands will return a promise and you should await it to fulfil. If some command do not work, we will log that automatically and rethrow the error, so you can catch that and can act on that.
 
+The commands that ends with a **...AndWait** will wait for a new page to load, so use them only when you are clicking on a link and want a new page or view to load.
+
 ### Measure
 The measure command will prepare everything for measuring a new URL (clearing internal metrics, starting the video etc). If you give an URL to the measure command it will start to measure and navigate to that URL.
 
@@ -459,7 +465,7 @@ Start and navigate to the URL and then automatically call the stop() function af
 ~~~javascript
 module.exports = async function(context, commands) {
   await commands.measure.start('https://www.sitespeed.io');
-  // If you want to measuure multiple URLs after each other
+  // If you want to measure multiple URLs after each other
   // you can just line them up
   await commands.measure.start('https://www.sitespeed.io/examples/');
   return commands.measure.start('https://www.sitespeed.io/documentation/');

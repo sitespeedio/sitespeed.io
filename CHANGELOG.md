@@ -1,4 +1,44 @@
 # CHANGELOG - sitespeed.io
+
+## 8.7.2 - 2019-03-07
+### Fixed
+* Added back the HTML folder for assets that was faulty excluded from git.
+
+## 8.7.1 - 2019-03-07
+### Fixed
+* Fixed error log from chmod in the Docker container with a better check for if the extra start script exists.
+
+## 8.7.0 - 2019-03-06
+### Added
+* Support for uploading result to Google Cloud Storage. Thank you [Markus Liljedahl](https://github.com/mliljedahl) for the PR [#2360](https://github.com/sitespeedio/sitespeed.io/pull/2360)!
+* Set where to serve your assets with `--html.assetsBaseURL`. This is useful if you want to minimize the data stored and store the assets (JS/CSS/Images) on the side of your result folder. Thank you [Ferdinand Holzer](https://github.com/fholzer) for the PR [#2321](https://github.com/sitespeedio/sitespeed.io/pull/2321)
+* Set your own annotation title [#2333](https://github.com/sitespeedio/sitespeed.io/pull/2333), thank you [Markus Liljedahl](https://github.com/mliljedahl) for the PR.
+* Added HTML link in the Coach result from each advice type to individual advice [#2344](https://github.com/sitespeedio/sitespeed.io/pull/2344)
+* Make it easy to use pageLoadTime in the new budget format [#2351](https://github.com/sitespeedio/sitespeed.io/pull/2351).
+* You can now run your extra start script in the Docker container: `docker run -e EXTRA_START_SCRIPT=/sitespeed.io/test.sh --rm -v "$(pwd)":/sitespeed.io ...`. Thank you [Gideon Pyzer](https://github.com/gidztech) for the initial idea and version! See [#2363](https://github.com/sitespeedio/sitespeed.io/pull/2363).
+
+### Fixed
+* Upgraded to PageXray 2.5.4 that categorise first party using the actual domain instead of the full URL (as reported by [arunthilak](https://github.com/arunthilak)).
+* Upgraded to [Browsertime 4.4.8](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#448---2019-03-04).
+* Lighthouse audit tag for InfluxDB, thank you [Semyon](https://github.com/SemyonLosmakov) for the PR [#2359](https://github.com/sitespeedio/sitespeed.io/pull/2359)
+* Changed the unused message gc.finished to gcs.finished to work with comming Google Cloud Storage support [#2362](https://github.com/sitespeedio/sitespeed.io/pull/2362)
+
+## 8.6.5 - 2019-02-28
+### Fixed
+* [Gideon Pyzer](https://github.com/gidztech) fixed the broken config parameter for Lighthouse (if you use the Lighthouse container) in [#10](https://github.com/sitespeedio/plugin-lighthouse/pull/10).
+
+## 8.6.4 - 2019-02-24
+### Fixed
+* When sending annotations with `--graphite.annotationMessage` and not providing a screenshot the message and the extraMessage used to get concatenated without any space. Thank you [Markus Liljedahl](https://github.com/mliljedahl) for the PR [#2332](https://github.com/sitespeedio/sitespeed.io/pull/2332) that fixes that.
+
+* Better error messages when sending data to Grafana. Thank you again [Markus Liljedahl](https://github.com/mliljedahl) [#2334](https://github.com/sitespeedio/sitespeed.io/pull/2334).
+
+* Waterfall chart had colliding texts, the font is now slightly smaller [#2345](https://github.com/sitespeedio/sitespeed.io/pull/2345).
+
+## 8.6.3 - 2019-02-21
+### Fixed
+* Upgraded to Browsertime 4.4.7 with fix for better finding last visual change in the video. 
+
 ##  8.6.2 - 2019-02-20
 ### Fixed
 * Upgraded to Browsertime 4.4.6 that adds better error handling if your multi script is broken or if a URL fails to load.
