@@ -53,7 +53,22 @@ You will get result as you would with running this normally with summaries and w
 If you want test coming Chrome versions you can use *com.chrome.beta* for latest beta and *com.chrome.dev* for latest development version (make sure installed them on your phone first).
 
 # Connectivity
-If you run by default, the phone will use the current connection. The connectivity flag is currently not supported (would love a PR for that!) but you can set connectivity by using [TSProxy](https://github.com/WPO-Foundation/tsproxy).
+If you run by default, the phone will use the current connection. 
+
+## gnirehtet and Throttle
+You can use the connection of your desktop by reverse tethering. And then set the connectivity on your desktop computer.
+
+1. Download [gnirehtet](https://github.com/Genymobile/gnirehtet) (Java or Rust version)
+2. Install [Throttle](https://github.com/sitespeedio/throttle) (works on Mac OS X or Linux that has tc installed):  <code>npm install @sitespeed.io/throttle -g</code>
+3. Make sure your phone is plugged into your desktop using USB.
+4. Start gnirehtet: <code>./gnirehtet run</code>
+5. Start throttle: <code>throttle 3g</code>
+6. Run sitespeed.io.
+
+Note: the first time you run gnirehtet you need to accept the vpn connection on your phone.
+
+## TSProxy
+You can set connectivity by using [TSProxy](https://github.com/WPO-Foundation/tsproxy).
 
 1. Download [TSProxy](https://github.com/WPO-Foundation/tsproxy) and make sure you have at least Python 2.7 installed.
 2. Check the local IP of your machine (in this example the IP is 10.0.1.7 and the default port for TSProxy is 1080).
