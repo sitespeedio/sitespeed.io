@@ -16,7 +16,7 @@ twitterdescription: Upload result to GCS.
 
 * Lets place the TOC here
 {:toc}
----
+
 You can store the result HTML/images and videos at [Amazon S3](https://aws.amazon.com/s3/) (or S3 compliant storage). That's what we are using for [https://dashboard.sitespeed.io/](https://dashboard.sitespeed.io/). What's good about it is that it is cheap and you can easily control how long time you want to keep you files. And it is not too much work to setup.
 
 ## Setup a GCS bucket
