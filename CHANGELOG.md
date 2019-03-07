@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 8.7.2 - 2019-03-07
+### Fixed
+* Added back the HTML folder for assets that was faulty excluded from git.
+
 ## 8.7.1 - 2019-03-07
 ### Fixed
 * Fixed error log from chmod in the Docker container with a better check for if the extra start script exists.
