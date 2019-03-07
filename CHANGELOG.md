@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 8.7.1 - 2019-03-07
+### Fixed
+* Fixed error log from chmod in the Docker container with a better check for if the extra start script exists.
+
 ## 8.7.0 - 2019-03-06
 ### Added
 * Support for uploading result to Google Cloud Storage. Thank you [Markus Liljedahl](https://github.com/mliljedahl) for the PR [#2360](https://github.com/sitespeedio/sitespeed.io/pull/2360)!

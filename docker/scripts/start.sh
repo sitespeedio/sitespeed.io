@@ -119,7 +119,7 @@ function runSitespeedio(){
 setupADB
 
 # Additional start script that the user can copy to the container
-if [ -f $EXTRA_START_SCRIPT ]
+if [ ! -z "$EXTRA_START_SCRIPT" ] && [ -f "$EXTRA_START_SCRIPT" ]
 then
   chmod +x $EXTRA_START_SCRIPT
   $EXTRA_START_SCRIPT
