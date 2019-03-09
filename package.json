@@ -74,7 +74,7 @@
     "browsertime": "4.4.8",
     "cli-color": "1.4.0",
     "concurrent-queue": "7.0.2",
-    "dayjs-ext": "2.2.0",
+    "dayjs": "1.8.9",
     "fast-crc32c": "1.0.4",
     "fast-stats": "0.0.4",
     "fs-extra": "7.0.1",
