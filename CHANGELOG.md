@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASD
+### Fixed
+* Moved to internal UTC support in dayjs [#2370](https://github.com/sitespeedio/sitespeed.io/pull/2370).
+
 ## 8.7.3 - 2019-03-07
 ### Fixed
 * Fix for getting the GCS to work [#2368](https://github.com/sitespeedio/sitespeed.io/pull/2368).
