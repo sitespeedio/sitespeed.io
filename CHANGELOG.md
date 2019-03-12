@@ -1,7 +1,8 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASD
+## 8.7.4 - 2019-03-12
 ### Fixed
+* In some cases alias wasn't picked up for URLs sent to Graphite/InfluxDB as reported in [#2341](https://github.com/sitespeedio/sitespeed.io/issues/2341) and fixed in [#2373](https://github.com/sitespeedio/sitespeed.io/pull/2373). Thank you [James Leatherman](https://github.com/leathej1) for taking the time to find a reproducable test case!
 * Moved to internal UTC support in dayjs [#2370](https://github.com/sitespeedio/sitespeed.io/pull/2370).
 
 ## 8.7.3 - 2019-03-07
