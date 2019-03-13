@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io
 
+## 8.7.5 - 2019-03-13
+### Fixed
+* Upgrading Browsertime to 4.4.9 with two fixes: 
+  * Automatically catch if a user that uses a script misses calling measure.stop() [#798](https://github.com/sitespeedio/browsertime/pull/798).  
+  * If a runs fail, make sure Browsertime fails more gracefully [#799](https://github.com/sitespeedio/browsertime/pull/799).
+
 ## 8.7.4 - 2019-03-12
 ### Fixed
 * In some cases alias wasn't picked up for URLs sent to Graphite/InfluxDB as reported in [#2341](https://github.com/sitespeedio/sitespeed.io/issues/2341) and fixed in [#2373](https://github.com/sitespeedio/sitespeed.io/pull/2373). Thank you [James Leatherman](https://github.com/leathej1) for taking the time to find a reproducable test case!
