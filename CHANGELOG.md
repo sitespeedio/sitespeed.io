@@ -1,4 +1,7 @@
 # CHANGELOG - sitespeed.io
+## 8.8.0 - UNRELEASED
+## Added
+* Upgraded to Chrome 73 in the Docker container.
 
 ## 8.7.5 - 2019-03-13
 ### Fixed
