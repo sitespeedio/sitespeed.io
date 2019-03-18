@@ -1,4 +1,13 @@
 # CHANGELOG - sitespeed.io
+## 8.8.0 - UNRELEASED
+## Added
+* Upgraded to Chrome 73 in the Docker container.
+
+## 8.7.5 - 2019-03-13
+### Fixed
+* Upgrading Browsertime to 4.4.9 with two fixes: 
+  * Automatically catch if a user that uses a script misses calling measure.stop() [#798](https://github.com/sitespeedio/browsertime/pull/798).  
+  * If a runs fail, make sure Browsertime fails more gracefully [#799](https://github.com/sitespeedio/browsertime/pull/799).
 
 ## 8.7.4 - 2019-03-12
 ### Fixed

@@ -99,7 +99,7 @@ Options:
   --config                       Path to JSON config file
   --viewPort                     Size of browser window WIDTHxHEIGHT or "maximize". Note that "maximize" is ignored for xvfb.
   --resultDir                    Set result directory for the files produced by Browsertime
-  --useSameDir                   Store all files is the same structure and do not use the path structure released in 4.0. Use this only if you are testing ONE URL.
+  --useSameDir                   Store all files in the same structure and do not use the path structure released in 4.0. Use this only if you are testing ONE URL.
   --xvfb                         Start xvfb before the browser is started  [boolean] [default: false]
   --xvfbParams.display           The display used for xvfb  [default: 99]
   --preURL                       A URL that will be accessed first by the browser before the URL that you wanna analyze. Use it to fill the cache.

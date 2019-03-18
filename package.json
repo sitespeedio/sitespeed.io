@@ -1,7 +1,7 @@
 {
   "name": "sitespeed.io",
   "bin": "./bin/sitespeed.js",
-  "version": "8.7.4",
+  "version": "8.7.5",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -71,7 +71,7 @@
   "dependencies": {
     "@google-cloud/storage": "2.4.2",
     "aws-sdk": "2.361.0",
-    "browsertime": "4.4.8",
+    "browsertime": "4.4.9",
     "cli-color": "1.4.0",
     "concurrent-queue": "7.0.2",
     "dayjs": "1.8.9",
