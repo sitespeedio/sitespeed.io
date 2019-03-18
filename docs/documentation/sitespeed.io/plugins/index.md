@@ -31,7 +31,7 @@ And you will get a log entry that looks something like this:
 
 ~~~
 ...
-The following plugins are enabled: assets,browsertime,coach,domains,html,screenshot
+The following plugins are enabled: assets,browsertime,coach,domains,html
 ...
 ~~~
 
@@ -44,16 +44,16 @@ You can remove/disable default plugins if needed. For instance you may not want 
 docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.remove html
 ~~~
 
-If you want to disable multiple plugins say you don't need the html or screenshots:
+If you want to disable multiple plugins say you don't need the html and the har files (the harstorer plugin):
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.remove html --plugins.remove screenshot
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.remove html --plugins.remove harstorer
 ~~~
 
 At anytime if you want to verify that disabling worked, add the plugins.list to your command:
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.remove html --plugins.remove screenshot --plugins.list
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.remove html --plugins.remove harstorer --plugins.list
 ~~~
 
 ## Add a plugin
@@ -202,18 +202,6 @@ switch (message.type) {
 ~~~
 
 When you are finished analysing the URL, your plugin can then send a message with the result, so other plugins can use it.
-
-Here's a snippet of Browsertime sending the screenshots message (the actual screenshot is in *results.screenshots*):
-
-~~~javascript
-const messageMaker = context.messageMaker;
-...
-
-queue.postMessage(make('browsertime.screenshot', results.screenshots, {
-  url,
-  group
-}));
-~~~
 
 If you want to send messages from within your plugin, you get it from the context.
 
