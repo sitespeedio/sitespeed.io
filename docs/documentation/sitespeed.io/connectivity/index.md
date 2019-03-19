@@ -66,7 +66,7 @@ And if you want to remove the networks:
 echo 'Stopping Docker networks'
 docker network rm 3g
 docker network rm 3gfast
-docker network rm 3slow
+docker network rm 3gslow
 docker network rm cable
 ~~~
 
