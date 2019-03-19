@@ -2,6 +2,10 @@
 ## 8.8.0 - UNRELEASED
 ## Added
 * Upgraded to Chrome 73 in the Docker container.
+* Upgraded to Firefox 66 in the Docker container
+
+## Fixed
+* Fixed broken disabling of screenshots [#2378](https://github.com/sitespeedio/sitespeed.io/pull/2378)
 
 ## 8.7.5 - 2019-03-13
 ### Fixed
