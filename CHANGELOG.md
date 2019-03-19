@@ -3,6 +3,7 @@
 ## Added
 * Upgraded to Chrome 73 in the Docker container.
 * Upgraded to Firefox 66 in the Docker container
+* Added favicon, json, plain, svg and other and budget types. Thanks [PedroMSantosD](https://github.com/PedroMSantosD) for the PR [#2374](https://github.com/sitespeedio/sitespeed.io/pull/2374).
 
 ## Fixed
 * Fixed broken disabling of screenshots [#2378](https://github.com/sitespeedio/sitespeed.io/pull/2378)
