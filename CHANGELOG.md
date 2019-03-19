@@ -4,6 +4,8 @@
 * Upgraded to Chrome 73 in the Docker container.
 * Upgraded to Firefox 66 in the Docker container
 * Added favicon, json, plain, svg and other and budget types. Thanks [PedroMSantosD](https://github.com/PedroMSantosD) for the PR [#2374](https://github.com/sitespeedio/sitespeed.io/pull/2374).
+* The plus1 container now includes Lighthouse 4.2.0
+* You can now debug log Lighthouse using `--verbose` , thank you [Gideon Pyzer](https://github.com/gidztech) for the original PR.
 
 ## Fixed
 * Fixed broken disabling of screenshots [#2378](https://github.com/sitespeedio/sitespeed.io/pull/2378)
