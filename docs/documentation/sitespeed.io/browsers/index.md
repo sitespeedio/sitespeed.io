@@ -107,6 +107,11 @@ You can choose which version of Chrome you want to run by using the ```--chrome.
 
 Our Docker container only contains one version of Chrome and [let us know](https://github.com/sitespeedio/sitespeed.io/issues/new) if you need help to add more versions.
 
+### Use a newer version of Chromedriver
+Chromedriver is the driver that handles the communication with Chrome. At the moment the Chromedriver version needs to match the Chrome version. By default sitespeed.io and Browsertime comes with the Chromedriver version that matches the Chrome version in the Docker container. If you wanna run tests on Chrome Beta/Canary you probably need to download a later version of Chromedriver.
+
+You download Chromedriver from [http://chromedriver.chromium.org](http://chromedriver.chromium.org) and then use ```--chrome.chromedriverPath``` to set the path to the new version of the Chromedriver.
+
 ## Choose when to end your test
 By default the browser will collect data until  [window.performance.timing.loadEventEnd happens + aprox 5 seconds more](https://github.com/sitespeedio/browsertime/blob/d68261e554470f7b9df28797502f5edac3ace2e3/lib/core/seleniumRunner.js#L15). That is perfectly fine for most sites, but if you do Ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (```--browsertime.pageCompleteCheck```). When the scripts returns true the browser will close or if the timeout time is reached.
 

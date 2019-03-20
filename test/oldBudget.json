@@ -1,7 +1,7 @@
 {
   "browsertime.pageSummary": [{
     "metric": "statistics.timings.firstPaint.median",
-    "max": 1000
+    "max": 5000
     }, {
     "metric": "statistics.visualMetrics.FirstVisualChange.median",
     "max": 1000
