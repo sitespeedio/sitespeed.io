@@ -10,7 +10,7 @@
 	Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';
 
 /video/*
-	Content-Security-Policy: default-src 'self'; script-src 'unsafe-inline'; style-src 'self' 'unsafe-inline'; child-src https://www.youtube.com; img-src 'self' https://i.ytimg.com;
+	Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; child-src https://www.youtube.com; img-src 'self' https://i.ytimg.com;
 
 /testcases/*
 	Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self';
