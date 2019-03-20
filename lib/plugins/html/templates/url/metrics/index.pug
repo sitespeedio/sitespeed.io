@@ -92,6 +92,16 @@ if  browsertime
             td
               a(href=baseHelpURL + 'timeToDomContentFlushed') DOM Content Flushed
             td.number #{h.time.ms(timings.timeToDomContentFlushed.toFixed(0))}
+        if timings.timeToContentfulPaint
+         tr
+            td
+              a(href=baseHelpURL + 'timeToContentfulPaint') Time To Contentful Paint
+            td.number #{h.time.ms(timings.timeToContentfulPaint.toFixed(0))}
+        if timings.timeToFirstInteractive
+         tr
+            td
+              a(href=baseHelpURL + 'timeToFirstInteractive') Time To First Interactive
+            td.number #{h.time.ms(timings.timeToFirstInteractive.toFixed(0))}         
         tr
           td
             a(href=baseHelpURL + 'rumSpeedIndex') RUM Speed Index
