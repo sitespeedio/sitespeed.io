@@ -4,6 +4,7 @@
 [![Downloads][downloads-image]][downloads-url]
 [![Docker][docker-image]][docker-url]
 [![Stars][stars-image]][stars-url]
+[![npm][npm-image]][npm-url]
 [![Changelog #212][changelog-image]][changelog-url]
 
 
@@ -156,3 +157,5 @@ docker run --cap-add=NET_ADMIN --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true -e 
 [docker-url]: https://hub.docker.com/r/sitespeedio/sitespeed.io/
 [changelog-image]: https://img.shields.io/badge/changelog-%23212-lightgrey.svg?style=flat-square
 [changelog-url]: https://changelog.com/212
+[npm-image]: https://img.shields.io/npm/v/sitespeed.io.svg
+[npm-url]: https://npmjs.org/package/sitespeed.io
