@@ -104,6 +104,7 @@ Budget
   --budget.output            The output format of the budget.  [choices: "junit", "tap", "json"]
 
 Screenshot
+  --browsertime.screenshot                                                                Set to false to disable screenshots  [boolean] [default: true]
   --browsertime.screenshotParams.type, --screenshot.type                                  Set the file type of the screenshot  [choices: "png", "jpg"] [default: "png"]
   --browsertime.screenshotParams.png.compressionLevel, --screenshot.png.compressionLevel  zlib compression level  [default: 6]
   --browsertime.screenshotParams.jpg.quality, --screenshot.jpg.quality                    Quality of the JPEG screenshot. 1-100  [default: 80]
