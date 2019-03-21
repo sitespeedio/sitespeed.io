@@ -53,7 +53,7 @@ You will get result as you would with running this normally with summaries and w
 If you want test coming Chrome versions you can use *com.chrome.beta* for latest beta and *com.chrome.dev* for latest development version (make sure installed them on your phone first).
 
 # Connectivity
-If you run by default, the phone will use the current connection. 
+If you run by default, the phone will use the current connection.
 
 ## gnirehtet and Throttle
 You can use the connection of your desktop by reverse tethering. And then set the connectivity on your desktop computer.
@@ -91,6 +91,37 @@ docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --
 ~~~
 
 If you want to run Docker on Mac OS X, you can follow Appiums [setup](https://github.com/appium/appium-docker-android) by creating a docker-machine, give ut USB access and then run the container from that Docker machine.
+
+# Driving multiple phones from the same computer
+If you wanna drive multiple phones from one computer using Docker, you need to mount each USB port to the right Docker container.
+
+You can do that with the ´--device command´:
+´--device=/dev/bus/usb/001/007´
+
+The first part is the bus and that will not change, but the second part *devnum* changes if you unplug the device restart etc.
+
+You need to know which phone are connected to which usb port.
+
+Here's an example on how you can get that automatically before you start the container, feeding the unique id (that you get from *lsusb*).
+
+~~~bash
+#!/bin/bash
+
+ID=22b8:2e76
+LSUSB_OUTPUT=$(lsusb -d $ID)
+
+if [ -z “$LSUSB_OUTPUT” ]; then
+ echo “Could not find the phone”
+ exit;
+fi
+
+BUS=`echo $LSUSB_OUTPUT | grep -Po 'Bus \K[0-9]+'`
+
+# Read the device number:
+DEV=`echo $LSUSB_OUTPUT | grep -Po 'Device \K[0-9]+'`
+
+echo $BUS/$DEV
+~~~
 
 # Collect trace log
 One important thing when testing on mobile is to analyze the Chrome trace log. You can get that with *browsertime.chrome.collectTracingEvents*:
