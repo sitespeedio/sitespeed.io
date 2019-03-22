@@ -1,6 +1,11 @@
 # CHANGELOG - sitespeed.io
+
+## 8.8.1 - UNRELEASED
+### Fixed
+* Upgraded Browsertime to 4.5.1 that fixes the bug when recordiong visual metrics and clicking on links on Android phones. 
+
 ## 8.8.0 - 2019-03-21
-## Added
+### Added
 * Upgraded to Chrome 73 in the Docker container.
 * Upgraded to Firefox 66 in the Docker container
 * Added favicon, json, plain, svg and other and budget types. Thanks [PedroMSantosD](https://github.com/PedroMSantosD) for the PR [#2374](https://github.com/sitespeedio/sitespeed.io/pull/2374).
@@ -8,7 +13,7 @@
 * You can now debug log Lighthouse using `--verbose` , thank you [Gideon Pyzer](https://github.com/gidztech) for the original PR.
 * New metrics for Firefox in stable (66): First contentful paint and time to first interactive. They are automatically sent to Graphite/InfluxDB. To make sure you catch that timeToFirstInteractive you may wanna change your page complete check to: `--pageCompleteCheck "return (function(waitTime) { if (window.performance.timing.timeToFirstInteractive > 0) { try { var end = window.performance.timing.loadEventEnd; return end > 0 && Date.now() > end + waitTime; } catch (e) { return true; } } else return false; })(arguments[arguments.length - 1]);"` - these are experimental metrics behind a flag in Firefox.
 
-## Fixed
+### Fixed
 * Fixed broken disabling of screenshots [#2378](https://github.com/sitespeedio/sitespeed.io/pull/2378)
 
 ## 8.7.5 - 2019-03-13
