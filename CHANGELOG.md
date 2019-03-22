@@ -1,8 +1,8 @@
 # CHANGELOG - sitespeed.io
 
-## 8.8.1 - UNRELEASED
+## 8.8.1 - 2019-03-22
 ### Fixed
-* Upgraded Browsertime to 4.5.1 that fixes the bug when recordiong visual metrics and clicking on links on Android phones. 
+* Upgraded Browsertime to 4.5.1 that fixes the bug when recording visual metrics and clicking on links on Android phones. 
 
 ## 8.8.0 - 2019-03-21
 ### Added
