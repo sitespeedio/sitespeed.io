@@ -4,7 +4,7 @@
 
 ### Fixed
 
-- Upgraded to Browsertime 4.5.2 that fixes so that you can test the same URLs within the same script. There are users that logs in and logs out the user on the same URL and that breakes since we use the URL to create all the files for that URL. This hack adds a incremental query parameter to the URL.[#805](https://github.com/sitespeedio/browsertime/pull/805).
+- Upgraded to Browsertime 4.5.3 that fixes so that you can test the same URLs within the same script. There are users that logs in and logs out the user on the same URL and that breakes since we use the URL to create all the files for that URL. This hack adds a incremental query parameter to the URL.[#805](https://github.com/sitespeedio/browsertime/pull/805).
 
 ## 8.8.2 - 2019-03-22
 
