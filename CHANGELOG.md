@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-### 8.8.3 - UNRELEASED
+### 8.8.3 - 2019-03-25
 
 ### Fixed
 
