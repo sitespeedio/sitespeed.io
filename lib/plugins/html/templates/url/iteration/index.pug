@@ -136,6 +136,10 @@ block content
     if d.pagexray && d.pagexray.run
       section#pagexray-panel
         include ../pagexray/index.pug
+    
+    if d.thirdparty && d.thirdparty.run
+      section#thirdparty-panel
+        include ../thirdparty/index.pug
 
     each pageRun in pageRuns
       - const panelName = pageRun.id + '-panel'
