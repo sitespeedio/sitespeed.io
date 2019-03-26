@@ -1,6 +1,12 @@
 # CHANGELOG - sitespeed.io
 
-### 8.8.3 - UNRELEASED
+## UNRELEASED
+
+### Fixed
+
+- Using `--useHash` was broken (it was not populated to Browsertime). Fixed [#2393](https://github.com/sitespeedio/sitespeed.io/pull/2393).
+
+## 8.8.3 - 2019-03-25
 
 ### Fixed
 
