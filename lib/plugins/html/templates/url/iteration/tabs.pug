@@ -19,6 +19,9 @@
   if d.pagexray && d.pagexray.run
     a(id='pagexray', href='#pagexray', onclick='return selectTab(this, true);')
       | PageXray
+  if d.thirdparty && d.thirdparty.run
+    a(id='thirdparty', href='#thirdparty', onclick='return selectTab(this, true);')
+      | Third party    
   each pageRun in pageRuns
     a(id=pageRun.id, href='#' + pageRun.id, onclick='return selectTab(this, true);')
       | #{pageRun.name}

@@ -136,6 +136,10 @@ block content
       section#pagexray-panel
         include ../pagexray/index.pug
 
+    if d.thirdparty && d.thirdparty.pageSummary
+      section#thirdparty-panel
+        include ../thirdparty/index.pug
+
     each pageSummary in pageSummaries
       - const panelName = pageSummary.id + '-panel'
       section(id=panelName)

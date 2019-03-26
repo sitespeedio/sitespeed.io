@@ -40,9 +40,6 @@ include ./perContentType.pug
 
 include ./perDomain.pug
 
-if pagexray.firstParty.requests
-  include ./firstParty.pug
-
 a#expires-and-last-modified-stats
 h3 Expires, last modified and cookies stats
 - expire = pagexray.expireStats
