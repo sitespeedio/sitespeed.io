@@ -1,9 +1,10 @@
 - const profile = options.mobile ? 'mobile' : 'desktop'
 - const runTime = h.get(pageInfo, 'pageInfo.data.browsertime.run.timestamp', timestamp)
+- const connectivity = options.browsertime.connectivity.alias || options.browsertime.connectivity.profile
 p.small Tested #{runTime} using #{h.cap(options.browsertime.browser)} #{browser.version} for
   | #{ h.get(options, 'browsertime.chrome.android.package') ?  ' ' + h.get(options, 'browsertime.chrome.android.package') + ' ': ''}
   | #{options.preURL ? 'preURL ' + h.short(options.preURL, 60) + ' ': ''}
-  | #{h.plural(options.browsertime.iterations, 'run')} with #{profile} profile and connectivity #{options.browsertime.connectivity.profile}.#{ options.replay ? ' Using WebPageReplay.' : ''}#{ options.multi ? ' Using multi mode ' : ''}
+  | #{h.plural(options.browsertime.iterations, 'run')} with #{profile} profile and connectivity #{connectivity}.#{ options.replay ? ' Using WebPageReplay.' : ''}#{ options.multi ? ' Using multi mode ' : ''}
   if options.multi && options.html.showScript
     | (
     a(href= rootPath + 'scripts.html')= 'script'
