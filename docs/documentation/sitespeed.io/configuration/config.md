@@ -72,9 +72,10 @@ Crawler
   --crawler.exclude       Exclude URLs matching the provided regular expression (ex: "/some/path/", "://some\.domain/"). Can be provided multiple times.
 
 Grafana
-  --grafana.host  The Grafana host used when sending annotations.
-  --grafana.port  The Grafana port used when sending annotations to Grafana.  [default: 80]
-  --grafana.auth  The Grafana auth/bearer value used when sending annotations to Grafana. See http://docs.grafana.org/http_api/auth/#authentication-api
+  --grafana.host           The Grafana host used when sending annotations.
+  --grafana.port           The Grafana port used when sending annotations to Grafana.  [default: 80]
+  --grafana.auth           The Grafana auth/bearer value used when sending annotations to Grafana. See http://docs.grafana.org/http_api/auth/#authentication-api
+  --grafana.annotationTag  Add a extra tag to the annotation sent for a run. Repeat the --grafana.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
 
 Graphite
   --graphite.host                  The Graphite host used to store captured metrics.
