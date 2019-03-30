@@ -12,6 +12,8 @@
 
 - Using `--useHash` was broken (it was not populated to Browsertime). Fixed [#2393](https://github.com/sitespeedio/sitespeed.io/pull/2393).
 
+- URLs in annotations where broken if your page used # as reported by [James Leatherman](https://github.com/leathej1) in [#2400](https://github.com/sitespeedio/sitespeed.io/issues/2400).
+
 ## 8.8.3 - 2019-03-25
 
 ### Fixed
