@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 8.9.0 - UNRELEASED
+## 8.9.0 - 2019-03-30
 
 ### Added
 
