@@ -44,8 +44,6 @@ The simplest way to run using Chrome:
 docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b chrome https://www.sitespeed.io/
 ```
 
-Note: The shm-size increases the memory for the GPU (default is 64mb and that is too small) see [https://github.com/elgalu/docker-selenium/issues/20](https://github.com/elgalu/docker-selenium/issues/20).
-
 In the real world you should always specify the exact version (tag) of the Docker container to make sure you use the same version for every run. If you use the latest tag you will download newer version of sitespeed.io as they become available, meaning you can have major changes between test runs (version upgrades, dependencies updates, browser versions, etc). So you should always specify a tag after the container name(X.Y.Z). Know that the tag/version number will be the same number as the sitespeed.io release:
 
 ```bash
