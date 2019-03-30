@@ -12,18 +12,18 @@ nav: blog
 
 With the new release we integrated [Patrick Hulce](https://github.com/patrickhulce) project [Third party web](https://github.com/patrickhulce/third-party-web). Thanks a lot Patrick for Open Sourcing your project! At the moment we added a new third party tab where you can see the content.
 
-The [Third party web](https://github.com/patrickhulce/third-party-web) project let us categorise requests so you as user can ke now what kind of tools the web page is using.
+The [Third party web](https://github.com/patrickhulce/third-party-web) project let us categorise requests so you as user know what kind of tools the web page is using.
 
 One thing to remember is that a tool can have multiple categories. For example, it can be both a analytics tool AND a [surveillance](https://en.wikipedia.org/wiki/Surveillance_capitalism) tool.
 
-By default the third party information will be sent to Graphite/InfluxDb and if you are a Graphite user you can upgrade the page summary dashboard to [the latest version](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/master/dashboards/graphite/PageSummary.json) you will get two new graphs.
+By default the third party information will be sent to Graphite/InfluxDb and if you are a Graphite user you can upgrade the page summary dashboard to [the latest version](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/master/dashboards/graphite/PageSummary.json). You will then get two new graphs.
 
 The first graph shows you third party requests by category. Here can you see how many requests each category generates.
 
 ![Third party requests by category]({{site.baseurl}}/img/8.9/thirdparty-requests-grafana.png)
 {: .img-thumbnail-center}
 
-The next graph shows how many tools you use by category. This graph will show you things like the your content team adds a new analytics tool to the site. What's really cool is that you can then add alerts in these kind of things.
+The next graph shows how many tools the page use by category. This graph will show you things like the your content team adds a new analytics tool to the site. What's really cool is that you can then add alerts in these kind of things.
 
 ![Third party tools by category]({{site.baseurl}}/img/8.9/thirdparty-tools-grafana.png)
 {: .img-thumbnail-center}
