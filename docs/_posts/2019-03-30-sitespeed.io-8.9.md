@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Sitespeed.io 8.9 - more info for 3rd party scripts
+title: Sitespeed.io 8.9 - more info about 3rd party scripts.
 description: Now with better third party request categorisation.
 authorimage: /img/aboutus/peter.jpg
 intro: 8.9.0 uses the Third party web project to categorise third party requests. 
@@ -8,7 +8,7 @@ keywords: sitespeed.io, browsertime, webperf
 nav: blog
 ---
 
-# Sitespeed.io 8.9 - more info for 3rd party scripts
+# Sitespeed.io 8.9 - more info about 3rd party scripts
 
 With the new release we integrated [Patrick Hulce](https://github.com/patrickhulce) project [Third party web](https://github.com/patrickhulce/third-party-web). Thanks a lot Patrick for Open Sourcing your project! At the moment we added a new third party tab where you can see the content.
 
