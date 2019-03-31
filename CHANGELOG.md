@@ -1,16 +1,18 @@
 # CHANGELOG - sitespeed.io
 
-## 8.9.0 - UNRELEASED
+## 8.9.0 - 2019-03-30
 
 ### Added
 
 - Browsertime supports connectivity.alias option to give connectivity profiles a custom name, though this is not documented in the Sitespeed cli help, and not consistently used in Sitespeed. (only used for writing to DB, but not in reports). This PR adds option to sitespeed cli and uses the alias in html reports [#2397](https://github.com/sitespeedio/sitespeed.io/pull/2397). Thank you [Ferdinand Holzer](https://github.com/fholzer) for the PR.
 
-- Reworked third party support: There's a new third party tab where we use [Patrick Hulce](https://github.com/patrickhulce) project [Third party web](https://github.com/patrickhulce/third-party-web) to categorise third party requests [#2394](https://github.com/sitespeedio/sitespeed.io/pull/2394). Requests get categorisd and you can now see how many requests each category do (ads/analytics/sureillance etc). And also how many tools the page use per type. These numbers are also automatically sent to Graphite/InfluxDB so you easily can create alerts if your content team adds third party congtent that you don't want.
+- Reworked third party support: There's a new third party tab where we use [Patrick Hulce](https://github.com/patrickhulce) project [Third party web](https://github.com/patrickhulce/third-party-web) to categorise third party requests [#2394](https://github.com/sitespeedio/sitespeed.io/pull/2394). Requests get categorised and you can now see how many requests each category do (ads/analytics/sureillance etc). And also how many tools the page uses per type. These numbers are also automatically sent to Graphite/InfluxDB so you easily can create alerts if your content team adds third party content that you don't want.
 
 ### Fixed
 
 - Using `--useHash` was broken (it was not populated to Browsertime). Fixed [#2393](https://github.com/sitespeedio/sitespeed.io/pull/2393).
+
+- URLs in annotations where broken if your page used # as reported by [James Leatherman](https://github.com/leathej1) in [#2400](https://github.com/sitespeedio/sitespeed.io/issues/2400).
 
 ## 8.8.3 - 2019-03-25
 

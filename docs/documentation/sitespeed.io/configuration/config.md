@@ -5,6 +5,7 @@ Browser
   --browsertime.iterations, -n                                              How many times you want to test each page  [default: 3]
   --browsertime.spa, --spa                                                  Convenient parameter to use if you test a SPA application: will automatically wait for X seconds after last network activity and use hash in file names. Read https://www.sitespeed.io/documentation/sitespeed.io/spa/  [boolean] [default: false]
   --browsertime.connectivity.profile, -c, --connectivity                    The connectivity profile. To actually set the connectivity you can choose between Docker networks or Throttle, read https://www.sitespeed.io/documentation/sitespeed.io/connectivity/  [choices: "3g", "3gfast", "3gslow", "3gem", "2g", "cable", "native", "custom"] [default: "native"]
+  --browsertime.connectivity.alias                                          Give your connectivity profile a custom name
   --browsertime.connectivity.downstreamKbps, --downstreamKbps               This option requires --connectivity be set to "custom".
   --browsertime.connectivity.upstreamKbps, --upstreamKbps                   This option requires --connectivity be set to "custom".
   --browsertime.connectivity.latency, --latency                             This option requires --connectivity be set to "custom".
