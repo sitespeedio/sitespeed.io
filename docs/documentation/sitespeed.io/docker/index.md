@@ -12,11 +12,10 @@ twitterdescription: Use Docker to run sitespeed.io.
 [Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / Docker
 
 # Docker
-
 {:.no_toc}
 
-- Lets place the TOC here
-  {:toc}
+* Lets place the TOC here
+{:toc}
 
 ## Containers
 
