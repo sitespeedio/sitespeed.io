@@ -54,7 +54,9 @@ if thirdparty.possibileMissedThirdPartyDomains
     h3 Unmatched third party domains
     p Here's a list of domains that didn't match any tool in 
         a(href='https://github.com/patrickhulce/third-party-web') Third party web
-        | . If you are sure they are third party domains, please do a PR to that project.
+        | . If you are sure they are third party domains, please do a PR to that project. You can also fine tune the list using 
+        code --firstParty
+        | .
     table
         each domain in thirdparty.possibileMissedThirdPartyDomains 
             tr
