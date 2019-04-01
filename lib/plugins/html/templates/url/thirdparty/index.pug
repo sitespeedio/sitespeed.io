@@ -21,9 +21,10 @@ if thirdparty.category && Object.keys(thirdparty.category).length > 0
             table(data-sortable, id='thirdPartyTools')
                 +rowHeading(['Category', 'Number of tools'])
                 each metric, category in thirdparty.category
-                    tr 
-                        td(data-title='Category') #{category} 
-                        +numberCell('Tools', metric.tools ? metric.tools.median : Object.keys(thirdparty.toolsByCategory[category]).length)
+                    if (category !== 'unknown')
+                        tr 
+                            td(data-title='Category') #{category}     
+                            +numberCell('Tools', metric.tools ? metric.tools.median :Object.keys(thirdparty.toolsByCategory[category]).length)
 
 if thirdparty.assets && Object.keys(thirdparty.assets).length > 0
     h3 Third party requests and tools
