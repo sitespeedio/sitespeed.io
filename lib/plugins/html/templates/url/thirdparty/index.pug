@@ -50,7 +50,7 @@ if thirdparty.assets && Object.keys(thirdparty.assets).length > 0
                             li #{asset.url} 
                                 b (#{asset.entity.name})
 
-if thirdparty.possibileMissedThirdPartyDomains 
+if  thirdparty.possibileMissedThirdPartyDomains && thirdparty.possibileMissedThirdPartyDomains.length > 0 
     h3 Unmatched third party domains
     p Here's a list of domains that didn't match any tool in 
         a(href='https://github.com/patrickhulce/third-party-web') Third party web
