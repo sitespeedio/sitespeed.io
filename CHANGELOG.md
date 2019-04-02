@@ -1,11 +1,13 @@
 # CHANGELOG - sitespeed.io
 
-## 8.10.0 - UNRELEASED
+## 8.10.0 - 2019-04-02
 
 ### Added
 * Tag unmatched 3rd party request as unknown, that adds a category to keep track of in Graphite/Grafana [#2405](https://github.com/sitespeedio/sitespeed.io/pull/2405)
 
 * List all unmatched third party domains on the third party pages to make it easier to catch unmatched third parties [#2404](https://github.com/sitespeedio/sitespeed.io/pull/2404).
+
+* Updated the third-party-web project to 0.2.0 with more domains that get categorised.
 
 ## 8.9.0 - 2019-03-30
 
