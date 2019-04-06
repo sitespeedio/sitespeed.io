@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## 8.10.1 - 2019-04-06
+
+### Fixed
+* Upgraded to PageXray 2.5.5 that fixes that the total number of requests was reported wrong for Firefox in some cases as reported in [#2409](https://github.com/sitespeedio/sitespeed.io/issues/2409).
+
 ## 8.10.0 - 2019-04-02
 
 ### Added
