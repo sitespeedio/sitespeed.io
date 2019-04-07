@@ -106,7 +106,10 @@ if  browsertime
           td
             a(href=baseHelpURL + 'rumSpeedIndex') RUM Speed Index
           td.number #{h.time.ms(timings.rumSpeedIndex.toFixed(0))}
-         
+        tr
+          td
+            a(href=baseHelpURL + 'loadEventEnd') Load Event End
+          td.number #{h.time.ms(timings.loadEventEnd.toFixed(0))}
         if (timings.fullyLoaded) 
           tr
             td
