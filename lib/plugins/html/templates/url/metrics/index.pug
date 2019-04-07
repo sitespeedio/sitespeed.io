@@ -169,6 +169,18 @@ if  browsertime
   else
     p There are no custom configured scripts.
 
+  if browsertime.cdp && browsertime.cdp.performance
+    a#cdp-performance
+    h3 CDP Performance
+    table
+      tr
+        th name
+        th value
+      each value, name in browsertime.cdp.performance
+        tr
+          td #{name}
+          td #{value}
+
   if options.browsertime.visualElements
    a#visual-elements
    h3 Visual Elements
