@@ -63,6 +63,9 @@ Chrome
   --browsertime.chrome.collectConsoleLog, --chrome.collectConsoleLog        Collect Chromes console log and save to disk.  [boolean]
   --browsertime.chrome.binaryPath, --chrome.binaryPath                      Path to custom Chrome binary (e.g. Chrome Canary). On OS X, the path should be to the binary inside the app bundle, e.g. "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary"
 
+chrome
+  --browsertime.chrome.cdp.performance, --chrome.cdp.performance  Collect Chrome performance metrics from Chrome DevTools Protocol  [boolean] [default: true]
+
 proxy
   --browsertime.proxy.http, --proxy.http    Http proxy (host:port)  [string]
   --browsertime.proxy.https, --proxy.https  Https proxy (host:port)  [string]
