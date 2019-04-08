@@ -41,7 +41,10 @@ if thirdparty.assets && Object.keys(thirdparty.assets).length > 0
                     - oldNames.push(asset.entity.name)
                     tr
                         td
-                            a(href=asset.entity.homepage) #{asset.entity.name}  
+                            if asset.entity.homepage
+                                a(href=asset.entity.homepage) #{asset.entity.name}  
+                            else 
+                                span #{asset.entity.name}         
 
             tr.u-hideable
                 td.url.offendingurl
