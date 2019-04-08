@@ -57,3 +57,18 @@ If you give us this information we can usually fix your issue faster.
 
 * Is your problem related to that you are behind a proxy? Then we kindly recommend that you run your tests without a proxy. Run the tests on a network where you don't need to use a proxy.
 
+## How to make sure we try fix the bug as soon as possible
+
+Here's dos and don'ts if you want your bug fixed:
+
+Please do:
+* [Provide a reproducable test case](#explain-how-to-reproduce-your-issue).
+* If you don't get a response in a couple of days, write a message in the general channel in Slack.
+
+Please don't:
+* Contact us on direct messages on Slack about the bug.
+* Contact us on Twitter about the bug.
+* Contact us on email about the bug.
+
+If we ask you to contact us, then it is perfectly fine to do so :)
+
