@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 8.11.0 - UNRELEASED
+## 8.11.0 - 2019-04-08
 
 ### Added
 * Upgraded to [Browsertime 4.6.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#460---2019-04-07) that enables the use of [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/). We now uses a modified version of Selenium that can use CDP. We also automatically collect the CDP performance metrics *Performance.getMetrics* (you can turn that off with `--chrome.cdp.performance false`). We also enabled raw use of the CDP in scripting: `cdp.sendAndGet(command, args)` and `cdp.send(command, args)` [#2410](https://github.com/sitespeedio/sitespeed.io/pull/2410).
@@ -8,6 +8,8 @@
 * Show loadEventEnd in the metrics section and send it to Graphite/Grafana [#2411](https://github.com/sitespeedio/sitespeed.io/pull/2411).
 
 * Upgraded third-party-web to 0.4.0 with almost 2000 new entities! Thank you [Simon Hearne](https://twitter.com/simonhearne) for that massive update.
+
+* The Lighthouse plugin can now generate the default HTML report [#18](https://github.com/sitespeedio/plugin-lighthouse/pull/18), thanks [Semyon](https://github.com/SemyonLosmakov) for the PR.
 
 ### Fix
 
