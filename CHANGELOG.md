@@ -1,5 +1,12 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+
+### Added
+* Upgraded to [Browsertime 4.6.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#460---2019-04-07) that enables the use of [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/). We now uses a modified version of Selenium that can use CDP. We also automatically collect the CDP performance metrics *Performance.getMetrics* (you can turn that off with `--chrome.cdp.performance false`). We also enabled raw use of the CDP in scripting: `cdp.sendAndGet(command, args)` and `cdp.send(command, args)` [#2410](https://github.com/sitespeedio/sitespeed.io/pull/2410).
+
+* Show loadEventEnd in the metrics section and send it to Graphite/Grafana [#2411](https://github.com/sitespeedio/sitespeed.io/pull/2411).
+
 ## 8.10.1 - 2019-04-06
 
 ### Fixed
