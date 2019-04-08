@@ -103,7 +103,7 @@
     "recursive-readdir": "2.2.2",
     "simplecrawler": "1.1.6",
     "tape": "4.9.1",
-    "third-party-web": "0.3.0",
+    "third-party-web": "0.4.0",
     "text-table": "0.2.0",
     "uuid": "3.3.2",
     "webcoach": "3.3.0",

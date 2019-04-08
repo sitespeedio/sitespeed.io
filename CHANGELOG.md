@@ -7,7 +7,7 @@
 
 * Show loadEventEnd in the metrics section and send it to Graphite/Grafana [#2411](https://github.com/sitespeedio/sitespeed.io/pull/2411).
 
-* Upgraded third-party-web to 0.3.0 with almost 2000 new entities! Thank you [Simon Hearne](https://twitter.com/simonhearne) for that massive update.
+* Upgraded third-party-web to 0.4.0 with almost 2000 new entities! Thank you [Simon Hearne](https://twitter.com/simonhearne) for that massive update.
 
 ### Fix
 

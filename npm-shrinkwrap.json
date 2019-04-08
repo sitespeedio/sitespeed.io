@@ -9108,9 +9108,9 @@
       "integrity": "sha1-f17oI66AUgfACvLfSoTsP8+lcLQ="
     },
     "third-party-web": {
-      "version": "0.3.0",
-      "resolved": "https://registry.npmjs.org/third-party-web/-/third-party-web-0.3.0.tgz",
-      "integrity": "sha512-HbZ2dCo9z/3Rb57r77lfWFUhcwKCTM97UWiTZUjmWJydooXReXTZubACtN1TRB7v+F4SVN3BkA4xvl/jLR6E3A=="
+      "version": "0.4.0",
+      "resolved": "https://registry.npmjs.org/third-party-web/-/third-party-web-0.4.0.tgz",
+      "integrity": "sha512-Z6XF6aP5JhVH6A7rck3n13yHmMgSCquh9hj5ZLaYCupbMdtk4vV3Bu21STU28lW8qoxQG0TYcqZ4T5M7kCB9dQ=="
     },
     "through": {
       "version": "2.3.8",
