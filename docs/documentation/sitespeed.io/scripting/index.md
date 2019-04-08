@@ -614,7 +614,7 @@ You can add text to input elements. The element needs to visible.
 #### addText.byId(text, id)
 Add the *text* to the element with the *id*. If the id is not found the command will throw an error.
 
-#### byXpath(text, xpath) 
+#### addText.byXpath(text, xpath) 
 Add the *text* to the element by using *xpath*. If the xpath is not found the command will throw an error.
 
 #### addText.bySelector(text, selector) 
@@ -626,46 +626,55 @@ You can switch to iframes or windows if that is needed.
 If frame/window is not found, an error will be thrown.
 {: .note .note-warning}
 
-#### toFrame(id)
+#### switch.toFrame(id)
 Switch to a frame by its id.
 
-#### toWindow(name) 
+#### switch.toWindow(name) 
 Switch to window by name.
 
-#### toParentFrame
+#### switch.toParentFrame
 Switch to the parent frame.
 
 ### Set
 
 Raw set value of elements.
 
-#### innerHtml(html, selector)
+#### set.innerHtml(html, selector)
 Use a CSS selector to find the element and set the html to innerHtml. Internally it uses ```document.querySelector(selector)``` to find the right element.
 
-#### innerHtmlById(html, id)
+#### set.innerHtmlById(html, id)
 
 Use the id to find the element and set the html to innerHtml. Internally it uses ```document.getElementById(id)``` to find the right element.
 
-#### innerText(text, selector) 
+#### set.innerText(text, selector) 
 Use a CSS selector to find the element and set the text to innerText. Internally it uses ```document.querySelector(selector)``` to find the right element.
 
-#### innerTextById(text, id)
+#### set.innerTextById(text, id)
 Use the id to find the element and set the text to innerText. Internally it uses ```document.getElementById(id)``` to find the right element.
 
-#### value(value, selector)
+#### set.value(value, selector)
 Use a CSS selector to find the element and set the value to value. Internally it uses ```document.querySelector(selector)``` to find the right element.
 
-#### valueById(value, id)
+#### set.valueById(value, id)
 Use the id to find the element and set the value to value. Internally it uses ```document.getElementById(id)``` to find the right element.
 
 ### Cache
 There's an experimental command for clearing the cache. The command works both for Chrome and Firefox on desktop but not on Chrome on Android since we are using a [WebExtension](https://github.com/sitespeedio/browsertime-extension).
 
-#### clear()
+#### cache.clear()
 Clear the browser cache. Remove cache and cookies.
 
-#### clearKeepCookies()
+#### cache.clearKeepCookies()
 Clear the browser cache but keep cookies.
+
+### Chrome DevTools Protocol
+Send messages to Chrome using the [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/). This only works in Chrome. You can send and send and get messages.
+
+#### cdp.send(command, args)
+Send a command to Chrome and don't expect something back.
+
+#### cdp.sendAndGet(command, args)
+Send a command to Chrome and get the result back.
 
 ### Use Selenium directly
 You can use Selenium directly if you need to use things that are not availible through our commands.
