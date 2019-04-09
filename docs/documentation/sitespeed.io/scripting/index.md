@@ -668,13 +668,30 @@ Clear the browser cache. Remove cache and cookies.
 Clear the browser cache but keep cookies.
 
 ### Chrome DevTools Protocol
-Send messages to Chrome using the [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/). This only works in Chrome. You can send and send and get messages.
+Send messages to Chrome using the [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/). This only works in Chrome. You can send and send and get the result.
 
 #### cdp.send(command, args)
 Send a command to Chrome and don't expect something back.
 
+Here's an example of injecting JavaScript that runs on every new document.
+
+~~~javascript
+module.exports = async function(context, commands) {
+  await commands.cdp.send('Page.addScriptToEvaluateOnNewDocument',{source: 'console.log("hello");'});
+  await commands.measure.start('https://www.sitespeed.io');
+}
+~~~
+
 #### cdp.sendAndGet(command, args)
-Send a command to Chrome and get the result back.
+Send a command to Chrome and get the result back. 
+
+~~~javascript
+module.exports = async function(context, commands) {
+  await commands.measure.start('https://www.sitespeed.io');
+  const domCounters = await commands.cdp.sendAndGet('Memory.getDOMCounters');
+  context.log.info('Memory.getDOMCounters %j', domCounters);
+ }
+~~~
 
 ### Use Selenium directly
 You can use Selenium directly if you need to use things that are not availible through our commands.
