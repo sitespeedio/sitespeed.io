@@ -120,20 +120,28 @@ if  browsertime
             td
               a(href=baseHelpURL + 'fullyLoaded') Fully loaded
             td.number #{h.time.ms(browsertime.fullyLoaded.toFixed(0))}
-      if (Object.keys(timings.userTimings.marks).length > 0 || Object.keys(timings.userTimings.measures).length > 0)
+      if (Object.keys(timings.userTimings.marks).length > 0)
         table
           tr
-            th(colspan='2') User timings
+            th(colspan='2') User Timing marks
           if (Object.keys(timings.userTimings.marks).length > 0)
             each value, name in timings.userTimings.marks
               tr
                 td #{value.name}
                 td.number #{h.time.ms(value.startTime.toFixed(0))}
-          if (Object.keys(timings.userTimings.measures).length > 0)
-            each value, name in timings.userTimings.measures
-              tr
-                td #{value.name}
-                td.number #{h.time.ms(value.startTime.toFixed(0))} 
+      if (Object.keys(timings.userTimings.measures).length > 0)
+        table
+          tr
+            th(colspan='3') User Timing measures
+          tr
+            th Name
+            th Start time
+            th Duration  
+          each value, name in timings.userTimings.measures
+            tr
+              td #{value.name}
+              td.number #{h.time.ms(value.startTime.toFixed(0))}
+              td.number #{h.time.ms(value.duration.toFixed(0))} 
 
   if options.browsertime.chrome && options.browsertime.chrome.timeline
     include ./cpu.pug
