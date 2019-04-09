@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io
 
+## 8.11.1 - 2019-04-09
+
+### Fixed
+* Upgraded to Grafana 6.1.3 in the Docker compose file.
+* Ugraded to Browsertime 4.6.2 that fixes Report duration metrics in CDP performance in ms. 
+
 ## 8.11.0 - 2019-04-08
 
 ### Added
