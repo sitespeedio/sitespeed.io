@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 8.11.2 - 2019-04-10
 
 ### Fixed
 * Added missing User Timing measure duration in the HTML output. We have always collected that but we didn't show it in the HTML [#2417](https://github.com/sitespeedio/sitespeed.io/pull/2417).
