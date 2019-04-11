@@ -1,4 +1,4 @@
-FROM sitespeedio/webbrowsers:chrome-73-firefox-66
+FROM sitespeedio/webbrowsers:chrome-74-beta-firefox-66
 
 ENV SITESPEED_IO_BROWSERTIME__XVFB true
 ENV SITESPEED_IO_BROWSERTIME__DOCKER true
@@ -27,6 +27,7 @@ WORKDIR /usr/src/app
 
 COPY package.* /usr/src/app/
 RUN npm install --production
+RUN npm install --prefix ./node_modules/browsertime/  @sitespeed.io/chromedriver@74.0.372-9.6 --production
 COPY . /usr/src/app
 
 COPY docker/scripts/start.sh /start.sh
