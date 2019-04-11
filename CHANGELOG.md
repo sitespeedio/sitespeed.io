@@ -1,5 +1,12 @@
 # CHANGELOG - sitespeed.io
 
+## 8.12.0 - 2019-04-11
+
+### Added
+* We updated Chrome to version 74 beta in the Docker container. The reason is that some users had problem running Chrome 73 in the container. You can read all about it in [#2416](https://github.com/sitespeedio/sitespeed.io/issues/2416). Most metrics looks the same. One thing we've seen is that there is a new event "RunTask" that is categorised as "Other" if you use `--chrome.timeline`. We will fix that later on, just a heads up! Updated in [#2419](https://github.com/sitespeedio/sitespeed.io/pull/2419).
+
+### Fixed
+
 ## 8.11.2 - 2019-04-10
 
 ### Fixed
