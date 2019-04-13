@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+
+### Added
+* Show the total number of third party requests and also add them as a column on the pages page [#2422](https://github.com/sitespeedio/sitespeed.io/pull/2422)
+
 ## 8.12.0 - 2019-04-11
 
 ### Added
