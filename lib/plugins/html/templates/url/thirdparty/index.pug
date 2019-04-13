@@ -14,9 +14,10 @@ if thirdparty.category && Object.keys(thirdparty.category).length > 0
             table(data-sortable, id='thirdPartyCategories')
                 +rowHeading(['Category', 'Requests'])
                 each metric, category in thirdparty.category
-                    tr 
-                        td(data-title='Category') #{category} 
-                        +numberCell('requests', metric.requests ? metric.requests.median : metric)
+                    if (category !== 'unknown')
+                        tr 
+                            td(data-title='Category') #{category} 
+                            +numberCell('requests', metric.requests ? metric.requests.median : metric)
         .one-half.column
             table(data-sortable, id='thirdPartyTools')
                 +rowHeading(['Category', 'Number of tools'])
