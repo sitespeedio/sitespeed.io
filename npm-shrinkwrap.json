@@ -7524,9 +7524,9 @@
       }
     },
     "pagexray": {
-      "version": "2.5.5",
-      "resolved": "https://registry.npmjs.org/pagexray/-/pagexray-2.5.5.tgz",
-      "integrity": "sha512-nKJptwJHsWCrHLjcJgMleI+piR2ZkN5VWhI1cJb7Fj1CQYI7Bc/4ujCALmoXKKuiuhjRponGyH9Xl6pRdRtANg==",
+      "version": "2.5.6",
+      "resolved": "https://registry.npmjs.org/pagexray/-/pagexray-2.5.6.tgz",
+      "integrity": "sha512-mwRKCfGuqaAsT0vWT/D3L2SJpsEWGhaHigvgYgflIfSeLuZsbaQbeS5tcp/NQjN95WTMVqWOgHMSQGt6Wga4jw==",
       "requires": {
         "minimist": "1.2.0"
       }
