@@ -98,10 +98,16 @@ To change connectivity you should use Docker networks, read all about it [here](
 
 ## Access localhost
 
-If you run a server local on your machine and want to access it with sitespeed.io you can do that on your Mac super easy if you are using Docker 18-3 or later by using _host.docker.internal_.
+If you run a server local on your machine and want to access it with sitespeed.io you can do that on Mac and Windows super easy if you are using Docker 18-3 or later by using _host.docker.internal_.
 
 ```bash
 docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox http://host.docker.internal:4000/
+```
+
+If you are using Linux you should use `--network=host` to make sure localhost is your host machine.
+
+```bash
+docker run --rm -v "$(pwd)":/sitespeed.io --network=host sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox http://localhost:4000/
 ```
 
 ## Troubleshooting
