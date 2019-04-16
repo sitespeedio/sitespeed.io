@@ -6,7 +6,8 @@ This roadmap is the plan for the core team, priorities can and and will change o
 
 When we released 8.0 we really hit a milestone with the new [scripting](https://www.sitespeed.io/documentation/sitespeed.io/scripting/). The rest of 2019 we gonna focus on two things:
 * Documentation for performance testing in practice. We lack doumentation for beginners and professionals.
-* Better error handling. The project has changed so much over time and we have the change to handle errors even better than today.
+* Better error handling. The project has changed so much over time and we have the change to handle errors even better than today [#2426](https://github.com/sitespeedio/sitespeed.io/issues/2426).
+* Create TypeScript definition files for scripting. This is partly done already but needs to be published for feedback.
 
 ### Long term
  - Support for Safari on iOS.
