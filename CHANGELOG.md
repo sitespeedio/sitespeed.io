@@ -1,9 +1,12 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 8.13.0 - UNRELEASED
 
 ### Added
 * Show the total number of third party requests and also add them as a column on the pages page [#2422](https://github.com/sitespeedio/sitespeed.io/pull/2422)
+
+### Fixed
+* Better error handling if one URL fails in a script by upgrading to Browsertime 4.6.4 and PageXray 2.5.6.
 
 ## 8.12.0 - 2019-04-11
 
