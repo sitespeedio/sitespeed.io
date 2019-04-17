@@ -65,7 +65,7 @@ When you as user choose to test a URL, this is what happens on a high level:
  4. When all URLs are tested, sitespeed sends a message telling plugins to summarise the metrics and then render it.
  5. Plugins pickup the render message and the HTML plugin writes the HTML to disk.
 
- ## Lets try it out
+ ## Try it out
 
  Using Docker (use latest Docker):
 
@@ -88,6 +88,9 @@ When you as user choose to test a URL, this is what happens on a high level:
  $ bin/sitespeed.js --help
  $ bin/sitespeed.js https://www.sitespeed.io/
 ```
+
+## Limited time for new features until 10th of May
+Until the 10th of May we will only focus on bug fixes since we have other important personal projects coming up.
 
 ## More details
 
