@@ -359,6 +359,20 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
+### Error handling
+We have better error handling in the todo list, checkout issue [#2426](https://github.com/sitespeedio/sitespeed.io/issues/2426). At the moment you can try/catch failing navigations. The script will continue and the failing URL will be a failure in the HTML.
+
+
+~~~javascript
+module.exports = async function(context, commands) {
+  await commands.measure.start('https://www.sitespeed.io');
+  try {
+    await commands.measure.start('https://apa/');
+  } catch (e) {}
+  return commands.measure.start('https://www.sitespeed.io/documentation/');
+};
+~~~
+
 ## Tips and Tricks
 
 ### Include the script in the HTML result
