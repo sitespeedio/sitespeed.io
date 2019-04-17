@@ -1,5 +1,13 @@
 # CHANGELOG - sitespeed.io
 
+## 8.14.0 - UNRELEASED
+
+### Added
+* Collect errors from Browsertime and send them to Graphite/InfluxDB. This makes it possible to alert on failing runs in Grafana [#2429](https://github.com/sitespeedio/sitespeed.io/pull/2429). The metrics are sent under the key *browsertime.statistics.errors*.
+
+### Fixed
+* If a page failed, pug through an error [#2428](https://github.com/sitespeedio/sitespeed.io/pull/2428)
+
 ## 8.13.0 - 2019-04-17
 
 ### Added
@@ -1952,8 +1960,7 @@ And many many more changed. Read about the release https://www.sitespeed.io/site
 ## version 3.2.1 - 2015-03-21
 
 - Check that URLs are valid when fetched from a file
-- Bug fixes: Compressed sizes has been wrong a long time since a bug in PhantomJS. However, if you also fetch data using browsers or
-  WebPageTest, the sizez will now be correctly populated! #54 #577
+- Bug fixes: Compressed sizes has been wrong a long time since a bug in PhantomJS. However, if you also fetch data using browsers or  WebPageTest, the sizez will now be correctly populated! #54 #577
 - New Browsertime 0.9.2 with fix for HTTPS, making requests visible in HAR-files.
 
 ## version 3.2.0 - 2015-03-18
