@@ -5,6 +5,8 @@
 ### Added
 * Collect errors from Browsertime and send them to Graphite/InfluxDB. This makes it possible to alert on failing runs in Grafana [#2429](https://github.com/sitespeedio/sitespeed.io/pull/2429). The metrics are sent under the key *browsertime.statistics.errors*.
 
+* The GPSI in the g+ container was upgraded to gpagespeed 6.0.6.
+
 ### Fixed
 * If a page failed, pug through an error [#2428](https://github.com/sitespeedio/sitespeed.io/pull/2428)
 
