@@ -7,6 +7,8 @@
 
 * The GPSI in the g+ container was upgraded to gpagespeed 6.0.6.
 
+* Upgraded to third-party-web 0.6.1 that includes more domains.
+
 ### Fixed
 * If a page failed, pug through an error [#2428](https://github.com/sitespeedio/sitespeed.io/pull/2428)
 
