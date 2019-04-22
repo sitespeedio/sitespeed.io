@@ -6,10 +6,14 @@ mixin row(errors)
     tr
       td
         a(href=url)= url
-      td= JSON.stringify(error, null, 2)
-
+      td
+        ul
+          each pageerrors, tool in error
+            each myerror in pageerrors
+              li #{myerror} 
+                b (#{tool})
 block content
-    h2 Errors!
+    h2 Errors
     table
         +rowHeading(['url', 'errors'])
         +row(errors)

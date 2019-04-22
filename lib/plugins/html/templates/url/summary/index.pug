@@ -11,6 +11,10 @@ block content
 
   include ../includes/pageRunInfo
 
+  if d.browsertime && d.browsertime.pageSummary
+    b #{d.browsertime.pageSummary.info.title}
+    p !{d.browsertime.pageSummary.info.description}
+
   p
     .large All runs:&nbsp;
       each val, index in runPages
@@ -21,9 +25,13 @@ block content
           |
 
   if pageInfo.errors
-    h4 Errors
-    .errors= JSON.stringify(pageInfo.errors, null, 2)
-
+    .errors
+      b Errors
+      ul
+        each errors, tool in pageInfo.errors
+          each error in errors
+            li #{error} 
+              b (#{tool})
   include ./tabs.pug
 
   #tabSections
