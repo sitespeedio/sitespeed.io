@@ -11,6 +11,11 @@ block content
     a(href=daurl) #{decodeURIComponent(daTitle)}
 
   include ../includes/pageRunInfo
+
+  if d.browsertime && d.browsertime.run
+    b #{d.browsertime.run.title}
+    p !{d.browsertime.run.description}
+
   p
     .large All runs:&nbsp;
       each val, index in runPages
@@ -23,11 +28,16 @@ block content
           | &nbsp;-
           |
 
+  if d.browsertime && d.browsertime.run.errors
+    .errors
+      b Errors
+      ul
+        each error in d.browsertime.run.errors
+          li #{error} 
+
   .index-link
     a.button.button--primary(href=urlLink) Back to summary
 
-  if pageInfo.error
-    .error= pageInfo.error
   include ./tabs.pug
 
   #tabSections

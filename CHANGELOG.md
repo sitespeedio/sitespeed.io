@@ -9,6 +9,11 @@
 
 * Upgraded to third-party-web 0.6.1 that includes more domains.
 
+* Upgrading to latest [Browsertime 4.7.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#470---2019-04-21) adds three new things to scripting:
+  * You can add your own error `commands.error(message)`. The error will be attached to the latest tested page. Say that you have a script where you first measure a page and then want to click on a specific link and the link doesn't exist. Then you can attach your own error with your own error text. The error will be sent to your datasource and will be visible in the HTML result.
+
+  * You can add meta data to your script with `commands.meta.addTitle(title)` and `commands.meta.addDescription(desc)`
+
 ### Fixed
 * If a page failed, pug through an error [#2428](https://github.com/sitespeedio/sitespeed.io/pull/2428)
 
