@@ -28,7 +28,7 @@ block content
           | &nbsp;-
           |
 
-  if d.browsertime.run.errors
+  if d.browsertime && d.browsertime.run.errors
     .errors
       b Errors
       ul
