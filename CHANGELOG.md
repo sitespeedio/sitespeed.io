@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 8.14.0 - UNRELEASED
+## 8.14.0 - 2019-04-23
 
 ### Added
 * Collect errors from Browsertime and send them to Graphite/InfluxDB. This makes it possible to alert on failing runs in Grafana [#2429](https://github.com/sitespeedio/sitespeed.io/pull/2429). The metrics are sent under the key *browsertime.statistics.errors*.
