@@ -360,8 +360,7 @@ module.exports = async function(context, commands) {
 ~~~
 
 ### Error handling
-We have better error handling in the todo list, checkout issue [#2426](https://github.com/sitespeedio/sitespeed.io/issues/2426). At the moment you can try/catch failing navigations. The script will continue and the failing URL will be a failure in the HTML.
-
+You can try/catch failing navigations. The script will continue and the failing URL will be a failure in the HTML.
 
 ~~~javascript
 module.exports = async function(context, commands) {
@@ -372,6 +371,16 @@ module.exports = async function(context, commands) {
   return commands.measure.start('https://www.sitespeed.io/documentation/');
 };
 ~~~
+
+You can also create your own errors. The error will be added to the error array and will be reported in the HTML and sent to Graphite/InfluxDB.
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // something fails
+  commands.error('The login form is removed from the login page!');
+};
+~~~
+
 
 ## Tips and Tricks
 
@@ -706,6 +715,21 @@ module.exports = async function(context, commands) {
   context.log.info('Memory.getDOMCounters %j', domCounters);
  }
 ~~~
+
+### Error
+You can create your own error. The error will be attached to the latest tested page. Say that you have a script where you first measure a page and then want to click on a specific link and the link doesn't exist. Then you can attach your own error with your own error text. The error will be sent to your datasource and will be visible in the HTML result.
+
+#### error(message)
+Create an error.
+
+### Meta data 
+Add meta data to your script. The extra data will be visibile in the HTML result page.
+
+#### meta.addTitle(title)
+Add a title of your script.
+
+#### meta.addDescription(desc)
+Add a description of your script.
 
 ### Use Selenium directly
 You can use Selenium directly if you need to use things that are not availible through our commands.
