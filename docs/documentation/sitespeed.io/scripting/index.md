@@ -719,17 +719,58 @@ module.exports = async function(context, commands) {
 ### Error
 You can create your own error. The error will be attached to the latest tested page. Say that you have a script where you first measure a page and then want to click on a specific link and the link doesn't exist. Then you can attach your own error with your own error text. The error will be sent to your datasource and will be visible in the HTML result.
 
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // Start by navigating to a page
+  await commands.navigate('https://www.example.org');
+  // Start a measurement
+  await commands.measure.start();
+  try {
+  await commands.click.bySelectorAndWait('.important-link');
+  } catch(e) {
+    // Ooops we couldn't click the link
+    commands.error('.important-link does not exist on the page');
+  }
+  // Remember that when you start() a measurement without a URL you also needs to stop it! 
+  return commands.measure.stop();
+};
+~~~
+
 #### error(message)
 Create an error.
 
 ### Meta data 
 Add meta data to your script. The extra data will be visibile in the HTML result page.
 
+Setting meta data like this:
+
+~~~javascript
+module.exports = async function(context, commands) {
+  commands.meta.setTitle('Test Grafana SPA');
+  commands.meta.setDescription('Test the first page, click in the timepicker andthen choose <b>Last 30 days</b> and measure that page.');	
+  await commands.measure.start(
+    'https://dashboard.sitespeed.io/d/000000044/page-timing-metrics?orgId=1','pageTimingMetricsDefault'
+  );
+  await commands.click.byClassName('gf-timepicker-nav-btn');
+  await commands.wait.byTime(1000);
+  await commands.measure.start('pageTimingMetrics30Days');
+  await commands.click.byLinkTextAndWait('Last 30 days');
+  await commands.measure.stop();
+};
+~~~
+
+Will result in:
+
+![Title and description for a script]({{site.baseurl}}/img/titleanddesc.png)
+{: .img-thumbnail}
+
+
 #### meta.setTitle(title)
-Add a title of your script.
+Add a title of your script. The title is text only.
 
 #### meta.setDescription(desc)
-Add a description of your script.
+Add a description of your script. The description can be text/HTML.
 
 ### Use Selenium directly
 You can use Selenium directly if you need to use things that are not availible through our commands.
