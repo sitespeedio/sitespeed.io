@@ -748,7 +748,7 @@ Setting meta data like this:
 ~~~javascript
 module.exports = async function(context, commands) {
   commands.meta.setTitle('Test Grafana SPA');
-  commands.meta.setDescription('Test the first page, click in the timepicker andthen choose <b>Last 30 days</b> and measure that page.');	
+  commands.meta.setDescription('Test the first page, click the timepicker andthen choose <b>Last 30 days</b> and measure that page.');	
   await commands.measure.start(
     'https://dashboard.sitespeed.io/d/000000044/page-timing-metrics?orgId=1','pageTimingMetricsDefault'
   );
