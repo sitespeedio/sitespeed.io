@@ -27,7 +27,6 @@ WORKDIR /usr/src/app
 
 COPY package.* /usr/src/app/
 RUN npm install --production
-RUN npm install --prefix ./node_modules/browsertime/  @sitespeed.io/chromedriver@74.0.372-9.6 --production
 COPY . /usr/src/app
 
 COPY docker/scripts/start.sh /start.sh
