@@ -3130,12 +3130,12 @@
       "integrity": "sha1-81HTKWnTL6XXpVZxVCY9korjvR8="
     },
     "browsertime": {
-      "version": "4.9.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-4.9.0.tgz",
-      "integrity": "sha512-yM46wHfH16jzG5sjM5znfyVMjN5zNn9ZlTyhxIxNa4ZVFnnzaQDlNNHaC06vG40n1/n3Og3Z/jxcC7GON2ZZ1g==",
+      "version": "4.9.1",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-4.9.1.tgz",
+      "integrity": "sha512-MUdlgURCpyd6b5cUdfarY4+5EU+8TlkRea6SekMBCUu5LW5xyyz3+TZBQw2hjZaLmqGjqfGb/exebKDLAPFFlg==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
-        "@sitespeed.io/chromedriver": "74.0.3729.6",
+        "@sitespeed.io/chromedriver": "74.0.372-9.6-1",
         "@sitespeed.io/geckodriver": "0.24.0",
         "@sitespeed.io/throttle": "0.5.0",
         "adbkit": "2.11.0",
@@ -3162,9 +3162,9 @@
       },
       "dependencies": {
         "@sitespeed.io/chromedriver": {
-          "version": "74.0.372-9.6",
-          "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-74.0.372-9.6.tgz",
-          "integrity": "sha512-lrhyLr0V3eEAQi4iMstVGO4+k0Bn8gsr7fMKjWeku1poxKSxe53QswhH9FoYvZ7Y1XKl1/MU4VOcC2QovGCkBA==",
+          "version": "74.0.372-9.6-1",
+          "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-74.0.372-9.6-1.tgz",
+          "integrity": "sha512-xtQlxAG2YiRqmMBK5SpiFbFYZJgg30M3rQOuU0w5g+IvitxMrQv6Cx/rWa5JrTnEY9+fNkG13/eN1+B22gIbTg==",
           "requires": {
             "node-downloader-helper": "1.0.10",
             "node-stream-zip": "1.8.0"
@@ -3808,9 +3808,9 @@
               "integrity": "sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ=="
             },
             "js-yaml": {
-              "version": "3.12.1",
-              "resolved": "https://registry.npmjs.org/js-yaml/-/js-yaml-3.12.1.tgz",
-              "integrity": "sha512-um46hB9wNOKlwkHgiuyEVAybXBjwFUV0Z/RaHJblRd9DXltue9FTYvzCr9ErQrK9Adz5MU4gHWVaNUfdmrC8qA==",
+              "version": "3.13.1",
+              "resolved": "https://registry.npmjs.org/js-yaml/-/js-yaml-3.13.1.tgz",
+              "integrity": "sha512-YfbcO7jXDdyj0DGxYVSlSeQNHbD7XPWvrVWeVUujrQEoZzWJIRrCPoyk6kL6IAjAG2IolMK4T0hNUe0HOUs5Jw==",
               "requires": {
                 "argparse": "^1.0.7",
                 "esprima": "^4.0.0"
