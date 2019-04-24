@@ -1,14 +1,12 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 8.15.0 - 2019-04-23
 ### Added
 * Use Chrome 74 stable in the Docker container and Chomedriver 74 (you need upgrade to Chrome 74).
 * Upgraded Coach to match latest Browsertime version with Chrome and upgraded Browsertime to fix miss matched locked file in npm for Chromedriver.
 
-
 ### Fixed
 * We displayed error on the summary page even though we didn't have an error.
-
 
 ## 8.14.0 - 2019-04-23
 
