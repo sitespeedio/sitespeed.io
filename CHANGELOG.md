@@ -12,7 +12,7 @@
 * Upgrading to [Browsertime 4.7.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#470---2019-04-21) adds three new things to scripting:
   * You can add your own error `commands.error(message)`. The error will be attached to the latest tested page. Say that you have a script where you first measure a page and then want to click on a specific link and the link doesn't exist. Then you can attach your own error with your own error text. The error will be sent to your datasource and will be visible in the HTML result.
 
-  * You can add meta data to your script with `commands.meta.addTitle(title)` and `commands.meta.addDescription(desc)`
+  * You can add meta data to your script with `commands.meta.setTitle(title)` and `commands.meta.setDescription(desc)`
 
 * Upgrading to [Browsertime 4.8.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#480---2019-04-23) fixes so errors thrown from your script, holds a usable error message instead of the wrapped Chromedriver error.
 

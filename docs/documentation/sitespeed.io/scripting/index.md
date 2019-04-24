@@ -725,10 +725,10 @@ Create an error.
 ### Meta data 
 Add meta data to your script. The extra data will be visibile in the HTML result page.
 
-#### meta.addTitle(title)
+#### meta.setTitle(title)
 Add a title of your script.
 
-#### meta.addDescription(desc)
+#### meta.setDescription(desc)
 Add a description of your script.
 
 ### Use Selenium directly
