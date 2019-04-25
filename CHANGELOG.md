@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Fixed
+* Upgraded to Browsertime 4.9.2 with a fix for miss match thread ids in Chrome.
+
 ## 8.15.0 - 2019-04-23
 ### Added
 * Use Chrome 74 stable in the Docker container and Chomedriver 74 (you need upgrade to Chrome 74).
