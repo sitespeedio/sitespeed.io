@@ -3130,9 +3130,9 @@
       "integrity": "sha1-81HTKWnTL6XXpVZxVCY9korjvR8="
     },
     "browsertime": {
-      "version": "4.9.2",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-4.9.2.tgz",
-      "integrity": "sha512-+GKTYGfSclpFyraCt1tgynMhEfB5n6Ml5T3A0TVMHTG+u/QoMEL5QXjL0wYIn6mpqM4iAy4TjL+M14/9QICqug==",
+      "version": "4.9.1",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-4.9.1.tgz",
+      "integrity": "sha512-MUdlgURCpyd6b5cUdfarY4+5EU+8TlkRea6SekMBCUu5LW5xyyz3+TZBQw2hjZaLmqGjqfGb/exebKDLAPFFlg==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@sitespeed.io/chromedriver": "74.0.372-9.6-1",
@@ -3140,7 +3140,7 @@
         "@sitespeed.io/throttle": "0.5.0",
         "adbkit": "2.11.0",
         "chrome-har": "0.9.1",
-        "chrome-trace": "0.2.2",
+        "chrome-trace": "0.2.1",
         "dayjs": "1.7.8",
         "execa": "1.0.0",
         "fast-stats": "0.0.4",
@@ -3475,9 +3475,9 @@
       }
     },
     "chrome-trace": {
-      "version": "0.2.2",
-      "resolved": "https://registry.npmjs.org/chrome-trace/-/chrome-trace-0.2.2.tgz",
-      "integrity": "sha512-lEEGp/8szNDXz5gMIE/+KeNFbL/8XCJ6ai897ngTmThzxxvSPBI+dw6UlnKaPLov5+ie1VPMAuz47YxnCB93rw==",
+      "version": "0.2.1",
+      "resolved": "https://registry.npmjs.org/chrome-trace/-/chrome-trace-0.2.1.tgz",
+      "integrity": "sha512-wO+2hBnGx6oM+qdBDLxmQora2CY7bTP26O6iAXkb9wRY+SWnTTN3Jq72e5Vq6BcuO/qj0K3u+Zj9utFwO8iC9A==",
       "requires": {
         "debug": "^3.1.0"
       },

@@ -1,9 +1,8 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 8.15.1 - 2019-04-26
 ### Fixed
-* Upgraded to Browsertime 4.9.2 with a fix for miss match thread ids in Chrome.
-* Various bug fixes for GSC plugin, thank you [Markus Liljedahl](https://github.com/mliljedahl) for the PR [#2438](https://github.com/sitespeedio/sitespeed.io/pull/2438)
+* Various bug fixes for GSC plugin, thank you [Markus Liljedahl](https://github.com/mliljedahl) for the PR [#2438](https://github.com/sitespeedio/sitespeed.io/pull/2438).
 
 ## 8.15.0 - 2019-04-23
 ### Added
