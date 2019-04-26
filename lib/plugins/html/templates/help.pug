@@ -79,7 +79,22 @@ block content
     p This is when the first paint happens on the screen. In Firefox we use timeToNonBlankPaint (that is behind a Firefox preference).
 
     h5(id='timeToDomContentFlushed') Time To DOM Content Flushed
-    p Firefox only metric.
+    p Internal Firefox metric activated by setting the preference 
+      i dom.performance.time_to_dom_content_flushed.enabled
+      | &nbsp;to true.
+
+    h5(id='timeToContentfulPaint') Time To Contentful Paint
+    p Firefox implementation of First Contentful Paint. Activated by setting the preference 
+      i dom.performance.time_to_contentful_paint.enabled
+      | &nbsp;to true.
+
+    h5(id='timeToFirstInteractive') Time To First Interactive
+    p Firefox implementation of Time to first interactive. Activated by setting the preference 
+      i dom.performance.time_to_first_interactive.enabled
+      | &nbsp;to true.   
+
+    h5(id='loadEventEnd') Load Event End
+    p The time when the load event of the current document is completed.
 
     h5(id='fullyLoaded') FullyLoaded
     p The time when all assets in the page is downloaded. The value comes from the latest response in the HAR file.

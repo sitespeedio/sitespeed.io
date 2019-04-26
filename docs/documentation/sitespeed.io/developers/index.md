@@ -75,6 +75,11 @@ If you want to test and push to Graphite/InfluxDB:
 - Run: <code>docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 --graphite.host=192.168.65.1</code> to push the data to Graphite. The IP is the localhost IP if you run on a Mac.
 - Check the metrics at [http://127.0.0.1:3000/](http://127.0.0.1:3000/).
 
+### Log and debug
+To get a better understanding of what happens you should use the log. You can change log level by using multiple <code>-v</code>. If you want to log on the lowest level getting all information you can use <code>-vvv</code>. If that is too much information use  <code>-vv</code> or <code>-v</code>.
+
+You can also debug all the messages sent inside of the queue of sitespeed.io. That way yoy can see how plugins are communicating with each other. To turn that on use <code>--debug</code>.
+
 ### Plugins
 Everything in sitespeed.io (well almost everything) is a plugin. Each plugin will be called, for each message sent in the application and then called when everything is finished.
 
@@ -88,6 +93,9 @@ p #{JSON.stringify(pageInfo)}
 ~~~
 
 Where pageInfo is the data structure that you wanna inspect.
+
+
+
 
 ### Make a pull request
  

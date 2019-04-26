@@ -3,8 +3,10 @@
 // ===============
 //
 
-*, *:before, *:after {
-  box-sizing: border-box;
+*,
+*:before,
+*:after {
+ box-sizing: border-box;
 }
 
 //
@@ -13,33 +15,35 @@
 
 ul,
 ol {
-  margin-bottom: 2.5rem;
+ margin-bottom: 2.5rem;
 }
 
 ul {
-  margin-top: 0;
-  padding-left: 0;
-  list-style: circle inside;
+ margin-top: 0;
+ padding-left: 0;
+ list-style: circle inside;
 
-  ul, ol {
-    margin: 1.5rem 0 1.5rem 3rem;
-    font-size: 0.9rem;
-  }
+ ul,
+ ol {
+  margin: 1.5rem 0 1.5rem 3rem;
+  font-size: 0.9rem;
+ }
 }
 
 ol {
-  margin-top: 0;
-  padding-left: 0;
-  list-style: decimal inside;
+ margin-top: 0;
+ padding-left: 0;
+ list-style: decimal inside;
 
-  ol, ul {
-    margin: 1.5rem 0 1.5rem 3rem;
-    font-size: 0.9rem;
-  }
+ ol,
+ ul {
+  margin: 1.5rem 0 1.5rem 3rem;
+  font-size: 0.9rem;
+ }
 }
 
 li {
-  margin-bottom: 1rem;
+ margin-bottom: 0rem;
 }
 
 //
@@ -47,16 +51,16 @@ li {
 //
 
 figure {
-  margin-bottom: 2.5rem;
+ margin-bottom: 2.5rem;
 }
 
 footer {
-  text-align: center;
+ text-align: center;
 }
 
 hr {
-  margin-top: 3rem;
-  margin-bottom: 3.5rem;
-  border-width: 0;
-  border-top: 1px solid $color--grey;
+ margin-top: 3rem;
+ margin-bottom: 3.5rem;
+ border-width: 0;
+ border-top: 1px solid $color--grey;
 }

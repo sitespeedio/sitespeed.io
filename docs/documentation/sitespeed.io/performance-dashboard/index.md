@@ -155,7 +155,6 @@ DOCKER_CONTAINER=sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}
 
 function cleanup() {
   docker system prune --all --volumes -f
-  docker pull $DOCKER_CONTAINER
 }
 
 function control() {

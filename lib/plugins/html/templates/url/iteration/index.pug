@@ -11,6 +11,11 @@ block content
     a(href=daurl) #{decodeURIComponent(daTitle)}
 
   include ../includes/pageRunInfo
+
+  if d.browsertime && d.browsertime.run
+    b #{d.browsertime.run.title}
+    p !{d.browsertime.run.description}
+
   p
     .large All runs:&nbsp;
       each val, index in runPages
@@ -23,11 +28,16 @@ block content
           | &nbsp;-
           |
 
+  if d.browsertime && d.browsertime.run.errors  && d.browsertime.run.errors.length > 0
+    .errors
+      b Errors
+      ul
+        each error in d.browsertime.run.errors
+          li #{error} 
+
   .index-link
     a.button.button--primary(href=urlLink) Back to summary
 
-  if pageInfo.error
-    .error= pageInfo.error
   include ./tabs.pug
 
   #tabSections
@@ -136,6 +146,10 @@ block content
     if d.pagexray && d.pagexray.run
       section#pagexray-panel
         include ../pagexray/index.pug
+    
+    if d.thirdparty && d.thirdparty.run
+      section#thirdparty-panel
+        include ../thirdparty/index.pug
 
     each pageRun in pageRuns
       - const panelName = pageRun.id + '-panel'

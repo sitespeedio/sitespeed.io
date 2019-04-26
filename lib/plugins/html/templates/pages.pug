@@ -3,7 +3,8 @@ include _tableMixins
 
 mixin rows(pages)
   each pageInfo, url in pages
-    - p = pageInfo.data.pagexray ? pageInfo.data.pagexray.pageSummary : {}
+    - p = pageInfo.data.pagexray && pageInfo.data.pagexray.pageSummary ? pageInfo.data.pagexray.pageSummary : {}
+    - tp = pageInfo.data.thirdparty ? pageInfo.data.thirdparty.pageSummary : {}
     - b = pageInfo.data.browsertime ? pageInfo.data.browsertime.pageSummary : {}
     - t = p.contentTypes || {javascript: {transferSize: ''}, css: {transferSize: ''}, image: {transferSize: ''}}
     - display = (options.urlsMetaData && options.urlsMetaData[url] && options.urlsMetaData[url].alias) ? options.urlsMetaData[url].alias : url
@@ -13,6 +14,7 @@ mixin rows(pages)
         a(href= pageInfo.path + 'index.html')= decodeURIComponent(display)
       +kbSizeCell('Total size', p.transferSize)
       +numberCell('Requests', p.requests)
+      +numberCell('3rd Party Requests', tp.requests ? tp.requests.median : 0)
       if b.visualMetrics && b.visualMetrics[0]
         +numberCell('First Visual Change', b.visualMetrics[0].FirstVisualChange)
         +numberCell('Speed Index', b.visualMetrics[0].SpeedIndex)
@@ -29,7 +31,7 @@ mixin rows(pages)
       else
         td
 block content
-  - headings = ['URL', 'Total Size (kb)', 'Total Requests']
+  - headings = ['URL', 'Total Size (kb)', 'Total Requests', '3rd Party Requests']
   if options.speedIndex
     - headings.push('First Visual Change', 'Speed Index', 'Last Visual Change')
   else

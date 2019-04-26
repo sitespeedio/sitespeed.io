@@ -4,6 +4,7 @@
 [![Downloads][downloads-image]][downloads-url]
 [![Docker][docker-image]][docker-url]
 [![Stars][stars-image]][stars-url]
+[![npm][npm-image]][npm-url]
 [![Changelog #212][changelog-image]][changelog-url]
 
 
@@ -64,7 +65,7 @@ When you as user choose to test a URL, this is what happens on a high level:
  4. When all URLs are tested, sitespeed sends a message telling plugins to summarise the metrics and then render it.
  5. Plugins pickup the render message and the HTML plugin writes the HTML to disk.
 
- ## Lets try it out
+ ## Try it out
 
  Using Docker (use latest Docker):
 
@@ -87,6 +88,9 @@ When you as user choose to test a URL, this is what happens on a high level:
  $ bin/sitespeed.js --help
  $ bin/sitespeed.js https://www.sitespeed.io/
 ```
+
+## Limited time for new features until 10th of May
+Until the 10th of May we will only focus on bug fixes since we have other important personal projects coming up.
 
 ## More details
 
@@ -156,3 +160,5 @@ docker run --cap-add=NET_ADMIN --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true -e 
 [docker-url]: https://hub.docker.com/r/sitespeedio/sitespeed.io/
 [changelog-image]: https://img.shields.io/badge/changelog-%23212-lightgrey.svg?style=flat-square
 [changelog-url]: https://changelog.com/212
+[npm-image]: https://img.shields.io/npm/v/sitespeed.io.svg
+[npm-url]: https://npmjs.org/package/sitespeed.io

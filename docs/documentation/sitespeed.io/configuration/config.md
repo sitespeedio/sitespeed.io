@@ -5,6 +5,7 @@ Browser
   --browsertime.iterations, -n                                              How many times you want to test each page  [default: 3]
   --browsertime.spa, --spa                                                  Convenient parameter to use if you test a SPA application: will automatically wait for X seconds after last network activity and use hash in file names. Read https://www.sitespeed.io/documentation/sitespeed.io/spa/  [boolean] [default: false]
   --browsertime.connectivity.profile, -c, --connectivity                    The connectivity profile. To actually set the connectivity you can choose between Docker networks or Throttle, read https://www.sitespeed.io/documentation/sitespeed.io/connectivity/  [choices: "3g", "3gfast", "3gslow", "3gem", "2g", "cable", "native", "custom"] [default: "native"]
+  --browsertime.connectivity.alias                                          Give your connectivity profile a custom name
   --browsertime.connectivity.downstreamKbps, --downstreamKbps               This option requires --connectivity be set to "custom".
   --browsertime.connectivity.upstreamKbps, --upstreamKbps                   This option requires --connectivity be set to "custom".
   --browsertime.connectivity.latency, --latency                             This option requires --connectivity be set to "custom".
@@ -62,6 +63,9 @@ Chrome
   --browsertime.chrome.collectConsoleLog, --chrome.collectConsoleLog        Collect Chromes console log and save to disk.  [boolean]
   --browsertime.chrome.binaryPath, --chrome.binaryPath                      Path to custom Chrome binary (e.g. Chrome Canary). On OS X, the path should be to the binary inside the app bundle, e.g. "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary"
 
+chrome
+  --browsertime.chrome.cdp.performance, --chrome.cdp.performance  Collect Chrome performance metrics from Chrome DevTools Protocol  [boolean] [default: true]
+
 proxy
   --browsertime.proxy.http, --proxy.http    Http proxy (host:port)  [string]
   --browsertime.proxy.https, --proxy.https  Https proxy (host:port)  [string]
@@ -104,6 +108,7 @@ Budget
   --budget.output            The output format of the budget.  [choices: "junit", "tap", "json"]
 
 Screenshot
+  --browsertime.screenshot                                                                Set to false to disable screenshots  [boolean] [default: true]
   --browsertime.screenshotParams.type, --screenshot.type                                  Set the file type of the screenshot  [choices: "png", "jpg"] [default: "png"]
   --browsertime.screenshotParams.png.compressionLevel, --screenshot.png.compressionLevel  zlib compression level  [default: 6]
   --browsertime.screenshotParams.jpg.quality, --screenshot.jpg.quality                    Quality of the JPEG screenshot. 1-100  [default: 80]
