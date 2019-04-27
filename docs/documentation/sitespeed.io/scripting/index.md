@@ -172,6 +172,10 @@ module.exports = async function(context, commands) {
   } catch (e) {
     // We try/catch so we will catch if the the input fields can't be found
     // The error is automatically logged in Browsertime an rethrown here
+    // We could have an alternative flow ...
+    // else we can just let it cascade since it catched later on and reported in 
+    // the HTML
+    throw e;
   }
 };
 ~~~
@@ -212,6 +216,10 @@ module.exports = async function(context, commands) {
   } catch (e) {
     // We try/catch so we will catch if the the input fields can't be found
     // The error is automatically logged in Browsertime and re-thrown here
+    // We could have an alternative flow ...
+    // else we can just let it cascade since it catched later on and reported in 
+    // the HTML
+    throw e;
   }
 };
 ~~~
@@ -237,6 +245,10 @@ module.exports = async function(context, commands) {
   } catch (e) {
     // We try/catch so we will catch if the the input fields can't be found
     // The error is automatically logged in Browsertime and re-thrown here
+    // We could have an alternative flow ...
+    // else we can just let it cascade since it catched later on and reported in 
+    // the HTML
+    throw e;
   }
 };
 ~~~
@@ -283,7 +295,11 @@ module.exports = async function(context, command) {
       'https://example.org/logged/in/page'
   );
   } catch(e) {
-     // We try/catch so we will catch if the the input fields can't be found
+    // We try/catch so we will catch if the the input fields can't be found
+    // We could have an alternative flow ...
+    // else we can just let it cascade since it catched later on and reported in 
+    // the HTML
+    throw e;
   }
 };
 ~~~
