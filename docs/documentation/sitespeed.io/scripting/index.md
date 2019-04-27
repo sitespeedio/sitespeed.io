@@ -52,6 +52,7 @@ The context object:
 * *selenium.webdriver* -  The Selenium [WebDriver public API object](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html).
 * *selenium.driver* - The [instantiated version of the WebDriver](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebDriver.html) driving the current version of the browser.
 
+You can also use the context object to pass on data to other scripts within the same run/iteration. Add your own field and use it in your next script.
 
 The commands object:
 * *[navigate(URL)](#navigateurl)* - Use this if you want to use the exact way as Browsertime navigates to a new URL (same settings with pageCompleteCheck etc). Note: the URL will not be measured automatically.
@@ -77,6 +78,26 @@ Run your script by passing it to sitespeed.io and adding the parameter ```--mult
 ~~~bash
 docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} script.js script2.js script3.js --multi
 ~~~
+
+If you want to pass data between your scripts you can do that with the context object. Here's an example of the first script:
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // First you do what you need to do ...
+  // then just add a field to the context
+  context.myId = 15;
+}
+~~~
+
+Then in your next script you can get that id:
+
+~~~javascript
+module.exports = async function(context, commands) {
+  const idToUse = context.myId;
+}
+~~~
+
+That way you can just split your long scripts into multiple files and make it easier to manage.
 
 ## Getting values from your page
 In some scenirous you want to do different things dependent on what shows on your page. For example: You are testing a shop checkout and you need to verify that the item is in stock. You can run JavaScript and get the value back to your script.
