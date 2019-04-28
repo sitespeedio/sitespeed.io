@@ -52,6 +52,7 @@ The context object:
 * *selenium.webdriver* -  The Selenium [WebDriver public API object](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html).
 * *selenium.driver* - The [instantiated version of the WebDriver](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebDriver.html) driving the current version of the browser.
 
+You can also use the context object to pass on data to other scripts within the same run/iteration. Add your own field and use it in your next script.
 
 The commands object:
 * *[navigate(URL)](#navigateurl)* - Use this if you want to use the exact way as Browsertime navigates to a new URL (same settings with pageCompleteCheck etc). Note: the URL will not be measured automatically.
@@ -77,6 +78,26 @@ Run your script by passing it to sitespeed.io and adding the parameter ```--mult
 ~~~bash
 docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} script.js script2.js script3.js --multi
 ~~~
+
+If you want to pass data between your scripts you can do that with the context object. Here's an example of the first script:
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // First you do what you need to do ...
+  // then just add a field to the context
+  context.myId = 15;
+}
+~~~
+
+Then in your next script you can get that id:
+
+~~~javascript
+module.exports = async function(context, commands) {
+  const idToUse = context.myId;
+}
+~~~
+
+That way you can just split your long scripts into multiple files and make it easier to manage.
 
 ## Getting values from your page
 In some scenirous you want to do different things dependent on what shows on your page. For example: You are testing a shop checkout and you need to verify that the item is in stock. You can run JavaScript and get the value back to your script.
@@ -151,6 +172,10 @@ module.exports = async function(context, commands) {
   } catch (e) {
     // We try/catch so we will catch if the the input fields can't be found
     // The error is automatically logged in Browsertime an rethrown here
+    // We could have an alternative flow ...
+    // else we can just let it cascade since it catched later on and reported in 
+    // the HTML
+    throw e;
   }
 };
 ~~~
@@ -191,6 +216,10 @@ module.exports = async function(context, commands) {
   } catch (e) {
     // We try/catch so we will catch if the the input fields can't be found
     // The error is automatically logged in Browsertime and re-thrown here
+    // We could have an alternative flow ...
+    // else we can just let it cascade since it catched later on and reported in 
+    // the HTML
+    throw e;
   }
 };
 ~~~
@@ -216,6 +245,10 @@ module.exports = async function(context, commands) {
   } catch (e) {
     // We try/catch so we will catch if the the input fields can't be found
     // The error is automatically logged in Browsertime and re-thrown here
+    // We could have an alternative flow ...
+    // else we can just let it cascade since it catched later on and reported in 
+    // the HTML
+    throw e;
   }
 };
 ~~~
@@ -262,7 +295,11 @@ module.exports = async function(context, command) {
       'https://example.org/logged/in/page'
   );
   } catch(e) {
-     // We try/catch so we will catch if the the input fields can't be found
+    // We try/catch so we will catch if the the input fields can't be found
+    // We could have an alternative flow ...
+    // else we can just let it cascade since it catched later on and reported in 
+    // the HTML
+    throw e;
   }
 };
 ~~~
@@ -360,27 +397,37 @@ module.exports = async function(context, commands) {
 ~~~
 
 ### Error handling
-You can try/catch failing navigations. The script will continue and the failing URL will be a failure in the HTML.
+You can try/catch failing commands that throw errors. If an error is not catched in your script, it will be catched in sitespeed.io and the error will be logged and reported in the HTML and to your data storage (Graphite/InfluxDb) under the key *browsertime.statistics.errors*.
+
+If you do catch the error, you should make sure you report it yourself with the [error command](#error), so you can see that in the HTML. This is needed for all errors except navigating/measuring a URL. They will automatically be reported (since they are always important).
+
+Here's an example of catching a URL that don't work and still continue to test another one. Remember since a navigation fails, this will be reported automatically and you don't need to do anything.
 
 ~~~javascript
 module.exports = async function(context, commands) {
   await commands.measure.start('https://www.sitespeed.io');
   try {
-    await commands.measure.start('https://apa/');
+    await commands.measure.start('https://nonworking.url/');
   } catch (e) {}
   return commands.measure.start('https://www.sitespeed.io/documentation/');
 };
 ~~~
 
-You can also create your own errors. The error will be added to the error array and will be reported in the HTML and sent to Graphite/InfluxDB.
+You can also create your own errors. The error will be reported in the HTML and sent to Graphite/InfluxDB.
 
 ~~~javascript
 module.exports = async function(context, commands) {
-  // something fails
-  commands.error('The login form is removed from the login page!');
+  // ...
+  try {
+    // Click on a link 
+    await click.byLinkTextAndWait('Checkout');
+  } catch (e) {
+    // Oh no, the content team has changed the name of the link!
+     commands.error('The link named Checkout do not exist on the page');
+    // Since the error is reported, you can alert on it in Grafana
+  }
 };
 ~~~
-
 
 ## Tips and Tricks
 
@@ -719,7 +766,6 @@ module.exports = async function(context, commands) {
 ### Error
 You can create your own error. The error will be attached to the latest tested page. Say that you have a script where you first measure a page and then want to click on a specific link and the link doesn't exist. Then you can attach your own error with your own error text. The error will be sent to your datasource and will be visible in the HTML result.
 
-
 ~~~javascript
 module.exports = async function(context, commands) {
   // Start by navigating to a page
@@ -738,7 +784,7 @@ module.exports = async function(context, commands) {
 ~~~
 
 #### error(message)
-Create an error.
+Create an error. Use it if you catch a thrown error, want to continue with something else, but still report the error.
 
 ### Meta data 
 Add meta data to your script. The extra data will be visibile in the HTML result page.

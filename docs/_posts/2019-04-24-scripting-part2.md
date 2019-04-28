@@ -1,69 +1,64 @@
 ---
 layout: default
-title: Scripting part 2
-description: Now with better third party request categorisation.
+title: Extra love for scripting
+description: Better error handling, neta data, clear the cache and CDP is now supported in scripting.
 authorimage: /img/aboutus/peter.jpg
-intro: 8.9.0 uses the Third party web project to categorise third party requests. 
-keywords: sitespeed.io, browsertime, webperf
+intro: When we released 8.0 we pushed the most wanted feature, scripting that makes it possible to test multiple pages in a user journey. Since the release we pushed many small additions and I wanted to go through a couple of them.
+keywords: sitespeed.io, browsertime, webperf, scripting
 nav: blog
 ---
 
-# Scripting part 2
+# Extra love for scripting
 When we released 8.0 we pushed the most wanted feature: scripting that makes it possible to test multiple pages in a user journey. Since the release we pushed many small additions and I wanted to go through a couple of them.
 
 ## Better error handling
 
-The first release didn't have any fancy error handling, but now it works better.
+The first release didn't have any fancy error handling, but now you have more alternatives.
 
-Let me go through a couple of scenarios: You test three URLs and one of them fails.
+You can try/catch failing commands that throw errors. If an error is not catched in your script, it will be catched in sitespeed.io and the error will be logged and reported in the HTML and to your data storage (Graphite/InfluxDb) under the key *browsertime.statistics.errors*.
 
-~~~javascript
-module.exports = async function(context, commands) {
-  await commands.measure.start('https://www.sitespeed.io');
-  // The coming URL will fails!
-  await commands.measure.start('https://failing.url/');
-  // And the documentation URL will not be tested
-  return commands.measure.start('https://www.sitespeed.io/documentation/');
-};
-~~~
+If you do catch the error, you should make sure you report it yourself with the [error command](#error), so you can see that in the HTML report. This is needed for all errors except navigating/measuring a URL. They will automatically be reported (since they are always important).
 
-
-
-You can try/catch failing navigations. The script will continue and the failing URL will be a failure in the HTML.
+Here's an example of catching a URL that don't work and still continue to test another one. Remember since a navigation fails, this will be reported automatically and you don't need to do anything.
 
 ~~~javascript
 module.exports = async function(context, commands) {
   await commands.measure.start('https://www.sitespeed.io');
   try {
-    await commands.measure.start('https://apa/');
+    await commands.measure.start('https://nonworking.url/');
   } catch (e) {}
   return commands.measure.start('https://www.sitespeed.io/documentation/');
 };
 ~~~
 
-You can also create your own errors. The error will be added to the error array and will be reported in the HTML and sent to Graphite/InfluxDB.
+You can also create your own errors. The error will be reported in the HTML result and sent to Graphite/InfluxDB.
 
 ~~~javascript
 module.exports = async function(context, commands) {
-  // something fails
-  commands.error('The login form is removed from the login page!');
+  // ...
+  try {
+    // Click on a link 
+    await click.byLinkTextAndWait('Checkout');
+  } catch (e) {
+    // Oh no, the content team has changed the name of the link!
+     commands.error('The link named Checkout do not exist on the page');
+    // Since the error is reported, you can alert on it in Grafana
+  }
 };
 ~~~
 
+## Clearing the browser cache
 
-## Cache
+There's an experimental command for clearing the cache within scripting. The command works both for Chrome and Firefox on desktop but not on Chrome on Android since we are using a [WebExtension](https://github.com/sitespeedio/browsertime-extension). If you need to clear the cache on Android you should use [Chrome Devtools Protocol](#chrome-devtools-protocol) and the [clear browser cache](https://chromedevtools.github.io/devtools-protocol/tot/Network#method-clearBrowserCache) command.
 
-There's an experimental command for clearing the cache. The command works both for Chrome and Firefox on desktop but not on Chrome on Android since we are using a [WebExtension](https://github.com/sitespeedio/browsertime-extension).
+There are two functions you can use. Either clear everything `cache.clear()` or clear everything but keep cookies `cache.clearKeepCookies()`.
 
-#### cache.clear()
-Clear the browser cache. Remove cache and cookies.
+Remember that when you start your first script, the cache is already cleared and you are using a new session. There's no need to start your script by clearing the cache, that happens automatically. The cache is cleared between iterations.
 
-#### cache.clearKeepCookies()
-Clear the browser cache but keep cookies.
 
 ## Meta data
 
-Add meta data to your script. The extra data will be visibile in the HTML result page.
+You can add meta data to your script. The extra data will be visibile in the HTML result page. 
 
 Setting meta data like this:
 
@@ -87,13 +82,11 @@ Will result in:
 ![Title and description for a script]({{site.baseurl}}/img/titleanddesc.png)
 {: .img-thumbnail}
 
+I like the meta data since it makes it much easier to remember what you are actually testing :)
 
 ## Chrome DevTools Protocol 
 
-Send messages to Chrome using the [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/). This only works in Chrome. You can send and send and get the result.
-
-#### cdp.send(command, args)
-Send a command to Chrome and don't expect something back.
+You can now send messages to Chrome using the [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/). You can send and send and get the result by using two different commands. This makes it possible for you implement almost whatever Chrome supports.
 
 Here's an example of injecting JavaScript that runs on every new document.
 
@@ -104,8 +97,7 @@ module.exports = async function(context, commands) {
 }
 ~~~
 
-#### cdp.sendAndGet(command, args)
-Send a command to Chrome and get the result back. 
+And if you need to get something back from Chrome, use the sendAndGet command.
 
 ~~~javascript
 module.exports = async function(context, commands) {
@@ -114,5 +106,7 @@ module.exports = async function(context, commands) {
   context.log.info('Memory.getDOMCounters %j', domCounters);
  }
 ~~~
+
+You can read all about scripting in the [documentation](/documentation/sitespeed.io/scripting/).
 
 /Peter
