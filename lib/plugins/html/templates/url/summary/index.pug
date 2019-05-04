@@ -68,6 +68,14 @@ block content
               tr
                 td First Paint [median]:
                 td #{h.time.ms(d.browsertime.pageSummary.statistics.timings.firstPaint.median)}                
+            if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.cpu && d.browsertime.pageSummary.statistics.cpu.longTasks
+              tr
+                td CPU long tasks [median]:
+                td #{d.browsertime.pageSummary.statistics.cpu.longTasks.tasks.median}
+              if d.browsertime.pageSummary.statistics.cpu.longTasks.durations.max > 0    
+                tr
+                  td CPU longest task duration:
+                  td #{d.browsertime.pageSummary.statistics.cpu.longTasks.durations.max} ms
             if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.visualMetrics
               tr
                 td Speed Index [median]:
@@ -143,6 +151,10 @@ block content
     if d.pagexray && d.pagexray.pageSummary
       section#pagexray-panel
         include ../pagexray/index.pug
+
+    if options.cpu
+      section#cpu-panel
+        include ../cpu/index.pug  
 
     if d.thirdparty && d.thirdparty.pageSummary
       section#thirdparty-panel

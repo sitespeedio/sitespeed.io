@@ -59,10 +59,10 @@
     "eslint": "^4.18.2",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-prettier": "^2.6.0",
-    "jsdoc": "^3.3.3",
+    "jsdoc": "^3.6.1",
     "license-checker": "^16.0.0",
     "mocha": "^5.0.4",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.12.0",
     "prettier": "^1.11.1",
     "pug-lint": "^2.5.0",
     "pug-lint-config-clock": "^2.0.0"
@@ -71,7 +71,7 @@
   "dependencies": {
     "@google-cloud/storage": "2.4.2",
     "aws-sdk": "2.361.0",
-    "browsertime": "4.9.1",
+    "browsertime": "5.0.0-beta.1",
     "cli-color": "1.4.0",
     "concurrent-queue": "7.0.2",
     "dayjs": "1.8.9",
