@@ -1,4 +1,7 @@
 # CHANGELOG - sitespeed.io
+## 8.15.2 - 2019-05-05
+### Fixed
+* Upgraded Firefox to 66.0.4 to fix the issue that broke Firefox extension (making it impossible to get the HAR file etc).
 
 ## 8.15.1 - 2019-04-26
 ### Fixed
