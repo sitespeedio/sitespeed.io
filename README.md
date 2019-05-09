@@ -89,9 +89,6 @@ When you as user choose to test a URL, this is what happens on a high level:
  $ bin/sitespeed.js https://www.sitespeed.io/
 ```
 
-## Limited time for new features until 10th of May
-Until the 10th of May we will only focus on bug fixes since we have other important personal projects coming up.
-
 ## More details
 
 Using sitespeed.io you can:
