@@ -24,7 +24,7 @@ We always keep a CHANGELOG in the root of directory of the project. [Here's](htt
 We always use [semantic versioning](http://semver.org/) when we do a release.
 
 ### Privacy
-We take your online privacy really serious: Our [documentation site](https://www.sitespeed.io/), our [dashboard](https://dashboard.sitespeed.io) and our [compare tool](https://compare.sitespeed.io) do not use any tracking software at all (no Google Analytics or any other tracking software). We never use tracking software. None of the sitespeed.io tools call home. You can read more abour privace at our [Privacy Policy](../privacy-policy/) page.
+We take your online privacy really serious: Our [documentation site](https://www.sitespeed.io/), our [dashboard](https://dashboard.sitespeed.io) and our [compare tool](https://compare.sitespeed.io) do not use any tracking software at all (no Google Analytics or any other tracking software). We never use tracking software. None of the sitespeed.io tools call home. You can read more about privacy at our [Privacy Policy](../privacy-policy/) page.
 
 ### Code of Conduct
 When you create issues, do PRs, use our Slack channel or contact us on email, please follow our [Code Of Conduct](https://github.com/sitespeedio/sitespeed.io/blob/master/CODE_OF_CONDUCT.md).
