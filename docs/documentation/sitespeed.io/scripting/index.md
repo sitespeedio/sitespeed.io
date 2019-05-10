@@ -262,36 +262,36 @@ sitespeed.io --preScript login.js https://en.wikipedia.org/wiki/Barack_Obama
 #### More complicated login example
 
 ~~~javascript
-module.exports = async function(context, command) {
-  await command.navigate(
+module.exports = async function(context, commands) {
+  await commands.navigate(
     'https://example.org'
   );
   try {
     // Find the sign in button and click it
-    await command.click.byId('sign_in_button');
+    await commands.click.byId('sign_in_button');
     // Wait some time for the page to open a new login frame
-    await command.wait.byTime(2000);
+    await commands.wait.byTime(2000);
     // Switch to the login frame
-    await command.switch.toFrame('loginFrame');
+    await commands.switch.toFrame('loginFrame');
     // Find the username fields by xpath (just as an example)
-    await command.addText.byXpath(
+    await commands.addText.byXpath(
       'peter@example.org',
       '//*[@id="userName"]'
     );
     // Click on the next button
-    await command.click.byId('verifyUserButton');
+    await commands.click.byId('verifyUserButton');
     // Wait for the GUI to display the password field so we can select it
-    await command.wait.byTime(2000);
+    await commands.wait.byTime(2000);
     // Wait for the actual password field
-    await command.wait.byId('password', 5000);
+    await commands.wait.byId('password', 5000);
     // Fill in the password
-    await command.addText.byId('dejh8Ghgs6ga(1217)', 'password');
+    await commands.addText.byId('dejh8Ghgs6ga(1217)', 'password');
     // Click the submit button
-    await command.click.byId('btnSubmit');
+    await commands.click.byId('btnSubmit');
     // In your implementation it is probably better to wait for an id
-    await command.wait.byTime(5000);
+    await commands.wait.byTime(5000);
     // Measure the next page as a logged in user
-    return  command.measure.start(
+    return  commands.measure.start(
       'https://example.org/logged/in/page'
   );
   } catch(e) {
