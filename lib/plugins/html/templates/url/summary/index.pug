@@ -72,7 +72,7 @@ block content
               tr
                 td CPU long tasks [median]:
                 td #{d.browsertime.pageSummary.statistics.cpu.longTasks.tasks.median}
-              if d.browsertime.pageSummary.statistics.cpu.longTasks.durations.max > 0    
+              if d.browsertime.pageSummary.statistics.cpu.longTasks.durations  && d.browsertime.pageSummary.statistics.cpu.longTasks.durations.max > 0    
                 tr
                   td CPU longest task duration:
                   td #{d.browsertime.pageSummary.statistics.cpu.longTasks.durations.max} ms
