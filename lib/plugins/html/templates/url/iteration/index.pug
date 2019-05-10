@@ -146,6 +146,10 @@ block content
     if d.pagexray && d.pagexray.run
       section#pagexray-panel
         include ../pagexray/index.pug
+
+    if options.cpu
+      section#cpu-panel
+        include ../cpu/index.pug     
     
     if d.thirdparty && d.thirdparty.run
       section#thirdparty-panel

@@ -19,6 +19,9 @@
   if d.pagexray && d.pagexray.pageSummary
     a(id='pagexray', href='#pagexray', onclick='return selectTab(this, true);')
       | PageXray
+  if options.cpu
+    a(id='cpu', href='#cpu', onclick='return selectTab(this, true);')
+      | CPU      
   if d.thirdparty && d.thirdparty.pageSummary
     a(id='thirdparty', href='#thirdparty', onclick='return selectTab(this, true);')
       | Third party   
