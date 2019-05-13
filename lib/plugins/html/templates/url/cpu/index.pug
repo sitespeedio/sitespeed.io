@@ -14,19 +14,19 @@ if browsertime && browsertime.cpu && browsertime.cpu.longTasks
         tr
             td Long Tasks before First Paint
             td #{browsertime.cpu.longTasks.beforeFirstPaint.tasks}
-            td #{browsertime.cpu.longTasks.beforeFirstPaint.totalDuration.toFixed(1)}
+            td #{browsertime.cpu.longTasks.beforeFirstPaint.totalDuration.toFixed(0)}
         tr
             td Long Tasks before First Contentful Paint
             td #{browsertime.cpu.longTasks.beforeFirstContentfulPaint.tasks}
-            td #{browsertime.cpu.longTasks.beforeFirstContentfulPaint.totalDuration.toFixed(1)}
+            td #{browsertime.cpu.longTasks.beforeFirstContentfulPaint.totalDuration.toFixed(0)}
         tr
             td Long Tasks after Load Event End
             td #{browsertime.cpu.longTasks.afterLoadEventEnd.tasks}
-            td #{browsertime.cpu.longTasks.afterLoadEventEnd.totalDuration.toFixed(1)}         
+            td #{browsertime.cpu.longTasks.afterLoadEventEnd.totalDuration.toFixed(0)}         
         tr
             td Total Long Tasks
             td #{browsertime.cpu.longTasks.tasks}
-            td #{browsertime.cpu.longTasks.totalDuration.toFixed(1)}
+            td #{browsertime.cpu.longTasks.totalDuration.toFixed(0)}
     
     h4 Individual Long Tasks
     table
@@ -75,7 +75,7 @@ p Calculated using Tracium.
        each event in cpuEvents
          tr
            td #{event.name}
-           td #{event.value}
+           td #{event.value.toFixed(0)}
 if browsertime && browsertime.cpu && browsertime.cpu.events        
     p Download the Chrome trace log and drag and drop it into Developer Tools / Performance in Chrome.
     .downloads
