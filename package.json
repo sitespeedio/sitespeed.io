@@ -77,6 +77,7 @@
     "dayjs": "1.8.9",
     "fast-crc32c": "1.0.4",
     "fast-stats": "0.0.4",
+    "find-up": "4.0.0",
     "fs-extra": "7.0.1",
     "influx": "5.0.7",
     "intel": "1.2.0",
