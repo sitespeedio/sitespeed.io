@@ -75,7 +75,7 @@ block content
               if d.browsertime.pageSummary.statistics.cpu.longTasks.durations  && d.browsertime.pageSummary.statistics.cpu.longTasks.durations.max > 0    
                 tr
                   td CPU longest task duration:
-                  td #{d.browsertime.pageSummary.statistics.cpu.longTasks.durations.max} ms
+                  td #{h.time.ms(d.browsertime.pageSummary.statistics.cpu.longTasks.durations.max)}
             if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.visualMetrics
               tr
                 td Speed Index [median]:
