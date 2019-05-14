@@ -3138,9 +3138,9 @@
       "integrity": "sha1-81HTKWnTL6XXpVZxVCY9korjvR8="
     },
     "browsertime": {
-      "version": "5.0.0-beta-5",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-5.0.0-beta-5.tgz",
-      "integrity": "sha512-0mGQaTKVI3ufdafPYYwKqfppZHhz0PtJeeNTA4r6WVIVw2ll7uJkWuCLdh4ui+UdWge+wgjbFgpOd/IXbzW7jg==",
+      "version": "5.0.0-beta-6",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-5.0.0-beta-6.tgz",
+      "integrity": "sha512-UYb4NPskKj732h1xNJuv0y8IpbTBtzc5P8k6GY9QfmDWQnktcdlwSG23X3Cc/ZetavGXKYI9ZoLz+xzi54cD9A==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@sitespeed.io/chromedriver": "74.0.372-9.6-1",
@@ -3205,11 +3205,6 @@
           "version": "1.8.13",
           "resolved": "https://registry.npmjs.org/dayjs/-/dayjs-1.8.13.tgz",
           "integrity": "sha512-JZ01l/PMU8OqwuUs2mOQ/CTekMtoXOUSylfjqjgDzbhRSxpFIrPnHn8Y8a0lfocNgAdBNZb8y0/gbzJ2riQ4WQ=="
-        },
-        "fast-stats": {
-          "version": "0.0.5",
-          "resolved": "https://registry.npmjs.org/fast-stats/-/fast-stats-0.0.5.tgz",
-          "integrity": "sha512-HtS5uSqMiwfxFFyukKP/F0f3o8/8oqHtbInsaq2s0+V2J2MEHGyukWajWqzKS57sWLTOgJ7bKMRhA4fG5cTQ3Q=="
         },
         "find-up": {
           "version": "3.0.0",
