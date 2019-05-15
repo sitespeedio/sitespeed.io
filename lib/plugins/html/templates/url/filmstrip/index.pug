@@ -5,7 +5,7 @@ mixin frame(filmstrip, iteration)
     span.videoframetime #{filmstrip[iteration].time} s
     each timing in filmstrip[iteration].timings
         span.videoframetext #{timing.name ? timing.name : timing.metric}
-            b &nbsp;#{h.time.ms(timing.value)}
+            b &nbsp;#{h.time.ms(timing.duration || timing.value)}
 
 a
 h2 Filmstrip
