@@ -1,4 +1,9 @@
 # CHANGELOG - sitespeed.io
+
+## UNRELEASED
+### Added
+* Upgraded to [Browsertime 5.0.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#500---2019-05-16).
+
 ## 8.15.2 - 2019-05-05
 ### Fixed
 * Upgraded Firefox to 66.0.4 to fix the issue that broke Firefox extension (making it impossible to get the HAR file etc).
