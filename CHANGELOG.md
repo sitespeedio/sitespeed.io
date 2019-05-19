@@ -1,8 +1,42 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 9.0.0 - UNRELEASED
+
 ### Added
 * Upgraded to [Browsertime 5.0.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#500---2019-05-16).
+
+* Collect CPU long tasks in Chrome using `--chrome.collectLongTasks` using the [Long Task API](https://developer.mozilla.org/en-US/docs/Web/API/Long_Tasks_API). For the long tasks to work, we inject JS using the *Page.addScriptToEvaluateOnNewDocument* devtools command. We collect all long tasks and related data (not so much at the moment but will get better/more useful information when browsers supports it) and count the total number of long tasks, long tasks that happens before first paint and first contentful paint. Implemented in [#821](https://github.com/sitespeedio/browsertime/pull/821) and [#825](https://github.com/sitespeedio/browsertime/pull/825).
+
+* By default a long task is >50ms. Wanna change that? Use `--minLongTaskLength` to set that yourselves (it needs to be larger than 50 ms though) [#838](https://github.com/sitespeedio/browsertime/pull/838).
+
+* Throttle the CPU using Chrome with `--chrome.CPUThrottlingRate`. Enables CPU throttling to emulate slow CPUs. Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc). Implemented in [#819](https://github.com/sitespeedio/browsertime/pull/819).
+
+* You can now use a .browsertime.json file as a default config json file that will be picked up automatically [#824](https://github.com/sitespeedio/browsertime/pull/824).
+
+* Include the actual HTML in the HAR file for Chrome using `--chrome.includeResponseBodies html` [#826](https://github.com/sitespeedio/browsertime/pull/826)
+
+* Use `--chrome.blockDomainsExcept` to block all domains except. Use it muliple times to have multiple domains. You can also use wildcard like *.sitespeed.io [#840](https://github.com/sitespeedio/browsertime/pull/840)
+
+* You can use a `.siteespeed.io.json` file that holds default config setup when you run sitespeed.io [#2454](https://github.com/sitespeedio/sitespeed.io/pull/2454).
+
+* We have moved all CPU metrics to a new tab called ... wait a minute .. CPU! [#2457](https://github.com/sitespeedio/sitespeed.io/pull/2457).
+
+* If you use Chrome you can use `--cpu` to enable  to enable `--chrome.timeline` and `--chrome.collectLongTasks` in one go [#2457](https://github.com/sitespeedio/sitespeed.io/pull/2457).
+
+* The film strip includes CPU long tasks [#2459](https://github.com/sitespeedio/sitespeed.io/pull/2459)
+
+### Changed
+* Replaced [Chrome-trace](https://github.com/sitespeedio/chrome-trace) with [Tracium](https://github.com/aslushnikov/tracium) in [#816](https://github.com/sitespeedio/browsertime/pull/816/). This means we use a Chrome blessed parser that will mean less work for us within the team! Enable it with `--chrome.timeline`. It also means two changes:
+* We skipped reporting all internal events inside of Chrome and only report events that takes more than 10 ms. We do this because it makes it easier to understand which events actually takes time and are useful.
+* Instead of reporting: Loading, Painting, Rendering, Scripting and Other we now report the same categories as Tracium: parseHTML, styleLayout, paintCompositeRender, scriptParseCompile,  scriptEvaluation, garbageCollection and other. This gives you a little more insights of CPU time spent.
+* We collect more trace log than before (following Lighthouse, the trace log will be larger on disk), this makes it easier for you when you want to debug problems.
+
+* Lighthouse: If you use the G+ container, Lighthouse has changed: The container uses Lighthouse 5.0, output HTML by default that is iframed into sitespeed.io. That means instead of seeing just the cherry picked metrics, you will now see the full Lighthouse result. Also in the new release Lighthouse uses provided network throttling, meaning it will use the same as sitespeed.io instead of using the simulated one. See [#26](https://github.com/sitespeedio/plugin-lighthouse/pull/26) and [#27](https://github.com/sitespeedio/plugin-lighthouse/pull/27).
+
+* On the summary page, we show Third party summary from the median run instead of actual median metrics. That makes it one less click to see which 3rd party tools a web page is using [#2455](https://github.com/sitespeedio/sitespeed.io/pull/2455).
+
+### Fixed
+* Bumped all dependencies that needed a bump [#2453](https://github.com/sitespeedio/sitespeed.io/pull/2453).
 
 ## 8.15.2 - 2019-05-05
 ### Fixed
