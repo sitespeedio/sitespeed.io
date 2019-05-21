@@ -12,11 +12,10 @@ twitterdescription: Test your page using a mobile phone
 [Documentation](/documentation/sitespeed.io/) / Mobile phones
 
 # Test on Android
-
 {:.no_toc}
 
-- Lets place the TOC here
-  {:toc}
+* Lets place the TOC here
+{:toc}
 
 # Prerequisites
 
