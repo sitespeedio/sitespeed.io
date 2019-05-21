@@ -118,7 +118,6 @@ The container uses Lighthouse 5.0, output HTML by default that is iframed into s
 ![Lighthouse]({{site.baseurl}}/img/lighthouse-frame.png)
 {: .img-thumbnail}
 
-
 ## Include the HTML in the HAR file
 One use cases with continuously collecting a HAR file is that you also can include the content of the HTML page in the HAR. We have had that functionality using Firefox and with the new release we also have it in Chrome.
 
@@ -134,6 +133,8 @@ At the moment you find the info in the raw tab:
 
 ## Changelog
 To see all changes and the PRs you should read the [changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md). 
+
+Remember when you upgrade there are two things that can change: Metrics could be a little slower in Chrome since we now collect more trace log (only when you turn on CPU tracing) and there are new categoris for the CPU trace! If you use Lighthouse and had your own hack for including the HTML, that isn't needed any more.
 
 Happy performance testing!
 

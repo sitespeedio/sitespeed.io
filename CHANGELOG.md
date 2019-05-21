@@ -35,6 +35,8 @@
 
 * On the summary page, we show Third party summary from the median run instead of actual median metrics. That makes it one less click to see which 3rd party tools a web page is using [#2455](https://github.com/sitespeedio/sitespeed.io/pull/2455).
 
+* Remember when you upgrade there are two things that can change: Metrics could be a little slower in Chrome since we now collect more trace log (only when you turn on CPU tracing) and there are new categoris for the CPU trace! If you use Lighthouse and had your own hack for including the HTML, that isn't needed any more.
+
 ### Fixed
 * Bumped all dependencies that needed a bump [#2453](https://github.com/sitespeedio/sitespeed.io/pull/2453).
 
