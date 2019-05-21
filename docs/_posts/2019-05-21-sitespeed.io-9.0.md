@@ -1,7 +1,7 @@
 ---
 layout: default
 title: sitespeed.io 9.0
-description: New sitespeed.io.
+description: Stop what you are doing and try out the new 9.0! It will blow your mind :) You  get a lot of more insights of where your page spends the CPU time and we also makes it easier to pinpoint 3rd party problems.
 authorimage: /img/aboutus/peter.jpg
 intro: Stop what you are doing and try out the new 9.0! It will blow your mind :) You  get a lot of more insights of where your page spends the CPU time and we also makes it easier to pinpoint 3rd party problems.
 keywords: sitespeed.io, browsertime, webperf
