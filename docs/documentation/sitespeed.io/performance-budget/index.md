@@ -21,7 +21,7 @@ Have you heard of a performance budget? If not, please go read these excellent p
 
 
 ### How it works
-When you run sitespeed.io configured with a budget, the script will exit with an exit status > 0 if the budget fails. It will log all budget items regardless if they pass or fail and generate a HTML report.
+When you run sitespeed.io configured with a budget, the script will exit with an **exit status > 0** if the budget fails. Else the exit code is 0. It will log all budget items regardless if they pass or fail and generate a HTML report.
 
 The log will look something like this:
 
@@ -35,6 +35,8 @@ The log will look something like this:
 The report looks like this.
 ![Example of the budget]({{site.baseurl}}/img/budget.png)
 {: .img-thumbnail}
+
+Timing metrics (like first visual change) uses the median metric of all runs. So if you wanna have more stable metrics, increase the number of iterations/runs that you test one URL.
 
 ### The budget file
 In 8.0 we introduced a new way of configuring budget. You can configure default values and specific for a URL. In the budget file there are 5 couple of sections:
