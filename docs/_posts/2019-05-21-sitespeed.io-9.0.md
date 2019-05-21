@@ -118,8 +118,6 @@ The container uses Lighthouse 5.0, output HTML by default that is iframed into s
 ![Lighthouse]({{site.baseurl}}/img/lighthouse-frame.png)
 {: .img-thumbnail}
 
-Also in the new release Lighthouse uses provided network throttling, meaning it will use the same as sitespeed.io instead of using the simulated one. See [#26](https://github.com/sitespeedio/plugin-lighthouse/pull/26) and [#27](https://github.com/sitespeedio/plugin-lighthouse/pull/27).
-
 
 ## Include the HTML in the HAR file
 One use cases with continuously collecting a HAR file is that you also can include the content of the HTML page in the HAR. We have had that functionality using Firefox and with the new release we also have it in Chrome.

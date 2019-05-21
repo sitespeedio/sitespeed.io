@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 9.0.0 - UNRELEASED
+## 9.0.0 - 2019-05-21
 
 ### Added
 * Upgraded to [Browsertime 5.0.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#500---2019-05-16).
@@ -31,7 +31,7 @@
 * Instead of reporting: Loading, Painting, Rendering, Scripting and Other we now report the same categories as Tracium: parseHTML, styleLayout, paintCompositeRender, scriptParseCompile,  scriptEvaluation, garbageCollection and other. This gives you a little more insights of CPU time spent.
 * We collect more trace log than before (following Lighthouse, the trace log will be larger on disk), this makes it easier for you when you want to debug problems.
 
-* Lighthouse: If you use the G+ container, Lighthouse has changed: The container uses Lighthouse 5.0, output HTML by default that is iframed into sitespeed.io. That means instead of seeing just the cherry picked metrics, you will now see the full Lighthouse result. Also in the new release Lighthouse uses provided network throttling, meaning it will use the same as sitespeed.io instead of using the simulated one. See [#26](https://github.com/sitespeedio/plugin-lighthouse/pull/26) and [#27](https://github.com/sitespeedio/plugin-lighthouse/pull/27).
+* Lighthouse: If you use the G+ container, Lighthouse has changed: The container uses Lighthouse 5.0, output HTML by default that is iframed into sitespeed.io. That means instead of seeing just the cherry picked metrics, you will now see the full Lighthouse result. See [#26](https://github.com/sitespeedio/plugin-lighthouse/pull/26).
 
 * On the summary page, we show Third party summary from the median run instead of actual median metrics. That makes it one less click to see which 3rd party tools a web page is using [#2455](https://github.com/sitespeedio/sitespeed.io/pull/2455).
 
