@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+
+### Added
+* Upgraded to Firefox 67.0 in the Docker container.
+
 ## 9.0.0 - 2019-05-21
 
 ### Added
