@@ -5,6 +5,9 @@
 ### Added
 * Upgraded to Firefox 67.0 in the Docker container.
 
+### Fixed
+* Upgraded the Coach with a bug fix that make sure a JavaScript loaded as defer isn't categorised as render blocking.
+
 ## 9.0.0 - 2019-05-21
 
 ### Added
