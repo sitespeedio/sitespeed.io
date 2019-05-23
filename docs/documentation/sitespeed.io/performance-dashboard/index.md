@@ -64,7 +64,6 @@ The [page summary](https://dashboard.sitespeed.io/dashboard/db/page-summary) sho
 
 The [page timings summary](https://dashboard.sitespeed.io/dashboard/db/page-timing-metrics) focus on Visual Metrics and is the number one dashboard you should use when you look for visual regressions.
 
-
 ## Site summary
 The [site summary](https://dashboard.sitespeed.io/dashboard/db/site-summary) show metrics for a site (a summary of all URLs tested for that domain).
 
@@ -84,6 +83,8 @@ And then there is also a dashboard for [all tested pages of a site](https://dash
 
 ## Whatever you want
 Do you need anything else? Since we store all the data in Graphite and use Grafana you can create your own dashboards, which is super simple!
+
+If you are new to [Grafana](https://grafana.com) you should checkout the [basic concepts](https://grafana.com/docs/guides/basic_concepts/) as a start. Grafana is used by Cern, NASA and many many tech companies like Paypal, Ebay and Digital Ocean and it will surely work for you too :)
 
 # Configuration setup
 You have the dashboard and you need to collect metrics. Using the crontab works fine or or you can just run an infinite loop.
