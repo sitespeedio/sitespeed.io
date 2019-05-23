@@ -16,8 +16,8 @@
 	Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self';
 
 /img/*
-        Cache-Control: public, max-age=360000
+        Cache-Control: public, max-age=3600000
 /js/*
-        Cache-Control: public, max-age=360000
+        Cache-Control: public, max-age=3600000
 /css/*
-        Cache-Control: public, max-age=360000				
+        Cache-Control: public, max-age=3600000				
