@@ -14,7 +14,7 @@ mixin rows(pages)
         a(href= pageInfo.path + 'index.html')= decodeURIComponent(display)
       +kbSizeCell('Total size', p.transferSize)
       +numberCell('Requests', p.requests)
-      +numberCell('3rd Party Requests', tp.requests ? tp.requests.median : 0)
+      +numberCell('3rd Party Requests', tp.requests ? tp.requests.total.median : 0)
       if b.visualMetrics && b.visualMetrics[0]
         +numberCell('First Visual Change', b.visualMetrics[0].FirstVisualChange)
         +numberCell('Speed Index', b.visualMetrics[0].SpeedIndex)
