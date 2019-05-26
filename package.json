@@ -99,7 +99,7 @@
     "mkdirp": "0.5.1",
     "node-slack": "0.0.7",
     "p-limit": "2.2.0",
-    "pagexray": "2.5.6",
+    "pagexray": "2.5.7",
     "pug": "2.0.3",
     "recursive-readdir": "2.2.2",
     "simplecrawler": "1.1.7",
