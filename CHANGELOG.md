@@ -8,6 +8,7 @@
 
 ### Fixed
 * Upgraded the Coach with a bug fix that make sure a JavaScript loaded as defer isn't categorised as render blocking.
+* Third party web sites (sites that themselves are third parties) counted all there own requests as third parties [#2475](https://github.com/sitespeedio/sitespeed.io/pull/2475).
 
 ## 9.0.0 - 2019-05-21
 
