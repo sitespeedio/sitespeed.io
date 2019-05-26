@@ -9647,9 +9647,9 @@
       "integrity": "sha1-wGavtYK7HLQSjWDqkjkulNXp2+w="
     },
     "webcoach": {
-      "version": "3.4.3",
-      "resolved": "https://registry.npmjs.org/webcoach/-/webcoach-3.4.3.tgz",
-      "integrity": "sha512-jimdktCcg0HI48xhLAO2LvpmiuTJtizRti6TD+GtLCuC1feWZmCbmi5TS63K4Oaqc7PR1NnbFVRwqcqUyXDF6g==",
+      "version": "3.5.5",
+      "resolved": "https://registry.npmjs.org/webcoach/-/webcoach-3.5.5.tgz",
+      "integrity": "sha512-XSpkWCRqJFD/GSAwWTf/R+REU6uC7z2vzaH5j0Dc+BdE/JZkGPdZ2gEj7HmxQlTYmvDolkF1mRKRiG27d7XAxg==",
       "requires": {
         "browsertime": "5.0.0",
         "chalk": "2.4.1",
@@ -9659,7 +9659,7 @@
         "lodash.groupby": "4.6.0",
         "lodash.merge": "4.6.1",
         "lodash.sortby": "4.7.0",
-        "pagexray": "2.5.3",
+        "pagexray": "2.5.7",
         "word-wrap": "1.2.3",
         "yargs": "12.0.2"
       },
@@ -9712,14 +9712,6 @@
           "version": "2.0.0",
           "resolved": "https://registry.npmjs.org/is-fullwidth-code-point/-/is-fullwidth-code-point-2.0.0.tgz",
           "integrity": "sha1-o7MKXE8ZkYMWeqq5O+764937ZU8="
-        },
-        "pagexray": {
-          "version": "2.5.3",
-          "resolved": "https://registry.npmjs.org/pagexray/-/pagexray-2.5.3.tgz",
-          "integrity": "sha512-8pwjgNqJXh3Yko8QnanpqSZcQnRzGU7L+VjcfIZY9n//2EWTtGCQsw94jLhmi8Y9Umt5/Lh8LyKY448s05qqyg==",
-          "requires": {
-            "minimist": "1.2.0"
-          }
         },
         "string-width": {
           "version": "2.1.1",
