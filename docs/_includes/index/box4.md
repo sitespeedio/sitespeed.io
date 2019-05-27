@@ -1,7 +1,7 @@
-## We believe in privacy
+## Performance leaderboard
 * * *
-We take your privacy really serious: Our [documentation site](https://www.sitespeed.io/), our [dashboard](https://dashboard.sitespeed.io) and our [compare tool](https://dashboard.sitespeed.io) do not use any tracking software at all (no Google Analytics or any other tracking software). None of the sitespeed.io tools call home.
+[<img src="{{site.baseurl}}/img/leaderboard.png" class="pull-left img-big" alt="Performance leaderboard" width="200" height="141">]({{site.baseurl}}/documentation/sitespeed.io/leaderboard/)
 
-But beware: Chrome and Firefox can call home (we know for fact that they both do). We would love PRs and tips how to make sure browsers don't call home when you run your tests.
+Do you want to compare your performance against other web sites? Use the performance leaderboard! You can check out our [example dashboard](https://dashboard.sitespeed.io/dashboard/db/leaderboard) or go directly to the [documention]({{site.baseurl}}/documentation/sitespeed.io/leaderboard/). 
 
-[Read more]({{site.baseurl}}/important/) about how we do things.
+You can compare performance timings, how the page is built, how much CPU the page is using and many many more things. And the leaderboard is also configurable through Grafana, so you can add the metrics that are important to you!

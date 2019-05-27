@@ -14,6 +14,8 @@ twitterdescription: Web performance dashboard using sitespeed.io.
 # Performance Dashboard
 {:.no_toc}
 
+Monitor the performance of your web site using the performance dashboard.
+
 * Let's place the TOC here
 {:toc}
 
@@ -67,10 +69,8 @@ The [page timings summary](https://dashboard.sitespeed.io/dashboard/db/page-timi
 ## Site summary
 The [site summary](https://dashboard.sitespeed.io/dashboard/db/site-summary) show metrics for a site (a summary of all URLs tested for that domain).
 
-## 3rd vs. 1st party
-How much does 3rd party code impact your page? To get this up and running, you should only need to configure the <code>--firstParty</code> parameter/regex when you run.
-
-You can see the [3rd vs. 1st party dashboard here](https://dashboard.sitespeed.io/dashboard/db/3rd-vs-1st-party).
+## The leaderboard
+We are so proud of our [leaderboard dashboard](https://dashboard.sitespeed.io/dashboard/db/leaderboard) so it has it owns [documentation page](/documentation/sitespeed.io/leaderboard/).
 
 ## WebPageTest dashboards
 We have two optional dashboards for WebPageTest to show how you can build them if you use WebPageTest through sitespeed.io.

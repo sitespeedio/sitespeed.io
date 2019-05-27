@@ -1,10 +1,7 @@
-## What does it cost?
+## We believe in privacy
 * * *
+We take your privacy really serious: Our [documentation site](https://www.sitespeed.io/), our [dashboard](https://dashboard.sitespeed.io) and our [compare tool](https://dashboard.sitespeed.io) do not use any tracking software at all (no Google Analytics or any other tracking software). None of the sitespeed.io tools call home.
 
-[<img src="{{site.baseurl}}/img/public.png" class="pull-left img-big" alt="The power of sitespeed.io" width="150" height="150" alt="sitespeed.io Public Enemy logo">]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#cost)
+But beware: Chrome and Firefox can call home (we know for fact that they both do). We would love PRs and tips how to make sure browsers don't call home when you run your tests.
 
-Sitespeed.io is Open Source and totally free. But what does it cost to have an instance of sitespeed.io up and running?
-
-If you don't run on your own servers, we recommend running on [Digital Ocean](https://www.digitalocean.com/) optimized droplets 2 vCPUs or on [AWS](https://aws.amazon.com/) c5.large, storing the data at S3. On one instance you can run something like 80000+ runs per month for a total cost of $695 per year.
-
-Look more into the details [here]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#cost).
+[Read more]({{site.baseurl}}/important/) about how we do things.
