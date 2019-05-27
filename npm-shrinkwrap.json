@@ -9647,9 +9647,9 @@
       "integrity": "sha1-wGavtYK7HLQSjWDqkjkulNXp2+w="
     },
     "webcoach": {
-      "version": "3.5.5",
-      "resolved": "https://registry.npmjs.org/webcoach/-/webcoach-3.5.5.tgz",
-      "integrity": "sha512-XSpkWCRqJFD/GSAwWTf/R+REU6uC7z2vzaH5j0Dc+BdE/JZkGPdZ2gEj7HmxQlTYmvDolkF1mRKRiG27d7XAxg==",
+      "version": "3.5.6",
+      "resolved": "https://registry.npmjs.org/webcoach/-/webcoach-3.5.6.tgz",
+      "integrity": "sha512-fny0fYUN5Wuq+Wkn31Zh5pt4XOJmt9z6kkuqanqiHpbeVNy2v1P0LDFozO4iQks/GTge76mpH4XvzVNubz0dxA==",
       "requires": {
         "browsertime": "5.0.0",
         "chalk": "2.4.1",
