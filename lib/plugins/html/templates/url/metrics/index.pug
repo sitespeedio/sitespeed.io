@@ -5,12 +5,13 @@ if  browsertime
   - const visualMetrics = browsertime.visualMetrics;
   - baseHelpURL = rootPath + 'help.html#';
 
+  - const defaultVisualMetrics = ['SpeedIndex','FirstVisualChange','LastVisualChange','VisualProgress','PerceptualSpeedIndex','LargestImage', 'Heading' ,'VisualReadiness','VisualComplete85', 'VisualComplete95','VisualComplete99'];
   if options.browsertime.visualMetrics && visualMetrics
     a#visualmetrics
     h3 Visual Metrics
     .row
       .one-half.column
-        table
+        table 
           tr
             th(colspan='2') Visual Metrics
           tr
@@ -35,11 +36,11 @@ if  browsertime
               td
                 a(href=baseHelpURL + 'Heading') Heading
               td.number #{h.time.ms(visualMetrics.Heading.toFixed(0))}
-          if visualMetrics.Logo
-            tr
-              td
-                a(href=baseHelpURL + 'Logo') Logo
-              td.number #{h.time.ms(visualMetrics.Logo.toFixed(0))}
+          each name in Object.keys(visualMetrics)
+            if (!defaultVisualMetrics.includes(name))
+              tr
+                td #{name}
+                td.number #{h.time.ms(visualMetrics[name].toFixed(0))}
           tr
             td
               a(href=baseHelpURL + 'VisualComplete85') Visual Complete 85%
