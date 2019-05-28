@@ -1,7 +1,9 @@
 #output
 //- When we inline the data, we cut the HAR to just be one
-// specific run (the median run) in summaryPageHAR.
+//- specific run (the median run) in summaryPageHAR.
+//- Inline script tags breaks the output
 - dahar = h.get(pageInfo.data, 'browsertime.run.har', summaryPageHAR)
+- dahar = JSON.stringify(dahar.log).split('</script>').join('&lt;/script&gt;')
 
 script(src= assetsPath + 'js/perf-cascade.min.js')
 script(type='text/javascript').
@@ -19,6 +21,6 @@ script(type='text/javascript').
     pageSelector: pageSelectorEl
 
   };
-  const har = !{JSON.stringify(dahar.log)};
-  const perfCascadeSvg =  perfCascade.fromHar(har, options);
+  
+  const perfCascadeSvg =  perfCascade.fromHar(!{dahar}, options);
   outputHolderEl.appendChild(perfCascadeSvg);
