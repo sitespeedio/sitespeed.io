@@ -106,7 +106,7 @@ But what about that [magic number of 50 ms](https://calendar.perfplanet.com/2018
 With the blessing from Pat Meenan in a tweet that the CPU throttling in Chrome works really good, we implemented it. Throttle the CPU using Chrome with `--chrome.CPUThrottlingRate`. Enables CPU throttling to emulate slow CPUs. Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc).
 
 ## Default config file
-You can use a `.siteespeed.io.json` file that holds default config setup when you run sitespeed.io. Create it in and it in your folder where you run the command and it will automatically be picked up.
+You can use a `.sitespeed.io.json` file that holds default config setup when you run sitespeed.io. Create it in and it in your folder where you run the command and it will automatically be picked up.
 
 
 ## Lighthouse
