@@ -112,7 +112,11 @@ docker run --rm -v "$(pwd)":/sitespeed.io --network=host sitespeedio/sitespeed.i
 
 ## Extra start script
 
-You can run your extra start script in the Docker container: `docker run -e EXTRA_START_SCRIPT=/sitespeed.io/test.sh --rm -v "$(pwd)":/sitespeed.io ...`. 
+You can run your extra start script in the Docker container: 
+
+```bash
+docker run -e EXTRA_START_SCRIPT=/sitespeed.io/test.sh --rm -v "$(pwd)":/sitespeed.io ...`. 
+```
 
 ## Troubleshooting
 
