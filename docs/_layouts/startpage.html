@@ -107,6 +107,14 @@ layout: compress
 			</div>
 		</div>
 		<div class="grid">
+			<div class="col-1-1">
+				<section>
+					{% capture dashboard %}{% include index/dashboard.md %}{% endcapture %}
+					{{ dashboard | markdownify }}
+				</section>
+			</div>
+		</div>
+		<div class="grid">
 			<div class="col-1-2">
 				<section>
 					{% capture box5 %}{% include index/box5.md %}{% endcapture %}

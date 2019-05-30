@@ -37,6 +37,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Mobile phones](mobile-phones/) - test using your mobile phone (Android only).
  * [Performance Budget](performance-budget/) - make sure you are within your performance budget.
  * [Performance Dashboard](performance-dashboard/) - keep track of your metrics and performance.
+ * [Performance Leaderboard](leaderboard/) - compare your pages with your competition.
  * [Plugins](plugins/) - list/disable/enable or create your own plugin.
  * [Pre/post scripting](prepostscript/) - run Selenium scripts before/after you test a URL.
  * [Setup S3](s3/) - how to setup S3 for your html result/videos and screenshots.
