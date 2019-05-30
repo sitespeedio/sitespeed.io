@@ -27,7 +27,7 @@ You need [Docker](https://docs.docker.com/engine/installation/) and [Docker Comp
 1. Download our Docker compose file: <code>curl -O https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/docker-compose.yml</code>
 2. Run: <code>docker-compose up -d</code> (make sure you run the latest [Docker compose](https://docs.docker.com/compose/install/) version)
 3. Run sitespeed to get some metrics: <code> docker-compose run sitespeed.io https://www.sitespeed.io/ --graphite.host=graphite</code>
-4. Access the dashboard: http://127.0.0.1:3000
+4. Access the dashboard: http://127.0.0.1:3000 (if you use docker machine you need to get the ip with `docker-machine ip`)
 5. When you are done you can shut down and remove all the Docker containers by running <code>docker-compose stop && docker-compose rm</code>. Container data will be kept.
 6. To start from scratch, also remove the Graphite and Grafana data volumes by running `docker volume rm performancedashboard_graphite performancedashboard_grafana`.
 
