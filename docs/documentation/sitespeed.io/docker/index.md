@@ -110,6 +110,10 @@ If you are using Linux you should use `--network=host` to make sure localhost is
 docker run --rm -v "$(pwd)":/sitespeed.io --network=host sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox http://localhost:4000/
 ```
 
+## Extra start script
+
+You can run your extra start script in the Docker container: `docker run -e EXTRA_START_SCRIPT=/sitespeed.io/test.sh --rm -v "$(pwd)":/sitespeed.io ...`. 
+
 ## Troubleshooting
 
 If something doesn't work, it's hard to guess what't wrong. Then hook up x11vnc with xvfb so that you can see what happens on your screen.
