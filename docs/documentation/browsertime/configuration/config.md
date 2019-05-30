@@ -25,7 +25,7 @@ chrome
   --cpu                                              Easy way to enable both chrome.timeline and CPU long tasks.  [boolean]
   --chrome.CPUThrottlingRate                         Enables CPU throttling to emulate slow CPUs. Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc)  [number]
   --chrome.includeResponseBodies                     Include response bodies in the HAR file. At the moment we only support the HTML of the main request.  [choices: "none", "html"] [default: "none"]
-  --chrome.cdp.performance                           Collect Chrome perfromance metrics from Chrome DevTools Protocol  [boolean] [default: true]
+  --chrome.cdp.performance                           Collect Chrome performance metrics from Chrome DevTools Protocol  [boolean] [default: true]
   --chrome.blockDomainsExcept, --blockDomainsExcept  Block all domains except this domain. Use it multiple time to keep multiple domains. You can also wildcard domains like *.sitespeed.io. Use this when you wanna block out all third parties.
 
 firefox
