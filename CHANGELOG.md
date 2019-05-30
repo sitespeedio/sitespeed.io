@@ -1,14 +1,23 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 9.1.0 - UNRELEASED
 
 ### Added
 * Upgraded to Firefox 67.0 in the Docker container.
 * Upgraded to 0.8.2 of third-party-web
+* Upgraded Browsertime that automatically pickup up visual metrics for elements with the elementtiming attribute. When it land in Chrome, this will make sure you will get it both in RUM and synthetic [#841](https://github.com/sitespeedio/browsertime/pull/841).
+* Send CPU metrics as summmary per domain to Graphite/InfluxDB [#2480](https://github.com/sitespeedio/sitespeed.io/pull/2480)
+* You can now see number of CPU long tasks on the summary page [#2479](https://github.com/sitespeedio/sitespeed.io/pull/2479)
+* Upgraded to latest Perf Cascade thagt shows HAR content in new tab [#2478](https://github.com/sitespeedio/sitespeed.io/pull/2478)
+* Show Visual Metrics defined by the user on metrics page [#2476](https://github.com/sitespeedio/sitespeed.io/pull/2476)
+* WebPageTest: Send hero timings to Graphite/InfluxDB by default [#2474](https://github.com/sitespeedio/sitespeed.io/pull/2474)
+* The new [performance leaderboard](https://dashboard.sitespeed.io/d/000000060/leaderboard?orgId=1)
 
 ### Fixed
-* Upgraded the Coach with a bug fix that make sure a JavaScript loaded as defer isn't categorised as render blocking.
+* Upgraded the Coach with a bug fix that make sure a JavaScript loaded as defer isn't categorised as render blocking. Also the new version give known surveillance web sites lower score in privacy.
 * Third party web sites (sites that themselves are third parties) counted all there own requests as third parties [#2475](https://github.com/sitespeedio/sitespeed.io/pull/2475).
+* Getting the HTML content into your Chrome HAR included the full content object instead of just the plain text. Fixed in [#842](https://github.com/sitespeedio/browsertime/pull/842).
+Using CPU metrics on Android phones was broken since 9.0.0, fixed in [#844](https://github.com/sitespeedio/browsertime/pull/844).
 
 ## 9.0.0 - 2019-05-21
 

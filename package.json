@@ -71,7 +71,7 @@
   "dependencies": {
     "@google-cloud/storage": "2.5.0",
     "aws-sdk": "2.454.0",
-    "browsertime": "5.0.0",
+    "browsertime": "5.1.2",
     "cli-color": "1.4.0",
     "concurrent-queue": "7.0.2",
     "dayjs": "1.8.14",
@@ -107,7 +107,7 @@
     "third-party-web": "0.8.2",
     "text-table": "0.2.0",
     "uuid": "3.3.2",
-    "webcoach": "3.5.5",
+    "webcoach": "3.5.6",
     "webpagetest": "0.3.9",
     "yargs": "13.2.4"
   }
