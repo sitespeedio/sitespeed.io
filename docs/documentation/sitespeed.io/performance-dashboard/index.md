@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Web Performance Dashboards with sitespeed.io
-description: Setup your dashboard using Docker Compose, and continuously test the performance of your web site.
-keywords: dashboard, docker, documentation, web performance, sitespeed.io
+description: Setup your dashboard using Docker Compose, and continuously monitor the performance of your web site.
+keywords: dashboard, monitor, documentation, web performance, sitespeed.io
 nav: documentation
 category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
@@ -292,7 +292,7 @@ You can add extra tags with <code>--graphite.annotationTag</code>. For multiple 
 Here are a couple of things you should check before you setup sitespeed.io for production.
 
 ## Setup (important!)
-To run this in a production environment, you should consider/make some modifications:
+To run this in production (=not on your local dev machine) you should make some modifications:
 
 1. Always run sitespeed.io on a stand-alone instance
     - This avoids causing discrepancies in results, due to things like competing resources or network traffic. Then you just run sitespeed.io with docker run ... (only docker compose for Graphite/Grafana).
