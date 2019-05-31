@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+
+### Added
+* The config file `--config` now supports extends. You config file can extend another config file.
+
+
 ## 9.1.0 - 2019-05-30
 
 ### Added
