@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 9.2.1 - 2019-06-01
+### Fixed
+* `--help` was broken in 9.2.0.
+
 ## 9.2.0 - 2019-06-01
 
 ### Added
