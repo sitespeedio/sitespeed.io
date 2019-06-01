@@ -1,9 +1,12 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 9.2.0 - UNRELEASED
 
 ### Added
-* The config file `--config` now supports extends. You config file can extend another config file.
+* The config file `--config` now supports extending other config files. You config file can extend another config file. Read [yargs documentation](https://github.com/yargs/yargs/blob/master/docs/api.md#extends-keyword) for how to use the extends keyword. Add `"extends":"/default.json"` to extend your default.json file. 
+
+### Fixed
+* Updated Browsertime to 5.1.3 that goes back to use default Selenium 3.6 (without CDP supports) and with CDP support implemented on the side. Also updated Coach with the latest Browsertime.
 
 
 ## 9.1.0 - 2019-05-30
