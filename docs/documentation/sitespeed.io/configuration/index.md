@@ -200,6 +200,27 @@ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include ve
 
 The CLI will always override the JSON config.
 
+You can also extend another JSON config file. The path needs to be absolute.
+
+~~~json
+{
+  "extends":"/path/to/config.json",
+  "browsertime": {
+    "iterations": 5,
+    "browser": "chrome"
+  },
+  "graphite": {
+    "host": "my.graphite.host",
+    "namespace": "sitespeed_io.desktopFirstView"
+  },
+  "plugins": {
+    "remove": ["html"]
+  },
+  "utc": true
+}
+~~~
+
+
 ## Advanced
 
 ### Slack
