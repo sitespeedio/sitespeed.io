@@ -89,6 +89,8 @@ If you are new to [Grafana](https://grafana.com) you should checkout the [basic 
 # Configuration setup
 You have the dashboard and you need to collect metrics. Using the crontab works fine or or you can just run an infinite loop.
 
+We have a new [example setup](https://github.com/sitespeedio/dashboard.sitespeed.io) that you should look at (more documentation coming soon).
+
 Using the crontab (on a standalone server) you do like this:
 <code>crontab -e</code> to edit the crontab. Make sure your cron user can run Docker and change *my.graphite.host* to your Graphite host. When you run this on a standalone server *my.graphite.host* will be the public IP address of your server. The default port when sending metrics to Graphite is 2003, so you don't have to include that.
 
