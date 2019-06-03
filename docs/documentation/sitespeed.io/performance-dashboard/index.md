@@ -86,188 +86,12 @@ Do you need anything else? Since we store all the data in Graphite and use Grafa
 
 If you are new to [Grafana](https://grafana.com) you should checkout the [basic concepts](https://grafana.com/docs/guides/basic_concepts/) as a start. Grafana is used by Cern, NASA and many many tech companies like Paypal, Ebay and Digital Ocean and it will surely work for you too :)
 
-# Configuration setup
-You have the dashboard and you need to collect metrics. Using the crontab works fine or or you can just run an infinite loop.
+# Configure running your tests
+You have the dashboard and you need to collect metrics. You do that on one or multiple other servers. Do not do it on the same server as the dashboard setup since you want to have an as isolated environment as possible for your tests.
 
-We have a new [example setup](https://github.com/sitespeedio/dashboard.sitespeed.io) that you should look at (more documentation coming soon).
+Go to the docmumentation on how to [continously run your tests](/documentation/sitespeed.io/continously-run-your-tests/) and learn how you can do that.
 
-Using the crontab (on a standalone server) you do like this:
-<code>crontab -e</code> to edit the crontab. Make sure your cron user can run Docker and change *my.graphite.host* to your Graphite host. When you run this on a standalone server *my.graphite.host* will be the public IP address of your server. The default port when sending metrics to Graphite is 2003, so you don't have to include that.
-
-On [dashboard.sitespeed.io](https://dashboard.sitespeed.io) we have the following setup:
-
-We have a small shell script that runs the tests. It is triggered from the cron and uses a configuration file (default.json) where we have the default configuration used for all tests (we then override some config values directly when we start the test). We also have a bash file that sets up the network.
-
-Our *run.sh* file (we read which URLs we want to test from files):
-
-## Shell script
-~~~shell
-#!/bin/bash
-# Specify the exact version of sitespeed.io. When you upgrade to the next version, pull it down and the change the tag
-DOCKER_CONTAINER=sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}
-
-# Setup the network and default ones we wanna use
-sudo /home/ubuntu/startNetworks.sh
-THREEG="--network 3g"
-CABLE="--network cable"
-
-# Simplify some configurations
-CONFIG="--config /sitespeed.io/default.json"
-DOCKER_SETUP="--shm-size=1g --rm -v /home/ubuntu/config:/sitespeed.io -v /result:/result -v /etc/localtime:/etc/localtime:ro --name sitespeed"
-
-# Start running the tests
-# We run more tests on our test server but this gives you an idea of how you can configure it
-docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER -n 11 --browsertime.viewPort 1920x1080 --browsertime.cacheClearRaw --browsertime.chrome.collectTracingEvents /sitespeed.io/wikipedia.org.txt $CONFIG
-docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER -n 11 --browsertime.viewPort 1920x1080 /sitespeed.io/wikipedia.org.txt -b firefox $CONFIG
-docker run $THREEG $DOCKER_SETUP $DOCKER_CONTAINER --graphite.namespace sitespeed_io.emulatedMobile --browsertime.chrome.collectTracingEvents /sitespeed.io/m.wikipedia.org.txt -c 3g --mobile true $CONFIG
-
-# We remove all docker stuff to get a clean next run
-docker system prune --all --volumes -f
-
-# Get the container so we have it the next time we wanna use it
-docker pull $DOCKER_CONTAINER
-~~~
-
-## Crontab
-We trigger the script from the crontab. We run the script every hour.
-
-~~~shell
-SHELL=/bin/bash
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-0 * * * * /root/runs.sh >> /tmp/sitespeed.io.log 2>&1
-~~~
-
-## Infinite loop
-Another way is to just run the script in an infinite loop and then have a file that you remove (so the run stops) when you want to update your instance. This example script is on Ubuntu.
-
-~~~shell
-#!/bin/bash
-LOGFILE=/tmp/s.log
-exec > $LOGFILE 2>&1
-CONTROL_FILE=/home/ubuntu/sitespeed.run
-
-if [ -f "$CONTROL_FILE" ]
-then
-  echo "$CONTROL_FILE exist, do you have running tests?"
-  exit 1;
-else
-  touch $CONTROL_FILE
-fi
-
-DOCKER_CONTAINER=sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}
-
-function cleanup() {
-  docker system prune --all --volumes -f
-}
-
-function control() {
-  if [ -f "$CONTROL_FILE" ]
-  then
-    echo "$CONTROL_FILE found. Make another run ..."
-  else
-    echo "$CONTROL_FILE not found - stopping after cleaning up ..."
-    cleanup
-    echo "Exit"
-    exit 0;
-  fi
-}
-
-while true
-do
-
-  DOCKER_SETUP="--shm-size=1g --rm -v /home/ubuntu/config:/sitespeed.io -v /result:/result -v /etc/localtime:/etc/localtime:ro "
-  THREEG="--network 3g"
-  THREEGEM="--network 3gem"
-  CABLE="--network cable"
-  CONFIG="--config /sitespeed.io/default.json"
-  echo 'Start a new loop '
-  echo "Start the networks ..."
-  sudo /home/ubuntu/startNetworks.sh
-  docker network ls
-
-  docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER -n 7 --browsertime.viewPort 1920x1080 --browsertime.cacheClearRaw true /sitespeed.io/wikipedia.org.txt $CONFIG
-  control
-  docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER -n 7 --browsertime.viewPort 1920x1080 /sitespeed.io/wikipedia.org.txt -b firefox $CONFIG
-  cleanup
-done
-~~~
-
-And make sure the script start on server restart. Edit the crontab <code>crontab -e</code> and add (loop.sh is the name of your loop script file):
-
-~~~shell
-@reboot rm /home/ubuntu/sitespeed.run;/home/ubuntu/loop.sh
-~~~
-
-And start it like this:
-
-~~~bash
-nohup /home/ubuntu/loop.sh &
-~~~
-
-## default.json
-And our default configuration is in *default.json*:
-
-~~~json
-{
-  "browsertime": {
-    "connectivity": {
-      "engine": "external",
-      "profile": "cable"
-    },
-    "iterations": 5,
-    "browser": "chrome",
-    "speedIndex": true
-  },
-  "graphite": {
-    "host": "GRAPHITE_HOST",
-    "namespace": "sitespeed_io.desktop",
-    "auth": "GRAPHITE_AUTH"
-  },
-  "slack": {
-    "hookUrl": "https://hooks.slack.com/services/MY_SERVICE"
-  },
-  "resultBaseURL": "https://results.sitespeed.io",
-  "video": true,
-  "gzipHAR": true,
-  "html": {
-    "fetchHARFiles": true
-  },
-  "s3": {
-     "key": "AWS_KEY",
-     "secret": "AWS_SECRET",
-     "bucketname": "results.sitespeed.io",
-     "removeLocalResult": true
-  }
-}
-
-~~~
-
-## Docker networks
-And we set up the following Docker networks (*startNetworks.sh*):
-
-~~~shell
-#!/bin/bash
-echo 'Starting Docker networks'
-docker network create --driver bridge --subnet=192.168.33.0/24 --gateway=192.168.33.10 --opt "com.docker.network.bridge.name"="docker1" 3g
-tc qdisc add dev docker1 root handle 1: htb default 12
-tc class add dev docker1 parent 1:1 classid 1:12 htb rate 1.6mbit ceil 1.6mbit
-tc qdisc add dev docker1 parent 1:12 netem delay 150ms
-
-docker network create --driver bridge --subnet=192.168.34.0/24 --gateway=192.168.34.10 --opt "com.docker.network.bridge.name"="docker2" cable
-tc qdisc add dev docker2 root handle 1: htb default 12
-tc class add dev docker2 parent 1:1 classid 1:12 htb rate 5mbit ceil 5mbit
-tc qdisc add dev docker2 parent 1:12 netem delay 14ms
-
-docker network create --driver bridge --subnet=192.168.35.0/24 --gateway=192.168.35.10 --opt "com.docker.network.bridge.name"="docker3" 3gfast
-tc qdisc add dev docker3 root handle 1: htb default 12
-tc class add dev docker3 parent 1:1 classid 1:12 htb rate 1.6mbit ceil 1.6mbit
-tc qdisc add dev docker3 parent 1:12 netem delay 75ms
-
-docker network create --driver bridge --subnet=192.168.36.0/24 --gateway=192.168.36.10 --opt "com.docker.network.bridge.name"="docker4" 3slow
-tc qdisc add dev docker4 root handle 1: htb default 12
-tc class add dev docker4 parent 1:1 classid 1:12 htb rate 0.4mbit ceil 0.4mbit
-tc qdisc add dev docker4 parent 1:12 netem delay 200ms
-~~~
+When you run the dashboard on a standalone server, you need to make sure your agents send the metrics to your Graphite server. Configure `--graphite.host` to the public IP address of your server. The default port when sending metrics to Graphite is 2003, so you don't have to include that.
 
 # Configure Graphite
 We provide an example Graphite Docker container and when you put that into production, you need to change the configuration. Checkout our [Graphite documentation](/documentation/sitespeed.io/graphite/#configure-graphite).
@@ -308,7 +132,7 @@ To run this in production (=not on your local dev machine) you should make some 
  - /path/on/server/whisper:/opt/graphite/storage/whisper
  - /path/on/server/graphite.db:/opt/graphite/storage/graphite.db
 8. Remove the sitespeedio/grafana-bootstrap from the Docker compose file, you only need that for the first run.
-9. Optional: Disable anonymous users access
+9. Optional: Disable anonymous users access in Grafana.
 
 ## Memory & CPU
 How large will your instances need to be? You need to have enough memory for Chrome/Firefox (yep they can really use a lot of memory for some sites). Before we used a $80 instance on Digital Ocean (8GB memory, 4 Core processors) but we switched to use AWS c5.large for dashboard.sitespeed.io. The reason is that the metrics are so more stable on AWS than Digital Ocean. We have tried out most cloud providers and AWS gave us the most stable metrics.
@@ -342,15 +166,3 @@ Total cost:
 
 You also need to think of the time it takes for you to set it up and upgrade new Docker containers when there are new browser versions and new versions of sitespeed.io. Updating to a new Docker container on one server usually takes less than 2 minutes :)
 
-## Keeping your instance updated
-We constantly do new Docker release: bug fixes, new functionality and new versions of the browser. To keep your instance updated, follow the following work flow.
-
-Log into your instance and pull the latest version of sitespeed.io:
-
-~~~bash
-docker pull sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}
-~~~
-
-Then update your script so it uses the new version ({% include version/sitespeed.io.txt %} in this case). The next time sitespeed.io runs, it will use the new version.
-
-Go into the Grafana dashboard and create a new annotation, telling your team mates that you updated to the new version. This is real important so you can keep track of browser updates and other changes that can affect your metrics.
