@@ -69,7 +69,7 @@ And then you have a few help commands:
 * *[switch](#switch)* to another frame or window.
 * *[set](#set)* innerHthml, innerText or value to an element.
 
-Scripting only works for Browsertime. It will not work (disable) Lighthouse/Google Pagespeed Insights and WebPageTest. If you need scripting for WebPageTest [read the WebPageTest scripting documentation](/documentation/sitespeed.io/webpagetest/#webpagetest-scripting).
+Scripting only works for Browsertime. It will not work with Lighthouse/Google Pagespeed Insights or WebPageTest. If you need scripting for WebPageTest [read the WebPageTest scripting documentation](/documentation/sitespeed.io/webpagetest/#webpagetest-scripting).
 {: .note .note-info}
 
 ## Run
@@ -102,7 +102,7 @@ That way you can just split your long scripts into multiple files and make it ea
 ## Getting values from your page
 In some scenirous you want to do different things dependent on what shows on your page. For example: You are testing a shop checkout and you need to verify that the item is in stock. You can run JavaScript and get the value back to your script.
 
-Here's an simple example, IRL you will need to get something from the page: 
+Here's an simple example, IRL you will need to get something from the page:
 
 ~~~javascript
 module.exports = async function(context, commands) {
@@ -135,7 +135,7 @@ One of the key things in your script is to be able to find the right element to 
 </p>
 
 ## Debug
-There's a couple of way that makes it easier to debug your scripts: 
+There's a couple of way that makes it easier to debug your scripts:
 * Make sure to [use the log](#log-from-your-script) so you can see what happens in your log output.
 * Either run the script locally on your desktop without XVFB so you can see in the browser window what happens or use  <code>--browsertime.videoParams.debug</code> when you record the video. That way you will get one full video of all your scripts (but no Visual Metrics).
 * Use try/catch and await promises so you catch things that doesn't work.
@@ -153,14 +153,14 @@ module.exports = async function(context, commands) {
   await commands.navigate(
     'https://en.wikipedia.org/w/index.php?title=Special:UserLogin&returnto=Main+Page'
   );
- 
+
   try {
     // Add text into an input field, finding the field by id
     await commands.addText.byId('login', 'wpName1');
     await commands.addText.byId('password', 'wpPassword1');
 
     // Start the measurement and give it the alias login
-    // The alias will be used when the metrics is sent to 
+    // The alias will be used when the metrics is sent to
     // Graphite/InfluxDB
     await commands.measure.start('login');
 
@@ -173,7 +173,7 @@ module.exports = async function(context, commands) {
     // We try/catch so we will catch if the the input fields can't be found
     // The error is automatically logged in Browsertime an rethrown here
     // We could have an alternative flow ...
-    // else we can just let it cascade since it catched later on and reported in 
+    // else we can just let it cascade since it catched later on and reported in
     // the HTML
     throw e;
   }
@@ -188,7 +188,7 @@ module.exports = async function(context, commands) {
   await commands.navigate(
     'https://en.wikipedia.org/w/index.php?title=Special:UserLogin&returnto=Main+Page'
   );
-  
+
   // When we fill in a input field/click on a link we wanna
   // try/catch that if the HTML on the page changes in the feature
   // sitespeed.io will automatically log the error in a user friendly
@@ -197,12 +197,12 @@ module.exports = async function(context, commands) {
     // Add text into an input field, finding the field by id
     await commands.addText.byId('login', 'wpName1');
     await commands.addText.byId('password', 'wpPassword1');
-  
-    // Start the measurement before we click on the 
+
+    // Start the measurement before we click on the
     // submit button. Sitespeed.io will start the video recording
     // and prepare everything.
     await commands.measure.start('login');
-    // Find the sumbit button and click it and then wait 
+    // Find the sumbit button and click it and then wait
     // for the pageCompleteCheck to finish
     await commands.click.byIdAndWait('wpLoginAttempt');
     // Stop and collect the measurement before the next page we want to measure
@@ -217,7 +217,7 @@ module.exports = async function(context, commands) {
     // We try/catch so we will catch if the the input fields can't be found
     // The error is automatically logged in Browsertime and re-thrown here
     // We could have an alternative flow ...
-    // else we can just let it cascade since it catched later on and reported in 
+    // else we can just let it cascade since it catched later on and reported in
     // the HTML
     throw e;
   }
@@ -246,7 +246,7 @@ module.exports = async function(context, commands) {
     // We try/catch so we will catch if the the input fields can't be found
     // The error is automatically logged in Browsertime and re-thrown here
     // We could have an alternative flow ...
-    // else we can just let it cascade since it catched later on and reported in 
+    // else we can just let it cascade since it catched later on and reported in
     // the HTML
     throw e;
   }
@@ -297,7 +297,7 @@ module.exports = async function(context, commands) {
   } catch(e) {
     // We try/catch so we will catch if the the input fields can't be found
     // We could have an alternative flow ...
-    // else we can just let it cascade since it catched later on and reported in 
+    // else we can just let it cascade since it catched later on and reported in
     // the HTML
     throw e;
   }
@@ -339,7 +339,7 @@ module.exports = async function(context, commands) {
   await commands.measure.start('https://shop.example.org');
 
   // Then the product page
-  // Either your shop has a generic item used for testing that you can use 
+  // Either your shop has a generic item used for testing that you can use
   // or in real life you maybe need to add a check that the item really exists in stock
   // and if not, try another product
   await commands.measure.start('https://shop.example.org/prodcucs/theproduct');
@@ -352,7 +352,7 @@ module.exports = async function(context, commands) {
 
   // Checkout as guest but you could also login as a customer
   // We hide the HTML to avoid that the click on the link will
-  // fire First Visual Change. Best case you don't need to but we 
+  // fire First Visual Change. Best case you don't need to but we
   // want an complex example
   await commands.js.run('for (let node of document.body.childNodes) { if (node.style) node.style.display = "none";}');
   await commands.measure.start('CheckoutAsGuest');
@@ -419,7 +419,7 @@ You can also create your own errors. The error will be reported in the HTML and 
 module.exports = async function(context, commands) {
   // ...
   try {
-    // Click on a link 
+    // Click on a link
     await click.byLinkTextAndWait('Checkout');
   } catch (e) {
     // Oh no, the content team has changed the name of the link!
@@ -457,13 +457,13 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
-If you want to click a link and want to make sure that the HTML doesn't change when you click the link, you can try to hide the HTML and then click the link. 
+If you want to click a link and want to make sure that the HTML doesn't change when you click the link, you can try to hide the HTML and then click the link.
 
 ~~~javascript
 module.exports = async function(context, commands) {
     await commands.measure.start('https://www.sitespeed.io');
     // Hide everything
-    // We do not hide the body since the body needs to be visibile when we do the magic to find the staret of the 
+    // We do not hide the body since the body needs to be visibile when we do the magic to find the staret of the
     // navigation by adding a layer of orange on top of the page
     await commands.js.run('for (let node of document.body.childNodes) { if (node.style) node.style.display = "none";}');
     // Start measurning
@@ -489,8 +489,8 @@ module.exports = async function(context, commands) {
 
   // Then we have a page that we know need to wait longer, start measuring
   await command.measure.start('MySpecialPage');
-  // Go to the page  
-  await commands.navigate('https://<myspecialpage>'); 
+  // Go to the page
+  await commands.navigate('https://<myspecialpage>');
   // Then you need to wait on a specific element or event. In this case
   // we wait for a id to appear but you could also run your custom JS
   await commands.wait.byId('my-id', 20000);
@@ -503,14 +503,14 @@ module.exports = async function(context, commands) {
 
 ### Test the same page multiple times within the same run
 
-If you for some reason want to test the same URL within the same run multiple times, it will not work out of the box since the current version create the result files using the URL. For example testing https://www.sitespeed.io/ two times, will break since the second access will try to overwrite the first one. 
+If you for some reason want to test the same URL within the same run multiple times, it will not work out of the box since the current version create the result files using the URL. For example testing https://www.sitespeed.io/ two times, will break since the second access will try to overwrite the first one.
 
 But there is a hack you can do. If you add a dummy query parameter (and give the page an alias) you can test them twice a
 
 ~~~javascript
 module.exports = async function(context, commands) {
     await commands.measure.start('https://www.sitespeed.io/', 'HomePage');
-    
+
     // Do something smart that then make you need to test the same URL again
     // ...
 
@@ -552,7 +552,7 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
-#### measure.start() 
+#### measure.start()
 Start to measure. Browsertime/sitespeed.io will pick up the next URL and measure that. You need to call the stop() function yourself.
 
 ~~~javascript
@@ -562,7 +562,7 @@ module.exports = async function(context, commands) {
   // Start a measurement
   await commands.measure.start();
   await commands.click.bySelectorAndWait('.important-link');
-  // Remember that when you start() a measurement without a URL you also needs to stop it! 
+  // Remember that when you start() a measurement without a URL you also needs to stop it!
   return commands.measure.stop();
 };
 ~~~
@@ -580,7 +580,7 @@ module.exports = async function(context, commands) {
   // Start a measurement and give it an alias that is used if you send the metrics to Graphite/InfluxDB for the next URL
   await commands.measure.start('FancyName');
   await commands.click.bySelectorAndWait('.important-link');
-  // Remember that when you start() a measurement without a URL you also needs to stop it! 
+  // Remember that when you start() a measurement without a URL you also needs to stop it!
   return commands.measure.stop();
 };
 ~~~
@@ -657,7 +657,7 @@ Wait for an element found by xpath to appear before maxTime. The element needs t
 You can run your own JavaScript in the browser from your script.
 
 #### js.run(javascript)
-Run JavaScript. Will throw an error if the JavaScript fails. 
+Run JavaScript. Will throw an error if the JavaScript fails.
 
 If you want to get values from the web page, this is your best friend. Make sure to return the value and you can use it in your script.
 
@@ -678,19 +678,19 @@ Navigate/go to a URL without measuring it.
 #### navigate(url)
 Navigate to a URL and do not measure it. It will use the default [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) and follow the exact same pattern for going to a page as normal Browsertime navigation except it will skip collecting any metrics.
 
-### Add text 
+### Add text
 You can add text to input elements. The element needs to visible.
 
 #### addText.byId(text, id)
 Add the *text* to the element with the *id*. If the id is not found the command will throw an error.
 
-#### addText.byXpath(text, xpath) 
+#### addText.byXpath(text, xpath)
 Add the *text* to the element by using *xpath*. If the xpath is not found the command will throw an error.
 
-#### addText.bySelector(text, selector) 
+#### addText.bySelector(text, selector)
 Add the *text* to the element by using *CSS selector*. If the xpath is not found the command will throw an error.
 
-### Switch 
+### Switch
 You can switch to iframes or windows if that is needed.
 
 If frame/window is not found, an error will be thrown.
@@ -699,7 +699,7 @@ If frame/window is not found, an error will be thrown.
 #### switch.toFrame(id)
 Switch to a frame by its id.
 
-#### switch.toWindow(name) 
+#### switch.toWindow(name)
 Switch to window by name.
 
 #### switch.toParentFrame
@@ -716,7 +716,7 @@ Use a CSS selector to find the element and set the html to innerHtml. Internally
 
 Use the id to find the element and set the html to innerHtml. Internally it uses ```document.getElementById(id)``` to find the right element.
 
-#### set.innerText(text, selector) 
+#### set.innerText(text, selector)
 Use a CSS selector to find the element and set the text to innerText. Internally it uses ```document.querySelector(selector)``` to find the right element.
 
 #### set.innerTextById(text, id)
@@ -753,7 +753,7 @@ module.exports = async function(context, commands) {
 ~~~
 
 #### cdp.sendAndGet(command, args)
-Send a command to Chrome and get the result back. 
+Send a command to Chrome and get the result back.
 
 ~~~javascript
 module.exports = async function(context, commands) {
@@ -778,7 +778,7 @@ module.exports = async function(context, commands) {
     // Ooops we couldn't click the link
     commands.error('.important-link does not exist on the page');
   }
-  // Remember that when you start() a measurement without a URL you also needs to stop it! 
+  // Remember that when you start() a measurement without a URL you also needs to stop it!
   return commands.measure.stop();
 };
 ~~~
@@ -786,7 +786,7 @@ module.exports = async function(context, commands) {
 #### error(message)
 Create an error. Use it if you catch a thrown error, want to continue with something else, but still report the error.
 
-### Meta data 
+### Meta data
 Add meta data to your script. The extra data will be visibile in the HTML result page.
 
 Setting meta data like this:
@@ -794,7 +794,7 @@ Setting meta data like this:
 ~~~javascript
 module.exports = async function(context, commands) {
   commands.meta.setTitle('Test Grafana SPA');
-  commands.meta.setDescription('Test the first page, click the timepicker and then choose <b>Last 30 days</b> and measure that page.');	
+  commands.meta.setDescription('Test the first page, click the timepicker and then choose <b>Last 30 days</b> and measure that page.');
   await commands.measure.start(
     'https://dashboard.sitespeed.io/d/000000044/page-timing-metrics?orgId=1','pageTimingMetricsDefault'
   );
