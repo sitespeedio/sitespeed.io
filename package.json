@@ -70,7 +70,7 @@
   "main": "./lib/sitespeed.js",
   "dependencies": {
     "@google-cloud/storage": "2.5.0",
-    "aws-sdk": "2.454.0",
+    "aws-sdk": "2.471.0",
     "browsertime": "5.2.0",
     "cli-color": "1.4.0",
     "concurrent-queue": "7.0.2",

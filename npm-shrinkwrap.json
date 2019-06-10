@@ -2972,9 +2972,9 @@
       "integrity": "sha1-x57Zf380y48robyXkLzDZkdLS3k="
     },
     "aws-sdk": {
-      "version": "2.454.0",
-      "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.454.0.tgz",
-      "integrity": "sha512-1vB9DNIwh+mqKD2IZspYTQapCD6f5VnMT5V2VPlXJ1CNcUdFSU8FFyxKmYApNs+S3re1h3fhWDjpwTreS+XLRQ==",
+      "version": "2.471.0",
+      "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.471.0.tgz",
+      "integrity": "sha512-c7e1939Nep03xLyN+qV1uzzotxYVqtcj+5x87C1s3qOPSG7aSVIbtJfcu4RUdtsKty5qUef6muJ6ohNMRYrW6g==",
       "requires": {
         "buffer": "4.9.1",
         "events": "1.1.1",
