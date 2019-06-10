@@ -3121,9 +3121,9 @@
       "integrity": "sha1-81HTKWnTL6XXpVZxVCY9korjvR8="
     },
     "browsertime": {
-      "version": "5.2.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-5.2.0.tgz",
-      "integrity": "sha512-99ZHetC2MdkuEaIgImA58QKU73Kydbx18OKS2kyZHBHatOxkYTW/VRKfALJ0MLkO6wuRyF5gqIxGqbyd7HOUFA==",
+      "version": "5.2.1",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-5.2.1.tgz",
+      "integrity": "sha512-+MfSKB8/1bWju+RGns7gtLuyZ+T2EooURDTzlvLh+LhYZpEHf6ry/VExMfi4czsi+ntjg8WJf6VJgAJyI7nHHA==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@sitespeed.io/chromedriver": "75.0.3770",
@@ -3225,9 +3225,9 @@
           }
         },
         "yargs-parser": {
-          "version": "13.1.0",
-          "resolved": "https://registry.npmjs.org/yargs-parser/-/yargs-parser-13.1.0.tgz",
-          "integrity": "sha512-Yq+32PrijHRri0vVKQEm+ys8mbqWjLiwQkMFNXEENutzLPP0bE4Lcd4iA3OQY5HF+GD3xXxf0MEHb8E4/SA3AA==",
+          "version": "13.1.1",
+          "resolved": "https://registry.npmjs.org/yargs-parser/-/yargs-parser-13.1.1.tgz",
+          "integrity": "sha512-oVAVsHz6uFrg3XQheFII8ESO2ssAf9luWuAd6Wexsu4F3OtIW0o8IribPXYrD4WC24LWtPrJlGy87y5udK+dxQ==",
           "requires": {
             "camelcase": "^5.0.0",
             "decamelize": "^1.2.0"
