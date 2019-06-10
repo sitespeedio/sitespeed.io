@@ -1,5 +1,17 @@
 # CHANGELOG - sitespeed.io
 
+## 9.3.0 - UNRELEADED
+### Fixed
+* Handle if GPSI doesn't return page statistics [#2499](https://github.com/sitespeedio/sitespeed.io/issues/2499).
+
+## Added
+* Upgraded to Chrome 75 and Firefox 67.0.1 in the Docker container
+* Chromedriver 75
+* New Browsertime:
+  * Added metric LastMeaningfulPaint that will be there when you collect `--visualElements` [848](https://github.com/sitespeedio/browsertime/pull/848).
+  * You can get screenshots in your Chrome trace log using `--chrome.enableTraceScreenshots` [#851](https://github.com/sitespeedio/browsertime/pull/851)
+  * Fixed the missing timings in the trace log in Chrome. Or rather they where there but you couldn't see them when you drag/drop the log into devtools [#850](https://github.com/sitespeedio/browsertime/pull/850).  
+
 ## 9.2.1 - 2019-06-01
 ### Fixed
 * `--help` was broken in 9.2.0.
