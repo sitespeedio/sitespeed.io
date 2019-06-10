@@ -71,6 +71,9 @@ Chrome
   --browsertime.chrome.includeResponseBodies, --chrome.includeResponseBodies  Include response bodies in the HAR file. At the moment we only support the HTML of the main request.  [choices: "none", "html"] [default: "none"]
   --browsertime.chrome.blockDomainsExcept, --chrome.blockDomainsExcept        Block all domains except this domain. Use it multiple time to keep multiple domains. You can also wildcard domains like *.sitespeed.io. Use this when you wanna block out all third parties.
 
+chrome
+  --browsertime.chrome.enableTraceScreenshots, --chrome.enableTraceScreenshots  Include screenshots in the trace log (enabling the trace category disabled-by-default-devtools.screenshot).  [boolean]
+
 proxy
   --browsertime.proxy.http, --proxy.http    Http proxy (host:port)  [string]
   --browsertime.proxy.https, --proxy.https  Https proxy (host:port)  [string]
