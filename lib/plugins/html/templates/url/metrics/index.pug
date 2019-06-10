@@ -5,7 +5,7 @@ if  browsertime
   - const visualMetrics = browsertime.visualMetrics;
   - baseHelpURL = rootPath + 'help.html#';
 
-  - const defaultVisualMetrics = ['SpeedIndex','FirstVisualChange','LastVisualChange','VisualProgress','PerceptualSpeedIndex','LargestImage', 'Heading' ,'VisualReadiness','VisualComplete85', 'VisualComplete95','VisualComplete99'];
+  - const defaultVisualMetrics = ['SpeedIndex','FirstVisualChange','LastVisualChange','VisualProgress','PerceptualSpeedIndex', 'LastMeaningfulPaint', 'LargestImage', 'Heading' ,'VisualReadiness','VisualComplete85', 'VisualComplete95','VisualComplete99'];
   if options.browsertime.visualMetrics && visualMetrics
     a#visualmetrics
     h3 Visual Metrics
@@ -41,6 +41,11 @@ if  browsertime
               tr
                 td #{name}
                 td.number #{h.time.ms(visualMetrics[name].toFixed(0))}
+          if visualMetrics.LastMeaningfulPaint
+            tr
+              td
+                a(href=baseHelpURL + 'LastMeaningfulPaint') Last Meaningful Paint
+              td.number #{h.time.ms(visualMetrics.LastMeaningfulPaint.toFixed(0))}
           tr
             td
               a(href=baseHelpURL + 'VisualComplete85') Visual Complete 85%
