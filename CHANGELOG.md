@@ -1,14 +1,16 @@
 # CHANGELOG - sitespeed.io
 
-## 9.3.0 - UNRELEASED
+## 9.3.0 - 20019-06-10
 
 ## Added
-* Upgraded to Chrome 75 and Firefox 67.0.1 in the Docker container
-* Chromedriver 75
+* Upgraded to Chrome 75 and Firefox 67.0.1 in the Docker container.
+* Upgraded to use Chromedriver 75.
 * New Browsertime:
   * Added metric LastMeaningfulPaint that will be there when you collect `--visualElements` [848](https://github.com/sitespeedio/browsertime/pull/848).
   * You can get screenshots in your Chrome trace log using `--chrome.enableTraceScreenshots` [#851](https://github.com/sitespeedio/browsertime/pull/851)
   * Fixed the missing timings in the trace log in Chrome. Or rather they where there but you couldn't see them when you drag/drop the log into devtools [#850](https://github.com/sitespeedio/browsertime/pull/850).  
+  * Next version of Chrome (76) brings back the infobar that pushes down content see [upstream](https://bugs.chromium.org/p/chromium/issues/detail?id=818483). Lets remove the automated flag and test how that works [#853](https://github.com/sitespeedio/browsertime/pull/853).
+  * Include the last 50 pixels when checking if the page is still orange, hopefully fixing the case where First Visual Change happens way too early [#854](https://github.com/sitespeedio/browsertime/pull/854).
 
 ### Fixed
 * Only parse the domain in the third party plugin if we have a absolute URL [#2501](https://github.com/sitespeedio/sitespeed.io/pull/2501).
