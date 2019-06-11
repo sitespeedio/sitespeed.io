@@ -5,6 +5,9 @@
 ### Added
 * Upgraded to Third Party Web 0.9.0.
 
+### Fixed
+* Make sure the HTML plugin doesn't break if the +1 GPSI plugin doesn't return any data.
+
 ## 9.3.0 - 20019-06-10
 
 ## Added
