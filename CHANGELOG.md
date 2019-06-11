@@ -7,6 +7,7 @@
 
 ### Fixed
 * Make sure the HTML plugin doesn't break if the +1 GPSI plugin doesn't return any data.
+* Upgraded Browsertime 5.2.2 that uses a fixed version of Tracium that doesn't throw errors if the trace log from Chrome isn't the way Tracium wants it. This helps us getting trace log from multiple sites and user journeys.
 
 ## 9.3.0 - 20019-06-10
 
