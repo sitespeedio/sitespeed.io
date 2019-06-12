@@ -7,26 +7,27 @@ timeouts
   --timeouts.pageCompleteCheck  Timeout when waiting for page to complete loading, in milliseconds  [number] [default: 300000]
 
 chrome
-  --chrome.args                                      Extra command line arguments to pass to the Chrome process (e.g. --no-sandbox). To add multiple arguments to Chrome, repeat --chrome.args once per argument.
-  --chrome.binaryPath                                Path to custom Chrome binary (e.g. Chrome Canary). On OS X, the path should be to the binary inside the app bundle, e.g. "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary"
-  --chrome.chromedriverPath                          Path to custom Chromedriver binary. Make sure to use a Chromedriver version that's compatible with the version of Chrome you're using
-  --chrome.mobileEmulation.deviceName                Name of device to emulate. Works only standalone (see list in Chrome DevTools, but add phone like 'iPhone 6'). This will override your userAgent string.
-  --chrome.mobileEmulation.width                     Width in pixels of emulated mobile screen (e.g. 360)  [number]
-  --chrome.mobileEmulation.height                    Height in pixels of emulated mobile screen (e.g. 640)  [number]
-  --chrome.mobileEmulation.pixelRatio                Pixel ratio of emulated mobile screen (e.g. 2.0)
-  --chrome.android.package                           Run Chrome on your Android device. Set to com.android.chrome for default Chrome version. You need to run adb start-server before you start.
-  --chrome.android.deviceSerial                      Choose which device to use. If you do not set it, first device will be used.
-  --chrome.traceCategories                           A comma separated list of Tracing event categories to include in the Trace log. Default no trace categories is collected.  [string]
-  --chrome.timeline                                  Collect the timeline data. Drag and drop the JSON in your Chrome detvools timeline panel or check out the CPU metrics in the Browsertime.json  [boolean]
-  --chrome.collectPerfLog                            Collect performance log from Chrome with Page and Network events and save to disk.  [boolean]
-  --chrome.collectNetLog                             Collect network log from Chrome and save to disk.  [boolean]
-  --chrome.collectConsoleLog                         Collect Chromes console log and save to disk.  [boolean]
-  --chrome.collectLongTasks                          Collect CPU long tasks, using the Long Task API  [boolean]
-  --cpu                                              Easy way to enable both chrome.timeline and CPU long tasks.  [boolean]
-  --chrome.CPUThrottlingRate                         Enables CPU throttling to emulate slow CPUs. Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc)  [number]
-  --chrome.includeResponseBodies                     Include response bodies in the HAR file. At the moment we only support the HTML of the main request.  [choices: "none", "html"] [default: "none"]
-  --chrome.cdp.performance                           Collect Chrome performance metrics from Chrome DevTools Protocol  [boolean] [default: true]
-  --chrome.blockDomainsExcept, --blockDomainsExcept  Block all domains except this domain. Use it multiple time to keep multiple domains. You can also wildcard domains like *.sitespeed.io. Use this when you wanna block out all third parties.
+  --chrome.args                                              Extra command line arguments to pass to the Chrome process (e.g. --no-sandbox). To add multiple arguments to Chrome, repeat --chrome.args once per argument.
+  --chrome.binaryPath                                        Path to custom Chrome binary (e.g. Chrome Canary). On OS X, the path should be to the binary inside the app bundle, e.g. "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary"
+  --chrome.chromedriverPath                                  Path to custom Chromedriver binary. Make sure to use a Chromedriver version that's compatible with the version of Chrome you're using
+  --chrome.mobileEmulation.deviceName                        Name of device to emulate. Works only standalone (see list in Chrome DevTools, but add phone like 'iPhone 6'). This will override your userAgent string.
+  --chrome.mobileEmulation.width                             Width in pixels of emulated mobile screen (e.g. 360)  [number]
+  --chrome.mobileEmulation.height                            Height in pixels of emulated mobile screen (e.g. 640)  [number]
+  --chrome.mobileEmulation.pixelRatio                        Pixel ratio of emulated mobile screen (e.g. 2.0)
+  --chrome.android.package                                   Run Chrome on your Android device. Set to com.android.chrome for default Chrome version. You need to run adb start-server before you start.
+  --chrome.android.deviceSerial                              Choose which device to use. If you do not set it, first device will be used.
+  --chrome.traceCategories                                   A comma separated list of Tracing event categories to include in the Trace log. Default no trace categories is collected.  [string]
+  --chrome.enableTraceScreenshots, --enableTraceScreenshots  Include screenshots in the trace log (enabling the trace category disabled-by-default-devtools.screenshot).  [boolean]
+  --chrome.timeline                                          Collect the timeline data. Drag and drop the JSON in your Chrome detvools timeline panel or check out the CPU metrics in the Browsertime.json  [boolean]
+  --chrome.collectPerfLog                                    Collect performance log from Chrome with Page and Network events and save to disk.  [boolean]
+  --chrome.collectNetLog                                     Collect network log from Chrome and save to disk.  [boolean]
+  --chrome.collectConsoleLog                                 Collect Chromes console log and save to disk.  [boolean]
+  --chrome.collectLongTasks                                  Collect CPU long tasks, using the Long Task API  [boolean]
+  --cpu                                                      Easy way to enable both chrome.timeline and CPU long tasks.  [boolean]
+  --chrome.CPUThrottlingRate                                 Enables CPU throttling to emulate slow CPUs. Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc)  [number]
+  --chrome.includeResponseBodies                             Include response bodies in the HAR file. At the moment we only support the HTML of the main request.  [choices: "none", "html"] [default: "none"]
+  --chrome.cdp.performance                                   Collect Chrome perfromance metrics from Chrome DevTools Protocol  [boolean] [default: true]
+  --chrome.blockDomainsExcept, --blockDomainsExcept          Block all domains except this domain. Use it multiple time to keep multiple domains. You can also wildcard domains like *.sitespeed.io. Use this when you wanna block out all third parties.
 
 firefox
   --firefox.binaryPath             Path to custom Firefox binary (e.g. Firefox Nightly). On OS X, the path should be to the binary inside the app bundle, e.g. /Applications/Firefox.app/Contents/MacOS/firefox-bin

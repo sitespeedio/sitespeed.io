@@ -2590,9 +2590,9 @@
       }
     },
     "@sitespeed.io/tracium": {
-      "version": "0.3.1",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/tracium/-/tracium-0.3.1.tgz",
-      "integrity": "sha512-bA0BGYyKAXC5U/u152N4vyRr0d+uRHQCx1yiD0FeFTaVBoZfRVrsulqKHJcSlMI+cUbtRjkAasy274fWilOQVg==",
+      "version": "0.3.2",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/tracium/-/tracium-0.3.2.tgz",
+      "integrity": "sha512-gIUP7nDuoYSlp/rNob2qsY8gqi3L9rusQLvxwdH7qgpm5FUKXG2ywkPeqizLFadTUCQZcnZVxLKaK87DTCho9w==",
       "requires": {
         "debug": "^4.1.1"
       },
@@ -3144,15 +3144,15 @@
       "integrity": "sha1-81HTKWnTL6XXpVZxVCY9korjvR8="
     },
     "browsertime": {
-      "version": "5.2.2",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-5.2.2.tgz",
-      "integrity": "sha512-JWLGoAbW+fCGfpDFQgMCO/jamtCYqhe/yrXY7itjWzL+MFIyWqzHQhc0ER7xVbL2yaSzURFO1oXasFkfVS2Msg==",
+      "version": "5.2.3",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-5.2.3.tgz",
+      "integrity": "sha512-G7Brx3Itnt31lP5gXptqJIa4Lc6oWI3DMPZ48FqilNlsMSvmN6JVAgJdN2m+O0VtKvGRq71vGbRqOVwWP+WtHg==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@sitespeed.io/chromedriver": "75.0.3770",
         "@sitespeed.io/geckodriver": "0.24.0",
         "@sitespeed.io/throttle": "0.5.1",
-        "@sitespeed.io/tracium": "0.3.1",
+        "@sitespeed.io/tracium": "0.3.2",
         "adbkit": "2.11.0",
         "chrome-har": "0.9.1",
         "chrome-remote-interface": "0.27.1",
