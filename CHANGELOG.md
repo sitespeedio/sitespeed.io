@@ -1,14 +1,12 @@
 # CHANGELOG - sitespeed.io
 
-# UNRELEASED
-
-### Added
-* Upgraded to Third Party Web 0.9.0.
+# 9.3.1 - 20019-06-12
 
 ### Fixed
 * Make sure the HTML plugin doesn't break if the +1 GPSI plugin doesn't return any data.
 * Upgraded Browsertime 5.2.2 that uses a fixed version of Tracium that doesn't throw errors if the trace log from Chrome isn't the way Tracium wants it. This helps us getting trace log from multiple sites and user journeys.
 * If testing a URL failed for Chrome, and you wanted CPU metrics, the HTML report failed. Fixed in [#2504](https://github.com/sitespeedio/sitespeed.io/pull/2504)
+* Upgraded to Third Party Web 0.9.0.
 
 ## 9.3.0 - 20019-06-10
 
