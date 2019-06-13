@@ -55,24 +55,22 @@ Firefox
   --browsertime.firefox.collectMozLog, --firefox.collectMozLog                  Collect the MOZ HTTP log  [boolean]
 
 Chrome
-  --browsertime.chrome.args, --chrome.args                                    Extra command line arguments to pass to the Chrome process. Always leave out the starting -- (--no-sandbox will be no-sandbox). To add multiple arguments to Chrome, repeat --browsertime.chrome.args once per argument. See https://peter.sh/experiments/chromium-command-line-switches/
-  --browsertime.chrome.timeline, --chrome.timeline                            Collect the timeline data. Drag and drop the JSON in your Chrome detvools timeline panel or check out the CPU metrics.  [boolean]
-  --browsertime.chrome.android.package, --chrome.android.package              Run Chrome on your Android device. Set to com.android.chrome for default Chrome version. You need to run adb start-server before you start.
-  --browsertime.chrome.android.deviceSerial, --chrome.android.deviceSerial    Choose which device to use. If you do not set it, the first found device will be used.
-  --browsertime.chrome.collectNetLog, --chrome.collectNetLog                  Collect network log from Chrome and save to disk.  [boolean]
-  --browsertime.chrome.traceCategories, --chrome.traceCategories              Set the trace categories.  [string]
-  --browsertime.chrome.collectConsoleLog, --chrome.collectConsoleLog          Collect Chromes console log and save to disk.  [boolean]
-  --browsertime.chrome.binaryPath, --chrome.binaryPath                        Path to custom Chrome binary (e.g. Chrome Canary). On OS X, the path should be to the binary inside the app bundle, e.g. "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary"
-  --browsertime.chrome.cdp.performance, --chrome.cdp.performance              Collect Chrome performance metrics from Chrome DevTools Protocol  [boolean] [default: true]
-  --browsertime.chrome.collectLongTasks, --chrome.collectLongTasks            Collect CPU long tasks, using the Long Task API  [boolean]
-  --browsertime.chrome.CPUThrottlingRate, --chrome.CPUThrottlingRate          Enables CPU throttling to emulate slow CPUs. Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc)  [number]
-  --browsertime.cpu, --cpu                                                    Easy way to enable both chrome.timeline and CPU long tasks.  [boolean]
-  --thirdParty.cpu                                                            Enable CPU time spent data to Graphite/Grafana per third party tool.  [boolean]
-  --browsertime.chrome.includeResponseBodies, --chrome.includeResponseBodies  Include response bodies in the HAR file. At the moment we only support the HTML of the main request.  [choices: "none", "html"] [default: "none"]
-  --browsertime.chrome.blockDomainsExcept, --chrome.blockDomainsExcept        Block all domains except this domain. Use it multiple time to keep multiple domains. You can also wildcard domains like *.sitespeed.io. Use this when you wanna block out all third parties.
-
-chrome
+  --browsertime.chrome.args, --chrome.args                                      Extra command line arguments to pass to the Chrome process. Always leave out the starting -- (--no-sandbox will be no-sandbox). To add multiple arguments to Chrome, repeat --browsertime.chrome.args once per argument. See https://peter.sh/experiments/chromium-command-line-switches/
+  --browsertime.chrome.timeline, --chrome.timeline                              Collect the timeline data. Drag and drop the JSON in your Chrome detvools timeline panel or check out the CPU metrics.  [boolean]
+  --browsertime.chrome.android.package, --chrome.android.package                Run Chrome on your Android device. Set to com.android.chrome for default Chrome version. You need to run adb start-server before you start.
+  --browsertime.chrome.android.deviceSerial, --chrome.android.deviceSerial      Choose which device to use. If you do not set it, the first found device will be used.
+  --browsertime.chrome.collectNetLog, --chrome.collectNetLog                    Collect network log from Chrome and save to disk.  [boolean]
+  --browsertime.chrome.traceCategories, --chrome.traceCategories                Set the trace categories.  [string]
   --browsertime.chrome.enableTraceScreenshots, --chrome.enableTraceScreenshots  Include screenshots in the trace log (enabling the trace category disabled-by-default-devtools.screenshot).  [boolean]
+  --browsertime.chrome.collectConsoleLog, --chrome.collectConsoleLog            Collect Chromes console log and save to disk.  [boolean]
+  --browsertime.chrome.binaryPath, --chrome.binaryPath                          Path to custom Chrome binary (e.g. Chrome Canary). On OS X, the path should be to the binary inside the app bundle, e.g. "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary"
+  --browsertime.chrome.cdp.performance, --chrome.cdp.performance                Collect Chrome performance metrics from Chrome DevTools Protocol  [boolean] [default: true]
+  --browsertime.chrome.collectLongTasks, --chrome.collectLongTasks              Collect CPU long tasks, using the Long Task API  [boolean]
+  --browsertime.chrome.CPUThrottlingRate, --chrome.CPUThrottlingRate            Enables CPU throttling to emulate slow CPUs. Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc)  [number]
+  --browsertime.cpu, --cpu                                                      Easy way to enable both chrome.timeline and CPU long tasks.  [boolean]
+  --thirdParty.cpu                                                              Enable CPU time spent data to Graphite/Grafana per third party tool.  [boolean]
+  --browsertime.chrome.includeResponseBodies, --chrome.includeResponseBodies    Include response bodies in the HAR file. At the moment we only support the HTML of the main request.  [choices: "none", "html"] [default: "none"]
+  --browsertime.chrome.blockDomainsExcept, --chrome.blockDomainsExcept          Block all domains except this domain. Use it multiple time to keep multiple domains. You can also wildcard domains like *.sitespeed.io. Use this when you wanna block out all third parties.
 
 proxy
   --browsertime.proxy.http, --proxy.http    Http proxy (host:port)  [string]
