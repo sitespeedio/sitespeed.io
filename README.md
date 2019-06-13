@@ -148,7 +148,7 @@ docker run --cap-add=NET_ADMIN --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true -e 
 
 <hr>
 
-<p>This project is supported by:</p>
+<p><a href="https://dashboard.sitespeed.io">https://dashboard.sitespeed.io</a> is supported by:</p>
 <p>
   <a href="https://www.digitalocean.com/">
     <img src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_blue.svg" width="201px">
