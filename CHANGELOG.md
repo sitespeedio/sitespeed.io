@@ -1,5 +1,14 @@
 # CHANGELOG - sitespeed.io
 
+
+# 9.3.2 - 20019-06-13
+
+### Fixed 
+* Moved the download Chrome trace button to the top of the page so we can find it [#2505](https://github.com/sitespeedio/sitespeed.io/pull/2505).
+* Upgraded to Browsertime 5.2.5 that fixes:
+  * Fixed so that the tracing in Chrome ends before we start to run our JavaScript metrics (so that they aren't picked up in the trace) [#860](https://github.com/sitespeedio/browsertime/pull/860).
+  * Running a script that started to measure without a URL and used an alias instead missed out on starting some browser services, for example Long Tasks in Chrome was not recorded. That is fixed in [#858](https://github.com/sitespeedio/browsertime/pull/858)
+
 # 9.3.1 - 20019-06-12
 
 ### Fixed
