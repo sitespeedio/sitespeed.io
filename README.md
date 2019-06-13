@@ -146,6 +146,14 @@ Use Firefox:
 docker run --cap-add=NET_ADMIN --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io -n 11 -b firefox https://en.wikipedia.org/wiki/Barack_Obama
 ```
 
+<hr>
+
+<p>This project is supported by:</p>
+<p>
+  <a href="https://www.digitalocean.com/">
+    <img src="https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_blue.svg" width="201px">
+  </a>
+</p>
 
 [travis-image]: https://img.shields.io/travis/sitespeedio/sitespeed.io.svg?style=flat-square
 [travis-url]: https://travis-ci.org/sitespeedio/sitespeed.io
