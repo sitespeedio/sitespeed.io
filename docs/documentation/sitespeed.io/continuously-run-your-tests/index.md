@@ -208,7 +208,7 @@ The script will then stop when it has finished the current run(s). Wait for it t
 Sometimes your cloud server reboots. To make sure it auto start your tests, you can add it to the crontab. Edit the crontab with `crontab -e` and add (make sure to change the path to your installation):
 
 ```bash
-@reboot rm /home/ubuntu/dashboard.sitespeed.io/sitespeed.run;/home/ubuntu/dashboard.sitespeed.io/loop.sh nyc3-1
+@reboot rm /root/dashboard.sitespeed.io/sitespeed.run;cd /root/dashboard.sitespeed.io/ && ./loop.sh nyc3-1
 ```
 
 ### Keeping your instance updated
