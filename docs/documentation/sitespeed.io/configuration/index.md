@@ -220,6 +220,8 @@ You can also extend another JSON config file. The path needs to be absolute.
 }
 ~~~
 
+You can check out [our example configuration](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/master/config) for [dashboard.sitespeed.io](https://dashboard.sitespeed.io).
+
 
 ## Advanced
 
