@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Fixed 
+* Upgraded to Browsertime 5.2.6.
 
 # 9.3.2 - 20019-06-13
 
@@ -10,7 +13,7 @@
   * Running a script that started to measure without a URL and used an alias instead missed out on starting some browser services, for example Long Tasks in Chrome was not recorded. That is fixed in [#858](https://github.com/sitespeedio/browsertime/pull/858)
 * Fixed broken pug in the GPSI plugin.
 
-# 9.3.1 - 20019-06-12
+## 9.3.1 - 20019-06-12
 
 ### Fixed
 * Make sure the HTML plugin doesn't break if the +1 GPSI plugin doesn't return any data.
