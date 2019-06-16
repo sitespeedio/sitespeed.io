@@ -1,10 +1,13 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 9.3.3 - 2019-06-16
 ### Fixed 
-* Upgraded to Browsertime 5.2.6.
+* Upgraded to Browsertime 5.2.6:
+  * Catch if getting the HTML for a resource from Chrome fails [#861](https://github.com/sitespeedio/browsertime/pull/861).
+  * A couple of more pixels to know if a orange screen is orange in Visual Metrics [#862](https://github.com/sitespeedio/browsertime/pull/862).
+  * Bumped versions if adbkit, chrome-remote-interface & yargs [#863](https://github.com/sitespeedio/browsertime/pull/863).
 
-# 9.3.2 - 20019-06-13
+# 9.3.2 - 2019-06-13
 
 ### Fixed 
 * Moved the download Chrome trace button to the top of the page so we can find it [#2505](https://github.com/sitespeedio/sitespeed.io/pull/2505).
@@ -13,7 +16,7 @@
   * Running a script that started to measure without a URL and used an alias instead missed out on starting some browser services, for example Long Tasks in Chrome was not recorded. That is fixed in [#858](https://github.com/sitespeedio/browsertime/pull/858)
 * Fixed broken pug in the GPSI plugin.
 
-## 9.3.1 - 20019-06-12
+## 9.3.1 - 2019-06-12
 
 ### Fixed
 * Make sure the HTML plugin doesn't break if the +1 GPSI plugin doesn't return any data.
@@ -21,7 +24,7 @@
 * If testing a URL failed for Chrome, and you wanted CPU metrics, the HTML report failed. Fixed in [#2504](https://github.com/sitespeedio/sitespeed.io/pull/2504)
 * Upgraded to Third Party Web 0.9.0.
 
-## 9.3.0 - 20019-06-10
+## 9.3.0 - 2019-06-10
 
 ## Added
 * Upgraded to Chrome 75 and Firefox 67.0.1 in the Docker container.
