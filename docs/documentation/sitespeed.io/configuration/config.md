@@ -64,6 +64,7 @@ Chrome
   --browsertime.chrome.enableTraceScreenshots, --chrome.enableTraceScreenshots  Include screenshots in the trace log (enabling the trace category disabled-by-default-devtools.screenshot).  [boolean]
   --browsertime.chrome.collectConsoleLog, --chrome.collectConsoleLog            Collect Chromes console log and save to disk.  [boolean]
   --browsertime.chrome.binaryPath, --chrome.binaryPath                          Path to custom Chrome binary (e.g. Chrome Canary). On OS X, the path should be to the binary inside the app bundle, e.g. "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary"
+  --browsertime.chrome.chromedriverPath, --chrome.chromedriverPath              Path to custom Chromedriver binary. Make sure to use a Chromedriver version that's compatible with the version of Chrome you're using
   --browsertime.chrome.cdp.performance, --chrome.cdp.performance                Collect Chrome performance metrics from Chrome DevTools Protocol  [boolean] [default: true]
   --browsertime.chrome.collectLongTasks, --chrome.collectLongTasks              Collect CPU long tasks, using the Long Task API  [boolean]
   --browsertime.chrome.CPUThrottlingRate, --chrome.CPUThrottlingRate            Enables CPU throttling to emulate slow CPUs. Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc)  [number]
