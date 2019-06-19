@@ -189,7 +189,7 @@ if  browsertime
       each value, name in browsertime.cdp.performance
         tr
           td #{name}
-          td #{value}
+          td #{value.toFixed(0)}
 
   if options.browsertime.visualElements
    a#visual-elements
