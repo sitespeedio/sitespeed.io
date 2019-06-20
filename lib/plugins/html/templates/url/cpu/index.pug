@@ -99,7 +99,7 @@ if browsertime && browsertime.cpu && browsertime.cpu.urls && browsertime.cpu.url
 if pageInfo.data.thirdparty
   - const thirdparty = medianRun ? pageInfo.data.thirdparty.pageSummary.runs[medianRun.runIndex - 1] : pageInfo.data.thirdparty.run
 
-  if thirdparty.cpuPerTool  && Object.keys(thirdparty.cpuPerTool).length > 0
+  if thirdparty && thirdparty.cpuPerTool  && Object.keys(thirdparty.cpuPerTool).length > 0
       h3 CPU time spent
       table
           tr
