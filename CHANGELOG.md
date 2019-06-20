@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## 9.3.4 - UNRELEASED
+### Fixed
+* Tabs on mobile in the HTML was broken and some tables wasn't displayed correctly [#2511](https://github.com/sitespeedio/sitespeed.io/pull/2511)
+* Added extra check that we really have 3rd party data when displaying CPU metrics.
+
 ## 9.3.3 - 2019-06-16
 ### Fixed 
 * Upgraded to Browsertime 5.2.6:
