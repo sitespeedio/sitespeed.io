@@ -6,6 +6,7 @@
 * Upgraded to [Browsertime 3.4.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#530---2019-06-29) with the following fixes:
   * Added support for `--injectJs` using Chrome [#864](https://github.com/sitespeedio/browsertime/pull/864).
   * Use CDP to set request headers for Chrome (instead of the Browsertime extension). This enables adding extra headers for Chrome on Android and fixes [#2520](https://github.com/sitespeedio/sitespeed.io/issues/2520). Fixed in [#867](https://github.com/sitespeedio/browsertime/pull/867).
+* Report JS heap size by deafult for Chrome to Graphite/InfluxDb [#2524](https://github.com/sitespeedio/sitespeed.io/pull/2524)
 
 ## 9.3.4 - 2019-06-20
 ### Fixed
