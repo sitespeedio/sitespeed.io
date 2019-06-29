@@ -89,7 +89,7 @@ Options:
   --delay                                      Delay between runs, in milliseconds  [number] [default: 0]
   --requestheader, -r                          Request header that will be added to the request. Add multiple instances to add multiple request headers. Use the following format key:value
   --cookie                                     Cookie that will be added to the request. Add multiple instances to add multiple request cookies. Use the following format cookieName=cookieValue
-  --injectJs                                   Inject JavaScript into the current page (only Firefox at the moment) at document_start. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
+  --injectJs                                   Inject JavaScript into the current page at document_start. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
   --block                                      Domain to block. Add multiple instances to add multiple domains that will be blocked. If you use Chrome you can also use --blockDomainsExcept (that is more performant)
   --percentiles                                The percentile values within the data browsertime will calculate and report.  [array] [default: [0,10,90,99,100]]
   --decimals                                   The decimal points browsertime statistics round to.  [number] [default: 0]
