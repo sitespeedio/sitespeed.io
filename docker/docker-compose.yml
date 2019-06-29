@@ -24,7 +24,7 @@ services:
         - grafana:/var/lib/grafana
       restart: always
     graphite:
-      image: sitespeedio/graphite:1.1.5-3
+      image: sitespeedio/graphite:1.1.5-12
       ports:
         - "2003:2003"
         - "8080:80"
