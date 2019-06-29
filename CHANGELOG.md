@@ -1,7 +1,10 @@
 # CHANGELOG - sitespeed.io
 
-## 9.4.0 - 2019-06-29
+## UNRELEASED
+### Fixed
+* Better error message if the config JSON is malformed [#2525](https://github.com/sitespeedio/sitespeed.io/pull/2525).
 
+## 9.4.0 - 2019-06-29
 ### Added
 * Upgraded to [Browsertime 3.4.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#530---2019-06-29) with the following fixes:
   * Added support for `--injectJs` using Chrome [#864](https://github.com/sitespeedio/browsertime/pull/864).
