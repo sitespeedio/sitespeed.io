@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 9.4.0 - UNRELEASED
+## 9.4.0 - 2019-06-29
 
 ### Added
 * Upgraded to [Browsertime 3.4.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#530---2019-06-29) with the following fixes:
