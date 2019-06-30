@@ -3,6 +3,7 @@
 ## UNRELEASED
 ### Fixed
 * Better error message if the config JSON is malformed [#2525](https://github.com/sitespeedio/sitespeed.io/pull/2525).
+* Updated Browsertime with a new version of Tracium that adds another way of finding Navigation start.
 
 ## 9.4.0 - 2019-06-29
 ### Added
