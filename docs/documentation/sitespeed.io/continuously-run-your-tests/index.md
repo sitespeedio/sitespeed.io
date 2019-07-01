@@ -31,7 +31,7 @@ You go to your server, clone the repo, start the start script by pointing out wh
 
 The script creates a file called **sitespeed.run** in your current folder. If you gracefully want to stop your tests, remove that file `rm sitespeed.run` and wait for the tests to finish (`tail -f /tmp/sitespeed.io.log`).
 
-Most of you run is configured in the config files + the filename is the Graphite namespace(`--graphite.namespace`).
+The first part before the first dot in the filename will be appended to the Graphite namespace namespace (`--graphite.namespace`). If your file is named *login.js* the namespace will be `login`. If your file is named *login.2.js* the namespace is still `login`.
 
 Do you want to add a new URL to test on desktop? Navigate to [**desktop/urls**](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/master/nyc3-1/desktop/urls) and create your new file there. Want to add a user journey? Add the script in [**desktop/scripts**](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/master/nyc3-1/desktop/scripts).
 
