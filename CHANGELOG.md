@@ -4,6 +4,7 @@
 ### Fixed
 * Better error message if the config JSON is malformed [#2525](https://github.com/sitespeedio/sitespeed.io/pull/2525).
 * Updated Browsertime with a new version of Tracium that adds another way of finding Navigation start.
+* Better error handling for WebPageTest: Make sure we always log error from the WebPageTest API, added guards for when WebPageTest fails and always log the full URL to the result on WebPageTest [#2527](https://github.com/sitespeedio/sitespeed.io/pull/2527).
 
 ## 9.4.0 - 2019-06-29
 ### Added
@@ -19,7 +20,7 @@
 * Fixed extra error when WebPageTest test failed and we still tried to get the trace log.
 
 ## 9.3.3 - 2019-06-16
-### Fixed 
+### Fixed
 * Upgraded to Browsertime 5.2.6:
   * Catch if getting the HTML for a resource from Chrome fails [#861](https://github.com/sitespeedio/browsertime/pull/861).
   * A couple of more pixels to know if a orange screen is orange in Visual Metrics [#862](https://github.com/sitespeedio/browsertime/pull/862).
@@ -27,7 +28,7 @@
 
 # 9.3.2 - 2019-06-13
 
-### Fixed 
+### Fixed
 * Moved the download Chrome trace button to the top of the page so we can find it [#2505](https://github.com/sitespeedio/sitespeed.io/pull/2505).
 * Upgraded to Browsertime 5.2.5 that fixes:
   * Fixed so that the tracing in Chrome ends before we start to run our JavaScript metrics (so that they aren't picked up in the trace) [#860](https://github.com/sitespeedio/browsertime/pull/860).
@@ -51,7 +52,7 @@
 * New Browsertime:
   * Added metric LastMeaningfulPaint that will be there when you collect `--visualElements` [848](https://github.com/sitespeedio/browsertime/pull/848).
   * You can get screenshots in your Chrome trace log using `--chrome.enableTraceScreenshots` [#851](https://github.com/sitespeedio/browsertime/pull/851)
-  * Fixed the missing timings in the trace log in Chrome. Or rather they where there but you couldn't see them when you drag/drop the log into devtools [#850](https://github.com/sitespeedio/browsertime/pull/850).  
+  * Fixed the missing timings in the trace log in Chrome. Or rather they where there but you couldn't see them when you drag/drop the log into devtools [#850](https://github.com/sitespeedio/browsertime/pull/850).
   * Next version of Chrome (76) brings back the infobar that pushes down content see [upstream](https://bugs.chromium.org/p/chromium/issues/detail?id=818483). Lets remove the automated flag and test how that works [#853](https://github.com/sitespeedio/browsertime/pull/853).
   * Include the last 50 pixels when checking if the page is still orange, hopefully fixing the case where First Visual Change happens way too early [#854](https://github.com/sitespeedio/browsertime/pull/854).
 * The +1 container uses Lighthouse 5.1.
@@ -67,7 +68,7 @@
 ## 9.2.0 - 2019-06-01
 
 ### Added
-* The config file `--config` now supports extending other config files. Read [yargs documentation](https://github.com/yargs/yargs/blob/master/docs/api.md#extends-keyword) for how to use the extends keyword. Add `"extends":"/default.json"` to extend your config file named *default.json* file. One thing: The configuration files are merged and the extended ones keys are overriden if they exist in your configuration. This is upstream thing but maybe we can fix that in the future. 
+* The config file `--config` now supports extending other config files. Read [yargs documentation](https://github.com/yargs/yargs/blob/master/docs/api.md#extends-keyword) for how to use the extends keyword. Add `"extends":"/default.json"` to extend your config file named *default.json* file. One thing: The configuration files are merged and the extended ones keys are overriden if they exist in your configuration. This is upstream thing but maybe we can fix that in the future.
 
 ### Fixed
 * Updated Browsertime to 5.1.3 that goes back to use default Selenium 3.6 (without CDP supports) and with CDP support implemented on the side. Also updated Coach with the latest Browsertime.
@@ -194,7 +195,7 @@ Using CPU metrics on Android phones was broken since 9.0.0, fixed in [#844](http
 
 ### Fixed
 * Upgraded to Grafana 6.1.3 in the Docker compose file.
-* Ugraded to Browsertime 4.6.2 that fixes Report duration metrics in CDP performance in ms. 
+* Ugraded to Browsertime 4.6.2 that fixes Report duration metrics in CDP performance in ms.
 
 ## 8.11.0 - 2019-04-08
 
@@ -209,7 +210,7 @@ Using CPU metrics on Android phones was broken since 9.0.0, fixed in [#844](http
 
 ### Fix
 
-* Updated version of PerfCascade that catches if timings in the HAR is missing, hopefully partly fixing [#2408](https://github.com/sitespeedio/sitespeed.io/issues/2408).  
+* Updated version of PerfCascade that catches if timings in the HAR is missing, hopefully partly fixing [#2408](https://github.com/sitespeedio/sitespeed.io/issues/2408).
 
 ## 8.10.1 - 2019-04-06
 
