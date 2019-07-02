@@ -160,7 +160,7 @@ This is a JavaScript regex and if you need help you should test it out at [https
 You can change where you want the data to be stored by setting the <code>--outputFolder</code> parameter. That is good in scenarios where you want to change the default behaviour and put the output in a specific location:
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --outputFolder /my/folder ".ryanair.com" https://www.sitespeed.io/
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --outputFolder /my/folder https://www.sitespeed.io/
 ~~~
 
 ### Configuration as JSON
