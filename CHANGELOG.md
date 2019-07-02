@@ -5,6 +5,11 @@
 * Better error message if the config JSON is malformed [#2525](https://github.com/sitespeedio/sitespeed.io/pull/2525).
 * Updated Browsertime with a new version of Tracium that adds another way of finding Navigation start.
 * Better error handling for WebPageTest: Make sure we always log error from the WebPageTest API, added guards for when WebPageTest fails and always log the full URL to the result on WebPageTest [#2527](https://github.com/sitespeedio/sitespeed.io/pull/2527).
+* Better error message if the WebPageTest server timeouts [#2529](https://github.com/sitespeedio/sitespeed.io/pull/2529)
+
+### Added
+* If you use WebPageTest standalone, we will include a link in the Graphite/Grafana/InfluxDB annotation to the WebPageTest result on the WebPageTest server [#2528](https://github.com/sitespeedio/sitespeed.io/pull/2528). In the future we should make sure we include a link if we run both Browsertime and WebPageTest.
+
 
 ## 9.4.0 - 2019-06-29
 ### Added
