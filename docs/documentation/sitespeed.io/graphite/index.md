@@ -91,7 +91,6 @@ sitespeed_io.default.pageSummary.www_sitespeed_io._.chrome.native.browsertime.st
 
 You can read about the keys and the metrics that we send to Graphite in the [metrics documentation](/documentation/sitespeed.io/metrics/).
 
-
 ### Annotations
 You can send annotations to Graphite to mark when a run happens so you can go from the dashboard to any HTML-results page.
 
@@ -117,6 +116,14 @@ To use Grafana annotations, make sure you setup a *resultBaseURL* and add the ho
 
 Then setup your Grafana API token, follow the instructions at [http://docs.grafana.org/http_api/auth/#authentication-api](http://docs.grafana.org/http_api/auth/#authentication-api) and use the **bearer** code you get with <code>--grafana.auth</code>. Then your annotations will be sent to Grafana instead of Graphite.
 
+## Dashboards
+We have [pre-made Grafana dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/master/dashboards/graphite) that works with Graphite. They are generic and as long as your [namespace](#namespace) consists of two parts, they will work. You can import them one by one or [inject them using Docker](https://github.com/sitespeedio/grafana-bootstrap-docker).
+
+## Namespace
+The default namsespace when you send metrics to Graphite is *sitespeed_io.default*. You can change the namespace with `--graphite.namespace`. All premade dashboards are prepared to work with namespaces that starts with two parts: *first.second*. If you want more parts, the [default dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/master/dashboards/graphite) will break.
+
+When we use sitespeed.io we usually keep the first part (*sitespeed_io*) to separate metrics from other tools that sends metrics to Graphite.  We then change the second part: *sitespeed_io.desktop*,  *sitespeed_io.emulatedMobile* or *sitespeed_io.desktopSweden*. As long as your namespace has two parts, they will work with the [default dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/master/dashboards/graphite).
+
 ## Warning: Crawling and Graphite
 If you crawl a site that is not static, you will pick up new pages each run or each day, which will make the Graphite database grow daily. When you add metrics to Graphite, it prepares space for those metrics ahead of time, depending on your storage configuration (in Graphite). If you configured Graphite to store individual metrics every 15 minutes for 60 days, Graphite will allocate storage for that URL: 4 (per hour) * 24 (hours per day) * 60 (days), even though you might only test that URL once.
 
@@ -128,12 +135,7 @@ The Graphite DB size is determined by the number of unique data points and the f
 If you are using statsd you can use it by adding <code>--graphite.statsd</code> (and send the metrics to statsd instead of directly to Graphite). You can also choose how many metrics you wanna send per request by configuring <code>--graphite.bulkSize</code>.
 
 If you are a DataDog user you can use [DogStatsD](https://docs.datadoghq.com/developers/dogstatsd/).
-
-## Namespace
-The default namsespace when you send metrics to Graphite is *sitespeed_io.default*. You can change the namespace with `--graphite.namespace`. All premade dashboards are prepared to work with namespaces that starts with two parts: *first.second*. If you want more parts, the [default dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/master/dashboards/graphite) will break.
-
-When we use sitespeed.io we usually keep the first part (*sitespeed_io*) to separate metrics from other tools that sends metrics to Graphite.  We then change the second part: *sitespeed_io.desktop*,  *sitespeed_io.emulatedMobile* or *sitespeed_io.desktopSweden*. As long as your namespace has two parts, they will work with the [default dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/master/dashboards/graphite). 
-
+ 
 ## Graphite for production (important!)
 
 1. Make sure you have [configured storage-aggregation.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/graphite/conf/storage-aggregation.conf) in Graphite to fit your needs.
