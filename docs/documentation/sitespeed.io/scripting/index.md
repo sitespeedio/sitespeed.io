@@ -690,6 +690,12 @@ Add the *text* to the element by using *xpath*. If the xpath is not found the co
 #### addText.bySelector(text, selector)
 Add the *text* to the element by using *CSS selector*. If the xpath is not found the command will throw an error.
 
+#### addText.byName(text, name)
+Add the *text* to the element by using the attribute name. If the element is not found the command will throw an error.
+
+#### addText.byClassName(text, className)
+Add the *text* to the element by using class name. If the element is not found the command will throw an error.
+
 ### Switch
 You can switch to iframes or windows if that is needed.
 

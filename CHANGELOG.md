@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 9.5.0 - 2019-07-04
 ### Fixed
 * Better error message if the config JSON is malformed [#2525](https://github.com/sitespeedio/sitespeed.io/pull/2525).
 * Updated Browsertime with a new version of Tracium that adds another way of finding Navigation start.
@@ -9,7 +9,12 @@
 
 ### Added
 * If you use WebPageTest standalone, we will include a link in the Graphite/Grafana/InfluxDB annotation to the WebPageTest result on the WebPageTest server [#2528](https://github.com/sitespeedio/sitespeed.io/pull/2528). In the future we should make sure we include a link if we run both Browsertime and WebPageTest.
-
+* Updated to Browsertime 5.4.1:
+  * Better check that a request header is supplied before parsing [#875](https://github.com/sitespeedio/browsertime/pull/875).
+  * Better error message for the user if the config.json file is malformed [#869](https://github.com/sitespeedio/browsertime/pull/869)
+  * Getting the netlog for Chrome was broken when using scripting. This fix catches an error and changes when we remove the file. If you test multiple URLs the netlog will contain all interactions for the script. The first file = first URL. The second file = first and second url. [#874](https://github.com/sitespeedio/browsertime/pull/874)
+  * Two new functions in scripting: `addText.byName(text, name)` and `addText.byClassName(text, className)`. See [#870](https://github.com/sitespeedio/browsertime/pull/870).
+  * Upgraded to coming Selenium 4. There should be no difference for end users [#871](https://github.com/sitespeedio/browsertime/pull/871).
 
 ## 9.4.0 - 2019-06-29
 ### Added
