@@ -112,6 +112,18 @@ module.exports = async function(context, commands) {
 }
 ~~~
 
+If you want to have different flows depending on a element exists you can do something like this:
+
+~~~javascript
+...
+const exists = await commands.js.run('return (document.getElementById("nonExistsingID") != null) ');
+if (exists) {
+    // The element with that id exists
+} else {
+    // There's no element with that id
+}
+~~~
+
 ## Finding the right element
 
 One of the key things in your script is to be able to find the right element to invoke. If the elemnt has an id it's easy. If not you can use developer tools in your favourite browser. The all work mostly the same: Open devtools in the page you want to inspect, click on the element and right click on devtools for that element. Then you will see something like this:
