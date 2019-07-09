@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Added
+* Docker container is now using Firefox 68.
+
 ## 9.5.0 - 2019-07-04
 ### Fixed
 * Better error message if the config JSON is malformed [#2525](https://github.com/sitespeedio/sitespeed.io/pull/2525).
