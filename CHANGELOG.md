@@ -1,8 +1,11 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+##  9.6.0 - 2019-07-11
 ### Added
 * Docker container is now using Firefox 68.
+
+### Fixed
+* Upgrading to Browsertime 5.5 that catches broken timeToFirstInteractive in Firefox (we've seen it reported -46 years, if that happens we report 0 instead).
 
 ## 9.5.0 - 2019-07-04
 ### Fixed
