@@ -11,24 +11,27 @@ twitterdescription: Test your page using a mobile phone
 
 [Documentation](/documentation/sitespeed.io/) / Mobile phones
 
-# Test on Android
+## Run tests on mobile phones
 {:.no_toc}
 
 * Lets place the TOC here
 {:toc}
 
-# Prerequisites
+## Test on Android
+You can run your tests on Chrome on Android phones.
 
-Driving Android from Docker only works on a Linux host since there's is no way at the moment to map USB on Mac!
+### Prerequisites
 
-## Desktop
+We normally recommends using our Docker containers when you run sitespeed.io/Browsertime. However driving Android from Docker only works on a Linux host since there's is no way at the moment to map USB on Mac. If you use a Mac Mini or another Mac computer you should use the npm version.
+
+#### Desktop
 
 If you don't use Docker you need to:
 
 - Install the [Android SDK](http://developer.android.com/sdk/index.html#downloads) on your desktop (just the command line tools!). If you are on a Mac and use [Homebrew](http://brew.sh/) just run: <code>brew tap caskroom/cask && brew cask install android-platform-tools</code>
 - Start the adb-server on your desktop: <code>adb start-server</code>
 
-## On your phone
+#### On your phone
 
 - Install Chrome
 - Enable developer USB access to your phone: Go to _About device_ (or _About phone_) in your settings, tap it, scroll down to the _Build number_, tap it seven (7) times.
@@ -39,7 +42,7 @@ If you don't use Docker you need to:
 - Plug in your phone using the USB port on your desktop computer.
 - When you plugin your phone, click OK on the "Allow USB debugging?" popup.
 
-# Run
+### Run
 
 You are now ready to test using your phone:
 
@@ -55,13 +58,11 @@ docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --
 
 You will get result as you would with running this normally with summaries and waterfall graphs.
 
-If you want test coming Chrome versions you can use _com.chrome.beta_ for latest beta and _com.chrome.dev_ for latest development version (make sure installed them on your phone first).
-
-# Connectivity
+### Connectivity
 
 If you run by default, the phone will use the current connection.
 
-## gnirehtet and Throttle
+#### gnirehtet and Throttle
 
 You can use the connection of your desktop by reverse tethering. And then set the connectivity on your desktop computer.
 
@@ -74,7 +75,7 @@ You can use the connection of your desktop by reverse tethering. And then set th
 
 Note: the first time you run gnirehtet you need to accept the vpn connection on your phone.
 
-## TSProxy
+#### TSProxy
 
 You can set connectivity by using [TSProxy](https://github.com/WPO-Foundation/tsproxy).
 
@@ -85,7 +86,7 @@ You can set connectivity by using [TSProxy](https://github.com/WPO-Foundation/ts
 
 You could also use [phuedxs](https://github.com/phuedx) [Pi Network Conditioner](https://github.com/phuedx/pinc), but using that requires some additional work but more reliable metrics.
 
-# Video and SpeedIndex
+### Video and SpeedIndex
 
 You can also collect a video and get Visual Metrics. Running on Mac or without Docker you need to install the requirements for [VisualMetrics](https://github.com/sitespeedio/docker-visualmetrics-deps/blob/master/Dockerfile) yourself on your machine before you start. If you have everything setup you can run:
 
@@ -101,7 +102,7 @@ docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --
 
 If you want to run Docker on Mac OS X, you can follow Appiums [setup](https://github.com/appium/appium-docker-android) by creating a docker-machine, give ut USB access and then run the container from that Docker machine.
 
-# Driving multiple phones from the same computer
+### Driving multiple phones from the same computer
 
 If you wanna drive multiple phones from one computer using Docker, you need to mount each USB port to the right Docker container.
 
@@ -134,7 +135,19 @@ DEV=`echo $LSUSB_OUTPUT | grep -Po 'Device \K[0-9]+'`
 echo $BUS/$DEV
 ```
 
-# Collect trace log
+### Running different versions of Chrome
+You can choose which Chrome version you want to run on your phone using `--chrome.android.package` to specify each versions package name.
+
+* Chrome Stable - *com.android.chrome*
+* Chrome Beta - *com.chrome.beta*
+* Chrome Dev - *com.chrome.dev*
+* Chrome Canary - *com.chrome.canary*
+* Chromium - *org.chromium.chrome*
+
+If you installed Chrome Canary on your phone and want to use it, then add `--chrome.android.package com.chrome.canary` to your run.
+ Driving different versions needs different versions of the Chromedriver. The Chrome version number needs to match the Chromedriver version number. Browsertime/sitespeed.io ships with the latest stable version of the Chromedriver. If you want to run other versions, you need to [download from the official Chromdriver page](https://chromedriver.chromium.org/downloads). And then you specify the version by using `--chrome.chromedriverPath`.
+
+### Collect trace log
 
 One important thing when testing on mobile is to analyze the Chrome trace log. You can get that with _browsertime.chrome.collectTracingEvents_:
 
@@ -148,7 +161,7 @@ You can also change which categories to get. In this example we only get the dev
 sitespeed.io --browsertime.chrome.android.package com.android.chrome --chrome.timeline https://www.sitespeed.io
 ```
 
-# Collect the net log
+### Collect the net log
 
 If you really want to deep dive into the what happens you can use the Chrome net log. You collect it with _browsertime.chrome.collectNetLog_:
 
