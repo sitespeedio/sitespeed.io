@@ -91,7 +91,7 @@ You could also use [phuedxs](https://github.com/phuedx) [Pi Network Conditioner]
 You can also collect a video and get Visual Metrics. Running on Mac or without Docker you need to install the requirements for [VisualMetrics](https://github.com/sitespeedio/docker-visualmetrics-deps/blob/master/Dockerfile) yourself on your machine before you start. If you have everything setup you can run:
 
 ```bash
-sitespeed.io --browsertime.chrome.android.package com.android.chrome --video --speedIndex https://www.sitespeed.io
+sitespeed.io --browsertime.chrome.android.package com.android.chrome --video --visualMetrics https://www.sitespeed.io
 ```
 
 And using Docker (remember: only works in Linux hosts):
@@ -152,19 +152,11 @@ If you installed Chrome Canary on your phone and want to use it, then add `--chr
 One important thing when testing on mobile is to analyze the Chrome trace log. You can get that with _browsertime.chrome.collectTracingEvents_:
 
 ```bash
-sitespeed.io --browsertime.chrome.android.package com.android.chrome --browsertime.chrome.collectTracingEvents --video --speedIndex https://www.sitespeed.io
+sitespeed.io --browsertime.chrome.android.package com.android.chrome --cpu --video --visualMetrics https://www.sitespeed.io
 ```
 
-You can also change which categories to get. In this example we only get the devtools.timeline category.
+### Cookies
+ 
+Chrome on Android do not support WebExtensions and we use the [Browsertime Extension](https://github.com/sitespeedio/browsertime-extension) to set cookies, block requests and basic auth.
 
-```bash
-sitespeed.io --browsertime.chrome.android.package com.android.chrome --chrome.timeline https://www.sitespeed.io
-```
-
-### Collect the net log
-
-If you really want to deep dive into the what happens you can use the Chrome net log. You collect it with _browsertime.chrome.collectNetLog_:
-
-```bash
-sitespeed.io --browsertime.chrome.android.package com.android.chrome --browsertime.chrome.collectNetLog https://www.sitespeed.io
-```
+But you can set a cookie on Android you can do that with adding a request header `-r key:value`.

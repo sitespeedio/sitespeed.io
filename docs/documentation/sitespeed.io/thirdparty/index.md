@@ -67,5 +67,5 @@ You can also track CPU spent per tool/third party. It's turned off by default an
 
 ## Block all 3rd parties
 
-We have support to block specific third parties with `--block` but that isn't the most user friendly way sif you wanna test you site without third parties. We added support for blocking every domain except the one you configure (inspired by [WebPageTest](https://www.webpagetest.org)). 
+We have support to block specific third parties with `--block` but that isn't the most user friendly way if you wanna test you site without third parties. We added support for blocking every domain except the one you configure (inspired by [WebPageTest](https://www.webpagetest.org)). 
 Use `--chrome.blockDomainsExcept` to block all domains except. Use it multiple times to keep multiple domains. You can also use wildcard like *.sitespeed.io!
