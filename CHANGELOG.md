@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Fixed
+* You can now use `--android` to run tests on Android phones (the same way as on Browsertime) [#2544](https://github.com/sitespeedio/sitespeed.io/pull/2544).
+
 ##  9.6.0 - 2019-07-11
 ### Added
 * Docker container is now using Firefox 68.
