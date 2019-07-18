@@ -11,7 +11,7 @@ twitterdescription: Collect CPU metrics
 
 [Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / CPU
 
-# CPU
+# [CPU](https://hosting.review/web-hosting-glossary/#19)
 {:.no_toc}
 
 * Lets place the TOC here
