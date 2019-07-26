@@ -9244,9 +9244,9 @@
       "integrity": "sha1-f17oI66AUgfACvLfSoTsP8+lcLQ="
     },
     "third-party-web": {
-      "version": "0.9.0",
-      "resolved": "https://registry.npmjs.org/third-party-web/-/third-party-web-0.9.0.tgz",
-      "integrity": "sha512-RiDVKxtaf8DJ3+cK6SM0oWyqkJS2JotPnXQeFTnvYW/ebkmd53GbT+WjMVqfStNj8QuPZCxUGu7aSwFy6wzlug=="
+      "version": "0.10.1",
+      "resolved": "https://registry.npmjs.org/third-party-web/-/third-party-web-0.10.1.tgz",
+      "integrity": "sha512-yjhpYfr6E2kUYQ9NyelVQPKTKJifQj5fmuGmGedr5D8n45b9vJO+ghovfhORbgKkMvdLE+MPL7PihnuOUCyTAQ=="
     },
     "through": {
       "version": "2.3.8",
