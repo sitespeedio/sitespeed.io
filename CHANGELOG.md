@@ -6,6 +6,7 @@
 
 ### Added
 * Upgraded to third-party-web 0.10.1.
+* Upgraded to Browsertime 5.6.0
 
 ##  9.6.0 - 2019-07-11
 ### Added
