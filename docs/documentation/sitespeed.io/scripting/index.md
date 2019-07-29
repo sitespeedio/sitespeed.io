@@ -747,13 +747,32 @@ Use a CSS selector to find the element and set the value to value. Internally it
 Use the id to find the element and set the value to value. Internally it uses ```document.getElementById(id)``` to find the right element.
 
 ### Cache
-There's an experimental command for clearing the cache. The command works both for Chrome and Firefox on desktop but not on Chrome on Android since we are using a [WebExtension](https://github.com/sitespeedio/browsertime-extension).
+There's an experimental command for clearing the cache. The command works both for Chrome and Firefox. Use it when you want to clear the browser cache between different URLs.
 
 #### cache.clear()
 Clear the browser cache. Remove cache and cookies.
 
+~~~javascript
+module.exports = async function(context, commands) {
+  // First you probably visit a couple of pages and then clear the cache
+  await commands.cache.clear();
+  // And then visit another page
+}
+~~~
+
 #### cache.clearKeepCookies()
 Clear the browser cache but keep cookies.
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // If you have login cookies that lives really long you may eant to test aceesing the page as a logged in user 
+  // but without a browser cache. You can try that with ...
+
+  // Login the user and the clear the cache but keep cookies
+  await commands.cache.clearKeepCookies();
+  // and then access the URL you wanna test.
+}
+~~~
 
 ### Chrome DevTools Protocol
 Send messages to Chrome using the [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/). This only works in Chrome. You can send and send and get the result.
