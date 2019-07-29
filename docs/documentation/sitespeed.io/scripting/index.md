@@ -765,7 +765,7 @@ Clear the browser cache but keep cookies.
 
 ~~~javascript
 module.exports = async function(context, commands) {
-  // If you have login cookies that lives really long you may eant to test aceesing the page as a logged in user 
+  // If you have login cookies that lives really long you may want to test aceesing the page as a logged in user 
   // but without a browser cache. You can try that with ...
 
   // Login the user and the clear the cache but keep cookies
