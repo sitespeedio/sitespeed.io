@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 9.7.0 - UNRELEASED
+## 9.7.0 - 2019-07-29
 
 In this release we moved functionality for Chrome from our [browser extension](https://github.com/sitespeedio/browsertime-extension) to the devtools protocol instead, so that the same functionality also works in Chrome on Android. Read the [changelog for Browsertime for all changes](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#560----2019-07-27).
 
