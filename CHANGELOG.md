@@ -1,12 +1,15 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 9.7.0 - UNRELEASED
+
+In this release we moved functionality for Chrome from our [browser extension](https://github.com/sitespeedio/browsertime-extension) to the devtools protocol instead, so that the same functionality also works in Chrome on Android. Read the [changelog for Browsertime for all changes](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#560----2019-07-27).
+
 ### Fixed
 * You can now use `--android` to run tests on Android phones (the same way as on Browsertime) [#2544](https://github.com/sitespeedio/sitespeed.io/pull/2544).
 
 ### Added
 * Upgraded to third-party-web 0.10.1.
-* Upgraded to Browsertime 5.6.0
+* Upgraded to Browsertime [5.6.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#560----2019-07-27) and [5.6.1](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#561----2019-07-28).
 
 ##  9.6.0 - 2019-07-11
 ### Added
