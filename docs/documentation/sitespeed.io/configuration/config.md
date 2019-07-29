@@ -57,7 +57,7 @@ Firefox
 Chrome
   --browsertime.chrome.args, --chrome.args                                      Extra command line arguments to pass to the Chrome process. Always leave out the starting -- (--no-sandbox will be no-sandbox). To add multiple arguments to Chrome, repeat --browsertime.chrome.args once per argument. See https://peter.sh/experiments/chromium-command-line-switches/
   --browsertime.chrome.timeline, --chrome.timeline                              Collect the timeline data. Drag and drop the JSON in your Chrome detvools timeline panel or check out the CPU metrics.  [boolean]
-  --browsertime.chrome.android.package, --chrome.android.package                Run Chrome on your Android device. Set to com.android.chrome for default Chrome version. You need to run adb start-server before you start.
+  --browsertime.chrome.android.package, --chu rome.android.package              Run Chrome on your Android device. Set to com.android.chrome for default Chrome version. You need to run adb start-server before you start.
   --browsertime.chrome.android.deviceSerial, --chrome.android.deviceSerial      Choose which device to use. If you do not set it, the first found device will be used.
   --browsertime.chrome.collectNetLog, --chrome.collectNetLog                    Collect network log from Chrome and save to disk.  [boolean]
   --browsertime.chrome.traceCategories, --chrome.traceCategories                Set the trace categories.  [string]
@@ -70,7 +70,7 @@ Chrome
   --browsertime.chrome.CPUThrottlingRate, --chrome.CPUThrottlingRate            Enables CPU throttling to emulate slow CPUs. Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc)  [number]
   --browsertime.cpu, --cpu                                                      Easy way to enable both chrome.timeline and CPU long tasks.  [boolean]
   --thirdParty.cpu                                                              Enable CPU time spent data to Graphite/Grafana per third party tool.  [boolean]
-  --browsertime.chrome.includeResponseBodies, --chrome.includeResponseBodies    Include response bodies in the HAR file. At the moment we only support the HTML of the main request.  [choices: "none", "html"] [default: "none"]
+  --browsertime.chrome.includeResponseBodies, --chrome.includeResponseBodies    Include response bodies in the HAR file.  [choices: "none", "html", "all"] [default: "none"]
   --browsertime.chrome.blockDomainsExcept, --chrome.blockDomainsExcept          Block all domains except this domain. Use it multiple time to keep multiple domains. You can also wildcard domains like *.sitespeed.io. Use this when you wanna block out all third parties.
 
 proxy
@@ -194,22 +194,23 @@ Text
   --summary-detail  Show longer text summary to stdout  [boolean] [default: false]
 
 Options:
-  --version, -V      Show version number  [boolean]
-  --debug            Debug mode logs all internal messages to the console.  [boolean] [default: false]
-  --verbose, -v      Verbose mode prints progress messages to the console. Enter up to three times (-vvv) to increase the level of detail.  [count]
+  --version, -V                     Show version number  [boolean]
+  --debug                           Debug mode logs all internal messages to the console.  [boolean] [default: false]
+  --verbose, -v                     Verbose mode prints progress messages to the console. Enter up to three times (-vvv) to increase the level of detail.  [count]
+  --browsertime.android, --android  Short key to use Android. Will automatically use com.android.chrome (Chrome stable). If you want to use another Chrome version, use --chrome.android.package  [boolean] [default: false]
   --plugins.disable  [array]
   --plugins.load  [array]
-  --mobile           Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Apple iPhone 6.  [boolean] [default: false]
-  --resultBaseURL    The base URL to the server serving the HTML result. In the format of https://result.sitespeed.io
-  --gzipHAR          Compress the HAR files with GZIP.  [boolean] [default: false]
-  --outputFolder     The folder where the result will be stored.  [string]
-  --firstParty       A regex running against each request and categorize it as first vs third party URL. (ex: ".*sitespeed.*")
-  --urlAlias         Use an alias for the URL (if you feed URLs from a file you can instead have the alias in the file). You need to pass on the same amount of alias as URLs. The alias is used as the name of the URL on the HTML report and in Graphite/InfluxDB. Pass on multiple --urlAlias for multiple alias/URLs. This will override alias in a file.  [string]
-  --utc              Use Coordinated Universal Time for timestamps  [boolean] [default: false]
-  --useHash          If your site uses # for URLs and # give you unique URLs you need to turn on useHash. By default is it turned off, meaning URLs with hash and without hash are treated as the same URL  [boolean] [default: false]
-  --multi            Test multiple URLs within the same browser session (same cache etc). Only works with Browsertime. Use this if you want to test multiple pages (use journey) or want to test multiple pages with scripts. You can mix URLs and scripts (the order will matter): login.js https://www.sitespeed.io/ logout.js - More details: https://www.sitespeed.io/documentation/sitespeed.io/scripting/  [boolean] [default: false]
-  --name             Give your test a name.
-  --config           Path to JSON config file
-  --help, -h         Show help  [boolean]
+  --mobile                          Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Apple iPhone 6.  [boolean] [default: false]
+  --resultBaseURL                   The base URL to the server serving the HTML result. In the format of https://result.sitespeed.io
+  --gzipHAR                         Compress the HAR files with GZIP.  [boolean] [default: false]
+  --outputFolder                    The folder where the result will be stored.  [string]
+  --firstParty                      A regex running against each request and categorize it as first vs third party URL. (ex: ".*sitespeed.*")
+  --urlAlias                        Use an alias for the URL (if you feed URLs from a file you can instead have the alias in the file). You need to pass on the same amount of alias as URLs. The alias is used as the name of the URL on the HTML report and in Graphite/InfluxDB. Pass on multiple --urlAlias for multiple alias/URLs. This will override alias in a file.  [string]
+  --utc                             Use Coordinated Universal Time for timestamps  [boolean] [default: false]
+  --useHash                         If your site uses # for URLs and # give you unique URLs you need to turn on useHash. By default is it turned off, meaning URLs with hash and without hash are treated as the same URL  [boolean] [default: false]
+  --multi                           Test multiple URLs within the same browser session (same cache etc). Only works with Browsertime. Use this if you want to test multiple pages (use journey) or want to test multiple pages with scripts. You can mix URLs and scripts (the order will matter): login.js https://www.sitespeed.io/ logout.js - More details: https://www.sitespeed.io/documentation/sitespeed.io/scripting/  [boolean] [default: false]
+  --name                            Give your test a name.
+  --config                          Path to JSON config file
+  --help, -h                        Show help  [boolean]
 
 Read the docs at https://www.sitespeed.io/documentation/sitespeed.io/
