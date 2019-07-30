@@ -47,13 +47,13 @@ If you don't use Docker you need to:
 You are now ready to test using your phone:
 
 ```bash
-sitespeed.io --browsertime.chrome.android.package com.android.chrome https://www.sitespeed.io
+sitespeed.io --android https://www.sitespeed.io
 ```
 
 Remember: To test on Android using Docker you need to be on Linux (tested on Ubuntu). It will not work on OS X.
 
 ```bash
-docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  -n 1 --browsertime.chrome.android.package com.android.chrome --browsertime.xvfb false https://www.sitespeed.io
+docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  -n 1 --android --browsertime.xvfb false https://www.sitespeed.io
 ```
 
 You will get result as you would with running this normally with summaries and waterfall graphs.
@@ -91,13 +91,13 @@ You could also use [phuedxs](https://github.com/phuedx) [Pi Network Conditioner]
 You can also collect a video and get Visual Metrics. Running on Mac or without Docker you need to install the requirements for [VisualMetrics](https://github.com/sitespeedio/docker-visualmetrics-deps/blob/master/Dockerfile) yourself on your machine before you start. If you have everything setup you can run:
 
 ```bash
-sitespeed.io --browsertime.chrome.android.package com.android.chrome --video --visualMetrics https://www.sitespeed.io
+sitespeed.io --android --video --visualMetrics https://www.sitespeed.io
 ```
 
 And using Docker (remember: only works in Linux hosts):
 
 ```bash
-docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  -n 1 --browsertime.chrome.android.package com.android.chrome --browsertime.xvfb false https://www.sitespeed.io
+docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  -n 1 --android --browsertime.xvfb false https://www.sitespeed.io
 ```
 
 If you want to run Docker on Mac OS X, you can follow Appiums [setup](https://github.com/appium/appium-docker-android) by creating a docker-machine, give ut USB access and then run the container from that Docker machine.
@@ -136,7 +136,7 @@ echo $BUS/$DEV
 ```
 
 ### Running different versions of Chrome
-You can choose which Chrome version you want to run on your phone using `--chrome.android.package` to specify each versions package name.
+You can choose which Chrome version you want to run on your phone using `--chrome.android.package` to specify each versions package name. By default (just using  `--android` Chrome stable version is used):
 
 * Chrome Stable - *com.android.chrome*
 * Chrome Beta - *com.chrome.beta*
@@ -149,14 +149,8 @@ If you installed Chrome Canary on your phone and want to use it, then add `--chr
 
 ### Collect trace log
 
-One important thing when testing on mobile is to analyze the Chrome trace log. You can get that with _browsertime.chrome.collectTracingEvents_:
+One important thing when testing on mobile is to analyze the Chrome trace log. You can get that with `--cpu`:
 
 ```bash
-sitespeed.io --browsertime.chrome.android.package com.android.chrome --cpu --video --visualMetrics https://www.sitespeed.io
+sitespeed.io --android --cpu https://www.sitespeed.io
 ```
-
-### Cookies
- 
-Chrome on Android do not support WebExtensions and we use the [Browsertime Extension](https://github.com/sitespeedio/browsertime-extension) to set cookies, block requests and basic auth.
-
-But you can set a cookie on Android you can do that with adding a request header `-r key:value`.
