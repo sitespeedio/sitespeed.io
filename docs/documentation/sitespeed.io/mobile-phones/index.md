@@ -82,7 +82,7 @@ You can set connectivity by using [TSProxy](https://github.com/WPO-Foundation/ts
 1. Download [TSProxy](https://github.com/WPO-Foundation/tsproxy) and make sure you have at least Python 2.7 installed.
 2. Check the local IP of your machine (in this example the IP is 10.0.1.7 and the default port for TSProxy is 1080).
 3. Start TSProxy and bind it to your IP: <code>python tsproxy.py --bind 10.0.1.7 --rtt=200 --inkbps=1600 --outkbps=768</code>
-4. Run <code>\$ sitespeed.io --browsertime.chrome.android.package com.android.chrome --browsertime.chrome.args proxy-server="socks://10.0.1.7:1080" https://www.sitespeed.io</code>
+4. Run <code>\$ sitespeed.io --android --browsertime.chrome.args proxy-server="socks://10.0.1.7:1080" https://www.sitespeed.io</code>
 
 You could also use [phuedxs](https://github.com/phuedx) [Pi Network Conditioner](https://github.com/phuedx/pinc), but using that requires some additional work but more reliable metrics.
 
@@ -145,7 +145,7 @@ You can choose which Chrome version you want to run on your phone using `--chrom
 * Chromium - *org.chromium.chrome*
 
 If you installed Chrome Canary on your phone and want to use it, then add `--chrome.android.package com.chrome.canary` to your run.
- Driving different versions needs different versions of the Chromedriver. The Chrome version number needs to match the Chromedriver version number. Browsertime/sitespeed.io ships with the latest stable version of the Chromedriver. If you want to run other versions, you need to [download from the official Chromdriver page](https://chromedriver.chromium.org/downloads). And then you specify the version by using `--chrome.chromedriverPath`.
+ Driving different versions needs different versions of the Chromedriver. The Chrome version number needs to match the Chromedriver version number. Browsertime/sitespeed.io ships with the latest stable version of the Chromedriver. If you want to run other versions, you need to [download from the official Chromedriver page](https://chromedriver.chromium.org/downloads). And then you specify the version by using `--chrome.chromedriverPath`.
 
 ### Collect trace log
 
