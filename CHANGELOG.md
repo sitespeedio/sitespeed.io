@@ -1,9 +1,9 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+##  9.8.0 - 2019-08-01
 
 ### Added
-* Use Chrome 76 in the Docker container and Chromedriver 76.
+* We updated the Docker container to use Chrome 76 and swicthed to Chromedriver 76. We had some issues with Chrome 76 (or Chromedriver) that increased number of times we got errors converting the Chrome trace log because of missing navigationStart events (see [#902](https://github.com/sitespeedio/browsertime/issues/902)) on our test servers. But that seems fixed with [#904](https://github.com/sitespeedio/browsertime/pull/904).
 
 ## 9.7.0 - 2019-07-29
 
