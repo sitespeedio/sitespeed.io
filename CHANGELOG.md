@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+##  9.8.1 - 2019-08-03
+### Fixed
+* Upgraded to Browsertime 5.7.3 that fixes a bug introduced in Browsertime 5.6.0 (sitespeed.io 9.7.0) that made it impossible to set multiple cookies when using Chrome [#910](https://github.com/sitespeedio/browsertime/pull/910).
+
 ##  9.8.0 - 2019-08-01
 
 ### Added
