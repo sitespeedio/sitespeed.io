@@ -848,11 +848,6 @@
             "type-check": "~0.3.2"
           }
         },
-        "lodash": {
-          "version": "4.17.11",
-          "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.11.tgz",
-          "integrity": "sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg=="
-        },
         "mime-db": {
           "version": "1.37.0",
           "resolved": "https://registry.npmjs.org/mime-db/-/mime-db-1.37.0.tgz",
@@ -2028,11 +2023,6 @@
             "prelude-ls": "~1.1.2",
             "type-check": "~0.3.2"
           }
-        },
-        "lodash": {
-          "version": "4.17.11",
-          "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.11.tgz",
-          "integrity": "sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg=="
         },
         "mime-db": {
           "version": "1.37.0",
@@ -3877,11 +3867,6 @@
                 "prelude-ls": "~1.1.2",
                 "type-check": "~0.3.2"
               }
-            },
-            "lodash": {
-              "version": "4.17.11",
-              "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.11.tgz",
-              "integrity": "sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg=="
             },
             "mime-db": {
               "version": "1.37.0",
