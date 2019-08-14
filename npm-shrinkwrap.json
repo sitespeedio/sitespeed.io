@@ -1,6 +1,6 @@
 {
   "name": "sitespeed.io",
-  "version": "9.8.0",
+  "version": "9.8.1",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -3036,6 +3036,11 @@
       "resolved": "https://registry.npmjs.org/aws4/-/aws4-1.7.0.tgz",
       "integrity": "sha512-32NDda82rhwD9/JBCCkB+MRYDp0oSvlo2IL6rQWA10PQi7tDUM3eqMSltXmY+Oyl/7N3P3qNtAlv7X0d9bI28w=="
     },
+    "axe-core": {
+      "version": "3.3.1",
+      "resolved": "https://registry.npmjs.org/axe-core/-/axe-core-3.3.1.tgz",
+      "integrity": "sha512-gw1T0JptHPF4AdLLqE8yQq3Z7YvsYkpFmFWd84r6hnq/QoKRr8icYHFumhE7wYl5TVIHgVlchMyJsAYh0CfwCQ=="
+    },
     "axios": {
       "version": "0.18.1",
       "resolved": "https://registry.npmjs.org/axios/-/axios-0.18.1.tgz",
@@ -3170,9 +3175,9 @@
       "integrity": "sha1-81HTKWnTL6XXpVZxVCY9korjvR8="
     },
     "browsertime": {
-      "version": "5.7.2",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-5.7.2.tgz",
-      "integrity": "sha512-+VHlkZB0TEZe9k96htzJ5lTKgTwPKAowIWq3hXesca4rYfjmftSjHDWzCgV55lGpE5Ot5OZdnF5f5DnKnv4kWw==",
+      "version": "6.0.0-alpha.1",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-6.0.0-alpha.1.tgz",
+      "integrity": "sha512-kUKIdrVT/9mdWfNYejwzmtYdJOSV2F504cufADsLO1MALKYyKvz+/4/gSxPCioj1iI3o+96v9VkV3UrMl5YQbw==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@sitespeed.io/chromedriver": "76.0.3809-68",
@@ -3201,6 +3206,7 @@
         "mkdirp": "0.5.1",
         "selenium-webdriver": "4.0.0-alpha.4",
         "sharp": "0.22.1",
+        "speedline-core": "1.4.2",
         "valid-url": "1.0.9",
         "yargs": "13.3.0"
       },
@@ -4572,9 +4578,9 @@
           "integrity": "sha512-NKN5kMDylKuldxYLSUfrbo5Tuzh4hd+2E8NPPX02mZtn1VuREQToYe/ZdlJy+J3uCpfaiGF05e7B8W0iXbQHmg=="
         },
         "rimraf": {
-          "version": "2.6.3",
-          "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-2.6.3.tgz",
-          "integrity": "sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==",
+          "version": "2.7.0",
+          "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-2.7.0.tgz",
+          "integrity": "sha512-4Liqw7ccABzsWV5BzeZeGRSq7KWIgQYzOcmRDEwSX4WAawlQpcAFXZ1Kid72XYrjSnK5yxOS6Gez/iGusYE/Pw==",
           "requires": {
             "glob": "^7.1.3"
           }
@@ -6963,16 +6969,6 @@
           "integrity": "sha1-o7MKXE8ZkYMWeqq5O+764937ZU8=",
           "dev": true
         },
-        "js-yaml": {
-          "version": "3.13.1",
-          "resolved": "https://registry.npmjs.org/js-yaml/-/js-yaml-3.13.1.tgz",
-          "integrity": "sha512-YfbcO7jXDdyj0DGxYVSlSeQNHbD7XPWvrVWeVUujrQEoZzWJIRrCPoyk6kL6IAjAG2IolMK4T0hNUe0HOUs5Jw==",
-          "dev": true,
-          "requires": {
-            "argparse": "^1.0.7",
-            "esprima": "^4.0.0"
-          }
-        },
         "string-width": {
           "version": "3.0.0",
           "resolved": "https://registry.npmjs.org/string-width/-/string-width-3.0.0.tgz",
@@ -7161,6 +7157,11 @@
       "resolved": "https://registry.npmjs.org/ignore/-/ignore-3.3.8.tgz",
       "integrity": "sha512-pUh+xUQQhQzevjRHHFqqcTy0/dP/kS9I8HSrUydhihjuD09W6ldVWFtIrwhXdUJHis3i2rZNqEHpZH/cbinFbg==",
       "dev": true
+    },
+    "image-ssim": {
+      "version": "0.2.0",
+      "resolved": "https://registry.npmjs.org/image-ssim/-/image-ssim-0.2.0.tgz",
+      "integrity": "sha1-g7Qsei5uS4VQVHf+aRf128VkIOU="
     },
     "immediate": {
       "version": "3.0.6",
@@ -7592,6 +7593,11 @@
       "version": "0.15.0",
       "resolved": "https://registry.npmjs.org/jmespath/-/jmespath-0.15.0.tgz",
       "integrity": "sha1-o/Iiqarp+Wb10nx5ZRDigJF2Qhc="
+    },
+    "jpeg-js": {
+      "version": "0.1.2",
+      "resolved": "https://registry.npmjs.org/jpeg-js/-/jpeg-js-0.1.2.tgz",
+      "integrity": "sha1-E1uZLAV1yYXPoPSUoyJ+0jhYPs4="
     },
     "js-base64": {
       "version": "2.5.1",
@@ -10253,6 +10259,16 @@
           "integrity": "sha1-m98vIOH0DtRH++JzJmGR/O1RYmw=",
           "dev": true
         }
+      }
+    },
+    "speedline-core": {
+      "version": "1.4.2",
+      "resolved": "https://registry.npmjs.org/speedline-core/-/speedline-core-1.4.2.tgz",
+      "integrity": "sha512-9/5CApkKKl6bS6jJ2D0DQllwz/1xq3cyJCR6DLgAQnkj5djCuq8NbflEdD2TI01p8qzS9qaKjzxM9cHT11ezmg==",
+      "requires": {
+        "@types/node": "*",
+        "image-ssim": "^0.2.0",
+        "jpeg-js": "^0.1.2"
       }
     },
     "split": {

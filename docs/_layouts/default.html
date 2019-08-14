@@ -51,10 +51,11 @@ layout: compress
 
 <body>
 	{% include header.html %}
+	
 	<div class="white">
 		<div class="grid">
 			<div class="col-1-1">
-				<main>
+				<main role="main">
 					{% include anchor_headings.html html=content anchorBody='#' anchorClass='anchor' h_max=4 h_min=2 %}
 				</main>
 			</div>

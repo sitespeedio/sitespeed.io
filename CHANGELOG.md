@@ -1,5 +1,13 @@
 # CHANGELOG - sitespeed.io
 
+## 10.0.0-alpha.1 - UNRELEASED
+### Added
+* Upgraded to [first alpha of Browsertime 6.0.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#600-alpha1---2019-08-14). Chromedriver is updated to 77 so you should probably update Chrome to use Chrome 77 beta.
+
+##  9.8.1 - 2019-08-03
+### Fixed
+* Upgraded to Browsertime 5.7.3 that fixes a bug introduced in Browsertime 5.6.0 (sitespeed.io 9.7.0) that made it impossible to set multiple cookies when using Chrome [#910](https://github.com/sitespeedio/browsertime/pull/910).
+
 ##  9.8.0 - 2019-08-01
 
 ### Added
