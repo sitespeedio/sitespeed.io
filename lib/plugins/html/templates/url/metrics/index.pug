@@ -173,7 +173,11 @@ if  browsertime
             a(href=timings.largestContentfulPaint.url) #{timings.largestContentfulPaint.url}
         td  #{h.time.ms(timings.largestContentfulPaint.renderTime)}
         td  #{h.time.ms(timings.largestContentfulPaint.loadTime)}  
-        td  #{h.size.format(timings.largestContentfulPaint.size)}          
+        td  #{h.size.format(timings.largestContentfulPaint.size)}    
+  if browsertime.pageinfo.layoutShift
+    a#layoutShift
+    h3 Layout Shift
+    p #{browsertime.pageinfo.layoutShift.toFixed(2)} %             
   a#server-timings
   h3 Server timings
   if timings.serverTimings && timings.serverTimings.length > 0
