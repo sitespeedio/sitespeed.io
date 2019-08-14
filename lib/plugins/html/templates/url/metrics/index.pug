@@ -116,6 +116,11 @@ if  browsertime
           td
             a(href=baseHelpURL + 'loadEventEnd') Load Event End
           td.number #{h.time.ms(timings.loadEventEnd.toFixed(0))}
+        if (timings.largestContentfulPaint) 
+           tr
+            td
+              a(href=baseHelpURL + 'largestContentfulPaint') Largest Contentful Paint
+            td.number #{h.time.ms(timings.largestContentfulPaint.renderTime)}
         if (timings.fullyLoaded) 
           tr
             td
@@ -148,7 +153,7 @@ if  browsertime
               td #{value.name}
               td.number #{h.time.ms(value.startTime.toFixed(0))}
               td.number #{h.time.ms(value.duration.toFixed(0))} 
-  
+              
   a#server-timings
   h3 Server timings
   if timings.serverTimings && timings.serverTimings.length > 0
