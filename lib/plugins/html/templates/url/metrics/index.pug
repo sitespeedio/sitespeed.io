@@ -153,7 +153,26 @@ if  browsertime
               td #{value.name}
               td.number #{h.time.ms(value.startTime.toFixed(0))}
               td.number #{h.time.ms(value.duration.toFixed(0))} 
-              
+  if timings.largestContentfulPaint
+   a#largestContentfulPaint
+   h3 Largest Contentful Paint
+   table
+      tr
+        if timings.largestContentfulPaint.id !== ''
+          th Id
+        if timings.largestContentfulPaint.url !== ''  
+          th URL
+        th Render time
+        th Load time
+        th Size
+      tr
+        if timings.largestContentfulPaint.id !== ''
+          td  #{timings.largestContentfulPaint.id}
+        if timings.largestContentfulPaint.url !== ''    
+          td  #{timings.largestContentfulPaint.url}
+        td  #{timings.largestContentfulPaint.renderTime}
+        td  #{timings.largestContentfulPaint.loadTime}  
+        td  #{h.size.format(timings.largestContentfulPaint.size)}          
   a#server-timings
   h3 Server timings
   if timings.serverTimings && timings.serverTimings.length > 0
