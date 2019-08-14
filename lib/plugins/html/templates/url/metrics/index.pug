@@ -169,7 +169,8 @@ if  browsertime
         if timings.largestContentfulPaint.id !== ''
           td  #{timings.largestContentfulPaint.id}
         if timings.largestContentfulPaint.url !== ''    
-          td  #{timings.largestContentfulPaint.url}
+          td  
+            a(href=timings.largestContentfulPaint.url) #{timings.largestContentfulPaint.url}
         td  #{timings.largestContentfulPaint.renderTime}
         td  #{timings.largestContentfulPaint.loadTime}  
         td  #{h.size.format(timings.largestContentfulPaint.size)}          
