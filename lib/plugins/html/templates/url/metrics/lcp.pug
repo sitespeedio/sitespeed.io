@@ -1,0 +1,29 @@
+if timings.largestContentfulPaint
+   a#largestContentfulPaint
+   h3 Largest Contentful Paint
+   p Read more about 
+    a(href='https://web.dev/largest-contentful-paint') Largest Contentful Paint
+    | .
+   table
+      tr
+        if timings.largestContentfulPaint.id !== ''
+          th Id
+        if timings.largestContentfulPaint.url !== ''  
+          th URL
+        if timings.largestContentfulPaint.tagName  
+          th Tag 
+        th Render time
+        th Load time
+        if timings.largestContentfulPaint.size
+          th Size
+      tr
+        if timings.largestContentfulPaint.id !== ''
+          td  #{timings.largestContentfulPaint.id}
+        if timings.largestContentfulPaint.url !== ''    
+          td  
+            a(href=timings.largestContentfulPaint.url) #{timings.largestContentfulPaint.url}
+        if timings.largestContentfulPaint.tagName 
+          td #{timings.largestContentfulPaint.tagName}
+        td  #{h.time.ms(timings.largestContentfulPaint.renderTime)}
+        td  #{h.time.ms(timings.largestContentfulPaint.loadTime)}  
+        td  #{h.size.format(timings.largestContentfulPaint.size)}    
