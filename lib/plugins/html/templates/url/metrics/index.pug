@@ -173,7 +173,8 @@ if  browsertime
           th Tag 
         th Render time
         th Load time
-        th Size
+        if timings.largestContentfulPaint.size
+          th Size
       tr
         if timings.largestContentfulPaint.id !== ''
           td  #{timings.largestContentfulPaint.id}
@@ -181,7 +182,7 @@ if  browsertime
           td  
             a(href=timings.largestContentfulPaint.url) #{timings.largestContentfulPaint.url}
         if timings.largestContentfulPaint.tagName 
-          #{timings.largestContentfulPaint.tagName}
+          td #{timings.largestContentfulPaint.tagName}
         td  #{h.time.ms(timings.largestContentfulPaint.renderTime)}
         td  #{h.time.ms(timings.largestContentfulPaint.loadTime)}  
         td  #{h.size.format(timings.largestContentfulPaint.size)}    
@@ -194,6 +195,32 @@ if  browsertime
       p #{browsertime.pageinfo.layoutShift.toFixed(2)} % layout shift collected from the 
         a(href='https://web.dev/layout-instability-api') The Layout Instability API
         | .           
+  if browsertime.timings.elementTimings !== undefined
+    a#elementTimings
+    h3 Element timings
+    table
+        tr
+          th Id
+          if value.url !== ''  
+            th URL
+          th Tag 
+          th Render time
+          th Load time
+          th Natural width
+          th Natural height
+        each timings in browsertime.timings.elementTimings
+            each value, name in timings
+                tr
+                  td  #{name}
+                  if value.url !== ''    
+                    td  
+                      a(href=value.url) #{value.url}
+                  td  #{value.tagName}
+                  td  #{h.time.ms(value.renderTime)}
+                  td  #{h.time.ms(value.loadTime)} 
+                  td  #{value.naturalWidth}  
+                  td  #{value.naturalHeight}  
+  
   a#server-timings
   h3 Server timings
   if timings.serverTimings && timings.serverTimings.length > 0
