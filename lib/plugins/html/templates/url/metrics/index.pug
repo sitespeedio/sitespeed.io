@@ -157,86 +157,11 @@ if  browsertime
               td #{value.name}
               td.number #{h.time.ms(value.startTime.toFixed(0))}
               td.number #{h.time.ms(value.duration.toFixed(0))} 
-  if timings.largestContentfulPaint
-   a#largestContentfulPaint
-   h3 Largest Contentful Paint
-   p Read more about 
-    a(href='https://web.dev/largest-contentful-paint') Largest Contentful Paint
-    | .
-   table
-      tr
-        if timings.largestContentfulPaint.id !== ''
-          th Id
-        if timings.largestContentfulPaint.url !== ''  
-          th URL
-        if timings.largestContentfulPaint.tagName  
-          th Tag 
-        th Render time
-        th Load time
-        if timings.largestContentfulPaint.size
-          th Size
-      tr
-        if timings.largestContentfulPaint.id !== ''
-          td  #{timings.largestContentfulPaint.id}
-        if timings.largestContentfulPaint.url !== ''    
-          td  
-            a(href=timings.largestContentfulPaint.url) #{timings.largestContentfulPaint.url}
-        if timings.largestContentfulPaint.tagName 
-          td #{timings.largestContentfulPaint.tagName}
-        td  #{h.time.ms(timings.largestContentfulPaint.renderTime)}
-        td  #{h.time.ms(timings.largestContentfulPaint.loadTime)}  
-        td  #{h.size.format(timings.largestContentfulPaint.size)}    
-  if browsertime.pageinfo.layoutShift !== undefined
-    a#layoutShift
-    h3 Detected unexpected layout shifts
-    if (browsertime.pageinfo.layoutShift === 0) 
-      p No layout shift detected.
-    else
-      p #{browsertime.pageinfo.layoutShift.toFixed(2)} % layout shift collected from the 
-        a(href='https://web.dev/layout-instability-api') The Layout Instability API
-        | .           
-  if browsertime.timings.elementTimings !== undefined
-    a#elementTimings
-    h3 Element timings
-    table
-        tr
-          th Id
-          if value.url !== ''  
-            th URL
-          th Tag 
-          th Render time
-          th Load time
-          th Natural width
-          th Natural height
-        each timings in browsertime.timings.elementTimings
-            each value, name in timings
-                tr
-                  td  #{name}
-                  if value.url !== ''    
-                    td  
-                      a(href=value.url) #{value.url}
-                  td  #{value.tagName}
-                  td  #{h.time.ms(value.renderTime)}
-                  td  #{h.time.ms(value.loadTime)} 
-                  td  #{value.naturalWidth}  
-                  td  #{value.naturalHeight}  
-  
-  a#server-timings
-  h3 Server timings
-  if timings.serverTimings && timings.serverTimings.length > 0
-    table
-      tr
-        th name
-        th duration
-        th description
-      each serverTiming in timings.serverTimings
-        tr
-          td #{serverTiming.name}
-          td #{serverTiming.duration}
-          td #{serverTiming.description}
-  else
-    p There are no Server Timings.
-    
+  include ./lcp.pug
+  include ./layoutShift.pug
+  include ./elementTimings.pug
+  include ./serverTimings.pug
+
   a#custom-scripts
   h3 Custom scripts
   if browsertime.custom
