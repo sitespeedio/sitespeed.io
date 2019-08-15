@@ -62,6 +62,10 @@ if  browsertime
             td
               a(href=baseHelpURL + 'LastVisualChange') Last Visual Change
             td.number #{h.time.ms(visualMetrics.LastVisualChange.toFixed(0))}
+          tr
+            td
+              a(href=baseHelpURL + 'VisualReadiness') Visual Readiness
+            td.number #{h.time.ms(visualMetrics.VisualReadiness.toFixed(0))}  
       .one-half.column
         .ct-chart.ct-minor-sixth#ct-visualprogress
         include ./visualProgress.pug
