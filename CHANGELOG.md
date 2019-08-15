@@ -2,7 +2,7 @@
 
 ## 10.0.0-alpha.1 - UNRELEASED
 ### Added
-* Upgraded to [second alpha of Browsertime 6.0.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#600-alpha2---2019-08-15). Chromedriver is updated to 77 so you should probably update Chrome to use Chrome 77 beta.
+* Upgraded to [third alpha of Browsertime 6.0.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#600-alpha2---2019-08-15). Chromedriver is updated to 77 so you should probably update Chrome to use Chrome 77 beta.
 
 * You can now test your pages using Axe: `--axe.enable` - The test will run after all other metrics are collected and will add some extra time to your total run test time [#2571](https://github.com/sitespeedio/sitespeed.io/pull/2571). You can see all axe information in the new tab.
 
