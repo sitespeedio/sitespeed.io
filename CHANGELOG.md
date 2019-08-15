@@ -4,6 +4,10 @@
 ### Added
 * Upgraded to [first alpha of Browsertime 6.0.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#600-alpha1---2019-08-14). Chromedriver is updated to 77 so you should probably update Chrome to use Chrome 77 beta.
 
+* You can now test your pages using Axe: `--axe.enable` - The test will run after all other metrics are collected and will add some extra time to your total run test time [#2571](https://github.com/sitespeedio/sitespeed.io/pull/2571). You can see all axe information in the new tab.
+
+* Send FirstMeaningfulPaint by default to Graphite/Influx [#2559](https://github.com/sitespeedio/sitespeed.io/pull/2559)
+
 ##  9.8.1 - 2019-08-03
 ### Fixed
 * Upgraded to Browsertime 5.7.3 that fixes a bug introduced in Browsertime 5.6.0 (sitespeed.io 9.7.0) that made it impossible to set multiple cookies when using Chrome [#910](https://github.com/sitespeedio/browsertime/pull/910).
