@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Use Firefox, Chrome or Chrome on Android to collect metrics.
-description: You can use Firefox, Chrome and Chrome on Android to collect metrics. You need make sure you have a set connectivity when you test, and you do that with Docker networks or throttle.
-keywords: browsers, documentation, sitespeed.io, Firefox, Chrome
+title: Use Firefox, Chrome, Safari or Chrome on Android to collect metrics.
+description: You can use Firefox, Chrome, Safari and Chrome on Android to collect metrics. You need make sure you have a set connectivity when you test, and you do that with Docker networks or throttle.
+keywords: browsers, documentation, sitespeed.io, Firefox, Chrome, Safari
 nav: documentation
 category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: You can use Firefox, Chrome and Chrome on Android to collect metrics.
+twitterdescription: You can use Firefox, Safari, Chrome and Chrome on Android to collect metrics.
 ---
 [Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / Browsers
 
@@ -16,10 +16,10 @@ twitterdescription: You can use Firefox, Chrome and Chrome on Android to collect
 * Lets place the TOC here
 {:toc}
 
-You can fetch timings, run your own JavaScript and record a video of the screen. The following browsers are supported: Firefox, Chrome and Chrome on Android. If you run our Docker containers, we always update them when we tested the latest stable release of the browsers (at the moment we run a beta of Firefox :)).
+You can fetch timings, run your own JavaScript and record a video of the screen. The following browsers are supported: Firefox, Safari, Chrome, Chrome on Android and Safari on iOS. If you run our Docker containers, we always update them when we tested the latest stable release of Chrome and Firefox. Safari and Safari on iOS needs Mac OS X Catalina.
 
 ## Firefox
-You will need Firefox 61 or later (current beta). In Firefox 55 the HAR export trigger was broken, and there's [a new version](https://github.com/devtools-html/har-export-trigger) that works in Firefox 61. You can use older Firefoxes but you will then miss out on the HAR file.
+The latest version of Firefox should work out of the box.
 
 ### Firefox profile setup
 At the moment we setup a new profile for each run the browser do. We set up the profiles preferences like [this](https://github.com/sitespeedio/browsertime/blob/master/lib/firefox/webdriver/firefoxPreferences.js). We use Mozillas [own configuration](https://searchfox.org/mozilla-central/source/testing/talos/talos/config.py) as default with some changes + some extra configuration for performance and privacy.
@@ -77,7 +77,7 @@ If you want to accept insecure certificates add ```--firefox.acceptInsecureCerts
 We have no way to get trace data from Firefox today (by trace data we mean time spent in JavaScript/paint etc). You can follow the [upstream request](https://bugzilla.mozilla.org/show_bug.cgi?id=1250290) to make that happen.
 
 ## Chrome
-The latest version of Chrome should work out of the box.
+The latest version of Chrome should work out of the box. Latest version of stable [Chromedriver](http://chromedriver.chromium.org) is bundled in sitespeed.io and needs to match your Chrome version.
 
 ### Chrome setup
 When we start Chrome it is setup with [these](https://github.com/sitespeedio/browsertime/blob/master/lib/chrome/webdriver/chromeOptions.js) command line switches.
@@ -111,6 +111,40 @@ Our Docker container only contains one version of Chrome and [let us know](https
 Chromedriver is the driver that handles the communication with Chrome. At the moment the Chromedriver version needs to match the Chrome version. By default sitespeed.io and Browsertime comes with the Chromedriver version that matches the Chrome version in the Docker container. If you wanna run tests on Chrome Beta/Canary you probably need to download a later version of Chromedriver.
 
 You download Chromedriver from [http://chromedriver.chromium.org](http://chromedriver.chromium.org) and then use ```--chrome.chromedriverPath``` to set the path to the new version of the Chromedriver.
+
+## Safari
+
+You can run Safari on Mac OS X. To run on iOS you need Catalina and iOS 13. To see more what you can do with the Safaridriver you can run `man safaridriver` in your terminal. 
+
+### Limitations
+We do not support HAR, video, cookies/request headers in Safari at the moment.
+
+### Configuration
+There are a couple of different specific Safari configurations.
+
+#### Run on iOS
+To run on iOS you need to add:
+
+~~~bash
+sitespeed.io --safari.ios -b safari
+~~~
+
+#### Choose which device
+There are a couple of different ways to choose which device to use:
+
+* `--safari.deviceName` set the device name. Device names for connected devices are shown in iTunes.
+* `--safari.deviceUDID` set the device UDID. If Xcode is installed, UDIDs for connected devices are available via the output of instruments(1) and in the Device and Simulators window accessed in Xcode via "Window > Devices and Simulators")
+* `--safari.deviceType` set the device type. If the value of *safari:deviceType* is `iPhone`, safaridriver will only create a sessio using an iPhone device or iPhone simulator. If the value of *safari:deviceType* is `iPad`, safaridriver will only create a session using an iPad device or iPad simulator.
+* `--safari.useSimulator` if the value of useSimulator is true, safaridriver will only use iOS Simulator hosts. If the value of safari:useSimulator is false, safaridriver will not use iOS Simulator hosts. NOTE: An Xcode installation is required in order to run WebDriver tests on iOS
+
+### Diagnose problems
+If you need to file a bug with Safaridriver, you also want to include diagnostics generated by safaridriver. You do that by adding `--safari.diagnose` to your run.
+
+~~~bash
+sitespeed.io --safari.ios -b safari --safari.diagnose
+~~~
+
+The log file will be stored in **~/Library/Logs/com.apple.WebDriver/**.
 
 ## Choose when to end your test
 By default the browser will collect data until  [window.performance.timing.loadEventEnd happens + aprox 5 seconds more](https://github.com/sitespeedio/browsertime/blob/d68261e554470f7b9df28797502f5edac3ace2e3/lib/core/seleniumRunner.js#L15). That is perfectly fine for most sites, but if you do Ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (```--browsertime.pageCompleteCheck```). When the scripts returns true the browser will close or if the timeout time is reached.

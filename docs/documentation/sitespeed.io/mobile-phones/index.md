@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Test your page using a Android mobile phone.
-description: You can use Chrome on your Android phone to test your pages (and get a video and Speed Index).
-keywords: mobile, android, browsertime, sitespeed.io
+title: Test your page using a Android or iOS mobile phone.
+description: You can use Chrome on your Android phone to test your pages (and get a video and Speed Index) or use Safari on iOS.
+keywords: mobile, android, safari, ios, browsertime, sitespeed.io
 nav: documentation
 category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: Test your page using a mobile phone
+twitterdescription: Test your page using Android or iOS.
 ---
 
 [Documentation](/documentation/sitespeed.io/) / Mobile phones
@@ -23,7 +23,7 @@ You can run your tests on Chrome on Android phones.
 ### Prerequisites
 
 We normally recommends using our Docker containers when you run sitespeed.io/Browsertime. However driving Android from Docker only works on a Linux host since there's is no way at the moment to map USB on Mac. If you use a Mac Mini or another Mac computer you should use the npm version.
-
+try 
 #### Desktop
 
 If you don't use Docker you need to:
@@ -154,3 +154,45 @@ One important thing when testing on mobile is to analyze the Chrome trace log. Y
 ```bash
 sitespeed.io --android --cpu https://www.sitespeed.io
 ```
+
+## Test on iOS
+
+You can run your tests on Safari on iOS.
+
+### Prerequisites
+
+To be able to test you need latest OS X Catalina on your Mac computer and iOS 13 on your phone (or iPad).
+
+#### Desktop
+
+Run your test using npm (instead of Docker).
+
+*Safardriver* the driver that drives Safari is bundled in iOS. But to be able to use it you need to enable it with:
+
+```bash
+safaridriver --enable
+```
+
+#### On your phone
+
+On Safari you need to enable **Remote Automation** to be able to drive it with WebDriver. To do this, toggle the setting in *Settings → Safari → Advanced → Remote Automation*.
+
+Plug in the phone into your machine and *trust the host* and make sure that your phone is unlocked when you run your tests.
+
+If you have any problems, make sure to read the [WebKit blog post about setting up your phone for Selenium](https://webkit.org/blog/9395/webdriver-is-coming-to-safari-in-ios-13/).
+
+### Run
+
+You are now ready to test using your phone:
+
+```bash
+sitespeed.io -b safari --safari.ios https://www.sitespeed.io
+```
+
+### Limitations
+At the moment there are a couple of limitations running Safari:
+
+* No HAR file
+* No videos
+
+You can help us [adding support in Browsertime](https://github.com/sitespeedio/browsertime)!
