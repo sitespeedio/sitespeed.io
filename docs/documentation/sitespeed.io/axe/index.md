@@ -28,6 +28,9 @@ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include ve
 
 That will run [axe-core](https://github.com/dequelabs/axe-core) and generate a new **axe** tab in your HTML result. The number of violations (per type) will automatically be sent to Graphite/InfluxDB.
 
+## Rules
+[See the full list](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md) of the tested accessibility rules when you run Axe.
+
 
 ## Configure Axe
 You can [configure Axe](https://github.com/dequelabs/axe-core/blob/master/doc/API.md#api-name-axeconfigure) which rules/checks that will be used. In the *axe* namespace we pass on all parameters to the configuration object of Axe. `--axe.checks` will result in a configuration object like:
