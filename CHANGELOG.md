@@ -21,6 +21,8 @@ We are working on the coming 10.0 release of sitespeed.io. The release date for 
 
 * Send FirstMeaningfulPaint by default to Graphite/Influx [#2559](https://github.com/sitespeedio/sitespeed.io/pull/2559)
 
+* Upgraded to the first alpha of the Coach 4.0.0-alpha.1.
+
 ##  9.8.1 - 2019-08-03
 ### Fixed
 * Upgraded to Browsertime 5.7.3 that fixes a bug introduced in Browsertime 5.6.0 (sitespeed.io 9.7.0) that made it impossible to set multiple cookies when using Chrome [#910](https://github.com/sitespeedio/browsertime/pull/910).
