@@ -6,7 +6,7 @@
   * Upgraded to Ubuntu Disco in the Docker container [#908](https://github.com/sitespeedio/browsertime/pull/908).
   * Use Chrome 77 Beta in the Docker container [#913](https://github.com/sitespeedio/browsertime/pull/913).
   * Use [TSProxy](https://github.com/WPO-Foundation/tsproxy) to throttle the connection. You should use TSProxy when you run on Kubernetes. Use it by `--connectivity.engine tsproxy`. We used to have support years ago but it never worked good on Mac/Linux so we dropped it. But it works now so we added it back [#891](https://github.com/sitespeedio/browsertime/pull/891).
-  * You can now add your own metrics directly from your script (or post script) using *context.result.extras*. More info coming [#917](https://github.com/ sitespeedio/browsertime/pull/917)
+  * You can now add your own metrics directly from your script (or post script) using *context.result.extras*. More info coming [#917](https://github.com/sitespeedio/browsertime/pull/917)
   And some new things coming in Chrome:
   * Using Chrome 77 (or later) you will now get a layout shift score (in percentage), see https://web.dev/layout-instability-api. [#905](https://github.com/sitespeedio/browsertime/pull/905).
   * Get LargestContentfulPaint in Chrome 77 (or later) [#906](https://github.com/sitespeedio/browsertime/pull/906).
