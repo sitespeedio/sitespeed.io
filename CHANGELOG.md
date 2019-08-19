@@ -2,6 +2,8 @@
 
 We are working on the coming 10.0 release of sitespeed.io. The release date for stable is the 11th of September (+- a couple of days).
 
+## 10.0.0-alpha.2 - UNRELEASED
+
 ## 10.0.0-alpha.1 - 2019-08-19
 ### Added
 * Upgraded to [fourth alpha of Browsertime 6.0.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#600-alpha4---2019-08-16). Chromedriver is updated to 77 so you should probably update Chrome to use Chrome 77 beta.
