@@ -10,6 +10,7 @@ mixin rows(assets, showTiming)
         a(href=asset.runPage + '.html') &circlearrowleft;
       +durationCell('last modified',asset.lastModification)
       +durationCell('cache time',asset.cacheTime)
+      +kbSizeCell('transfer', asset.transferSize)
       +kbSizeCell('size', asset.contentSize)
       if showTiming
         +numberCell('timing', asset.totalTime.toFixed(0))
@@ -38,25 +39,25 @@ block content
         h3(id=type) Largest #{contentTypeNames[type]} files
         .responsive
           table(data-sortable)
-            +rowHeading(['url', 'time since last modified', 'cache time', 'size (kb)'])
+            +rowHeading(['url', 'time since last modified', 'cache time', 'transfer (kb)', 'size (kb)'])
             +rows(assetsBySize[type], false)
 
     h3 Slowest responses
     p These are the assets that took the longest time to download.
     .responsive
       table(data-sortable, id='slowest')
-        +rowHeading(['url', 'time since last modified', 'cache time', 'size (kb)', 'timing (ms)'])
+        +rowHeading(['url', 'time since last modified', 'cache time', 'transfer (kb)', 'size (kb)', 'timing (ms)'])
         +rows(slowestAssets, true)
     if options.firstParty
       h3 3rd party largest responses
       .responsive
         table(data-sortable, id='largestThirdParty')
-          +rowHeading(['url', 'time since last modified', 'cache time', 'size (kb)'])
+          +rowHeading(['url', 'time since last modified', 'cache time', 'transfer (kb)', 'size (kb)'])
           +rows(thirdPartyAssetsBySize, false)
 
       h3 3rd party slowest responses
       p These are the 3rd party assets that took the longest time to download.
       .responsive
         table(data-sortable, id='slowestThirdParty')
-          +rowHeading(['url', 'time since last modified', 'cache time', 'size (kb)', 'timing (ms)'])
+          +rowHeading(['url', 'time since last modified', 'cache time', 'transfer (kb)', 'size (kb)', 'timing (ms)'])
           +rows(thirdPartySlowestAssets, true)
