@@ -1,0 +1,56 @@
+
+- const axe = pageInfo.data.axe.run ? pageInfo.data.axe.run : pageInfo.data.axe.pageSummary
+
+
+a
+h2 Axe
+p  Axe is an accessibility testing engine for websites and other HTML-based user interfaces. Read more about 
+    a(href='https://github.com/dequelabs/axe-core') axe-core
+    | . #{axe.testEngine ? 'Tested using ' + axe.testEngine.name + ' ' +  axe.testEngine.version + '.' : ''}
+
+
+if pageInfo.data.axe.run
+    h3 Violations
+    .responsive
+        table
+            - let oldImpact = 'none'
+            each violation in axe.violations
+                - if (oldImpact !== violation.impact)
+                    tr 
+                        th(colspan='2', style='text-transform: uppercase;') #{violation.impact}
+                tr 
+                    td 
+                        a(href= violation.helpUrl)  #{violation.help} 
+                        | (#{violation.tags}) - 
+                        i #{violation.id}
+                    td #{violation.description}
+                    - oldImpact = violation.impact
+
+                if (violation.nodes && violation.nodes.length > 0)   
+                    tr
+                        td(colspan='2')
+                            b #{violation.nodes[0].failureSummary} 
+                            ul        
+                                each nodes in violation.nodes
+                                    li #{nodes.html}
+else 
+    h3 Violations
+    p Median number of violations for all the runs. Check each individual run to see all the violations.
+    table
+        thead
+            tr
+                th Type
+                th Violations (median)
+        tbody
+            tr
+                td Critical 
+                td #{axe.violations.critical.median}
+            tr
+                td Serious
+                td #{axe.violations.serious.median}
+            tr
+                td Moderate
+                td #{axe.violations.moderate.median}
+            tr
+                td Minor
+                td #{axe.violations.minor.median}
