@@ -3,7 +3,7 @@ include ../../_tableMixins
 
 - pagexray.assets.sort(function(a, b){return b.transferSize-a.transferSize})
 
-h3 Largest asset on the page (transfer size)
+h3 Largest assets on the page (by transfer size)
 .responsive
   table(data-sortable, id='largestAssetsOnThePage')
     +rowHeading(['URL', 'Type', 'Transfer Size', 'Content Size'])
