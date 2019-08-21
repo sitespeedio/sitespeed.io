@@ -1,6 +1,14 @@
 # CHANGELOG - sitespeed.io
 
-## 10.0.0-alpha.1 - UNRELEASED
+We are working on the coming 10.0 release of sitespeed.io. The release date for stable is the 11th of September (+- a couple of days).
+
+## 10.0.0-alpha.2 - UNRELEASED
+
+### Added
+* Show the top 20 largest assets on the PageXray tab [#2583](https://github.com/sitespeedio/sitespeed.io/pull/2583)
+* Show the transfer size of assets (not only content size) in the toplists in the HTML [#2560](https://github.com/sitespeedio/sitespeed.io/pull/2560)
+
+## 10.0.0-alpha.1 - 2019-08-19
 ### Added
 * Upgraded to [fourth alpha of Browsertime 6.0.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#600-alpha4---2019-08-16). Chromedriver is updated to 77 so you should probably update Chrome to use Chrome 77 beta.
   * Upgraded to Ubuntu Disco in the Docker container [#908](https://github.com/sitespeedio/browsertime/pull/908).
@@ -18,6 +26,8 @@
 * Limited support for using Safari. Documentation coming when we release the stable version. You need Catalina + iOS 13 to run Safari on your phone/tablet.
 
 * Send FirstMeaningfulPaint by default to Graphite/Influx [#2559](https://github.com/sitespeedio/sitespeed.io/pull/2559)
+
+* Upgraded to the first alpha of the Coach 4.0.0-alpha.1.
 
 ##  9.8.1 - 2019-08-03
 ### Fixed
