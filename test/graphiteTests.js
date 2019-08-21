@@ -29,7 +29,9 @@ describe('graphite', function() {
         _: ['filename'],
         browser: 'chrome',
         browsertime: {
-          connectivity: 'cable'
+          connectivity: {
+            profile: 'cable'
+          }
         }
       });
 
@@ -64,7 +66,9 @@ describe('graphite', function() {
         _: ['sub_domain_com'],
         browser: 'chrome',
         browsertime: {
-          connectivity: 'cable'
+          connectivity: {
+            profile: 'cable'
+          }
         }
       });
       const data = generator.dataFromMessage(message, dayjs());
@@ -99,7 +103,9 @@ describe('graphite', function() {
         _: ['sub_domain_com'],
         browser: 'chrome',
         browsertime: {
-          connectivity: 'cable'
+          connectivity: {
+            profile: 'cable'
+          }
         },
         graphite: { statsd: true }
       });
