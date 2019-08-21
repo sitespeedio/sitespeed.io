@@ -4,6 +4,10 @@ We are working on the coming 10.0 release of sitespeed.io. The release date for 
 
 ## 10.0.0-alpha.2 - UNRELEASED
 
+### Added
+* Show the top 20 largest assets on the PageXray tab [#2583](https://github.com/sitespeedio/sitespeed.io/pull/2583)
+* Show the transfer size of assets (not only content size) in the toplists in the HTML [#2560](https://github.com/sitespeedio/sitespeed.io/pull/2560)
+
 ## 10.0.0-alpha.1 - 2019-08-19
 ### Added
 * Upgraded to [fourth alpha of Browsertime 6.0.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#600-alpha4---2019-08-16). Chromedriver is updated to 77 so you should probably update Chrome to use Chrome 77 beta.
