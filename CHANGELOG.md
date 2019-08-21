@@ -8,6 +8,10 @@ We are working on the coming 10.0 release of sitespeed.io. The release date for 
 * Show the top 20 largest assets on the PageXray tab [#2583](https://github.com/sitespeedio/sitespeed.io/pull/2583)
 * Show the transfer size of assets (not only content size) in the toplists in the HTML [#2560](https://github.com/sitespeedio/sitespeed.io/pull/2560)
 
+### Fixed
+* Unified how to log the options object, so that Browsertime and sitespeed.io follow the same standard. You can now log your options/configuration with `--verbose` that is super helpful when you need to debug configuration issues [#2588](https://github.com/sitespeedio/sitespeed.io/pull/2588).
+* Sending metrics to InfluxDB was broken because of a bug in how we get the connectivity name. Fixed in [#2587](https://github.com/sitespeedio/sitespeed.io/pull/2587).
+
 ## 10.0.0-alpha.1 - 2019-08-19
 ### Added
 * Upgraded to [fourth alpha of Browsertime 6.0.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#600-alpha4---2019-08-16). Chromedriver is updated to 77 so you should probably update Chrome to use Chrome 77 beta.
