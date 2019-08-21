@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Set the connectivity type before you start your tests.
-description: You can throttle the connection to make the connectivity slower to make it easier to catch regressions. The best way to do that is to setup a network bridge in Docker or use our connectivity engine Throttle.
+description: You can throttle the connection to make the connectivity slower to make it easier to catch regressions. The best way to do that is to setup a network bridge in Docker or use our connectivity engine Throttle. If you use Kubernetes you should use TSProxy.
 keywords: connectivity, throttle, emulate, users
 nav: documentation
 category: sitespeed.io
@@ -16,8 +16,10 @@ twitterdescription:
 * Lets place the TOC here
 {:toc}
 
-## Change connectivity
-You can throttle the connection to make the connectivity slower to make it easier to catch regressions. The best way to do that is to setup a network bridge in Docker or use our connectivity engine Throttle.
+## Change/set connectivity
+You can and should throttle the connection to make the connectivity slower to make it easier to catch regressions. If you don’t do it, you can run your tests with different connectivity profiles and regressions/improvements that you see is caused by your servers flakey internet connection
+
+The best way to do that is to setup a network bridge in Docker, use our connectivity engine [Throttle](https://github.com/sitespeedio/throttle) or if you use Kubernetes you can use [TSProxy](https://github.com/WPO-Foundation/tsproxy).
 
 
 ### Docker networks
@@ -87,7 +89,7 @@ sitespeed.io --browsertime.connectivity.engine throttle -c cable https://www.sit
 
 You can also use Throttle inside of Docker but then the host need to be the same OS as in Docker. In practice you can only use it on Linux. And then make sure to run *sudo modprobe ifb numifbs=1* first and give the container the right privileges *--cap-add=NET_ADMIN*.
 
-Firt use modprobe:
+First use modprobe:
 
 ~~~bash
 sudo modprobe ifb numifbs=1
@@ -98,7 +100,6 @@ And then then make user you use the right privileges:
 docker run --cap-add=NET_ADMIN --rm sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -c 3g --browsertime.connectivity.engine=throttle https://www.sitespeed.io/
 ~~~
 
-
 If you run Docker on OS X, you need to run throttle outside of Docker. Install it and run like this:
 
 ~~~
@@ -106,7 +107,17 @@ If you run Docker on OS X, you need to run throttle outside of Docker. Install i
 $ npm install @sitespeed.io/throttle -g
 
 # Then set the connectivity, run and stop
-$ throttle --up 330 --down 780 --rtt 200
+$ throttle cable
 $ docker run --shm-size=1g --rm sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/
-$ throttle --stop
+$ throttle stop
 ~~~
+
+### TSProxy
+[TSProxy](https://github.com/WPO-Foundation/tsproxy) is a Traffic-shaping SOCKS5 proxy built by [Patrick Meenan](https://twitter.com/patmeenan). You need Python 2.7 for it to work. When you run it through Browsertime/sitespeed.io configures Firefox and Chrome to automatically use the proxy.
+
+If use Kubernetes you can not use Docker networks or tc, but you can use TSProxy.
+
+~~~bash
+sitespeed.io --browsertime.connectivity.engine tsproxy -c cable https://www.sitespeed.io/
+~~~
+
