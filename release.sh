@@ -19,10 +19,10 @@ docker build --no-cache -t sitespeedio/sitespeed.io:$PACKAGE_VERSION -t sitespee
 docker push sitespeedio/sitespeed.io:$PACKAGE_VERSION
 # docker push sitespeedio/sitespeed.io:latest
 
-#docker build -t sitespeedio/sitespeed.io:$PACKAGE_VERSION-action --build-arg version=$PACKAGE_VERSION --file docker/github-action/Dockerfile .
+docker build -t sitespeedio/sitespeed.io:$PACKAGE_VERSION-action --build-arg version=$PACKAGE_VERSION --file docker/github-action/Dockerfile .
 docker push sitespeedio/sitespeed.io:$PACKAGE_VERSION-action
 
-#docker build -t sitespeedio/sitespeed.io:$PACKAGE_VERSION-plus1 --build-arg version=$PACKAGE_VERSION --file docker/Dockerfile-plus1 .
+docker build -t sitespeedio/sitespeed.io:$PACKAGE_VERSION-plus1 --build-arg version=$PACKAGE_VERSION --file docker/Dockerfile-plus1 .
 docker push sitespeedio/sitespeed.io:$PACKAGE_VERSION-plus1
 
 # Update to latet version in the docs
