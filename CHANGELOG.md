@@ -11,9 +11,12 @@ We are working on the coming 10.0 release of sitespeed.io. The release date for 
 ### Fixed
 * Unified how to log the options object, so that Browsertime and sitespeed.io follow the same standard. You can now log your options/configuration with `--verbose` that is super helpful when you need to debug configuration issues [#2588](https://github.com/sitespeedio/sitespeed.io/pull/2588).
 * Sending metrics to InfluxDB was broken because of a bug in how we get the connectivity name. Fixed in [#2587](https://github.com/sitespeedio/sitespeed.io/pull/2587).
+* HTML fix for showing the script in the result HTML [#2597](https://github.com/sitespeedio/sitespeed.io/pull/2597).
+* Running a script, testing multiple different domains, having aliases made data in Graphite sent under the wrong group/domain. Fixed in [#2592](https://github.com/sitespeedio/sitespeed.io/pull/2592)
 
 ### Tech
 * Updated dev dependencies and yargs, @google-cloud/storage, aws-sdk, dayjs, findup, fs-extra, influx, juni-report-builder, p-limit, pug, simplecrawler and tape.
+* Updated to the 6th alpha of Browsertime 6.0.0
 
 ## 10.0.0-alpha.1 - 2019-08-19
 ### Added
