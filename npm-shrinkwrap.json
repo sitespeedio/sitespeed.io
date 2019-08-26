@@ -3363,14 +3363,14 @@
       "integrity": "sha1-81HTKWnTL6XXpVZxVCY9korjvR8="
     },
     "browsertime": {
-      "version": "6.0.0-alpha.6",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-6.0.0-alpha.6.tgz",
-      "integrity": "sha512-CHydflTPM1Ze+1w+a/0DC3DNgR4eGk8H78P+5B/ReLGuikMCzuzpsAfpQz3Z3udIps3n4Ms5uaKckuDFndokew==",
+      "version": "6.0.0-alpha.7",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-6.0.0-alpha.7.tgz",
+      "integrity": "sha512-PS+nkkjihrjr5CRCaZQ+B93Bz/6fplI31iYY6i0CZ9r50p7zLBLjNn/7PpyT5XxmfhM99mL/qiDDM8CAHxE2hA==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@sitespeed.io/chromedriver": "76.0.3809-68",
         "@sitespeed.io/geckodriver": "0.24.0",
-        "@sitespeed.io/throttle": "0.5.2",
+        "@sitespeed.io/throttle": "0.5.4",
         "@sitespeed.io/tracium": "0.3.3",
         "adbkit": "2.11.1",
         "btoa": "1.2.1",
@@ -3400,9 +3400,9 @@
       },
       "dependencies": {
         "@sitespeed.io/throttle": {
-          "version": "0.5.2",
-          "resolved": "https://registry.npmjs.org/@sitespeed.io/throttle/-/throttle-0.5.2.tgz",
-          "integrity": "sha512-3HUoofFwqQjX6BvziB9DkHKsFFIKQQCXeM/fSekMM3DT7fQ39B1EcCVPd9/JG8Hp+rYFRdH9d/AG7oSpniYNvA==",
+          "version": "0.5.4",
+          "resolved": "https://registry.npmjs.org/@sitespeed.io/throttle/-/throttle-0.5.4.tgz",
+          "integrity": "sha512-f60XRok4+d3cqqQiJe++KlmYYhCeBSXezB/GXY/Wu6Bkf+Bnuua8fMH30pExGpgzkTLMmSd8G6tG6NVhatlF/g==",
           "requires": {
             "execa": "2.0.4",
             "minimist": "1.2.0",
