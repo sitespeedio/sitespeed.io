@@ -23,7 +23,7 @@ You can use sitespeed.io to keep track of what is happening with your site by ma
 To do this you define your own [budget file](../performance-budget/#the-budget-file) with rules on when to break your build. This budget will return an error code status after the run. You can also choose to output JUnit XML and TAP reports.
 
 ## Github Actions
-If you are using [Github Actions](https://github.com/features/actions) beta it's super easy to run sitespeed.io. Remember though that actions are in beta and can change. They are running an small instances at the moment and you have no way of [setting the connectivity](/documentation/sitespeed.io/connectivity/) so you shouldn't rely on timing metrics. 
+If you are using [Github Actions](https://github.com/features/actions) beta it's super easy to run sitespeed.io. Remember though that actions are in beta and can change. They are running an small instances at the moment and you have no way of [setting the connectivity](/documentation/sitespeed.io/connectivity/) so you shouldn't rely on timing metrics.
 
 Actions works good with a [performance budget](documentation/sitespeed.io/performance-budget/). You should set your budget in a file in the repo that you are testing. In this example we call the file *budget.json* and put it in the *.github* folder in the repo.
 
@@ -104,6 +104,46 @@ docker run -v ${WORKSPACE}:/sitespeed.io sitespeedio/sitespeed.io --outputFolder
 
 Remember that you can also send the metrics to Graphite to keep a closer eye on all metrics over time.
 
+### Connect to Grafana
+
+If you are running Jenkins inside a container, you probably will have problems connecting the sitespeed container to grafana because of dind. You can fix this problem by setting up sitespeed image as a docker agent in order to send the report to grafana. See following example configuration:
+
+~~~java
+pipeline {
+  agent {
+    docker {
+      image 'sitespeedio/sitespeed.io'
+    }
+  }
+  stages {
+    stage('git') {
+      steps {
+        git(url: 'git@gitlab.com:.git', branch: 'master' credentialsId: 'jenkins-deploy_key')
+      }
+    }
+    stage('test') {
+      steps {
+        script {
+          // Get container's gateway to connect to grafana. Make your your graphite container bind the port to host machine.
+          // If you bind the port to other than 2003, then you must specify that port number in start script.
+          def target_host = '''$(printf "%d.%d.%d.%d" $(awk '$2 == 00000000 && $7 == 00000000 { for (i = 8; i >= 2; i=i-2) { print "0x" substr($3, i-1, 2) } }' /proc/net/route))'''
+          sh """/start.sh ${YOUR_URLS} --graphite.host=${target_host}"""
+        }
+      }
+    }
+  }
+~~~
+
+If you have problems with the docker image, create a new one from the original and change the entrypoint, like this:
+
+~~~docker
+FROM sitespeedio/sitespeed.io
+
+ENTRYPOINT [ "/bin/sh", "-c" ]
+~~~
+
+Then built it or publish to a registry and use it as docker agent image.
+
 ## Travis
 We have an example project for setting up Travis [https://github.com/sitespeedio/travis/](https://github.com/sitespeedio/travis/blob/master/.travis.yml). You should not try to use timings in your budget, simply because they tend to vary and be highly unreliable. We suggest using metrics that do not vary greatly and will be the same between runs like Coach score or number of requests.
 
@@ -147,7 +187,7 @@ workflows:
 You will notice that the last run is reading the performance budget file that exists in the git repo that was checked out. This will only work if you mount the checked out repo as a volume for sitespeed. This makes is really efficient and convenient to allow sitespeed to pick up configuration files and to output results to a location where one can post-process with other scripts.
 
 ## Gitlab CI
-Gitlab has prepared an easy way to test using sitespeed.io: [https://docs.gitlab.com/ee/ci/examples/browser_performance.html](https://docs.gitlab.com/ee/ci/examples/browser_performance.html). 
+Gitlab has prepared an easy way to test using sitespeed.io: [https://docs.gitlab.com/ee/ci/examples/browser_performance.html](https://docs.gitlab.com/ee/ci/examples/browser_performance.html).
 
 ## Grunt plugin
 Checkout the [grunt plugin](https://github.com/sitespeedio/grunt-sitespeedio).
