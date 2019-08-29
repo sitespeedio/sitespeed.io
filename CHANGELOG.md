@@ -2,7 +2,7 @@
 
 We are working on the coming 10.0 release of sitespeed.io. The release date for stable is the 11th of September (+- a couple of days).
 
-## 10.0.0-alpha.2 - UNRELEASED
+## 10.0.0-alpha.2 - 2019-08-29
 
 ### Changed
 * To store the log to file you need to now add `--logToFile` to your run. This makes sense that you need to make an active choice to store the log file[#2606](https://github.com/sitespeedio/sitespeed.io/pull/2606).
@@ -19,6 +19,7 @@ We are working on the coming 10.0 release of sitespeed.io. The release date for 
 * Running a script, testing multiple different domains, having aliases made data in Graphite sent under the wrong group/domain. Fixed in [#2592](https://github.com/sitespeedio/sitespeed.io/pull/2592)
 * Fixed annotations tag when using WebPageTest. Before the correct values was not sent. With the fix you can use the annotations on you WebPageTest dashboard [2602](https://github.com/sitespeedio/sitespeed.io/pull/2602).
 * Add WebPageTest screenshot in annotation if you use WebPageTest without Browsertime [#2603](https://github.com/sitespeedio/sitespeed.io/pull/2603) and [#2605](https://github.com/sitespeedio/sitespeed.io/pull/2605)
+* Link to WebPageTest HAR in the annotation if you run WebPageTest standalone [#2609](https://github.com/sitespeedio/sitespeed.io/pull/2609).
 
 ### Tech
 * Updated dev dependencies and yargs, @google-cloud/storage, aws-sdk, dayjs, findup, fs-extra, influx, juni-report-builder, p-limit, pug, simplecrawler and tape.
