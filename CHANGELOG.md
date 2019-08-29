@@ -4,6 +4,9 @@ We are working on the coming 10.0 release of sitespeed.io. The release date for 
 
 ## 10.0.0-alpha.2 - UNRELEASED
 
+### Changed
+* To store the log to file you need to now add `--logToFile` to your run. This makes sense that you need to make an active choice to store the log file[#2606](https://github.com/sitespeedio/sitespeed.io/pull/2606).
+
 ### Added
 * Show the top 20 largest assets on the PageXray tab [#2583](https://github.com/sitespeedio/sitespeed.io/pull/2583)
 * Show the transfer size of assets (not only content size) in the toplists in the HTML [#2560](https://github.com/sitespeedio/sitespeed.io/pull/2560)
