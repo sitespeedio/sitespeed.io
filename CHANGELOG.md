@@ -13,6 +13,8 @@ We are working on the coming 10.0 release of sitespeed.io. The release date for 
 * Sending metrics to InfluxDB was broken because of a bug in how we get the connectivity name. Fixed in [#2587](https://github.com/sitespeedio/sitespeed.io/pull/2587).
 * HTML fix for showing the script in the result HTML [#2597](https://github.com/sitespeedio/sitespeed.io/pull/2597).
 * Running a script, testing multiple different domains, having aliases made data in Graphite sent under the wrong group/domain. Fixed in [#2592](https://github.com/sitespeedio/sitespeed.io/pull/2592)
+* Fixed annotations tag when using WebPageTest. Before the correct values was not sent. With the fix you can use the annotations on you WebPageTest dashboard [2602](https://github.com/sitespeedio/sitespeed.io/pull/2602).
+* Add WebPageTest screenshot in annotation if you use WebPageTest without Browsertime [#2603](https://github.com/sitespeedio/sitespeed.io/pull/2603) and [#2605](https://github.com/sitespeedio/sitespeed.io/pull/2605)
 
 ### Tech
 * Updated dev dependencies and yargs, @google-cloud/storage, aws-sdk, dayjs, findup, fs-extra, influx, juni-report-builder, p-limit, pug, simplecrawler and tape.
