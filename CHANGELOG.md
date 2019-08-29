@@ -6,6 +6,7 @@ We are working on the coming 10.0 release of sitespeed.io. The release date for 
 
 ### Changed
 * To store the log to file you need to now add `--logToFile` to your run. This makes sense that you need to make an active choice to store the log file[#2606](https://github.com/sitespeedio/sitespeed.io/pull/2606).
+* Using `--debug`now set the log level to verbose instead of just logging the message queue. To log the message queue use `--debugMessages` [#2607](https://github.com/sitespeedio/sitespeed.io/pull/2607).
 
 ### Added
 * Show the top 20 largest assets on the PageXray tab [#2583](https://github.com/sitespeedio/sitespeed.io/pull/2583)
