@@ -2,6 +2,10 @@
 
 We are working on the coming 10.0 release of sitespeed.io. The release date for stable is the 11th of September (+- a couple of days).
 
+## UNERELEASED
+### Fixed
+* Multiple bug fixes for the Slack plugin: Show the correct connectivity, aalways have a red color when we have an error and fixed bug when comparing metrics (we compare with median) [#2610](https://github.com/sitespeedio/sitespeed.io/pull/2610).
+
 ## 10.0.0-alpha.2 - 2019-08-29
 
 ### Changed
@@ -16,7 +20,7 @@ We are working on the coming 10.0 release of sitespeed.io. The release date for 
 * Unified how to log the options object, so that Browsertime and sitespeed.io follow the same standard. You can now log your options/configuration with `--verbose` that is super helpful when you need to debug configuration issues [#2588](https://github.com/sitespeedio/sitespeed.io/pull/2588).
 * Sending metrics to InfluxDB was broken because of a bug in how we get the connectivity name. Fixed in [#2587](https://github.com/sitespeedio/sitespeed.io/pull/2587).
 * HTML fix for showing the script in the result HTML [#2597](https://github.com/sitespeedio/sitespeed.io/pull/2597).
-* Running a script, testing multiple different domains, having aliases made data in Graphite sent under the wrong group/domain. Fixed in [#2592](https://github.com/sitespeedio/sitespeed.io/pull/2592)
+* Running a script, testing multiple different domains, having aliases made data in Graphite sent under the wrong group/domain. Fixed in [#25###92](https://github.com/sitespeedio/sitespeed.io/pull/2592)
 * Fixed annotations tag when using WebPageTest. Before the correct values was not sent. With the fix you can use the annotations on you WebPageTest dashboard [2602](https://github.com/sitespeedio/sitespeed.io/pull/2602).
 * Add WebPageTest screenshot in annotation if you use WebPageTest without Browsertime [#2603](https://github.com/sitespeedio/sitespeed.io/pull/2603) and [#2605](https://github.com/sitespeedio/sitespeed.io/pull/2605)
 * Link to WebPageTest HAR in the annotation if you run WebPageTest standalone [#2609](https://github.com/sitespeedio/sitespeed.io/pull/2609).
