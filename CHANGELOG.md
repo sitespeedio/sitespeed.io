@@ -6,6 +6,10 @@ We are working on the coming 10.0 release of sitespeed.io. The release date for 
 ### Fixed
 * Multiple bug fixes for the Slack plugin: Show the correct connectivity, aalways have a red color when we have an error and fixed bug when comparing metrics (we compare with median) [#2610](https://github.com/sitespeedio/sitespeed.io/pull/2610).
 
+### Added
+* Added new metrics for slacking errors/warnings: firstPaint, visualComplete85, lastVisualChange, fullyLoaded (and fixed broken fullyLoaded) [#2611](https://github.com/sitespeedio/sitespeed.io/pull/2611). 
+
+
 ## 10.0.0-alpha.2 - 2019-08-29
 
 ### Changed
