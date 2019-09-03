@@ -87,7 +87,7 @@ sitespeed.io --browsertime.connectivity.engine throttle -c cable https://www.sit
 
 You can also use Throttle inside of Docker but then the host need to be the same OS as in Docker. In practice you can only use it on Linux. And then make sure to run *sudo modprobe ifb numifbs=1* first and give the container the right privileges *--cap-add=NET_ADMIN*.
 
-Firt use modprobe:
+First use modprobe:
 
 ~~~bash
 sudo modprobe ifb numifbs=1
