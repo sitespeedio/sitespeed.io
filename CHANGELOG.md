@@ -2,6 +2,10 @@
 
 We are working on the coming 10.0 release of sitespeed.io. The release date for stable is the 11th of September (+- a couple of days).
 
+## UNRELEASED
+### Added
+* Updated to Firefox 69 in the Docker container.
+
 ## 10.0.0-alpha.3 - 2019-08-30
 ### Fixed
 * Multiple bug fixes for the Slack plugin: Show the correct connectivity, always have a red color when we have an error and fixed bug when comparing metrics (we compare with median) [#2610](https://github.com/sitespeedio/sitespeed.io/pull/2610).
