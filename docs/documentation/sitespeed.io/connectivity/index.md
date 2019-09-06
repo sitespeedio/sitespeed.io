@@ -71,7 +71,7 @@ docker network rm cable
 ~~~
 
 ### Throttle
-Throttle uses *tc* on Linux and *pfctl* on Mac to change the connectivity. Throttle will need sudo rights for the user running sitespeed.io to work.
+[Throttle](https://github.com/sitespeedio/throttle) uses *tc* on Linux and *pfctl* on Mac to change the connectivity. Throttle will need sudo rights for the user running sitespeed.io to work.
 
 To use throttle, use set the connectivity engine by <code>--connectivity.engine throttle</code>.
 
@@ -87,7 +87,7 @@ sitespeed.io --browsertime.connectivity.engine throttle -c cable https://www.sit
 
 You can also use Throttle inside of Docker but then the host need to be the same OS as in Docker. In practice you can only use it on Linux. And then make sure to run *sudo modprobe ifb numifbs=1* first and give the container the right privileges *--cap-add=NET_ADMIN*.
 
-Firt use modprobe:
+First use modprobe:
 
 ~~~bash
 sudo modprobe ifb numifbs=1

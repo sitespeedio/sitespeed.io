@@ -25,8 +25,8 @@ You will need Firefox 61 or later (current beta). In Firefox 55 the HAR export t
 At the moment we setup a new profile for each run the browser do. We set up the profiles preferences like [this](https://github.com/sitespeedio/browsertime/blob/master/lib/firefox/webdriver/firefoxPreferences.js). We use Mozillas [own configuration](https://searchfox.org/mozilla-central/source/testing/talos/talos/config.py) as default with some changes + some extra configuration for performance and privacy.
 
 We try to disable all Firefox ping home:
- * We disables [heartbeat](https://wiki.mozilla.org/Firefox/Shield/Heartbeat).
- * We disables the call to detectportal.firefox.com.
+ * We disable [heartbeat](https://wiki.mozilla.org/Firefox/Shield/Heartbeat).
+ * We disable the call to detectportal.firefox.com.
  * We turn off [telemetry](https://wiki.mozilla.org/Telemetry/Testing).
  * We turn on the call home for [safebrowsing](https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections).
 
