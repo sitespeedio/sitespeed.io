@@ -114,6 +114,10 @@ If you are using Linux you should use `--network=host` to make sure localhost is
 docker run --rm -v "$(pwd)":/sitespeed.io --network=host sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox http://localhost:4000/
 ```
 
+## Access host in your local network
+Sometimes the server you wanna test is in your local network at work and Docker cannot reach it (but you can from your physical machine). Usually you can fix that by making sure Docker uses the same network as your machine. Add `--network=host` and it should work.
+
+
 ## Extra start script
 
 You can run your extra start script in the Docker container: 

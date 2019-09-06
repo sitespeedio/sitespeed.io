@@ -73,7 +73,7 @@ docker network rm cable
 ~~~
 
 ### Throttle
-Throttle uses *tc* on Linux and *pfctl* on Mac to change the connectivity. Throttle will need sudo rights for the user running sitespeed.io to work.
+[Throttle](https://github.com/sitespeedio/throttle) uses *tc* on Linux and *pfctl* on Mac to change the connectivity. Throttle will need sudo rights for the user running sitespeed.io to work.
 
 To use throttle, use set the connectivity engine by <code>--connectivity.engine throttle</code>.
 

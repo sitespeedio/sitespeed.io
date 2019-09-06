@@ -45,6 +45,8 @@ Every metric that is sent to Graphite following the pattern (the namespace start
 
 Depending on how often you run your analysis, you may want to change the storage-schemas.conf. With the current config, if you analyse the same URL within 10 minutes, one of the runs will be discarded. But if you know you only run once an hour, you could increase the setting. Etsy has some really [good documentation](https://github.com/etsy/statsd/blob/master/docs/graphite.md) on how to configure Graphite.
 
+In this example with retention of 10 minutes, the metrics you will send will be in Graphite with a 10 minute interval. If you have a larger interval for example one hour and send annotations on specific seconds, you can then see a larger missmatch between the annotation and when the actual metric got into Graphite.
+
 One thing to know if you change your Graphite configuration: ["Any existing metrics created will not automatically adopt the new schema. You must use whisper-resize.py to modify the metrics to the new schema. The other option is to delete existing whisper files (/opt/graphite/storage/whisper) and restart carbon-cache.py for the files to get recreated again."](http://mirabedini.com/blog/?p=517)
 {: .note .note-warning}
 
@@ -135,7 +137,7 @@ The Graphite DB size is determined by the number of unique data points and the f
 If you are using statsd you can use it by adding <code>--graphite.statsd</code> (and send the metrics to statsd instead of directly to Graphite). You can also choose how many metrics you wanna send per request by configuring <code>--graphite.bulkSize</code>.
 
 If you are a DataDog user you can use [DogStatsD](https://docs.datadoghq.com/developers/dogstatsd/).
- 
+
 ## Graphite for production (important!)
 
 1. Make sure you have [configured storage-aggregation.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/graphite/conf/storage-aggregation.conf) in Graphite to fit your needs.
@@ -146,3 +148,4 @@ If you are a DataDog user you can use [DogStatsD](https://docs.datadoghq.com/dev
  - /path/on/server/graphite.db:/opt/graphite/storage/graphite.db
  If you use Grafana annotations, you should make sure grafana.db is outside of the container. Follow the documentation at [grafana.org](http://docs.grafana.org/installation/docker/#grafana-container-using-bind-mounts).
  5. Run the latest version of Graphite and if you are using Docker, make sure you use a tagged version of the container (like graphiteapp/graphite-statsd:1.1.5-12) and never use the **latest** Docker tag.
+ 6. Secure your instance with a firewall, so only your servers can post data to the instance. [Read Digital Oceans example on how to use UFW on Ubunu](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-18-04). Your Graphite server needs to open port 2003 and 8080 for TCP traffic for the IP numbers of your servers running sitespeed.io.
