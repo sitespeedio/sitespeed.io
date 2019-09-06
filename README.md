@@ -6,6 +6,7 @@
 [![Stars][stars-image]][stars-url]
 [![npm][npm-image]][npm-url]
 [![Changelog #212][changelog-image]][changelog-url]
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 
 [Website](https://www.sitespeed.io/) | [Documentation](https://www.sitespeed.io/documentation/sitespeed.io/) | [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) | [Twitter](https://twitter.com/SiteSpeedio)
