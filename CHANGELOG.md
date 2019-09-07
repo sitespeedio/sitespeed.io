@@ -2,13 +2,16 @@
 
 We are working on the coming 10.0 release of sitespeed.io. The release date for stable is the 11th of September (+- a couple of days).
 
-## UNRELEASED
+## 10.0.0-beta.1 - UNRELEASED
 ### Added
 * Updated to Firefox 69 in the Docker container.
 * Collext Axe violations for summary and detailed summary [#2622](https://github.com/sitespeedio/sitespeed.io/pull/2622).
 
 ### Fixed
 * Guard against broken WPT multi-step runs [#2621](https://github.com/sitespeedio/sitespeed.io/pull/2621).
+
+### Changed 
+* Upgraded to yargs 14.1.0 that deep merge configuration files when you extend another configuration [#2626](https://github.com/sitespeedio/sitespeed.io/pull/2626)
 
 ## 10.0.0-alpha.3 - 2019-08-30
 ### Fixed
