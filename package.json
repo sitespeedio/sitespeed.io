@@ -50,9 +50,6 @@
   "engines": {
     "node": ">=10.13.0"
   },
-  "publishConfig": {
-    "tag": "canary"
-  },
   "devDependencies": {
     "bluebird": "3.5.5",
     "chai": "4.2.0",
