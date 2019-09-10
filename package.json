@@ -1,7 +1,7 @@
 {
   "name": "sitespeed.io",
   "bin": "./bin/sitespeed.js",
-  "version": "10.0.0-alpha.3",
+  "version": "10.0.0-beta.1",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -50,9 +50,6 @@
   "engines": {
     "node": ">=10.13.0"
   },
-  "publishConfig": {
-    "tag": "canary"
-  },
   "devDependencies": {
     "bluebird": "3.5.5",
     "chai": "4.2.0",
@@ -75,7 +72,7 @@
     "axe-core": "3.3.1",
     "@google-cloud/storage": "3.2.0",
     "aws-sdk": "2.517.0",
-    "browsertime": "6.0.0-alpha.8",
+    "browsertime": "6.0.0",
     "cli-color": "1.4.0",
     "concurrent-queue": "7.0.2",
     "dayjs": "1.8.15",
@@ -111,8 +108,8 @@
     "text-table": "0.2.0",
     "third-party-web": "0.10.1",
     "uuid": "3.3.2",
-    "webcoach": "4.0.0-alpha.2",
+    "webcoach": "4.0.0",
     "webpagetest": "0.3.9",
-    "yargs": "14.0.0"
+    "yargs": "14.1.0"
   }
 }
