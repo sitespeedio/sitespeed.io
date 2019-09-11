@@ -1,7 +1,9 @@
 # CHANGELOG - sitespeed.io
 
-## 10.0.0 - UNRELEASED
+## UNRELEASED
 
+
+## 10.0.0 - 2019-09-11
 ### Added
 * Updated to Firefox 69 and Chrome 77 in the Docker container.
 * Collext Axe violations for summary and detailed summary [#2622](https://github.com/sitespeedio/sitespeed.io/pull/2622). Read more in the [documentation](https://www.sitespeed.io/documentation/sitespeed.io/axe/).
