@@ -49,7 +49,7 @@ When you as user choose to test a URL, this is what happens on a high level:
     2. It starts to record a video of the browser screen.
     3. The browser access the URL.
     4. When the page is finished, Browsertime takes a screenshot of the page.
-    5. Then run some JavaScripts to analyse the page (using Coach and Browsertime scripts).
+    5. Then run some JavaScript to analyse the page (using Coach and Browsertime scripts).
     6. Stop the video and close the browser.
     7. Analyse the video to get Visual Metrics like First Visual Change and Speed Index.
     8. Browsertime passes all metrics and data on the queue so other plugins can use it.

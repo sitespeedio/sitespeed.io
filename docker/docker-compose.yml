@@ -7,7 +7,7 @@ services:
       volumes:
             - ./sitespeed-result/:/sitespeed.io/sitespeed-result
     grafana:
-      image: grafana/grafana:6.3.4
+      image: grafana/grafana:6.3.5
       depends_on:
         - graphite
       links:
@@ -35,12 +35,15 @@ services:
         # https://www.sitespeed.io/documentation/sitespeed.io/graphite/#graphite-for-production-important
         - whisper:/opt/graphite/storage/whisper
         # Download an empty graphite.db from https://github.com/sitespeedio/sitespeed.io/tree/master/docker/graphite
-        #- ./graphite/graphite.db:/opt/graphite/storage/graphite.db
-        #- ./graphite/conf/storage-schemas.conf:/opt/graphite/conf/storage-schemas.conf
-        #- ./graphite/conf/storage-aggregation.conf:/opt/graphite/conf/storage-aggregation.conf
-        #- ./graphite/conf/carbon.conf:/opt/graphite/conf/carbon.conf
+        # - /absolute/path/to/graphite/graphite.db:/opt/graphite/storage/graphite.db
+        # 
+        # And put the configuration files on your server, configure them as you need
+        # Download from https://github.com/sitespeedio/docker-graphite-statsd/tree/master/conf/graphite
+        # - /absolute/path/to/graphite/conf/storage-schemas.conf:/opt/graphite/conf/storage-schemas.conf
+        # - /absolute/path/to/graphite/conf/storage-aggregation.conf:/opt/graphite/conf/storage-aggregation.conf
+        # - /absolute/path/to/graphite/conf/carbon.conf:/opt/graphite/conf/carbon.conf
     grafana-setup:
-      image: sitespeedio/grafana-bootstrap:9.1.1
+      image: sitespeedio/grafana-bootstrap:10.0.0
       links:
         - grafana
       environment:

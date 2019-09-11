@@ -81,7 +81,7 @@ All URLs that you test then needs to have a SpeedIndex faster than 1000. But if 
 
 #### Full example
 
-Here is an example of a fully configurued budget file. It shows you what yiou *can* configure (but you shouldn't configure all of them). 
+Here is an example of a fully configurued budget file. It shows you what you *can* configure (but you shouldn't configure all of them). 
 
 ~~~json
 {
