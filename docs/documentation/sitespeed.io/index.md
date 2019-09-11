@@ -18,7 +18,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
 ## Start
  * [Introduction](introduction/) - start here if you are new to the project or web performance testing.
  * [Installation](installation/) - install using npm, yarn or run our Docker containers.
- * [Browsers](browsers/) - collect timings using real browsers. We support Firefox, Chrome and Chrome on Android.
+ * [Browsers](browsers/) - collect timings using real browsers. We support Firefox, Chrome, Chrome on Android and limited support for Safari on OS X and iOS. 
  * [Configuration](configuration/) - there's a lot of things you can do with sitespeed.io, lets checkout how!
  * [Connectivity](connectivity/) - set the connectivity to emulate real users network conditions.
  * [Continuously run your tests](continuously-run-your-tests/) - how to setup your test to continously run your tests.

@@ -45,6 +45,6 @@ If you wanna avoid having over complicated cli-params you should use the [config
 
 
 ## How it works behind the scene
-The Axe tests are run as a [postScript](/documentation/sitespeed.io/prepostscript/)
+The Axe tests are run as a [postScript](/documentation/sitespeed.io/prepostscript/).
 
 Running Axe will add some extra run time per test. How long extra time it takes depends on your page and the server running the browser.
