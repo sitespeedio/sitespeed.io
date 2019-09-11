@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Documentation sitespeed.io 9.x
+title: Documentation sitespeed.io 10.x
 description: Read about all you can do with sitespeed.io.
 keywords: tools, documentation, web performance
 nav: documentation
@@ -9,7 +9,7 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Documentation for sitespeed.io.
 ---
 
-# Documentation v9
+# Documentation v10
 
 <img src="{{site.baseurl}}/img/logos/sitespeed.io.png" class="pull-right img-big" alt="sitespeed.io logo" width="200" height="214">
 
@@ -30,6 +30,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
 
 ## More details
  * [Alerts](alerts/) - send alerts (email/Slack/PagerDuty etc) when you get a performance regression.
+ * [Axe](axe/) - run accessibility tests.
  * [Continuous Integration](continuous-integration/) - generate JUnit XML/TAP and use Jenkins, Circle CI, Gitlab CI, Github Actions, Grunt or the Gulp plugin.
  * [CPU](cpu/) - measure CPU metrics to see where your page spends the time.
  * [Developers](developers/) - start here when you want to do PRs or create a plugin.
@@ -37,7 +38,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [How to Write a Good Bug Report](bug-report/) - if you write a good bug report, we can spend more time helping you fixing the problem instead of asking you questions
  * [Lighthouse](lighthouse/) - run Lighthouse and Google PageSpeed Insights from sitespeed.io.
  * [Metrics](metrics/) - configure which metrics you want to use.
- * [Mobile phones](mobile-phones/) - test using your mobile phone (Android only).
+ * [Mobile phones](mobile-phones/) - test using your mobile phone. Chrome on Android and Safari on iOS.
  * [Performance Budget](performance-budget/) - make sure you are within your performance budget.
  * [Plugins](plugins/) - list/disable/enable or create your own plugin.
  * [Pre/post scripting](prepostscript/) - run Selenium scripts before/after you test a URL.
