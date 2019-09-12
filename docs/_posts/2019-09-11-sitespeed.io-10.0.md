@@ -78,8 +78,6 @@ We now support (limited) testing with Safari. Testing on OS X works out of the b
 
 The support is limited at the moment, you will get all the metrics we collect using JavaScript and we do not support HAR, video, or cookies/request headers.
 
-With the current version of Catalina your phone needs to be paired with the host computer to work, but we have been told that it will be fixed in coming beta versions of Catalina.
-
 ## More love for WebPageTest
 Finally your annotations works for WebPageTest! That means that if you also drive WebPageTest from sitespeed.io, your annotations can get you directly to the WebPageTest result page.
 
