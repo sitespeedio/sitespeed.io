@@ -104,7 +104,7 @@ You need Python 2.7 to run TSProxy and you enable it like this:
 sitespeed.io --browsertime.connectivity.engine tsproxy -c cable https://www.sitespeed.io/
 ~~~
 
-Stay tuned for a more in depth follow up on running Sitespeed in Kubernetes or drop into our slack and tell us about how you are running it!
+Stay tuned for a more in depth follow up on running Sitespeed in Kubernetes or drop into [our slack](https://sitespeedio.herokuapp.com) and tell us about how you are running it!
 
 ## Breaking changes
 
@@ -125,7 +125,6 @@ There are also three breaking changes:
 * Sending metrics to InfluxDB was broken because of a bug in how we get the connectivity name. Fixed in [#2587](https://github.com/sitespeedio/sitespeed.io/pull/2587).
 * HTML fix for showing the script in the result HTML [#2597](https://github.com/sitespeedio/sitespeed.io/pull/2597).
 * Running a script, testing multiple different domains, having aliases made data in Graphite sent under the wrong group/domain. Fixed in [#25###92](https://github.com/sitespeedio/sitespeed.io/pull/2592)
-* Upgraded to [fourth alpha of Browsertime 6.0.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#600-alpha4---2019-08-16). Chromedriver is updated to 77 so you should probably update Chrome to use Chrome 77 beta.
 * Upgraded to Ubuntu Disco in the Docker container [#908](https://github.com/sitespeedio/browsertime/pull/908).
 * There's an alternative to collect Visual Metrics using the Chrome trace log, using [SpeedLine](https://github.com/paulirish/speedline) implemented in [#876](https://github.com/sitespeedio/browsertime/pull/876). Using video give more accurate metrics (at least in our testing) but maybe it could help running on Chrome on Android and add less overhead than recording a video. You can enable it with:  `--cpu --browsertime.chrome.visualMetricsUsingTrace --browsertime.chrome.enableTraceScreenshots`
 
