@@ -1,6 +1,7 @@
 language: node_js
 node_js:
 - '10'
+- '12'
 sudo: required
 dist: bionic
 cache:
@@ -41,7 +42,7 @@ env:
   - secure: ZCqHD+/PhHNVFWoqir66Xd9YeJRcTHDJYvNL9j4+GTKDEI1h94twhAjQ7Z9DhlCnXwL1lsfEcIjvNCWd3ir/FNy2oZsUzu6kMpFF/niugurFbS551moJ2ObNEfOdj93/sTo4UWH2MZouC9eYeuj1vNYbAev6wBIptL95X/ArldQ=
   - secure: ZmEirO6J+rY+6T6eQWRNxqiqRNOYJktqQWaeUDR6WvzoR80oPdgKoNRS012dk4aCGr2+Dxf/KP6Iu2qbDE3YP3QD7PhoexicTVB6MTl81hZfX/eN0lt4lZknTYtjnAAWQB/aWAM6OVLjh8rAzq9PTBzl5EtAeMMJWmnhz6r+cLc=
 notifications:
-  slack: 
+  slack:
     on_success: change
     on_failure: always
     secure: 3Ca5MzTVkgeZDKk7xuiXnGnl0u4UgBXQtn72xIBwb1nked0JSdwZ4MVgNTVRTlIvwbTdTaYcTo7Pm4+rSrfFx2T1juawq3TkUStJ4AmZHH2gGrAr46snEauWCovHmgo3mMAOwz3fJknz8VfIu7WmtiCH/GO9h20aNmjE1UT3pTE=

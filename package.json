@@ -76,7 +76,6 @@
     "cli-color": "1.4.0",
     "concurrent-queue": "7.0.2",
     "dayjs": "1.8.15",
-    "fast-crc32c": "1.0.4",
     "fast-stats": "0.0.5",
     "find-up": "4.1.0",
     "fs-extra": "8.1.0",
