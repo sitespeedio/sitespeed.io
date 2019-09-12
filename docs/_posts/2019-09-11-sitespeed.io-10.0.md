@@ -34,11 +34,11 @@ It will generate a new result tab in the page summary HTML, where you can see on
 ![Axe result]({{site.baseurl}}/img/axe-result.png)
 {: .img-thumbnail}
 
-And then you can go to an individual run to see more indeep information (that you can act on):
+And then you can go to an individual run to see more indepth information (that you can act upon):
 ![Axe violations]({{site.baseurl}}/img/axe-violations.png)
 {: .img-thumbnail}
 
-What I personally like about the approach we've been using is that we use raw axe-core and you can configure it however you want.
+What I personally like about the approach we've been using is that by using the raw axe-core you can configure it however you want.
 
 The metrics are also sent to Graphite/InfluxDB so you can create alerts on violations if you want.
 ![Axe violatioms in Graphite]({{site.baseurl}}/img/violations-graphite.png)
@@ -46,7 +46,7 @@ The metrics are also sent to Graphite/InfluxDB so you can create alerts on viola
 
 ## New metrics in Chrome 77
 
-With the release of the latest Chrome you get some new metrics that we automatically collects and sends to Graphite/InfluxDB. The new metrics is [Largest Contentful Paint (LCP)](https://web.dev/largest-contentful-paint), [element timings for text and images](https://wicg.github.io/element-timing/) and [Layout instability monitoring](https://web.dev/layout-instability-api).
+With the release of the latest Chrome you get some new metrics that we automatically collects and sends to Graphite/InfluxDB. The new metrics are [Largest Contentful Paint (LCP)](https://web.dev/largest-contentful-paint), [element timings for text and images](https://wicg.github.io/element-timing/), and [Layout instability monitoring](https://web.dev/layout-instability-api).
 
 You can find all the new metrics in the *Metrics* tab.
 
@@ -66,15 +66,15 @@ And then you also get some meta data on Element Timings:
 ![Element Timings]({{site.baseurl}}/img/element-timings-html.png)
 {: .img-thumbnail}
 
-One thing worth mentioning is that to use the Element Timing API you need to mark the elements you want to measure in the HTML. Add the attribute **elementtiming** and make sure to give it an id as value, something like `elementtiming="logo"`. The id/ame that you give your element, is the key that is sent to Graphite/InfluxDB and looks like this:
+One thing worth mentioning is that to use the Element Timing API you need to mark the elements you want to measure in the HTML. Add the attribute **elementtiming** and make sure to give it an id as value, something like `elementtiming="logo"`. The id/name that you give your element, is the key that is sent to Graphite/InfluxDB and looks like this:
 
 ![Element timings]({{site.baseurl}}/img/element-timings.png)
 {: .img-thumbnail}
 
 ## Test using Safari (OS X/iOS)
-Being able to test in Safari on iOS has been on our prio list since forever. With the the iOS and OS X the WebDriver support has been extended to iOS so finally there is a way to drive Safari.
+Being able to test in Safari on iOS has been on our priority list forever. With iOS and OS X WebDriver the support has been extended to iOS, so finally there is a way to drive Safari.
 
-We now support (limited) testing with Safari. Testing on OS X works out of the box, but to get iOS to work you need the coming version of OS X Catalina and iOS 13. 
+We now support (limited) testing with Safari. Testing on OS X works out of the box, but to get iOS to work you will need the coming version of OS X Catalina and iOS 13.
 
 The support is limited at the moment, you will get all the metrics we collect using JavaScript and we do not support HAR, video, or cookies/request headers.
 
@@ -96,7 +96,7 @@ We have updated all the default dashboards, you [download them from here](https:
 
 
 ## Run your tests on Kubernetes
-One of the most asked questions the last years has been how do we test using Kubernetes? The problem has been that there is no way to limit the connectivity. We fixed that by integrating [TSProxy](https://github.com/WPO-Foundation/tsproxy) (a Traffic-shaping SOCKS5 proxy built by [Patrick Meenan](https://twitter.com/patmeenan)). This is actually the second time we done it, but this time there's been a major fix on TSProxy that makes it work as it should on Linux.
+One of the most asked question the last years has been how do we test using Kubernetes? The problem has been that there is no way to limit the connectivity. We fixed that by integrating [TSProxy](https://github.com/WPO-Foundation/tsproxy) (a Traffic-shaping SOCKS5 proxy built by [Patrick Meenan](https://twitter.com/patmeenan)). This is actually the second time we done it, but this time there's been a major fix on TSProxy that makes it work as it should on Linux.
 
 You need Python 2.7 to run TSProxy and you enable it like this:
 
@@ -104,19 +104,21 @@ You need Python 2.7 to run TSProxy and you enable it like this:
 sitespeed.io --browsertime.connectivity.engine tsproxy -c cable https://www.sitespeed.io/
 ~~~
 
+Stay tuned for a more in depth follow up on running Sitespeed in Kubernetes or drop into our slack and tell us about how you are running it!
+
 ## Breaking changes
 
 There are also three breaking changes:
 
 * To store the log to file you need to now add `--logToFile` to your run. This makes sense that you need to make an active choice to store the log file[#2606](https://github.com/sitespeedio/sitespeed.io/pull/2606).
-* Using `--debug`now set the log level to verbose instead of just logging the message queue. To log the message queue use `--debugMessages` [#2607](https://github.com/sitespeedio/sitespeed.io/pull/2607). 
-* We updated yargs so if you extend your configuration files, they are now deeply merged (at least foor the first level of extends).
+* Using `--debug` now set the log level to verbose instead of just logging the message queue. To log the message queue use `--debugMessages` [#2607](https://github.com/sitespeedio/sitespeed.io/pull/2607).
+* We updated yargs so if you extend your configuration files, they are now deeply merged (at least for the first level of extends).
 
 
 ## Other new functionality and fixes
 
 * Multiple bug fixes for the Slack plugin: Show the correct connectivity, always have a red color when we have an error and fixed bug when comparing metrics (we compare with median) [#2610](https://github.com/sitespeedio/sitespeed.io/pull/2610).
-* Added new metrics for slacking errors/warnings: firstPaint, visualComplete85, lastVisualChange, fullyLoaded (and fixed broken fullyLoaded) [#2611](https://github.com/sitespeedio/sitespeed.io/pull/2611). 
+* Added new metrics for slacking errors/warnings: firstPaint, visualComplete85, lastVisualChange, fullyLoaded (and fixed broken fullyLoaded) [#2611](https://github.com/sitespeedio/sitespeed.io/pull/2611).
 * Show the top 20 largest assets on the PageXray tab [#2583](https://github.com/sitespeedio/sitespeed.io/pull/2583)
 * Show the transfer size of assets (not only content size) in the toplists in the HTML [#2560](https://github.com/sitespeedio/sitespeed.io/pull/2560)
 * Unified how to log the options object, so that Browsertime and sitespeed.io follow the same standard. You can now log your options/configuration with `--verbose` that is super helpful when you need to debug configuration issues [#2588](https://github.com/sitespeedio/sitespeed.io/pull/2588).
