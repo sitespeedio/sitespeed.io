@@ -72,7 +72,7 @@
     "axe-core": "3.3.1",
     "@google-cloud/storage": "3.2.0",
     "aws-sdk": "2.517.0",
-    "browsertime": "6.0.0",
+    "browsertime": "6.0.1",
     "cli-color": "1.4.0",
     "concurrent-queue": "7.0.2",
     "dayjs": "1.8.15",
@@ -108,7 +108,7 @@
     "text-table": "0.2.0",
     "third-party-web": "0.10.1",
     "uuid": "3.3.2",
-    "webcoach": "4.0.0",
+    "webcoach": "4.0.1",
     "webpagetest": "0.3.9",
     "yargs": "14.1.0"
   }

@@ -239,9 +239,9 @@
       "integrity": "sha512-9NET910DNaIPngYnLLPeg+Ogzqsi9uM4mSboU5y6p8S5DzMTVEsJZrawi+BoDNUVBa2DhJqQYUFvMDfgU062LQ=="
     },
     "@sitespeed.io/chromedriver": {
-      "version": "77.0.3865-10",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-77.0.3865-10.tgz",
-      "integrity": "sha512-xzDSokSFO4nnrFknSkRlSJHDShB+59DRwBh7zGoQlIN9fANm77fbZ3WJSCea4LoEgoVIjGhBveLd74ibd+rzrg==",
+      "version": "77.0.3865-40",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-77.0.3865-40.tgz",
+      "integrity": "sha512-YqVUcTkG8Qu5+DY7/RtEvb/E3R4jag5nXaKfvdOaMbyOPXsiOjJCF9EXfEo0JD3Zi2ceN7gYAJQArTcKce1h7w==",
       "requires": {
         "node-downloader-helper": "1.0.10",
         "node-stream-zip": "1.8.0"
@@ -579,9 +579,12 @@
           }
         },
         "eslint-utils": {
-          "version": "1.3.1",
-          "resolved": "https://registry.npmjs.org/eslint-utils/-/eslint-utils-1.3.1.tgz",
-          "integrity": "sha512-Z7YjnIldX+2XMcjr7ZkgEsOj/bREONV60qYeB/bjMAqqqZ4zxKyWX+BOUkdmRmA9riiIPVvo5x86m5elviOk0Q=="
+          "version": "1.4.2",
+          "resolved": "https://registry.npmjs.org/eslint-utils/-/eslint-utils-1.4.2.tgz",
+          "integrity": "sha512-eAZS2sEUMlIeCjBeubdj45dmBHQwPHWyBcT1VSYB7o9x9WRRqKxyUoiXlRjyAwzN7YEzHJlYg0NmzDRWx6GP4Q==",
+          "requires": {
+            "eslint-visitor-keys": "^1.0.0"
+          }
         },
         "eslint-visitor-keys": {
           "version": "1.0.0",
@@ -3425,12 +3428,12 @@
       "integrity": "sha1-81HTKWnTL6XXpVZxVCY9korjvR8="
     },
     "browsertime": {
-      "version": "6.0.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-6.0.0.tgz",
-      "integrity": "sha512-UK2pSwzAhbzRbiPVLYRsQqrNY3hRxNYiIdlmKTw29vsDoFbVsvKv3P8MGiZaONeIDSifGEjW/8Y3xRFT/n+RoA==",
+      "version": "6.0.1",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-6.0.1.tgz",
+      "integrity": "sha512-NH8QukHhwwIKi7kkBlLArJw2Qf/ejpBd704vg6uY7yvUoA5sd9R8v1x7zl35YS9c5e6ncMe1VunSqXwrsqmnXA==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
-        "@sitespeed.io/chromedriver": "77.0.3865-10",
+        "@sitespeed.io/chromedriver": "77.0.3865-40",
         "@sitespeed.io/geckodriver": "0.24.0",
         "@sitespeed.io/throttle": "0.5.4",
         "@sitespeed.io/tracium": "0.3.3",
@@ -11573,11 +11576,11 @@
       "integrity": "sha1-wGavtYK7HLQSjWDqkjkulNXp2+w="
     },
     "webcoach": {
-      "version": "4.0.0",
-      "resolved": "https://registry.npmjs.org/webcoach/-/webcoach-4.0.0.tgz",
-      "integrity": "sha512-uehg7TCLT9N2P1rnxYRmVtio48jPXDudkx7J+dSIUlaJtwhErSakYKz8a8IJPePl5kNVgmBHiZuj5v2mkg9WZQ==",
+      "version": "4.0.1",
+      "resolved": "https://registry.npmjs.org/webcoach/-/webcoach-4.0.1.tgz",
+      "integrity": "sha512-hY6qpS4wXQxYNBAIxggyb0osQt3AWAqRmkm7d8C8PXJgQHUdFqUjd0ZYjFJ/lzpOUrLAulrLqx5/7CgChzjGLQ==",
       "requires": {
-        "browsertime": "6.0.0",
+        "browsertime": "6.0.1",
         "chalk": "2.4.1",
         "cli-table3": "0.5.1",
         "filter-files": "0.4.0",
