@@ -1,7 +1,8 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
-
+## 10.0.1 - UNRELEASED
+### Fixed
+* Updated Browsetime with stable Chromedriver (instead of beta), do not show First Paint for Safari, and fixing getting long task data if you first navigate and then measure a URL. See the [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#601---2019-09-12) for all the info.
 
 ## 10.0.0 - 2019-09-11
 ### Added
