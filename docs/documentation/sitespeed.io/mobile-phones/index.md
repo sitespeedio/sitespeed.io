@@ -167,7 +167,7 @@ To be able to test you need latest OS X Catalina on your Mac computer and iOS 13
 
 Run your test using npm (instead of Docker).
 
-*Safardriver* the driver that drives Safari is bundled in iOS. But to be able to use it you need to enable it with:
+*Safardriver* the driver that drives Safari is bundled in OS X. But to be able to use it you need to enable it with:
 
 ```bash
 safaridriver --enable
@@ -178,6 +178,8 @@ safaridriver --enable
 On Safari you need to enable **Remote Automation** to be able to drive it with WebDriver. To do this, toggle the setting in *Settings → Safari → Advanced → Remote Automation*.
 
 Plug in the phone into your machine and *trust the host* and make sure that your phone is unlocked when you run your tests.
+
+Your phone needs to be unlocked (turn off *Auto-Lock*) and make sure to turn down the brightness, so that you sace energy.
 
 If you have any problems, make sure to read the [WebKit blog post about setting up your phone for Selenium](https://webkit.org/blog/9395/webdriver-is-coming-to-safari-in-ios-13/).
 
@@ -194,5 +196,7 @@ At the moment there are a couple of limitations running Safari:
 
 * No HAR file
 * No videos
+* No way to set request headers
+* No built in setting connectivity
 
 You can help us [adding support in Browsertime](https://github.com/sitespeedio/browsertime)!
