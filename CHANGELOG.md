@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Fixed
+* Removed the fast-crc32c dependency for the GCS plugin to make sitespeed.io wrok on NodeJS 12 [#2634](https://github.com/sitespeedio/sitespeed.io/pull/2634). Thank you [Radu Micu](https://github.com/radum) for the PR!
+
 ## 10.0.1 - 2019-09-12
 ### Fixed
 * Updated Browsetime with stable Chromedriver (instead of beta), do not show First Paint for Safari, and fixing getting long task data if you first navigate and then measure a URL. See the [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#601---2019-09-12) for all the info.
