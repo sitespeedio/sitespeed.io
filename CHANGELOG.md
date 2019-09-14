@@ -1,8 +1,10 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+##  10.0.2 - UNRELEASED
 ### Fixed
 * Removed the fast-crc32c dependency for the GCS plugin to make sitespeed.io wrok on NodeJS 12 [#2634](https://github.com/sitespeedio/sitespeed.io/pull/2634). Thank you [Radu Micu](https://github.com/radum) for the PR!
+
+* Updated to Browsertime 6.0.2 that fixes broken proxy handling and flickerin of the timer in the video.
 
 ## 10.0.1 - 2019-09-12
 ### Fixed
