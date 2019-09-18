@@ -1,4 +1,5 @@
-FROM sitespeedio/sitespeed.io:latest
+ARG version
+FROM sitespeedio/sitespeed.io:${version}
 
 ENV SITESPEED_IO_BROWSERTIME__XVFB true
 ENV SITESPEED_IO_BROWSERTIME__DOCKER true

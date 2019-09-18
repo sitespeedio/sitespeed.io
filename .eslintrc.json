@@ -16,6 +16,7 @@
         "singleQuote": true
       }
     ],
+    "require-atomic-updates": 0,
     "no-extra-semi": 0,
     "no-mixed-spaces-and-tabs": 0
   }

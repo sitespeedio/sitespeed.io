@@ -2,7 +2,7 @@
 
 const DataGenerator = require('../lib/plugins/graphite/data-generator'),
   expect = require('chai').expect,
-  dayjs = require('dayjs-ext');
+  dayjs = require('dayjs');
 
 describe('graphite', function() {
   describe('dataGenerator', function() {
@@ -28,7 +28,11 @@ describe('graphite', function() {
       let generator = new DataGenerator('ns', false, {
         _: ['filename'],
         browser: 'chrome',
-        connectivity: 'cable'
+        browsertime: {
+          connectivity: {
+            profile: 'cable'
+          }
+        }
       });
 
       const data = generator.dataFromMessage(message, dayjs());
@@ -61,7 +65,11 @@ describe('graphite', function() {
       let generator = new DataGenerator('ns', false, {
         _: ['sub_domain_com'],
         browser: 'chrome',
-        connectivity: 'cable'
+        browsertime: {
+          connectivity: {
+            profile: 'cable'
+          }
+        }
       });
       const data = generator.dataFromMessage(message, dayjs());
 
@@ -94,7 +102,11 @@ describe('graphite', function() {
       let generator = new DataGenerator('ns', false, {
         _: ['sub_domain_com'],
         browser: 'chrome',
-        connectivity: 'cable',
+        browsertime: {
+          connectivity: {
+            profile: 'cable'
+          }
+        },
         graphite: { statsd: true }
       });
       const data = generator.dataFromMessage(message, dayjs());

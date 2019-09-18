@@ -5,6 +5,6 @@
 <source media="(min-width: 1001px)" srcset="{{site.baseurl}}/img/team1px.png 1x,
 {{site.baseurl}}/img/team.png 2x">
 
-<img src="{{site.baseurl}}/img/team.png" alt="sitespeed.io Logo with My Little Pony style cats">
+<img src="{{site.baseurl}}/img/team.png" alt="sitespeed.io Logo with My Little Pony style cats" elementtiming="logo">
 
 </picture>

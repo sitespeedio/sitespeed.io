@@ -11,6 +11,10 @@ block content
 
   include ../includes/pageRunInfo
 
+  if d.browsertime && d.browsertime.pageSummary
+    b #{d.browsertime.pageSummary.info.title}
+    p !{d.browsertime.pageSummary.info.description}
+
   p
     .large All runs:&nbsp;
       each val, index in runPages
@@ -21,9 +25,13 @@ block content
           |
 
   if pageInfo.errors
-    h4 Errors
-    .errors= JSON.stringify(pageInfo.errors, null, 2)
-
+    .errors
+      b Errors
+      ul
+        each errors, tool in pageInfo.errors
+          each error in errors
+            li #{error} 
+              b (#{tool})
   include ./tabs.pug
 
   #tabSections
@@ -47,7 +55,7 @@ block content
               tr
                 td Requests:
                 td #{d.pagexray.pageSummary.requests}
-            if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.timings.fullyLoaded   
+            if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics && d.browsertime.pageSummary.statistics.timings && d.browsertime.pageSummary.statistics.timings.fullyLoaded   
               tr
                 td Fully Loaded [median]:
                 td #{h.time.ms(d.browsertime.pageSummary.statistics.timings.fullyLoaded.median)}
@@ -60,6 +68,14 @@ block content
               tr
                 td First Paint [median]:
                 td #{h.time.ms(d.browsertime.pageSummary.statistics.timings.firstPaint.median)}                
+            if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.cpu && d.browsertime.pageSummary.statistics.cpu.longTasks
+              tr
+                td CPU long tasks [median]:
+                td #{d.browsertime.pageSummary.statistics.cpu.longTasks.tasks.median}
+              if d.browsertime.pageSummary.statistics.cpu.longTasks.durations  && d.browsertime.pageSummary.statistics.cpu.longTasks.durations.max > 0    
+                tr
+                  td CPU longest task duration:
+                  td #{h.time.ms(d.browsertime.pageSummary.statistics.cpu.longTasks.durations.max)}
             if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.visualMetrics
               tr
                 td Speed Index [median]:
@@ -120,6 +136,10 @@ block content
       section#video-panel
         include ../video/index.pug
 
+    if options.browsertime.video && options.videoParams.createFilmstrip
+      section#filmstrip-panel
+        include ../filmstrip/index.pug    
+
     if d.coach && d.coach.pageSummary
       section#coach-panel
         include ../coach/index.pug
@@ -131,6 +151,14 @@ block content
     if d.pagexray && d.pagexray.pageSummary
       section#pagexray-panel
         include ../pagexray/index.pug
+
+    if options.cpu
+      section#cpu-panel
+        include ../cpu/index.pug  
+
+    if d.thirdparty && d.thirdparty.pageSummary
+      section#thirdparty-panel
+        include ../thirdparty/index.pug
 
     each pageSummary in pageSummaries
       - const panelName = pageSummary.id + '-panel'

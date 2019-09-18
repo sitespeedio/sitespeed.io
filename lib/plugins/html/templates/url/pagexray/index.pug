@@ -3,7 +3,7 @@ include ../../_tableMixins
 a
 h2 PageXray
 - const pagexray = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
-p.small Hard facts about the page.
+p.small How the page is built.
 a#pagexray-summary
 .row
   .one-half.column
@@ -36,12 +36,11 @@ a#pagexray-summary
           td #{code}
           td #{total}
 
+include ./largest.pug
+
 include ./perContentType.pug
 
 include ./perDomain.pug
-
-if pagexray.firstParty.requests
-  include ./firstParty.pug
 
 a#expires-and-last-modified-stats
 h3 Expires, last modified and cookies stats

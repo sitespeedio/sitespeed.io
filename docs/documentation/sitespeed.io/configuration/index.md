@@ -160,7 +160,7 @@ This is a JavaScript regex and if you need help you should test it out at [https
 You can change where you want the data to be stored by setting the <code>--outputFolder</code> parameter. That is good in scenarios where you want to change the default behaviour and put the output in a specific location:
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --outputFolder /my/folder ".ryanair.com" https://www.sitespeed.io/
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --outputFolder /my/folder https://www.sitespeed.io/
 ~~~
 
 ### Configuration as JSON
@@ -199,6 +199,29 @@ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include ve
 ~~~
 
 The CLI will always override the JSON config.
+
+You can also extend another JSON config file. The path needs to be absolute.
+
+~~~json
+{
+  "extends":"/path/to/config.json",
+  "browsertime": {
+    "iterations": 5,
+    "browser": "chrome"
+  },
+  "graphite": {
+    "host": "my.graphite.host",
+    "namespace": "sitespeed_io.desktopFirstView"
+  },
+  "plugins": {
+    "remove": ["html"]
+  },
+  "utc": true
+}
+~~~
+
+You can check out [our example configuration](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/master/config) for [dashboard.sitespeed.io](https://dashboard.sitespeed.io).
+
 
 ## Advanced
 

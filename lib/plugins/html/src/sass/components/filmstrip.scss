@@ -1,0 +1,32 @@
+
+.filmstrip {
+    padding-bottom: 20px;
+}
+
+.videoframe {
+    vertical-align: top;
+    display: inline-block;
+    padding: 4px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width:100%;
+}
+
+.videoframe.blue {
+    border: 2px solid $color--blue;
+}
+
+.videoframetime {
+ text-align: center;
+ display: block;
+}
+
+.videoframetext {
+    text-align: left;
+    display: block;
+    line-height: 1.2em;
+    font-size: 0.8em;
+    white-space: nowrap;
+    margin-bottom: 0.2em;
+}

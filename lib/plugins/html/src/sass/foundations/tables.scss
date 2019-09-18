@@ -35,6 +35,12 @@ tr {
   &:nth-child(even) {
     background: $color--white;
   }
+  &.odd {
+    background: darken($color--white, 2%);
+  }
+  &.even {
+    background: $color--white;
+  }
 }
 
 th {

@@ -21,7 +21,7 @@ Have you heard of a performance budget? If not, please go read these excellent p
 
 
 ### How it works
-When you run sitespeed.io configured with a budget, the script will exit with an exit status > 0 if the budget fails. It will log all budget items regardless if they pass or fail and generate a HTML report.
+When you run sitespeed.io configured with a budget, the script will exit with an **exit status > 0** if the budget fails. Else the exit code is 0. It will log all budget items regardless if they pass or fail and generate a HTML report.
 
 The log will look something like this:
 
@@ -36,13 +36,15 @@ The report looks like this.
 ![Example of the budget]({{site.baseurl}}/img/budget.png)
 {: .img-thumbnail}
 
+Timing metrics (like first visual change) uses the median metric of all runs. So if you wanna have more stable metrics, increase the number of iterations/runs that you test one URL.
+
 ### The budget file
 In 8.0 we introduced a new way of configuring budget. You can configure default values and specific for a URL. In the budget file there are 5 couple of sections:
 
 * timings - are Visual and technical metrics and are configured in milliseconds (ms)
 * requests - the max number of requests per type or total
 * transferSize - the max transfer size (over the wire) per type or total
-* thirdPatrty - max number of requests or trasnferSize for third parties
+* thirdParty - max number of requests or transferSize for third parties
 * score - minimum score for Coach advice 
 
 
@@ -79,14 +81,14 @@ All URLs that you test then needs to have a SpeedIndex faster than 1000. But if 
 
 #### Full example
 
-Here is an example of a fully configurued budget file. It shows you what yiou *can* configure (but you shouldn't configure all of them). 
-
+Here is an example of a fully configurued budget file. It shows you what you *can* configure (but you shouldn't configure all of them). 
 
 ~~~json
 {
 "budget": {
     "timings": {
       "firstPaint": 1000,
+      "pageLoadTime": 2000,
       "fullyLoaded": 2000,
       "FirstVisualChange": 1000,
       "LastVisualChange": 1200,
@@ -124,6 +126,56 @@ Here is an example of a fully configurued budget file. It shows you what yiou *c
   }
 }
 ~~~
+
+If you use WebPageTest you can configure:
+
+~~~json
+{
+"budget": {
+  "webpagetest": {
+      "SpeedIndex": 1000,
+      "lastVisualChange": 2000,
+      "render": 800,
+      "visualComplete": 2000,
+      "visualComplete95": 2000,
+      "TTFB": 150,
+      "fullyLoaded": 3000
+    }
+  }
+}
+~~~
+
+If you use Lighthouse you can configure:
+
+~~~json
+{
+"budget": {
+  "lighthouse": {
+      "performance": 90,
+      "accessibility": 90,
+      "best-practices": 90,
+      "seo": 90,
+      "pwa": 90
+    }
+  }
+}
+~~~
+
+If you use GPSI you can configure:
+
+~~~json
+{
+"budget": {
+  "gpsi": {
+      "speedscore": 90
+    }
+  }
+}
+~~~
+
+And then you can always combine them all.
+
+If you need more metrics for your budget, either [create an issue](https://github.com/sitespeedio/sitespeed.io/issues/new) or look below for using the full internal data structure.
 
 #### Budget configuration using the internal data structrure
 There's also an old version of settiung a budget where you can do it for all metrics collected by sitespeed.io and works on the internal data structure.
@@ -204,3 +256,13 @@ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include ve
 ~~~
 
 It will create a *budget.tap* in the outputFolder.
+
+### JSON
+You can output the result of the budget as JSON:
+
+~~~bash
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --budget.configPath myBudget.json --budget.output json -b chrome -n 5
+~~~
+
+It will create a *budgetResult.json* in the outputFolder.
+

@@ -5,12 +5,13 @@ if  browsertime
   - const visualMetrics = browsertime.visualMetrics;
   - baseHelpURL = rootPath + 'help.html#';
 
+  - const defaultVisualMetrics = ['SpeedIndex','FirstVisualChange','LastVisualChange','VisualProgress','PerceptualSpeedIndex', 'LastMeaningfulPaint', 'LargestImage', 'Heading' ,'VisualReadiness','VisualComplete85', 'VisualComplete95','VisualComplete99'];
   if options.browsertime.visualMetrics && visualMetrics
     a#visualmetrics
     h3 Visual Metrics
     .row
       .one-half.column
-        table
+        table 
           tr
             th(colspan='2') Visual Metrics
           tr
@@ -35,11 +36,16 @@ if  browsertime
               td
                 a(href=baseHelpURL + 'Heading') Heading
               td.number #{h.time.ms(visualMetrics.Heading.toFixed(0))}
-          if visualMetrics.Logo
+          each name in Object.keys(visualMetrics)
+            if (!defaultVisualMetrics.includes(name))
+              tr
+                td #{name}
+                td.number #{h.time.ms(visualMetrics[name].toFixed(0))}
+          if visualMetrics.LastMeaningfulPaint
             tr
               td
-                a(href=baseHelpURL + 'Logo') Logo
-              td.number #{h.time.ms(visualMetrics.Logo.toFixed(0))}
+                a(href=baseHelpURL + 'LastMeaningfulPaint') Last Meaningful Paint
+              td.number #{h.time.ms(visualMetrics.LastMeaningfulPaint.toFixed(0))}
           tr
             td
               a(href=baseHelpURL + 'VisualComplete85') Visual Complete 85%
@@ -56,6 +62,10 @@ if  browsertime
             td
               a(href=baseHelpURL + 'LastVisualChange') Last Visual Change
             td.number #{h.time.ms(visualMetrics.LastVisualChange.toFixed(0))}
+          tr
+            td
+              a(href=baseHelpURL + 'VisualReadiness') Visual Readiness
+            td.number #{h.time.ms(visualMetrics.VisualReadiness.toFixed(0))}  
       .one-half.column
         .ct-chart.ct-minor-sixth#ct-visualprogress
         include ./visualProgress.pug
@@ -92,32 +102,65 @@ if  browsertime
             td
               a(href=baseHelpURL + 'timeToDomContentFlushed') DOM Content Flushed
             td.number #{h.time.ms(timings.timeToDomContentFlushed.toFixed(0))}
+        if timings.timeToContentfulPaint
+         tr
+            td
+              a(href=baseHelpURL + 'timeToContentfulPaint') Time To Contentful Paint
+            td.number #{h.time.ms(timings.timeToContentfulPaint.toFixed(0))}
+        if timings.timeToFirstInteractive
+         tr
+            td
+              a(href=baseHelpURL + 'timeToFirstInteractive') Time To First Interactive
+            td.number #{h.time.ms(timings.timeToFirstInteractive.toFixed(0))}         
         tr
           td
             a(href=baseHelpURL + 'rumSpeedIndex') RUM Speed Index
           td.number #{h.time.ms(timings.rumSpeedIndex.toFixed(0))}
+        tr
+          td
+            a(href=baseHelpURL + 'loadEventEnd') Load Event End
+          td.number #{h.time.ms(timings.loadEventEnd.toFixed(0))}
+        if (timings.largestContentfulPaint) 
+           tr
+            td
+              a(href=baseHelpURL + 'largestContentfulPaint') Largest Contentful Paint
+            td.number #{h.time.ms(Math.max(timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.renderTime))}
         if (timings.fullyLoaded) 
           tr
             td
               a(href=baseHelpURL + 'fullyLoaded') Fully loaded
             td.number #{h.time.ms(timings.fullyLoaded.toFixed(0))}
-      if (Object.keys(timings.userTimings.marks).length > 0 || Object.keys(timings.userTimings.measures).length > 0)
+        else if (browsertime.fullyLoaded) 
+          tr
+            td
+              a(href=baseHelpURL + 'fullyLoaded') Fully loaded
+            td.number #{h.time.ms(browsertime.fullyLoaded.toFixed(0))}
+      if (Object.keys(timings.userTimings.marks).length > 0)
         table
           tr
-            th(colspan='2') User timings
+            th(colspan='2') User Timing marks
           if (Object.keys(timings.userTimings.marks).length > 0)
             each value, name in timings.userTimings.marks
               tr
                 td #{value.name}
                 td.number #{h.time.ms(value.startTime.toFixed(0))}
-          if (Object.keys(timings.userTimings.measures).length > 0)
-            each value, name in timings.userTimings.measures
-              tr
-                td #{value.name}
-                td.number #{h.time.ms(value.startTime.toFixed(0))} 
-
-  if options.browsertime.chrome && options.browsertime.chrome.timeline
-    include ./cpu.pug
+      if (Object.keys(timings.userTimings.measures).length > 0)
+        table
+          tr
+            th(colspan='3') User Timing measures
+          tr
+            th Name
+            th Start time
+            th Duration  
+          each value, name in timings.userTimings.measures
+            tr
+              td #{value.name}
+              td.number #{h.time.ms(value.startTime.toFixed(0))}
+              td.number #{h.time.ms(value.duration.toFixed(0))} 
+  include ./lcp.pug
+  include ./layoutShift.pug
+  include ./elementTimings.pug
+  include ./serverTimings.pug
 
   a#custom-scripts
   h3 Custom scripts
@@ -133,11 +176,18 @@ if  browsertime
   else
     p There are no custom configured scripts.
 
-  .downloads
+  if browsertime.cdp && browsertime.cdp.performance
+    a#cdp-performance
+    h3 CDP Performance
+    table
+      tr
+        th name
+        th value
+      each value, name in browsertime.cdp.performance
+        tr
+          td #{name}
+          td #{value.toFixed(0)}
 
-    if options.browsertime.chrome && options.browsertime.chrome.timeline
-      - consttracePath = 'data/trace-' + (runNumber? runNumber : 1) + '.json.gz'
-      a.button.button-download(href=tracePath, download=downloadName + '-timeline.json.gz') Download timeline
   if options.browsertime.visualElements
    a#visual-elements
    h3 Visual Elements

@@ -45,6 +45,8 @@ Every metric that is sent to Graphite following the pattern (the namespace start
 
 Depending on how often you run your analysis, you may want to change the storage-schemas.conf. With the current config, if you analyse the same URL within 10 minutes, one of the runs will be discarded. But if you know you only run once an hour, you could increase the setting. Etsy has some really [good documentation](https://github.com/etsy/statsd/blob/master/docs/graphite.md) on how to configure Graphite.
 
+In this example with retention of 10 minutes, the metrics you will send will be in Graphite with a 10 minute interval. If you have a larger interval for example one hour and send annotations on specific seconds, you can then see a larger missmatch between the annotation and when the actual metric got into Graphite.
+
 One thing to know if you change your Graphite configuration: ["Any existing metrics created will not automatically adopt the new schema. You must use whisper-resize.py to modify the metrics to the new schema. The other option is to delete existing whisper files (/opt/graphite/storage/whisper) and restart carbon-cache.py for the files to get recreated again."](http://mirabedini.com/blog/?p=517)
 {: .note .note-warning}
 
@@ -91,14 +93,13 @@ sitespeed_io.default.pageSummary.www_sitespeed_io._.chrome.native.browsertime.st
 
 You can read about the keys and the metrics that we send to Graphite in the [metrics documentation](/documentation/sitespeed.io/metrics/).
 
-
 ### Annotations
 You can send annotations to Graphite to mark when a run happens so you can go from the dashboard to any HTML-results page.
 
-You do that by configuring the URL that will serve the HTML with the CLI param *resultBaseURL* (the base URL for your S3 bucket) and configure the HTTP Basic auth username/password used by Graphite. You can do that by setting <code>--graphite.auth LOGIN:PASSWORD</code>.
+You do that by configuring the URL that will serve the HTML with the CLI param *resultBaseURL* (the base URL for your S3 or GCS bucket) and configure the HTTP Basic auth username/password used by Graphite. You can do that by setting <code>--graphite.auth LOGIN:PASSWORD</code>.
 
 You can also modify the annotation and append our own text/HTML and add your own tags.
-Append a message to the annotation with <code>--graphite.annotationMessage</code>. That way you can add links to a specific branch or whatever you feel that can help you.
+Append a message to the annotation with <code>--graphite.annotationMessage</code>. That way you can add links to a specific branch or whatever you feel that can help you. If needed set a custom title with <code>--graphite.annotationTitle</code> instead of the default title that displays the number of runs of the test.
 
 You can add extra tags with <code>--graphite.annotationTag</code>. For multiple tags, add the parameter multiple times. Just make sure that the tags doesn't collide with our internal tags.
 
@@ -117,6 +118,14 @@ To use Grafana annotations, make sure you setup a *resultBaseURL* and add the ho
 
 Then setup your Grafana API token, follow the instructions at [http://docs.grafana.org/http_api/auth/#authentication-api](http://docs.grafana.org/http_api/auth/#authentication-api) and use the **bearer** code you get with <code>--grafana.auth</code>. Then your annotations will be sent to Grafana instead of Graphite.
 
+## Dashboards
+We have [pre-made Grafana dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/master/dashboards/graphite) that works with Graphite. They are generic and as long as your [namespace](#namespace) consists of two parts, they will work. You can import them one by one or [inject them using Docker](https://github.com/sitespeedio/grafana-bootstrap-docker).
+
+## Namespace
+The default namsespace when you send metrics to Graphite is *sitespeed_io.default*. You can change the namespace with `--graphite.namespace`. All premade dashboards are prepared to work with namespaces that starts with two parts: *first.second*. If you want more parts, the [default dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/master/dashboards/graphite) will break.
+
+When we use sitespeed.io we usually keep the first part (*sitespeed_io*) to separate metrics from other tools that sends metrics to Graphite.  We then change the second part: *sitespeed_io.desktop*,  *sitespeed_io.emulatedMobile* or *sitespeed_io.desktopSweden*. As long as your namespace has two parts, they will work with the [default dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/master/dashboards/graphite).
+
 ## Warning: Crawling and Graphite
 If you crawl a site that is not static, you will pick up new pages each run or each day, which will make the Graphite database grow daily. When you add metrics to Graphite, it prepares space for those metrics ahead of time, depending on your storage configuration (in Graphite). If you configured Graphite to store individual metrics every 15 minutes for 60 days, Graphite will allocate storage for that URL: 4 (per hour) * 24 (hours per day) * 60 (days), even though you might only test that URL once.
 
@@ -134,7 +143,9 @@ If you are a DataDog user you can use [DogStatsD](https://docs.datadoghq.com/dev
 1. Make sure you have [configured storage-aggregation.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/graphite/conf/storage-aggregation.conf) in Graphite to fit your needs.
 2. Configure your [storage-schemas.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/graphite/conf/storage-schemas.conf) how long you wanna store your metrics.
 3. *MAX_CREATES_PER_MINUTE* is usually quite low in [carbon.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/graphite/conf/carbon.conf). That means you will not get all the metrics created for the first run, so you can increase it.
-4. Map the Graphite volume to a physical directory outside of Docker to have better control (both Whisper and [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/master/docker/graphite/graphite.db)). Map them like this on your physical server (make sure to copy the empty [grahite.db]((https://github.com/sitespeedio/sitespeed.io/blob/master/docker/graphite/graphite.db)) file):
+4. Map the Graphite volume to a physical directory outside of Docker to have better control (both Whisper and [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/master/docker/graphite/graphite.db)). Map them like this on your physical server (make sure to copy the empty [grahite.db](https://github.com/sitespeedio/sitespeed.io/blob/master/docker/graphite/graphite.db) file):
  - /path/on/server/whisper:/opt/graphite/storage/whisper
  - /path/on/server/graphite.db:/opt/graphite/storage/graphite.db
  If you use Grafana annotations, you should make sure grafana.db is outside of the container. Follow the documentation at [grafana.org](http://docs.grafana.org/installation/docker/#grafana-container-using-bind-mounts).
+ 5. Run the latest version of Graphite and if you are using Docker, make sure you use a tagged version of the container (like graphiteapp/graphite-statsd:1.1.5-12) and never use the **latest** Docker tag.
+ 6. Secure your instance with a firewall, so only your servers can post data to the instance. [Read Digital Oceans example on how to use UFW on Ubunu](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-18-04). Your Graphite server needs to open port 2003 and 8080 for TCP traffic for the IP numbers of your servers running sitespeed.io.

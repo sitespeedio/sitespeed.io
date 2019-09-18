@@ -1,44 +1,60 @@
 {
-  "browsertime.pageSummary": [{
-    "metric": "statistics.timings.firstPaint.median",
-    "max": 1000
-    }, {
-    "metric": "statistics.visualMetrics.FirstVisualChange.median",
-    "max": 1000
-  }],
-  "coach.pageSummary": [{
-    "metric": "advice.performance.score",
-    "min": 75
-  }, {
-    "metric": "advice.info.domElements",
-    "max": 500
-  }, {
-    "metric": "advice.info.domDepth.max",
-    "max": 12
-  }, {
-    "metric": "advice.info.iframes",
-    "max": 0
-  }, {
-    "metric": "advice.info.pageCookies.max",
-    "max": 5
-  }],
-  "pagexray.pageSummary": [{
-    "metric": "transferSize",
-    "max": 200000
-  }, {
-    "metric": "requests",
-    "max": 20
-  }, {
-    "metric": "missingCompression",
-    "max": 0
-  }, {
-    "metric": "contentTypes.css.requests",
-    "max": 1
-  }, {
-    "metric": "contentTypes.image.transferSize",
-    "max": 200000
-  },{
-    "metric": "documentRedirects",
-    "max":0
-  }]
+  "browsertime.pageSummary": [
+    {
+      "metric": "statistics.timings.firstPaint.median",
+      "max": 5000
+    },
+    {
+      "metric": "statistics.visualMetrics.FirstVisualChange.median",
+      "max": 1000
+    }
+  ],
+  "coach.pageSummary": [
+    {
+      "metric": "advice.performance.score",
+      "min": 75
+    },
+    {
+      "metric": "advice.info.domElements",
+      "max": 500
+    },
+    {
+      "metric": "advice.info.domDepth.max",
+      "max": 13
+    },
+    {
+      "metric": "advice.info.iframes",
+      "max": 0
+    },
+    {
+      "metric": "advice.info.pageCookies.max",
+      "max": 5
+    }
+  ],
+  "pagexray.pageSummary": [
+    {
+      "metric": "transferSize",
+      "max": 200000
+    },
+    {
+      "metric": "requests",
+      "max": 20
+    },
+    {
+      "metric": "missingCompression",
+      "max": 0
+    },
+    {
+      "metric": "contentTypes.css.requests",
+      "max": 1
+    },
+    {
+      "metric": "contentTypes.image.transferSize",
+      "max": 200000
+    },
+    {
+      "metric": "documentRedirects",
+      "max": 0
+    }
+  ]
 }

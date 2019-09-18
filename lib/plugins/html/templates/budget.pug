@@ -14,11 +14,13 @@ block content
     p The result of the performance budget. We got #{totalFailing} failing and #{totalWorking} working.
 
     h3 Failing budgets [#{totalFailing}]
-    table
-        +rowHeading(['url', 'result'])
-        +row(budget.failing)
+    if totalFailing > 0 
+      table
+          +rowHeading(['url', 'result'])
+          +row(budget.failing)
 
     h3 Working budgets [#{totalWorking}]
-    table
-        +rowHeading(['url', 'result'])
-        +row(budget.working)
+    if totalWorking > 0 
+      table
+          +rowHeading(['url', 'result'])
+          +row(budget.working)

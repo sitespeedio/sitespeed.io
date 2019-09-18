@@ -22,6 +22,56 @@ You can use sitespeed.io to keep track of what is happening with your site by ma
 
 To do this you define your own [budget file](../performance-budget/#the-budget-file) with rules on when to break your build. This budget will return an error code status after the run. You can also choose to output JUnit XML and TAP reports.
 
+## Github Actions
+If you are using [Github Actions](https://github.com/features/actions) beta it's super easy to run sitespeed.io. Remember though that actions are in beta and can change. They are running an small instances at the moment and you have no way of [setting the connectivity](/documentation/sitespeed.io/connectivity/) so you shouldn't rely on timing metrics. 
+
+Actions works good with a [performance budget](documentation/sitespeed.io/performance-budget/). You should set your budget in a file in the repo that you are testing. In this example we call the file *budget.json* and put it in the *.github* folder in the repo.
+
+Setup a simple budget that check the URLs you test against number of requests, transfer sise, third parties and different Coach scores ([read the documentation](/documentation/sitespeed.io/performance-budget/#full-example) on how to configure other metrics):
+
+```json
+{
+  "budget": {
+    "requests": {
+        "total": 100
+    },
+    "transferSize": {
+        "total": 400000
+    },
+    "thirdParty": {
+        "requests": 0
+    },
+    "score": {
+      "accessibility": 100,
+      "bestpractice": 100,
+      "privacy": 100,
+      "performance": 100
+    }
+  }
+}
+```
+
+Then you can setup your action either via the Github GUI or using configuration. Make sure to setup your action to the right Docker file: ```docker://sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-action```.
+
+A simple setup looks something like this:
+
+```shell
+workflow "Testing stage environment" {
+  on = "push"
+  resolves = ["Run sitespeed.io"]
+}
+
+action "Run sitespeed.io" {
+  uses = "docker://sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-action"
+  args = "https://www.sitespeed.io -n 1 --budget.configPath /github/workspace/.github/budget.json"
+}
+```
+As argument you can use all [configurations options](/documentation/sitespeed.io/configuration/#the-options) as you usually do with sitespeed.io. Since we don't use any timing metrics in the budget we only do one run.
+
+If your budget fails, your action will fail.
+
+When there's a new sitespeed.io release and you wanna use that you just bump the version number of your action.
+
 ## Jenkins
 The most convenient way to run in Jenkins is to use the pre-built Docker containers. You can run an installed npm version too, but that method will require additional work as you will need to setup browsers and use the [Xvfb plugin](https://wiki.jenkins-ci.org/display/JENKINS/Xvfb+Plugin) to make the browsers run in headless mode. Trust us use the Docker Images you will thank us later. ;-)
 
@@ -79,13 +129,13 @@ jobs:
       - run: sudo modprobe ifb numifbs=1
 
       # 3G
-      - run: docker run --cap-add=NET_ADMIN --shm-size=1g --rm sitespeedio/sitespeed.io:7.7.2 -c 3g --browsertime.connectivity.engine=throttle https://www.sitespeed.io/
+      - run: docker run --cap-add=NET_ADMIN --shm-size=1g --rm sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -c 3g --browsertime.connectivity.engine=throttle https://www.sitespeed.io/
 
       # No Traffic shaping
-      - run: docker run --shm-size=1g --rm sitespeedio/sitespeed.io:7.7.2 https://www.sitespeed.io/
+      - run: docker run --shm-size=1g --rm sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/
 
       # No traffic shaping with performance budget
-      - run: docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:7.7.2 -n 3 --budget.configPath myBudget.json https://www.sitespeed.io/
+      - run: docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -n 3 --budget.configPath myBudget.json https://www.sitespeed.io/
 
 workflows:
   version: 2

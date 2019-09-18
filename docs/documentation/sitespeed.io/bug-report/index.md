@@ -42,6 +42,7 @@ To help us reproduce your problem there are a couple of things we need:
 * Give us the exact version of sitespeed.io you are using (so we know we use the same version when we try to reproduce it).
 * Tell us what OS you are using and if you are using Docker (you should!) give us the base OS where you run your container. 
 * If you don't use Docker: Include the browser version you are using.
+* If you have problems with headers/cookie/auth you can use [https://httpbin.org](https://httpbin.org) to reproduce your issue.
 
 If you give us this information we can usually fix your issue faster.
 
@@ -56,4 +57,19 @@ If you give us this information we can usually fix your issue faster.
 * Is there a problem with the video? Then make sure to enable the full original video so you can share that with us, do that by adding <code>--browsertime.videoParams.keepOriginalVideo</code> to your run (or if you use Browsertime: <code>--videoParams.keepOriginalVideo</code>).
 
 * Is your problem related to that you are behind a proxy? Then we kindly recommend that you run your tests without a proxy. Run the tests on a network where you don't need to use a proxy.
+
+## How to make sure we try fix the bug as soon as possible
+
+Here's dos and don'ts if you want your bug fixed:
+
+Please do:
+* [Provide a reproducable test case](#explain-how-to-reproduce-your-issue).
+* If you don't get a response in a couple of days, write a message in the [general channel in Slack](https://sitespeedio.herokuapp.com/).
+
+Please don't:
+* Contact us on direct messages on Slack about the bug.
+* Contact us on Twitter about the bug.
+* Contact us on email about the bug.
+
+If we ask you to contact us, then it is perfectly fine to do so :)
 

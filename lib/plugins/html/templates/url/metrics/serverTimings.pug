@@ -1,0 +1,15 @@
+a#server-timings
+h3 Server timings
+if timings.serverTimings && timings.serverTimings.length > 0
+    table
+        tr
+        th name
+        th duration
+        th description
+        each serverTiming in timings.serverTimings
+            tr
+                td #{serverTiming.name}
+                td #{serverTiming.duration}
+                td #{serverTiming.description}
+else
+    p There are no Server Timings.

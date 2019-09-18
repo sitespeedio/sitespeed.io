@@ -1,10 +1,10 @@
-<nav>
+<nav role="navigation">
   <div class="darkblue nav">
     <div class="grid">
       <div class="col-1-1">
         <div class="logo">
           <a href="{{site.baseurl}}/"><img src="{{site.baseurl}}/img/sitespeed-logo-2c.png" class="navbar-brand" alt="Sitespeed.io - How speedy is your site?"
-              width="162" height="50" /></a>
+              width="162" height="50" elementtiming="header-logo" /></a>
         </div>
         <ul>
           <li>
@@ -21,6 +21,9 @@
               <li><a href="{{site.baseurl}}/documentation/compare/">Compare</a></li>
               <li><a href="{{site.baseurl}}/documentation/chrome-har/">Chrome HAR</a></li>
             </ul>
+          </li>
+          <li>
+            <a href="{{site.baseurl}}/support/" {% if page.nav=='support' %}class="active" {% endif %}>Support</a>
           </li>
           <li>
             <a href="{{site.baseurl}}/examples/" {% if page.nav=='examples' %}class="active" {% endif %}>Examples</a>

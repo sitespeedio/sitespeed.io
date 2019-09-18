@@ -1,0 +1,40 @@
+a#first-party
+h3 First party requests and sizes per content type
+p Calculated using #{pagexray.firstPartyRegEx} (use 
+    code --firstParty 
+    | to configure).
+.responsive
+    table(data-sortable, id='contentSizeFirstParty')
+        +rowHeading(['Content', 'Header Size', 'Transfer Size', 'Content Size', 'Requests'])
+        each data, type in pagexray.firstParty.contentTypes
+            tr
+                td(data-title='Content Type') #{type}
+                +sizeCell('headerSize', data.headerSize)
+                +sizeCell('transferSize', data.transferSize)
+                +sizeCell('contentSize', data.contentSize)
+                +numberCell('requests', data.requests)
+        tr
+            td(data-title='Total') Total
+            +sizeCell('headerSize', pagexray.firstParty.headerSize)
+            +sizeCell('transferSize', pagexray.firstParty.transferSize)
+            +sizeCell('contentSize', pagexray.firstParty.contentSize)
+            +numberCell('requests', pagexray.firstParty.requests)
+
+a#third-party
+h3 Third party requests and sizes per content type
+.responsive
+    table(data-sortable, id='contentSizeThirdParty')
+        +rowHeading(['Content', 'Header Size', 'Transfer Size', 'Content Size', 'Requests'])
+        each data, type in pagexray.thirdParty.contentTypes
+            tr
+                td(data-title='Content Type') #{type}
+                +sizeCell('headerSize', data.headerSize)
+                +sizeCell('transferSize', data.transferSize)
+                +sizeCell('contentSize', data.contentSize)
+                +numberCell('requests', data.requests)
+        tr
+            td(data-title='Total') Total
+            +sizeCell('headerSize', pagexray.thirdParty.headerSize)
+            +sizeCell('transferSize', pagexray.thirdParty.transferSize)
+            +sizeCell('contentSize', pagexray.thirdParty.contentSize)
+            +numberCell('requests', pagexray.thirdParty.requests)

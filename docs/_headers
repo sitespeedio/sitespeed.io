@@ -4,15 +4,20 @@
 	X-XSS-Protection: 1; mode=block
 	Referrer-Policy: no-referrer
 	Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'
+	Cache-Control: public, max-age=0, must-revalidate, no-transform
 
 /search/*
-	Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline';
+	Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline';
 
 /video/*
-	Content-Security-Policy: default-src 'self'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; child-src https://www.youtube.com; img-src 'self' https://i.ytimg.com;
+	Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; child-src https://www.youtube.com; img-src 'self' https://i.ytimg.com;
 
 /testcases/*
 	Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self';
 
 /img/*
-        Cache-Control: public, max-age=360000
+        Cache-Control: public, max-age=3600000
+/js/*
+        Cache-Control: public, max-age=3600000
+/css/*
+        Cache-Control: public, max-age=3600000				
