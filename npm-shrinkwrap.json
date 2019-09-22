@@ -3428,9 +3428,9 @@
       "integrity": "sha1-81HTKWnTL6XXpVZxVCY9korjvR8="
     },
     "browsertime": {
-      "version": "6.0.3",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-6.0.3.tgz",
-      "integrity": "sha512-yivSnJhJ7PawkHTTgHjy6myl6W3C+5265BdIqr0jr1P/pvdyS5O1qrgBp2aqiVQ9RNU1Ws8T84NlaLjXDpNKUA==",
+      "version": "6.0.4",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-6.0.4.tgz",
+      "integrity": "sha512-0or14LIYHMXbgU4VR5W3xb+e0MJIGDk3pboyvXkSJ64S3XiRJIYNRhUKjjHl/Q7oqMT0Cc8DooMRet5s4WQRSQ==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@sitespeed.io/chromedriver": "77.0.3865-40",
@@ -3439,7 +3439,7 @@
         "@sitespeed.io/tracium": "0.3.3",
         "adbkit": "2.11.1",
         "btoa": "1.2.1",
-        "chrome-har": "0.11.1",
+        "chrome-har": "0.11.2",
         "chrome-remote-interface": "0.28.0",
         "dayjs": "1.8.15",
         "execa": "2.0.4",
@@ -3465,9 +3465,9 @@
       },
       "dependencies": {
         "chrome-har": {
-          "version": "0.11.1",
-          "resolved": "https://registry.npmjs.org/chrome-har/-/chrome-har-0.11.1.tgz",
-          "integrity": "sha512-IXQ7EqAyh862Wt5jAJ75/nd8EcgIv5+vGPWvoSp0IN98wnpoXTEOE0E/VssydpUDF84hKYxBAuHKOP4gbi5j9g==",
+          "version": "0.11.2",
+          "resolved": "https://registry.npmjs.org/chrome-har/-/chrome-har-0.11.2.tgz",
+          "integrity": "sha512-ZlJSnaQy91LRAPgE1ZwbjgR4D5NzADP1INLo8WtI7eMw7JKnZ6iSr6qT5FSHxXvmefm/qTq0isVTzyqieXs71w==",
           "requires": {
             "dayjs": "1.7.7",
             "debug": "3.1.0",

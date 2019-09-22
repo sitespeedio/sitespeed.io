@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+##  10.0.3 - UNRELEASED
+### Fixed
+* Updated to Browsertime 6.0.4
+
 ##  10.0.2 - 2019-09-14
 ### Fixed
 * Removed the fast-crc32c dependency for the GCS plugin to make sitespeed.io work on NodeJS 12 [#2634](https://github.com/sitespeedio/sitespeed.io/pull/2634). Thank you [Radu Micu](https://github.com/radum) for the PR!
