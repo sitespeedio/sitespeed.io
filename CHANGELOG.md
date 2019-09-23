@@ -3,6 +3,8 @@
 ##  10.0.3 - UNRELEASED
 ### Fixed
 * Updated to Browsertime 6.0.4
+* Fix so --script can take a directory as input as Browsertime [#2651](https://github.com/sitespeedio/sitespeed.io/pull/2651). Thank you [Sumeet Rohra](https://github.com/sumeetrohra) for the PR.
+* Removed the alias --connectivity for -c because it broke the configuration JSON [#2649](https://github.com/sitespeedio/sitespeed.io/pull/2649)
 
 ##  10.0.2 - 2019-09-14
 ### Fixed
