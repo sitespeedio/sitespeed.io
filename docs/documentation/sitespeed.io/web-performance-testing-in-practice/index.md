@@ -87,6 +87,68 @@ Browser change for each release so it is important to upgrade the browser you us
 
 
 ### Server
+
+# Chosing server
+
+## Cloud providors
+We have tested a couple of different cloud providors (AWS/GCS/DO) and I have also been testing different cloud solutions at my work at Wikimedia.
+
+With our testing with Browsertime/sitespeed.io we have seen a big different in stability between different providors. Remember that one of the reasons to use synthetic testing is to have stable metrics. If your server is unstable over time, it will be hard for you to know if there's a problem with the pages you are testing or the server.
+
+We have been testing providors running a couple of weeks, looking at mmetrics and deviaton between runs. For us AWS has been giving us the most stable metrics (some providors gives us so unstable metrics so they are unusable). We don't get any money to say that (and we actually wouldn't recommend anyone to use AWS since their policies agains employes). However, they give us the most stable metrics.
+
+## Choosing instance type
+Finding the right instance type is important: You don't want to pay too much, you want to have stable metrics but you also don't want a too fast instance (since that will make the difference in some metrics really small and maybe harder to see).
+
+Testing with WebPageTest we have seen that different browsers have bigger instances than other browsers, to make stable and usable tests. The instance type depends on what kind of page you are testing and how stable metric you want. At my work at Wikimedia we've been using c5.xlarge for both Chrome and Firefox and both WebPageTest and Browsertime/sitespeed.io. But that is for mostly testing Wikipedia. If your site has more JavaScript and third parties it's possible that you need to run on a larger instance. It's also possible that you can run on a smaller instance but I'm personally a bit skeptic that it will work fine for you. However for the work we do at the Wikimedia Foundation we are really aggresive at fining small regressions, we want to find regressions that are less than 20 ms in First Visual Change or other metrics. It's possible that you don't need to find those small regressions, and then you can run on other instances/other providors.
+
+## Choosing an instance
+One thing that is important to know that if you start an instance on AWS (and probably whatever cloud providor you use), they can have different perfomrance than another instance of the exact same type! [Netflix has seens a difference in 30% in performance](https://youtu.be/pYbgcDfM2Ts?t=1575) and when they spin up a new instance, they actually spin up three, runs some measurements and then takes the fastest one.
+
+We have also [seen difference in performance and stability at the Wikimedia Foundation](https://phabricator.wikimedia.org/T192138). Different instances can have different performance and stability. That's why we are not fans of spinning up many new instances and run the test on them and then destroy them. That will give you a bigger difference/stablility in metrics than keeping one instance up and running for a long time.
+
+However keeping one instance (or multiple instances) isn't a bullet proof solution. We have seen performance shift over time on an instance (remember a cloud server is just someone elses server). That's why you need to keep track of deviation of metrics over time to make sure that you can find when instances change.
+
+## Tuning your instance
+Before you start to run your tests, there are a couple of things you can do to tune your instance before you start to run your tests (following Netflix best practices).
+
+## Running on bare metal
+Running on bare metal doesn't automaticlly fixes your problem. You still need to tune your OS to get stable metrics, and hopefully we can get help in the future to include those tunings.
+
+# What data storage should I choose (Graphite vs InfluxDB)
+By default sitespeed.io support both Graphite and InfluxDb and you can write your own plugin to store metrics elsewhere.
+
+But what should you choose? We recommend that you use Graphite. We use Graphite in our setups so Graphite will always get mmost love. Keeping an Graphite instance up and running for years and years is really easy and the maintance work is really small.
+
+But when should you use InfluxDB? Well, almost never :) The great thing with Grafana is that you can have different datasources so even if your company is already a hard core InfluxDB users, your Grafana instance can get data from both Graphite and Grafana.
+
+# Grafana vs other dashboard tools
+We love Grafana and think its the best monotoring/dashboard tool that is out there (and it is Open Source). If you haven't used it before you will be amazed. Sitespeed.io ships with a couple of default dashboards but with the power of Grafana its easy to create your own.
+
+What extra great (for you) is that Grafana support multiple data sources, meaning you easily can create dashboards that gets data from your sitespeed.io runs, integrate it with your RUM data and with your business metrics like convertion rate. The potential with Grafana is endless.
+
+# sitespeed.io vs other tools
+There are other great Open Source tools out there that you can use (we like WebPageTest if you remove the privacy issues). There are also probably a couple of good paid tools that you can use. But remember one thing and this is important: we created sitespeed.io for the love of real users and developers, we want to make it easy and cheap to monitor performance so that it is EASY for you to make sure your users have a great experience. Compare it to the paid tools where the creators are in it from the money. They will say the "care" about the users but we are certain that you will see through them. We have a couple of examples how much some of the tools "really" cares and you can contact me and I can share that with you.
+
+# Choose number of runs/iterations
+You want to have stable metrics so you can find regressions. One way to get more stable metrics is to make many runs and take the median (or fastest) run.
+
+The number of runs you need depends on the servers you use, the browser (and browser configuration) and the URL that you test. That means you need to test yourself to find what works for you. For example at Wikimedia we get really stable metrics for our mobile site with just one run using WebPageReplay as a replay proxy. But for the English desktop Wikipedia we need 5/7/11 runs for some URLs to get more stable metrics (becasue we run more JavaScrpt that executes differently). And for other languages on Wikipedia we need less runs.
+
+The best way to find what works for you is to test over a period of time. Check your metric, check your min and max and the deviation over time (we have a [special dashboard]() that helps you with that.
+
+*But the vendors of tool X says that 3 runs is enough?*
+
+We are pretty sure this is the same for all tools as long as you test with real browsers. It depends on your server, your browser and the page you test. **You need to test to know!**
+
+# Setting up Graphite and Grafana in Linux
+Setting up Graphite and Grafana on Linux is some works the first time, but when you have it up and running you rearly need to touch it again (only time is when you want to update Grafana). We have users that has been using the same instance for the last five years and never needs to do anything else than update Grafana and update security issues on the server.
+
+## Setting up Graphite on AWS
+
+### Using Docker compose
+
+
 #### Cloud providers
 We've been testing out different cloud providers (AWS, Google Cloud, Digital Ocean, Linode etc) and the winner for us has been AWS. We've been using c5.large and testing the same size (or bigger) instances on other providers doesn't give the same stable metric overtime.
 
