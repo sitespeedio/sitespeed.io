@@ -11,12 +11,14 @@ COPY docker/webpagereplay/wpr_key.pem /webpagereplay/certs/
 COPY docker/webpagereplay/deterministic.js /webpagereplay/scripts/deterministic.js
 COPY docker/webpagereplay/LICENSE /webpagereplay/
 
-# build-essential is needed for Sharp to compile
+
 RUN sudo apt-get update && sudo apt-get install libnss3-tools \
- net-tools \
- iproute2 -y && \
- mkdir -p $HOME/.pki/nssdb && \
- certutil -d $HOME/.pki/nssdb -N
+    net-tools \
+    # temporary fix for https://github.com/lovell/sharp/issues/1882
+    libvips-dev \
+    iproute2 -y && \
+    mkdir -p $HOME/.pki/nssdb && \
+    certutil -d $HOME/.pki/nssdb -N
 
 ENV PATH="/usr/local/bin:${PATH}"
 
