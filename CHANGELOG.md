@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 10.1.0 - UNRELEASED
+### Added
+* WebPageTest: send standard deviation for some of the timing metrics by default [#2656](https://github.com/sitespeedio/sitespeed.io/pull/2656).
+
 ##  10.0.3 - 2019-09-24
 ### Fixed
 * Updated to Browsertime 6.0.4
