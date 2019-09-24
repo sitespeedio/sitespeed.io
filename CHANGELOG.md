@@ -1,10 +1,14 @@
 # CHANGELOG - sitespeed.io
 
-##  10.0.3 - UNRELEASED
+##  10.0.3 - 2019-09-24
 ### Fixed
 * Updated to Browsertime 6.0.4
+  * Upgraded TSProxy to 1.5 [#945](https://github.com/sitespeedio/browsertime/pull/945) see [TSProxy issue #20](https://github.com/WPO-Foundation/tsproxy/issues/20) for more details.
+  * Upgraded to latest Chrome-har with extra guard if a response is missing respone data.
 * Fix so --script can take a directory as input as Browsertime [#2651](https://github.com/sitespeedio/sitespeed.io/pull/2651). Thank you [Sumeet Rohra](https://github.com/sumeetrohra) for the PR.
 * Removed the alias --connectivity for -c because it broke the configuration JSON [#2649](https://github.com/sitespeedio/sitespeed.io/pull/2649)
+* Running WebPageReplay using --mobile used to record in desktop size and replay in mobile. That is fixed now in [#2654](https://github.com/sitespeedio/sitespeed.io/pull/2654)
+* InfluxDB and Grafana used wrong tags in annotations if you used WebPageTest. Fixed in [#2644](https://github.com/sitespeedio/sitespeed.io/pull/2644)
 
 ##  10.0.2 - 2019-09-14
 ### Fixed
