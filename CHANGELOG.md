@@ -3,6 +3,11 @@
 ## 10.1.0 - UNRELEASED
 ### Added
 * WebPageTest: send standard deviation for some of the timing metrics by default [#2656](https://github.com/sitespeedio/sitespeed.io/pull/2656).
+* Updated Browsertime to 6.1.0:
+  * Get the first input in Chrome (useful for user journeys) [#948](https://github.com/sitespeedio/browsertime/pull/948).
+  * Removed settings for enabling LayoutInstabilityAPI in Chrome (is on by default in Chrome 77) [#949](https://github.com/sitespeedio/browsertime/pull/949.
+  * Fixed a bug for Chrome when you couldn't send more that one request header [#950](https://github.com/sitespeedio/browsertime/pull/950).
+  * Empty long task after you collect them.
 
 ##  10.0.3 - 2019-09-24
 ### Fixed
