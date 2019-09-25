@@ -1,8 +1,33 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 10.1.0 - 2019-09-25
+### Added
+* WebPageTest: send standard deviation for some of the timing metrics by default [#2656](https://github.com/sitespeedio/sitespeed.io/pull/2656).
+* Updated Browsertime to 6.1.0:
+  * Get the first input in Chrome (useful for user journeys) [#948](https://github.com/sitespeedio/browsertime/pull/948).
+  * Removed settings for enabling LayoutInstabilityAPI in Chrome (is on by default in Chrome 77) [#949](https://github.com/sitespeedio/browsertime/pull/949.
+  * Fixed a bug for Chrome when you couldn't send more that one request header [#950](https://github.com/sitespeedio/browsertime/pull/950).
+  * Empty long task after you collect them.
+* Updated dashboards: New WebPageTest dashboard showing standartd deviation: https://github.com/sitespeedio/grafana-bootstrap-docker/blob/master/dashboards/graphite/WebPageTestDeviation.json and updated page timing metrics dashboard for sitespeed.io so you can just use the drowdown to see the standard deviation for different metrics https://github.com/sitespeedio/grafana-bootstrap-docker/blob/master/dashboards/graphite/PageTimingMetrics.json
+
+##  10.0.3 - 2019-09-24
 ### Fixed
-* Removed the fast-crc32c dependency for the GCS plugin to make sitespeed.io wrok on NodeJS 12 [#2634](https://github.com/sitespeedio/sitespeed.io/pull/2634). Thank you [Radu Micu](https://github.com/radum) for the PR!
+* Updated to Browsertime 6.0.4
+  * Upgraded TSProxy to 1.5 [#945](https://github.com/sitespeedio/browsertime/pull/945) see [TSProxy issue #20](https://github.com/WPO-Foundation/tsproxy/issues/20) for more details.
+  * Upgraded to latest Chrome-har with extra guard if a response is missing respone data.
+* Fix so --script can take a directory as input as Browsertime [#2651](https://github.com/sitespeedio/sitespeed.io/pull/2651). Thank you [Sumeet Rohra](https://github.com/sumeetrohra) for the PR.
+* Removed the alias --connectivity for -c because it broke the configuration JSON [#2649](https://github.com/sitespeedio/sitespeed.io/pull/2649)
+* Running WebPageReplay using --mobile used to record in desktop size and replay in mobile. That is fixed now in [#2654](https://github.com/sitespeedio/sitespeed.io/pull/2654)
+* InfluxDB and Grafana used wrong tags in annotations if you used WebPageTest. Fixed in [#2644](https://github.com/sitespeedio/sitespeed.io/pull/2644)
+
+##  10.0.2 - 2019-09-14
+### Fixed
+* Removed the fast-crc32c dependency for the GCS plugin to make sitespeed.io work on NodeJS 12 [#2634](https://github.com/sitespeedio/sitespeed.io/pull/2634). Thank you [Radu Micu](https://github.com/radum) for the PR!
+
+* Updated to Browsertime 6.0.3 that fixes broken proxy handling, flicker of the timer in the video, and Chrome trace log problems that missed responses.
+
+### Tech
+* Small refactor of code [#2641](https://github.com/sitespeedio/sitespeed.io/pull/2641) and [#2639](https://github.com/sitespeedio/sitespeed.io/pull/2639) thank you [Sumeet Rohra](https://github.com/sumeetrohra).
 
 ## 10.0.1 - 2019-09-12
 ### Fixed
