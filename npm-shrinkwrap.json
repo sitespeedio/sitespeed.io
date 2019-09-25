@@ -4370,6 +4370,20 @@
         "array-find-index": "^1.0.1"
       }
     },
+    "cz-customizable": {
+      "version": "6.2.0",
+      "resolved": "https://registry.npmjs.org/cz-customizable/-/cz-customizable-6.2.0.tgz",
+      "integrity": "sha512-6fBA8pbwApTY20Q5aDkWgJcg5wCmbwlcnccUFyBQypN8AoRJ0Vt4pLehai0/P2Xr29t2UDYoNGOUDhi4eoR0JQ==",
+      "dev": true,
+      "requires": {
+        "editor": "1.0.0",
+        "find-config": "^1.0.0",
+        "inquirer": "^6.3.1",
+        "lodash": "^4.17.11",
+        "temp": "^0.9.0",
+        "word-wrap": "^1.2.3"
+      }
+    },
     "d": {
       "version": "1.0.0",
       "resolved": "https://registry.npmjs.org/d/-/d-1.0.0.tgz",
@@ -4723,6 +4737,12 @@
           }
         }
       }
+    },
+    "editor": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/editor/-/editor-1.0.0.tgz",
+      "integrity": "sha1-YMf4e9YrzGqJT6jM1q+3gjok90I=",
+      "dev": true
     },
     "editorconfig": {
       "version": "0.15.2",
@@ -5414,6 +5434,15 @@
           "resolved": "https://registry.npmjs.org/is-directory/-/is-directory-0.2.3.tgz",
           "integrity": "sha1-DBbs98rGahrib9ewyAfXUzZoPe0="
         }
+      }
+    },
+    "find-config": {
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/find-config/-/find-config-1.0.0.tgz",
+      "integrity": "sha1-6vorm8B/qckOmgw++c7PHMgA9TA=",
+      "dev": true,
+      "requires": {
+        "user-home": "^2.0.0"
       }
     },
     "find-line-column": {
@@ -10927,6 +10956,15 @@
         "uuid": "^3.3.2"
       }
     },
+    "temp": {
+      "version": "0.9.0",
+      "resolved": "https://registry.npmjs.org/temp/-/temp-0.9.0.tgz",
+      "integrity": "sha512-YfUhPQCJoNQE5N+FJQcdPz63O3x3sdT4Xju69Gj4iZe0lBKOtnAMi0SLj9xKhGkcGhsxThvTJ/usxtFPo438zQ==",
+      "dev": true,
+      "requires": {
+        "rimraf": "~2.6.2"
+      }
+    },
     "term-size": {
       "version": "1.2.0",
       "resolved": "https://registry.npmjs.org/term-size/-/term-size-1.2.0.tgz",
@@ -11439,6 +11477,15 @@
       "requires": {
         "ip-regex": "^4.1.0",
         "tlds": "^1.203.0"
+      }
+    },
+    "user-home": {
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/user-home/-/user-home-2.0.0.tgz",
+      "integrity": "sha1-nHC/2Babwdy/SGBODwS4tJzenp8=",
+      "dev": true,
+      "requires": {
+        "os-homedir": "^1.0.0"
       }
     },
     "utcstring": {
