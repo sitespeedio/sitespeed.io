@@ -10,8 +10,11 @@ mixin frame(filmstrip, iteration)
 a
 h2 Filmstrip
 
+p aaa
 - const videoIndex = medianRun ? medianRun.runIndex : iteration;
 - const path = 'data/filmstrip/' + videoIndex +'/';
+
+p #{path}
 
 if (options.filmstrip && options.filmstrip.showAll)
     p
