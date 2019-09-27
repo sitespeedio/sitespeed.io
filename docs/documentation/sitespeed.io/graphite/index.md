@@ -139,9 +139,21 @@ If you are using statsd you can use it by adding <code>--graphite.statsd</code> 
 If you are a DataDog user you can use [DogStatsD](https://docs.datadoghq.com/developers/dogstatsd/).
 
 ## Secure your instance
-You probably want to make sure that only your sitespeed.io servers can post data to your Graphite instance. If you run on AWS you that with [security groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html). On Digital Ocean you can setup firewalls through the admin or you can [use UFW on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-18-04) (just make sure to disable iptables for the Docker daemon **--iptables=false**).
+You probably want to make sure that only your sitespeed.io servers can post data to your Graphite instance. If you run on AWS you that with [security groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html). On Digital Ocean you can setup firewalls through the admin or you can [use UFW on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-18-04) (just make sure to disable iptables for the Docker daemon `--iptables=false` read [Viktors post](https://blog.viktorpetersson.com/2014/11/03/the-dangers-of-ufw-docker.html#update)).
 
 Your Graphite server needs to open port 2003 and 8080 for TCP traffic for your servers running sitespeed.io.
+
+If you are using AWS you always gives your servers a security group. The servers running sitespeed.io (collecting mtrics) can all have the same group (allows outbund traffic and only allowing inbound for ssh).
+
+The Graphite server can the open 2003 and 8080 only for that group (write the group name in the source/security group field). In this example we also run Grafana on port 3000 and have it open to the world.
+
+![Security group AWS]({{site.baseurl}}/img/security-group-aws.png)
+{: .img-thumbnail}
+
+If you are using Digital Ocean, you can setup the firewall rule in the admin. Here you add each instance that need to be able to send data (*sitespeed.io-worker* in this example). On this server we also Grafana for HTTP/HTTPS traffic.
+
+![Firewall setup Digital Ocean]({{site.baseurl}}/img/firewall-digitalocean.png)
+{: .img-thumbnail}
 
 ## Graphite for production (important!)
 
