@@ -103,7 +103,7 @@ Append a message to the annotation with <code>--graphite.annotationMessage</code
 
 You can add extra tags with <code>--graphite.annotationTag</code>. For multiple tags, add the parameter multiple times. Just make sure that the tags doesn't collide with our internal tags.
 
-![Annotations]({{site.baseurl}}/img/graphite-annotations.png)
+![Annotations]({{site.baseurl}}/img/graphite-aunnnotations.png)
 {: .img-thumbnail-center}
 
 You can also include a screenshot from the run in the annotation by adding <code>--graphite.annotationScreenshot</code> to your configuration.
@@ -154,6 +154,15 @@ If you are using Digital Ocean, you can setup the firewall rule in the admin. He
 
 ![Firewall setup Digital Ocean]({{site.baseurl}}/img/firewall-digitalocean.png)
 {: .img-thumbnail}
+
+## Storing the data
+You probably gonna need to store the metrics in Graphite on another disk. If you are an AWS user, you can use and [setup an EBS volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html). If you use Digital Ocean you can follow their [quick start guide](https://www.digitalocean.com/docs/volumes/quickstart/).
+
+When your volume is mounted on your server that runs Graphite, you need to make sure Graphite uses the. Map the Graphite volume to the new volume outside of Docker (both Whisper and [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/master/docker/graphite/graphite.db)). Map them like this on your physical server (make sure to copy the empty [grahite.db](https://github.com/sitespeedio/sitespeed.io/blob/master/docker/graphite/graphite.db) file):
+ - `/path/on/server/whisper:/opt/graphite/storage/whisper`
+ - `/path/on/server/graphite.db:/opt/graphite/storage/graphite.db`
+
+If you use Grafana annotations, you should make sure grafana.db is outside of the container. Follow the documentation at [grafana.org](http://docs.grafana.org/installation/docker/#grafana-container-using-bind-mounts).
 
 ## Graphite for production (important!)
 
