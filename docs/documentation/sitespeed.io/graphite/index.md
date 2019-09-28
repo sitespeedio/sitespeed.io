@@ -145,7 +145,7 @@ Your Graphite server needs to open port 2003 and 8080 for TCP traffic for your s
 
 If you are using AWS you always gives your servers a security group. The servers running sitespeed.io (collecting mtrics) can all have the same group (allows outbund traffic and only allowing inbound for ssh).
 
-The Graphite server can the open 2003 and 8080 only for that group (write the group name in the source/security group field). In this example we also run Grafana on port 3000 and have it open to the world.
+The Graphite server can the open 2003 and 8080 only for that group (write the group name in the source/security group field). In this example we also run Grafana on port 3000 and have it open to the world. Make sure that when you send data between the server that you using the **Private IP** of the server (else they cannot reach each other). You find the private IP in the *description* section of your server in the admin.
 
 ![Security group AWS]({{site.baseurl}}/img/security-group-aws.png)
 {: .img-thumbnail}
@@ -174,7 +174,7 @@ If you use Grafana annotations, you should make sure grafana.db is outside of th
  - /path/on/server/graphite.db:/opt/graphite/storage/graphite.db
  If you use Grafana annotations, you should make sure grafana.db is outside of the container. Follow the documentation at [grafana.org](http://docs.grafana.org/installation/docker/#grafana-container-using-bind-mounts).
  5. Run the latest version of Graphite and if you are using Docker, make sure you use a tagged version of the container (like graphiteapp/graphite-statsd:1.1.5-12) and never use the **latest** Docker tag.
- 6. Secure your instance with a firewall/security groups so only your servers can send data to the instance. 
+ 6. Secure your instance with a firewall/security groups so only your servers can send data to the instance.
 
 
 
