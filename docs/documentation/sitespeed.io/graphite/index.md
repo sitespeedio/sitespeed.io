@@ -145,9 +145,15 @@ Your Graphite server needs to open port 2003 and 8080 for TCP traffic for your s
 
 If you are using AWS you always gives your servers a security group. The servers running sitespeed.io (collecting mtrics) can all have the same group (allows outbund traffic and only allowing inbound for ssh).
 
-The Graphite server can the open 2003 and 8080 only for that group (write the group name in the source/security group field). In this example we also run Grafana on port 3000 and have it open to the world. Make sure that when you send data between the server that you using the **Private IP** of the server (else they cannot reach each other). You find the private IP in the *description* section of your server in the admin.
+The Graphite server can the open 2003 and 8080 only for that group (write the group name in the source/security group field). In this example we also run Grafana on port 3000 and have it open to the world.
+
 
 ![Security group AWS]({{site.baseurl}}/img/security-group-aws.png)
+{: .img-thumbnail}
+
+Make sure that when you send data between the server that you using the **Private DNS/Private IP** of the server (else they cannot reach each other). You find the private IP in the *description* section of your server in the admin.
+
+![Private IP AWS]({{site.baseurl}}/img/private-ip.jpg)
 {: .img-thumbnail}
 
 If you are using Digital Ocean, you can setup the firewall rule in the admin. Here you add each instance that need to be able to send data (*sitespeed.io-worker* in this example). On this server we also Grafana for HTTP/HTTPS traffic.
