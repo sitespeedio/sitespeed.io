@@ -23,7 +23,7 @@ You can run your tests on Chrome on Android phones.
 ### Prerequisites
 
 We normally recommends using our Docker containers when you run sitespeed.io/Browsertime. However driving Android from Docker only works on a Linux host since there's is no way at the moment to map USB on Mac. If you use a Mac Mini or another Mac computer you should use the npm version.
-try 
+try
 #### Desktop
 
 If you don't use Docker you need to:
@@ -178,7 +178,7 @@ On Safari you need to enable **Remote Automation** to be able to drive it with W
 
 Plug in the phone into your machine and *trust the host* and make sure that your phone is unlocked when you run your tests.
 
-Your phone needs to be unlocked (turn off *Auto-Lock*) and make sure to turn down the brightness, so that you sace energy.
+Your phone needs to be unlocked (turn off *Auto-Lock*) and make sure to turn down the brightness, so that you save energy.
 
 If you have any problems, make sure to read the [WebKit blog post about setting up your phone for Selenium](https://webkit.org/blog/9395/webdriver-is-coming-to-safari-in-ios-13/).
 
