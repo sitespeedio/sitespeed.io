@@ -1,9 +1,10 @@
 # CHANGELOG - sitespeed.io
 
-## 10.1.1 - UNRELEASED
+## 10.1.1 - 2019-10-01
 ### Fixed 
-* Fix so that if we have the filmsrip from the Chrome trace log, those images should be used in the filmstrip view [#2661](https://github.com/sitespeedio/sitespeed.io/pull/2661)
+* Fix so that if we have the filmstrip from the Chrome trace log, those images should be used in the filmstrip view [#2661](https://github.com/sitespeedio/sitespeed.io/pull/2661)
 * Fix resultBaseURL as env variable as reported by MasonM in [#2663](https://github.com/sitespeedio/sitespeed.io/issues/2663) fixed in [#2664](https://github.com/sitespeedio/sitespeed.io/pull/2664).
+* Upgraded to Browsertime 6.1.1 that fixes SpeedLine visual metrics to numbers instead of strings.
 
 ## 10.1.0 - 2019-09-25
 ### Added
