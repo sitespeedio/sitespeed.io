@@ -210,7 +210,7 @@ Options:
   --plugins.disable  [array]
   --plugins.load  [array]
   --mobile                          Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Apple iPhone 6.  [boolean] [default: false]
-  --resultBaseURL                   The base URL to the server serving the HTML result. In the format of https://result.sitespeed.io
+  --resultBaseURL, --resultBaseUrl  The base URL to the server serving the HTML result. In the format of https://result.sitespeed.io
   --gzipHAR                         Compress the HAR files with GZIP.  [boolean] [default: false]
   --outputFolder                    The folder where the result will be stored.  [string]
   --firstParty                      A regex running against each request and categorize it as first vs third party URL. (ex: ".*sitespeed.*")
