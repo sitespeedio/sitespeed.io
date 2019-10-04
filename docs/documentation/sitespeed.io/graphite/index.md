@@ -45,7 +45,13 @@ Every metric that is sent to Graphite following the pattern (the namespace start
 
 Depending on how often you run your analysis, you may want to change the storage-schemas.conf. With the current config, if you analyse the same URL within 10 minutes, one of the runs will be discarded. But if you know you only run once an hour, you could increase the setting. Etsy has some really [good documentation](https://github.com/etsy/statsd/blob/master/docs/graphite.md) on how to configure Graphite.
 
-In this example with retention of 10 minutes, the metrics you will send will be in Graphite with a 10 minute interval. If you have a larger interval for example one hour and send annotations on specific seconds, you can then see a larger missmatch between the annotation and when the actual metric got into Graphite.
+In this example with retention of 10 minutes, the metrics you will send will be in Graphite with a 10 minute interval. If you have a larger interval for example one hour and send annotations on specific seconds, you can then see a larger missmatch between the annotation and when the actual metric got into Graphite. If you are sending metrics to Graphite on a per iteration basis the subsequent runs may be discarded as they arrive within the timeframe. Below is an example taking in closer to real-time metrics and falling back to the default retentions.
+
+~~~shell
+[sitespeed_iterations]
+pattern = run-\d+\.
+retentions = 10s:6h,10m:60d,30m:90d
+~~~
 
 One thing to know if you change your Graphite configuration: ["Any existing metrics created will not automatically adopt the new schema. You must use whisper-resize.py to modify the metrics to the new schema. The other option is to delete existing whisper files (/opt/graphite/storage/whisper) and restart carbon-cache.py for the files to get recreated again."](http://mirabedini.com/blog/?p=517)
 {: .note .note-warning}
@@ -65,6 +71,8 @@ If you use a different web host for Graphite than your default host, you can cha
 You can choose the namespace under where sitespeed.io will publish the metrics. Default is **sitespeed_io.default**. Change it with <code>--graphite.namespace</code>. If you want all default dashboards to work, it need to be 2 steps.
 
 Each URL is by default split into domain and the URL when we send it to Graphite. By default sitespeed.io remove query parameters from the URL bit if you need them you can change that by adding <code>--graphite.includeQueryParams</code>.
+
+If you want metrics from each iteration you can use <code>--graphite.perIteration</code>. Using this will give raw metrics that are not aggregated (min, max, median, mean).
 
 If you use Graphite < 1.0 you need to make sure the tags in the annotations follow the old format, you do that by adding <code>--graphite.arrayTags</code>.
 
