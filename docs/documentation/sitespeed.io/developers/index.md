@@ -75,6 +75,8 @@ If you want to test and push to Graphite/InfluxDB:
 - Run: <code>docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 --graphite.host=192.168.65.1</code> to push the data to Graphite. The IP is the localhost IP if you run on a Mac.
 - Check the metrics at [http://127.0.0.1:3000/](http://127.0.0.1:3000/).
 
+If you are new to Git/Github and want to make a PR you can start with reading [Digital Oceans tutorial on how to make PRs](https://www.digitalocean.com/community/tutorials/how-to-create-a-pull-request-on-github).
+
 ### Log and debug
 To get a better understanding of what happens you should use the log. You can change log level by using multiple <code>-v</code>. If you want to log on the lowest level getting all information you can use <code>-vvv</code>. If that is too much information use  <code>-vv</code> or <code>-v</code>.
 
