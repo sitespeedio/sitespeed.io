@@ -6,8 +6,8 @@ h3 Waterfall
   - const harDownloadName = downloadName + harEnding
   
   a.button.button-download(href=harName, download=harDownloadName) Download HAR
-  if (options.html && options.html.compareURL)
-    - const compareURL =  options.html.compareURL + '?compare=1&har1=' + myFullPagePath + harName
+  if (options.html && options.html.compareURL && options.resultBaseURL)
+    - const compareURL =  options.html.compareURL + '?compare=1&har1=' + context.resultUrls.absoluteSummaryPagePath(daurl) + harName
     a.button.button-download(href=compareURL) Compare
 
 //- on the summary page, display which run that was chosen for the HAR
