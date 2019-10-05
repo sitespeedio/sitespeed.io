@@ -1,5 +1,15 @@
 # CHANGELOG - sitespeed.io
 
+## 10.2.0 - UNRELEASED
+### Added
+* Added stdev to metrics sent to InfluxDB [#2678](https://github.com/sitespeedio/sitespeed.io/pull/2678).
+* Simplify running Safari on ios devices by only using `--safari.ios` [#2666](https://github.com/sitespeedio/sitespeed.io/pull/2666).
+* Show ios device type in the HTML (iPhone/iPad) when you set the device type [#2667](https://github.com/sitespeedio/sitespeed.io/pull/2667).
+
+### Fixed
+* There was a bug that caused faulty docs for running axe. Use `--axe.enable`[#2676](https://github.com/sitespeedio/sitespeed.io/pull/2676).
+* Set correct tag for CPU Long Tasks in InfluxDB [#2677](https://github.com/sitespeedio/sitespeed.io/pull/2677)
+
 ## 10.1.1 - 2019-10-01
 ### Fixed 
 * Fix so that if we have the filmstrip from the Chrome trace log, those images should be used in the filmstrip view [#2661](https://github.com/sitespeedio/sitespeed.io/pull/2661)
