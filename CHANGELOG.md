@@ -5,10 +5,13 @@
 * Added stdev to metrics sent to InfluxDB [#2678](https://github.com/sitespeedio/sitespeed.io/pull/2678).
 * Simplify running Safari on ios devices by only using `--safari.ios` [#2666](https://github.com/sitespeedio/sitespeed.io/pull/2666).
 * Show ios device type in the HTML (iPhone/iPad) when you set the device type [#2667](https://github.com/sitespeedio/sitespeed.io/pull/2667).
+* New and updated dashboards in Grafana for Graphite/InfluxDB and for WebPageTest.
+* Add a link to your result to compare with `--html.compareURL` [#2680](https://github.com/sitespeedio/sitespeed.io/pull/2680)
 
 ### Fixed
 * There was a bug that caused faulty docs for running axe. Use `--axe.enable`[#2676](https://github.com/sitespeedio/sitespeed.io/pull/2676).
 * Set correct tag for CPU Long Tasks in InfluxDB [#2677](https://github.com/sitespeedio/sitespeed.io/pull/2677)
+* Handle float numbers in statistics, thank you [tengremlin](https://github.com/tengremlin) for the PR [#2675](https://github.com/sitespeedio/sitespeed.io/pull/2675).
 
 ## 10.1.1 - 2019-10-01
 ### Fixed 
