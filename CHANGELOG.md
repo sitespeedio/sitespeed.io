@@ -13,6 +13,7 @@
 * Set correct tag for CPU Long Tasks in InfluxDB [#2677](https://github.com/sitespeedio/sitespeed.io/pull/2677)
 * Handle float numbers in statistics, thank you [tengremlin](https://github.com/tengremlin) for the PR [#2675](https://github.com/sitespeedio/sitespeed.io/pull/2675).
 * Upgraded to Yargs 14.2.0 that fixes so you can extend config.json files in multiple steps. Before only on step worked.
+* Upgraded to Browsertime [6.1.3](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#browsertime-changelog) that fixes the TSProxy bug.
 
 ## 10.1.1 - 2019-10-01
 ### Fixed 
