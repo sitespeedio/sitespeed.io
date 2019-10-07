@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 10.2.0 - 2019-10-02
+## 10.2.0 - 2019-10-07
 ### Added
 * Added stdev to metrics sent to InfluxDB [#2678](https://github.com/sitespeedio/sitespeed.io/pull/2678).
 * Simplify running Safari on ios devices by only using `--safari.ios` [#2666](https://github.com/sitespeedio/sitespeed.io/pull/2666).
