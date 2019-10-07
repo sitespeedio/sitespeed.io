@@ -57,7 +57,7 @@ On your local machine you need:
 - You need Git and fork [sitespeed.io](https://github.com/sitespeedio/sitespeed.io) and clone the forked repository.
 - Install Chrome/Firefox
 - Go to the cloned directory and run <code>npm install</code>
-- You are ready to go! To run locally: <code>bin/sitespeed.io https://www.sitespeed.io -n 1</code>
+- You are ready to go! To run locally: <code>bin/sitespeed.js https://www.sitespeed.io -n 1</code>
 - You can change the log level by adding the verbose flag. Verbose mode prints progress messages to the console. Enter up to three times (-vvv) to increase the level of detail: <code>bin/sitespeed.io https://www.sitespeed.io -n 1 -v</code>
 
 
@@ -80,7 +80,7 @@ If you are new to Git/Github and want to make a PR you can start with reading [D
 ### Log and debug
 To get a better understanding of what happens you should use the log. You can change log level by using multiple <code>-v</code>. If you want to log on the lowest level getting all information you can use <code>-vvv</code>. If that is too much information use  <code>-vv</code> or <code>-v</code>.
 
-You can also debug all the messages sent inside of the queue of sitespeed.io. That way yoy can see how plugins are communicating with each other. To turn that on use <code>--debug</code>.
+You can also debug all the messages sent inside of the queue of sitespeed.io. That way you can see how plugins are communicating with each other. To turn that on use <code>--debug</code>.
 
 ### Plugins
 Everything in sitespeed.io (well almost everything) is a plugin. Each plugin will be called, for each message sent in the application and then called when everything is finished.
@@ -100,16 +100,16 @@ Where pageInfo is the data structure that you wanna inspect.
 
 
 ### Make a pull request
- 
+
  We love pull requests and before you make a big change or add functionality, please open an issue proposing the change to other contributors so you got feedback on the idea before take the time to write precious code!
 
 #### Committing changes
  * Install Commitizen with npm <code>npm install -g commitizen</code>
  * Then simply use command <code>git cz</code> instead of <code>git commit</code> when commiting changes
 
-#### Before you send the pull request 
+#### Before you send the pull request
 
-Before you send the PR make sure you: 
+Before you send the PR make sure you:
  * Squash your commits so it looks sane
  * Make sure your code follow our lint rule by running: <code>npm run lint</code>
  * Make sure your code don't break any tests: <code>npm test</code>
@@ -156,7 +156,7 @@ Debugger attached.
 ~~~
 
 
-Then copy&paste <code>chrome://inspect/</code> Chrome and then choose *Open dedicated DevTools for Node*
+Then copy & paste <code>chrome://inspect/</code> Chrome and then choose *Open dedicated DevTools for Node*
 . <code>--inspect-brk</code> ensures a breakpoint as soon as the code is entered. From there, you can start any of the profiles under the Profile tab.
 
 Use it when you want to debug functionality or check memory usage.
