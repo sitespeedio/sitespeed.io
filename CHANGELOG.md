@@ -1,20 +1,24 @@
 # CHANGELOG - sitespeed.io
 
-## 10.2.0 - UNRELEASED
+## 10.2.0 - 2019-10-02
 ### Added
 * Added stdev to metrics sent to InfluxDB [#2678](https://github.com/sitespeedio/sitespeed.io/pull/2678).
 * Simplify running Safari on ios devices by only using `--safari.ios` [#2666](https://github.com/sitespeedio/sitespeed.io/pull/2666).
 * Show ios device type in the HTML (iPhone/iPad) when you set the device type [#2667](https://github.com/sitespeedio/sitespeed.io/pull/2667).
-* New and updated dashboards in Grafana for Graphite/InfluxDB and for WebPageTest.
+* [New and updated dashboards in Grafana](https://github.com/sitespeedio/grafana-bootstrap-docker) for Graphite/InfluxDB and for WebPageTest.
 * Add a link to your result to compare with `--html.compareURL` [#2680](https://github.com/sitespeedio/sitespeed.io/pull/2680).
+* New PerfCascade with a button to easy copy response content [#2690](https://github.com/sitespeedio/sitespeed.io/pull/2690).
 * There's experimental suuport for sending data per run to Graphite `--graphite.experimental.perIteration`, thank you [Kevin Lakotko](https://github.com/kevinlacotaco) for the PR [#2679](https://github.com/sitespeedio/sitespeed.io/pull/2679). This can change in the near future so only use it if you really know what you are doing :) Also as a normal user sending data to Graphite, you don't this functionallity, using pageSummary should be ebough.
 
+
 ### Fixed
-* There was a bug that caused faulty docs for running axe. Use `--axe.enable`[#2676](https://github.com/sitespeedio/sitespeed.io/pull/2676).
+* There was a bug that caused faulty docs for running axe. Use `--axe.enable` to run Axe! [#2676](https://github.com/sitespeedio/sitespeed.io/pull/2676).
 * Set correct tag for CPU Long Tasks in InfluxDB [#2677](https://github.com/sitespeedio/sitespeed.io/pull/2677)
 * Handle float numbers in statistics, thank you [tengremlin](https://github.com/tengremlin) for the PR [#2675](https://github.com/sitespeedio/sitespeed.io/pull/2675).
 * Upgraded to Yargs 14.2.0 that fixes so you can extend config.json files in multiple steps. Before only on step worked.
 * Upgraded to Browsertime [6.1.3](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#browsertime-changelog) that fixes the TSProxy bug.
+* Testing localhost broke the third party plugins. Fixed in the new Coach and in sitespeed.io [#2689](https://github.com/sitespeedio/sitespeed.io/pull/2689).
+* Upgraded to the Coach 4.0.2.
 
 ## 10.1.1 - 2019-10-01
 ### Fixed 
