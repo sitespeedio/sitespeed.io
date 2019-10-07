@@ -32,7 +32,7 @@ Browser
   --browsertime.videoParams.crf, --videoParams.crf                          Constant rate factor for the end result video, see https://trac.ffmpeg.org/wiki/Encode/H.264#crf  [default: 23]
   --browsertime.videoParams.addTimer, --videoParams.addTimer                Add timer and metrics to the video  [boolean] [default: true]
   --browsertime.userTimingWhitelist, --userTimingWhitelist                  This option takes a regex that will whitelist which userTimings to capture in the results. All userTimings are captured by default. T
-  --browsertime.axe.enable, --axe.enable                                    Run axe tests. Axe will run after all other metrics is collected and will add some extra time to each test.  [boolean]
+  --axe.enable                                                              Run axe tests. Axe will run after all other metrics is collected and will add some extra time to each test.  [boolean]
   --browsertime.requestheader, -r, --requestheader                          Request header that will be added to the request. Add multiple instances to add multiple request headers. Use the following format key:value. Only works in Chrome and Firefox.
   --browsertime.cookie, --cookie                                            Cookie that will be added to the request. Add multiple instances to add multiple cookies. Use the following format cookieName=cookieValue. Only works in Chrome and Firefox.
   --browsertime.block, --block                                              Domain to block. Add multiple instances to add multiple domains that will be blocked. Only works in Chrome and Firefox.
@@ -97,20 +97,21 @@ Grafana
   --grafana.auth  The Grafana auth/bearer value used when sending annotations to Grafana. See http://docs.grafana.org/http_api/auth/#authentication-api
 
 Graphite
-  --graphite.host                  The Graphite host used to store captured metrics.
-  --graphite.port                  The Graphite port used to store captured metrics.  [default: 2003]
-  --graphite.auth                  The Graphite user and password used for authentication. Format: user:password
-  --graphite.httpPort              The Graphite port used to access the user interface and send annotations event  [default: 8080]
-  --graphite.webHost               The graphite-web host. If not specified graphite.host will be used.
-  --graphite.namespace             The namespace key added to all captured metrics.  [default: "sitespeed_io.default"]
-  --graphite.includeQueryParams    Whether to include query parameters from the URL in the Graphite keys or not  [boolean] [default: false]
-  --graphite.arrayTags             Send the tags as Array or a String. In Graphite 1.0 the tags is a array. Before a String  [boolean] [default: true]
-  --graphite.annotationTitle       Add a title to the annotation sent for a run.
-  --graphite.annotationMessage     Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
-  --graphite.annotationScreenshot  Include screenshot (from Browsertime) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
-  --graphite.statsd                Uses the StatsD interface  [boolean] [default: false]
-  --graphite.annotationTag         Add a extra tag to the annotation sent for a run. Repeat the --graphite.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
-  --graphite.bulkSize              Break up number of metrics to send with each request.  [number] [default: null]
+  --graphite.host                       The Graphite host used to store captured metrics.
+  --graphite.port                       The Graphite port used to store captured metrics.  [default: 2003]
+  --graphite.auth                       The Graphite user and password used for authentication. Format: user:password
+  --graphite.httpPort                   The Graphite port used to access the user interface and send annotations event  [default: 8080]
+  --graphite.webHost                    The graphite-web host. If not specified graphite.host will be used.
+  --graphite.namespace                  The namespace key added to all captured metrics.  [default: "sitespeed_io.default"]
+  --graphite.includeQueryParams         Whether to include query parameters from the URL in the Graphite keys or not  [boolean] [default: false]
+  --graphite.arrayTags                  Send the tags as Array or a String. In Graphite 1.0 the tags is a array. Before a String  [boolean] [default: true]
+  --graphite.annotationTitle            Add a title to the annotation sent for a run.
+  --graphite.annotationMessage          Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
+  --graphite.annotationScreenshot       Include screenshot (from Browsertime) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
+  --graphite.statsd                     Uses the StatsD interface  [boolean] [default: false]
+  --graphite.annotationTag              Add a extra tag to the annotation sent for a run. Repeat the --graphite.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
+  --graphite.bulkSize                   Break up number of metrics to send with each request.  [number] [default: null]
+  --graphite.experimental.perIteration  Experimental setup to send each iteration of metrics to Graphite. Experimental means this can change and is not released as stable. Use it with care.  [boolean] [default: false]
 
 Plugins
   --plugins.list    List all configured plugins in the log.  [boolean]
@@ -167,7 +168,7 @@ Slack
   --slack.type          Send summary for a run, metrics from all URLs, only on errors or all to Slack.  [choices: "summary", "url", "error", "all"] [default: "all"]
   --slack.limitWarning  The limit to get a warning in Slack using the limitMetric  [default: 90]
   --slack.limitError    The limit to get a error in Slack using the limitMetric  [default: 80]
-  --slack.limitMetric   The metric that will be used to set warning/error  [choices: "coachScore", "speedIndex", "firstVisualChange", "firstPaint", "visualComplete85", "lastVisualChange", "fullyLoaded"] [default: "coachScore"]
+  --slack.limitMetric   The metric that will be used to set warning/error. You can choose only one at the moment.  [choices: "coachScore", "speedIndex", "firstVisualChange", "firstPaint", "visualComplete85", "lastVisualChange", "fullyLoaded"] [default: "coachScore"]
 
 s3
   --s3.endpoint           The S3 endpoint. Optional depending on your settings.
@@ -191,12 +192,13 @@ GoogleCloudStorage
   --gcs.removeLocalResult  Remove all the local result files after they have been uploaded to Google Cloud storage.  [boolean] [default: false]
 
 HTML
-  --html.showAllWaterfallSummary  Set to true to show all waterfalls on page summary HTML report  [boolean] [default: false]
-  --html.fetchHARFiles            Set to true to load HAR files using fetch instead of including them in the HTML. Turn this on if serve your pages using a server.  [boolean] [default: false]
-  --html.logDownloadLink          Adds a link in the HTML so you easily can download the logs from the sitespeed.io run. If your server is public, be careful so you don't log passwords etc  [boolean] [default: false]
-  --html.topListSize              Maximum number of assets to include in each toplist in the toplist tab  [default: 10]
-  --html.showScript               Show a link to the script you use to run. Be careful if your result is public and you keep passwords in your script.  [boolean] [default: false]
-  --html.assetsBaseURL            The base URL to the server serving the assets of HTML results. In the format of https://result.sitespeed.io. This can be used to reduce size in large setups. If set, disables writing of assets to the output folder.
+  --html.showAllWaterfallSummary        Set to true to show all waterfalls on page summary HTML report  [boolean] [default: false]
+  --html.fetchHARFiles                  Set to true to load HAR files using fetch instead of including them in the HTML. Turn this on if serve your pages using a server.  [boolean] [default: false]
+  --html.logDownloadLink                Adds a link in the HTML so you easily can download the logs from the sitespeed.io run. If your server is public, be careful so you don't log passwords etc  [boolean] [default: false]
+  --html.topListSize                    Maximum number of assets to include in each toplist in the toplist tab  [default: 10]
+  --html.showScript                     Show a link to the script you use to run. Be careful if your result is public and you keep passwords in your script.  [boolean] [default: false]
+  --html.assetsBaseURL                  The base URL to the server serving the assets of HTML results. In the format of https://result.sitespeed.io. This can be used to reduce size in large setups. If set, disables writing of assets to the output folder.
+  --html.compareURL, --html.compareUrl  Will add a link on the waterfall page, helping you to compare the HAR. The full path to your compare installation. In the format of https://compare.sitespeed.io/
 
 Text
   --summary         Show brief text summary to stdout  [boolean] [default: false]
