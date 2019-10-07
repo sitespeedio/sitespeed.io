@@ -110,7 +110,7 @@
     "uuid": "3.3.2",
     "webcoach": "4.0.1",
     "webpagetest": "0.3.9",
-    "yargs": "14.1.0"
+    "yargs": "14.2.0"
   },
   "config": {
     "commitizen": {
