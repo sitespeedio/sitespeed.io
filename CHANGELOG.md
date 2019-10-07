@@ -6,7 +6,8 @@
 * Simplify running Safari on ios devices by only using `--safari.ios` [#2666](https://github.com/sitespeedio/sitespeed.io/pull/2666).
 * Show ios device type in the HTML (iPhone/iPad) when you set the device type [#2667](https://github.com/sitespeedio/sitespeed.io/pull/2667).
 * New and updated dashboards in Grafana for Graphite/InfluxDB and for WebPageTest.
-* Add a link to your result to compare with `--html.compareURL` [#2680](https://github.com/sitespeedio/sitespeed.io/pull/2680)
+* Add a link to your result to compare with `--html.compareURL` [#2680](https://github.com/sitespeedio/sitespeed.io/pull/2680).
+* There's experimental suuport for sending data per run to Graphite `--graphite.experimental.perIteration`, thank you [Kevin Lakotko](https://github.com/kevinlacotaco) for the PR [#2679](https://github.com/sitespeedio/sitespeed.io/pull/2679). This can change in the near future so only use it if you really know what you are doing :) Also as a normal user sending data to Graphite, you don't this functionallity, using pageSummary should be ebough.
 
 ### Fixed
 * There was a bug that caused faulty docs for running axe. Use `--axe.enable`[#2676](https://github.com/sitespeedio/sitespeed.io/pull/2676).
