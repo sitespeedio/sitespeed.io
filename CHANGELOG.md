@@ -1,16 +1,178 @@
 # CHANGELOG - sitespeed.io
 
+## 10.2.0 - 2019-10-02
+### Added
+* Added stdev to metrics sent to InfluxDB [#2678](https://github.com/sitespeedio/sitespeed.io/pull/2678).
+* Simplify running Safari on ios devices by only using `--safari.ios` [#2666](https://github.com/sitespeedio/sitespeed.io/pull/2666).
+* Show ios device type in the HTML (iPhone/iPad) when you set the device type [#2667](https://github.com/sitespeedio/sitespeed.io/pull/2667).
+* [New and updated dashboards in Grafana](https://github.com/sitespeedio/grafana-bootstrap-docker) for Graphite/InfluxDB and for WebPageTest.
+* Add a link to your result to compare with `--html.compareURL` [#2680](https://github.com/sitespeedio/sitespeed.io/pull/2680).
+* New PerfCascade with a button to easy copy response content [#2690](https://github.com/sitespeedio/sitespeed.io/pull/2690).
+* There's experimental suuport for sending data per run to Graphite `--graphite.experimental.perIteration`, thank you [Kevin Lakotko](https://github.com/kevinlacotaco) for the PR [#2679](https://github.com/sitespeedio/sitespeed.io/pull/2679). This can change in the near future so only use it if you really know what you are doing :) Also as a normal user sending data to Graphite, you don't this functionallity, using pageSummary should be ebough.
 
-# 9.3.2 - 20019-06-13
 
+### Fixed
+* There was a bug that caused faulty docs for running axe. Use `--axe.enable` to run Axe! [#2676](https://github.com/sitespeedio/sitespeed.io/pull/2676).
+* Set correct tag for CPU Long Tasks in InfluxDB [#2677](https://github.com/sitespeedio/sitespeed.io/pull/2677)
+* Handle float numbers in statistics, thank you [tengremlin](https://github.com/tengremlin) for the PR [#2675](https://github.com/sitespeedio/sitespeed.io/pull/2675).
+* Upgraded to Yargs 14.2.0 that fixes so you can extend config.json files in multiple steps. Before only on step worked.
+* Upgraded to Browsertime [6.1.3](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#browsertime-changelog) that fixes the TSProxy bug.
+* Testing localhost broke the third party plugins. Fixed in the new Coach and in sitespeed.io [#2689](https://github.com/sitespeedio/sitespeed.io/pull/2689).
+* Upgraded to the Coach 4.0.2.
+
+## 10.1.1 - 2019-10-01
 ### Fixed 
+* Fix so that if we have the filmstrip from the Chrome trace log, those images should be used in the filmstrip view [#2661](https://github.com/sitespeedio/sitespeed.io/pull/2661)
+* Fix resultBaseURL as env variable as reported by MasonM in [#2663](https://github.com/sitespeedio/sitespeed.io/issues/2663) fixed in [#2664](https://github.com/sitespeedio/sitespeed.io/pull/2664).
+* Upgraded to Browsertime 6.1.1 that fixes SpeedLine visual metrics to numbers instead of strings.
+
+## 10.1.0 - 2019-09-25
+### Added
+* WebPageTest: send standard deviation for some of the timing metrics by default [#2656](https://github.com/sitespeedio/sitespeed.io/pull/2656).
+* Updated Browsertime to 6.1.0:
+  * Get the first input in Chrome (useful for user journeys) [#948](https://github.com/sitespeedio/browsertime/pull/948).
+  * Removed settings for enabling LayoutInstabilityAPI in Chrome (is on by default in Chrome 77) [#949](https://github.com/sitespeedio/browsertime/pull/949.
+  * Fixed a bug for Chrome when you couldn't send more that one request header [#950](https://github.com/sitespeedio/browsertime/pull/950).
+  * Empty long task after you collect them.
+* Updated dashboards: New WebPageTest dashboard showing standartd deviation: https://github.com/sitespeedio/grafana-bootstrap-docker/blob/master/dashboards/graphite/WebPageTestDeviation.json and updated page timing metrics dashboard for sitespeed.io so you can just use the drowdown to see the standard deviation for different metrics https://github.com/sitespeedio/grafana-bootstrap-docker/blob/master/dashboards/graphite/PageTimingMetrics.json
+
+##  10.0.3 - 2019-09-24
+### Fixed
+* Updated to Browsertime 6.0.4
+  * Upgraded TSProxy to 1.5 [#945](https://github.com/sitespeedio/browsertime/pull/945) see [TSProxy issue #20](https://github.com/WPO-Foundation/tsproxy/issues/20) for more details.
+  * Upgraded to latest Chrome-har with extra guard if a response is missing respone data.
+* Fix so --script can take a directory as input as Browsertime [#2651](https://github.com/sitespeedio/sitespeed.io/pull/2651). Thank you [Sumeet Rohra](https://github.com/sumeetrohra) for the PR.
+* Removed the alias --connectivity for -c because it broke the configuration JSON [#2649](https://github.com/sitespeedio/sitespeed.io/pull/2649)
+* Running WebPageReplay using --mobile used to record in desktop size and replay in mobile. That is fixed now in [#2654](https://github.com/sitespeedio/sitespeed.io/pull/2654)
+* InfluxDB and Grafana used wrong tags in annotations if you used WebPageTest. Fixed in [#2644](https://github.com/sitespeedio/sitespeed.io/pull/2644)
+
+##  10.0.2 - 2019-09-14
+### Fixed
+* Removed the fast-crc32c dependency for the GCS plugin to make sitespeed.io work on NodeJS 12 [#2634](https://github.com/sitespeedio/sitespeed.io/pull/2634). Thank you [Radu Micu](https://github.com/radum) for the PR!
+
+* Updated to Browsertime 6.0.3 that fixes broken proxy handling, flicker of the timer in the video, and Chrome trace log problems that missed responses.
+
+### Tech
+* Small refactor of code [#2641](https://github.com/sitespeedio/sitespeed.io/pull/2641) and [#2639](https://github.com/sitespeedio/sitespeed.io/pull/2639) thank you [Sumeet Rohra](https://github.com/sumeetrohra).
+
+## 10.0.1 - 2019-09-12
+### Fixed
+* Updated Browsetime with stable Chromedriver (instead of beta), do not show First Paint for Safari, and fixing getting long task data if you first navigate and then measure a URL. See the [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#601---2019-09-12) for all the info.
+
+## 10.0.0 - 2019-09-11
+### Added
+* Updated to Firefox 69 and Chrome 77 in the Docker container.
+* Collext Axe violations for summary and detailed summary [#2622](https://github.com/sitespeedio/sitespeed.io/pull/2622). Read more in the [documentation](https://www.sitespeed.io/documentation/sitespeed.io/axe/).
+* Added new metrics for slacking errors/warnings: firstPaint, visualComplete85, lastVisualChange, fullyLoaded (and fixed broken fullyLoaded) [#2611](https://github.com/sitespeedio/sitespeed.io/pull/2611). 
+* Show the top 20 largest assets on the PageXray tab [#2583](https://github.com/sitespeedio/sitespeed.io/pull/2583)
+* Show the transfer size of assets (not only content size) in the toplists in the HTML [#2560](https://github.com/sitespeedio/sitespeed.io/pull/2560)
+* You can now test your pages using Axe: `--axe.enable` - The test will run after all other metrics are collected and will add some extra time to your total run test time [#2571](https://github.com/sitespeedio/sitespeed.io/pull/2571). You can see all axe information in the new tab.
+* Limited support for using Safari. You need Catalina + iOS 13 to run Safari on your phone/tablet. Read more in the [documentation](https://www.sitespeed.io/documentation/sitespeed.io/browsers/#safari).
+* Send FirstMeaningfulPaint by default to Graphite/InfluxDb [#2559](https://github.com/sitespeedio/sitespeed.io/pull/2559)
+* [Updated dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker) with a new annotation (for sitespeed.io changes) and fixed WebPageTest dashboards to work with annotations.
+* Upgraded to [Browsertime 6.0.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md). 
+  * Upgraded to Ubuntu Disco in the Docker container [#908](https://github.com/sitespeedio/browsertime/pull/908).
+  * Use [TSProxy](https://github.com/WPO-Foundation/tsproxy) to throttle the connection. You should use TSProxy when you run on Kubernetes. Use it by `--connectivity.engine tsproxy`. We used to have support years ago but it never worked good on Mac/Linux so we dropped it. But it works now so we added it back [#891](https://github.com/sitespeedio/browsertime/pull/891).
+  * You can now add your own metrics directly from your script (or post script) using *context.result.extras*. More info coming [#917](https://github.com/sitespeedio/browsertime/pull/917)
+  And some new things coming in Chrome:
+  * Using Chrome 77 (or later) you will now get a layout shift score (in percentage), see https://web.dev/layout-instability-api. [#905](https://github.com/sitespeedio/browsertime/pull/905).
+  * Get LargestContentfulPaint in Chrome 77 (or later) [#906](https://github.com/sitespeedio/browsertime/pull/906).
+  * Get ElementTimings in Chrome 77 (or later) [#921](https://github.com/sitespeedio/browsertime/pull/921). All elements needs to have a unique identifier for this to work correctly.
+  * There's an alternative to collect Visual Metrics using the Chrome trace log, using [SpeedLine](https://github.com/paulirish/speedline) implemented in [#876](https://github.com/sitespeedio/browsertime/pull/876). Using video give more accurate metrics (at least in our testing) but maybe it could help running on Chrome on Android and add less overhead than recording a video. You can enable it with:  `--cpu --chrome.visualMetricsUsingTrace --chrome.enableTraceScreenshots`
+
+### Fixed
+* Guard against broken WPT multi-step runs [#2621](https://github.com/sitespeedio/sitespeed.io/pull/2621).
+* Multiple bug fixes for the Slack plugin: Show the correct connectivity, always have a red color when we have an error and fixed bug when comparing metrics (we compare with median) [#2610](https://github.com/sitespeedio/sitespeed.io/pull/2610).
+* Only using number as an alias for connectivity should be ok [#2612](https://github.com/sitespeedio/sitespeed.io/pull/2612).
+* Unified how to log the options object, so that Browsertime and sitespeed.io follow the same standard. You can now log your options/configuration with `--verbose` that is super helpful when you need to debug configuration issues [#2588](https://github.com/sitespeedio/sitespeed.io/pull/2588).
+* Sending metrics to InfluxDB was broken because of a bug in how we get the connectivity name. Fixed in [#2587](https://github.com/sitespeedio/sitespeed.io/pull/2587).
+* HTML fix for showing the script in the result HTML [#2597](https://github.com/sitespeedio/sitespeed.io/pull/2597).
+* Running a script, testing multiple different domains, having aliases made data in Graphite sent under the wrong group/domain. Fixed in [#25###92](https://github.com/sitespeedio/sitespeed.io/pull/2592)
+* Fixed annotations tag when using WebPageTest. Before the correct values was not sent. With the fix you can use the annotations on you WebPageTest dashboard [2602](https://github.com/sitespeedio/sitespeed.io/pull/2602).
+* Add WebPageTest screenshot in annotation if you use WebPageTest without Browsertime [#2603](https://github.com/sitespeedio/sitespeed.io/pull/2603) and [#2605](https://github.com/sitespeedio/sitespeed.io/pull/2605)
+* Link to WebPageTest HAR in the annotation if you run WebPageTest standalone [#2609](https://github.com/sitespeedio/sitespeed.io/pull/2609).
+
+### Changed 
+* Upgraded to yargs 14.1.0 that deep merge configuration files when you extend another configuration [#2626](https://github.com/sitespeedio/sitespeed.io/pull/2626)
+* To store the log to file you need to now add `--logToFile` to your run. This makes sense that you need to make an active choice to store the log file[#2606](https://github.com/sitespeedio/sitespeed.io/pull/2606).
+* Using `--debug`now set the log level to verbose instead of just logging the message queue. To log the message queue use `--debugMessages` [#2607](https://github.com/sitespeedio/sitespeed.io/pull/2607).
+
+### Tech
+* Updated dev dependencies and yargs, @google-cloud/storage, aws-sdk, dayjs, findup, fs-extra, influx, juni-report-builder, p-limit, pug, simplecrawler and tape.
+
+##  9.8.1 - 2019-08-03
+### Fixed
+* Upgraded to Browsertime 5.7.3 that fixes a bug introduced in Browsertime 5.6.0 (sitespeed.io 9.7.0) that made it impossible to set multiple cookies when using Chrome [#910](https://github.com/sitespeedio/browsertime/pull/910).
+
+##  9.8.0 - 2019-08-01
+
+### Added
+* We updated the Docker container to use Chrome 76 and swicthed to Chromedriver 76. We had some issues with Chrome 76 (or Chromedriver) that increased number of times we got errors converting the Chrome trace log because of missing navigationStart events (see [#902](https://github.com/sitespeedio/browsertime/issues/902)) on our test servers. But that seems fixed with [#904](https://github.com/sitespeedio/browsertime/pull/904).
+
+## 9.7.0 - 2019-07-29
+
+In this release we moved functionality for Chrome from our [browser extension](https://github.com/sitespeedio/browsertime-extension) to the devtools protocol instead, so that the same functionality also works in Chrome on Android. Read the [changelog for Browsertime for all changes](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#560----2019-07-27).
+
+### Fixed
+* You can now use `--android` to run tests on Android phones (the same way as on Browsertime) [#2544](https://github.com/sitespeedio/sitespeed.io/pull/2544).
+
+### Added
+* Upgraded to third-party-web 0.10.1.
+* Upgraded to Browsertime [5.6.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#560----2019-07-27) and [5.6.1](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#561----2019-07-28).
+
+##  9.6.0 - 2019-07-11
+### Added
+* Docker container is now using Firefox 68.
+
+### Fixed
+* Upgrading to Browsertime 5.5 that catches broken timeToFirstInteractive in Firefox (we've seen it reported -46 years, if that happens we report 0 instead).
+
+## 9.5.0 - 2019-07-04
+### Fixed
+* Better error message if the config JSON is malformed [#2525](https://github.com/sitespeedio/sitespeed.io/pull/2525).
+* Updated Browsertime with a new version of Tracium that adds another way of finding Navigation start.
+* Better error handling for WebPageTest: Make sure we always log error from the WebPageTest API, added guards for when WebPageTest fails and always log the full URL to the result on WebPageTest [#2527](https://github.com/sitespeedio/sitespeed.io/pull/2527).
+* Better error message if the WebPageTest server timeouts [#2529](https://github.com/sitespeedio/sitespeed.io/pull/2529)
+
+### Added
+* If you use WebPageTest standalone, we will include a link in the Graphite/Grafana/InfluxDB annotation to the WebPageTest result on the WebPageTest server [#2528](https://github.com/sitespeedio/sitespeed.io/pull/2528). In the future we should make sure we include a link if we run both Browsertime and WebPageTest.
+* Updated to Browsertime 5.4.1:
+  * Better check that a request header is supplied before parsing [#875](https://github.com/sitespeedio/browsertime/pull/875).
+  * Better error message for the user if the config.json file is malformed [#869](https://github.com/sitespeedio/browsertime/pull/869)
+  * Getting the netlog for Chrome was broken when using scripting. This fix catches an error and changes when we remove the file. If you test multiple URLs the netlog will contain all interactions for the script. The first file = first URL. The second file = first and second url. [#874](https://github.com/sitespeedio/browsertime/pull/874)
+  * Two new functions in scripting: `addText.byName(text, name)` and `addText.byClassName(text, className)`. See [#870](https://github.com/sitespeedio/browsertime/pull/870).
+  * Upgraded to coming Selenium 4. There should be no difference for end users [#871](https://github.com/sitespeedio/browsertime/pull/871).
+
+## 9.4.0 - 2019-06-29
+### Added
+* Upgraded to [Browsertime 3.4.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#530---2019-06-29) with the following fixes:
+  * Added support for `--injectJs` using Chrome [#864](https://github.com/sitespeedio/browsertime/pull/864).
+  * Use CDP to set request headers for Chrome (instead of the Browsertime extension). This enables adding extra headers for Chrome on Android and fixes [#2520](https://github.com/sitespeedio/sitespeed.io/issues/2520). Fixed in [#867](https://github.com/sitespeedio/browsertime/pull/867).
+* Report JS heap size by deafult for Chrome to Graphite/InfluxDb [#2524](https://github.com/sitespeedio/sitespeed.io/pull/2524)
+
+## 9.3.4 - 2019-06-20
+### Fixed
+* Tabs on mobile in the HTML was broken and some tables wasn't displayed correctly [#2511](https://github.com/sitespeedio/sitespeed.io/pull/2511)
+* Added extra check that we really have 3rd party data when displaying CPU metrics.
+* Fixed extra error when WebPageTest test failed and we still tried to get the trace log.
+
+## 9.3.3 - 2019-06-16
+### Fixed
+* Upgraded to Browsertime 5.2.6:
+  * Catch if getting the HTML for a resource from Chrome fails [#861](https://github.com/sitespeedio/browsertime/pull/861).
+  * A couple of more pixels to know if a orange screen is orange in Visual Metrics [#862](https://github.com/sitespeedio/browsertime/pull/862).
+  * Bumped versions if adbkit, chrome-remote-interface & yargs [#863](https://github.com/sitespeedio/browsertime/pull/863).
+
+# 9.3.2 - 2019-06-13
+
+### Fixed
 * Moved the download Chrome trace button to the top of the page so we can find it [#2505](https://github.com/sitespeedio/sitespeed.io/pull/2505).
 * Upgraded to Browsertime 5.2.5 that fixes:
   * Fixed so that the tracing in Chrome ends before we start to run our JavaScript metrics (so that they aren't picked up in the trace) [#860](https://github.com/sitespeedio/browsertime/pull/860).
   * Running a script that started to measure without a URL and used an alias instead missed out on starting some browser services, for example Long Tasks in Chrome was not recorded. That is fixed in [#858](https://github.com/sitespeedio/browsertime/pull/858)
 * Fixed broken pug in the GPSI plugin.
 
-# 9.3.1 - 20019-06-12
+## 9.3.1 - 2019-06-12
 
 ### Fixed
 * Make sure the HTML plugin doesn't break if the +1 GPSI plugin doesn't return any data.
@@ -18,7 +180,7 @@
 * If testing a URL failed for Chrome, and you wanted CPU metrics, the HTML report failed. Fixed in [#2504](https://github.com/sitespeedio/sitespeed.io/pull/2504)
 * Upgraded to Third Party Web 0.9.0.
 
-## 9.3.0 - 20019-06-10
+## 9.3.0 - 2019-06-10
 
 ## Added
 * Upgraded to Chrome 75 and Firefox 67.0.1 in the Docker container.
@@ -27,7 +189,7 @@
 * New Browsertime:
   * Added metric LastMeaningfulPaint that will be there when you collect `--visualElements` [848](https://github.com/sitespeedio/browsertime/pull/848).
   * You can get screenshots in your Chrome trace log using `--chrome.enableTraceScreenshots` [#851](https://github.com/sitespeedio/browsertime/pull/851)
-  * Fixed the missing timings in the trace log in Chrome. Or rather they where there but you couldn't see them when you drag/drop the log into devtools [#850](https://github.com/sitespeedio/browsertime/pull/850).  
+  * Fixed the missing timings in the trace log in Chrome. Or rather they where there but you couldn't see them when you drag/drop the log into devtools [#850](https://github.com/sitespeedio/browsertime/pull/850).
   * Next version of Chrome (76) brings back the infobar that pushes down content see [upstream](https://bugs.chromium.org/p/chromium/issues/detail?id=818483). Lets remove the automated flag and test how that works [#853](https://github.com/sitespeedio/browsertime/pull/853).
   * Include the last 50 pixels when checking if the page is still orange, hopefully fixing the case where First Visual Change happens way too early [#854](https://github.com/sitespeedio/browsertime/pull/854).
 * The +1 container uses Lighthouse 5.1.
@@ -43,7 +205,7 @@
 ## 9.2.0 - 2019-06-01
 
 ### Added
-* The config file `--config` now supports extending other config files. Read [yargs documentation](https://github.com/yargs/yargs/blob/master/docs/api.md#extends-keyword) for how to use the extends keyword. Add `"extends":"/default.json"` to extend your config file named *default.json* file. One thing: The configuration files are merged and the extended ones keys are overriden if they exist in your configuration. This is upstream thing but maybe we can fix that in the future. 
+* The config file `--config` now supports extending other config files. Read [yargs documentation](https://github.com/yargs/yargs/blob/master/docs/api.md#extends-keyword) for how to use the extends keyword. Add `"extends":"/default.json"` to extend your config file named *default.json* file. One thing: The configuration files are merged and the extended ones keys are overriden if they exist in your configuration. This is upstream thing but maybe we can fix that in the future.
 
 ### Fixed
 * Updated Browsertime to 5.1.3 that goes back to use default Selenium 3.6 (without CDP supports) and with CDP support implemented on the side. Also updated Coach with the latest Browsertime.
@@ -170,7 +332,7 @@ Using CPU metrics on Android phones was broken since 9.0.0, fixed in [#844](http
 
 ### Fixed
 * Upgraded to Grafana 6.1.3 in the Docker compose file.
-* Ugraded to Browsertime 4.6.2 that fixes Report duration metrics in CDP performance in ms. 
+* Ugraded to Browsertime 4.6.2 that fixes Report duration metrics in CDP performance in ms.
 
 ## 8.11.0 - 2019-04-08
 
@@ -185,7 +347,7 @@ Using CPU metrics on Android phones was broken since 9.0.0, fixed in [#844](http
 
 ### Fix
 
-* Updated version of PerfCascade that catches if timings in the HAR is missing, hopefully partly fixing [#2408](https://github.com/sitespeedio/sitespeed.io/issues/2408).  
+* Updated version of PerfCascade that catches if timings in the HAR is missing, hopefully partly fixing [#2408](https://github.com/sitespeedio/sitespeed.io/issues/2408).
 
 ## 8.10.1 - 2019-04-06
 

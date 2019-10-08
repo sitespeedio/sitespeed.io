@@ -1,7 +1,7 @@
 ---
 layout: default
 title: F.A.Q. and best practice using sitespeed.io
-description: Here ewe keep questions that gets asked on our Slack channel or frequently on Github.
+description: Here we keep questions that gets asked on our Slack channel or frequently on Github.
 keywords: best practice, faq
 nav: documentation
 category: sitespeed.io

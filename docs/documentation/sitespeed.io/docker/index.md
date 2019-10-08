@@ -74,6 +74,10 @@ docker pull sitespeedio/sitespeed.io:X.Y.Z
 
 Then change your start script (or where you start your container) to use the new version number.
 
+## Tags and version
+
+In the real world you should always specify the exact version (tag) of the Docker container to make sure you use the same version for every run. If you use the latest tag you will download newer version of the container as they become available, meaning you can have major changes between test runs (version upgrades, dependencies updates, browser versions, etc). So you should always specify a tag after the container name(X.Y.Z). This is important for sitespeed.io/browsertime/Graphite/Grafana containers. It's important for all containers you use. Never use the *latest* tag!
+
 ## Synchronise docker machines time with host
 
 If you want to make sure your containers have the same time as the host, you can do that by adding <code>-v /etc/localtime:/etc/localtime:ro</code> (Note: This is specific to Linux).
@@ -98,7 +102,7 @@ To change connectivity you should use Docker networks, read all about it [here](
 
 ## Access localhost
 
-If you run a server local on your machine and want to access it with sitespeed.io you can do that on Mac and Windows super easy if you are using Docker 18-3 or later by using _host.docker.internal_.
+If you run a server local on your machine and want to access it with sitespeed.io you can do that on Mac and Windows super easy if you are using Docker 18.03 or later by using _host.docker.internal_.
 
 ```bash
 docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox http://host.docker.internal:4000/
@@ -109,6 +113,10 @@ If you are using Linux you should use `--network=host` to make sure localhost is
 ```bash
 docker run --rm -v "$(pwd)":/sitespeed.io --network=host sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox http://localhost:4000/
 ```
+
+## Access host in your local network
+Sometimes the server you wanna test is in your local network at work and Docker cannot reach it (but you can from your physical machine). Usually you can fix that by making sure Docker uses the same network as your machine. Add `--network=host` and it should work.
+
 
 ## Extra start script
 

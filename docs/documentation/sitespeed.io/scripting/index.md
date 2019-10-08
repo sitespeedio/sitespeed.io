@@ -112,6 +112,18 @@ module.exports = async function(context, commands) {
 }
 ~~~
 
+If you want to have different flows depending on a element exists you can do something like this:
+
+~~~javascript
+...
+const exists = await commands.js.run('return (document.getElementById("nonExistsingID") != null) ');
+if (exists) {
+    // The element with that id exists
+} else {
+    // There's no element with that id
+}
+~~~
+
 ## Finding the right element
 
 One of the key things in your script is to be able to find the right element to invoke. If the elemnt has an id it's easy. If not you can use developer tools in your favourite browser. The all work mostly the same: Open devtools in the page you want to inspect, click on the element and right click on devtools for that element. Then you will see something like this:
@@ -690,6 +702,12 @@ Add the *text* to the element by using *xpath*. If the xpath is not found the co
 #### addText.bySelector(text, selector)
 Add the *text* to the element by using *CSS selector*. If the xpath is not found the command will throw an error.
 
+#### addText.byName(text, name)
+Add the *text* to the element by using the attribute name. If the element is not found the command will throw an error.
+
+#### addText.byClassName(text, className)
+Add the *text* to the element by using class name. If the element is not found the command will throw an error.
+
 ### Switch
 You can switch to iframes or windows if that is needed.
 
@@ -729,13 +747,32 @@ Use a CSS selector to find the element and set the value to value. Internally it
 Use the id to find the element and set the value to value. Internally it uses ```document.getElementById(id)``` to find the right element.
 
 ### Cache
-There's an experimental command for clearing the cache. The command works both for Chrome and Firefox on desktop but not on Chrome on Android since we are using a [WebExtension](https://github.com/sitespeedio/browsertime-extension).
+There's an experimental command for clearing the cache. The command works both for Chrome and Firefox. Use it when you want to clear the browser cache between different URLs.
 
 #### cache.clear()
 Clear the browser cache. Remove cache and cookies.
 
+~~~javascript
+module.exports = async function(context, commands) {
+  // First you probably visit a couple of pages and then clear the cache
+  await commands.cache.clear();
+  // And then visit another page
+}
+~~~
+
 #### cache.clearKeepCookies()
 Clear the browser cache but keep cookies.
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // If you have login cookies that lives really long you may want to test aceesing the page as a logged in user 
+  // but without a browser cache. You can try that with ...
+
+  // Login the user and the clear the cache but keep cookies
+  await commands.cache.clearKeepCookies();
+  // and then access the URL you wanna test.
+}
+~~~
 
 ### Chrome DevTools Protocol
 Send messages to Chrome using the [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/). This only works in Chrome. You can send and send and get the result.

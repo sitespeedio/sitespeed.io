@@ -31,7 +31,7 @@ You go to your server, clone the repo, start the start script by pointing out wh
 
 The script creates a file called **sitespeed.run** in your current folder. If you gracefully want to stop your tests, remove that file `rm sitespeed.run` and wait for the tests to finish (`tail -f /tmp/sitespeed.io.log`).
 
-Most of you run is configured in the config files + the filename is the Graphite namespace(`--graphite.namespace`).
+The first part before the first dot in the filename will be appended to the Graphite namespace namespace (`--graphite.namespace`). If your file is named *login.js* the namespace will be `login`. If your file is named *login.2.js* the namespace is still `login`.
 
 Do you want to add a new URL to test on desktop? Navigate to [**desktop/urls**](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/master/nyc3-1/desktop/urls) and create your new file there. Want to add a user journey? Add the script in [**desktop/scripts**](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/master/nyc3-1/desktop/scripts).
 
@@ -130,6 +130,19 @@ Then our configuration files in [**/config/**](https://github.com/sitespeedio/da
 ```
 
 And when we run our tests, we map the volume on the server /config to our docker container. You can see that in the [run.sh](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/master/run.sh) file. Look for `-v /config:/config`. That is the magic line.
+
+
+We also have a env config on the server (that we feed to Docker with `--env-file /config/env`):
+
+**/conf/env**
+```
+SITESPEED_IO_BROWSERTIME__WIKIPEDIA__USER=username
+SITESPEED_IO_BROWSERTIME__WIKIMEPIA__PASSWORD=secret
+```
+
+that is used for secrets that we want to use inside of scripts. You can see how that is used in [our login test script](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/master/nyc3-1/desktop/scripts/loginWikipedia.js). 
+
+The environment variables are automatically picked by our CLI. *SITESPEED_IO_BROWSERTIME__WIKIPEDIA__USER* will be *wikipedia.user* in our options object. 
 
 We then also map the current working dir to `-v "$(pwd)":/sitespeed.io` and then feed the the config file to sitespeed `--config /sitespeed.io/config`. That way, inside the Docker container we have **/config/** that has the secret configuration files and in **/sitespeed.io/config** the configuration we want to use for our tests.
 

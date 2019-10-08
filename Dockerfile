@@ -1,4 +1,4 @@
-FROM sitespeedio/webbrowsers:chrome-75-firefox-67.0.1
+FROM sitespeedio/webbrowsers:chrome-77.0-firefox-69.0
 
 ENV SITESPEED_IO_BROWSERTIME__XVFB true
 ENV SITESPEED_IO_BROWSERTIME__DOCKER true
@@ -11,12 +11,12 @@ COPY docker/webpagereplay/wpr_key.pem /webpagereplay/certs/
 COPY docker/webpagereplay/deterministic.js /webpagereplay/scripts/deterministic.js
 COPY docker/webpagereplay/LICENSE /webpagereplay/
 
-# build-essential is needed for Sharp to compile
+
 RUN sudo apt-get update && sudo apt-get install libnss3-tools \
- net-tools \
- iproute2 -y && \
- mkdir -p $HOME/.pki/nssdb && \
- certutil -d $HOME/.pki/nssdb -N
+    net-tools \
+    iproute2 -y && \
+    mkdir -p $HOME/.pki/nssdb && \
+    certutil -d $HOME/.pki/nssdb -N
 
 ENV PATH="/usr/local/bin:${PATH}"
 

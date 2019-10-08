@@ -1,0 +1,24 @@
+if browsertime.timings.elementTimings !== undefined
+    a#elementTimings
+    h3 Element timings
+    table
+        tr
+          th Id
+          if value.url !== ''  
+            th URL
+          th Tag 
+          th Render time
+          th Load time
+          th Natural width
+          th Natural height
+        each value, name in browsertime.timings.elementTimings
+          tr
+            td  #{name}
+            if value.url !== ''    
+              td  
+                a(href=value.url) #{value.url}
+            td  #{value.tagName}
+            td  #{h.time.ms(value.renderTime)}
+            td  #{h.time.ms(value.loadTime)} 
+            td  #{value.naturalWidth}  
+            td  #{value.naturalHeight}  

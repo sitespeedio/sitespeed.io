@@ -42,6 +42,7 @@ To help us reproduce your problem there are a couple of things we need:
 * Give us the exact version of sitespeed.io you are using (so we know we use the same version when we try to reproduce it).
 * Tell us what OS you are using and if you are using Docker (you should!) give us the base OS where you run your container. 
 * If you don't use Docker: Include the browser version you are using.
+* If you have problems with headers/cookie/auth you can use [https://httpbin.org](https://httpbin.org) to reproduce your issue.
 
 If you give us this information we can usually fix your issue faster.
 
@@ -63,7 +64,7 @@ Here's dos and don'ts if you want your bug fixed:
 
 Please do:
 * [Provide a reproducable test case](#explain-how-to-reproduce-your-issue).
-* If you don't get a response in a couple of days, write a message in the general channel in Slack.
+* If you don't get a response in a couple of days, write a message in the [general channel in Slack](https://sitespeedio.herokuapp.com/).
 
 Please don't:
 * Contact us on direct messages on Slack about the bug.

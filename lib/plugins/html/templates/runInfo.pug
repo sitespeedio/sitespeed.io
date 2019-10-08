@@ -7,9 +7,11 @@
     | #{options.preURL ? 'preURL ' + h.short(options.preURL, 60) + ' ' : ''}
     | #{h.plural(options.browsertime.iterations, 'run')} with #{profile} profile and connectivity #{connectivity}.#{ options.replay ? ' Using WebPageReplay.' : ''}#{ options.multi ? ' Using multi mode.' : ''}
     | #{options.chrome && options.chrome.CPUThrottlingRate ? ' CPU Throttle Rate ' + options.chrome.CPUThrottlingRate + '.':''}
+    if (options.safari && options.safari.deviceType)
+      | Testing using an #{options.safari.deviceType}.
     if options.multi && options.html.showScript
         | (
         a(href= rootPath + 'scripts.html')= 'script'
         | ).
-    else if options.multi 
-        | .    
+    else if options.multi
+        | .
