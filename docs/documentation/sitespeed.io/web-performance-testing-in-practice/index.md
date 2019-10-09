@@ -17,7 +17,7 @@ twitterdescription: Web performance testing in practice
 {:toc}
 
 ## Start
-This is a guide for you if you are new into performance testing. It will focus on synthetic testing (automatically drive a web browser and collect metrics). The guide will focus on using sitespeed.io/browsertime but it mostly be generic so you can read this guide independent of the tool you use.
+This is a guide for you if you are new into performance testing. It will focus on synthetic testing (automatically drive a web browser and collect performance metrics). The guide will focus on using sitespeed.io/browsertime but it mostly be generic so you can read this guide independent of the tool you use.
 
 ### Why do performance testing
 Is performance important? There are a lot of people advocating that performance is money. That maybe true in some circumstances in some context for some sites and the only way for you to know is to try it out. 
