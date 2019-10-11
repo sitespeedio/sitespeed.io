@@ -9123,9 +9123,9 @@
       }
     },
     "pagexray": {
-      "version": "2.5.8",
-      "resolved": "https://registry.npmjs.org/pagexray/-/pagexray-2.5.8.tgz",
-      "integrity": "sha512-eAltzEWX6kYWqEM1/vcvFavdE8CIzUtxZUBm0K/OWzYITeFaZPzIqcjev5BC7KIzTwlC0sEl2ovYr0g801EAbg==",
+      "version": "2.5.9",
+      "resolved": "https://registry.npmjs.org/pagexray/-/pagexray-2.5.9.tgz",
+      "integrity": "sha512-Xm0aY5IjkcwGqLRSkAiSb28uPJ/gxXJncvJcc5Piy27Bf9Ds2iwgtUXjSKiLrRARvYbtMS1C4nkYGQYxNDbbiw==",
       "requires": {
         "minimist": "1.2.0"
       }
