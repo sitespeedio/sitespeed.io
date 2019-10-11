@@ -681,6 +681,8 @@ module.exports = async function(context, commands) {
 }
 ~~~
 
+By default this will return a [Selenium WebElement](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebElement.html).
+
 #### js.runAndWait(javascript)
 Run JavaScript and wait for [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test). This is perfect if you wanna click on links with pure JavaScript and measure a URL. Will throw an error if the JavaScript fails.
 
@@ -765,7 +767,7 @@ Clear the browser cache but keep cookies.
 
 ~~~javascript
 module.exports = async function(context, commands) {
-  // If you have login cookies that lives really long you may want to test aceesing the page as a logged in user 
+  // If you have login cookies that lives really long you may want to test aceesing the page as a logged in user
   // but without a browser cache. You can try that with ...
 
   // Login the user and the clear the cache but keep cookies
