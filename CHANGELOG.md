@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Added
+* Include filmstrip data (path to screenshots and metrics) in the HAR file [#2695](https://github.com/sitespeedio/sitespeed.io/issues/2695)
+* Your budget can now fail if you have any HTTP ERRORS on your page [#2691](https://github.com/sitespeedio/sitespeed.io/pull/2691). Thank you [thapasya-m](https://github.com/thapasya-m) for the PR!
+
 ## 10.2.0 - 2019-10-07
 ### Added
 * Added stdev to metrics sent to InfluxDB [#2678](https://github.com/sitespeedio/sitespeed.io/pull/2678).
@@ -12,7 +17,8 @@
 
 
 ### Fixed
-* There was a bug that caused faulty docs for running axe. Use `--axe.enable` to run Axe! [#2676](https://github.com/sitespeedio/sitespeed.io/pull/2676).
+* There was a bug that caused faulty docs for running axe. Use `--axe.enable` 
+to run Axe! [#2676](https://github.com/sitespeedio/sitespeed.io/pull/2676).
 * Set correct tag for CPU Long Tasks in InfluxDB [#2677](https://github.com/sitespeedio/sitespeed.io/pull/2677)
 * Handle float numbers in statistics, thank you [tengremlin](https://github.com/tengremlin) for the PR [#2675](https://github.com/sitespeedio/sitespeed.io/pull/2675).
 * Upgraded to Yargs 14.2.0 that fixes so you can extend config.json files in multiple steps. Before only on step worked.
