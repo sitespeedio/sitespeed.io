@@ -108,7 +108,7 @@
     "text-table": "0.2.0",
     "third-party-web": "0.10.1",
     "uuid": "3.3.2",
-    "webcoach": "4.0.2",
+    "webcoach": "4.1.0",
     "webpagetest": "0.3.9",
     "yargs": "14.2.0"
   },
