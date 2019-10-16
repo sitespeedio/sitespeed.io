@@ -222,6 +222,11 @@ There are a couple of pre defined messages that will always passed around in the
 
 Plugins also pass on message to each other. The HTML plugin also sends a **html.finished** message when the HTML is written to disk. The S3 plugin listens for that message and when it gets it it uploads the files and then sends a **s3.finished** message. And then the Slack plugin listens on **s3.finished** messages and then sends a Slack message.
 
+Data from different tools are passed with three different message types:
+* ***.run** - metrics collected for one run/iteration
+* ***.pageSummary** - a summary of all the metrics collected for all iterations for one page. Here you will get min/median/max values for all runs for that page.
+* ***.summary** - metrics collected for all pages tested. 
+
 ### Debug/log
 You can use the sitespeed.io log to log messages. We use [intel](https://www.npmjs.com/package/intel) for logging.
 
