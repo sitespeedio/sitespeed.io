@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 10.3.0 -  UNRELEASED
+## 10.3.0 -  2019-10-16
 ### Added
 * Include filmstrip data (path to screenshots and metrics) in the HAR file [#2695](https://github.com/sitespeedio/sitespeed.io/issues/2695)
 * Your budget can now fail if you have any HTTP ERRORS on your page [#2691](https://github.com/sitespeedio/sitespeed.io/pull/2691). Thank you [thapasya-m](https://github.com/thapasya-m) for the PR!
