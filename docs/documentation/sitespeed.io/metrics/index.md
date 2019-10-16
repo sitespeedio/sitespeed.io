@@ -20,8 +20,10 @@ twitterdescription: Configuring metrics to use
 # Collected metrics
 Sitespeed.io collects a lot of metrics which are filtered before they are sent to Graphite/InfluxDB. You can remove filters and/or add your own filters. Some sensible defaults have been set for you, if you have suggestions to change them create an [issue at Github](https://github.com/sitespeedio/sitespeed.io/issues/new).
 
-## Summary vs pageSummary
-The metrics are separated into two groups:
+## Summary vs pageSummary vs run
+The metrics are separated into three groups:
+
+A run is the metrics collected for one iteration.
 
 The pageSummary encapsulates the metrics for a single page. For example if we test a single page 10 times, it will have the min/median/max here for values that change.
 
