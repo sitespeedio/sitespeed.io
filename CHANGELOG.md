@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## 10.3.2 - UNRELEASED
+### Fixed
+* Changed the InfluxDB annotation log to log on debug level instead of info
+* The wrong HAR was viewed in the HTML result if you used `--html.fetchHARFiles` and tested multiple pages [#2704](https://github.com/sitespeedio/sitespeed.io/pull/2704).
+
 ## 10.3.1 -  2019-10-17
 ### Fixed
 * If a page had a HTTP error, we logged all the requests, but we should only log the ones with a HTTP status code > 399. Fixed in [#2702](https://github.com/sitespeedio/sitespeed.io/pull/2702)
