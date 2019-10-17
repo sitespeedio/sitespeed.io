@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 10.3.1 -  2019-10-17
+### Fixed
+* If a page had a HTTP error, we logged all the requests, but we should only log the ones with a HTTP status code > 399. Fixed in [#2702](https://github.com/sitespeedio/sitespeed.io/pull/2702)
+
 ## 10.3.0 -  2019-10-16
 ### Added
 * Include filmstrip data (path to screenshots and metrics) in the HAR file [#2695](https://github.com/sitespeedio/sitespeed.io/issues/2695)
