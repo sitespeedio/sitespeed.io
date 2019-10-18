@@ -1,5 +1,23 @@
 # CHANGELOG - sitespeed.io
 
+## 10.3.2 - UNRELEASED
+### Fixed
+* Changed the InfluxDB annotation log to log on debug level instead of info
+* The wrong HAR was viewed in the HTML result if you used `--html.fetchHARFiles` and tested multiple pages [#2704](https://github.com/sitespeedio/sitespeed.io/pull/2704).
+
+## 10.3.1 -  2019-10-17
+### Fixed
+* If a page had a HTTP error, we logged all the requests, but we should only log the ones with a HTTP status code > 399. Fixed in [#2702](https://github.com/sitespeedio/sitespeed.io/pull/2702)
+
+## 10.3.0 -  2019-10-16
+### Added
+* Include filmstrip data (path to screenshots and metrics) in the HAR file [#2695](https://github.com/sitespeedio/sitespeed.io/issues/2695)
+* Your budget can now fail if you have any HTTP ERRORS on your page [#2691](https://github.com/sitespeedio/sitespeed.io/pull/2691). Thank you [thapasya-m](https://github.com/thapasya-m) for the PR!
+* Allow filtering run iteration metrics, thank you [Kevin Lakotko](https://github.com/kevinlacotaco) for the PR [#2697](https://github.com/sitespeedio/sitespeed.io/pull/2697).
+* Update indexed keys with names for user timing and asssets when you collect metric per iteration in Graphite. Thank you [Kevin Lakotko](https://github.com/kevinlacotaco) for the PR [#2701](https://github.com/sitespeedio/sitespeed.io/pull/2701).
+* New Browsertime with Geckodriver 0.26.0
+* New Coach 4.1.0 that collect meta generator info.
+
 ## 10.2.0 - 2019-10-07
 ### Added
 * Added stdev to metrics sent to InfluxDB [#2678](https://github.com/sitespeedio/sitespeed.io/pull/2678).
@@ -12,7 +30,8 @@
 
 
 ### Fixed
-* There was a bug that caused faulty docs for running axe. Use `--axe.enable` to run Axe! [#2676](https://github.com/sitespeedio/sitespeed.io/pull/2676).
+* There was a bug that caused faulty docs for running axe. Use `--axe.enable` 
+to run Axe! [#2676](https://github.com/sitespeedio/sitespeed.io/pull/2676).
 * Set correct tag for CPU Long Tasks in InfluxDB [#2677](https://github.com/sitespeedio/sitespeed.io/pull/2677)
 * Handle float numbers in statistics, thank you [tengremlin](https://github.com/tengremlin) for the PR [#2675](https://github.com/sitespeedio/sitespeed.io/pull/2675).
 * Upgraded to Yargs 14.2.0 that fixes so you can extend config.json files in multiple steps. Before only on step worked.
