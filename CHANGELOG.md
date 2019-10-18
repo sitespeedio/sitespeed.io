@@ -1,9 +1,10 @@
 # CHANGELOG - sitespeed.io
 
-## 10.3.2 - UNRELEASED
+## 10.3.2 -  2019-10-18
 ### Fixed
-* Changed the InfluxDB annotation log to log on debug level instead of info
+* Changed the InfluxDB annotation log to log on debug level instead of info.
 * The wrong HAR was viewed in the HTML result if you used `--html.fetchHARFiles` and tested multiple pages [#2704](https://github.com/sitespeedio/sitespeed.io/pull/2704).
+* If a pug template fail to render, log the template name and the data passed on [#2709](https://github.com/sitespeedio/sitespeed.io/pull/2709)
 
 ## 10.3.1 -  2019-10-17
 ### Fixed
