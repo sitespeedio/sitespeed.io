@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 10.4.0 - UNRELEASED
+## UNRELEASED
 ### Fixed
 * Finally there's a fix for that the Docker container run sitespeed.io as root, generating otput owned by root as in [#1459](https://github.com/sitespeedio/sitespeed.io/issues/1459). The fix by [Mason Malone](https://github.com/MasonM) pickup the user of the output directory and uses that user. Thank you again [Mason Malone](https://github.com/MasonM) for the PR [#2710](https://github.com/sitespeedio/sitespeed.io/pull/2710).
 
