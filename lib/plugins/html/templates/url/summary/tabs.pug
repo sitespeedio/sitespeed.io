@@ -10,7 +10,7 @@
   if options.browsertime.video
     a(id='video', href='#video', onclick='return selectTab(this, true);')
       | Video
-  if (options.browsertime.video || options.browsertime.visualMetrics) && options.videoParams.createFilmstrip || options.browsertime.chrome.enableTraceScreenshots
+  if (options.browsertime.visualMetrics && options.videoParams.createFilmstrip) || options.browsertime.chrome.enableTraceScreenshots
     a(id='filmstrip', href='#filmstrip', onclick='return selectTab(this, true);')
       | Filmstrip      
   if d.coach && d.coach.pageSummary
