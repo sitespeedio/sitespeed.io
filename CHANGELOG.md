@@ -12,6 +12,7 @@
 * Chrome/Chromedriver 78 and Firefox 70.
 * Upgraded to Browsertime 7.0.0-alpha.1
 * Use AXE in budget [#2718](https://github.com/sitespeedio/sitespeed.io/pull/2718).
+* Upgraded to Axe Core 3.4.0 [#2723](https://github.com/sitespeedio/sitespeed.io/pull/2723).
 
 ## 10.3.2 -  2019-10-18
 ### Fixed
