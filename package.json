@@ -34,6 +34,9 @@
   "bugs": {
     "url": "https://github.com/sitespeedio/sitespeed.io/issues"
   },
+  "publishConfig": {
+    "tag": "canary"
+  },
   "scripts": {
     "lint": "eslint . && npm run pug-lint",
     "lint:fix": "eslint . --fix",
@@ -73,7 +76,7 @@
     "axe-core": "3.3.1",
     "@google-cloud/storage": "3.2.0",
     "aws-sdk": "2.517.0",
-    "browsertime": "6.1.4",
+    "browsertime": "7.0.0-alpha.1",
     "cli-color": "1.4.0",
     "concurrent-queue": "7.0.2",
     "dayjs": "1.8.15",
