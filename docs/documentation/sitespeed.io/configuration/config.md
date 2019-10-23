@@ -199,6 +199,7 @@ HTML
   --html.showScript                     Show a link to the script you use to run. Be careful if your result is public and you keep passwords in your script.  [boolean] [default: false]
   --html.assetsBaseURL                  The base URL to the server serving the assets of HTML results. In the format of https://result.sitespeed.io. This can be used to reduce size in large setups. If set, disables writing of assets to the output folder.
   --html.compareURL, --html.compareUrl  Will add a link on the waterfall page, helping you to compare the HAR. The full path to your compare installation. In the format of https://compare.sitespeed.io/
+  --html.pageSummaryMetrics             Select from a list of test metrics to be displayed for given URL(s). Here is a sample format --html.pageSummaryMetrics request.total score.performance [array] [default: ["transferSize.total","requests.total","thirdParty.requests","transferSize.javascript","transferSize.css","transferSize.image","score.performance"]]
 
 Text
   --summary         Show brief text summary to stdout  [boolean] [default: false]

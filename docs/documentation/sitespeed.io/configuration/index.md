@@ -109,6 +109,13 @@ Choose which browser to use (default is Chrome):
 docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io -b firefox
 ~~~
 
+### Choose metrics to display
+Choose which all test metrics to be displayed on page summary (max: 7):
+
+~~~bash
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io https://www.google.com -v -n 1 --html.pageSummaryMetrics transferSize.css requests.total score.performance
+~~~
+
 ### Connectivity
 
 You should throttle the connection when you are fetching metrics. We have a [special section]({{site.baseurl}}/documentation/sitespeed.io/connectivity) on how you emulate connectivity for real users. Make sure you read that parts of the documentation!
