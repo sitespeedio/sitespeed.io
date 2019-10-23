@@ -1,8 +1,16 @@
 # CHANGELOG - sitespeed.io
 
 ## UNRELEASED
-### Fixed
+### Changed
 * Finally there's a fix for that the Docker container run sitespeed.io as root, generating otput owned by root as in [#1459](https://github.com/sitespeedio/sitespeed.io/issues/1459). The fix by [Mason Malone](https://github.com/MasonM) pickup the user of the output directory and uses that user. Thank you again [Mason Malone](https://github.com/MasonM) for the PR [#2710](https://github.com/sitespeedio/sitespeed.io/pull/2710).
+
+### Fixed
+* Fixed so that you can disable video/visual metrics in your configuration json in Docker as reported in [#2692](https://github.com/sitespeedio/sitespeed.io/issues/2692) fixed by PR [#2715](https://github.com/sitespeedio/sitespeed.io/pull/2715).
+
+### Added
+* Make it possible to configure which data to show in the columns as in [#200](1https://github.com/sitespeedio/sitespeed.io/issues/2001), fixed in PR [#2711](https://github.com/sitespeedio/sitespeed.io/pull/2711). Thank you [thapasya-m](https://github.com/thapasya-m) for the PR!
+* Chrome/Chromedriver 78 and Firefox 70.
+* Upgraded to Browsertime 7.0.0-alpha.1
 
 ## 10.3.2 -  2019-10-18
 ### Fixed
