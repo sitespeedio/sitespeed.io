@@ -44,7 +44,7 @@ mixin rows(pages)
 
 block content
   - headings = ['URL']
-  if options.visualMetrics
+  if options.browsertime.visualMetrics
     - headings.push('First Visual Change', 'Speed Index', 'Last Visual Change')
   - metricList = options.html.pageSummaryMetrics
   each kv in metricList
