@@ -73,8 +73,8 @@
   },
   "main": "./lib/sitespeed.js",
   "dependencies": {
-    "axe-core": "3.4.0",
     "@google-cloud/storage": "3.2.0",
+    "axe-core": "3.4.0",
     "aws-sdk": "2.517.0",
     "browsertime": "7.0.0-alpha.1",
     "cli-color": "1.4.0",
