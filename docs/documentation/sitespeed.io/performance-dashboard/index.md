@@ -89,7 +89,7 @@ If you are new to [Grafana](https://grafana.com) you should checkout the [basic 
 # Configure running your tests
 You have the dashboard and you need to collect metrics. You do that on one or multiple other servers. Do not do it on the same server as the dashboard setup since you want to have an as isolated environment as possible for your tests.
 
-Go to the docmumentation on how to [continously run your tests](/documentation/sitespeed.io/continously-run-your-tests/) and learn how you can do that.
+Go to the docmumentation on how to [continuously run your tests](/documentation/sitespeed.io/continuously-run-your-tests/) and learn how you can do that.
 
 When you run the dashboard on a standalone server, you need to make sure your agents send the metrics to your Graphite server. Configure `--graphite.host` to the public IP address of your server. The default port when sending metrics to Graphite is 2003, so you don't have to include that.
 
