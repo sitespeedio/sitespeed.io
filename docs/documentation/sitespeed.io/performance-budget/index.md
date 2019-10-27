@@ -178,7 +178,7 @@ And then you can always combine them all.
 
 If you need more metrics for your budget, either [create an issue](https://github.com/sitespeedio/sitespeed.io/issues/new) or look below for using the full internal data structure.
 
-#### Budget configuration using the internal data structrure
+#### Budget configuration using the internal data structure
 There's also an old version of settiung a budget where you can do it for all metrics collected by sitespeed.io and works on the internal data structure.
 
 
