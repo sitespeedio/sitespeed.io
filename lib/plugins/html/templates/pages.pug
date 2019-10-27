@@ -9,7 +9,7 @@ mixin rows(pages)
     - t = p.contentTypes || {javascript: {transferSize: ''}, css: {transferSize: ''}, image: {transferSize: ''}}
     - display = (options.urlsMetaData && options.urlsMetaData[url] && options.urlsMetaData[url].alias) ? options.urlsMetaData[url].alias : url
     - display = (pageInfo.data.browsertime && b.info.alias) ? b.info.alias : display
-    - metricList = options.html.pageSummaryMetrics
+    - metricList = html.pageSummaryMetrics
     tr
       td.url.pagesurl(data-title='URL')
         a(href= pageInfo.path + 'index.html')= decodeURIComponent(display)
@@ -46,7 +46,7 @@ block content
   - headings = ['URL']
   if options.browsertime.visualMetrics
     - headings.push('First Visual Change', 'Speed Index', 'Last Visual Change')
-  - metricList = options.html.pageSummaryMetrics
+  - metricList = html.pageSummaryMetrics
   each kv in metricList
     - metricArray = kv.toLowerCase().split('.').reverse()
     - heading = ''
