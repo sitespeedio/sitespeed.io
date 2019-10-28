@@ -3431,9 +3431,9 @@
       "integrity": "sha1-81HTKWnTL6XXpVZxVCY9korjvR8="
     },
     "browsertime": {
-      "version": "7.0.0-alpha.3",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-7.0.0-alpha.3.tgz",
-      "integrity": "sha512-yU10A68ykDrSvqmWUsqPWxBh+2fm4MWc78BeIXRc0GSC3ltiE3tSWc4lgbipsnx7ZR5TCTqFbR9ALA/F/GGYDQ==",
+      "version": "7.0.0-alpha.4",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-7.0.0-alpha.4.tgz",
+      "integrity": "sha512-QoT1XiGBCV+NO8V6UYh56gAk8M2ak6aZxfSnaSDZyfGYodYezKkrNu8+Mm6bBJEqXYLORq5aqua3AK2IFY8RWQ==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@sitespeed.io/chromedriver": "78.0.3904-70",
@@ -6224,9 +6224,9 @@
       }
     },
     "https-proxy-agent": {
-      "version": "2.2.2",
-      "resolved": "https://registry.npmjs.org/https-proxy-agent/-/https-proxy-agent-2.2.2.tgz",
-      "integrity": "sha512-c8Ndjc9Bkpfx/vCJueCPy0jlP4ccCCSNDp8xwCZzPjKJUm+B+u9WX2x98Qx4n1PiMNTWo3D7KK5ifNV/yJyRzg==",
+      "version": "2.2.4",
+      "resolved": "https://registry.npmjs.org/https-proxy-agent/-/https-proxy-agent-2.2.4.tgz",
+      "integrity": "sha512-OmvfoQ53WLjtA9HeYP9RNrWMJzzAz1JGaSFr1nijg0PVR1JaD/xbJq1mdEIIlxGpXp9eSe/O2LgU9DJmTPd0Eg==",
       "requires": {
         "agent-base": "^4.3.0",
         "debug": "^3.1.0"
