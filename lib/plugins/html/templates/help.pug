@@ -104,6 +104,9 @@ block content
       a(href='https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index') here
       | .
 
+    h5(id='ContentfulSpeedIndex') Contentful Speed Index
+    p This new metric is developed by Bas Schouten at Mozilla which uses edge detection to calculate the amount of "content" that is visible on each frame. It was primarily designed for two main purposes: Have a good metric to measure the amount of text that is visible. Design a metric that is not easily fooled by the pop up splash/login screens that commonly occur at the end of a page load. These can often disturb the speed index numbers since the last frame that is being used as reference is not accurate.
+      
     h5(id='FirstVisualChange') First Visual Change
     p The time when something for the first time is painted within the viewport. Calculated by analyzing a video.
 
