@@ -3431,9 +3431,9 @@
       "integrity": "sha1-81HTKWnTL6XXpVZxVCY9korjvR8="
     },
     "browsertime": {
-      "version": "7.0.0-alpha.4",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-7.0.0-alpha.4.tgz",
-      "integrity": "sha512-QoT1XiGBCV+NO8V6UYh56gAk8M2ak6aZxfSnaSDZyfGYodYezKkrNu8+Mm6bBJEqXYLORq5aqua3AK2IFY8RWQ==",
+      "version": "7.0.0-beta.1",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-7.0.0-beta.1.tgz",
+      "integrity": "sha512-amsnoofYu0TO9yzXkgwyssq6OAVqAfZ0KmjxF/lOVVRury1NOg3/xsT9G1szPaFbv0ZGSQIZAaG/fv+1Uj3Acg==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@sitespeed.io/chromedriver": "78.0.3904-70",
@@ -3445,6 +3445,7 @@
         "chrome-har": "0.11.4",
         "chrome-remote-interface": "0.28.0",
         "dayjs": "1.8.15",
+        "del": "4.1.1",
         "execa": "2.0.4",
         "fast-stats": "0.0.5",
         "find-up": "4.1.0",
