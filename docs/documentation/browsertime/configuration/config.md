@@ -38,6 +38,7 @@ firefox
   --firefox.preference             Extra command line arguments to pass Firefox preferences by the format key:value To add multiple preferences, repeat --firefox.preference once per argument.
   --firefox.includeResponseBodies  Include response bodies in HAR  [choices: "none", "all", "html"] [default: "none"]
   --firefox.acceptInsecureCerts    Accept insecure certs  [boolean]
+  --firefox.windowRecorder         Use the internal compositor-based Firefox window recorder to emit PNG files for each frame that is a meaningful change.  The PNG output will further be merged into a variable frame rate video for analysis. Use this instead of ffmpeg to record a video (you still need the --video flag).  [boolean] [default: false]
   --firefox.collectMozLog          Collect the MOZ HTTP log  [boolean]
 
 selenium
@@ -78,6 +79,7 @@ connectivity
   --connectivity.downstreamKbps      This option requires --connectivity.profile be set to "custom".
   --connectivity.upstreamKbps        This option requires --connectivity.profile be set to "custom".
   --connectivity.latency             This option requires --connectivity.profile be set to "custom".
+  --connectivity.variance            This option requires --connectivity.engine be set to "throttle". It will add a variance to the latency between each run. --connectivity.variance 2 means it will run with a random variance of max 2% between runs.
   --connectivity.alias               Give your connectivity profile a custom name
   --connectivity.engine              The engine for connectivity. Throttle works on Mac and tc based Linux. Use external if you set the connectivity outside of Browsertime. The best way do to this is described in https://github.com/sitespeedio/browsertime#connectivity.  [choices: "external", "throttle", "tsproxy"] [default: "external"]
   --connectivity.throttle.localhost  Add latency/delay on localhost. Perfect for testing with WebPageReplay  [boolean] [default: false]
