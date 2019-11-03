@@ -34,7 +34,7 @@ mixin rows(pages)
         if (fullPath.indexOf('Size') > -1)
           +kbSizeCell(name, value)
         else if metricType === 'performance'
-          td.number(data-title=name data-value= value)
+          td.number(data-title=name, data-value=value)
             - label = 'label ' +  h.scoreLabel(value)
             span(class=label) #{value}
         else if metricType.toLowerCase() === 'httperrors'
