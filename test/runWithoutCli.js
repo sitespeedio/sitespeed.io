@@ -14,7 +14,7 @@ async function run() {
       }
     });
 
-    if (result.errors) {
+    if (result.errors.length > 0) {
       /* eslint-disable no-console */
       console.error(result.errors);
       /* eslint-enable no-console */
