@@ -10,10 +10,11 @@
 ### Added
 * Make it possible to configure which data to show in the columns as in [#200](1https://github.com/sitespeedio/sitespeed.io/issues/2001), fixed in PR [#2711](https://github.com/sitespeedio/sitespeed.io/pull/2711). Thank you [thapasya-m](https://github.com/thapasya-m) for the PR!
 * Chrome/Chromedriver 78 and Firefox 70.
-* Upgraded to Browsertime 7.0.0-alpha.1
+* Upgraded to Browsertime 7.0.0-beta.1
 * Use AXE in budget [#2718](https://github.com/sitespeedio/sitespeed.io/pull/2718).
 * Upgraded to Axe Core 3.4.0 [#2723](https://github.com/sitespeedio/sitespeed.io/pull/2723).
 * Added contentSize to budget [#2721](https://github.com/sitespeedio/sitespeed.io/pull/2721).
+* You can now configure which summary boxes (which metric) you can see on the start page. Thank you [thapasya-m](https://github.com/thapasya-m) for the PR [#2736](https://github.com/sitespeedio/sitespeed.io/pull/2736)!
 
 ## 10.3.2 -  2019-10-18
 ### Fixed
