@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Documentation sitespeed.io 10.x
+title: Documentation sitespeed.io 11.x
 description: Read about all you can do with sitespeed.io.
 keywords: tools, documentation, web performance
 nav: documentation
@@ -9,7 +9,7 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Documentation for sitespeed.io.
 ---
 
-# Documentation v10
+# Documentation v11
 
 <img src="{{site.baseurl}}/img/logos/sitespeed.io.png" class="pull-right img-big" alt="sitespeed.io logo" width="200" height="214">
 
@@ -32,6 +32,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Alerts](alerts/) - send alerts (email/Slack/PagerDuty etc) when you get a performance regression.
  * [Axe](axe/) - run accessibility tests.
  * [Continuous Integration](continuous-integration/) - generate JUnit XML/TAP and use Jenkins, Circle CI, Gitlab CI, Github Actions, Grunt or the Gulp plugin.
+ * [Configure HTML output](configure-html/) - change the default HTML output.
  * [CPU](cpu/) - measure CPU metrics to see where your page spends the time.
  * [Developers](developers/) - start here when you want to do PRs or create a plugin.
  * [Graphite](graphite/) - how to configure and store your metrics in Graphite (and using StatsD).

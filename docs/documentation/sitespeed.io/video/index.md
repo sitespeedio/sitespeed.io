@@ -33,10 +33,13 @@ The video will look something like this:
 There are a couple of things that you can do to configure the video and the metrics.
 
 ### SpeedIndex and other Visual Metrics
-To collect Visual Metrics like firstVisualChange, SpeedIndex, visualComplete85%, visualComplete95% visualComplete99% and lastVisualChange you add the parameter <code>--speedIndex</code>. The video will then be recorded, analyzed and then removed.
+To collect Visual Metrics like firstVisualChange, SpeedIndex, visualComplete85%, visualComplete95% visualComplete99% and lastVisualChange you add the parameter <code>--visualMetrics</code>. The video will then be recorded, analyzed and then removed.
 
 ### Keep or remove the video
 If you want to keep the video when you collect metrics or only want the video, just add <code>--video</code> to the list of parameters.
+
+### Firefox window recorder
+If you use Firefox you can use the built in window recoder (instead of using FFMPEG) to record the video. The Mozilla team uses it to make sure recording the video doesn't add any overhead. Turn it on with  <code>--firefox.windowRecorder</code>.
 
 ### Video quality
 You can change the number of frames per second (default is 30) by using <code>--browsertime.videoParams.framerate</code>. If you have a large server with a lot of extra CPU you can increase the amount. You should probably not decrease it lower than 30 since it will affect the precision of Visual Metrics.
