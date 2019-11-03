@@ -25,22 +25,23 @@ mixin rows(pages)
         - toolName = ''
         each tool in Object.keys(friendlyNames)
           - toolName = tool
-          - fullPath = friendlyNames[tool][m] && friendlyNames[tool][m][metricType] ? friendlyNames[tool][m][metricType] : undefined
+          - fullPath = friendlyNames[tool][m] && friendlyNames[tool][m][metricType] ? friendlyNames[tool][m][metricType].path : undefined
+          - name = friendlyNames[tool][m] && friendlyNames[tool][m][metricType] ? friendlyNames[tool][m][metricType].name : ''
           if (fullPath !== undefined)
             - break
         - value = get(pageInfo.data[toolName].pageSummary, fullPath, 0)
 
         if (fullPath.indexOf('Size') > -1)
-          +kbSizeCell(metricType +' '+ m, value)
+          +kbSizeCell(name, value)
         else if metricType === 'performance'
-          td.number(data-title=metricType +' '+ m, data-value= value)
+          td.number(data-title=name, data-value=value)
             - label = 'label ' +  h.scoreLabel(value)
             span(class=label) #{value}
         else if metricType.toLowerCase() === 'httperrors'
           - errors = Object.keys(value).filter(code => code > 399).length
-          +numberCell(metricType +' '+ m, errors)
+          +numberCell(name, errors)
         else
-          +numberCell(metricType +' '+ m, value)
+          +numberCell(name, value)
 
 block content
   - headings = ['URL']
@@ -48,18 +49,12 @@ block content
     - headings.push('First Visual Change', 'Speed Index', 'Last Visual Change')
   - metricList = html.pageSummaryMetrics
   each kv in metricList
-    - metricArray = kv.toLowerCase().split('.').reverse()
-    - heading = ''
-    each word, index in metricArray
-      if ['css', 'html'].indexOf(word) > -1
-        - heading = word.toUpperCase()
-      else
-        - heading = heading + word.charAt(0).toUpperCase() + word.slice(1)
-      if index === 0
-        - heading = heading + ' '
-    if heading.indexOf('size') > -1
-      - heading = heading + ' (kb)'
-    - headings.push(heading)
+    - [k, v] = kv.split('.')
+    - headingText = ''
+    each tool in Object.keys(friendlyNames)
+      if (friendlyNames[tool] && friendlyNames[tool][k] && friendlyNames[tool][k][v])
+        - headingText = friendlyNames[tool][k][v].name
+    - headings.push(headingText)
   .row
     .column
       include runInfo
