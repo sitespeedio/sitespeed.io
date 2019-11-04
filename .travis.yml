@@ -36,7 +36,7 @@ script:
 - bin/sitespeed.js --multi -n 1 https://www.sitespeed.io/ https://www.sitespeed.io/documentation/
 - bin/sitespeed.js --multi -n 3 test/prepostscripts/multi.js
 - bin/sitespeed.js https://www.sitespeed.io/ https://www.google.com -v -n 1 --html.pageSummaryMetrics transferSize.css -html.pageSummaryMetrics requests.httpErrors --html.pageSummaryMetrics score.performance
-- bin/sitespeed.js https://www.sitespeed.io/ -v -n 1 --html.summaryBoxes coach.score --html.summaryBoxes pagexray.requests.javascript
+- bin/sitespeed.js https://www.sitespeed.io/ -v -n 1 --html.summaryBoxes score.performance --html.summaryBoxes timings.firstPaint
 
 env:
   global:
