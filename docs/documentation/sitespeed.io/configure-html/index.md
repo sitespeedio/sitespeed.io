@@ -91,7 +91,7 @@ Or use a configuration jsoip
 Here are the different metrics that you can show in the summary boxes or in the page HTML. Any metric missing? [Make a PR](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/friendlynames.js) or [create a issue](https://github.com/sitespeedio/sitespeed.io/issues/new)!
 
 
-~~~help
+~~~
 {% include_relative friendlynames.md %}
 ~~~
 

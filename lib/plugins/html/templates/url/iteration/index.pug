@@ -131,7 +131,7 @@ block content
       section#video-panel
         include ../video/index.pug
 
-    if (options.browsertime.video || options.browsertime.visualMetrics) && options.videoParams.createFilmstrip || options.browsertime.chrome.enableTraceScreenshots
+    if (options.browsertime.video || options.browsertime.visualMetrics) && options.videoParams.createFilmstrip || options.browsertime.chrome && options.browsertime.chrome.enableTraceScreenshots
       section#filmstrip-panel
         include ../filmstrip/index.pug        
 

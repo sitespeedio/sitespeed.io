@@ -33,4 +33,4 @@ bin/sitespeed.js --help > docs/documentation/sitespeed.io/configuration/config.m
 
 # Generate friendly names from code
 node release/friendlyNames.js > docs/documentation/sitespeed.io/configure-html/friendlynames.md
-
+node release/friendlyNamesBudget.js > docs/documentation/sitespeed.io/performance-budget/friendlynames.md

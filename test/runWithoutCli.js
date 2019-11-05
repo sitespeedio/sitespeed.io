@@ -1,9 +1,9 @@
 const sitespeed = require('../lib/sitespeed');
 const urls = ['https://www.sitespeed.io/'];
 
-function run() {
-  sitespeed
-    .run({
+async function run() {
+  try {
+    let result = await sitespeed.run({
       urls,
       browsertime: {
         iterations: 1,
@@ -12,18 +12,20 @@ function run() {
           profile: 'native'
         }
       }
-    })
-    .then(results => {
-      if (results.error) {
-        throw new Error(results.error);
-      }
-    })
-    .catch(err => {
+    });
+
+    if (result.errors.length > 0) {
       /* eslint-disable no-console */
-      console.error(err);
+      console.error(result.errors);
       /* eslint-enable no-console */
       process.exit(1);
-    });
+    }
+  } catch (e) {
+    /* eslint-disable no-console */
+    console.error(e);
+    /* eslint-enable no-console */
+    process.exit(1);
+  }
 }
 
 run();
