@@ -49,10 +49,10 @@ In the real world you should always specify the exact version (tag) of the Docke
 docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b chrome https://www.sitespeed.io/
 ```
 
-If you want to use Firefox:
+If you want to use Firefox (make sure you make the shared memory larger using --shm-size):
 
 ```bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox https://www.sitespeed.io/
+docker run --shm-size 2g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox https://www.sitespeed.io/
 ```
 
 Using `-v "$(pwd)":/sitespeed.io` will map the current directory inside Docker and output the result directory there.
@@ -85,7 +85,7 @@ If you want to make sure your containers have the same time as the host, you can
 Full example:
 
 ```bash
-docker run --rm -v "$(pwd)":/sitespeed.io -v /etc/localtime:/etc/localtime:ro sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox https://www.sitespeed.io/
+docker run --shm-size 2g --rm -v "$(pwd)":/sitespeed.io -v /etc/localtime:/etc/localtime:ro sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox https://www.sitespeed.io/
 ```
 
 ## Setting time zone
@@ -105,13 +105,13 @@ To change connectivity you should use Docker networks, read all about it [here](
 If you run a server local on your machine and want to access it with sitespeed.io you can do that on Mac and Windows super easy if you are using Docker 18.03 or later by using _host.docker.internal_.
 
 ```bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox http://host.docker.internal:4000/
+docker run --shm-size 2g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox http://host.docker.internal:4000/
 ```
 
 If you are using Linux you should use `--network=host` to make sure localhost is your host machine.
 
 ```bash
-docker run --rm -v "$(pwd)":/sitespeed.io --network=host sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox http://localhost:4000/
+docker run --shm-size 2g --rm -v "$(pwd)":/sitespeed.io --network=host sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox http://localhost:4000/
 ```
 
 ## Access host in your local network
@@ -120,10 +120,10 @@ Sometimes the server you wanna test is in your local network at work and Docker 
 
 ## Extra start script
 
-You can run your extra start script in the Docker container: 
+You can run your extra start script in the Docker container:
 
 ```bash
-docker run -e EXTRA_START_SCRIPT=/sitespeed.io/test.sh --rm -v "$(pwd)":/sitespeed.io ...`. 
+docker run -e EXTRA_START_SCRIPT=/sitespeed.io/test.sh --rm -v "$(pwd)":/sitespeed.io ...`.
 ```
 
 ## Troubleshooting

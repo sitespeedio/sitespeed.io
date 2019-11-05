@@ -76,6 +76,13 @@ If you want to accept insecure certificates add ```--firefox.acceptInsecureCerts
 ### Collect trace logs
 We have no way to get trace data from Firefox today (by trace data we mean time spent in JavaScript/paint etc). You can follow the [upstream request](https://bugzilla.mozilla.org/show_bug.cgi?id=1250290) to make that happen.
 
+### More memory
+When you run Firefox in Docker you should use `--shm-size 2g` to make sure Firefox get enough shared memory (for Chrome we disabled the use of shm with --disable-dev-shm-usage).
+
+~~~bash
+docker run --shm-size 2g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io -b firefox
+~~~
+
 ## Chrome
 The latest version of Chrome should work out of the box. Latest version of stable [Chromedriver](http://chromedriver.chromium.org) is bundled in sitespeed.io and needs to match your Chrome version.
 
@@ -114,7 +121,7 @@ You download Chromedriver from [http://chromedriver.chromium.org](http://chromed
 
 ## Safari
 
-You can run Safari on Mac OS X. To run on iOS you need Catalina and iOS 13. To see more what you can do with the Safaridriver you can run `man safaridriver` in your terminal. 
+You can run Safari on Mac OS X. To run on iOS you need Catalina and iOS 13. To see more what you can do with the Safaridriver you can run `man safaridriver` in your terminal.
 
 ### Limitations
 We do not support HAR, video, cookies/request headers in Safari at the moment.
