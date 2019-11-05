@@ -165,9 +165,20 @@ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include ve
 
 ### Configuration as JSON
 
-You can keep all your configuration in a JSON file and then pass it on to sitespeed.io, and override with CLI parameters.
+You can keep all your configuration in a JSON file and then pass it on to sitespeed.io, and override with CLI parameters. We use [yargs](https://github.com/yargs/yargs) for the CLI and configuration.
 
-Create a config file and call it config.json:
+The CLI parameters can easily be converted to a JSON, using the full name of the cli name. A simple example is when you configure which browser to use. The shorthand name is `-b` but if you check the help (`--help`) you can see that the full name is `browsertime.browser`. That means that `-b`and `--browsertime.browser` is the same. And in your JSON configuration that looks like this:
+
+~~~json
+{
+  "browsertime": {
+    "browser": "chrome"
+  }
+}
+~~~
+
+
+A more complex example: Create a config file and call it config.json:
 
 ~~~json
 {
@@ -220,7 +231,7 @@ You can also extend another JSON config file. The path needs to be absolute.
 }
 ~~~
 
-You can check out [our example configuration](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/master/config) for [dashboard.sitespeed.io](https://dashboard.sitespeed.io).
+You can check out [our example configuration](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/master/config) for [dashboard.sitespeed.io](https://dashboard.sitespeed.io). 
 
 
 ## Advanced
