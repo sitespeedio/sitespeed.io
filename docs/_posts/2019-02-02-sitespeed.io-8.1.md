@@ -44,11 +44,11 @@ You will find server timings in the Metrics tab.
 
 
 ## New Chrome and Firefox
-The Docker container now uses Chrome 72, Firefox 65 and latest ChromeDriver/Geckodriver. It's good to stay updated to the latest versions since your users is auto updating the browser. You want to be on top of that and use the same version.
+The Docker container now uses Chrome 72, Firefox 65 and latest ChromeDriver/GeckoDriver. It's good to stay updated to the latest versions since your users is auto updating the browser. You want to be on top of that and use the same version.
 
 
 ## New command: run JavaScript and wait for page complete
-There's a new [command](/documentation/sitespeed.io/scripting/#commmands) ```js.runAndWait('')``` that makes it possible to run your own JavaScript, click a link and wait on page navigation. This is super handy if you want to navigate using JavaScript.
+There's a new [command](/documentation/sitespeed.io/scripting/#commands) ```js.runAndWait('')``` that makes it possible to run your own JavaScript, click a link and wait on page navigation. This is super handy if you want to navigate using JavaScript.
 
 ## Example: Measure shopping/checkout process
 I want to highlight that we have an [example section](/documentation/sitespeed.io/scripting/#examples) in the documentation on how you can use the new scripting introduced in 8.0. 

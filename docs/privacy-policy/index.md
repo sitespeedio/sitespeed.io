@@ -12,7 +12,7 @@ twitterdescription: Privacy policy sitespeed.io.
 
 We take your online privacy really serious: Our [documentation site](https://www.sitespeed.io/), our [dashboard](https://dashboard.sitespeed.io) and our [compare tool](https://compare.sitespeed.io) do not use any tracking software at all (no Google Analytics or any other tracking software). We never use tracking software. None of the sitespeed.io tools call home to us. We don't use any 3rd party requests on our website. We don't collect any data about you or your sitespeed.io usage.
 
-But beware: Chrome and Firefox call home. We would love PRs and tips how to make sure browsers don't call home when you run your tests! 
+But beware: Chrome and Firefox call home. We would love pull requests and tips how to make sure browsers don't call home when you run your tests! 
 
 Also be aware that GitHub/npm/Docker/Netlify can store information when you download sitespeed.io. 
 

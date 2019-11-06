@@ -17,7 +17,7 @@ twitterdescription: The web performance leaderboard.
 * Let's place the TOC here
 {:toc}
 
-The [leaderboard dashboard](https://dashboard.sitespeed.io/dashboard/db/leaderboard) is the easist way to compare how you are doing against your competition. To get it going you need [Grafana](https://grafana.com) (6.2 or later) and Graphite. If you don't have that already, you can follow the instructions in [performance dashboard documentation](/documentation/sitespeed.io/performance-dashboard/#up-and-running-in-almost-5-minutes). And to run your tests, you should follow [our example](https://github.com/sitespeedio/dashboard.sitespeed.io).
+The [leaderboard dashboard](https://dashboard.sitespeed.io/dashboard/db/leaderboard) is the easiest way to compare how you are doing against your competition. To get it going you need [Grafana](https://grafana.com) (6.2 or later) and Graphite. If you don't have that already, you can follow the instructions in [performance dashboard documentation](/documentation/sitespeed.io/performance-dashboard/#up-and-running-in-almost-5-minutes). And to run your tests, you should follow [our example](https://github.com/sitespeedio/dashboard.sitespeed.io).
 
 The dashboard list the pages that you test. With fastest/best URL first (yes it is a leaderboard!). It looks like this:
 ![Leaderboard example]({{site.baseurl}}/img/leaderboard-example.png)

@@ -21,7 +21,7 @@ You can run sitespeed.io using our Docker containers or using NodeJS.
 
 ## Docker
 
-We have [Docker images](https://hub.docker.com/r/sitespeedio/sitespeed.io/) with sitespeed.io, Chrome, Firefox, Xvfb and all the software needed for recording a video of the browser screen and analyze it to get Visual Metrics. It is super easy to use). Here's how to use the container with both Firefox & Chrome (install [Docker](https://docs.docker.com/install/) first).
+We have [Docker images](https://hub.docker.com/r/sitespeedio/sitespeed.io/) with sitespeed.io, Chrome, Firefox, Xvfb and all the software needed for recording a video of the browser screen and analyse it to get Visual Metrics. It is super easy to use). Here's how to use the container with both Firefox & Chrome (install [Docker](https://docs.docker.com/install/) first).
 
 ### Mac & Linux
 
@@ -64,8 +64,8 @@ yarn global add sitespeed.io
 
 We support Windows using [Docker](https://docs.docker.com/engine/installation/windows/). To be able to support running on Windows with NodeJS we need at least one [core contributor](/aboutus/) that can focus on Windows. Are you that one? Please [get in touch](https://github.com/sitespeedio/sitespeed.io/issues/new)!
 
-### Skip installing ChromeDriver/Geckodriver
-If you don't want to install ChromeDriver or Geckodriver when you install through npm you can skip them with an environment variable.
+### Skip installing ChromeDriver/GeckoDriver
+If you don't want to install ChromeDriver or GeckoDriver when you install through npm you can skip them with an environment variable.
 
 Skip installing ChromeDriver:
 
@@ -73,7 +73,7 @@ Skip installing ChromeDriver:
 CHROMEDRIVER_SKIP_DOWNLOAD=true npm install sitespeed.io -g
 ~~~
 
-Skip installing Geckodriver:
+Skip installing GeckoDriver:
 
 ~~~bash
 GECKODRIVER_SKIP_DOWNLOAD=true npm install sitespeed.io -g

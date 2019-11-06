@@ -13,7 +13,7 @@ It was almost 6 months ago when we released 4.0 and to get that out was a lot of
 
 But first lets check what we have added in the last months:
 
- * Video with SpeedIndex/firstVisualChange/lastVisualChange and VisualComplete 85%. This is real SpeedIndex where we record a video of the screen and use [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics/) to analyze and get the metrics.
+ * Video with SpeedIndex/firstVisualChange/lastVisualChange and VisualComplete 85%. This is real SpeedIndex where we record a video of the screen and use [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics/) to analyse and get the metrics.
  * Upload the [HTML result to Amazon S3](https://results.sitespeed.io/en.wikipedia.org/2017-04-10-06-00-04/pages/en.wikipedia.org/wiki/Barack_Obama/).
  * A better way to [set connectivity using Docker networks]({{site.baseurl}}/documentation/sitespeed.io/browsers/#change-connectivity).
  * Cleaner default Grafana dashboard with links to the HTML results.

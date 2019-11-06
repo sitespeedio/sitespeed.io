@@ -1820,9 +1820,9 @@ There's one change in 5.0 that changes the default behavior: TSProxy isn't defau
 
 Version 4.0 is a ground up rewrite for Node.js 6.9.1 and newer. It builds on all our experience since shipping 3.0 in December 2014, the first version to use Node.js.
 
-- We support HTTP/2! In 3.X we used PhantomJS and a modified version of YSlow to analyze best practice rules. We also had BrowserMobProxy in front of our browsers that made it impossible to collect metrics using H2. We now use the coach and Firefox/Chrome without a proxy. That makes it easier for us to adapt to browser changes and changes in best practices.
+- We support HTTP/2! In 3.X we used PhantomJS and a modified version of YSlow to analyse best practice rules. We also had BrowserMobProxy in front of our browsers that made it impossible to collect metrics using H2. We now use the coach and Firefox/Chrome without a proxy. That makes it easier for us to adapt to browser changes and changes in best practices.
 
-- We got the feature that people asked about the most: Measure a page as a logged in user. Use --browsertime.preScript to run a selenium task to before the page is analyzed. Documentation is coming soon.
+- We got the feature that people asked about the most: Measure a page as a logged in user. Use --browsertime.preScript to run a selenium task to before the page is analysed. Documentation is coming soon.
 
 - New HAR files rock! In the old version we use BrowserMobProxy as a proxy in front of the browser to collect the HAR. In the new version we collect the HAR directly from the browser. For Firefox we use the HAR export trigger and in Chrome we generates it from the performance log.
 
@@ -2042,9 +2042,9 @@ And many many more changed. Read about the release https://www.sitespeed.io/site
 
 - Everything! Rewrite from scratch in progress. This is an alpha release, try it test it but do not upgrade in production yet (https://github.com/sitespeedio/sitespeed.io/issues/945).
 
-- We support HTTP/2! In 3.X we used PhantomJS and a modified version of YSlow to analyze best practice rules. We also had BrowserMobProxy in front of our browsers that made it impossible to collect metrics using H2. We now use [the coach](https://github.com/sitespeedio/coach) and Firefox/Chrome without a proxy. That makes it easier for us to adapt to browser changes and changes in best practices.
+- We support HTTP/2! In 3.X we used PhantomJS and a modified version of YSlow to analyse best practice rules. We also had BrowserMobProxy in front of our browsers that made it impossible to collect metrics using H2. We now use [the coach](https://github.com/sitespeedio/coach) and Firefox/Chrome without a proxy. That makes it easier for us to adapt to browser changes and changes in best practices.
 
-- We now support the feature that people asked about the most: Measure a page as a logged in user. Use --browsertime.preTask to run a selenium task to before the page is analyzed. Documentation is coming soon.
+- We now support the feature that people asked about the most: Measure a page as a logged in user. Use --browsertime.preTask to run a selenium task to before the page is analysed. Documentation is coming soon.
 
 - New HAR files rock! In the old version we use BrowserMobProxy as a proxy in front of the browser to collect the HAR. In the new version we collect the HAR directly from the browser. For Firefox we use the [HAR export trigger](https://github.com/firebug/har-export-trigger) and in Chrome we generates it from the performance log.
 
@@ -2261,7 +2261,7 @@ And many many more changed. Read about the release https://www.sitespeed.io/site
 
 ## version 3.2.8 - 2015-04-13
 
-- Use --postURL to POST the result of an analyze to a URL
+- Use --postURL to POST the result of an analyse to a URL
 - Use --processJson to rerun all the post tasks on a result, use it to reconfigure what data to show in the HTML output.
 - Bug fix: extra check when generating Graphite keys. #642
 
@@ -2359,7 +2359,7 @@ And many many more changed. Read about the release https://www.sitespeed.io/site
 
 ## version 3.1.4 - 2015-02-16
 
-- Log the time the analyze of the URL(s) took #578
+- Log the time the analyse of the URL(s) took #578
 
 ## version 3.1.3 - 2015-02-13
 
@@ -2478,7 +2478,7 @@ And many many more changed. Read about the release https://www.sitespeed.io/site
 
 ## version 2.5.4 - 2014-01-28
 
-- Bug fix: If phantomJS fails, the whole analyze fails (introduced in 2.5.x) #359
+- Bug fix: If phantomJS fails, the whole analyse fails (introduced in 2.5.x) #359
 - The crawler now handles gziped content #263
 
 ## version 2.5.3 - 2014-01-25
@@ -2537,7 +2537,7 @@ And many many more changed. Read about the release https://www.sitespeed.io/site
 ## version 2.2.2 - 2013-11-14
 
 - Bug fix: User marks named with spaces broke the summary.xml
-- Bug fix: Sites with extremely far away last modification time on an asset, could break an analyze
+- Bug fix: Sites with extremely far away last modification time on an asset, could break an analyse
 - Upgraded Browser Time version to 0.4, getting back custom user measurements.
 
 ## version 2.2.1 - 2013-11-12
@@ -2553,7 +2553,7 @@ And many many more changed. Read about the release https://www.sitespeed.io/site
 - New BrowserTime version (0.3) including backEndTime & frontEndTime
 - Changed default summary page to show backend & frontend time (removed redirectionTime & domInteractiveTime)
 - Increased timeout for the crawler for really slow pages
-- Bug fix: The fix for removing invalid XML caharcters created by GA, sometimes broke the analyze, now fixed (#304)
+- Bug fix: The fix for removing invalid XML caharcters created by GA, sometimes broke the analyse, now fixed (#304)
 
 ## version 2.1.1 - 2013-11-05
 
@@ -2570,7 +2570,7 @@ And many many more changed. Read about the release https://www.sitespeed.io/site
 - Output the the input parameters to the error.log so it is easy to reproduce the error
 - Centralized the error logging
 - Added an easy way of include sitespeed.io in Travis-CI
-- Made it possible to analyze a site with non signed certificates
+- Made it possible to analyse a site with non signed certificates
 - Prepared for HTTP 2.0 rules & renamed the current rulesets, new names: sitespeed.io-desktop & sitespeed.io-mobile
 - Also copy the result.xml file to the output dir for sitespeed.io-junit.xml (to be able to create graphs per URL)
 - Bug fix: The crawler sometimes picked up URL:s linking to other content types than HTML
@@ -2597,7 +2597,7 @@ And many many more changed. Read about the release https://www.sitespeed.io/site
 - Simplified user agent by choosing between iphone, ipad or nexus and a real agent & viewport is set.
 - Output as CSV: Choose which column to output and always output ip, start url & date.
 - Fix for Windows-users that is having spaces in their path to Java.
-- Bug fix: URL:s that returns error (4XX-5XX and that sitespeed can't analyze) is now included in the JUnit xml.
+- Bug fix: URL:s that returns error (4XX-5XX and that sitespeed can't analyse) is now included in the JUnit xml.
 - Bug fix: The JUnit script can now output files to a relative path.
 - Bug fix: User Agent is now correctly set.
 
@@ -2647,7 +2647,7 @@ And many many more changed. Read about the release https://www.sitespeed.io/site
 
 ## version 1.7
 
-- Added check that Java exists before the analyze
+- Added check that Java exists before the analyse
 - Feed sitespeed with either a url to crawl or a plain text file with a list of URL:s (NOTE: the -f argument is now used for the file, the -c is the new for follow a specific path when crawling)
 - Create a junit xml file from the test, new script & new xsl file
 - Added new max size of a document, using stats from http archive
@@ -2686,7 +2686,7 @@ And many many more changed. Read about the release https://www.sitespeed.io/site
 ## version 1.5
 
 - Added support for configuring the crawler (see the dependencies/crawler.properties file).
-- Added support for analyze behind proxy (thanks https://github.com/rhulse and https://github.com/samteeeee for reporting and testing it)
+- Added support for analyse behind proxy (thanks https://github.com/rhulse and https://github.com/samteeeee for reporting and testing it)
 - Added html page that shows url:s that returned errors from the crawl
 - Added percentage on summary page
 - Added support for setting user agent
@@ -2745,7 +2745,7 @@ And many many more changed. Read about the release https://www.sitespeed.io/site
 
 - New crawler instead of wget that didn't work on some sites with spider options (amazon etc)
 - Fix for css in head rule, now only dns lookups are punished, not the number of css
-- Crawl by follow a specific path, meaning you can analyze parts of sites
+- Crawl by follow a specific path, meaning you can analyse parts of sites
 
 ## version 1.0.1
 
@@ -2756,7 +2756,7 @@ And many many more changed. Read about the release https://www.sitespeed.io/site
 
 ## version 1.0 - 2012-10-10
 
-- Show full urls in pages & page to easier understand which url that is analyzed
+- Show full urls in pages & page to easier understand which url that is analysed
 - Show extra data in modals to make it clearer
 - Popover & better texts on summary page
 - Cleanup & bug fixes in the bash script, it sometimes failed on some sites when yslow outputted content after the xml

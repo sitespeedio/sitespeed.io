@@ -106,8 +106,8 @@ Options:
   --decimals                                   The decimal points browsertime statistics round to.  [number] [default: 0]
   --cacheClearRaw                              Use internal browser functionality to clear browser cache between runs instead of only using Selenium.  [boolean] [default: false]
   --basicAuth                                  Use it if your server is behind Basic Auth. Format: username@password (Only Chrome and Firefox at the moment).
-  --preScript                                  Selenium script(s) to run before you test your URL/script. They will run outside of the analyze phase. Note that --preScript can be passed multiple times.
-  --postScript                                 Selenium script(s) to run after you test your URL. They will run outside of the analyze phase. Note that --postScript can be passed multiple times.
+  --preScript                                  Selenium script(s) to run before you test your URL/script. They will run outside of the analyse phase. Note that --preScript can be passed multiple times.
+  --postScript                                 Selenium script(s) to run after you test your URL. They will run outside of the analyse phase. Note that --postScript can be passed multiple times.
   --script                                     Add custom Javascript to run after the page has finished loading to collect metrics. If a single js file is specified, it will be included in the category named "custom" in the output json. Pass a folder to include all .js scripts in the folder, and have the folder name be the category. Note that --script can be passed multiple times.
   --userAgent                                  Override user agent
   --silent, -q                                 Only output info in the logs, not to the console. Enter twice to suppress summary line.  [count]
@@ -121,7 +121,7 @@ Options:
   --useSameDir                                 Store all files in the same structure and do not use the path structure released in 4.0. Use this only if you are testing ONE URL.
   --xvfb                                       Start xvfb before the browser is started  [boolean] [default: false]
   --xvfbParams.display                         The display used for xvfb  [default: 99]
-  --preURL                                     A URL that will be accessed first by the browser before the URL that you wanna analyze. Use it to fill the cache.
+  --preURL                                     A URL that will be accessed first by the browser before the URL that you wanna analyse. Use it to fill the cache.
   --preURLDelay                                Delay between preURL and the URL you want to test (in milliseconds)  [default: 1500]
   --userTimingWhitelist                        All userTimings are captured by default this option takes a regex that will whitelist which userTimings to capture in the results.
   --headless                                   Run the browser in headless mode. Works for Firefox and Chrome.  [boolean] [default: false]

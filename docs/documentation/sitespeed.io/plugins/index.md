@@ -230,7 +230,7 @@ Data from different tools are passed with three different message types:
 ### Debug/log
 You can use the sitespeed.io log to log messages. We use [intel](https://www.npmjs.com/package/intel) for logging.
 
-You get the log object in the context object (so there's no need to require the log) but you you should get a specfic instance so that you can filter the log/see which part of sitespeed.io that writes to the log.
+You get the log object in the context object (so there's no need to require the log) but you you should get a specific instance so that you can filter the log/see which part of sitespeed.io that writes to the log.
 
 In the [open](#opencontext-options) function you can add something like this:
 

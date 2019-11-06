@@ -71,7 +71,7 @@ This will get you the full JSON, the same as if you integrate the coach into you
 
 ### Bookmarklet
 
-We also produce a bookmarklet. The bookmarklet only uses advice that you can run inside the browser (it doesn't have HAR file to analyze even though maybe possible in the future with the Resource Timing API).
+We also produce a bookmarklet. The bookmarklet only uses advice that you can run inside the browser (it doesn't have HAR file to analyse even though maybe possible in the future with the Resource Timing API).
 
 The bookmarklet is really rough right now and logs the info to the browser console. Help us make a cool front-end :)
 
@@ -158,7 +158,7 @@ The coach will give you advice on how to make your page better. You will also ge
 The coach tests your site in two steps:
 
  * Executes JavaScript in your browser and check for performance, accessibility, best practice and collect general info about your page.
- * Analyze the [HAR file](http://www.softwareishard.com/blog/har-12-spec/) for your page together with relevant info from the DOM process.
+ * analyse the [HAR file](http://www.softwareishard.com/blog/har-12-spec/) for your page together with relevant info from the DOM process.
 
 You can run the different steps standalone but for the best result run them together.
 

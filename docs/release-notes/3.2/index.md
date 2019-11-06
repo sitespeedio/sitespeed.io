@@ -12,7 +12,7 @@ twitterdescription: THere is 3.2 making it easier to test multiple sites and run
 # Sitespeed.io 3.2
 We've been releasing many small 3.1.x releases and now it's time for 3.2. Here are three important new things:
 
- * We have changed the way of fetching multiple sites. In the new version you can configure multiple sites by adding the parameter **sites** one time for each site. The main reason is that it simpler and also makes it easier to run in our Docker container. Check the full [documentation]({{site.baseurl}}/documentation/configuration/#analyze-sites-and-benchmark).
+ * We have changed the way of fetching multiple sites. In the new version you can configure multiple sites by adding the parameter **sites** one time for each site. The main reason is that it simpler and also makes it easier to run in our Docker container. Check the full [documentation]({{site.baseurl}}/documentation/configuration/#analyse-sites-and-benchmark).
  * We have decreased the default size of the memory for the Java crawler. The old default (1024 mb) was good for crawling thousand of URL:s so if you are doing that today, add the parameter *--memory 1024* when you run the script. 1024 works bad on small machines so 256 is the new default.
  * We upgraded to Browsertime 0.9.0 with support for configuring a *waitScript* and run custom Javascripts in the browser. What does it mean? You can now choose [when to end a run]({{site.baseurl}}/documentation/browsers/#choose-when-to-end-your-test) when fetching timings from the browser (catching events happening after the loadEventEnd) and [collect custom metrics]({{site.baseurl}}/documentation/browsers/#custom-metrics). The custom metrics will automatically be presented in the result pages and sent to Graphite.
 

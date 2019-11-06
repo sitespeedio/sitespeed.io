@@ -148,7 +148,7 @@ If you installed Chrome Canary on your phone and want to use it, then add `--chr
 
 ### Collect trace log
 
-One important thing when testing on mobile is to analyze the Chrome trace log. You can get that with `--cpu`:
+One important thing when testing on mobile is to analyse the Chrome trace log. You can get that with `--cpu`:
 
 ```bash
 sitespeed.io --android --cpu https://www.sitespeed.io
