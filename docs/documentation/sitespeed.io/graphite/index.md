@@ -111,7 +111,7 @@ Append a message to the annotation with <code>--graphite.annotationMessage</code
 
 You can add extra tags with <code>--graphite.annotationTag</code>. For multiple tags, add the parameter multiple times. Just make sure that the tags doesn't collide with our internal tags.
 
-![Annotations]({{site.baseurl}}/img/graphite-aunnnotations.png)
+![Annotations]({{site.baseurl}}/img/graphite-annotations.png)
 {: .img-thumbnail-center}
 
 You can also include a screenshot from the run in the annotation by adding <code>--graphite.annotationScreenshot</code> to your configuration.
@@ -125,6 +125,11 @@ Instead of using Graphite annotations you can use Grafana built in annotations s
 To use Grafana annotations, make sure you setup a *resultBaseURL* and add the host and port to Grafana: <code>--grafana.host</code> and <code>--grafana.port</code>.
 
 Then setup your Grafana API token, follow the instructions at [http://docs.grafana.org/http_api/auth/#authentication-api](http://docs.grafana.org/http_api/auth/#authentication-api) and use the **bearer** code you get with <code>--grafana.auth</code>. Then your annotations will be sent to Grafana instead of Graphite.
+
+You need to create a new annotation setup in Grafana that matches the templates (the dropdowns) in your dashboard (the same way the default "run" Graphite annotation is setup). It will look something like this:
+![Setup Grafana annotations]({{site.baseurl}}/img/grafana-annotations.png)
+{: .img-thumbnail-center}
+
 
 ## Dashboards
 We have [pre-made Grafana dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/master/dashboards/graphite) that works with Graphite. They are generic and as long as your [namespace](#namespace) consists of two parts, they will work. You can import them one by one or [inject them using Docker](https://github.com/sitespeedio/grafana-bootstrap-docker).
