@@ -43,9 +43,7 @@ layout: compress
 	<link type="application/atom+xml" href="https://www.sitespeed.io/feed/index.xml" rel="alternate" />
 
 	<style>
-		{
-			% include css/default.css %
-		}
+		{% include css/default.css %}
 	</style>
 	<link rel="stylesheet" href="{{ "/css/prism-1.15.css" | prepend: site.baseurl }}">
 	<script type="text/javascript">{% include userTimings.js %}</script>

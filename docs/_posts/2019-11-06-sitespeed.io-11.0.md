@@ -1,9 +1,9 @@
 ---
 layout: default
 title: sitespeed.io 11.0  
-description: Better configurable HTML output, the new Contentful Speed Index, Firefox Window recoirder and finally no root in Docker.
+description: Better configurable HTML output, the new Contentful Speed Index metric, Firefox Window recoirder and finally no root in Docker.
 authorimage: /img/aboutus/peter.jpg
-intro:  Better configurable HTML output, the new Contentful Speed Index, Firefox Window recoirder and finally no root in Docker.
+intro:  Better configurable HTML output, the new Contentful Speed Index metric, Firefox Window recoirder and finally no root in Docker.
 keywords: sitespeed.io, browsertime, webperf
 nav: blog
 ---
@@ -16,8 +16,6 @@ A lot of love and extra thanks to:
 * [Mason Malone](https://github.com/MasonM) - Mason fixed the long annoying problem of when you are running your test on Linux, the result files are stored as the user root. Masons fix instead pick up the owner of the result directory, and uses that owner. Clever!
 * [Thapasya Murali](https://github.com/thapasya-m) - Thapasya have made it possible to configure the summary boxes (on the start result HTML page) and the columns of the pages page. 
 * [Denis Palmeiro](https://github.com/dpalmeiro) - Denis added the new metric Contentful speed index and the new Firefox window recorder! 
-
-
 
 ## Contentful Speed Index
 That's a new SI metric developed by Bas Schouten at Mozilla which uses edge detection to calculate the amount of "content" that is visible on each frame. It was primarily designed for two main purposes: 
