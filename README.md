@@ -155,6 +155,11 @@ docker run --cap-add=NET_ADMIN --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true -e 
   </a>
 </p>
 
+# Sponsors
+You can sponsor us to help us keep sitespeed.io running and making sure we can have the best test setup as possible. Read our [sponsor page](https://github.com/sponsors/soulgalore) for more info.
+
+Thank you [https://www.supervisor.com](https://www.supervisor.com) for sponsoring sitespeed.io!
+
 [travis-image]: https://img.shields.io/travis/sitespeedio/sitespeed.io.svg?style=flat-square
 [travis-url]: https://travis-ci.org/sitespeedio/sitespeed.io
 [stars-url]: https://github.com/sitespeedio/sitespeed.io/stargazers
