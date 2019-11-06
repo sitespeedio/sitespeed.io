@@ -14,7 +14,7 @@ We take your online privacy really serious: Our [documentation site](https://www
 
 But beware: Chrome and Firefox call home. We would love PRs and tips how to make sure browsers don't call home when you run your tests! 
 
-Also be aware that Github/npm/Docker/Netlify can store information when you download sitespeed.io. 
+Also be aware that GitHub/npm/Docker/Netlify can store information when you download sitespeed.io. 
 
 Let us go through this thoroughly:
 * Let's place the TOC here
@@ -42,4 +42,4 @@ We don't collect any data, so we don't have any data to share.
 We believe you can feel safe that we don't collect any data about you, nor have any information to share with companies that wants to capitalize on what you do.
 
 ## Is the intended use likely to cause individuals to object or complain?
-We don't think any individuals have any complains with this. But if you do, please let us know in a [Github issue](https://github.com/sitespeedio/sitespeed.io/issues/new). 
+We don't think any individuals have any complains with this. But if you do, please let us know in a [GitHub issue](https://github.com/sitespeedio/sitespeed.io/issues/new). 

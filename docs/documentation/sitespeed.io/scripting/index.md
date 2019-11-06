@@ -475,7 +475,7 @@ If you want to click a link and want to make sure that the HTML doesn't change w
 module.exports = async function(context, commands) {
     await commands.measure.start('https://www.sitespeed.io');
     // Hide everything
-    // We do not hide the body since the body needs to be visibile when we do the magic to find the staret of the
+    // We do not hide the body since the body needs to be visible when we do the magic to find the staret of the
     // navigation by adding a layer of orange on top of the page
     await commands.js.run('for (let node of document.body.childNodes) { if (node.style) node.style.display = "none";}');
     // Start measurning
@@ -826,7 +826,7 @@ module.exports = async function(context, commands) {
 Create an error. Use it if you catch a thrown error, want to continue with something else, but still report the error.
 
 ### Meta data
-Add meta data to your script. The extra data will be visibile in the HTML result page.
+Add meta data to your script. The extra data will be visible in the HTML result page.
 
 Setting meta data like this:
 
@@ -858,7 +858,7 @@ Add a title of your script. The title is text only.
 Add a description of your script. The description can be text/HTML.
 
 ### Use Selenium directly
-You can use Selenium directly if you need to use things that are not availible through our commands.
+You can use Selenium directly if you need to use things that are not available through our commands.
 
 You get a hold of the Selenium objects through the context.
  The *selenium.webdriver* that is the Selenium [WebDriver public API object](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html). And *selenium.driver* that's the [instantiated version of the WebDriver](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebDriver.html) driving the current version of the browser.

@@ -81,7 +81,7 @@ All URLs that you test then needs to have a SpeedIndex faster than 1000. But if 
 
 #### Full example
 
-Here is an example of a fully configurued budget file.
+Here is an example of a fully configured budget file.
 
 ~~~json
 {
@@ -185,7 +185,7 @@ If you need more metrics for your budget, either [create an issue](https://githu
 ~~~
 
 #### Budget configuration using the internal data structure
-There's also an old version of settiung a budget where you can do it for all metrics collected by sitespeed.io and works on the internal data structure.
+There's also an old version of setting a budget where you can do it for all metrics collected by sitespeed.io and works on the internal data structure.
 
 
 You can read more about the metrics/data structure in the [metrics section]({{site.baseurl}}/documentation/sitespeed.io/metrics/).

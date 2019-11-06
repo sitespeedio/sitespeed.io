@@ -80,5 +80,5 @@ A couple of things:
 - Make sure xvfb is turned off `--xvfb false`
 - To ignore HTTPS certificate errors add `--chrome.args ignore-certificate-errors-spki-list=PhrPvGIaAMmd29hj8BCZOq096yj7uMpRNHpn5PDxI6I=` and `--chrome.args user-data-dir=/data/tmp/chrome` (they only work together).
 
-If you want to drive multiple phones from omne instance, you can change the ports WebPageReplay is using (making sure they do not collide between phones). You can do that with
+If you want to drive multiple phones from one instance, you can change the ports WebPageReplay is using (making sure they do not collide between phones). You can do that with
 `-e WPR_HTTP_PORT=XXX` and `-e WPR_HTTPS_PORT=YYY`. The default ports are 8080 and 8081.

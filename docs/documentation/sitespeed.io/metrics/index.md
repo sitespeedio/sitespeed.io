@@ -18,7 +18,7 @@ twitterdescription: Configuring metrics to use
 {:toc}
 
 # Collected metrics
-Sitespeed.io collects a lot of metrics which are filtered before they are sent to Graphite/InfluxDB. You can remove filters and/or add your own filters. Some sensible defaults have been set for you, if you have suggestions to change them create an [issue at Github](https://github.com/sitespeedio/sitespeed.io/issues/new).
+Sitespeed.io collects a lot of metrics which are filtered before they are sent to Graphite/InfluxDB. You can remove filters and/or add your own filters. Some sensible defaults have been set for you, if you have suggestions to change them create an [issue at GitHub](https://github.com/sitespeedio/sitespeed.io/issues/new).
 
 ## Summary vs pageSummary vs run
 The metrics are separated into three groups:

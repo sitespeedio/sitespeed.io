@@ -23,7 +23,7 @@ But first lets check what we have added in the last months:
 Before we go on about the new things in 5.0 we wanna tell you about the status of the project:
 We have had more 500,000 downloads of sitespeed.io (611k + the ones we had before we moved to NodeJS and Docker)! We have a lot more things we want to add and we need your help more than ever!
 
-We have a Slack channel for developers [that you should join](https://sitespeedio.herokuapp.com/)! This is the place you can get help with building plugins or contribute back to sitespeed.io. If you have questions on how to run sitespeed.io, please use [Github issues](https://github.com/sitespeedio/sitespeed.io/issues/new).
+We have a Slack channel for developers [that you should join](https://sitespeedio.herokuapp.com/)! This is the place you can get help with building plugins or contribute back to sitespeed.io. If you have questions on how to run sitespeed.io, please use [GitHub issues](https://github.com/sitespeedio/sitespeed.io/issues/new).
 
 Between the latest 4.7 and now 5.0 we have focused on getting the HTML mean and clean. Let's check out the changed in 5.0.
 

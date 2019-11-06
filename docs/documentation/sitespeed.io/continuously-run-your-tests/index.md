@@ -80,7 +80,7 @@ Then [**run.sh**](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/mas
 You need to modify our tests and scripts so that you don't test the exact same URLs as us :)
 
 #### Configuration
-In our example we have two configuration files on the server that we extends. These configuration files holds the secrets that we don't want to expose on our public Github repo. In our example it they look like this:
+In our example we have two configuration files on the server that we extends. These configuration files holds the secrets that we don't want to expose on our public GitHub repo. In our example it they look like this:
 
 **/conf/secrets.json**
 ```json

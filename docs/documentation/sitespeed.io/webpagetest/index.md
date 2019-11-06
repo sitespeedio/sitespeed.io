@@ -37,7 +37,7 @@ By default we have the following configuration options:
 --webpagetest.location      The location for the test
 --webpagetest.connectivity  The connectivity for the test.
 --webpagetest.runs          The number of runs per URL.
---webpagetest.custom        Execute arbitrary Javascript at the end of a test to collect custom metrics.
+--webpagetest.custom        Execute arbitrary JavaScript at the end of a test to collect custom metrics.
 --webpagetest.script        Direct WebPageTest script as a string
 --webpagetest.file          Path to a script file
 ~~~

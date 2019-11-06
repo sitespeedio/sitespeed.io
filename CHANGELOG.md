@@ -9,7 +9,7 @@
 
 ### Added
 * Make it possible to configure which data to show in the columns as in [#200](1https://github.com/sitespeedio/sitespeed.io/issues/2001), fixed in PR [#2711](https://github.com/sitespeedio/sitespeed.io/pull/2711). Thank you [thapasya-m](https://github.com/thapasya-m) for the PR!
-* Chrome/Chromedriver 78 and Firefox 70.
+* Chrome/ChromeDriver 78 and Firefox 70.
 * Upgraded to Browsertime 7.0.0-beta.1
 * Use AXE in budget [#2718](https://github.com/sitespeedio/sitespeed.io/pull/2718).
 * Upgraded to Axe Core 3.4.0 [#2723](https://github.com/sitespeedio/sitespeed.io/pull/2723).
@@ -93,7 +93,7 @@ to run Axe! [#2676](https://github.com/sitespeedio/sitespeed.io/pull/2676).
 
 ## 10.0.1 - 2019-09-12
 ### Fixed
-* Updated Browsetime with stable Chromedriver (instead of beta), do not show First Paint for Safari, and fixing getting long task data if you first navigate and then measure a URL. See the [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#601---2019-09-12) for all the info.
+* Updated Browsetime with stable ChromeDriver (instead of beta), do not show First Paint for Safari, and fixing getting long task data if you first navigate and then measure a URL. See the [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#601---2019-09-12) for all the info.
 
 ## 10.0.0 - 2019-09-11
 ### Added
@@ -143,7 +143,7 @@ to run Axe! [#2676](https://github.com/sitespeedio/sitespeed.io/pull/2676).
 ##  9.8.0 - 2019-08-01
 
 ### Added
-* We updated the Docker container to use Chrome 76 and swicthed to Chromedriver 76. We had some issues with Chrome 76 (or Chromedriver) that increased number of times we got errors converting the Chrome trace log because of missing navigationStart events (see [#902](https://github.com/sitespeedio/browsertime/issues/902)) on our test servers. But that seems fixed with [#904](https://github.com/sitespeedio/browsertime/pull/904).
+* We updated the Docker container to use Chrome 76 and swicthed to ChromeDriver 76. We had some issues with Chrome 76 (or ChromeDriver) that increased number of times we got errors converting the Chrome trace log because of missing navigationStart events (see [#902](https://github.com/sitespeedio/browsertime/issues/902)) on our test servers. But that seems fixed with [#904](https://github.com/sitespeedio/browsertime/pull/904).
 
 ## 9.7.0 - 2019-07-29
 
@@ -220,8 +220,8 @@ In this release we moved functionality for Chrome from our [browser extension](h
 
 ## Added
 * Upgraded to Chrome 75 and Firefox 67.0.1 in the Docker container.
-* Upgraded to use Chromedriver 75.
-* Upgraded the Coach that also uses latest Chrome and Chromedriver.
+* Upgraded to use ChromeDriver 75.
+* Upgraded the Coach that also uses latest Chrome and ChromeDriver.
 * New Browsertime:
   * Added metric LastMeaningfulPaint that will be there when you collect `--visualElements` [848](https://github.com/sitespeedio/browsertime/pull/848).
   * You can get screenshots in your Chrome trace log using `--chrome.enableTraceScreenshots` [#851](https://github.com/sitespeedio/browsertime/pull/851)
@@ -317,7 +317,7 @@ Using CPU metrics on Android phones was broken since 9.0.0, fixed in [#844](http
 ## 8.15.0 - 2019-04-23
 ### Added
 * Use Chrome 74 stable in the Docker container and Chomedriver 74 (you need upgrade to Chrome 74).
-* Upgraded Coach to match latest Browsertime version with Chrome and upgraded Browsertime to fix miss matched locked file in npm for Chromedriver.
+* Upgraded Coach to match latest Browsertime version with Chrome and upgraded Browsertime to fix miss matched locked file in npm for ChromeDriver.
 
 ### Fixed
 * We displayed error on the summary page even though we didn't have an error.
@@ -336,7 +336,7 @@ Using CPU metrics on Android phones was broken since 9.0.0, fixed in [#844](http
 
   * You can add meta data to your script with `commands.meta.setTitle(title)` and `commands.meta.setDescription(desc)`
 
-* Upgrading to [Browsertime 4.8.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#480---2019-04-23) fixes so errors thrown from your script, holds a usable error message instead of the wrapped Chromedriver error.
+* Upgrading to [Browsertime 4.8.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#480---2019-04-23) fixes so errors thrown from your script, holds a usable error message instead of the wrapped ChromeDriver error.
 
 ### Fixed
 * If a page failed, pug through an error [#2428](https://github.com/sitespeedio/sitespeed.io/pull/2428)
@@ -458,7 +458,7 @@ Using CPU metrics on Android phones was broken since 9.0.0, fixed in [#844](http
 
 ### Fixed
 
-- In some cases alias wasn't picked up for URLs sent to Graphite/InfluxDB as reported in [#2341](https://github.com/sitespeedio/sitespeed.io/issues/2341) and fixed in [#2373](https://github.com/sitespeedio/sitespeed.io/pull/2373). Thank you [James Leatherman](https://github.com/leathej1) for taking the time to find a reproducable test case!
+- In some cases alias wasn't picked up for URLs sent to Graphite/InfluxDB as reported in [#2341](https://github.com/sitespeedio/sitespeed.io/issues/2341) and fixed in [#2373](https://github.com/sitespeedio/sitespeed.io/pull/2373). Thank you [James Leatherman](https://github.com/leathej1) for taking the time to find a reproducible test case!
 - Moved to internal UTC support in dayjs [#2370](https://github.com/sitespeedio/sitespeed.io/pull/2370).
 
 ## 8.7.3 - 2019-03-07
@@ -653,7 +653,7 @@ Using CPU metrics on Android phones was broken since 9.0.0, fixed in [#844](http
 - New tab showing the filmstrip (if you record a video and keep the screenshots). We had the screenshots forever but never done anything with them. Inspired by [Stefan Burnickis](https://github.com/sburnicki) work on https://github.com/iteratec/wpt-filmstrip [#2274](https://github.com/sitespeedio/sitespeed.io/pull/2274).
 - Show Server Timings in the metric section (if the page uses Server Timing) [#2277](https://github.com/sitespeedio/sitespeed.io/pull/2277).
 - Upgraded the Docker container to use Chrome 72 and Firefox 65.
-- Upgraded to [Browsertime 4.1](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#410---2019-01-31) with latest Chromedriver and Geckodriver. There's also a new command `js.runAndWait('')` that makes it possible to run your own JavaScript, click a link and wait on page navigation.
+- Upgraded to [Browsertime 4.1](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#410---2019-01-31) with latest ChromeDriver and Geckodriver. There's also a new command `js.runAndWait('')` that makes it possible to run your own JavaScript, click a link and wait on page navigation.
 
 ### Fixed
 
@@ -753,7 +753,7 @@ Read the blog post: [https://www.sitespeed.io/sitespeed.io-8.0-and-browsertime.4
 
 ### Fixed
 
-- New Browsertime 3.10.0 with latest Chromedriver and a fix for the bug when you set a cookie and the same time use --cacheClearRaw.
+- New Browsertime 3.10.0 with latest ChromeDriver and a fix for the bug when you set a cookie and the same time use --cacheClearRaw.
 - Upgraded to Perf Cascade 2.5.5
 
 ### Added
@@ -806,7 +806,7 @@ Read the blog post: [https://www.sitespeed.io/sitespeed.io-8.0-and-browsertime.4
 
   - We also added a new feature: If you run your own custom script you can now feed it with different input by using `--browsertime.scriptInput.*`. Say you have a script named myScript you can pass on data to it with `--browsertime.scriptInput.myScript 'super-secret-string'`. More about this in the documentation the coming weeks.
 
-  - Upgraded to Chromedriver 2.42.0
+  - Upgraded to ChromeDriver 2.42.0
 
 - You can include screenshots in annotations sent to Graphite/InfluxDB [#2144](https://github.com/sitespeedio/sitespeed.io/pull/2144). This makes it easy that from within Grafana see screenshots from every run.
 
@@ -947,16 +947,16 @@ and Coach 2.0.4.
 ### Added
 
 - Upgraded to Chrome 67 see [#2069](https://github.com/sitespeedio/sitespeed.io/issues/2069) about possible performance regressions. At least for Wikipedia some URLs are slower on 67 than 66. And since 67 now rolled out to a lot of people, you probably want to test with that version. See https://bugs.chromium.org/p/chromium/issues/detail?id=849108
-- Upgraded to Browsertime 3.1.2 with Chromedriver 2.40
+- Upgraded to Browsertime 3.1.2 with ChromeDriver 2.40
 - Upgraded to Firefox 61 beta13
-- Upgraded ADB to work together with Chromedriver > 2.38, making driving Chrome on Android from Ubuntu Docker container work again.
+- Upgraded ADB to work together with ChromeDriver > 2.38, making driving Chrome on Android from Ubuntu Docker container work again.
 
 ## 7.0.3 - 2018-06-02
 
 ### Fixed
 
 - Upgraded to PerfCasacde 2.5.2 that fixes Edge tab bug.
-- Upgraded to Browsertime 3.1.0 with new Chromedriver (2.39).
+- Upgraded to Browsertime 3.1.0 with new ChromeDriver (2.39).
 - Upgraded to Browsertime 3.1.1 with a fix for HTTP2 pushes in Chrome [#2068](https://github.com/sitespeedio/sitespeed.io/issues/2068).
 
 ## 7.0.2 - 2018-06-01
@@ -1132,7 +1132,7 @@ As a sitespeed.io user there shouldn't be any breaking changes upgrading from 6.
 
 ### Fixed
 
-- Upgraded to Browsertime 2.1.4 with [new bug fixes](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md) and newer Chromedriver.
+- Upgraded to Browsertime 2.1.4 with [new bug fixes](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md) and newer ChromeDriver.
 
 - Fixed the start script so that you on Ubuntu can run WebPageReplay in the Docker container for your Android phone.
 
@@ -1160,7 +1160,7 @@ As a sitespeed.io user there shouldn't be any breaking changes upgrading from 6.
 
 ### Added
 
-- Use Chromedriver 2.34
+- Use ChromeDriver 2.34
 - Configure the page complete time when you use WebPageReplay. Add -e WAIT 5000 to wait 5000 ms.
 
 ### Fixed
@@ -1295,7 +1295,7 @@ the url would be treated as a plugin name, and the command would fail.
 
 ### Fixed
 
-- Upgraded to Browsertime 1.9.4 with latest Chromedriver that fixes launching Chrome > 61
+- Upgraded to Browsertime 1.9.4 with latest ChromeDriver that fixes launching Chrome > 61
 - Fixed custom metrics problem with WebPageTest [#1737](https://github.com/sitespeedio/sitespeed.io/issues/1737)
 
 ## 5.6.3 2017-10-03
@@ -1395,7 +1395,7 @@ the url would be treated as a plugin name, and the command would fail.
 - You can now get a list of largest and slowest third party assets [#1613](https://github.com/sitespeedio/sitespeed.io/issues/1613).
 - Upgraded to latest Browsertime:
   - Upgraded to Geckodriver 0.17.0 seems to fix [#321](https://github.com/sitespeedio/browsertime/issues/321).
-  - Upgraded Chromedriver 2.30 with a very special hack to fix [#347](https://github.com/sitespeedio/browsertime/pull/347).
+  - Upgraded ChromeDriver 2.30 with a very special hack to fix [#347](https://github.com/sitespeedio/browsertime/pull/347).
   - Pickup metrics from the Paint Timing API [#344](https://github.com/sitespeedio/browsertime/pull/344), will work in Chrome 60.
   - Updated the Docker container to Firefox 54 and Chrome 60 (beta) to fix the background color problem. [Chrome bug 727046](https://bugs.chromium.org/p/chromium/issues/detail?id=727046).
 - If you run Chrome 60+ you will now see the metrics from the Paint Timing API in the Browsertime tab.
@@ -1422,7 +1422,7 @@ the url would be treated as a plugin name, and the command would fail.
 ### Fixed
 
 - The link in the HTML to the Chrome trace log is not working.
-- Upgraded to Browsertime 1.2.7 that downgrades Chromedriver to 2.28 to make collecting trace logs work again.
+- Upgraded to Browsertime 1.2.7 that downgrades ChromeDriver to 2.28 to make collecting trace logs work again.
 
 ## 5.2.0 2017-05-24
 
@@ -1513,7 +1513,7 @@ There's one change in 5.0 that changes the default behavior: TSProxy isn't defau
 
 ### Fixed
 
-- New Chromedriver 2.28.0 that fixes "Cannot get automation extension from unknown error: page could not be found ..."
+- New ChromeDriver 2.28.0 that fixes "Cannot get automation extension from unknown error: page could not be found ..."
 - The help for budget had wrong example parameter. Use --budget.configPath for path to the config.
 
 ## 4.6.0 2017-03-10
@@ -2355,7 +2355,7 @@ And many many more changed. Read about the release https://www.sitespeed.io/site
 
 - Enable verbose logging in Browsertime whenever Sitespeed.io runs in verbose mode (--verbose/-v).
 - Check that location for WPT always contains location and browser
-- Bumped BrowserTime, new version making sure it will not hang when Selenium/Chromedriver has problems.
+- Bumped BrowserTime, new version making sure it will not hang when Selenium/ChromeDriver has problems.
 
 ## version 3.1.4 - 2015-02-16
 

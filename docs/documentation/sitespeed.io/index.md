@@ -31,7 +31,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
 ## More details
  * [Alerts](alerts/) - send alerts (email/Slack/PagerDuty etc) when you get a performance regression.
  * [Axe](axe/) - run accessibility tests.
- * [Continuous Integration](continuous-integration/) - generate JUnit XML/TAP and use Jenkins, Circle CI, Gitlab CI, Github Actions, Grunt or the Gulp plugin.
+ * [Continuous Integration](continuous-integration/) - generate JUnit XML/TAP and use Jenkins, Circle CI, Gitlab CI, GitHub Actions, Grunt or the Gulp plugin.
  * [Configure HTML output](configure-html/) - change the default HTML output.
  * [CPU](cpu/) - measure CPU metrics to see where your page spends the time.
  * [Developers](developers/) - start here when you want to do PRs or create a plugin.

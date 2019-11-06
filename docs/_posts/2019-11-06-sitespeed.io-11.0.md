@@ -35,4 +35,4 @@ Denis also added the new Firefox built-in window recorder ([bug 1536174](https:/
 Fixed so that you can disable video/visual metrics in your configuration json in Docker as reported in #2692 fixed by PR #2715.
 
 ## Sponsor sitespeed.io
-We also launching Github sponsorship with this release!
+We also launching GitHub sponsorship with this release!

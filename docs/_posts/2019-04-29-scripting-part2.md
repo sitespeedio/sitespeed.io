@@ -58,7 +58,7 @@ Remember that when you start your first script, the cache is already cleared and
 
 ## Meta data
 
-You can add meta data to your script. The extra data will be visibile in the HTML result page. 
+You can add meta data to your script. The extra data will be visible in the HTML result page. 
 
 Setting meta data like this:
 

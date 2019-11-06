@@ -67,4 +67,4 @@ When you try out our setup at [dashboard.sitespeed.io](https://dashboard.sitespe
 ![Score leaderboard]({{site.baseurl}}/img/combine-namespaces.png)
 {: .img-thumbnail-center}
 
-If you have any problem with dashboard, let us know in a [Github issue](https://github.com/sitespeedio/sitespeed.io/issues/new)!
+If you have any problem with dashboard, let us know in a [GitHub issue](https://github.com/sitespeedio/sitespeed.io/issues/new)!

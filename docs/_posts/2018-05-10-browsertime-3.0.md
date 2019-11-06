@@ -74,7 +74,7 @@ You can run like this:
 docker run --cap-add=NET_ADMIN --shm-size=1g --rm -v "$(pwd)":/browsertime -e REPLAY=true -e LATENCY=100 sitespeedio/browsertime https://en.wikipedia.org/wiki/Barack_Obama
 </code>
 
-Here are a couple of examples from our real world tests. We test on Digital Ocean Optimized Droplets 4 gb memory with 2 vCPUs. We test both with connectivity set to cable (to try to minimize the impact of flakey internet) and one tests using WebPageReplay. We tests with the same amount of runs on the same machine.
+Here are a couple of examples from our real world tests. We test on Digital Ocean Optimized Droplets 4 gb memory with 2 vCPUs. We test both with connectivity set to cable (to try to minimize the impact of flaky internet) and one tests using WebPageReplay. We tests with the same amount of runs on the same machine.
 
 Here's an example from one of the sites we test. Here we test with connectivity set to cable.
 ![Connectivity example 1]({{site.baseurl}}/img/bt-3.0/connectivity-example-1.png)
@@ -189,7 +189,7 @@ We got some breaking changes, please read about them before you upgrade.
 * You can now choose what kind of response bodies you want to store in your HAR file. Instead of using --firefox.includeResponseBodies to include all bodies you can now use <code>--firefox.includeResponseBodies</code> [none,all,html][#518](https://github.com/sitespeedio/browsertime/pull/518).
 * We cleaned up how you collect trace logs from Chrome. If you want the devtools.timeline log (and CPU spent metrics), just use <code>--chrome.timeline</code>. If you want to configure trace categories yourself, use --chrome.traceCategories
 * File names are now based on 1 and not 0 so the first file from the first iteration is named something with -1. [#536](https://github.com/sitespeedio/browsertime/pull/536).
-* Store the Chromedriver log in the result directory (before it was stored where you run Browsertime) [#452](https://github.com/sitespeedio/browsertime/pull/452).
+* Store the ChromeDriver log in the result directory (before it was stored where you run Browsertime) [#452](https://github.com/sitespeedio/browsertime/pull/452).
 * In some cases we leaked Bluebird promises, they are now native promises.
 * Running the engine took a promise that eventually became the scripts. Now you need to run with the scripts directly (no promises) to simplify the flow.
 

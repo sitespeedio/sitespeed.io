@@ -9,7 +9,7 @@ timeouts
 chrome
   --chrome.args                                              Extra command line arguments to pass to the Chrome process (e.g. --no-sandbox). To add multiple arguments to Chrome, repeat --chrome.args once per argument.
   --chrome.binaryPath                                        Path to custom Chrome binary (e.g. Chrome Canary). On OS X, the path should be to the binary inside the app bundle, e.g. "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary"
-  --chrome.chromedriverPath                                  Path to custom Chromedriver binary. Make sure to use a Chromedriver version that's compatible with the version of Chrome you're using
+  --chrome.chromedriverPath                                  Path to custom ChromeDriver binary. Make sure to use a ChromeDriver version that's compatible with the version of Chrome you're using
   --chrome.mobileEmulation.deviceName                        Name of device to emulate. Works only standalone (see list in Chrome DevTools, but add phone like 'iPhone 6'). This will override your userAgent string.
   --chrome.mobileEmulation.width                             Width in pixels of emulated mobile screen (e.g. 360)  [number]
   --chrome.mobileEmulation.height                            Height in pixels of emulated mobile screen (e.g. 640)  [number]
@@ -49,7 +49,7 @@ video
   --videoParams.crf                Constant rate factor see https://trac.ffmpeg.org/wiki/Encode/H.264#crf  [default: 23]
   --videoParams.addTimer           Add timer and metrics to the video.  [boolean] [default: true]
   --videoParams.debug              Turn on debug to record a video with all pre/post and scripts/URLS you test in one iteration. Visual Metrics will then automatically be disabled.  [boolean] [default: false]
-  --videoParams.keepOriginalVideo  Keep the original video. Use it when you have a Visual Metrics bug and creates an issue at Github  [boolean] [default: false]
+  --videoParams.keepOriginalVideo  Keep the original video. Use it when you have a Visual Metrics bug and creates an issue at GitHub  [boolean] [default: false]
   --videoParams.filmstripFullSize  Keep original sized screenshots. Will make the run take longer time  [boolean] [default: false]
   --videoParams.filmstripQuality   The quality of the filmstrip screenshots. 0-100.  [default: 75]
   --videoParams.createFilmstrip    Create filmstrip screenshots.  [boolean] [default: true]

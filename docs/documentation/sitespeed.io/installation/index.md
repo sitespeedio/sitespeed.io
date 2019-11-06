@@ -64,10 +64,10 @@ yarn global add sitespeed.io
 
 We support Windows using [Docker](https://docs.docker.com/engine/installation/windows/). To be able to support running on Windows with NodeJS we need at least one [core contributor](/aboutus/) that can focus on Windows. Are you that one? Please [get in touch](https://github.com/sitespeedio/sitespeed.io/issues/new)!
 
-### Skip installing Chromedriver/Geckodriver
-If you don't want to install Chromedriver or Geckodriver when you install through npm you can skip them with an environment variable.
+### Skip installing ChromeDriver/Geckodriver
+If you don't want to install ChromeDriver or Geckodriver when you install through npm you can skip them with an environment variable.
 
-Skip installing Chromedriver:
+Skip installing ChromeDriver:
 
 ~~~bash
 CHROMEDRIVER_SKIP_DOWNLOAD=true npm install sitespeed.io -g

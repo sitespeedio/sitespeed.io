@@ -44,7 +44,7 @@ You will find server timings in the Metrics tab.
 
 
 ## New Chrome and Firefox
-The Docker container now uses Chrome 72, Firefox 65 and latest Chromedriver/Geckodriver. It's good to stay updated to the latest versions since your users is auto updating the browser. You want to be on top of that and use the same version.
+The Docker container now uses Chrome 72, Firefox 65 and latest ChromeDriver/Geckodriver. It's good to stay updated to the latest versions since your users is auto updating the browser. You want to be on top of that and use the same version.
 
 
 ## New command: run JavaScript and wait for page complete

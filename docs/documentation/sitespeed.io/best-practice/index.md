@@ -1,7 +1,7 @@
 ---
 layout: default
 title: F.A.Q. and best practice using sitespeed.io
-description: Here we keep questions that gets asked on our Slack channel or frequently on Github.
+description: Here we keep questions that gets asked on our Slack channel or frequently on GitHub.
 keywords: best practice, faq
 nav: documentation
 category: sitespeed.io
@@ -16,7 +16,7 @@ twitterdescription:
 * Lets place the TOC here
 {:toc}
 
-Here we keep questions that are frequently asked at [Slack](https://sitespeedio.herokuapp.com/) or at [Github](https://github.com/sitespeedio/sitespeed.io/issues/new).
+Here we keep questions that are frequently asked at [Slack](https://sitespeedio.herokuapp.com/) or at [GitHub](https://github.com/sitespeedio/sitespeed.io/issues/new).
 
 ## Running tests
 Read this before you start to collect metrics.
@@ -77,7 +77,7 @@ Checkout the [scripting capabilities](../scripting/) that makes it easy to test 
 We currently don't built in support for changing the CPU. What we do know is that you should not use the built in support in Chrome or try to simulate slow CPUs by running on slow AWS instance. What should do is what WPTAgent do. You can check the code at [https://github.com/WPO-Foundation/wptagent/blob/master/wptagent.py](https://github.com/WPO-Foundation/wptagent/blob/master/wptagent.py) and do the same before you start a run and then remove it after the run.
 
 ### Throttle or not throttle your connection?
-**PLEASE, YOU NEED TO ALWAYS THROTTLE YOUR CONNECTION!** You should always throttle/limit the connectivity because it will make it easier for you to find regressions. If you don't do it, you can run your tests with different connectivity profiles and regressions/improvements that you see is caused by your servers flakey internet connection. Check out our [connectivity guide]({{site.baseurl}}/documentation/sitespeed.io/connectivity/).
+**PLEASE, YOU NEED TO ALWAYS THROTTLE YOUR CONNECTION!** You should always throttle/limit the connectivity because it will make it easier for you to find regressions. If you don't do it, you can run your tests with different connectivity profiles and regressions/improvements that you see is caused by your servers flaky internet connection. Check out our [connectivity guide]({{site.baseurl}}/documentation/sitespeed.io/connectivity/).
 
 ### Clear browser cache between runs
 By default Browsertime creates a new profile for each iteration you do, meaning the cache is cleared through the webdriver. If you really want to be sure sure everything is cleared between runs you can use our WebExtension to clear the browser cache by adding  <code>--browsertime.cacheClearRaw</code>.
@@ -200,7 +200,7 @@ When you create your buckets at S3 or GCS, you can configure how long time it wi
 We've been trying out alerts in Grafana for a while and it works really good for us. Checkout the [alert section]({{site.baseurl}}/documentation/sitespeed.io/alerts/) in the docs.
 
 ## Difference in metrics between WebPageTest and sitespeed.io
-Now and then it pops up an issue on Github where users ask why some metrics differs between WebPageTest and sitespeed.io.
+Now and then it pops up an issue on GitHub where users ask why some metrics differs between WebPageTest and sitespeed.io.
 
 There's a couple of things to know that differs between WebPageTest and Browsertime/sitespeed.io but first I wanna say that it is wrong to compare between tools, it is right to continuously compare within the same tool to find regressions :)
 

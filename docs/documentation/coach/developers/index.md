@@ -56,7 +56,7 @@ Does it look familiar? Yep it is almost the same structure as an YSlow rule :)
 
 
 ### DOM vs HAR advice
-The coach analyze a page in two steps: First it executes Javascript in the browser to do checks that are a perfect fit for Javascript: examine the rendering path, check if images are scaled in the browser and more.
+The coach analyze a page in two steps: First it executes JavaScript in the browser to do checks that are a perfect fit for JavaScript: examine the rendering path, check if images are scaled in the browser and more.
 
 Then the coach take the HAR file generated from the page and analyze that too. The HAR is good if you want the number of responses, response size and check cache headers.
 

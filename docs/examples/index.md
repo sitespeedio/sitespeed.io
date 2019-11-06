@@ -1100,7 +1100,7 @@ And it will generate a JSON that looks something like this:
       },
       "iframes": 0,
       "localStorageSize": 0,
-      "metaDescription": "Sitespeed.io is an open source tool that helps you analyze and optimize your website speed and performance, based on performance best practices. Run it locally or use it in your continuous integration. Download or fork it on Github!",
+      "metaDescription": "Sitespeed.io is an open source tool that helps you analyze and optimize your website speed and performance, based on performance best practices. Run it locally or use it in your continuous integration. Download or fork it on GitHub!",
       "pageContentSize": "120.9 kB",
       "pageContentTypes": {
         "css": {
