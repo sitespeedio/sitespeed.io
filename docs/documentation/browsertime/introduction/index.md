@@ -36,7 +36,7 @@ It is usually used for two different things:
 To understand how Browsertime does these things, let's talk about how it works. Here's an example of what happens when you give Browsertime a URL to test:
 
 1. You give your configuration to Browsertime.
-2. Browsertime uses the [WebDriver](https://www.w3.org/TR/webdriver/) (through [Selenium](http://seleniumhq.github.io/selenium/docs/api/javascript/index.html)) to start Firefox and Chrome (the implementations for the Webdriver is [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/)/[GeckoDriver](https://github.com/mozilla/geckodriver/)).
+2. Browsertime uses the [WebDriver](https://www.w3.org/TR/webdriver/) (through [Selenium](http://seleniumhq.github.io/selenium/docs/api/javascript/index.html)) to start Firefox and Chrome (the implementations for the WebDriver is [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/)/[GeckoDriver](https://github.com/mozilla/geckodriver/)).
 3. Browsertime starts FFMPEG to record a video of the browser screen
 4. The browser access the URL.
 5. When the page is finished loading (you can define yourself when that happens), Browsertime executes the default JavaScript timing metrics and collects:

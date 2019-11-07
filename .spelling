@@ -12,11 +12,9 @@ no_toc
 statsd
 WebPageTest
 cli
-json
 WebPageReplay
 localhost
 mahimahi
-adb
 xvfb
 img-thumbnail-center
 InfluxDB
@@ -46,3 +44,6 @@ Leaderboard
 Homebrew
 SafariDriver
 DevTools
+sudo
+PageXray
+leaderboard

@@ -15,7 +15,7 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 
 ## sitespeed.io
 
-Sitespeed.io uses Browsertime, the Coach and PageXray to collect and generate the result, so looking at result pages from sitespeed.io will give you a idea of what you can get from all tools. Analyzing two pages using Chrome looks like this:
+Sitespeed.io uses Browsertime, the Coach and PageXray to collect and generate the result, so looking at result pages from sitespeed.io will give you a idea of what you can get from all tools. Analysing two pages using Chrome looks like this:
 
 ~~~bash
 docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b chrome --chrome.timeline https://en.wikipedia.org/wiki/Main_Page https://en.wikipedia.org/wiki/Barack_Obama

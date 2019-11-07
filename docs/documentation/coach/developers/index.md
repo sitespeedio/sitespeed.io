@@ -192,7 +192,7 @@ Right now all these tests run in https://github.com/sitespeedio/coach/blob/maste
 Each test case runs against a specific HTML page located in `test/http-server` Create a suitable HTML page with the structure you want to test. Create the test case in `test/dom` or `test/har` and run it with <code>npm test</code>
 
 ## Test your changes against a web page
-The coach uses Browsertime as runner for browsers. When you finished with a change, make sure to build a new version of the combined Javascript and then test against a url.
+The coach uses Browsertime as runner for browsers. When you finished with a change, make sure to build a new version of the combined Javascript and then test against a URL.
 
 ```
 npm run combine

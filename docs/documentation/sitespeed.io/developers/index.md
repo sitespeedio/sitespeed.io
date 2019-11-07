@@ -105,7 +105,7 @@ Where pageInfo is the data structure that you wanna inspect.
 
 #### Committing changes
  * Install Commitizen with npm <code>npm install -g commitizen</code>
- * Then simply use command <code>git cz</code> instead of <code>git commit</code> when commiting changes
+ * Then simply use command <code>git cz</code> instead of <code>git commit</code> when committing changes
 
 #### Before you send the pull request
 
@@ -113,7 +113,7 @@ Before you send the PR make sure you:
  * Squash your commits so it looks sane
  * Make sure your code follow our lint rule by running: <code>npm run lint</code>
  * Make sure your code don't break any tests: <code>npm test</code>
- * Update the documentation [https://github.com/sitespeedio/sitespeed.io/tree/master/docs](https://github.com/sitespeedio/sitespeed.io/tree/master/docs) in another pull request. When we merge the PR the documentaion will automatically be updated so we do that when we push the next release
+ * Update the documentation [https://github.com/sitespeedio/sitespeed.io/tree/master/docs](https://github.com/sitespeedio/sitespeed.io/tree/master/docs) in another pull request. When we merge the PR the documentation will automatically be updated so we do that when we push the next release
 
 ### Do a release
 When you become a member of the sitespeed.io team you can push releases. You do that by running the release bash script in root: <code>./release.sh</code>
@@ -128,7 +128,7 @@ To be able to deploy a new version you new to have access to our Docker account,
 If you want to integrate sitespeed.io into your NodeJS application you can checkout how we do that in [our Grunt plugin](https://github.com/sitespeedio/grunt-sitespeedio/blob/master/tasks/sitespeedio.js). It's a great working example. :)
 
 ### Contributing to the documentation
-The documention lives in your cloned directory under *docs/*.
+The documentation lives in your cloned directory under *docs/*.
 
 First make sure you have Bundler: <code>gem install bundler</code>
 

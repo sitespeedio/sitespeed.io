@@ -10,7 +10,7 @@ Please make sure you run the [latest version](https://www.npmjs.com/package/site
 If you find a defect, please file a bug report. Include the following:
  - Explain the bug/defect and what you where doing.
  - OS & versions
- - Always add the URL of the page you where analyzing (if it is secret, drop me an email peter**at**soulgalore.com and send me the address).
+ - Always add the URL of the page you where analysing (if it is secret, drop me an email peter**at**soulgalore.com and send me the address).
  - Add a screenshot and clearly point out where the defect is (if applicable)
  - Include the content of the sitespeed.io.log file in a [gist](https://gist.github.com/) and attach it to the issue.
 
