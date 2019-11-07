@@ -34,9 +34,6 @@
   "bugs": {
     "url": "https://github.com/sitespeedio/sitespeed.io/issues"
   },
-  "publishConfig": {
-    "tag": "canary"
-  },
   "scripts": {
     "lint": "eslint . && npm run pug-lint",
     "lint:fix": "eslint . --fix",
