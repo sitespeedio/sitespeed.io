@@ -6,15 +6,23 @@
 
 ### Fixed
 * Fixed so that you can disable video/visual metrics in your configuration json in Docker as reported in [#2692](https://github.com/sitespeedio/sitespeed.io/issues/2692) fixed by PR [#2715](https://github.com/sitespeedio/sitespeed.io/pull/2715).
+* Fixed so that running AXE when testing multiple URLs works in scripting (reported in [#2754](https://github.com/sitespeedio/sitespeed.io/issues/2754)). Fixed in [#2755](https://github.com/sitespeedio/sitespeed.io/pull/2755).
 
 ### Added
 * Make it possible to configure which data to show in the columns as in [#200](1https://github.com/sitespeedio/sitespeed.io/issues/2001), fixed in PR [#2711](https://github.com/sitespeedio/sitespeed.io/pull/2711). Thank you [thapasya-m](https://github.com/thapasya-m) for the PR!
 * Chrome/ChromeDriver 78 and Firefox 70.
-* Upgraded to Browsertime 7.0.0-beta.1
 * Use AXE in budget [#2718](https://github.com/sitespeedio/sitespeed.io/pull/2718).
 * Upgraded to Axe Core 3.4.0 [#2723](https://github.com/sitespeedio/sitespeed.io/pull/2723).
 * Added contentSize to budget [#2721](https://github.com/sitespeedio/sitespeed.io/pull/2721).
 * You can now configure which summary boxes (which metric) you can see on the start page. Thank you [thapasya-m](https://github.com/thapasya-m) for the PR [#2736](https://github.com/sitespeedio/sitespeed.io/pull/2736)!
+* Upgraded to [Browsertime 7.0.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#700---2019-11-02):
+  * Changed a couple of Firefox settings to follow the Mozilla teams downstream version [#965](https://github.com/sitespeedio/browsertime/pull/965).
+  * Added Contentful speed index is a new SI metric developed by Bas Schouten at Mozilla which uses edge detection to calculate the amount of "content" that is visible on each frame, thank you [dpalmeiro](https://github.com/dpalmeiro) for the PR [#976](https://github.com/sitespeedio/browsertime/pull/976).
+  * Firefox 67 and above has a built-in window recorder ([bug 1536174](https://bugzilla.mozilla.org/show_bug.cgi?id=1536174)) that is able to dump PNG images of each frame that is painted to the window. This can be enabled and disabled in the browser console, or through the chrome context with selenium webdriver. This PR introduces a new privileged API that is able to execute JS in the chrome context, as well as support for generating a variable rate MP4 using the output images from the window recorder. The motivation for this work was to introduce a low-overhead video recorder that will not introduce performance disturbances during page loads. Thank you [dpalmeiro](https://github.com/dpalmeiro) for the PR [#978](https://github.com/sitespeedio/browsertime/pull/978). You can try it out with `--video --firefox.windowRecorder`
+  * There's a new way to set variance on your connectivity. At the moment you can only do that when you are using Throttle as engine. You can try it out with `--connectivity.variance 2` - that means the latency will have a variance of 2% between runs. Let us try this out and get back about later on [#973](https://github.com/sitespeedio/browsertime/pull/973). Original idea from Emery Berger.
+  * Some URLs failed because of that the document.title was an image, as reported in [#979](https://github.com/sitespeedio/browsertime/issues/979) and fixed in [#980](https://github.com/sitespeedio/browsertime/pull/980).
+  * Hide sudo log when using Docker [#971](https://github.com/sitespeedio/browsertime/pull/971).
+  * Better log message if the Browser fails to start, thank you [Mason Malone](https://github.com/MasonM) for the PR [#962](https://github.com/sitespeedio/browsertime/pull/962).
 
 ## 10.3.2 -  2019-10-18
 ### Fixed
