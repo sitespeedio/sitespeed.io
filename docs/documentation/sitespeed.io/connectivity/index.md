@@ -17,7 +17,7 @@ twitterdescription:
 {:toc}
 
 ## Change/set connectivity
-You can and should throttle the connection to make the connectivity slower to make it easier to catch regressions. If you don’t do it, you can run your tests with different connectivity profiles and regressions/improvements that you see is caused by your servers flakey internet connection
+You can and should throttle the connection to make the connectivity slower to make it easier to catch regressions. If you don’t do it, you can run your tests with different connectivity profiles and regressions/improvements that you see is caused by your servers flaky internet connection
 
 The best way to do that is to setup a network bridge in Docker, use our connectivity engine [Throttle](https://github.com/sitespeedio/throttle) or if you use Kubernetes you can use [TSProxy](https://github.com/WPO-Foundation/tsproxy).
 

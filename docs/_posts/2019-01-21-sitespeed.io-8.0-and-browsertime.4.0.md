@@ -155,7 +155,7 @@ We have updated our dashboards to include new metrics like Privacy score from th
 ![Compare to last week]({{site.baseurl}}/img/new-dashboard-8.0.jpg)
 {: .img-thumbnail}
 
-You can get the [updated dashboards from Github](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/master/dashboards/graphite) and check them out at [dashboard.sitespeed.io](https://dashboard.sitespeed.io/d/000000044/page-timing-metrics?orgId=1).
+You can get the [updated dashboards from GitHub](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/master/dashboards/graphite) and check them out at [dashboard.sitespeed.io](https://dashboard.sitespeed.io/d/000000044/page-timing-metrics?orgId=1).
 
 ## New budget configuration
 One problem before 8.0 was that it was really hard to configure a performance budget: You needed to use the internal data structure and that sucks. Looking at other tools we could see that configuring a budget is usually hard. That's why we are introducing a new way in 8.0 (if you where using the old configuration pre 8.0, don't worry, that will continue to work).

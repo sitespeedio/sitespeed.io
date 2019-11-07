@@ -81,7 +81,7 @@ All URLs that you test then needs to have a SpeedIndex faster than 1000. But if 
 
 #### Full example
 
-Here is an example of a fully configurued budget file. It shows you what you *can* configure (but you shouldn't configure all of them).
+Here is an example of a fully configured budget file.
 
 ~~~json
 {
@@ -178,8 +178,14 @@ And then you can always combine them all.
 
 If you need more metrics for your budget, either [create an issue](https://github.com/sitespeedio/sitespeed.io/issues/new) or look below for using the full internal data structure.
 
+#### All possible metrics you can configure
+
+~~~json
+{% include_relative friendlynames.md %}
+~~~
+
 #### Budget configuration using the internal data structure
-There's also an old version of settiung a budget where you can do it for all metrics collected by sitespeed.io and works on the internal data structure.
+There's also an old version of setting a budget where you can do it for all metrics collected by sitespeed.io and works on the internal data structure.
 
 
 You can read more about the metrics/data structure in the [metrics section]({{site.baseurl}}/documentation/sitespeed.io/metrics/).

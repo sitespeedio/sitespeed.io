@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Documentation sitespeed.io 10.x
+title: Documentation sitespeed.io 11.x
 description: Read about all you can do with sitespeed.io.
 keywords: tools, documentation, web performance
 nav: documentation
@@ -9,7 +9,7 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Documentation for sitespeed.io.
 ---
 
-# Documentation v10
+# Documentation v11
 
 <img src="{{site.baseurl}}/img/logos/sitespeed.io.png" class="pull-right img-big" alt="sitespeed.io logo" width="200" height="214">
 
@@ -21,7 +21,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Browsers](browsers/) - collect timings using real browsers. We support Firefox, Chrome, Chrome on Android and limited support for Safari on OS X and iOS. 
  * [Configuration](configuration/) - there's a lot of things you can do with sitespeed.io, lets checkout how!
  * [Connectivity](connectivity/) - set the connectivity to emulate real users network conditions.
- * [Continuously run your tests](continuously-run-your-tests/) - how to setup your test to continously run your tests.
+ * [Continuously run your tests](continuously-run-your-tests/) - how to setup your test to continuously run your tests.
  * [Docker](docker/) - how to use our Docker containers.
  * [F.A.Q and Best Practice](best-practice/) - here we keep track of questions we get in Slack.
  * [Performance Dashboard](performance-dashboard/) - monitor your web site and keep track of your metrics and performance.
@@ -31,7 +31,8 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
 ## More details
  * [Alerts](alerts/) - send alerts (email/Slack/PagerDuty etc) when you get a performance regression.
  * [Axe](axe/) - run accessibility tests.
- * [Continuous Integration](continuous-integration/) - generate JUnit XML/TAP and use Jenkins, Circle CI, Gitlab CI, Github Actions, Grunt or the Gulp plugin.
+ * [Continuous Integration](continuous-integration/) - generate JUnit XML/TAP and use Jenkins, Circle CI, Gitlab CI, GitHub Actions, Grunt or the Gulp plugin.
+ * [Configure HTML output](configure-html/) - change the default HTML output.
  * [CPU](cpu/) - measure CPU metrics to see where your page spends the time.
  * [Developers](developers/) - start here when you want to do PRs or create a plugin.
  * [Graphite](graphite/) - how to configure and store your metrics in Graphite (and using StatsD).

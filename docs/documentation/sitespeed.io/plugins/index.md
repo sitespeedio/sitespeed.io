@@ -31,7 +31,7 @@ And you will get a log entry that looks something like this:
 
 ~~~
 ...
-The following plugins are enabled: assets,browsertime,coach,domains,html
+The following plugins are enabled: assets,browsertime,coach,domains,ithubhtml
 ...
 ~~~
 
@@ -44,7 +44,7 @@ You can remove/disable default plugins if needed. For instance you may not want 
 docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.remove html
 ~~~
 
-If you want to disable multiple plugins say you don't need the html and the har files (the harstorer plugin):
+If you want to disable multiple plugins say you don't need the HTML and the har files (the harstorer plugin):
 
 ~~~bash
 docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.remove html --plugins.remove harstorer
@@ -117,7 +117,7 @@ docker run --rm -v "$(pwd)":/sitespeed.io my-custom-sitespeedio -b firefox --my-
 Pretty cool, huh? :-)
 
 ## How to create your own plugin
-First let us know about your cool plugin! Then share it with others by publish it to npm or just use Github.
+First let us know about your cool plugin! Then share it with others by publish it to npm or just use GitHub.
 
 ### Basic structure
 Your plugin needs to follow this structure.
@@ -230,7 +230,7 @@ Data from different tools are passed with three different message types:
 ### Debug/log
 You can use the sitespeed.io log to log messages. We use [intel](https://www.npmjs.com/package/intel) for logging.
 
-You get the log object in the context object (so there's no need to require the log) but you you should get a specfic instance so that you can filter the log/see which part of sitespeed.io that writes to the log.
+You get the log object in the context object (so there's no need to require the log) but you you should get a specific instance so that you can filter the log/see which part of sitespeed.io that writes to the log.
 
 In the [open](#opencontext-options) function you can add something like this:
 
@@ -342,7 +342,7 @@ queue.postMessage(make('budget.addMessageType', {type: 'gpsi.pagesummary'}));
 ~~~
 
 ## Testing your plugin
-If your plugin lives on Github you should check out our [example Travis-ci file](https://github.com/sitespeedio/plugin-gpsi/blob/master/.travis.yml) for the GPSI plugin. In the example, we checkout the sitespeed.io project and run the plugin against the latest master (we also run it daily in the Travis crontab).
+If your plugin lives on GitHub you should check out our [example Travis-ci file](https://github.com/sitespeedio/plugin-gpsi/blob/master/.travis.yml) for the GPSI plugin. In the example, we checkout the sitespeed.io project and run the plugin against the latest master (we also run it daily in the Travis crontab).
 
 ## Example plugin(s)
 You can look at the standalone [GPSI plugin](https://github.com/sitespeedio/plugin-gpsi) or the [WebPageTest plugin](https://github.com/sitespeedio/sitespeed.io/tree/master/lib/plugins/webpagetest).

@@ -75,7 +75,7 @@ If you want to test and push to Graphite/InfluxDB:
 - Run: <code>docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 --graphite.host=192.168.65.1</code> to push the data to Graphite. The IP is the localhost IP if you run on a Mac.
 - Check the metrics at [http://127.0.0.1:3000/](http://127.0.0.1:3000/).
 
-If you are new to Git/Github and want to make a PR you can start with reading [Digital Oceans tutorial on how to make PRs](https://www.digitalocean.com/community/tutorials/how-to-create-a-pull-request-on-github).
+If you are new to Git/GitHub and want to make a PR you can start with reading [Digital Oceans tutorial on how to make PRs](https://www.digitalocean.com/community/tutorials/how-to-create-a-pull-request-on-github).
 
 ### Log and debug
 To get a better understanding of what happens you should use the log. You can change log level by using multiple <code>-v</code>. If you want to log on the lowest level getting all information you can use <code>-vvv</code>. If that is too much information use  <code>-vv</code> or <code>-v</code>.
@@ -105,7 +105,7 @@ Where pageInfo is the data structure that you wanna inspect.
 
 #### Committing changes
  * Install Commitizen with npm <code>npm install -g commitizen</code>
- * Then simply use command <code>git cz</code> instead of <code>git commit</code> when commiting changes
+ * Then simply use command <code>git cz</code> instead of <code>git commit</code> when committing changes
 
 #### Before you send the pull request
 
@@ -113,7 +113,7 @@ Before you send the PR make sure you:
  * Squash your commits so it looks sane
  * Make sure your code follow our lint rule by running: <code>npm run lint</code>
  * Make sure your code don't break any tests: <code>npm test</code>
- * Update the documentation [https://github.com/sitespeedio/sitespeed.io/tree/master/docs](https://github.com/sitespeedio/sitespeed.io/tree/master/docs) in another pull request. When we merge the PR the documentaion will automatically be updated so we do that when we push the next release
+ * Update the documentation [https://github.com/sitespeedio/sitespeed.io/tree/master/docs](https://github.com/sitespeedio/sitespeed.io/tree/master/docs) in another pull request. When we merge the PR the documentation will automatically be updated so we do that when we push the next release
 
 ### Do a release
 When you become a member of the sitespeed.io team you can push releases. You do that by running the release bash script in root: <code>./release.sh</code>
@@ -122,13 +122,13 @@ To do a release you need to first install np (a better *npm publish*): <code>npm
 
 Then run the bash script. It will push your new release to npm and the Docker hub. Remember to let your latest code change run a couple of hours on our test server before you push the release (the latest code is automatically deployed on the test server).
 
-To be able to deploy a new version you new to have access to our Docker account, npm, our Github repos and use 2FA.
+To be able to deploy a new version you new to have access to our Docker account, npm, our GitHub repos and use 2FA.
 
 ### Use sitespeed.io from NodeJS
 If you want to integrate sitespeed.io into your NodeJS application you can checkout how we do that in [our Grunt plugin](https://github.com/sitespeedio/grunt-sitespeedio/blob/master/tasks/sitespeedio.js). It's a great working example. :)
 
 ### Contributing to the documentation
-The documention lives in your cloned directory under *docs/*.
+The documentation lives in your cloned directory under *docs/*.
 
 First make sure you have Bundler: <code>gem install bundler</code>
 

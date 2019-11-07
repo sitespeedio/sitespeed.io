@@ -9,7 +9,7 @@ timeouts
 chrome
   --chrome.args                                              Extra command line arguments to pass to the Chrome process (e.g. --no-sandbox). To add multiple arguments to Chrome, repeat --chrome.args once per argument.
   --chrome.binaryPath                                        Path to custom Chrome binary (e.g. Chrome Canary). On OS X, the path should be to the binary inside the app bundle, e.g. "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary"
-  --chrome.chromedriverPath                                  Path to custom Chromedriver binary. Make sure to use a Chromedriver version that's compatible with the version of Chrome you're using
+  --chrome.chromedriverPath                                  Path to custom ChromeDriver binary. Make sure to use a ChromeDriver version that's compatible with the version of Chrome you're using
   --chrome.mobileEmulation.deviceName                        Name of device to emulate. Works only standalone (see list in Chrome DevTools, but add phone like 'iPhone 6'). This will override your userAgent string.
   --chrome.mobileEmulation.width                             Width in pixels of emulated mobile screen (e.g. 360)  [number]
   --chrome.mobileEmulation.height                            Height in pixels of emulated mobile screen (e.g. 640)  [number]
@@ -49,7 +49,7 @@ video
   --videoParams.crf                Constant rate factor see https://trac.ffmpeg.org/wiki/Encode/H.264#crf  [default: 23]
   --videoParams.addTimer           Add timer and metrics to the video.  [boolean] [default: true]
   --videoParams.debug              Turn on debug to record a video with all pre/post and scripts/URLS you test in one iteration. Visual Metrics will then automatically be disabled.  [boolean] [default: false]
-  --videoParams.keepOriginalVideo  Keep the original video. Use it when you have a Visual Metrics bug and creates an issue at Github  [boolean] [default: false]
+  --videoParams.keepOriginalVideo  Keep the original video. Use it when you have a Visual Metrics bug and creates an issue at GitHub  [boolean] [default: false]
   --videoParams.filmstripFullSize  Keep original sized screenshots. Will make the run take longer time  [boolean] [default: false]
   --videoParams.filmstripQuality   The quality of the filmstrip screenshots. 0-100.  [default: 75]
   --videoParams.createFilmstrip    Create filmstrip screenshots.  [boolean] [default: true]
@@ -106,8 +106,8 @@ Options:
   --decimals                                   The decimal points browsertime statistics round to.  [number] [default: 0]
   --cacheClearRaw                              Use internal browser functionality to clear browser cache between runs instead of only using Selenium.  [boolean] [default: false]
   --basicAuth                                  Use it if your server is behind Basic Auth. Format: username@password (Only Chrome and Firefox at the moment).
-  --preScript                                  Selenium script(s) to run before you test your URL/script. They will run outside of the analyze phase. Note that --preScript can be passed multiple times.
-  --postScript                                 Selenium script(s) to run after you test your URL. They will run outside of the analyze phase. Note that --postScript can be passed multiple times.
+  --preScript                                  Selenium script(s) to run before you test your URL/script. They will run outside of the analyse phase. Note that --preScript can be passed multiple times.
+  --postScript                                 Selenium script(s) to run after you test your URL. They will run outside of the analyse phase. Note that --postScript can be passed multiple times.
   --script                                     Add custom Javascript to run after the page has finished loading to collect metrics. If a single js file is specified, it will be included in the category named "custom" in the output json. Pass a folder to include all .js scripts in the folder, and have the folder name be the category. Note that --script can be passed multiple times.
   --userAgent                                  Override user agent
   --silent, -q                                 Only output info in the logs, not to the console. Enter twice to suppress summary line.  [count]
@@ -121,7 +121,7 @@ Options:
   --useSameDir                                 Store all files in the same structure and do not use the path structure released in 4.0. Use this only if you are testing ONE URL.
   --xvfb                                       Start xvfb before the browser is started  [boolean] [default: false]
   --xvfbParams.display                         The display used for xvfb  [default: 99]
-  --preURL                                     A URL that will be accessed first by the browser before the URL that you wanna analyze. Use it to fill the cache.
+  --preURL                                     A URL that will be accessed first by the browser before the URL that you wanna analyse. Use it to fill the cache.
   --preURLDelay                                Delay between preURL and the URL you want to test (in milliseconds)  [default: 1500]
   --userTimingWhitelist                        All userTimings are captured by default this option takes a regex that will whitelist which userTimings to capture in the results.
   --headless                                   Run the browser in headless mode. Works for Firefox and Chrome.  [boolean] [default: false]

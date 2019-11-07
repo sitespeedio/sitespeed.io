@@ -22,8 +22,8 @@ You can use sitespeed.io to keep track of what is happening with your site by ma
 
 To do this you define your own [budget file](../performance-budget/#the-budget-file) with rules on when to break your build. This budget will return an error code status after the run. You can also choose to output JUnit XML and TAP reports.
 
-## Github Actions
-If you are using [Github Actions](https://github.com/features/actions) beta it's super easy to run sitespeed.io. Remember though that actions are in beta and can change. They are running an small instances at the moment and you have no way of [setting the connectivity](/documentation/sitespeed.io/connectivity/) so you shouldn't rely on timing metrics. 
+## GitHub Actions
+If you are using [GitHub Actions](https://github.com/features/actions) beta it's super easy to run sitespeed.io. Remember though that actions are in beta and can change. They are running an small instances at the moment and you have no way of [setting the connectivity](/documentation/sitespeed.io/connectivity/) so you shouldn't rely on timing metrics. 
 
 Actions works good with a [performance budget](documentation/sitespeed.io/performance-budget/). You should set your budget in a file in the repo that you are testing. In this example we call the file *budget.json* and put it in the *.github* folder in the repo.
 
@@ -51,7 +51,7 @@ Setup a simple budget that check the URLs you test against number of requests, t
 }
 ```
 
-Then you can setup your action either via the Github GUI or using configuration. Make sure to setup your action to the right Docker file: ```docker://sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-action```.
+Then you can setup your action either via the GitHub GUI or using configuration. Make sure to setup your action to the right Docker file: ```docker://sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-action```.
 
 A simple setup looks something like this:
 
@@ -88,7 +88,7 @@ docker run -v ${WORKSPACE}:/sitespeed.io sitespeedio/sitespeed.io --outputFolder
 ![HTML reports]({{site.baseurl}}/img/html-publisher.png)
 {: .img-thumbnail}
 
- The HTML result pages runs Javascript, so you need to change the [Jenkins Content Security Policy](https://wiki.jenkins-ci.org/display/JENKINS/Configuring+Content+Security+Policy) for them to work with the plugin.
+ The HTML result pages runs JavaScript, so you need to change the [Jenkins Content Security Policy](https://wiki.jenkins-ci.org/display/JENKINS/Configuring+Content+Security+Policy) for them to work with the plugin.
 
  When you start Jenkins make sure to set the environment variable <code>-Dhudson.model.DirectoryBrowserSupport.CSP="sandbox allow-scripts; style-src 'unsafe-inline' *;script-src 'unsafe-inline' *;"</code>.
 
