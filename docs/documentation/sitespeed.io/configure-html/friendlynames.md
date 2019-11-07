@@ -1,12 +1,19 @@
 timings.firstPaint
 timings.fullyLoaded
+timings.serverResponseTime
+timings.backEndTime
 timings.pageLoadTime
 timings.FirstVisualChange
 timings.LastVisualChange
 timings.SpeedIndex
+timings.ContentfulSpeedIndex
 timings.PerceptualSpeedIndex
 timings.VisualReadiness
 timings.VisualComplete95
+timings.VisualComplete99
+timings.VisualComplete
+cpu.longTasks
+cpu.longTasksTotalDuration
 requests.total
 requests.html
 requests.javascript
@@ -38,6 +45,7 @@ contentSize.plain
 contentSize.svg
 thirdParty.transferSize
 thirdParty.requests
+score.score
 score.accessibility
 score.bestpractice
 score.privacy
