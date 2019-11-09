@@ -5,7 +5,8 @@ mixin row(errors)
   each error, url in errors
     tr
       td
-        a(href=url)= url
+        - if (url !== 'generic')
+          a(href=url)= url
       td
         ul
           each pageerrors, tool in error
