@@ -45,7 +45,7 @@ And you can also choose which metrics to see in the summary boxes:
 {: .img-thumbnail}
 
 
-aWe have [a new documentation page](documentation/sitespeed.io/configure-html/) to show you how to do it!
+aWe have [a new documentation page](/documentation/sitespeed.io/configure-html/) to show you how to do it!
 
 ## Contentful Speed Index
 Contentful Speed Index is a new SI metric developed by Bas Schouten at Mozilla which uses edge detection to calculate the amount of "content" that is visible on each frame. It was primarily designed for two main purposes: 
