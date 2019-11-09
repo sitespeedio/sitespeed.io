@@ -1,6 +1,11 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 11.1.0 - UNRELEASED
+
+### Added
+* Use include pattern in URLs when crawling with `--crawler.include`, thank you [Samuli Reijonen](https://github.com/SamuliR) for the PR [#2763](https://github.com/sitespeedio/sitespeed.io/pull/2763).
+* Added support for adding errors to the queue that isn't specific to a URL [#2772](https://github.com/sitespeedio/sitespeed.io/pull/2772).
+
 ### Fixed
 * The timestamp on the page summary was wrong: it showed when all tests started instead of the time of the first run as reported in [#2766](https://github.com/sitespeedio/sitespeed.io/issues/2766) and fixed in [#2768](https://github.com/sitespeedio/sitespeed.io/pull/2768).
 
