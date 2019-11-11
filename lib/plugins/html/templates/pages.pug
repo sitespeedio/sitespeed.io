@@ -29,8 +29,7 @@ mixin rows(pages)
           - name = friendlyNames[tool][m] && friendlyNames[tool][m][metricType] ? friendlyNames[tool][m][metricType].name : ''
           if (fullPath !== undefined)
             - break
-        - value = get(pageInfo.data[toolName].pageSummary, fullPath, 0)
-
+        - value = pageInfo.data[toolName] ? get(pageInfo.data[toolName].pageSummary, fullPath, 0) : 0
         if (fullPath.indexOf('Size') > -1)
           +kbSizeCell(name, value)
         else if metricType === 'performance'
