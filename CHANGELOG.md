@@ -9,6 +9,7 @@
 ### Fixed
 * The timestamp on the page summary was wrong: it showed when all tests started instead of the time of the first run as reported in [#2766](https://github.com/sitespeedio/sitespeed.io/issues/2766) and fixed in [#2768](https://github.com/sitespeedio/sitespeed.io/pull/2768).
 * If uploading to S3 or GCS fails, the exit code will be an error and you can see that it failed in the HTML [#2774](https://github.com/sitespeedio/sitespeed.io/pull/2774).
+* A safer check when generating pages HTML page if something went wrong earlier in the run [#2778](https://github.com/sitespeedio/sitespeed.io/pull/2778)
 
 ## 11.0.0 -  2019-11-07
 ### Changed
