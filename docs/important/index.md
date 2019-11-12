@@ -60,7 +60,7 @@ It sometimes happens that we get contacted about issues privately via email or D
 
 ## Who uses sitespeed.io
 
-We had over one million downloads so far and still counting. We have companies in the Alexa top 10 that uses sitespeed.io. We have students at universities that uses our tools for their publications. We have retailers that use it. Even our mothers and fathers uses it. We are pretty sure sitespeed.io will work out good for you too.
+We had over one million downloads so far and still counting. We have companies in the Alexa top 10 that uses sitespeed.io. We have students at universities that uses our tools for their publications. We have retailers that use it. Even our mothers and fathers use it. We are pretty sure sitespeed.io will work out good for you too.
 
 With the old 3.X we got the following feedback in the [Toolsday](http://www.toolsday.io/) podcast:
 
