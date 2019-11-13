@@ -441,6 +441,43 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
+### Measuring First Input Delay - FID
+One of the new metrics Google is pushing is [First Input Delay](https://developers.google.com/web/updates/2018/05/first-input-delays). You can use it when you collect RUM but it can be hard to know what the user is doing. The recommended way is to use the Long Task API but the truth is that the attribution from the API is ... well can be better. When you have a long task, it is really hard to know why by looking at the attribution.
+
+How do we measure FID with sitespeed.io? You can measure clicks and button using the [Selenium Action API](https://selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/lib/input_exports_Actions.html) and then sitespeed.io uses the `first-input` performance observer to get it. What's really cool is that you can really measure it, instead of doing guestimates.
+
+Here's an example on measuring open the navigation on Wikipedia on mobile. I run my tests on a Alacatel One phone.
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // We have some Selenium context
+  const webdriver = context.selenium.webdriver;
+  const driver = context.selenium.driver;
+
+  // Start to measure
+  await commands.measure.start();
+  // Go to a page ...
+  await commands.navigate('https://en.m.wikipedia.org/wiki/Barack_Obama');
+
+  // When the page has finished loading you can find the navigation and click on it
+  const actions = driver.actions();
+  const nav = driver.findElement(
+    webdriver.By.xpath('/html/body/div[1]/div/header/form/div[1]/a')
+  );
+  await actions.click(nav).perform();
+
+  // Measure everything, that means you will run the JavaScript that collects the first input delay
+  return commands.measure.stop();
+};
+~~~
+
+You will see the metric in the page summary and in the metrics section.
+
+![First input delay]({{site.baseurl}}/img/first-input-delay.png)
+{: .img-thumbnail}
+
+You can do mouse click, key press but there's no good way to do swiping as we know using the [Selenium Action API](https://selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/lib/input_exports_Actions.html). Your action will run after the page has loaded. If you want to run it earlier you should experiment with `--pageLoadStrategy none`.
+
 ## Tips and Tricks
 
 ### Include the script in the HTML result
