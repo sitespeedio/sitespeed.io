@@ -58,6 +58,22 @@ if browsertime && browsertime.cpu && browsertime.cpu.longTasks
   else 
     p No long tasks on the page!  
 
+if browsertime && browsertime.timings && browsertime.timings.firstInput !== undefined
+    h3 First Input Delay
+    table
+        tr
+            th Name
+            th Duration
+            th Start Time
+            th Processing Start
+            th Processing End
+        tr
+            td  #{browsertime.timings.firstInput.name}
+            td  #{h.time.ms(browsertime.timings.firstInput.duration)}
+            td  #{h.time.ms(browsertime.timings.firstInput.startTime)}
+            td  #{h.time.ms(browsertime.timings.firstInput.processingStart)}
+            td  #{h.time.ms(browsertime.timings.firstInput.processingEnd)}
+
 h3 CPU time spent    
 p Calculated using Tracium.
 

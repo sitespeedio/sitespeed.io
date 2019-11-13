@@ -20,6 +20,17 @@ mixin getLinkTimings(path, name, metric, type)
         td.number(data-title=type)
           a(href='./' + (index+1) + '.html', title='Go to the run with the ' + type + ' ' + name) #{h.time.ms(metric[name][type])}
 
+mixin getLinkFirstInput(path, name, metric, type)
+  - isSet = false
+  if options.browsertime.iterations % 2 === 0 && type === 'median'
+    td.number(data-title=type) #{metric[name][type]}
+  else
+    each run, index in path
+      if (Number(run.timings.firstInput[name]).toFixed(0) === Number(metric[name][type]).toFixed(0) && isSet === false)
+        - isSet = true
+        td.number(data-title=type)
+          a(href='./' + (index+1) + '.html', title='Go to the run with the ' + type + ' ' + name) #{h.time.ms(metric[name][type])}
+
 mixin getLinkPageTimings(path, name, metric, type)
   - isSet = false
   if options.browsertime.iterations % 2 === 0 && type === 'median'
@@ -96,3 +107,13 @@ if btStatistics
               +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'median')
               td.number(data-title='mean') #{userTimings ? h.time.ms(userTimings.mean): ''}
               +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'max')
+      if btStatistics.timings && btStatistics.timings.firstInput
+        if btStatistics.timings.firstInput.duration
+          tr
+            td.extraheader(colspan='5') First Input Delay
+          tr
+            td(data-title= 'First Input Delay') Duration
+            +getLinkFirstInput(pageInfo.data.browsertime.pageSummary.browserScripts, 'duration', btStatistics.timings.firstInput, 'min')
+            +getLinkFirstInput(pageInfo.data.browsertime.pageSummary.browserScripts, 'duration', btStatistics.timings.firstInput, 'median')
+            td.number(data-title='mean') #{h.time.ms(btStatistics.timings.firstInput.duration.mean)}
+            +getLinkFirstInput(pageInfo.data.browsertime.pageSummary.browserScripts, 'duration', btStatistics.timings.firstInput, 'max')
