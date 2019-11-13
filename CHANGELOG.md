@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 11.1.0 - UNRELEASED
+## 11.1.0 - 2019-11-13
 
 ### Added
 * Use include pattern in URLs when crawling with `--crawler.include`, thank you [Samuli Reijonen](https://github.com/SamuliR) for the PR [#2763](https://github.com/sitespeedio/sitespeed.io/pull/2763).
@@ -11,6 +11,7 @@
 * The timestamp on the page summary was wrong: it showed when all tests started instead of the time of the first run as reported in [#2766](https://github.com/sitespeedio/sitespeed.io/issues/2766) and fixed in [#2768](https://github.com/sitespeedio/sitespeed.io/pull/2768).
 * If uploading to S3 or GCS fails, the exit code will be an error and you can see that it failed in the HTML [#2774](https://github.com/sitespeedio/sitespeed.io/pull/2774).
 * A safer check when generating pages HTML page if something went wrong earlier in the run [#2778](https://github.com/sitespeedio/sitespeed.io/pull/2778)
+* Upgraded to [Browsertime 7.0.2](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#702---2019-11-13)
 
 ## 11.0.0 -  2019-11-07
 ### Changed
