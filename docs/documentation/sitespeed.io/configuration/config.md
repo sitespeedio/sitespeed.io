@@ -91,6 +91,7 @@ Crawler
   --crawler.depth, -d     How deep to crawl (1=only one page, 2=include links from first page, etc.)
   --crawler.maxPages, -m  The max number of pages to test. Default is no limit.
   --crawler.exclude       Exclude URLs matching the provided regular expression (ex: "/some/path/", "://some\.domain/"). Can be provided multiple times.
+  --crawler.include       Discard URLs not matching the provided regular expression (ex: "/some/path/", "://some\.domain/"). Can be provided multiple times.
 
 Grafana
   --grafana.host  The Grafana host used when sending annotations.
