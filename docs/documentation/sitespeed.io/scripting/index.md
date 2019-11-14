@@ -476,7 +476,7 @@ You will see the metric in the page summary and in the metrics section.
 ![First input delay]({{site.baseurl}}/img/first-input-delay.png)
 {: .img-thumbnail}
 
-You can do mouse click, key press but there's no good way to do swiping as we know using the [Selenium Action API](https://selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/lib/input_exports_Actions.html). Your action will run after the page has loaded. If you want to run it earlier you should experiment with `--pageLoadStrategy none`.
+You can do mouse click, key press but there's no good way to do swiping as we know using the [Selenium Action API](https://selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/lib/input_exports_Actions.html). Your action will run after the page has loaded. If you wanna know what kind potential input delay you can have on load, you can use the *maxPotentialFid* metric that you will get by enabling `--cpu`.
 
 ## Tips and Tricks
 
