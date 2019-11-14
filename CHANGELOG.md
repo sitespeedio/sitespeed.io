@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 11.2.0 - 2019-11-14
+### Added
+* Updated to Browsertime 7.1.0 that add Total Blocking Time and Max Potential Firsty Input Delay when you use Chrome with `--cpu`. One dashboard updated, the result pages displayes the new metrics.
+
 ## 11.1.0 - 2019-11-13
 
 ### Added
