@@ -17,6 +17,8 @@
          "VisualComplete": limit,
     },
    "cpu": {
+         "totalBlockingTime": limit,
+         "maxPotentialFid": limit,
          "longTasks": limit,
          "longTasksTotalDuration": limit,
     },

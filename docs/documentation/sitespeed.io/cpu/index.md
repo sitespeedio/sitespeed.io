@@ -59,6 +59,21 @@ One neat feature is that we show when the long task happen in the filmstrip view
 
 But what about that [magic number of 50 ms](https://calendar.perfplanet.com/2018/magic-numbers/)? Well it is possible that 50 ms isn't the right number for you.  By default a long task is >50ms. Wanna change that? Use `--minLongTaskLength` to set that yourselves (it needs to be larger than 50 ms though).
 
+### Total Blocking Time
+The Total Blocking Time (TBT) metric measures the total amount of time between First Contentful Paint (FCP) and when you end your test, where the main thread was blocked for long enough to prevent input responsiveness.
+
+You will automatically get this metric if you enable collecting long tasks.
+
+### First Input Delay
+First Input Delay measures the time from when a user first interacts with your site, such as clicking a button, to the time when the browser is actually able to respond to that interaction. To get that you need to interact with a page and you do that with scripting.
+
+We have [a special section in the documentation for scripting](/documentation/sitespeed.io/scripting/#measuring-first-input-delay---fid) that guides you how to do that. 
+
+### Max Potential First Input Delay
+
+Max Potential First input Delay measures the worst-case First Input Delay that your users might experience when the page is loading. You will get that metric by enabling getting long tasks.
+
+
 ### Throttle the CPU
 
 Throttle the CPU using Chrome with `--chrome.CPUThrottlingRate`. Enables CPU throttling to emulate slow CPUs. Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc).

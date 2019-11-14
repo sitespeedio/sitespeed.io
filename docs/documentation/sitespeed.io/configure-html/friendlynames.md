@@ -12,6 +12,8 @@ timings.VisualReadiness
 timings.VisualComplete95
 timings.VisualComplete99
 timings.VisualComplete
+cpu.totalBlockingTime
+cpu.maxPotentialFid
 cpu.longTasks
 cpu.longTasksTotalDuration
 requests.total
