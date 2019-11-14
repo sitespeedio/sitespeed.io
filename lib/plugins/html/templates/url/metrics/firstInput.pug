@@ -1,6 +1,7 @@
 if browsertime.timings.firstInput !== undefined
     a#firstInput
     h3 First Input Delay
+    p Measured First Input Delay
     table
         tr
             th Name
@@ -14,3 +15,4 @@ if browsertime.timings.firstInput !== undefined
             td  #{h.time.ms(browsertime.timings.firstInput.startTime)}
             td  #{h.time.ms(browsertime.timings.firstInput.processingStart)}
             td  #{h.time.ms(browsertime.timings.firstInput.processingEnd)}
+

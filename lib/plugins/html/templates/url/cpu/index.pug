@@ -19,6 +19,15 @@ if browsertime && browsertime.cpu && browsertime.cpu.longTasks
             th Quantity
             th Total duration (ms)
         tr
+            td Total Blocking Time
+            td 
+            td #{browsertime.cpu.longTasks.totalBlockingTime}
+        tr
+            td Max Potential First Input Delay
+            td 
+            td #{browsertime.cpu.longTasks.maxPotentialFid}
+
+        tr
             td Long Tasks before First Paint
             td #{browsertime.cpu.longTasks.beforeFirstPaint.tasks}
             td #{browsertime.cpu.longTasks.beforeFirstPaint.totalDuration.toFixed(0)}
