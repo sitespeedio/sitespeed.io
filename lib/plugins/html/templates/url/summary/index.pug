@@ -70,6 +70,12 @@ block content
                 td #{h.time.ms(d.browsertime.pageSummary.statistics.timings.firstPaint.median)}                
             if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.cpu && d.browsertime.pageSummary.statistics.cpu.longTasks
               tr
+                td Total Blocking Time [median]:
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime.median)}
+              tr
+                td Max Potential FID [median]:
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.cpu.longTasks.maxPotentialFid.median)}
+              tr
                 td CPU long tasks [median]:
                 td #{d.browsertime.pageSummary.statistics.cpu.longTasks.tasks.median}
               if d.browsertime.pageSummary.statistics.cpu.longTasks.durations  && d.browsertime.pageSummary.statistics.cpu.longTasks.durations.max > 0    

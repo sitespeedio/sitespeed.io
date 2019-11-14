@@ -178,3 +178,12 @@ block content
 
     h5(id='axeModeratelViolations') Moderate Axe violations
     p The number of moderate accessibility violations on your page found by Axe.
+
+    h5(id='totalBlockingTime') Total Blocking Time
+    p The blocking time of a given long task is its duration in excess of 50 ms (or the time you have configured with <code>--browsertime.minLongTaskLength</code>). And the total blocking time for a page is the sum of the blocking time for each long task that happens after first contentful paint.
+
+    h5(id='maxPotentialFid') Max Potential First Input Delay
+    p The worst-case First Input Delay that your users might experience during load. This is calculated using CPU long tasks.
+
+    h5(id='firstInputDelay') First Input Delay
+    p First Input Delay measures the time from when a user first interacts with your site (when they click a link, tap on a button etc) to the time when the browser is actually able to respond to that interaction. You need to <a href="https://www.sitespeed.io/documentation/sitespeed.io/scripting/#measuring-first-input-delay---fid">use scripting</a> to actively do something with the page for this metric to be collected.
