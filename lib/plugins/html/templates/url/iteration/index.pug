@@ -94,6 +94,16 @@ block content
                tr
                  td RUM Speed Index:
                  td #{h.time.ms(d.browsertime.run.timings.rumSpeedIndex)}
+             if d.browsertime  && d.browsertime.run && d.browsertime.run.cpu && d.browsertime.run.cpu.longTasks
+              tr
+                td Total Blocking Time:
+                td #{h.time.ms(d.browsertime.run.cpu.longTasks.totalBlockingTime)}
+              tr
+                td Max Potential FID [median]:
+                td #{h.time.ms(d.browsertime.run.cpu.longTasks.maxPotentialFid)}
+              tr
+                td CPU long tasks:
+                td #{d.browsertime.run.cpu.longTasks.tasks}
              if !d.browsertime && d.webpagetest
                tr
                  td Render (first view):
