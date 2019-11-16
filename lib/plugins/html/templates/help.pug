@@ -78,20 +78,26 @@ block content
     h5(id='firstPaint') FirstPaint
     p This is when the first paint happens on the screen. In Firefox we use timeToNonBlankPaint (that is behind a Firefox preference).
 
+    h5(id='first-contentful-paint') First Contentful Paint
+    p First Contentful Paint (FCP) measures the time from navigation to the time when the browser renders the first bit of content from the DOM.
+
+    h5(id='largestContentfulPaint') Largest Contentful Paint
+    p The Largest Contentful Paint (LCP) metric reports the render time of the largest content element visible in the viewport.
+
     h5(id='timeToDomContentFlushed') Time To DOM Content Flushed
-    p Internal Firefox metric activated by setting the preference 
+    p Internal Firefox metric activated by setting the preference
       i dom.performance.time_to_dom_content_flushed.enabled
       | &nbsp;to true.
 
     h5(id='timeToContentfulPaint') Time To Contentful Paint
-    p Firefox implementation of First Contentful Paint. Activated by setting the preference 
+    p Firefox implementation of First Contentful Paint. Activated by setting the preference
       i dom.performance.time_to_contentful_paint.enabled
       | &nbsp;to true.
 
     h5(id='timeToFirstInteractive') Time To First Interactive
-    p Firefox implementation of Time to first interactive. Activated by setting the preference 
+    p Firefox implementation of Time to first interactive. Activated by setting the preference
       i dom.performance.time_to_first_interactive.enabled
-      | &nbsp;to true.   
+      | &nbsp;to true.
 
     h5(id='loadEventEnd') Load Event End
     p The time when the load event of the current document is completed.
@@ -106,7 +112,7 @@ block content
 
     h5(id='ContentfulSpeedIndex') Contentful Speed Index
     p This new metric is developed by Bas Schouten at Mozilla which uses edge detection to calculate the amount of "content" that is visible on each frame. It was primarily designed for two main purposes: Have a good metric to measure the amount of text that is visible. Design a metric that is not easily fooled by the pop up splash/login screens that commonly occur at the end of a page load. These can often disturb the speed index numbers since the last frame that is being used as reference is not accurate.
-      
+
     h5(id='FirstVisualChange') First Visual Change
     p The time when something for the first time is painted within the viewport. Calculated by analysing a video.
 
