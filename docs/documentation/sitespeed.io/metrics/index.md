@@ -1,146 +1,175 @@
 ---
 layout: default
-title: Configure which metrics to use.
-description: sitespeed.io collects a lot of metrics which are filtered before they are sent to Graphite/InfluxDB. You can remove filters and/or add your own filters.
-keywords: configure, metrics, sitespeed.io
-author: Peter Hedenskog
+title: Metrics collected by sitespeed.io
+description: Here are the metrics we collect by sitespeed.io and how they are defined.
+keywords: metrics
 nav: documentation
 category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: Configuring metrics to use
+twitterdescription: Here are the metrics we collect by sitespeed.io and how they are defined.
 ---
-[Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / Metrics
+
+[Documentation](/documentation/sitespeed.io/) / Metrics
 
 # Metrics
 {:.no_toc}
 
+We collect a lot of metrics in sitespeed.io and all of them isn't super easy to understand what they are measuring.
+
 * Lets place the TOC here
 {:toc}
 
-# Collected metrics
-Sitespeed.io collects a lot of metrics which are filtered before they are sent to Graphite/InfluxDB. You can remove filters and/or add your own filters. Some sensible defaults have been set for you, if you have suggestions to change them create an [issue at GitHub](https://github.com/sitespeedio/sitespeed.io/issues/new).
+## Visual Metrics
+Visual Metrics are metrics calculated from screenshots/video of the browsers screen. We use the library [Visual Metrics](https://github.com/WPO-Foundation/visualmetrics) to do that.
 
-## Summary vs pageSummary vs run
-The metrics are separated into three groups:
+### Speed Index
+The Speed Index is the average time at which visible parts of the page are displayed. It is expressed in milliseconds and dependent on size of the view port. It was created by Pat Meenan and you can checkout the [full documentation](https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index).
 
-A run is the metrics collected for one iteration.
+### Contentful Speed Index
+This new metric is developed by Bas Schouten at Mozilla which uses edge detection to calculate the amount of "content" that is visible on each frame. It was primarily designed for two main purposes: Have a good metric to measure the amount of text that is visible. Design a metric that is not easily fooled by the pop up splash/login screens that commonly occur at the end of a page load. These can often disturb the speed index numbers since the last frame that is being used as reference is not accurate.
 
-The pageSummary encapsulates the metrics for a single page. For example if we test a single page 10 times, it will have the min/median/max here for values that change.
+### First Visual Change
+The time when something for the first time is painted within the viewport.
 
-The summary holds information per group, or specifically per domain. If you test ten different pages on a site (same domain), the summary of those metrics will end up here.
+### Visual Complete 85%
+When the page is visually complete to 85% (or more).
 
-## List configured metrics
-You can list the metrics that are configured by **\-\-metrics.filterList**. The list is dependent on which plugins you are loading, so you will need to do an actual run to generate the list. The list is stored in the data folder in a file named **configuredMetrics.txt**.
+### Visual Complete 95%
+When the page is visually complete to 95% (or more).
 
-~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --metrics.filterList
-~~~
+### Visual Complete 99%
+When the page is visually complete to 99% (or more).
 
-The file will look something like this:
+### Last Visual Change
+The time when something for the last time changes within the viewport.
 
-~~~
-browsertime.pageSummary.statistics.timings.timings
-browsertime.pageSummary.statistics.timings.rumSpeedIndex
-browsertime.pageSummary.statistics.timings.fullyLoaded
-browsertime.pageSummary.statistics.timings.firstPaint
-browsertime.pageSummary.statistics.timings.userTimings
-browsertime.pageSummary.statistics.visualMetrics.SpeedIndex
-browsertime.pageSummary.statistics.visualMetrics.FirstVisualChange
-browsertime.pageSummary.statistics.visualMetrics.LastVisualChange
-browsertime.pageSummary.statistics.custom.*
-...
-~~~
+###  Largest Image
+The time when the largest image within the viewport has finished painted at the final position on the screen.
 
-## List metrics
-You can also list all possible metrics that you can send. You can do that by using **\-\-metrics.list**. It will generate a text file named **metrics.txt** in the data folder.
+### Heading
+The time when the largest H1 heading within the viewport has finished painted at the final position on the screen.
 
-~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --metrics.list
-~~~
+### Logo
+The time when the logo (configured with `--scriptInput.visualElements`) within the viewport has finished painted at the final position on the screen.
+
+## CPU Metrics
+If you use Chrome when you test you can [enable getting metrics](/documentation/sitespeed.io/cpu/) about what the CPU is doing when your page is loading.
+
+### First Input Delay
+First Input Delay measures the time from when a user first interacts with your site (when they click a link, tap on a button etc) to the time when the browser is actually able to respond to that interaction. You need to [use scripting](/documentation/sitespeed.io/scripting/#measuring-first-input-delay---fid) to actively do something with the page for this metric to be collected.
+
+### Total Blocking Time
+The blocking time of a given long task is its duration in excess of 50 ms (or the time you have configured with <code>--browsertime.minLongTaskLength</code>). And the total blocking time for a page is the sum of the blocking time for each long task that happens after first contentful paint.
+
+### Max Potential First Input Delay
+The worst-case First Input Delay that your users might experience during load. This is calculated using CPU long tasks that happens after first contentful paint.
+
+### Total amount of Long Tasks
+The total amount of CPU Long Tasks that happens on the page, from the start of the measurement until the end.
+
+### Total time spent in Long Tasks
+The total time spent in CPU Long Tasks that happens on the page, from the start of the measurement until the end.
+
+## Coach scores
+The [Coach](/documentation/coach/) helps you find issues with your web page.
+
+### Overall score
+The average combined performance, privacy, accessibility and best practices score from the Coach. If the score is 100 you are doing fantastic, there's no more you can do here.
+
+### Performance score
+The coach knows much about performance best practices and match your pages against them.
+
+### Accessibility score
+Make sure your site is accessible and usable for everyone. You should also look into the [AXE metrics]().
+
+### Web Best Practice score
+You want your page to follow web best practice and the coach helps you with that. Making sure your page is set up for search engines, have good URL structure and more.
+
+## Browser metrics
+Modern browser has many API that can deliver useful metrics to you.
+
+### BackEndTime
+The time it takes for the network and the server to generate and start sending the HTML. Collected using the Navigation Timing API with the definition: responseStart - navigationStart
+
+### FrontEndTime
+The time it takes for the browser to parse and create the page. Collected using the Navigation Timing API with the definition: loadEventStart - responseEnd
+
+### DOMContentLoadedTime
+The time the browser takes to parse the document and execute deferred and parser-inserted scripts including the network time from the users location to your server. Collected using the Navigation Timing API with the definition: domContentLoadedEventStart - navigationStart
+
+### DOMInteractiveTime
+The time the browser takes to parse the document, including the network time from the users location to your server. Collected using the Navigation Timing API with the definition: domInteractive - navigationStart
+
+### DomainLookupTime
+The time it takes to do the DNS lookup. Collected using the Navigation Timing API with the definition: domainLookupEnd - domainLookupStart
+
+### PageDownloadTime
+How long time does it take to download the page (the HTML). Collected using the Navigation Timing API with the definition: responseEnd - responseStart
+
+### PageLoadTime
+The time it takes for page to load, from initiation of the page view (e.g., click on a page link) to load completion in the browser. Important: this is only relevant to some pages, depending on how you page is built. Collected using the Navigation Timing API with the definition: loadEventStart - navigationStart
+
+### RedirectionTime
+Time spent on redirects. Collected using the Navigation Timing API with the definition: fetchStart - navigationStart
+
+### ServerConnectionTime
+How long time it takes to connect to the server. Collected using the Navigation Timing API with the definition: connectEnd - connectStart
+
+### ServerResponseTime
+The time it takes for the server to send the response. Collected using the Navigation Timing API with the definition: responseEnd - requestStart
+
+### FirstPaint
+This is when the first paint happens on the screen. In Firefox we use *timeToNonBlankPaint* (that is behind a Firefox preference).
+
+### First Contentful Paint
+First Contentful Paint (FCP) measures the time from navigation to the time when the browser renders the first bit of content from the DOM.
+
+### Largest Contentful Paint
+The Largest Contentful Paint (LCP) metric reports the render time of the largest content element visible in the viewport.
+
+### Time To DOM Content Flushed
+Internal Firefox metric activated by setting the preference  **dom.performance.time_to_dom_content_flushed.enabled** to true.
+
+### Time To Contentful Paint
+Firefox implementation of First Contentful Paint. Activated by setting the preference
+**dom.performance.time_to_contentful_paint.enabled** to true.
+
+### Time To First Interactive
+Firefox implementation of Time to first interactive. Activated by setting the preference **dom.performance.time_to_first_interactive.enabled** to true.
+
+### Load Event End
+The time when the load event of the current document is completed.
+
+### Fully Loaded
+The time when all assets in the page is downloaded. The value comes from the latest response in the HAR file.
+
+### RUM-SpeedIndex
+A browser version also created by Pat Meenan that calculates the SpeedIndex measurements using Resource Timings. It is not as perfect as Speed Index but a good start.
 
 
-## Configure/filter metrics
-You can add/change/remove filters with **\-\-metrics.filter**.
+## Page metrics
+Your page is built by HTML, CSS, JavaScript, images, fonts and more. The page metrics lets you know how many requests you do and the size of them.
 
-### Add a metric
-If you want to add metrics, start by looking at the generated metrics file, so you can see what you would send.
+### Transfer size
+The transfer size is the size of the response over the wire. That means if you compress you response, it will show up here.
 
-Say you want to send all performance advice to Graphite for a page. Checking the file you should see them. It will look something like this:
+### Content Size
+The content size is the total uncompressed size of your response.
 
-~~~
-...
-coach.pageSummary.advice.performance.adviceList.avoidScalingImages.score
-coach.pageSummary.advice.performance.adviceList.avoidScalingImages.weight
-coach.pageSummary.advice.performance.adviceList.cssPrint.score
-coach.pageSummary.advice.performance.adviceList.cssPrint.weight
-coach.pageSummary.advice.performance.adviceList.fastRender.score
-coach.pageSummary.advice.performance.adviceList.fastRender.weight
-coach.pageSummary.advice.performance.adviceList.inlineCss.score
-coach.pageSummary.advice.performance.adviceList.inlineCss.weight
-coach.pageSummary.advice.performance.adviceList.jquery.score
-coach.pageSummary.advice.performance.adviceList.jquery.weight
-coach.pageSummary.advice.performance.adviceList.spof.score
-coach.pageSummary.advice.performance.adviceList.spof.weight
-coach.pageSummary.advice.performance.adviceList.thirdPartyAsyncJs.score
-coach.pageSummary.advice.performance.adviceList.thirdPartyAsyncJs.weight
-...
-~~~
+### Requests
+You can also see the total number of requests and requests per type.
 
-The score is ... yes the score and the weight is how important it is. You probably only need the score, so setting a filter like this **coach.pageSummary.advice.performance.adviceList.\*.score** will send them all (setting a wildcard for the name).
+## Axe
+Axe is a [accessibility engine for automated Web UI testing](/documentation/sitespeed.io/axe/).
 
-~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --metrics.filter coach.pageSummary.advice.performance.adviceList.*.score -n 1
-~~~
+### Critical Axe violations
+The number of critical accessibility violations on your page found by Axe.  A critical violation means that you should fix it now.
 
-The best way to test and verify on your local, is to checkout the sitespeed.io project and then start a TCP server that logs everything:
+### Serious Axe violations
+The number of serious accessibility violations on your page found by Axe.  A serious violation means that you should fix it now.
 
-~~~bash
-tools/tcp-server.js
-~~~
+### Minor Axe violations
+The number of minor accessibility violations on your page found by Axe.
 
-And you will see something like this:
-
-~~~
-$ Server listening on :::52860
-~~~
-
-It will output the port, so you can then use it when you run sitespeed.io:
-
-~~~bash
-docker run --net host --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  --metrics.list https://www.sitespeed.io -n 1 --metrics.filter coach.pageSummary.advice.performance.adviceList.*.score --graphite.host 127.0.0.1 --graphite.port 52860
-~~~
-
-The the previous example it will log all metrics you send to Graphite to the console.
-
-#### Example: Add all Coach advice
-
-By default the total score for performance, accessibility and best practice is configured to send to Graphite. Previously we looked at sending all the score for the performance advice. If you want to send all the scores for all advice, you can do that easily, by adding all three categories in the CLI:
-
-~~~shell
---metrics.filter coach.pageSummary.advice.performance.adviceList.*.score coach.pageSummary.advice.bestpractice.adviceList.*.score coach.pageSummary.advice.accessibility.adviceList.*.score
-~~~
-
-#### Example: Use JSON config to pass the metrics configuration
-If you have a lot of different metrics that you want to send to Graphite the command line will be overloaded. We have a solution to the problem: Use the JSON configuration option <code>--config</code> (read more [here]({{site.baseurl}}/documentation/sitespeed.io/configuration/#configuration-as-json)).
-
-If you want to send the three coach metrics, you can add them as a config file like this and pass the filename to the <code>--config</code> parameter:
-
-~~~json
-{
-  "metrics": {
-    "filter": [
-      "coach.pageSummary.advice.performance.adviceList.*.score",
-      "coach.pageSummary.advice.bestpractice.adviceList.*.score",
-      "coach.pageSummary.advice.accessibility.adviceList.*.score"
-    ]
-  }
-}
-~~~
-
-### Remove metrics
-Sitespeed.io does not currently have support removal of a single metric, but you can
-remove all configured metrics with the parameter value *\*-*. Here is an example sending only the **coach.pageSummary.advice.performance.adviceList.\*.score** metrics.
-
-~~~bash
-docker run --net host --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  --metrics.list https://www.sitespeed.io -n 1 --metrics.filter *- coach.pageSummary.advice.performance.adviceList.*.score --graphite.host 127.0.0.1 --graphite.port 52860
-~~~
+### Moderate Axe violations
+The number of moderate accessibility violations on your page found by Axe.
