@@ -6,6 +6,7 @@
 
 ### Fixed
 * Link for first and largest contentful help text [#2785](https://github.com/sitespeedio/sitespeed.io/pull/2785)
+* The +1 container was missing the fixes to make it easier to turn of video and visual metrics when running the container [#2789](https://github.com/sitespeedio/sitespeed.io/pull/2789)
 
 ## 11.2.0 - 2019-11-14
 ### Added
