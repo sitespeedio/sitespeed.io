@@ -1,5 +1,12 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Added
+* Added the sitespeed.io version as title of the annotation tag of Graphite and Grafana [#2788](https://github.com/sitespeedio/sitespeed.io/pull/2788)
+
+### Fixed
+* Link for first and largest contentful help text [#2785](https://github.com/sitespeedio/sitespeed.io/pull/2785)
+
 ## 11.2.0 - 2019-11-14
 ### Added
 * Updated to Browsertime 7.1.0 that add Total Blocking Time and Max Potential First Input Delay when you use Chrome with `--cpu`. One dashboard updated, the result pages displayes the new metrics.
@@ -72,7 +79,7 @@
 
 
 ### Fixed
-* There was a bug that caused faulty docs for running axe. Use `--axe.enable` 
+* There was a bug that caused faulty docs for running axe. Use `--axe.enable`
 to run Axe! [#2676](https://github.com/sitespeedio/sitespeed.io/pull/2676).
 * Set correct tag for CPU Long Tasks in InfluxDB [#2677](https://github.com/sitespeedio/sitespeed.io/pull/2677)
 * Handle float numbers in statistics, thank you [tengremlin](https://github.com/tengremlin) for the PR [#2675](https://github.com/sitespeedio/sitespeed.io/pull/2675).
@@ -82,7 +89,7 @@ to run Axe! [#2676](https://github.com/sitespeedio/sitespeed.io/pull/2676).
 * Upgraded to the Coach 4.0.2.
 
 ## 10.1.1 - 2019-10-01
-### Fixed 
+### Fixed
 * Fix so that if we have the filmstrip from the Chrome trace log, those images should be used in the filmstrip view [#2661](https://github.com/sitespeedio/sitespeed.io/pull/2661)
 * Fix resultBaseURL as env variable as reported by MasonM in [#2663](https://github.com/sitespeedio/sitespeed.io/issues/2663) fixed in [#2664](https://github.com/sitespeedio/sitespeed.io/pull/2664).
 * Upgraded to Browsertime 6.1.1 that fixes SpeedLine visual metrics to numbers instead of strings.
@@ -124,14 +131,14 @@ to run Axe! [#2676](https://github.com/sitespeedio/sitespeed.io/pull/2676).
 ### Added
 * Updated to Firefox 69 and Chrome 77 in the Docker container.
 * Collext Axe violations for summary and detailed summary [#2622](https://github.com/sitespeedio/sitespeed.io/pull/2622). Read more in the [documentation](https://www.sitespeed.io/documentation/sitespeed.io/axe/).
-* Added new metrics for slacking errors/warnings: firstPaint, visualComplete85, lastVisualChange, fullyLoaded (and fixed broken fullyLoaded) [#2611](https://github.com/sitespeedio/sitespeed.io/pull/2611). 
+* Added new metrics for slacking errors/warnings: firstPaint, visualComplete85, lastVisualChange, fullyLoaded (and fixed broken fullyLoaded) [#2611](https://github.com/sitespeedio/sitespeed.io/pull/2611).
 * Show the top 20 largest assets on the PageXray tab [#2583](https://github.com/sitespeedio/sitespeed.io/pull/2583)
 * Show the transfer size of assets (not only content size) in the toplists in the HTML [#2560](https://github.com/sitespeedio/sitespeed.io/pull/2560)
 * You can now test your pages using Axe: `--axe.enable` - The test will run after all other metrics are collected and will add some extra time to your total run test time [#2571](https://github.com/sitespeedio/sitespeed.io/pull/2571). You can see all axe information in the new tab.
 * Limited support for using Safari. You need Catalina + iOS 13 to run Safari on your phone/tablet. Read more in the [documentation](https://www.sitespeed.io/documentation/sitespeed.io/browsers/#safari).
 * Send FirstMeaningfulPaint by default to Graphite/InfluxDb [#2559](https://github.com/sitespeedio/sitespeed.io/pull/2559)
 * [Updated dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker) with a new annotation (for sitespeed.io changes) and fixed WebPageTest dashboards to work with annotations.
-* Upgraded to [Browsertime 6.0.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md). 
+* Upgraded to [Browsertime 6.0.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md).
   * Upgraded to Ubuntu Disco in the Docker container [#908](https://github.com/sitespeedio/browsertime/pull/908).
   * Use [TSProxy](https://github.com/WPO-Foundation/tsproxy) to throttle the connection. You should use TSProxy when you run on Kubernetes. Use it by `--connectivity.engine tsproxy`. We used to have support years ago but it never worked good on Mac/Linux so we dropped it. But it works now so we added it back [#891](https://github.com/sitespeedio/browsertime/pull/891).
   * You can now add your own metrics directly from your script (or post script) using *context.result.extras*. More info coming [#917](https://github.com/sitespeedio/browsertime/pull/917)
@@ -153,7 +160,7 @@ to run Axe! [#2676](https://github.com/sitespeedio/sitespeed.io/pull/2676).
 * Add WebPageTest screenshot in annotation if you use WebPageTest without Browsertime [#2603](https://github.com/sitespeedio/sitespeed.io/pull/2603) and [#2605](https://github.com/sitespeedio/sitespeed.io/pull/2605)
 * Link to WebPageTest HAR in the annotation if you run WebPageTest standalone [#2609](https://github.com/sitespeedio/sitespeed.io/pull/2609).
 
-### Changed 
+### Changed
 * Upgraded to yargs 14.1.0 that deep merge configuration files when you extend another configuration [#2626](https://github.com/sitespeedio/sitespeed.io/pull/2626)
 * To store the log to file you need to now add `--logToFile` to your run. This makes sense that you need to make an active choice to store the log file[#2606](https://github.com/sitespeedio/sitespeed.io/pull/2606).
 * Using `--debug`now set the log level to verbose instead of just logging the message queue. To log the message queue use `--debugMessages` [#2607](https://github.com/sitespeedio/sitespeed.io/pull/2607).
