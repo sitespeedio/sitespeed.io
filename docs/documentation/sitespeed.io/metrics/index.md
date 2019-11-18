@@ -140,7 +140,7 @@ Firefox implementation of Time to first interactive. Activated by setting the pr
 ### Load Event End
 The time when the load event of the current document is completed.
 
-### FullyLoaded
+### Fully Loaded
 The time when all assets in the page is downloaded. The value comes from the latest response in the HAR file.
 
 ### RUM-SpeedIndex
@@ -169,7 +169,7 @@ The number of critical accessibility violations on your page found by Axe.  A cr
 The number of serious accessibility violations on your page found by Axe.  A serious violation means that you should fix it now.
 
 ### Minor Axe violations
-The number of monir accessibility violations on your page found by Axe.
+The number of minor accessibility violations on your page found by Axe.
 
 ### Moderate Axe violations
 The number of moderate accessibility violations on your page found by Axe.
