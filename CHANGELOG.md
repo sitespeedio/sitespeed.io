@@ -1,8 +1,10 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 11.3.0 - UNRELEASED
 ### Added
-* Added the sitespeed.io version as title of the annotation tag of Graphite and Grafana [#2788](https://github.com/sitespeedio/sitespeed.io/pull/2788)
+* Added the sitespeed.io version and browser version in the title of the annotation tag of Graphite and Grafana [#2791](https://github.com/sitespeedio/sitespeed.io/pull/2791), [#2792](https://github.com/sitespeedio/sitespeed.io/pull/2792) and [#2793](https://github.com/sitespeedio/sitespeed.io/pull/2793).
+
+* Lighthouse in the +1 container now supports multiple iterations (running Lighthouse multiple times for the same URL) PR by [Dawid Grela](https://github.com/tengremlin) - [#36](https://github.com/sitespeedio/plugin-lighthouse/pull/36).
 
 ### Fixed
 * Link for first and largest contentful help text [#2785](https://github.com/sitespeedio/sitespeed.io/pull/2785)
