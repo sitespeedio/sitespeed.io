@@ -60,7 +60,6 @@ Lets go through some important things when you setup your synthetic tests. You w
 ### Stability is your friend
 The number of prio for setting up synthetic testing is getting rid of as much variance as possible from the server, the internet connection, the tool so that the metrics you collect will not be influenced by somenthing else than things that the web page.
 
-
 ### Connectivity
 When you run your tests you need to always throttle your connection. **PLEASE, YOU NEED TO ALWAYS THROTTLE YOUR CONNECTION!** You should always throttle/limit the connectivity because it will make it easier for you to find regressions. If you don't do it, you can run your tests with different connectivity profiles and regressions/improvements that you see is caused by your servers flakey internet connection. Check out our [connectivity guide]({{site.baseurl}}/documentation/sitespeed.io/connectivity/) how to do it.
 
@@ -70,7 +69,6 @@ So remember, always make sure you run on a throttled connection!
 You want to have stable metrics so you can find regressions. One way to get more stable metrics is to make many runs and take the median (or fastest) run.
 
 The number of runs you need depends on the servers you use, the browser (and browser configuration) and the URL that you test. That means you need to test yourself to find what works for you. For example at Wikimedia we get really stable metrics for our mobile site with just one run using WebPageReplay as a replay proxy. But for the English desktop Wikipedia we need 5/7/11 runs for some URLs to get more stable metrics (becasue we run more JavaScript that executes differently). And for other languages on Wikipedia we need less runs.
-
 
 You should start out by doing 3 runs. How big is the difference between your runs? Is it seconds? Well then you need to increase the number of runs. You will probably have some flakiness in your tests, but that is ok, as long as you can see regressions. The best way to find what works for you is to test over a period of time. Check your metric, check your min and max and the deviation over time (we have a [special dashboard]() that helps you with that.
 
