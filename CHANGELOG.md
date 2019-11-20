@@ -10,6 +10,7 @@
 * Link for first and largest contentful help text [#2785](https://github.com/sitespeedio/sitespeed.io/pull/2785)
 * The +1 container was missing the fixes to make it easier to turn of video and visual metrics when running the container [#2789](https://github.com/sitespeedio/sitespeed.io/pull/2789)
 * The WebPageTest Page Timing dashboard was missing the location field in the annotations (you could see both Firefox and Chrome runs even though you only choose on) and it was missing a line for render.
+* Using `--mobile` together with WebPageReplay didn't respect the mobile settings, causing 404 for some URLs when testing Wikipedia on mobile [#2795](https://github.com/sitespeedio/sitespeed.io/pull/2795).
 
 ## 11.2.0 - 2019-11-14
 ### Added
