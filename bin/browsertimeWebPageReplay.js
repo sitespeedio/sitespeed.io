@@ -76,7 +76,7 @@ async function runBrowsertime() {
   const btOptions = merge({}, parsed.argv.browsertime, defaultConfig);
   browsertime.logging.configure(parsed.argv);
 
-  if (btOptions.mobile) {
+  if (parsed.argv.mobile) {
     btOptions.viewPort = '360x640';
     if (btOptions.browser === 'chrome') {
       const emulation = get(
