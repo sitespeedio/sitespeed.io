@@ -3431,9 +3431,9 @@
       "integrity": "sha1-81HTKWnTL6XXpVZxVCY9korjvR8="
     },
     "browsertime": {
-      "version": "7.2.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-7.2.0.tgz",
-      "integrity": "sha512-JhRMYXdtQjKq+lX+IHcTn8cQzRBAOboJR62SBB2xQf4kDJq4LGOLrp40YxiWJYqjWDJK0u84SO7Y+9BN2gagcw==",
+      "version": "7.2.2",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-7.2.2.tgz",
+      "integrity": "sha512-gWReDjostSsEQNvej8FqRkmx/dcviush3vfr9Eop2rW298U0vSVH3BZzsvQdealJSmCFGgZmobETanS8dAW7ag==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@sitespeed.io/chromedriver": "78.0.3904-70",
@@ -3511,9 +3511,9 @@
           "integrity": "sha512-vpm09aKwq6H9phqRQzecoDpD8TmVyGw70qmWlyq5onxY7tqyTTFVvxMykxQSQKILBSFlbXpypIw2T1Ml7+DDtw=="
         },
         "path-key": {
-          "version": "3.1.0",
-          "resolved": "https://registry.npmjs.org/path-key/-/path-key-3.1.0.tgz",
-          "integrity": "sha512-8cChqz0RP6SHJkMt48FW0A7+qUOn+OsnOsVtzI59tZ8m+5bCSk7hzwET0pulwOM2YMn9J1efb07KB9l9f30SGg=="
+          "version": "3.1.1",
+          "resolved": "https://registry.npmjs.org/path-key/-/path-key-3.1.1.tgz",
+          "integrity": "sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q=="
         },
         "pump": {
           "version": "3.0.0",
