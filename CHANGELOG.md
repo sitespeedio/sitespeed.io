@@ -3,7 +3,11 @@
 ## 11.3.0 - 2019-11-22
 ### Added
 * Added the sitespeed.io version and browser version in the title of the annotation tag of Graphite and Grafana [#2791](https://github.com/sitespeedio/sitespeed.io/pull/2791), [#2792](https://github.com/sitespeedio/sitespeed.io/pull/2792) and [#2793](https://github.com/sitespeedio/sitespeed.io/pull/2793).
-* Updated to Browsertime 7.2.2.
+* Updated to Browsertime 7.2.2: 
+  * There was a bug introduced in 7.0.0 that made navigation fail on Safari [#997](https://github.com/sitespeedio/browsertime/pull/997).
+  * Get phone and Android version from the phone [#991](https://github.com/sitespeedio/browsertime/pull/991).
+  * Take care of the case when a page overwrites the document.URL [#992](https://github.com/sitespeedio/browsertime/pull/992).
+  * Stop the video recording when the test finished and not after we collected all JavaScript metrics [#994](https://github.com/sitespeedio/browsertime/pull/994).
 * Lighthouse in the +1 container now supports multiple iterations (running Lighthouse multiple times for the same URL) PR by [Dawid Grela](https://github.com/tengremlin) - [#36](https://github.com/sitespeedio/plugin-lighthouse/pull/36).
 
 ### Fixed
