@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+## Added
+* The +1 container was updated to Lighthouse 5.6 + PR to make it possible to configure puppeteer [#39](https://github.com/sitespeedio/plugin-lighthouse/pull/39) so you don't need to run in headless mode.
+
 ## 11.3.0 - 2019-11-22
 ### Added
 * Added the sitespeed.io version and browser version in the title of the annotation tag of Graphite and Grafana [#2791](https://github.com/sitespeedio/sitespeed.io/pull/2791), [#2792](https://github.com/sitespeedio/sitespeed.io/pull/2792) and [#2793](https://github.com/sitespeedio/sitespeed.io/pull/2793).
