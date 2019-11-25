@@ -91,24 +91,24 @@ if browsertime && browsertime.cpu && browsertime.cpu.categories
     .one-half.column
     if browsertime && browsertime.cpu && browsertime.cpu.categories
         table
-        tr
-            th(colspan='2') Categories (ms)
-        each value, name in browsertime.cpu.categories
             tr
-            td #{name}
-            td #{value.toFixed(0)}
+                th(colspan='2') Categories (ms)
+            each value, name in browsertime.cpu.categories
+                tr
+                    td #{name}
+                    td #{value.toFixed(0)}
     .one-half.column
     if browsertime && browsertime.cpu && browsertime.cpu.events
         table
-        tr
-            th(colspan='2') Events (ms)
-        - const cpuEvents = [] 
-        - for (let key of Object.keys(browsertime.cpu.events)) {cpuEvents.push({name: key, value: browsertime.cpu.events[key] })}
-        - cpuEvents.sort((a,b)=>{return b.value - a.value})   
-        each event in cpuEvents
             tr
-            td #{event.name}
-            td #{event.value.toFixed(0)}
+                th(colspan='2') Events (ms)
+            - const cpuEvents = [] 
+            - for (let key of Object.keys(browsertime.cpu.events)) {cpuEvents.push({name: key, value: browsertime.cpu.events[key] })}
+            - cpuEvents.sort((a,b)=>{return b.value - a.value})   
+            each event in cpuEvents
+                tr
+                    td #{event.name}
+                    td #{event.value.toFixed(0)}
 
     if browsertime && browsertime.cpu && browsertime.cpu.urls && browsertime.cpu.urls.length > 0
         h3 Time spent per request
