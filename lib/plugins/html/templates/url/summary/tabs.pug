@@ -19,7 +19,7 @@
   if d.pagexray && d.pagexray.pageSummary
     a(id='pagexray', href='#pagexray', onclick='return selectTab(this, true);')
       | PageXray
-  if options.cpu
+  if options.cpu || options.browsertime && options.browsertime.chrome && options.browsertime.chrome.collectLongTasks
     a(id='cpu', href='#cpu', onclick='return selectTab(this, true);')
       | CPU      
   if d.thirdparty && d.thirdparty.pageSummary
