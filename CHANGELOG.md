@@ -2,6 +2,7 @@
 
 ## UNRELEASED
 ## Added
+* Added `--grafana.annotationTitle`,  `--grafana.annotationMessag`,  `--grafana.annotationTag` and  `--grafana.annotationScreenshot` to follow the same structure for Grafana annotations as Graphite annotations [#2798](https://github.com/sitespeedio/sitespeed.io/pull/2798).
 * The +1 container was updated to Lighthouse 5.6 + PR to make it possible to configure puppeteer [#39](https://github.com/sitespeedio/plugin-lighthouse/pull/39) so you don't need to run in headless mode.
 
 ## 11.3.0 - 2019-11-22
