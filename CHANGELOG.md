@@ -1,9 +1,13 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 11.4.0 - 2019-11-26
 ## Added
-* Added `--grafana.annotationTitle`,  `--grafana.annotationMessag`,  `--grafana.annotationTag` and  `--grafana.annotationScreenshot` to follow the same structure for Grafana annotations as Graphite annotations [#2798](https://github.com/sitespeedio/sitespeed.io/pull/2798).
+* Added `--grafana.annotationTitle`,  `--grafana.annotationMessage`,  `--grafana.annotationTag` and  `--grafana.annotationScreenshot` to follow the same structure for Grafana annotations as Graphite annotations [#2798](https://github.com/sitespeedio/sitespeed.io/pull/2798).
 * The +1 container was updated to Lighthouse 5.6 + PR to make it possible to configure puppeteer [#39](https://github.com/sitespeedio/plugin-lighthouse/pull/39) so you don't need to run in headless mode.
+
+### Fixed
+* Show Long Tasks information in the HTML when you configure only Long Tasks (before you also needed the trace log) [#2802](https://github.com/sitespeedio/sitespeed.io/pull/2802).
+* Testing multiple URLs was broken for Lighthouse in the +1 container since 11.3.0. Fixed in [#43](https://github.com/sitespeedio/plugin-lighthouse/pull/43).
 
 ## 11.3.0 - 2019-11-22
 ### Added
