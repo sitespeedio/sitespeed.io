@@ -83,54 +83,55 @@ if browsertime && browsertime.timings && browsertime.timings.firstInput !== unde
             td  #{h.time.ms(browsertime.timings.firstInput.processingStart)}
             td  #{h.time.ms(browsertime.timings.firstInput.processingEnd)}
 
-h3 CPU time spent    
-p Calculated using Tracium.
+if browsertime && browsertime.cpu && browsertime.cpu.categories
+    h3 CPU time spent    
+    p Calculated using Tracium.
 
-.row
-  .one-half.column
-   if browsertime && browsertime.cpu && browsertime.cpu.categories
-     table
-       tr
-         th(colspan='2') Categories (ms)
-       each value, name in browsertime.cpu.categories
-         tr
-           td #{name}
-           td #{value.toFixed(0)}
-  .one-half.column
-   if browsertime && browsertime.cpu && browsertime.cpu.events
-     table
-       tr
-         th(colspan='2') Events (ms)
-       - const cpuEvents = [] 
-       - for (let key of Object.keys(browsertime.cpu.events)) {cpuEvents.push({name: key, value: browsertime.cpu.events[key] })}
-       - cpuEvents.sort((a,b)=>{return b.value - a.value})   
-       each event in cpuEvents
-         tr
-           td #{event.name}
-           td #{event.value.toFixed(0)}
-
-if browsertime && browsertime.cpu && browsertime.cpu.urls && browsertime.cpu.urls.length > 0
-    h3 Time spent per request
-    table
-        tr
-            th URL
-            th CPU time (ms)
-        each data in browsertime.cpu.urls
+    .row
+    .one-half.column
+    if browsertime && browsertime.cpu && browsertime.cpu.categories
+        table
             tr
-                td.url.assetsurl
-                    a(href=data.url)= data.url
-                td #{data.value.toFixed(0)}
+                th(colspan='2') Categories (ms)
+            each value, name in browsertime.cpu.categories
+                tr
+                    td #{name}
+                    td #{value.toFixed(0)}
+    .one-half.column
+    if browsertime && browsertime.cpu && browsertime.cpu.events
+        table
+            tr
+                th(colspan='2') Events (ms)
+            - const cpuEvents = [] 
+            - for (let key of Object.keys(browsertime.cpu.events)) {cpuEvents.push({name: key, value: browsertime.cpu.events[key] })}
+            - cpuEvents.sort((a,b)=>{return b.value - a.value})   
+            each event in cpuEvents
+                tr
+                    td #{event.name}
+                    td #{event.value.toFixed(0)}
 
-if pageInfo.data.thirdparty
-  - const thirdparty = medianRun ? pageInfo.data.thirdparty.pageSummary.runs[medianRun.runIndex - 1] : pageInfo.data.thirdparty.run
+    if browsertime && browsertime.cpu && browsertime.cpu.urls && browsertime.cpu.urls.length > 0
+        h3 Time spent per request
+        table
+            tr
+                th URL
+                th CPU time (ms)
+            each data in browsertime.cpu.urls
+                tr
+                    td.url.assetsurl
+                        a(href=data.url)= data.url
+                    td #{data.value.toFixed(0)}
 
-  if thirdparty && thirdparty.cpuPerTool  && Object.keys(thirdparty.cpuPerTool).length > 0
-      h3 CPU time spent
-      table
-          tr
-              th Tool/domain
-              th Time (ms)
-          each tool in Object.keys(thirdparty.cpuPerTool)
-              tr 
-                  td #{tool}
-                  td.number #{thirdparty.cpuPerTool[tool].toFixed(1)}
+    if pageInfo.data.thirdparty
+    - const thirdparty = medianRun ? pageInfo.data.thirdparty.pageSummary.runs[medianRun.runIndex - 1] : pageInfo.data.thirdparty.run
+
+    if thirdparty && thirdparty.cpuPerTool  && Object.keys(thirdparty.cpuPerTool).length > 0
+        h3 CPU time spent
+        table
+            tr
+                th Tool/domain
+                th Time (ms)
+            each tool in Object.keys(thirdparty.cpuPerTool)
+                tr 
+                    td #{tool}
+                    td.number #{thirdparty.cpuPerTool[tool].toFixed(1)}

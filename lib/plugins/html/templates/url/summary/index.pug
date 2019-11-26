@@ -158,7 +158,7 @@ block content
       section#pagexray-panel
         include ../pagexray/index.pug
 
-    if options.cpu
+    if options.cpu || options.browsertime && options.browsertime.chrome && options.browsertime.chrome.collectLongTasks
       section#cpu-panel
         include ../cpu/index.pug  
 
