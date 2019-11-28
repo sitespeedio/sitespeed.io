@@ -94,9 +94,13 @@ Crawler
   --crawler.include       Discard URLs not matching the provided regular expression (ex: "/some/path/", "://some\.domain/"). Can be provided multiple times.
 
 Grafana
-  --grafana.host  The Grafana host used when sending annotations.
-  --grafana.port  The Grafana port used when sending annotations to Grafana.  [default: 80]
-  --grafana.auth  The Grafana auth/bearer value used when sending annotations to Grafana. See http://docs.grafana.org/http_api/auth/#authentication-api
+  --grafana.host                  The Grafana host used when sending annotations.
+  --grafana.port                  The Grafana port used when sending annotations to Grafana.  [default: 80]
+  --grafana.auth                  The Grafana auth/bearer value used when sending annotations to Grafana. See http://docs.grafana.org/http_api/auth/#authentication-api
+  --grafana.annotationTitle       Add a title to the annotation sent for a run.
+  --grafana.annotationMessage     Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
+  --grafana.annotationTag         Add a extra tag to the annotation sent for a run. Repeat the --grafana.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
+  --grafana.annotationScreenshot  Include screenshot (from Browsertime/WebPageTest) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
 
 Graphite
   --graphite.host                       The Graphite host used to store captured metrics.
@@ -109,7 +113,7 @@ Graphite
   --graphite.arrayTags                  Send the tags as Array or a String. In Graphite 1.0 the tags is a array. Before a String  [boolean] [default: true]
   --graphite.annotationTitle            Add a title to the annotation sent for a run.
   --graphite.annotationMessage          Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
-  --graphite.annotationScreenshot       Include screenshot (from Browsertime) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
+  --graphite.annotationScreenshot       Include screenshot (from Browsertime/WebPageTest) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
   --graphite.statsd                     Uses the StatsD interface  [boolean] [default: false]
   --graphite.annotationTag              Add a extra tag to the annotation sent for a run. Repeat the --graphite.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
   --graphite.bulkSize                   Break up number of metrics to send with each request.  [number] [default: null]
