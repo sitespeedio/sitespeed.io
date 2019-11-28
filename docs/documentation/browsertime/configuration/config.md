@@ -31,15 +31,16 @@ chrome
   --chrome.blockDomainsExcept, --blockDomainsExcept          Block all domains except this domain. Use it multiple time to keep multiple domains. You can also wildcard domains like *.sitespeed.io. Use this when you wanna block out all third parties.
 
 firefox
-  --firefox.binaryPath             Path to custom Firefox binary (e.g. Firefox Nightly). On OS X, the path should be to the binary inside the app bundle, e.g. /Applications/Firefox.app/Contents/MacOS/firefox-bin
-  --firefox.nightly                Use Firefox Nightly. Works on OS X. For Linux you need to set the binary path.  [boolean]
-  --firefox.beta                   Use Firefox Beta. Works on OS X. For Linux you need to set the binary path.  [boolean]
-  --firefox.developer              Use Firefox Developer. Works on OS X. For Linux you need to set the binary path.  [boolean]
-  --firefox.preference             Extra command line arguments to pass Firefox preferences by the format key:value To add multiple preferences, repeat --firefox.preference once per argument.
-  --firefox.includeResponseBodies  Include response bodies in HAR  [choices: "none", "all", "html"] [default: "none"]
-  --firefox.acceptInsecureCerts    Accept insecure certs  [boolean]
-  --firefox.windowRecorder         Use the internal compositor-based Firefox window recorder to emit PNG files for each frame that is a meaningful change.  The PNG output will further be merged into a variable frame rate video for analysis. Use this instead of ffmpeg to record a video (you still need the --video flag).  [boolean] [default: false]
-  --firefox.collectMozLog          Collect the MOZ HTTP log  [boolean]
+  --firefox.binaryPath                   Path to custom Firefox binary (e.g. Firefox Nightly). On OS X, the path should be to the binary inside the app bundle, e.g. /Applications/Firefox.app/Contents/MacOS/firefox-bin
+  --firefox.nightly                      Use Firefox Nightly. Works on OS X. For Linux you need to set the binary path.  [boolean]
+  --firefox.beta                         Use Firefox Beta. Works on OS X. For Linux you need to set the binary path.  [boolean]
+  --firefox.developer                    Use Firefox Developer. Works on OS X. For Linux you need to set the binary path.  [boolean]
+  --firefox.preference                   Extra command line arguments to pass Firefox preferences by the format key:value To add multiple preferences, repeat --firefox.preference once per argument.
+  --firefox.includeResponseBodies        Include response bodies in HAR  [choices: "none", "all", "html"] [default: "none"]
+  --firefox.acceptInsecureCerts          Accept insecure certs  [boolean]
+  --firefox.windowRecorder               Use the internal compositor-based Firefox window recorder to emit PNG files for each frame that is a meaningful change.  The PNG output will further be merged into a variable frame rate video for analysis. Use this instead of ffmpeg to record a video (you still need the --video flag).  [boolean] [default: false]
+  --firefox.collectMozLog                Collect the MOZ HTTP log  [boolean]
+  --firefox.disableBrowsertimeExtension  Disable installing the browsertime extension.  [boolean]
 
 selenium
   --selenium.url  URL to a running Selenium server (e.g. to run a browser on another machine).
@@ -49,7 +50,7 @@ video
   --videoParams.crf                Constant rate factor see https://trac.ffmpeg.org/wiki/Encode/H.264#crf  [default: 23]
   --videoParams.addTimer           Add timer and metrics to the video.  [boolean] [default: true]
   --videoParams.debug              Turn on debug to record a video with all pre/post and scripts/URLS you test in one iteration. Visual Metrics will then automatically be disabled.  [boolean] [default: false]
-  --videoParams.keepOriginalVideo  Keep the original video. Use it when you have a Visual Metrics bug and creates an issue at GitHub  [boolean] [default: false]
+  --videoParams.keepOriginalVideo  Keep the original video. Use it when you have a Visual Metrics bug and want to create an issue at GitHub  [boolean] [default: false]
   --videoParams.filmstripFullSize  Keep original sized screenshots. Will make the run take longer time  [boolean] [default: false]
   --videoParams.filmstripQuality   The quality of the filmstrip screenshots. 0-100.  [default: 75]
   --videoParams.createFilmstrip    Create filmstrip screenshots.  [boolean] [default: true]
@@ -92,9 +93,11 @@ Options:
   --scriptInput.longTask, --minLongTaskLength  Set the minimum length of a task to be categorised as a CPU Long Task. It can never be smaller than 50. The value is in ms and you make Browsertime collect long tasks using --chrome.collectLongTasks or --cpu.  [number] [default: 50]
   --browser, -b                                Specify browser. Safari only works on OS X.  [choices: "chrome", "firefox", "safari"] [default: "chrome"]
   --android                                    Short key to use Android. Will automatically use com.android.chrome  [boolean] [default: false]
-  --pageCompleteCheck                          Supply a JavaScript (inline or JavaScript file) that decides when the browser is finished loading the page and can start to collect metrics. The JavaScript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd. By default the tests ends 2 seconds after loadEventEnd. Also checkout --pageCompleteCheckInactivity
+  --pageCompleteCheck                          Supply a JavaScript (inline or JavaScript file) that decides when the browser is finished loading the page and can start to collect metrics. The JavaScript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd. By default the tests ends 2 seconds after loadEventEnd. Also checkout --pageCompleteCheckInactivity and --pageCompleteCheckPollTimeout
   --pageCompleteWaitTime                       How long time you want to wait for your pageComplteteCheck to finish, after it is signaled to closed. Extra parameter passed on to your pageCompleteCheck.  [default: 5000]
   --pageCompleteCheckInactivity                Alternative way to choose when to end your test. This will wait for 2 seconds of inactivity that happens after loadEventEnd.  [boolean] [default: false]
+  --pageCompleteCheckPollTimeout               The time in ms to wait for running the page complete check the next time.  [number] [default: 200]
+  --pageLoadStrategy                           Set the strategy to waiting for document readiness after a navigation event. After the strategy is ready, your pageCompleteCheck will start runninhg. This only for Firefox and Chrome and please check which value each browser implements.  [string] [choices: "eager", "none", "normal"] [default: "normal"]
   --iterations, -n                             Number of times to test the url (restarting the browser between each test)  [number] [default: 3]
   --prettyPrint                                Enable to print json/har with spaces and indentation. Larger files, but easier on the eye.  [boolean] [default: false]
   --delay                                      Delay between runs, in milliseconds  [number] [default: 0]
@@ -121,7 +124,7 @@ Options:
   --useSameDir                                 Store all files in the same structure and do not use the path structure released in 4.0. Use this only if you are testing ONE URL.
   --xvfb                                       Start xvfb before the browser is started  [boolean] [default: false]
   --xvfbParams.display                         The display used for xvfb  [default: 99]
-  --preURL                                     A URL that will be accessed first by the browser before the URL that you wanna analyse. Use it to fill the cache.
+  --preURL                                     A URL that will be accessed first by the browser before the URL that you wanna analyze. Use it to fill the cache.
   --preURLDelay                                Delay between preURL and the URL you want to test (in milliseconds)  [default: 1500]
   --userTimingWhitelist                        All userTimings are captured by default this option takes a regex that will whitelist which userTimings to capture in the results.
   --headless                                   Run the browser in headless mode. Works for Firefox and Chrome.  [boolean] [default: false]
