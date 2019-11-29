@@ -100,6 +100,14 @@ docker run -e TZ=America/New_York --rm -v "$(pwd)":/sitespeed.io sitespeedio/sit
 
 To change connectivity you should use Docker networks, read all about it [here]({{site.baseurl}}/documentation/sitespeed.io/browsers/#change-connectivity).
 
+## Increase memory
+
+If you test many URLs or many runs at the same time you may get errors like `Allocation failed - JavaScript heap out of memory`. The default memory size for NodeJS is set to 2048 in the Docker container. You can increase that by using the Docker environment variable **MAX_OLD_SPACE_SIZE**.
+
+```bash
+docker run -e MAX_OLD_SPACE_SIZE=4096 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/
+```
+
 ## Access localhost
 
 If you run a server local on your machine and want to access it with sitespeed.io you can do that on Mac and Windows super easy if you are using Docker 18.03 or later by using _host.docker.internal_.
