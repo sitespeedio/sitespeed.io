@@ -1,5 +1,17 @@
 # CHANGELOG - sitespeed.io
 
+## 11.5.0 - UNRELEASED
+### Fixed
+* Verify that `--crawl.depth` is set if you set other crawl parameters [#2807](https://github.com/sitespeedio/sitespeed.io/pull/2807).
+* The Lighthouse plugin catches if Lighthouse fails to run test [#45](https://github.com/sitespeedio/plugin-lighthouse/pull/45).
+
+### Added
+* Upgraded to Browsertime 7.3.0:
+  * Collect number of DOM elements as a part of the page info for each run [#1000](https://github.com/sitespeedio/browsertime/pull/1000).
+  * Configure how often to check for the pageCompleteCheck. Default is every 200 ms, and it happens after the load event end (using the default pageLoadStrategy). Set it with `--browsertime.pageCompleteCheckPollTimeout`(value in ms) [#998](https://github.com/sitespeedio/browsertime/pull/998).
+  * Added missing pageLoadStrategy option in the CLI. The option worked but no visible cli help for it [#1001](https://github.com/sitespeedio/browsertime/pull/1001).
+  * Do not load the Browsertime WebExtention for Chrome (it is not used anymore) and make it possible for Firefox to disable to use it with `--browsertime.firefox.disableBrowsertimeExtension`. 
+
 ## 11.4.0 - 2019-11-26
 ## Added
 * Added `--grafana.annotationTitle`,  `--grafana.annotationMessage`,  `--grafana.annotationTag` and  `--grafana.annotationScreenshot` to follow the same structure for Grafana annotations as Graphite annotations [#2798](https://github.com/sitespeedio/sitespeed.io/pull/2798).
@@ -25,7 +37,7 @@
 * The WebPageTest Page Timing dashboard was missing the location field in the annotations (you could see both Firefox and Chrome runs even though you only choose on) and it was missing a line for render.
 * Using `--mobile` together with WebPageReplay didn't respect the mobile settings, causing 404 for some URLs when testing Wikipedia on mobile [#2795](https://github.com/sitespeedio/sitespeed.io/pull/2795).
 
-## 11.2.0 - 2019-11-14
+## 11.2.0## - 2019-11-14
 ### Added
 * Updated to Browsertime 7.1.0 that add Total Blocking Time and Max Potential First Input Delay when you use Chrome with `--cpu`. One dashboard updated, the result pages displayes the new metrics.
 
