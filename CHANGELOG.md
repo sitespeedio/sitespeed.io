@@ -7,7 +7,7 @@
 * Use First Input Delay instead of the First Input Duration [#2812](https://github.com/sitespeedio/sitespeed.io/pull/2812)
 
 ### Added
-* Upgraded to Browsertime 7.4.0:
+* Upgraded to Browsertime 7.4.1:
   * Collect number of DOM elements as a part of the page info for each run [#1000](https://github.com/sitespeedio/browsertime/pull/1000).
   * Configure how often to check for the pageCompleteCheck. Default is every 200 ms, and it happens after the load event end (using the default pageLoadStrategy). Set it with `--browsertime.pageCompleteCheckPollTimeout`(value in ms) [#998](https://github.com/sitespeedio/browsertime/pull/998).
   * Added missing pageLoadStrategy option in the CLI. The option worked but no visible cli help for it [#1001](https://github.com/sitespeedio/browsertime/pull/1001).
