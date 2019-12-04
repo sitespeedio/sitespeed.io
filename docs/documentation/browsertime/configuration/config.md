@@ -97,10 +97,12 @@ Options:
   --pageCompleteWaitTime                       How long time you want to wait for your pageComplteteCheck to finish, after it is signaled to closed. Extra parameter passed on to your pageCompleteCheck.  [default: 5000]
   --pageCompleteCheckInactivity                Alternative way to choose when to end your test. This will wait for 2 seconds of inactivity that happens after loadEventEnd.  [boolean] [default: false]
   --pageCompleteCheckPollTimeout               The time in ms to wait for running the page complete check the next time.  [number] [default: 200]
+  --pageCompleteCheckStartWait                 The time in ms to wait for running the page complete check for the first time. Use this when you have a pageLoadStrategy set to none  [number] [default: 500]
   --pageLoadStrategy                           Set the strategy to waiting for document readiness after a navigation event. After the strategy is ready, your pageCompleteCheck will start runninhg. This only for Firefox and Chrome and please check which value each browser implements.  [string] [choices: "eager", "none", "normal"] [default: "normal"]
   --iterations, -n                             Number of times to test the url (restarting the browser between each test)  [number] [default: 3]
   --prettyPrint                                Enable to print json/har with spaces and indentation. Larger files, but easier on the eye.  [boolean] [default: false]
   --delay                                      Delay between runs, in milliseconds  [number] [default: 0]
+  --timeToSettle                               Extra time added for the browser to settle before starting to test a URL. This delay happens after the browser was opened and before the navigation to the URL  [number] [default: 0]
   --requestheader, -r                          Request header that will be added to the request. Add multiple instances to add multiple request headers. Works for Firefox and Chrome. Use the following format key:value
   --cookie                                     Cookie that will be added to the request. Add multiple instances to add multiple request cookies. Works for Firefox and Chrome. Use the following format cookieName=cookieValue
   --injectJs                                   Inject JavaScript into the current page at document_start. Works for Firefox and Chrome. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
