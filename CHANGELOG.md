@@ -4,13 +4,21 @@
 ### Fixed
 * Verify that `--crawl.depth` is set if you set other crawl parameters [#2807](https://github.com/sitespeedio/sitespeed.io/pull/2807).
 * The Lighthouse plugin catches if Lighthouse fails to run test [#45](https://github.com/sitespeedio/plugin-lighthouse/pull/45).
+* Use First Input Delay instead of the First Input Duration [#2812](https://github.com/sitespeedio/sitespeed.io/pull/2812)
 
 ### Added
-* Upgraded to Browsertime 7.3.0:
+* Upgraded to Browsertime 7.4.0:
   * Collect number of DOM elements as a part of the page info for each run [#1000](https://github.com/sitespeedio/browsertime/pull/1000).
   * Configure how often to check for the pageCompleteCheck. Default is every 200 ms, and it happens after the load event end (using the default pageLoadStrategy). Set it with `--browsertime.pageCompleteCheckPollTimeout`(value in ms) [#998](https://github.com/sitespeedio/browsertime/pull/998).
   * Added missing pageLoadStrategy option in the CLI. The option worked but no visible cli help for it [#1001](https://github.com/sitespeedio/browsertime/pull/1001).
   * Do not load the Browsertime WebExtention for Chrome (it is not used anymore) and make it possible for Firefox to disable to use it with `--browsertime.firefox.disableBrowsertimeExtension`. 
+  * Added configurable settle time for the browser to rest after the browser is open and before the tests starts to run. Use `--browsertim.timeToSettle` in ms [#1003](https://github.com/sitespeedio/browsertime/pull/1003).
+  * Calculate FID instead of just report it [#1005](https://github.com/sitespeedio/browsertime/pull/1005)
+  * You can now run ADB shell directly from your user script [#1007](https://github.com/sitespeedio/browsertime/pull/1007). Use `commands.android.shell('')`.
+  * Add your own metrics from your script. The metrics will be in the result JSON and statistics will be calculated for that metric. Use `commands.measure.add(name, value)` or `commands.measure.addObject(object)` if you want to add multiple metrics. Documentation coming soon [#1011](https://github.com/sitespeedio/browsertime/pull/1011)
+  * Remove and simplify old code when running with pageLoadStrategy none. Introducing `--pageCompleteCheckStartWait` - The time in ms to wait for running the page complete check for the first time. Use this when you have a pageLoadStrategy set to none. [#1008](https://github.com/sitespeedio/browsertime/pull/1008)
+  * Better guards when calculating Visual Metrics [#1006](https://github.com/sitespeedio/browsertime/pull/1006).
+  * Fix for the using the Window recorder in Firefox 72. Thank you [Barret Rennie](https://github.com/brennie) for the PR [#995](https://github.com/sitespeedio/browsertime/pull/995).
 
 ## 11.4.0 - 2019-11-26
 ## Added
