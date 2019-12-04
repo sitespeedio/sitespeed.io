@@ -72,12 +72,14 @@ if browsertime && browsertime.timings && browsertime.timings.firstInput !== unde
     table
         tr
             th Name
+            th Delay
             th Duration
             th Start Time
             th Processing Start
             th Processing End
         tr
             td  #{browsertime.timings.firstInput.name}
+            td  #{h.time.ms(browsertime.timings.firstInput.delay)}
             td  #{h.time.ms(browsertime.timings.firstInput.duration)}
             td  #{h.time.ms(browsertime.timings.firstInput.startTime)}
             td  #{h.time.ms(browsertime.timings.firstInput.processingStart)}
