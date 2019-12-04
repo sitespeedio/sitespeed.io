@@ -12,7 +12,7 @@
   * Configure how often to check for the pageCompleteCheck. Default is every 200 ms, and it happens after the load event end (using the default pageLoadStrategy). Set it with `--browsertime.pageCompleteCheckPollTimeout`(value in ms) [#998](https://github.com/sitespeedio/browsertime/pull/998).
   * Added missing pageLoadStrategy option in the CLI. The option worked but no visible cli help for it [#1001](https://github.com/sitespeedio/browsertime/pull/1001).
   * Do not load the Browsertime WebExtention for Chrome (it is not used anymore) and make it possible for Firefox to disable to use it with `--browsertime.firefox.disableBrowsertimeExtension`. 
-  * Added configurable settle time for the browser to rest after the browser is open and before the tests starts to run. Use `--browsertim.timeToSettle` in ms [#1003](https://github.com/sitespeedio/browsertime/pull/1003).
+  * Added configurable settle time for the browser to rest after the browser is open and before the tests starts to run. Use `--browsertime.timeToSettle` in ms [#1003](https://github.com/sitespeedio/browsertime/pull/1003).
   * Calculate FID instead of just report it [#1005](https://github.com/sitespeedio/browsertime/pull/1005)
   * You can now run ADB shell directly from your user script [#1007](https://github.com/sitespeedio/browsertime/pull/1007). Use `commands.android.shell('')`.
   * Add your own metrics from your script. The metrics will be in the result JSON and statistics will be calculated for that metric. Use `commands.measure.add(name, value)` or `commands.measure.addObject(object)` if you want to add multiple metrics. Documentation coming soon [#1011](https://github.com/sitespeedio/browsertime/pull/1011)
