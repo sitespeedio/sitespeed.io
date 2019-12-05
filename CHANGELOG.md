@@ -1,4 +1,7 @@
 # CHANGELOG - sitespeed.io
+## 11.5.1 - 2019-12-05
+## Fixed
+* The CPU pug template was broken if you disabled the third party plugin [#2816](https://github.com/sitespeedio/sitespeed.io/pull/2816).
 
 ## 11.5.0 - 2019-12-05
 ### Fixed
