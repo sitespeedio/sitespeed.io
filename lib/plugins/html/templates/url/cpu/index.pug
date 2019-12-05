@@ -125,15 +125,15 @@ if browsertime && browsertime.cpu && browsertime.cpu.categories
                     td #{data.value.toFixed(0)}
 
     if pageInfo.data.thirdparty
-    - const thirdparty = medianRun ? pageInfo.data.thirdparty.pageSummary.runs[medianRun.runIndex - 1] : pageInfo.data.thirdparty.run
+        - const thirdparty = medianRun ? pageInfo.data.thirdparty.pageSummary.runs[medianRun.runIndex - 1] : pageInfo.data.thirdparty.run
 
-    if thirdparty && thirdparty.cpuPerTool  && Object.keys(thirdparty.cpuPerTool).length > 0
-        h3 CPU time spent
-        table
-            tr
-                th Tool/domain
-                th Time (ms)
-            each tool in Object.keys(thirdparty.cpuPerTool)
-                tr 
-                    td #{tool}
-                    td.number #{thirdparty.cpuPerTool[tool].toFixed(1)}
+        if thirdparty && thirdparty.cpuPerTool  && Object.keys(thirdparty.cpuPerTool).length > 0
+            h3 CPU time spent
+            table
+                tr
+                    th Tool/domain
+                    th Time (ms)
+                each tool in Object.keys(thirdparty.cpuPerTool)
+                    tr 
+                        td #{tool}
+                        td.number #{thirdparty.cpuPerTool[tool].toFixed(1)}
