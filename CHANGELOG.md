@@ -1,13 +1,13 @@
 # CHANGELOG - sitespeed.io
 
-## 11.5.0 - UNRELEASED
+## 11.5.0 - 2019-12-05
 ### Fixed
 * Verify that `--crawl.depth` is set if you set other crawl parameters [#2807](https://github.com/sitespeedio/sitespeed.io/pull/2807).
 * The Lighthouse plugin catches if Lighthouse fails to run test [#45](https://github.com/sitespeedio/plugin-lighthouse/pull/45).
 * Use First Input Delay instead of the First Input Duration [#2812](https://github.com/sitespeedio/sitespeed.io/pull/2812)
 
 ### Added
-* Upgraded to Browsertime 7.4.1:
+* Upgraded to Browsertime 7.4.2:
   * Collect number of DOM elements as a part of the page info for each run [#1000](https://github.com/sitespeedio/browsertime/pull/1000).
   * Configure how often to check for the pageCompleteCheck. Default is every 200 ms, and it happens after the load event end (using the default pageLoadStrategy). Set it with `--browsertime.pageCompleteCheckPollTimeout`(value in ms) [#998](https://github.com/sitespeedio/browsertime/pull/998).
   * Added missing pageLoadStrategy option in the CLI. The option worked but no visible cli help for it [#1001](https://github.com/sitespeedio/browsertime/pull/1001).
@@ -19,6 +19,7 @@
   * Remove and simplify old code when running with pageLoadStrategy none. Introducing `--pageCompleteCheckStartWait` - The time in ms to wait for running the page complete check for the first time. Use this when you have a pageLoadStrategy set to none. [#1008](https://github.com/sitespeedio/browsertime/pull/1008)
   * Better guards when calculating Visual Metrics [#1006](https://github.com/sitespeedio/browsertime/pull/1006).
   * Fix for the using the Window recorder in Firefox 72. Thank you [Barret Rennie](https://github.com/brennie) for the PR [#995](https://github.com/sitespeedio/browsertime/pull/995).
+  * Catch if Contentful Speed Index fails [#1014](https://github.com/sitespeedio/browsertime/pull/1014).
 
 ## 11.4.0 - 2019-11-26
 ## Added
