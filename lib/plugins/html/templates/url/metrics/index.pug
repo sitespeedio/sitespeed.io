@@ -168,7 +168,7 @@ if  browsertime
   include ./serverTimings.pug
 
   a#custom-scripts
-  h3 Custom scripts
+  h3 Custom metrics collected through JavaScript
   if browsertime.custom
     table
       tr
@@ -180,6 +180,20 @@ if  browsertime
           td #{value}
   else
     p There are no custom configured scripts.
+
+  a#extras-metrics
+  h3 Extra metrics collected using scripting
+  if browsertime.extras
+    table
+      tr
+        th name
+        th value
+      each value, name in browsertime.extras
+        tr
+          td #{name}
+          td #{value}
+  else
+    p There are no custom extra metrics from scripting.
 
   if browsertime.cdp && browsertime.cdp.performance
     a#cdp-performance
