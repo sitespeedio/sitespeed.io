@@ -4,7 +4,7 @@
 ### Fixed
 * Verify that `--crawl.depth` is set if you set other crawl parameters [#2807](https://github.com/sitespeedio/sitespeed.io/pull/2807).
 * The Lighthouse plugin catches if Lighthouse fails to run test [#45](https://github.com/sitespeedio/plugin-lighthouse/pull/45).
-* Use First Input Delay instead of the First Input Duration [#2812](https://github.com/sitespeedio/sitespeed.io/pull/2812)
+* Display First Input Delay and First Input Duration [#2812](https://github.com/sitespeedio/sitespeed.io/pull/2812)
 
 ### Added
 * Upgraded to Browsertime 7.4.2:
