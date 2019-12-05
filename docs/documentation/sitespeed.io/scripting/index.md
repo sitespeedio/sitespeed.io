@@ -342,6 +342,25 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
+### Add your own metrics
+You can add your own metrics by adding the extra JavaScript that is executed after the page has loaded BUT did you know that also can add your own metrics directly through scripting? The metrics will be added to the metric tab in the HTML output and automatically sent to Graphite/InfluxDB.
+
+In this example we collect the temperature from our Android phone that runs the tests:
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // Get the temperature from the phone
+  const temperature = await commands.android.shell("dumpsys battery | grep temperature | grep -Eo '[0-9]{1,3}'");
+  // Start the test
+  await commands.measure.start(
+    'https://www.sitespeed.io'
+  );
+  // This is the magic where we add that new metric. It needs to happen
+  // after measure.start so we know where that metric belong
+  commands.measure.add('batteryTemperature', temperature/10);
+};
+~~~
+
 ### Measure shopping/checkout process
 One of the really cool things with scripting is that you can measure all the pages in a checkout process. This is an example shop where you put one item in your cart and checkout as a guest.
 
@@ -523,8 +542,6 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
-
-
 ### Test one page that need a much longer page complete check than others
 
 If you have one page that needs some special handling that maybe do a couple of late and really slow AJAX requests, you can catch that with your on wait for the page to finish.
@@ -639,6 +656,62 @@ If you start a measurement without giving a URL you need to also call measure.st
 
 #### measure.stop()
 Stop measuring. This will collect technical metrics from the browser, stop the video recording, collect CPU data etc.
+
+#### measure.add(name, value)
+Add your own measurements directly from your script. The data will be availible in the HTML on the metrics page and automatically sent to Graphite/InfluxDB.
+
+To be able to add any metrics, you need to have started a measurements.
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // Get the temperature from the phone
+  const temperature = await commands.android.shell("dumpsys battery | grep temperature | grep -Eo '[0-9]{1,3}'");
+  // Start the test
+  await commands.measure.start(
+    'https://www.sitespeed.io'
+  );
+  commands.measure.add('batteryTemperature', temperature/10);
+};
+~~~
+
+And you will get that metric in the HTML:
+
+![Adding metrics from your script]({{site.baseurl}}/img/batteryTemperatureMetric.png)
+{: .img-thumbnail}
+
+#### measure.addObject(object)
+You can also add multiple metrics in one go.
+~~~javascript
+module.exports = async function(context, commands) {
+ 
+  const extraMetrics = { a: 1, b: 2, c: 3};
+  // Start the test
+  await commands.measure.start(
+    'https://www.sitespeed.io'
+  );
+  commands.measure.addObject(extraMetrics);
+};
+~~~
+
+And it will look like this:
+
+![Multiple metrics from a script]({{site.baseurl}}/img/scriptMetrics.png)
+{: .img-thumbnail}
+
+
+And you can also add deep nested objects (no support in the HTML yet though, only in the data source).
+
+~~~javascript
+module.exports = async function(context, commands) {
+ 
+  const extraMetrics = { android: {cpu: {temperature: 27, cores: 2}}};
+  // Start the test
+  await commands.measure.start(
+    'https://www.sitespeed.io'
+  );
+  commands.measure.addObject(extraMetrics);
+};
+~~~
 
 ### Click
 The click command will click on links.
@@ -891,9 +964,36 @@ Will result in:
 #### meta.setTitle(title)
 Add a title of your script. The title is text only.
 
+Will result in:
+
+![Title and description for a script]({{site.baseurl}}/img/titleanddesc.png)
+{: .img-thumbnail}
+
+
+#### meta.setTitle(title)
+Add a title of your script. The title is text only.
+
 #### meta.setDescription(desc)
 Add a description of your script. The description can be text/HTML.
 
+### Android
+If you run your tests in an Android phone you probably want to interact with your phone throught the shell.
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // Get the temperature from the phone
+  const temperature = await commands.android.shell("dumpsys battery | grep temperature | grep -Eo '[0-9]{1,3}'");
+  context.log.info('The battery temperature is %s', temperature/10);
+  // Start the test
+  return commands.measure.start(
+    'https://www.sitespeed.io'
+  );
+};
+~~~
+
+#### android.shell(command)
+Run a shell command directly on your phone. 
+ 
 ### Use Selenium directly
 You can use Selenium directly if you need to use things that are not available through our commands.
 
