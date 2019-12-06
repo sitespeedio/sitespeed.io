@@ -1,5 +1,5 @@
 # CHANGELOG - sitespeed.io
-## UNRELEASED
+## 11.6.0 - 2019-12-06
 ### Added
 * Added Firefox 71 in the Docker container.
 * New Browsertime 7.5.0 with the added Firefox preferences from the Mozilla Performance Team to get as stable metrics as possible. Enable it with `--browsertime.firefox.mozillaProPreferences` [#1016](https://github.com/sitespeedio/browsertime/pull/1016).
