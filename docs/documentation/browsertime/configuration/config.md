@@ -41,6 +41,7 @@ firefox
   --firefox.windowRecorder               Use the internal compositor-based Firefox window recorder to emit PNG files for each frame that is a meaningful change.  The PNG output will further be merged into a variable frame rate video for analysis. Use this instead of ffmpeg to record a video (you still need the --video flag).  [boolean] [default: false]
   --firefox.collectMozLog                Collect the MOZ HTTP log  [boolean]
   --firefox.disableBrowsertimeExtension  Disable installing the browsertime extension.  [boolean]
+  --firefox.disableSafeBrowsing          Disable safebrowsing.  [boolean] [default: true]
   --firefox.mozillaProPreferences        Use Firefox best practice preferences from the Mozilla performance team. These will probably be default in the next major release.  [boolean]
 
 selenium
