@@ -1,4 +1,11 @@
 # CHANGELOG - sitespeed.io
+
+## 11.7.0 - 2019-12-07
+### Added
+* Updated Browsertime to 7.6.0:
+  * Disable safe browsing per default for Firefox. Enable it with `---browsertime.firefox.disableSafeBrowsing false`[#1029](https://github.com/sitespeedio/browsertime/pull/1019).
+  * Disable traffic to detect portal for Firefox when you use `---browsertime.firefox.mozillaProPreferences` [#1202](https://github.com/sitespeedio/browsertime/pull/1020).
+
 ## 11.6.0 - 2019-12-06
 ### Added
 * Added Firefox 71 in the Docker container.
