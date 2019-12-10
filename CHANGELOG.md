@@ -1,4 +1,9 @@
 # CHANGELOG - sitespeed.io
+
+## 11.7.2 - 2019-12-10
+### Fixed
+* Updated to Browsertime 7.6.1 that removes the save password popup for Chrome.
+
 ## 11.7.1 - 2019-12-10
 ### Fixed
 * A bug was introduced in budget when calculating HTTP Errors that caused content/transfer size budgets fail [#2819](https://github.com/sitespeedio/sitespeed.io/pull/2819).
