@@ -123,7 +123,7 @@ Graphite
 
 Plugins
   --plugins.list    List all configured plugins in the log.  [boolean]
-  --plugins.add     Extra plugins that you want to run. Relative or absolute path to the plugin. Specify multiple plugin names separated by comma, or repeat the --plugins.add option
+  --plugins.add     Extra plugins that you want to run. Relative or absolute path to the plugin. Specify multiple plugin names separated by comma, or repeat the --plugins.add option. When used through the Node.js API you can also supply an array of plugins.
   --plugins.remove  Default plugins that you not want to run. Specify multiple plugin names separated by comma, or repeat the --plugins.remove option
 
 Budget
