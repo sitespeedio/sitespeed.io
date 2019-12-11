@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Added
+* Upgraded to Chrome and Chromedriver 79 [#1025](https://github.com/sitespeedio/browsertime/pull/1025).
+
 ## 11.7.2 - 2019-12-10
 ### Fixed
 * Updated to Browsertime 7.6.1 that removes the save password popup for Chrome.
