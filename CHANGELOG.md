@@ -1,8 +1,12 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 11.8.0 - 2019-12-12
 ### Added
 * Upgraded to Chrome and Chromedriver 79 [#1025](https://github.com/sitespeedio/browsertime/pull/1025).
+* Upgraded the Coach to match Chromedriver version.
+
+### Fixed
+* Upgraded to Browsertime 7.7.1 that catches errors in Visual Elements.
 
 ## 11.7.2 - 2019-12-10
 ### Fixed
