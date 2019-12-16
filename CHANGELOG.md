@@ -1,5 +1,18 @@
 # CHANGELOG - sitespeed.io
 
+## 11.9.0 - UNRELEASED
+### Added
+* Send number of DOM elements by default to storage [#2823](https://github.com/sitespeedio/sitespeed.io/pull/2823)
+* Upgraded to Browsertime 7.8.0:
+  * There's a new waot command in scripting `await commands.wait.byPageToComplete()` that waits for the configured page complete check to run. This is useful if you are running your own Selenium scripts and navigate through JavaScript and wants to wait for the page to finish loading [#1024](https://github.com/sitespeedio/browsertime/pull/1024).
+  * Take a screenshot from a script `await commands.screenshot.take('name')`. The screenshot is stored on disk for that page and in later releases it will be included in the result JSON file [#1032](https://github.com/sitespeedio/browsertime/pull/1032).
+  * A little safer check when getting the alias for page in scripting [#1031](https://github.com/sitespeedio/browsertime/pull/1031)
+  * When getting content for a page to include in the HAR, we used to fail hard on first failure for Chrome. Now we catch that and try with the next response [#1029](https://github.com/sitespeedio/browsertime/pull/1029).
+  * Android testing was broken since 7.6.1 with the setting of user preferences that Android on Chrome don't support [#1034](https://github.com/sitespeedio/browsertime/pull/1034).
+
+### Fixed
+* Propagate more setting to WebPageReplay record session [#2825](https://github.com/sitespeedio/sitespeed.io/pull/2825)
+
 ## 11.8.1 - 2019-12-13
 ### Fixed
 * Catch if Visual Elements fail. When it failed our statistics was broken [#2824](https://github.com/sitespeedio/sitespeed.io/pull/2824).
