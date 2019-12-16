@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Fixed
+* Upgraded to Browsertime 7.8.2 that fixes the Firefox Window Recorder.
+
 ## 11.9.2 - 2019-12-16
 ### Fixed
 * Upgraded to Browsertime 7.8.1:
