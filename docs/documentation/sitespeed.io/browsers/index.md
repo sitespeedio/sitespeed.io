@@ -171,6 +171,12 @@ There's is also another alternative: use ```--spa``` to automatically wait for 5
 
 If you add your own complete check you can also choose when your check is run. By default we wait until onLoad happens (by using pageLoadStrategy normal). If you want control direct after the navigation, you can get that by adding ```--pageLoadStrategy none``` to your run.
 
+
+## Minimise WebDriver impact
+By default WebDriver gives back control direct after navigation and then our page complete check is run every 200 ms.
+
+You can take back conntrol directly with ```--pageLoadStrategy none``` and then choose when to do the first page complete check with ```--pageCompleteCheckStartWait 5000``` and choose how often each check will run with ```--pageCompleteCheckPollTimeout 1000```. All setting are in ms.
+
 ## Custom metrics
 
 You can collect your own metrics in the browser by supplying JavaScript file(s). By default we collect all metrics inside [these folders](https://github.com/sitespeedio/browsertime/tree/master/browserscripts), but you might have something else you want to collect.
@@ -210,6 +216,7 @@ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include ve
 ~~~
 
 On Android you need to follow [these instructions]({{site.baseurl}}/documentation/sitespeed.io/mobile-phones/#video-and-speedindex).
+
 
 ## Using Browsertime
 Everything you can do in Browsertime, you can also do in sitespeed.io. Prefixing *browsertime* to a CLI parameter will pass that parameter on to Browsertime.
