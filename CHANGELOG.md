@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 11.9.0 - UNRELEASED
+## 11.9.0 - 2019-12-16
 ### Added
 * Send number of DOM elements by default to storage [#2823](https://github.com/sitespeedio/sitespeed.io/pull/2823)
 * Upgraded to Browsertime 7.8.0:
