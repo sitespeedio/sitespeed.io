@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 11.9.1 - 2019-12-16
+### Fixed
+* Running WebPageReplay in Docker didn't respect the `--config` flag. Fixed in [#2826](https://github.com/sitespeedio/sitespeed.io/pull/2826).
+
 ## 11.9.0 - 2019-12-16
 ### Added
 * Send number of DOM elements by default to storage [#2823](https://github.com/sitespeedio/sitespeed.io/pull/2823)
