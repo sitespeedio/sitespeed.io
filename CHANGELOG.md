@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io
 
+## 11.9.2 - 2019-12-16
+### Fixed
+* Upgraded to Browsertime 7.8.1:
+  * More sane logging if getting the HTML/body content for Chrome fails [#1036](https://github.com/sitespeedio/browsertime/pull/1036).
+  * Finally remove all calls to detect portal in Firefox when you use `--firefox.mozillaProPreferences` [#1035](https://github.com/sitespeedio/browsertime/pull/1035).
+
 ## 11.9.1 - 2019-12-16
 ### Fixed
 * Running WebPageReplay in Docker didn't respect the `--config` flag. Fixed in [#2826](https://github.com/sitespeedio/sitespeed.io/pull/2826).
