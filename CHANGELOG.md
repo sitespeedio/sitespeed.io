@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 11.8.1 - 2019-12-13
+### Fixed
+* Catch if Visual Elements fail. When it failed our statistics was broken [#2824](https://github.com/sitespeedio/sitespeed.io/pull/2824).
+
 ## 11.8.0 - 2019-12-12
 ### Added
 * Upgraded to Chrome and Chromedriver 79 [#1025](https://github.com/sitespeedio/browsertime/pull/1025).
