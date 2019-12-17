@@ -764,7 +764,7 @@ Click on element that is found by the CSS selector that has the given value. Int
 Click on element that is found by name CSS selector that has the given value and wait for the [page cmplete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to happen. Internally we use  ```document.querySelector(selector)``` to get the correct element.
 
 ### Wait
-There are two help commands that makes it easier to wait. Either you can wait on a specific id to appear or for x amount of milliseconds.
+There are a couple of help commands that makes it easier to wait. Either you can wait on a specific id to appear or for x amount of milliseconds.
 
 #### wait.byTime(ms)
 Wait for x ms.
@@ -772,8 +772,11 @@ Wait for x ms.
 #### wait.byId(id,maxTime)
 Wait for an element with id to appear before maxTime. The element needs to be visible for the user. If the element do not appear within maxTime an error will be thrown.
 
-#### byXpath(xpath, maxTime)
+#### wait.byXpath(xpath, maxTime)
 Wait for an element found by xpath to appear before maxTime. The element needs to be visible for the user. If the elemet do not appear within maxTime an error will be thrown.
+
+#### wait.byPageToComplete()
+Wait for the page to finish loading by using the configured [page cmplete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test). This can be useful if you use Selenium to click on elements and want to wait on a new page to load.
 
 ### Run JavaScript
 You can run your own JavaScript in the browser from your script.
@@ -819,6 +822,14 @@ Add the *text* to the element by using the attribute name. If the element is not
 
 #### addText.byClassName(text, className)
 Add the *text* to the element by using class name. If the element is not found the command will throw an error.
+
+### Screenshot
+Take a screenshot. The image will automaticalle be stored in the screenshot directory for the URL you are testing. This can be super helpful to use in a catch block if something fails. 
+
+At the moment the screenshot is only saved to disk and there are no reference to it the result JSON file and we hope to fix that in the future.
+
+#### screenshot.take(name) 
+Give your screenshot a name and it will be used together with the iteration index to store the image.
 
 ### Switch
 You can switch to iframes or windows if that is needed.
