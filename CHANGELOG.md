@@ -1,8 +1,9 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 11.9.3 - 2019-12-19
 ### Fixed
 * Upgraded to Browsertime 7.8.2 that fixes the Firefox Window Recorder.
+* Upgraded to Browsertime 7.8.3 that fixes `--videoParams.debug` so that you easily can get a video of your scripting.
 
 ## 11.9.2 - 2019-12-16
 ### Fixed
