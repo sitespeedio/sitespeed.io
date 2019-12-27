@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELASED
+### Added
+* Upgraded to first alpha of Browsertime 8.0.0
+
 ## 11.9.3 - 2019-12-19
 ### Fixed
 * Upgraded to Browsertime 7.8.2 that fixes the Firefox Window Recorder.
