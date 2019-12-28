@@ -2,7 +2,7 @@
 
 ## UNRELASED
 ### Added
-* Upgraded to first alpha of Browsertime 8.0.0
+* Upgraded to second alpha of Browsertime 8.0.0
 
 ## 11.9.3 - 2019-12-19
 ### Fixed
