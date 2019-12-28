@@ -3431,9 +3431,9 @@
       "integrity": "sha1-81HTKWnTL6XXpVZxVCY9korjvR8="
     },
     "browsertime": {
-      "version": "8.0.0-alpha.1",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-8.0.0-alpha.1.tgz",
-      "integrity": "sha512-jQ/z7Bx4tO7DHTNQJajFu9cVet8n7Cef2MSXMO+4Wc/f7qbrfW7nOnDCxOAqX2Q4rnPXZAGesklSAQU+WUgXDA==",
+      "version": "8.0.0-alpha.2",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-8.0.0-alpha.2.tgz",
+      "integrity": "sha512-uPNr1zY+44qkWfgK5mZfFKQaGijfh56mpT2ja6o38NZZrNHX/XXB8N3ykjaHnHjhOd6XnhL8i2p1VlF8rvPEDQ==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@sitespeed.io/chromedriver": "79.0.3945-36",
