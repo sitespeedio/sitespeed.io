@@ -3,6 +3,7 @@
 ## UNRELASED
 ### Added
 * Upgraded to second alpha of Browsertime 8.0.0
+* Upgraded from AXE core 3.4.0 -> [3.4.1](https://github.com/dequelabs/axe-core/blob/develop/CHANGELOG.md#341-2019-12-11).
 
 ## 11.9.3 - 2019-12-19
 ### Fixed
