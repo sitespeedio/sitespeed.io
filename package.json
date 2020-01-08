@@ -73,7 +73,7 @@
     "@google-cloud/storage": "3.2.0",
     "axe-core": "3.4.1",
     "aws-sdk": "2.596.0",
-    "browsertime": "8.0.0-alpha.2",
+    "browsertime": "8.0.0-alpha.3",
     "cli-color": "1.4.0",
     "concurrent-queue": "7.0.2",
     "dayjs": "1.8.18",
