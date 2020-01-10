@@ -2,9 +2,9 @@
 
 ## UNRELASED
 ### Added
-* Upgraded to third alpha of Browsertime 8.0.0
+* Upgraded to the fourth alpha of Browsertime 8.0.0
 * Upgraded from AXE core 3.4.0 -> [3.4.1](https://github.com/dequelabs/axe-core/blob/develop/CHANGELOG.md#341-2019-12-11).
-* Upgrtaded to Firefox 72 in the Docker container.
+* Upgraded to Firefox 72 in the Docker container.
 
 ## 11.9.3 - 2019-12-19
 ### Fixed
