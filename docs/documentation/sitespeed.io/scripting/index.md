@@ -482,7 +482,7 @@ module.exports = async function(context, commands) {
   // When the page has finished loading you can find the navigation and click on it
   const actions = driver.actions();
   const nav = driver.findElement(
-    webdriver.By.xpath('/html/body/div[1]/div/header/form/div[1]/a')
+    webdriver.By.xpath('//*[@id="mw-mf-main-menu-button"]')
   );
   await actions.click(nav).perform();
 
