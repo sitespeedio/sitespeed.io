@@ -362,6 +362,28 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
+In this example we collect the number of comments on a blog post using commands.js.run() 
+to collect an element, use regex to parse out the number, and add it back as a custom metric.
+
+~~~javascript
+module.exports = async function(context, commands) {
+   await commands.measure.start('blog-post'); //alias is now blog-post
+   await commands.navigate('https://www.exampleBlog/blog-post');
+   
+   //use commands.js.run to return the element using pure javascript
+   const element = await commands.js.run('return(document.getElementsByClassName("comment-count")[0].innerText)'); 
+   
+   //parse out just the number of comments
+   var elementMetric = element.match(/\d/)[0];
+  
+   // need to stop the measurement before you can add it as a metric
+   await commands.measure.stop();
+   
+   // metric will now be added to the html and outpout to graphite/influx if you're using it
+   await commands.measure.add('commentsCount', elementMetric);
+};
+~~~
+
 ### Measure shopping/checkout process
 One of the really cool things with scripting is that you can measure all the pages in a checkout process. This is an example shop where you put one item in your cart and checkout as a guest.
 
@@ -679,6 +701,7 @@ And you will get that metric in the HTML:
 
 ![Adding metrics from your script]({{site.baseurl}}/img/batteryTemperatureMetric.png)
 {: .img-thumbnail}
+
 
 #### measure.addObject(object)
 You can also add multiple metrics in one go.
