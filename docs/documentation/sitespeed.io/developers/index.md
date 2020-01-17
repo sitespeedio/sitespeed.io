@@ -48,6 +48,76 @@ The big picture looks something like this:
 ![How it all works]({{site.baseurl}}/img/sitespeed-universe-5.png)
 {: .img-thumbnail}
 
+## Use directly from NodeJS
+
+### Use sitespeed.io from NodeJS
+
+Here's an example on how to use sitespeed.io directly from NodeJS. This will generate the result to disk but you will not get it as a JSON object (only the budget result). We maybe change that in the future. If you need the JSON you can either read it from disk or use the Browsertime plugin directly.
+
+~~~javascript
+'use strict';
+
+const sitespeed = require('sitespeed.io');
+const urls = ['https://www.sitespeed.io/'];
+
+async function run() {
+  try {
+    const result = await sitespeed.run({
+      urls,
+      browsertime: {
+        iterations: 1,
+        connectivity: {
+          profile: 'native',
+          downstreamKbps: undefined,
+          upstreamKbps: undefined,
+          latency: undefined,
+          engine: 'external'
+        },
+        browser: 'chrome'
+      }
+    });
+    console.log(result);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+run();
+~~~
+
+### Use Browsertime from NodeJS
+
+In this example you run Browsertime directly from NodeJS, using the default JavaScripts to collect metrics. 
+
+~~~javascript
+'use strict';
+
+const browsertime = require('browsertime');
+
+// The setup is the same configuration as you use in the CLI
+const browsertimeSetupOptions = { iterations: 1, browser: 'chrome' };
+const engine = new browsertime.Engine(browsertimeSetupOptions);
+// You can choose what JavaScript to run, in this example we use the default categories
+// and the default JavaScript
+const scriptsCategories = await browsertime.browserScripts.allScriptCategories;
+const scripts = await browsertime.browserScripts.getScriptsForCategories(scriptsCategories);
+
+async function run() {
+  try {
+    await engine.start();    
+    // Get the result
+    const result = await engine.run('https://www.sitespeed.io/', scripts);
+    console.log(result);
+  } catch (e) {
+    console.error(e);
+  } finally {
+    await engine.stop();
+  }
+}
+
+run();
+~~~
+
 ## Developing sitespeed.io
 
 ### Setup
@@ -152,74 +222,6 @@ Do the release:
 5. Login into Docker, add your 2FA when prompted
 6. When a new browser window opens at GitHub with the release, copy/paste the changes from the Changelog and add it instead of the commits.
 7. Commit the updated [version file](https://github.com/sitespeedio/sitespeed.io/blob/master/docs/_includes/version/browsertime.txt) and the [configuration file](https://github.com/sitespeedio/sitespeed.io/blob/master/docs/documentation/browsertime/configuration/config.md) in the sitespeed.io repo. Or make a PR if you do not have commit rights.
-
-### Use sitespeed.io from NodeJS
-
-Here's an example on how to use sitespeed.io directly from NodeJS. This will generate the result to disk but you will not get it as a JSON object (only the budget result). We maybe change that in the future. If you need the JSON you can either read it from disk or use the Browsertime plugin directly.
-
-~~~javascript
-'use strict';
-
-const sitespeed = require('sitespeed.io');
-const urls = ['https://www.sitespeed.io/'];
-
-async function run() {
-  try {
-    const result = await sitespeed.run({
-      urls,
-      browsertime: {
-        iterations: 1,
-        connectivity: {
-          profile: 'native',
-          downstreamKbps: undefined,
-          upstreamKbps: undefined,
-          latency: undefined,
-          engine: 'external'
-        },
-        browser: 'chrome'
-      }
-    });
-    console.log(result);
-  } catch (e) {
-    console.error(e);
-  }
-}
-
-run();
-~~~
-
-### Use Browsertime from NodeJS
-
-In this example you run Browsertime directly from NodeJS, using the default JavaScripts to collect metrics. 
-
-~~~javascript
-'use strict';
-
-const browsertime = require('browsertime');
-
-// The setup is the same configuration as you use in the CLI
-const browsertimeSetupOptions = { iterations: 1, browser: 'chrome' };
-const engine = new browsertime.Engine(browsertimeSetupOptions);
-// You can choose what JavaScript to run, in this example we use the default categories
-// and the default JavaScript
-const scriptsCategories = await browsertime.browserScripts.allScriptCategories;
-const scripts = await browsertime.browserScripts.getScriptsForCategories(scriptsCategories);
-
-async function run() {
-  try {
-    await engine.start();    
-    // Get the result
-    const result = await engine.run('https://www.sitespeed.io/', scripts);
-    console.log(result);
-  } catch (e) {
-    console.error(e);
-  } finally {
-    await engine.stop();
-  }
-}
-
-run();
-~~~
 
 ### Contributing to the documentation
 The documentation lives in your cloned directory under *docs/*.
