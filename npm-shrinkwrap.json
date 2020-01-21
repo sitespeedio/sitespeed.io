@@ -3441,9 +3441,9 @@
       "integrity": "sha1-81HTKWnTL6XXpVZxVCY9korjvR8="
     },
     "browsertime": {
-      "version": "8.0.0-alpha.6",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-8.0.0-alpha.6.tgz",
-      "integrity": "sha512-M6cauLa4MbGBH7JffAboX7W/Z240XSSrUxi0SmrktIjjcph6xew2tJ8SeuPJukWcPJmp2cR/3Aowqsg0EOurPA==",
+      "version": "8.0.0-alpha.7",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-8.0.0-alpha.7.tgz",
+      "integrity": "sha512-rKq6rFOcBKTI+KApvT7iQ6xoIm33SQLkbJ+X3UBZcIH9byqxAfUI7tWRTGrfIVIvWHEKm1nd/RjfkktrrYSAYg==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@sitespeed.io/chromedriver": "79.0.3945-36",
@@ -3518,9 +3518,9 @@
           }
         },
         "fs-minipass": {
-          "version": "2.0.0",
-          "resolved": "https://registry.npmjs.org/fs-minipass/-/fs-minipass-2.0.0.tgz",
-          "integrity": "sha512-40Qz+LFXmd9tzYVnnBmZvFfvAADfUA14TXPK1s7IfElJTIZ97rA8w4Kin7Wt5JBrC3ShnnFJO/5vPjPEeJIq9A==",
+          "version": "2.1.0",
+          "resolved": "https://registry.npmjs.org/fs-minipass/-/fs-minipass-2.1.0.tgz",
+          "integrity": "sha512-V/JgOLFCS+R6Vcq0slCuaeWEdNC3ouDlJMNIsacH2VtALiu9mV4LPrHc5cDl8k5aw6J8jwgWWpiTo5RYhmIzvg==",
           "optional": true,
           "requires": {
             "minipass": "^3.0.0"
