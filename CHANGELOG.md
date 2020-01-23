@@ -1,10 +1,11 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELASED
+## 12.0.0-alpha1 - 2019-12-23
 ### Added
-* Upgraded to Browsertime 8.0.0 alpha 7.
+* Upgraded to Browsertime 8.0.0 alpha 7. Documentation coming in later releases.
 * Upgraded from AXE core 3.4.0 -> [3.4.1](https://github.com/dequelabs/axe-core/blob/develop/CHANGELOG.md#341-2019-12-11).
 * Upgraded to Firefox 72 in the Docker container.
+* Upgraded to Chrome 80 beta in the Docker contaner.
 
 ## 11.9.3 - 2019-12-19
 ### Fixed
