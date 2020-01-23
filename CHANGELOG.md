@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 12.0.0-alpha1 - 2019-12-23
+## 12.0.0-alpha.1 - 2020-01-23
 ### Added
 * Upgraded to Browsertime 8.0.0 alpha 7. Documentation coming in later releases.
 * Upgraded from AXE core 3.4.0 -> [3.4.1](https://github.com/dequelabs/axe-core/blob/develop/CHANGELOG.md#341-2019-12-11).
