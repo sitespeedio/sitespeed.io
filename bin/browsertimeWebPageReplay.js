@@ -126,7 +126,10 @@ async function runBrowsertime() {
     delay: 0,
     video: false,
     visualMetrics: false,
-    resultDir: '/tmp/browsertime'
+    resultDir: '/tmp/browsertime',
+    chrome: {
+      ignoreCertificateErrors: true
+    }
   };
 
   const btOptions = merge({}, parsed.argv.browsertime, defaultConfig);
