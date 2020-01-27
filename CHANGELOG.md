@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 12.0.0-alpha.2 - 2020-01-27
+### Fixed
+* Disable `--cpu` for Firefox at the moment so people that upgrades doesn't accidently turn it on.
+
 ## 12.0.0-alpha.1 - 2020-01-23
 ### Added
 * Upgraded to Browsertime 8.0.0 alpha 7. Documentation coming in later releases.
