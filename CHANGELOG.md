@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 12.0.0-alpha.3 - UNRELEASED
+### Fixed
+* Ignore certificate errors by default for Chrome (as it been in all older releases). 
+
 ## 12.0.0-alpha.2 - 2020-01-27
 ### Fixed
 * Disable `--cpu` for Firefox at the moment so people that upgrades doesn't accidently turn it on.
