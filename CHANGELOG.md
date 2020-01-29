@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 12.0.0-alpha.3 - UNRELEASED
+## 12.0.0-alpha.3 - 2020-01-29
 ### Fixed
 * Ignore certificate errors by default for Chrome (as it been in all older releases). 
 
