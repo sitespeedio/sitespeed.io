@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## 12.0.0-beta.1 - 2020-01-30
+### Added 
+* Browsertime 8.0.0-beta.1
+* Add (back) fast-crc32c for faster upload to GSC - thank you [Radu Micu](https://github.com/radum) for the PR [#2858](https://github.com/sitespeedio/sitespeed.io/pull/2858)
+
 ## 12.0.0-alpha.3 - 2020-01-29
 ### Fixed
 * Ignore certificate errors by default for Chrome (as it been in all older releases). 
