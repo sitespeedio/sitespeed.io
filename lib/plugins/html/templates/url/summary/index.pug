@@ -70,6 +70,12 @@ block content
                 td #{h.time.ms(d.browsertime.pageSummary.statistics.timings.firstPaint.median)}                
             if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.cpu && d.browsertime.pageSummary.statistics.cpu.longTasks
               tr
+                td Total Blocking Time [median]:
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime.median)}
+              tr
+                td Max Potential FID [median]:
+                td #{h.time.ms(d.browsertime.pageSummary.statistics.cpu.longTasks.maxPotentialFid.median)}
+              tr
                 td CPU long tasks [median]:
                 td #{d.browsertime.pageSummary.statistics.cpu.longTasks.tasks.median}
               if d.browsertime.pageSummary.statistics.cpu.longTasks.durations  && d.browsertime.pageSummary.statistics.cpu.longTasks.durations.max > 0    
@@ -136,7 +142,7 @@ block content
       section#video-panel
         include ../video/index.pug
 
-    if options.browsertime.video && options.videoParams.createFilmstrip
+    if (options.browsertime.video || options.browsertime.visualMetrics) && options.videoParams.createFilmstrip || options.browsertime.chrome && options.browsertime.chrome.enableTraceScreenshots
       section#filmstrip-panel
         include ../filmstrip/index.pug    
 
@@ -152,7 +158,7 @@ block content
       section#pagexray-panel
         include ../pagexray/index.pug
 
-    if options.cpu
+    if options.cpu || options.browsertime && options.browsertime.chrome && options.browsertime.chrome.collectLongTasks || (options.browsertime && options.browsertime.firefox && options.browsertime.firefox.geckoProfiler)
       section#cpu-panel
         include ../cpu/index.pug  
 

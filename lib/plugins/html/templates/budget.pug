@@ -7,7 +7,7 @@ mixin row(budget)
       tr
         td
           a(href=url)= url
-          td #{result.type}.#{result.metric} with value #{result.value} limit #{result.limitType} #{result.limit}
+          td #{result.metric} with value #{result.friendlyValue} limit #{result.limitType} #{result.friendlyLimit}
 
 block content
     h2 The budget

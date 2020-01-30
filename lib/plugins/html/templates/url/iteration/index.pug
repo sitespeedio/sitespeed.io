@@ -94,6 +94,16 @@ block content
                tr
                  td RUM Speed Index:
                  td #{h.time.ms(d.browsertime.run.timings.rumSpeedIndex)}
+             if d.browsertime  && d.browsertime.run && d.browsertime.run.cpu && d.browsertime.run.cpu.longTasks
+              tr
+                td Total Blocking Time:
+                td #{h.time.ms(d.browsertime.run.cpu.longTasks.totalBlockingTime)}
+              tr
+                td Max Potential FID [median]:
+                td #{h.time.ms(d.browsertime.run.cpu.longTasks.maxPotentialFid)}
+              tr
+                td CPU long tasks:
+                td #{d.browsertime.run.cpu.longTasks.tasks}
              if !d.browsertime && d.webpagetest
                tr
                  td Render (first view):
@@ -131,7 +141,7 @@ block content
       section#video-panel
         include ../video/index.pug
 
-    if options.browsertime.video && options.videoParams.createFilmstrip
+    if (options.browsertime.video || options.browsertime.visualMetrics) && options.videoParams.createFilmstrip || options.browsertime.chrome && options.browsertime.chrome.enableTraceScreenshots
       section#filmstrip-panel
         include ../filmstrip/index.pug        
 
@@ -147,7 +157,7 @@ block content
       section#pagexray-panel
         include ../pagexray/index.pug
 
-    if options.cpu
+    if options.cpu || (options.browsertime && options.browsertime.chrome && options.browsertime.chrome.collectLongTasks) || (options.browsertime && options.browsertime.firefox && options.browsertime.firefox.geckoProfiler)
       section#cpu-panel
         include ../cpu/index.pug     
     

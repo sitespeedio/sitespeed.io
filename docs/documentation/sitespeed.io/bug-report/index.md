@@ -13,7 +13,7 @@ category: sitespeed.io
 # How to Write a Good Bug Report
 {:.no_toc}
 
-<b>TL;DR - Please create a reproducable bug report!</b>
+<b>TL;DR - Please create a reproducible bug report!</b>
 
 * Lets place the TOC here
 {:toc}
@@ -23,7 +23,7 @@ We love when you create a new issue for sitespeed.io! We really do. New issues h
 
 Sometimes we get a really detailed issue: You describe exactly how you do when you get the problem, you share the log, you write down what you have tested, share screenshots, share videos. You even tries to understand why you get this bug. When we get an issue like that, it always jump to my number one prioritization. If you put down all the time and effort to really describe the issue, we want to put all our effort to fix it.
 
-It also happens (quite often) that we get issues that misses important information, so we need to ask you again and again about the problem (like how to reproduce the issue). Sometimes we need to do that two/three/four times within that issue. Issues that misses vital information takes longer time to fix/close and that makes us spend more time asking questions instead of fixing actual bugs or creating new functionallity. 
+It also happens (quite often) that we get issues that misses important information, so we need to ask you again and again about the problem (like how to reproduce the issue). Sometimes we need to do that two/three/four times within that issue. Issues that misses vital information takes longer time to fix/close and that makes us spend more time asking questions instead of fixing actual bugs or creating new functionality. 
 
 We use a [issue template](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/.github/ISSUE_TEMPLATE.md) with a comment of what we need write but it seems that is not the best way so let us instead show you what we need!
 
@@ -32,7 +32,7 @@ Before you start creating a issue, you should make sure you have read through ou
 ## Explain how to reproduce your issue
 The best way to make sure we can fix your issue, is to make sure we can reproduce the problem you have. If we can reproduce the problem, we can verify that we actually have fixed it with our code change.
 
-**Exactly** what do we mean by making it reproducable? We should be able to copy/paste your example CLI parameters and try on our local machine and then get the same problem that you have.
+**Exactly** what do we mean by making it reproducible? We should be able to copy/paste your example CLI parameters and try on our local machine and then get the same problem that you have.
 
 To help us reproduce your problem there are a couple of things we need:
 
@@ -50,7 +50,7 @@ If you give us this information we can usually fix your issue faster.
 
 * Best case you can fix the issue and send us a PR with a fix. We love PR for bugs :) But of course that is only best case scenario.
 
-* Search current [Github issues](https://github.com/sitespeedio/sitespeed.io/issues). Is this bug reported before? Does it lack info? Please add your own comment to that issue if it is open. If you aren't sure that your bug is the same as the other bug, please create another issue. Do not hihack issues. Do not comment on closed issue, please create a new issue instead and add a reference to the old issue.
+* Search current [GitHub issues](https://github.com/sitespeedio/sitespeed.io/issues). Is this bug reported before? Does it lack info? Please add your own comment to that issue if it is open. If you aren't sure that your bug is the same as the other bug, please create another issue. Do not hijack issues. Do not comment on closed issue, please create a new issue instead and add a reference to the old issue.
 
 * Do you think this is somehow related to Docker (generic Docker issues etc)? Then please [search](https://duckduckgo.com/) for the that problem or head over to [forums.docker.com](https://forums.docker.com/) and have a look there first.
 
@@ -63,7 +63,7 @@ If you give us this information we can usually fix your issue faster.
 Here's dos and don'ts if you want your bug fixed:
 
 Please do:
-* [Provide a reproducable test case](#explain-how-to-reproduce-your-issue).
+* [Provide a reproducible test case](#explain-how-to-reproduce-your-issue).
 * If you don't get a response in a couple of days, write a message in the [general channel in Slack](https://sitespeedio.herokuapp.com/).
 
 Please don't:

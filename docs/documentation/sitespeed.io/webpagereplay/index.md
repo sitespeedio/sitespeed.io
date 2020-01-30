@@ -76,9 +76,9 @@ docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --
 A couple of things:
 
 - You need to run the container in privileged mode to be able to mount USB ports
-- Add `-e START_ADB_SERVER=true` to start the adb server inside the container (that makes it possible to talk to your phone)
+- Add `-e START_ADB_SERVER=true` to start the ADB server inside the container (that makes it possible to talk to your phone)
 - Make sure xvfb is turned off `--xvfb false`
 - To ignore HTTPS certificate errors add `--chrome.args ignore-certificate-errors-spki-list=PhrPvGIaAMmd29hj8BCZOq096yj7uMpRNHpn5PDxI6I=` and `--chrome.args user-data-dir=/data/tmp/chrome` (they only work together).
 
-If you want to drive multiple phones from omne instance, you can change the ports WebPageReplay is using (making sure they do not collide between phones). You can do that with
+If you want to drive multiple phones from one instance, you can change the ports WebPageReplay is using (making sure they do not collide between phones). You can do that with
 `-e WPR_HTTP_PORT=XXX` and `-e WPR_HTTPS_PORT=YYY`. The default ports are 8080 and 8081.

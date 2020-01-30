@@ -9,7 +9,7 @@ timeouts
 chrome
   --chrome.args                                              Extra command line arguments to pass to the Chrome process (e.g. --no-sandbox). To add multiple arguments to Chrome, repeat --chrome.args once per argument.
   --chrome.binaryPath                                        Path to custom Chrome binary (e.g. Chrome Canary). On OS X, the path should be to the binary inside the app bundle, e.g. "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary"
-  --chrome.chromedriverPath                                  Path to custom Chromedriver binary. Make sure to use a Chromedriver version that's compatible with the version of Chrome you're using
+  --chrome.chromedriverPath                                  Path to custom ChromeDriver binary. Make sure to use a ChromeDriver version that's compatible with the version of Chrome you're using
   --chrome.mobileEmulation.deviceName                        Name of device to emulate. Works only standalone (see list in Chrome DevTools, but add phone like 'iPhone 6'). This will override your userAgent string.
   --chrome.mobileEmulation.width                             Width in pixels of emulated mobile screen (e.g. 360)  [number]
   --chrome.mobileEmulation.height                            Height in pixels of emulated mobile screen (e.g. 640)  [number]
@@ -31,14 +31,18 @@ chrome
   --chrome.blockDomainsExcept, --blockDomainsExcept          Block all domains except this domain. Use it multiple time to keep multiple domains. You can also wildcard domains like *.sitespeed.io. Use this when you wanna block out all third parties.
 
 firefox
-  --firefox.binaryPath             Path to custom Firefox binary (e.g. Firefox Nightly). On OS X, the path should be to the binary inside the app bundle, e.g. /Applications/Firefox.app/Contents/MacOS/firefox-bin
-  --firefox.nightly                Use Firefox Nightly. Works on OS X. For Linux you need to set the binary path.  [boolean]
-  --firefox.beta                   Use Firefox Beta. Works on OS X. For Linux you need to set the binary path.  [boolean]
-  --firefox.developer              Use Firefox Developer. Works on OS X. For Linux you need to set the binary path.  [boolean]
-  --firefox.preference             Extra command line arguments to pass Firefox preferences by the format key:value To add multiple preferences, repeat --firefox.preference once per argument.
-  --firefox.includeResponseBodies  Include response bodies in HAR  [choices: "none", "all", "html"] [default: "none"]
-  --firefox.acceptInsecureCerts    Accept insecure certs  [boolean]
-  --firefox.collectMozLog          Collect the MOZ HTTP log  [boolean]
+  --firefox.binaryPath                   Path to custom Firefox binary (e.g. Firefox Nightly). On OS X, the path should be to the binary inside the app bundle, e.g. /Applications/Firefox.app/Contents/MacOS/firefox-bin
+  --firefox.nightly                      Use Firefox Nightly. Works on OS X. For Linux you need to set the binary path.  [boolean]
+  --firefox.beta                         Use Firefox Beta. Works on OS X. For Linux you need to set the binary path.  [boolean]
+  --firefox.developer                    Use Firefox Developer. Works on OS X. For Linux you need to set the binary path.  [boolean]
+  --firefox.preference                   Extra command line arguments to pass Firefox preferences by the format key:value To add multiple preferences, repeat --firefox.preference once per argument.
+  --firefox.includeResponseBodies        Include response bodies in HAR  [choices: "none", "all", "html"] [default: "none"]
+  --firefox.acceptInsecureCerts          Accept insecure certs  [boolean]
+  --firefox.windowRecorder               Use the internal compositor-based Firefox window recorder to emit PNG files for each frame that is a meaningful change.  The PNG output will further be merged into a variable frame rate video for analysis. Use this instead of ffmpeg to record a video (you still need the --video flag).  [boolean] [default: false]
+  --firefox.collectMozLog                Collect the MOZ HTTP log  [boolean]
+  --firefox.disableBrowsertimeExtension  Disable installing the browsertime extension.  [boolean]
+  --firefox.disableSafeBrowsing          Disable safebrowsing.  [boolean] [default: true]
+  --firefox.mozillaProPreferences        Use Firefox best practice preferences from the Mozilla performance team. These will probably be default in the next major release.  [boolean]
 
 selenium
   --selenium.url  URL to a running Selenium server (e.g. to run a browser on another machine).
@@ -48,7 +52,7 @@ video
   --videoParams.crf                Constant rate factor see https://trac.ffmpeg.org/wiki/Encode/H.264#crf  [default: 23]
   --videoParams.addTimer           Add timer and metrics to the video.  [boolean] [default: true]
   --videoParams.debug              Turn on debug to record a video with all pre/post and scripts/URLS you test in one iteration. Visual Metrics will then automatically be disabled.  [boolean] [default: false]
-  --videoParams.keepOriginalVideo  Keep the original video. Use it when you have a Visual Metrics bug and creates an issue at Github  [boolean] [default: false]
+  --videoParams.keepOriginalVideo  Keep the original video. Use it when you have a Visual Metrics bug and want to create an issue at GitHub  [boolean] [default: false]
   --videoParams.filmstripFullSize  Keep original sized screenshots. Will make the run take longer time  [boolean] [default: false]
   --videoParams.filmstripQuality   The quality of the filmstrip screenshots. 0-100.  [default: 75]
   --videoParams.createFilmstrip    Create filmstrip screenshots.  [boolean] [default: true]
@@ -78,6 +82,7 @@ connectivity
   --connectivity.downstreamKbps      This option requires --connectivity.profile be set to "custom".
   --connectivity.upstreamKbps        This option requires --connectivity.profile be set to "custom".
   --connectivity.latency             This option requires --connectivity.profile be set to "custom".
+  --connectivity.variance            This option requires --connectivity.engine be set to "throttle". It will add a variance to the latency between each run. --connectivity.variance 2 means it will run with a random variance of max 2% between runs.
   --connectivity.alias               Give your connectivity profile a custom name
   --connectivity.engine              The engine for connectivity. Throttle works on Mac and tc based Linux. Use external if you set the connectivity outside of Browsertime. The best way do to this is described in https://github.com/sitespeedio/browsertime#connectivity.  [choices: "external", "throttle", "tsproxy"] [default: "external"]
   --connectivity.throttle.localhost  Add latency/delay on localhost. Perfect for testing with WebPageReplay  [boolean] [default: false]
@@ -90,12 +95,16 @@ Options:
   --scriptInput.longTask, --minLongTaskLength  Set the minimum length of a task to be categorised as a CPU Long Task. It can never be smaller than 50. The value is in ms and you make Browsertime collect long tasks using --chrome.collectLongTasks or --cpu.  [number] [default: 50]
   --browser, -b                                Specify browser. Safari only works on OS X.  [choices: "chrome", "firefox", "safari"] [default: "chrome"]
   --android                                    Short key to use Android. Will automatically use com.android.chrome  [boolean] [default: false]
-  --pageCompleteCheck                          Supply a JavaScript (inline or JavaScript file) that decides when the browser is finished loading the page and can start to collect metrics. The JavaScript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd. By default the tests ends 2 seconds after loadEventEnd. Also checkout --pageCompleteCheckInactivity
+  --pageCompleteCheck                          Supply a JavaScript (inline or JavaScript file) that decides when the browser is finished loading the page and can start to collect metrics. The JavaScript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd. By default the tests ends 2 seconds after loadEventEnd. Also checkout --pageCompleteCheckInactivity and --pageCompleteCheckPollTimeout
   --pageCompleteWaitTime                       How long time you want to wait for your pageComplteteCheck to finish, after it is signaled to closed. Extra parameter passed on to your pageCompleteCheck.  [default: 5000]
   --pageCompleteCheckInactivity                Alternative way to choose when to end your test. This will wait for 2 seconds of inactivity that happens after loadEventEnd.  [boolean] [default: false]
+  --pageCompleteCheckPollTimeout               The time in ms to wait for running the page complete check the next time.  [number] [default: 200]
+  --pageCompleteCheckStartWait                 The time in ms to wait for running the page complete check for the first time. Use this when you have a pageLoadStrategy set to none  [number] [default: 500]
+  --pageLoadStrategy                           Set the strategy to waiting for document readiness after a navigation event. After the strategy is ready, your pageCompleteCheck will start runninhg. This only for Firefox and Chrome and please check which value each browser implements.  [string] [choices: "eager", "none", "normal"] [default: "normal"]
   --iterations, -n                             Number of times to test the url (restarting the browser between each test)  [number] [default: 3]
   --prettyPrint                                Enable to print json/har with spaces and indentation. Larger files, but easier on the eye.  [boolean] [default: false]
   --delay                                      Delay between runs, in milliseconds  [number] [default: 0]
+  --timeToSettle                               Extra time added for the browser to settle before starting to test a URL. This delay happens after the browser was opened and before the navigation to the URL  [number] [default: 0]
   --requestheader, -r                          Request header that will be added to the request. Add multiple instances to add multiple request headers. Works for Firefox and Chrome. Use the following format key:value
   --cookie                                     Cookie that will be added to the request. Add multiple instances to add multiple request cookies. Works for Firefox and Chrome. Use the following format cookieName=cookieValue
   --injectJs                                   Inject JavaScript into the current page at document_start. Works for Firefox and Chrome. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
@@ -104,8 +113,8 @@ Options:
   --decimals                                   The decimal points browsertime statistics round to.  [number] [default: 0]
   --cacheClearRaw                              Use internal browser functionality to clear browser cache between runs instead of only using Selenium.  [boolean] [default: false]
   --basicAuth                                  Use it if your server is behind Basic Auth. Format: username@password (Only Chrome and Firefox at the moment).
-  --preScript                                  Selenium script(s) to run before you test your URL/script. They will run outside of the analyze phase. Note that --preScript can be passed multiple times.
-  --postScript                                 Selenium script(s) to run after you test your URL. They will run outside of the analyze phase. Note that --postScript can be passed multiple times.
+  --preScript                                  Selenium script(s) to run before you test your URL/script. They will run outside of the analyse phase. Note that --preScript can be passed multiple times.
+  --postScript                                 Selenium script(s) to run after you test your URL. They will run outside of the analyse phase. Note that --postScript can be passed multiple times.
   --script                                     Add custom Javascript to run after the page has finished loading to collect metrics. If a single js file is specified, it will be included in the category named "custom" in the output json. Pass a folder to include all .js scripts in the folder, and have the folder name be the category. Note that --script can be passed multiple times.
   --userAgent                                  Override user agent
   --silent, -q                                 Only output info in the logs, not to the console. Enter twice to suppress summary line.  [count]

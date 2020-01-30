@@ -3,8 +3,6 @@ FROM sitespeedio/sitespeed.io:${version}
 
 ENV SITESPEED_IO_BROWSERTIME__XVFB true
 ENV SITESPEED_IO_BROWSERTIME__DOCKER true
-ENV SITESPEED_IO_BROWSERTIME__VIDEO true
-ENV SITESPEED_IO_BROWSERTIME__visualMetrics true
 ENV SITESPEED_IO_PLUGINS__ADD /lighthouse,/gpsi
 
 RUN sudo apt-get update && sudo apt-get install git -y

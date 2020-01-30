@@ -25,7 +25,7 @@ We are a [three member team]({{site.baseurl}}/aboutus/), with more PRs (but we w
 ### Workflow
 Let us show exactly what happens when we push code:
 
- 1. We commit our code (or merge your PR) to [Github](https://github.com/sitespeedio/sitespeed.io).
+ 1. We commit our code (or merge your PR) to [GitHub](https://github.com/sitespeedio/sitespeed.io).
  2. [Travis-CI](https://travis-ci.org/sitespeedio/sitespeed.io) runs a couple of unit tests and a couple of full integration test where we run sitespeed.io from the command line, testing a couple of sites in Chrome/Firefox, and tests our WebPageTest integration. You can find our Travis configuration [here](https://github.com/sitespeedio/sitespeed.io/blob/master/.travis.yml).
  3. The commit also builds a new [Docker container at the Docker Hub](https://hub.docker.com/r/sitespeedio/sitespeed.io-autobuild/). Remember: This is not the same image as you use when you run sitespeed.io in production, this one contains the latest and greatest commits.
  4. We have a test server on Digital Ocean that runs the latest Docker container (it auto updates when there's a new version of the container). When the next test runs, it will use that latest version. When the test runs, it will upload the HTML to S3 and send the metrics to our Graphite instance.
@@ -80,7 +80,7 @@ We constantly trying to improve our releases process and making it as safe as po
 
 * It would be cool if we could check the logs on Travis and if we get an error in the log, just break the build. Today we only break the build when sitespeed.io returns an error code.
 
-If you have ideas on how we can test better, please [create an issue at Github](https://github.com/sitespeedio/sitespeed.io/issues/new) or send us a [tweet](https://twitter.com/sitespeedio)!
+If you have ideas on how we can test better, please [create an issue at GitHub](https://github.com/sitespeedio/sitespeed.io/issues/new) or send us a [tweet](https://twitter.com/sitespeedio)!
 
 /Peter
 

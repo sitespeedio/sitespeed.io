@@ -45,7 +45,7 @@ In 8.0 we introduced a new way of configuring budget. You can configure default 
 * requests - the max number of requests per type or total
 * transferSize - the max transfer size (over the wire) per type or total
 * thirdParty - max number of requests or transferSize for third parties
-* score - minimum score for Coach advice 
+* score - minimum score for Coach advice
 
 
 #### Simple budget file
@@ -62,7 +62,7 @@ The simplest version of a budget file that will check for SpeedIndex higher than
 ~~~
 
 #### Override per URL
-All URLs that you test then needs to have a SpeedIndex faster than 1000. But if you have one URL that you know are slower? You can override budget per URL. 
+All URLs that you test then needs to have a SpeedIndex faster than 1000. But if you have one URL that you know are slower? You can override budget per URL.
 
 ~~~json
 {
@@ -81,7 +81,7 @@ All URLs that you test then needs to have a SpeedIndex faster than 1000. But if 
 
 #### Full example
 
-Here is an example of a fully configurued budget file. It shows you what you *can* configure (but you shouldn't configure all of them). 
+Here is an example of a fully configured budget file.
 
 ~~~json
 {
@@ -103,7 +103,8 @@ Here is an example of a fully configurued budget file. It shows you what you *ca
       "javascript": 0,
       "css": 1,
       "image": 50,
-      "font": 0
+      "font": 0,
+      "httpErrors" : 0
     },
     "transferSize": {
       "total": 400000,
@@ -177,8 +178,14 @@ And then you can always combine them all.
 
 If you need more metrics for your budget, either [create an issue](https://github.com/sitespeedio/sitespeed.io/issues/new) or look below for using the full internal data structure.
 
-#### Budget configuration using the internal data structrure
-There's also an old version of settiung a budget where you can do it for all metrics collected by sitespeed.io and works on the internal data structure.
+#### All possible metrics you can configure
+
+~~~json
+{% include_relative friendlynames.md %}
+~~~
+
+#### Budget configuration using the internal data structure
+There's also an old version of setting a budget where you can do it for all metrics collected by sitespeed.io and works on the internal data structure.
 
 
 You can read more about the metrics/data structure in the [metrics section]({{site.baseurl}}/documentation/sitespeed.io/metrics/).

@@ -1,6 +1,6 @@
-# sitespeed.io Github action
+# sitespeed.io GitHub action
 
-If you are using [Github Actions](https://github.com/features/actions) beta it's super easy to run sitespeed.io. Remember though that actions are in beta and can change. They are running an small instances at the moment so you shouldn't rely on timing metrics. 
+If you are using [GitHub Actions](https://github.com/features/actions) beta it's super easy to run sitespeed.io. Remember though that actions are in beta and can change. They are running an small instances at the moment so you shouldn't rely on timing metrics. 
 
 Actions works good with a [performance budget](https://www.sitespeed.io/documentation/sitespeed.io/performance-budget/). You should set your budget in a file in the repo that you are testing. In this example we call the file *budget.json* and put it in the *.github* folder in the repo.
 
@@ -28,7 +28,7 @@ Setup a simple budget that check the URLs you test against number of requests, t
 }
 ```
 
-Then you can setup your action either via the Github GUI or using configuration. Make sure to setup your action to the right Docker file: ```docker://sitespeedio/sitespeed.io:8.0.6-action```.
+Then you can setup your action either via the GitHub GUI or using configuration. Make sure to setup your action to the right Docker file: ```docker://sitespeedio/sitespeed.io:8.0.6-action```.
 
 A simple setup looks something like this:
 

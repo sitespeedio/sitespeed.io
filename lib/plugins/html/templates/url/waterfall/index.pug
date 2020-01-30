@@ -1,5 +1,14 @@
 a#waterfall
 h3 Waterfall
+.downloads
+  - const harEnding = options.gzipHAR ? '.har.gz' : '.har'
+  - const harName = 'data/browsertime' + harEnding
+  - const harDownloadName = downloadName + harEnding
+  
+  a.button.button-download(href=harName, download=harDownloadName) Download HAR
+  if (options.html && options.html.compareURL && options.resultBaseURL)
+    - const compareURL =  options.html.compareURL + '?compare=1&har1=' + context.resultUrls.absoluteSummaryPagePath(daurl) + harName
+    a.button.button-download(href=compareURL) Compare
 
 //- on the summary page, display which run that was chosen for the HAR
 if medianRun
@@ -12,16 +21,10 @@ if medianRun
 if (options.html.showAllWaterfallSummary === true)
   p Choose HAR:
   select#page-selector
-  
+
 #legend-holder
 
 if options.html.fetchHARFiles
   include ./fetchHAR.pug
 else
   include ./includeHARinHTML.pug
-
-.downloads
-  - const harEnding = options.gzipHAR ? '.har.gz' : '.har'
-  - const harName = 'data/browsertime' + harEnding
-  - const harDownloadName = downloadName + harEnding
-  a.button.button-download(href=harName, download=harDownloadName) Download HAR

@@ -23,13 +23,12 @@ You can run your tests on Chrome on Android phones.
 ### Prerequisites
 
 We normally recommends using our Docker containers when you run sitespeed.io/Browsertime. However driving Android from Docker only works on a Linux host since there's is no way at the moment to map USB on Mac. If you use a Mac Mini or another Mac computer you should use the npm version.
-try 
+try
 #### Desktop
 
 If you don't use Docker you need to:
 
 - Install the [Android SDK](http://developer.android.com/sdk/index.html#downloads) on your desktop (just the command line tools!). If you are on a Mac and use [Homebrew](http://brew.sh/) just run: <code>brew tap caskroom/cask && brew cask install android-platform-tools</code>
-- Start the adb-server on your desktop: <code>adb start-server</code>
 
 #### On your phone
 
@@ -100,7 +99,7 @@ And using Docker (remember: only works in Linux hosts):
 docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  -n 1 --android --browsertime.xvfb false https://www.sitespeed.io
 ```
 
-If you want to run Docker on Mac OS X, you can follow Appiums [setup](https://github.com/appium/appium-docker-android) by creating a docker-machine, give ut USB access and then run the container from that Docker machine.
+If you want to run Docker on Mac OS X, you can follow Appiums [setup](https://github.com/appium/appium-docker-android) by creating a docker-machine, give out USB access and then run the container from that Docker machine.
 
 ### Driving multiple phones from the same computer
 
@@ -111,7 +110,7 @@ You can do that with the `--device` Docker command:
 
 The first part is the bus and that will not change, but the second part _devnum_ changes if you unplug the device or restart,
 
-You need to know which phone are connected to which usb port.
+You need to know which phone are connected to which USB port.
 
 Here's an example on how you can get that automatically before you start the container, feeding the unique id (that you get from _lsusb_).
 
@@ -145,11 +144,11 @@ You can choose which Chrome version you want to run on your phone using `--chrom
 * Chromium - *org.chromium.chrome*
 
 If you installed Chrome Canary on your phone and want to use it, then add `--chrome.android.package com.chrome.canary` to your run.
- Driving different versions needs different versions of the Chromedriver. The Chrome version number needs to match the Chromedriver version number. Browsertime/sitespeed.io ships with the latest stable version of the Chromedriver. If you want to run other versions, you need to [download from the official Chromedriver page](https://chromedriver.chromium.org/downloads). And then you specify the version by using `--chrome.chromedriverPath`.
+ Driving different versions needs different versions of the ChromeDriver. The Chrome version number needs to match the ChromeDriver version number. Browsertime/sitespeed.io ships with the latest stable version of the ChromeDriver. If you want to run other versions, you need to [download from the official ChromeDriver page](https://chromedriver.chromium.org/downloads). And then you specify the version by using `--chrome.chromedriverPath`.
 
 ### Collect trace log
 
-One important thing when testing on mobile is to analyze the Chrome trace log. You can get that with `--cpu`:
+One important thing when testing on mobile is to analyse the Chrome trace log. You can get that with `--cpu`:
 
 ```bash
 sitespeed.io --android --cpu https://www.sitespeed.io
@@ -167,7 +166,7 @@ To be able to test you need latest OS X Catalina on your Mac computer and iOS 13
 
 Run your test using npm (instead of Docker).
 
-*Safardriver* the driver that drives Safari is bundled in iOS. But to be able to use it you need to enable it with:
+*SafariDriver* the driver that drives Safari is bundled in OS X. But to be able to use it you need to enable it with:
 
 ```bash
 safaridriver --enable
@@ -178,6 +177,8 @@ safaridriver --enable
 On Safari you need to enable **Remote Automation** to be able to drive it with WebDriver. To do this, toggle the setting in *Settings → Safari → Advanced → Remote Automation*.
 
 Plug in the phone into your machine and *trust the host* and make sure that your phone is unlocked when you run your tests.
+
+Your phone needs to be unlocked (turn off *Auto-Lock*) and make sure to turn down the brightness, so that you save energy.
 
 If you have any problems, make sure to read the [WebKit blog post about setting up your phone for Selenium](https://webkit.org/blog/9395/webdriver-is-coming-to-safari-in-ios-13/).
 
@@ -194,5 +195,7 @@ At the moment there are a couple of limitations running Safari:
 
 * No HAR file
 * No videos
+* No way to set request headers
+* No built in setting connectivity
 
 You can help us [adding support in Browsertime](https://github.com/sitespeedio/browsertime)!

@@ -1,43 +1,45 @@
 sitespeed.js [options] <url>/<file>
 
 Browser
-  --browsertime.browser, -b, --browser                                      Choose which Browser to use when you test. Safari only works on Mac OS X and iOS 13 (or later). Chrome needs to be the same version as the current installed  Chromedriver (check the changelog for what version that is currently used). Use --chrome.chromedriverPath to use another Chromedriver version.  [choices: "chrome", "firefox", "safari"] [default: "chrome"]
-  --browsertime.iterations, -n                                              How many times you want to test each page  [default: 3]
-  --browsertime.spa, --spa                                                  Convenient parameter to use if you test a SPA application: will automatically wait for X seconds after last network activity and use hash in file names. Read https://www.sitespeed.io/documentation/sitespeed.io/spa/  [boolean] [default: false]
-  --browsertime.connectivity.profile, -c, --connectivity                    The connectivity profile. To actually set the connectivity you can choose between Docker networks or Throttle, read https://www.sitespeed.io/documentation/sitespeed.io/connectivity/  [choices: "3g", "3gfast", "3gslow", "3gem", "2g", "cable", "native", "custom"] [default: "native"]
-  --browsertime.connectivity.alias                                          Give your connectivity profile a custom name
-  --browsertime.connectivity.downstreamKbps, --downstreamKbps               This option requires --connectivity be set to "custom".
-  --browsertime.connectivity.upstreamKbps, --upstreamKbps                   This option requires --connectivity be set to "custom".
-  --browsertime.connectivity.latency, --latency                             This option requires --connectivity be set to "custom".
-  --connectivity.engine                                                     The engine for connectivity. Throttle works on Mac and tc based Linux. Use external if you set the connectivity outside of Browsertime. Use tsproxy if you are using Kubernetes. More documentation at https://www.sitespeed.io/documentation/sitespeed.io/connectivity/.  [choices: "external", "throttle", "tsproxy"] [default: "external"]
-  --browsertime.pageCompleteCheck, --pageCompleteCheck                      Supply a Javascript that decides when the browser is finished loading the page and can start to collect metrics. The Javascript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd.
-  --browsertime.pageCompleteWaitTime, --pageCompleteWaitTime                How long time you want to wait for your pageComplteteCheck to finish, after it is signaled to closed. Extra parameter passed on to your pageCompleteCheck.  [default: 5000]
-  --browsertime.pageCompleteCheckInactivity, --pageCompleteCheckInactivity  Alternative way to choose when to end your test. This will wait for 2 seconds of inactivity that happens after loadEventEnd.  [boolean] [default: false]
-  --browsertime.script, --script                                            Add custom Javascript that collect metrics and run after the page has finished loading. Note that --script can be passed multiple times if you want to collect multiple metrics. The metrics will automatically be pushed to the summary/detailed summary and each individual page + sent to Graphite/InfluxDB.
-  --browsertime.injectJs, --injectJs                                        Inject JavaScript into the current page at document_start. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
-  --browsertime.selenium.url                                                Configure the path to the Selenium server when fetching timings using browsers. If not configured the supplied NodeJS/Selenium version is used.
-  --browsertime.viewPort, --viewPort                                        The browser view port size WidthxHeight like 400x300  [default: "1366x708"]
-  --browsertime.userAgent, --userAgent                                      The full User Agent string, defaults to the User Agent used by the browsertime.browser option.
-  --browsertime.preURL, --preURL                                            A URL that will be accessed first by the browser before the URL that you wanna analyze. Use it to fill the cache.
-  --browsertime.preScript, --preScript                                      Selenium script(s) to run before you test your URL. They will run outside of the analyze phase. Note that --preScript can be passed multiple times.
-  --browsertime.postScript, --postScript                                    Selenium script(s) to run after you test your URL. They will run outside of the analyze phase. Note that --postScript can be passed multiple times.
-  --browsertime.delay, --delay                                              Delay between runs, in milliseconds. Use it if your web server needs to rest between runs :)
-  --browsertime.pageLoadStrategy, --pageLoadStrategy                        The Page Load Strategy decides when you have control of the page load. Default is normal meaning you will have control after onload. You can change that to none to get control direct after navigation.  [choices: "normal", "none"] [default: "normal"]
-  --browsertime.visualMetrics, --visualMetrics, --speedIndex                Calculate Visual Metrics like SpeedIndex, First Visual Change and Last Visual Change. Requires FFMpeg and Python dependencies  [boolean]
-  --browsertime.visualElements, --visualElements                            Collect Visual Metrics from elements. Works only with --visualMetrics turned on. By default you will get visual metrics from the largest image within the view port and the largest h1. You can also configure to pickup your own defined elements with --scriptInput.visualElements  [boolean]
-  --browsertime.scriptInput.visualElements, --scriptInput.visualElements    Include specific elements in visual elements. Give the element a name and select it with document.body.querySelector. Use like this: --scriptInput.visualElements name:domSelector . Add multiple instances to measure multiple elements. Visual Metrics will use these elements and calculate when they are visible and fully rendered.
-  --browsertime.scriptInput.longTask, --minLongTaskLength                   Set the minimum length of a task to be categorised as a CPU Long Task. It can never be smaller than 50. The value is in ms and you make Browsertime collect long tasks using --chrome.collectLongTasks or --cpu.  [number] [default: 50]
-  --browsertime.video, --video                                              Record a video and store the video. Set it to false to remove the video that is created by turning on visualMetrics. To remove fully turn off video recordings, make sure to set video and visualMetrics to false. Requires FFMpeg to be installed.  [boolean]
-  --browsertime.videoParams.framerate, --videoParams.framerate, --fps       Frames per second in the video  [default: 30]
-  --browsertime.videoParams.crf, --videoParams.crf                          Constant rate factor for the end result video, see https://trac.ffmpeg.org/wiki/Encode/H.264#crf  [default: 23]
-  --browsertime.videoParams.addTimer, --videoParams.addTimer                Add timer and metrics to the video  [boolean] [default: true]
-  --browsertime.userTimingWhitelist, --userTimingWhitelist                  This option takes a regex that will whitelist which userTimings to capture in the results. All userTimings are captured by default. T
-  --browsertime.axe.enable, --axe.enable                                    Run axe tests. Axe will run after all other metrics is collected and will add some extra time to each test.  [boolean]
-  --browsertime.requestheader, -r, --requestheader                          Request header that will be added to the request. Add multiple instances to add multiple request headers. Use the following format key:value. Only works in Chrome and Firefox.
-  --browsertime.cookie, --cookie                                            Cookie that will be added to the request. Add multiple instances to add multiple cookies. Use the following format cookieName=cookieValue. Only works in Chrome and Firefox.
-  --browsertime.block, --block                                              Domain to block. Add multiple instances to add multiple domains that will be blocked. Only works in Chrome and Firefox.
-  --browsertime.basicAuth, --basicAuth                                      Use it if your server is behind Basic Auth. Format: username@password. Only works in Chrome and Firefox.
-  --browsertime.headless, --headless                                        Run the browser in headless mode. This is the browser internal headless mode, meaning you cannot collect Visual Metrics or in Chrome run any WebExtension (this means you cannot add cookies, requestheaders or use basic auth for headless Chrome). Only works in Chrome and Firefox.  [boolean] [default: false]
+  --browsertime.browser, -b, --browser                                        Choose which Browser to use when you test. Safari only works on Mac OS X and iOS 13 (or later). Chrome needs to be the same version as the current installed  ChromeDriver (check the changelog for what version that is currently used). Use --chrome.chromedriverPath to use another ChromeDriver version.  [choices: "chrome", "firefox", "safari"] [default: "chrome"]
+  --browsertime.iterations, -n                                                How many times you want to test each page  [default: 3]
+  --browsertime.spa, --spa                                                    Convenient parameter to use if you test a SPA application: will automatically wait for X seconds after last network activity and use hash in file names. Read https://www.sitespeed.io/documentation/sitespeed.io/spa/  [boolean] [default: false]
+  --browsertime.connectivity.profile, -c                                      The connectivity profile. To actually set the connectivity you can choose between Docker networks or Throttle, read https://www.sitespeed.io/documentation/sitespeed.io/connectivity/  [string] [choices: "3g", "3gfast", "3gslow", "3gem", "2g", "cable", "native", "custom"] [default: "native"]
+  --browsertime.connectivity.alias                                            Give your connectivity profile a custom name  [string]
+  --browsertime.connectivity.downstreamKbps, --downstreamKbps                 This option requires --connectivity be set to "custom".
+  --browsertime.connectivity.upstreamKbps, --upstreamKbps                     This option requires --connectivity be set to "custom".
+  --browsertime.connectivity.latency, --latency                               This option requires --connectivity be set to "custom".
+  --browsertime.connectivity.engine, --connectivity.engine                    The engine for connectivity. Throttle works on Mac and tc based Linux. Use external if you set the connectivity outside of Browsertime. Use tsproxy if you are using Kubernetes. More documentation at https://www.sitespeed.io/documentation/sitespeed.io/connectivity/.  [string] [choices: "external", "throttle", "tsproxy"] [default: "external"]
+  --browsertime.pageCompleteCheck, --pageCompleteCheck                        Supply a JavaScript that decides when the browser is finished loading the page and can start to collect metrics. The JavaScript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd.
+  --browsertime.pageCompleteWaitTime, --pageCompleteWaitTime                  How long time you want to wait for your pageComplteteCheck to finish, after it is signaled to closed. Extra parameter passed on to your pageCompleteCheck.  [default: 5000]
+  --browsertime.pageCompleteCheckInactivity, --pageCompleteCheckInactivity    Alternative way to choose when to end your test. This will wait for 2 seconds of inactivity that happens after loadEventEnd.  [boolean] [default: false]
+  --browsertime.pageCompleteCheckPollTimeout, --pageCompleteCheckPollTimeout  The time in ms to wait for running the page complete check the next time.  [number] [default: 200]
+  --browsertime.pageCompleteCheckStartWait, --pageCompleteCheckStartWait      The time in ms to wait for running the page complete check for the first time. Use this when you have a pageLoadStrategy set to none  [number] [default: 500]
+  --browsertime.pageLoadStrategy, --pageLoadStrategy                          Set the strategy to waiting for document readiness after a navigation event. After the strategy is ready, your pageCompleteCheck will start running. This only work for Firefox and Chrome and please check which value each browser implements.  [string] [choices: "eager", "none", "normal"] [default: "normal"]
+  --browsertime.script, --script                                              Add custom Javascript that collect metrics and run after the page has finished loading. Note that --script can be passed multiple times if you want to collect multiple metrics. The metrics will automatically be pushed to the summary/detailed summary and each individual page + sent to Graphite/InfluxDB.
+  --browsertime.injectJs, --injectJs                                          Inject JavaScript into the current page at document_start. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
+  --browsertime.selenium.url                                                  Configure the path to the Selenium server when fetching timings using browsers. If not configured the supplied NodeJS/Selenium version is used.
+  --browsertime.viewPort, --viewPort                                          The browser view port size WidthxHeight like 400x300  [default: "1366x708"]
+  --browsertime.userAgent, --userAgent                                        The full User Agent string, defaults to the User Agent used by the browsertime.browser option.
+  --browsertime.preURL, --preURL                                              A URL that will be accessed first by the browser before the URL that you wanna analyse. Use it to fill the cache.
+  --browsertime.preScript, --preScript                                        Selenium script(s) to run before you test your URL. They will run outside of the analyse phase. Note that --preScript can be passed multiple times.
+  --browsertime.postScript, --postScript                                      Selenium script(s) to run after you test your URL. They will run outside of the analyse phase. Note that --postScript can be passed multiple times.
+  --browsertime.delay, --delay                                                Delay between runs, in milliseconds. Use it if your web server needs to rest between runs :)
+  --browsertime.visualMetrics, --visualMetrics, --speedIndex                  Calculate Visual Metrics like SpeedIndex, First Visual Change and Last Visual Change. Requires FFMpeg and Python dependencies  [boolean]
+  --browsertime.visualElements, --visualElements                              Collect Visual Metrics from elements. Works only with --visualMetrics turned on. By default you will get visual metrics from the largest image within the view port and the largest h1. You can also configure to pickup your own defined elements with --scriptInput.visualElements  [boolean]
+  --browsertime.scriptInput.visualElements, --scriptInput.visualElements      Include specific elements in visual elements. Give the element a name and select it with document.body.querySelector. Use like this: --scriptInput.visualElements name:domSelector . Add multiple instances to measure multiple elements. Visual Metrics will use these elements and calculate when they are visible and fully rendered.
+  --browsertime.scriptInput.longTask, --minLongTaskLength                     Set the minimum length of a task to be categorised as a CPU Long Task. It can never be smaller than 50. The value is in ms and you make Browsertime collect long tasks using --chrome.collectLongTasks or --cpu.  [number] [default: 50]
+  --browsertime.video, --video                                                Record a video and store the video. Set it to false to remove the video that is created by turning on visualMetrics. To remove fully turn off video recordings, make sure to set video and visualMetrics to false. Requires FFMpeg to be installed.  [boolean]
+  --browsertime.videoParams.framerate, --videoParams.framerate, --fps         Frames per second in the video  [default: 30]
+  --browsertime.videoParams.crf, --videoParams.crf                            Constant rate factor for the end result video, see https://trac.ffmpeg.org/wiki/Encode/H.264#crf  [default: 23]
+  --browsertime.videoParams.addTimer, --videoParams.addTimer                  Add timer and metrics to the video  [boolean] [default: true]
+  --browsertime.userTimingWhitelist, --userTimingWhitelist                    This option takes a regex that will whitelist which userTimings to capture in the results. All userTimings are captured by default. T
+  --axe.enable                                                                Run axe tests. Axe will run after all other metrics is collected and will add some extra time to each test.  [boolean]
+  --browsertime.requestheader, -r, --requestheader                            Request header that will be added to the request. Add multiple instances to add multiple request headers. Use the following format key:value. Only works in Chrome and Firefox.
+  --browsertime.cookie, --cookie                                              Cookie that will be added to the request. Add multiple instances to add multiple cookies. Use the following format cookieName=cookieValue. Only works in Chrome and Firefox.
+  --browsertime.block, --block                                                Domain to block. Add multiple instances to add multiple domains that will be blocked. Only works in Chrome and Firefox.
+  --browsertime.basicAuth, --basicAuth                                        Use it if your server is behind Basic Auth. Format: username@password. Only works in Chrome and Firefox.
+  --browsertime.headless, --headless                                          Run the browser in headless mode. This is the browser internal headless mode, meaning you cannot collect Visual Metrics or in Chrome run any WebExtension (this means you cannot add cookies, requestheaders or use basic auth for headless Chrome). Only works in Chrome and Firefox.  [boolean] [default: false]
 
 Filmstrip
   --browsertime.videoParams.filmstripFullSize, --videoParams.filmstripFullSize  Keep original sized screenshots in the filmstrip. Will make the run take longer time  [boolean] [default: false]
@@ -53,6 +55,7 @@ Firefox
   --browsertime.firefox.binaryPath, --firefox.binaryPath                        Path to custom Firefox binary (e.g. Firefox Nightly). On OS X, the path should be to the binary inside the app bundle, e.g. /Applications/Firefox.app/Contents/MacOS/firefox-bin
   --browsertime.firefox.preference, --firefox.preference                        Extra command line arguments to pass Firefox preferences by the format key:value To add multiple preferences, repeat --firefox.preference once per argument.
   --browsertime.firefox.acceptInsecureCerts, --firefox.acceptInsecureCerts      Accept insecure certs  [boolean]
+  --browsertime.firefox.windowRecorder, --firefox.windowRecorder                Use the internal compositor-based Firefox window recorder to emit PNG files for each frame that is a meaningful change.  The PNG output will further be merged into a variable frame rate video for analysis. Use this instead of ffmpeg to record a video (you still need the --video flag).  [boolean] [default: false]
   --browsertime.firefox.collectMozLog, --firefox.collectMozLog                  Collect the MOZ HTTP log  [boolean]
 
 Chrome
@@ -65,7 +68,7 @@ Chrome
   --browsertime.chrome.enableTraceScreenshots, --chrome.enableTraceScreenshots  Include screenshots in the trace log (enabling the trace category disabled-by-default-devtools.screenshot).  [boolean]
   --browsertime.chrome.collectConsoleLog, --chrome.collectConsoleLog            Collect Chromes console log and save to disk.  [boolean]
   --browsertime.chrome.binaryPath, --chrome.binaryPath                          Path to custom Chrome binary (e.g. Chrome Canary). On OS X, the path should be to the binary inside the app bundle, e.g. "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary"
-  --browsertime.chrome.chromedriverPath, --chrome.chromedriverPath              Path to custom Chromedriver binary. Make sure to use a Chromedriver version that's compatible with the version of Chrome you're using
+  --browsertime.chrome.chromedriverPath, --chrome.chromedriverPath              Path to custom ChromeDriver binary. Make sure to use a ChromeDriver version that's compatible with the version of Chrome you're using
   --browsertime.chrome.cdp.performance, --chrome.cdp.performance                Collect Chrome performance metrics from Chrome DevTools Protocol  [boolean] [default: true]
   --browsertime.chrome.collectLongTasks, --chrome.collectLongTasks              Collect CPU long tasks, using the Long Task API  [boolean]
   --browsertime.chrome.CPUThrottlingRate, --chrome.CPUThrottlingRate            Enables CPU throttling to emulate slow CPUs. Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc)  [number]
@@ -90,27 +93,33 @@ Crawler
   --crawler.depth, -d     How deep to crawl (1=only one page, 2=include links from first page, etc.)
   --crawler.maxPages, -m  The max number of pages to test. Default is no limit.
   --crawler.exclude       Exclude URLs matching the provided regular expression (ex: "/some/path/", "://some\.domain/"). Can be provided multiple times.
+  --crawler.include       Discard URLs not matching the provided regular expression (ex: "/some/path/", "://some\.domain/"). Can be provided multiple times.
 
 Grafana
-  --grafana.host  The Grafana host used when sending annotations.
-  --grafana.port  The Grafana port used when sending annotations to Grafana.  [default: 80]
-  --grafana.auth  The Grafana auth/bearer value used when sending annotations to Grafana. See http://docs.grafana.org/http_api/auth/#authentication-api
+  --grafana.host                  The Grafana host used when sending annotations.
+  --grafana.port                  The Grafana port used when sending annotations to Grafana.  [default: 80]
+  --grafana.auth                  The Grafana auth/bearer value used when sending annotations to Grafana. See http://docs.grafana.org/http_api/auth/#authentication-api
+  --grafana.annotationTitle       Add a title to the annotation sent for a run.
+  --grafana.annotationMessage     Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
+  --grafana.annotationTag         Add a extra tag to the annotation sent for a run. Repeat the --grafana.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
+  --grafana.annotationScreenshot  Include screenshot (from Browsertime/WebPageTest) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
 
 Graphite
-  --graphite.host                  The Graphite host used to store captured metrics.
-  --graphite.port                  The Graphite port used to store captured metrics.  [default: 2003]
-  --graphite.auth                  The Graphite user and password used for authentication. Format: user:password
-  --graphite.httpPort              The Graphite port used to access the user interface and send annotations event  [default: 8080]
-  --graphite.webHost               The graphite-web host. If not specified graphite.host will be used.
-  --graphite.namespace             The namespace key added to all captured metrics.  [default: "sitespeed_io.default"]
-  --graphite.includeQueryParams    Whether to include query parameters from the URL in the Graphite keys or not  [boolean] [default: false]
-  --graphite.arrayTags             Send the tags as Array or a String. In Graphite 1.0 the tags is a array. Before a String  [boolean] [default: true]
-  --graphite.annotationTitle       Add a title to the annotation sent for a run.
-  --graphite.annotationMessage     Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
-  --graphite.annotationScreenshot  Include screenshot (from Browsertime) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
-  --graphite.statsd                Uses the StatsD interface  [boolean] [default: false]
-  --graphite.annotationTag         Add a extra tag to the annotation sent for a run. Repeat the --graphite.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
-  --graphite.bulkSize              Break up number of metrics to send with each request.  [number] [default: null]
+  --graphite.host                       The Graphite host used to store captured metrics.
+  --graphite.port                       The Graphite port used to store captured metrics.  [default: 2003]
+  --graphite.auth                       The Graphite user and password used for authentication. Format: user:password
+  --graphite.httpPort                   The Graphite port used to access the user interface and send annotations event  [default: 8080]
+  --graphite.webHost                    The graphite-web host. If not specified graphite.host will be used.
+  --graphite.namespace                  The namespace key added to all captured metrics.  [default: "sitespeed_io.default"]
+  --graphite.includeQueryParams         Whether to include query parameters from the URL in the Graphite keys or not  [boolean] [default: false]
+  --graphite.arrayTags                  Send the tags as Array or a String. In Graphite 1.0 the tags is a array. Before a String  [boolean] [default: true]
+  --graphite.annotationTitle            Add a title to the annotation sent for a run.
+  --graphite.annotationMessage          Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
+  --graphite.annotationScreenshot       Include screenshot (from Browsertime/WebPageTest) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
+  --graphite.statsd                     Uses the StatsD interface  [boolean] [default: false]
+  --graphite.annotationTag              Add a extra tag to the annotation sent for a run. Repeat the --graphite.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
+  --graphite.bulkSize                   Break up number of metrics to send with each request.  [number] [default: null]
+  --graphite.experimental.perIteration  Experimental setup to send each iteration of metrics to Graphite. Experimental means this can change and is not released as stable. Use it with care.  [boolean] [default: false]
 
 Plugins
   --plugins.list    List all configured plugins in the log.  [boolean]
@@ -167,7 +176,7 @@ Slack
   --slack.type          Send summary for a run, metrics from all URLs, only on errors or all to Slack.  [choices: "summary", "url", "error", "all"] [default: "all"]
   --slack.limitWarning  The limit to get a warning in Slack using the limitMetric  [default: 90]
   --slack.limitError    The limit to get a error in Slack using the limitMetric  [default: 80]
-  --slack.limitMetric   The metric that will be used to set warning/error  [choices: "coachScore", "speedIndex", "firstVisualChange", "firstPaint", "visualComplete85", "lastVisualChange", "fullyLoaded"] [default: "coachScore"]
+  --slack.limitMetric   The metric that will be used to set warning/error. You can choose only one at the moment.  [choices: "coachScore", "speedIndex", "firstVisualChange", "firstPaint", "visualComplete85", "lastVisualChange", "fullyLoaded"] [default: "coachScore"]
 
 s3
   --s3.endpoint           The S3 endpoint. Optional depending on your settings.
@@ -183,7 +192,7 @@ s3
 
 GoogleCloudStorage
   --gcs.projectId          The Google Cloud storage Project ID
-  --gcs.key                The Google Cloud storage service account key
+  --gcs.key                The path to the Google Cloud storage service account key JSON.
   --gcs.bucketname         Name of the Google Cloud storage bucket
   --gcs.public             Make uploaded results to Google Cloud storage publicly readable.  [boolean] [default: false]
   --gcs.gzip               Add content-encoding for gzip to the uploaded files. Read more at https://cloud.google.com/storage/docs/transcoding. If you host your results directly from the bucket, gzip must be set to false  [boolean] [default: false]
@@ -191,12 +200,15 @@ GoogleCloudStorage
   --gcs.removeLocalResult  Remove all the local result files after they have been uploaded to Google Cloud storage.  [boolean] [default: false]
 
 HTML
-  --html.showAllWaterfallSummary  Set to true to show all waterfalls on page summary HTML report  [boolean] [default: false]
-  --html.fetchHARFiles            Set to true to load HAR files using fetch instead of including them in the HTML. Turn this on if serve your pages using a server.  [boolean] [default: false]
-  --html.logDownloadLink          Adds a link in the HTML so you easily can download the logs from the sitespeed.io run. If your server is public, be careful so you don't log passwords etc  [boolean] [default: false]
-  --html.topListSize              Maximum number of assets to include in each toplist in the toplist tab  [default: 10]
-  --html.showScript               Show a link to the script you use to run. Be careful if your result is public and you keep passwords in your script.  [boolean] [default: false]
-  --html.assetsBaseURL            The base URL to the server serving the assets of HTML results. In the format of https://result.sitespeed.io. This can be used to reduce size in large setups. If set, disables writing of assets to the output folder.
+  --html.showAllWaterfallSummary        Set to true to show all waterfalls on page summary HTML report  [boolean] [default: false]
+  --html.fetchHARFiles                  Set to true to load HAR files using fetch instead of including them in the HTML. Turn this on if serve your pages using a server.  [boolean] [default: false]
+  --html.logDownloadLink                Adds a link in the HTML so you easily can download the logs from the sitespeed.io run. If your server is public, be careful so you don't log passwords etc  [boolean] [default: false]
+  --html.topListSize                    Maximum number of assets to include in each toplist in the toplist tab  [default: 10]
+  --html.showScript                     Show a link to the script you use to run. Be careful if your result is public and you keep passwords in your script.  [boolean] [default: false]
+  --html.assetsBaseURL                  The base URL to the server serving the assets of HTML results. In the format of https://result.sitespeed.io. This can be used to reduce size in large setups. If set, disables writing of assets to the output folder.
+  --html.compareURL, --html.compareUrl  Will add a link on the waterfall page, helping you to compare the HAR. The full path to your compare installation. In the format of https://compare.sitespeed.io/
+  --html.pageSummaryMetrics             Select from a list of metrics to be displayed for given URL(s).  Pass on multiple --html.pageSummaryMetrics to add more than one column. This is best used as an array in your config.json file.  [default: ["transferSize.total","requests.total","thirdParty.requests","transferSize.javascript","transferSize.css","transferSize.image","score.performance"]]
+  --html.summaryBoxes                   Select required summary information to be displayed on result index page.  [default: ["score.score","score.accessibility","score.bestpractice","score.privacy","score.performance","timings.firstPaint","timings.fullyLoaded","timings.pageLoadTime","timings.FirstVisualChange","timings.LastVisualChange","timings.SpeedIndex","timings.PerceptualSpeedIndex","timings.VisualReadiness","timings.VisualComplete","requests.total","requests.javascript","requests.css","requests.image","transferSize.total","transferSize.html","transferSize.javascript","contentSize.javascript","transferSize.css","transferSize.image","thirdParty.transferSize","thirdParty.requests","webpagetest.SpeedIndex","webpagetest.lastVisualChange","webpagetest.render","webpagetest.visualComplete","webpagetest.visualComplete95","webpagetest.TTFB","webpagetest.fullyLoaded","axe.critical","axe.serious","axe.minor","axe.moderate","cpu.longTasksTotalDuration","cpu.longTasks","cpu.totalBlockingTime","cpu.maxPotentialFid"]]
 
 Text
   --summary         Show brief text summary to stdout  [boolean] [default: false]
@@ -210,7 +222,7 @@ Options:
   --plugins.disable  [array]
   --plugins.load  [array]
   --mobile                          Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Apple iPhone 6.  [boolean] [default: false]
-  --resultBaseURL                   The base URL to the server serving the HTML result. In the format of https://result.sitespeed.io
+  --resultBaseURL, --resultBaseUrl  The base URL to the server serving the HTML result. In the format of https://result.sitespeed.io
   --gzipHAR                         Compress the HAR files with GZIP.  [boolean] [default: false]
   --outputFolder                    The folder where the result will be stored.  [string]
   --firstParty                      A regex running against each request and categorize it as first vs third party URL. (ex: ".*sitespeed.*")

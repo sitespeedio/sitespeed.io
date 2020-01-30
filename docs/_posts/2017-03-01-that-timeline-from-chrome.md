@@ -30,9 +30,9 @@ docker run --privileged --shm-size=1g --network=cable --rm sitespeedio/sitespeed
 You have more examples [here]({{site.baseurl}}/documentation/sitespeed.io/browsers/#change-connectivity) and would love feedback and PRs on how to do the same on platforms not supporting tc.
 
 ## Get that timeline
-You can now turn on the trace log for Chrome when you analyze a page. The trace log will be saved to disk and you can drag and drop it into the Timeline in Chrome. This also works if you run Chrome on your Android phone. We also added support for doing the same with WebPageTest (you could turn on Timeline before but we didn't automatically fetch it).
+You can now turn on the trace log for Chrome when you analyse a page. The trace log will be saved to disk and you can drag and drop it into the Timeline in Chrome. This also works if you run Chrome on your Android phone. We also added support for doing the same with WebPageTest (you could turn on Timeline before but we didn't automatically fetch it).
 
-As an extra bonus, there's a Chrome trace message that is passed inside sitespeed.io when the trace is collected so your plugin can collect it and analyze the data. Look out from *browsertime.chrometrace* and *webpagetest.chrometrace* messages to pickup the trace. We are looking forward to the first plugin that will use it :)
+As an extra bonus, there's a Chrome trace message that is passed inside sitespeed.io when the trace is collected so your plugin can collect it and analyse the data. Look out from *browsertime.chrometrace* and *webpagetest.chrometrace* messages to pickup the trace. We are looking forward to the first plugin that will use it :)
 
 Turn on the log with <code>--browsertime.chrome.dumpTraceCategoriesLog</code>, unpack the file and drop it in your timeline in dev-tools in Chrome.
 

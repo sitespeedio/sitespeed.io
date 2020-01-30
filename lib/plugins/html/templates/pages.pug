@@ -8,35 +8,52 @@ mixin rows(pages)
     - b = pageInfo.data.browsertime ? pageInfo.data.browsertime.pageSummary : {}
     - t = p.contentTypes || {javascript: {transferSize: ''}, css: {transferSize: ''}, image: {transferSize: ''}}
     - display = (options.urlsMetaData && options.urlsMetaData[url] && options.urlsMetaData[url].alias) ? options.urlsMetaData[url].alias : url
-    - display = (pageInfo.data.browsertime && b.info.alias) ? b.info.alias : display 
+    - display = (pageInfo.data.browsertime && b.info.alias) ? b.info.alias : display
+    - metricList = html.pageSummaryMetrics
     tr
       td.url.pagesurl(data-title='URL')
         a(href= pageInfo.path + 'index.html')= decodeURIComponent(display)
-      +kbSizeCell('Total size', p.transferSize)
-      +numberCell('Requests', p.requests)
-      +numberCell('3rd Party Requests', tp.requests ? tp.requests.total.median : 0)
+
       if b.visualMetrics && b.visualMetrics[0]
         +numberCell('First Visual Change', b.visualMetrics[0].FirstVisualChange)
         +numberCell('Speed Index', b.visualMetrics[0].SpeedIndex)
         +numberCell('Last Visual Change', b.visualMetrics[0].LastVisualChange)
-      else
-        +kbSizeCell('Javascript size', h.get(t.javascript, 'transferSize'))
-        +kbSizeCell('CSS size', h.get(t.css, 'transferSize'))
-        +kbSizeCell('Image size', h.get(t.image, 'transferSize'))
-      if pageInfo.data.coach
-        - score = pageInfo.data.coach.pageSummary.advice.performance.score
-        td.number(data-title='Performance score', data-value= score)
-          - label = 'label ' +  h.scoreLabel(score)
-          span(class=label) #{score}
-      else
-        td
+
+      each metric in metricList
+        - [m, metricType] = metric.split('.')
+        - fullPath = ''
+        - toolName = ''
+        each tool in Object.keys(friendlyNames)
+          - toolName = tool
+          - fullPath = friendlyNames[tool][m] && friendlyNames[tool][m][metricType] ? friendlyNames[tool][m][metricType].path : undefined
+          - name = friendlyNames[tool][m] && friendlyNames[tool][m][metricType] ? friendlyNames[tool][m][metricType].name : ''
+          if (fullPath !== undefined)
+            - break
+        - value = pageInfo.data[toolName] ? get(pageInfo.data[toolName].pageSummary, fullPath, 0) : 0
+        if (fullPath.indexOf('Size') > -1)
+          +kbSizeCell(name, value)
+        else if metricType === 'performance'
+          td.number(data-title=name, data-value=value)
+            - label = 'label ' +  h.scoreLabel(value)
+            span(class=label) #{value}
+        else if metricType.toLowerCase() === 'httperrors'
+          - errors = Object.keys(value).filter(code => code > 399).length
+          +numberCell(name, errors)
+        else
+          +numberCell(name, value)
+
 block content
-  - headings = ['URL', 'Total Size (kb)', 'Total Requests', '3rd Party Requests']
-  if options.speedIndex
+  - headings = ['URL']
+  if options.browsertime.visualMetrics
     - headings.push('First Visual Change', 'Speed Index', 'Last Visual Change')
-  else
-    - headings.push('JS size (kb)', 'CSS size (kb)', 'Image size (kb)')
-  - headings.push('Performance score')
+  - metricList = html.pageSummaryMetrics
+  each kv in metricList
+    - [k, v] = kv.split('.')
+    - headingText = ''
+    each tool in Object.keys(friendlyNames)
+      if (friendlyNames[tool] && friendlyNames[tool][k] && friendlyNames[tool][k][v])
+        - headingText = friendlyNames[tool][k][v].name
+    - headings.push(headingText)
   .row
     .column
       include runInfo

@@ -1,7 +1,7 @@
 {
   "name": "sitespeed.io",
   "bin": "./bin/sitespeed.js",
-  "version": "10.0.1",
+  "version": "12.0.0-alpha.3",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -55,6 +55,7 @@
     "chai": "4.2.0",
     "chai-as-promised": "7.1.1",
     "clean-css-cli": "4.3.0",
+    "cz-customizable": "^6.2.0",
     "eclint": "^2.8.1",
     "eslint": "6.2.2",
     "eslint-config-prettier": "6.1.0",
@@ -69,17 +70,17 @@
   },
   "main": "./lib/sitespeed.js",
   "dependencies": {
-    "axe-core": "3.3.1",
     "@google-cloud/storage": "3.2.0",
-    "aws-sdk": "2.517.0",
-    "browsertime": "6.0.1",
+    "axe-core": "3.4.1",
+    "aws-sdk": "2.596.0",
+    "browsertime": "8.0.0-beta.1",
     "cli-color": "1.4.0",
     "concurrent-queue": "7.0.2",
-    "dayjs": "1.8.15",
+    "dayjs": "1.8.18",
     "fast-stats": "0.0.5",
     "find-up": "4.1.0",
     "fs-extra": "8.1.0",
-    "influx": "5.4.0",
+    "influx": "5.5.1",
     "intel": "1.2.0",
     "jstransformer-markdown-it": "2.1.0",
     "junit-report-builder": "1.3.3",
@@ -89,7 +90,7 @@
     "lodash.foreach": "4.5.0",
     "lodash.get": "4.4.2",
     "lodash.isempty": "4.4.0",
-    "lodash.merge": "^4.6.2",
+    "lodash.merge": "4.6.2",
     "lodash.pick": "4.4.0",
     "lodash.pullall": "4.2.0",
     "lodash.reduce": "4.6.0",
@@ -99,16 +100,27 @@
     "mkdirp": "0.5.1",
     "node-slack": "0.0.7",
     "p-limit": "2.2.1",
-    "pagexray": "2.5.8",
+    "pagexray": "2.5.9",
     "pug": "2.0.4",
     "recursive-readdir": "2.2.2",
     "simplecrawler": "1.1.8",
-    "tape": "4.11.0",
+    "tape": "4.12.1",
     "text-table": "0.2.0",
-    "third-party-web": "0.10.1",
-    "uuid": "3.3.2",
-    "webcoach": "4.0.1",
+    "third-party-web": "0.11.1",
+    "uuid": "3.3.3",
+    "webcoach": "4.3.1",
     "webpagetest": "0.3.9",
-    "yargs": "14.1.0"
+    "yargs": "15.0.2"
+  },
+  "publishConfig": {
+    "tag": "canary"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "./cz-config.js"
+    }
   }
 }

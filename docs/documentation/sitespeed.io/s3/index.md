@@ -72,7 +72,7 @@ And then you should also make sure that all the result files (HTML/videos/screen
 # Digital Ocean Spaces
 [Digital Ocean Spaces](https://developers.digitalocean.com/documentation/spaces/#aws-s3-compatibility)
 
-Digital Ocean is compatiable with the S3 api, so all that is required after setting up your space and aquiring a key and secret is to modify the endpoint that the s3 results are passed to as shown below.
+Digital Ocean is compatible with the S3 api, so all that is required after setting up your space and acquiring a key and secret is to modify the endpoint that the s3 results are passed to as shown below.
 
 ## JSON configuration file
  If the endpoint is not passed this will default to AWS's endpoint. You may safely exclude it for AWS integration. If you use a JSON configuration file you should make sure you add this to get S3 to work:

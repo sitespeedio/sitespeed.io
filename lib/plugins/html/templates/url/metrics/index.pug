@@ -5,7 +5,7 @@ if  browsertime
   - const visualMetrics = browsertime.visualMetrics;
   - baseHelpURL = rootPath + 'help.html#';
 
-  - const defaultVisualMetrics = ['SpeedIndex','FirstVisualChange','LastVisualChange','VisualProgress','PerceptualSpeedIndex', 'LastMeaningfulPaint', 'LargestImage', 'Heading' ,'VisualReadiness','VisualComplete85', 'VisualComplete95','VisualComplete99'];
+  - const defaultVisualMetrics = ['SpeedIndex','FirstVisualChange','LastVisualChange','VisualProgress', 'PerceptualSpeedIndexProgress', 'ContentfulSpeedIndexProgress', 'PerceptualSpeedIndex', 'ContentfulSpeedIndex', 'LastMeaningfulPaint', 'LargestImage', 'Heading' ,'VisualReadiness','VisualComplete85', 'VisualComplete95','VisualComplete99'];
   if options.browsertime.visualMetrics && visualMetrics
     a#visualmetrics
     h3 Visual Metrics
@@ -26,6 +26,10 @@ if  browsertime
             td
               a(href=baseHelpURL + 'PerceptualSpeedIndex') Perceptual Speed Index
             td.number #{h.time.ms(visualMetrics.PerceptualSpeedIndex.toFixed(0))}
+          tr
+            td
+              a(href=baseHelpURL + 'ContentfulSpeedIndex') Contentful Speed Index
+            td.number #{h.time.ms(visualMetrics.ContentfulSpeedIndex.toFixed(0))}
           if visualMetrics.LargestImage
             tr
               td
@@ -158,12 +162,13 @@ if  browsertime
               td.number #{h.time.ms(value.startTime.toFixed(0))}
               td.number #{h.time.ms(value.duration.toFixed(0))} 
   include ./lcp.pug
+  include ./firstInput.pug
   include ./layoutShift.pug
   include ./elementTimings.pug
   include ./serverTimings.pug
 
   a#custom-scripts
-  h3 Custom scripts
+  h3 Custom metrics collected through JavaScript
   if browsertime.custom
     table
       tr
@@ -175,6 +180,20 @@ if  browsertime
           td #{value}
   else
     p There are no custom configured scripts.
+
+  a#extras-metrics
+  h3 Extra metrics collected using scripting
+  if browsertime.extras
+    table
+      tr
+        th name
+        th value
+      each value, name in browsertime.extras
+        tr
+          td #{name}
+          td #{value}
+  else
+    p There are no custom extra metrics from scripting.
 
   if browsertime.cdp && browsertime.cdp.performance
     a#cdp-performance

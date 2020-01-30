@@ -15,7 +15,7 @@ When we released 8.0 we pushed the most wanted feature: scripting that makes it 
 
 The first release didn't have any fancy error handling, but now you have more alternatives.
 
-You can try/catch failing commands that throw errors. If an error is not catched in your script, it will be catched in sitespeed.io and the error will be logged and reported in the HTML and to your data storage (Graphite/InfluxDb) under the key *browsertime.statistics.errors*.
+You can try/catch failing commands that throw errors. If an error is not caught in your script, it will be caught in sitespeed.io and the error will be logged and reported in the HTML and to your data storage (Graphite/InfluxDb) under the key *browsertime.statistics.errors*.
 
 If you do catch the error, you should make sure you report it yourself with the [error command](#error), so you can see that in the HTML report. This is needed for all errors except navigating/measuring a URL. They will automatically be reported (since they are always important).
 
@@ -58,7 +58,7 @@ Remember that when you start your first script, the cache is already cleared and
 
 ## Meta data
 
-You can add meta data to your script. The extra data will be visibile in the HTML result page. 
+You can add meta data to your script. The extra data will be visible in the HTML result page. 
 
 Setting meta data like this:
 

@@ -1,15 +1,17 @@
 
 - const profile = options.mobile ? 'mobile' : 'desktop'
 - const connectivity = options.browsertime.connectivity.alias || options.browsertime.connectivity.profile
-  h2.url #{h.plural(noPages,'page')} analyzed for #{options.name ? options.name : h.short(context.name, 30)}
+  h2.url #{h.plural(noPages,'page')} analysed for #{options.name ? options.name : h.short(context.name, 30)}
   p.small Tested #{timestamp} using #{h.cap(options.browsertime.browser)} for
     | #{ h.get(options, 'browsertime.chrome.android.package') ?  h.get(options, 'browsertime.chrome.android.package') + ' ': ''}
     | #{options.preURL ? 'preURL ' + h.short(options.preURL, 60) + ' ' : ''}
     | #{h.plural(options.browsertime.iterations, 'run')} with #{profile} profile and connectivity #{connectivity}.#{ options.replay ? ' Using WebPageReplay.' : ''}#{ options.multi ? ' Using multi mode.' : ''}
     | #{options.chrome && options.chrome.CPUThrottlingRate ? ' CPU Throttle Rate ' + options.chrome.CPUThrottlingRate + '.':''}
+    if (options.safari && options.safari.deviceType)
+      | Testing using an #{options.safari.deviceType}.
     if options.multi && options.html.showScript
         | (
         a(href= rootPath + 'scripts.html')= 'script'
         | ).
-    else if options.multi 
-        | .    
+    else if options.multi
+        | .
