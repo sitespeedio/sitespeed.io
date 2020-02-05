@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Added
+* Browsertime 8.0.0
+* Chrome 80 and Chromedriver 80.
+* Coach 4.4.0.
+
 ## 12.0.0-beta.1 - 2020-01-30
 ### Added 
 * Browsertime 8.0.0-beta.1
