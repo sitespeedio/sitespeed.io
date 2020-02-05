@@ -7,7 +7,7 @@ BROWSERTIME=/usr/src/app/bin/browsertimeWebPageReplay.js
 SITESPEEDIO=/usr/src/app/bin/sitespeed.js
 export DBUS_SESSION_BUS_ADDRESS=/dev/null
 
-MAX_OLD_SPACE_SIZE="${MAX_OLD_SPACE_SIZE:-2048}"
+MAX_OLD_SPACE_SIZE="${MAX_OLD_SPACE_SIZE:-8192}"
 
 HTTP_PORT=80
 HTTPS_PORT=443
