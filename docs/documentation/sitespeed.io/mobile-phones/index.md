@@ -154,6 +154,17 @@ One important thing when testing on mobile is to analyse the Chrome trace log. Y
 sitespeed.io --android --cpu https://www.sitespeed.io
 ```
 
+### Running Firefox
+To run Firefox stable you just run:
+
+```bash
+sitespeed.io --android -b firefox https://www.sitespeed.io
+```
+
+Note that collecting the HAR is turned off since we cannot use the HAR Export trigger on Android.
+
+ 
+
 ## Test on iOS
 
 You can run your tests on Safari on iOS.

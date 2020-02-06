@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Use Firefox, Chrome, Safari or Chrome on Android to collect metrics.
-description: You can use Firefox, Chrome, Safari and Chrome on Android to collect metrics. You need make sure you have a set connectivity when you test, and you do that with Docker networks or throttle.
+title: Use Firefox, Chrome, Edge, Safari or Chrome/Firefox on Android to collect metrics.
+description: You can use Firefox, Chrome, Ende, Safari and Chrome/Firefox on Android to collect metrics. You need make sure you have a set connectivity when you test, and you do that with Docker networks or throttle.
 keywords: browsers, documentation, sitespeed.io, Firefox, Chrome, Safari
 nav: documentation
 category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: You can use Firefox, Safari, Chrome and Chrome on Android to collect metrics.
+twitterdescription: You can use Firefox, Safari, Chrome, Edge and Chrome/Firefox on Android to collect metrics.
 ---
 [Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / Browsers
 
@@ -16,7 +16,7 @@ twitterdescription: You can use Firefox, Safari, Chrome and Chrome on Android to
 * Lets place the TOC here
 {:toc}
 
-You can fetch timings, run your own JavaScript and record a video of the screen. The following browsers are supported: Firefox, Safari, Chrome, Chrome on Android and Safari on iOS. If you run our Docker containers, we always update them when we tested the latest stable release of Chrome and Firefox. Safari and Safari on iOS needs Mac OS X Catalina.
+You can fetch timings, run your own JavaScript and record a video of the screen. The following browsers are supported: Firefox, Safari, Edge, Chrome, Chrome and Firefox on Android and Safari on iOS. If you run our Docker containers, we always update them when we tested the latest stable release of Chrome and Firefox. Safari and Safari on iOS needs Mac OS X Catalina. Edge need the corresponding MSEdgeDriver.
 
 ## Firefox
 The latest version of Firefox should work out of the box.
@@ -34,10 +34,11 @@ For performance and deterministic reasons we disable the [Tracking protection](h
 
 You can also [configure your own preferences](#set-your-own-firefox-preferences) for the profile.
 
-Starting with a total blank profile isn't supported at the moment but if you need it, please [create an issue](https://github.com/sitespeedio/browsertime/issues/new) and let us know!
+
+You can setup your own profile with `--firefox.profileTemplate` with a profile template directory that will be cloned and used as the base of each profile each instance of Firefox is launched against.
 
 ### Collecting the HAR
-To collect the HAR from Firefox we use [HAR Export trigger](https://github.com/devtools-html/har-export-trigger). It needs Firefox 61 to work (if you run a earlier version you will automatically not get the HAR). The trigger is in OMHO a superior version of getting the HAR than parsing the MOZ HTTP log since it adds less overhead to metrics.
+To collect the HAR from Firefox we use [HAR Export trigger](https://github.com/devtools-html/har-export-trigger).
 
 If you for some reason don't need the HAR you can disable it by ```--browsertime.skipHar```.
 
@@ -56,9 +57,6 @@ Running Firefox on Mac OS X you can choose what version to run with sitespeed.io
 If you run on Linux you need to set the full path to the binary:
 ```--firefox.binaryPath```
 
-The current default Docker container only contains one version of Firefox. If you want to test on more versions, [let us know](https://github.com/sitespeedio/browsertime/issues/new) so we can fix that.
-
-
 ### Set your own Firefox preferences
 Firefox preferences are all the preferences that you can set on your Firefox instance using **about:config**. Since we start with a fresh profile (except some [defaults](#firefox-profile-setup)) of Firefox for each page load, we are not reusing the setup you have in your Firefox instance.
 
@@ -73,8 +71,20 @@ It is setup with ```timestamp,nsHttp:5,cache2:5,nsSocketTransport:5,nsHostResolv
 ### Accept insecure certificates
 If you want to accept insecure certificates add ```--firefox.acceptInsecureCerts``` to your run.
 
-### Collect trace logs
-We have no way to get trace data from Firefox today (by trace data we mean time spent in JavaScript/paint etc). You can follow the [upstream request](https://bugzilla.mozilla.org/show_bug.cgi?id=1250290) to make that happen.
+### Collect CPU profile 
+You can collect all the good stuff from Firefox using the new Geckoprofiler. Enable it with ```--firefox.geckoProfiler``` and view the profile on [https://profiler.firefox.com](https://profiler.firefox.com). You can configure what to profile with ```--firefox.geckoProfilerParams.features``` and ```--firefox.geckoProfilerParams.threads```. 
+
+### Record video
+Firefox has a built in way to record a video of the screen. That way you don't need to use FFMPEG. Enable it with:
+
+```--firefox.windowRecorder --video``` 
+
+### Run Firefox on Android
+You can run Firefox on Android. If you use stable Firefox on your phone you can add ```-b firefox --android``` and it will be used.
+
+
+### Add extra command line arguments to Firefox
+If you need to pass on extra command line arguments to the Firefox binary you can do that with ```--firefox.args ```. 
 
 ### More memory
 When you run Firefox in Docker you should use `--shm-size 2g` to make sure Firefox get enough shared memory (for Chrome we disabled the use of shm with --disable-dev-shm-usage).
@@ -148,10 +158,21 @@ There are a couple of different ways to choose which device to use:
 If you need to file a bug with SafariDriver, you also want to include diagnostics generated by SafariDriver. You do that by adding `--safari.diagnose` to your run.
 
 ~~~bash
-sitespeed.io --safari.ios -b safari --safari.diagnose
+sitespeed.io --safari.ios -b safari --safari.diagnose https://www.sitespeed.io
 ~~~
 
 The log file will be stored in **~/Library/Logs/com.apple.WebDriver/**.
+
+## Edge
+You can use Chromium based MS Edge on the OS that supports it. At the moment this is experimental and we cannot guarantee that it works 100%.
+
+To get Egde to work you need to [download the webdriver yourself](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/). And then when you run point out the driver location:
+
+~~~bash
+sitespeed.io -b edge --edge.edgedriverPath /path/to/the/msedgedriver https://www.sitespeed.io
+~~~
+
+Edge use the exact same setup as Chrome (except the driver), so you use `--chrome.*` to configure Edge :) 
 
 ## Choose when to end your test
 By default the browser will collect data until  [window.performance.timing.loadEventEnd happens + aprox 5 seconds more](https://github.com/sitespeedio/browsertime/blob/d68261e554470f7b9df28797502f5edac3ace2e3/lib/core/seleniumRunner.js#L15). That is perfectly fine for most sites, but if you do Ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (```--browsertime.pageCompleteCheck```). When the scripts returns true the browser will close or if the timeout time is reached.
@@ -170,12 +191,6 @@ You can also choose to end the test after 5 seconds of inactivity that happens a
 There's is also another alternative: use ```--spa``` to automatically wait for 5 seconds of inactivity in the Resource Timing API (independently if the load event end has fired or not). If you need to wait longer, use ```--pageCompleteWaitTime```.
 
 If you add your own complete check you can also choose when your check is run. By default we wait until onLoad happens (by using pageLoadStrategy normal). If you want control direct after the navigation, you can get that by adding ```--pageLoadStrategy none``` to your run.
-
-
-## Minimise WebDriver impact
-By default WebDriver gives back control direct after navigation and then our page complete check is run every 200 ms.
-
-You can take back conntrol directly with ```--pageLoadStrategy none``` and then choose when to do the first page complete check with ```--pageCompleteCheckStartWait 5000``` and choose how often each check will run with ```--pageCompleteCheckPollTimeout 1000```. All setting are in ms.
 
 ## Custom metrics
 
@@ -224,6 +239,15 @@ Everything you can do in Browsertime, you can also do in sitespeed.io. Prefixing
 You can [check what Browsertime can do]({{site.baseurl}}/documentation/browsertime/configuration/).
 
 For example if you want to pass on an extra native arguments to Chrome. In standalone Browsertime you do that with <code>--chrome.args</code>. If you want to do that through sitespeed.io you just prefix browsertime to the param: <code>--browsertime.chrome.args</code>. Yes we know, pretty sweet! :)
+
+## TCPDump
+You can generate a TCP dump with `--tcpdump`.
+
+~~~bash
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --tcpdump
+~~~
+
+You can then download the tcp dump for each iteration and the SSL key log file from the result page.
 
 ## How can I disable HTTP/2 (I only want to test HTTP/1.x)?
 In Chrome, you just add the switches <code>--browsertime.chrome.args disable-http2</code>.
