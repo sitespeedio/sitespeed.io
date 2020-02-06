@@ -41,7 +41,7 @@ Collect metrics using Firefox on Android! Enable using `-b firefox --android` an
 {: .img-thumbnail-center}
 
 ### Native video on Firefox
-Now the window recorder for Firefox works great. That means you can record a video of the loading of your page without using FFMPEG. Add `--firefox.windowRecorder` and `-video`to your run.
+Now the window recorder for Firefox works great. That means you can record a video of the loading of your page without using FFMPEG. Add `--firefox.windowRecorder` and `-video` to your run.
 
 ### New default configuration
 We have adopted the Firefox performance teams default configurations to get as stable metrics as possible with Firefox. This removes `--mozillaProPreferences` since those configurations are used by default [#1045](https://github.com/sitespeedio/browsertime/pull/1045).
