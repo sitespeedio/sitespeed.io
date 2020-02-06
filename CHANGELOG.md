@@ -1,9 +1,12 @@
 # CHANGELOG - sitespeed.io
 
 ## 12.0.0 - 2020-02-06
+
+Read about Browsertime 8.0 and sitespeed.io 12.0 in [the blog post](https://www.sitespeed.io/sitespeed.io-12.0-and-browsertime-8.0/) and checkout the [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#800-2020-02-05) to see all the changes!
+
 ### Added
-* Browsertime 8.0.0
-* Chrome 80 and Chromedriver 80.
+* Browsertime 8.0.0 - this is an massive update with a lot of new things!
+* Chrome 80, Chromedriver 80 and Firefox 72.
 * Coach 4.4.0.
 * Add (back) fast-crc32c for faster upload to GSC - thank you [Radu Micu](https://github.com/radum) for the PR [#2858](https://github.com/sitespeedio/sitespeed.io/pull/2858)
 * Upgraded from AXE core 3.4.0 -> [3.4.1](https://github.com/dequelabs/axe-core/blob/develop/CHANGELOG.md#341-2019-12-11).
