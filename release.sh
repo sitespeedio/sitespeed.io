@@ -26,11 +26,11 @@ docker build -t sitespeedio/sitespeed.io:$PACKAGE_VERSION-plus1 --build-arg vers
 docker push sitespeedio/sitespeed.io:$PACKAGE_VERSION-plus1
 
 # Update to latet version in the docs
-#bin/sitespeed.js --version | tr -d '\n' > docs/_includes/version/sitespeed.io.txt
+bin/sitespeed.js --version | tr -d '\n' > docs/_includes/version/sitespeed.io.txt
 
 # Generate the help for the docs
-#bin/sitespeed.js --help > docs/documentation/sitespeed.io/configuration/config.md
+bin/sitespeed.js --help > docs/documentation/sitespeed.io/configuration/config.md
 
 # Generate friendly names from code
-#node release/friendlyNames.js > docs/documentation/sitespeed.io/configure-html/friendlynames.md
-#node release/friendlyNamesBudget.js > docs/documentation/sitespeed.io/performance-budget/friendlynames.md
+node release/friendlyNames.js > docs/documentation/sitespeed.io/configure-html/friendlynames.md
+node release/friendlyNamesBudget.js > docs/documentation/sitespeed.io/performance-budget/friendlynames.md
