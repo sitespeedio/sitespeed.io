@@ -1,30 +1,13 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 12.0.0 - 2020-02-06
 ### Added
 * Browsertime 8.0.0
 * Chrome 80 and Chromedriver 80.
 * Coach 4.4.0.
-
-## 12.0.0-beta.1 - 2020-01-30
-### Added 
-* Browsertime 8.0.0-beta.1
 * Add (back) fast-crc32c for faster upload to GSC - thank you [Radu Micu](https://github.com/radum) for the PR [#2858](https://github.com/sitespeedio/sitespeed.io/pull/2858)
-
-## 12.0.0-alpha.3 - 2020-01-29
-### Fixed
-* Ignore certificate errors by default for Chrome (as it been in all older releases). 
-
-## 12.0.0-alpha.2 - 2020-01-27
-### Fixed
-* Disable `--cpu` for Firefox at the moment so people that upgrades doesn't accidently turn it on.
-
-## 12.0.0-alpha.1 - 2020-01-23
-### Added
-* Upgraded to Browsertime 8.0.0 alpha 7. Documentation coming in later releases.
 * Upgraded from AXE core 3.4.0 -> [3.4.1](https://github.com/dequelabs/axe-core/blob/develop/CHANGELOG.md#341-2019-12-11).
-* Upgraded to Firefox 72 in the Docker container.
-* Upgraded to Chrome 80 beta in the Docker contaner.
+
 
 ## 11.9.3 - 2019-12-19
 ### Fixed
