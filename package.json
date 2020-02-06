@@ -1,7 +1,7 @@
 {
   "name": "sitespeed.io",
   "bin": "./bin/sitespeed.js",
-  "version": "12.0.0-alpha.3",
+  "version": "12.0.0-beta.1",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -71,12 +71,13 @@
   "main": "./lib/sitespeed.js",
   "dependencies": {
     "@google-cloud/storage": "3.2.0",
-    "axe-core": "3.4.1",
     "aws-sdk": "2.596.0",
-    "browsertime": "8.0.0-alpha.8",
+    "axe-core": "3.4.1",
+    "browsertime": "8.0.0",
     "cli-color": "1.4.0",
     "concurrent-queue": "7.0.2",
     "dayjs": "1.8.18",
+    "fast-crc32c": "2.0.0",
     "fast-stats": "0.0.5",
     "find-up": "4.1.0",
     "fs-extra": "8.1.0",
@@ -106,9 +107,9 @@
     "simplecrawler": "1.1.8",
     "tape": "4.12.1",
     "text-table": "0.2.0",
-    "third-party-web": "0.11.0",
+    "third-party-web": "0.11.1",
     "uuid": "3.3.3",
-    "webcoach": "4.3.1",
+    "webcoach": "4.4.0",
     "webpagetest": "0.3.9",
     "yargs": "15.0.2"
   },
