@@ -1,0 +1,6 @@
+if options.browsertime.tcpdump
+     - const tcpDumpPath = 'data/' + (runNumber? runNumber : 1) + '.pcap'
+      a.button.button-download(href=tcpDumpPath, download) Download tcpdump
+if process.env.SSLKEYLOGFILE
+    - const sslKeyLogFile = process.env.SSLKEYLOGFILE
+      a.button.button-download(href=sslKeyLogFile, download) Download SSLKEYLOGFILE
