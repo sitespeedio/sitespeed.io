@@ -133,6 +133,7 @@ block content
                  img.screenshot(src=screenshotName, width=width, alt='Screenshot')
        .downloads
         include ./downloads.pug
+        include ./tcpdump.pug
     if d.browsertime && d.browsertime.run && d.browsertime.run.har
       section#waterfall-panel
         include ../waterfall/index.pug
