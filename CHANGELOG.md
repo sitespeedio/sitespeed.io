@@ -1,4 +1,7 @@
 # CHANGELOG - sitespeed.io
+## 12.0.1 - 2020-02-07
+### Fixed
+* Upgraded to [Browsertime 8.0.1](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#801-2020-02-07) that fixes the broken TSProxy issue. Thank you [Kenrick](https://github.com/kenrick95) for reporting and fixing in PR [#1169](https://github.com/sitespeedio/browsertime/pull/1169).
 
 ## 12.0.0 - 2020-02-06
 
