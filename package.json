@@ -71,12 +71,12 @@
   "main": "./lib/sitespeed.js",
   "dependencies": {
     "@google-cloud/storage": "3.2.0",
-    "aws-sdk": "2.596.0",
-    "axe-core": "3.4.1",
+    "aws-sdk": "2.613.0",
+    "axe-core": "3.4.2",
     "browsertime": "8.0.1",
     "cli-color": "1.4.0",
     "concurrent-queue": "7.0.2",
-    "dayjs": "1.8.18",
+    "dayjs": "1.8.20",
     "fast-crc32c": "2.0.0",
     "fast-stats": "0.0.5",
     "find-up": "4.1.0",
@@ -100,18 +100,18 @@
     "markdown": "0.5.0",
     "mkdirp": "0.5.1",
     "node-slack": "0.0.7",
-    "p-limit": "2.2.1",
+    "p-limit": "2.2.2",
     "pagexray": "2.5.9",
     "pug": "2.0.4",
     "recursive-readdir": "2.2.2",
     "simplecrawler": "1.1.8",
-    "tape": "4.12.1",
+    "tape": "4.13.0",
     "text-table": "0.2.0",
     "third-party-web": "0.11.1",
-    "uuid": "3.3.3",
+    "uuid": "3.4.0",
     "webcoach": "4.4.1",
     "webpagetest": "0.3.9",
-    "yargs": "15.0.2"
+    "yargs": "15.1.0"
   },
   "config": {
     "commitizen": {
