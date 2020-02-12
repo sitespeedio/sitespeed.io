@@ -2,13 +2,21 @@ h1 Sustainable Web
 
 - const sustainable = pageInfo.data.sustainable.run ? pageInfo.data.sustainable.run : pageInfo.data.sustainable.pageSummary.data
 
-p Burning fossil fuels to power servers is avoidable, and contributes to climate breakdown. See the 
-    a(href='https://www.w3.org/2001/tag/doc/ethical-web-principles/') W3C Ethical Web Principles
-    |, on Sustainable Web, and learn more at 
-    a(href='https://www.thegreenwebfoundation.org') The Green Web Foundation
-    |.
+p Sending data over the wire uses electricity, and because the internet still mostly runs on fossil fuels, the more data we send, the more fossil fuels we burn, which is bad news for our climate.
 
-p CO2 #{sustainable.co2} 
+p A sustainable web is the 9th of the W3C's
+    a(href='https://www.w3.org/2001/tag/doc/ethical-web-principles/') Ethical Web Principles.
+p You can learn more about building a sustainable web, and running your sites on greener infrastructure at
+    a(href='https://www.thegreenwebfoundation.org') The Green Web Foundation.
 
-//- We could add some JavaScript on the page so that you as a user could input 
-//- the trafic per month and we could calculate the total co2 effect
+table
+    tr
+        th Page views
+        th Estimated CO2 emissions (median)
+    tr
+        td 1 page view
+        td #{sustainable.co2.median} grams
+    tr
+        td 1000 page views
+        td #{sustainable.co2.median} kg
+
