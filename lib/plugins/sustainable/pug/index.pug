@@ -21,4 +21,5 @@ table
         td 1000 page views
         td #{sustainable.co2.median || Number(sustainable.co2).toFixed(3)}  kg
 
-
+if sustainable.hostingInfo 
+    p #{sustainable.hostingInfo.url} is #{sustainable.hostingInfo.green === true ? 'hosted green! This hoster is using green energy / compensation for its services.' : 'not hosted green.'}
