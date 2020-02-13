@@ -4,19 +4,21 @@ h1 Sustainable Web
 
 p Sending data over the wire uses electricity, and because the internet still mostly runs on fossil fuels, the more data we send, the more fossil fuels we burn, which is bad news for our climate.
 
-p A sustainable web is the 9th of the W3C's
+p A sustainable web is the 9th of the W3C's 
     a(href='https://www.w3.org/2001/tag/doc/ethical-web-principles/') Ethical Web Principles.
-p You can learn more about building a sustainable web, and running your sites on greener infrastructure at
+p You can learn more about building a sustainable web, and running your sites on greener infrastructure at 
     a(href='https://www.thegreenwebfoundation.org') The Green Web Foundation.
+
 
 table
     tr
         th Page views
-        th Estimated CO2 emissions (median)
+        th Estimated CO2 emissions #{sustainable.co2.median ?  '(median)':''}
     tr
         td 1 page view
-        td #{sustainable.co2.median} grams
+        td #{sustainable.co2.median || Number(sustainable.co2).toFixed(3)} grams
     tr
         td 1000 page views
-        td #{sustainable.co2.median} kg
+        td #{sustainable.co2.median || Number(sustainable.co2).toFixed(3)}  kg
+
 
