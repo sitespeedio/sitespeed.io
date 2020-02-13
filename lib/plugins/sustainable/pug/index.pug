@@ -20,9 +20,9 @@ table
     tr
         td 1000 page views
         td #{sustainable.co2PerPage.median || Number(sustainable.co2PerPage).toFixed(3)}  kg
-    if (options.sustainible && options.sustainible.pageViews)
+    if (options.sustainable && options.sustainable.pageViews)
         tr
-            td #{options.sustainible.pageViews} page views
+            td #{options.sustainable.pageViews} page views
             td #{(sustainable.totalCO2.median/1000) || Number(sustainable.totalCO2/1000).toFixed(3)}  kg
 
 if sustainable.hostingInfo 
