@@ -13,13 +13,13 @@ p You can learn more about building a sustainable web, and running your sites on
 table
     tr
         th Page views
-        th Estimated CO2 emissions #{sustainable.co2PerPage.median ?  '(median)':''}
+        th Estimated CO2 emissions #{sustainable.co2PerPageView.median ?  '(median)':''}
     tr
         td 1 page view
-        td #{sustainable.co2PerPage.median || Number(sustainable.co2PerPage).toFixed(3)} grams
+        td #{sustainable.co2PerPageView.median || Number(sustainable.co2PerPageView).toFixed(3)} grams
     tr
         td 1000 page views
-        td #{sustainable.co2PerPage.median || Number(sustainable.co2PerPage).toFixed(3)}  kg
+        td #{sustainable.co2PerPageView.median || Number(sustainable.co2PerPageView).toFixed(3)}  kg
     if (options.sustainable && options.sustainable.pageViews)
         tr
             td #{options.sustainable.pageViews} page views
