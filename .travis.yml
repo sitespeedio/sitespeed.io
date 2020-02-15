@@ -56,6 +56,7 @@ matrix:
         - choco install chromedriver
         # See https://www.gep13.co.uk/blog/chocolatey-error-hashes-do-not-match#so-why-did-this-go-wrong
         - choco install googlechrome --ignore-checksums
+      install: CHROMEDRIVER_SKIP_DOWNLOAD=true GECKODRIVER_SKIP_DOWNLOAD=true npm ci
       script:
         - bin/sitespeed.js -b chrome https://www.sitespeed.io/ --cpu
 cache:
