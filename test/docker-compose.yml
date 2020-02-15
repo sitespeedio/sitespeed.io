@@ -1,0 +1,9 @@
+version: '3'
+services:
+    graphite:
+      image: sitespeedio/graphite:1.1.5-12
+      ports:
+        - "2003:2003"
+        - "8080:80"
+      restart: always
+      volumes:
