@@ -50,6 +50,14 @@ matrix:
       before_install: sudo safaridriver --enable
       script:  
         - bin/sitespeed.js -b safari https://www.sitespeed.io/
+    - name: "Browser tests on Windows"
+      os: windows         
+      before_install:
+        - choco install chromedriver
+        # See https://www.gep13.co.uk/blog/chocolatey-error-hashes-do-not-match#so-why-did-this-go-wrong
+        - choco install googlechrome --ignore-checksums
+      script:
+        - bin/sitespeed.js -b chrome https://www.sitespeed.io/ --cpu
 cache:
   apt: true
 addons:
