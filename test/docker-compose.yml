@@ -5,5 +5,3 @@ services:
       ports:
         - "2003:2003"
         - "8080:80"
-      restart: always
-      volumes:
