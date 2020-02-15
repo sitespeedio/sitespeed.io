@@ -28,7 +28,7 @@ matrix:
         - export DISPLAY=:99.0
         - /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -ac -screen 0 1600x1024x16
         - docker-compose --version
-        - docker-compose -f test/docker-compose.yml up
+        - docker-compose -f test/docker-compose.yml up &
       env:
           - secure: ZCqHD+/PhHNVFWoqir66Xd9YeJRcTHDJYvNL9j4+GTKDEI1h94twhAjQ7Z9DhlCnXwL1lsfEcIjvNCWd3ir/FNy2oZsUzu6kMpFF/niugurFbS551moJ2ObNEfOdj93/sTo4UWH2MZouC9eYeuj1vNYbAev6wBIptL95X/ArldQ=
           - secure: ZmEirO6J+rY+6T6eQWRNxqiqRNOYJktqQWaeUDR6WvzoR80oPdgKoNRS012dk4aCGr2+Dxf/KP6Iu2qbDE3YP3QD7PhoexicTVB6MTl81hZfX/eN0lt4lZknTYtjnAAWQB/aWAM6OVLjh8rAzq9PTBzl5EtAeMMJWmnhz6r+cLc=
