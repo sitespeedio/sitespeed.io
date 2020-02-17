@@ -484,7 +484,7 @@ module.exports = async function(context, commands) {
 ~~~
 
 ### Measuring First Input Delay - FID
-One of the new metrics Google is pushing is [First Input Delay](https://developers.google.com/web/updates/2018/05/first-input-delays). You can use it when you collect RUM but it can be hard to know what the user is doing. The recommended way is to use the Long Task API but the truth is that the attribution from the API is ... well can be better. When you have a long task, it is really hard to know why by looking at the attribution.
+One of the new metrics Google is pushing is [First Input Delay](https://developers.google.com/web/updates/2018/05/first-input-delay). You can use it when you collect RUM but it can be hard to know what the user is doing. The recommended way is to use the Long Task API but the truth is that the attribution from the API is ... well can be better. When you have a long task, it is really hard to know why by looking at the attribution.
 
 How do we measure FID with sitespeed.io? You can measure clicks and button using the [Selenium Action API](https://selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/lib/input_exports_Actions.html) and then sitespeed.io uses the `first-input` performance observer to get it. What's really cool is that you can really measure it, instead of doing guestimates.
 
