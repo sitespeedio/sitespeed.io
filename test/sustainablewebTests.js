@@ -1,14 +1,18 @@
 "use strict"
 const co2 = require("../lib/plugins/sustainable/co2")
+const hosting = require("../lib/plugins/sustainable/hosting")
 
 const fs = require("fs")
 const path = require("path")
 const Promise = require("bluebird")
 const pagexray = require("pagexray")
+const chai = require('chai')
+// const chaiAsPromised = require('chai-as-promised');
+// chai.use(chaiAsPromised);
 
 Promise.promisifyAll(fs)
+const expect = chai.expect
 
-const expect = require("chai").expect
 
 describe("sustainableWeb", function () {
   describe("co2", function () {
@@ -126,9 +130,51 @@ describe("sustainableWeb", function () {
       })
     })
   })
+
   describe("hosting", function () {
-    describe("fetching domains", function () {
-      it("it returns a list of green domains, when passed a page object")
+    let har
+    beforeEach(function () {
+      return fs
+        .readFileAsync(
+          path.resolve(
+            __dirname,
+            "fixtures",
+            "www-thegreenwebfoundation-org.har"
+          ),
+          "utf8"
+        )
+        .then(JSON.parse)
+        .tap(data => {
+          har = data
+        })
+    })
+
+    describe("fetching domains", async function () {
+      it("it returns a list of green domains, when passed a page object", async function () {
+        const pages = pagexray.convert(har)
+        const pageXrayRun = pages[0]
+
+        // TODO find a way to not hit the API each time
+        const greenDomains = await hosting.greenDomains(pageXrayRun)
+
+        expect(greenDomains).to.be.an('array').of.length(10)
+
+        const expectedGreendomains = [
+          "thegreenwebfoundation.org",
+          "www.thegreenwebfoundation.org",
+          "fonts.googleapis.com",
+          "ajax.googleapis.com",
+          "assets.digitalclimatestrike.net",
+          "cdnjs.cloudflare.com",
+          "graphite.thegreenwebfoundation.org",
+          "analytics.thegreenwebfoundation.org",
+          "fonts.gstatic.com",
+          "api.thegreenwebfoundation.org"
+        ]
+        greenDomains.forEach(function (dom) {
+          expect(expectedGreendomains).to.include(dom)
+        })
+      })
       it("it returns an empty list, when passed a page object with no green domains")
     })
   })
