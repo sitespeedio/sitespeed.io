@@ -9,6 +9,7 @@ p A sustainable web is the 9th of the W3C's
 p You can learn more about building a sustainable web, and running your sites on greener infrastructure at 
     a(href='https://www.thegreenwebfoundation.org') The Green Web Foundation.
 
+p #{JSON.stringify(sustainable)}
 
 table
     tr
@@ -27,3 +28,16 @@ table
 
 if (sustainable.hostingInfo && options.sustainable.hosting)
     p #{sustainable.hostingInfo.url} is #{sustainable.hostingInfo.green === true ? 'hosted green! This hoster is using green energy / compensation for its services.' : 'not hosted green.'}
+
+p #{JSON.stringify(sustainable.Co2PerDomain)}
+
+//- how do we get an collection to iterate through?
+
+//- table
+//- tr
+//-     th Domain
+//-     th Estimated CO2 emissions (median)
+//-     each domain in sustainable.Co2PerDomain.median
+//-         tr
+//-             td #{domain[0]}
+//-             td #{domain[1]}
