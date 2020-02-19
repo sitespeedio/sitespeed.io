@@ -11,14 +11,26 @@ p You can learn more about building a sustainable web, and running your sites on
 
 table
     tr
-        th Page views
+        th Page views 
         th Estimated CO2 emissions #{sustainable.co2PerPageView.median ?  '(median)':''}
     tr
-        td 1 page view
+        td 1 page view total
         td #{sustainable.co2PerPageView.median || Number(sustainable.co2PerPageView).toFixed(3)} grams
     tr
-        td 1000 page views
-        td #{sustainable.co2PerPageView.median || Number(sustainable.co2PerPageView).toFixed(3)}  kg
+        td 1 page view first party
+        td #{sustainable.co2PerParty.firstParty.median || Number(sustainable.co2PerParty.firstParty).toFixed(3)} grams
+    tr
+        td 1 page view third party
+        td #{sustainable.co2PerParty.thirdParty.median || Number(sustainable.co2PerParty.thirdParty).toFixed(3)} grams
+    tr
+        td 1000 page views total
+        td #{sustainable.co2PerPageView.median  || Number(sustainable.co2PerPageView).toFixed(3)}  kg
+    tr
+        td 1000 page views first party
+        td #{sustainable.co2PerParty.firstParty.median || Number(sustainable.co2PerParty.firstParty).toFixed(3)}  kg
+    tr
+        td 1000 page views third party
+        td #{sustainable.co2PerParty.thirdParty.median || Number(sustainable.co2PerParty.thirdParty).toFixed(3)}  kg
     if (options.sustainable && options.sustainable.pageViews)
         tr
             td #{options.sustainable.pageViews} page views
@@ -26,7 +38,6 @@ table
 
 if (sustainable.hostingInfo && options.sustainable.hosting)
     p #{sustainable.hostingInfo.url} is #{sustainable.hostingInfo.green === true ? 'hosted green! This hoster is using green energy / compensation for its services.' : 'not hosted green.'}
-
 
 if sustainable.Co2PerDomain
     h2 Per domain
