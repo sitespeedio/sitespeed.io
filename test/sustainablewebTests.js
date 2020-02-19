@@ -129,6 +129,14 @@ describe("sustainableWeb", function () {
         })
       })
     })
+    describe("perContentType", function () {
+      it("shows a breakdown of emissions by content type", function () {
+
+      })
+    })
+    describe("dirtiestResources", function () {
+      it("shows the top 10 resources by CO2 emissions")
+    })
   })
 
   describe("hosting", function () {
@@ -149,7 +157,7 @@ describe("sustainableWeb", function () {
         })
     })
 
-    describe("fetching domains", async function () {
+    describe("greenDomains", async function () {
       it("it returns a list of green domains, when passed a page object", async function () {
         const pages = pagexray.convert(har)
         const pageXrayRun = pages[0]
