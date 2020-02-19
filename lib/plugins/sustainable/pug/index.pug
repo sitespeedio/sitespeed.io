@@ -31,11 +31,28 @@ if (sustainable.hostingInfo && options.sustainable.hosting)
 
 p #{JSON.stringify(sustainable.Co2PerDomain)}
 
-//- how do we get an collection to iterate through?
+//- how do we get a collection to iterate through?
+//- so we can make tables like:
+//-  domain         | estimated co2
+//- -----------------------------------
+//- domaina.com     | 10000
+//- domainb.com     | 10000
 
 //- table
 //- tr
 //-     th Domain
+//-     th Estimated CO2 emissions (median)
+//-     each domain in sustainable.Co2PerDomain.median
+//-         tr
+//-             td #{domain[0]}
+//-             td #{domain[1]}
+
+//- and same for emissions from top X resources
+//-
+
+//- table
+//- tr
+//-     th Resource
 //-     th Estimated CO2 emissions (median)
 //-     each domain in sustainable.Co2PerDomain.median
 //-         tr
