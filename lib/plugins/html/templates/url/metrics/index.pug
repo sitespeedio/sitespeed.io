@@ -26,10 +26,11 @@ if  browsertime
             td
               a(href=baseHelpURL + 'PerceptualSpeedIndex') Perceptual Speed Index
             td.number #{h.time.ms(visualMetrics.PerceptualSpeedIndex.toFixed(0))}
-          tr
-            td
-              a(href=baseHelpURL + 'ContentfulSpeedIndex') Contentful Speed Index
-            td.number #{h.time.ms(visualMetrics.ContentfulSpeedIndex.toFixed(0))}
+          if visualMetrics.ContentfulSpeedIndex  
+            tr
+              td
+                a(href=baseHelpURL + 'ContentfulSpeedIndex') Contentful Speed Index
+              td.number #{h.time.ms(visualMetrics.ContentfulSpeedIndex.toFixed(0))}
           if visualMetrics.LargestImage
             tr
               td
