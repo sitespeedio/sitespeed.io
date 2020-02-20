@@ -39,15 +39,17 @@ table
 if (sustainable.hostingInfo && options.sustainable.hosting)
     p #{sustainable.hostingInfo.url} is #{sustainable.hostingInfo.green === true ? 'hosted green! This hoster is using green energy / compensation for its services.' : 'not hosted green.'}
 
-if sustainable.Co2PerDomain
+if sustainable.co2PerDomain
     h2 Per domain
     table
         tr
             th Domain
             th Estimated CO2 emissions
-        each val, key in sustainable.Co2PerDomain
+        each val, key in sustainable.co2PerDomain
             tr 
-                td #{key}
+                td #{key} 
+                    - if (sustainable.hostingGreenCheck.indexOf(key) > -1) 
+                        span(class='label normal ok') green
                 td #{val}
 
 //- table
