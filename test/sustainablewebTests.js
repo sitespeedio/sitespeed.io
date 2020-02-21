@@ -16,8 +16,8 @@ const expect = chai.expect;
 describe('sustainableWeb', function() {
   describe('co2', function() {
     let har;
-    const GREY_VALUE = 0.8193804259199999;
-    const GREEN_VALUE = 0.54704300112;
+    const GREY_VALUE = 0.8193815884799998;
+    // onst GREEN_VALUE = 0.54704300112;
     const MIXED_VALUE = 0.57128033088;
 
     beforeEach(function() {
@@ -59,8 +59,18 @@ describe('sustainableWeb', function() {
       it('returns lower CO2 for page served from green site', function() {
         const pages = pagexray.convert(har);
         const pageXrayRun = pages[0];
-        let green = true;
-        expect(co2.perPage(pageXrayRun, green)).to.be.equal(GREEN_VALUE);
+        let green = [
+          'www.thegreenwebfoundation.org',
+          'fonts.googleapis.com',
+          'ajax.googleapis.com',
+          'assets.digitalclimatestrike.net',
+          'cdnjs.cloudflare.com',
+          'graphite.thegreenwebfoundation.org',
+          'analytics.thegreenwebfoundation.org',
+          'fonts.gstatic.com',
+          'api.thegreenwebfoundation.org'
+        ];
+        expect(co2.perPage(pageXrayRun, green)).to.be.below(GREY_VALUE);
       });
       it('returns a lower CO2 number where *some* domains use green power', function() {
         const pages = pagexray.convert(har);
