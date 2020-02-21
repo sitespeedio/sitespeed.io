@@ -29,7 +29,7 @@ table
         td #{sustainable.co2PerParty.firstParty.median || Number(sustainable.co2PerParty.firstParty).toFixed(3)} grams
     tr
         td 1 page view third party
-        td #{sustainable.co2PerParty.thirdParty.median || Number(sustainable.co2PerParty.thirdParty).toFixed(3)} grams
+        td #{sustainable.co2PerParty.thirdParty.median === 0 ? 0 : sustainable.co2PerParty.thirdParty.median || Number(sustainable.co2PerParty.thirdParty).toFixed(3)} grams
     tr
         td 1000 page views total
         td #{sustainable.co2PerPageView.median  || Number(sustainable.co2PerPageView).toFixed(3)}  kg
@@ -38,7 +38,7 @@ table
         td #{sustainable.co2PerParty.firstParty.median || Number(sustainable.co2PerParty.firstParty).toFixed(3)}  kg
     tr
         td 1000 page views third party
-        td #{sustainable.co2PerParty.thirdParty.median || Number(sustainable.co2PerParty.thirdParty).toFixed(3)}  kg
+        td #{sustainable.co2PerParty.thirdParty.median === 0 ? 0 : sustainable.co2PerParty.thirdParty.median || Number(sustainable.co2PerParty.thirdParty).toFixed(3)}  kg
     if (options.sustainable && options.sustainable.pageViews)
         tr
             td #{options.sustainable.pageViews} page views
