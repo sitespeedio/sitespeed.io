@@ -1,6 +1,6 @@
 h1 Sustainable Web
 
-- const sustainable = pageInfo.data.sustainable.run ? pageInfo.data.sustainable.run : pageInfo.data.sustainable.pageSummary
+- let sustainable = pageInfo.data.sustainable.run ? pageInfo.data.sustainable.run : pageInfo.data.sustainable.pageSummary
 
 p Sending data over the wire uses electricity, and because the internet still mostly runs on fossil fuels, the more data we send, the more fossil fuels we burn, which is bad news for our climate.
 
@@ -44,36 +44,40 @@ table
             td #{options.sustainable.pageViews} page views
             td #{(sustainable.totalCO2.median/1000) || Number(sustainable.totalCO2/1000).toFixed(3)}  kg
 
-if sustainable.co2PerDomain
-    h2 Per domain
-    table(data-sortable)
-        thead
-            tr
-                th Domain
-                th Estimated CO2 emissions
-                th Transfer Size
-        each data in sustainable.co2PerDomain
-            tr 
-                td #{data.domain} 
-                    - if (sustainable.hostingGreenCheck.indexOf(data.domain) > -1) 
-                        span(class='label normal ok') green
-                td.number(data-value= data.co2)= data.co2
-                td.number(data-value= data.transferSize)= h.size.format(data.transferSize)
+- sustainable = pageInfo.data.sustainable.pageSummary ? pageInfo.data.sustainable.pageSummary.firstRun : sustainable
 
-if sustainable.dirtiestResources
-    h2 Dirtiest assets
-    table(data-sortable)
-        thead
-            tr
-                th Asset
-                th Estimated CO2 emissions
-                th Transfer Size
-        each resource in sustainable.dirtiestResources
-            tr 
-                td.url.assetsurl(data-title='URL')
-                    a(href=resource.url)= h.shortAsset(resource.url)
-                td.number= resource.co2
-                td.number= h.size.format(resource.transferSize)
+h2 Per domain 
+    if pageInfo.data.sustainable.pageSummary
+        | (first run)
+table(data-sortable)
+    thead
+        tr
+            th Domain
+            th Estimated CO2 emissions
+            th Transfer Size
+    each data in sustainable.co2PerDomain
+        tr 
+            td #{data.domain} 
+                - if (sustainable.hostingGreenCheck.indexOf(data.domain) > -1) 
+                    span(class='label normal ok') green
+            td.number(data-value= data.co2)= data.co2
+            td.number(data-value= data.transferSize)= h.size.format(data.transferSize)
+
+h2 Dirtiest assets 
+    if pageInfo.data.sustainable.pageSummary
+        | (first run)
+table(data-sortable)
+    thead
+        tr
+            th Asset
+            th Estimated CO2 emissions
+            th Transfer Size
+    each resource in sustainable.dirtiestResources
+        tr 
+            td.url.assetsurl(data-title='URL')
+                a(href=resource.url)= h.shortAsset(resource.url)
+            td.number= resource.co2
+            td.number= h.size.format(resource.transferSize)
 
 
                 
