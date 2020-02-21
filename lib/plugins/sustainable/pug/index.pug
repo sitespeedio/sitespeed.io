@@ -57,3 +57,19 @@ if sustainable.co2PerDomain
                     - if (sustainable.hostingGreenCheck.indexOf(key) > -1) 
                         span(class='label normal ok') green
                 td.number(data-title=key, data-value= val)= val
+
+if sustainable.dirtiestResources
+    h2 Dirtiest assets
+    table(data-sortable)
+        thead
+            tr
+                th Asset
+                th Estimated CO2 emissions
+        each resource in sustainable.dirtiestResources
+            tr 
+                td.url.assetsurl(data-title='URL')
+                    a(href=resource.url)= h.shortAsset(resource.url)
+                td.number= resource.co2
+
+
+                
