@@ -46,14 +46,14 @@ if (sustainable.hostingInfo && options.sustainable.hosting)
 
 if sustainable.co2PerDomain
     h2 Per domain
-    table
-        tr
-            th Domain
-            th Estimated CO2 emissions
+    table(data-sortable)
+        thead
+            tr
+                th Domain
+                th Estimated CO2 emissions
         each val, key in sustainable.co2PerDomain
             tr 
                 td #{key} 
                     - if (sustainable.hostingGreenCheck.indexOf(key) > -1) 
                         span(class='label normal ok') green
-                td #{val}
-
+                td.number(data-title=key, data-value= val)= val
