@@ -110,11 +110,11 @@ describe('sustainableWeb', function() {
           'fonts.gstatic.com',
           'api.thegreenwebfoundation.org'
         ];
-        expect(res).to.be.a('object');
-        expect(Object.keys(res)).to.deep.equal(domains);
+        expect(res).to.be.a('array');
+        expect(res.length).to.equal(domains.length);
 
         Object.values(res).forEach(function(val) {
-          expect(val).to.be.a('number');
+          expect(val.co2).to.be.a('number');
         });
       });
       it('shows lower Co2 for green domains', function() {
@@ -134,9 +134,14 @@ describe('sustainableWeb', function() {
         ];
         const res = co2.perDomain(pageXrayRun);
         const resWithGreen = co2.perDomain(pageXrayRun, greenDomains);
-        greenDomains.forEach(function(domain) {
-          expect(resWithGreen[domain]).to.be.below(res[domain]);
-        });
+        const sumRes = res.reduce(function(a, b) {
+          return a + b.co2;
+        }, 0);
+        const sumResWithGreen = resWithGreen.reduce(function(a, b) {
+          return a + b.co2;
+        }, 0);
+
+        expect(sumResWithGreen).to.be.below(sumRes);
       });
     });
     describe('perContentType', function() {
