@@ -14,6 +14,9 @@ if !options.sustainable.pageViews
         code --sustainable.pageViews
         | to configure the number of page views and calculate total CO2 emission.
 
+if (sustainable.hostingInfo && options.sustainable.hosting)
+    p #{sustainable.hostingInfo.url} is #{sustainable.hostingInfo.green === true ? 'hosted green! This hoster is using green energy / compensation for its services.' : 'not hosted green.'}
+
 table
     tr
         th Page views 
@@ -40,9 +43,6 @@ table
         tr
             td #{options.sustainable.pageViews} page views
             td #{(sustainable.totalCO2.median/1000) || Number(sustainable.totalCO2/1000).toFixed(3)}  kg
-
-if (sustainable.hostingInfo && options.sustainable.hosting)
-    p #{sustainable.hostingInfo.url} is #{sustainable.hostingInfo.green === true ? 'hosted green! This hoster is using green energy / compensation for its services.' : 'not hosted green.'}
 
 if sustainable.co2PerDomain
     h2 Per domain
