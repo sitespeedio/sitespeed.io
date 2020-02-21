@@ -51,12 +51,14 @@ if sustainable.co2PerDomain
             tr
                 th Domain
                 th Estimated CO2 emissions
-        each val, key in sustainable.co2PerDomain
+                th Transfer Size
+        each data in sustainable.co2PerDomain
             tr 
-                td #{key} 
-                    - if (sustainable.hostingGreenCheck.indexOf(key) > -1) 
+                td #{data.domain} 
+                    - if (sustainable.hostingGreenCheck.indexOf(data.domain) > -1) 
                         span(class='label normal ok') green
-                td.number(data-title=key, data-value= val)= val
+                td.number(data-value= data.co2)= data.co2
+                td.number(data-value= data.transferSize)= h.size.format(data.transferSize)
 
 if sustainable.dirtiestResources
     h2 Dirtiest assets
@@ -65,11 +67,13 @@ if sustainable.dirtiestResources
             tr
                 th Asset
                 th Estimated CO2 emissions
+                th Transfer Size
         each resource in sustainable.dirtiestResources
             tr 
                 td.url.assetsurl(data-title='URL')
                     a(href=resource.url)= h.shortAsset(resource.url)
                 td.number= resource.co2
+                td.number= h.size.format(resource.transferSize)
 
 
                 
