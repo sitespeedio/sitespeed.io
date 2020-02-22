@@ -23,26 +23,26 @@ table
         th Estimated CO2 emissions #{sustainable.co2PerPageView.median ?  '(median)':''}
     tr
         td 1 page view total
-        td #{sustainable.co2PerPageView.median || Number(sustainable.co2PerPageView).toFixed(3)} grams
+        td #{h.co2.format(sustainable.co2PerPageView.median || sustainable.co2PerPageView)}
     tr
         td 1 page view first party
-        td #{sustainable.co2PerParty.firstParty.median || Number(sustainable.co2PerParty.firstParty).toFixed(3)} grams
+        td #{h.co2.format(sustainable.co2PerParty.firstParty.median || sustainable.co2PerParty.firstParty)}
     tr
         td 1 page view third party
-        td #{sustainable.co2PerParty.thirdParty.median === 0 ? 0 : sustainable.co2PerParty.thirdParty.median || Number(sustainable.co2PerParty.thirdParty).toFixed(3)} grams
+        td #{sustainable.co2PerParty.thirdParty.median === 0 ? 0 : h.co2.format(sustainable.co2PerParty.thirdParty.median || sustainable.co2PerParty.thirdParty)}
     tr
         td 1000 page views total
-        td #{sustainable.co2PerPageView.median  || Number(sustainable.co2PerPageView).toFixed(3)}  kg
+        td #{h.co2.format(sustainable.co2PerPageView.median * 1000  || sustainable.co2PerPageView * 1000)}
     tr
         td 1000 page views first party
-        td #{sustainable.co2PerParty.firstParty.median || Number(sustainable.co2PerParty.firstParty).toFixed(3)}  kg
+        td #{h.co2.format(sustainable.co2PerParty.firstParty.median * 1000 || sustainable.co2PerParty.firstParty * 1000)}
     tr
         td 1000 page views third party
-        td #{sustainable.co2PerParty.thirdParty.median === 0 ? 0 : sustainable.co2PerParty.thirdParty.median || Number(sustainable.co2PerParty.thirdParty).toFixed(3)}  kg
+        td #{sustainable.co2PerParty.thirdParty.median === 0 ? 0 : h.co2.format(sustainable.co2PerParty.thirdParty.median * 1000 || sustainable.co2PerParty.thirdParty * 1000)}
     if (options.sustainable && options.sustainable.pageViews)
         tr
             td #{options.sustainable.pageViews} page views
-            td #{(sustainable.totalCO2.median/1000) || Number(sustainable.totalCO2/1000).toFixed(3)}  kg
+            td #{h.co2.format(sustainable.totalCO2.median || sustainable.totalCO2)}
 
 - sustainable = pageInfo.data.sustainable.pageSummary ? pageInfo.data.sustainable.pageSummary.firstRun : sustainable
 
@@ -60,7 +60,7 @@ table(data-sortable)
             td #{data.domain} 
                 - if (sustainable.hostingGreenCheck.indexOf(data.domain) > -1) 
                     span(class='label normal ok') green
-            td.number(data-value= data.co2)= data.co2
+            td.number(data-value= data.co2)= h.co2.format(data.co2)
             td.number(data-value= data.transferSize)= h.size.format(data.transferSize)
 
 h2 Dirtiest assets 
@@ -76,7 +76,7 @@ table(data-sortable)
         tr 
             td.url.assetsurl(data-title='URL')
                 a(href=resource.url)= h.shortAsset(resource.url)
-            td.number= resource.co2
+            td.number= h.co2.format(resource.co2)
             td.number= h.size.format(resource.transferSize)
 
 
