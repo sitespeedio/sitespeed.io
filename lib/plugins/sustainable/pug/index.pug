@@ -14,7 +14,7 @@ if !options.sustainable.pageViews
         code --sustainable.pageViews
         | to configure the number of page views and calculate total CO2 emission.
 
-if (sustainable.hostingInfo && options.sustainable.hosting)
+if (sustainable.hostingInfo)
     p #{sustainable.hostingInfo.url} is #{sustainable.hostingInfo.green === true ? 'hosted green! This hoster is using green energy / compensation for its services.' : 'not hosted green.'}
 
 table
