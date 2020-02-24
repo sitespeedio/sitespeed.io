@@ -26,19 +26,19 @@ table
         td #{h.co2.format(sustainable.co2PerPageView.median || sustainable.co2PerPageView)}
     tr
         td 1 page view first party
-        td #{h.co2.format(sustainable.co2PerParty.firstParty.median || sustainable.co2PerParty.firstParty)}
+        td #{h.co2.format(sustainable.co2FirstParty.median || sustainable.co2FirstParty)}
     tr
         td 1 page view third party
-        td #{sustainable.co2PerParty.thirdParty.median === 0 ? 0 : h.co2.format(sustainable.co2PerParty.thirdParty.median || sustainable.co2PerParty.thirdParty)}
+        td #{sustainable.co2ThirdParty.median === 0 ? 0 : h.co2.format(sustainable.co2ThirdParty.median || sustainable.co2ThirdParty)}
     tr
         td 1000 page views total
         td #{h.co2.format(sustainable.co2PerPageView.median * 1000  || sustainable.co2PerPageView * 1000)}
     tr
         td 1000 page views first party
-        td #{h.co2.format(sustainable.co2PerParty.firstParty.median * 1000 || sustainable.co2PerParty.firstParty * 1000)}
+        td #{h.co2.format(sustainable.co2FirstParty.median * 1000 || sustainable.co2FirstParty * 1000)}
     tr
         td 1000 page views third party
-        td #{sustainable.co2PerParty.thirdParty.median === 0 ? 0 : h.co2.format(sustainable.co2PerParty.thirdParty.median * 1000 || sustainable.co2PerParty.thirdParty * 1000)}
+        td #{sustainable.co2ThirdParty.median === 0 ? 0 : h.co2.format(sustainable.co2ThirdParty.median * 1000 || sustainable.co2ThirdParty * 1000)}
     if (options.sustainable && options.sustainable.pageViews)
         tr
             td #{options.sustainable.pageViews} page views
