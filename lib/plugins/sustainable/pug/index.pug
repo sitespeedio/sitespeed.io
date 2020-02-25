@@ -72,7 +72,7 @@ table
 h2 Dirtiest assets 
     if pageInfo.data.sustainable.pageSummary
         | (first run)
-table(data-sortable)
+table
     thead
         tr
             th Asset
@@ -85,5 +85,18 @@ table(data-sortable)
             td.number #{h.co2.format(resource.co2)} (#{Number((resource.co2/totalCO2)*100).toFixed(2)} %)
             td.number= h.size.format(resource.transferSize)
 
-
+h2 Per Content Type 
+    if pageInfo.data.sustainable.pageSummary
+        | (first run)
+table
+    thead
+        tr
+            th Content Type
+            th Estimated CO2 emissions
+            th Transfer Size
+    each t in sustainable.co2PerContentType
+        tr 
+            td #{t.type}
+            td.number #{h.co2.format(t.co2)} (#{Number((t.co2/totalCO2)*100).toFixed(2)} %)
+            td.number= h.size.format(t.transferSize)
                 
