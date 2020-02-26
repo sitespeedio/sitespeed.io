@@ -120,5 +120,6 @@
     "cz-customizable": {
       "config": "./cz-config.js"
     }
-  }
+  },
+  "database_name": "./url2green.db"
 }
