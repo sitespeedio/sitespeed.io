@@ -207,9 +207,9 @@
       }
     },
     "@tgwf/co2": {
-      "version": "0.4.1",
-      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.4.1.tgz",
-      "integrity": "sha512-EhheO7IgERMa9VKbdZLrfOjVSaNUaD+8wuCG2lCWGNsMwCT79I0hgkTfVgePvZjVnSVNQUA5l0HGvdgin1ELWA==",
+      "version": "0.4.3",
+      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.4.3.tgz",
+      "integrity": "sha512-mQKmyJ7IUIW0OdfPN8cTvtHK630C7AEEJLJ5zmBxwGe/tBMDzs66q3+Se2jqzTkYXL2SqMd8PC3RJ37Ye7vxrw==",
       "requires": {
         "better-sqlite3": "^5.4.3",
         "debug": "^4.1.1"
