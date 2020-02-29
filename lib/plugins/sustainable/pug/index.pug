@@ -36,15 +36,6 @@ table
     tr
         td 1 page view third party
         td #{h.co2.format(co2ThirdParty)} (#{Number(co2ThirdParty / (co2FirstParty + co2ThirdParty) * 100).toFixed(2)} %) 
-    tr
-        td 1000 page views total
-        td #{h.co2.format(co2PerPageView * 1000)}
-    tr
-        td 1000 page views first party
-        td #{h.co2.format(co2FirstParty * 1000)}
-    tr
-        td 1000 page views third party
-        td #{h.co2.format(co2ThirdParty * 1000)}
     if (options.sustainable && options.sustainable.pageViews)
         tr
             td #{options.sustainable.pageViews} page views
