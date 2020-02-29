@@ -3,6 +3,12 @@
 ### Added
 * Upgraded AXE-core from 3.4.1 -> 3.5.2 [#2879](https://github.com/sitespeedio/sitespeed.io/pull/2879)
 * Add budget for first party number of requests and transfer/content size [#2872](https://github.com/sitespeedio/sitespeed.io/pull/2872).
+* The new sustainable web plugin developed together with Chris Adams of the Green Web Foundation. Main work in [#2868](https://github.com/sitespeedio/sitespeed.io/pull/2868) and [#2899](https://github.com/sitespeedio/sitespeed.io/pull/2899). Enable it with `--sustainable.enable`.
+
+### Fixed
+* Hide internal videoRecordingStart metric [#2883](https://github.com/sitespeedio/sitespeed.io/pull/2883).
+* --multi and crawl don't work together and before it was just silently ignored, now you get a message [#2889](https://github.com/sitespeedio/sitespeed.io/pull/2889)
+* The cli now verifies that you use NodeJS 10 or higher to run sitespeed.io [#2901](https://github.com/sitespeedio/sitespeed.io/pull/2901), lower version don't work.
 
 ## 12.0.1 - 2020-02-07
 ### Fixed
