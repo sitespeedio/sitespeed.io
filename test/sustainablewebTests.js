@@ -1,6 +1,7 @@
 'use strict';
-const co2 = require('../lib/plugins/sustainable/co2');
-const hosting = require('../lib/plugins/sustainable/hosting');
+const tgwf = require('@tgwf/co2');
+const co2 = tgwf.co2;
+const hosting = tgwf.hosting;
 
 const fs = require('fs');
 const path = require('path');
@@ -176,7 +177,7 @@ describe('sustainableWeb', function() {
         const pageXrayRun = pages[0];
 
         // TODO find a way to not hit the API each time
-        const greenDomains = await hosting.greenDomains(pageXrayRun);
+        const greenDomains = await hosting.checkPage(pageXrayRun);
 
         expect(greenDomains)
           .to.be.an('array')
