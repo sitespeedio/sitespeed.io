@@ -47,6 +47,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Setup S3](s3/) - how to setup S3 for your html result/videos and screenshots.
  * [Setup GCS](gcs/) - how to setup Google Cloud storage (GCS) for your html result/videos and screenshots.
  * [Single Page Application](spa/) - how to test your single page application.
+ * [Sustainable web plugin](sustainable/) - the sustainable web plugin helps you build a greener, more sustainable websites and applications.
  * [Third party requests](thirdparty/) - keep track of those 3rd party scripts.
  * [Video](video/) - all that you can do with the video and filmstrip.
  * [WebPageReplay](webpagereplay/) - WebPageReplay is proxy that first records your web site and then replay it locally. That can help you find performance regression in the front-end code easier: Latency/server timings are constant.

@@ -17,13 +17,11 @@ twitterdescription: Use the video in sitespeed.io
 {:toc}
 
 ## The stack (easy with Docker)
-We use FFMpeg to record a video with 30 fps of the screen (but you can configure the number of frames per second). The easiest way is to use our Docker container with pre-installed FFMpeg but if you for some reason want to use the npm version, you can record a video too. As long as you install FFMpeg yourself.
+We use FFMpeg to record a video with 30 fps of the screen (but you can configure the number of frames per second). The easiest way is to use our Docker container with pre-installed FFMpeg and if you use the npm version, you can record a video too. Video works on Linux and OS X at the moment.
 
-When we got the video we use [Visual Metrics](https://github.com/WPO-Foundation/visualmetrics) (built by Pat Meenan) to analyse the video and get SpeedIndex and other visual metrics from the video. If you use our Docker container you get that for free, else you need to install all the [Visual Metrics dependencies](https://github.com/sitespeedio/docker-visualmetrics-deps/blob/master/Dockerfile) yourself.
+When we got the video we use [Visual Metrics](https://github.com/WPO-Foundation/visualmetrics) (built by Pat Meenan) to analyse the video and get SpeedIndex and other visual metrics from the video. If you use our Docker container you get that for free, else you need to install all the [Visual Metrics dependencies](https://github.com/sitespeedio/browsertime/blob/master/.travis.yml) yourself. You need FFMPeg, ImageMagick and a couple Pythin libraries. Checkout Browsertimes [Travis-CI configuration](https://github.com/sitespeedio/browsertime/blob/master/.travis.yml) to see what's needed.
 
-We record the video in two steps: First we turn the background orange (that is used by VisualMetrics to know when
- the navigation starts), sets the background to white and let the browser go to the URL. The video is recorded
- lossless and then when the video has been analysed, we remove the orange frames and convert the video to a compressed mp4.
+We record the video in two steps: First we turn the background orange (that is used by VisualMetrics to know when the navigation starts), sets the background to white and let the browser go to the URL. The video is recorded lossless and then when the video has been analysed, we remove the orange frames and convert the video to a compressed mp4.
 
 The video will look something like this:
 
@@ -71,8 +69,7 @@ If you run the Docker container we will automatically setup XVFB as a virtual fr
 ### Collect visual elements metrics
 You can choose to collect when visual elements are visible (and on their final position) on the screen. Turn on with <code>--visualElement</code> and collect Visual Metrics from elements. Works only with <code>--visualMetrics</code> turned on (default in Docker). By default you will get visual metrics from the largest image within the view port and the largest H1. 
 
-You can also configure to pickup your own defined elements with <code>--scriptInput.visualElements</code>. Give the element a name
-and select it with <code>document.body.querySelector</code>. Use it like this: <code>--scriptInput.visualElements name:domSelector</code> . Add multiple instances to measure multiple elements. Visual Metrics will use these elements and calculate when they are visible and fully rendered. These metrics will also be included in HAR file so you can look at the waterfall and see when elements are visual within the viewport.
+You can also configure to pickup your own defined elements with <code>--scriptInput.visualElements</code>. Give the element a name and select it with <code>document.body.querySelector</code>. Use it like this: <code>--scriptInput.visualElements name:domSelector</code> . Add multiple instances to measure multiple elements. Visual Metrics will use these elements and calculate when they are visible and fully rendered. These metrics will also be included in HAR file so you can look at the waterfall and see when elements are visual within the viewport.
  
 
  ![Visual elements in Graphite]({{site.baseurl}}/img/visual-elements-graphite.png)
