@@ -1,5 +1,5 @@
 # CHANGELOG - sitespeed.io
-## 12.1.0 - UNRELEASED
+## 12.1.0 - 2020-03-03
 ### Added
 * Upgraded AXE-core from 3.4.1 -> 3.5.2 [#2879](https://github.com/sitespeedio/sitespeed.io/pull/2879)
 * Add budget for first party number of requests and transfer/content size [#2872](https://github.com/sitespeedio/sitespeed.io/pull/2872).

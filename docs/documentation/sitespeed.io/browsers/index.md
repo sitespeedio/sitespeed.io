@@ -134,7 +134,7 @@ You download ChromeDriver from [http://chromedriver.chromium.org](http://chromed
 You can run Safari on Mac OS X. To run on iOS you need Catalina and iOS 13. To see more what you can do with the SafariDriver you can run `man safaridriver` in your terminal.
 
 ### Limitations
-We do not support HAR, video, cookies/request headers in Safari at the moment.
+We do not support HAR, cookies/request headers in Safari at the moment.
 
 ### Configuration
 There are a couple of different specific Safari configurations.
@@ -166,10 +166,8 @@ The log file will be stored in **~/Library/Logs/com.apple.WebDriver/**.
 ## Edge
 You can use Chromium based MS Edge on the OS that supports it. At the moment this is experimental and we cannot guarantee that it works 100%.
 
-To get Egde to work you need to [download the webdriver yourself](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/). And then when you run point out the driver location:
-
 ~~~bash
-sitespeed.io -b edge --edge.edgedriverPath /path/to/the/msedgedriver https://www.sitespeed.io
+sitespeed.io -b edge https://www.sitespeed.io
 ~~~
 
 Edge use the exact same setup as Chrome (except the driver), so you use `--chrome.*` to configure Edge :) 
@@ -196,7 +194,7 @@ If you add your own complete check you can also choose when your check is run. B
 
 You can collect your own metrics in the browser by supplying JavaScript file(s). By default we collect all metrics inside [these folders](https://github.com/sitespeedio/browsertime/tree/master/browserscripts), but you might have something else you want to collect.
 
-Each javascript file need to return a metric/value which will be picked up and returned in the JSON. If you return a number, statistics will automatically be generated for the value (like median/percentiles etc).
+Each JavaScript file need to return a metric/value which will be picked up and returned in the JSON. If you return a number, statistics will automatically be generated for the value (like median/percentiles etc).
 
 For example say we have one file called scripts.js that checks how many scripts tags exist on a page. The script would look like this:
 
@@ -248,6 +246,19 @@ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include ve
 ~~~
 
 You can then download the tcp dump for each iteration and the SSL key log file from the result page.
+
+Packets will be written when the buffer is flushed. If you want to force packets to be written to the file when they arrive you can do that with `--tcpdumpPacketBuffered`.
+
+## WebDriver
+We use the WebDriver to drive the browser. We use [Chromedriver](https://chromedriver.chromium.org) for Chrome, [Geckodriver](https://github.com/mozilla/geckodriver/releases) for Firefox, [Edgedriver](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/) for Edge and [Safaridriver](https://developer.apple.com/documentation/webkit/testing_with_webdriver_in_safari) for Safari.
+
+When you install sitespeed.io/Browsertime we also install the latest released driver for Chrome, Edge and Firefox. Safari comes bundled with Safari driver. For Chrome the Chromedriver version needs to match the Chrome version. That can be annying if you want to test on old browsers, coming developer versions or on Android where that version hasn't been released yet.
+
+You can download the Chromedriver yourself from the [Google repo](https://chromedriver.storage.googleapis.com/index.html) and use ```--chrome.chromedriverPath``` to help Browsertime find it or you can choose which version to install when you install sitespeed.io with a environment variable: ```CHROMEDRIVER_VERSION=81.0.4044.20 npm install ```
+
+You can also choose versions for Edge and Firefox with `EDGEDRIVER_VERSION` and `GECKODRIVER_VERSION`.
+
+If you don't want to install the drivers you can skip them with `CHROMEDRIVER_SKIP_DOWNLOAD=true`, `GECKODRIVER_SKIP_DOWNLOAD=true` and `EDGEDRIVER_SKIP_DOWNLOAD=true`.
 
 ## How can I disable HTTP/2 (I only want to test HTTP/1.x)?
 In Chrome, you just add the switches <code>--browsertime.chrome.args disable-http2</code>.
