@@ -61,6 +61,11 @@
          "transferSize": limit,
          "requests": limit,
     },
+   "firstParty": {
+         "requests": limit,
+         "transferSize": limit,
+         "contentSize": limit,
+    },
    "score": {
          "score": limit,
          "accessibility": limit,
@@ -86,6 +91,12 @@
     },
    "gpsi": {
          "speedscore": limit,
+    },
+   "sustainable": {
+         "totalCO2": limit,
+         "co2PerPageView": limit,
+         "co2FirstParty": limit,
+         "co2ThirdParty": limit,
     },
    "axe": {
          "critical": limit,
