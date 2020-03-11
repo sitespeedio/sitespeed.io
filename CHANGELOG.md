@@ -1,4 +1,14 @@
 # CHANGELOG - sitespeed.io
+
+## 12.2.0 - UNRELEASED
+### Added
+* Updated the Docker container to use Firefox 74.
+* Introduced a new slim container using only Firefox. More info soon. [#2913](https://github.com/sitespeedio/sitespeed.io/issues/2913)
+* Cleaned up the depenedency tree to make the container (and install) slimmer  [#2911](https://github.com/sitespeedio/sitespeed.io/issues/2911).
+* Use coach-core instead of coach [#2912](https://github.com/sitespeedio/sitespeed.io/pull/2912).
+* Use Browsertime 8.2.0 that removed the sharp dependency and instead uses jimp.
+* The GPSI-plugin in the plus1 container now uses the GPSI backend that uses Lighthouse. New structure of metrics so you will need to update your graphs.
+
 ## 12.1.0 - 2020-03-03
 ### Added
 * Upgraded AXE-core from 3.4.1 -> 3.5.2 [#2879](https://github.com/sitespeedio/sitespeed.io/pull/2879)
