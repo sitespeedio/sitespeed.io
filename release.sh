@@ -17,7 +17,10 @@ PACKAGE_VERSION=$(node -e 'console.log(require("./package").version)')
 
 docker build --no-cache -t sitespeedio/sitespeed.io:$PACKAGE_VERSION -t sitespeedio/sitespeed.io:latest .
 docker push sitespeedio/sitespeed.io:$PACKAGE_VERSION
-# docker push sitespeedio/sitespeed.io:latest
+docker push sitespeedio/sitespeed.io:latest
+
+docker build --no-cache -t sitespeedio/sitespeed.io:$PACKAGE_VERSION-slim --file Dockerfile-slim .
+docker push sitespeedio/sitespeed.io:$PACKAGE_VERSION-slim
 
 docker build -t sitespeedio/sitespeed.io:$PACKAGE_VERSION-action --build-arg version=$PACKAGE_VERSION --file docker/github-action/Dockerfile .
 docker push sitespeedio/sitespeed.io:$PACKAGE_VERSION-action
