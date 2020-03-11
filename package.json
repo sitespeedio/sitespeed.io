@@ -73,7 +73,7 @@
     "@google-cloud/storage": "3.2.0",
     "aws-sdk": "2.613.0",
     "axe-core": "3.5.1",
-    "browsertime": "8.1.2",
+    "browsertime": "8.2.0",
     "coach-core": "5.0.0",
     "cli-color": "1.4.0",
     "concurrent-queue": "7.0.2",
