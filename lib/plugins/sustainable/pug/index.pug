@@ -64,7 +64,7 @@ table
             th Transfer Size
     each data in sustainable.co2PerDomain
         tr
-            td #{data.domain}
+            td #{data.domain} 
                 - if (sustainable.hostingGreenCheck.indexOf(data.domain) > -1)
                     span(class='label normal ok') green
             - const percentage = (data.co2 / totalCO2) * 100
