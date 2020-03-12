@@ -4,7 +4,7 @@ h1 Sustainable Web
 
 p We know that sending data over the wire uses electricity, and because the internet still mostly runs on fossil fuels, it means that more data we send, the more fossil fuels we burn.
 
-p This is bad news for our climate, and building a sustainable web is the 9th of the W3C's
+p This is bad news for our climate, and building a sustainable web is the 9th of the W3C's 
     a(href='https://www.w3.org/2001/tag/doc/ethical-web-principles/') Ethical Web Principles.
 
 p If you build for the web, much of what you know about making sites faster and more accessible also makes them greener, and if you're interested in learning more, you can find out at
@@ -50,7 +50,7 @@ table
         tr
             td #{options.sustainable.pageViews.toLocaleString()} page views
             td #{h.co2.format(totalCO2)}
-
+            td #{h.size.format(totalTransfer * options.sustainable.pageViews)}
 - sustainable = pageInfo.data.sustainable.pageSummary ? pageInfo.data.sustainable.pageSummary.firstRun : sustainable
 
 h2 Per domain 
