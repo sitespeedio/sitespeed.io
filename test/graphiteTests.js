@@ -37,7 +37,7 @@ describe('graphite', function() {
 
       const data = generator.dataFromMessage(message, dayjs());
       expect(data).to.match(/ns.pageSummary.sub_domain_com/);
-      expect(data).to.match(/bar.gpsi.median/);
+      expect(data).to.match(/bar.gpsi.desktop.median/);
       expect(data).to.match(/foo_bar/);
     });
 
