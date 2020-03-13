@@ -26,7 +26,7 @@ if (sustainable.hostingInfo)
 - const totalCO2 = sustainable.totalCO2.median || sustainable.totalCO2
 - const totalTransfer = sustainable.totalTransfer.median || sustainable.totalTransfer
 - const firstPartyTransferPerPage = sustainable.firstPartyTransferPerPage.median || sustainable.firstPartyTransferPerPage
-- const thirdPartyTransferPerPage =  sustainable.thirdPartyTransferPerPage.median || sustainable.thirdPartyTransferPerPage
+- const thirdPartyTransferPerPage =  sustainable.thirdPartyTransferPerPage === undefined ? 0 : sustainable.thirdPartyTransferPerPage.median || sustainable.thirdPartyTransferPerPage
 
 table
     tr
