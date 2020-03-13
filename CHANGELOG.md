@@ -7,7 +7,8 @@
 * Cleaned up the depenedency tree to make the container (and install) slimmer  [#2911](https://github.com/sitespeedio/sitespeed.io/issues/2911).
 * Use coach-core instead of coach [#2912](https://github.com/sitespeedio/sitespeed.io/pull/2912).
 * Use Browsertime 8.2.0 that removed the sharp dependency and instead uses jimp.
-* The GPSI-plugin in the plus1 container now uses the GPSI backend that uses Lighthouse. New structure of metrics so you will need to update your graphs.
+* The GPSI-plugin in the plus1 container now uses the GPSI backend that uses Lighthouse. New structure of metrics so you will need to update your graphs. See [GPSI #20](https://github.com/sitespeedio/plugin-gpsi/pull/20). Also metrics is tagged by desktop/mobile [#2917](https://github.com/sitespeedio/sitespeed.io/pull/2917) in Graphite/InfluxDB.
+* Updated copy and show more total transfer sizes for transparency in the sustainable plugin, thank you Chris Adams [#2909](https://github.com/sitespeedio/sitespeed.io/pull/2909), [#2919](https://github.com/sitespeedio/sitespeed.io/pull/2919) and [#2920](https://github.com/sitespeedio/sitespeed.io/pull/2920).
 
 ## 12.1.0 - 2020-03-03
 ### Added
