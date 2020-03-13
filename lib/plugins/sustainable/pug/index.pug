@@ -25,7 +25,8 @@ if (sustainable.hostingInfo)
 - const co2PerPageView = sustainable.co2PerPageView.median || sustainable.co2PerPageView
 - const totalCO2 = sustainable.totalCO2.median || sustainable.totalCO2
 - const totalTransfer = sustainable.totalTransfer.median || sustainable.totalTransfer
-
+- const firstPartyTransferPerPage = sustainable.firstPartyTransferPerPage.median || sustainable.firstPartyTransferPerPage
+- const thirdPartyTransferPerPage =  sustainable.thirdPartyTransferPerPage.median || sustainable.thirdPartyTransferPerPage
 
 table
     tr
@@ -39,12 +40,12 @@ table
 
     tr
         td 1 page view first party
-        td #{h.co2.format(co2FirstParty)}
-        td
+        td #{h.co2.format(co2FirstParty)} (#{Number(co2FirstParty / (co2FirstParty + co2ThirdParty) * 100).toFixed(2)} %)
+        td #{h.size.format(firstPartyTransferPerPage)}
     tr
         td 1 page view third party
         td #{h.co2.format(co2ThirdParty)} (#{Number(co2ThirdParty / (co2FirstParty + co2ThirdParty) * 100).toFixed(2)} %)
-        td
+        td #{h.size.format(thirdPartyTransferPerPage)}
 
     if (options.sustainable && options.sustainable.pageViews)
         tr
