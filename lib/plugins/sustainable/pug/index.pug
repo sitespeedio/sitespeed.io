@@ -67,7 +67,7 @@ table
             td #{data.domain} 
                 - if (sustainable.hostingGreenCheck.indexOf(data.domain) > -1)
                     span(class='label normal ok') green
-            - const percentage = (data.co2 / totalCO2) * 100
+            - const percentage = (data.co2 / co2PerPageView) * 100
             td.number #{h.co2.format(data.co2)} (#{Number(percentage).toFixed(2)} %)
             td.number #{h.size.format(data.transferSize)}
 
@@ -84,7 +84,7 @@ table
         tr
             td.url.assetsurl(data-title='URL')
                 a(href=resource.url)= h.shortAsset(resource.url)
-            - const percentage = (resource.co2 / totalCO2) * 100
+            - const percentage = (resource.co2 / co2PerPageView) * 100
             td.number #{h.co2.format(resource.co2)} (#{Number(percentage).toFixed(2)} %)
             td.number= h.size.format(resource.transferSize)
 
@@ -100,6 +100,6 @@ table
     each t in sustainable.co2PerContentType
         tr
             td #{t.type}
-            - const percentage = (t.co2 / totalCO2) * 100
+            - const percentage = (t.co2 / co2PerPageView) * 100
             td.number #{h.co2.format(t.co2)} (#{Number(percentage).toFixed(2)} %)
             td.number= h.size.format(t.transferSize)
