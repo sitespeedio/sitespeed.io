@@ -71,6 +71,7 @@
   "main": "./lib/sitespeed.js",
   "dependencies": {
     "@google-cloud/storage": "3.2.0",
+    "@tgwf/co2": "0.6.1",
     "aws-sdk": "2.613.0",
     "axe-core": "3.5.1",
     "browsertime": "8.2.0",
@@ -111,9 +112,6 @@
     "uuid": "3.4.0",
     "webpagetest": "0.3.9",
     "yargs": "15.1.0"
-  },
-  "optionalDependencies": {
-    "@tgwf/co2": "0.6.1"
   },
   "config": {
     "commitizen": {
