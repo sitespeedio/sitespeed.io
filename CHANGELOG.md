@@ -1,13 +1,13 @@
 # CHANGELOG - sitespeed.io
 
-## 12.2.0 - UNRELEASED
+## 12.2.0 - 20202-03-15
 ### Added
 * Updated the Docker container to use Firefox 74.
-* Introduced a new slim container using only Firefox. More info soon. [#2913](https://github.com/sitespeedio/sitespeed.io/issues/2913)
-* Cleaned up the dependency tree to make the container (and install) slimmer  [#2911](https://github.com/sitespeedio/sitespeed.io/issues/2911).
+* Introduced a new slim container with only Firefox. Look for the version tag + slim `sitespeedio/sitespeed.io:12.2.0-slim`. The container is based on Buster slim and we try to keep it as small as possible. The test runs Firefox headless without XVFB and without FFMPeg/ImageMagick so no Visual Metrics in this container for now  [#2913](https://github.com/sitespeedio/sitespeed.io/issues/2913).
+* Cleaned up the dependency tree to make the container (and install) smaller on the default container [#2911](https://github.com/sitespeedio/sitespeed.io/issues/2911).
 * Use coach-core instead of coach [#2912](https://github.com/sitespeedio/sitespeed.io/pull/2912).
 * Use Browsertime 8.2.0 that removed the sharp dependency and instead uses jimp.
-* The GPSI-plugin in the plus1 container now uses the GPSI backend that uses Lighthouse. New structure of metrics so you will need to update your graphs. See [GPSI #20](https://github.com/sitespeedio/plugin-gpsi/pull/20). Also metrics is tagged by desktop/mobile [#2917](https://github.com/sitespeedio/sitespeed.io/pull/2917) in Graphite/InfluxDB.
+* The GPSI-plugin in the `plus1` container now uses the GPSI backend that uses Lighthouse. New structure of metrics so you will need to update your graphs. See [GPSI #20](https://github.com/sitespeedio/plugin-gpsi/pull/20). Also metrics is tagged by desktop/mobile [#2917](https://github.com/sitespeedio/sitespeed.io/pull/2917) in Graphite/InfluxDB.
 * Updated copy and show more total transfer sizes for transparency in the sustainable plugin, thank you Chris Adams [#2909](https://github.com/sitespeedio/sitespeed.io/pull/2909), [#2919](https://github.com/sitespeedio/sitespeed.io/pull/2919) and [#2920](https://github.com/sitespeedio/sitespeed.io/pull/2920). Also updated co2.js to the newest version not using SQLite [#2922](https://github.com/sitespeedio/sitespeed.io/pull/2922)
 
 ## 12.1.0 - 2020-03-03
