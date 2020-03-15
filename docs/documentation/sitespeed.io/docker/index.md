@@ -21,16 +21,21 @@ twitterdescription: Use Docker to run sitespeed.io.
 
 Docker is the preferred installation method because every dependency is handled for you for all the features in sitespeed.io.
 
-We have a ready made container with [Chrome, Firefox & Xvfb](https://hub.docker.com/r/sitespeedio/sitespeed.io/). It also contains FFMpeg and Imagemagick, so we can record a video and get metrics like SpeedIndex using [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics).
+We have a three ready made containers:
+* One slim container that contains only Firefox. You run Firefox headless. Use the container `sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-slim`. The container do not have FFMpeg and Imagemagick so you can not get any Visual Metrics using this container.
+* One with [Chrome, Firefox & Xvfb](https://hub.docker.com/r/sitespeedio/sitespeed.io/). It also contains FFMpeg and Imagemagick, so we can record a video and get metrics like Speed Index using [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics). This is the default container and use it with `sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}` 
+* One container that is based in the default container and includes the [Google Page Speed Insights](https://github.com/sitespeedio/plugin-gpsi) and [Lighthouse plugin](https://github.com/sitespeedio/plugin-lighthouse). Use it with `sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-plus1`.
 
 ### Structure
 
-The Docker structure looks like this:
+The Docker structure in the default container looks like this:
 
 [NodeJS with Ubuntu 18](https://github.com/sitespeedio/docker-node) -> [VisualMetrics dependencies](https://github.com/sitespeedio/docker-visualmetrics-deps) ->
 [Firefox/Chrome/xvfb](https://github.com/sitespeedio/docker-browsers) -> [sitespeed.io](https://github.com/sitespeedio/sitespeed.io/blob/master/Dockerfile)
 
 The first container installs NodeJS (latest LTS) on Ubuntu 18. The next one adds the dependencies (FFMpeg, ImageMagick and some Python libraries) needed to run [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics). We then install specific version of Firefox, Chrome and lastly xvfb. Then in last step, we add sitespeed.io and tag it to the sitespeed.io version number.
+
+The [slim container](https://github.com/sitespeedio/sitespeed.io/blob/master/Dockerfile-slim) is based on [Debian Buster slim](https://github.com/debuerreotype/docker-debian-artifacts/blob/d6eeda93542f8e2a7d5f6e500b58fc4f12d055ce/buster/slim/Dockerfile). 
 
 We lock down the browsers to specific versions for maximum compatibility and stability with sitespeed.io's current feature set; upgrading once we verify browser compatibility.
 {: .note .note-info}
