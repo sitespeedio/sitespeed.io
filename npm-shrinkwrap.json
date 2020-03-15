@@ -852,12 +852,11 @@
       }
     },
     "@tgwf/co2": {
-      "version": "0.5.0",
-      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.5.0.tgz",
-      "integrity": "sha512-tnquZi/+wYgSSVM3NnvTIm4cElej7z6lVpDK+m+Lsw0mfKrZW8ZyBVJjqrHogUpsnF4HHGwUIF37DRVS/r/5NA==",
+      "version": "0.6.0",
+      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.6.0.tgz",
+      "integrity": "sha512-BvJDtUTJaP9XUus4PTkIgFjK9N8oFqFEBmNweJzTslTVTvZchx0kWhlVpksPQ8VpBS0UfNPs0wjZ8ooToAwEWg==",
       "optional": true,
       "requires": {
-        "better-sqlite3": "^5.4.3",
         "debug": "^4.1.1"
       },
       "dependencies": {
@@ -1374,16 +1373,6 @@
       "optional": true,
       "requires": {
         "tweetnacl": "^0.14.3"
-      }
-    },
-    "better-sqlite3": {
-      "version": "5.4.3",
-      "resolved": "https://registry.npmjs.org/better-sqlite3/-/better-sqlite3-5.4.3.tgz",
-      "integrity": "sha512-fPp+8f363qQIhuhLyjI4bu657J/FfMtgiiHKfaTsj3RWDkHlWC1yT7c6kHZDnBxzQVoAINuzg553qKmZ4F1rEw==",
-      "optional": true,
-      "requires": {
-        "integer": "^2.1.0",
-        "tar": "^4.4.10"
       }
     },
     "bignumber.js": {
@@ -4234,12 +4223,6 @@
           }
         }
       }
-    },
-    "integer": {
-      "version": "2.1.0",
-      "resolved": "https://registry.npmjs.org/integer/-/integer-2.1.0.tgz",
-      "integrity": "sha512-vBtiSgrEiNocWvvZX1RVfeOKa2mCHLZQ2p9nkQkQZ/BvEiY+6CcUz0eyjvIiewjJoeNidzg2I+tpPJvpyspL1w==",
-      "optional": true
     },
     "intel": {
       "version": "1.2.0",
@@ -7752,21 +7735,6 @@
             "path-parse": "^1.0.6"
           }
         }
-      }
-    },
-    "tar": {
-      "version": "4.4.13",
-      "resolved": "https://registry.npmjs.org/tar/-/tar-4.4.13.tgz",
-      "integrity": "sha512-w2VwSrBoHa5BsSyH+KxEqeQBAllHhccyMFVHtGtdMpF4W7IRWfZjFiQceJPChOeTsSDVUpER2T8FA93pr0L+QA==",
-      "optional": true,
-      "requires": {
-        "chownr": "^1.1.1",
-        "fs-minipass": "^1.2.5",
-        "minipass": "^2.8.6",
-        "minizlib": "^1.2.1",
-        "mkdirp": "^0.5.0",
-        "safe-buffer": "^5.1.2",
-        "yallist": "^3.0.3"
       }
     },
     "teeny-request": {
