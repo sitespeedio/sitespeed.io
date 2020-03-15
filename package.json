@@ -63,7 +63,7 @@
     "jsdoc": "^3.6.3",
     "license-checker": "^16.0.0",
     "mocha": "^5.0.4",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "prettier": "^1.11.1",
     "pug-lint": "^2.5.0",
     "pug-lint-config-clock": "^2.0.0"
