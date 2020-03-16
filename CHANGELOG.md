@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## 12.2.1 - 20202-03-16
+### Fixed
+* A little better error handling so if you run on latest NodeJS we catch if one of the HTML tasks fail and better watch for failing runs overall [#2927](https://github.com/sitespeedio/sitespeed.io/pull/2927).
+* Fixed the order when you remove a plugin so remove always win agains add. That means that you finally can remove lighthouse or gpsi when your run the plus1 container. Remove with `--plugins.remove /lighthouse` or  `--plugins.remove /gpsi`[#2926](https://github.com/sitespeedio/sitespeed.io/pull/2926).
+
 ## 12.2.0 - 20202-03-15
 ### Added
 * Updated the Docker container to use Firefox 74.
