@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## 12.2.2 - 20202-03-16
+### Fixed
+* Fix correct paths to Google Page Speed Insight budget metrics. This was broken in 12.2.0 when we upgraded to the GPSI format [#2930](https://github.com/sitespeedio/sitespeed.io/pull/2930).
+* Aggregating over multiple rules was broken for Axe, fixed by [gfoxCartrawler](https://github.com/gfoxCartrawler) in [#2928](https://github.com/sitespeedio/sitespeed.io/pull/2928).
+
 ## 12.2.1 - 20202-03-16
 ### Fixed
 * A little better error handling so if you run on latest NodeJS we catch if one of the HTML tasks fail and better watch for failing runs overall [#2927](https://github.com/sitespeedio/sitespeed.io/pull/2927).
