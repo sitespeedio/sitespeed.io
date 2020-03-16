@@ -1,4 +1,26 @@
 # CHANGELOG - sitespeed.io
+
+## 12.2.0 - 20202-03-15
+### Added
+* Updated the Docker container to use Firefox 74.
+* Introduced a new slim container with only Firefox. Look for the version tag + slim `sitespeedio/sitespeed.io:12.2.0-slim`. The container is based on Buster slim and we try to keep it as small as possible. The test runs Firefox headless without XVFB and without FFMPeg/ImageMagick so no Visual Metrics in this container for now  [#2913](https://github.com/sitespeedio/sitespeed.io/issues/2913).
+* Cleaned up the dependency tree to make the container (and install) smaller on the default container [#2911](https://github.com/sitespeedio/sitespeed.io/issues/2911).
+* Use coach-core instead of coach [#2912](https://github.com/sitespeedio/sitespeed.io/pull/2912).
+* Use Browsertime 8.2.0 that removed the sharp dependency and instead uses jimp.
+* The GPSI-plugin in the `plus1` container now uses the GPSI backend that uses Lighthouse. New structure of metrics so you will need to update your graphs. See [GPSI #20](https://github.com/sitespeedio/plugin-gpsi/pull/20). Also metrics is tagged by desktop/mobile [#2917](https://github.com/sitespeedio/sitespeed.io/pull/2917) in Graphite/InfluxDB.
+* Updated copy and show more total transfer sizes for transparency in the sustainable plugin, thank you Chris Adams [#2909](https://github.com/sitespeedio/sitespeed.io/pull/2909), [#2919](https://github.com/sitespeedio/sitespeed.io/pull/2919) and [#2920](https://github.com/sitespeedio/sitespeed.io/pull/2920). Also updated co2.js to the newest version not using SQLite [#2922](https://github.com/sitespeedio/sitespeed.io/pull/2922)
+
+## 12.1.0 - 2020-03-03
+### Added
+* Upgraded AXE-core from 3.4.1 -> 3.5.2 [#2879](https://github.com/sitespeedio/sitespeed.io/pull/2879)
+* Add budget for first party number of requests and transfer/content size [#2872](https://github.com/sitespeedio/sitespeed.io/pull/2872).
+* The new sustainable web plugin developed together with Chris Adams of the Green Web Foundation. Main work in [#2868](https://github.com/sitespeedio/sitespeed.io/pull/2868) and [#2899](https://github.com/sitespeedio/sitespeed.io/pull/2899). Enable it with `--sustainable.enable`.
+
+### Fixed
+* Hide internal videoRecordingStart metric [#2883](https://github.com/sitespeedio/sitespeed.io/pull/2883).
+* --multi and crawl don't work together and before it was just silently ignored, now you get a message [#2889](https://github.com/sitespeedio/sitespeed.io/pull/2889)
+* The cli now verifies that you use NodeJS 10 or higher to run sitespeed.io [#2901](https://github.com/sitespeedio/sitespeed.io/pull/2901), lower version don't work.
+
 ## 12.0.1 - 2020-02-07
 ### Fixed
 * Upgraded to [Browsertime 8.0.1](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#801-2020-02-07) that fixes the broken TSProxy issue. Thank you [Kenrick](https://github.com/kenrick95) for reporting and fixing in PR [#1169](https://github.com/sitespeedio/browsertime/pull/1169).

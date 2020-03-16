@@ -47,6 +47,9 @@ contentSize.plain
 contentSize.svg
 thirdParty.transferSize
 thirdParty.requests
+firstParty.requests
+firstParty.transferSize
+firstParty.contentSize
 score.score
 score.accessibility
 score.bestpractice
@@ -65,6 +68,10 @@ webpagetest.visualComplete95
 webpagetest.TTFB
 webpagetest.fullyLoaded
 gpsi.speedscore
+sustainable.totalCO2
+sustainable.co2PerPageView
+sustainable.co2FirstParty
+sustainable.co2ThirdParty
 axe.critical
 axe.serious
 axe.minor

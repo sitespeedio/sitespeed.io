@@ -1,0 +1,107 @@
+{
+  "thegreenwebfoundation.org": {
+    "green": true,
+    "url": "thegreenwebfoundation.org",
+    "data": true,
+    "hostedby": "LeaseWeb",
+    "hostedbyid": 156,
+    "hostedbywebsite": "www.leaseweb.com",
+    "partner": "",
+    "icon": "greenfan",
+    "iconurl": "http://www.evoswitch.com/en/green-fan/evoswitch-green-fan"
+  },
+  "www.thegreenwebfoundation.org": {
+    "green": true,
+    "url": "www.thegreenwebfoundation.org",
+    "data": true,
+    "hostedby": "LeaseWeb",
+    "hostedbyid": 156,
+    "hostedbywebsite": "www.leaseweb.com",
+    "partner": "",
+    "icon": "greenfan",
+    "iconurl": "http://www.evoswitch.com/en/green-fan/evoswitch-green-fan"
+  },
+  "maxcdn.bootstrapcdn.com": {
+    "green": false,
+    "url": "maxcdn.bootstrapcdn.com",
+    "data": true
+  },
+  "fonts.googleapis.com": {
+    "green": true,
+    "url": "fonts.googleapis.com",
+    "data": true,
+    "hostedby": "Google Inc.",
+    "hostedbyid": 595,
+    "hostedbywebsite": "www.google.com",
+    "partner": ""
+  },
+  "ajax.googleapis.com": {
+    "green": true,
+    "url": "ajax.googleapis.com",
+    "data": true,
+    "hostedby": "Google Inc.",
+    "hostedbyid": 595,
+    "hostedbywebsite": "www.google.com",
+    "partner": ""
+  },
+  "assets.digitalclimatestrike.net": {
+    "green": true,
+    "url": "assets.digitalclimatestrike.net",
+    "data": true,
+    "hostedby": "Cloudflare",
+    "hostedbyid": 779,
+    "hostedbywebsite": "www.cloudflare.com",
+    "partner": ""
+  },
+  "cdnjs.cloudflare.com": {
+    "green": true,
+    "url": "cdnjs.cloudflare.com",
+    "data": true,
+    "hostedby": "Cloudflare",
+    "hostedbyid": 779,
+    "hostedbywebsite": "www.cloudflare.com",
+    "partner": ""
+  },
+  "graphite.thegreenwebfoundation.org": {
+    "green": true,
+    "url": "graphite.thegreenwebfoundation.org",
+    "data": true,
+    "hostedby": "LeaseWeb",
+    "hostedbyid": 156,
+    "hostedbywebsite": "www.leaseweb.com",
+    "partner": "",
+    "icon": "greenfan",
+    "iconurl": "http://www.evoswitch.com/en/green-fan/evoswitch-green-fan"
+  },
+  "analytics.thegreenwebfoundation.org": {
+    "green": true,
+    "url": "analytics.thegreenwebfoundation.org",
+    "data": true,
+    "hostedby": "LeaseWeb",
+    "hostedbyid": 156,
+    "hostedbywebsite": "www.leaseweb.com",
+    "partner": "",
+    "icon": "greenfan",
+    "iconurl": "http://www.evoswitch.com/en/green-fan/evoswitch-green-fan"
+  },
+  "fonts.gstatic.com": {
+    "green": true,
+    "url": "fonts.gstatic.com",
+    "data": true,
+    "hostedby": "Google Inc.",
+    "hostedbyid": 595,
+    "hostedbywebsite": "www.google.com",
+    "partner": ""
+  },
+  "api.thegreenwebfoundation.org": {
+    "green": true,
+    "url": "api.thegreenwebfoundation.org",
+    "data": true,
+    "hostedby": "LeaseWeb",
+    "hostedbyid": 156,
+    "hostedbywebsite": "www.leaseweb.com",
+    "partner": "",
+    "icon": "greenfan",
+    "iconurl": "http://www.evoswitch.com/en/green-fan/evoswitch-green-fan"
+  }
+}

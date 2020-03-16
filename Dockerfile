@@ -1,4 +1,4 @@
-FROM sitespeedio/webbrowsers:chrome-80.0-firefox-72.0
+FROM sitespeedio/webbrowsers:chrome-80.0-firefox-74.0
 
 ENV SITESPEED_IO_BROWSERTIME__XVFB true
 ENV SITESPEED_IO_BROWSERTIME__DOCKER true
@@ -12,6 +12,7 @@ COPY docker/webpagereplay/LICENSE /webpagereplay/
 
 RUN sudo apt-get update && sudo apt-get install libnss3-tools \
     net-tools \
+    build-essential \
     iproute2 -y && \
     mkdir -p $HOME/.pki/nssdb && \
     certutil -d $HOME/.pki/nssdb -N

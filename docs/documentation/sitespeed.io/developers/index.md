@@ -166,6 +166,8 @@ p #{JSON.stringify(pageInfo)}
 
 Where pageInfo is the data structure that you wanna inspect.
 
+If you are new to pug you can use [https://html2jade.org](https://html2jade.org) to convert your HTML to Pug.
+
 ### Make a pull request
 
  We love pull requests and before you make a big change or add functionality, please open an issue proposing the change to other contributors so you got feedback on the idea before take the time to write precious code!
