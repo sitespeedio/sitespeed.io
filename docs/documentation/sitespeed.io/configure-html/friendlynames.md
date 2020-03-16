@@ -67,7 +67,11 @@ webpagetest.visualComplete
 webpagetest.visualComplete95
 webpagetest.TTFB
 webpagetest.fullyLoaded
-gpsi.speedscore
+gpsi.performance
+gpsi.accessibility
+gpsi.best-practices
+gpsi.seo
+gpsi.pwa
 sustainable.totalCO2
 sustainable.co2PerPageView
 sustainable.co2FirstParty

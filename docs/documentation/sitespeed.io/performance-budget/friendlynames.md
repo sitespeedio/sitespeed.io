@@ -90,7 +90,11 @@
          "fullyLoaded": limit,
     },
    "gpsi": {
-         "speedscore": limit,
+         "performance": limit,
+         "accessibility": limit,
+         "best-practices": limit,
+         "seo": limit,
+         "pwa": limit,
     },
    "sustainable": {
          "totalCO2": limit,
