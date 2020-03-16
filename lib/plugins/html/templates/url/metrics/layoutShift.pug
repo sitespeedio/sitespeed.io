@@ -1,4 +1,4 @@
-if browsertime.pageinfo.layoutShift !== undefined
+if browsertime.pageinfo && browsertime.pageinfo.layoutShift !== undefined
     a#layoutShift
     h3 Detected unexpected layout shifts
     if (browsertime.pageinfo.layoutShift === 0) 
