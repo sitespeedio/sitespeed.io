@@ -72,12 +72,13 @@ if btStatistics
         tr 
           td.extraheader(colspan='5') Visual Metrics
         each visualMetric, name in btStatistics.visualMetrics
-          tr
-            td(data-title='metric') #{name}
-            +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'min')
-            +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'median')
-            td.number(data-title='mean') #{h.time.ms(visualMetric.mean)}
-            +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'max')
+          if name !== 'videoRecordingStart'
+            tr
+              td(data-title='metric') #{name}
+              +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'min')
+              +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'median')
+              td.number(data-title='mean') #{h.time.ms(visualMetric.mean)}
+              +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'max')
       if btStatistics.timings && btStatistics.timings.pageTimings
         tr 
           td.extraheader(colspan='5') RUM Timing Metrics
