@@ -1,4 +1,4 @@
----
+https://github.com/cambiph/sitespeed.io.git---
 layout: default
 title: Use scripts in sitespeed.io to measure a user journey.
 description: With scripts you can simulate a user visiting to miltiple pages, clicking on links, log in, adding items to the cart ... almost measure whatever you want!
@@ -503,7 +503,7 @@ module.exports = async function(context, commands) {
 
   // When the page has finished loading you can find the navigation and click on it
   const actions = driver.actions();
-  const nav = driver.findElement(
+  const nav = await driver.findElement(
     webdriver.By.xpath('//*[@id="mw-mf-main-menu-button"]')
   );
   await actions.click(nav).perform();
@@ -1045,14 +1045,15 @@ module.exports = async function(context, commands) {
   // before you start, make your username and password
   const userName = 'YOUR_USERNAME_HERE';
   const password = 'YOUR_PASSWORD_HERE';
-  const loginForm = driver.findElement(webdriver.By.css('form'));
-  const loginInput = driver.findElement(webdriver.By.id('wpName1'));
-  loginInput.sendKeys(userName);
-  const passwordInput = driver.findElement(webdriver.By.id('wpPassword1'));
-  passwordInput.sendKeys(password);
+  const loginForm = await driver.findElement(webdriver.By.css('form'));
+  const loginInput = await driver.findElement(webdriver.By.id('wpName1'));
+  await loginInput.sendKeys(userName);
+  const passwordInput = await driver.findElement(webdriver.By.id('wpPassword1'));
+  await passwordInput.sendKeys(password);
   // this example skips waiting for the next page and validating that the login was successful.
   return loginForm.submit();
 }
 ~~~
 
 If you need help with Selenium, checkout [the official Selenium documentation](https://www.seleniumhq.org/docs/).
+
