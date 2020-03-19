@@ -1,4 +1,4 @@
-https://github.com/cambiph/sitespeed.io.git---
+---
 layout: default
 title: Use scripts in sitespeed.io to measure a user journey.
 description: With scripts you can simulate a user visiting to miltiple pages, clicking on links, log in, adding items to the cart ... almost measure whatever you want!
