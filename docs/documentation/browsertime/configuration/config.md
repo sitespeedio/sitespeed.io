@@ -134,8 +134,8 @@ Options:
   --decimals                                   The decimal points browsertime statistics round to.  [number] [default: 0]
   --cacheClearRaw                              Use internal browser functionality to clear browser cache between runs instead of only using Selenium.  [boolean] [default: false]
   --basicAuth                                  Use it if your server is behind Basic Auth. Format: username@password (Only Chrome and Firefox at the moment).
-  --preScript                                  Selenium script(s) to run before you test your URL/script. They will run outside of the analyse phase. Note that --preScript can be passed multiple times.
-  --postScript                                 Selenium script(s) to run after you test your URL. They will run outside of the analyse phase. Note that --postScript can be passed multiple times.
+  --preScript, --setUp                         Selenium script(s) to run before you test your URL/script. They will run outside of the analyse phase. Note that --preScript can be passed multiple times.
+  --postScript, --tearDown                     Selenium script(s) to run after you test your URL. They will run outside of the analyse phase. Note that --postScript can be passed multiple times.
   --script                                     Add custom Javascript to run after the page has finished loading to collect metrics. If a single js file is specified, it will be included in the category named "custom" in the output json. Pass a folder to include all .js scripts in the folder, and have the folder name be the category. Note that --script can be passed multiple times.
   --userAgent                                  Override user agent
   --silent, -q                                 Only output info in the logs, not to the console. Enter twice to suppress summary line.  [count]
