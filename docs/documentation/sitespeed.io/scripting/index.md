@@ -72,6 +72,35 @@ And then you have a few help commands:
 Scripting only works for Browsertime. It will not work with Lighthouse/Google Pagespeed Insights or WebPageTest. If you need scripting for WebPageTest [read the WebPageTest scripting documentation](/documentation/sitespeed.io/webpagetest/#webpagetest-scripting).
 {: .note .note-info}
 
+## setUp and tearDown
+
+Scripts can also directly define the ```--preScript``` and ```--postScript``` options by implementing a 
+*setUp* and/or a *tearDown* function. These functions will get the same arguments than the test itself.
+When using this form, the three functions are declared in *module.exports* under the *setUp*, *tearDown*
+and *test* keys.
+
+Here's a minimal example:
+
+~~~javascript
+async function setUp(context, commands) {
+  // do some useful set up
+};
+
+async function perfTest(context, commands) {
+  // add your own code here
+};
+
+async function tearDown(context, commands) {
+  // do some cleanup here
+};
+
+module.exports = {
+  setUp: setUp,
+  tearDown: tearDown,
+  test: perfTest
+};
+~~~
+
 ## Run
 Run your script by passing it to sitespeed.io and adding the parameter ```--multi```. If you have multiple scripts, you can just pass them in as well.
 
