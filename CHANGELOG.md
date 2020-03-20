@@ -1,16 +1,22 @@
 # CHANGELOG - sitespeed.io
 
-## 12.2.2 - 20202-03-16
+## 12.2.3 - 2020-03-20
+### Fixed
+* Remove videoRecordingStart from the summary [#2935](https://github.com/sitespeedio/sitespeed.io/pull/2935).
+* Show CPU geckorprofile link only when you run Firefox [#2931](https://github.com/sitespeedio/sitespeed.io/pull/2931).
+* Upgraded to [Browsertime 8.3.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#830---2020-03-20).
+
+## 12.2.2 - 2020-03-16
 ### Fixed
 * Fix correct paths to Google Page Speed Insight budget metrics. This was broken in 12.2.0 when we upgraded to the GPSI format [#2930](https://github.com/sitespeedio/sitespeed.io/pull/2930).
 * Aggregating over multiple rules was broken for Axe, fixed by [gfoxCartrawler](https://github.com/gfoxCartrawler) in [#2928](https://github.com/sitespeedio/sitespeed.io/pull/2928).
 
-## 12.2.1 - 20202-03-16
+## 12.2.1 - 2020-03-16
 ### Fixed
 * A little better error handling so if you run on latest NodeJS we catch if one of the HTML tasks fail and better watch for failing runs overall [#2927](https://github.com/sitespeedio/sitespeed.io/pull/2927).
 * Fixed the order when you remove a plugin so remove always win agains add. That means that you finally can remove lighthouse or gpsi when your run the plus1 container. Remove with `--plugins.remove /lighthouse` or  `--plugins.remove /gpsi`[#2926](https://github.com/sitespeedio/sitespeed.io/pull/2926).
 
-## 12.2.0 - 20202-03-15
+## 12.2.0 - 2020-03-15
 ### Added
 * Updated the Docker container to use Firefox 74.
 * Introduced a new slim container with only Firefox. Look for the version tag + slim `sitespeedio/sitespeed.io:12.2.0-slim`. The container is based on Buster slim and we try to keep it as small as possible. The test runs Firefox headless without XVFB and without FFMPeg/ImageMagick so no Visual Metrics in this container for now  [#2913](https://github.com/sitespeedio/sitespeed.io/issues/2913).
