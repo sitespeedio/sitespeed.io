@@ -129,7 +129,7 @@ if  browsertime
            tr
             td
               a(href=baseHelpURL + 'largestContentfulPaint') Largest Contentful Paint
-            td.number #{h.time.ms(Math.max(timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.renderTime))}
+            td.number #{h.time.ms(Math.max(timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.renderTime, timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.loadTime))}
         if (timings.fullyLoaded) 
           tr
             td
