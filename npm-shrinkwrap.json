@@ -1992,9 +1992,9 @@
       }
     },
     "coach-core": {
-      "version": "5.0.0",
-      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-5.0.0.tgz",
-      "integrity": "sha512-4KezC40CxLUbDs6ouw4CgBvRKA0XlMjqR26k78G+G7I+9awqYd27y1C7dpPwsSyWemXPGlGuaaOuKBo2Ua6X8w==",
+      "version": "5.0.1",
+      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-5.0.1.tgz",
+      "integrity": "sha512-/mHawzW870jmfQX2pd+5pG7eRps648IUlutPjjRVSUS8NNUDAB3p6Pmq5VW/T0TDKDUOIbgCxpWgItRF6TuRWQ==",
       "requires": {
         "filter-files": "0.4.0",
         "json-stable-stringify": "1.0.1",
