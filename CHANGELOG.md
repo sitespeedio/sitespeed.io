@@ -1,7 +1,14 @@
 # CHANGELOG - sitespeed.io
 
-## 12.2.3 - 2020-03-20
+## 12.3.0 - 2020-03-23
 ### Fixed
+* New coach that supports NodeJs 10 again.
+
+### Added
+* Send load time for LCP to Graphite/Influx so you can choose between render/start time and use max value in the HTML [#2940](https://github.com/sitespeedio/sitespeed.io/pull/2940).
+
+## 12.2.3 - 2020-03-20
+### Fixed 
 * Remove videoRecordingStart from the summary [#2935](https://github.com/sitespeedio/sitespeed.io/pull/2935).
 * Show CPU geckorprofile link only when you run Firefox [#2931](https://github.com/sitespeedio/sitespeed.io/pull/2931).
 * Upgraded to [Browsertime 8.3.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#830---2020-03-20).
