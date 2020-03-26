@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## 12.3.1 - 2020-03-26
+### Fixed
+* Catch URLs that uses U+2013 that breaks Graphite [#2943](https://github.com/sitespeedio/sitespeed.io/pull/2943)
+* Upgrade to [Browsertime 8.3.1](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#831---2020-03-26).
+
 ## 12.3.0 - 2020-03-23
 ### Fixed
 * New coach that supports NodeJs 10 again.
