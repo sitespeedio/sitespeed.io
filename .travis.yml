@@ -1,6 +1,10 @@
 language: node_js
 node_js: 12
 matrix:
+  allow_failures:
+    - os: 
+      - windows
+      - osx
   include:
     - name: "Unit tests on Linux"
       sudo: required
