@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Added
+* Updated to [Browsertime 8.4.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#840---2020-04-03).
+
 ## 12.3.1 - 2020-03-26
 ### Fixed
 * Catch URLs that uses U+2013 that breaks Graphite [#2943](https://github.com/sitespeedio/sitespeed.io/pull/2943)

@@ -132,6 +132,7 @@ Options:
   --block                                      Domain to block. Add multiple instances to add multiple domains that will be blocked. If you use Chrome you can also use --blockDomainsExcept (that is more performant). Works for Firefox and Chrome.
   --percentiles                                The percentile values within the data browsertime will calculate and report.  [array] [default: [0,10,90,99,100]]
   --decimals                                   The decimal points browsertime statistics round to.  [number] [default: 0]
+  --iqr                                        Use IQR, or Inter Quartile Range filtering filters data based on the spread of the data. See  https://en.wikipedia.org/wiki/Interquartile_range. In some cases, IQR filtering may not filter out anything. This can happen if the acceptable range is wider than the bounds of your dataset.  [boolean] [default: false]
   --cacheClearRaw                              Use internal browser functionality to clear browser cache between runs instead of only using Selenium.  [boolean] [default: false]
   --basicAuth                                  Use it if your server is behind Basic Auth. Format: username@password (Only Chrome and Firefox at the moment).
   --preScript, --setUp                         Selenium script(s) to run before you test your URL/script. They will run outside of the analyse phase. Note that --preScript can be passed multiple times.
