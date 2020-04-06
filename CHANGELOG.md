@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 12.4.0 - 2020-04-06
 ### Added
 * Updated to [Browsertime 8.4.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#840---2020-04-03).
 
