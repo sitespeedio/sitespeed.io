@@ -244,6 +244,7 @@ Options:
   --verbose, -v, --debug            Verbose mode prints progress messages to the console. Enter up to three times (-vvv) to increase the level of detail.  [count]
   --browsertime.tcpdump, --tcpdump  Collect a tcpdump for each tested URL. The user that runs sitespeed.io should have sudo rights for tcpdump to work.  [boolean] [default: false]
   --browsertime.android, --android  Short key to use Android. Will automatically use com.android.chrome (Chrome stable). If you want to use another Chrome version, use --chrome.android.package  [boolean] [default: false]
+  --browsertime.iqr                 Use IQR, or Inter Quartile Range filtering filters data based on the spread of the data. See  https://en.wikipedia.org/wiki/Interquartile_range. In some cases, IQR filtering may not filter out anything. This can happen if the acceptable range is wider than the bounds of your dataset.  [boolean] [default: false]
   --plugins.disable  [array]
   --plugins.load  [array]
   --mobile                          Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Apple iPhone 6.  [boolean] [default: false]
