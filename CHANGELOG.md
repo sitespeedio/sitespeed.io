@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## 12.5.1 - 2020-04-09
+### Fixed
+* Upgraded from AXE-core 3.5.1 to 3.5.3 in [#2955](https://github.com/sitespeedio/sitespeed.io/pull/2955).
+* If you run WebPageTest and Browsertime at the same time, both tools generates PageXray data that could cause wrong values as reported in [#2952](https://github.com/sitespeedio/sitespeed.io/issues/2952), fixed in [#2954](https://github.com/sitespeedio/sitespeed.io/pull/2954).
+
 ## 12.5.0 - 2020-04-08
 ### Added
 * Updated to Browsertime 8.5.0 that includes Chromederiver 81.
