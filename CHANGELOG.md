@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 12.5.0 - UNRELEASED
+## 12.5.0 - 2020-04-08
 ### Added
 * Updated to Browsertime 8.5.0 that includes Chromederiver 81.
 * Updated the Docker container to use Chrome 81 and Firefox 75.
