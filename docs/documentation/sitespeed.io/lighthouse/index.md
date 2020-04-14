@@ -1,4 +1,4 @@
---`
+---
 layout: default
 title: Run Lighthouse from sitespeed.io
 description: Since 7.5 you can also run Lighthouse from sitespeed.io
