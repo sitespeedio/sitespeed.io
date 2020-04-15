@@ -44,7 +44,7 @@ To help us reproduce your problem there are a couple of things we need:
 * If you don't use Docker: Include the browser version you are using.
 * If you have problems with headers/cookie/auth you can use [https://httpbin.org](https://httpbin.org) to reproduce your issue.
 
-If you give us this information we can usually fix your issue faster.
+If you make your issue reproducable, the issue is the cream of the crop and will get the tag <span class="reproducable">reproducable</span>! And if your bug report has that tag, it will get our attention.
 
 ## What else you can do
 

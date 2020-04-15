@@ -181,6 +181,13 @@ white-space: pre-wrap;
   border-color: #dfb5b4;
 }
 
+.reproducable {
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #a0ef5b;
+  border-color: #a0ef5b;
+}
+
 .img-thumbnail img {
   padding: 4px;
   line-height: 1.428571429;
