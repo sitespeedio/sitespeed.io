@@ -28,7 +28,7 @@ docker push sitespeedio/sitespeed.io:$PACKAGE_VERSION-action
 docker build -t sitespeedio/sitespeed.io:$PACKAGE_VERSION-plus1 --build-arg version=$PACKAGE_VERSION --file docker/Dockerfile-plus1 .
 docker push sitespeedio/sitespeed.io:$PACKAGE_VERSION-plus1
 
-# Update to latet version in the docs
+# Update to latest version in the docs
 bin/sitespeed.js --version | tr -d '\n' > docs/_includes/version/sitespeed.io.txt
 
 # Generate the help for the docs
