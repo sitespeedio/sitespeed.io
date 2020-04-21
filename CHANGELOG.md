@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 12.6.0 - 202-04-21
+### Added
+* Updated to Browsertime 8.6.1 (from 8.5.0) and upgraded the main Docker container to use Ubuntu 20.04 and Python 3. Browsertime also includes [a couple of bug fixes](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#861---2020-04-16) when running Chrome on Android.
+
 ## 12.5.1 - 2020-04-09
 ### Fixed
 * Upgraded from AXE-core 3.5.1 to 3.5.3 in [#2955](https://github.com/sitespeedio/sitespeed.io/pull/2955).
