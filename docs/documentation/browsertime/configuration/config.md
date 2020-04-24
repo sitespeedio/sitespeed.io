@@ -44,6 +44,7 @@ firefox
   --firefox.preference                      Extra command line arguments to pass Firefox preferences by the format key:value To add multiple preferences, repeat --firefox.preference once per argument.
   --firefox.args                            Extra command line arguments to pass to the Firefox process (e.g. --MOZ_LOG). To add multiple arguments to Firefox, repeat --firefox.args once per argument.
   --firefox.includeResponseBodies           Include response bodies in HAR  [choices: "none", "all", "html"] [default: "none"]
+  --firefox.appconstants                    Include Firefox AppConstants information in the results  [boolean] [default: false]
   --firefox.acceptInsecureCerts             Accept insecure certs  [boolean]
   --firefox.windowRecorder                  Use the internal compositor-based Firefox window recorder to emit PNG files for each frame that is a meaningful change.  The PNG output will further be merged into a variable frame rate video for analysis. Use this instead of ffmpeg to record a video (you still need the --video flag).  [boolean] [default: false]
   --firefox.geckoProfiler                   Collect a profile using the internal gecko profiler  [boolean] [default: false]
@@ -107,56 +108,58 @@ connectivity
   --connectivity.throttle.localhost                   Add latency/delay on localhost. Perfect for testing with WebPageReplay  [boolean] [default: false]
 
 Options:
-  --cpu                                        Easy way to enable both chrome.timeline and CPU long tasks for Chrome and geckoProfile for Firefox  [boolean]
-  --video                                      Record a video and store the video. Set it to false to remove the video that is created by turning on visualMetrics. To remove fully turn off video recordings, make sure to set video and visualMetrics to false. Requires FFMpeg to be installed.  [boolean]
-  --visualMetrics                              Collect Visual Metrics like First Visual Change, SpeedIndex, Perceptual Speed Index and Last Visual Change. Requires FFMpeg and Python dependencies  [boolean]
-  --visualElements, --visuaElements            Collect Visual Metrics from elements. Works only with --visualMetrics turned on. By default you will get visual metrics from the largest image within the view port and the largest h1. You can also configure to pickup your own defined elements with --scriptInput.visualElements  [boolean]
-  --scriptInput.visualElements                 Include specific elements in visual elements. Give the element a name and select it with document.body.querySelector. Use like this: --scriptInput.visualElements name:domSelector see https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors. Add multiple instances to measure multiple elements. Visual Metrics will use these elements and calculate when they are visible and fully rendered.
-  --scriptInput.longTask, --minLongTaskLength  Set the minimum length of a task to be categorised as a CPU Long Task. It can never be smaller than 50. The value is in ms and you make Browsertime collect long tasks using --chrome.collectLongTasks or --cpu.  [number] [default: 50]
-  --browser, -b                                Specify browser. Safari only works on OS X/iOS. Edge only work on OS that supports Edge.  [choices: "chrome", "firefox", "edge", "safari"] [default: "chrome"]
-  --android                                    Short key to use Android. Defaults to use com.android.chrome unless --browser is specified.  [boolean] [default: false]
-  --processStartTime                           Capture browser process start time (in milliseconds). Android only for now.  [boolean] [default: false]
-  --pageCompleteCheck                          Supply a JavaScript (inline or JavaScript file) that decides when the browser is finished loading the page and can start to collect metrics. The JavaScript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd. By default the tests ends 2 seconds after loadEventEnd. Also checkout --pageCompleteCheckInactivity and --pageCompleteCheckPollTimeout
-  --pageCompleteWaitTime                       How long time you want to wait for your pageComplteteCheck to finish, after it is signaled to closed. Extra parameter passed on to your pageCompleteCheck.  [default: 5000]
-  --pageCompleteCheckInactivity                Alternative way to choose when to end your test. This will wait for 2 seconds of inactivity that happens after loadEventEnd.  [boolean] [default: false]
-  --pageCompleteCheckPollTimeout               The time in ms to wait for running the page complete check the next time.  [number] [default: 1500]
-  --pageCompleteCheckStartWait                 The time in ms to wait for running the page complete check for the first time. Use this when you have a pageLoadStrategy set to none  [number] [default: 5000]
-  --pageLoadStrategy                           Set the strategy to waiting for document readiness after a navigation event. After the strategy is ready, your pageCompleteCheck will start runninhg.  [string] [choices: "eager", "none", "normal"] [default: "none"]
-  --iterations, -n                             Number of times to test the url (restarting the browser between each test)  [number] [default: 3]
-  --prettyPrint                                Enable to print json/har with spaces and indentation. Larger files, but easier on the eye.  [boolean] [default: false]
-  --delay                                      Delay between runs, in milliseconds  [number] [default: 0]
-  --timeToSettle                               Extra time added for the browser to settle before starting to test a URL. This delay happens after the browser was opened and before the navigation to the URL  [number] [default: 0]
-  --requestheader, -r                          Request header that will be added to the request. Add multiple instances to add multiple request headers. Works for Firefox and Chrome. Use the following format key:value
-  --cookie                                     Cookie that will be added to the request. Add multiple instances to add multiple request cookies. Works for Firefox and Chrome. Use the following format cookieName=cookieValue
-  --injectJs                                   Inject JavaScript into the current page at document_start. Works for Firefox and Chrome. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
-  --block                                      Domain to block. Add multiple instances to add multiple domains that will be blocked. If you use Chrome you can also use --blockDomainsExcept (that is more performant). Works for Firefox and Chrome.
-  --percentiles                                The percentile values within the data browsertime will calculate and report.  [array] [default: [0,10,90,99,100]]
-  --decimals                                   The decimal points browsertime statistics round to.  [number] [default: 0]
-  --iqr                                        Use IQR, or Inter Quartile Range filtering filters data based on the spread of the data. See  https://en.wikipedia.org/wiki/Interquartile_range. In some cases, IQR filtering may not filter out anything. This can happen if the acceptable range is wider than the bounds of your dataset.  [boolean] [default: false]
-  --cacheClearRaw                              Use internal browser functionality to clear browser cache between runs instead of only using Selenium.  [boolean] [default: false]
-  --basicAuth                                  Use it if your server is behind Basic Auth. Format: username@password (Only Chrome and Firefox at the moment).
-  --preScript, --setUp                         Selenium script(s) to run before you test your URL/script. They will run outside of the analyse phase. Note that --preScript can be passed multiple times.
-  --postScript, --tearDown                     Selenium script(s) to run after you test your URL. They will run outside of the analyse phase. Note that --postScript can be passed multiple times.
-  --script                                     Add custom Javascript to run after the page has finished loading to collect metrics. If a single js file is specified, it will be included in the category named "custom" in the output json. Pass a folder to include all .js scripts in the folder, and have the folder name be the category. Note that --script can be passed multiple times.
-  --userAgent                                  Override user agent
-  --silent, -q                                 Only output info in the logs, not to the console. Enter twice to suppress summary line.  [count]
-  --output, -o                                 Specify file name for Browsertime data (ex: 'browsertime'). Unless specified, file will be named browsertime.json
-  --har                                        Specify file name for .har file (ex: 'browsertime'). Unless specified, file will be named browsertime.har
-  --skipHar                                    Pass --skipHar to not collect a HAR file.  [boolean]
-  --gzipHar                                    Pass --gzipHar to gzip the HAR file  [boolean]
-  --config                                     Path to JSON config file. You can also use a .browsertime.json file that will automatically be found by Browsertime using find-up.
-  --viewPort                                   Size of browser window WIDTHxHEIGHT or "maximize". Note that "maximize" is ignored for xvfb.
-  --resultDir                                  Set result directory for the files produced by Browsertime
-  --useSameDir                                 Store all files in the same structure and do not use the path structure released in 4.0. Use this only if you are testing ONE URL.
-  --xvfb                                       Start xvfb before the browser is started  [boolean] [default: false]
-  --xvfbParams.display                         The display used for xvfb  [default: 99]
-  --tcpdump                                    Collect a tcpdump for each tested URL.  [boolean] [default: false]
-  --tcpdumpPacketBuffered                      Use together with --tcpdump to save each packet directly to the file, instead of buffering.  [boolean] [default: false]
-  --preURL                                     A URL that will be accessed first by the browser before the URL that you wanna analyze. Use it to fill the cache.
-  --preURLDelay                                Delay between preURL and the URL you want to test (in milliseconds)  [default: 1500]
-  --userTimingWhitelist                        All userTimings are captured by default this option takes a regex that will whitelist which userTimings to capture in the results.
-  --headless                                   Run the browser in headless mode. Works for Firefox and Chrome.  [boolean] [default: false]
-  --extension                                  Path to a WebExtension to be installed in the browser. Note that --extension can be passed multiple times.
-  --spa                                        Convenient parameter to use if you test a SPA application: will automatically waity for X seconds after last network activity and use hash in file names. Read more: https://www.sitespeed.io/documentation/sitespeed.io/spa/  [boolean] [default: false]
-  -h, --help                                   Show help  [boolean]
-  -V, --version                                Show version number  [boolean]
+  --cpu                                         Easy way to enable both chrome.timeline and CPU long tasks for Chrome and geckoProfile for Firefox  [boolean]
+  --video                                       Record a video and store the video. Set it to false to remove the video that is created by turning on visualMetrics. To remove fully turn off video recordings, make sure to set video and visualMetrics to false. Requires FFMpeg to be installed.  [boolean]
+  --visualMetrics                               Collect Visual Metrics like First Visual Change, SpeedIndex, Perceptual Speed Index and Last Visual Change. Requires FFMpeg and Python dependencies  [boolean]
+  --visualElements, --visuaElements             Collect Visual Metrics from elements. Works only with --visualMetrics turned on. By default you will get visual metrics from the largest image within the view port and the largest h1. You can also configure to pickup your own defined elements with --scriptInput.visualElements  [boolean]
+  --scriptInput.visualElements                  Include specific elements in visual elements. Give the element a name and select it with document.body.querySelector. Use like this: --scriptInput.visualElements name:domSelector see https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors. Add multiple instances to measure multiple elements. Visual Metrics will use these elements and calculate when they are visible and fully rendered.
+  --scriptInput.longTask, --minLongTaskLength   Set the minimum length of a task to be categorised as a CPU Long Task. It can never be smaller than 50. The value is in ms and you make Browsertime collect long tasks using --chrome.collectLongTasks or --cpu.  [number] [default: 50]
+  --browser, -b                                 Specify browser. Safari only works on OS X/iOS. Edge only work on OS that supports Edge.  [choices: "chrome", "firefox", "edge", "safari"] [default: "chrome"]
+  --android                                     Short key to use Android. Defaults to use com.android.chrome unless --browser is specified.  [boolean] [default: false]
+  --androidBatteryTemperatureLimit              Do the battery temperature need to be below a specific limit before we start the test?
+  --androidBatteryTemperatureWaitTimeInSeconds  How long time to wait (in seconds) if the androidBatteryTemperatureWaitTimeInSeconds is not met before the next try  [default: 120]
+  --processStartTime                            Capture browser process start time (in milliseconds). Android only for now.  [boolean] [default: false]
+  --pageCompleteCheck                           Supply a JavaScript (inline or JavaScript file) that decides when the browser is finished loading the page and can start to collect metrics. The JavaScript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd. By default the tests ends 2 seconds after loadEventEnd. Also checkout --pageCompleteCheckInactivity and --pageCompleteCheckPollTimeout
+  --pageCompleteWaitTime                        How long time you want to wait for your pageComplteteCheck to finish, after it is signaled to closed. Extra parameter passed on to your pageCompleteCheck.  [default: 5000]
+  --pageCompleteCheckInactivity                 Alternative way to choose when to end your test. This will wait for 2 seconds of inactivity that happens after loadEventEnd.  [boolean] [default: false]
+  --pageCompleteCheckPollTimeout                The time in ms to wait for running the page complete check the next time.  [number] [default: 1500]
+  --pageCompleteCheckStartWait                  The time in ms to wait for running the page complete check for the first time. Use this when you have a pageLoadStrategy set to none  [number] [default: 5000]
+  --pageLoadStrategy                            Set the strategy to waiting for document readiness after a navigation event. After the strategy is ready, your pageCompleteCheck will start runninhg.  [string] [choices: "eager", "none", "normal"] [default: "none"]
+  --iterations, -n                              Number of times to test the url (restarting the browser between each test)  [number] [default: 3]
+  --prettyPrint                                 Enable to print json/har with spaces and indentation. Larger files, but easier on the eye.  [boolean] [default: false]
+  --delay                                       Delay between runs, in milliseconds  [number] [default: 0]
+  --timeToSettle                                Extra time added for the browser to settle before starting to test a URL. This delay happens after the browser was opened and before the navigation to the URL  [number] [default: 0]
+  --requestheader, -r                           Request header that will be added to the request. Add multiple instances to add multiple request headers. Works for Firefox and Chrome. Use the following format key:value
+  --cookie                                      Cookie that will be added to the request. Add multiple instances to add multiple request cookies. Works for Firefox and Chrome. Use the following format cookieName=cookieValue
+  --injectJs                                    Inject JavaScript into the current page at document_start. Works for Firefox and Chrome. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
+  --block                                       Domain to block. Add multiple instances to add multiple domains that will be blocked. If you use Chrome you can also use --blockDomainsExcept (that is more performant). Works for Firefox and Chrome.
+  --percentiles                                 The percentile values within the data browsertime will calculate and report.  [array] [default: [0,10,90,99,100]]
+  --decimals                                    The decimal points browsertime statistics round to.  [number] [default: 0]
+  --iqr                                         Use IQR, or Inter Quartile Range filtering filters data based on the spread of the data. See  https://en.wikipedia.org/wiki/Interquartile_range. In some cases, IQR filtering may not filter out anything. This can happen if the acceptable range is wider than the bounds of your dataset.  [boolean] [default: false]
+  --cacheClearRaw                               Use internal browser functionality to clear browser cache between runs instead of only using Selenium.  [boolean] [default: false]
+  --basicAuth                                   Use it if your server is behind Basic Auth. Format: username@password (Only Chrome and Firefox at the moment).
+  --preScript, --setUp                          Selenium script(s) to run before you test your URL/script. They will run outside of the analyse phase. Note that --preScript can be passed multiple times.
+  --postScript, --tearDown                      Selenium script(s) to run after you test your URL. They will run outside of the analyse phase. Note that --postScript can be passed multiple times.
+  --script                                      Add custom Javascript to run after the page has finished loading to collect metrics. If a single js file is specified, it will be included in the category named "custom" in the output json. Pass a folder to include all .js scripts in the folder, and have the folder name be the category. Note that --script can be passed multiple times.
+  --userAgent                                   Override user agent
+  --silent, -q                                  Only output info in the logs, not to the console. Enter twice to suppress summary line.  [count]
+  --output, -o                                  Specify file name for Browsertime data (ex: 'browsertime'). Unless specified, file will be named browsertime.json
+  --har                                         Specify file name for .har file (ex: 'browsertime'). Unless specified, file will be named browsertime.har
+  --skipHar                                     Pass --skipHar to not collect a HAR file.  [boolean]
+  --gzipHar                                     Pass --gzipHar to gzip the HAR file  [boolean]
+  --config                                      Path to JSON config file. You can also use a .browsertime.json file that will automatically be found by Browsertime using find-up.
+  --viewPort                                    Size of browser window WIDTHxHEIGHT or "maximize". Note that "maximize" is ignored for xvfb.
+  --resultDir                                   Set result directory for the files produced by Browsertime
+  --useSameDir                                  Store all files in the same structure and do not use the path structure released in 4.0. Use this only if you are testing ONE URL.
+  --xvfb                                        Start xvfb before the browser is started  [boolean] [default: false]
+  --xvfbParams.display                          The display used for xvfb  [default: 99]
+  --tcpdump                                     Collect a tcpdump for each tested URL.  [boolean] [default: false]
+  --tcpdumpPacketBuffered                       Use together with --tcpdump to save each packet directly to the file, instead of buffering.  [boolean] [default: false]
+  --preURL                                      A URL that will be accessed first by the browser before the URL that you wanna analyze. Use it to fill the cache.
+  --preURLDelay                                 Delay between preURL and the URL you want to test (in milliseconds)  [default: 1500]
+  --userTimingWhitelist                         All userTimings are captured by default this option takes a regex that will whitelist which userTimings to capture in the results.
+  --headless                                    Run the browser in headless mode. Works for Firefox and Chrome.  [boolean] [default: false]
+  --extension                                   Path to a WebExtension to be installed in the browser. Note that --extension can be passed multiple times.
+  --spa                                         Convenient parameter to use if you test a SPA application: will automatically waity for X seconds after last network activity and use hash in file names. Read more: https://www.sitespeed.io/documentation/sitespeed.io/spa/  [boolean] [default: false]
+  -h, --help                                    Show help  [boolean]
+  -V, --version                                 Show version number  [boolean]
