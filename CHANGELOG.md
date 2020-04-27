@@ -1,6 +1,19 @@
 # CHANGELOG - sitespeed.io
 
-## 12.6.0 - 202-04-21
+## 12.7.0 - UNRELEASED
+### Added
+* Use loadEventEnd for budget, summary box and page summary [#2969](https://github.com/sitespeedio/sitespeed.io/pull/2969).
+* Configurable group names. Use `--groupAlias` to assing an alias to a group (that is used in Graphite/InfluxDB). Use one alias per URL. [#2964](https://github.com/sitespeedio/sitespeed.io/pull/2964)
+* Upgraded to [Browsertime 8.7.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#870---2020-04-24):
+  * Fixed typo in an error message of click.js, fixed in [#1246](https://github.com/sitespeedio/browsertime/pull/1246), thank you [petemyron](https://github.com/petemyron).
+  * Mouse focus on element won't be lost at script measurement start, fixed in [#1248](https://github.com/sitespeedio/browsertime/pull/1248). Thank you [Icecold777](https://github.com/Icecold777).
+  * With the great merge of Mozillas changes I've missed to make sure the result.json wasn't bloated. [Gregory Mierzwinski](https://github.com/gmierz) fixed this in [#1252](https://github.com/sitespeedio/browsertime/pull/1252) making sure a lot of Firefox internal data isn't included by default. You can still enable that with `--firefox.appconstants`.
+  * New command `wait.bySelector(selector, maxTime)` implemented in [#1247](https://github.com/sitespeedio/browsertime/pull/1247).
+  * Adding screenshots in scripting is a great feature and one thing that was missing was that the result JSON do not include any references to the screenshots, so tools that uses browsertime, didn't know that they exist. In sitespeed.ios case the screenshots are stored to disk but now shown. [#1245](https://github.com/sitespeedio/browsertime/pull/1245).
+  * Automatically collect battery temperature for your Andorid phone. Collect start temperature (before you start to test your page) and stop temperature (when your test stopped) [#1250](https://github.com/sitespeedio/browsertime/pull/1250).
+  * Use `--androidBatteryTemperatureLimit` to set a minimum battery temperature limit before you start your test on your Android phone. Temperature is in [Celsius](https://en.wikipedia.org/wiki/Celsius). [#1253](https://github.com/sitespeedio/browsertime/pull/1253).
+
+## 12.6.0 - 2020-04-21
 ### Added
 * Updated to Browsertime 8.6.1 (from 8.5.0) and upgraded the main Docker container to use Ubuntu 20.04 and Python 3. Browsertime also includes [a couple of bug fixes](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#861---2020-04-16) when running Chrome on Android.
 
