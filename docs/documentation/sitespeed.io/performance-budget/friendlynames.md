@@ -2,6 +2,7 @@
  "budget": {
    "timings": {
          "firstPaint": limit,
+         "loadEventEnd": limit,
          "fullyLoaded": limit,
          "serverResponseTime": limit,
          "backEndTime": limit,

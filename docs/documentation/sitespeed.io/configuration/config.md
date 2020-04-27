@@ -239,26 +239,29 @@ Sustainable
   --sustainable.useGreenWebHostingAPI  Instead of using the local copy of the hosting database, you can use the latest version through the Green Web Foundation API. This means sitespeed.io will make HTTP GET to the the hosting info.  [boolean] [default: false]
 
 Options:
-  --version, -V                     Show version number  [boolean]
-  --debugMessages                   Debug mode logs all internal messages in the message queue to the log.  [boolean] [default: false]
-  --verbose, -v, --debug            Verbose mode prints progress messages to the console. Enter up to three times (-vvv) to increase the level of detail.  [count]
-  --browsertime.tcpdump, --tcpdump  Collect a tcpdump for each tested URL. The user that runs sitespeed.io should have sudo rights for tcpdump to work.  [boolean] [default: false]
-  --browsertime.android, --android  Short key to use Android. Will automatically use com.android.chrome (Chrome stable). If you want to use another Chrome version, use --chrome.android.package  [boolean] [default: false]
-  --browsertime.iqr                 Use IQR, or Inter Quartile Range filtering filters data based on the spread of the data. See  https://en.wikipedia.org/wiki/Interquartile_range. In some cases, IQR filtering may not filter out anything. This can happen if the acceptable range is wider than the bounds of your dataset.  [boolean] [default: false]
+  --version, -V                                                                                           Show version number  [boolean]
+  --debugMessages                                                                                         Debug mode logs all internal messages in the message queue to the log.  [boolean] [default: false]
+  --verbose, -v, --debug                                                                                  Verbose mode prints progress messages to the console. Enter up to three times (-vvv) to increase the level of detail.  [count]
+  --browsertime.tcpdump, --tcpdump                                                                        Collect a tcpdump for each tested URL. The user that runs sitespeed.io should have sudo rights for tcpdump to work.  [boolean] [default: false]
+  --browsertime.android, --android                                                                        Short key to use Android. Will automatically use com.android.chrome (Chrome stable). If you want to use another Chrome version, use --chrome.android.package  [boolean] [default: false]
+  --browsertime.androidBatteryTemperatureLimit, --androidBatteryTemperatureLimit                          Do the battery temperature need to be below a specific limit before we start the test?
+  --browsertime.androidBatteryTemperatureWaitTimeInSeconds, --androidBatteryTemperatureWaitTimeInSeconds  How long time to wait (in seconds) if the androidBatteryTemperatureWaitTimeInSeconds is not met before the next try  [default: 120]
+  --browsertime.iqr                                                                                       Use IQR, or Inter Quartile Range filtering filters data based on the spread of the data. See  https://en.wikipedia.org/wiki/Interquartile_range. In some cases, IQR filtering may not filter out anything. This can happen if the acceptable range is wider than the bounds of your dataset.  [boolean] [default: false]
   --plugins.disable  [array]
   --plugins.load  [array]
-  --mobile                          Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Apple iPhone 6.  [boolean] [default: false]
-  --resultBaseURL, --resultBaseUrl  The base URL to the server serving the HTML result. In the format of https://result.sitespeed.io
-  --gzipHAR                         Compress the HAR files with GZIP.  [boolean] [default: false]
-  --outputFolder                    The folder where the result will be stored.  [string]
-  --firstParty                      A regex running against each request and categorize it as first vs third party URL. (ex: ".*sitespeed.*")
-  --urlAlias                        Use an alias for the URL (if you feed URLs from a file you can instead have the alias in the file). You need to pass on the same amount of alias as URLs. The alias is used as the name of the URL on the HTML report and in Graphite/InfluxDB. Pass on multiple --urlAlias for multiple alias/URLs. This will override alias in a file.  [string]
-  --utc                             Use Coordinated Universal Time for timestamps  [boolean] [default: false]
-  --logToFile                       Store the log for your run into a file in logs/sitespeed.io.log  [boolean] [default: false]
-  --useHash                         If your site uses # for URLs and # give you unique URLs you need to turn on useHash. By default is it turned off, meaning URLs with hash and without hash are treated as the same URL  [boolean] [default: false]
-  --multi                           Test multiple URLs within the same browser session (same cache etc). Only works with Browsertime. Use this if you want to test multiple pages (use journey) or want to test multiple pages with scripts. You can mix URLs and scripts (the order will matter): login.js https://www.sitespeed.io/ logout.js - More details: https://www.sitespeed.io/documentation/sitespeed.io/scripting/  [boolean] [default: false]
-  --name                            Give your test a name.
-  --config                          Path to JSON config file
-  --help, -h                        Show help  [boolean]
+  --mobile                                                                                                Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Apple iPhone 6.  [boolean] [default: false]
+  --resultBaseURL, --resultBaseUrl                                                                        The base URL to the server serving the HTML result. In the format of https://result.sitespeed.io
+  --gzipHAR                                                                                               Compress the HAR files with GZIP.  [boolean] [default: false]
+  --outputFolder                                                                                          The folder where the result will be stored.  [string]
+  --firstParty                                                                                            A regex running against each request and categorize it as first vs third party URL. (ex: ".*sitespeed.*")
+  --urlAlias                                                                                              Use an alias for the URL (if you feed URLs from a file you can instead have the alias in the file). You need to pass on the same amount of alias as URLs. The alias is used as the name of the URL on the HTML report and in Graphite/InfluxDB. Pass on multiple --urlAlias for multiple alias/URLs. This will override alias in a file.  [string]
+  --groupAlias                                                                                            Use an alias for the group/domain. You need to pass on the same amount of alias as URLs. The alias is used as the name of the group in Graphite/InfluxDB. Pass on multiple --groupAlias for multiple alias/groups.  [string]
+  --utc                                                                                                   Use Coordinated Universal Time for timestamps  [boolean] [default: false]
+  --logToFile                                                                                             Store the log for your run into a file in logs/sitespeed.io.log  [boolean] [default: false]
+  --useHash                                                                                               If your site uses # for URLs and # give you unique URLs you need to turn on useHash. By default is it turned off, meaning URLs with hash and without hash are treated as the same URL  [boolean] [default: false]
+  --multi                                                                                                 Test multiple URLs within the same browser session (same cache etc). Only works with Browsertime. Use this if you want to test multiple pages (use journey) or want to test multiple pages with scripts. You can mix URLs and scripts (the order will matter): login.js https://www.sitespeed.io/ logout.js - More details: https://www.sitespeed.io/documentation/sitespeed.io/scripting/  [boolean] [default: false]
+  --name                                                                                                  Give your test a name.
+  --config                                                                                                Path to JSON config file
+  --help, -h                                                                                              Show help  [boolean]
 
 Read the docs at https://www.sitespeed.io/documentation/sitespeed.io/

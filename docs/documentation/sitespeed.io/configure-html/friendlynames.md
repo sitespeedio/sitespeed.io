@@ -1,4 +1,5 @@
 timings.firstPaint
+timings.loadEventEnd
 timings.fullyLoaded
 timings.serverResponseTime
 timings.backEndTime
