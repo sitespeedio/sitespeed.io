@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 12.7.0 - UNRELEASED
+## 12.7.0 - 2020-04-27
 ### Added
 * Use loadEventEnd for budget, summary box and page summary [#2969](https://github.com/sitespeedio/sitespeed.io/pull/2969).
 * Configurable group names. Use `--groupAlias` to assing an alias to a group (that is used in Graphite/InfluxDB). Use one alias per URL. [#2964](https://github.com/sitespeedio/sitespeed.io/pull/2964)
