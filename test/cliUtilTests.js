@@ -28,7 +28,9 @@ describe('cliUtil', function() {
       aliases = cliUtil.getAliases([
         'test/fixtures/sitespeed-urls-aliases.txt'
       ]);
-      expect(aliases['https://www.sitespeed.io'].alias).to.equal('Home_Page');
+      expect(aliases['https://www.sitespeed.io'].urlAlias).to.equal(
+        'Home_Page'
+      );
       expect(
         aliases[
           'https://www.sitespeed.io/documentation/sitespeed.io/webpagetest/'
