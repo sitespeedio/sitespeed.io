@@ -163,7 +163,16 @@ sitespeed.io --android -b firefox https://www.sitespeed.io
 
 Note that collecting the HAR is turned off since we cannot use the HAR Export trigger on Android.
 
- 
+### Only run tests when battery temperature is below X
+You can configure your tests to run when the battery temperature of your phone is below a certain threshold. Over heated mobile phones throttles the CPU so its good to keep track of the temperature (if you send metrics to Graphite/InfluxDB the battery temperature is automatically sent).
+
+Use `--androidBatteryTemperatureLimit` to set a minimum battery temperature limit before you start your test on your Android phone. Temperature is in [Celsius](https://en.wikipedia.org/wiki/Celsius).
+
+In this example the tests will start when the battery is below 32 degrees. By default sitespeed.io will wait two minutes and then check again. You can configure the wait time with `--androidBatteryTemperatureWaitTimeInSeconds`.
+
+```bash
+sitespeed.io --android --androidBatteryTemperatureLimit 32 https://www.sitespeed.io
+```
 
 ## Test on iOS
 
