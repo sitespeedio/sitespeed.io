@@ -1,10 +1,10 @@
 # CHANGELOG - sitespeed.io
 
-## 12.7.1 - UNRELEASED
+## 12.7.1 - 2020-04-29
 ### Fixed
 * 12.7.0 broke sending groups when you used URL alias. Fixed in [#2973](https://github.com/sitespeedio/sitespeed.io/pull/2973).
 * Correctly send messages on html.finished message, thank you [Erick Wilder](https://github.com/erickwilder) for the PR[#2971](https://github.com/sitespeedio/sitespeed.io/pull/2971).
-
+* Updated to [Browsertime 8.8.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#880---2020-04-29) that fixes the Firefox error that sometimes happend introduced in 8.7.0.
 
 ## 12.7.0 - 2020-04-27
 ### Added
