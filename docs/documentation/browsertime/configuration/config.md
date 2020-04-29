@@ -116,6 +116,7 @@ Options:
   --scriptInput.longTask, --minLongTaskLength   Set the minimum length of a task to be categorised as a CPU Long Task. It can never be smaller than 50. The value is in ms and you make Browsertime collect long tasks using --chrome.collectLongTasks or --cpu.  [number] [default: 50]
   --browser, -b                                 Specify browser. Safari only works on OS X/iOS. Edge only work on OS that supports Edge.  [choices: "chrome", "firefox", "edge", "safari"] [default: "chrome"]
   --android                                     Short key to use Android. Defaults to use com.android.chrome unless --browser is specified.  [boolean] [default: false]
+  --androidRooted                               If your phone is rooted you can use this to set it up following Mozillas best practice for stable metrics.  [boolean] [default: false]
   --androidBatteryTemperatureLimit              Do the battery temperature need to be below a specific limit before we start the test?
   --androidBatteryTemperatureWaitTimeInSeconds  How long time to wait (in seconds) if the androidBatteryTemperatureWaitTimeInSeconds is not met before the next try  [default: 120]
   --processStartTime                            Capture browser process start time (in milliseconds). Android only for now.  [boolean] [default: false]
