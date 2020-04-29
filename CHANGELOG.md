@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io
 
+## 12.7.1 - UNRELEASED
+### Fixed
+* 12.7.0 broke sending groups when you used URL alias. Fixed in [#2973](https://github.com/sitespeedio/sitespeed.io/pull/2973).
+* Correctly send messages on html.finished message, thank you [Erick Wilder](https://github.com/erickwilder) for the PR[#2971](https://github.com/sitespeedio/sitespeed.io/pull/2971).
+
+
 ## 12.7.0 - 2020-04-27
 ### Added
 * Use loadEventEnd for budget, summary box and page summary [#2969](https://github.com/sitespeedio/sitespeed.io/pull/2969).
