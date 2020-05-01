@@ -1,8 +1,12 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 12.8.0 - UNRELESED
 ### Added
 * Upgraded to Browsertime 8.9.0.
+* Show Android and WebPageTest information in the run information of every result page [#2974](https://github.com/sitespeedio/sitespeed.io/pull/2974).
+
+### Fixed
+* Another fix to correct alias bugs introduced in 12.7.0 and 12.7.1 [#2977](https://github.com/sitespeedio/sitespeed.io/pull/2977)
 
 ## 12.7.1 - 2020-04-29
 ### Fixed
