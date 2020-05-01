@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 12.8.0 - UNRELESED
+## 12.8.0 - 2020-05-01
 ### Added
 * Upgraded to Browsertime 8.9.0.
 * Show Android and WebPageTest information in the run information of every result page [#2974](https://github.com/sitespeedio/sitespeed.io/pull/2974).
