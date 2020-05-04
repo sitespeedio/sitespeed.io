@@ -1,7 +1,7 @@
 h2.url #{h.plural(noPages,'page')} analysed for #{options.name ? options.name : h.short(context.name, 30)}
 
 if usingBrowsertime
-  - const profile = options.mobile ? 'mobile' : 'desktop'
+  - const profile = options.mobile ? 'emulated mobile' : ''
   - const connectivity = options.browsertime.connectivity.alias || options.browsertime.connectivity.profile
   - const browserName = h.get(browser,'name');
   - const browserVersion = h.get(browser,'version');
@@ -14,7 +14,7 @@ if usingBrowsertime
     if (options.safari && options.safari.deviceType)
       | Testing using an #{options.safari.deviceType}.
     | #{options.preURL ? ' preURL ' + h.short(options.preURL, 60) + ' ' : ''}
-    | #{h.plural(options.browsertime.iterations, 'run')} with #{profile} profile and connectivity #{connectivity}.#{ options.replay ? ' Using WebPageReplay.' : ''}#{ options.multi ? ' Using multi mode.' : ''}
+    | #{h.plural(options.browsertime.iterations, 'run')} #{profile} and connectivity #{connectivity}.#{ options.replay ? ' Using WebPageReplay.' : ''}#{ options.multi ? ' Using multi mode.' : ''}
     | #{options.chrome && options.chrome.CPUThrottlingRate ? ' CPU Throttle Rate ' + options.chrome.CPUThrottlingRate + '.':''}
     if options.multi && options.html.showScript
         | (

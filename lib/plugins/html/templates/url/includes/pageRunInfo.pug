@@ -1,5 +1,5 @@
 if pageInfo.data.browsertime
-  - const profile = options.mobile ? 'mobile' : 'desktop'
+  - const profile = options.mobile ? 'emulated mobile' : ''
   - const runTime = h.get(pageInfo, 'pageInfo.data.browsertime.run.timestamp', timestamp)
   - const android = pageInfo.data.browsertime.run ? pageInfo.data.browsertime.run.android : pageInfo.data.browsertime.pageSummary.info.android 
   - const browserName = h.get(browser,'name');
@@ -16,7 +16,7 @@ if pageInfo.data.browsertime
     if (options.safari && options.safari.deviceType)
       | Testing using an #{options.safari.deviceType}.
     | #{options.preURL ? ' preURL ' + h.short(options.preURL, 60) + ' ': ''}
-    | #{h.plural(options.browsertime.iterations, 'run')} with #{profile} profile and connectivity #{connectivity}.#{ options.replay ? ' Using WebPageReplay.' : ''}#{ options.multi ? ' Using multi mode.' : ''}
+    | #{h.plural(options.browsertime.iterations, 'run')} #{profile} and connectivity #{connectivity}.#{ options.replay ? ' Using WebPageReplay.' : ''}#{ options.multi ? ' Using multi mode.' : ''}
     | #{options.chrome && options.chrome.CPUThrottlingRate ? ' CPU Throttle Rate ' + options.chrome.CPUThrottlingRate + '.':''}
     if options.multi && options.html.showScript
       | (
