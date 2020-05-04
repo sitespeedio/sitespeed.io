@@ -24,6 +24,7 @@ You can run your tests on Chrome on Android phones.
 
 We normally recommends using our Docker containers when you run sitespeed.io/Browsertime. However driving Android from Docker only works on a Linux host since there's is no way at the moment to map USB on Mac. If you use a Mac Mini or another Mac computer you should use the npm version.
 try
+
 #### Desktop
 
 If you don't use Docker you need to:
@@ -31,13 +32,24 @@ If you don't use Docker you need to:
 - Install the [Android SDK](http://developer.android.com/sdk/index.html#downloads) on your desktop (just the command line tools!). If you are on a Mac and use [Homebrew](http://brew.sh/) just run: <code>brew tap caskroom/cask && brew cask install android-platform-tools</code>
 
 #### On your phone
+You probably want to setup a new phone from scratch to have a dedicated device. When you start your phone for the first time, follow these instructions:
 
-- Install Chrome
-- Enable developer USB access to your phone: Go to _About device_ (or _About phone_) in your settings, tap it, scroll down to the _Build number_, tap it seven (7) times.
-- Disable screen lock on your device.
-- Enable _Stay awake_ in _Developer options_.
-- Enable USB debugging in the device system settings, under _Developer options_.
-- Install the [Stay Alive app](https://play.google.com/store/apps/details?id=com.synetics.stay.alive) and start it.
+- Make sure to say *no* to all data collection (on a new Android its something like 4-5 times you need to say no)
+- Setup a specific Google account that you use for testing
+- Update to latest Chrome in the Play Store (log in with your new user)
+- Set volume to zero for Media/Alarm/Ring, and turn off the *Power up/down sound*. Turn off all sounds that you can!
+- Disable screen lock on your device (Set Screen Lock to *None*).
+- You probably also want to disable notifications from different update services. Do that under  _Settings_ and _Apps_, then choose the service and select _Notifications_ and toggle _Block All_ to _On_.
+
+Next step is to prepare your phone to be used from a computer. To do that you need to enable Developer options:
+- Go to _About device_ (or _About phone_) in your settings, tap it, scroll down to the _Build number_, tap it seven (7) times to enable developer options.
+
+Then in _Developer options_:
+- Enable _Stay awake_
+- Turn off _Automatic System Updates_ 
+- Enable _USB debugging_
+
+You are almost ready!
 - Plug in your phone using the USB port on your desktop computer.
 - When you plugin your phone, click OK on the "Allow USB debugging?" popup.
 
