@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Fixed
+* Reverted to Python 2 in the Docker container to make TSProxy work again.
+
 ## 12.8.0 - 2020-05-01
 ### Added
 * Upgraded to Browsertime 8.9.0.
