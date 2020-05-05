@@ -1,8 +1,9 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 12.8.1 - 2020-05-05
 ### Fixed
 * Reverted to Python 2 in the Docker container to make TSProxy work again.
+* Upgraded to [Browsertime 8.9.1](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#891---2020-05-05) that many font issues in the video on Android devices.
 
 ## 12.8.0 - 2020-05-01
 ### Added
