@@ -89,7 +89,7 @@ You want your page to follow web best practice and the coach helps you with that
 Modern browser has many API that can deliver useful metrics to you.
 
 ### BackEndTime
-The time it takes for the network and the server to generate and start sending the HTML. Collected using the Navigation Timing API with the definition: responseStart - navigationStart
+The time it takes for the network and the server to generate and start sending the HTML. Collected using the Navigation Timing API with the definition: responseStart - navigationStart. This is TTFB (Time To First Byte).
 
 ### FrontEndTime
 The time it takes for the browser to parse and create the page. Collected using the Navigation Timing API with the definition: loadEventStart - responseEnd
@@ -127,6 +127,12 @@ First Contentful Paint (FCP) measures the time from navigation to the time when 
 ### Largest Contentful Paint
 The Largest Contentful Paint (LCP) metric reports the render time of the largest content element visible in the viewport.
 
+### Element timings
+Measure when specfific elements occur on the screen. To get this metric you need to annotate your HTML element with the attribute **elementtiming**.
+
+### Cumulative Layout Shift
+Cumulative Layout Shift (CLS) measures the sum total of all individual layout shift scores for every unexpected layout shift that occurs during the entire lifespan of the page. This is a Chrome only metric. We report this in % (how many percentage of the layout moved).
+
 ### Time To DOM Content Flushed
 Internal Firefox metric activated by setting the preference  **dom.performance.time_to_dom_content_flushed.enabled** to true.
 
@@ -145,7 +151,6 @@ The time when all assets in the page is downloaded. The value comes from the lat
 
 ### RUM-SpeedIndex
 A browser version also created by Pat Meenan that calculates the SpeedIndex measurements using Resource Timings. It is not as perfect as Speed Index but a good start.
-
 
 ## Page metrics
 Your page is built by HTML, CSS, JavaScript, images, fonts and more. The page metrics lets you know how many requests you do and the size of them.
