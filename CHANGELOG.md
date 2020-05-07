@@ -1,8 +1,8 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 12.9.0 - 2020-05-07
 ### Added
-* Changed to Firefox 76 in the Docker container.
+* Upgraded to Firefox 76 in the Docker container (and new Browsertime with also Fifefox upgrade).
 
 ## 12.8.1 - 2020-05-05
 ### Fixed
