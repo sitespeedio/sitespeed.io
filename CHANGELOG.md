@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 12.9.0 - 2020-05-07
+### Added
+* Upgraded to Firefox 76 in the Docker container (and new Browsertime with also Fifefox upgrade).
+
 ## 12.8.1 - 2020-05-05
 ### Fixed
 * Reverted to Python 2 in the Docker container to make TSProxy work again.

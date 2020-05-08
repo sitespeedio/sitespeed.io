@@ -878,9 +878,7 @@ Add the *text* to the element by using the attribute name. If the element is not
 Add the *text* to the element by using class name. If the element is not found the command will throw an error.
 
 ### Screenshot
-Take a screenshot. The image will automaticalle be stored in the screenshot directory for the URL you are testing. This can be super helpful to use in a catch block if something fails. 
-
-At the moment the screenshot is only saved to disk and there are no reference to it the result JSON file and we hope to fix that in the future.
+Take a screenshot. The image will automatically be stored in the screenshot directory for the URL you are testing. This can be super helpful to use in a catch block if something fails. 
 
 #### screenshot.take(name) 
 Give your screenshot a name and it will be used together with the iteration index to store the image.
