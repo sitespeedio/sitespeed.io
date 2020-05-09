@@ -2,7 +2,7 @@
 
 ## UNRELEASED
 ### Added
-* Upgraded to Browsertime 8.11.0
+* Upgraded to Browsertime 8.11.1
 
 ## 12.9.1 - 2020-05-08
 ### Fixed
