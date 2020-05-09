@@ -55,6 +55,7 @@ firefox
   --firefox.collectMozLog                   Collect the MOZ HTTP log  [boolean]
   --firefox.disableBrowsertimeExtension     Disable installing the browsertime extension.  [boolean]
   --firefox.disableSafeBrowsing             Disable safebrowsing.  [boolean] [default: true]
+  --firefox.disableTrackingProtection       Disable Tracking Protection.  [boolean] [default: true]
   --firefox.android.package                 Run Firefox or a GeckoView-consuming App on your Android device. Set to org.mozilla.geckoview_example for default Firefox version. You need to have adb installed to make this work.
   --firefox.android.activity                Name of the Activity hosting the GeckoView.
   --firefox.android.deviceSerial            Choose which device to use. If you do not set it, first device will be used.
