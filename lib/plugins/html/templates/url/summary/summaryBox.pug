@@ -42,8 +42,6 @@ mixin getRow(name, object, path, runPath, metric, f)
           td.number(data-title='max')
             a(href='./' + (index+1) + '.html', title='Go to the run with the max ' + name) #{f(max)}
            
-
-
 - btStatistics = h.get(pageInfo.data, 'browsertime.pageSummary.statistics')
 
 if btStatistics
@@ -67,7 +65,7 @@ if btStatistics
               +getRow(name, pageInfo, 'data.browsertime.pageSummary.statistics.visualMetrics.' + name, pageInfo.data.browsertime.pageSummary.visualMetrics, name, h.time.ms)
       if btStatistics.timings && btStatistics.timings.pageTimings
         tr 
-          td.extraheader(colspan='5') RUM Metrics
+          td.extraheader(colspan='5') RUM sMetrics
           +getRow('TTFB', pageInfo, 'data.browsertime.pageSummary.statistics.timings.pageTimings.backEndTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.pageTimings.backEndTime', h.time.ms)
           +getRow('LCP', pageInfo, 'data.browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.largestContentfulPaint.renderTime', h.time.ms)
           +getRow('FCP', pageInfo, 'data.browsertime.pageSummary.statistics.timings.paintTiming["first-contentful-paint"]', pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.paintTiming["first-contentful-paint"]', h.time.ms)
