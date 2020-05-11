@@ -95,7 +95,7 @@ block content
                 td LCP
                 td #{h.time.ms(lcp)}
             - cls = get(d, 'browsertime.run.pageinfo.layoutShift')
-            if cls
+            if cls || cls === 0
                 tr
                   td CLS
                   td #{cls.toFixed(2)} %

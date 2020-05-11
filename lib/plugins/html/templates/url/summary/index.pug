@@ -89,7 +89,7 @@ block content
                 td LCP [median]
                 td #{h.time.ms(lcp)}
             - cls = get(d, 'browsertime.pageSummary.statistics.pageinfo.layoutShift.median')
-            if cls
+            if cls || cls === 0
                 tr
                   td CLS [median]
                   td #{cls.toFixed(2)} %
