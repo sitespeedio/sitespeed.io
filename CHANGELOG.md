@@ -1,8 +1,15 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 12.10.0 - UNRELEASED
+Some time ago we got [a tweet](https://twitter.com/robnavrey/status/1258063125242314755) about adding the Web Vitals to sitespeed.io. The thing is we always add new metrics as soon as they arrive in Chrome/Firefox/Edge or Safari, so we had those metrics for months. But maybe we don't make it easy for people to see them? We have refactor how we show metrics in the HTML and the CLI output to make it easier for you.
+
 ### Added
 * Upgraded to Browsertime 8.11.1
+* Upgraded to new build of WebPageReplay in the Docker container [#2982](https://github.com/sitespeedio/sitespeed.io/pull/2982).
+* Show the same metrics in the CLI and HTML output per URL [#2989](https://github.com/sitespeedio/sitespeed.io/pull/2989).
+
+### Fixed
+* Refactor the Grafana CLI options to make the code cleaner (let options live in the plugin). Thank you [Erick Wilder](https://github.com/erickwilder) for the PR [#2984](https://github.com/sitespeedio/sitespeed.io/pull/2984)
 
 ## 12.9.1 - 2020-05-08
 ### Fixed
