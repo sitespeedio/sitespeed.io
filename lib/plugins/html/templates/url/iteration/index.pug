@@ -42,96 +42,131 @@ block content
 
   #tabSections
     section#summary-panel
-       h2 Summary
+      h2 Summary
+      .row
+        .one-half.column
+          table
+            tr
+              th Metric
+              th Value
+            - performanceScore = get(d, 'coach.run.advice.performance.score')
+            if performanceScore
+              tr
+                td Performance score
+                td #{performanceScore}
+            - totalTransferSize = get(d, 'pagexray.run.transferSize')
+            if totalTransferSize
+              tr
+                td Total page size
+                td #{h.size.format(totalTransferSize)}
+            - requests = get(d, 'pagexray.run.requests')
+            if (requests)
+              tr
+                td Requests
+                td #{requests}
+            - ttfb = get(d, 'browsertime.run.timings.pageTimings.backEndTime') 
+            if ttfb
+              tr
+                td TTFB
+                td #{h.time.ms(ttfb)}
+            - fullyLoaded = get(d, 'browsertime.run.fullyLoaded') 
+            if fullyLoaded
+              tr
+                td Fully Loaded
+                td #{h.time.ms(fullyLoaded.toFixed(0))}
+            - firstVisualChange = get(d, 'browsertime.run.visualMetrics.FirstVisualChange')
+            - firstPaint = get(d, 'browsertime.run.timings.firstPaint')
+            if firstVisualChange
+              tr
+                td First Visual Change
+                td #{h.time.ms(firstVisualChange)}
+            else if firstPaint
+              tr
+                td First Paint
+                td #{h.time.ms(firstPaint)}  
+            - fcp = get(d, 'browsertime.run.timings.paintTiming["first-contentful-paint"]') 
+            if fcp
+              tr
+                td FCP
+                td #{h.time.ms(fcp)}         
+            - lcp = get(d, 'browsertime.run.timings.largestContentfulPaint.renderTime')
+            if lcp
+              tr
+                td LCP
+                td #{h.time.ms(lcp)}
+            - cls = get(d, 'browsertime.run.pageinfo.layoutShift')
+            if cls
+                tr
+                  td CLS
+                  td #{cls.toFixed(2)} %
+            - tbt = get(d, 'browsertime.run.cpu.longTasks.totalBlockingTime')
+            if tbt  
+              tr
+                td Total Blocking Time
+                td #{h.time.ms(tbt)}
+            - mpFID = get(d, 'browsertime.run.cpu.longTasks.maxPotentialFid')
+            if mpFID
+              tr
+                td Max Potential FID
+                td #{h.time.ms(mpFID)}
+            - longTasks = get(d, 'browsertime.run.cpu.longTasks.tasks')
+            if longTasks
+              tr
+                td CPU long tasks
+                td #{longTasks}
+            - maxLongTask= get(d, 'browsertime.run.cpu.longTasks.durations.max') 
+            if maxLongTask 
+              tr
+                td CPU longest task duration
+                td #{h.time.ms(maxLongTask)}
+            - speedIndex = get(d, 'browsertime.run.visualMetrics.SpeedIndex')
+            if speedIndex
+              tr
+                td Speed Index
+                td #{h.time.ms(speedIndex)}
+            - visualComplete85 = get(d, 'browsertime.run.visualMetrics.VisualComplete85')
+            if visualComplete85
+              tr
+                td Visual Complete 85%
+                td #{h.time.ms(visualComplete85)}
+            - visualComplete99 = get(d, 'browsertime.run.visualMetrics.VisualComplete99')
+            if visualComplete99
+              tr
+                td Visual Complete 99%
+                td #{h.time.ms(visualComplete99)}  
+            - lastVisualChange = get(d, 'browsertime.run.visualMetrics.LastVisualChange')
+            if lastVisualChange
+              tr
+                td Last Visual Change
+                td #{h.time.ms(lastVisualChange)}
+            if !d.browsertime && d.webpagetest
+              tr
+                td Render (first view)
+                td #{d.webpagetest.run.firstView.render}
+              tr
+                td Speed Index (first view)
+                td #{d.webpagetest.run.firstView.SpeedIndex}
+              tr
+                td Visual Complete 85% (first view)
+                td #{d.webpagetest.run.firstView.visualComplete85}
+              tr
+                td Last Visual Change (first view)
+                td #{d.webpagetest.run.firstView.lastVisualChange}
+              tr
+                td Requests
+                td #{d.webpagetest.run.firstView.requestsFull}
 
-       .row
-         .one-half.column
-           table
-             tr
-               th Metric
-               th Value
-             if d.coach && d.coach.run
-               tr
-                 td Performance score:
-                 td #{d.coach.run.advice.performance.score}
-             if d.pagexray && d.pagexray.run
-               tr
-                 td Total page size:
-                 td #{h.size.format(d.pagexray.run.transferSize)}
-             if d.pagexray && d.pagexray.run
-               tr
-                 td Requests:
-                 td #{d.pagexray.run.requests}
-             if d.browsertime && d.browsertime.run && d.browsertime.run.fullyLoaded
-               tr
-                 td Fully loaded:
-                 td #{h.time.ms(d.browsertime.run.fullyLoaded.toFixed(0))}
-             if d.browsertime && d.browsertime.run && d.browsertime.run.visualMetrics
-               tr
-                 td First Visual Change:
-                 td #{h.time.ms(d.browsertime.run.visualMetrics.FirstVisualChange)}
-             else if d.browsertime && d.browsertime.run && d.browsertime.run.timings.firstPaint
-               tr
-                 td First Paint:
-                 td #{h.time.ms(d.browsertime.run.timings.firstPaint)}
-             if d.browsertime && d.browsertime.run && d.browsertime.run.visualMetrics
-               tr
-                 td Speed Index:
-                 td #{h.time.ms(d.browsertime.run.visualMetrics.SpeedIndex)}
-               tr
-                 td Visual Complete 85%:
-                 td #{h.time.ms(d.browsertime.run.visualMetrics.VisualComplete85)}
-               tr
-                 td Visual Complete 95%:
-                 td #{h.time.ms(d.browsertime.run.visualMetrics.VisualComplete95)}
-               tr
-                 td Visual Complete 99%:
-                 td #{h.time.ms(d.browsertime.run.visualMetrics.VisualComplete99)}
-               tr
-                 td Last Visual Change:
-                 td #{h.time.ms(d.browsertime.run.visualMetrics.LastVisualChange)}
-             else if d.browsertime && d.browsertime.run
-               tr
-                 td RUM Speed Index:
-                 td #{h.time.ms(d.browsertime.run.timings.rumSpeedIndex)}
-             if d.browsertime  && d.browsertime.run && d.browsertime.run.cpu && d.browsertime.run.cpu.longTasks
-              tr
-                td Total Blocking Time:
-                td #{h.time.ms(d.browsertime.run.cpu.longTasks.totalBlockingTime)}
-              tr
-                td Max Potential FID [median]:
-                td #{h.time.ms(d.browsertime.run.cpu.longTasks.maxPotentialFid)}
-              tr
-                td CPU long tasks:
-                td #{d.browsertime.run.cpu.longTasks.tasks}
-             if !d.browsertime && d.webpagetest
-               tr
-                 td Render (first view):
-                 td #{d.webpagetest.run.firstView.render}
-               tr
-                 td Speed Index (first view):
-                 td #{d.webpagetest.run.firstView.SpeedIndex}
-               tr
-                 td Visual Complete 85% (first view):
-                 td #{d.webpagetest.run.firstView.visualComplete85}
-               tr
-                 td Last Visual Change (first view):
-                 td #{d.webpagetest.run.firstView.lastVisualChange}
-               tr
-                 td Requests:
-                 td #{d.webpagetest.run.firstView.requestsFull}
-
-         .one-half.column
-             if !d.browsertime && d.webpagetest
-               - screenshotName = 'data/screenshots/wpt-' + iteration + '-firstView.png'
-               a(href=screenshotName)
-                 img.screenshot(src=screenshotName, alt='Screenshot')
-             else if hasScreenShots
-               - screenshotName = 'data/screenshots/' + iteration + '.' + screenShotType
-               - const width = options.mobile ? 150 : '100%';
-               a(href=screenshotName)
-                 img.screenshot(src=screenshotName, width=width, alt='Screenshot')
-       .downloads
+        .one-half.column
+            if !d.browsertime && d.webpagetest
+              - screenshotName = 'data/screenshots/wpt-' + iteration + '-firstView.png'
+              a(href=screenshotName)
+                img.screenshot(src=screenshotName, alt='Screenshot')
+            else if hasScreenShots
+              - screenshotName = 'data/screenshots/' + iteration + '.' + screenShotType
+              - const width = options.mobile ? 150 : '100%';
+              a(href=screenshotName)
+                img.screenshot(src=screenshotName, width=width, alt='Screenshot')
+      .downloads
         include ./downloads.pug
         include ./tcpdump.pug
     if d.browsertime && d.browsertime.run && d.browsertime.run.har
