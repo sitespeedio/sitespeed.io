@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Added
+* Upgraded to Browsertime 8.11.1
+
 ## 12.9.1 - 2020-05-08
 ### Fixed
 * Empty array in custom WPT data caused errors [#2985](https://github.com/sitespeedio/sitespeed.io/issues/2985).
