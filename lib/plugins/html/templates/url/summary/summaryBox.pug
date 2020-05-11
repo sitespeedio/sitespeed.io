@@ -1,46 +1,3 @@
-mixin getLink(path, name, metric, type)
-  - isSet = false
-  if options.browsertime.iterations % 2 === 0 && type === 'median'
-    td.number(data-title=type) #{metric[type]}
-  else
-    each run, index in path
-      if (run[name] === metric[type] && isSet === false)
-        - isSet = true
-        td.number(data-title=type)
-          a(href='./' + (index+1) + '.html', title='Go to the run with the ' + type + ' ' + name) #{h.time.ms(metric[type])}
-
-mixin getLinkTimings(path, name, metric, type)
-  - isSet = false
-  if options.browsertime.iterations % 2 === 0 && type === 'median'
-    td.number(data-title=type) #{metric[name][type]}
-  else
-    each run, index in path
-      if (Number(run.timings[name]).toFixed(0) === Number(metric[name][type]).toFixed(0) && isSet === false)
-        - isSet = true
-        td.number(data-title=type)
-          a(href='./' + (index+1) + '.html', title='Go to the run with the ' + type + ' ' + name) #{h.time.ms(metric[name][type])}
-
-mixin getLinkFirstInput(path, name, metric, type)
-  - isSet = false
-  if options.browsertime.iterations % 2 === 0 && type === 'median'
-    td.number(data-title=type) #{metric[name][type]}
-  else
-    each run, index in path
-      if (Number(run.timings.firstInput[name]).toFixed(0) === Number(metric[name][type]).toFixed(0) && isSet === false)
-        - isSet = true
-        td.number(data-title=type)
-          a(href='./' + (index+1) + '.html', title='Go to the run with the ' + type + ' ' + name) #{h.time.ms(metric[name][type])}
-
-mixin getLinkPageTimings(path, name, metric, type)
-  - isSet = false
-  if options.browsertime.iterations % 2 === 0 && type === 'median'
-    td.number(data-title=type) #{metric[name][type]}
-  else
-    each run, index in path
-      if (Number(run.timings.pageTimings[name]).toFixed(0) === Number(metric[name][type]).toFixed(0) && isSet === false)
-        - isSet = true
-        td.number(data-title=type)
-          a(href='./' + (index+1) + '.html', title='Go to the run with the ' + type + ' ' + name) #{h.time.ms(metric[name][type])}
 
 mixin getUserTimings(path, name, metric, type)
   - isSet = false
@@ -53,6 +10,39 @@ mixin getUserTimings(path, name, metric, type)
             - isSet = true
             td.number(data-title=type)
               a(href='./' + (index+1) + '.html', title='Go to the run with the ' + type + ' ' + name) #{h.time.ms(metric[type])}
+
+mixin getRow(name, object, path, runPath, metric, f)
+  - const min = get(object, path + '.min')
+  - const median = get(object, path + '.median')
+  - const mean = get(object, path + '.mean')
+  - const max = get(object, path + '.max')
+  if min || min === 0
+    tr
+      td(data-title='metric') #{name}
+        - let isSet = false
+        each run, index in runPath
+         if (Number(min).toFixed(0) === Number(get(run, metric)).toFixed(0) && isSet === false)
+          - isSet = true
+          td.number(data-title='min')
+            a(href='./' + (index+1) + '.html', title='Go to the run with the min ' + name) #{f(min)}
+        if options.browsertime.iterations % 2 === 0 
+          td #{f(median)}
+        else
+          - isSet = false
+          each run, index in runPath
+            if (Number(median).toFixed(0) === Number(get(run, metric)).toFixed(0) && isSet === false)
+              - isSet = true
+              td.number(data-title='median')
+                a(href='./' + (index+1) + '.html', title='Go to the run with the median ' + name) #{f(median)}
+      td.number(data-title='mean') #{f(mean)}
+      - isSet = false
+      each run, index in runPath
+         if (Number(max).toFixed(0) === Number(get(run, metric)).toFixed(0) && isSet === false)
+          - isSet = true
+          td.number(data-title='max')
+            a(href='./' + (index+1) + '.html', title='Go to the run with the max ' + name) #{f(max)}
+           
+
 
 - btStatistics = h.get(pageInfo.data, 'browsertime.pageSummary.statistics')
 
@@ -74,47 +64,32 @@ if btStatistics
         each visualMetric, name in btStatistics.visualMetrics
           if name !== 'videoRecordingStart'
             tr
-              td(data-title='metric') #{name}
-              +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'min')
-              +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'median')
-              td.number(data-title='mean') #{h.time.ms(visualMetric.mean)}
-              +getLink(pageInfo.data.browsertime.pageSummary.visualMetrics, name, visualMetric, 'max')
+              +getRow(name, pageInfo, 'data.browsertime.pageSummary.statistics.visualMetrics.' + name, pageInfo.data.browsertime.pageSummary.visualMetrics, name, h.time.ms)
       if btStatistics.timings && btStatistics.timings.pageTimings
         tr 
-          td.extraheader(colspan='5') RUM Timing Metrics
-        tr
-          td(data-title='metric') TTFB
-          +getLinkPageTimings(pageInfo.data.browsertime.pageSummary.browserScripts, 'backEndTime', btStatistics.timings.pageTimings, 'min')
-          +getLinkPageTimings(pageInfo.data.browsertime.pageSummary.browserScripts, 'backEndTime', btStatistics.timings.pageTimings, 'median')
-          td.number(data-title='mean') #{h.time.ms(btStatistics.timings.pageTimings.backEndTime.mean)}
-          +getLinkPageTimings(pageInfo.data.browsertime.pageSummary.browserScripts, 'backEndTime', btStatistics.timings.pageTimings, 'max')
-
+          td.extraheader(colspan='5') RUM Metrics
+          +getRow('TTFB', pageInfo, 'data.browsertime.pageSummary.statistics.timings.pageTimings.backEndTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.pageTimings.backEndTime', h.time.ms)
+          +getRow('LCP', pageInfo, 'data.browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.largestContentfulPaint.renderTime', h.time.ms)
+          +getRow('FCP', pageInfo, 'data.browsertime.pageSummary.statistics.timings.paintTiming["first-contentful-paint"]', pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.paintTiming["first-contentful-paint"]', h.time.ms)
         each timing in timingMetrics
-          if btStatistics.timings[timing]
-            tr
-              td(data-title='metric') #{timing}
-              +getLinkTimings(pageInfo.data.browsertime.pageSummary.browserScripts, timing, btStatistics.timings, 'min')
-              +getLinkTimings(pageInfo.data.browsertime.pageSummary.browserScripts, timing, btStatistics.timings, 'median')
-              td.number(data-title='mean') #{h.time.ms(btStatistics.timings[timing].mean)}
-              +getLinkTimings(pageInfo.data.browsertime.pageSummary.browserScripts, timing, btStatistics.timings, 'max')
-      if btStatistics.timings && btStatistics.timings.userTimings
-        if btStatistics.timings.userTimings.marks
-          tr 
-            td.extraheader(colspan='5') User Timing 
-          each userTimings, name in btStatistics.timings.userTimings.marks
-            tr
-              td(data-title= 'User Timing') #{name}
-              +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'min')
-              +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'median')
-              td.number(data-title='mean') #{userTimings ? h.time.ms(userTimings.mean): ''}
-              +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'max')
-      if btStatistics.timings && btStatistics.timings.firstInput
-        if btStatistics.timings.firstInput.duration
+          +getRow(timing, pageInfo, 'data.browsertime.pageSummary.statistics.timings.' + timing , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.' + timing, h.time.ms)
+         
+        +getRow('CLS', pageInfo, 'data.browsertime.pageSummary.statistics.pageinfo.layoutShift' , pageInfo.data.browsertime.pageSummary.browserScripts, 'pageinfo.layoutShift', h.percent)
+
+      if btStatistics.timings && btStatistics.timings.userTimings && btStatistics.timings.userTimings.marks
+        tr 
+          td.extraheader(colspan='5') User Timing 
+        each userTimings, name in btStatistics.timings.userTimings.marks
           tr
-            td.extraheader(colspan='5') First Input Delay
-          tr
-            td(data-title= 'First Input Delay') Duration
-            +getLinkFirstInput(pageInfo.data.browsertime.pageSummary.browserScripts, 'duration', btStatistics.timings.firstInput, 'min')
-            +getLinkFirstInput(pageInfo.data.browsertime.pageSummary.browserScripts, 'duration', btStatistics.timings.firstInput, 'median')
-            td.number(data-title='mean') #{h.time.ms(btStatistics.timings.firstInput.duration.mean)}
-            +getLinkFirstInput(pageInfo.data.browsertime.pageSummary.browserScripts, 'duration', btStatistics.timings.firstInput, 'max')
+            td(data-title= 'User Timing') #{name}
+            +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'min')
+            +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'median')
+            td.number(data-title='mean') #{userTimings ? h.time.ms(userTimings.mean): ''}
+            +getUserTimings(pageInfo.data.browsertime.pageSummary.browserScripts, name, userTimings, 'max')
+      if btStatistics.cpu && btStatistics.cpu.longTasks
+        tr 
+          td.extraheader(colspan='5') CPU
+        +getRow('Total Blocking Time', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'cpu.longTasks.totalBlockingTime', h.time.ms)
+        +getRow('Max Potential FID', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.maxPotentialFid', pageInfo.data.browsertime.pageSummary.browserScripts, 'cpu.longTasks.maxPotentialFid', h.time.ms)
+        +getRow('CPU long tasks ', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.tasks' , pageInfo.data.browsertime.pageSummary.browserScripts, 'cpu.longTasks.tasks', h.noop)
+        +getRow(' CPU longest task duration ', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.durations.max' , pageInfo.data.browsertime.pageSummary.browserScripts, 'cpu.longTasks.durations.max', h.time.ms)
