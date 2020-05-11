@@ -58,7 +58,7 @@ mixin getUserTimings(path, name, metric, type)
 
 if btStatistics
   h2 Timings Summary
-  - timingMetrics = ['firstPaint', 'rumSpeedIndex']
+  - timingMetrics = ['firstPaint', 'loadEventEnd','rumSpeedIndex']
   .responsive
     table
       thead
@@ -83,7 +83,7 @@ if btStatistics
         tr 
           td.extraheader(colspan='5') RUM Timing Metrics
         tr
-          td(data-title='metric') backEndTime
+          td(data-title='metric') TTFB
           +getLinkPageTimings(pageInfo.data.browsertime.pageSummary.browserScripts, 'backEndTime', btStatistics.timings.pageTimings, 'min')
           +getLinkPageTimings(pageInfo.data.browsertime.pageSummary.browserScripts, 'backEndTime', btStatistics.timings.pageTimings, 'median')
           td.number(data-title='mean') #{h.time.ms(btStatistics.timings.pageTimings.backEndTime.mean)}
