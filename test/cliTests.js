@@ -78,5 +78,80 @@ describe('cli', () => {
         'Include screenshot (from Browsertime/WebPageTest) in the annotation. You need to specify a --resultBaseURL for this to work.'
       );
     });
+
+    it('should contain graphite options', () => {
+      expect(stdout).to.contain('--graphite.host');
+      expect(stdout).to.contain(
+        'The Graphite host used to store captured metrics.'
+      );
+
+      expect(stdout).to.contain('--graphite.port');
+      expect(stdout).to.contain(
+        'The Graphite port used to store captured metrics.'
+      );
+
+      expect(stdout).to.contain('--graphite.auth');
+      expect(stdout).to.contain(
+        'The Graphite user and password used for authentication. Format: user:password'
+      );
+
+      expect(stdout).to.contain('--graphite.httpPort');
+      expect(stdout).to.contain(
+        'The Graphite port used to access the user interface and send annotations event'
+      );
+
+      expect(stdout).to.contain('--graphite.webHost');
+      expect(stdout).to.contain(
+        'The graphite-web host. If not specified graphite.host will be used.'
+      );
+
+      expect(stdout).to.contain('--graphite.namespace');
+      expect(stdout).to.contain(
+        'The namespace key added to all captured metrics.'
+      );
+
+      expect(stdout).to.contain('--graphite.includeQueryParams');
+      expect(stdout).to.contain(
+        'Whether to include query parameters from the URL in the Graphite keys or not'
+      );
+
+      expect(stdout).to.contain('--graphite.arrayTags');
+      expect(stdout).to.contain(
+        'Send the tags as Array or a String. In Graphite 1.0 the tags is a array. Before a String'
+      );
+
+      expect(stdout).to.contain('--graphite.annotationTitle');
+      expect(stdout).to.contain(
+        'Add a title to the annotation sent for a run.'
+      );
+
+      expect(stdout).to.contain('--graphite.annotationMessage');
+      expect(stdout).to.contain(
+        'Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.'
+      );
+
+      expect(stdout).to.contain('--graphite.annotationScreenshot');
+      expect(stdout).to.contain(
+        'Include screenshot (from Browsertime/WebPageTest) in the annotation. You need to specify a --resultBaseURL for this to work.'
+      );
+
+      expect(stdout).to.contain('--graphite.statsd');
+      expect(stdout).to.contain('Uses the StatsD interface');
+
+      expect(stdout).to.contain('--graphite.annotationTag');
+      expect(stdout).to.contain(
+        'Add a extra tag to the annotation sent for a run. Repeat the --graphite.annotationTag option for multiple tags. Make sure they do not collide with the other tags.'
+      );
+
+      expect(stdout).to.contain('--graphite.bulkSize');
+      expect(stdout).to.contain(
+        'Break up number of metrics to send with each request.'
+      );
+
+      expect(stdout).to.contain('--graphite.experimental.perIteration');
+      expect(stdout).to.contain(
+        'Experimental setup to send each iteration of metrics to Graphite. Experimental means this can change and is not released as stable. Use it with care.'
+      );
+    });
   });
 });
