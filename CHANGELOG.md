@@ -1,14 +1,13 @@
 # CHANGELOG - sitespeed.io
 
-## 12.10.0 - UNRELEASED
-Some time ago we got [a tweet](https://twitter.com/robnavrey/status/1258063125242314755) about adding the Web Vitals to sitespeed.io. The thing is we always add new metrics as soon as they arrive in Chrome/Firefox/Edge or Safari, so we had those metrics for months. But maybe we don't make it easy for people to see them? We have refactor how we show metrics in the HTML and the CLI output to make it easier for you.
+## 12.10.0 - 2020-05-12
+Some time ago we got [a tweet](https://twitter.com/robnavrey/status/1258063125242314755) about adding the Web Vitals to sitespeed.io. The thing is we always add new metrics as soon as they arrive in Chrome/Firefox/Edge or Safari, so we had those metrics for months. But maybe we don't make it easy for people to see them? We have refactored how we show metrics in the HTML and the CLI output to make it easier for you!
 
 ### Added
 * Upgraded to [Browsertime 8.12.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#8120---2020-05-12):
   * Run tests with Safari Technology Preview using `--safari.useTechnologyPreview`
   * Make it possible to enable Safe Browsing and Tracking protection for Firefox. Fireefox precerences was messed up before. Set `--firefox.disableSafeBrowsing false --firefox.disableTrackingProtection false` and let the browser settle for 30 seconds to download the lists and they are enabled. In the future we want it to be enabled by default [#1272](https://github.com/sitespeedio/browsertime/pull/1272).
   * Output TBT, CLS and TTFB in the CLI summary when availible [#1276](https://github.com/sitespeedio/browsertime/pull/1276) and per run. Also unify how we output metrics from thee CLI [#1277](https://github.com/sitespeedio/browsertime/pull/1277)
-
 * Upgraded to new build of WebPageReplay in the Docker container [#2982](https://github.com/sitespeedio/sitespeed.io/pull/2982).
 * Show the same metrics in the CLI and HTML output per URL [#2989](https://github.com/sitespeedio/sitespeed.io/pull/2989).
 
