@@ -186,6 +186,9 @@ In this example the tests will start when the battery is below 32 degrees. By de
 sitespeed.io --android --androidBatteryTemperatureLimit 32 https://www.sitespeed.io
 ```
 
+### Run on a rooted device
+You can run on fresh Android device or on a rooted device. If you use rooted device and you use a Moto G5 or a Pixel 2 it will be configured for as stable performance as possible if you add `--androidRooted` to your run. We follow [Mozillas setup](https://dxr.mozilla.org/mozilla-central/source/testing/raptor/raptor/performance_tuning.py) best practise to do that. Make sure you only do that for a phone that you have dedicated to performance tests, since it will be kept in that performance state after the tests.
+
 ## Test on iOS
 
 You can run your tests on Safari on iOS.
