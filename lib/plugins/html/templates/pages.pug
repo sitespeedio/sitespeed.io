@@ -7,7 +7,7 @@ mixin rows(pages)
     - tp = pageInfo.data.thirdparty ? pageInfo.data.thirdparty.pageSummary : {}
     - b = pageInfo.data.browsertime ? pageInfo.data.browsertime.pageSummary : {}
     - t = p.contentTypes || {javascript: {transferSize: ''}, css: {transferSize: ''}, image: {transferSize: ''}}
-    - display = (options.urlsMetaData && options.urlsMetaData[url] && options.urlsMetaData[url].alias) ? options.urlsMetaData[url].alias : url
+    - display = (options.urlsMetaData && options.urlsMetaData[url] && options.urlsMetaData[url].urlAlias) ? options.urlsMetaData[url].urlAlias : url
     - display = (pageInfo.data.browsertime && b.info.alias) ? b.info.alias : display
     - metricList = html.pageSummaryMetrics
     tr
