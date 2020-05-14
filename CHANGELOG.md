@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 12.10.1 - 2020-05-14
+### Fixed
+* Fixed the bug so that the alias is shown in the HTML [#2994](https://github.com/sitespeedio/sitespeed.io/pull/2994).
+
 ## 12.10.0 - 2020-05-12
 Some time ago we got [a tweet](https://twitter.com/robnavrey/status/1258063125242314755) about adding the Web Vitals to sitespeed.io. The thing is we always add new metrics as soon as they arrive in Chrome/Firefox/Edge or Safari, so we had those metrics for months. But maybe we don't make it easy for people to see them? We have refactored how we show metrics in the HTML and the CLI output to make it easier for you!
 
