@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Added
+* Show FCP and LCP in the film strip [#2996](https://github.com/sitespeedio/sitespeed.io/pull/2996)
+* Make it possible to configure the threshold for the green/yellow/red boxes on the summary page [2997](https://github.com/sitespeedio/sitespeed.io/pull/2997).
+
 ## 12.10.2 - 2020-05-15
 ### Fixed
 * Make sure we don't add undefined values from the navigation timing API [#2995](https://github.com/sitespeedio/sitespeed.io/pull/2995).
