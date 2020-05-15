@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 12.10.2 - 2020-05-15
+### Fixed
+* Make sure we don't add undefined values from the navigation timing API [#2995](https://github.com/sitespeedio/sitespeed.io/pull/2995).
+
 ## 12.10.1 - 2020-05-14
 ### Fixed
 * Fixed the bug so that the alias is shown in the HTML [#2994](https://github.com/sitespeedio/sitespeed.io/pull/2994).
