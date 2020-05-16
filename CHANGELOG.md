@@ -1,9 +1,9 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 12.11.0 - 2020-05-16
 ### Added
 * Show FCP and LCP in the film strip [#2996](https://github.com/sitespeedio/sitespeed.io/pull/2996)
-* Make it possible to configure the threshold for the green/yellow/red boxes on the summary page [2997](https://github.com/sitespeedio/sitespeed.io/pull/2997).
+* Make it possible to configure the threshold for the green/yellow/red boxes on the summary page [2997](https://github.com/sitespeedio/sitespeed.io/pull/2997). Read more in the [documentation](https://www.sitespeed.io/documentation/sitespeed.io/configure-html/#configure-the-thresholds-for-redyellowgreen-summary-boxes).
 
 ## 12.10.2 - 2020-05-15
 ### Fixed
