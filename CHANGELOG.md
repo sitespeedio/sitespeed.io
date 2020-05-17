@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Added
+* Show which HTML tag that is the largest contentful paint in the waterfall [#3001](https://github.com/sitespeedio/sitespeed.io/pull/3001).
+
 ## 12.11.0 - 2020-05-16
 ### Added
 * Show FCP and LCP in the film strip [#2996](https://github.com/sitespeedio/sitespeed.io/pull/2996)
