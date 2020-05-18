@@ -147,9 +147,10 @@ each view in ['firstView', 'repeatView']
           tr
             td TTFB
             +numberCell('TTFB', median.TTFB)
-          tr
-            td First paint
-            +numberCell('First Paint', median.firstPaint.toFixed(0))
+          if median.firstPaint
+            tr
+              td First paint
+              +numberCell('First Paint', median.firstPaint.toFixed(0))
           tr
             td DOM loading
             +numberCell('DOM loading', median.domLoading)
