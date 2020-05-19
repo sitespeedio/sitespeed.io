@@ -3,6 +3,13 @@
 ## UNRELEASED
 ### Added
 * Show which HTML tag that is the largest contentful paint in the waterfall [#3001](https://github.com/sitespeedio/sitespeed.io/pull/3001).
+* Show the Browsertime xvfb parameters in the CLI help [#3003](https://github.com/sitespeedio/sitespeed.io/pull/3003)
+* Generic cleanup to make sure we show FCP/LCP/CLS where we show metrics and converted the old layout shift to cumulative layout shift [#3004](https://github.com/sitespeedio/sitespeed.io/pull/3004)
+* Upgraded to [Browsertime 8.12.1](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#8121---2020-05-19).
+* The +1 container now uses Lighthouse 6.0.0.
+
+### Fixed
+* Better guards for missing WebPageTest first view data [#3002](https://github.com/sitespeedio/sitespeed.io/pull/3002)
 
 ## 12.11.0 - 2020-05-16
 ### Added
