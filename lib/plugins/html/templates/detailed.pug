@@ -14,7 +14,7 @@ block content
           th p90
           th max
       each metric in metrics
-        if metric.node && metric.node.min
+        if metric.node && (metric.node.min  || metric.node.min === 0)
           tr
             td(data-title='Metric', data-value=metric.name)
               if (metric.metricName)
