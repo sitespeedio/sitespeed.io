@@ -122,6 +122,20 @@ We have also [seen difference in performance and stability at the Wikimedia Foun
 
 However keeping one instance (or multiple instances) isn't a bullet proof solution. We have seen performance shift over time on an instance (remember a cloud server is just someone elses server). That's why you need to keep track of deviation of metrics over time to make sure that you can find when instances change.
 
+![Carbon per domain]({{site.baseurl}}/img/aws-same-server-update.png)
+{: .img-thumbnail}
+
+![Carbon per domain]({{site.baseurl}}/img/aws-lower-stddev.png)
+{: .img-thumbnail}
+
+![Carbon per domain]({{site.baseurl}}/img/new-server-again.png)
+{: .img-thumbnail}
+
+![Carbon per domain]({{site.baseurl}}/img/higher-stddev.png)
+{: .img-thumbnail}
+
+
+
 ##### Tuning your instance
 Before you start to run your tests, there are a couple of things you can do to tune your instance before you start to run your tests (following Netflix best practices).
 
