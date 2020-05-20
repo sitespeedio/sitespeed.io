@@ -153,5 +153,16 @@ describe('cli', () => {
         'Experimental setup to send each iteration of metrics to Graphite. Experimental means this can change and is not released as stable. Use it with care.'
       );
     });
+
+    it('should contain influxdb options', () => {
+      expect(stdout).to.contain('--influxdb.protocol');
+      expect(stdout).to.contain('--influxdb.host');
+      expect(stdout).to.contain('--influxdb.port');
+      expect(stdout).to.contain('--influxdb.username');
+      expect(stdout).to.contain('--influxdb.database');
+      expect(stdout).to.contain('--influxdb.includeQueryParams');
+      expect(stdout).to.contain('--influxdb.groupSeparator');
+      expect(stdout).to.contain('--influxdb.annotationScreenshot');
+    });
   });
 });
