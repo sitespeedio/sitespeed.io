@@ -71,7 +71,7 @@ This will get you the full JSON, the same as if you integrate the coach into you
 
 ### Bookmarklet
 
-We also produce a bookmarklet. The bookmarklet only uses advice that you can run inside the browser (it doesn't have HAR file to analyze even though maybe possible in the future with the Resource Timing API).
+We also produce a bookmarklet. The bookmarklet only uses advice that you can run inside the browser (it doesn't have HAR file to analyse even though maybe possible in the future with the Resource Timing API).
 
 The bookmarklet is really rough right now and logs the info to the browser console. Help us make a cool front-end :)
 
@@ -84,7 +84,7 @@ grunt bookmarklet
 and then you will find it in the dist folder.
 
 ### Include in your own tool
-The coach uses Browsertime to start the browser, execute the Javascript and fetch the HAR file. You can use that functionality too inside your tool or you can use the raw scripts if you have your own browser implementation.
+The coach uses Browsertime to start the browser, execute the JavaScript and fetch the HAR file. You can use that functionality too inside your tool or you can use the raw scripts if you have your own browser implementation.
 
 #### Use built in browser support
 
@@ -106,7 +106,7 @@ const result = api.run(url, domScript, harScript, options);
 #### Use the scripts
 Say that your tool run on Windows, you start the browsers yourself and you generate your own HAR file. Create your own wrapper to get the coach to help you.
 
-First you need the Javascript advice, you can get the raw script either by generating it yourself or through the API.
+First you need the JavaScript advice, you can get the raw script either by generating it yourself or through the API.
 
 Generate the script
 
@@ -157,8 +157,8 @@ The coach will give you advice on how to make your page better. You will also ge
 
 The coach tests your site in two steps:
 
- * Executes Javascript in your browser and check for performance, accessibility, best practice and collect general info about your page.
- * Analyze the [HAR file](http://www.softwareishard.com/blog/har-12-spec/) for your page together with relevant info from the DOM process.
+ * Executes JavaScript in your browser and check for performance, accessibility, best practice and collect general info about your page.
+ * analyse the [HAR file](http://www.softwareishard.com/blog/har-12-spec/) for your page together with relevant info from the DOM process.
 
 You can run the different steps standalone but for the best result run them together.
 

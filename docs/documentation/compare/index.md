@@ -108,8 +108,8 @@ Or you can use it like this: https://compare.sitespeed.io/?config=https://URL_TO
 Make sure that your server has correct [CORS settings](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing) so that compare.sitespeed.io can get the HAR file.
 {: .note .note-warning}
 
-### Github gist
-You can also use host your configuration file on a [Github gist](https://gist.github.com/) and use the gist id https://compare.sitespeed.io?gist=GIST_ID to get the configuration file.
+### GitHub gist
+You can also use host your configuration file on a [GitHub gist](https://gist.github.com/) and use the gist id https://compare.sitespeed.io?gist=GIST_ID to get the configuration file.
 
 You can checkout out our example:
 [https://gist.github.com/soulgalore/94e4d997a78e03b32b939fcea63eae8e](https://gist.github.com/soulgalore/94e4d997a78e03b32b939fcea63eae8e)

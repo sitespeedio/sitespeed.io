@@ -21,16 +21,21 @@ twitterdescription: Use Docker to run sitespeed.io.
 
 Docker is the preferred installation method because every dependency is handled for you for all the features in sitespeed.io.
 
-We have a ready made container with [Chrome, Firefox & Xvfb](https://hub.docker.com/r/sitespeedio/sitespeed.io/). It also contains FFMpeg and Imagemagick, so we can record a video and get metrics like SpeedIndex using [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics).
+We have a three ready made containers:
+* One slim container that contains only Firefox. You run Firefox headless. Use the container `sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-slim`. The container do not have FFMpeg and Imagemagick so you can not get any Visual Metrics using this container.
+* One with [Chrome, Firefox & Xvfb](https://hub.docker.com/r/sitespeedio/sitespeed.io/). It also contains FFMpeg and Imagemagick, so we can record a video and get metrics like Speed Index using [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics). This is the default container and use it with `sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}` 
+* One container that is based in the default container and includes the [Google Page Speed Insights](https://github.com/sitespeedio/plugin-gpsi) and [Lighthouse plugin](https://github.com/sitespeedio/plugin-lighthouse). Use it with `sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-plus1`.
 
 ### Structure
 
-The Docker structure looks like this:
+The Docker structure in the default container looks like this:
 
 [NodeJS with Ubuntu 18](https://github.com/sitespeedio/docker-node) -> [VisualMetrics dependencies](https://github.com/sitespeedio/docker-visualmetrics-deps) ->
 [Firefox/Chrome/xvfb](https://github.com/sitespeedio/docker-browsers) -> [sitespeed.io](https://github.com/sitespeedio/sitespeed.io/blob/master/Dockerfile)
 
 The first container installs NodeJS (latest LTS) on Ubuntu 18. The next one adds the dependencies (FFMpeg, ImageMagick and some Python libraries) needed to run [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics). We then install specific version of Firefox, Chrome and lastly xvfb. Then in last step, we add sitespeed.io and tag it to the sitespeed.io version number.
+
+The [slim container](https://github.com/sitespeedio/sitespeed.io/blob/master/Dockerfile-slim) is based on [Debian Buster slim](https://github.com/debuerreotype/docker-debian-artifacts/blob/d6eeda93542f8e2a7d5f6e500b58fc4f12d055ce/buster/slim/Dockerfile). 
 
 We lock down the browsers to specific versions for maximum compatibility and stability with sitespeed.io's current feature set; upgrading once we verify browser compatibility.
 {: .note .note-info}
@@ -49,10 +54,10 @@ In the real world you should always specify the exact version (tag) of the Docke
 docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b chrome https://www.sitespeed.io/
 ```
 
-If you want to use Firefox:
+If you want to use Firefox (make sure you make the shared memory larger using --shm-size):
 
 ```bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox https://www.sitespeed.io/
+docker run --shm-size 2g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox https://www.sitespeed.io/
 ```
 
 Using `-v "$(pwd)":/sitespeed.io` will map the current directory inside Docker and output the result directory there.
@@ -85,7 +90,7 @@ If you want to make sure your containers have the same time as the host, you can
 Full example:
 
 ```bash
-docker run --rm -v "$(pwd)":/sitespeed.io -v /etc/localtime:/etc/localtime:ro sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox https://www.sitespeed.io/
+docker run --shm-size 2g --rm -v "$(pwd)":/sitespeed.io -v /etc/localtime:/etc/localtime:ro sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox https://www.sitespeed.io/
 ```
 
 ## Setting time zone
@@ -100,18 +105,26 @@ docker run -e TZ=America/New_York --rm -v "$(pwd)":/sitespeed.io sitespeedio/sit
 
 To change connectivity you should use Docker networks, read all about it [here]({{site.baseurl}}/documentation/sitespeed.io/browsers/#change-connectivity).
 
+## Increase memory
+
+If you test many URLs or many runs at the same time you may get errors like `Allocation failed - JavaScript heap out of memory`. The default memory size for NodeJS is set to 2048 in the Docker container. You can increase that by using the Docker environment variable **MAX_OLD_SPACE_SIZE**.
+
+```bash
+docker run -e MAX_OLD_SPACE_SIZE=4096 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/
+```
+
 ## Access localhost
 
 If you run a server local on your machine and want to access it with sitespeed.io you can do that on Mac and Windows super easy if you are using Docker 18.03 or later by using _host.docker.internal_.
 
 ```bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox http://host.docker.internal:4000/
+docker run --shm-size 2g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox http://host.docker.internal:4000/
 ```
 
 If you are using Linux you should use `--network=host` to make sure localhost is your host machine.
 
 ```bash
-docker run --rm -v "$(pwd)":/sitespeed.io --network=host sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox http://localhost:4000/
+docker run --shm-size 2g --rm -v "$(pwd)":/sitespeed.io --network=host sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox http://localhost:4000/
 ```
 
 ## Access host in your local network
@@ -120,10 +133,10 @@ Sometimes the server you wanna test is in your local network at work and Docker 
 
 ## Extra start script
 
-You can run your extra start script in the Docker container: 
+You can run your extra start script in the Docker container:
 
 ```bash
-docker run -e EXTRA_START_SCRIPT=/sitespeed.io/test.sh --rm -v "$(pwd)":/sitespeed.io ...`. 
+docker run -e EXTRA_START_SCRIPT=/sitespeed.io/test.sh --rm -v "$(pwd)":/sitespeed.io ...`.
 ```
 
 ## Troubleshooting

@@ -62,9 +62,9 @@ To send metrics to Graphite you need to at least configure the Graphite host:
 
 If you don't run Graphite on default port you can change that to by <code>--graphite.port</code>.
 
-If your instance is behind authentication yoy can use <code>--graphite.auth</code> with the format **user:password**.
+If your instance is behind authentication you can use <code>--graphite.auth</code> with the format **user:password**.
 
-If you use a specifc port for the user inteface (and where we send the annotations) you can change that with <code>--graphite.httpPort</code>.
+If you use a specifc port for the user interface (and where we send the annotations) you can change that with <code>--graphite.httpPort</code>.
 
 If you use a different web host for Graphite than your default host, you can change that with <code>--graphite.webHost</code>. If you don't use a specific web host, the default domain will be used.
 
@@ -111,7 +111,7 @@ Append a message to the annotation with <code>--graphite.annotationMessage</code
 
 You can add extra tags with <code>--graphite.annotationTag</code>. For multiple tags, add the parameter multiple times. Just make sure that the tags doesn't collide with our internal tags.
 
-![Annotations]({{site.baseurl}}/img/graphite-aunnnotations.png)
+![Annotations]({{site.baseurl}}/img/graphite-annotations.png)
 {: .img-thumbnail-center}
 
 You can also include a screenshot from the run in the annotation by adding <code>--graphite.annotationScreenshot</code> to your configuration.
@@ -120,11 +120,16 @@ You can also include a screenshot from the run in the annotation by adding <code
 {: .img-thumbnail-center}
 
 ### Use Grafana annotations
-Instead of using Graphite annotations you can use Grafana built in annotations since sitespeed.io 7.5 and Grafana 5.3.0.
+All default dashboards use Graphite annotations. But you can use Grafana built in annotations. That can be good if your organisation is already using them. Note that if you choose to do that, you need to update the dashboards to use Grafana annotations.
 
 To use Grafana annotations, make sure you setup a *resultBaseURL* and add the host and port to Grafana: <code>--grafana.host</code> and <code>--grafana.port</code>.
 
 Then setup your Grafana API token, follow the instructions at [http://docs.grafana.org/http_api/auth/#authentication-api](http://docs.grafana.org/http_api/auth/#authentication-api) and use the **bearer** code you get with <code>--grafana.auth</code>. Then your annotations will be sent to Grafana instead of Graphite.
+
+You need to create a new annotation setup in Grafana that matches the templates (the dropdowns) in your dashboard (the same way the default "run" Graphite annotation is setup). It will look something like this:
+![Setup Grafana annotations]({{site.baseurl}}/img/grafana-annotations.png)
+{: .img-thumbnail-center}
+
 
 ## Dashboards
 We have [pre-made Grafana dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/master/dashboards/graphite) that works with Graphite. They are generic and as long as your [namespace](#namespace) consists of two parts, they will work. You can import them one by one or [inject them using Docker](https://github.com/sitespeedio/grafana-bootstrap-docker).
@@ -151,7 +156,7 @@ You probably want to make sure that only your sitespeed.io servers can post data
 
 Your Graphite server needs to open port 2003 and 8080 for TCP traffic for your servers running sitespeed.io.
 
-If you are using AWS you always gives your servers a security group. The servers running sitespeed.io (collecting mtrics) can all have the same group (allows outbund traffic and only allowing inbound for ssh).
+If you are using AWS you always gives your servers a security group. The servers running sitespeed.io (collecting metrics) can all have the same group (allows outbound traffic and only allowing inbound for ssh).
 
 The Graphite server can the open 2003 and 8080 only for that group (write the group name in the source/security group field). In this example we also run Grafana on port 3000 and have it open to the world.
 
@@ -172,7 +177,7 @@ If you are using Digital Ocean, you can setup the firewall rule in the admin. He
 ## Storing the data
 You probably gonna need to store the metrics in Graphite on another disk. If you are an AWS user, you can use and [setup an EBS volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html). If you use Digital Ocean you can follow their [quick start guide](https://www.digitalocean.com/docs/volumes/quickstart/).
 
-When your volume is mounted on your server that runs Graphite, you need to make sure Graphite uses the. Map the Graphite volume to the new volume outside of Docker (both Whisper and [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/master/docker/graphite/graphite.db)). Map them like this on your physical server (make sure to copy the empty [grahite.db](https://github.com/sitespeedio/sitespeed.io/blob/master/docker/graphite/graphite.db) file):
+When your volume is mounted on your server that runs Graphite, you need to make sure Graphite uses the. Map the Graphite volume to the new volume outside of Docker (both Whisper and [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/master/docker/graphite/graphite.db)). Map them like this on your physical server (make sure to copy the empty [graphite.db](https://github.com/sitespeedio/sitespeed.io/raw/master/docker/graphite/graphite.db) file):
  - `/path/on/server/whisper:/opt/graphite/storage/whisper`
  - `/path/on/server/graphite.db:/opt/graphite/storage/graphite.db`
 
@@ -183,7 +188,7 @@ If you use Grafana annotations, you should make sure grafana.db is outside of th
 1. Make sure you have [configured storage-aggregation.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/graphite/conf/storage-aggregation.conf) in Graphite to fit your needs.
 2. Configure your [storage-schemas.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/graphite/conf/storage-schemas.conf) how long you wanna store your metrics.
 3. *MAX_CREATES_PER_MINUTE* is usually quite low in [carbon.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/graphite/conf/carbon.conf). That means you will not get all the metrics created for the first run, so you can increase it.
-4. Map the Graphite volume to a physical directory outside of Docker to have better control (both Whisper and [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/master/docker/graphite/graphite.db)). Map them like this on your physical server (make sure to copy the empty [grahite.db](https://github.com/sitespeedio/sitespeed.io/blob/master/docker/graphite/graphite.db) file):
+4. Map the Graphite volume to a physical directory outside of Docker to have better control (both Whisper and [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/master/docker/graphite/graphite.db)). Map them like this on your physical server (make sure to copy the empty [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/master/docker/graphite/graphite.db) file):
  - /path/on/server/whisper:/opt/graphite/storage/whisper
  - /path/on/server/graphite.db:/opt/graphite/storage/graphite.db
  If you use Grafana annotations, you should make sure grafana.db is outside of the container. Follow the documentation at [grafana.org](http://docs.grafana.org/installation/docker/#grafana-container-using-bind-mounts).

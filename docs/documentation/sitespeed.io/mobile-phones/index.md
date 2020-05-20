@@ -24,6 +24,7 @@ You can run your tests on Chrome on Android phones.
 
 We normally recommends using our Docker containers when you run sitespeed.io/Browsertime. However driving Android from Docker only works on a Linux host since there's is no way at the moment to map USB on Mac. If you use a Mac Mini or another Mac computer you should use the npm version.
 try
+
 #### Desktop
 
 If you don't use Docker you need to:
@@ -31,13 +32,24 @@ If you don't use Docker you need to:
 - Install the [Android SDK](http://developer.android.com/sdk/index.html#downloads) on your desktop (just the command line tools!). If you are on a Mac and use [Homebrew](http://brew.sh/) just run: <code>brew tap caskroom/cask && brew cask install android-platform-tools</code>
 
 #### On your phone
+You probably want to setup a new phone from scratch to have a dedicated device. When you start your phone for the first time, follow these instructions:
 
-- Install Chrome
-- Enable developer USB access to your phone: Go to _About device_ (or _About phone_) in your settings, tap it, scroll down to the _Build number_, tap it seven (7) times.
-- Disable screen lock on your device.
-- Enable _Stay awake_ in _Developer options_.
-- Enable USB debugging in the device system settings, under _Developer options_.
-- Install the [Stay Alive app](https://play.google.com/store/apps/details?id=com.synetics.stay.alive) and start it.
+- Make sure to say *no* to all data collection (on a new Android its something like 4-5 times you need to say no)
+- Setup a specific Google account that you use for testing
+- Update to latest Chrome in the Play Store (log in with your new user)
+- Set volume to zero for Media/Alarm/Ring, and turn off the *Power up/down sound*. Turn off all sounds that you can!
+- Disable screen lock on your device (Set Screen Lock to *None*).
+- You probably also want to disable notifications from different update services. Do that under  _Settings_ and _Apps_, then choose the service and select _Notifications_ and toggle _Block All_ to _On_.
+
+Next step is to prepare your phone to be used from a computer. To do that you need to enable Developer options:
+- Go to _About device_ (or _About phone_) in your settings, tap it, scroll down to the _Build number_, tap it seven (7) times to enable developer options.
+
+Then in _Developer options_:
+- Enable _Stay awake_
+- Turn off _Automatic System Updates_ 
+- Enable _USB debugging_
+
+You are almost ready!
 - Plug in your phone using the USB port on your desktop computer.
 - When you plugin your phone, click OK on the "Allow USB debugging?" popup.
 
@@ -99,7 +111,7 @@ And using Docker (remember: only works in Linux hosts):
 docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  -n 1 --android --browsertime.xvfb false https://www.sitespeed.io
 ```
 
-If you want to run Docker on Mac OS X, you can follow Appiums [setup](https://github.com/appium/appium-docker-android) by creating a docker-machine, give ut USB access and then run the container from that Docker machine.
+If you want to run Docker on Mac OS X, you can follow Appiums [setup](https://github.com/appium/appium-docker-android) by creating a docker-machine, give out USB access and then run the container from that Docker machine.
 
 ### Driving multiple phones from the same computer
 
@@ -110,7 +122,7 @@ You can do that with the `--device` Docker command:
 
 The first part is the bus and that will not change, but the second part _devnum_ changes if you unplug the device or restart,
 
-You need to know which phone are connected to which usb port.
+You need to know which phone are connected to which USB port.
 
 Here's an example on how you can get that automatically before you start the container, feeding the unique id (that you get from _lsusb_).
 
@@ -144,15 +156,38 @@ You can choose which Chrome version you want to run on your phone using `--chrom
 * Chromium - *org.chromium.chrome*
 
 If you installed Chrome Canary on your phone and want to use it, then add `--chrome.android.package com.chrome.canary` to your run.
- Driving different versions needs different versions of the Chromedriver. The Chrome version number needs to match the Chromedriver version number. Browsertime/sitespeed.io ships with the latest stable version of the Chromedriver. If you want to run other versions, you need to [download from the official Chromedriver page](https://chromedriver.chromium.org/downloads). And then you specify the version by using `--chrome.chromedriverPath`.
+ Driving different versions needs different versions of the ChromeDriver. The Chrome version number needs to match the ChromeDriver version number. Browsertime/sitespeed.io ships with the latest stable version of the ChromeDriver. If you want to run other versions, you need to [download from the official ChromeDriver page](https://chromedriver.chromium.org/downloads). And then you specify the version by using `--chrome.chromedriverPath`.
 
 ### Collect trace log
 
-One important thing when testing on mobile is to analyze the Chrome trace log. You can get that with `--cpu`:
+One important thing when testing on mobile is to analyse the Chrome trace log. You can get that with `--cpu`:
 
 ```bash
 sitespeed.io --android --cpu https://www.sitespeed.io
 ```
+
+### Running Firefox
+To run Firefox stable you just run:
+
+```bash
+sitespeed.io --android -b firefox https://www.sitespeed.io
+```
+
+Note that collecting the HAR is turned off since we cannot use the HAR Export trigger on Android.
+
+### Only run tests when battery temperature is below X
+You can configure your tests to run when the battery temperature of your phone is below a certain threshold. Over heated mobile phones throttles the CPU so its good to keep track of the temperature (if you send metrics to Graphite/InfluxDB the battery temperature is automatically sent).
+
+Use `--androidBatteryTemperatureLimit` to set a minimum battery temperature limit before you start your test on your Android phone. Temperature is in [Celsius](https://en.wikipedia.org/wiki/Celsius).
+
+In this example the tests will start when the battery is below 32 degrees. By default sitespeed.io will wait two minutes and then check again. You can configure the wait time with `--androidBatteryTemperatureWaitTimeInSeconds`.
+
+```bash
+sitespeed.io --android --androidBatteryTemperatureLimit 32 https://www.sitespeed.io
+```
+
+### Run on a rooted device
+You can run on fresh Android device or on a rooted device. If you use rooted device and you use a Moto G5 or a Pixel 2 it will be configured for as stable performance as possible if you add `--androidRooted` to your run. We follow [Mozillas setup](https://dxr.mozilla.org/mozilla-central/source/testing/raptor/raptor/performance_tuning.py) best practise to do that. Make sure you only do that for a phone that you have dedicated to performance tests, since it will be kept in that performance state after the tests.
 
 ## Test on iOS
 
@@ -166,7 +201,7 @@ To be able to test you need latest OS X Catalina on your Mac computer and iOS 13
 
 Run your test using npm (instead of Docker).
 
-*Safardriver* the driver that drives Safari is bundled in OS X. But to be able to use it you need to enable it with:
+*SafariDriver* the driver that drives Safari is bundled in OS X. But to be able to use it you need to enable it with:
 
 ```bash
 safaridriver --enable

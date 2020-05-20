@@ -43,74 +43,111 @@ block content
             tr
               th Metric
               th Value
-            if d.coach && d.coach.pageSummary
+            - performanceScore = get(d, 'coach.pageSummary.advice.performance.score')
+            if performanceScore
               tr
-                td Performance Score:
-                td #{d.coach.pageSummary.advice.performance.score}
-            if d.pagexray && d.pagexray.pageSummary
+                td Performance Score
+                td #{performanceScore}
+            - totalTransferSize = get(d, 'pagexray.pageSummary.transferSize')
+            if totalTransferSize
               tr
-                td Total Page Transfer Size:
-                td #{h.size.format(d.pagexray.pageSummary.transferSize)}
-            if d.pagexray && d.pagexray.pageSummary
+                td Total Page Transfer Size
+                td #{h.size.format(totalTransferSize)}
+            - requests = get(d, 'pagexray.pageSummary.requests')
+            if requests
               tr
-                td Requests:
-                td #{d.pagexray.pageSummary.requests}
-            if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics && d.browsertime.pageSummary.statistics.timings && d.browsertime.pageSummary.statistics.timings.fullyLoaded   
+                td Requests
+                td #{requests}
+            - ttfb = get(d, 'browsertime.pageSummary.statistics.timings.pageTimings.backEndTime.median') 
+            if ttfb
               tr
-                td Fully Loaded [median]:
-                td #{h.time.ms(d.browsertime.pageSummary.statistics.timings.fullyLoaded.median)}
-
-            if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.visualMetrics
+                td TTFB [median]
+                td #{h.time.ms(ttfb)}
+            - fullyLoaded = get(d, 'browsertime.pageSummary.statistics.timings.fullyLoaded.median')
+            if fullyLoaded  
               tr
-                td First Visual Change [median]:
-                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.FirstVisualChange.median)}
-            else if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics && d.browsertime.pageSummary.statistics.timings && d.browsertime.pageSummary.statistics.timings.firstPaint
+                td Fully Loaded [median]
+                td #{h.time.ms(fullyLoaded)}
+            - firstVisualChange = get(d, 'browsertime.pageSummary.statistics.visualMetrics.FirstVisualChange.median')
+            - firstPaint = get(d, 'browsertime.pageSummary.statistics.timings.firstPaint.median')
+            if firstVisualChange
               tr
-                td First Paint [median]:
-                td #{h.time.ms(d.browsertime.pageSummary.statistics.timings.firstPaint.median)}                
-            if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.cpu && d.browsertime.pageSummary.statistics.cpu.longTasks
+                td First Visual Change [median]
+                td #{h.time.ms(firstVisualChange)}
+            else if firstPaint
               tr
-                td CPU long tasks [median]:
-                td #{d.browsertime.pageSummary.statistics.cpu.longTasks.tasks.median}
-              if d.browsertime.pageSummary.statistics.cpu.longTasks.durations  && d.browsertime.pageSummary.statistics.cpu.longTasks.durations.max > 0    
+                td First Paint [median]
+                td #{h.time.ms(firstPaint)}  
+            - fcp = get(d, 'browsertime.pageSummary.statistics.timings.paintTiming["first-contentful-paint"].median') 
+            if fcp
+              tr
+                td FCP [median]
+                td #{h.time.ms(fcp)}         
+            - lcp = get(d, 'browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime.median')
+            if lcp
+              tr
+                td LCP [median]
+                td #{h.time.ms(lcp)}
+            - cls = get(d, 'browsertime.pageSummary.statistics.pageinfo.layoutShift.median')
+            if cls || cls === 0
                 tr
-                  td CPU longest task duration:
-                  td #{h.time.ms(d.browsertime.pageSummary.statistics.cpu.longTasks.durations.max)}
-            if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics.visualMetrics
+                  td CLS [median]
+                  td #{cls}
+            - tbt = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime.median')
+            if tbt  
               tr
-                td Speed Index [median]:
-                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.SpeedIndex.median)}
+                td Total Blocking Time [median]
+                td #{h.time.ms(tbt)}
+            - mpFID = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.maxPotentialFid.median')
+            if mpFID
               tr
-                td Visual Complete 85% [median]:
-                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.VisualComplete85.median)}
+                td Max Potential FID [median]
+                td #{h.time.ms(mpFID)}
+            - longTasks = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.tasks.median')
+            if longTasks
               tr
-                td Visual Complete 95% [median]:
-                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.VisualComplete95.median)}
+                td CPU long tasks [median]
+                td #{longTasks}
+            - maxLongTask= get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.durations.max') 
+            if maxLongTask 
               tr
-                td Visual Complete 99% [median]:
-                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.VisualComplete99.median)}
+                td CPU longest task duration
+                td #{h.time.ms(maxLongTask)}
+            - speedIndex = get(d, 'browsertime.pageSummary.statistics.visualMetrics.SpeedIndex.median')
+            if speedIndex
               tr
-                td Last Visual Change [median]:
-                td #{h.time.ms(d.browsertime.pageSummary.statistics.visualMetrics.LastVisualChange.median)}
-            else if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.statistics && d.browsertime.pageSummary.statistics.timings && d.browsertime.pageSummary.statistics.timings.rumSpeedIndex
+                td Speed Index [median]
+                td #{h.time.ms(speedIndex)}
+            - visualComplete85 = get(d, 'browsertime.pageSummary.statistics.visualMetrics.VisualComplete85.median')
+            if visualComplete85
               tr
-                td RUM Speed Index [median]:
-                td #{d.browsertime.pageSummary.statistics.timings.rumSpeedIndex.median}
+                td Visual Complete 85% [median]
+                td #{h.time.ms(visualComplete85)}
+            - visualComplete99 = get(d, 'browsertime.pageSummary.statistics.visualMetrics.VisualComplete99.median')
+            if visualComplete99
+              tr
+                td Visual Complete 99% [median]
+                td #{h.time.ms(visualComplete99)}
+            - lastVisualChange = get(d, 'browsertime.pageSummary.statistics.visualMetrics.LastVisualChange.median')
+            if lastVisualChange
+              tr
+                td Last Visual Change [median]
+                td #{h.time.ms(lastVisualChange)}
             if !d.browsertime && d.webpagetest
               tr
-                td Render (first view):
+                td Render (first view)
                 td #{d.webpagetest.pageSummary.data.median.firstView.render}
               tr
-                td Speed Index (first view):
+                td Speed Index (first view)
                 td #{d.webpagetest.pageSummary.data.median.firstView.SpeedIndex}
               tr
-                td Visual Complete 85% (first view):
+                td Visual Complete 85% (first view)
                 td #{d.webpagetest.pageSummary.data.median.firstView.visualComplete85}
               tr
-                td Last Visual Change (first view):
+                td Last Visual Change (first view)
                 td #{d.webpagetest.pageSummary.data.median.firstView.lastVisualChange}
               tr
-                td Requests:
+                td Requests
                 td #{d.webpagetest.pageSummary.data.median.firstView.requestsFull}
 
         .one-half.column
@@ -127,6 +164,7 @@ block content
 
       .downloads
         include ./downloads.pug
+        include ./tcpdump.pug
 
     if d.browsertime && d.browsertime.har
       section#waterfall-panel
@@ -136,7 +174,7 @@ block content
       section#video-panel
         include ../video/index.pug
 
-    if options.browsertime.video && options.videoParams.createFilmstrip || options.browsertime.chrome.enableTraceScreenshots
+    if (options.browsertime.video || options.browsertime.visualMetrics) && options.videoParams.createFilmstrip || options.browsertime.chrome && options.browsertime.chrome.enableTraceScreenshots
       section#filmstrip-panel
         include ../filmstrip/index.pug    
 
@@ -152,7 +190,7 @@ block content
       section#pagexray-panel
         include ../pagexray/index.pug
 
-    if options.cpu
+    if options.cpu || options.browsertime && options.browsertime.chrome && options.browsertime.chrome.collectLongTasks || (options.browsertime && options.browsertime.firefox && options.browsertime.firefox.geckoProfiler)
       section#cpu-panel
         include ../cpu/index.pug  
 

@@ -8,7 +8,7 @@ category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Test a single page application - SPA
 ---
-[Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / Single page applicatiom
+[Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / Single page application
 
 # Test a single page application
 {:.no_toc}

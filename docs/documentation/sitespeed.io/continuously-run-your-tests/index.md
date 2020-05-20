@@ -80,7 +80,7 @@ Then [**run.sh**](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/mas
 You need to modify our tests and scripts so that you don't test the exact same URLs as us :)
 
 #### Configuration
-In our example we have two configuration files on the server that we extends. These configuration files holds the secrets that we don't want to expose on our public Github repo. In our example it they look like this:
+In our example we have two configuration files on the server that we extends. These configuration files holds the secrets that we don't want to expose on our public GitHub repo. In our example it they look like this:
 
 **/conf/secrets.json**
 ```json
@@ -131,18 +131,6 @@ Then our configuration files in [**/config/**](https://github.com/sitespeedio/da
 
 And when we run our tests, we map the volume on the server /config to our docker container. You can see that in the [run.sh](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/master/run.sh) file. Look for `-v /config:/config`. That is the magic line.
 
-
-We also have a env config on the server (that we feed to Docker with `--env-file /config/env`):
-
-**/conf/env**
-```
-SITESPEED_IO_BROWSERTIME__WIKIPEDIA__USER=username
-SITESPEED_IO_BROWSERTIME__WIKIMEPIA__PASSWORD=secret
-```
-
-that is used for secrets that we want to use inside of scripts. You can see how that is used in [our login test script](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/master/nyc3-1/desktop/scripts/loginWikipedia.js). 
-
-The environment variables are automatically picked by our CLI. *SITESPEED_IO_BROWSERTIME__WIKIPEDIA__USER* will be *wikipedia.user* in our options object. 
 
 We then also map the current working dir to `-v "$(pwd)":/sitespeed.io` and then feed the the config file to sitespeed `--config /sitespeed.io/config`. That way, inside the Docker container we have **/config/** that has the secret configuration files and in **/sitespeed.io/config** the configuration we want to use for our tests.
 

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Run Lighthouse and Google PageSpeed Insights from sitespeed.io
+title: Run Lighthouse from sitespeed.io
 description: Since 7.5 you can also run Lighthouse from sitespeed.io
 keywords: lighthouse, sitespeed.io
 nav: documentation
@@ -24,7 +24,7 @@ You can run it with:
 docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-plus1 https://www.sitespeed.io/
 ``` 
 
-And you will also automatically run Lighthouse and GPSI. We will automatically release a new version of the container per release by adding *-plus1* to the tag. If you use Graphite/InfluxDb the score from Lighthouse and GPSI will be automatically stored. If you want to add functionality please send PRs to [https://github.com/sitespeedio/plugin-lighthouse](https://github.com/sitespeedio/plugin-lighthouse) and [https://github.com/sitespeedio/plugin-gpsi](https://github.com/sitespeedio/plugin-gpsi).
+And you will also automatically run Lighthouse and GPSI. We automatically release a new version of the container per release by adding *-plus1* to the tag. If you use Graphite/InfluxDb the score from Lighthouse and GPSI will be automatically stored. If you want to add functionality please send PRs to [https://github.com/sitespeedio/plugin-lighthouse](https://github.com/sitespeedio/plugin-lighthouse) and [https://github.com/sitespeedio/plugin-gpsi](https://github.com/sitespeedio/plugin-gpsi).
 
 The Lighthouse tests will run after Browsertime finished and run Chrome headless.
 
@@ -37,3 +37,6 @@ docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io
 The Lighthouse result is iframed into sitespeed.io:
 ![Lighthouse]({{site.baseurl}}/img/lighthouse-frame.png)
 {: .img-thumbnail}
+
+#### Disable GPSI
+If you only want to run Lighthouse and not GPSI you can disable it with `--plugins.remove /gpsi`.

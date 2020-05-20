@@ -13,7 +13,7 @@ It was almost 6 months ago when we released 4.0 and to get that out was a lot of
 
 But first lets check what we have added in the last months:
 
- * Video with SpeedIndex/firstVisualChange/lastVisualChange and VisualComplete 85%. This is real SpeedIndex where we record a video of the screen and use [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics/) to analyze and get the metrics.
+ * Video with SpeedIndex/firstVisualChange/lastVisualChange and VisualComplete 85%. This is real SpeedIndex where we record a video of the screen and use [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics/) to analyse and get the metrics.
  * Upload the [HTML result to Amazon S3](https://results.sitespeed.io/en.wikipedia.org/2017-04-10-06-00-04/pages/en.wikipedia.org/wiki/Barack_Obama/).
  * A better way to [set connectivity using Docker networks]({{site.baseurl}}/documentation/sitespeed.io/browsers/#change-connectivity).
  * Cleaner default Grafana dashboard with links to the HTML results.
@@ -23,7 +23,7 @@ But first lets check what we have added in the last months:
 Before we go on about the new things in 5.0 we wanna tell you about the status of the project:
 We have had more 500,000 downloads of sitespeed.io (611k + the ones we had before we moved to NodeJS and Docker)! We have a lot more things we want to add and we need your help more than ever!
 
-We have a Slack channel for developers [that you should join](https://sitespeedio.herokuapp.com/)! This is the place you can get help with building plugins or contribute back to sitespeed.io. If you have questions on how to run sitespeed.io, please use [Github issues](https://github.com/sitespeedio/sitespeed.io/issues/new).
+We have a Slack channel for developers [that you should join](https://sitespeedio.herokuapp.com/)! This is the place you can get help with building plugins or contribute back to sitespeed.io. If you have questions on how to run sitespeed.io, please use [GitHub issues](https://github.com/sitespeedio/sitespeed.io/issues/new).
 
 Between the latest 4.7 and now 5.0 we have focused on getting the HTML mean and clean. Let's check out the changed in 5.0.
 

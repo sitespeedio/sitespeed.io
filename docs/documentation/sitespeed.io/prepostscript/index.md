@@ -21,7 +21,7 @@ Since sitespeed.io 8.0 the pre/post script has changed. You probably should use 
 
 Before sitespeed.io loads and tests a URL you can run your own Selenium script. Do you want to access a URL and pre-load the cache or maybe you want to login as a user and then measure a URL?
 
-We use the NodeJs version of Selenium, you can find the [API documentation here](http://seleniumhq.github.io/selenium/docs/api/javascript/index.html). You need to go into the docs to see how to select the elements you need to do the magic on your page.
+We use the NodeJS version of Selenium, you can find the [API documentation here](http://seleniumhq.github.io/selenium/docs/api/javascript/index.html). You need to go into the docs to see how to select the elements you need to do the magic on your page.
 
 Your script needs to follow a specific pattern to be able to run as a pre/post script. The simplest version of a script looks like this:
 

@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Use Firefox, Chrome, Safari or Chrome on Android to collect metrics.
-description: You can use Firefox, Chrome, Safari and Chrome on Android to collect metrics. You need make sure you have a set connectivity when you test, and you do that with Docker networks or throttle.
+title: Use Firefox, Chrome, Edge, Safari or Chrome/Firefox on Android to collect metrics.
+description: You can use Firefox, Chrome, Ende, Safari and Chrome/Firefox on Android to collect metrics. You need make sure you have a set connectivity when you test, and you do that with Docker networks or throttle.
 keywords: browsers, documentation, sitespeed.io, Firefox, Chrome, Safari
 nav: documentation
 category: sitespeed.io
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
-twitterdescription: You can use Firefox, Safari, Chrome and Chrome on Android to collect metrics.
+twitterdescription: You can use Firefox, Safari, Chrome, Edge and Chrome/Firefox on Android to collect metrics.
 ---
 [Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / Browsers
 
@@ -16,7 +16,7 @@ twitterdescription: You can use Firefox, Safari, Chrome and Chrome on Android to
 * Lets place the TOC here
 {:toc}
 
-You can fetch timings, run your own JavaScript and record a video of the screen. The following browsers are supported: Firefox, Safari, Chrome, Chrome on Android and Safari on iOS. If you run our Docker containers, we always update them when we tested the latest stable release of Chrome and Firefox. Safari and Safari on iOS needs Mac OS X Catalina.
+You can fetch timings, run your own JavaScript and record a video of the screen. The following browsers are supported: Firefox, Safari, Edge, Chrome, Chrome and Firefox on Android and Safari on iOS. If you run our Docker containers, we always update them when we tested the latest stable release of Chrome and Firefox. Safari and Safari on iOS needs Mac OS X Catalina. Edge need the corresponding MSEdgeDriver.
 
 ## Firefox
 The latest version of Firefox should work out of the box.
@@ -34,10 +34,11 @@ For performance and deterministic reasons we disable the [Tracking protection](h
 
 You can also [configure your own preferences](#set-your-own-firefox-preferences) for the profile.
 
-Starting with a total blank profile isn't supported at the moment but if you need it, please [create an issue](https://github.com/sitespeedio/browsertime/issues/new) and let us know!
+
+You can setup your own profile with `--firefox.profileTemplate` with a profile template directory that will be cloned and used as the base of each profile each instance of Firefox is launched against.
 
 ### Collecting the HAR
-To collect the HAR from Firefox we use [HAR Export trigger](https://github.com/devtools-html/har-export-trigger). It needs Firefox 61 to work (if you run a earlier version you will automatically not get the HAR). The trigger is in OMHO a superior version of getting the HAR than parsing the MOZ HTTP log since it adds less overhead to metrics.
+To collect the HAR from Firefox we use [HAR Export trigger](https://github.com/devtools-html/har-export-trigger).
 
 If you for some reason don't need the HAR you can disable it by ```--browsertime.skipHar```.
 
@@ -56,9 +57,6 @@ Running Firefox on Mac OS X you can choose what version to run with sitespeed.io
 If you run on Linux you need to set the full path to the binary:
 ```--firefox.binaryPath```
 
-The current default Docker container only contains one version of Firefox. If you want to test on more versions, [let us know](https://github.com/sitespeedio/browsertime/issues/new) so we can fix that.
-
-
 ### Set your own Firefox preferences
 Firefox preferences are all the preferences that you can set on your Firefox instance using **about:config**. Since we start with a fresh profile (except some [defaults](#firefox-profile-setup)) of Firefox for each page load, we are not reusing the setup you have in your Firefox instance.
 
@@ -73,11 +71,30 @@ It is setup with ```timestamp,nsHttp:5,cache2:5,nsSocketTransport:5,nsHostResolv
 ### Accept insecure certificates
 If you want to accept insecure certificates add ```--firefox.acceptInsecureCerts``` to your run.
 
-### Collect trace logs
-We have no way to get trace data from Firefox today (by trace data we mean time spent in JavaScript/paint etc). You can follow the [upstream request](https://bugzilla.mozilla.org/show_bug.cgi?id=1250290) to make that happen.
+### Collect CPU profile 
+You can collect all the good stuff from Firefox using the new Geckoprofiler. Enable it with ```--firefox.geckoProfiler``` and view the profile on [https://profiler.firefox.com](https://profiler.firefox.com). You can configure what to profile with ```--firefox.geckoProfilerParams.features``` and ```--firefox.geckoProfilerParams.threads```. 
+
+### Record video
+Firefox has a built in way to record a video of the screen. That way you don't need to use FFMPEG. Enable it with:
+
+```--firefox.windowRecorder --video``` 
+
+### Run Firefox on Android
+You can run Firefox on Android. If you use stable Firefox on your phone you can add ```-b firefox --android``` and it will be used.
+
+
+### Add extra command line arguments to Firefox
+If you need to pass on extra command line arguments to the Firefox binary you can do that with ```--firefox.args ```. 
+
+### More memory
+When you run Firefox in Docker you should use `--shm-size 2g` to make sure Firefox get enough shared memory (for Chrome we disabled the use of shm with --disable-dev-shm-usage).
+
+~~~bash
+docker run --shm-size 2g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io -b firefox
+~~~
 
 ## Chrome
-The latest version of Chrome should work out of the box. Latest version of stable [Chromedriver](http://chromedriver.chromium.org) is bundled in sitespeed.io and needs to match your Chrome version.
+The latest version of Chrome should work out of the box. Latest version of stable [ChromeDriver](http://chromedriver.chromium.org) is bundled in sitespeed.io and needs to match your Chrome version.
 
 ### Chrome setup
 When we start Chrome it is setup with [these](https://github.com/sitespeedio/browsertime/blob/master/lib/chrome/webdriver/chromeOptions.js) command line switches.
@@ -107,17 +124,17 @@ You can choose which version of Chrome you want to run by using the ```--chrome.
 
 Our Docker container only contains one version of Chrome and [let us know](https://github.com/sitespeedio/sitespeed.io/issues/new) if you need help to add more versions.
 
-### Use a newer version of Chromedriver
-Chromedriver is the driver that handles the communication with Chrome. At the moment the Chromedriver version needs to match the Chrome version. By default sitespeed.io and Browsertime comes with the Chromedriver version that matches the Chrome version in the Docker container. If you wanna run tests on Chrome Beta/Canary you probably need to download a later version of Chromedriver.
+### Use a newer version of ChromeDriver
+ChromeDriver is the driver that handles the communication with Chrome. At the moment the ChromeDriver version needs to match the Chrome version. By default sitespeed.io and Browsertime comes with the ChromeDriver version that matches the Chrome version in the Docker container. If you wanna run tests on Chrome Beta/Canary you probably need to download a later version of ChromeDriver.
 
-You download Chromedriver from [http://chromedriver.chromium.org](http://chromedriver.chromium.org) and then use ```--chrome.chromedriverPath``` to set the path to the new version of the Chromedriver.
+You download ChromeDriver from [http://chromedriver.chromium.org](http://chromedriver.chromium.org) and then use ```--chrome.chromedriverPath``` to set the path to the new version of the ChromeDriver.
 
 ## Safari
 
-You can run Safari on Mac OS X. To run on iOS you need Catalina and iOS 13. To see more what you can do with the Safaridriver you can run `man safaridriver` in your terminal. 
+You can run Safari on Mac OS X. To run on iOS you need Catalina and iOS 13. To see more what you can do with the SafariDriver you can run `man safaridriver` in your terminal.
 
 ### Limitations
-We do not support HAR, video, cookies/request headers in Safari at the moment.
+We do not support HAR, cookies/request headers in Safari at the moment.
 
 ### Configuration
 There are a couple of different specific Safari configurations.
@@ -137,14 +154,26 @@ There are a couple of different ways to choose which device to use:
 * `--safari.deviceType` set the device type. If the value of *safari:deviceType* is `iPhone`, safaridriver will only create a sessio using an iPhone device or iPhone simulator. If the value of *safari:deviceType* is `iPad`, safaridriver will only create a session using an iPad device or iPad simulator.
 * `--safari.useSimulator` if the value of useSimulator is true, safaridriver will only use iOS Simulator hosts. If the value of safari:useSimulator is false, safaridriver will not use iOS Simulator hosts. NOTE: An Xcode installation is required in order to run WebDriver tests on iOS
 
+#### Use Safari Technology Preview
+If you have Safari Technology Preview installed you can use it to run your test. Add `--safari.useTechnologyPreview` to your test.
+
 ### Diagnose problems
-If you need to file a bug with Safaridriver, you also want to include diagnostics generated by safaridriver. You do that by adding `--safari.diagnose` to your run.
+If you need to file a bug with SafariDriver, you also want to include diagnostics generated by SafariDriver. You do that by adding `--safari.diagnose` to your run.
 
 ~~~bash
-sitespeed.io --safari.ios -b safari --safari.diagnose
+sitespeed.io --safari.ios -b safari --safari.diagnose https://www.sitespeed.io
 ~~~
 
 The log file will be stored in **~/Library/Logs/com.apple.WebDriver/**.
+
+## Edge
+You can use Chromium based MS Edge on the OS that supports it. At the moment this is experimental and we cannot guarantee that it works 100%.
+
+~~~bash
+sitespeed.io -b edge https://www.sitespeed.io
+~~~
+
+Edge use the exact same setup as Chrome (except the driver), so you use `--chrome.*` to configure Edge :) 
 
 ## Choose when to end your test
 By default the browser will collect data until  [window.performance.timing.loadEventEnd happens + aprox 5 seconds more](https://github.com/sitespeedio/browsertime/blob/d68261e554470f7b9df28797502f5edac3ace2e3/lib/core/seleniumRunner.js#L15). That is perfectly fine for most sites, but if you do Ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (```--browsertime.pageCompleteCheck```). When the scripts returns true the browser will close or if the timeout time is reached.
@@ -166,9 +195,9 @@ If you add your own complete check you can also choose when your check is run. B
 
 ## Custom metrics
 
-You can collect your own metrics in the browser by supplying Javascript file(s). By default we collect all metrics inside [these folders](https://github.com/sitespeedio/browsertime/tree/master/browserscripts), but you might have something else you want to collect.
+You can collect your own metrics in the browser by supplying JavaScript file(s). By default we collect all metrics inside [these folders](https://github.com/sitespeedio/browsertime/tree/master/browserscripts), but you might have something else you want to collect.
 
-Each javascript file need to return a metric/value which will be picked up and returned in the JSON. If you return a number, statistics will automatically be generated for the value (like median/percentiles etc).
+Each JavaScript file need to return a metric/value which will be picked up and returned in the JSON. If you return a number, statistics will automatically be generated for the value (like median/percentiles etc).
 
 For example say we have one file called scripts.js that checks how many scripts tags exist on a page. The script would look like this:
 
@@ -204,12 +233,35 @@ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include ve
 
 On Android you need to follow [these instructions]({{site.baseurl}}/documentation/sitespeed.io/mobile-phones/#video-and-speedindex).
 
+
 ## Using Browsertime
 Everything you can do in Browsertime, you can also do in sitespeed.io. Prefixing *browsertime* to a CLI parameter will pass that parameter on to Browsertime.
 
 You can [check what Browsertime can do]({{site.baseurl}}/documentation/browsertime/configuration/).
 
 For example if you want to pass on an extra native arguments to Chrome. In standalone Browsertime you do that with <code>--chrome.args</code>. If you want to do that through sitespeed.io you just prefix browsertime to the param: <code>--browsertime.chrome.args</code>. Yes we know, pretty sweet! :)
+
+## TCPDump
+You can generate a TCP dump with `--tcpdump`.
+
+~~~bash
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --tcpdump
+~~~
+
+You can then download the tcp dump for each iteration and the SSL key log file from the result page.
+
+Packets will be written when the buffer is flushed. If you want to force packets to be written to the file when they arrive you can do that with `--tcpdumpPacketBuffered`.
+
+## WebDriver
+We use the WebDriver to drive the browser. We use [Chromedriver](https://chromedriver.chromium.org) for Chrome, [Geckodriver](https://github.com/mozilla/geckodriver/releases) for Firefox, [Edgedriver](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/) for Edge and [Safaridriver](https://developer.apple.com/documentation/webkit/testing_with_webdriver_in_safari) for Safari.
+
+When you install sitespeed.io/Browsertime we also install the latest released driver for Chrome, Edge and Firefox. Safari comes bundled with Safari driver. For Chrome the Chromedriver version needs to match the Chrome version. That can be annying if you want to test on old browsers, coming developer versions or on Android where that version hasn't been released yet.
+
+You can download the Chromedriver yourself from the [Google repo](https://chromedriver.storage.googleapis.com/index.html) and use ```--chrome.chromedriverPath``` to help Browsertime find it or you can choose which version to install when you install sitespeed.io with a environment variable: ```CHROMEDRIVER_VERSION=81.0.4044.20 npm install ```
+
+You can also choose versions for Edge and Firefox with `EDGEDRIVER_VERSION` and `GECKODRIVER_VERSION`.
+
+If you don't want to install the drivers you can skip them with `CHROMEDRIVER_SKIP_DOWNLOAD=true`, `GECKODRIVER_SKIP_DOWNLOAD=true` and `EDGEDRIVER_SKIP_DOWNLOAD=true`.
 
 ## How can I disable HTTP/2 (I only want to test HTTP/1.x)?
 In Chrome, you just add the switches <code>--browsertime.chrome.args disable-http2</code>.

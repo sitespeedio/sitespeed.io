@@ -27,7 +27,7 @@ We always use [semantic versioning](http://semver.org/) when we do a release.
 We take your online privacy really serious: Our [documentation site](https://www.sitespeed.io/), our [dashboard](https://dashboard.sitespeed.io) and our [compare tool](https://compare.sitespeed.io) do not use any tracking software at all (no Google Analytics or any other tracking software). We never use tracking software. None of the sitespeed.io tools call home. You can read more about privacy at our [Privacy Policy](../privacy-policy/) page.
 
 ### Code of Conduct
-When you create issues, do PRs, use our Slack channel or contact us on email, please follow our [Code Of Conduct](https://github.com/sitespeedio/sitespeed.io/blob/master/CODE_OF_CONDUCT.md).
+When you create issues, do pull requests, use our Slack channel or contact us on email, please follow our [Code Of Conduct](https://github.com/sitespeedio/sitespeed.io/blob/master/CODE_OF_CONDUCT.md).
 
 ### Open Source
 We release our software under the [MIT License](https://github.com/sitespeedio/sitespeed.io/blob/master/LICENSE) or [Apache License 2.0](https://github.com/sitespeedio/browsertime/blob/master/LICENSE). Please respect it and respect our work: We ask you not to change the logo or the contribution to the project. Please do this to pay the respect to the many hours we put down into the project.
@@ -40,7 +40,7 @@ We try to release things as soon as the functionality is tested and ready (we re
 We highly rely on testing on [Travic-CI](https://travis-ci.org/) and our [own automatic testing](https://www.sitespeed.io/releasing-with-confidence/).
 
 ### Planning a new major
-Usually we have one big function that we wanna release (for 6.0 that is HTML support for plugins). We then focus on finishing that functionality and try to squeeze in as many other good things as possbile.
+Usually we have one big function that we wanna release (for 6.0 that is HTML support for plugins). We then focus on finishing that functionality and try to squeeze in as many other good things as possible.
 
 ## Sustainability
 We've been releasing sitespeed.io since 2012 and we plan to continue do it for a long time. At the moment we are a [three member team](../aboutus/) and we love to get more people involved!
@@ -60,7 +60,7 @@ It sometimes happens that we get contacted about issues privately via email or D
 
 ## Who uses sitespeed.io
 
-We had over one million downloads so far and still counting. We have companies in the Alexa top 10 that uses sitespeed.io. We have students at universities that uses our tools for their publications. We have retailers that use it. Even our moms and dads uses it. We are pretty sure sitespeed.io will work out good for you too.
+We had over one million downloads so far and still counting. We have companies in the Alexa top 10 that uses sitespeed.io. We have students at universities that uses our tools for their publications. We have retailers that use it. Even our mothers and fathers use it. We are pretty sure sitespeed.io will work out good for you too.
 
 With the old 3.X we got the following feedback in the [Toolsday](http://www.toolsday.io/) podcast:
 

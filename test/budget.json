@@ -1,7 +1,7 @@
 {
   "budget": {
-    "timings": {
-      "firstPaint": 5000
+    "requests": {
+      "httpErrors": 0
     }
   }
 }

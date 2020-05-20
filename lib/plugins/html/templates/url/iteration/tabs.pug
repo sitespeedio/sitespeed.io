@@ -10,7 +10,7 @@
   if options.browsertime.video
     a(id='video', href='#video', onclick='return selectTab(this, true);')
       | Video
-  if options.browsertime.video && options.videoParams.createFilmstrip || options.browsertime.chrome.enableTraceScreenshots
+  if (options.browsertime.visualMetrics && options.videoParams.createFilmstrip) || options.browsertime.chrome && options.browsertime.chrome.enableTraceScreenshots
     a(id='filmstrip', href='#filmstrip', onclick='return selectTab(this, true);')
       | Filmstrip       
   if d.coach && d.coach.run
@@ -19,7 +19,7 @@
   if d.pagexray && d.pagexray.run
     a(id='pagexray', href='#pagexray', onclick='return selectTab(this, true);')
       | PageXray
-  if options.cpu
+  if options.cpu || options.browsertime && options.browsertime.chrome && options.browsertime.chrome.collectLongTasks || options.browsertime && options.browsertime.firefox && options.browsertime.firefox.geckoProfiler
     a(id='cpu', href='#cpu', onclick='return selectTab(this, true);')
       | CPU    
   if d.thirdparty && d.thirdparty.run

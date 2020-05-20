@@ -43,21 +43,22 @@ p.small Metrics and data collected using #{options.webpagetest.host}.&nbsp;
           tr
             td Tester:
             td #{wptRoot.tester}      
-      tr
-        td Browser:
-        td #{wpt.firstView.browser_name}
-      tr
-        td Version:
-        td #{wpt.firstView.browser_version}
-      tr
-        td Render (first view):
-        td #{wpt.firstView.render}
-      tr
-        td Speed Index (first view):
-        td #{wpt.firstView.SpeedIndex}
-      tr
-        td Last Visual Change (first view):
-        td #{wpt.firstView.lastVisualChange}
+      if wpt.firstView
+        tr
+          td Browser:
+          td #{wpt.firstView.browser_name}
+        tr
+          td Version:
+          td #{wpt.firstView.browser_version}
+        tr
+          td Render (first view):
+          td #{wpt.firstView.render}
+        tr
+          td Speed Index (first view):
+          td #{wpt.firstView.SpeedIndex}
+        tr
+          td Last Visual Change (first view):
+          td #{wpt.firstView.lastVisualChange}
       if wpt.repeatView
         tr
           td Render (repeat view):
@@ -146,9 +147,10 @@ each view in ['firstView', 'repeatView']
           tr
             td TTFB
             +numberCell('TTFB', median.TTFB)
-          tr
-            td First paint
-            +numberCell('First Paint', median.firstPaint.toFixed(0))
+          if median.firstPaint
+            tr
+              td First paint
+              +numberCell('First Paint', median.firstPaint.toFixed(0))
           tr
             td DOM loading
             +numberCell('DOM loading', median.domLoading)

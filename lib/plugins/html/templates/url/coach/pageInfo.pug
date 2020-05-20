@@ -8,6 +8,10 @@ h2 Page info
             tr
                 td Title
                 td.right #{advice.info.documentTitle}
+            if advice.info.generator    
+                tr
+                    td Generator
+                    td.right #{advice.info.generator}    
             tr
                 td Width
                 td.number #{advice.info.documentWidth}

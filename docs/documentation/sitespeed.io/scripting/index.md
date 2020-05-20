@@ -25,7 +25,7 @@ Test by scripting was introduced in sitespeed.io 8.0 and Browsertime 4.0 and mak
 Scripting work the same in Browsertime and sitespeed.io, the documentation here are for both of the tools.
 
 You have three different choices when you create your script:
-* You can use our [commands objects](/documentation/sitespeed.io/scripting/#commmands). They are wrappers around plain JavaScript to make it easier to create your scripts. We prepared for many scenarios but if you need to do really complicated things, you also need [run plain JavaScript](/documentation/sitespeed.io/scripting/#jsrunjavascript) to be able to do what you want. But hey, that's easy!
+* You can use our [commands objects](/documentation/sitespeed.io/scripting/#commands). They are wrappers around plain JavaScript to make it easier to create your scripts. We prepared for many scenarios but if you need to do really complicated things, you also need [run plain JavaScript](/documentation/sitespeed.io/scripting/#jsrunjavascript) to be able to do what you want. But hey, that's easy!
 * Or you can run plain JavaScript to navigate or do what you need by using the command [js.run()](/documentation/sitespeed.io/scripting/#jsrunjavascript). That will make it easy to copy/paste your JavaScript from your browsers console and test what you want to do.
 * If you are used to do everything with Selenium you can [use ... Selenium](/documentation/sitespeed.io/scripting/#use-selenium-directly) :)
 
@@ -67,7 +67,7 @@ And then you have a few help commands:
 * *[click](#click)* on a link and/or wait for the next page to load.
 * *[js](#run-javascript)* - run JavaScript in the browser.
 * *[switch](#switch)* to another frame or window.
-* *[set](#set)* innerHthml, innerText or value to an element.
+* *[set](#set)* innerHtml, innerText or value to an element.
 
 Scripting only works for Browsertime. It will not work with Lighthouse/Google Pagespeed Insights or WebPageTest. If you need scripting for WebPageTest [read the WebPageTest scripting documentation](/documentation/sitespeed.io/webpagetest/#webpagetest-scripting).
 {: .note .note-info}
@@ -100,7 +100,7 @@ module.exports = async function(context, commands) {
 That way you can just split your long scripts into multiple files and make it easier to manage.
 
 ## Getting values from your page
-In some scenirous you want to do different things dependent on what shows on your page. For example: You are testing a shop checkout and you need to verify that the item is in stock. You can run JavaScript and get the value back to your script.
+In some scenarios you want to do different things dependent on what shows on your page. For example: You are testing a shop checkout and you need to verify that the item is in stock. You can run JavaScript and get the value back to your script.
 
 Here's an simple example, IRL you will need to get something from the page:
 
@@ -126,7 +126,7 @@ if (exists) {
 
 ## Finding the right element
 
-One of the key things in your script is to be able to find the right element to invoke. If the elemnt has an id it's easy. If not you can use developer tools in your favourite browser. The all work mostly the same: Open devtools in the page you want to inspect, click on the element and right click on devtools for that element. Then you will see something like this:
+One of the key things in your script is to be able to find the right element to invoke. If the element has an id it's easy. If not you can use developer tools in your favourite browser. The all work mostly the same: Open DevTools in the page you want to inspect, click on the element and right click on DevTools for that element. Then you will see something like this:
 
 ![Using Safari to find the selector]({{site.baseurl}}/img/selector-safari.png)
 {: .img-thumbnail-center}
@@ -146,12 +146,40 @@ One of the key things in your script is to be able to find the right element to 
  <em class="small center">Using Chrome to find the CSS Selector to the element</em>
 </p>
 
+## Running setUp and tearDown in the same script
+
+Scripts can also directly define the ```--preScript``` and ```--postScript``` options by implementing a *setUp* and/or a *tearDown* function. These functions will get the same arguments than the test itself. When using this form, the three functions are declared in *module.exports* under the *setUp*, *tearDown* and *test* keys.
+
+Here's a minimal example:
+
+~~~javascript
+async function setUp(context, commands) {
+  // do some useful set up
+};
+
+async function perfTest(context, commands) {
+  // add your own code here
+};
+
+async function tearDown(context, commands) {
+  // do some cleanup here
+};
+
+module.exports = {
+  setUp: setUp,
+  tearDown: tearDown,
+  test: perfTest
+};
+~~~
+
+
 ## Debug
 There's a couple of way that makes it easier to debug your scripts:
 * Make sure to [use the log](#log-from-your-script) so you can see what happens in your log output.
 * Either run the script locally on your desktop without XVFB so you can see in the browser window what happens or use  <code>--browsertime.videoParams.debug</code> when you record the video. That way you will get one full video of all your scripts (but no Visual Metrics).
 * Use try/catch and await promises so you catch things that doesn't work.
 * If you use plain JavaScript you can copy/paste it and run it in your browsers console to make sure it really works.
+* Take a [screenshot](/documentation/sitespeed.io/scripting/#screenshot) when your script fail to make it easier to see what's going on.
 * If you run into trouble, please make sure you make it easy for us to [reproduce your problem](/documentation/sitespeed.io/bug-report/#explain-how-to-reproduce-your-issue) when you report a issue.
 
 ## Examples
@@ -185,7 +213,7 @@ module.exports = async function(context, commands) {
     // We try/catch so we will catch if the the input fields can't be found
     // The error is automatically logged in Browsertime an rethrown here
     // We could have an alternative flow ...
-    // else we can just let it cascade since it catched later on and reported in
+    // else we can just let it cascade since it caught later on and reported in
     // the HTML
     throw e;
   }
@@ -229,7 +257,7 @@ module.exports = async function(context, commands) {
     // We try/catch so we will catch if the the input fields can't be found
     // The error is automatically logged in Browsertime and re-thrown here
     // We could have an alternative flow ...
-    // else we can just let it cascade since it catched later on and reported in
+    // else we can just let it cascade since it caught later on and reported in
     // the HTML
     throw e;
   }
@@ -258,7 +286,7 @@ module.exports = async function(context, commands) {
     // We try/catch so we will catch if the the input fields can't be found
     // The error is automatically logged in Browsertime and re-thrown here
     // We could have an alternative flow ...
-    // else we can just let it cascade since it catched later on and reported in
+    // else we can just let it cascade since it caught later on and reported in
     // the HTML
     throw e;
   }
@@ -309,7 +337,7 @@ module.exports = async function(context, commands) {
   } catch(e) {
     // We try/catch so we will catch if the the input fields can't be found
     // We could have an alternative flow ...
-    // else we can just let it cascade since it catched later on and reported in
+    // else we can just let it cascade since it caught later on and reported in
     // the HTML
     throw e;
   }
@@ -330,7 +358,7 @@ module.exports = async function(context, commands) {
 
 ### Measure multiple pages and start white
 
-If you test multiple pages you will see that the layout is kept in the browser until the first paint of the new page. You can hack that by remvoving the current body and set the backgroud color to white. Then every video will start white.
+If you test multiple pages you will see that the layout is kept in the browser until the first paint of the new page. You can hack that by removing the current body and set the background color to white. Then every video will start white.
 
 ~~~javascript
 module.exports = async function(context, commands) {
@@ -339,6 +367,47 @@ module.exports = async function(context, commands) {
     await commands.measure.start('https://www.sitespeed.io/examples/');
     await commands.js.run('document.body.innerHTML = ""; document.body.style.backgroundColor = "white";');
     return commands.measure.start('https://www.sitespeed.io/documentation/');
+};
+~~~
+
+### Add your own metrics
+You can add your own metrics by adding the extra JavaScript that is executed after the page has loaded BUT did you know that also can add your own metrics directly through scripting? The metrics will be added to the metric tab in the HTML output and automatically sent to Graphite/InfluxDB.
+
+In this example we collect the temperature from our Android phone that runs the tests:
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // Get the temperature from the phone
+  const temperature = await commands.android.shell("dumpsys battery | grep temperature | grep -Eo '[0-9]{1,3}'");
+  // Start the test
+  await commands.measure.start(
+    'https://www.sitespeed.io'
+  );
+  // This is the magic where we add that new metric. It needs to happen
+  // after measure.start so we know where that metric belong
+  commands.measure.add('batteryTemperature', temperature/10);
+};
+~~~
+
+In this example we collect the number of comments on a blog post using commands.js.run() 
+to collect an element, use regex to parse out the number, and add it back as a custom metric.
+
+~~~javascript
+module.exports = async function(context, commands) {
+   await commands.measure.start('blog-post'); //alias is now blog-post
+   await commands.navigate('https://www.exampleBlog/blog-post');
+   
+   //use commands.js.run to return the element using pure javascript
+   const element = await commands.js.run('return(document.getElementsByClassName("comment-count")[0].innerText)'); 
+   
+   //parse out just the number of comments
+   var elementMetric = element.match(/\d/)[0];
+  
+   // need to stop the measurement before you can add it as a metric
+   await commands.measure.stop();
+   
+   // metric will now be added to the html and outpout to graphite/influx if you're using it
+   await commands.measure.add('commentsCount', elementMetric);
 };
 ~~~
 
@@ -409,7 +478,7 @@ module.exports = async function(context, commands) {
 ~~~
 
 ### Error handling
-You can try/catch failing commands that throw errors. If an error is not catched in your script, it will be catched in sitespeed.io and the error will be logged and reported in the HTML and to your data storage (Graphite/InfluxDb) under the key *browsertime.statistics.errors*.
+You can try/catch failing commands that throw errors. If an error is not caught in your script, it will be caught in sitespeed.io and the error will be logged and reported in the HTML and to your data storage (Graphite/InfluxDb) under the key *browsertime.statistics.errors*.
 
 If you do catch the error, you should make sure you report it yourself with the [error command](#error), so you can see that in the HTML. This is needed for all errors except navigating/measuring a URL. They will automatically be reported (since they are always important).
 
@@ -441,6 +510,43 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
+### Measuring First Input Delay - FID
+One of the new metrics Google is pushing is [First Input Delay](https://developers.google.com/web/updates/2018/05/first-input-delay). You can use it when you collect RUM but it can be hard to know what the user is doing. The recommended way is to use the Long Task API but the truth is that the attribution from the API is ... well can be better. When you have a long task, it is really hard to know why by looking at the attribution.
+
+How do we measure FID with sitespeed.io? You can measure clicks and button using the [Selenium Action API](https://selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/lib/input_exports_Actions.html) and then sitespeed.io uses the `first-input` performance observer to get it. What's really cool is that you can really measure it, instead of doing guestimates.
+
+Here's an example on measuring open the navigation on Wikipedia on mobile. I run my tests on a Alacatel One phone.
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // We have some Selenium context
+  const webdriver = context.selenium.webdriver;
+  const driver = context.selenium.driver;
+
+  // Start to measure
+  await commands.measure.start();
+  // Go to a page ...
+  await commands.navigate('https://en.m.wikipedia.org/wiki/Barack_Obama');
+
+  // When the page has finished loading you can find the navigation and click on it
+  const actions = driver.actions();
+  const nav = await driver.findElement(
+    webdriver.By.xpath('//*[@id="mw-mf-main-menu-button"]')
+  );
+  await actions.click(nav).perform();
+
+  // Measure everything, that means you will run the JavaScript that collects the first input delay
+  return commands.measure.stop();
+};
+~~~
+
+You will see the metric in the page summary and in the metrics section.
+
+![First input delay]({{site.baseurl}}/img/first-input-delay.png)
+{: .img-thumbnail}
+
+You can do mouse click, key press but there's no good way to do swiping as we know using the [Selenium Action API](https://selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/lib/input_exports_Actions.html). Your action will run after the page has loaded. If you wanna know what kind potential input delay you can have on load, you can use the *maxPotentialFid* metric that you will get by enabling `--cpu`.
+
 ## Tips and Tricks
 
 ### Include the script in the HTML result
@@ -450,13 +556,13 @@ If you wanna keep of what script you are running, you can include the script int
 {: .img-thumbnail}
 
 ### Getting correct Visual Metrics
-Visual metrics is the metrics that are collected using the video recording of the screen. In most cases that will work just out of the box. One thing to know is that when you go from one page to another page, the browser keeps the layout of the old page. That means that your video will start with the first page (instead of white) when yoy navigate to the next page.
+Visual metrics is the metrics that are collected using the video recording of the screen. In most cases that will work just out of the box. One thing to know is that when you go from one page to another page, the browser keeps the layout of the old page. That means that your video will start with the first page (instead of white) when you navigate to the next page.
 
 It will look like this:
 ![Page to page]({{site.baseurl}}/img/filmstrip-multiple-pages.jpg)
 {: .img-thumbnail}
 
-This is perfectly fine in most cases. But if you want to start white (the metrics somehow isn't correct) or if you click a link and that click changes the layout and is catched as First Visual Change, there are workarounds.
+This is perfectly fine in most cases. But if you want to start white (the metrics somehow isn't correct) or if you click a link and that click changes the layout and is caught as First Visual Change, there are workarounds.
 
 If you just want to start white and navigate to the next page you can just clear the HTML between pages:
 
@@ -475,7 +581,7 @@ If you want to click a link and want to make sure that the HTML doesn't change w
 module.exports = async function(context, commands) {
     await commands.measure.start('https://www.sitespeed.io');
     // Hide everything
-    // We do not hide the body since the body needs to be visibile when we do the magic to find the staret of the
+    // We do not hide the body since the body needs to be visible when we do the magic to find the staret of the
     // navigation by adding a layer of orange on top of the page
     await commands.js.run('for (let node of document.body.childNodes) { if (node.style) node.style.display = "none";}');
     // Start measurning
@@ -485,8 +591,6 @@ module.exports = async function(context, commands) {
     return commands.measure.stop();
 };
 ~~~
-
-
 
 ### Test one page that need a much longer page complete check than others
 
@@ -530,7 +634,7 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
-## Commmands
+## Commands
 
 All commands will return a promise and you should await it to fulfil. If some command do not work, we will log that automatically and rethrow the error, so you can catch that and can act on that.
 
@@ -603,6 +707,63 @@ If you start a measurement without giving a URL you need to also call measure.st
 #### measure.stop()
 Stop measuring. This will collect technical metrics from the browser, stop the video recording, collect CPU data etc.
 
+#### measure.add(name, value)
+Add your own measurements directly from your script. The data will be availible in the HTML on the metrics page and automatically sent to Graphite/InfluxDB.
+
+To be able to add any metrics, you need to have started a measurements.
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // Get the temperature from the phone
+  const temperature = await commands.android.shell("dumpsys battery | grep temperature | grep -Eo '[0-9]{1,3}'");
+  // Start the test
+  await commands.measure.start(
+    'https://www.sitespeed.io'
+  );
+  commands.measure.add('batteryTemperature', temperature/10);
+};
+~~~
+
+And you will get that metric in the HTML:
+
+![Adding metrics from your script]({{site.baseurl}}/img/batteryTemperatureMetric.png)
+{: .img-thumbnail}
+
+
+#### measure.addObject(object)
+You can also add multiple metrics in one go.
+~~~javascript
+module.exports = async function(context, commands) {
+ 
+  const extraMetrics = { a: 1, b: 2, c: 3};
+  // Start the test
+  await commands.measure.start(
+    'https://www.sitespeed.io'
+  );
+  commands.measure.addObject(extraMetrics);
+};
+~~~
+
+And it will look like this:
+
+![Multiple metrics from a script]({{site.baseurl}}/img/scriptMetrics.png)
+{: .img-thumbnail}
+
+
+And you can also add deep nested objects (no support in the HTML yet though, only in the data source).
+
+~~~javascript
+module.exports = async function(context, commands) {
+ 
+  const extraMetrics = { android: {cpu: {temperature: 27, cores: 2}}};
+  // Start the test
+  await commands.measure.start(
+    'https://www.sitespeed.io'
+  );
+  commands.measure.addObject(extraMetrics);
+};
+~~~
+
 ### Click
 The click command will click on links.
 
@@ -654,7 +815,7 @@ Click on element that is found by the CSS selector that has the given value. Int
 Click on element that is found by name CSS selector that has the given value and wait for the [page cmplete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to happen. Internally we use  ```document.querySelector(selector)``` to get the correct element.
 
 ### Wait
-There are two help commands that makes it easier to wait. Either you can wait on a specific id to appear or for x amount of milliseconds.
+There are a couple of help commands that makes it easier to wait. Either you can wait on a specific id to appear or for x amount of milliseconds.
 
 #### wait.byTime(ms)
 Wait for x ms.
@@ -662,8 +823,14 @@ Wait for x ms.
 #### wait.byId(id,maxTime)
 Wait for an element with id to appear before maxTime. The element needs to be visible for the user. If the element do not appear within maxTime an error will be thrown.
 
-#### byXpath(xpath, maxTime)
+#### wait.byXpath(xpath, maxTime)
 Wait for an element found by xpath to appear before maxTime. The element needs to be visible for the user. If the elemet do not appear within maxTime an error will be thrown.
+
+####  wait.bySelector(selector, maxTime)
+Wait for an element found by selector to appear before maxTime. The element needs to be visible for the user. If the elemet do not appear within maxTime an error will be thrown.
+
+#### wait.byPageToComplete()
+Wait for the page to finish loading by using the configured [page cmplete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test). This can be useful if you use Selenium to click on elements and want to wait on a new page to load.
 
 ### Run JavaScript
 You can run your own JavaScript in the browser from your script.
@@ -680,6 +847,8 @@ module.exports = async function(context, commands) {
   // if secretValue === 12 ...
 }
 ~~~
+
+By default this will return a [Selenium WebElement](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebElement.html).
 
 #### js.runAndWait(javascript)
 Run JavaScript and wait for [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test). This is perfect if you wanna click on links with pure JavaScript and measure a URL. Will throw an error if the JavaScript fails.
@@ -707,6 +876,12 @@ Add the *text* to the element by using the attribute name. If the element is not
 
 #### addText.byClassName(text, className)
 Add the *text* to the element by using class name. If the element is not found the command will throw an error.
+
+### Screenshot
+Take a screenshot. The image will automatically be stored in the screenshot directory for the URL you are testing. This can be super helpful to use in a catch block if something fails. 
+
+#### screenshot.take(name) 
+Give your screenshot a name and it will be used together with the iteration index to store the image.
 
 ### Switch
 You can switch to iframes or windows if that is needed.
@@ -765,7 +940,7 @@ Clear the browser cache but keep cookies.
 
 ~~~javascript
 module.exports = async function(context, commands) {
-  // If you have login cookies that lives really long you may want to test aceesing the page as a logged in user 
+  // If you have login cookies that lives really long you may want to test aceesing the page as a logged in user
   // but without a browser cache. You can try that with ...
 
   // Login the user and the clear the cache but keep cookies
@@ -824,7 +999,7 @@ module.exports = async function(context, commands) {
 Create an error. Use it if you catch a thrown error, want to continue with something else, but still report the error.
 
 ### Meta data
-Add meta data to your script. The extra data will be visibile in the HTML result page.
+Add meta data to your script. The extra data will be visible in the HTML result page.
 
 Setting meta data like this:
 
@@ -852,11 +1027,38 @@ Will result in:
 #### meta.setTitle(title)
 Add a title of your script. The title is text only.
 
+Will result in:
+
+![Title and description for a script]({{site.baseurl}}/img/titleanddesc.png)
+{: .img-thumbnail}
+
+
+#### meta.setTitle(title)
+Add a title of your script. The title is text only.
+
 #### meta.setDescription(desc)
 Add a description of your script. The description can be text/HTML.
 
+### Android
+If you run your tests in an Android phone you probably want to interact with your phone throught the shell.
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // Get the temperature from the phone
+  const temperature = await commands.android.shell("dumpsys battery | grep temperature | grep -Eo '[0-9]{1,3}'");
+  context.log.info('The battery temperature is %s', temperature/10);
+  // Start the test
+  return commands.measure.start(
+    'https://www.sitespeed.io'
+  );
+};
+~~~
+
+#### android.shell(command)
+Run a shell command directly on your phone. 
+ 
 ### Use Selenium directly
-You can use Selenium directly if you need to use things that are not availible through our commands.
+You can use Selenium directly if you need to use things that are not available through our commands.
 
 You get a hold of the Selenium objects through the context.
  The *selenium.webdriver* that is the Selenium [WebDriver public API object](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html). And *selenium.driver* that's the [instantiated version of the WebDriver](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebDriver.html) driving the current version of the browser.
@@ -871,14 +1073,15 @@ module.exports = async function(context, commands) {
   // before you start, make your username and password
   const userName = 'YOUR_USERNAME_HERE';
   const password = 'YOUR_PASSWORD_HERE';
-  const loginForm = driver.findElement(webdriver.By.css('form'));
-  const loginInput = driver.findElement(webdriver.By.id('wpName1'));
-  loginInput.sendKeys(userName);
-  const passwordInput = driver.findElement(webdriver.By.id('wpPassword1'));
-  passwordInput.sendKeys(password);
+  const loginForm = await driver.findElement(webdriver.By.css('form'));
+  const loginInput = await driver.findElement(webdriver.By.id('wpName1'));
+  await loginInput.sendKeys(userName);
+  const passwordInput = await driver.findElement(webdriver.By.id('wpPassword1'));
+  await passwordInput.sendKeys(password);
   // this example skips waiting for the next page and validating that the login was successful.
   return loginForm.submit();
 }
 ~~~
 
 If you need help with Selenium, checkout [the official Selenium documentation](https://www.seleniumhq.org/docs/).
+

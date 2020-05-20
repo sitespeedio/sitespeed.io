@@ -15,13 +15,13 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 
 ## sitespeed.io
 
-Sitespeed.io uses Browsertime, the Coach and PageXray to collect and generate the result, so looking at result pages from sitespeed.io will give you a idea of what you can get from all tools. Analyzing two pages using Chrome looks like this:
+Sitespeed.io uses Browsertime, the Coach and PageXray to collect and generate the result, so looking at result pages from sitespeed.io will give you a idea of what you can get from all tools. Analysing two pages using Chrome looks like this:
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b chrome --chrome.timeline https://en.wikipedia.org/wiki/Main_Page https://en.wikipedia.org/wiki/Barack_Obama
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b chrome --cpu https://en.wikipedia.org/wiki/Main_Page https://en.wikipedia.org/wiki/Barack_Obama
 ~~~
 
-Gives the following [report](https://examples.sitespeed.io/8.2/en.wikipedia.org/2019-02-04-22-46-14/). The standard use case for sitespeed.io is to run it continously and send the data to Graphite/Grafana and create dashboards looking like this:
+Gives the following [report](https://examples.sitespeed.io/13.x/2020-05-20-08-47-56/index.html). The standard use case for sitespeed.io is to run it continuously and send the data to Graphite/Grafana and create dashboards looking like this:
 
 [![Example dashboard]({{site.baseurl}}/img/examples/dashboard-examples.png)](https://dashboard.sitespeed.io/dashboard/db/page-summary?orgId=1)
 {: .img-thumbnail}
@@ -1100,7 +1100,7 @@ And it will generate a JSON that looks something like this:
       },
       "iframes": 0,
       "localStorageSize": 0,
-      "metaDescription": "Sitespeed.io is an open source tool that helps you analyze and optimize your website speed and performance, based on performance best practices. Run it locally or use it in your continuous integration. Download or fork it on Github!",
+      "metaDescription": "Sitespeed.io is an open source tool that helps you analyse and optimize your website speed and performance, based on performance best practices. Run it locally or use it in your continuous integration. Download or fork it on GitHub!",
       "pageContentSize": "120.9 kB",
       "pageContentTypes": {
         "css": {
@@ -1401,7 +1401,7 @@ And it will generate a JSON that looks something like this:
         },
         "inlineCss": {
           "advice": "The page has inline CSS and uses HTTP/2. Do you have a lot of users with slow connections on the site, it is good to inline CSS when using HTTP/2. If not and your server supports server push, use it to push the CSS files instead.",
-          "description": "In the early days of internet inlining CSS was one of the ugliest things you can do. That has changed if you want your page to start rendering fast for your user. Always inline the critical CSS when you use HTTP/1 (avoid doing CSS requests that blocks rendering) and lazy load and cache the rest of the CSS. Using HTTP/2 it is a little more complicated. Does your server support HTTP push? Then maybe that can help. Do you have a lot of users on a slow connection and serving large chunks of HTML? Then it could be better to inline, becasue some servers always prioritize HTML content over CSS so the user needs to download the HTML first, before the CSS is downloaded.",
+          "description": "In the early days of internet inlining CSS was one of the ugliest things you can do. That has changed if you want your page to start rendering fast for your user. Always inline the critical CSS when you use HTTP/1 (avoid doing CSS requests that blocks rendering) and lazy load and cache the rest of the CSS. Using HTTP/2 it is a little more complicated. Does your server support HTTP push? Then maybe that can help. Do you have a lot of users on a slow connection and serving large chunks of HTML? Then it could be better to inline, because some servers always prioritize HTML content over CSS so the user needs to download the HTML first, before the CSS is downloaded.",
           "id": "inlineCss",
           "offending": [
           ],

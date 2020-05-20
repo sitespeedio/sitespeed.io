@@ -19,27 +19,25 @@ twitterdescription:
 
 One of the best use cases with sending metrics to Graphite/InfluxDB and using Grafana is creating performance alerts that will alert you when SpeedIndex, First Visual Change or other metrics regress on your site. Grafana supports [many different notification types](http://docs.grafana.org/alerting/notifications/) and you can alert on all metrics that you send to Graphite/Grafana or if you have your own storage for metrics. This means you can alert on metrics from Browsertime like SpeedIndex and First/Last Visual Change, and all other plugins that sends data to your storage (WebPageTest, Coach, PageXray and [ChromeTrace](https://github.com/betit/chrometrace-sitespeedio-plugin)).
 
-
-## Example
-
-You can checkout our example setup at [https://dashboard.sitespeed.io/dashboard/db/alerts](https://dashboard.sitespeed.io/dashboard/db/alerts). They all have the change in % to the left and a historical graph to the right.
-
-At the moment we test three URLs, and if the change is larger than 3% on all three URLs, an alert is fired. We test three URLs to make sure the change is for multiple URLs and not specific to one URL. The limit of when to fire the alert depends on how stable metrics you have (how stable is your website, do you test with proxy, how large is server instance where you run the browser etc).
-
-![Alert in action]({{site.baseurl}}/img/alerts/alerts-in-action.png)
-{: .img-thumbnail}
-
-In the left part of the image you see a horizontal red line, that is when an alert is fired (sending an email/posting to Slack, PagerDuty etc). The green line is when the numbers are back to normal. In the right graph you can see the change in numbers.
+Before you start, read the [Grafana alerts documentation](https://grafana.com/docs/grafana/latest/alerting/rules/).
 
 
 ## Setup
 
 There's a couple of ways to create queries and alerts:
 * You want to create queries that measure the change in percentage over time and you want to create an alert when all of them are above a specific percentage.
-* Or you can fire alerts when a metric difference has been over a specific value for X amount of time
+* Or you can fire alerts when a metric difference has been over a specific value for X amount of time.
 
 
 ### Create percentage queries
+
+Here we test three URLs, and if the change is larger than 3% on all three URLs, an alert is fired. We test three URLs to make sure the change is for multiple URLs and not specific to one URL. The limit of when to fire the alert depends on how stable metrics you have (how stable is your website, do you test with proxy, how large is server instance where you run the browser etc).
+
+
+In the left part of the image you see a horizontal red line, that is when an alert is fired (sending an email/posting to Slack, PagerDuty etc). The green line is when the numbers are back to normal. In the right graph you can see the change in numbers.
+
+![Alert in action]({{site.baseurl}}/img/alerts/alerts-in-action.png)
+{: .img-thumbnail}
 
 To the left we have changes in percentage. These are the numbers where we add alerts. In this case we first create a query and take the moving median one day back (this is the number we will use and compare with) and then we take the moving median of the latest 5 hours. Depending on how steady metrics we have, we can do this different. If you run on a stable environment with a proxy you don't need to take the median of X hours, instead you can take the exact run.
 
@@ -162,4 +160,4 @@ You can do the same with all the metrics you want. On mobile Wikipedia metrics i
 ![First visual change]({{site.baseurl}}/img/alerts/first-visual-change2.png)
 {: .img-thumbnail}
 
-If you have any questions about the alerts, feel free to [create an issue at Github](https://github.com/sitespeedio/sitespeed.io/issues/new?title=Alerts) or hit us on [Slack](https://sitespeedio.herokuapp.com).
+If you have any questions about the alerts, feel free to [create an issue at GitHub](https://github.com/sitespeedio/sitespeed.io/issues/new?title=Alerts) or hit us on [Slack](https://sitespeedio.herokuapp.com).
