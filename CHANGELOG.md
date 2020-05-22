@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 13.0.0 - UNRELEASED
 ### Added
 * Show which HTML tag that is the largest contentful paint in the waterfall [#3001](https://github.com/sitespeedio/sitespeed.io/pull/3001).
 * Show the Browsertime xvfb parameters in the CLI help [#3003](https://github.com/sitespeedio/sitespeed.io/pull/3003)
@@ -8,9 +8,14 @@
 * Upgraded to Chromedriver 83 and Chrome 83 in the Docker container.
 * Upgraded to [Browsertime 8.13.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#8130---2020-05-19).
 * The +1 container now uses Lighthouse 6.0.0.
+* Upgraded to Grafana 7.0.0 and [updated dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker) to the new layout (and a NEW [plus1 dashboard](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/master/dashboards/graphite/Plus1.json) with metrics from GPSI and Lighthouse).
 
 ### Fixed
 * Better guards for missing WebPageTest first view data [#3002](https://github.com/sitespeedio/sitespeed.io/pull/3002)
+* If you used the old budget format, limits and values wasn't written in the HTML and in the log [#3009](https://github.com/sitespeedio/sitespeed.io/pull/3009).
+
+### Tech 
+* Continous work to move out CLI options to respective plugin by [Erick Wilder](https://github.com/erickwilder), thank you!
 
 ## 12.11.0 - 2020-05-16
 ### Added
