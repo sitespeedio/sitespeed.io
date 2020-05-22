@@ -24,6 +24,8 @@ Is performance important? There are a lot of people advocating that performance 
 
 What we do know is that there's no [magic numbers](https://phabricator.wikimedia.org/phame/post/view/142/magic_numbers/) in performance testing and that you need to set your own goals depending on your site and your users.
 
+What I do know is measuring the performance helps you beeing a better developer. Keeping track and making sure you do not introduce performance regressions is vital for you as a developer.
+
 ### Why do real user measurements
 
 Getting metrics from real users is good because they are close to what people really experience. The problem is that:
@@ -70,26 +72,27 @@ You want to have stable metrics so you can find regressions. One way to get more
 
 The number of runs you need depends on the servers you use, the browser (and browser configuration) and the URL that you test. That means you need to test yourself to find what works for you. For example at Wikimedia we get really stable metrics for our mobile site with just one run using WebPageReplay as a replay proxy. But for the English desktop Wikipedia we need 5/7/11 runs for some URLs to get more stable metrics (becasue we run more JavaScript that executes differently). And for other languages on Wikipedia we need less runs.
 
-You should start out by doing 3 runs. How big is the difference between your runs? Is it seconds? Well then you need to increase the number of runs. You will probably have some flakiness in your tests, but that is ok, as long as you can see regressions. The best way to find what works for you is to test over a period of time. Check your metric, check your min and max and the deviation over time (we have a [special dashboard]() that helps you with that.
+You should start out by doing 5 runs. How big is the difference between your runs? Is it seconds? Well then you need to increase the number of runs. You will probably have some flakiness in your tests, but that is ok, as long as you can see regressions. The best way to find what works for you is to test over a period of time. Check your metric, check your min and max and the deviation over time.
 
 *But vendor X of tool Y says that 3 runs is enough?*
 
 We are pretty sure this is the same for all tools as long as you test with real browsers. It depends on your server, your browser and the page you test. **You need to test to know!**
 
 ### Browsers
-Your page could renders differently in different browsers, since they are built in different ways. It's therefore important to test your page in multiple browsers. Using sitespeed.io you can use Chrome and Firefox.
+Your page could renders differently in different browsers, since they are built in different ways. It's therefore important to test your page in multiple browsers. Using sitespeed.io you can use Chrome, Firefox, Safari and Edge. But it takes time to test in all browsers, then start to test in the ones that are most important for you.
 
 Browser change for each release so it is important to upgrade the browser you use in the tests, the same way your users browsers are updating. If you run the sitespeed.io Docker containers, we release a new tagged version per browser version. You can then update in a controlled way.
 
 ### Choosing metrics
 If you look at all metrics that are collected it's easy to feel confused and not know which metrics that is most important.
 
-Do your company/organisation have a way to study your users and finding out what metric is important? Strat with that. If you can't do that, focus on a metric that are important for you as a developer and that you are responsible for.
+Do your company/organisation have a way to study your users and finding out what metric is important? Start with that. If you can't do that, focus on a metric that are important for you as a developer and that you are responsible for.
 
 I think it's important to choose a metric that you are responsbible for, something you can change and are not depending on other companies/organisation. One metric that should be independent of third parties is First Visual Change/First paint. If it is not that for you, that's your first mission: make sure your first paint are independent of others.
 
-
 ### When to run your tests
+
+
 
 ### Where to run your tests
 
@@ -156,20 +159,6 @@ But when should you use InfluxDB? Well, almost never :) The great thing with Gra
 We love Grafana and think its the best monotoring/dashboard tool that is out there (and it is Open Source). If you haven't used it before you will be amazed. Sitespeed.io ships with a couple of default dashboards but with the power of Grafana its easy to create your own.
 
 What extra great (for you) is that Grafana support multiple data sources, meaning you easily can create dashboards that gets data from your sitespeed.io runs, integrate it with your RUM data and with your business metrics like convertion rate. The potential with Grafana is endless.
-
-# Choosing performance tool
-## sitespeed.io vs other tools
-There are other great Open Source tools out there that you can use (we like WebPageTest if you remove the privacy issues). There are also probably a couple of good paid tools that you can use. But remember one thing and this is important: we created sitespeed.io for the love of real users and developers, we want to make it easy and cheap to monitor performance so that it is EASY for you to make sure your users have a great experience. Compare it to the paid tools where the creators are in it from the money. They will say the "care" about the users but we are certain that you will see through them. We have a couple of examples how much some of the tools "really" cares and you can contact me and I can share that with you.
-
-
-# Setting up Graphite and Grafana in Linux
-Setting up Graphite and Grafana on Linux is some works the first time, but when you have it up and running you rearly need to touch it again (only time is when you want to update Grafana). We have users that has been using the same instance for the last five years and never needs to do anything else than update Grafana and update security issues on the server.
-
-## Setting up Graphite on AWS
-
-### Using Docker compose
-
-
 
 ## Testing on desktop
 
