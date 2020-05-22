@@ -1,4 +1,6 @@
 timings.firstPaint
+timings.firstContentfulPaint
+timings.largestContentfulPaint
 timings.loadEventEnd
 timings.fullyLoaded
 timings.serverResponseTime
@@ -17,6 +19,7 @@ cpu.totalBlockingTime
 cpu.maxPotentialFid
 cpu.longTasks
 cpu.longTasksTotalDuration
+pageinfo.layoutShift
 requests.total
 requests.html
 requests.javascript

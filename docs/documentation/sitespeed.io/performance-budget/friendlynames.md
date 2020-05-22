@@ -2,6 +2,8 @@
  "budget": {
    "timings": {
          "firstPaint": limit,
+         "firstContentfulPaint": limit,
+         "largestContentfulPaint": limit,
          "loadEventEnd": limit,
          "fullyLoaded": limit,
          "serverResponseTime": limit,
@@ -22,6 +24,9 @@
          "maxPotentialFid": limit,
          "longTasks": limit,
          "longTasksTotalDuration": limit,
+    },
+   "pageinfo": {
+         "layoutShift": limit,
     },
    "requests": {
          "total": limit,
