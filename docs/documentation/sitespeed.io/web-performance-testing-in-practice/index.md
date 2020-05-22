@@ -84,7 +84,7 @@ Your page could renders differently in different browsers, since they are built 
 Browser change for each release so it is important to upgrade the browser you use in the tests, the same way your users browsers are updating. If you run the sitespeed.io Docker containers, we release a new tagged version per browser version. You can then update in a controlled way.
 
 ### Choosing metrics
-If you look at all metrics that are collected it's easy to feel confused and not know which metrics that is most important.
+If you look at all metrics that are collected it's easy to feel confused and not know which metrics that is the most important.
 
 Do your company/organisation have a way to study your users and finding out what metric is important? Start with that. If you can't do that, focus on a metric that are important for you as a developer and that you are responsible for.
 
