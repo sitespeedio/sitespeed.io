@@ -7,6 +7,7 @@ const browsertime = require('browsertime');
 const merge = require('lodash.merge');
 const getURLs = require('../lib/cli/util').getURLs;
 const get = require('lodash.get');
+const set = require('lodash.set');
 const findUp = require('find-up');
 const fs = require('fs');
 const browsertimeConfig = require('../lib/plugins/browsertime/index').config;
@@ -111,6 +112,13 @@ async function runBrowsertime() {
       describe: 'The browser view port size WidthxHeight like 400x300',
       group: 'Browser'
     })
+    .option('browsertime.android', {
+      alias: 'android',
+      type: 'boolean',
+      default: false,
+      describe:
+        'Short key to use Android. Will automatically use com.android.chrome for Chrome and stable Firefox. If you want to use another Chrome version, use --chrome.android.package'
+    })
     .config(config);
 
   const defaultConfig = {
@@ -131,6 +139,42 @@ async function runBrowsertime() {
       ignoreCertificateErrors: true
     }
   };
+
+  if (parsed.argv.ios) {
+    set(parsed.argv, 'safari.ios', true);
+  } else if (parsed.argv.android) {
+    if (parsed.argv.browser === 'chrome') {
+      // Default to Chrome Android.
+      set(
+        parsed.argv,
+        'browsertime.chrome.android.package',
+        get(
+          parsed.argv,
+          'browsertime.chrome.android.package',
+          'com.android.chrome'
+        )
+      );
+    } else if (parsed.argv.browser === 'edge') {
+      set(
+        parsed.argv,
+        'browsertime.chrome.android.package',
+        get(
+          parsed.argv,
+          'browsertime.chrome.android.package',
+          'com.microsoft.emmx'
+        )
+      );
+      set(
+        parsed.argv,
+        'browsertime.chrome.android.activity',
+        get(
+          parsed.argv,
+          'browsertime.chrome.android.activity',
+          'com.microsoft.ruby.Main'
+        )
+      );
+    }
+  }
 
   const btOptions = merge({}, parsed.argv.browsertime, defaultConfig);
   browsertime.logging.configure(parsed.argv);
