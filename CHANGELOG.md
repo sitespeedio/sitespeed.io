@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 13.0.1 -  2020-05-25
+### Fixed
+* Updated the plugin-lighthouse to run latest Chrome as reported in [plugin-lighthouse #53](https://github.com/sitespeedio/plugin-lighthouse/issues/53).
+
 ## 13.0.0 -  2020-05-22
 ### Added
 * Show which HTML tag that is the largest contentful paint in the waterfall [#3001](https://github.com/sitespeedio/sitespeed.io/pull/3001).
