@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELASED
+### Fixed
+* Updated to Browsertime 8.13.1
+
 ## 13.0.1 -  2020-05-25
 ### Fixed
 * Updated the plugin-lighthouse to run latest Chrome as reported in [plugin-lighthouse #53](https://github.com/sitespeedio/plugin-lighthouse/issues/53).
