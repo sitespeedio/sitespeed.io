@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 13.0.3 - 2020-05-27
+### Fixed
+* Metrics for multiple urls are mixed together, giving incorrect summaries in the Lighthouse plugin. Thank you [Andrew Mee](https://github.com/andrewmee) for the PR [plugin-lighthouse #55](https://github.com/sitespeedio/plugin-lighthouse/pull/55).
+
 ## 13.0.2 - 2020-05-27
 ### Fixed
 * Updated to [Browsertime 8.13.1](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#8131---2020-05-26)
