@@ -1,14 +1,15 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELASED
+## 13.0.2 - 2020-05-27
 ### Fixed
-* Updated to Browsertime 8.13.1
+* Updated to [Browsertime 8.13.1](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#8131---2020-05-26)
+* Make sure errors from the CLI logs errors with "Error:" which makes it easier to act on errors in the log [#3013](https://github.com/sitespeedio/sitespeed.io/pull/3013)
 
-## 13.0.1 -  2020-05-25
+## 13.0.1 - 2020-05-25
 ### Fixed
 * Updated the plugin-lighthouse to run latest Chrome as reported in [plugin-lighthouse #53](https://github.com/sitespeedio/plugin-lighthouse/issues/53).
 
-## 13.0.0 -  2020-05-22
+## 13.0.0 - 2020-05-22
 ### Added
 * Show which HTML tag that is the largest contentful paint in the waterfall [#3001](https://github.com/sitespeedio/sitespeed.io/pull/3001).
 * Show the Browsertime xvfb parameters in the CLI help [#3003](https://github.com/sitespeedio/sitespeed.io/pull/3003)
