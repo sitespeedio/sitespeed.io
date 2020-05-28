@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 13.1.0 - 2020-05-28
+### Added
+* Updated the plugin-gpsi in the +1 container to pickup LCP and CLS [plugin-gpsi #26](https://github.com/sitespeedio/plugin-gpsi/pull/26).
+
 ## 13.0.3 - 2020-05-27
 ### Fixed
 * Metrics for multiple urls are mixed together, giving incorrect summaries in the Lighthouse plugin. Thank you [Andrew Mee](https://github.com/andrewmee) for the PR [plugin-lighthouse #55](https://github.com/sitespeedio/plugin-lighthouse/pull/55).
