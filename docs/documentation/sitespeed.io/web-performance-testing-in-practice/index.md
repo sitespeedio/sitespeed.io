@@ -170,11 +170,20 @@ What pages should you test? What user journeys are the most important ones? If y
 
 If you have an active content team that can update HTML/CSS/JavaScript on your pages directly on production, you should also test [using crawling](https://www.sitespeed.io/documentation/sitespeed.io/configuration/#analyse-by-crawling). That way you can find problems on pages that you normally do not test.
 
-### Getting stable metrics
+### Getting useful metrics
 
+Getting stable metrics is hard. If you are in any doubt, look at [Performance Matters" by Emery Berger](https://www.youtube.com/watch?v=r-TLSBdHe1A).
 
-)
-[Performance Matters" by Emery Berger](https://www.youtube.com/watch?v=r-TLSBdHe1A
+If you have throttled the internet connection, deployed on a stable server there aree still some things you can do.
+
+You can also use a replay server to try to minimize the noice. The sitespeed.io Docker container includes [WebPageReplay](https://www.sitespeed.io/documentation/sitespeed.io/webpagereplay/), Mozilla uses [mitmproxy](https://mitmproxy.org).
+
+Another way is to look at metrics thrends and compare metrics with one week back in time to find regressions. This is a technique that [Timo Tijhof](https://twitter.com/TimoTijhof) been using for a long time and we adopted it in sitespeed.io years ago.
+
+![Compare one week back]({{site.baseurl}}/img/compare-one-week-back.png)
+{: .img-thumbnail}
+
+TODO update the metric
 
 ### Store metrics and run data
 
@@ -187,7 +196,7 @@ But when should you use InfluxDB? Well, almost never :) The great thing with Gra
 
 ### Dashboards
 #### Grafana vs other dashboard tools
-We love Grafana and think its the best monotoring/dashboard tool that is out there (and it is Open Source). If you haven't used it before you will be amazed. Sitespeed.io ships with a couple of default dashboards but with the power of Grafana its easy to create your own.
+We love [Grafana](https://grafana.com) and think its the best monotoring/dashboard tool that is out there (and it is Open Source). If you haven't used it before you will be amazed. Sitespeed.io ships with a couple of default dashboards but with the power of Grafana its easy to create your own.
 
 What extra great (for you) is that Grafana support multiple data sources, meaning you easily can create dashboards that gets data from your sitespeed.io runs, integrate it with your RUM data and with your business metrics like convertion rate. The potential with Grafana is endless.
 
