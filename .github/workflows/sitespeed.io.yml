@@ -6,6 +6,6 @@ jobs:
     name: running sitespeed.io
     steps:
       - name: Prepare connectivity
-        uses: sudo modprobe ifb numifbs=1
+        run: sudo modprobe ifb numifbs=1
       - name: running sitespeed.io container with arguments and optional Docker options
         run: docker run -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:13.1.1 https://www.sitespeed.io  -n 3 --connectivity.engine throttle -c cable 
