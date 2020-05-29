@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 13.1.1 - 2020-05-29
+### Fixed
+* Exit with sitespeed.io exit code when you run WebPageReplay in the Docker container [#3017](https://github.com/sitespeedio/sitespeed.io/pull/3017). 
+
 ## 13.1.0 - 2020-05-28
 ### Added
 * Updated the plugin-gpsi in the +1 container to pickup LCP and CLS [plugin-gpsi #26](https://github.com/sitespeedio/plugin-gpsi/pull/26).
