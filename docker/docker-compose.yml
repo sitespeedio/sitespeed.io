@@ -1,11 +1,5 @@
 version: '3'
 services:
-    sitespeed.io:
-      image: sitespeedio/sitespeed.io
-      command: -V
-      shm_size: 1g
-      volumes:
-            - ./sitespeed-result/:/sitespeed.io/sitespeed-result
     grafana:
       image: grafana/grafana:7.0.0
       depends_on:
