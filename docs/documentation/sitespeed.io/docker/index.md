@@ -103,7 +103,7 @@ docker run -e TZ=America/New_York --rm -v "$(pwd)":/sitespeed.io sitespeedio/sit
 
 ## Change connectivity
 
-To change connectivity you should use Docker networks, read all about it [here]({{site.baseurl}}/documentation/sitespeed.io/browsers/#change-connectivity).
+To change connectivity you should use Docker networks, read all about it [here]({{site.baseurl}}/documentation/sitespeed.io/connectivity/).
 
 ## Increase memory
 
