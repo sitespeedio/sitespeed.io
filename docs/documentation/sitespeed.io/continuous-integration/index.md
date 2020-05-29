@@ -23,11 +23,9 @@ You can use sitespeed.io to keep track of what is happening with your site by ma
 To do this you define your own [budget file](../performance-budget/#the-budget-file) with rules on when to break your build. This budget will return an error code status after the run. You can also choose to output JUnit XML and TAP reports.
 
 ## GitHub Actions
-If you are using [GitHub Actions](https://github.com/features/actions) beta it's super easy to run sitespeed.io. Remember though that actions are in beta and can change. They are running an small instances at the moment and you have no way of [setting the connectivity](/documentation/sitespeed.io/connectivity/) so you shouldn't rely on timing metrics. 
+If you are using [GitHub Actions](https://github.com/features/actions) it's super easy to run sitespeed.io. It  works good with a [performance budget](documentation/sitespeed.io/performance-budget/). You should set your budget in a file in the repo that you are testing. In this example we call the file *budget.json* and put it in the *.github* folder in the repo.
 
-Actions works good with a [performance budget](documentation/sitespeed.io/performance-budget/). You should set your budget in a file in the repo that you are testing. In this example we call the file *budget.json* and put it in the *.github* folder in the repo.
-
-Setup a simple budget that check the URLs you test against number of requests, transfer sise, third parties and different Coach scores ([read the documentation](/documentation/sitespeed.io/performance-budget/#full-example) on how to configure other metrics):
+Setup a simple budget that checks the URLs you test against number of requests, transfer sise, third parties and different Coach scores ([read the documentation](/documentation/sitespeed.io/performance-budget/#full-example) on how to configure other metrics):
 
 ```json
 {
@@ -51,26 +49,27 @@ Setup a simple budget that check the URLs you test against number of requests, t
 }
 ```
 
-Then you can setup your action either via the GitHub GUI or using configuration. Make sure to setup your action to the right Docker file: ```docker://sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-action```.
+Then you can setup your workflow either via the GitHub GUI or commit it to your repo via the command line or an IDE of choice. The workflow YAML should reside in the *.github/workflows* folder of your repo and you make name it as you like.
+An example simple setup using a performance budget looks something like this:
 
-A simple setup looks something like this:
-
-```shell
-workflow "Testing stage environment" {
-  on = "push"
-  resolves = ["Run sitespeed.io"]
-}
-
-action "Run sitespeed.io" {
-  uses = "docker://sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-action"
-  args = "https://www.sitespeed.io -n 1 --budget.configPath /github/workspace/.github/budget.json"
-}
+```yaml
+name: sitespeed.io
+on: push
+jobs:
+  run-sitespeed:
+    runs-on: ubuntu-latest
+    name: running sitespeed.io
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v2
+      - name: running sitespeed.io container with arguments and optional Docker options
+        run: docker run -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --budget.configPath .github/budget.json -n 1 
 ```
-As argument you can use all [configurations options](/documentation/sitespeed.io/configuration/#the-options) as you usually do with sitespeed.io. Since we don't use any timing metrics in the budget we only do one run.
+As arguments and Docker options you can use all [configurations options](/documentation/sitespeed.io/configuration/#the-options) as you usually do with sitespeed.io. Since we don't use any timing metrics in the budget we only do one run.
 
-If your budget fails, your action will fail.
+If your budget fails, your workflow will fail.
 
-When there's a new sitespeed.io release and you wanna use that you just bump the version number of your action.
+When there's a new sitespeed.io release and you wanna use that you just bump the version number of your workflow.
 
 ## Jenkins
 The most convenient way to run in Jenkins is to use the pre-built Docker containers. You can run an installed npm version too, but that method will require additional work as you will need to setup browsers and use the [Xvfb plugin](https://wiki.jenkins-ci.org/display/JENKINS/Xvfb+Plugin) to make the browsers run in headless mode. Trust us use the Docker Images you will thank us later. ;-)
