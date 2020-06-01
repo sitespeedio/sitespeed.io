@@ -47,3 +47,6 @@ DevTools
 sudo
 PageXray
 leaderboard
+Wikimedia
+mitmproxy
+travis.yml

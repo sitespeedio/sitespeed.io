@@ -24,7 +24,7 @@ Is performance important? There are a lot of people advocating that performance 
 
 What we do know is that there's no [magic numbers](https://phabricator.wikimedia.org/phame/post/view/142/magic_numbers/) in performance testing and that you need to set your own goals depending on your site and your users.
 
-What I do know is measuring the performance helps you beeing a better developer. Keeping track and making sure you do not introduce performance regressions is vital for you.
+What I do know is measuring the performance helps you being a better developer. Keeping track and making sure you do not introduce performance regressions is vital for you.
 
 
 ### Why do synthetic testing
@@ -48,13 +48,13 @@ But everything isn’t perfect when testing in a lab: You are only testing a sma
 Lets go through some important things when you setup your synthetic tests. You want to deploy your performance measurements tool somewhere. You want to have stable metrics. You want to be able to trust your tool. You want to have an automatic way to find regressions.
 
 ### Stability is your friend
-The most important thing when setting up synthetic testing is getting rid of as much variance as possible. You need to make sure that your server prestanda, the internet connection, the tool so that the metrics you collect will not be influenced by something else than things that the web page.
+The most important thing when setting up synthetic testing is getting rid of as much variance as possible. You need to make sure that your server performance, the internet connection, the tool so that the metrics you collect will not be influenced by something else than things that the web page.
 
 ### Internet connection/connectivity
 
 The internet connection to your test server is probably really fast. And it can be different throughout the day. That will influence your tests. 
 
-If you throttle (making your connection slower) you can make sure you test under the same connection type all the time and making the connection slower, will make it easier fo you to spot regressions in your code.
+If you throttle (making your connection slower) you can make sure you test under the same connection type all the time and making the connection slower, will make it easier for you to spot regressions in your code.
 
  **PLEASE, YOU NEED TO ALWAYS THROTTLE YOUR CONNECTION!**!
 
@@ -64,17 +64,17 @@ Remember: always make sure you run on a throttled connection!
 
 ### Servers
 
-You need to run your tests somewhere and you want to make sure that nothing else in that server interfers with your tests.
+You need to run your tests somewhere and you want to make sure that nothing else in that server interfere with your tests.
 
 ### Choosing server
-You can run on bare metal or using a cloud providor.
+You can run on bare metal or using a cloud provider.
 
-### Cloud providors
-We have tested a couple of different cloud providors (AWS/GCS/DO) and I have also been testing different cloud solutions at my work at Wikimedia.
+### Cloud providers
+We have tested a couple of different cloud providers and I have also been testing different cloud solutions at my work at Wikimedia.
 
-With our testing with Browsertime/sitespeed.io we have seen a big different in stability between different providors. Remember that one of the reasons to use synthetic testing is to have stable metrics. If your server is unstable over time, it will be hard for you to know if there's a problem with the pages you are testing or the server.
+With our testing with Browsertime/sitespeed.io we have seen a big different in stability between different providers. Remember that one of the reasons to use synthetic testing is to have stable metrics. If your server is unstable over time, it will be hard for you to know if there's a problem with the pages you are testing or the server.
 
-We have been testing providors running a couple of weeks, looking at metrics and deviaton between runs. For us AWS has been giving us the most stable metrics (some providors gives us so unstable metrics so they are unusable). We don't get any money to say that (and we actually wouldn't recommend anyone to use AWS since their policies against employes). However, they give us the most stable metrics.
+We have been testing providers running a couple of weeks, looking at metrics and deviation between runs. You can try the cloud provider that you feel 
 
 #### Choosing instance type
 Finding the right instance type is important: You don't want to pay too much, you want to have stable metrics but you also don't want a too fast instance (since that will make the difference in some metrics really small and maybe harder to see). And you also do not want to use a too slow instance since that will give you more unstable metrics.
@@ -92,30 +92,30 @@ And also remember that all metrics will be dependent on what kind of instance ty
 
 
 ##### Choosing an instance
-One thing that is important to know that if you start an instance on AWS (and probably whatever cloud providor you use), they can have different perfomarnce than another instance of the exact same type! [Netflix has seens a difference in 30% in performance](https://youtu.be/pYbgcDfM2Ts?t=1575) and when they spin up a new instance, they actually spin up three, runs some measurements and then takes the fastest one.
+One thing that is important to know that if you start an instance on AWS (and probably whatever cloud provider you use), they can have different performance than another instance of the exact same type! [Netflix has seen a difference in 30% in performance](https://youtu.be/pYbgcDfM2Ts?t=1575) and when they spin up a new instance, they actually spin up three, runs some measurements and then takes the fastest one.
 
-We have also [seen difference in performance and stability at the Wikimedia Foundation](https://phabricator.wikimedia.org/T192138). Different instances can have different performance and stability. That's why we are not fans of spinning up many new instances and run the test on them and then destroy them. That will give you a bigger difference/stablility in metrics than keeping one instance up and running for a long time.
+We have also [seen difference in performance and stability at the Wikimedia Foundation](https://phabricator.wikimedia.org/T192138). Different instances can have different performance and stability. That's why we are not fans of spinning up many new instances and run the test on them and then destroy them. That will give you a bigger difference/stability in metrics than keeping one instance up and running for a long time.
 
-However keeping one instance (or multiple instances) isn't a bullet proof solution. We have seen performance shift over time on one instance (remember a cloud server is just someone elses computer). That's why you need to keep track of deviation of metrics over time to make sure that you can find when instances change.
+However keeping one instance (or multiple instances) isn't a bullet proof solution. We have seen performance shift over time on one instance (remember a cloud server is just someone else computer and others use that computer too so you can get the noisy neighbour effect). That's why you need to keep track of deviation of metrics over time to make sure that you can find when instances change.
 
 Lets look at some graphs. Here's an example where we switched to a new instance, the exact same instance type, running the exact same code. You can see that the new instance is slower but much more stable metrics.
 
 ![Running on the same server instance type]({{site.baseurl}}/img/aws-same-server-update.png)
 {: .img-thumbnail}
 
-You can keep track if how "unstable" the metrics are by looking at the stddev. Here you can see the stddev when we redeplyed on a same size instance.
-![Stddev]({{site.baseurl}}/img/aws-lower-stddev.png)
+You can keep track if how "unstable" the metrics are by looking at the standard deviation. Here you can see the standard deviation when we replayed on a same size instance.
+![Standard deviation]({{site.baseurl}}/img/aws-lower-stddev.png)
 {: .img-thumbnail}
 
 These metrics will be different depending on the URL you test (as long as you run different CSS/JavaScript). Here's another URL that we tested when we deployed on a new instance. Yeah, much more stable metrics.
 ![New server, new URL]({{site.baseurl}}/img/new-server-again.png)
 {: .img-thumbnail}
 
-But look at the stddev. You can see that the max difference is now higher, but in general it looks like the deviation is lower. 
+But look at the standard deviation. You can see that the max difference is now higher, but in general it looks like the deviation is lower. 
 ![Higher stdeev]({{site.baseurl}}/img/higher-stddev.png)
 {: .img-thumbnail}
 
-Its important that you keep track of stddev for your metrics and look for changes!
+Its important that you keep track of standard deviation for your metrics and look for changes!
 
 #### Tuning your instance
 Before you start to run your tests, there are a couple of things you can do to tune your instance before you start to run your tests. The first thing is to make sure you have some system running on the server that watches memory and CPU usage.
@@ -123,14 +123,14 @@ Before you start to run your tests, there are a couple of things you can do to t
 TODO
 
 #### Running on bare metal
-In theory running on bare metal servers should be the best. However it doesn't automaticlly fixes your problem. You still need to tune your OS to get stable metrics, and hopefully we can get help in the future to include those tunings.
+Running on bare metal servers helps you to avoid the noisy neighbour effect. However it doesn't automatically fixes your problem. You still need to configure/tune your OS to get stable metrics. We hope to include some examples to help you when we get our hands on a bare metal server :)
 
 ### Number of runs
 You want to have stable metrics so you can find regressions. One way to get more stable metrics is to make many runs and take the median (or fastest) run.
 
-The number of runs you need depends on the servers you use, the browser (and browser configuration) and the URL that you test. That means you need to test yourself to find what works for you. For example at Wikimedia we get really stable metrics for our mobile site with just do one run using WebPageReplay as a replay proxy. But for the English desktop Wikipedia we need 5/7/11 runs for some URLs to get more stable metrics (becasue we run more JavaScript that executes differently). And for other languages on Wikipedia we need less runs.
+The number of runs you need depends on the servers you use, the browser (and browser configuration) and the URL that you test. That means you need to test yourself to find what works for you. For example at Wikimedia we get really stable metrics for our mobile site with just do one run using WebPageReplay as a replay proxy. But for the English desktop Wikipedia we need 5/7/11 runs for some URLs to get more stable metrics (because we run more JavaScript that executes differently). And for other languages on Wikipedia we need less runs.
 
-You should start out by doing 5 runs. How big is the difference between your runs? Is it seconds? Well then you need to increase the number of runs. You will probably have some flakiness in your tests, but that is ok, as long as you can see regressions. The best way to find what works for you is to test over a period of time. Check your metric, check your min and max and the deviation over time.
+You should start out by doing 5 runs. How big is the difference between your runs? Is it seconds? Well then you need to increase the number of runs. You will probably have some flakiness in your tests, but that is OK, as long as you can see regressions. The best way to find what works for you is to test over a period of time. Check your metric, check your min and max and the deviation over time.
 
 *But vendor X of tool Y says that 3 runs is enough?*
 
@@ -148,25 +148,25 @@ It's really *important* to be able to rollback browser versions in a controlled 
 ### Choosing metrics
 If you look at all metrics that are collected it's easy to feel confused and not know which metrics that is the most important.
 
-You can either focus on performance timing metrics (like [First Visual Change](https://www.sitespeed.io/documentation/sitespeed.io/metrics/#first-visual-change), [Total Blocking Time](https://www.sitespeed.io/documentation/sitespeed.io/metrics/#total-blocking-time) etc) or you can use a score that is calculated with how performant you have created your webpage and server. Using timing metrics is good because they are usually more easy to understand and reason about, using a performance best practice score like the [Coach score](https://www.sitespeed.io/documentation/sitespeed.io/metrics/#performance-score) is good because it will not change depending of the performance of the server that runs your test (but watch out, there are some tools out there that combine both timing metrics and a best practice score meaning you will miss out of the good thing keeping them seperate).
+You can either focus on performance timing metrics (like [First Visual Change](https://www.sitespeed.io/documentation/sitespeed.io/metrics/#first-visual-change), [Total Blocking Time](https://www.sitespeed.io/documentation/sitespeed.io/metrics/#total-blocking-time) etc) or you can use a score that is calculated with how performant you have created your webpage and server. Using timing metrics is good because they are usually more easy to understand and reason about, using a performance best practice score like the [Coach score](https://www.sitespeed.io/documentation/sitespeed.io/metrics/#performance-score) is good because it will not change depending of the performance of the server that runs your test (but watch out, there are some tools out there that combine both timing metrics and a best practice score meaning you will miss out of the good thing keeping them separate).
 
-Do your company/organisation have a way to study your users and finding out what metric is important? Start with that. If you can't do that, focus on a metric that are important for you as a developer and that you are responsible for.
+Do your company/organization have a way to study your users and finding out what metric is important? Start with that. If you can't do that, focus on a metric that are important for you as a developer and that you are responsible for.
 
-I think it's important to choose a metric that you are responsbible for, something you can change and are not depending on other companies/organisation. One metric that should be independent of third parties is First Visual Change/First paint. If it is not that for you, that's your first mission: make sure your first paint are independent of others.
+I think it's important to choose a metric that you are responsible for, something you can change and are not depending on other companies/organization. One metric that should be independent of third parties is First Visual Change/First paint. If it is not that for you, that's your first mission: make sure your first paint are independent of others.
 
 TODO READ!!
 
 ### When to run your tests
 When should you run your tests? Well it depends, what do you want to do with the numbers you collect?
 
-If you run tests against your competion comparing your web site against others, you could run the tests once a day or a couple of times a day. 
+If you run tests against your competition comparing your web site against others, you could run the tests once a day or a couple of times a day. 
 
 If you wanna find regressions you want to run your tests as often as possible or at least as often as you release or do content changes in production. You can follow our instructions on how to [continuously run your tests](https://www.sitespeed.io/documentation/sitespeed.io/continuously-run-your-tests/).
 
 
 ### Choosing URLs
 
-What pages should you test? What user journeys are the most important ones? If you are new doing performance testing, I think its important to start small. Start with a couple of URLs to test (the most important one of your websites) and focus on one or two user journeys. Test them continously and watch the metrics.
+What pages should you test? What user journeys are the most important ones? If you are new doing performance testing, I think its important to start small. Start with a couple of URLs to test (the most important one of your websites) and focus on one or two user journeys. Test them continuously and watch the metrics.
 
 If you have an active content team that can update HTML/CSS/JavaScript on your pages directly on production, you should also test [using crawling](https://www.sitespeed.io/documentation/sitespeed.io/configuration/#analyse-by-crawling). That way you can find problems on pages that you normally do not test.
 
@@ -174,11 +174,11 @@ If you have an active content team that can update HTML/CSS/JavaScript on your p
 
 Getting stable metrics is hard. If you are in any doubt, look at [Performance Matters" by Emery Berger](https://www.youtube.com/watch?v=r-TLSBdHe1A).
 
-If you have throttled the internet connection, deployed on a stable server there aree still some things you can do.
+If you have throttled the internet connection, deployed on a stable server there are still some things you can do.
 
-You can also use a replay server to try to minimize the noice. The sitespeed.io Docker container includes [WebPageReplay](https://www.sitespeed.io/documentation/sitespeed.io/webpagereplay/), Mozilla uses [mitmproxy](https://mitmproxy.org).
+You can also use a replay server to try to minimize the noise. The sitespeed.io Docker container includes [WebPageReplay](https://www.sitespeed.io/documentation/sitespeed.io/webpagereplay/), Mozilla uses [mitmproxy](https://mitmproxy.org).
 
-Another way is to look at metrics thrends and compare metrics with one week back in time to find regressions. This is a technique that [Timo Tijhof](https://twitter.com/TimoTijhof) been using for a long time and we adopted it in sitespeed.io years ago.
+Another way is to look at metrics trends and compare metrics with one week back in time to find regressions. This is a technique that [Timo Tijhof](https://twitter.com/TimoTijhof) been using for a long time and we adopted it in sitespeed.io years ago.
 
 ![Compare one week back]({{site.baseurl}}/img/compare-one-week-back.png)
 {: .img-thumbnail}
@@ -188,26 +188,48 @@ TODO update the metric
 ### Store metrics and run data
 
 #### What data storage should I choose (Graphite vs InfluxDB)
-By default sitespeed.io support both Graphite and InfluxDb and you can write your own plugin to store metrics elsewhere.
+By default sitespeed.io support both Graphite and InfluxDB and you can write your own plugin to store metrics elsewhere.
 
-But what should you choose? We recommend that you use Graphite. We use Graphite in our setups so Graphite will always get mmost love. Keeping an Graphite instance up and running for years and years is really easy and the maintance work is really small.
+But what should you choose? We recommend that you use Graphite. We use Graphite in our setups so Graphite will get a little more love. Keeping an Graphite instance up and running for years and years is really easy and the maintenance work is really small.
 
-But when should you use InfluxDB? Well, almost never :) The great thing with Grafana is that you can have different datasources so even if your company is already a hard core InfluxDB users, your Grafana instance can get data from both Graphite and Grafana.
+But when should you use InfluxDB? Well, almost never :) The great thing with Grafana is that you can have different data sources so even if your company is already a hard core InfluxDB users, your Grafana instance can get data from both Graphite and Grafana.
 
 ### Dashboards
 #### Grafana vs other dashboard tools
-We love [Grafana](https://grafana.com) and think its the best monotoring/dashboard tool that is out there (and it is Open Source). If you haven't used it before you will be amazed. Sitespeed.io ships with a couple of default dashboards but with the power of Grafana its easy to create your own.
+We love [Grafana](https://grafana.com) and think its the best monitoring/dashboard tool that is out there (and it is Open Source). If you haven't used it before you will be amazed. Sitespeed.io ships with a couple of default dashboards but with the power of Grafana its easy to create your own.
 
-What extra great (for you) is that Grafana support multiple data sources, meaning you easily can create dashboards that gets data from your sitespeed.io runs, integrate it with your RUM data and with your business metrics like convertion rate. The potential with Grafana is endless.
+What extra great (for you) is that Grafana support multiple data sources, meaning you easily can create dashboards that gets data from your sitespeed.io runs, integrate it with your RUM data and with your business metrics like conversion rate. The potential with Grafana is endless.
 
-## Testing on desktop
+## Running tests using sitespeed.io
 
-## Testing on mobile
+Lets talk about running tests on sitespeed.io.
 
-## Testing the user journey
+### Testing on desktop
+Run your tests on Desktop is the easiest tests to run. You can choose to run your tests in a ready made Docker container or you can invoke the NodeJS package directly.
+
+The Docker container comes with preinstalled Chrome and Firefox (latest stable versions) and all dependencies that is needed to record and analyze a video if your test to get visual metrics. We release a new Docker container for each stable Chrome/Firefox, that way you can rollback versions easily. What's also good with the Docker container is that you start a new container per test, so everything is cleaned between tests. The drawbacks with running in a container could be slower metrics and only support for running Chrome and Firefox. If you are new to using Docker you should read our [Docker documentation](/documentation/sitespeed.io/docker/).
+
+If you use the NodeJS version directly you can run tests on Safari and MS Edge as long as your OS support it. To a record a video and analyze it and get visual metrics, you need to install those dependencies yourself (you can see what's needed in our [.travis.yml file](https://github.com/sitespeedio/browsertime/blob/master/.travis.yml)). You also need to manage the browsers by manually update them when there's a new version. There's more work to keep your tests running but you are also in control and can test on more browsers.
 
 
+### Testing on mobile
+
+You can try to emulate mobile phone testing by running your tests on desktop and emulate the browser by setting another view port, user agent and slow down the CPU. But its hard to emulate the performance of a real device.
+
+Using sitespeed.io you can test on Android and iOS devices. Android more support for performancee metrics (video/visual metrics). When you test on mobile phones you need prepare your phone for testing (enabling access/turning off services) and we have all that documented in the [documentation for mobile phones](https://www.sitespeed.io/documentation/sitespeed.io/mobile-phones/).
 
 
+### Testing the user journey
 
+By default sitespeed.io test your page with a cold cache test. That means a new browser session is started per run with the browser cache cleaned between runs. However you probably have users that visits multiple pages on your web site. To measure the performance of multiple pages (during the same session) you should use [scripting](https://www.sitespeed.io/documentation/sitespeed.io/scripting).
+
+With scripting you can test the performance of visiting multiple pages, clicking on links, log in, adding items to the cart and almost everything what the user can do.
+
+
+## Summary
+
+If you wanna use sitespeed.io for your synthetic monitoring testing you can dig deeper into the [documentation](/documentation/sitespeed.io/). If you have problems/issues the best way is to create an [issue at GitHub](https://github.com/sitespeedio/sitespeed.io/issues/new). That way others also can help out and can find the solution. If you have a bug, it super useful if you help us [creating a reproducible issue](/documentation/sitespeed.io/bug-report/).
+
+
+If you want to chat about setups you can do that in [our Slack channel](https://sitespeedio.herokuapp.com). 
 
