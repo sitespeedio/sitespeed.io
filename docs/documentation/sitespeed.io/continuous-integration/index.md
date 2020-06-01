@@ -23,9 +23,9 @@ You can use sitespeed.io to keep track of what is happening with your site by ma
 To do this you define your own [budget file](../performance-budget/#the-budget-file) with rules on when to break your build. This budget will return an error code status after the run. You can also choose to output JUnit XML and TAP reports.
 
 ## GitHub Actions
-If you are using [GitHub Actions](https://github.com/features/actions) it's super easy to run sitespeed.io. It  works good with a [performance budget](documentation/sitespeed.io/performance-budget/). You should set your budget in a file in the repo that you are testing. In this example we call the file *budget.json* and put it in the *.github* folder in the repo.
+If you are using [GitHub Actions](https://github.com/features/actions) it's super easy to run sitespeed.io. It  works well with a [performance budget](documentation/sitespeed.io/performance-budget/). You should set your budget in a file in the repo that you are testing. In this example we call the file *budget.json* and put it in the *.github* folder in the repo.
 
-Setup a simple budget that checks the URLs you test against number of requests, transfer sise, third parties and different Coach scores ([read the documentation](/documentation/sitespeed.io/performance-budget/#full-example) on how to configure other metrics):
+Setup a simple budget that checks the URLs you test against number of requests, transfer size, third parties and different Coach scores ([read the documentation](/documentation/sitespeed.io/performance-budget/#full-example) on how to configure other metrics):
 
 ```json
 {
@@ -49,7 +49,7 @@ Setup a simple budget that checks the URLs you test against number of requests, 
 }
 ```
 
-Then you can setup your workflow either via the GitHub GUI or commit it to your repo via the command line or an IDE of choice. The workflow YAML should reside in the *.github/workflows* folder of your repo and you make name it as you like.
+Then you can setup your workflow either via the GitHub GUI or commit it to your repo via the command line or an IDE of choice. The workflow YAML should reside in the *.github/workflows* folder of your repo and you name it as you like.
 An example simple setup using a performance budget looks something like this:
 
 ```yaml
