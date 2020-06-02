@@ -11,8 +11,8 @@ jobs:
         node-version: '12.x'
     - run: npm ci
       env:
-        CHROMEDRIVER_SKIP_DOWNLOAD:true
-        GECKODRIVER_SKIP_DOWNLOAD:true
+        CHROMEDRIVER_SKIP_DOWNLOAD: true
+        GECKODRIVER_SKIP_DOWNLOAD: true
     - name: Run Edge test
       run: node bin/sitespeed.js -b edge https://www.sitespeed.io/ 
       shell: cmd
