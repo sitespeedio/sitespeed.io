@@ -15,10 +15,8 @@ jobs:
     - run: firefox --version
     - run: npm ci
     - run: docker-compose -f test/docker-compose.yml up -d
-    - run:  |
-        sudo apt-get install xvfb
-        export DISPLAY=:99.0
-        Xvfb -ac :99 -screen 0 1600x1024x16 > /dev/null 2>&1 &
+    - run: export DISPLAY=:99.0
+    - run: sudo Xvfb -ac :99 -screen 0 1600x1024x16 > /dev/null 2>&1 &
     - run: bin/sitespeed.js -b firefox -n 2 --budget.configPath test/oldBudget.json --summary https://www.sitespeed.io/
     - run: bin/sitespeed.js --useHash -n 1 --budget.configPath test/budget.json  https://www.sitespeed.io/#heybaberia
     - run: bin/sitespeed.js --useAlias start --mobile -n 1 --utc --axe.enable https://www.sitespeed.io/
