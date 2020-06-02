@@ -21,4 +21,5 @@ jobs:
       with:
         node-version: '12.x'
     - run: sudo safaridriver --enable
+    - run: npm install
     - run: bin/sitespeed.js -b safari https://www.sitespeed.io/
