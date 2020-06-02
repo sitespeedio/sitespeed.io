@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 13.2.0 - 2020-06-02
+### Added
+* Upgraded to Firefox 77 in the Docker container.
+
 ## 13.1.1 - 2020-05-29
 ### Fixed
 * Exit with sitespeed.io exit code when you run WebPageReplay in the Docker container [#3017](https://github.com/sitespeedio/sitespeed.io/pull/3017). 
