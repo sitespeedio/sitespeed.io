@@ -1,0 +1,16 @@
+name: Build and run Docker containers
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: docker build -t sitespeedio/sitespeed.io .
+    - run: docker build -t sitespeedio/sitespeed.io:slim --file Dockerfile-slim .
+    - run: docker run --rm sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 -b chrome
+    - run: docker run --rm sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 -b firefox
+    - run: docker run --rm sitespeedio/sitespeed.io:slim https://www.sitespeed.io -n 1
+    - run: docker run --cap-add=NET_ADMIN --rm  -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 -b chrome 
+
+ 
+        
