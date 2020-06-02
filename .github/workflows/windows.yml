@@ -1,0 +1,26 @@
+
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Run browser test Windows
+
+on: [push, pull_request]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - run: choco install chromedriver
+    - run: choco install googlechrome --ignore-checksums
+    - run: choco install microsoft-edge
+    - run: npm install
+    - run: bin/sitespeed.js -b chrome https://www.sitespeed.io/ --cpu
+    - run: bin/sitespeed.js -b edge https://www.sitespeed.io/
+      
