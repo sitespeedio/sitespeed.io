@@ -21,6 +21,10 @@ jobs:
     - run: choco install googlechrome --ignore-checksums
     - run: choco install microsoft-edge
     - run: npm install
-    - run: bin/sitespeed.js -b chrome https://www.sitespeed.io/ --cpu
-    - run: bin/sitespeed.js -b edge https://www.sitespeed.io/
+    - name: Run Chrome test
+      run: bin/sitespeed.js -b chrome https://www.sitespeed.io/ --cpu
+      shell: cmd
+    - name: Run Edge test
+      run: bin/sitespeed.js -b edgee https://www.sitespeed.io/ 
+      shell: cmd
       
