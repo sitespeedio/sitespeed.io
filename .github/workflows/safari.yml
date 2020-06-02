@@ -3,17 +3,11 @@
 
 name: Run browser test Safari
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push, pull_request]
 
 jobs:
   build:
-
     runs-on: macos-latest
-    
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js
@@ -21,5 +15,5 @@ jobs:
       with:
         node-version: '12.x'
     - run: sudo safaridriver --enable
-    - run: npm install
+    - run: npm ci
     - run: bin/sitespeed.js -b safari https://www.sitespeed.io/
