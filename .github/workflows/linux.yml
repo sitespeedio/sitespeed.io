@@ -1,0 +1,28 @@
+name: Run browser tests Linux
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - run: sudo apt-get update
+    - run: sudo apt-get upgrade google-chrome-stable -y
+    - run: google-chrome --version
+    - run: firefox --version
+    - run: npm ci
+    - run: docker-compose -f test/docker-compose.yml up -d
+    - run: xvfb-run bin/sitespeed.js -b firefox -n 2 --budget.configPath test/oldBudget.json --summary https://www.sitespeed.io/
+    - run: xvfb-run bin/sitespeed.js --useHash -n 1 --budget.configPath test/budget.json  https://www.sitespeed.io/#heybaberia
+    - run: xvfb-run bin/sitespeed.js --useAlias start --mobile -n 1 --utc --axe.enable https://www.sitespeed.io/
+    - run: xvfb-run bin/sitespeed.js -b firefox  --metrics.list --mobile -n 1 https://www.sitespeed.io/ --sustainable.enable
+    - run: xvfb-run bin/sitespeed.js --multi -b chrome -n 1 test/prepostscripts/preSample.js https://www.sitespeed.io/documentation/ test/prepostscripts/postSample.js
+    - run: xvfb-run node test/runWithoutCli.js
+    - run: xvfb-run bin/sitespeed.js --multi -n 1 https://www.sitespeed.io/ https://www.sitespeed.io/documentation/ --tcpdump
+    - run: xvfb-run bin/sitespeed.js --multi -n 3 test/prepostscripts/multi.js
+    - run: xvfb-run bin/sitespeed.js https://www.sitespeed.io/ https://www.google.com -v -n 1 --html.pageSummaryMetrics transferSize.css --html.pageSummaryMetrics requests.httpErrors --html.pageSummaryMetrics score.performance
+    - run: xvfb-run bin/sitespeed.js https://www.sitespeed.io/ -v -n 1 --html.summaryBoxes score.performance --html.summaryBoxes timings.firstPaint
+    - run: xvfb-run bin/sitespeed.js https://www.sitespeed.io/ -n 1 --graphite.host 127.0.0.1 
