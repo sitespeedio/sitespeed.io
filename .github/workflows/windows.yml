@@ -1,9 +1,5 @@
-
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
 name: Run browser test Windows
-on: [push, pull_request]
+on: [push]
 jobs:
   build:
     runs-on: windows-latest
@@ -13,8 +9,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    - run: choco install microsoft-edge
-    - run: npm ci
+    - run: GECKODRIVER_SKIP_DOWNLOAD=true CHROMEDRIVER_SKIP_DOWNLOAD=true npm ci
     - name: Run Edge test
       run: node bin/sitespeed.js -b edge https://www.sitespeed.io/ 
       shell: cmd
