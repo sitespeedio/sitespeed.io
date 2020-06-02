@@ -14,6 +14,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - name: Run unit tests
-        uses: GabrielBB/xvfb-action@v1.2
-        with:
-          run: npm test
+      uses: GabrielBB/xvfb-action@v1.2
+      with:
+        run: npm test
