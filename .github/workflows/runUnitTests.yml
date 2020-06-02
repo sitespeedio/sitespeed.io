@@ -13,6 +13,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
+    - run: sudo apt-get update
+    - run: sudo apt-get upgrade google-chrome-stable -y
     - run: google-chrome --version
     - run: firefox --version
     - name: Run unit tests
