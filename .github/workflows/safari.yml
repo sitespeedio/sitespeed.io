@@ -10,7 +10,8 @@ jobs:
       with:
         node-version: '12.x'
     - name: Install dependencies 
-      run: sudo safaridriver --enable
-      run: npm ci
+      run: |
+        sudo safaridriver --enable 
+        npm ci
     - name: Run test
-    - run: bin/sitespeed.js -b safari https://www.sitespeed.io/
+      run: bin/sitespeed.js -b safari https://www.sitespeed.io/
