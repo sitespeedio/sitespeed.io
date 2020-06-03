@@ -5,12 +5,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - run: docker build -t sitespeedio/sitespeed.io .
-    - run: docker build -t sitespeedio/sitespeed.io:slim --file Dockerfile-slim .
-    - run: docker run --rm sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 -b chrome
-    - run: docker run --rm sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 -b firefox
-    - run: docker run --rm sitespeedio/sitespeed.io:slim https://www.sitespeed.io -n 1
-    - run: docker run --cap-add=NET_ADMIN --rm  -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 -b chrome 
+    - name: Build Docker containers
+      run: |
+        docker build -t sitespeedio/sitespeed.io .
+        docker build -t sitespeedio/sitespeed.io:slim --file Dockerfile-slim .
+    - name: Run test on default container for Chrome 
+      run: docker run --rm sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 -b chrome
+    - name: Run test on default container for Firefox 
+      run: docker run --rm sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 -b firefox
+    - name: Run test on slim container  
+      run: docker run --rm sitespeedio/sitespeed.io:slim https://www.sitespeed.io -n 1
+    - name: Test WebPageReplay in the default container    
+      run: docker run --cap-add=NET_ADMIN --rm  -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 -b chrome 
 
  
         
