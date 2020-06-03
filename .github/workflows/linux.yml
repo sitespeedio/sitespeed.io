@@ -28,7 +28,7 @@ jobs:
     - name: Test --multi  
       run: bin/sitespeed.js --multi -b chrome -n 1 test/prepostscripts/preSample.js https://www.sitespeed.io/documentation/ test/prepostscripts/postSample.js --xvfb
     - name: Test --multi and --tcpdump  
-      run: bin/sitespeed.js --multi -n 1 https://www.sitespeed.io/ https://www.sitespeed.io/documentation/ --tcpdump
+      run: bin/sitespeed.js --multi -n 1 https://www.sitespeed.io/ https://www.sitespeed.io/documentation/ --tcpdump --xvfb
     - name: Test --multi with one file 
       run: bin/sitespeed.js --multi -n 3 test/prepostscripts/multi.js --xvfb
     - name: Test setting HTML output pageSummaries
