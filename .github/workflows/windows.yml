@@ -9,10 +9,13 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    - run: npm ci
+    - name: Install sitespeed.io
+      run: npm ci
       env:
         CHROMEDRIVER_SKIP_DOWNLOAD: true
         GECKODRIVER_SKIP_DOWNLOAD: true
+    - name: Install dependencies
+      run: choco install microsoft-edge
     - name: Run Edge test
       run: node bin/sitespeed.js -b edge https://www.sitespeed.io/ 
       shell: cmd
