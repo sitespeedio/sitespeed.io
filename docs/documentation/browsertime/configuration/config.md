@@ -111,6 +111,7 @@ connectivity
 
 Options:
   --cpu                                         Easy way to enable both chrome.timeline and CPU long tasks for Chrome and geckoProfile for Firefox  [boolean]
+  --androidPower                                Enables android power testing - charging must be disabled for this.(You have to disable charging yourself for this - it depends on the phone model).  [boolean]
   --video                                       Record a video and store the video. Set it to false to remove the video that is created by turning on visualMetrics. To remove fully turn off video recordings, make sure to set video and visualMetrics to false. Requires FFMpeg to be installed.  [boolean]
   --visualMetrics                               Collect Visual Metrics like First Visual Change, SpeedIndex, Perceptual Speed Index and Last Visual Change. Requires FFMpeg and Python dependencies  [boolean]
   --visualElements, --visuaElements             Collect Visual Metrics from elements. Works only with --visualMetrics turned on. By default you will get visual metrics from the largest image within the view port and the largest h1. You can also configure to pickup your own defined elements with --scriptInput.visualElements  [boolean]
@@ -164,5 +165,6 @@ Options:
   --headless                                    Run the browser in headless mode. Works for Firefox and Chrome.  [boolean] [default: false]
   --extension                                   Path to a WebExtension to be installed in the browser. Note that --extension can be passed multiple times.
   --spa                                         Convenient parameter to use if you test a SPA application: will automatically waity for X seconds after last network activity and use hash in file names. Read more: https://www.sitespeed.io/documentation/sitespeed.io/spa/  [boolean] [default: false]
+  --browserRestartTries                         If the browser fails to start, you can retry to start it this amount of times.  [number] [default: 3]
   -h, --help                                    Show help  [boolean]
   -V, --version                                 Show version number  [boolean]
