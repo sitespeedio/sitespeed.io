@@ -9,6 +9,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    - run: sudo safaridriver --enable
-    - run: npm ci
+    - name: Install dependencies 
+      run: sudo safaridriver --enable
+      run: npm ci
+    - name: Run test
     - run: bin/sitespeed.js -b safari https://www.sitespeed.io/

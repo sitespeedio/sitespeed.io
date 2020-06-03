@@ -12,12 +12,14 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: sudo apt-get update
-    - run: sudo apt-get upgrade google-chrome-stable -y
-    - run: google-chrome --version
-    - run: firefox --version
-    - run: npm run build:css && test -z "$(git status --porcelain lib/plugins/html/assets/css/index.css)"
+    - name: Install dependencies  
+      run: npm ci
+      run: sudo apt-get update
+      run: sudo apt-get upgrade google-chrome-stable -y
+      run: google-chrome --version
+      run: firefox --version
+    - name: Verify clean CSS 
+      run: npm run build:css && test -z "$(git status --porcelain lib/plugins/html/assets/css/index.css)"
     - name: Run unit tests
       uses: GabrielBB/xvfb-action@v1.2
       with:
