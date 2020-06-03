@@ -2,15 +2,15 @@ name: Run browser tests Linux
 on: [push]
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    #- run: sudo apt-get update
-    #- run: sudo apt-get upgrade google-chrome-stable -y
+    - run: sudo apt-get update
+    - run: sudo apt-get upgrade google-chrome-stable -y
     - run: google-chrome --version
     - run: firefox --version
     - run: npm ci
