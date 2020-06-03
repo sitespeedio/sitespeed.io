@@ -14,6 +14,7 @@ jobs:
       env:
         CHROMEDRIVER_SKIP_DOWNLOAD: true
         GECKODRIVER_SKIP_DOWNLOAD: true
+    - run: choco outdated
     - name: Install dependencies
       run: choco install microsoft-edge --force
     - name: Run Edge test
