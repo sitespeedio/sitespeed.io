@@ -1,5 +1,11 @@
-name: Run browser tests Linux
-on: [push]
+name: Linux browsers
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
 jobs:
   build:
     runs-on: ubuntu-latest
