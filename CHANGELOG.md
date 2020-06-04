@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 13.3.0 - 2020-06-04
+### Added
+* Updated to [Browsertime 8.14.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#8140---2020-06-03) that fixes broken MS Edge support.
+
 ## 13.2.0 - 2020-06-02
 ### Added
 * Upgraded to Firefox 77 in the Docker container.
