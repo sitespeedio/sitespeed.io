@@ -190,7 +190,7 @@ sitespeed.io --android --androidBatteryTemperatureLimit 32 https://www.sitespeed
 You can run on fresh Android device or on a rooted device. If you use rooted device and you use a Moto G5 or a Pixel 2 it will be configured for as stable performance as possible if you add `--androidRooted` to your run. We follow [Mozillas setup](https://dxr.mozilla.org/mozilla-central/source/testing/raptor/raptor/performance_tuning.py) best practise to do that. Make sure you only do that for a phone that you have dedicated to performance tests, since it will be kept in that performance state after the tests.
 
 ### Power usage testing
-You can run power usage tests on your webpage with android (Firefox-only for now). To do so, you would need to provide the `--androidPower true` option:
+You can run power usage tests on your webpage with android. To do so, you would need to provide the `--androidPower true` option:
 
 ```bash
 sitespeed.io --android -b firefox --androidPower true https://www.sitespeed.io
