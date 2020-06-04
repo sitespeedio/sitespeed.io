@@ -1,5 +1,11 @@
-name: Run browser test Windows
-on: [push]
+name: Windows Edge
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
 jobs:
   build:
     runs-on: windows-latest
