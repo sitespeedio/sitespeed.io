@@ -13,10 +13,12 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install dependencies  
-      run: | 
+      run: |
         npm ci
         sudo apt-get update
         sudo apt-get upgrade google-chrome-stable -y
+    - name: Browser versions
+      run: |
         google-chrome --version
         firefox --version
     - name: Verify clean CSS 
@@ -24,4 +26,4 @@ jobs:
     - name: Run unit tests
       uses: GabrielBB/xvfb-action@v1.2
       with:
-        run: npm run travis
+        run: npm run lint-and-unit

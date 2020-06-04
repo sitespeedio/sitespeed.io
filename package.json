@@ -43,7 +43,7 @@
     "pug-lint": "pug-lint lib/plugins/html/templates",
     "test": "mocha",
     "check-licenses": "tools/check-licenses.js",
-    "travis": "npm run eslint-check && npm run lint && npm run test",
+    "lint-and-unit": "npm run eslint-check && npm run lint && npm run test",
     "build:css": "node-sass lib/plugins/html/src/sass/main.scss > lib/plugins/html/assets/css/index.css && cleancss -o lib/plugins/html/assets/css/index.min.css lib/plugins/html/assets/css/index.css && rm lib/plugins/html/assets/css/index.css",
     "generate:assets": "mkdir -p assets/$npm_package_version && cp -R lib/plugins/html/assets/ assets/$npm_package_version/"
   },

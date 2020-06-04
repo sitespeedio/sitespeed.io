@@ -9,14 +9,17 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
+    - name: Install sitespeed.io
+      run: npm ci
     - name: Install dependencies and seup environment
       run: |
         sudo apt-get update
         sudo apt-get upgrade google-chrome-stable -y
+        docker-compose -f test/docker-compose.yml up -d
+    - name: Browser versions
+      run: |
         google-chrome --version
         firefox --version
-        npm ci
-        docker-compose -f test/docker-compose.yml up -d
     - name: Test old budget
       run: bin/sitespeed.js -b firefox -n 2 --budget.configPath test/oldBudget.json --summary --xvfb https://www.sitespeed.io/
     - name: Test new budget file  
