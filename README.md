@@ -1,6 +1,10 @@
 # sitespeed.io
 
-[![Build status][travis-image]][travis-url]
+![Unit tests](https://github.com/sitespeedio/sitespeed.io/workflows/Run%20unit%20tests/badge.svg?branch=master)
+![Linux](https://github.com/sitespeedio/sitespeed.io/workflows/Run%20browser%20tests%20Linux/badge.svg?branch=master)
+![Windows](https://github.com/sitespeedio/sitespeed.io/workflows/Run%20browser%20test%20Windows/badge.svg?branch=master)
+![OS X](https://github.com/sitespeedio/sitespeed.io/workflows/Run%20browser%20test%20Safari/badge.svg?branch=master)
+![Docker](https://github.com/sitespeedio/sitespeed.io/workflows/Build%20and%20run%20Docker%20containers/badge.svg?branch=master)
 [![Downloads][downloads-image]][downloads-url]
 [![Docker][docker-image]][docker-url]
 [![Stars][stars-image]][stars-url]
