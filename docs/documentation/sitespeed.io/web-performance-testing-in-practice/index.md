@@ -1,7 +1,7 @@
 ---
 layout: default
 title:  Web performance testing in practice
-description:
+description: The definitive guide to run synthetic performance testing.
 keywords: web performance, sitespeed.io
 nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
@@ -17,15 +17,16 @@ twitterdescription: Web performance testing in practice
 {:toc}
 
 ## Start
-This is a guide for you if you are new into performance testing. It will focus on synthetic testing (automatically drive a web browser and collect performance metrics). The guide will focus on using sitespeed.io/browsertime but it mostly be generic so you can read this guide independent of the tool you use.
+This is a guide for you if you are new into performance testing. It will focus on synthetic testing (automatically drive a web browser and collect performance metrics). The guide will focus on using sitespeed.io/Browsertime but it mostly be generic so you can read this guide independent of the tool you use.
+
+My name is Peter Hedenskog, I created sitespeed.io in 2012. I been a performance consultant evaluating different performance tools and I now I work in the performance team of the Wikimedia Foundation. I've spent many many 1000 hours testing/thinking/evaluating/creating synthetic tools and I want to share what I learned so far. 
 
 ### Why do performance testing
 Is performance important? There are a lot of people advocating that performance is money. That maybe true in some circumstances in some context for some sites and the only way for you to know is to try it out.
 
 What we do know is that there's no [magic numbers](https://phabricator.wikimedia.org/phame/post/view/142/magic_numbers/) in performance testing and that you need to set your own goals depending on your site and your users.
 
-What I do know is measuring the performance helps you being a better developer. Keeping track and making sure you do not introduce performance regressions is vital for you.
-
+What I know is measuring the performance helps you being a better developer. Keeping track and making sure you do not introduce performance regressions is vital for you. Continously measuring performance is the key. You can do that with realu useer measuremeent and synthetic testing. I'm gonna focus on synthetic testing since that's my main area and where I'm got most my knowledgable.
 
 ### Why do synthetic testing
 
@@ -41,7 +42,7 @@ There's a couple of good things that you get when running synthetic/lab testing:
 
 * Lab testing and RUM (real user measurements) are best friends: synthetic testing improves your confidence in RUM and vice versa. If you see a regression in both types of measurements, you know for sure that it's a real regression.
 
-But everything isn’t perfect when testing in a lab: You are only testing a small usage group (a specific browser version, specific connection type, one operating system, a couple of URLs). You will miss out on a lot of users scenarios. That’s the disadvantage of testing in a lab.
+But everything isn’t perfect when testing in a lab: You are only testing a small usage group (a specific browser version, specific connection type, one operating system, a couple of URLs). You will miss out on a lot of users scenarios. That’s why its also goot to combine your tests with real user measuerents.
 
 ## Setup
 
@@ -49,6 +50,8 @@ Lets go through some important things when you setup your synthetic tests. You w
 
 ### Stability is your friend
 The most important thing when setting up synthetic testing is getting rid of as much variance as possible. You need to make sure that your server performance, the internet connection, the tool so that the metrics you collect will not be influenced by something else than things that the web page.
+
+https://phabricator.wikimedia.org/T162515 TODO
 
 ### Internet connection/connectivity
 
@@ -125,12 +128,21 @@ TODO
 #### Running on bare metal
 Running on bare metal servers helps you to avoid the noisy neighbour effect. However it doesn't automatically fixes your problem. You still need to configure/tune your OS to get stable metrics. We hope to include some examples to help you when we get our hands on a bare metal server :)
 
+#### Running on Kubernetes
+On Kubernetes you cannot use tc or Docker networks to set the connectivity but you can use [TSProxy](https://github.com/WPO-Foundation/tsproxy). It's bundled in Browsertime and enable it with <code>--browsertime.connectivity.engine tsproxy</code>.
+
+### Chosing mobile phone host
+The most important thing when monitoring performance using real mobile phones is that you test on the exact same mobile all the time. The same **model** is not the same as the same phone. Even though that you run tests on the same model, running the same OS you can get very different result. The Facebook mobile performance team [wrote about it](https://developers.facebook.com/videos/f8-2016/mobile-performance-tools-at-facebook/) and we have seen the same at Wikipedia. That's why solutions where you cannot pin your tests to an exact phone is useless for monitoring. You can still use those tests to get a feeling for the performance but its too unreliable for monitoring.
+
+To run your test you can either jhost your own mobile phones and drive them through a Mac Mini or find a hosting solution that can do the same. At the moment we do not have any recommendations for hosting, except for hosting the solution yourself.
+
+
 ### Number of runs
 You want to have stable metrics so you can find regressions. One way to get more stable metrics is to make many runs and take the median (or fastest) run.
 
 The number of runs you need depends on the servers you use, the browser (and browser configuration) and the URL that you test. That means you need to test yourself to find what works for you. For example at Wikimedia we get really stable metrics for our mobile site with just do one run using WebPageReplay as a replay proxy. But for the English desktop Wikipedia we need 5/7/11 runs for some URLs to get more stable metrics (because we run more JavaScript that executes differently). And for other languages on Wikipedia we need less runs.
 
-You should start out by doing 5 runs. How big is the difference between your runs? Is it seconds? Well then you need to increase the number of runs. You will probably have some flakiness in your tests, but that is OK, as long as you can see regressions. The best way to find what works for you is to test over a period of time. Check your metric, check your min and max and the deviation over time.
+You should start out by doing 5 runs. How big is the difference between your runs? Is it seconds? Well then you need to increase the number of runs. You will probably have some flakiness in your tests, but that is OK, as long as you can see regressions. The best way to find what works for you is to test over a period of time. Check your the, check your min and max and the deviation over time.
 
 *But vendor X of tool Y says that 3 runs is enough?*
 
@@ -146,7 +158,12 @@ Browser change for each release so it is important to upgrade the browser you us
 It's really *important* to be able to rollback browser versions in a controlled way so that you know if a metric change is caused by the browser or the by your website or your environment.
 
 ### Choosing metrics
-If you look at all metrics that are collected it's easy to feel confused and not know which metrics that is the most important.
+Through the years of performance testing different metrics has been the golden child: loadEvenEnd, first paint, Speed Index, RAIL, Googles Web Vitals and more.
+
+Is your page fast? W
+
+What we do know looking at the history of performance testing is that the "best" metric will change over time. Which one should you choose? If you look at all metrics that are collected it's easy to feel confused and not know which metrics that is the most important. Since metrics changes over time, I think its important to collect as many as possible (so you have the history) and then focus on one or a couple of them.
+
 
 You can either focus on performance timing metrics (like [First Visual Change](https://www.sitespeed.io/documentation/sitespeed.io/metrics/#first-visual-change), [Total Blocking Time](https://www.sitespeed.io/documentation/sitespeed.io/metrics/#total-blocking-time) etc) or you can use a score that is calculated with how performant you have created your webpage and server. Using timing metrics is good because they are usually more easy to understand and reason about, using a performance best practice score like the [Coach score](https://www.sitespeed.io/documentation/sitespeed.io/metrics/#performance-score) is good because it will not change depending of the performance of the server that runs your test (but watch out, there are some tools out there that combine both timing metrics and a best practice score meaning you will miss out of the good thing keeping them separate).
 
@@ -183,8 +200,6 @@ Another way is to look at metrics trends and compare metrics with one week back 
 ![Compare one week back]({{site.baseurl}}/img/compare-one-week-back.png)
 {: .img-thumbnail}
 
-TODO update the metric
-
 ### Store metrics and run data
 
 #### What data storage should I choose (Graphite vs InfluxDB)
@@ -200,6 +215,96 @@ We love [Grafana](https://grafana.com) and think its the best monitoring/dashboa
 
 What extra great (for you) is that Grafana support multiple data sources, meaning you easily can create dashboards that gets data from your sitespeed.io runs, integrate it with your RUM data and with your business metrics like conversion rate. The potential with Grafana is endless.
 
+### Choosing tools
+
+If you for some reason don't want to use Browsertime or sitespeed.io I'm gonna help you with some questions you should ask your potential symthetic monitor solution providor!
+
+
+#### Speed Index and other metrics
+
+It's important that the tool you choose can measure metrics that are important to the user. <a href="https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index">Speed Index</a> (invented by <a href="https://twitter.com/patmeenan">Patrick Meenan</a>) and other visual metrics is the thing you want. The only correct way to get Speed Index is to record a video of the screen and then analyze the video. Last year there's been <a href="https://github.com/paulirish/speedline">another solution for Chrome</a> that uses Chromes internal screenshots and analyze them to get SpeedIndex. But there are problems with that solutions since Chrome has a limit of number of screenshots in the trace log and there has been reports of that the metrics is not correct. The only way to get correct Speed Index and being able to verfy that your visual metrics is correct is to record a video of the screen.
+
+
+##### Questions to ask
+
+* <b>Can your tool get us Speed Index and other visual metrics?</b> -  If you get a **no** the tool is not for you.
+* <b>Can you get Speed Index for more browsers than Chrome?</b> -  This is a control question to know if they record a video or use other ways to calculate SpeedIndex (using Chrome screenshots). I prefer getting it from multiple browsers.
+* <b>How many runs per URL do you recommend? Can you choose between min/median/max values?</b> - Can you increase the number of runs to get more stable values? Can you choose which run to pick? You wanna be able to change this to try out what works best for your web site.
+* <b>If they use a video how many frames per second?</b> - Higher FPS needs better hardware and traditionally WebPageTest is using 10 fps for video and that may be ok for you, depending on how exact metrics you think you need. Ask to get the raw video and check the quality.
+* <b>Can you run on different connectivity types?</b> - when you collect SpeedIndex and other metrics you wanna make sure that you can choose different connectivity types for your tests to be able to test as different users.</li>
+* <b>Can you add your own metrics?</b> - You want to be able to collect metrics from the User Timing API or run your arbitary JavaScript to get your own metrics.
+
+#### Locations and servers
+
+Before you sign the contract you want to know from where you can run your tests. Run them where you typically have your users and from locations that are important for you.
+
+##### Questions to ask
+
+* <b>Where can I deploy the test agent?</b> - are they using their own cloud, or can you choose locations yourself from different cloud providors?
+* <b>How stable is the metrics using your tool?</b> - you want to test and calibrate the tool. Do they run the tool on a separate server or do they run multiple tests at the same time that can have a negative impact on your metrics.
+* <b>Can I use your tool inside our own network?</b> - do you wanna test on stage or your own machines with the same tool, make sure you can use the tool from wherever you want.
+* <b>Can I upgrade/downgrade the test agent servers (number of CPUs/memory)?</b> -  if they run in the cloud for example using AWS you wanna make sure you can choose instance size because I've seen so much problems running WebPageTest on too small instances on AWS.
+* <b>Can you choose brower versions for your tests? When is browser versions upgraded?</b>
+
+#### Real mobile devices
+Testing on desktop is fine, emulating mobile is good but to have really good mobile testing you want to test on real mobile devices.
+
+![Mobile deevice lab]({{site.baseurl}}/img/mobile-device-lab.jpg)
+{: .img-thumbnail}
+
+
+##### Questions to ask
+
+* <b>Can I use real devices (both Android and iPhones)?</b> - you really want to be able to test on real devices!
+* <b>What browsers can I use on your device</b> -  can you choose browsers so you can test on the most important browsers for you?
+* <b>Do you support different connectivity types?</b> - can you run on real 2g/3g vs setting connectivity types?
+* <b>When is browser versions upgraded?</b>
+
+#### Data and metrics
+How do the company store you metrics. Do you own the data and what can you do with with? Can you export it to your own data warehouse?
+
+##### Questions to ask
+* <b>Do I own my own data/metrics?</b> - who owns the data they collect? Can you access the raw data or only through their tool? Can you export the data to your own data center? Will they sell you metrics to other companies?
+* <b>If I stop using your product how do I migrate the metrics to our new system?</b> - are you locked into the platform or can you move the metrics?
+
+#### Visualization and alerts
+
+* <b>Can you create your own graphs with your own set of metrics?</b>
+* <b>Can you add alerts to your metrics</b>
+
+#### Price per run
+Some companies has the craziest price models. Make sure to check how you would pay before you sign the contract.
+
+##### Questions to ask
+* <b>Can I see exactly how much it will cost (in dimes and dollars)?</b> - some vendors work with <i>points</i> or things like that. You wanna avoid that because you wanna see exact in dollars how much it will cost.
+* <b>If a run fails, what happens then?</b> - there's a vendor out there where you pay extra for a retry. Avvoid it. If the tool doesn't work, the vendor should pay, not you as a customer.
+* <b>Does it cost extra to change the User Agent?</b> - some things costs extra, because it is an extra cost for the company providing the services: adding a real device etc. But other things like changing the user agent.
+
+#### Using or abusing Open Source?
+This is one of the questions closest to my heart: Is the tool the use built upon Open Source software? If it is that's great because the best performance tools are Open Source, but you need to make sure that they are doing it the right way.
+
+##### Questions to ask
+  
+* <b>Are your synthetic testing tool using any Open Source projects?</b> - If not and they still use Speed Index etc you need to ask how they do it and how you can confirm they do everything right.
+* <b>Are you following the license of the tool you use?</b> - You need to ask this question! Are any of the Open Source tools they use under the GPL license (for example <a href="https://github.com/WPO-Foundation/webpagetest/blob/master/LICENSE">WebPageTest uses software under GPL</a>), so they contribute back changes.
+* <b>Do you contribute back to the tool?</b> - If you as a vendor build things on top Open Source tools I think it's good karma to contribute back your changes independent on license. You can see it like this: If the company uses Open Source tools but don't contribute back, the company are more willing to trick you.
+
+#### Data privacy
+
+I think its's pretty easy to check if the tool you wanna use care about privacy of your data by checking how many third party tools the tools web site use. Here's what the number of third parties requests looks like for a couple of tools: 
+
+![Running on the same server instance type]({{site.baseurl}}/img/thirdparty-performance-tools.png)
+{: .img-thumbnail}
+
+Best is to check yourself when you are evaluating a tool.
+
+#### The agenda of your web performance tool
+
+What the agenda of the ? If the company was very profitable/very quickly
+
+![Very profitabkle very quickly]({{site.baseurl}}/img/very-profitable-very-quickly.png)
+{: .img-thumbnail-center}
+
 ## Running tests using sitespeed.io
 
 Lets talk about running tests on sitespeed.io.
@@ -209,7 +314,12 @@ Run your tests on Desktop is the easiest tests to run. You can choose to run you
 
 The Docker container comes with preinstalled Chrome and Firefox (latest stable versions) and all dependencies that is needed to record and analyze a video if your test to get visual metrics. We release a new Docker container for each stable Chrome/Firefox, that way you can rollback versions easily. What's also good with the Docker container is that you start a new container per test, so everything is cleaned between tests. The drawbacks with running in a container could be slower metrics and only support for running Chrome and Firefox. If you are new to using Docker you should read our [Docker documentation](/documentation/sitespeed.io/docker/).
 
-If you use the NodeJS version directly you can run tests on Safari and MS Edge as long as your OS support it. To a record a video and analyze it and get visual metrics, you need to install those dependencies yourself (you can see what's needed in our [.travis.yml file](https://github.com/sitespeedio/browsertime/blob/master/.travis.yml)). You also need to manage the browsers by manually update them when there's a new version. There's more work to keep your tests running but you are also in control and can test on more browsers.
+If you use the NodeJS version directly you can run tests on Safari and MS Edge as long as your OS support it. To a record a video and analyze it and get visual metrics, you need to install those dependencies yourself. You can checkout our GitHub actions how you do that:
+* [Linux](https://github.com/sitespeedio/browsertime/blob/master/.github/workflows/linux.yml)
+* [OS X](https://github.com/sitespeedio/browsertime/blob/master/.github/workflows/safari.yml)
+* [Windows](https://github.com/sitespeedio/browsertime/blob/master/.github/workflows/windows.yml)
+
+You also need to manage the browsers by manually update them when there's a new version. There's more work to keep your tests running but you are also in control and can test on more browsers.
 
 
 ### Testing on mobile
@@ -232,4 +342,6 @@ If you wanna use sitespeed.io for your synthetic monitoring testing you can dig 
 
 
 If you want to chat about setups you can do that in [our Slack channel](https://sitespeedio.herokuapp.com). 
+
+/[Peter]()
 
