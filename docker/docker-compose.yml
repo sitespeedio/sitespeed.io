@@ -1,7 +1,7 @@
 version: '3'
 services:
     grafana:
-      image: grafana/grafana:7.0.1
+      image: grafana/grafana:7.0.3
       depends_on:
         - graphite
       links:
