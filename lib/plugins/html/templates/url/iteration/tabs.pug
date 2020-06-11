@@ -24,7 +24,10 @@
       | CPU    
   if d.thirdparty && d.thirdparty.run
     a(id='thirdparty', href='#thirdparty', onclick='return selectTab(this, true);')
-      | Third party    
+      | Third party
+  if d.browsertime && d.browsertime.run
+    a(id='screeenshots', href='#screenshots', onclick='return selectTab(this, true);')
+      | Screenshots
   each pageRun in pageRuns
     a(id=pageRun.id, href='#' + pageRun.id, onclick='return selectTab(this, true);')
       | #{pageRun.name}
