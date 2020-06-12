@@ -147,6 +147,8 @@ If you want to test and push to Graphite/InfluxDB:
 
 If you are new to Git/GitHub and want to make a PR you can start with reading [Digital Oceans tutorial on how to make PRs](https://www.digitalocean.com/community/tutorials/how-to-create-a-pull-request-on-github).
 
+We use *main* as our default branch, send all PRs to *main*.
+
 ### Log and debug
 To get a better understanding of what happens you should use the log. You can change log level by using multiple <code>-v</code>. If you want to log on the lowest level getting all information you can use <code>-vvv</code>. If that is too much information use  <code>-vv</code> or <code>-v</code>.
 
