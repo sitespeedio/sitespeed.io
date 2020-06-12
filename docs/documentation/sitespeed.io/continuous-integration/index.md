@@ -104,7 +104,7 @@ docker run -v ${WORKSPACE}:/sitespeed.io sitespeedio/sitespeed.io --outputFolder
 Remember that you can also send the metrics to Graphite to keep a closer eye on all metrics over time.
 
 ## Travis
-We have an example project for setting up Travis [https://github.com/sitespeedio/travis/](https://github.com/sitespeedio/travis/blob/master/.travis.yml). You should not try to use timings in your budget, simply because they tend to vary and be highly unreliable. We suggest using metrics that do not vary greatly and will be the same between runs like Coach score or number of requests.
+We have an example project for setting up Travis [https://github.com/sitespeedio/travis/](https://github.com/sitespeedio/travis/blob/main/.travis.yml). You should not try to use timings in your budget, simply because they tend to vary and be highly unreliable. We suggest using metrics that do not vary greatly and will be the same between runs like Coach score or number of requests.
 
 ## Circle CI
 Setting up your sitespeed tests on Circle is a straight forward process. What works the best is to use Circle's [Linux VM](https://circleci.com/build-environments/linux/) which will spin-up a pre-configured VM made to run variations of Docker and pre-installed with lots of tools that you may need to get sitespeed up and running.

@@ -26,7 +26,7 @@ We are a [three member team]({{site.baseurl}}/aboutus/), with more PRs (but we w
 Let us show exactly what happens when we push code:
 
  1. We commit our code (or merge your PR) to [GitHub](https://github.com/sitespeedio/sitespeed.io).
- 2. [Travis-CI](https://travis-ci.org/sitespeedio/sitespeed.io) runs a couple of unit tests and a couple of full integration test where we run sitespeed.io from the command line, testing a couple of sites in Chrome/Firefox, and tests our WebPageTest integration. You can find our Travis configuration [here](https://github.com/sitespeedio/sitespeed.io/blob/master/.travis.yml).
+ 2. [Travis-CI](https://travis-ci.org/sitespeedio/sitespeed.io) runs a couple of unit tests and a couple of full integration test where we run sitespeed.io from the command line, testing a couple of sites in Chrome/Firefox, and tests our WebPageTest integration. You can find our Travis configuration [here](https://github.com/sitespeedio/sitespeed.io/blob/main/.travis.yml).
  3. The commit also builds a new [Docker container at the Docker Hub](https://hub.docker.com/r/sitespeedio/sitespeed.io-autobuild/). Remember: This is not the same image as you use when you run sitespeed.io in production, this one contains the latest and greatest commits.
  4. We have a test server on Digital Ocean that runs the latest Docker container (it auto updates when there's a new version of the container). When the next test runs, it will use that latest version. When the test runs, it will upload the HTML to S3 and send the metrics to our Graphite instance.
  5. On the server we also watch the sitespeed.io log and notify via a Slack message when we get an error in the logs using curl as described ([here](http://blog.getpostman.com/2015/12/23/stream-any-log-file-to-slack-using-curl/)).
@@ -59,7 +59,7 @@ Let us show exactly what happens when we push code:
 Having a server continuously running the latest code, pushing the metrics to Graphite has worked out really well for us. It's easy to inspect the result pages at S3. And getting alerted when we have an error in the logs is just awesome. This really lowers the barrier for us to know if something fails.
 
 ### Release
-When we release (= a new version to npm and a new tag to the Docker hub) we use [this](https://github.com/sitespeedio/sitespeed.io/blob/master/release.sh) super simple release script. Before we release we always let the latest code run for a while on our test server and wait for errors on our Slack channel. We also manually browse the logs before a release and verify the HTML result pages on S3.
+When we release (= a new version to npm and a new tag to the Docker hub) we use [this](https://github.com/sitespeedio/sitespeed.io/blob/main/release.sh) super simple release script. Before we release we always let the latest code run for a while on our test server and wait for errors on our Slack channel. We also manually browse the logs before a release and verify the HTML result pages on S3.
 
 ### How you should upgrade sitespeed.io
 If you use Docker (and you should) make sure that you run a tagged versions and by tag we don't mean latest. Pull by setting the version number just like this:
@@ -68,7 +68,7 @@ If you use Docker (and you should) make sure that you run a tagged versions and 
 docker pull sitespeedio/sitespeed.io:4.7.0
 ~~~
 
-When you upgrade, read the [changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) and Docker pull the new version and then change your run script/yml file (or whatever you use to start sitespeed.io) so that it matches the new version number.
+When you upgrade, read the [changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md) and Docker pull the new version and then change your run script/yml file (or whatever you use to start sitespeed.io) so that it matches the new version number.
 
 
 ## What can we do better

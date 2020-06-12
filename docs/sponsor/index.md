@@ -20,7 +20,7 @@ There's a couple of ways you can help us building sitespeed.io:
 ## Why should you sponsor?
 Sponsorships will help us continue working on open source software, keeping the documentation updated and upgrade and add more test servers (we only run two at the moment) that makes sure our releases are as bug free as possible.
 
-At the moment we run two servers sponsored by Digital Ocean: One running Grafana/Graphite/InfluxDB and one instance that runs the latest commit in master for sitespeed.io and collect metrics using [https://github.com/sitespeedio/dashboard.sitespeed.io](https://github.com/sitespeedio/dashboard.sitespeed.io). 
+At the moment we run two servers sponsored by Digital Ocean: One running Grafana/Graphite/InfluxDB and one instance that runs the latest commit in main for sitespeed.io and collect metrics using [https://github.com/sitespeedio/dashboard.sitespeed.io](https://github.com/sitespeedio/dashboard.sitespeed.io). 
 
 We want to run at least one more instance to be able to test changes direct in Browsertime. That would help us a lot finding issues earlier. With sponsor money we could also choose to use other cloud providers and making it easier to deploy sitespeed.io.
 

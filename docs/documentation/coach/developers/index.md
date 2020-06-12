@@ -169,7 +169,7 @@ if (util.isHTTP2(page)) {
 
 
 ## Test in your browser
-You can and should test your advice in your browser. It's easy. Just copy/paste your advice into the browser console. If you use the [utility methods](https://github.com/sitespeedio/coach/blob/master/lib/dom/util.js)  you need to copy/paste that too inside your console before you test your advice.
+You can and should test your advice in your browser. It's easy. Just copy/paste your advice into the browser console. If you use the [utility methods](https://github.com/sitespeedio/coach/blob/main/lib/dom/util.js)  you need to copy/paste that too inside your console before you test your advice.
 
 ## Add a test case
 When you create a new advice you also need to create unit tests. We run the tests in both Firefox & Chrome.
@@ -187,7 +187,7 @@ it('We should find out if we load an print CSS', function() {
 });
 ```
 
-Right now all these tests run in https://github.com/sitespeedio/coach/blob/master/test/dom/performance/indexTest.js
+Right now all these tests run in https://github.com/sitespeedio/coach/blob/main/test/dom/performance/indexTest.js
 
 Each test case runs against a specific HTML page located in `test/http-server` Create a suitable HTML page with the structure you want to test. Create the test case in `test/dom` or `test/har` and run it with <code>npm test</code>
 

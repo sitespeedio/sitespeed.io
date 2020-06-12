@@ -90,7 +90,7 @@ If you drive WebPageTest and disabled Browsertime, the annotation will show the 
 
 ## Dashboards updated
 
-We have updated all the default dashboards, you [download them from here](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/master/dashboards/graphite).
+We have updated all the default dashboards, you [download them from here](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/main/dashboards/graphite).
 
 
 ## Run your tests on Kubernetes
@@ -126,6 +126,6 @@ There are also three breaking changes:
 * Upgraded to Ubuntu Disco in the Docker container [#908](https://github.com/sitespeedio/browsertime/pull/908).
 * There's an alternative to collect Visual Metrics using the Chrome trace log, using [SpeedLine](https://github.com/paulirish/speedline) implemented in [#876](https://github.com/sitespeedio/browsertime/pull/876). Using video give more accurate metrics (at least in our testing) but maybe it could help running on Chrome on Android and add less overhead than recording a video. You can enable it with:  `--cpu --browsertime.chrome.visualMetricsUsingTrace --browsertime.chrome.enableTraceScreenshots`
 
-We have some more changes and some bug fixes that you can read about in the [changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md).
+We have some more changes and some bug fixes that you can read about in the [changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md).
 
 /Peter

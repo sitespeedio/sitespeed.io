@@ -25,7 +25,7 @@ Sometimes we get a really detailed issue: You describe exactly how you do when y
 
 It also happens (quite often) that we get issues that misses important information, so we need to ask you again and again about the problem (like how to reproduce the issue). Sometimes we need to do that two/three/four times within that issue. Issues that misses vital information takes longer time to fix/close and that makes us spend more time asking questions instead of fixing actual bugs or creating new functionality. 
 
-We use a [issue template](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/.github/ISSUE_TEMPLATE.md) with a comment of what we need write but it seems that is not the best way so let us instead show you what we need!
+We use a [issue template](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/.github/ISSUE_TEMPLATE.md) with a comment of what we need write but it seems that is not the best way so let us instead show you what we need!
 
 Before you start creating a issue, you should make sure you have read through our [F.A.Q and Best Practice](https://www.sitespeed.io/documentation/sitespeed.io/best-practice/).
 

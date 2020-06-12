@@ -59,4 +59,4 @@ There's [a bug](https://github.com/sitespeedio/browsertime/issues/284) in Chrome
 
 /Peter
 
-P.S Read the full [changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) for 4.5.0.
+P.S Read the full [changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md) for 4.5.0.

@@ -1,10 +1,10 @@
 # sitespeed.io
 
-![Unit tests](https://github.com/sitespeedio/sitespeed.io/workflows/Unit%20tests/badge.svg?branch=master)
-![Linux browsers](https://github.com/sitespeedio/sitespeed.io/workflows/Linux%20browsers/badge.svg?branch=master)
-![Docker](https://github.com/sitespeedio/sitespeed.io/workflows/Docker/badge.svg?branch=master)
-![Windows Edge](https://github.com/sitespeedio/sitespeed.io/workflows/Windows%20Edge/badge.svg?branch=master)
-![OSX Safari](https://github.com/sitespeedio/sitespeed.io/workflows/OSX%20Safari/badge.svg?branch=master)
+![Unit tests](https://github.com/sitespeedio/sitespeed.io/workflows/Unit%20tests/badge.svg?branch=main)
+![Linux browsers](https://github.com/sitespeedio/sitespeed.io/workflows/Linux%20browsers/badge.svg?branch=main)
+![Docker](https://github.com/sitespeedio/sitespeed.io/workflows/Docker/badge.svg?branch=main)
+![Windows Edge](https://github.com/sitespeedio/sitespeed.io/workflows/Windows%20Edge/badge.svg?branch=main)
+![OSX Safari](https://github.com/sitespeedio/sitespeed.io/workflows/OSX%20Safari/badge.svg?branch=main)
 [![Downloads][downloads-image]][downloads-url]
 [![Docker][docker-image]][docker-url]
 [![Stars][stars-image]][stars-url]
@@ -12,7 +12,7 @@
 [![Changelog #212][changelog-image]][changelog-url]
 
 
-[Website](https://www.sitespeed.io/) | [Documentation](https://www.sitespeed.io/documentation/sitespeed.io/) | [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) | [Twitter](https://twitter.com/SiteSpeedio)
+[Website](https://www.sitespeed.io/) | [Documentation](https://www.sitespeed.io/documentation/sitespeed.io/) | [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md) | [Twitter](https://twitter.com/SiteSpeedio)
 
 ## Welcome to the wonderful world of web performance!
 
@@ -103,28 +103,28 @@ Using sitespeed.io you can:
 * Create HTML-result pages or store the metrics in Graphite.
 * Write your own plugins that can do whatever tests you want/need.
 
-See all the latest changes in the [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md).
+See all the latest changes in the [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md).
 
 Checkout our example [dashboard.sitespeed.io](https://dashboard.sitespeed.io/dashboard/db/page-summary)
 
 A summary report in HTML:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/start-readme.jpg">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/start-readme.jpg">
 
 Individual page report:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/start-url-readme.jpg">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/start-url-readme.jpg">
 
 Collected metrics from a URL in Graphite/Grafana:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/grafana-readme.jpg">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/grafana-readme.jpg">
 
 And look at trends in Grafana:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/grafana-trends-readme.jpg">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/grafana-trends-readme.jpg">
 
 Video - easiest using Docker. This gif is optimized, the quality is much better IRL:
 
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/barack.gif">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/barack.gif">
 
 ## Test using WebPageReplay
-We have a special Docker container that comes with [WebPageReplay](https://github.com/catapult-project/catapult/blob/master/web_page_replay_go/README.md) installed. This is a really early alpha release but we think you should try it out.
+We have a special Docker container that comes with [WebPageReplay](https://github.com/catapult-project/catapult/blob/main/web_page_replay_go/README.md) installed. This is a really early alpha release but we think you should try it out.
 
 WebPageReplay will let you replay your page locally (getting rid of server latency etc) and makes it easier to have stable metrics and find front end regressions.
 
