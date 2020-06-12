@@ -29,7 +29,7 @@ Sitespeed.io uses a lot of other Open Source tools so massive love to those proj
  * [Skeleton](http://getskeleton.com)
  * [Simple crawler](https://github.com/cgiffard/node-simplecrawler)
  * [Pug](https://www.npmjs.com/package/pug)
- * all other projects in the [package.json](https://github.com/sitespeedio/sitespeed.io/blob/master/package.json).
+ * all other projects in the [package.json](https://github.com/sitespeedio/sitespeed.io/blob/main/package.json).
 
 And we also have plugins so that you can use:
 
@@ -182,7 +182,7 @@ Before you send the PR make sure you:
  * Squash your commits so it looks sane
  * Make sure your code follow our lint rule by running: <code>npm run lint</code> and use <code>npm run lint:fix</code> if you have any breaking rules
  * Make sure your code don't break any tests: <code>npm test</code>
- * Update the documentation [https://github.com/sitespeedio/sitespeed.io/tree/master/docs](https://github.com/sitespeedio/sitespeed.io/tree/master/docs) in another pull request. When we merge the PR the documentation will automatically be updated so we do that when we push the next release
+ * Update the documentation [https://github.com/sitespeedio/sitespeed.io/tree/main/docs](https://github.com/sitespeedio/sitespeed.io/tree/main/docs) in another pull request. When we merge the PR the documentation will automatically be updated so we do that when we push the next release
 
 ### Do a sitespeed.io release
 When you become a member of the sitespeed.io team you can push releases. You do that by running the release bash script in root: <code>./release.sh</code>
@@ -198,12 +198,12 @@ Before you do a release, remember to let your latest code change run a couple of
 Do the release:
 
 1. Make sure you have a clean repo: `git status`
-2. Read through the [CHANGELOG](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) and see that all changes are included and add the version + date at the top for the new release and commit the change.
+2. Read through the [CHANGELOG](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md) and see that all changes are included and add the version + date at the top for the new release and commit the change.
 3. Run `./release.sh`
 4. Choose version
 5. Login into Docker, add your 2FA when prompted
-6. When a new browser window opens at GitHub with the release, copy/paste the changes from the [CHANGELOG](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md)  and add it instead of the commits and create the release.
-7. Commit the updated [version file](https://github.com/sitespeedio/sitespeed.io/blob/master/docs/_includes/version/sitespeed.io.txt) and the [configuration file](https://github.com/sitespeedio/sitespeed.io/blob/master/docs/documentation/sitespeed.io/configuration/config.md) if that's changed.
+6. When a new browser window opens at GitHub with the release, copy/paste the changes from the [CHANGELOG](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md)  and add it instead of the commits and create the release.
+7. Commit the updated [version file](https://github.com/sitespeedio/sitespeed.io/blob/main/docs/_includes/version/sitespeed.io.txt) and the [configuration file](https://github.com/sitespeedio/sitespeed.io/blob/main/docs/documentation/sitespeed.io/configuration/config.md) if that's changed.
 
 ### Do a Browsertime release
 When you become a member of the Browsertime team you can push releases. You do that by running the release bash script in root: <code>./release.sh</code>
@@ -218,12 +218,12 @@ Before you do a release, make sure the latest commits has a [green light in Trav
 
 Do the release:
 1. Make sure you have a clean repo: `git status`
-2. Read through the [CHANGELOG](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md) and see that all changes are included and add the version + date at the top for the new release and commit the change.
+2. Read through the [CHANGELOG](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md) and see that all changes are included and add the version + date at the top for the new release and commit the change.
 3. Run `./release.sh` (if all tests are ok on Travis feel free to run `./release.sh --yolo` to skip the tests)
 4. Choose version
 5. Login into Docker, add your 2FA when prompted
 6. When a new browser window opens at GitHub with the release, copy/paste the changes from the Changelog and add it instead of the commits.
-7. Commit the updated [version file](https://github.com/sitespeedio/sitespeed.io/blob/master/docs/_includes/version/browsertime.txt) and the [configuration file](https://github.com/sitespeedio/sitespeed.io/blob/master/docs/documentation/browsertime/configuration/config.md) in the sitespeed.io repo. Or make a PR if you do not have commit rights.
+7. Commit the updated [version file](https://github.com/sitespeedio/sitespeed.io/blob/main/docs/_includes/version/browsertime.txt) and the [configuration file](https://github.com/sitespeedio/sitespeed.io/blob/main/docs/documentation/browsertime/configuration/config.md) in the sitespeed.io repo. Or make a PR if you do not have commit rights.
 
 ### Contributing to the documentation
 The documentation lives in your cloned directory under *docs/*.

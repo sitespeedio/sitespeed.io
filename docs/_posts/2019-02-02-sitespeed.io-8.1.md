@@ -98,6 +98,6 @@ module.exports = async function(context, commands) {
 ~~~
 
 ## Changlog
-To see all changes you need to read the [changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md).
+To see all changes you need to read the [changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md).
 
 /Peter

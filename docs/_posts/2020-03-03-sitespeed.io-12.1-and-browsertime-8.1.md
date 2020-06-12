@@ -94,7 +94,7 @@ By default the hosting data (knowing if a host is green) is collected from a loc
 You can also disable the hosting match (all hosts will be treated as grey hosting) with `--sustainable.disableHosting`.
 
 ## Video and Visual Metrics on OS X
-An old friend is back, we again support video and Visual Metrics on OS X! You need to install FFMpeg and the rest of the dependencies, checkout the [Travis-CI setup](https://github.com/sitespeedio/browsertime/blob/master/.travis.yml).
+An old friend is back, we again support video and Visual Metrics on OS X! You need to install FFMpeg and the rest of the dependencies, checkout the [Travis-CI setup](https://github.com/sitespeedio/browsertime/blob/main/.travis.yml).
 
 We also a aim to make it possible to use video Visual Metrics on Windows and you can help us out in [Browsertime #1203](https://github.com/sitespeedio/browsertime/issues/1203)!
 
@@ -109,6 +109,6 @@ You can download the ChromeDriver yourself from the [Google repo](https://chrome
 You can also choose versions for Edge and Firefox with `EDGEDRIVER_VERSION` and `GECKODRIVER_VERSION`.
 
 ## And more
-We also done a couple of bug fixes. Checkout the  [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md) and the [sitespeed.io changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) for the full list. 
+We also done a couple of bug fixes. Checkout the  [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md) and the [sitespeed.io changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md) for the full list. 
 
 /Peter

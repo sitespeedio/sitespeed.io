@@ -22,7 +22,7 @@ You can fetch timings, run your own JavaScript and record a video of the screen.
 The latest version of Firefox should work out of the box.
 
 ### Firefox profile setup
-At the moment we setup a new profile for each run the browser do. We set up the profiles preferences like [this](https://github.com/sitespeedio/browsertime/blob/master/lib/firefox/webdriver/firefoxPreferences.js). We use Mozillas [own configuration](https://searchfox.org/mozilla-central/source/testing/talos/talos/config.py) as default with some changes + some extra configuration for performance and privacy.
+At the moment we setup a new profile for each run the browser do. We set up the profiles preferences like [this](https://github.com/sitespeedio/browsertime/blob/main/lib/firefox/webdriver/firefoxPreferences.js). We use Mozillas [own configuration](https://searchfox.org/mozilla-central/source/testing/talos/talos/config.py) as default with some changes + some extra configuration for performance and privacy.
 
 We try to disable all Firefox ping home:
  * We disable [heartbeat](https://wiki.mozilla.org/Firefox/Shield/Heartbeat).
@@ -97,7 +97,7 @@ docker run --shm-size 2g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io
 The latest version of Chrome should work out of the box. Latest version of stable [ChromeDriver](http://chromedriver.chromium.org) is bundled in sitespeed.io and needs to match your Chrome version.
 
 ### Chrome setup
-When we start Chrome it is setup with [these](https://github.com/sitespeedio/browsertime/blob/master/lib/chrome/webdriver/chromeOptions.js) command line switches.
+When we start Chrome it is setup with [these](https://github.com/sitespeedio/browsertime/blob/main/lib/chrome/webdriver/chromeOptions.js) command line switches.
 
 ### Add your own Chrome args
 Chrome has a [long list](https://peter.sh/experiments/chromium-command-line-switches/) of command line switches that you can use to make Chrome act differently than the default setup. You can add those switched to Chrome with ```--chrome.args``` (repeat the argument if you have multiple arguments).
@@ -195,7 +195,7 @@ If you add your own complete check you can also choose when your check is run. B
 
 ## Custom metrics
 
-You can collect your own metrics in the browser by supplying JavaScript file(s). By default we collect all metrics inside [these folders](https://github.com/sitespeedio/browsertime/tree/master/browserscripts), but you might have something else you want to collect.
+You can collect your own metrics in the browser by supplying JavaScript file(s). By default we collect all metrics inside [these folders](https://github.com/sitespeedio/browsertime/tree/main/browserscripts), but you might have something else you want to collect.
 
 Each JavaScript file need to return a metric/value which will be picked up and returned in the JSON. If you return a number, statistics will automatically be generated for the value (like median/percentiles etc).
 

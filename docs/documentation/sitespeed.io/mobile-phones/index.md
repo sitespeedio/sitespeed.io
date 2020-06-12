@@ -99,7 +99,7 @@ You could also use [phuedxs](https://github.com/phuedx) [Pi Network Conditioner]
 
 ### Video and SpeedIndex
 
-You can also collect a video and get Visual Metrics. Running on Mac or without Docker you need to install the requirements for [VisualMetrics](https://github.com/sitespeedio/docker-visualmetrics-deps/blob/master/Dockerfile) yourself on your machine before you start. If you have everything setup you can run:
+You can also collect a video and get Visual Metrics. Running on Mac or without Docker you need to install the requirements for [VisualMetrics](https://github.com/sitespeedio/docker-visualmetrics-deps/blob/main/Dockerfile) yourself on your machine before you start. If you have everything setup you can run:
 
 ```bash
 sitespeed.io --android --video --visualMetrics https://www.sitespeed.io

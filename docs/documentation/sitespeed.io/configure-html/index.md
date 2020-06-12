@@ -89,7 +89,7 @@ Or use a configuration json:
 
 # Configure the thresholds for red/yellow/green summary boxes
 
-You can override the default configurations that definees the colors of the summary boxes. The default code is set [here](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/plugins/html/setup/summaryBoxesDefaultLimits.js) and is a good starting point for what you can set.
+You can override the default configurations that definees the colors of the summary boxes. The default code is set [here](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/plugins/html/setup/summaryBoxesDefaultLimits.js) and is a good starting point for what you can set.
 
 Define your JSON file with the limits and feed it to sitespeed.io with `--html.summaryBoxesThresholds`.
 
@@ -113,7 +113,7 @@ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include ve
 
 
 # Configurable metrics 
-Here are the different metrics that you can show in the summary boxes or in the page HTML. Any metric missing? [Make a PR](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/friendlynames.js) or [create a issue](https://github.com/sitespeedio/sitespeed.io/issues/new)!
+Here are the different metrics that you can show in the summary boxes or in the page HTML. Any metric missing? [Make a PR](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/support/friendlynames.js) or [create a issue](https://github.com/sitespeedio/sitespeed.io/issues/new)!
 
 
 ~~~

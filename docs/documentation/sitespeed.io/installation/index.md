@@ -44,7 +44,7 @@ That will output the data from the run in the current directory. You can read mo
 
 Prerequisites: Install [latest NodeJS LTS](https://nodejs.org/en/download/) ([Linux](https://github.com/creationix/nvm)) and make sure you have [npm](https://github.com/npm/npm) or [yarn](https://yarnpkg.com/) installed. Also install Chrome/Firefox (you need them to collect metrics).
 
-Make sure you install without sudo using sudo. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
+Make sure you install without sudo using sudo. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/main/npm-global-without-sudo.md).
 
 #### npm
 If you prefer npm, just run:

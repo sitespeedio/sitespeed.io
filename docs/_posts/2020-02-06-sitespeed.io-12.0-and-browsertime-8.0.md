@@ -10,7 +10,7 @@ nav: blog
 
 # sitespeed.io 12.0 and Browsertime 8.0 
 
-The [changelog for the new Browsertime 8.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#800-2020-02-05) is massive because we have many new contributions, mainly from the Mozilla performance team! Extra special thank you to all new contributors:
+The [changelog for the new Browsertime 8.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#800-2020-02-05) is massive because we have many new contributions, mainly from the Mozilla performance team! Extra special thank you to all new contributors:
 
 * [Nick Alexander](https://github.com/ncalexan)
 * [Denis Palmeiro](https://github.com/dpalmeiro)
@@ -92,6 +92,6 @@ Making Sharp an optional requirement as proposed by [Nick Alexander](https://git
 
 Move visualmetrics.py to a python package [#1148](https://github.com/sitespeedio/browsertime/pull/1148) - thank you [Tarek Ziade](https://github.com/tarekziade)!
 
-Checkout the [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#800-2020-02-05) for the massive list of all things that have been fixed in latest 8.0 release.
+Checkout the [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#800-2020-02-05) for the massive list of all things that have been fixed in latest 8.0 release.
 
 /Peter

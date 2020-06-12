@@ -19,7 +19,7 @@ twitterdescription: Use the video in sitespeed.io
 ## The stack (easy with Docker)
 We use FFMpeg to record a video with 30 fps of the screen (but you can configure the number of frames per second). The easiest way is to use our Docker container with pre-installed FFMpeg and if you use the npm version, you can record a video too. Video works on Linux and OS X at the moment.
 
-When we got the video we use [Visual Metrics](https://github.com/WPO-Foundation/visualmetrics) (built by Pat Meenan) to analyse the video and get SpeedIndex and other visual metrics from the video. If you use our Docker container you get that for free, else you need to install all the [Visual Metrics dependencies](https://github.com/sitespeedio/browsertime/blob/master/.travis.yml) yourself. You need FFMPeg, ImageMagick and a couple Pythin libraries. Checkout Browsertimes [Travis-CI configuration](https://github.com/sitespeedio/browsertime/blob/master/.travis.yml) to see what's needed.
+When we got the video we use [Visual Metrics](https://github.com/WPO-Foundation/visualmetrics) (built by Pat Meenan) to analyse the video and get SpeedIndex and other visual metrics from the video. If you use our Docker container you get that for free, else you need to install all the [Visual Metrics dependencies](https://github.com/sitespeedio/browsertime/blob/main/.travis.yml) yourself. You need FFMPeg, ImageMagick and a couple Pythin libraries. Checkout Browsertimes [Travis-CI configuration](https://github.com/sitespeedio/browsertime/blob/main/.travis.yml) to see what's needed.
 
 We record the video in two steps: First we turn the background orange (that is used by VisualMetrics to know when the navigation starts), sets the background to white and let the browser go to the URL. The video is recorded lossless and then when the video has been analysed, we remove the orange frames and convert the video to a compressed mp4.
 
@@ -78,7 +78,7 @@ You can also configure to pickup your own defined elements with <code>--scriptIn
 ## Compare two video runs (combine two videos)
 One of the things we love with [WebPageTest](https://www.webpagetest.org/) is the video where you can compare two different runs. Since sitespeed.io is serverless, it is nothing you can do on the fly. Instead we created a simple tool you can use. Only thing you need is Docker!
 
-1. <code>curl -O https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/tools/combineVideos.sh<code>
+1. <code>curl -O https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/tools/combineVideos.sh<code>
 2. <code>chmod +x combineVideos.sh<code>
 3. Download the videos you want to compare, let us call them file1.mp4 and file2.mp4
 4. <code>./combineVideos.sh file1.mp4 file2.mp4 </code>

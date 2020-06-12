@@ -52,10 +52,10 @@ We have upgraded to latest video.js 6.6 with smoother progress bar [#1864](https
 And we added filenames to the video when you combine two videos in combineVideos.sh. By naming your video wisely, you can now make it easier understand what you actually compare.
 
 ## Fixes
-We upgraded to latest Browsertime 2.1.4 with [new bug fixes](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md).
+We upgraded to latest Browsertime 2.1.4 with [new bug fixes](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md).
 
 We also fixed the start script so that you on Ubuntu can run WebPageReplay in the Docker container for your Android phone.
 
-Checkout the full [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) for all changes.
+Checkout the full [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md) for all changes.
 
 /Peter

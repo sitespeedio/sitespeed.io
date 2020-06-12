@@ -34,6 +34,6 @@ Or you can compare Coach performance and privacy score:
 
 You can read more about the new leaderboard in the [documentation](/documentation/sitespeed.io/leaderboard/).
 
-We have some more changes and some bug fixes that you can read about in the [changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md).
+We have some more changes and some bug fixes that you can read about in the [changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md).
 
 /Peter

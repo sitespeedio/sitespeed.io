@@ -12,7 +12,7 @@ nav: blog
 
 <img src="{{site.baseurl}}/img/celebrate.png" class="pull-right img-big" alt="It's time to celebrate 4.0 is here" width="200" height="200">
 
-Yes we have finally released 4.0. We ([Peter](https://twitter.com/soulislove)/[Tobias](https://twitter.com/tobiaslidskog)/[Jonathan](https://twitter.com/beenanner) and [contributors](https://github.com/sitespeedio/sitespeed.io/blob/master/CONTRIBUTORS.md)) have been working extremely hard the last year to make it happen. Actually we started to think about the new version when we released 3.0 December 2014. So it's almost 2 years in the making. It has been a long ride.
+Yes we have finally released 4.0. We ([Peter](https://twitter.com/soulislove)/[Tobias](https://twitter.com/tobiaslidskog)/[Jonathan](https://twitter.com/beenanner) and [contributors](https://github.com/sitespeedio/sitespeed.io/blob/main/CONTRIBUTORS.md)) have been working extremely hard the last year to make it happen. Actually we started to think about the new version when we released 3.0 December 2014. So it's almost 2 years in the making. It has been a long ride.
 
 Before reading, you should just try it out:
 
@@ -109,7 +109,7 @@ We have changed the key structure of the keys in Graphite. Yes that means you wi
 ## Dashboard in 2 seconds
 Well almost 2 seconds :) Using our new Docker compose script and ready made dashboards you can get it up and running as fast as the containers are downloaded. We also worked to get the Graphite key structure re-usable between web sites, so it's easy to share dashboards.
 
-1. Download our new Docker compose file: curl -O https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/docker-compose.yml
+1. Download our new Docker compose file: curl -O https://raw.githubusercontent.com/sitespeedio/sitespeed.io/mains/docker/docker-compose.yml
 2. Run: <code>docker-compose up</code>
 3. Run sitespeed: <code> docker-compose run sitespeed.io https://www.sitespeed.io/ --graphite.host=graphite</code>
 4. Access the dashboard: http://127.0.0.1:3000
@@ -138,7 +138,7 @@ What's been the hardest part doing 4.0? Things that we cannot control or do not 
 * Firefox. We love Firefox. We love Chrome. And it is important that sitespeed.io works on at least two different browsers. The move from Firefoxdriver to Geckodriver hasn't been smooth and there's been a lot of problems getting things to work. Firefox versions not working with Selenium, some thing broken etc, but we hope that all those problems are over now :)
 
 # sitespeed.io 5.0
-Hehe that's going to take some time! We will continue to work on 4.0 for a while to implement the things we missed, fixing bugs, and we would love [your help](https://github.com/sitespeedio/sitespeed.io/blob/master/HELP.md)!
+Hehe that's going to take some time! We will continue to work on 4.0 for a while to implement the things we missed, fixing bugs, and we would love [your help](https://github.com/sitespeedio/sitespeed.io/blob/main/HELP.md)!
 
 The next couple of days we will be doing cleanup and remove old issues, old projects, and try to get a fresh start.
 

@@ -24,7 +24,7 @@ There are two ways two categorise first/third parties. If you use  `--firstParty
 
 One thing to remember is that a tool can have multiple categories. For example, it can be both a analytics tool AND a [surveillance](https://en.wikipedia.org/wiki/Surveillance_capitalism) tool.
 
-By default the third party information will be sent to Graphite/InfluxDb and if you are a Graphite user you can upgrade the page summary dashboard to [the latest version](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/master/dashboards/graphite/PageSummary.json). You will then get two new graphs.
+By default the third party information will be sent to Graphite/InfluxDb and if you are a Graphite user you can upgrade the page summary dashboard to [the latest version](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/main/dashboards/graphite/PageSummary.json). You will then get two new graphs.
 
 The first graph shows you third party requests by category. Here can you see how many requests each category generates.
 
@@ -45,7 +45,7 @@ And then also see the exact tools that are used.
 ![Third party tools]({{site.baseurl}}/img/8.9/thirdparty-tools-html.png)
 {: .img-thumbnail}
 
-At the moment we are very liberate on categorising tools as surveillance and need your help to get it right. Do a PR to help us help by changing [https://github.com/sitespeedio/sitespeed.io/blob/master/lib/plugins/thirdparty/index.js#L34-L38](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/plugins/thirdparty/index.js#L34-L38).
+At the moment we are very liberate on categorising tools as surveillance and need your help to get it right. Do a PR to help us help by changing [https://github.com/sitespeedio/sitespeed.io/blob/main/lib/plugins/thirdparty/index.js#L34-L38](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/plugins/thirdparty/index.js#L34-L38).
 
 The new categorisation happens automatically.
 

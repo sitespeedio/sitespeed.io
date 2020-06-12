@@ -61,4 +61,4 @@ You can check out this feature in action on [https://dashboard.sitespeed.io](htt
 
 /Jonathan
 
-P.S Read the full [changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) for 4.4.0.
+P.S Read the full [changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md) for 4.4.0.

@@ -25,7 +25,7 @@ We've moved out the [GPSI plugin](https://github.com/sitespeedio/plugin-gpsi) to
 These changes will make the plugins more powerful than ever before. We have a new repo where we will keep track of 3rd party plugins [https://github.com/sitespeedio/plugins](https://github.com/sitespeedio/plugins). Go there and checkout [Lorenzo Urbini](https://github.com/siteriaitaliana) work in progress to implement a Lighthouse plugin and help out if you can!
 
 
-When you upgrade, please read our [upgrade notes](https://www.sitespeed.io/documentation/sitespeed.io/upgrade/) and check out the full [changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md).
+When you upgrade, please read our [upgrade notes](https://www.sitespeed.io/documentation/sitespeed.io/upgrade/) and check out the full [changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md).
 
 ### What did not reach 6.0?
 One of the most asked functionalities has been to be able to test multiple pages in one run. We created a meta issue for that, join the discussion at [#1827](https://github.com/sitespeedio/sitespeed.io/issues/1827).
@@ -46,7 +46,7 @@ We removed TSProxy and tc (sltc) as connectivity engines since none of them work
 Important: This change means you need to actively choose to use Throttle or Docker networks.
 {: .note .note-warning}
 
-Read the [full changelog](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#version-200-2017-11-23).
+Read the [full changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#version-200-2017-11-23).
 
 ## PageXray 2.0
 Only bug fixes and upgrading to NodeJS 8 in 2.0, but did you know that in the Autumn we also released a [standalone JavaScript version of PageXray](https://github.com/sitespeedio/pagexray/releases) that you can use in the browser?

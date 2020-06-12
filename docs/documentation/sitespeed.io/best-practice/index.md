@@ -74,7 +74,7 @@ You should also try out our new setup with [WebPageReplay](../webpagereplay/).
 Checkout the [scripting capabilities](../scripting/) that makes it easy to test multiple pages.
 
 ### I want to test on different CPUs how do I do that?
-We currently don't built in support for changing the CPU. What we do know is that you should not use the built in support in Chrome or try to simulate slow CPUs by running on slow AWS instance. What should do is what WPTAgent do. You can check the code at [https://github.com/WPO-Foundation/wptagent/blob/master/wptagent.py](https://github.com/WPO-Foundation/wptagent/blob/master/wptagent.py) and do the same before you start a run and then remove it after the run.
+We currently don't built in support for changing the CPU. What we do know is that you should not use the built in support in Chrome or try to simulate slow CPUs by running on slow AWS instance. What should do is what WPTAgent do. You can check the code at [https://github.com/WPO-Foundation/wptagent/blob/main/wptagent.py](https://github.com/WPO-Foundation/wptagent/blob/main/wptagent.py) and do the same before you start a run and then remove it after the run.
 
 ### Throttle or not throttle your connection?
 **PLEASE, YOU NEED TO ALWAYS THROTTLE YOUR CONNECTION!** You should always throttle/limit the connectivity because it will make it easier for you to find regressions. If you don't do it, you can run your tests with different connectivity profiles and regressions/improvements that you see is caused by your servers flaky internet connection. Check out our [connectivity guide]({{site.baseurl}}/documentation/sitespeed.io/connectivity/).

@@ -40,7 +40,7 @@ It's easiest to run [our ready-made Docker container](https://hub.docker.com/r/s
 
 The default video will include a timer and showing when the metrics happens, but you can turn that off using <code>--videoRaw</code>.
 
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docs/img/video-example.gif">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/video-example.gif">
 
 ## Test using Docker
 You can build and test changes using Docker locally. First build it:
@@ -65,7 +65,7 @@ Browsertime supports Chrome on Android: Collecting SpeedIndex, HAR and video! Th
 
 You need to [install ADB](https://www.sitespeed.io/documentation/sitespeed.io/mobile-phones/#desktop) and [prepare your phone](https://www.sitespeed.io/documentation/sitespeed.io/mobile-phones/#on-your-phone) before you start.
 
-The current version doesn't support Docker so you need to [install the requirements](https://github.com/sitespeedio/docker-visualmetrics-deps/blob/master/Dockerfile) for VisualMetrics yourself on your machine before you start.
+The current version doesn't support Docker so you need to [install the requirements](https://github.com/sitespeedio/docker-visualmetrics-deps/blob/main/Dockerfile) for VisualMetrics yourself on your machine before you start.
 
 If you want to set connectivity you need to use something like [Pi Network Conditioner](https://github.com/phuedx/pinc).
 

@@ -65,7 +65,7 @@ We now use pageLoadStrategy _none_. That means if you run your own pageCompleteC
 
 ### WebPageReplay support using Docker
 
-We had it in alpha/beta for a while and now it's there in our default container: [WebPageReplay](https://github.com/catapult-project/catapult/blob/master/web_page_replay_go/README.md).
+We had it in alpha/beta for a while and now it's there in our default container: [WebPageReplay](https://github.com/catapult-project/catapult/blob/main/web_page_replay_go/README.md).
 
 WebPageReplay is proxy that first records your web site and then replay it locally. That can help you find performance regression in the front-end code easier: Latency/server timings are constant.
 
@@ -169,7 +169,7 @@ We updated how Browsertime drives Chrome on Android and it works better than bef
 
 ### And more ...
 
-Checkout the full [Changelog](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md) for all changes.
+Checkout the full [Changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md) for all changes.
 
 ## Breaking Changes
 
@@ -193,4 +193,4 @@ We got some breaking changes, please read about them before you upgrade.
 * In some cases we leaked Bluebird promises, they are now native promises.
 * Running the engine took a promise that eventually became the scripts. Now you need to run with the scripts directly (no promises) to simplify the flow.
 
-And by the way: the master branch of sitespeed.io is using 3.0 and we plan to release the next major of in a month or so.
+And by the way: the main branch of sitespeed.io is using 3.0 and we plan to release the next major of in a month or so.
