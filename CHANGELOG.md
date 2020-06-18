@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## 14.0.0 - UNRELEASED
+### Added
+* All dashboards for Graphite has been updated to use Grafana 7.0.0 with a new look and feel. 
+* Show all screenshots for a run in a tab [#3045](https://github.com/sitespeedio/sitespeed.io/pull/3045).
+
 ## 13.3.2 - 2020-06-18
 ### Fixed
 * Updated the WebPageTest API that has fixed the security dependencies [#3044](https://github.com/sitespeedio/sitespeed.io/pull/3044).
