@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 13.3.2 - 2020-06-18
+### Fixed
+* Updated the WebPageTest API that has fixed the security dependencies [#3044](https://github.com/sitespeedio/sitespeed.io/pull/3044).
+
 ## 13.3.1 - 2020-06-13
 ### Fixed
 * Testing multiple URLs in one script resulted in only one annotation in InfluxDB as reported in [#2998](https://github.com/sitespeedio/sitespeed.io/issues/2998). The problem was (hopefully) that all annotations was sent with the same timestamp. Now the timestamp from the browsertime run for that URL is used. PR [#3038](https://github.com/sitespeedio/sitespeed.io/pull/3038).
