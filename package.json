@@ -110,7 +110,7 @@
     "text-table": "0.2.0",
     "third-party-web": "0.11.1",
     "uuid": "3.4.0",
-    "webpagetest": "0.3.9",
+    "webpagetest": "0.4.0",
     "yargs": "15.1.0"
   },
   "config": {
