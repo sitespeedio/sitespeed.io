@@ -18,7 +18,6 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
 ## Start
  * [Introduction](introduction/) - start here if you are new to the project or web performance testing.
  * [Installation](installation/) - install using npm, yarn or run our Docker containers.
- * [Web performance testing in practice](web-performance-testing-in-practice/) - start to read this is if you are new to run synthetics tests.
  * [Browsers](browsers/) - collect timings using real browsers. We support Firefox, Chrome, Chrome on Android and limited support for Safari on OS X and iOS. 
  * [Configuration](configuration/) - there's a lot of things you can do with sitespeed.io, lets checkout how!
  * [Connectivity](connectivity/) - set the connectivity to emulate real users network conditions.
@@ -29,6 +28,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Performance Dashboard](performance-dashboard/) - monitor your web site and keep track of your metrics and performance.
  * [Performance Leaderboard](leaderboard/) - compare your pages with your competition.
  * [Scripting](scripting/) - test a user journey, test multiple URLs, test login, test adding items to the cart with scripting.
+* [Web performance testing in practice](web-performance-testing-in-practice/) - start to read this is if you are new into synthetics tests.
 
 ## More details
  * [Alerts](alerts/) - send alerts (email/Slack/PagerDuty etc) when you get a performance regression.

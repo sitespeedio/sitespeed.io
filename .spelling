@@ -39,6 +39,7 @@ Imagemagick
 FFMpeg
 WebDriver
 GeckoDriver
+Kubernetes
 ChromeDriver
 Leaderboard
 Homebrew
@@ -50,3 +51,4 @@ leaderboard
 Wikimedia
 mitmproxy
 travis.yml
+Moto
