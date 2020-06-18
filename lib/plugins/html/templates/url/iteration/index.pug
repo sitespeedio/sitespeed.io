@@ -162,7 +162,7 @@ block content
               a(href=screenshotName)
                 img.screenshot(src=screenshotName, alt='Screenshot')
             else if hasScreenShots
-              - screenshotName = 'data/screenshots/' + iteration + '.' + screenShotType
+              - screenshotName = 'data/screenshots/' + iteration + '/afterPageCompleteCheck.' + screenShotType
               - const width = options.mobile ? 150 : '100%';
               a(href=screenshotName)
                 img.screenshot(src=screenshotName, width=width, alt='Screenshot')
@@ -200,6 +200,10 @@ block content
     if d.thirdparty && d.thirdparty.run
       section#thirdparty-panel
         include ../thirdparty/index.pug
+
+    if d.browsertime && d.browsertime.run
+      section#screeenshots-panel
+        include ../screenshots/index.pug
 
     each pageRun in pageRuns
       - const panelName = pageRun.id + '-panel'

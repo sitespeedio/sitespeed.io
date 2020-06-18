@@ -154,7 +154,7 @@ block content
             if hasScreenShots
               - const width = options.mobile ? 150 : '100%';
               - const screenshotNo = medianRun ? medianRun.runIndex : 1
-              - const screenshotName = 'data/screenshots/' + screenshotNo + '.' + screenShotType
+              - const screenshotName = 'data/screenshots/' + screenshotNo + '/afterPageCompleteCheck.' + screenShotType
               a(href=screenshotName)
                 img.screenshot(src=screenshotName, width=width, alt='Screenshot of run ' + screenshotNo)
             else if !d.browsertime && d.webpagetest
