@@ -1328,11 +1328,11 @@
       "integrity": "sha1-x57Zf380y48robyXkLzDZkdLS3k="
     },
     "aws-sdk": {
-      "version": "2.613.0",
-      "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.613.0.tgz",
-      "integrity": "sha512-FYLaVtC/AlrcnjsPw1JhAsKd6yapr918Mk0jAcw3yFZp1sI2V0Um+2pmijLFsV+nNRxFlCVJRhhFWB5GK6yALA==",
+      "version": "2.701.0",
+      "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.701.0.tgz",
+      "integrity": "sha512-95fWGr6gvyRH408VP5LQAycB8Wqw665ll7q6/soscGFD+2HuQ+gB5qpSlXJwOgSggKQCaExWoQnDABBoTSXM2w==",
       "requires": {
-        "buffer": "4.9.1",
+        "buffer": "4.9.2",
         "events": "1.1.1",
         "ieee754": "1.1.13",
         "jmespath": "0.15.0",
@@ -1787,9 +1787,9 @@
       "integrity": "sha512-SB4/MIGlsiVkMcHmT+pSmIPoNDoHg+7cMzmt3Uxt628MTz2487DKSqK/fuhFBrkuqrYv5UCEnACpF4dTFNKc/g=="
     },
     "buffer": {
-      "version": "4.9.1",
-      "resolved": "https://registry.npmjs.org/buffer/-/buffer-4.9.1.tgz",
-      "integrity": "sha1-bRu2AbB6TvztlwlBMgkwJ8lbwpg=",
+      "version": "4.9.2",
+      "resolved": "https://registry.npmjs.org/buffer/-/buffer-4.9.2.tgz",
+      "integrity": "sha512-xq+q3SRMOxGivLhBNaUdC64hDTQwejJ+H0T/NB1XMtTVEwNTrfFF3gAxiyW0Bu/xWEGhjVKgUcMhCrUy2+uCWg==",
       "requires": {
         "base64-js": "^1.0.2",
         "ieee754": "^1.1.4",
