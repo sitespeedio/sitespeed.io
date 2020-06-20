@@ -8,6 +8,7 @@
 ## 13.3.2 - 2020-06-18
 ### Fixed
 * Updated the WebPageTest API that has fixed the security dependencies [#3044](https://github.com/sitespeedio/sitespeed.io/pull/3044).
+* Updated dependencies: axe-core 3.5.5, dayjs 1.8.28, influx 5.5.2, simplecrawler 1.1.9 and yargs 15.3.1.
 
 ## 13.3.1 - 2020-06-13
 ### Fixed
