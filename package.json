@@ -79,7 +79,7 @@
     "fast-crc32c": "2.0.0",
     "fast-stats": "0.0.5",
     "find-up": "4.1.0",
-    "fs-extra": "8.1.0",
+    "fs-extra": "9.0.1",
     "influx": "5.5.2",
     "intel": "1.2.0",
     "jstransformer-markdown-it": "2.1.0",
