@@ -67,7 +67,7 @@
   },
   "main": "./lib/sitespeed.js",
   "dependencies": {
-    "@google-cloud/storage": "3.2.0",
+    "@google-cloud/storage": "5.1.1",
     "@tgwf/co2": "0.6.1",
     "aws-sdk": "2.701.0",
     "axe-core": "3.5.5",
