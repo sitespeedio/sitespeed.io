@@ -59,18 +59,20 @@ When you choose one of the values in a template, the rest will be populated. You
 The default namespace is *sitespeed_io.default* and the example dashboards are built upon a constant template variable called $base that is the first part of the namespace (that default is *sitespeed_io* but feel free to change that, and then change the constant).
 
 ## Page summary
-The [page summary](https://dashboard.sitespeed.io/dashboard/db/page-summary) shows metrics for a specific URL/page.
+The [page summary](https://dashboard.sitespeed.io/dashboard/db/page-summary) shows metrics for a specific URL/page. The dashboard focus on how your page was built.
 
+![Page summary]({{site.baseurl}}/img/page-summary.png)
+{: .img-thumbnail}
 
 ## The page timings summary
 
-The [page timings summary](https://dashboard.sitespeed.io/dashboard/db/page-timing-metrics) focus on Visual Metrics and is the number one dashboard you should use when you look for visual regressions.
+The [page timings summary](https://dashboard.sitespeed.io/dashboard/db/page-timing-metrics) focus on Visual Metrics and is the number one dashboard you should use when you look for visual regressions. It also show all other timing metrics that is collected.
 
 ## Site summary
 The [site summary](https://dashboard.sitespeed.io/dashboard/db/site-summary) show metrics for a site (a summary of all URLs tested for that domain).
 
 ## The leaderboard
-We are so proud of our [leaderboard dashboard](https://dashboard.sitespeed.io/dashboard/db/leaderboard) so it has it owns [documentation page](/documentation/sitespeed.io/leaderboard/).
+We are so proud of our [leaderboard dashboard](https://dashboard.sitespeed.io/dashboard/db/leaderboard) so it has it own [documentation page](/documentation/sitespeed.io/leaderboard/). Use the dashboard when you compare different sites or URLs.
 
 ## WebPageTest dashboards
 We have two optional dashboards for WebPageTest to show how you can build them if you use WebPageTest through sitespeed.io.
@@ -80,6 +82,13 @@ Have we told you that we love WebPageTest? Yes, we have and here is an example o
 
 ### WebPageTest site summary
 And then there is also a dashboard for [all tested pages of a site](https://dashboard.sitespeed.io/dashboard/db/webpagetest-site-summary).
+
+## Plus 1
+We also have a dashboard for [showing GPSI/CrUx/Lighthouse metrics](https://dashboard.sitespeed.io/dashboard/db/plus1) if you use those products.
+
+![Plus 1 dashboard]({{site.baseurl}}/img/plus-1-dashboard.jpg)
+{: .img-thumbnail}
+
 
 ## Whatever you want
 Do you need anything else? Since we store all the data in Graphite and use Grafana you can create your own dashboards, which is super simple!
