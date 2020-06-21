@@ -5,10 +5,14 @@
 * All dashboards for Graphite has been updated to use Grafana 7.0.0 with a new look and feel. 
 * Show all screenshots for a run in a tab [#3045](https://github.com/sitespeedio/sitespeed.io/pull/3045).
 
+### Fixed
+* Set user agent for --mobile on Chrome [#3046](https://github.com/sitespeedio/sitespeed.io/pull/3046)
+* Updated dependencies: axe-core 3.5.5, dayjs 1.8.28, influx 5.5.2, simplecrawler 1.1.9, yargs 15.3.1, Pug 3, AWS 2.701.0, fs-extra 9.0.1, uuid 8.1.0, google-cloud/storage 5.1.1, third party web 0.12.0, cli-color 2.0.0, coach-core, PageXray and Throttle.
+
 ## 13.3.2 - 2020-06-18
 ### Fixed
 * Updated the WebPageTest API that has fixed the security dependencies [#3044](https://github.com/sitespeedio/sitespeed.io/pull/3044).
-* Updated dependencies: axe-core 3.5.5, dayjs 1.8.28, influx 5.5.2, simplecrawler 1.1.9 and yargs 15.3.1.
+
 
 ## 13.3.1 - 2020-06-13
 ### Fixed
