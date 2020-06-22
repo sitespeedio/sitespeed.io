@@ -149,7 +149,7 @@ We also have a dashboard for [showing GPSI/CrUx/Lighthouse metrics](https://dash
 ![Plus 1 dashboard]({{site.baseurl}}/img/plus-1-dashboard.jpg)
 {: .img-thumbnail}
 
-![Plus 1 dashboard]({{site.baseurl}}/img/plus-1-dashboard-2.jpg)
+![Plus 1 dashboard part 2]({{site.baseurl}}/img/plus-1-dashboard-2.jpg)
 {: .img-thumbnail}
 
 

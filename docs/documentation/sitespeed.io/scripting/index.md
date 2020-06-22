@@ -878,7 +878,10 @@ Add the *text* to the element by using the attribute name. If the element is not
 Add the *text* to the element by using class name. If the element is not found the command will throw an error.
 
 ### Screenshot
-Take a screenshot. The image will automatically be stored in the screenshot directory for the URL you are testing. This can be super helpful to use in a catch block if something fails. 
+Take a screenshot. The image is stored in the screenshot directory for the URL you are testing. This can be super helpful to use in a catch block if something fails. If you use sitespeed.io you can find the image in the screenshot tab for each individual run. 
+
+![Screenshots]({{site.baseurl}}/img/multiple-screenshots.jpg)
+{: .img-thumbnail-center}
 
 #### screenshot.take(name) 
 Give your screenshot a name and it will be used together with the iteration index to store the image.
