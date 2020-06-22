@@ -64,29 +64,92 @@ The [page summary](https://dashboard.sitespeed.io/dashboard/db/page-summary) sho
 ![Page summary]({{site.baseurl}}/img/page-summary.png)
 {: .img-thumbnail}
 
+You can also see CPU performance, third party tools and more.
+
+![Page summary and third party]({{site.baseurl}}/img/page-summary-dashboard-2.jpg)
+{: .img-thumbnail}
+
+And AXE, CO2 and errors (and a lot more).
+
+![Page summary co2]({{site.baseurl}}/img/page-summary-dashboard-3.jpg)
+{: .img-thumbnail}
+
 ## The page timings summary
 
-The [page timings summary](https://dashboard.sitespeed.io/dashboard/db/page-timing-metrics) focus on Visual Metrics and is the number one dashboard you should use when you look for visual regressions. It also show all other timing metrics that is collected.
+The [page timings summary](https://dashboard.sitespeed.io/dashboard/db/page-timing-metrics) focus on timing metrics and is the number one dashboard you should use when you look for visual regressions. It also show all other timing metrics that is collected.
+
+You can follow visual metrics.
+
+![Page timing dashboard]({{site.baseurl}}/img/page-timings-dashboard.jpg)
+{: .img-thumbnail}
+
+And compare the metrics with last weeks metrics.
+
+![Page timing dashboard compared with last week]({{site.baseurl}}/img/page-timings-dashboard-2.jpg)
+{: .img-thumbnail}
+
+You will also see navigation timing, element timing and user timings.
+
+![Page timing with element timings]({{site.baseurl}}/img/page-timings-dashboard-3.jpg)
+{: .img-thumbnail}
+
 
 ## Site summary
 The [site summary](https://dashboard.sitespeed.io/dashboard/db/site-summary) show metrics for a site (a summary of all URLs tested for that domain).
 
+![Site summary]({{site.baseurl}}/img/site-summary-dashboard.jpg)
+{: .img-thumbnail}
+
+
+![Site summary with more metrics]({{site.baseurl}}/img/site-summary-dashboard-2.jpg)
+{: .img-thumbnail}
+
+
 ## The leaderboard
 We are so proud of our [leaderboard dashboard](https://dashboard.sitespeed.io/dashboard/db/leaderboard) so it has it own [documentation page](/documentation/sitespeed.io/leaderboard/). Use the dashboard when you compare different sites or URLs.
 
+![Page summary]({{site.baseurl}}/img/leaderboard-dashboard.jpg)
+{: .img-thumbnail}
+
+
 ## WebPageTest dashboards
-We have two optional dashboards for WebPageTest to show how you can build them if you use WebPageTest through sitespeed.io.
+We have four optional dashboards for WebPageTest that you can use if you drive WebPageTest using sitespeed.io. They follow the same pattern as the sitespeed.io dashboards with WebPageTest data.
 
 ### WebPageTest page summary
-Have we told you that we love WebPageTest? Yes, we have and here is an example of a default [WebPageTest page summary](https://dashboard.sitespeed.io/dashboard/db/webpagetest-page-summary) where you can look at results for individual URLs.
+We have and here is an example of a default [WebPageTest page summary](https://dashboard.sitespeed.io/dashboard/db/webpagetest-page-summary) where you can look at results for individual URLs.
+
+
+![Page summary]({{site.baseurl}}/img/webpagetest-pagesummary-dashboard.jpg)
+{: .img-thumbnail}
+
+
+### WebPageTest timing metrics
+And then there is also a dashboard for [the timing metrics](https://dashboard.sitespeed.io/dashboard/db/webpagetest-page-timing-metrics).
+
+![Timing metrics WebPageTest]({{site.baseurl}}/img/webpagetest-metricsummary-dashboard.jpg)
+{: .img-thumbnail}
 
 ### WebPageTest site summary
 And then there is also a dashboard for [all tested pages of a site](https://dashboard.sitespeed.io/dashboard/db/webpagetest-site-summary).
+
+![Site summary]({{site.baseurl}}/img/webpagetest-sitesummary-dashboard.jpg)
+{: .img-thumbnail}
+
+
+### WebPageTest leaderboard
+And then there is also a [leaderboard dashboard](https://dashboard.sitespeed.io/dashboard/db/webpagetest-leaderboard).
+
+![Leaderboard for WebPageTest]({{site.baseurl}}/img/webpagetest-leaderboard-dashboard.jpg)
+{: .img-thumbnail}
+
 
 ## Plus 1
 We also have a dashboard for [showing GPSI/CrUx/Lighthouse metrics](https://dashboard.sitespeed.io/dashboard/db/plus1) if you use those products.
 
 ![Plus 1 dashboard]({{site.baseurl}}/img/plus-1-dashboard.jpg)
+{: .img-thumbnail}
+
+![Plus 1 dashboard]({{site.baseurl}}/img/plus-1-dashboard-2.jpg)
 {: .img-thumbnail}
 
 
