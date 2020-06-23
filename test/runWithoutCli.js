@@ -10,7 +10,8 @@ async function run() {
         browser: 'chrome',
         connectivity: {
           profile: 'native'
-        }
+        },
+        headless: true
       }
     });
 
