@@ -8,7 +8,8 @@ const timestamp = dayjs();
 const timestampString = timestamp.format('YYYY-MM-DD-HH-mm-ss');
 
 function createResultUrls(url, outputFolder, resultBaseURL) {
-  return resultsStorage(url, timestamp, outputFolder, resultBaseURL).resultUrls;
+  return resultsStorage(url, timestamp, { outputFolder, resultBaseURL })
+    .resultUrls;
 }
 
 describe('resultUrls', function() {

@@ -9,7 +9,7 @@ const timestamp = dayjs();
 const timestampString = timestamp.format('YYYY-MM-DD-HH-mm-ss');
 
 function createManager(url, outputFolder) {
-  return resultsStorage(url, timestamp, outputFolder).storageManager;
+  return resultsStorage(url, timestamp, { outputFolder }).storageManager;
 }
 
 describe('storageManager', function() {
