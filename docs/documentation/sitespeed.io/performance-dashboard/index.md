@@ -158,6 +158,11 @@ Do you need anything else? Since we store all the data in Graphite and use Grafa
 
 If you are new to [Grafana](https://grafana.com) you should checkout the [basic concepts](https://grafana.com/docs/guides/basic_concepts/) as a start. Grafana is used by Cern, NASA and many many tech companies like Paypal, Ebay and Digital Ocean and it will surely work for you too :)
 
+You can also confgigure all the thresholds (green/yellow/red) so they match what you need:
+
+![Configure thresholds in Grafana]({{site.baseurl}}/img/configuring-thresholds-grafana.jpg)
+{: .img-thumbnail}
+
 # Configure running your tests
 You have the dashboard and you need to collect metrics. You do that on one or multiple other servers. Do not do it on the same server as the dashboard setup since you want to have an as isolated environment as possible for your tests.
 
