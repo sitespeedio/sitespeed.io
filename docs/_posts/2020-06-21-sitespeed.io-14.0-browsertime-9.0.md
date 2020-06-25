@@ -13,11 +13,12 @@ nav: blog
 
 Let us celebrate over [10 million downloads](https://hub.docker.com/v2/repositories/sitespeedio/sitespeed.io/) of the sitespeed.io Docker container and release sitespeed.io 14 and Browsertime 9!
 
-There are four important new things in the new release:
+There are five important new things in the new release:
 * New updated Grafana dashboards with all the goodies from [Grafana 7.0](https://grafana.com/docs/grafana/latest/guides/whats-new-in-v7-0/). All Graphite dashboards is updated: sitespeed.io dashboards, WebPageTest and our plus-1 dashboard.
 * You can now see **all** screenshots for a run in sitespeed.io! This is super useful when you use scripting to test a user journey. You can take screenshots whenever you need and see the result on the result page, making it even easier then before to know what's going on.
 * We have a new section in the documentation: [web performance testing in practice focusing in synthetic testing]({{site.baseurl}}/documentation/sitespeed.io/web-performance-testing-in-practice/)! I've think this is the most comprehensive guide to synthetic testing that's out there.
 * You can [support us at Open Collective](https://opencollective.com/sitespeedio)! We need money to be able to run our test servers, run tests on mobile devices and use a dedicated bare metal server. Helping us with that will make sure we continue to release a bug free, feature rich Open Source tool!
+* You can get CrUx data direct from sitespeed.io (avoid using the +1 container) with the new crux-plugin.
 
 ## New dashboards
 
@@ -95,14 +96,29 @@ We also want to have a comprehensive guide on how to run your tests on bare meta
 
 You can help us by [supporting us at Open Collective](https://opencollective.com/sitespeedio)!
 
-## Other changes done earlier in 2020
+## CrUx data
+The only thing you need to get CrUX data is a Crux key. We collect data for the specific URL and for the origin. 
 
-We have done a lot of things earlier this year that we:
-* We have added support for Microsoft Edge ([Linux coming soon?](https://www.microsoftedgeinsider.com/en-us/download?platform=linux)).
-* We support Visual Metrics on Safari on OS X. 
-* You can run tests on Safari on iOS.
-* We made sure sitespeed.io works on OS X, Windows and Linux. If you want to run sitespeed.io without Docker, you can check [our GitHub Actions](https://github.com/sitespeedio/browsertime/tree/main/.github/workflows) as inspiration.
-* We moved to use **main** as default branch.
+You can choose to collect metrics for different form factors.
+
+Use it standalone without Browsertime:
+
+
+
+## Other changes done earlier in 2020
+We have done a lot of things earlier this year, we added support for Visual Metrics on Safari on OS X, use Safari Technology Preview on desktop and some tuning in using Safari on iOS.
+
+![Run Browsertime Safari]({{site.baseurl}}/img/safari.png)
+{: .img-thumbnail-center}
+
+We also added support for Microsoft Edge ([Linux coming soon?](https://www.microsoftedgeinsider.com/en-us/download?platform=linux)).
+
+![Run Browsertime Edge]({{site.baseurl}}/img/edge.png)
+{: .img-thumbnail-center}
+
+We made sure sitespeed.io works on OS X, Windows and Linux without using Docker. If you want to run sitespeed.io without Docker, you can check [our GitHub Actions](https://github.com/sitespeedio/browsertime/tree/main/.github/workflows) as inspiration.
+
+And we moved to use **main** as default branch for all projects.
 
 ## And more in the latest release
 We also done a couple of bug fixes. Checkout the [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md) and the [sitespeed.io changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md) for the full list. 

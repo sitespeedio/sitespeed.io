@@ -158,7 +158,7 @@ Do you need anything else? Since we store all the data in Graphite and use Grafa
 
 If you are new to [Grafana](https://grafana.com) you should checkout the [basic concepts](https://grafana.com/docs/guides/basic_concepts/) as a start. Grafana is used by Cern, NASA and many many tech companies like Paypal, Ebay and Digital Ocean and it will surely work for you too :)
 
-You can also confgigure all the thresholds (green/yellow/red) so they match what you need:
+You can also configure all the thresholds (green/yellow/red) so they match what you need:
 
 ![Configure thresholds in Grafana]({{site.baseurl}}/img/configuring-thresholds-grafana.jpg)
 {: .img-thumbnail}
@@ -166,7 +166,7 @@ You can also confgigure all the thresholds (green/yellow/red) so they match what
 # Configure running your tests
 You have the dashboard and you need to collect metrics. You do that on one or multiple other servers. Do not do it on the same server as the dashboard setup since you want to have an as isolated environment as possible for your tests.
 
-Go to the docmumentation on how to [continuously run your tests](/documentation/sitespeed.io/continuously-run-your-tests/) and learn how you can do that.
+Go to the documentation on how to [continuously run your tests](/documentation/sitespeed.io/continuously-run-your-tests/) and learn how you can do that.
 
 When you run the dashboard on a standalone server, you need to make sure your agents send the metrics to your Graphite server. Configure `--graphite.host` to the public IP address of your server. The default port when sending metrics to Graphite is 2003, so you don't have to include that.
 
