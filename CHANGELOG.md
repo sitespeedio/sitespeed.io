@@ -1,6 +1,10 @@
 # CHANGELOG - sitespeed.io
 
 ## 14.0.0 - UNRELEASED
+
+### Breaking change
+* If you use the JSON directly from Browsertime, the screenshot data is now an array instead of a string since you can have multiple screenshots in one run. If you use sitespeed.io directly you will not be affected by the change.
+
 ### Added
 * All dashboards for Graphite has been updated to use Grafana 7.0.0 with a new look and feel. 
 * Show all screenshots for a run in a tab [#3045](https://github.com/sitespeedio/sitespeed.io/pull/3045).
