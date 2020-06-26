@@ -1729,9 +1729,9 @@
       "integrity": "sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ=="
     },
     "@types/node": {
-      "version": "14.0.13",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-14.0.13.tgz",
-      "integrity": "sha512-rouEWBImiRaSJsVA+ITTFM6ZxibuAlTuNOCyxVbwreu6k6+ujs7DfnU9o+PShFhET78pMBl3eH+AGSI5eOTkPA=="
+      "version": "14.0.14",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-14.0.14.tgz",
+      "integrity": "sha512-syUgf67ZQpaJj01/tRTknkMNoBBLWJOBODF0Zm4NrXmiSuxjymFrxnTu1QVYRubhVkRcZLYZG8STTwJRdVm/WQ=="
     },
     "abbrev": {
       "version": "1.1.1",
@@ -2170,9 +2170,9 @@
       "integrity": "sha512-qhAVI1+Av2X7qelOfAIYwXONood6XlZE/fXaBSmW/T5SzLAmCgzi+eiWE7fUvbHaeNBQH13UftjpXxsfLkMpgw=="
     },
     "browsertime": {
-      "version": "9.0.0-beta.2",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-9.0.0-beta.2.tgz",
-      "integrity": "sha512-mPX43o+3rJJuQensXnDAwpnsA5v+tG9pf8FgYpja0NFExwKvc7VYfeJJeMfVAkRFC+wKKukRryHnTQE+ec+Rpw==",
+      "version": "9.0.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-9.0.0.tgz",
+      "integrity": "sha512-OllihXBtLF8fxkZoVOH2xDwVBYTFCiZRjyAYcC933afFQxSdejr7YnhTBeuEBuCMH2hcwpW5P/yHyxpkhe+qkg==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@sitespeed.io/chromedriver": "83.0.4103-39",

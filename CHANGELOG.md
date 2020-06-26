@@ -8,6 +8,7 @@
 ### Added
 * All dashboards for Graphite has been updated to use Grafana 7.0.0 with a new look and feel. 
 * Show all screenshots for a run in a tab [#3045](https://github.com/sitespeedio/sitespeed.io/pull/3045).
+* Updated to [Browsertime 9.0.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#900----2020-06-26).
 
 ### Fixed
 * Set user agent for --mobile on Chrome [#3046](https://github.com/sitespeedio/sitespeed.io/pull/3046)
