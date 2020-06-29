@@ -1,7 +1,7 @@
 version: '3'
 services:
     grafana:
-      image: grafana/grafana:7.0.3
+      image: grafana/grafana:7.0.4
       depends_on:
         - graphite
       links:
@@ -14,6 +14,7 @@ services:
         - GF_AUTH_ANONYMOUS_ENABLED=true
         - GF_USERS_ALLOW_SIGN_UP=false
         - GF_USERS_ALLOW_ORG_CREATE=false
+        - GF_INSTALL_PLUGINS=grafana-piechart-panel
       volumes:
         - grafana:/var/lib/grafana
       restart: always
@@ -37,7 +38,7 @@ services:
         # - /absolute/path/to/graphite/conf/storage-aggregation.conf:/opt/graphite/conf/storage-aggregation.conf
         # - /absolute/path/to/graphite/conf/carbon.conf:/opt/graphite/conf/carbon.conf
     grafana-setup:
-      image: sitespeedio/grafana-bootstrap:13.1.0
+      image: sitespeedio/grafana-bootstrap:14.0.0
       links:
         - grafana
       environment:
