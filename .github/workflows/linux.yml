@@ -49,7 +49,7 @@ jobs:
     - name: Run test without a CLI
       run: xvfb-run node test/runWithoutCli.js
     - name: Run tests with CruX
-      run: bin/sitespeed.js -b chrome -n 1 -crux.key ${{ secrets.CRUX_KEY }} --xvfb https://www.sitespeed.io
+      run: bin/sitespeed.js -b chrome -n 1 --crux.key ${{ secrets.CRUX_KEY }} --xvfb https://www.sitespeed.io
     - name: Run tests on WebPageTest
       run: bin/sitespeed.js -b chrome -n 2 --summaryDetail --browsertime.chrome.timeline https://www.sitespeed.io/ --webpagetest.key ${{ secrets.WPT_KEY }} --xvfb
     
