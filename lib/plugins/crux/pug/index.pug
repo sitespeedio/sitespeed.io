@@ -12,6 +12,7 @@ mixin sizeCell(title, size)
 
 a
 h2 CrUx
+p.small Chrome User Experience Report (CrUx) is powered by real user measurement across the public web, aggregated from users who have opted-in to syncing their browsing history, have not set up a Sync passphrase, and have usage statistic reporting enabled and is using Chrome.
 
 - const crux = pageInfo.data.crux.pageSummary;
 - const metrics = {first_contentful_paint:'First Contentful Paint (FCP)', largest_contentful_paint: 'Largest Contentful Paint (LCP)', first_input_delay:'First Input Delay (FID)', cumulative_layout_shift: 'Cumulative Layout Shift'}; 
@@ -19,10 +20,10 @@ h2 CrUx
 
 each experience in experiences
   if experience === 'loadingExperience'
-    p Over the last 30 days, this is the field data for this page from the Chrome User Experience Report.
+    p Over the last 30 days, this is the field data for this page for Chrome users.
   else 
     h4 All pages served from this origin
-    p This is a summary of all pages served from this origin in the Chrome User Experience Report over the last 30 days.
+    p This is a summary of all pages served from this origin over the last 30 days for Chrome users.
 
   if crux[experience]
     each formFactor in Object.keys(crux[experience])
