@@ -44,7 +44,7 @@ each experience in experiences
         h4 Distribution
         table
           each name, key in metrics
-            if crux[experience][formFactor].data.record.metrics[key].histogram
+            if crux[experience][formFactor].data.record.metrics[key] && crux[experience][formFactor].data.record.metrics[key].histogram
               tr
                 th #{name}
                 th Min
