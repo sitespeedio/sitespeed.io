@@ -1,15 +1,17 @@
 ---
 layout: default
 title: sitespeed.io 14.0 and Browsertime 9.0  
-description: New fresh dashboards, support for multiple screenshots and documentation for synthetic testing.
+description: New fresh dashboards, support for multiple screenshots, the easiest way to get Chrome User Experience data and documentation for how to do synthetic testing.
 authorimage: /img/aboutus/peter.jpg
-intro: New fresh dashboards, support for multiple screenshots and documentation for synthetic testing.
+intro: New fresh dashboards, support for multiple screenshots, the easiest way to get Chrome User Experience data and documentation for how to do synthetic testing.
 keywords: sitespeed.io, browsertime, webperf
-image: https://www.sitespeed.io/img/sustainable-web.jpg
+image: https://www.sitespeed.io/img/8bit.png
 nav: blog
 ---
 
 # sitespeed.io 14.0 and Browsertime 9.0 
+
+<img src="{{site.baseurl}}/img/8bit.png" class="pull-right img-big" alt="sitespeed.io the only Web Performance tool that run on a Commodore 64" width="250" height="213">
 
 Let us celebrate over [10 million downloads](https://hub.docker.com/v2/repositories/sitespeedio/sitespeed.io/) of the sitespeed.io Docker container and release sitespeed.io 14 and Browsertime 9!
 
@@ -63,6 +65,11 @@ And AXE, CO2 and errors (and a lot more).
 ![Page summary co2]({{site.baseurl}}/img/page-summary-dashboard-3.jpg)
 {: .img-thumbnail}
 
+We also added a new dashboard for your sites data from the [Chrome User Experience Report plugin](/documentation/sitespeed.io/crux/).
+
+![CruX]({{site.baseurl}}/img/crux-dashboard.jpg)
+{: .img-thumbnail}
+
 And if you use the +1 container running Google stuff you can graph Google Page Speed Insights data including CrUx out of the box and it looks like this:
 
 ![Plus 1 dashboard]({{site.baseurl}}/img/plus-1-dashboard.jpg)
@@ -97,13 +104,9 @@ We also want to have a comprehensive guide on how to run your tests on bare meta
 You can help us by [supporting us at Open Collective](https://opencollective.com/sitespeedio)!
 
 ## CrUx data
-The only thing you need to get CrUX data is a Crux key. We collect data for the specific URL and for the origin. 
+We have built a new [Chrome User Experience Report plugin](/documentation/sitespeed.io/crux/) that comes bundled with sitespeed.io. The only thing you need to get CrUX data is a [CrUx API key](https://developers.google.com/web/tools/chrome-user-experience-report/api/guides/getting-started#APIKey). We collect data for the specific URL and for the origin. 
 
-You can choose to collect metrics for different form factors.
-
-Use it standalone without Browsertime:
-
-
+You can get the data per form factor, or for all of them. Read [the documentation on how to best setup CrUx](/documentation/sitespeed.io/crux/)!
 
 ## Other changes done earlier in 2020
 We have done a lot of things earlier this year, we added support for Visual Metrics on Safari on OS X, use Safari Technology Preview on desktop and some tuning in using Safari on iOS.

@@ -112,6 +112,13 @@ We are so proud of our [leaderboard dashboard](https://dashboard.sitespeed.io/da
 {: .img-thumbnail}
 
 
+## Chrome User Experience Report
+
+Using our [Chrome User Experience Report plugin](/documentation/sitespeed.io/crux/) you can get the metrics Chrome collect from real users. We have a [ready made dashboard](https://dashboard.sitespeed.io/dashboard/db/chrome-user-experience-report) where you can look at the data on URL and origin level.
+
+![CruX]({{site.baseurl}}/img/crux-dashboard.jpg)
+{: .img-thumbnail}
+
 ## WebPageTest dashboards
 We have four optional dashboards for WebPageTest that you can use if you drive WebPageTest using sitespeed.io. They follow the same pattern as the sitespeed.io dashboards with WebPageTest data.
 
