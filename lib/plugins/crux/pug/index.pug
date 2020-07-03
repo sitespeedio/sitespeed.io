@@ -19,9 +19,9 @@ p.small Chrome User Experience Report (CrUx) is powered by real user measurement
 - const experiences = ['loadingExperience','originLoadingExperience'];
 
 each experience in experiences
-  if experience === 'loadingExperience'
+  if experience === 'loadingExperience' && crux[experience]
     p Over the last 30 days, this is the field data for this page for Chrome users.
-  else 
+  else if crux[experience]
     h4 All pages served from this origin
     p This is a summary of all pages served from this origin over the last 30 days for Chrome users.
 
