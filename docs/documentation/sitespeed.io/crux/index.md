@@ -24,7 +24,7 @@ sitespeed.io has a CrUx plugin that can collect data from the [Chrome User Exper
 sitespeed.io --crux.key $CRUX_API_KEY https://www.sitespeed.io
 ~~~
 
-If you send the data to Graphite you want to push the data to its own namespace ```--graphite.namespace sitespeedio.crux``` and you probably want to seperate the data from your sitespeed.io data, so you can disable Browsertime and do one run just to get the CrUX data. CrUx data changes doesn't change so often so you can just run it once per day.
+If you send the data to Graphite you want to push the data to its own namespace ```--graphite.namespace sitespeedio.crux``` and you probably want to seperate the data from your sitespeed.io data, so you can disable Browsertime and do one run just to get the CrUx data. CrUx data changes doesn't change so often so you can just run it once per day.
 
 The plugin collect data for the specific URL that you test AND the origin (domain). 
 
@@ -41,6 +41,15 @@ The CrUx data has four different buckets depending on device: DESKTOP, PHONE, TA
 
 ~~~bash
 sitespeed.io --crux.key $CRUX_API_KEY --crux.formFactor PHONE --crux.formFactor ALL https://www.sitespeed.io
+~~~
+
+
+## Collect URL or origin data or both
+You can choose to collect data specific only for a URL, for the origin (domain) or for both of them (using **ALL**). Use the switch ```--crux.collect```. By default both URL and origin data is collected.
+
+Lets collect only origin data:
+~~~bash
+sitespeed.io --crux.key $CRUX_API_KEY --crux.collect ORIGIN https://www.sitespeed.io
 ~~~
 
 ## Limitations
