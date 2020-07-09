@@ -1,0 +1,67 @@
+mixin rowHeading(items)
+  thead
+    tr
+      each item in items
+        th= item
+
+mixin numberCell(title, number)
+  td.number(data-title=title)= number
+
+mixin sizeCell(title, size)
+  td.number(data-title=title, data-value= size)= h.size.format(size)
+
+a
+h2 CrUx
+p.small Chrome User Experience Report (CrUx) is powered by real user measurement across the public web, aggregated from users who have opted-in to syncing their browsing history, have not set up a Sync passphrase, and have usage statistic reporting enabled and is using Chrome.
+
+- const crux = pageInfo.data.crux.pageSummary;
+- const metrics = {first_contentful_paint:'First Contentful Paint (FCP)', largest_contentful_paint: 'Largest Contentful Paint (LCP)', first_input_delay:'First Input Delay (FID)', cumulative_layout_shift: 'Cumulative Layout Shift'}; 
+- const experiences = ['loadingExperience','originLoadingExperience'];
+
+each experience in experiences
+  if experience === 'loadingExperience' && crux[experience]
+    p Over the last 30 days, this is the field data for this page for Chrome users.
+  else if crux[experience]
+    h4 All pages served from this origin
+    p This is a summary of all pages served from this origin over the last 30 days for Chrome users.
+
+  if crux[experience]
+    each formFactor in Object.keys(crux[experience])
+      if (crux[experience][formFactor] && crux[experience][formFactor].data)
+        h3 Form Factor #{formFactor}
+        table
+          thead
+            tr
+              th Metric
+              th Value
+          tbody
+            each name, key in metrics
+              if crux[experience][formFactor].data.record.metrics[key]
+                tr
+                  td #{name} 75 percentile
+                  td #{crux[experience][formFactor].data.record.metrics[key].percentiles.p75} #{key.indexOf('cumulative') > -1 ? '': 'ms'}
+        
+        h4 Distribution
+        table
+          each name, key in metrics
+            if crux[experience][formFactor].data.record.metrics[key] && crux[experience][formFactor].data.record.metrics[key].histogram
+              tr
+                th #{name}
+                th Min
+                th Max
+                th Users
+              tr
+                td Fast
+                td #{crux[experience][formFactor].data.record.metrics[key].histogram[0].start}
+                td #{crux[experience][formFactor].data.record.metrics[key].histogram[0].end}
+                td #{Number(crux[experience][formFactor].data.record.metrics[key].histogram[0].density * 100).toFixed(2)} %
+              tr
+                td Moderate
+                td #{crux[experience][formFactor].data.record.metrics[key].histogram[1].start}
+                td #{crux[experience][formFactor].data.record.metrics[key].histogram[1].end}
+                td #{Number(crux[experience][formFactor].data.record.metrics[key].histogram[1].density * 100).toFixed(2)} %
+              tr
+                td Slow
+                td #{crux[experience][formFactor].data.record.metrics[key].histogram[2].start}
+                td #{crux[experience][formFactor].data.record.metrics[key].histogram[2].end}
+                td #{Number(crux[experience][formFactor].data.record.metrics[key].histogram[2].density * 100).toFixed(2)} %

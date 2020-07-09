@@ -41,7 +41,6 @@
     "pug-lint": "pug-lint lib/plugins/html/templates",
     "test": "mocha",
     "check-licenses": "tools/check-licenses.js",
-    "lint-and-unit": "npm run eslint-check && npm run lint && npm run test",
     "build:css": "node-sass lib/plugins/html/src/sass/main.scss > lib/plugins/html/assets/css/index.css && cleancss -o lib/plugins/html/assets/css/index.min.css lib/plugins/html/assets/css/index.css && rm lib/plugins/html/assets/css/index.css",
     "generate:assets": "mkdir -p assets/$npm_package_version && cp -R lib/plugins/html/assets/ assets/$npm_package_version/"
   },
@@ -71,7 +70,7 @@
     "@tgwf/co2": "0.6.1",
     "aws-sdk": "2.701.0",
     "axe-core": "3.5.5",
-    "browsertime": "9.0.0-beta.1",
+    "browsertime": "9.0.2",
     "coach-core": "5.1.0",
     "cli-color": "2.0.0",
     "concurrent-queue": "7.0.2",
