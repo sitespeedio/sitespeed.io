@@ -151,8 +151,8 @@ There are a couple of different ways to choose which device to use:
 
 * `--safari.deviceName` set the device name. Device names for connected devices are shown in iTunes.
 * `--safari.deviceUDID` set the device UDID. If Xcode is installed, UDIDs for connected devices are available via the output of instruments(1) and in the Device and Simulators window accessed in Xcode via "Window > Devices and Simulators")
-* `--safari.deviceType` set the device type. If the value of *safari:deviceType* is `iPhone`, safaridriver will only create a sessio using an iPhone device or iPhone simulator. If the value of *safari:deviceType* is `iPad`, safaridriver will only create a session using an iPad device or iPad simulator.
-* `--safari.useSimulator` if the value of useSimulator is true, safaridriver will only use iOS Simulator hosts. If the value of safari:useSimulator is false, safaridriver will not use iOS Simulator hosts. NOTE: An Xcode installation is required in order to run WebDriver tests on iOS
+* `--safari.deviceType` set the device type. If the value of *safari:deviceType* is `iPhone`, SafariDriver will only create a session using an iPhone device or iPhone simulator. If the value of *safari:deviceType* is `iPad`, SafariDriver will only create a session using an iPad device or iPad simulator.
+* `--safari.useSimulator` if the value of useSimulator is true, SafariDriver will only use iOS Simulator hosts. If the value of safari:useSimulator is false, SafariDriver will not use iOS Simulator hosts. NOTE: An Xcode installation is required in order to run WebDriver tests on iOS
 
 #### Use Safari Technology Preview
 If you have Safari Technology Preview installed you can use it to run your test. Add `--safari.useTechnologyPreview` to your test.
@@ -176,7 +176,7 @@ sitespeed.io -b edge https://www.sitespeed.io
 Edge use the exact same setup as Chrome (except the driver), so you use `--chrome.*` to configure Edge :) 
 
 ## Choose when to end your test
-By default the browser will collect data until  [window.performance.timing.loadEventEnd happens + aprox 5 seconds more](https://github.com/sitespeedio/browsertime/blob/d68261e554470f7b9df28797502f5edac3ace2e3/lib/core/seleniumRunner.js#L15). That is perfectly fine for most sites, but if you do Ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (```--browsertime.pageCompleteCheck```). When the scripts returns true the browser will close or if the timeout time is reached.
+By default the browser will collect data until  [window.performance.timing.loadEventEnd happens + approx 5 seconds more](https://github.com/sitespeedio/browsertime/blob/d68261e554470f7b9df28797502f5edac3ace2e3/lib/core/seleniumRunner.js#L15). That is perfectly fine for most sites, but if you do Ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (```--browsertime.pageCompleteCheck```). When the scripts returns true the browser will close or if the timeout time is reached.
 
 In this example we wait 10 seconds until the loadEventEnd happens, but you can also choose to trigger it at a specific event.
 
@@ -248,16 +248,16 @@ You can generate a TCP dump with `--tcpdump`.
 docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --tcpdump
 ~~~
 
-You can then download the tcp dump for each iteration and the SSL key log file from the result page.
+You can then download the TCP dump for each iteration and the SSL key log file from the result page.
 
 Packets will be written when the buffer is flushed. If you want to force packets to be written to the file when they arrive you can do that with `--tcpdumpPacketBuffered`.
 
 ## WebDriver
 We use the WebDriver to drive the browser. We use [Chromedriver](https://chromedriver.chromium.org) for Chrome, [Geckodriver](https://github.com/mozilla/geckodriver/releases) for Firefox, [Edgedriver](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/) for Edge and [Safaridriver](https://developer.apple.com/documentation/webkit/testing_with_webdriver_in_safari) for Safari.
 
-When you install sitespeed.io/Browsertime we also install the latest released driver for Chrome, Edge and Firefox. Safari comes bundled with Safari driver. For Chrome the Chromedriver version needs to match the Chrome version. That can be annying if you want to test on old browsers, coming developer versions or on Android where that version hasn't been released yet.
+When you install sitespeed.io/Browsertime we also install the latest released driver for Chrome, Edge and Firefox. Safari comes bundled with Safari driver. For Chrome the Chromedriver version needs to match the Chrome version. That can be annoying if you want to test on old browsers, coming developer versions or on Android where that version hasn't been released yet.
 
-You can download the Chromedriver yourself from the [Google repo](https://chromedriver.storage.googleapis.com/index.html) and use ```--chrome.chromedriverPath``` to help Browsertime find it or you can choose which version to install when you install sitespeed.io with a environment variable: ```CHROMEDRIVER_VERSION=81.0.4044.20 npm install ```
+You can download the ChromeDriver yourself from the [Google repo](https://chromedriver.storage.googleapis.com/index.html) and use ```--chrome.chromedriverPath``` to help Browsertime find it or you can choose which version to install when you install sitespeed.io with a environment variable: ```CHROMEDRIVER_VERSION=81.0.4044.20 npm install ```
 
 You can also choose versions for Edge and Firefox with `EDGEDRIVER_VERSION` and `GECKODRIVER_VERSION`.
 
