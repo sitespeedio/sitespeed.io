@@ -1,9 +1,11 @@
 # CHANGELOG - sitespeed.io
 
-## 14.0.0 - UNRELEASED
+## 14.0.0 - 2020-07-09
 
 ### Breaking change
 * If you use the JSON directly from Browsertime, the screenshot data is now an array instead of a string since you can have multiple screenshots in one run. If you use sitespeed.io directly you will not be affected by the change.
+
+* Remove experimental flag for perIteration metric for Graphite [#3069](https://github.com/sitespeedio/sitespeed.io/pull/3069). If you want to send per iteration data to Graphite use ```--graphite.perIteration```.
 
 ### Added
 * All dashboards for Graphite has been updated to use Grafana 7.0.0 with a new look and feel. 
@@ -15,6 +17,7 @@
 ### Fixed
 * Set user agent for --mobile on Chrome [#3046](https://github.com/sitespeedio/sitespeed.io/pull/3046)
 * Updated dependencies: axe-core 3.5.5, dayjs 1.8.28, influx 5.5.2, simplecrawler 1.1.9, yargs 15.3.1, Pug 3, AWS 2.701.0, fs-extra 9.0.1, uuid 8.1.0, google-cloud/storage 5.1.1, third party web 0.12.0, cli-color 2.0.0, coach-core, PageXray and Throttle.
+* Fixed using LCP in budget [#3074](https://github.com/sitespeedio/sitespeed.io/pull/3074).
 
 ## 13.3.2 - 2020-06-18
 ### Fixed
