@@ -2,10 +2,21 @@
 
 ## 14.0.0 - 2020-07-09
 
-### Breaking change
+Let us celebrate over [10 million downloads](https://hub.docker.com/v2/repositories/sitespeedio/sitespeed.io/) of the sitespeed.io Docker container and release sitespeed.io 14 and Browsertime 9!
+
+Read all about the changes in the [14.0 blog post](https://www.sitespeed.io/sitespeed.io-14.0-browsertime-9.0/).
+
+There are five important new things in the new release:
+* New updated Grafana dashboards with all the goodies from [Grafana 7.0](https://grafana.com/docs/grafana/latest/guides/whats-new-in-v7-0/). All Graphite dashboards is updated: sitespeed.io dashboards, WebPageTest and our plus-1 dashboard.
+* You can now see **all** screenshots for a run in sitespeed.io! This is super useful when you use scripting to test a user journey. You can take screenshots whenever you need and see the result on the result page, making it even easier then before to know what's going on.
+* We have a new section in the documentation: [web performance testing in practice focusing in synthetic testing]({https://www.sitespeed.io/documentation/sitespeed.io/web-performance-testing-in-practice/)! I've think this is the most comprehensive guide to synthetic testing that's out there.
+* You can [support us at Open Collective](https://opencollective.com/sitespeedio)! We need money to be able to run our test servers, run tests on mobile devices and use a dedicated bare metal server. Helping us with that will make sure we continue to release a bug free, feature rich Open Source tool!
+* You can get CrUx data direct from sitespeed.io (avoid using the +1 container) with the new [crux-plugin](https://www.sitespeed.io/documentation/sitespeed.io/crux/).
+
+### Breaking changes
 * If you use the JSON directly from Browsertime, the screenshot data is now an array instead of a string since you can have multiple screenshots in one run. If you use sitespeed.io directly you will not be affected by the change.
 
-* Remove experimental flag for perIteration metric for Graphite [#3069](https://github.com/sitespeedio/sitespeed.io/pull/3069). If you want to send per iteration data to Graphite use ```--graphite.perIteration```.
+* The experimental flag for perIteration metric for Graphite [#3069](https://github.com/sitespeedio/sitespeed.io/pull/3069) has been removed. If you want to send per iteration data to Graphite use ```--graphite.perIteration```.  
 
 ### Added
 * All dashboards for Graphite has been updated to use Grafana 7.0.0 with a new look and feel. 
@@ -15,7 +26,7 @@
 * The +1 container uses Lighthouse 6.1.0.
 
 ### Fixed
-* Set user agent for --mobile on Chrome [#3046](https://github.com/sitespeedio/sitespeed.io/pull/3046)
+* Set user agent for ```--mobile``` on Chrome [#3046](https://github.com/sitespeedio/sitespeed.io/pull/3046)
 * Updated dependencies: axe-core 3.5.5, dayjs 1.8.28, influx 5.5.2, simplecrawler 1.1.9, yargs 15.3.1, Pug 3, AWS 2.701.0, fs-extra 9.0.1, uuid 8.1.0, google-cloud/storage 5.1.1, third party web 0.12.0, cli-color 2.0.0, coach-core, PageXray and Throttle.
 * Fixed using LCP in budget [#3074](https://github.com/sitespeedio/sitespeed.io/pull/3074).
 
