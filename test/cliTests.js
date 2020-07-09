@@ -148,9 +148,9 @@ describe('cli', () => {
         'Break up number of metrics to send with each request.'
       );
 
-      expect(stdout).to.contain('--graphite.experimental.perIteration');
+      expect(stdout).to.contain('--graphite.perIteration');
       expect(stdout).to.contain(
-        'Experimental setup to send each iteration of metrics to Graphite. Experimental means this can change and is not released as stable. Use it with care.'
+        'Send each iteration of metrics to Graphite. By default we only send page summaries (the summaries of all runs) but you can also send all the runs. Make sure to setup statsd or Graphite correctly to handle it.'
       );
     });
 

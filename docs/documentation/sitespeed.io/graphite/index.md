@@ -72,7 +72,7 @@ You can choose the namespace under where sitespeed.io will publish the metrics. 
 
 Each URL is by default split into domain and the URL when we send it to Graphite. By default sitespeed.io remove query parameters from the URL bit if you need them you can change that by adding <code>--graphite.includeQueryParams</code>.
 
-If you want metrics from each iteration you can use <code>--graphite.experimental.perIteration</code>. Using this will give raw metrics that are not aggregated (min, max, median, mean). The structure for those metrics is experimental and can change.
+If you want metrics from each iteration you can use <code>--graphite.perIteration</code>. Using this will give raw metrics that are not aggregated (min, max, median, mean).
 
 If you use Graphite < 1.0 you need to make sure the tags in the annotations follow the old format, you do that by adding <code>--graphite.arrayTags</code>.
 
