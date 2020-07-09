@@ -39,6 +39,7 @@ Imagemagick
 FFMpeg
 WebDriver
 GeckoDriver
+Kubernetes
 ChromeDriver
 Leaderboard
 Homebrew
@@ -47,3 +48,7 @@ DevTools
 sudo
 PageXray
 leaderboard
+Wikimedia
+mitmproxy
+travis.yml
+Moto
