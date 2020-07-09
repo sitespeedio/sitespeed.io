@@ -111,6 +111,13 @@ async function runBrowsertime() {
       describe: 'The browser view port size WidthxHeight like 400x300',
       group: 'Browser'
     })
+    .option('browsertime.android', {
+      alias: 'android',
+      type: 'boolean',
+      default: false,
+      describe:
+        'Short key to use Android. Will automatically use com.android.chrome for Chrome and stable Firefox. If you want to use another Chrome version, use --chrome.android.package'
+    })
     .config(config);
 
   const defaultConfig = {

@@ -22,5 +22,5 @@ In the new release we support testing sites behind Basic Auth as long as you use
 * Show backEndTime in Summary Timings (to make it easy to find runs with same backEndTime).
 * If WebPageTest fails we always log the WebPageTest id so you easily can backtrack the error.
 
-Checkout the full [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) for all changes.
+Checkout the full [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md) for all changes.
 /Peter

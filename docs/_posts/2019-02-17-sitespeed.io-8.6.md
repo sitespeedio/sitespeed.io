@@ -10,7 +10,7 @@ nav: blog
 
 # Sitespeed.io 8.6
 
-You should look at the full [changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md), the last 7 days we released a couple of releases with bug fixes and some new (smallish) features.
+You should look at the full [changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md), the last 7 days we released a couple of releases with bug fixes and some new (smallish) features.
 
 ## Features
 

@@ -35,7 +35,7 @@ The following plugins are enabled: assets,browsertime,coach,domains,ithubhtml
 ...
 ~~~
 
-The default plugins lives in the [plugin folder](https://github.com/sitespeedio/sitespeed.io/tree/master/lib/plugins). This is a good starting place to look at if you wanna build your own plugin.
+The default plugins lives in the [plugin folder](https://github.com/sitespeedio/sitespeed.io/tree/main/lib/plugins). This is a good starting place to look at if you wanna build your own plugin.
 
 ## Disable a plugin
 You can remove/disable default plugins if needed. For instance you may not want to output HTML and strictly send the data to Graphite.
@@ -173,11 +173,11 @@ The *context* holds information for this specific run that generated at runtime 
 }
 ~~~
 
-You can checkout the [StorageManager](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/core/resultsStorage/storageManager.js),
-[messageMaker](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/messageMaker.js),
-[statsHelpers](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/statsHelpers.js) and [filterRegistry](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/filterRegistry.js) to get feel how you can use them.
+You can checkout the [StorageManager](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/core/resultsStorage/storageManager.js),
+[messageMaker](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/support/messageMaker.js),
+[statsHelpers](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/support/statsHelpers.js) and [filterRegistry](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/support/filterRegistry.js) to get feel how you can use them.
 
-The *options* are the options that a user will supply in the CLI, checkout the [CLI implementation](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/support/cli.js) to see all the options.
+The *options* are the options that a user will supply in the CLI, checkout the [CLI implementation](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/support/cli.js) to see all the options.
 
 ### processMessage(message, queue)
 The processMessage function in your plugin is called for each and every message that is passed in the application. So what's a message you may ask? Everything is a message in sitespeed.io.:) A message contains the following information:
@@ -287,7 +287,7 @@ queue.postMessage(
 );
 ~~~
 
-You can look at the standalone [GPSI plugin](https://github.com/sitespeedio/plugin-gpsi) or the [WebPageTest plugin](https://github.com/sitespeedio/sitespeed.io/tree/master/lib/plugins/webpagetest) as an example plugin that both sends run and pageSummary data.
+You can look at the standalone [GPSI plugin](https://github.com/sitespeedio/plugin-gpsi) or the [WebPageTest plugin](https://github.com/sitespeedio/sitespeed.io/tree/main/lib/plugins/webpagetest) as an example plugin that both sends run and pageSummary data.
 
 ## Let your plugin collect metrics using Browsertime
 
@@ -342,10 +342,10 @@ queue.postMessage(make('budget.addMessageType', {type: 'gpsi.pagesummary'}));
 ~~~
 
 ## Testing your plugin
-If your plugin lives on GitHub you should check out our [example Travis-ci file](https://github.com/sitespeedio/plugin-gpsi/blob/master/.travis.yml) for the GPSI plugin. In the example, we checkout the sitespeed.io project and run the plugin against the latest master (we also run it daily in the Travis crontab).
+If your plugin lives on GitHub you should check out our [example Travis-ci file](https://github.com/sitespeedio/plugin-gpsi/blob/main/.travis.yml) for the GPSI plugin. In the example, we checkout the sitespeed.io project and run the plugin against the latest main (we also run it daily in the Travis crontab).
 
 ## Example plugin(s)
-You can look at the standalone [GPSI plugin](https://github.com/sitespeedio/plugin-gpsi) or the [WebPageTest plugin](https://github.com/sitespeedio/sitespeed.io/tree/master/lib/plugins/webpagetest).
+You can look at the standalone [GPSI plugin](https://github.com/sitespeedio/plugin-gpsi) or the [WebPageTest plugin](https://github.com/sitespeedio/sitespeed.io/tree/main/lib/plugins/webpagetest).
 
 ## Find plugins
 We keep a list of plugins at [https://github.com/sitespeedio/plugins](https://github.com/sitespeedio/plugins). If you wanna add your plugin, send a PR!

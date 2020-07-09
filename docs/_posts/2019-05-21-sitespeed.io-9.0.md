@@ -57,7 +57,7 @@ You can now track CPU spent per tool/third party. It's turned off by default and
 ![CPU spent per tool]({{site.baseurl}}/img/cpu-per-tool.png)
 {: .img-thumbnail}
 
-The Grafana dashboards are updated to include the new metrics if you use Graphite. You can [download the new page timing metric dashboard](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/master/dashboards/graphite/PageTimingMetrics.json).
+The Grafana dashboards are updated to include the new metrics if you use Graphite. You can [download the new page timing metric dashboard](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/main/dashboards/graphite/PageTimingMetrics.json).
 
 ### Easier way of blocking 3rd parties
 
@@ -132,7 +132,7 @@ At the moment you find the info in the raw tab:
 
 
 ## Changelog
-To see all changes and the PRs you should read the [changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md). 
+To see all changes and the PRs you should read the [changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md). 
 
 Remember when you upgrade there are two things that can change: Metrics could be a little slower in Chrome since we now collect more trace log (only when you turn on CPU tracing) and there are new categoris for the CPU trace! If you use Lighthouse and had your own hack for including the HTML, that isn't needed any more.
 

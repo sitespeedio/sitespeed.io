@@ -13,7 +13,7 @@ twitterdescription: Documentation for Browsertime.
 
 <img src="{{site.baseurl}}/img/logos/browsertime.png" class="pull-right img-big" alt="Browsertime logo" width="200" height="175">
 
-Browsertime is the heart of sitespeed.io that handles everything with the browser. At the moment we support Chrome and Firefox on desktop, Chrome on Android and limited support for Safari on OS X and iOS. You can see all the latest changes in the [Changelog](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md) for the project.
+Browsertime is the heart of sitespeed.io that handles everything with the browser. At the moment we support Chrome and Firefox on desktop, Chrome on Android and limited support for Safari on OS X and iOS. You can see all the latest changes in the [Changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md) for the project.
 
  * [Introduction](introduction/) - what you can do with Browsertime.
  * [Installation](installation/) - install using npm, yarn or run our Docker containers.

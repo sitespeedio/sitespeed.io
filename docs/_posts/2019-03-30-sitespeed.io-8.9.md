@@ -16,7 +16,7 @@ The [Third party web](https://github.com/patrickhulce/third-party-web) project l
 
 One thing to remember is that a tool can have multiple categories. For example, it can be both a analytics tool AND a [surveillance](https://en.wikipedia.org/wiki/Surveillance_capitalism) tool.
 
-By default the third party information will be sent to Graphite/InfluxDb and if you are a Graphite user you can upgrade the page summary dashboard to [the latest version](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/master/dashboards/graphite/PageSummary.json). You will then get two new graphs.
+By default the third party information will be sent to Graphite/InfluxDb and if you are a Graphite user you can upgrade the page summary dashboard to [the latest version](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/main/dashboards/graphite/PageSummary.json). You will then get two new graphs.
 
 The first graph shows you third party requests by category. Here can you see how many requests each category generates.
 
@@ -37,12 +37,12 @@ And then also see the exact tools that are used.
 ![Third party tools]({{site.baseurl}}/img/8.9/thirdparty-tools-html.png)
 {: .img-thumbnail}
 
-At the moment we are very liberate on categorising tools as surveillance and need your help to get it right. Do a PR to help us help by changing [https://github.com/sitespeedio/sitespeed.io/blob/master/lib/plugins/thirdparty/index.js#L34-L38](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/plugins/thirdparty/index.js#L34-L38).
+At the moment we are very liberate on categorising tools as surveillance and need your help to get it right. Do a PR to help us help by changing [https://github.com/sitespeedio/sitespeed.io/blob/main/lib/plugins/thirdparty/index.js#L34-L38](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/plugins/thirdparty/index.js#L34-L38).
 
 The new categorisation happens automatically. But you should still use the `--firstParty` regex to categorise requests since it is used when we internally categorise requests and gives you the flexibility to choose what requests are first/third party.
 
 We also moved the 3rd part information from PageXray to the new tab and hopefully we can add more data there in the future. What about download time spent per tool and CPU time? Would love your help there if you are a user and your web site have a lot of third parties.
 
-8.9.0 also contains a couple of bug fixes that you can read about in the [changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md).
+8.9.0 also contains a couple of bug fixes that you can read about in the [changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md).
 
 /Peter

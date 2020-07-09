@@ -24,20 +24,20 @@ You need [Docker](https://docs.docker.com/engine/installation/) and [Docker Comp
 
 # Up and running in (almost) 5 minutes
 
-1. Download our Docker compose file: <code>curl -O https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/docker-compose.yml</code>
+1. Download our Docker compose file: <code>curl -O https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/docker-compose.yml</code>
 2. Run: <code>docker-compose up -d</code> (make sure you run the latest [Docker compose](https://docs.docker.com/compose/install/) version)
-3. Run sitespeed to get some metrics: <code> docker-compose run sitespeed.io https://www.sitespeed.io/ --graphite.host=graphite</code>
-4. Access the dashboard: http://127.0.0.1:3000 (if you use docker machine you need to get the ip with `docker-machine ip`)
+3. Run sitespeed to get some metrics: <code> docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --graphite.host=host.docker.internal</code> (running on Linux? [Check how to access localhost]({{site.baseurl}}/documentation/sitespeed.io/docker/#access-localhost)).
+4. Access the dashboard: http://127.0.0.1:3000
 5. When you are done you can shut down and remove all the Docker containers by running <code>docker-compose stop && docker-compose rm</code>. Container data will be kept.
 6. To start from scratch, also remove the Graphite and Grafana data volumes by running `docker volume rm performancedashboard_graphite performancedashboard_grafana`.
 
 
-If you want to play with the dashboards, the default login is sitespeedio and password is ...well check out the [docker-compose.yml file](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/docker-compose.yml).
+If you want to play with the dashboards, the default login is sitespeedio and password is ...well check out the [docker-compose.yml file](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/docker-compose.yml).
 
 When you run this in production make sure to checkout [our production guidelines](#production-guidelines).
 
 ## Docker compose file
-We have prepared a Docker Compose file that downloads and sets up Graphite/Grafana and sitespeed.io with a couple of example dashboards. It works perfectly when you want to try it out on localhost, but if you want to run it in production, you should modify it by making sure that the metrics are stored outside of your container/volumes. If you prefer InfluxDB over Graphite, you can use that too, but right now we only have [one ready-made dashboard](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/master/dashboards/influxdb/pageSummary.json) for InfluxDB (thank you Olivier Jan for contributing to that dashboard!).
+We have prepared a Docker Compose file that downloads and sets up Graphite/Grafana and sitespeed.io with a couple of example dashboards. It works perfectly when you want to try it out on localhost, but if you want to run it in production, you should modify it by making sure that the metrics are stored outside of your container/volumes. If you prefer InfluxDB over Graphite, you can use that too, but right now we only have [one ready-made dashboard](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/main/dashboards/influxdb/pageSummary.json) for InfluxDB (thank you Olivier Jan for contributing to that dashboard!).
 
 ## Pre-made dashboards
 We insert ready-made dashboards with a Docker container using curl, making it easy for you to get started. You can check out the container with the dashboards here: [https://github.com/sitespeedio/grafana-bootstrap-docker](https://github.com/sitespeedio/grafana-bootstrap-docker)
@@ -125,10 +125,10 @@ To run this in production (=not on your local dev machine) you should make some 
     - Run Grafana/Graphite on another server instance.
 2. Change the default user and password for Grafana.
 3. Change the default [user and password for Graphite](https://hub.docker.com/r/sitespeedio/graphite/).
-4. Make sure you have [configured storage-aggregation.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/graphite/conf/storage-aggregation.conf) in Graphite to fit your needs.
-5. Configure your [storage-schemas.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/graphite/conf/storage-schemas.conf) how long you wanna store your metrics.
-6. *MAX_CREATES_PER_MINUTE* is usually quite low in [carbon.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/master/docker/graphite/conf/carbon.conf). That means you will not get all the metrics created for the first run, so you can increase it.
-7. Map the Graphite volume to a physical directory outside of Docker to have better control (both Whisper and [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/master/docker/graphite/graphite.db)). Map them like this on your physical server (make sure to copy the empty [graphite.db]((https://github.com/sitespeedio/sitespeed.io/blob/master/docker/graphite/graphite.db)) file):
+4. Make sure you have [configured storage-aggregation.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/graphite/conf/storage-aggregation.conf) in Graphite to fit your needs.
+5. Configure your [storage-schemas.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/graphite/conf/storage-schemas.conf) how long you wanna store your metrics.
+6. *MAX_CREATES_PER_MINUTE* is usually quite low in [carbon.conf](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/graphite/conf/carbon.conf). That means you will not get all the metrics created for the first run, so you can increase it.
+7. Map the Graphite volume to a physical directory outside of Docker to have better control (both Whisper and [graphite.db](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/graphite/graphite.db)). Map them like this on your physical server (make sure to copy the empty [graphite.db]((https://github.com/sitespeedio/sitespeed.io/blob/main/docker/graphite/graphite.db)) file):
  - /path/on/server/whisper:/opt/graphite/storage/whisper
  - /path/on/server/graphite.db:/opt/graphite/storage/graphite.db
 8. Remove the sitespeedio/grafana-bootstrap from the Docker compose file, you only need that for the first run.
@@ -137,14 +137,10 @@ To run this in production (=not on your local dev machine) you should make some 
 ## Memory & CPU
 How large will your instances need to be? You need to have enough memory for Chrome/Firefox (yep they can really use a lot of memory for some sites). Before we used a $80 instance on Digital Ocean (8GB memory, 4 Core processors) but we switched to use AWS c5.large for dashboard.sitespeed.io. The reason is that the metrics are so more stable on AWS than Digital Ocean. We have tried out most cloud providers and AWS gave us the most stable metrics.
 
-If you test a lot a pages (100+) in the same run, your NodeJS process can run out of memory (default memory for NodeJS is 1.76 GB). You can change and increase by setting MAX_OLD_SPACE_SIZE like this in your compose file:
+If you test a lot a pages (100+) in the same run, your NodeJS process can run out of memory (default memory for NodeJS is 1.76 GB). You can change and increase by setting MAX_OLD_SPACE_SIZE:
 
-```yaml
-services:
-    sitespeed.io:
-      environment:
-        - MAX_OLD_SPACE_SIZE=3072
-
+```bash
+docker run -e MAX_OLD_SPACE_SIZE=4096 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/
 ```
 
 ## Cost

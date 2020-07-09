@@ -99,7 +99,7 @@ You could also use [phuedxs](https://github.com/phuedx) [Pi Network Conditioner]
 
 ### Video and SpeedIndex
 
-You can also collect a video and get Visual Metrics. Running on Mac or without Docker you need to install the requirements for [VisualMetrics](https://github.com/sitespeedio/docker-visualmetrics-deps/blob/master/Dockerfile) yourself on your machine before you start. If you have everything setup you can run:
+You can also collect a video and get Visual Metrics. Running on Mac or without Docker you need to install the requirements for [VisualMetrics](https://github.com/sitespeedio/docker-visualmetrics-deps/blob/main/Dockerfile) yourself on your machine before you start. If you have everything setup you can run:
 
 ```bash
 sitespeed.io --android --video --visualMetrics https://www.sitespeed.io
@@ -188,6 +188,38 @@ sitespeed.io --android --androidBatteryTemperatureLimit 32 https://www.sitespeed
 
 ### Run on a rooted device
 You can run on fresh Android device or on a rooted device. If you use rooted device and you use a Moto G5 or a Pixel 2 it will be configured for as stable performance as possible if you add `--androidRooted` to your run. We follow [Mozillas setup](https://dxr.mozilla.org/mozilla-central/source/testing/raptor/raptor/performance_tuning.py) best practise to do that. Make sure you only do that for a phone that you have dedicated to performance tests, since it will be kept in that performance state after the tests.
+
+### Power usage testing
+You can run power usage tests on your webpage with android. To do so, you would need to provide the `--androidPower true` option:
+
+```bash
+sitespeed.io --android -b firefox --androidPower true https://www.sitespeed.io
+```
+
+To get data from this, you need to make sure your phone has its charging disabled. One method of doing this could be to run adb over wifi instead of through a USB connection. Alternatively, if your phone is rooted, you can use commands that are similar to these (they are model-specific):
+
+```bash
+Pixel 2
+-------
+Disable: adb shell "su -c 'echo 1 > /sys/class/power_supply/battery/input_suspend'"
+Enable: adb shell "su -c 'echo 0 > /sys/class/power_supply/battery/input_suspend'"
+
+Moto G5
+-------
+Disable: adb shell "su -c 'echo 0 > /sys/class/power_supply/battery/charging_enabled'"
+Enable: adb shell "su -c 'echo 1 > /sys/class/power_supply/battery/charging_enabled'"
+```
+
+Results from this are gathered into the `android.power` entry in the browsertime results JSON. The measurements are all in mAh (milliampere-hours). The metrics that are obtained depend on the major android version being used (Android 7 doesn't have smearing which gives the `screen` and `proportional` metrics), but you will usually find these:
+
+* total: The total power used by the application.
+* cpu: The total cpu power used by the application.
+* sensor: The total sensor power used by the application.
+* screen: The total screen power (smeared) used by the application.
+* full-screen: The total screen power used during the test (not specific to the application).
+* wifi: The total wifi power used by the application.
+* full-wifi: The total wifi power used during the test (not specific to the application).
+* proportional: The proportionally smeared power usage portion of the application (power usage of background applications that are propotionally attributed to all open applications).
 
 ## Test on iOS
 

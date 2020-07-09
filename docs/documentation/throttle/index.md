@@ -19,7 +19,7 @@ twitterdescription:
 
 **Throttle lets you *simulate slow network connections* on Linux and Mac OS X.**
 
-Throttle uses *pfctl* on Mac and *tc* on Linux (you also need *ip* and *route* for Throttle to work on Linux) to simulate different network speeds and is inspired by [tylertreat/Comcast](https://github.com/tylertreat/Comcast), the [connectivity setting in the WPTAgent](https://github.com/WPO-Foundation/wptagent/blob/master/internal/traffic_shaping.py) and [sltc](https://github.com/sitespeedio/sltc).
+Throttle uses *pfctl* on Mac and *tc* on Linux (you also need *ip* and *route* for Throttle to work on Linux) to simulate different network speeds and is inspired by [tylertreat/Comcast](https://github.com/tylertreat/Comcast), the [connectivity setting in the WPTAgent](https://github.com/WPO-Foundation/wptagent/blob/main/internal/traffic_shaping.py) and [sltc](https://github.com/sitespeedio/sltc).
 
 **What is Throttle good for?**
 
@@ -90,7 +90,7 @@ throttle stop
 ```
 
 ## Add delay on your localhost (Linux only at the moment)
-This is useful if you run [WebPageReplay](https://github.com/catapult-project/catapult/blob/master/web_page_replay_go/README.md) and want to add some latency to your tests.
+This is useful if you run [WebPageReplay](https://github.com/catapult-project/catapult/blob/main/web_page_replay_go/README.md) and want to add some latency to your tests.
 
 ```bash
 throttle --rtt 200 --localhost

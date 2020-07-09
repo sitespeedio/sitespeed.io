@@ -17,7 +17,7 @@ twitterdescription: Use WebPageReplay and sitespeed.io.
 * Lets place the TOC here
 {:toc}
 
-[WebPageReplay](https://github.com/catapult-project/catapult/blob/master/web_page_replay_go/README.md) is a proxy that first records your web site and then replay it locally. That can help you find performance regression in the front-end code easier: Latency/server timings are constant. We have integrated WebPageReplay in both Browsertime and sitespeed.io Docker containers to make it easier to use.
+[WebPageReplay](https://github.com/catapult-project/catapult/blob/main/web_page_replay_go/README.md) is a proxy that first records your web site and then replay it locally. That can help you find performance regression in the front-end code easier: Latency/server timings are constant. We have integrated WebPageReplay in both Browsertime and sitespeed.io Docker containers to make it easier to use.
 
 There also other replay proxies like [mahimahi](http://mahimahi.mit.edu/) but that version doesn't support HTTP2 by default. We will happily include other proxies in the future.
 
@@ -39,7 +39,7 @@ What's cool about how we include WebPageReplay is that the only thing you need t
 
 You can pass on any parameter to sitespeed.io/browsertime as usual.
 
-WebPageReplay tries to do each page load as deterministic as possible. It's done by making the JavaScript Date deterministic (see [deterministic.js)](https://github.com/sitespeedio/sitespeed.io/blob/master/docker/webpagereplay/deterministic.js). That means if you use JavaScript Date in you `--pageCompleteCheck` you need to change that. We do that by default.
+WebPageReplay tries to do each page load as deterministic as possible. It's done by making the JavaScript Date deterministic (see [deterministic.js)](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/webpagereplay/deterministic.js). That means if you use JavaScript Date in you `--pageCompleteCheck` you need to change that. We do that by default.
 
 ## The metrics
 

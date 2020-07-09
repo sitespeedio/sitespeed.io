@@ -52,4 +52,4 @@ That was all for this release, see you soon!
 
 /Peter
 
-P.S Read the full [changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) for 4.6.0.
+P.S Read the full [changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md) for 4.6.0.

@@ -1,16 +1,78 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 14.0.0 - UNRELEASED
+
+### Breaking change
+* If you use the JSON directly from Browsertime, the screenshot data is now an array instead of a string since you can have multiple screenshots in one run. If you use sitespeed.io directly you will not be affected by the change.
+
+### Added
+* All dashboards for Graphite has been updated to use Grafana 7.0.0 with a new look and feel. 
+* Show all screenshots for a run in a tab [#3045](https://github.com/sitespeedio/sitespeed.io/pull/3045).
+* Updated to [Browsertime 9.0.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#900----2020-06-26).
+* There's a Chrome User Experience Report plugin bundled in sitespeed.io! Get the CrUx data using ```--crux.key``` and get your key from Google.
+* The +1 container uses Lighthouse 6.1.0.
+
+### Fixed
+* Set user agent for --mobile on Chrome [#3046](https://github.com/sitespeedio/sitespeed.io/pull/3046)
+* Updated dependencies: axe-core 3.5.5, dayjs 1.8.28, influx 5.5.2, simplecrawler 1.1.9, yargs 15.3.1, Pug 3, AWS 2.701.0, fs-extra 9.0.1, uuid 8.1.0, google-cloud/storage 5.1.1, third party web 0.12.0, cli-color 2.0.0, coach-core, PageXray and Throttle.
+
+## 13.3.2 - 2020-06-18
+### Fixed
+* Updated the WebPageTest API that has fixed the security dependencies [#3044](https://github.com/sitespeedio/sitespeed.io/pull/3044).
+
+
+## 13.3.1 - 2020-06-13
+### Fixed
+* Testing multiple URLs in one script resulted in only one annotation in InfluxDB as reported in [#2998](https://github.com/sitespeedio/sitespeed.io/issues/2998). The problem was (hopefully) that all annotations was sent with the same timestamp. Now the timestamp from the browsertime run for that URL is used. PR [#3038](https://github.com/sitespeedio/sitespeed.io/pull/3038).
+
+## 13.3.0 - 2020-06-04
+### Added
+* Updated to [Browsertime 8.14.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#8140---2020-06-03) that fixes broken MS Edge support.
+
+### Fixed
+* Support the old budget format too in JUnit and Tap [#3022](https://github.com/sitespeedio/sitespeed.io/pull/3022)
+
+## 13.2.0 - 2020-06-02
+### Added
+* Upgraded to Firefox 77 in the Docker container.
+
+## 13.1.1 - 2020-05-29
+### Fixed
+* Exit with sitespeed.io exit code when you run WebPageReplay in the Docker container [#3017](https://github.com/sitespeedio/sitespeed.io/pull/3017). 
+
+## 13.1.0 - 2020-05-28
+### Added
+* Updated the plugin-gpsi in the +1 container to pickup LCP and CLS [plugin-gpsi #26](https://github.com/sitespeedio/plugin-gpsi/pull/26).
+
+## 13.0.3 - 2020-05-27
+### Fixed
+* Metrics for multiple urls are mixed together, giving incorrect summaries in the Lighthouse plugin. Thank you [Andrew Mee](https://github.com/andrewmee) for the PR [plugin-lighthouse #55](https://github.com/sitespeedio/plugin-lighthouse/pull/55).
+
+## 13.0.2 - 2020-05-27
+### Fixed
+* Updated to [Browsertime 8.13.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#8131---2020-05-26)
+* Make sure errors from the CLI logs errors with "Error:" which makes it easier to act on errors in the log [#3013](https://github.com/sitespeedio/sitespeed.io/pull/3013)
+
+## 13.0.1 - 2020-05-25
+### Fixed
+* Updated the plugin-lighthouse to run latest Chrome as reported in [plugin-lighthouse #53](https://github.com/sitespeedio/plugin-lighthouse/issues/53).
+
+## 13.0.0 - 2020-05-22
 ### Added
 * Show which HTML tag that is the largest contentful paint in the waterfall [#3001](https://github.com/sitespeedio/sitespeed.io/pull/3001).
 * Show the Browsertime xvfb parameters in the CLI help [#3003](https://github.com/sitespeedio/sitespeed.io/pull/3003)
 * Generic cleanup to make sure we show FCP/LCP/CLS where we show metrics and converted the old layout shift to cumulative layout shift [#3004](https://github.com/sitespeedio/sitespeed.io/pull/3004)
 * Upgraded to Chromedriver 83 and Chrome 83 in the Docker container.
-* Upgraded to [Browsertime 8.13.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#8130---2020-05-19).
+* Upgraded to [Browsertime 8.13.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#8130---2020-05-19).
 * The +1 container now uses Lighthouse 6.0.0.
+* Upgraded to Grafana 7.0.0 and [updated dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker) to the new layout (and a NEW [plus1 dashboard](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/main/dashboards/graphite/Plus1.json) with metrics from GPSI and Lighthouse).
 
 ### Fixed
 * Better guards for missing WebPageTest first view data [#3002](https://github.com/sitespeedio/sitespeed.io/pull/3002)
+* If you used the old budget format, limits and values wasn't written in the HTML and in the log [#3009](https://github.com/sitespeedio/sitespeed.io/pull/3009).
+
+### Tech 
+* Continous work to move out CLI options to respective plugin by [Erick Wilder](https://github.com/erickwilder), thank you!
 
 ## 12.11.0 - 2020-05-16
 ### Added
@@ -29,7 +91,7 @@
 Some time ago we got [a tweet](https://twitter.com/robnavrey/status/1258063125242314755) about adding the Web Vitals to sitespeed.io. The thing is we always add new metrics as soon as they arrive in Chrome/Firefox/Edge or Safari, so we had those metrics for months. But maybe we don't make it easy for people to see them? We have refactored how we show metrics in the HTML and the CLI output to make it easier for you!
 
 ### Added
-* Upgraded to [Browsertime 8.12.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#8120---2020-05-12):
+* Upgraded to [Browsertime 8.12.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#8120---2020-05-12):
   * Run tests with Safari Technology Preview using `--safari.useTechnologyPreview`
   * Make it possible to enable Safe Browsing and Tracking protection for Firefox. Fireefox precerences was messed up before. Set `--firefox.disableSafeBrowsing false --firefox.disableTrackingProtection false` and let the browser settle for 30 seconds to download the lists and they are enabled. In the future we want it to be enabled by default [#1272](https://github.com/sitespeedio/browsertime/pull/1272).
   * Output TBT, CLS and TTFB in the CLI summary when availible [#1276](https://github.com/sitespeedio/browsertime/pull/1276) and per run. Also unify how we output metrics from thee CLI [#1277](https://github.com/sitespeedio/browsertime/pull/1277)
@@ -50,7 +112,7 @@ Some time ago we got [a tweet](https://twitter.com/robnavrey/status/125806312524
 ## 12.8.1 - 2020-05-05
 ### Fixed
 * Reverted to Python 2 in the Docker container to make TSProxy work again.
-* Upgraded to [Browsertime 8.9.1](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#891---2020-05-05) that many font issues in the video on Android devices.
+* Upgraded to [Browsertime 8.9.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#891---2020-05-05) that many font issues in the video on Android devices.
 
 ## 12.8.0 - 2020-05-01
 ### Added
@@ -64,13 +126,13 @@ Some time ago we got [a tweet](https://twitter.com/robnavrey/status/125806312524
 ### Fixed
 * 12.7.0 broke sending groups when you used URL alias. Fixed in [#2973](https://github.com/sitespeedio/sitespeed.io/pull/2973).
 * Correctly send messages on html.finished message, thank you [Erick Wilder](https://github.com/erickwilder) for the PR[#2971](https://github.com/sitespeedio/sitespeed.io/pull/2971).
-* Updated to [Browsertime 8.8.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#880---2020-04-29) that fixes the Firefox error that sometimes happend introduced in 8.7.0.
+* Updated to [Browsertime 8.8.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#880---2020-04-29) that fixes the Firefox error that sometimes happend introduced in 8.7.0.
 
 ## 12.7.0 - 2020-04-27
 ### Added
 * Use loadEventEnd for budget, summary box and page summary [#2969](https://github.com/sitespeedio/sitespeed.io/pull/2969).
 * Configurable group names. Use `--groupAlias` to assing an alias to a group (that is used in Graphite/InfluxDB). Use one alias per URL. [#2964](https://github.com/sitespeedio/sitespeed.io/pull/2964)
-* Upgraded to [Browsertime 8.7.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#870---2020-04-24):
+* Upgraded to [Browsertime 8.7.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#870---2020-04-24):
   * Fixed typo in an error message of click.js, fixed in [#1246](https://github.com/sitespeedio/browsertime/pull/1246), thank you [petemyron](https://github.com/petemyron).
   * Mouse focus on element won't be lost at script measurement start, fixed in [#1248](https://github.com/sitespeedio/browsertime/pull/1248). Thank you [Icecold777](https://github.com/Icecold777).
   * With the great merge of Mozillas changes I've missed to make sure the result.json wasn't bloated. [Gregory Mierzwinski](https://github.com/gmierz) fixed this in [#1252](https://github.com/sitespeedio/browsertime/pull/1252) making sure a lot of Firefox internal data isn't included by default. You can still enable that with `--firefox.appconstants`.
@@ -81,7 +143,7 @@ Some time ago we got [a tweet](https://twitter.com/robnavrey/status/125806312524
 
 ## 12.6.0 - 2020-04-21
 ### Added
-* Updated to Browsertime 8.6.1 (from 8.5.0) and upgraded the main Docker container to use Ubuntu 20.04 and Python 3. Browsertime also includes [a couple of bug fixes](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#861---2020-04-16) when running Chrome on Android.
+* Updated to Browsertime 8.6.1 (from 8.5.0) and upgraded the main Docker container to use Ubuntu 20.04 and Python 3. Browsertime also includes [a couple of bug fixes](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#861---2020-04-16) when running Chrome on Android.
 
 ## 12.5.1 - 2020-04-09
 ### Fixed
@@ -95,12 +157,12 @@ Some time ago we got [a tweet](https://twitter.com/robnavrey/status/125806312524
 
 ## 12.4.0 - 2020-04-06
 ### Added
-* Updated to [Browsertime 8.4.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#840---2020-04-03).
+* Updated to [Browsertime 8.4.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#840---2020-04-03).
 
 ## 12.3.1 - 2020-03-26
 ### Fixed
 * Catch URLs that uses U+2013 that breaks Graphite [#2943](https://github.com/sitespeedio/sitespeed.io/pull/2943)
-* Upgrade to [Browsertime 8.3.1](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#831---2020-03-26).
+* Upgrade to [Browsertime 8.3.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#831---2020-03-26).
 
 ## 12.3.0 - 2020-03-23
 ### Fixed
@@ -113,7 +175,7 @@ Some time ago we got [a tweet](https://twitter.com/robnavrey/status/125806312524
 ### Fixed 
 * Remove videoRecordingStart from the summary [#2935](https://github.com/sitespeedio/sitespeed.io/pull/2935).
 * Show CPU geckorprofile link only when you run Firefox [#2931](https://github.com/sitespeedio/sitespeed.io/pull/2931).
-* Upgraded to [Browsertime 8.3.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#830---2020-03-20).
+* Upgraded to [Browsertime 8.3.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#830---2020-03-20).
 
 ## 12.2.2 - 2020-03-16
 ### Fixed
@@ -148,11 +210,11 @@ Some time ago we got [a tweet](https://twitter.com/robnavrey/status/125806312524
 
 ## 12.0.1 - 2020-02-07
 ### Fixed
-* Upgraded to [Browsertime 8.0.1](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#801-2020-02-07) that fixes the broken TSProxy issue. Thank you [Kenrick](https://github.com/kenrick95) for reporting and fixing in PR [#1169](https://github.com/sitespeedio/browsertime/pull/1169).
+* Upgraded to [Browsertime 8.0.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#801-2020-02-07) that fixes the broken TSProxy issue. Thank you [Kenrick](https://github.com/kenrick95) for reporting and fixing in PR [#1169](https://github.com/sitespeedio/browsertime/pull/1169).
 
 ## 12.0.0 - 2020-02-06
 
-Read about Browsertime 8.0 and sitespeed.io 12.0 in [the blog post](https://www.sitespeed.io/sitespeed.io-12.0-and-browsertime-8.0/) and checkout the [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#800-2020-02-05) to see all the changes!
+Read about Browsertime 8.0 and sitespeed.io 12.0 in [the blog post](https://www.sitespeed.io/sitespeed.io-12.0-and-browsertime-8.0/) and checkout the [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#800-2020-02-05) to see all the changes!
 
 ### Added
 * Browsertime 8.0.0 - this is an massive update with a lot of new things!
@@ -286,7 +348,7 @@ Read about Browsertime 8.0 and sitespeed.io 12.0 in [the blog post](https://www.
 * The timestamp on the page summary was wrong: it showed when all tests started instead of the time of the first run as reported in [#2766](https://github.com/sitespeedio/sitespeed.io/issues/2766) and fixed in [#2768](https://github.com/sitespeedio/sitespeed.io/pull/2768).
 * If uploading to S3 or GCS fails, the exit code will be an error and you can see that it failed in the HTML [#2774](https://github.com/sitespeedio/sitespeed.io/pull/2774).
 * A safer check when generating pages HTML page if something went wrong earlier in the run [#2778](https://github.com/sitespeedio/sitespeed.io/pull/2778)
-* Upgraded to [Browsertime 7.0.2](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#702---2019-11-13)
+* Upgraded to [Browsertime 7.0.2](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#702---2019-11-13)
 
 ## 11.0.0 -  2019-11-07
 ### Changed
@@ -303,7 +365,7 @@ Read about Browsertime 8.0 and sitespeed.io 12.0 in [the blog post](https://www.
 * Upgraded to Axe Core 3.4.0 [#2723](https://github.com/sitespeedio/sitespeed.io/pull/2723).
 * Added contentSize to budget [#2721](https://github.com/sitespeedio/sitespeed.io/pull/2721).
 * You can now configure which summary boxes (which metric) you can see on the start page. Thank you [thapasya-m](https://github.com/thapasya-m) for the PR [#2736](https://github.com/sitespeedio/sitespeed.io/pull/2736)!
-* Upgraded to [Browsertime 7.0.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#700---2019-11-02):
+* Upgraded to [Browsertime 7.0.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#700---2019-11-02):
   * Changed a couple of Firefox settings to follow the Mozilla teams downstream version [#965](https://github.com/sitespeedio/browsertime/pull/965).
   * Added Contentful speed index is a new SI metric developed by Bas Schouten at Mozilla which uses edge detection to calculate the amount of "content" that is visible on each frame, thank you [dpalmeiro](https://github.com/dpalmeiro) for the PR [#976](https://github.com/sitespeedio/browsertime/pull/976).
   * Firefox 67 and above has a built-in window recorder ([bug 1536174](https://bugzilla.mozilla.org/show_bug.cgi?id=1536174)) that is able to dump PNG images of each frame that is painted to the window. This can be enabled and disabled in the browser console, or through the chrome context with selenium webdriver. This PR introduces a new privileged API that is able to execute JS in the chrome context, as well as support for generating a variable rate MP4 using the output images from the window recorder. The motivation for this work was to introduce a low-overhead video recorder that will not introduce performance disturbances during page loads. Thank you [dpalmeiro](https://github.com/dpalmeiro) for the PR [#978](https://github.com/sitespeedio/browsertime/pull/978). You can try it out with `--video --firefox.windowRecorder`
@@ -348,7 +410,7 @@ to run Axe! [#2676](https://github.com/sitespeedio/sitespeed.io/pull/2676).
 * Set correct tag for CPU Long Tasks in InfluxDB [#2677](https://github.com/sitespeedio/sitespeed.io/pull/2677)
 * Handle float numbers in statistics, thank you [tengremlin](https://github.com/tengremlin) for the PR [#2675](https://github.com/sitespeedio/sitespeed.io/pull/2675).
 * Upgraded to Yargs 14.2.0 that fixes so you can extend config.json files in multiple steps. Before only on step worked.
-* Upgraded to Browsertime [6.1.3](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#browsertime-changelog) that fixes the TSProxy bug.
+* Upgraded to Browsertime [6.1.3](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#browsertime-changelog) that fixes the TSProxy bug.
 * Testing localhost broke the third party plugins. Fixed in the new Coach and in sitespeed.io [#2689](https://github.com/sitespeedio/sitespeed.io/pull/2689).
 * Upgraded to the Coach 4.0.2.
 
@@ -366,7 +428,7 @@ to run Axe! [#2676](https://github.com/sitespeedio/sitespeed.io/pull/2676).
   * Removed settings for enabling LayoutInstabilityAPI in Chrome (is on by default in Chrome 77) [#949](https://github.com/sitespeedio/browsertime/pull/949.
   * Fixed a bug for Chrome when you couldn't send more that one request header [#950](https://github.com/sitespeedio/browsertime/pull/950).
   * Empty long task after you collect them.
-* Updated dashboards: New WebPageTest dashboard showing standartd deviation: https://github.com/sitespeedio/grafana-bootstrap-docker/blob/master/dashboards/graphite/WebPageTestDeviation.json and updated page timing metrics dashboard for sitespeed.io so you can just use the drowdown to see the standard deviation for different metrics https://github.com/sitespeedio/grafana-bootstrap-docker/blob/master/dashboards/graphite/PageTimingMetrics.json
+* Updated dashboards: New WebPageTest dashboard showing standartd deviation: https://github.com/sitespeedio/grafana-bootstrap-docker/blob/main/dashboards/graphite/WebPageTestDeviation.json and updated page timing metrics dashboard for sitespeed.io so you can just use the drowdown to see the standard deviation for different metrics https://github.com/sitespeedio/grafana-bootstrap-docker/blob/main/dashboards/graphite/PageTimingMetrics.json
 
 ##  10.0.3 - 2019-09-24
 ### Fixed
@@ -389,7 +451,7 @@ to run Axe! [#2676](https://github.com/sitespeedio/sitespeed.io/pull/2676).
 
 ## 10.0.1 - 2019-09-12
 ### Fixed
-* Updated Browsetime with stable ChromeDriver (instead of beta), do not show First Paint for Safari, and fixing getting long task data if you first navigate and then measure a URL. See the [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#601---2019-09-12) for all the info.
+* Updated Browsetime with stable ChromeDriver (instead of beta), do not show First Paint for Safari, and fixing getting long task data if you first navigate and then measure a URL. See the [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#601---2019-09-12) for all the info.
 
 ## 10.0.0 - 2019-09-11
 ### Added
@@ -402,7 +464,7 @@ to run Axe! [#2676](https://github.com/sitespeedio/sitespeed.io/pull/2676).
 * Limited support for using Safari. You need Catalina + iOS 13 to run Safari on your phone/tablet. Read more in the [documentation](https://www.sitespeed.io/documentation/sitespeed.io/browsers/#safari).
 * Send FirstMeaningfulPaint by default to Graphite/InfluxDb [#2559](https://github.com/sitespeedio/sitespeed.io/pull/2559)
 * [Updated dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker) with a new annotation (for sitespeed.io changes) and fixed WebPageTest dashboards to work with annotations.
-* Upgraded to [Browsertime 6.0.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md).
+* Upgraded to [Browsertime 6.0.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md).
   * Upgraded to Ubuntu Disco in the Docker container [#908](https://github.com/sitespeedio/browsertime/pull/908).
   * Use [TSProxy](https://github.com/WPO-Foundation/tsproxy) to throttle the connection. You should use TSProxy when you run on Kubernetes. Use it by `--connectivity.engine tsproxy`. We used to have support years ago but it never worked good on Mac/Linux so we dropped it. But it works now so we added it back [#891](https://github.com/sitespeedio/browsertime/pull/891).
   * You can now add your own metrics directly from your script (or post script) using *context.result.extras*. More info coming [#917](https://github.com/sitespeedio/browsertime/pull/917)
@@ -443,14 +505,14 @@ to run Axe! [#2676](https://github.com/sitespeedio/sitespeed.io/pull/2676).
 
 ## 9.7.0 - 2019-07-29
 
-In this release we moved functionality for Chrome from our [browser extension](https://github.com/sitespeedio/browsertime-extension) to the devtools protocol instead, so that the same functionality also works in Chrome on Android. Read the [changelog for Browsertime for all changes](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#560----2019-07-27).
+In this release we moved functionality for Chrome from our [browser extension](https://github.com/sitespeedio/browsertime-extension) to the devtools protocol instead, so that the same functionality also works in Chrome on Android. Read the [changelog for Browsertime for all changes](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#560----2019-07-27).
 
 ### Fixed
 * You can now use `--android` to run tests on Android phones (the same way as on Browsertime) [#2544](https://github.com/sitespeedio/sitespeed.io/pull/2544).
 
 ### Added
 * Upgraded to third-party-web 0.10.1.
-* Upgraded to Browsertime [5.6.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#560----2019-07-27) and [5.6.1](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#561----2019-07-28).
+* Upgraded to Browsertime [5.6.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#560----2019-07-27) and [5.6.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#561----2019-07-28).
 
 ##  9.6.0 - 2019-07-11
 ### Added
@@ -477,7 +539,7 @@ In this release we moved functionality for Chrome from our [browser extension](h
 
 ## 9.4.0 - 2019-06-29
 ### Added
-* Upgraded to [Browsertime 3.4.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#530---2019-06-29) with the following fixes:
+* Upgraded to [Browsertime 3.4.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#530---2019-06-29) with the following fixes:
   * Added support for `--injectJs` using Chrome [#864](https://github.com/sitespeedio/browsertime/pull/864).
   * Use CDP to set request headers for Chrome (instead of the Browsertime extension). This enables adding extra headers for Chrome on Android and fixes [#2520](https://github.com/sitespeedio/sitespeed.io/issues/2520). Fixed in [#867](https://github.com/sitespeedio/browsertime/pull/867).
 * Report JS heap size by deafult for Chrome to Graphite/InfluxDb [#2524](https://github.com/sitespeedio/sitespeed.io/pull/2524)
@@ -537,7 +599,7 @@ In this release we moved functionality for Chrome from our [browser extension](h
 ## 9.2.0 - 2019-06-01
 
 ### Added
-* The config file `--config` now supports extending other config files. Read [yargs documentation](https://github.com/yargs/yargs/blob/master/docs/api.md#extends-keyword) for how to use the extends keyword. Add `"extends":"/default.json"` to extend your config file named *default.json* file. One thing: The configuration files are merged and the extended ones keys are overriden if they exist in your configuration. This is upstream thing but maybe we can fix that in the future.
+* The config file `--config` now supports extending other config files. Read [yargs documentation](https://github.com/yargs/yargs/blob/main/docs/api.md#extends-keyword) for how to use the extends keyword. Add `"extends":"/default.json"` to extend your config file named *default.json* file. One thing: The configuration files are merged and the extended ones keys are overriden if they exist in your configuration. This is upstream thing but maybe we can fix that in the future.
 
 ### Fixed
 * Updated Browsertime to 5.1.3 that goes back to use default Selenium 3.6 (without CDP supports) and with CDP support implemented on the side. Also updated Coach with the latest Browsertime.
@@ -565,7 +627,7 @@ Using CPU metrics on Android phones was broken since 9.0.0, fixed in [#844](http
 ## 9.0.0 - 2019-05-21
 
 ### Added
-* Upgraded to [Browsertime 5.0.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#500---2019-05-16).
+* Upgraded to [Browsertime 5.0.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#500---2019-05-16).
 
 * Collect CPU long tasks in Chrome using `--chrome.collectLongTasks` using the [Long Task API](https://developer.mozilla.org/en-US/docs/Web/API/Long_Tasks_API). For the long tasks to work, we inject JS using the *Page.addScriptToEvaluateOnNewDocument* devtools command. We collect all long tasks and related data (not so much at the moment but will get better/more useful information when browsers supports it) and count the total number of long tasks, long tasks that happens before first paint and first contentful paint. Implemented in [#821](https://github.com/sitespeedio/browsertime/pull/821) and [#825](https://github.com/sitespeedio/browsertime/pull/825).
 
@@ -627,12 +689,12 @@ Using CPU metrics on Android phones was broken since 9.0.0, fixed in [#844](http
 
 * Upgraded to third-party-web 0.6.1 that includes more domains.
 
-* Upgrading to [Browsertime 4.7.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#470---2019-04-21) adds three new things to scripting:
+* Upgrading to [Browsertime 4.7.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#470---2019-04-21) adds three new things to scripting:
   * You can add your own error `commands.error(message)`. The error will be attached to the latest tested page. Say that you have a script where you first measure a page and then want to click on a specific link and the link doesn't exist. Then you can attach your own error with your own error text. The error will be sent to your datasource and will be visible in the HTML result.
 
   * You can add meta data to your script with `commands.meta.setTitle(title)` and `commands.meta.setDescription(desc)`
 
-* Upgrading to [Browsertime 4.8.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#480---2019-04-23) fixes so errors thrown from your script, holds a usable error message instead of the wrapped ChromeDriver error.
+* Upgrading to [Browsertime 4.8.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#480---2019-04-23) fixes so errors thrown from your script, holds a usable error message instead of the wrapped ChromeDriver error.
 
 ### Fixed
 * If a page failed, pug through an error [#2428](https://github.com/sitespeedio/sitespeed.io/pull/2428)
@@ -669,7 +731,7 @@ Using CPU metrics on Android phones was broken since 9.0.0, fixed in [#844](http
 ## 8.11.0 - 2019-04-08
 
 ### Added
-* Upgraded to [Browsertime 4.6.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#460---2019-04-07) that enables the use of [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/). We now uses a modified version of Selenium that can use CDP. We also automatically collect the CDP performance metrics *Performance.getMetrics* (you can turn that off with `--chrome.cdp.performance false`). We also enabled raw use of the CDP in scripting: `cdp.sendAndGet(command, args)` and `cdp.send(command, args)` [#2410](https://github.com/sitespeedio/sitespeed.io/pull/2410).
+* Upgraded to [Browsertime 4.6.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#460---2019-04-07) that enables the use of [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/). We now uses a modified version of Selenium that can use CDP. We also automatically collect the CDP performance metrics *Performance.getMetrics* (you can turn that off with `--chrome.cdp.performance false`). We also enabled raw use of the CDP in scripting: `cdp.sendAndGet(command, args)` and `cdp.send(command, args)` [#2410](https://github.com/sitespeedio/sitespeed.io/pull/2410).
 
 * Show loadEventEnd in the metrics section and send it to Graphite/Grafana [#2411](https://github.com/sitespeedio/sitespeed.io/pull/2411).
 
@@ -789,7 +851,7 @@ Using CPU metrics on Android phones was broken since 9.0.0, fixed in [#844](http
 ### Fixed
 
 - Upgraded to PageXray 2.5.4 that categorise first party using the actual domain instead of the full URL (as reported by [arunthilak](https://github.com/arunthilak)).
-- Upgraded to [Browsertime 4.4.8](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#448---2019-03-04).
+- Upgraded to [Browsertime 4.4.8](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#448---2019-03-04).
 - Lighthouse audit tag for InfluxDB, thank you [Semyon](https://github.com/SemyonLosmakov) for the PR [#2359](https://github.com/sitespeedio/sitespeed.io/pull/2359)
 - Changed the unused message gc.finished to gcs.finished to work with comming Google Cloud Storage support [#2362](https://github.com/sitespeedio/sitespeed.io/pull/2362)
 
@@ -874,7 +936,7 @@ Using CPU metrics on Android phones was broken since 9.0.0, fixed in [#844](http
 
 - Give your test a name with `--name` [#2302](https://github.com/sitespeedio/sitespeed.io/pull/2302). At the moment only used in the HTML.
 
-- Upgraded to Browsertime [4.4.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#440---2019-02-12):
+- Upgraded to Browsertime [4.4.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#440---2019-02-12):
   - There are two new cache clear commands: cache.clearKeepCookies() and cache.clear() (only working on Desktop) [#769](https://github.com/sitespeedio/browsertime/pull/769).
   - Updated RUM Speed Index to include upstream fix [#766](https://github.com/sitespeedio/browsertime/pull/766).
   - Make sure the body of the page is shown when setting the fullscreen to orange (when recording the video) [#767](https://github.com/sitespeedio/browsertime/pull/767)
@@ -895,13 +957,13 @@ Using CPU metrics on Android phones was broken since 9.0.0, fixed in [#844](http
 
 - Added json as output type for the budget. Set `--budget.output json` and it will store _budgetResult.json_ in your result directory [#2299](https://github.com/sitespeedio/sitespeed.io/pull/2299).
 
-- Upgraded to Browsertime [4.3.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#430-2019-02-10) with new addText.bySelector(text, selector) command + fixed so click.byJs and click.byJsAndWait works on elements that is hidden.
+- Upgraded to Browsertime [4.3.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#430-2019-02-10) with new addText.bySelector(text, selector) command + fixed so click.byJs and click.byJsAndWait works on elements that is hidden.
 
 - Added endpoint to s3 configurations to allow for pushing HTML reports to Digital Ocean's Spaces as it is S3 compatible. [#2072]
 
 ### Fixed
 
-- Upgraded to Browsertime [4.2.6](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#426-2019-02-08) with two fixes:
+- Upgraded to Browsertime [4.2.6](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#426-2019-02-08) with two fixes:
   - Command set value by id was broken, it used to set the value to the id [#761](https://github.com/sitespeedio/browsertime/pull/761).
   - I've missed that for some URLs (as in this [login](https://github.com/sitespeedio/sitespeed.io/issues/2290#issuecomment-461601990) you could have an alias for an URL but the URL was actually slightly different. For example, you login to a site and the login step redirect to a URL and for that URL one value of a GET parameter differs. So with this fix we lock the alias tyo one specific URL. If your URL change and you use an alias, the first variation of the URL will be used [#763](https://github.com/sitespeedio/browsertime/pull/763).
 - Spelling for the script-reader message (was scrtipt-reader).
@@ -910,7 +972,7 @@ Using CPU metrics on Android phones was broken since 9.0.0, fixed in [#844](http
 
 ### Fixed
 
-- Upgraded to Browsertime [4.2.5](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#425---2019-02-06) that hopefully fixes the wrong metrics inserted into the HAR file if you run test multiple pages.
+- Upgraded to Browsertime [4.2.5](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#425---2019-02-06) that hopefully fixes the wrong metrics inserted into the HAR file if you run test multiple pages.
 
 ## 8.2.2 2019-02-05
 
@@ -922,13 +984,13 @@ Using CPU metrics on Android phones was broken since 9.0.0, fixed in [#844](http
 
 ### Fixed
 
-- New Browsertime [4.2.4](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#424---2019-02-04) with fixed bug for commands set.innerHtml and click.byXpath.
+- New Browsertime [4.2.4](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#424---2019-02-04) with fixed bug for commands set.innerHtml and click.byXpath.
 
 ## 8.2.0 2019-02-04
 
 ### Added
 
-- New Browsertime [4.2.3](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md) with:
+- New Browsertime [4.2.3](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md) with:
   - Fixed so that `js.run()` returns whatever it gets back so you can script and get whatever you need from your page [#749](https://github.com/sitespeedio/browsertime/pull/749).
   - New help command **set** to set innerHtml, innerText and value of element. [#750](https://github.com/sitespeedio/browsertime/pull/750).
   - Added click.bySelector and rewrote most of click methods to use plain JavaScript instead of Selenium (so it will work on hidden elements) [#751](https://github.com/sitespeedio/browsertime/pull/751).
@@ -949,7 +1011,7 @@ Using CPU metrics on Android phones was broken since 9.0.0, fixed in [#844](http
 - New tab showing the filmstrip (if you record a video and keep the screenshots). We had the screenshots forever but never done anything with them. Inspired by [Stefan Burnickis](https://github.com/sburnicki) work on https://github.com/iteratec/wpt-filmstrip [#2274](https://github.com/sitespeedio/sitespeed.io/pull/2274).
 - Show Server Timings in the metric section (if the page uses Server Timing) [#2277](https://github.com/sitespeedio/sitespeed.io/pull/2277).
 - Upgraded the Docker container to use Chrome 72 and Firefox 65.
-- Upgraded to [Browsertime 4.1](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#410---2019-01-31) with latest ChromeDriver and Geckodriver. There's also a new command `js.runAndWait('')` that makes it possible to run your own JavaScript, click a link and wait on page navigation.
+- Upgraded to [Browsertime 4.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#410---2019-01-31) with latest ChromeDriver and Geckodriver. There's also a new command `js.runAndWait('')` that makes it possible to run your own JavaScript, click a link and wait on page navigation.
 
 ### Fixed
 
@@ -1009,7 +1071,7 @@ Read the blog post: [https://www.sitespeed.io/sitespeed.io-8.0-and-browsertime.4
 - Use fully loaded metric from the HAR instead of the Resource Timing API [#2242](https://github.com/sitespeedio/sitespeed.io/pull/2242) and [#2244](https://github.com/sitespeedio/sitespeed.io/pull/2244).
 - Group metrics by type in HTML output [#2240](https://github.com/sitespeedio/sitespeed.io/pull/2240)
 - Show timing metrics in ms/s (instead of just ms) [#2245](https://github.com/sitespeedio/sitespeed.io/pull/2245)
-- Use Browsertime 4.0 that adds support for testing Single Page Applications and test multiple pages with scripting. See the [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#400-beta1---2019-01-14) [#2236](https://github.com/sitespeedio/sitespeed.io/pull/2236)
+- Use Browsertime 4.0 that adds support for testing Single Page Applications and test multiple pages with scripting. See the [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#400-beta1---2019-01-14) [#2236](https://github.com/sitespeedio/sitespeed.io/pull/2236)
 - There's a new and simpler way of setting up a budget file [#2252](https://github.com/sitespeedio/sitespeed.io/pull/2252) and [#2253](https://github.com/sitespeedio/sitespeed.io/pull/2253)
 
 ### Fixed
@@ -1066,7 +1128,7 @@ Read the blog post: [https://www.sitespeed.io/sitespeed.io-8.0-and-browsertime.4
 
 ### Fixed
 
-- New [Browsertime 3.8.2](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#382) that finally fixes the problem for Firefox introduced in 7.6.0.
+- New [Browsertime 3.8.2](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#382) that finally fixes the problem for Firefox introduced in 7.6.0.
 
 ## 7.6.1 - 2018-10-15
 
@@ -1078,7 +1140,7 @@ Read the blog post: [https://www.sitespeed.io/sitespeed.io-8.0-and-browsertime.4
 
 ### Added
 
-- Upgraded to [Browsertime 3.8.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#380---2018-10-15). The new version changes how the change happen bewteen preURL/preScript and the URL being tested. Before we automatically turned the screen white between pre runs and the URL. Now we do not do that. The metrics will be the same but when you look at the video, it will start with the pre URL instead of a white screen. This fixes bugs like [#2091](https://github.com/sitespeedio/sitespeed.io/issues/2091) where routing through hash wasn't getting the right first visual change (and other bugs).
+- Upgraded to [Browsertime 3.8.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#380---2018-10-15). The new version changes how the change happen bewteen preURL/preScript and the URL being tested. Before we automatically turned the screen white between pre runs and the URL. Now we do not do that. The metrics will be the same but when you look at the video, it will start with the pre URL instead of a white screen. This fixes bugs like [#2091](https://github.com/sitespeedio/sitespeed.io/issues/2091) where routing through hash wasn't getting the right first visual change (and other bugs).
 
 ## 7.5.2 - 2018-10-12
 
@@ -1136,7 +1198,7 @@ Read the blog post: [https://www.sitespeed.io/sitespeed.io-8.0-and-browsertime.4
 
 - We updated to PageXray 2.4.0 that correctly pick up mime types for video/audio/xml and pdf (that was missed before).
 
-- Updated to [Coach 2.3.0](https://github.com/sitespeedio/coach/blob/master/CHANGELOG.md) that fixes so that the CSS advice never can be a negative score.
+- Updated to [Coach 2.3.0](https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md) that fixes so that the CSS advice never can be a negative score.
 
 - Fixed the bug that made us show wrong video/screenshot on page summary[#2169](https://github.com/sitespeedio/sitespeed.io/pull/2169). Before we always showed the first screenshot/video. Now we show the median pick (so it correlates to the right waterfall and metrics tab).
 
@@ -1165,7 +1227,7 @@ Read the blog post: [https://www.sitespeed.io/sitespeed.io-8.0-and-browsertime.4
 
 - Updated the CLI to link to how to setup connectivity.
 - Detailed and summary page show wrong metrics if you test on multiple domains [#2134](https://github.com/sitespeedio/sitespeed.io/issues/2134).
-- Updated [fix release](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#331---2018-08-09) of Browsertime that makes the log cleaner and easier to use.
+- Updated [fix release](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#331---2018-08-09) of Browsertime that makes the log cleaner and easier to use.
 
 ## 7.3.5 - 2018-07-29
 
@@ -1227,8 +1289,8 @@ Read the blog post: [https://www.sitespeed.io/sitespeed.io-8.0-and-browsertime.4
 
 - Copy assets first before generating assets, making pages work even if parts fail [#2081](https://github.com/sitespeedio/sitespeed.io/pull/2081).
 - The Docker container uses Firefox 61 stable.
-- Upgraded to [Browsertime 3.1.4](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#314---2018-06-25) including latest Geckodriver.
-- Upgraded the [Coach to 2.0.4](https://github.com/sitespeedio/coach/blob/master/CHANGELOG.md#204---2018-06-25) with a fix that makes sitespeed.io faster when generating the result if you you are using many runs.
+- Upgraded to [Browsertime 3.1.4](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#314---2018-06-25) including latest Geckodriver.
+- Upgraded the [Coach to 2.0.4](https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#204---2018-06-25) with a fix that makes sitespeed.io faster when generating the result if you you are using many runs.
 
 and Coach 2.0.4.
 
@@ -1276,7 +1338,7 @@ Read more about [sitespeed.io 7.0](https://www.sitespeed.io/sitespeed.io-7.0/).
 - A lot of love for WebPageTest: Bugfix for getting Chrome timing metrics per run [#2046](https://github.com/sitespeedio/sitespeed.io/pull/2046), show the WebPageTests id and tester name in the HTML [#2047](https://github.com/sitespeedio/sitespeed.io/pull/2047), use WebPageTest screenshot if you don't run Browsertime [#2048](https://github.com/sitespeedio/sitespeed.io/pull/2048), show some Lighthouse metrics you use Lighthouse [#2049](https://github.com/sitespeedio/sitespeed.io/pull/2049) and show some of those interactive metrics if they exists [#2050](https://github.com/sitespeedio/sitespeed.io/pull/2050).
 - Link directly to each individual run if you use WebPageTest [#2045](https://github.com/sitespeedio/sitespeed.io/pull/2045).
 - Add StatsD support (with bulking). Thank you [Omri](https://github.com/omrilotan) for the PR [#1994](https://github.com/sitespeedio/sitespeed.io/pull/1994).
-- We upgraded to [Browsertime 3.0](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#300).
+- We upgraded to [Browsertime 3.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#300).
 - We upgraded the S3 plugin that fixes (all) the problems we have seen with large files failing to upload [#2013](https://github.com/sitespeedio/sitespeed.io/pull/2013).
 - Get console messages from Chrome in the HTML output and send the number of errors to Graphite/InfluxDB by default.
 - You can now change safe char for groups/domain in InfluxDB with --influxdb.groupSeparator. Thank you [amic87](https://github.com/amic81) for your PR!
@@ -1428,7 +1490,7 @@ As a sitespeed.io user there shouldn't be any breaking changes upgrading from 6.
 
 ### Fixed
 
-- Upgraded to Browsertime 2.1.4 with [new bug fixes](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md) and newer ChromeDriver.
+- Upgraded to Browsertime 2.1.4 with [new bug fixes](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md) and newer ChromeDriver.
 
 - Fixed the start script so that you on Ubuntu can run WebPageReplay in the Docker container for your Android phone.
 
@@ -1505,7 +1567,7 @@ As a sitespeed.io user there shouldn't be any breaking changes upgrading from 6.
 ### Fixed
 
 - Remove the unused unminified CSS file from the result [#1835](https://github.com/sitespeedio/sitespeed.io/pull/1835)
-- Updated to Browsertime 2.0.1 with [fixes for Android](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#version-201-2017-11-28).
+- Updated to Browsertime 2.0.1 with [fixes for Android](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#version-201-2017-11-28).
 
 ## 6.0.2 2017-11-28
 
@@ -1577,7 +1639,7 @@ the url would be treated as a plugin name, and the command would fail.
 
 - We have moved the GPSI outside of sitespeed.io and you can find it [here](https://github.com/sitespeedio/plugin-gpsi). To run in along with sitespeed.io you just follow [the instructions how to add a plugin](https://www.sitespeed.io/documentation/sitespeed.io/plugins/#add-a-plugin). We moved it outside of sitespeed.io to make the code base cleaner and with the hope that we can find a maintainer who can give it more love.
 
-- The [StorageManager](https://github.com/sitespeedio/sitespeed.io/blob/master/lib/core/resultsStorage/storageManager.js) API has been updated. The following changes may break code written using the 5.x API:
+- The [StorageManager](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/core/resultsStorage/storageManager.js) API has been updated. The following changes may break code written using the 5.x API:
 
   - `createDataDir(directoryName)` is now `createDirectory(...directoryNames)` and takes any number of directory names (which will be joined together) as arguments.
   - `writeData(filename, data)` has reversed the order of its arguments. It is now `writeData(data, filename)`.
@@ -1603,7 +1665,7 @@ the url would be treated as a plugin name, and the command would fail.
 - When you run sitespeed.io using Docker we now always set no-sandbox to Chrome (so you don't need to do that yourself).
 - Custom metrics in WebPageTest broke the HTML [#1722](https://github.com/sitespeedio/sitespeed.io/issues/1722)
 - Skip storing faulty toplists on disk when using the analysisstorer plugin. The lists is generated from the raw data, so if you need them yourself as JSON, you can generate them [#1721](https://github.com/sitespeedio/sitespeed.io/pull/1721)
-- Upgraded to latest shining [Browsertime](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#version-193-2017-09-29)
+- Upgraded to latest shining [Browsertime](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#version-193-2017-09-29)
 
 ## 5.6.2 2017-09-17
 
@@ -1624,7 +1686,7 @@ the url would be treated as a plugin name, and the command would fail.
 ### Added
 
 - Use load time as of the default metrics for data storage when you use WebPageTest [#1704](https://github.com/sitespeedio/sitespeed.io/issues/1704)
-- Upgraded Browsertime to 1.8.0 with [all these changes](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#version-180-2017-09-13)
+- Upgraded Browsertime to 1.8.0 with [all these changes](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#version-180-2017-09-13)
 
 ### Fixed
 
@@ -1657,7 +1719,7 @@ the url would be treated as a plugin name, and the command would fail.
 ### Fixed
 
 - Upgrading node-sass to work when installing on Windows 10 [#1671](https://github.com/sitespeedio/sitespeed.io/issues/1671)
-- Upgrading to Browsertime 1.5.4 checkout [https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#version-154-2017-07-19](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#version-154-2017-07-19)
+- Upgrading to Browsertime 1.5.4 checkout [https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#version-154-2017-07-19](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#version-154-2017-07-19)
 - Always add the first asset to the size list [#1676](https://github.com/sitespeedio/sitespeed.io/issues/1676)
 
 ## 5.4.3 2017-07-14
@@ -1921,7 +1983,7 @@ There's one change in 5.0 that changes the default behavior: TSProxy isn't defau
 
 ### Fixed (hopefully)
 
-- Upgraded to [Browsertime beta 21](https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md#version-100-beta21-2017-01-09) to finally once and for all fix the problem with the too early firstVisualChange that sometimes happend in Chrome:
+- Upgraded to [Browsertime beta 21](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#version-100-beta21-2017-01-09) to finally once and for all fix the problem with the too early firstVisualChange that sometimes happend in Chrome:
   - We removed the center cropping of images when visual metrics checks if an image is orange/white. The cropping made us miss the small orange lines that sometimes appear only in Chrome.
   - We also fine tuned (and made configurable) the number when the diff of two images (orange and white) is ... orange.
   - We re-arranged how we record the screen to record as little extra video as possible
@@ -2080,7 +2142,7 @@ There's one change in 5.0 that changes the default behavior: TSProxy isn't defau
   - Export chrome perflog dumps as json in extraJson property of the result, instead of a string in the extras property. Only relevant to api users.
   - Upgraded sltc so we use 0.6.0 with simplified tc that actually works
   - We now run xvfb from inside NodeJS so we can set the screen size, making it easy to record the correct size for VisualMetrics. We also use environment variables that starts with BROWSERTIME so we can turn on xvfb easily on Docker.
-    https://github.com/sitespeedio/browsertime/blob/master/CHANGELOG.md
+    https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md
 
 ## 4.0.4 2016-11-04
 
@@ -2242,7 +2304,7 @@ And many many more changed. Read about the release https://www.sitespeed.io/site
 - Right CLI parameter name for setting the Selenium URL (if you use a standalone server)
 - Made it easier to understand how to configure location and connectivity for WebPageTest.
 - Fixed breaking GPSI when summary was missing from the rule. #1110
-- Updated browsertime, so when you are running pre/post script, you can get hold of the selenium-webdriver from the context (a lot of people have had problem with it). Checkout https://github.com/sitespeedio/browsertime/blob/master/test/prepostscripts/preLoginExample.js for an example.
+- Updated browsertime, so when you are running pre/post script, you can get hold of the selenium-webdriver from the context (a lot of people have had problem with it). Checkout https://github.com/sitespeedio/browsertime/blob/main/test/prepostscripts/preLoginExample.js for an example.
 - Finally Firefox works again, you can use Firefox 48 since we now use Geckodriver.
 - New version of TSProxy that fixes the redirect problems for HTTP -> HTTPS https://github.com/sitespeedio/browsertime/issues/175
 - New PerfCascade that takes care of responses that misses a content type #1030

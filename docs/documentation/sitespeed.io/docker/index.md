@@ -31,11 +31,11 @@ We have a three ready made containers:
 The Docker structure in the default container looks like this:
 
 [NodeJS with Ubuntu 18](https://github.com/sitespeedio/docker-node) -> [VisualMetrics dependencies](https://github.com/sitespeedio/docker-visualmetrics-deps) ->
-[Firefox/Chrome/xvfb](https://github.com/sitespeedio/docker-browsers) -> [sitespeed.io](https://github.com/sitespeedio/sitespeed.io/blob/master/Dockerfile)
+[Firefox/Chrome/xvfb](https://github.com/sitespeedio/docker-browsers) -> [sitespeed.io](https://github.com/sitespeedio/sitespeed.io/blob/main/Dockerfile)
 
 The first container installs NodeJS (latest LTS) on Ubuntu 18. The next one adds the dependencies (FFMpeg, ImageMagick and some Python libraries) needed to run [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics). We then install specific version of Firefox, Chrome and lastly xvfb. Then in last step, we add sitespeed.io and tag it to the sitespeed.io version number.
 
-The [slim container](https://github.com/sitespeedio/sitespeed.io/blob/master/Dockerfile-slim) is based on [Debian Buster slim](https://github.com/debuerreotype/docker-debian-artifacts/blob/d6eeda93542f8e2a7d5f6e500b58fc4f12d055ce/buster/slim/Dockerfile). 
+The [slim container](https://github.com/sitespeedio/sitespeed.io/blob/main/Dockerfile-slim) is based on [Debian Buster slim](https://github.com/debuerreotype/docker-debian-artifacts/blob/d6eeda93542f8e2a7d5f6e500b58fc4f12d055ce/buster/slim/Dockerfile). 
 
 We lock down the browsers to specific versions for maximum compatibility and stability with sitespeed.io's current feature set; upgrading once we verify browser compatibility.
 {: .note .note-info}
@@ -103,7 +103,7 @@ docker run -e TZ=America/New_York --rm -v "$(pwd)":/sitespeed.io sitespeedio/sit
 
 ## Change connectivity
 
-To change connectivity you should use Docker networks, read all about it [here]({{site.baseurl}}/documentation/sitespeed.io/browsers/#change-connectivity).
+To change connectivity you should use Docker networks, read all about it [here]({{site.baseurl}}/documentation/sitespeed.io/connectivity/).
 
 ## Increase memory
 

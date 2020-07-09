@@ -70,10 +70,10 @@ We done two important bug fixes:
 * Fixed so that you can disable video/visual metrics in your configuration JSON in Docker as reported in [#2692](https://github.com/sitespeedio/sitespeed.io/issues/2692) fixed by PR [#2715](https://github.com/sitespeedio/sitespeed.io/pull/2715).
 * Fixed so that running AXE when testing multiple URLs works in scripting (reported in [#2754](https://github.com/sitespeedio/sitespeed.io/issues/2754)). Fixed in [#2755](https://github.com/sitespeedio/sitespeed.io/pull/2755).
 
-Read about all the changes in [the changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md)!
+Read about all the changes in [the changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md)!
 
 ## Sponsor sitespeed.io
-We are also launching [GitHub sponsorship](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) with this release! [Read more about sponsoring sitespeed.io](/sponsor/).
+We are also launching [GitHub sponsorship](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md) with this release! [Read more about sponsoring sitespeed.io](/sponsor/).
 
 
 /Peter

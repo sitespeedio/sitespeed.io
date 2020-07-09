@@ -33,9 +33,9 @@ The script creates a file called **sitespeed.run** in your current folder. If yo
 
 The first part before the first dot in the filename will be appended to the Graphite namespace namespace (`--graphite.namespace`). If your file is named *login.js* the namespace will be `login`. If your file is named *login.2.js* the namespace is still `login`.
 
-Do you want to add a new URL to test on desktop? Navigate to [**desktop/urls**](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/master/nyc3-1/desktop/urls) and create your new file there. Want to add a user journey? Add the script in [**desktop/scripts**](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/master/nyc3-1/desktop/scripts).
+Do you want to add a new URL to test on desktop? Navigate to [**desktop/urls**](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/main/nyc3-1/desktop/urls) and create your new file there. Want to add a user journey? Add the script in [**desktop/scripts**](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/main/nyc3-1/desktop/scripts).
 
-Our example run tests for [desktop](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/master/nyc3-1/desktop), [emulated mobile](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/master/nyc3-1/mobile) (both URLs and scripts), testing using WebPageReplay ([replay](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/master/nyc3-1/replay/urls)) and WebPageTest ([webpagetest](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/master/nyc3-1/webpagetest/urls)). But you probably don't need all that so you can remove the code in the [**run.sh**](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/master/run.sh) script.
+Our example run tests for [desktop](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/main/nyc3-1/desktop), [emulated mobile](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/main/nyc3-1/mobile) (both URLs and scripts), testing using WebPageReplay ([replay](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/main/nyc3-1/replay/urls)) and WebPageTest ([webpagetest](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/main/nyc3-1/webpagetest/urls)). But you probably don't need all that so you can remove the code in the [**run.sh**](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/main/run.sh) script.
 
 The structure looks like this:
 
@@ -72,9 +72,9 @@ The structure looks like this:
 └── run.sh
 ```
 
-The [**loop.sh**](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/master/loop.sh) is the start point. Run it and feed it with the folder name of the server (in our case we only run the tests on server names *nyc3-1*). That script will git pull the rep for every iteration and run the script [**run.sh**](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/master/run.sh).
+The [**loop.sh**](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/main/loop.sh) is the start point. Run it and feed it with the folder name of the server (in our case we only run the tests on server names *nyc3-1*). That script will git pull the rep for every iteration and run the script [**run.sh**](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/main/run.sh).
 
-Then [**run.sh**](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/master/run.sh) will use the right configuration in [**/config/**](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/master/config) and run the URLs/scripts that are configured. Our configuration files extends configuration files that only exits on the server where we hold secret information like username and passwords. You don't need set it up that way, if you use a private git repo.
+Then [**run.sh**](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/main/run.sh) will use the right configuration in [**/config/**](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/main/config) and run the URLs/scripts that are configured. Our configuration files extends configuration files that only exits on the server where we hold secret information like username and passwords. You don't need set it up that way, if you use a private git repo.
 
 ### What you need to do
 You need to modify our tests and scripts so that you don't test the exact same URLs as us :)
@@ -120,7 +120,7 @@ In our example we have two configuration files on the server that we extends. Th
 }
 ```
 
-Then our configuration files in [**/config/**](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/master/config) extends these config files. They look something like this:
+Then our configuration files in [**/config/**](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/main/config) extends these config files. They look something like this:
 
 ```json
 {
@@ -129,7 +129,7 @@ Then our configuration files in [**/config/**](https://github.com/sitespeedio/da
 }
 ```
 
-And when we run our tests, we map the volume on the server /config to our docker container. You can see that in the [run.sh](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/master/run.sh) file. Look for `-v /config:/config`. That is the magic line.
+And when we run our tests, we map the volume on the server /config to our docker container. You can see that in the [run.sh](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/main/run.sh) file. Look for `-v /config:/config`. That is the magic line.
 
 
 We then also map the current working dir to `-v "$(pwd)":/sitespeed.io` and then feed the the config file to sitespeed `--config /sitespeed.io/config`. That way, inside the Docker container we have **/config/** that has the secret configuration files and in **/sitespeed.io/config** the configuration we want to use for our tests.

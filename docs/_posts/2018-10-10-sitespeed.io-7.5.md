@@ -9,7 +9,7 @@ nav: blog
 ---
 
 # sitespeed.io version 7.5
-Today (the 10th of October) is six years ago we [released sitespeed.io 1.0](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md#version-10---2012-10-10). A lot have changed (for the better) over the years and today we are doing release number 200! 
+Today (the 10th of October) is six years ago we [released sitespeed.io 1.0](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#version-10---2012-10-10). A lot have changed (for the better) over the years and today we are doing release number 200! 
 
 ## New in 7.5
 We have been collecting a couple of features and fixes over the last months that's finally being released.
@@ -104,7 +104,7 @@ You can give alias for URLs in the CLI with ```--urlAlias```. The number of alia
 We have been old and conservative in how we use # when creating URLs: From the beginning (6+ years ago) we always left out # from URLs when we decided if a URL is unique or not. Now you can choose yourself with ```--useHash``` [#2142](https://github.com/sitespeedio/sitespeed.io/pull/2142).
 
 ### Updated dashboards
-There's a new version of the [page summary](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/master/dashboards/graphite/PageSummary.json) and [page timing](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/master/dashboards/graphite/PageTimingMetrics.json) dashboards for Graphite, trying to make it easier to find regressions: [https://github.com/sitespeedio/grafana-bootstrap-docker](https://github.com/sitespeedio/grafana-bootstrap-docker)
+There's a new version of the [page summary](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/main/dashboards/graphite/PageSummary.json) and [page timing](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/main/dashboards/graphite/PageTimingMetrics.json) dashboards for Graphite, trying to make it easier to find regressions: [https://github.com/sitespeedio/grafana-bootstrap-docker](https://github.com/sitespeedio/grafana-bootstrap-docker)
 
  ![New updated dashboards for Graphite]({{site.baseurl}}/img/page-summary-7.5.png)
 {: .img-thumbnail-center}
@@ -117,7 +117,7 @@ There's a new version of the [page summary](https://github.com/sitespeedio/grafa
 
 * We updated to PageXray 2.4.0 that correctly pick up mime types for video/audio/xml and pdf (that was missed before). 
 
-* Updated to [Coach 2.3.0](https://github.com/sitespeedio/coach/blob/master/CHANGELOG.md) that fixes so that the CSS advice never can be a negative score.
+* Updated to [Coach 2.3.0](https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md) that fixes so that the CSS advice never can be a negative score.
 
 * Fixed the bug that made us show wrong video/screenshot on page summary[#2169](https://github.com/sitespeedio/sitespeed.io/pull/2169). Before we always showed the first screenshot/video. Now we show the median pick (so it correlates to the right waterfall and metrics tab).
 
@@ -129,6 +129,6 @@ There's a new version of the [page summary](https://github.com/sitespeedio/grafa
 
 
 ## Summary
-Checkout the full [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) for all the changes.
+Checkout the full [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md) for all the changes.
 
 /Peter

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Documentation sitespeed.io 12.x
+title: Documentation sitespeed.io 13.x
 description: Read about all you can do with sitespeed.io.
 keywords: tools, documentation, web performance
 nav: documentation
@@ -9,11 +9,11 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Documentation for sitespeed.io.
 ---
 
-# Documentation v12
+# Documentation v13
 
 <img src="{{site.baseurl}}/img/logos/sitespeed.io.png" class="pull-right img-big" alt="sitespeed.io logo" width="200" height="214">
 
-Sitespeed.io is the complete toolbox to test the web performance of your web site. Use it to monitor your performance or checkout how your competition is doing. You can see all the latest changes in the [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) for the project.
+Sitespeed.io is the complete toolbox to test the web performance of your web site. Use it to monitor your performance or checkout how your competition is doing. You can see all the latest changes in the [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md) for the project.
 
 ## Start
  * [Introduction](introduction/) - start here if you are new to the project or web performance testing.

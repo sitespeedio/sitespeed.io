@@ -19,7 +19,7 @@ twitterdescription: Learn more on how we work with privacy, COC and sustainabili
 A couple of important things to know about our projects.
 
 ### Changelog and versioning
-We always keep a CHANGELOG in the root of directory of the project. [Here's](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) the one we have for sitespeed.io. We always write down the changes we do in the project.
+We always keep a CHANGELOG in the root of directory of the project. [Here's](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md) the one we have for sitespeed.io. We always write down the changes we do in the project.
 
 We always use [semantic versioning](http://semver.org/) when we do a release.
 
@@ -27,10 +27,10 @@ We always use [semantic versioning](http://semver.org/) when we do a release.
 We take your online privacy really serious: Our [documentation site](https://www.sitespeed.io/), our [dashboard](https://dashboard.sitespeed.io) and our [compare tool](https://compare.sitespeed.io) do not use any tracking software at all (no Google Analytics or any other tracking software). We never use tracking software. None of the sitespeed.io tools call home. You can read more about privacy at our [Privacy Policy](../privacy-policy/) page.
 
 ### Code of Conduct
-When you create issues, do pull requests, use our Slack channel or contact us on email, please follow our [Code Of Conduct](https://github.com/sitespeedio/sitespeed.io/blob/master/CODE_OF_CONDUCT.md).
+When you create issues, do pull requests, use our Slack channel or contact us on email, please follow our [Code Of Conduct](https://github.com/sitespeedio/sitespeed.io/blob/main/CODE_OF_CONDUCT.md).
 
 ### Open Source
-We release our software under the [MIT License](https://github.com/sitespeedio/sitespeed.io/blob/master/LICENSE) or [Apache License 2.0](https://github.com/sitespeedio/browsertime/blob/master/LICENSE). Please respect it and respect our work: We ask you not to change the logo or the contribution to the project. Please do this to pay the respect to the many hours we put down into the project.
+We release our software under the [MIT License](https://github.com/sitespeedio/sitespeed.io/blob/main/LICENSE) or [Apache License 2.0](https://github.com/sitespeedio/browsertime/blob/main/LICENSE). Please respect it and respect our work: We ask you not to change the logo or the contribution to the project. Please do this to pay the respect to the many hours we put down into the project.
 
 ### Code and releases
 We try to have issues for everything we do (sometimes when there are small technical changes we miss that), we do PRs. Big PRs we always review them within the team.

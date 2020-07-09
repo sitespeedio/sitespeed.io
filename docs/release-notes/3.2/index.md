@@ -24,4 +24,4 @@ Interesting new stuff in the 3.1.x releases:
  * Upgraded BrowserTime that works as it should on Windows.
  * Send domain timings to Graphite and timings per request.
  * No robot removed from the HTML pages.
- * Many small bug fixes, checkout the [complete list](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md).
+ * Many small bug fixes, checkout the [complete list](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md).

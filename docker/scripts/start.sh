@@ -96,11 +96,13 @@ function runWebPageReplay() {
           execNode --max-old-space-size=$MAX_OLD_SPACE_SIZE $SITESPEEDIO --browsertime.firefox.preference security.OCSP.enabled:0 --browsertime.firefox.preference network.dns.forceResolve:127.0.0.1 --browsertime.chrome.args host-resolver-rules="MAP *:$HTTP_PORT 127.0.0.1:$WPR_HTTP_PORT,MAP *:$HTTPS_PORT 127.0.0.1:$WPR_HTTPS_PORT,EXCLUDE localhost" --browsertime.connectivity.engine throttle --browsertime.connectivity.throttle.localhost --replay --browsertime.connectivity.profile custom --browsertime.connectivity.rtt $LATENCY "$@" &
 
           PID=$!
-
+          
           trap shutdown SIGTERM SIGINT
           wait $PID
+          EXIT_STATUS=$?
 
           kill -s SIGTERM $replay_pid
+          exit $EXIT_STATUS
 
         else
           echo "Replay server didn't start correctly" >&2

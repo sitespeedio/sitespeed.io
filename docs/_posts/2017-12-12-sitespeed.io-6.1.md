@@ -58,7 +58,7 @@ Screenshot
 ## Docker with bundled WebPageReplay
 Ohhh we are excited about this: It's an really early release and you can help us by try it out.
 
-Both sitespeed.io and Browsertime have a new Docker container that you should use when you try out [WebPageReplay](https://github.com/catapult-project/catapult/tree/master/web_page_replay_go). If you haven't used WebPageReplay (or other performance tools like [mahimahi](https://github.com/ravinet/mahimahi)) the short explanation is that they record your website and replay it locally so when you run your tests, you don't need to hit the internet. This will give you a chance to have very stable metrics and make it easier to find regressions.
+Both sitespeed.io and Browsertime have a new Docker container that you should use when you try out [WebPageReplay](https://github.com/catapult-project/catapult/tree/main/web_page_replay_go). If you haven't used WebPageReplay (or other performance tools like [mahimahi](https://github.com/ravinet/mahimahi)) the short explanation is that they record your website and replay it locally so when you run your tests, you don't need to hit the internet. This will give you a chance to have very stable metrics and make it easier to find regressions.
 
 ### Test it out with sitespeed.io
 
@@ -98,6 +98,6 @@ We also has some fixes in sitespeed.io for this release:
 
 * Fixed broken metrics list [#1850](https://github.com/sitespeedio/sitespeed.io/issues/1850). Thank you [https://github.com/suratovvlad](https://github.com/suratovvlad) for reporting.
 
-Checkout the full [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/master/CHANGELOG.md) for all changes.
+Checkout the full [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md) for all changes.
 
 /Peter
