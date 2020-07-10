@@ -2,6 +2,7 @@ version: '3'
 services:
     grafana:
       image: grafana/grafana:7.0.4
+      hostname: grafana
       depends_on:
         - graphite
       links:
@@ -20,6 +21,7 @@ services:
       restart: always
     graphite:
       image: sitespeedio/graphite:1.1.5-12
+      hostname: graphite
       ports:
         - "2003:2003"
         - "8080:80"
