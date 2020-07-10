@@ -128,7 +128,16 @@ docker run --shm-size 2g --rm -v "$(pwd)":/sitespeed.io --network=host sitespeed
 ```
 
 ## Access host in your local network
+
 Sometimes the server you wanna test is in your local network at work and Docker cannot reach it (but you can from your physical machine). Usually you can fix that by making sure Docker uses the same network as your machine. Add `--network=host` and it should work.
+
+### Docker compose
+
+If you are using docker-compose for setting up Graphite and Grafana, your network name is normally named after the folder that you are running docker-compose from with an additional `_default` in the name, so if your folder name is sitespeedio, your network name would be `sitespeedio_default`.
+
+```bash
+docker run --shm-size 2g --rm -v "$(pwd)":/sitespeed.io --network sitespeedio_default sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox http://localhost:4000/
+```
 
 
 ## Extra start script
