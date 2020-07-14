@@ -175,6 +175,13 @@ sitespeed.io -b edge https://www.sitespeed.io
 
 Edge use the exact same setup as Chrome (except the driver), so you use `--chrome.*` to configure Edge :) 
 
+## Brave
+You can use [Brave browser](https://brave.com) by setting Brave as Chrome binary. Download Brave and run like this on OS X (make sure to adjust the path to the path to your Brave binary):
+
+~~~bash
+sitespeed.io --chrome.binaryPath "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser" https://www.sitespeed.io
+~~~
+
 ## Choose when to end your test
 By default the browser will collect data until  [window.performance.timing.loadEventEnd happens + approx 5 seconds more](https://github.com/sitespeedio/browsertime/blob/d68261e554470f7b9df28797502f5edac3ace2e3/lib/core/seleniumRunner.js#L15). That is perfectly fine for most sites, but if you do Ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (```--browsertime.pageCompleteCheck```). When the scripts returns true the browser will close or if the timeout time is reached.
 
