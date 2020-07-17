@@ -67,9 +67,9 @@
       "dev": true
     },
     "@babel/runtime": {
-      "version": "7.10.4",
-      "resolved": "https://registry.npmjs.org/@babel/runtime/-/runtime-7.10.4.tgz",
-      "integrity": "sha512-UpTN5yUJr9b4EX2CnGNWIvER7Ab83ibv0pcvvHc4UOdrBI5jb8bj+32cCwPX6xu0mt2daFNjYhoi+X7beH0RSw==",
+      "version": "7.10.5",
+      "resolved": "https://registry.npmjs.org/@babel/runtime/-/runtime-7.10.5.tgz",
+      "integrity": "sha512-otddXKhdNn7d0ptoFRHtMLa8LqDxLYwTjB4nYgM1yy5N6gU/MUf8zqyyLltCH3yAVitBzmwK4us+DD0l/MauAg==",
       "optional": true,
       "requires": {
         "regenerator-runtime": "^0.13.4"
@@ -604,21 +604,21 @@
       }
     },
     "@sitespeed.io/chromedriver": {
-      "version": "83.0.4103-39",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-83.0.4103-39.tgz",
-      "integrity": "sha512-UxWL+VxYJn6XUB3Ihr1+3s2mM4Lto9+eFHSAkgkDkrxw26rExrUmz5uwqiU6CKVoIfMuTRa0VCdLAA/yofLvnw==",
+      "version": "84.0.4147-30",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-84.0.4147-30.tgz",
+      "integrity": "sha512-qKL3gHqB+ZZauvOphP/hX7mU+ymzm34bqNYMaJkJk+q8A31es3MiZQkkyoXH86vOH5mRMN5oWtLhXeRVtX7/yQ==",
       "requires": {
-        "node-downloader-helper": "1.0.12",
-        "node-stream-zip": "1.9.1"
+        "node-downloader-helper": "1.0.13",
+        "node-stream-zip": "1.11.2"
       }
     },
     "@sitespeed.io/edgedriver": {
-      "version": "83.0.478-44",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/edgedriver/-/edgedriver-83.0.478-44.tgz",
-      "integrity": "sha512-OYWcgP3ikslMmjzb2ggx7HypSTk1HVpEa798sdAyo1c3m6lykkertiZjBN+Jt9t9mQF9ivYLNsd1YIxs/vf1ZQ==",
+      "version": "84.0.524-0",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/edgedriver/-/edgedriver-84.0.524-0.tgz",
+      "integrity": "sha512-Gw5JPjofq5doXOKV5M5h/XNiFF5XP5/EJDgcxeBJgAFqZQQbQa0mRgVhD8xCT5B0Dxsa254F4/zegndsrkjYBg==",
       "requires": {
-        "node-downloader-helper": "1.0.12",
-        "node-stream-zip": "1.9.1"
+        "node-downloader-helper": "1.0.13",
+        "node-stream-zip": "1.11.2"
       }
     },
     "@sitespeed.io/geckodriver": {
@@ -1729,9 +1729,9 @@
       "integrity": "sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ=="
     },
     "@types/node": {
-      "version": "14.0.19",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-14.0.19.tgz",
-      "integrity": "sha512-yf3BP/NIXF37BjrK5klu//asUWitOEoUP5xE1mhSUjazotwJ/eJDgEmMQNlOeWOVv72j24QQ+3bqXHE++CFGag=="
+      "version": "14.0.23",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-14.0.23.tgz",
+      "integrity": "sha512-Z4U8yDAl5TFkmYsZdFPdjeMa57NOvnaf1tljHzhouaPEp7LCj2JKkejpI1ODviIAQuW4CcQmxkQ77rnLsOOoKw=="
     },
     "abbrev": {
       "version": "1.1.1",
@@ -2170,13 +2170,13 @@
       "integrity": "sha512-qhAVI1+Av2X7qelOfAIYwXONood6XlZE/fXaBSmW/T5SzLAmCgzi+eiWE7fUvbHaeNBQH13UftjpXxsfLkMpgw=="
     },
     "browsertime": {
-      "version": "9.0.2",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-9.0.2.tgz",
-      "integrity": "sha512-iysu4JJhcVHwFMlPphpEcmkfCELXRhJlZWp+CIn4Aj8DQ4Xg8VOyYZ8ISqVkotCM7kvekLPSsLnRGP/hdAp+UA==",
+      "version": "9.1.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-9.1.0.tgz",
+      "integrity": "sha512-td6hRQKC7XkV/ied5AaPgRLCrd1fAoY7s4AwehSlUcGEhE5hDyn3lCQ8+AAar8f/gGCwJhOhzX34ft/3AQPamg==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
-        "@sitespeed.io/chromedriver": "83.0.4103-39",
-        "@sitespeed.io/edgedriver": "83.0.478-44",
+        "@sitespeed.io/chromedriver": "84.0.4147-30",
+        "@sitespeed.io/edgedriver": "84.0.524-0",
         "@sitespeed.io/geckodriver": "0.26.0-d",
         "@sitespeed.io/throttle": "1.0.3",
         "@sitespeed.io/tracium": "0.3.3",
@@ -5573,9 +5573,9 @@
       "optional": true
     },
     "node-downloader-helper": {
-      "version": "1.0.12",
-      "resolved": "https://registry.npmjs.org/node-downloader-helper/-/node-downloader-helper-1.0.12.tgz",
-      "integrity": "sha512-2t3h3g3xK5kxhRbwD+0WgKotHyoVEQlE+V93rn97tqzUtbw8cFpHn0uhsc2LeKkDlsQI1iy5XZoS3vACzBdW8A=="
+      "version": "1.0.13",
+      "resolved": "https://registry.npmjs.org/node-downloader-helper/-/node-downloader-helper-1.0.13.tgz",
+      "integrity": "sha512-HdwSd8tnC06dIWLFBSTGHlcPKXo308815J4m/1e/NkSd6gmdDaO6KSf9JON5fXt3R5Vdw5bgQvSrgSq4GXjYvg=="
     },
     "node-fetch": {
       "version": "2.6.0",
@@ -5775,9 +5775,9 @@
       }
     },
     "node-stream-zip": {
-      "version": "1.9.1",
-      "resolved": "https://registry.npmjs.org/node-stream-zip/-/node-stream-zip-1.9.1.tgz",
-      "integrity": "sha512-7/Xs9gkuYF0WBimz5OrSc6UVKLDTxvBG2yLGtEK8PSx94d86o/6iQLvIe/140ATz35JDqHKWIxh3GcA3u5hB0w=="
+      "version": "1.11.2",
+      "resolved": "https://registry.npmjs.org/node-stream-zip/-/node-stream-zip-1.11.2.tgz",
+      "integrity": "sha512-cowCX+OyzS3tN2i4BMMFxCr/pE6cQlEMTbVCugmos0TNEJQNtcG04tR41CY8lumO1I7F5GFiLaU4WavomJthaA=="
     },
     "nopt": {
       "version": "2.2.1",
