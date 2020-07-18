@@ -2,7 +2,7 @@
 
 ## 14.1.0 - UNRELEASED
 ### Added
-* Updated to Chromedriver and Edgedriver 84 and Chrome 84/Firefox 78 in the Docker container [#3089](https://github.com/sitespeedio/sitespeed.io/pull/3089)
+* Updated to Chromedriver and Edgedriver 84. Chrome 84/Firefox 78 in the Docker container [#3089](https://github.com/sitespeedio/sitespeed.io/pull/3089)
 
 ## 14.0.0 - 2020-07-09
 
