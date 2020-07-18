@@ -8,6 +8,7 @@
 
 ### Fixed
 * Updated minor versions for dependencies google-cloud/storage, aws-sdk, dayjs, uuid and yargs [#3090](https://github.com/sitespeedio/sitespeed.io/pull/3090).
+* Fix low severity issues in dependencies [#3091](https://github.com/sitespeedio/sitespeed.io/pull/3091).
 
 ## 14.0.0 - 2020-07-09
 
