@@ -3,6 +3,8 @@
 ## 14.1.0 - UNRELEASED
 ### Added
 * Updated to Chromedriver and Edgedriver 84. Chrome 84/Firefox 78 in the Docker container [#3089](https://github.com/sitespeedio/sitespeed.io/pull/3089)
+* Be less strict about GCS options in respect of ADC. Within Google Cloud, services can make use of Credentials-"Auto Discovery" (ADC). The @google-cloud/storage library supports this and tries an automatic discovery when keyFilename is unset. In an auto-discover scenario projectId is discovered as well so this should also be allowed to not be set. The --gcs.bucketname option could be kept as a (mandatory) signal to use GCS at all. Thank you [Stephan Scheying](https://github.com/scheying) for the PR [#3087](https://github.com/sitespeedio/sitespeed.io/pull/3087)!
+* Send the performance budget resulyt in the queue. Look for messages of the type **budget.result**. This will make it easier for plugins (like Slack and Matrix) to post messages about the budget result. [#3085](https://github.com/sitespeedio/sitespeed.io/pull/3085).
 
 ## 14.0.0 - 2020-07-09
 
