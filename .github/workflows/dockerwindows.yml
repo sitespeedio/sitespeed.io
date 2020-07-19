@@ -1,0 +1,19 @@
+name: Docker on Windows
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build Docker containers
+      run: docker build -t sitespeedio/sitespeed.io .
+      shell: cmd
+    - name: Run test on default container for Chrome 
+      run: docker run --rm sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 -b chrome
+      shell: cmd
