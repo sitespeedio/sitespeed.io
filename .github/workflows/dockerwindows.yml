@@ -10,8 +10,7 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - run: |
-     & 'C:\Program Files\Docker\Docker\DockerCli.exe' -SwitchDaemon
+    - run: Start-Process -FilePath "C:\Program Files\Docker\Docker\DockerCLI.exe" -ArgumentList "-SwitchLinuxEngine"
     - uses: actions/checkout@v2
     - name: Build Docker containers
       run: docker build -t sitespeedio/sitespeed.io .
