@@ -10,6 +10,8 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
+    - run: |
+     & 'C:\Program Files\Docker\Docker\DockerCli.exe' -SwitchDaemon
     - uses: actions/checkout@v2
     - name: Build Docker containers
       run: docker build -t sitespeedio/sitespeed.io .
