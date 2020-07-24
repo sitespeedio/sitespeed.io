@@ -3,6 +3,8 @@
 ## UNRELASED
 ### Added
 * Updated to Firefox 78 in the Docker slim container.
+* Add unit to Slack summary, thank you [Lise Bilhaut](https://github.com/lbilhaut) for PR [#3102](https://github.com/sitespeedio/sitespeed.io/pull/3102).
+* Let GCS and S3 send a setup message on startup so other plugins knows that they are configured [#3101](https://github.com/sitespeedio/sitespeed.io/pull/3101).
 
 ## 14.1.0 - 2020-07-18s
 ### Added
