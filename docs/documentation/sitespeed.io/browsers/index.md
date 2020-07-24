@@ -104,6 +104,21 @@ Chrome has a [long list](https://peter.sh/experiments/chromium-command-line-swit
 
 When you add your command line switched you should skip the minus. For example: You want to use ```--deterministic-fetch``` then add it like ```--chrome.args deterministic-fetch```.
 
+If you want to use it in the configuration file, you can just add each arg in array. Here's an example for adding Chrome args from sitespeed.io:
+
+~~~json
+{
+    "browsertime": {
+        "chrome": {
+            "args" : [
+                "crash-test",
+                "deterministic-fetch"
+            ]
+        }
+    }
+}
+~~~
+
 ### Collect trace logs
  You can get the trace log from Chrome by adding ```--chrome.timeline```. Doing that you will see how much time the CPU spend in different categories and a trace log file that you can drag and drop into your devtools timeline.
 

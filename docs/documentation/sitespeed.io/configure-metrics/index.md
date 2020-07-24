@@ -118,7 +118,7 @@ It will output the port, so you can then use it when you run sitespeed.io:
 docker run --net host --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --metrics.list https://www.sitespeed.io -n 1 --metrics.filter coach.pageSummary.advice.performance.adviceList.*.score --graphite.host 127.0.0.1 --graphite.port 52860
 ~~~
 
-The the previous example it will log all metrics you send to Graphite to the console.
+The previous example it will log all metrics you send to Graphite to the console.
 
 #### Example: Add all Coach advice
 
