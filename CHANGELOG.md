@@ -1,12 +1,12 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELASED
+## 14.2.0 - UNRELEASED
 ### Added
-* Updated to Firefox 78 in the Docker slim container.
+* Updated to Firefox 79 in the Docker slim container and in the default container.
 * Add unit to Slack summary, thank you [Lise Bilhaut](https://github.com/lbilhaut) for PR [#3102](https://github.com/sitespeedio/sitespeed.io/pull/3102).
 * Let GCS and S3 send a setup message on startup so other plugins knows that they are configured [#3101](https://github.com/sitespeedio/sitespeed.io/pull/3101).
 
-## 14.1.0 - 2020-07-18s
+## 14.1.0 - 2020-07-18
 ### Added
 * Updated to Chromedriver and Edgedriver 84. Chrome 84/Firefox 78 in the Docker container [#3089](https://github.com/sitespeedio/sitespeed.io/pull/3089).
 * Be less strict about GCS options in respect of ADC. Within Google Cloud, services can make use of Credentials-"Auto Discovery" (ADC). The @google-cloud/storage library supports this and tries an automatic discovery when keyFilename is unset. In an auto-discover scenario projectId is discovered as well so this should also be allowed to not be set. The --gcs.bucketname option could be kept as a (mandatory) signal to use GCS at all. Thank you [Stephan Scheying](https://github.com/scheying) for the PR [#3087](https://github.com/sitespeedio/sitespeed.io/pull/3087)!
