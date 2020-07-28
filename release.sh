@@ -11,7 +11,7 @@ docker login
 # Lets use it it for now and make it better over time :)
 # You need np for this to work
 # npm install --global np
-np $* --no-yarn
+np $* --no-yarn --anyBranch
 
 PACKAGE_VERSION=$(node -e 'console.log(require("./package").version)')
 
