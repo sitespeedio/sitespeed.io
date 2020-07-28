@@ -60,12 +60,12 @@ If you want to use Firefox (make sure you make the shared memory larger using --
 docker run --shm-size 2g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox https://www.sitespeed.io/
 ```
 
-Using `-v "$(pwd):/sitespeed.io`" will map the current directory inside Docker and output the result directory there.
+Using `-v "$(pwd):/sitespeed.io"` will map the current directory inside Docker and output the result directory there.
 {: .note .note-info}
 
 ## More about volumes
 
-If you want to feed sitespeed.io with a file with URLs or if you want to store the HTML result, you should setup a volume. Sitespeed.io will do all the work inside the container in a directory located at _/sitespeed.io_. To setup your current working directory add the _-v "$(pwd):/sitespeed.io_" to your parameter list. Using "$(pwd)" will default to the current directory. In order to specify a static location, simply define an absolute path: _-v /Users/sitespeedio/html:/sitespeed.io_
+If you want to feed sitespeed.io with a file with URLs or if you want to store the HTML result, you should setup a volume. Sitespeed.io will do all the work inside the container in a directory located at _/sitespeed.io_. To setup your current working directory add the _-v "$(pwd):/sitespeed.io"_ to your parameter list. Using "$(pwd)" will default to the current directory. In order to specify a static location, simply define an absolute path: _-v /Users/sitespeedio/html:/sitespeed.io_
 
 If you run on Windows, it could be that you need to map a absolute path. If you have problems on Windows please check [https://docs.docker.com/docker-for-windows/](https://docs.docker.com/docker-for-windows/).
 
