@@ -64,7 +64,7 @@ sitespeed.io --android https://www.sitespeed.io
 Remember: To test on Android using Docker you need to be on Linux (tested on Ubuntu). It will not work on OS X.
 
 ```bash
-docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  -n 1 --android --browsertime.xvfb false https://www.sitespeed.io
+docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  -n 1 --android --browsertime.xvfb false https://www.sitespeed.io
 ```
 
 You will get result as you would with running this normally with summaries and waterfall graphs.
@@ -108,7 +108,7 @@ sitespeed.io --android --video --visualMetrics https://www.sitespeed.io
 And using Docker (remember: only works in Linux hosts):
 
 ```bash
-docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  -n 1 --android --browsertime.xvfb false https://www.sitespeed.io
+docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  -n 1 --android --browsertime.xvfb false https://www.sitespeed.io
 ```
 
 If you want to run Docker on Mac OS X, you can follow Appiums [setup](https://github.com/appium/appium-docker-android) by creating a docker-machine, give out USB access and then run the container from that Docker machine.

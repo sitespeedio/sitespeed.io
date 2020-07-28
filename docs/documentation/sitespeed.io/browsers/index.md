@@ -90,7 +90,7 @@ If you need to pass on extra command line arguments to the Firefox binary you ca
 When you run Firefox in Docker you should use `--shm-size 2g` to make sure Firefox get enough shared memory (for Chrome we disabled the use of shm with --disable-dev-shm-usage).
 
 ~~~bash
-docker run --shm-size 2g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io -b firefox
+docker run --shm-size 2g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io -b firefox
 ~~~
 
 ## Chrome
@@ -123,7 +123,7 @@ If you want to use it in the configuration file, you can just add each arg in ar
  You can get the trace log from Chrome by adding ```--chrome.timeline```. Doing that you will see how much time the CPU spend in different categories and a trace log file that you can drag and drop into your devtools timeline.
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --chrome.timeline https://www.sitespeed.io/
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --chrome.timeline https://www.sitespeed.io/
 ~~~
 
 You can also choose which Chrome trace categories you want to collect by adding ```--chrome.traceCategories```  to your parameters.
@@ -203,7 +203,7 @@ By default the browser will collect data until  [window.performance.timing.loadE
 In this example we wait 10 seconds until the loadEventEnd happens, but you can also choose to trigger it at a specific event.
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --browsertime.pageCompleteCheck 'return (function() {try { return (Date.now() - window.performance.timing.loadEventEnd) > 10000;} catch(e) {} return true;})()'
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --browsertime.pageCompleteCheck 'return (function() {try { return (Date.now() - window.performance.timing.loadEventEnd) > 10000;} catch(e) {} return true;})()'
 ~~~
 
 You can also configure how long time your current check will wait until completing with ```--pageCompleteWaitTime```. By default the pageCompleteCheck waits for 5000 ms after the onLoad event to happen. If you want to increase that to 10 seconds use ```--pageCompleteWaitTime 10000```. This is also useful if you test with *pageCompleteCheckInactivity* and it takes long time for the server to respond, you can use the *pageCompleteWaitTime* to wait longer than the default value.
@@ -232,7 +232,7 @@ For example say we have one file called scripts.js that checks how many scripts 
 Then to pick up the script, you would run it like this:
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --browsertime.script scripts.js -b firefox
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --browsertime.script scripts.js -b firefox
 ~~~
 
 You will get a custom script section in the Browsertime tab.
@@ -250,7 +250,7 @@ Bonus: All custom scripts values will be sent to Graphite, no extra configuratio
 Visual metrics (Speed Index, Perceptual Speed Index, First and Last Visual Complete, and 85-95-99% Visual Complete) can be collected if you also record a video of the screen. If you use our Docker container you automagically get all what you need. Video and Visual Metrics is turned on by default.
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/
 ~~~
 
 On Android you need to follow [these instructions]({{site.baseurl}}/documentation/sitespeed.io/mobile-phones/#video-and-speedindex).
@@ -267,7 +267,7 @@ For example if you want to pass on an extra native arguments to Chrome. In stand
 You can generate a TCP dump with `--tcpdump`.
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --tcpdump
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --tcpdump
 ~~~
 
 You can then download the TCP dump for each iteration and the SSL key log file from the result page.

@@ -76,7 +76,7 @@ Scripting only works for Browsertime. It will not work with Lighthouse/Google Pa
 Run your script by passing it to sitespeed.io and adding the parameter ```--multi```. If you have multiple scripts, you can just pass them in as well.
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} script.js script2.js script3.js --multi
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} script.js script2.js script3.js --multi
 ~~~
 
 If you want to pass data between your scripts you can do that with the context object. Here's an example of the first script:
