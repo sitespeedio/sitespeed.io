@@ -23,7 +23,7 @@ twitterdescription:
 You enable testing with `--axe.enable`.
 
 ```bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --axe.enable https://www.sitespeed.io
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --axe.enable https://www.sitespeed.io
 ```
 
 That will run [axe-core](https://github.com/dequelabs/axe-core) and generate a new **axe** tab in your HTML result. The number of violations (per type) will automatically be sent to Graphite/InfluxDB.

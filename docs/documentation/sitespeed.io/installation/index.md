@@ -26,7 +26,7 @@ We have [Docker images](https://hub.docker.com/r/sitespeedio/sitespeed.io/) with
 ### Mac & Linux
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -b firefox
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io https://www.sitespeed.io -b firefox
 ~~~
 
 ### Windows

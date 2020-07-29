@@ -67,6 +67,6 @@ module.exports = async function(context, commands) {
 Then you run it by passing on the script file, using  ```--spa``` to notify that you are testing a single page application and ```--multi``` that you plan to test multiple pages within one run.
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} thirtydays.js --spa --multi
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} thirtydays.js --spa --multi
 ~~~
 

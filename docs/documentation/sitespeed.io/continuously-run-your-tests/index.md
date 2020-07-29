@@ -132,7 +132,7 @@ Then our configuration files in [**/config/**](https://github.com/sitespeedio/da
 And when we run our tests, we map the volume on the server /config to our docker container. You can see that in the [run.sh](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/main/run.sh) file. Look for `-v /config:/config`. That is the magic line.
 
 
-We then also map the current working dir to `-v "$(pwd)":/sitespeed.io` and then feed the the config file to sitespeed `--config /sitespeed.io/config`. That way, inside the Docker container we have **/config/** that has the secret configuration files and in **/sitespeed.io/config** the configuration we want to use for our tests.
+We then also map the current working dir to `-v "$(pwd):/sitespeed.io"` and then feed the the config file to sitespeed `--config /sitespeed.io/config`. That way, inside the Docker container we have **/config/** that has the secret configuration files and in **/sitespeed.io/config** the configuration we want to use for our tests.
 
 
 #### Change the tests
