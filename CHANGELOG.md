@@ -1,6 +1,9 @@
 # CHANGELOG - sitespeed.io
 
-## 14.2.0 - UNRELEASED
+## 14.2.1 - 2020-07-28
+NPM/np glitch, 14.2.1 is the same as 14.2.0.
+
+## 14.2.0 - 2020-07-28
 ### Added
 * Updated to Firefox 79 in the Docker slim container and in the default container.
 * Add unit to Slack summary, thank you [Lise Bilhaut](https://github.com/lbilhaut) for PR [#3102](https://github.com/sitespeedio/sitespeed.io/pull/3102).

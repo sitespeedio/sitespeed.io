@@ -18,7 +18,7 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 Sitespeed.io uses Browsertime, the Coach and PageXray to collect and generate the result, so looking at result pages from sitespeed.io will give you a idea of what you can get from all tools. Analysing two pages using Chrome looks like this:
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b chrome --cpu https://en.wikipedia.org/wiki/Main_Page https://en.wikipedia.org/wiki/Barack_Obama
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b chrome --cpu https://en.wikipedia.org/wiki/Main_Page https://en.wikipedia.org/wiki/Barack_Obama
 ~~~
 
 Gives the following [report](https://examples.sitespeed.io/13.x/2020-05-20-08-47-56/index.html). The standard use case for sitespeed.io is to run it continuously and send the data to Graphite/Grafana and create dashboards looking like this:

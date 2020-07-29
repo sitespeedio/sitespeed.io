@@ -241,7 +241,7 @@ You can read more about the metrics/data structure in the [metrics section]({{si
 Then run it like this:
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --budget.configPath myBudget.json -b chrome -n 11
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --budget.configPath myBudget.json -b chrome -n 11
 ~~~
 
 And, if the budget fails, the exit status will be > 0. You can also choose to report the budget as JUnitXML (Jenkins) or TAP.
@@ -250,7 +250,7 @@ And, if the budget fails, the exit status will be > 0. You can also choose to re
 You can output a JUnit XML file from the budget result like this:
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --budget.configPath myBudget.json --budget.output junit -b chrome -n 5
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --budget.configPath myBudget.json --budget.output junit -b chrome -n 5
 ~~~
 
 It will create a *junit.xml* in the outputFolder.
@@ -259,7 +259,7 @@ It will create a *junit.xml* in the outputFolder.
 If you would instead like to use TAP, you can do so like this:
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --budget.configPath myBudget.json --budget.output tap -b chrome -n 5
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --budget.configPath myBudget.json --budget.output tap -b chrome -n 5
 ~~~
 
 It will create a *budget.tap* in the outputFolder.
@@ -268,7 +268,7 @@ It will create a *budget.tap* in the outputFolder.
 You can output the result of the budget as JSON:
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --budget.configPath myBudget.json --budget.output json -b chrome -n 5
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --budget.configPath myBudget.json --budget.output json -b chrome -n 5
 ~~~
 
 It will create a *budgetResult.json* in the outputFolder.

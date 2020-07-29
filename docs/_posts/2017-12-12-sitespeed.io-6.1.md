@@ -67,13 +67,13 @@ The Docker container name is *sitespeedio/sitespeed.io:6.1.0-wpr-alpha* and you 
 Running for Chrome is easy:
 
 ~~~bash
-docker run --cap-add=NET_ADMIN --shm-size=1g --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true sitespeedio/sitespeed.io:6.1.1-wpr-alpha -n 5 -b chrome https://en.wikipedia.org/wiki/Barack_Obama
+docker run --cap-add=NET_ADMIN --shm-size=1g --rm -v "$(pwd):/sitespeed.io" -e REPLAY=true sitespeedio/sitespeed.io:6.1.1-wpr-alpha -n 5 -b chrome https://en.wikipedia.org/wiki/Barack_Obama
 ~~~
 
 It also works for Firefox (note that we need the *skipHar* until the next HAR exporter is released):
 
 ~~~bash
-docker run --cap-add=NET_ADMIN --shm-size=1g --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true sitespeedio/sitespeed.io:6.1.1-wpr-alpha -n 11 --browsertime.skipHar -b firefox https://en.wikipedia.org/wiki/Barack_Obama
+docker run --cap-add=NET_ADMIN --shm-size=1g --rm -v "$(pwd):/sitespeed.io" -e REPLAY=true sitespeedio/sitespeed.io:6.1.1-wpr-alpha -n 11 --browsertime.skipHar -b firefox https://en.wikipedia.org/wiki/Barack_Obama
 ~~~
 
 ### Test it out with Browsertime
