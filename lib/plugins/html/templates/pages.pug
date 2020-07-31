@@ -13,8 +13,7 @@ mixin rows(pages)
     tr
       td.url.pagesurl(data-title='URL')
         a(href= pageInfo.path + 'index.html')= decodeURIComponent(display)
-
-      if b.visualMetrics && b.visualMetrics[0]
+      if (b.visualMetrics && b.visualMetrics[0]) && (!hasPageSummaryMetricInput)
         +numberCell('First Visual Change', b.visualMetrics[0].FirstVisualChange)
         +numberCell('Speed Index', b.visualMetrics[0].SpeedIndex)
         +numberCell('Last Visual Change', b.visualMetrics[0].LastVisualChange)
@@ -44,7 +43,7 @@ mixin rows(pages)
 
 block content
   - headings = ['URL']
-  if options.browsertime.visualMetrics
+  if options.browsertime.visualMetrics && !hasPageSummaryMetricInput
     - headings.push('First Visual Change', 'Speed Index', 'Last Visual Change')
   - metricList = html.pageSummaryMetrics
   each kv in metricList
