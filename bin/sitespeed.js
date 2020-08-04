@@ -7,6 +7,13 @@
 const cli = require('../lib/cli/cli');
 const sitespeed = require('../lib/sitespeed');
 
+let parsed = cli.parseCommandLine();
+let budgetFailing = false;
+// hack for getting in the unchanged cli options
+parsed.options.explicitOptions = parsed.explicitOptions;
+parsed.options.urls = parsed.urls;
+parsed.options.urlsMetaData = parsed.urlsMetaData;
+
 async function run(options) {
   process.exitCode = 1;
   try {
@@ -16,7 +23,7 @@ async function run(options) {
     }
 
     if (
-      parsed.options.budget &&
+      options.budget &&
       Object.keys(result.budgetResult.failing).length > 0
     ) {
       process.exitCode = 1;
@@ -25,7 +32,7 @@ async function run(options) {
 
     if (
       !budgetFailing ||
-      (parsed.options.budget && parsed.options.budget.suppressExitCode)
+      (options.budget && options.budget.suppressExitCode)
     ) {
       process.exitCode = 0;
     }
@@ -35,11 +42,4 @@ async function run(options) {
     process.exit();
   }
 }
-let parsed = cli.parseCommandLine();
-let budgetFailing = false;
-// hack for getting in the unchanged cli options
-parsed.options.explicitOptions = parsed.explicitOptions;
-parsed.options.urls = parsed.urls;
-parsed.options.urlsMetaData = parsed.urlsMetaData;
-
 run(parsed.options);
