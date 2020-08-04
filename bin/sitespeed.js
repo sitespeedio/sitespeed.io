@@ -22,17 +22,14 @@ async function run(options) {
       throw new Error('Errors while running:\n' + result.errors.join('\n'));
     }
 
-    if (
-      options.budget &&
-      Object.keys(result.budgetResult.failing).length > 0
-    ) {
+    if (options.budget && Object.keys(result.budgetResult.failing).length > 0) {
       process.exitCode = 1;
       budgetFailing = true;
     }
 
     if (
       !budgetFailing ||
-      (options.budget && options.budget.suppressExitCode)
+      (options.budget && parsed.options.budget.suppressExitCode)
     ) {
       process.exitCode = 0;
     }
@@ -42,4 +39,5 @@ async function run(options) {
     process.exit();
   }
 }
+
 run(parsed.options);
