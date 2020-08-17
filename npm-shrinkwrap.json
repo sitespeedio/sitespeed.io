@@ -67,9 +67,9 @@
       "dev": true
     },
     "@babel/runtime": {
-      "version": "7.11.0",
-      "resolved": "https://registry.npmjs.org/@babel/runtime/-/runtime-7.11.0.tgz",
-      "integrity": "sha512-qArkXsjJq7H+T86WrIFV0Fnu/tNOkZ4cgXmjkzAu3b/58D5mFIO8JH/y77t7C9q0OdDRdh9s7Ue5GasYssxtXw==",
+      "version": "7.11.2",
+      "resolved": "https://registry.npmjs.org/@babel/runtime/-/runtime-7.11.2.tgz",
+      "integrity": "sha512-TeWkU52so0mPtDcaCTxNBI/IHiz0pZgr8VEFqXFtZWpYD08ZB6FaSwVAS8MKRQAP3bYKiVjwysOJgMFY28o6Tw==",
       "optional": true,
       "requires": {
         "regenerator-runtime": "^0.13.4"
@@ -622,37 +622,31 @@
       }
     },
     "@sitespeed.io/geckodriver": {
-      "version": "0.26.0-d",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/geckodriver/-/geckodriver-0.26.0-d.tgz",
-      "integrity": "sha512-qvKwt/+mKoeiVFwNMJpS5KQWBtDNKjtiVkKORJC06x6Zttbb48VK1RKj6QB+dSinZEH8eEytGm+TOjTtUtJC+Q==",
+      "version": "0.27.0",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/geckodriver/-/geckodriver-0.27.0.tgz",
+      "integrity": "sha512-+4f9gevqerqksOZHu7/hnXYLzAz6prW132f/YCqt/HrS3ft9C3La2pg4Kbqw7JyHazIPJat13AV2c0gH/DJIqQ==",
       "requires": {
-        "node-downloader-helper": "1.0.9",
-        "node-stream-zip": "1.7.0",
-        "tar": "4.4.8"
+        "node-downloader-helper": "1.0.13",
+        "node-stream-zip": "1.11.2",
+        "tar": "6.0.2"
       },
       "dependencies": {
-        "node-downloader-helper": {
-          "version": "1.0.9",
-          "resolved": "https://registry.npmjs.org/node-downloader-helper/-/node-downloader-helper-1.0.9.tgz",
-          "integrity": "sha512-X2cuBotLy2D3LdQAvhOAZ6IfcMGT6ssn+hCEm6yPJzhjr+S/YjyTLTxhnAe1pr5/jxGABD+b3SN8WpuBL5J2Dw=="
-        },
-        "node-stream-zip": {
-          "version": "1.7.0",
-          "resolved": "https://registry.npmjs.org/node-stream-zip/-/node-stream-zip-1.7.0.tgz",
-          "integrity": "sha512-kYVtF3lK++53Bg6hZNplYVMrR7Lt0IYdLWehgoHUJLJcSwg/xd2Rm2Z7kJ5W8ZA7pdeg/DiUQDatbYwL3C7qSw=="
+        "mkdirp": {
+          "version": "1.0.4",
+          "resolved": "https://registry.npmjs.org/mkdirp/-/mkdirp-1.0.4.tgz",
+          "integrity": "sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw=="
         },
         "tar": {
-          "version": "4.4.8",
-          "resolved": "https://registry.npmjs.org/tar/-/tar-4.4.8.tgz",
-          "integrity": "sha512-LzHF64s5chPQQS0IYBn9IN5h3i98c12bo4NCO7e0sGM2llXQ3p2FGC5sdENN4cTW48O915Sh+x+EXx7XW96xYQ==",
+          "version": "6.0.2",
+          "resolved": "https://registry.npmjs.org/tar/-/tar-6.0.2.tgz",
+          "integrity": "sha512-Glo3jkRtPcvpDlAs/0+hozav78yoXKFr+c4wgw62NNMO3oo4AaJdCo21Uu7lcwr55h39W2XD1LMERc64wtbItg==",
           "requires": {
-            "chownr": "^1.1.1",
-            "fs-minipass": "^1.2.5",
-            "minipass": "^2.3.4",
-            "minizlib": "^1.1.1",
-            "mkdirp": "^0.5.0",
-            "safe-buffer": "^5.1.2",
-            "yallist": "^3.0.2"
+            "chownr": "^2.0.0",
+            "fs-minipass": "^2.0.0",
+            "minipass": "^3.0.0",
+            "minizlib": "^2.1.0",
+            "mkdirp": "^1.0.3",
+            "yallist": "^4.0.0"
           }
         }
       }
@@ -2170,19 +2164,19 @@
       "integrity": "sha512-qhAVI1+Av2X7qelOfAIYwXONood6XlZE/fXaBSmW/T5SzLAmCgzi+eiWE7fUvbHaeNBQH13UftjpXxsfLkMpgw=="
     },
     "browsertime": {
-      "version": "9.2.1",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-9.2.1.tgz",
-      "integrity": "sha512-HEoFAup+JPsyKjQ1pRll3ZJjRbQD7jOkc6pWfXYAwzyef6aNU4B4djSCcpXJY73H1/x6dnEJ4s9cvmW6A1aLUw==",
+      "version": "9.3.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-9.3.0.tgz",
+      "integrity": "sha512-Bi9kyHxNy3Mm+qq4QH6GNRwe6234ZL8CzCdcIq1yhmgkvHE0v5bIFVUYHpcEJk+iFkxb+PrrPAmaGKJ9Xt8m4g==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@sitespeed.io/chromedriver": "84.0.4147-30",
         "@sitespeed.io/edgedriver": "84.0.524-0",
-        "@sitespeed.io/geckodriver": "0.26.0-d",
+        "@sitespeed.io/geckodriver": "0.27.0",
         "@sitespeed.io/throttle": "1.0.3",
         "@sitespeed.io/tracium": "0.3.3",
         "adbkit": "2.11.1",
         "btoa": "1.2.1",
-        "chrome-har": "0.11.10",
+        "chrome-har": "0.11.11",
         "chrome-remote-interface": "0.28.2",
         "dayjs": "1.8.31",
         "execa": "4.0.2",
@@ -2440,14 +2434,14 @@
       }
     },
     "chownr": {
-      "version": "1.1.4",
-      "resolved": "https://registry.npmjs.org/chownr/-/chownr-1.1.4.tgz",
-      "integrity": "sha512-jJ0bqzaylmJtVnNgzTeSOs8DPavpbYgEr/b0YL8/2GO3xJEhInFmhKMUnEJQjZumK7KXGFhUy89PrsJWlakBVg=="
+      "version": "2.0.0",
+      "resolved": "https://registry.npmjs.org/chownr/-/chownr-2.0.0.tgz",
+      "integrity": "sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ=="
     },
     "chrome-har": {
-      "version": "0.11.10",
-      "resolved": "https://registry.npmjs.org/chrome-har/-/chrome-har-0.11.10.tgz",
-      "integrity": "sha512-Erq8YID0YxqZBxYW0sWYJbrLPxcWchMt6GSreASTO4fCge9/UDXH+c3ujvmOf82/Svk0q8WNhD0V4SWnnthO9w==",
+      "version": "0.11.11",
+      "resolved": "https://registry.npmjs.org/chrome-har/-/chrome-har-0.11.11.tgz",
+      "integrity": "sha512-VyBscbAb5WSlxNTSxY8OnnRKjZKjUmSJcoYstz/VhPND+WgM5yJZYRMOcn4a3zkRIGOX0MxNH6/n5c+/T3eKIg==",
       "requires": {
         "dayjs": "1.8.31",
         "debug": "4.1.1",
@@ -3951,11 +3945,11 @@
       }
     },
     "fs-minipass": {
-      "version": "1.2.7",
-      "resolved": "https://registry.npmjs.org/fs-minipass/-/fs-minipass-1.2.7.tgz",
-      "integrity": "sha512-GWSSJGFy4e9GUeCcbIkED+bgAoFyj7XF1mV8rma3QW4NIqX9Kyx79N/PF61H5udOV3aY1IaMLs6pGbH71nlCTA==",
+      "version": "2.1.0",
+      "resolved": "https://registry.npmjs.org/fs-minipass/-/fs-minipass-2.1.0.tgz",
+      "integrity": "sha512-V/JgOLFCS+R6Vcq0slCuaeWEdNC3ouDlJMNIsacH2VtALiu9mV4LPrHc5cDl8k5aw6J8jwgWWpiTo5RYhmIzvg==",
       "requires": {
-        "minipass": "^2.6.0"
+        "minipass": "^3.0.0"
       }
     },
     "fs.realpath": {
@@ -5525,20 +5519,20 @@
       "integrity": "sha512-FM9nNUYrRBAELZQT3xeZQ7fmMOBg6nWNmJKTcgsJeaLstP/UODVpGsr5OhXhhXg6f+qtJ8uiZ+PUxkDWcgIXLw=="
     },
     "minipass": {
-      "version": "2.9.0",
-      "resolved": "https://registry.npmjs.org/minipass/-/minipass-2.9.0.tgz",
-      "integrity": "sha512-wxfUjg9WebH+CUDX/CdbRlh5SmfZiy/hpkxaRI16Y9W56Pa75sWgd/rvFilSgrauD9NyFymP/+JFV3KwzIsJeg==",
+      "version": "3.1.3",
+      "resolved": "https://registry.npmjs.org/minipass/-/minipass-3.1.3.tgz",
+      "integrity": "sha512-Mgd2GdMVzY+x3IJ+oHnVM+KG3lA5c8tnabyJKmHSaG2kAGpudxuOf8ToDkhumF7UzME7DecbQE9uOZhNm7PuJg==",
       "requires": {
-        "safe-buffer": "^5.1.2",
-        "yallist": "^3.0.0"
+        "yallist": "^4.0.0"
       }
     },
     "minizlib": {
-      "version": "1.3.3",
-      "resolved": "https://registry.npmjs.org/minizlib/-/minizlib-1.3.3.tgz",
-      "integrity": "sha512-6ZYMOEnmVsdCeTJVE0W9ZD+pVnE8h9Hma/iOwwRDsdQoePpoX56/8B6z3P9VNwppJuBKNRuFDRNRqRWexT9G9Q==",
+      "version": "2.1.2",
+      "resolved": "https://registry.npmjs.org/minizlib/-/minizlib-2.1.2.tgz",
+      "integrity": "sha512-bAxsR8BVfj60DWXHE3u30oHzfl4G7khkSuPW+qvpd7jFRHm7dLxOjUk1EHACJ/hxLY8phGJ0YhYHZo7jil7Qdg==",
       "requires": {
-        "minipass": "^2.9.0"
+        "minipass": "^3.0.0",
+        "yallist": "^4.0.0"
       }
     },
     "mixme": {
@@ -8628,9 +8622,9 @@
       "integrity": "sha512-r9S/ZyXu/Xu9q1tYlpsLIsa3EeLXXk0VwlxqTcFRfg9EhMW+17kbt9G0NrgCmhGb5vT2hyhJZLfDGx+7+5Uj/w=="
     },
     "yallist": {
-      "version": "3.1.1",
-      "resolved": "https://registry.npmjs.org/yallist/-/yallist-3.1.1.tgz",
-      "integrity": "sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g=="
+      "version": "4.0.0",
+      "resolved": "https://registry.npmjs.org/yallist/-/yallist-4.0.0.tgz",
+      "integrity": "sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A=="
     },
     "yargs": {
       "version": "15.4.1",
