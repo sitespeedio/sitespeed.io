@@ -1,6 +1,6 @@
 {
   "name": "sitespeed.io",
-  "version": "14.2.1",
+  "version": "14.2.3",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -2040,9 +2040,9 @@
       "integrity": "sha512-32NDda82rhwD9/JBCCkB+MRYDp0oSvlo2IL6rQWA10PQi7tDUM3eqMSltXmY+Oyl/7N3P3qNtAlv7X0d9bI28w=="
     },
     "axe-core": {
-      "version": "3.5.5",
-      "resolved": "https://registry.npmjs.org/axe-core/-/axe-core-3.5.5.tgz",
-      "integrity": "sha512-5P0QZ6J5xGikH780pghEdbEKijCTrruK9KxtPZCFWUpef0f6GipO+xEZ5GKCb020mmqgbiNO6TcA55CriL784Q=="
+      "version": "4.0.1",
+      "resolved": "https://registry.npmjs.org/axe-core/-/axe-core-4.0.1.tgz",
+      "integrity": "sha512-OSCABHvSNDleKqJP7DUwEBvMVbr/gtOj2vCDoKKz967fxe9WqtCZLo3IRNOO2fJcu+eSFsu8aAToHfIY7sPLaw=="
     },
     "babel-runtime": {
       "version": "6.26.0",
