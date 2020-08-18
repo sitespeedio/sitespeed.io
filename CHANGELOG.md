@@ -3,6 +3,7 @@
 ## 14.3.0 - 2020-08-18
 ### Fixed
 * Fixed broken page weight in the Slack message.
+* Fix HTML plugin when using "browsertime.chrome.visualMetricsUsingTrace" - thank you MasonM for the PR [#3125 ](https://github.com/sitespeedio/sitespeed.io/pull/3125).
 
 ### Added
 * Updated to [Browsertime 9.3.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#930---2020-08-17).
