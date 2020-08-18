@@ -3,7 +3,11 @@
 ## UNRELEASED
 ### Fixed
 * Fixed broken page weight in the Slack message.
+
+### Added
 * Updated to Browsertime 9.3.0.
+* Updated third-party-web 0.12.2.
+* Updated AXE-core to 4.0.1.
 
 ## 14.2.3 - 2020-07-31
 * Updated to [Browseertime 9.2.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#921---2020-07-31)
