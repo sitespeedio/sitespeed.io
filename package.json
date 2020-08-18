@@ -71,7 +71,7 @@
     "aws-sdk": "2.715.0",
     "axe-core": "4.0.1",
     "browsertime": "9.3.0",
-    "coach-core": "5.1.0",
+    "coach-core": "5.1.1",
     "cli-color": "2.0.0",
     "concurrent-queue": "7.0.2",
     "dayjs": "1.8.29",

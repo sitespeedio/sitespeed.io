@@ -2637,9 +2637,9 @@
       }
     },
     "coach-core": {
-      "version": "5.1.0",
-      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-5.1.0.tgz",
-      "integrity": "sha512-qYBZxgTG7k4wkpWmNiaJmWHWypp42b8NTu7kGW3qNBen2KkF1ngsNWMC2lcR9607y29xp/gAKQBqnYm+XgOT7w==",
+      "version": "5.1.1",
+      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-5.1.1.tgz",
+      "integrity": "sha512-8b7nY6sPpC9O39+57OJjK0qUaU+q5E4aZd6RMIrwZG2y4xGj88wvisKgYkv1h40JsgOKeyuXRbgkzC7J3wZIAg==",
       "requires": {
         "filter-files": "0.4.0",
         "json-stable-stringify": "1.0.1",
@@ -2647,14 +2647,7 @@
         "lodash.merge": "^4.6.2",
         "lodash.sortby": "4.7.0",
         "pagexray": "2.5.10",
-        "third-party-web": "0.12.0"
-      },
-      "dependencies": {
-        "third-party-web": {
-          "version": "0.12.0",
-          "resolved": "https://registry.npmjs.org/third-party-web/-/third-party-web-0.12.0.tgz",
-          "integrity": "sha512-vguDfozcI9unsUtk2/SYuH4ZHprlXwZ0vLEQWM5tZ8lQHoIVb5gR1CM0B61akx1r5bZsl+CbT0wlIcdlQ7oHXQ=="
-        }
+        "third-party-web": "0.12.2"
       }
     },
     "code-point-at": {
