@@ -1,7 +1,7 @@
 {
   "name": "sitespeed.io",
   "bin": "./bin/sitespeed.js",
-  "version": "14.1.0",
+  "version": "14.3.0",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -69,9 +69,9 @@
     "@google-cloud/storage": "5.1.2",
     "@tgwf/co2": "0.6.1",
     "aws-sdk": "2.715.0",
-    "axe-core": "3.5.5",
-    "browsertime": "9.1.0",
-    "coach-core": "5.1.0",
+    "axe-core": "4.0.1",
+    "browsertime": "9.3.0",
+    "coach-core": "5.1.1",
     "cli-color": "2.0.0",
     "concurrent-queue": "7.0.2",
     "dayjs": "1.8.29",
@@ -104,7 +104,7 @@
     "simplecrawler": "1.1.9",
     "tape": "4.13.0",
     "text-table": "0.2.0",
-    "third-party-web": "0.12.0",
+    "third-party-web": "0.12.2",
     "uuid": "8.2.0",
     "webpagetest": "0.4.0",
     "yargs": "15.4.1"

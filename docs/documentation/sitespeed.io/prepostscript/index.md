@@ -91,7 +91,7 @@ Make sure to change the username & password if you try this on Wikipedia. And of
 Then run it like this:
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --preScript /sitespeed.io/login.js https://en.wikipedia.org/wiki/Barack_Obama
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --preScript /sitespeed.io/login.js https://en.wikipedia.org/wiki/Barack_Obama
 ~~~
 
 The script will then login the user and access https://en.wikipedia.org/wiki/Barack_Obama and measure that page.

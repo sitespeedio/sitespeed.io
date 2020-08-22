@@ -82,7 +82,7 @@ If you want to test and verify what the metrics looks like that you send to Grap
 1. Start the server (you need to clone the sitespeed.io repo first): <code>tools/tcp-server.js</code>
 2. You will then get back the port for the server (60447 in this example): <code>Server listening on :::60447</code>
 3. Open another terminal and run sitespeed.io and send the metrics to the tcp-server ([read how to reach localhost from Docker](/documentation/sitespeed.io/docker/#access-localhost)):
-<code>docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --graphite.host 192.168.65.2 --graphite.port 60447  -n 1</code>
+<code>docker run --shm-size=1g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --graphite.host 192.168.65.2 --graphite.port 60447  -n 1</code>
 4. Check the terminal where you have the TCP server running and you will see something like:
 
 ~~~
