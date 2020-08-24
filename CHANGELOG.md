@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 14.3.2 - 2020-08-24
+### Fixed
+* Upgraded to [Browsertime 9.3.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#931---2020-08-24) that fixes a bug so that correct mobile emulation settings is set on Chrome, updated Throttle to 2.0.1 and update a couple of other packages. 
+
 ## 14.3.1 - 2020-08-24
 ### Fixed
 * Log at info level (not error) when Crux data is missing [#3133](https://github.com/sitespeedio/sitespeed.io/pull/3133).
