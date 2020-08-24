@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## 14.3.1 - 2020-08-24
+### Fixed
+* Log at info level (not error) when Crux data is missing [#3133](https://github.com/sitespeedio/sitespeed.io/pull/3133).
+* Do not log error if you only collect origin data from Crux [#3130](https://github.com/sitespeedio/sitespeed.io/pull/3130).
+
 ## 14.3.0 - 2020-08-18
 ### Fixed
 * Fixed broken page weight in the Slack message.
