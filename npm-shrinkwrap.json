@@ -604,9 +604,9 @@
       }
     },
     "@sitespeed.io/chromedriver": {
-      "version": "84.0.4147-30",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-84.0.4147-30.tgz",
-      "integrity": "sha512-qKL3gHqB+ZZauvOphP/hX7mU+ymzm34bqNYMaJkJk+q8A31es3MiZQkkyoXH86vOH5mRMN5oWtLhXeRVtX7/yQ==",
+      "version": "85.0.4183-83",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-85.0.4183-83.tgz",
+      "integrity": "sha512-xh7NwX2WBNzGv9Ova90Bldfmks0kyIg1Ecs1RLI59zmLqj1vnE5Dir6UFqsSv/kCnWlCQ8dTdQeHyC8aTO9LCA==",
       "requires": {
         "node-downloader-helper": "1.0.13",
         "node-stream-zip": "1.11.2"
@@ -1976,12 +1976,12 @@
       "integrity": "sha512-qhAVI1+Av2X7qelOfAIYwXONood6XlZE/fXaBSmW/T5SzLAmCgzi+eiWE7fUvbHaeNBQH13UftjpXxsfLkMpgw=="
     },
     "browsertime": {
-      "version": "9.3.1",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-9.3.1.tgz",
-      "integrity": "sha512-z0BXwJPeoAsozEtouH6MDS7XxsZFSIgCq2hNdRFQ+RS9r4pv4dxaKhOVaIGti+Pi3wIec1QvC52hadAcYXIrIQ==",
+      "version": "9.4.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-9.4.0.tgz",
+      "integrity": "sha512-YE71qiyno8m8+qycu13r03rZJAXBFOhC0E/YLJwgrIaagnlkgGsfnJzys+V4qzYZJ0+/0Nfre0gE1uZsiFgPng==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
-        "@sitespeed.io/chromedriver": "84.0.4147-30",
+        "@sitespeed.io/chromedriver": "85.0.4183-83",
         "@sitespeed.io/edgedriver": "84.0.524-0",
         "@sitespeed.io/geckodriver": "0.27.0",
         "@sitespeed.io/throttle": "2.0.1",
@@ -4526,9 +4526,9 @@
       "integrity": "sha1-o/Iiqarp+Wb10nx5ZRDigJF2Qhc="
     },
     "jpeg-js": {
-      "version": "0.4.1",
-      "resolved": "https://registry.npmjs.org/jpeg-js/-/jpeg-js-0.4.1.tgz",
-      "integrity": "sha512-jA55yJiB5tCXEddos8JBbvW+IMrqY0y1tjjx9KNVtA+QPmu7ND5j0zkKopClpUTsaETL135uOM2XfcYG4XRjmw=="
+      "version": "0.4.2",
+      "resolved": "https://registry.npmjs.org/jpeg-js/-/jpeg-js-0.4.2.tgz",
+      "integrity": "sha512-+az2gi/hvex7eLTMTlbRLOhH6P6WFdk2ITI8HJsaH2VqYO0I594zXSYEP+tf4FW+8Cy68ScDXoAsQdyQanv3sw=="
     },
     "js-base64": {
       "version": "2.6.1",
