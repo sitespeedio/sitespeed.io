@@ -1,13 +1,12 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 14.4.0 - 2020-08-27
 ### Added
 * Updated th Docker container to use Chrome 85 and Firefox 80. Updated the slim container to use Firefox 80. 
 * Updated to Browsertime 9.4.0 that includes Chromedriver 85.
 
 ### Fixed
 * Fix so its easier to run Chrome on Android with WebPageReplay [#3134](https://github.com/sitespeedio/sitespeed.io/pull/3134).
-
 
 ## 14.3.2 - 2020-08-24
 ### Fixed
