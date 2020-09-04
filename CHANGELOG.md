@@ -1,8 +1,11 @@
 # CHANGELOG - sitespeed.io
 
+## 15.0.0 - UNRELEASED
+New updated Browsertime 10.0.0-alpha.2!
+
 ## 14.4.0 - 2020-08-27
 ### Added
-* Updated th Docker container to use Chrome 85 and Firefox 80. Updated the slim container to use Firefox 80. 
+* Updated the Docker container to use Chrome 85 and Firefox 80. Updated the slim container to use Firefox 80. 
 * Updated to Browsertime 9.4.0 that includes Chromedriver 85.
 
 ### Fixed
