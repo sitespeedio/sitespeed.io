@@ -1976,9 +1976,9 @@
       "integrity": "sha512-qhAVI1+Av2X7qelOfAIYwXONood6XlZE/fXaBSmW/T5SzLAmCgzi+eiWE7fUvbHaeNBQH13UftjpXxsfLkMpgw=="
     },
     "browsertime": {
-      "version": "10.0.0-alpha.3",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-10.0.0-alpha.3.tgz",
-      "integrity": "sha512-16beFqR/f5rfRKH2Wpech4HhrULrYc7k8y8+F0eKWLK/JPn6Xl92buEC/80qUJshP/jnQqejG+c0cw7nN8QAGg==",
+      "version": "10.0.0-alpha.4",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-10.0.0-alpha.4.tgz",
+      "integrity": "sha512-ykswNtShJ16Dxnq9RhLP5/grqahVIKrehQNoZtLsGs42LqUD5/vX5hyYS8Aef9r6/odUGjTMSOR3YqtYTYJutg==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@sitespeed.io/chromedriver": "85.0.4183-83",
