@@ -1,7 +1,7 @@
 # CHANGELOG - sitespeed.io
 
-## 15.0.0 - UNRELEASED
-New updated Browsertime 10.0.0-alpha.3!
+## 15.0.0-alpha.1 - 2020-09-10
+First alpha of 15.0 includes new Browsertime 10.0.0-alpha.8! Read about all the changes in [Browsertimes changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1000-alpha8---2020-09-10).
 
 ## 14.4.0 - 2020-08-27
 ### Added
