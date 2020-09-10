@@ -1,6 +1,9 @@
 {
   "name": "sitespeed.io",
-  "bin": "./bin/sitespeed.js",
+  "bin": {
+    "sitespeed.io": "./bin/sitespeed.js",
+    "sitespeed.io-wpr": "./bin/browsertimeWebPageReplay.js"
+  },
   "version": "14.4.0",
   "description": "Analyze the web performance of your site",
   "keywords": [
