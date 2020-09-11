@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Documentation sitespeed.io 13.x
+title: Documentation sitespeed.io 14.x
 description: Read about all you can do with sitespeed.io.
 keywords: tools, documentation, web performance
 nav: documentation
@@ -9,7 +9,7 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Documentation for sitespeed.io.
 ---
 
-# Documentation v13
+# Documentation v14
 
 <img src="{{site.baseurl}}/img/logos/sitespeed.io.png" class="pull-right img-big" alt="sitespeed.io logo" width="200" height="214">
 
@@ -18,7 +18,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
 ## Start
  * [Introduction](introduction/) - start here if you are new to the project or web performance testing.
  * [Installation](installation/) - install using npm, yarn or run our Docker containers.
- * [Browsers](browsers/) - collect timings using real browsers. We support Firefox, Chrome, Chrome on Android and limited support for Safari on OS X and iOS.
+ * [Browsers](browsers/) - collect timings using real browsers. We support Firefox, Chrome, Chrome on Android and limited support for Safari on OS X and iOS. 
  * [Configuration](configuration/) - there's a lot of things you can do with sitespeed.io, lets checkout how!
  * [Connectivity](connectivity/) - set the connectivity to emulate real users network conditions.
  * [Continuously run your tests](continuously-run-your-tests/) - how to setup your test to continuously run your tests.
@@ -28,6 +28,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Performance Dashboard](performance-dashboard/) - monitor your web site and keep track of your metrics and performance.
  * [Performance Leaderboard](leaderboard/) - compare your pages with your competition.
  * [Scripting](scripting/) - test a user journey, test multiple URLs, test login, test adding items to the cart with scripting.
+* [Web performance testing in practice](web-performance-testing-in-practice/) - start to read this is if you are new into synthetics tests.
 
 ## More details
  * [Alerts](alerts/) - send alerts (email/Slack/PagerDuty etc) when you get a performance regression.
@@ -36,6 +37,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Configure HTML output](configure-html/) - change the default HTML output.
  * [Configure Metrics](configure-metrics/) - configure which metrics you want to send to Graphite/InfluxDB.
  * [CPU](cpu/) - measure CPU metrics to see where your page spends the time.
+ * [Chrome User Experience Report](crux/) - collect Chrome User Experience Report data in sitespeed.io.
  * [Developers](developers/) - start here when you want to do PRs or create a plugin.
  * [Google Page Speed Insights](google-page-speed-insights/) - run Google Page Speed Insights (GPSI) from sitespeed.io.
  * [Graphite](graphite/) - how to configure and store your metrics in Graphite (and using StatsD).

@@ -149,7 +149,18 @@ block content
               tr
                 td Requests
                 td #{d.webpagetest.pageSummary.data.median.firstView.requestsFull}
-
+            if d.crux && d.crux.pageSummary && d.crux.pageSummary.loadingExperience && d.crux.pageSummary.loadingExperience.ALL && !d.browsertime
+              - const cruxMetrics = {first_contentful_paint:'First Contentful Paint (FCP)', largest_contentful_paint: 'Largest Contentful Paint (LCP)', first_input_delay:'First Input Delay (FID)', cumulative_layout_shift: 'Cumulative Layout Shift'}; 
+              each name, key in cruxMetrics
+                tr 
+                  td Fast #{name} (CrUx overall)
+                  td #{Number(d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key].histogram[0].density * 100).toFixed(2)} %
+                tr 
+                  td Moderate #{name} (CrUx overall)
+                  td #{Number(d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key].histogram[1].density * 100).toFixed(2)} %
+                tr 
+                  td Slow #{name} (CrUx overall)
+                  td #{Number(d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key].histogram[2].density * 100).toFixed(2)} %
         .one-half.column
             if hasScreenShots
               - const width = options.mobile ? 150 : '100%';

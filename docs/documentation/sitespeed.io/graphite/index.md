@@ -43,7 +43,7 @@ retentions = 10m:60d,30m:90d
 
 Every metric that is sent to Graphite following the pattern (the namespace starting with sitespeed_io), Graphite prepares storage for it every ten minutes the first 60 days; after that Graphite uses the configuration in [storage-aggregation.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/main/conf/graphite/storage-aggregation.conf) to aggregate/downsize the metrics the next 90 days.
 
-Depending on how often you run your analysis, you may want to change the storage-schemas.conf. With the current config, if you analyse the same URL within 10 minutes, one of the runs will be discarded. But if you know you only run once an hour, you could increase the setting. Etsy has some really [good documentation](https://github.com/etsy/statsd/blob/main/docs/graphite.md) on how to configure Graphite.
+Depending on how often you run your analysis, you may want to change the storage-schemas.conf. With the current config, if you analyse the same URL within 10 minutes, one of the runs will be discarded. But if you know you only run once an hour, you could increase the setting. Statsd has some really [good documentation](https://github.com/statsd/statsd/blob/master/docs/graphite.md) on how to configure Graphite.
 
 In this example with retention of 10 minutes, the metrics you will send will be in Graphite with a 10 minute interval. If you have a larger interval for example one hour and send annotations on specific seconds, you can then see a larger missmatch between the annotation and when the actual metric got into Graphite. If you are sending metrics to Graphite on a per iteration basis the subsequent runs may be discarded as they arrive within the timeframe. Below is an example taking in closer to real-time metrics and falling back to the default retentions.
 
@@ -72,7 +72,7 @@ You can choose the namespace under where sitespeed.io will publish the metrics. 
 
 Each URL is by default split into domain and the URL when we send it to Graphite. By default sitespeed.io remove query parameters from the URL bit if you need them you can change that by adding <code>--graphite.includeQueryParams</code>.
 
-If you want metrics from each iteration you can use <code>--graphite.experimental.perIteration</code>. Using this will give raw metrics that are not aggregated (min, max, median, mean). The structure for those metrics is experimental and can change.
+If you want metrics from each iteration you can use <code>--graphite.perIteration</code>. Using this will give raw metrics that are not aggregated (min, max, median, mean).
 
 If you use Graphite < 1.0 you need to make sure the tags in the annotations follow the old format, you do that by adding <code>--graphite.arrayTags</code>.
 
@@ -82,7 +82,7 @@ If you want to test and verify what the metrics looks like that you send to Grap
 1. Start the server (you need to clone the sitespeed.io repo first): <code>tools/tcp-server.js</code>
 2. You will then get back the port for the server (60447 in this example): <code>Server listening on :::60447</code>
 3. Open another terminal and run sitespeed.io and send the metrics to the tcp-server ([read how to reach localhost from Docker](/documentation/sitespeed.io/docker/#access-localhost)):
-<code>docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --graphite.host 192.168.65.2 --graphite.port 60447  -n 1</code>
+<code>docker run --shm-size=1g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --graphite.host 192.168.65.2 --graphite.port 60447  -n 1</code>
 4. Check the terminal where you have the TCP server running and you will see something like:
 
 ~~~

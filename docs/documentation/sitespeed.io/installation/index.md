@@ -26,7 +26,7 @@ We have [Docker images](https://hub.docker.com/r/sitespeedio/sitespeed.io/) with
 ### Mac & Linux
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -b firefox
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io https://www.sitespeed.io -b firefox
 ~~~
 
 ### Windows
@@ -42,7 +42,7 @@ That will output the data from the run in the current directory. You can read mo
 
 ### Mac & Linux
 
-Prerequisites: Install [latest NodeJS LTS](https://nodejs.org/en/download/) ([Linux](https://github.com/creationix/nvm)) and make sure you have [npm](https://github.com/npm/npm) or [yarn](https://yarnpkg.com/) installed. Also install Chrome/Firefox (you need them to collect metrics).
+Prerequisites: Install [latest NodeJS LTS](https://nodejs.org/en/download/) ([Linux](https://github.com/creationix/nvm)) and make sure you have [npm](https://github.com/npm/npm) or [yarn](https://yarnpkg.com/) installed. Also install Chrome/Firefox/Edge (you need them to collect metrics).
 
 Make sure you install without sudo using sudo. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/main/npm-global-without-sudo.md).
 
@@ -62,9 +62,11 @@ yarn global add sitespeed.io
 
 ### Windows
 
-We support Windows using [Docker](https://docs.docker.com/engine/installation/windows/). To be able to support running on Windows with NodeJS we need at least one [core contributor](/aboutus/) that can focus on Windows. Are you that one? Please [get in touch](https://github.com/sitespeedio/sitespeed.io/issues/new)!
+Checkout [our GitHub action running in Windows](https://github.com/sitespeedio/browsertime/blob/main/.github/workflows/windows.yml) to see how to install the dependencies needed.
 
-### Skip installing ChromeDriver/GeckoDriver
+If you run on Windows you can run tests on Firefox, Chrome and Edge.
+
+### Skip installing ChromeDriver/GeckoDriver/EdgeDriver
 If you don't want to install ChromeDriver, EdgeDriver or GeckoDriver when you install through npm you can skip them with an environment variable.
 
 Skip installing ChromeDriver:
@@ -84,3 +86,14 @@ Skip installing EdgeDriver:
 ~~~bash
 EDGEDRIVER_SKIP_DOWNLOAD=true npm install sitespeed.io -g
 ~~~
+
+### Updating ChromeDriver/GeckoDriver/EdgeDriver
+
+Using Docker the browser and driver is bundled with the correct versions. If you install everything yourself you may need to update driver versions.
+
+Since the ChromeDriver team decided that a ChromeDriver version needs to match a browser version, it has been more work to test other Chrome versions.
+
+You can download the ChromeDriver yourself from the [Google repo](https://chromedriver.storage.googleapis.com/index.html) and use ```--chrome.chromedriverPath``` to help Browsertime find it or you can choose which version to install when you install sitespeed.io with a environment variable: 
+```CHROMEDRIVER_VERSION=81.0.4044.20 npm install ```
+
+You can also choose versions for Edge and Firefox with `EDGEDRIVER_VERSION` and `GECKODRIVER_VERSION`.

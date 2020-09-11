@@ -26,7 +26,7 @@ You need [Docker](https://docs.docker.com/engine/installation/) and [Docker Comp
 
 1. Download our Docker compose file: <code>curl -O https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/docker-compose.yml</code>
 2. Run: <code>docker-compose up -d</code> (make sure you run the latest [Docker compose](https://docs.docker.com/compose/install/) version)
-3. Run sitespeed to get some metrics: <code> docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --graphite.host=host.docker.internal</code> (running on Linux? [Check how to access localhost]({{site.baseurl}}/documentation/sitespeed.io/docker/#access-localhost)).
+3. Run sitespeed to get some metrics: <code> docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --graphite.host=host.docker.internal</code> (running on Linux? [Check how to access localhost]({{site.baseurl}}/documentation/sitespeed.io/docker/#access-localhost)).
 4. Access the dashboard: http://127.0.0.1:3000
 5. When you are done you can shut down and remove all the Docker containers by running <code>docker-compose stop && docker-compose rm</code>. Container data will be kept.
 6. To start from scratch, also remove the Graphite and Grafana data volumes by running `docker volume rm performancedashboard_graphite performancedashboard_grafana`.
@@ -59,37 +59,121 @@ When you choose one of the values in a template, the rest will be populated. You
 The default namespace is *sitespeed_io.default* and the example dashboards are built upon a constant template variable called $base that is the first part of the namespace (that default is *sitespeed_io* but feel free to change that, and then change the constant).
 
 ## Page summary
-The [page summary](https://dashboard.sitespeed.io/dashboard/db/page-summary) shows metrics for a specific URL/page.
+The [page summary](https://dashboard.sitespeed.io/dashboard/db/page-summary) shows metrics for a specific URL/page. The dashboard focus on how your page was built.
 
+![Page summary]({{site.baseurl}}/img/page-summary.png)
+{: .img-thumbnail}
+
+You can also see CPU performance, third party tools and more.
+
+![Page summary and third party]({{site.baseurl}}/img/page-summary-dashboard-2.jpg)
+{: .img-thumbnail}
+
+And AXE, CO2 and errors (and a lot more).
+
+![Page summary co2]({{site.baseurl}}/img/page-summary-dashboard-3.jpg)
+{: .img-thumbnail}
 
 ## The page timings summary
 
-The [page timings summary](https://dashboard.sitespeed.io/dashboard/db/page-timing-metrics) focus on Visual Metrics and is the number one dashboard you should use when you look for visual regressions.
+The [page timings summary](https://dashboard.sitespeed.io/dashboard/db/page-timing-metrics) focus on timing metrics and is the number one dashboard you should use when you look for visual regressions. It also show all other timing metrics that is collected.
+
+You can follow visual metrics.
+
+![Page timing dashboard]({{site.baseurl}}/img/page-timings-dashboard.jpg)
+{: .img-thumbnail}
+
+And compare the metrics with last weeks metrics.
+
+![Page timing dashboard compared with last week]({{site.baseurl}}/img/page-timings-dashboard-2.jpg)
+{: .img-thumbnail}
+
+You will also see navigation timing, element timing and user timings.
+
+![Page timing with element timings]({{site.baseurl}}/img/page-timings-dashboard-3.jpg)
+{: .img-thumbnail}
+
 
 ## Site summary
 The [site summary](https://dashboard.sitespeed.io/dashboard/db/site-summary) show metrics for a site (a summary of all URLs tested for that domain).
 
+![Site summary]({{site.baseurl}}/img/site-summary-dashboard.jpg)
+{: .img-thumbnail}
+
+
+![Site summary with more metrics]({{site.baseurl}}/img/site-summary-dashboard-2.jpg)
+{: .img-thumbnail}
+
+
 ## The leaderboard
-We are so proud of our [leaderboard dashboard](https://dashboard.sitespeed.io/dashboard/db/leaderboard) so it has it owns [documentation page](/documentation/sitespeed.io/leaderboard/).
+We are so proud of our [leaderboard dashboard](https://dashboard.sitespeed.io/dashboard/db/leaderboard) so it has it own [documentation page](/documentation/sitespeed.io/leaderboard/). Use the dashboard when you compare different sites or URLs.
+
+![Page summary]({{site.baseurl}}/img/leaderboard-dashboard.jpg)
+{: .img-thumbnail}
+
+
+## Chrome User Experience Report
+
+Using our [Chrome User Experience Report plugin](/documentation/sitespeed.io/crux/) you can get the metrics Chrome collect from real users. We have a [ready made dashboard](https://dashboard.sitespeed.io/dashboard/db/chrome-user-experience-report) where you can look at the data on URL and origin level.
+
+![CruX]({{site.baseurl}}/img/crux-dashboard.jpg)
+{: .img-thumbnail}
 
 ## WebPageTest dashboards
-We have two optional dashboards for WebPageTest to show how you can build them if you use WebPageTest through sitespeed.io.
+We have four optional dashboards for WebPageTest that you can use if you drive WebPageTest using sitespeed.io. They follow the same pattern as the sitespeed.io dashboards with WebPageTest data.
 
 ### WebPageTest page summary
-Have we told you that we love WebPageTest? Yes, we have and here is an example of a default [WebPageTest page summary](https://dashboard.sitespeed.io/dashboard/db/webpagetest-page-summary) where you can look at results for individual URLs.
+We have and here is an example of a default [WebPageTest page summary](https://dashboard.sitespeed.io/dashboard/db/webpagetest-page-summary) where you can look at results for individual URLs.
+
+
+![Page summary]({{site.baseurl}}/img/webpagetest-pagesummary-dashboard.jpg)
+{: .img-thumbnail}
+
+
+### WebPageTest timing metrics
+And then there is also a dashboard for [the timing metrics](https://dashboard.sitespeed.io/dashboard/db/webpagetest-page-timing-metrics).
+
+![Timing metrics WebPageTest]({{site.baseurl}}/img/webpagetest-metricsummary-dashboard.jpg)
+{: .img-thumbnail}
 
 ### WebPageTest site summary
 And then there is also a dashboard for [all tested pages of a site](https://dashboard.sitespeed.io/dashboard/db/webpagetest-site-summary).
+
+![Site summary]({{site.baseurl}}/img/webpagetest-sitesummary-dashboard.jpg)
+{: .img-thumbnail}
+
+
+### WebPageTest leaderboard
+And then there is also a [leaderboard dashboard](https://dashboard.sitespeed.io/dashboard/db/webpagetest-leaderboard).
+
+![Leaderboard for WebPageTest]({{site.baseurl}}/img/webpagetest-leaderboard-dashboard.jpg)
+{: .img-thumbnail}
+
+
+## Plus 1
+We also have a dashboard for [showing GPSI/CrUx/Lighthouse metrics](https://dashboard.sitespeed.io/dashboard/db/plus1) if you use those products.
+
+![Plus 1 dashboard]({{site.baseurl}}/img/plus-1-dashboard.jpg)
+{: .img-thumbnail}
+
+![Plus 1 dashboard part 2]({{site.baseurl}}/img/plus-1-dashboard-2.jpg)
+{: .img-thumbnail}
+
 
 ## Whatever you want
 Do you need anything else? Since we store all the data in Graphite and use Grafana you can create your own dashboards, which is super simple!
 
 If you are new to [Grafana](https://grafana.com) you should checkout the [basic concepts](https://grafana.com/docs/guides/basic_concepts/) as a start. Grafana is used by Cern, NASA and many many tech companies like Paypal, Ebay and Digital Ocean and it will surely work for you too :)
 
+You can also configure all the thresholds (green/yellow/red) so they match what you need:
+
+![Configure thresholds in Grafana]({{site.baseurl}}/img/configuring-thresholds-grafana.jpg)
+{: .img-thumbnail}
+
 # Configure running your tests
 You have the dashboard and you need to collect metrics. You do that on one or multiple other servers. Do not do it on the same server as the dashboard setup since you want to have an as isolated environment as possible for your tests.
 
-Go to the docmumentation on how to [continuously run your tests](/documentation/sitespeed.io/continuously-run-your-tests/) and learn how you can do that.
+Go to the documentation on how to [continuously run your tests](/documentation/sitespeed.io/continuously-run-your-tests/) and learn how you can do that.
 
 When you run the dashboard on a standalone server, you need to make sure your agents send the metrics to your Graphite server. Configure `--graphite.host` to the public IP address of your server. The default port when sending metrics to Graphite is 2003, so you don't have to include that.
 
@@ -140,7 +224,7 @@ How large will your instances need to be? You need to have enough memory for Chr
 If you test a lot a pages (100+) in the same run, your NodeJS process can run out of memory (default memory for NodeJS is 1.76 GB). You can change and increase by setting MAX_OLD_SPACE_SIZE:
 
 ```bash
-docker run -e MAX_OLD_SPACE_SIZE=4096 --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/
+docker run -e MAX_OLD_SPACE_SIZE=4096 --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/
 ```
 
 ## Cost

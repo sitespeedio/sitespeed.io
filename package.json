@@ -1,7 +1,10 @@
 {
   "name": "sitespeed.io",
-  "bin": "./bin/sitespeed.js",
-  "version": "13.3.2",
+  "bin": {
+    "sitespeed.io": "./bin/sitespeed.js",
+    "sitespeed.io-wpr": "./bin/browsertimeWebPageReplay.js"
+  },
+  "version": "14.4.0",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -27,6 +30,9 @@
       "name": "Jonathan Lee"
     }
   ],
+  "publishConfig": {
+    "tag": "canary"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/sitespeedio/sitespeed.io.git"
@@ -66,15 +72,15 @@
   },
   "main": "./lib/sitespeed.js",
   "dependencies": {
-    "@google-cloud/storage": "5.1.1",
+    "@google-cloud/storage": "5.1.2",
     "@tgwf/co2": "0.6.1",
-    "aws-sdk": "2.701.0",
-    "axe-core": "3.5.5",
-    "browsertime": "9.0.0-beta.2",
-    "coach-core": "5.1.0",
+    "aws-sdk": "2.715.0",
+    "axe-core": "4.0.1",
+    "browsertime": "10.0.0-alpha.8",
+    "coach-core": "5.1.1",
     "cli-color": "2.0.0",
     "concurrent-queue": "7.0.2",
-    "dayjs": "1.8.28",
+    "dayjs": "1.8.29",
     "fast-crc32c": "2.0.0",
     "fast-stats": "0.0.5",
     "find-up": "4.1.0",
@@ -104,10 +110,10 @@
     "simplecrawler": "1.1.9",
     "tape": "4.13.0",
     "text-table": "0.2.0",
-    "third-party-web": "0.12.0",
-    "uuid": "8.1.0",
+    "third-party-web": "0.12.2",
+    "uuid": "8.2.0",
     "webpagetest": "0.4.0",
-    "yargs": "15.3.1"
+    "yargs": "15.4.1"
   },
   "config": {
     "commitizen": {

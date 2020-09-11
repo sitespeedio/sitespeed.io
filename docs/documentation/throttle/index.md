@@ -28,7 +28,7 @@ It is usually used for two different things:
  - You run it as a standalone tool setting simulate different connection speeds.
  - You integrate it in your (web performance) tool to simulate different connections.
 
-You can set the download/upload speed and RTT. Upload/download is in kbit/s and RTT in ms.
+You can set the download/upload speed and/or RTT. Upload/download is in kbit/s and RTT in ms.
 
 
 ## Install
@@ -61,8 +61,15 @@ To make it easier we have pre made profiles, check them out by *throttle --help*
                      3g: up:768 down:1600 rtt:150
                      3gfast: up:768 down:1600 rtt:75
                      3gslow: up:400 down:400 rtt:200
-                     2g: up:32 down:35 rtt:650
+                     2g: up:256 down:280 rtt:400
                      cable: up:1000 down:5000 rtt:14
+                     dsl: up:384 down:1500 rtt:14
+                     3gem: up:400 down:400 rtt:200
+                     4g: up:9000 down:9000 rtt:85
+                     lte: up:12000 down:12000 rtt:35
+                     edge: up:200 down:240 rtt:35
+                     dial: up:30 down:49 rtt:60
+                     fois: up:5000 down:20000 rtt:2
 ```
 
 You can start throttle with one of the premade profiles:
@@ -89,14 +96,14 @@ or
 throttle stop
 ```
 
-## Add delay on your localhost (Linux only at the moment)
+## Add delay on your localhost
 This is useful if you run [WebPageReplay](https://github.com/catapult-project/catapult/blob/main/web_page_replay_go/README.md) and want to add some latency to your tests.
 
 ```bash
 throttle --rtt 200 --localhost
 ```
 
-## Stop adding delay on localhost (Linux only)
+## Stop adding delay on localhost
 
 ```bash
 throttle --stop --localhost
@@ -109,6 +116,31 @@ throttle --stop --localhost
 const throttle = require('@sitespeed.io/throttle');
 // Returns a promise
 throttle.start({up: 360, down: 780, rtt: 200}).then(() => ...
+```
+
+or
+
+```javascript
+const throttle = require('@sitespeed.io/throttle');
+// Returns a promise
+const options = {up: 360, down: 780, rtt: 200};
+await throttle.start(options);
+// Do your thing and then stop
+await throttle.stop();
+```
+
+## Log all commands
+
+You can log all the commands that sets up the throttling by setting LOG_THROTTLE=true.
+
+```
+LOG_THROTTLE=true throttle 3gslow
+```
+
+or use the CLI command `--log`:
+
+```
+throttle 3gslow --log
 ```
 
 ## Run in Docker (on Linux)

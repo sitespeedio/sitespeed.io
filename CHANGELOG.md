@@ -1,13 +1,86 @@
 # CHANGELOG - sitespeed.io
 
-## 14.0.0 - UNRELEASED
+## 15.0.0-alpha.1 - 2020-09-10
+First alpha of 15.0 includes new Browsertime 10.0.0-alpha.8! Read about all the changes in [Browsertimes changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1000-alpha8---2020-09-10).
+
+## 14.4.0 - 2020-08-27
+### Added
+* Updated the Docker container to use Chrome 85 and Firefox 80. Updated the slim container to use Firefox 80. 
+* Updated to Browsertime 9.4.0 that includes Chromedriver 85.
+
+### Fixed
+* Fix so its easier to run Chrome on Android with WebPageReplay [#3134](https://github.com/sitespeedio/sitespeed.io/pull/3134).
+
+## 14.3.2 - 2020-08-24
+### Fixed
+* Upgraded to [Browsertime 9.3.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#931---2020-08-24) that fixes a bug so that correct mobile emulation settings is set on Chrome, updated Throttle to 2.0.1 and update a couple of other packages. 
+
+## 14.3.1 - 2020-08-24
+### Fixed
+* Log at info level (not error) when Crux data is missing [#3133](https://github.com/sitespeedio/sitespeed.io/pull/3133).
+* Do not log error if you only collect origin data from Crux [#3130](https://github.com/sitespeedio/sitespeed.io/pull/3130).
+
+## 14.3.0 - 2020-08-18
+### Fixed
+* Fixed broken page weight in the Slack message.
+* Fix HTML plugin when using "browsertime.chrome.visualMetricsUsingTrace" - thank you MasonM for the PR [#3125 ](https://github.com/sitespeedio/sitespeed.io/pull/3125).
+
+### Added
+* Updated to [Browsertime 9.3.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#930---2020-08-17).
+* Updated third-party-web 0.12.2.
+* Updated AXE-core to 4.0.1.
+
+## 14.2.3 - 2020-07-31
+* Updated to [Browsertime 9.2.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#921---2020-07-31)
+* If Visual Metrics was turned on and you trid to add your own columns on the pags page, three Visual Metrics was alwasy added as reported in [#3111](https://github.com/sitespeedio/sitespeed.io/issues/3111) and fixed in PR [#3112](https://github.com/sitespeedio/sitespeed.io/pull/3112).
+
+* np/npm/slow internet glitches made 14.2.2 and 14.2.0 releases broken.
+
+## 14.2.1 - 2020-07-28
+### Added
+* Updated to Firefox 79 in the Docker slim container and in the default container.
+* Add unit to Slack summary, thank you [Lise Bilhaut](https://github.com/lbilhaut) for PR [#3102](https://github.com/sitespeedio/sitespeed.io/pull/3102).
+* Let GCS and S3 send a setup message on startup so other plugins knows that they are configured [#3101](https://github.com/sitespeedio/sitespeed.io/pull/3101).
+
+## 14.1.0 - 2020-07-18
+### Added
+* Updated to Chromedriver and Edgedriver 84. Chrome 84/Firefox 78 in the Docker container [#3089](https://github.com/sitespeedio/sitespeed.io/pull/3089).
+* Be less strict about GCS options in respect of ADC. Within Google Cloud, services can make use of Credentials-"Auto Discovery" (ADC). The @google-cloud/storage library supports this and tries an automatic discovery when keyFilename is unset. In an auto-discover scenario projectId is discovered as well so this should also be allowed to not be set. The --gcs.bucketname option could be kept as a (mandatory) signal to use GCS at all. Thank you [Stephan Scheying](https://github.com/scheying) for the PR [#3087](https://github.com/sitespeedio/sitespeed.io/pull/3087)!
+* Send the performance budget result in the queue. Look for messages of the type **budget.result**. This will make it easier for plugins (like Slack and Matrix) to post messages about the budget result. [#3085](https://github.com/sitespeedio/sitespeed.io/pull/3085).
+
+### Fixed
+* Updated minor versions for dependencies google-cloud/storage, aws-sdk, dayjs, uuid and yargs [#3090](https://github.com/sitespeedio/sitespeed.io/pull/3090).
+* Fix low severity issues in dependencies [#3091](https://github.com/sitespeedio/sitespeed.io/pull/3091).
+
+## 14.0.0 - 2020-07-09
+
+Let us celebrate over [10 million downloads](https://hub.docker.com/v2/repositories/sitespeedio/sitespeed.io/) of the sitespeed.io Docker container and release sitespeed.io 14 and Browsertime 9!
+
+Read all about the changes in the [14.0 blog post](https://www.sitespeed.io/sitespeed.io-14.0-browsertime-9.0/).
+
+There are five important new things in the new release:
+* New updated Grafana dashboards with all the goodies from [Grafana 7.0](https://grafana.com/docs/grafana/latest/guides/whats-new-in-v7-0/). All Graphite dashboards is updated: sitespeed.io dashboards, WebPageTest and our plus-1 dashboard.
+* You can now see **all** screenshots for a run in sitespeed.io! This is super useful when you use scripting to test a user journey. You can take screenshots whenever you need and see the result on the result page, making it even easier then before to know what's going on.
+* We have a new section in the documentation: [web performance testing in practice focusing in synthetic testing]({https://www.sitespeed.io/documentation/sitespeed.io/web-performance-testing-in-practice/)! I've think this is the most comprehensive guide to synthetic testing that's out there.
+* You can [support us at Open Collective](https://opencollective.com/sitespeedio)! We need money to be able to run our test servers, run tests on mobile devices and use a dedicated bare metal server. Helping us with that will make sure we continue to release a bug free, feature rich Open Source tool!
+* You can get CrUx data direct from sitespeed.io (avoid using the +1 container) with the new [crux-plugin](https://www.sitespeed.io/documentation/sitespeed.io/crux/).
+
+### Breaking changes
+* If you use the JSON directly from Browsertime, the screenshot data is now an array instead of a string since you can have multiple screenshots in one run. If you use sitespeed.io directly you will not be affected by the change.
+
+* The experimental flag for perIteration metric for Graphite [#3069](https://github.com/sitespeedio/sitespeed.io/pull/3069) has been removed. If you want to send per iteration data to Graphite use ```--graphite.perIteration```.  
+
 ### Added
 * All dashboards for Graphite has been updated to use Grafana 7.0.0 with a new look and feel. 
 * Show all screenshots for a run in a tab [#3045](https://github.com/sitespeedio/sitespeed.io/pull/3045).
+* Updated to [Browsertime 9.0.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#900----2020-06-26).
+* There's a Chrome User Experience Report plugin bundled in sitespeed.io! Get the CrUx data using ```--crux.key``` and get your key from Google.
+* The +1 container uses Lighthouse 6.1.0.
 
 ### Fixed
-* Set user agent for --mobile on Chrome [#3046](https://github.com/sitespeedio/sitespeed.io/pull/3046)
+* Set user agent for ```--mobile``` on Chrome [#3046](https://github.com/sitespeedio/sitespeed.io/pull/3046)
 * Updated dependencies: axe-core 3.5.5, dayjs 1.8.28, influx 5.5.2, simplecrawler 1.1.9, yargs 15.3.1, Pug 3, AWS 2.701.0, fs-extra 9.0.1, uuid 8.1.0, google-cloud/storage 5.1.1, third party web 0.12.0, cli-color 2.0.0, coach-core, PageXray and Throttle.
+* Fixed using LCP in budget [#3074](https://github.com/sitespeedio/sitespeed.io/pull/3074).
 
 ## 13.3.2 - 2020-06-18
 ### Fixed

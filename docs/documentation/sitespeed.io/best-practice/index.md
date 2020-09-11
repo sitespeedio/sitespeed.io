@@ -25,20 +25,20 @@ Read this before you start to collect metrics.
 How do I test cached pages? The easiest way to do that is to use the **--preURL** parameter:
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --preURL https://www.sitespeed.io/documentation/ https://www.sitespeed.io/
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --preURL https://www.sitespeed.io/documentation/ https://www.sitespeed.io/
 ~~~
 
-In the example the browser will first go to https://www.sitespeed.io/documentation/ and then with a primed cache navigate to https://www.sitespeed.io/.
+In the example the browser will first go to https://www.sitespeed.io/documentation/ and then with a primed cache navigate to https://www.sitespeed.io/. You can also use [scripting](../scripting/) if you don't mind writing code.
 
 ### How do I set a cookie?
-Since 7.2.0 the best way to add a cookie is by using <code>--cookie name=value</code> where the name is the name of the cookie and the value ... the value :) The cookie will be set on the domain that you test.
+You can add a cookie is by using <code>--cookie name=value</code> where the name is the name of the cookie and the value ... the value :) The cookie will be set on the domain that you test. You can also use  <code>--requestheader</code>  to set the cookie in the request header. If you use Chrome you can also us the [Chrome Devtools Protocol in scripting](/documentation/sitespeed.io/scripting/#chrome-devtools-protocol) for more complicated use cases.
 
 ### How do I test multiple pages in the same run?
 
 If you want to test multiple URLs, you can used line them up in the cli:
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io https://www.sitespeed.io/documentation/
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io https://www.sitespeed.io/documentation/
 ~~~
 
 You can also use a plain text file with one URL on each line. Create a file called urls.txt (but you can call it whatever you want):
@@ -60,21 +60,21 @@ http://www.yoursite.com/where/we/are/ We_are
 And then you give feed the file to sitespeed.io:
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} urls.txt
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} urls.txt
 ~~~
 
 ### How many runs should I do on the same page to get stable metrics?
 How many runs depends on your site, and what you want to collect. Pat told us about how he is doing five runs when testing for Chrome. Hitting a URL 3-5 times is often ok when you want to fetch timing metrics, but increasing to 7-11 can give better values. Start low and if you see a lot of variations between runs, increase until you get some solid values.
 
-Getting timing metrics is one thing, but it’s also important to collect how your page is built. You need to keep track of the size of pages, how many synchronously loaded javascript you have and so on. For that kind of information you only need one run per URL.
+Getting timing metrics is one thing, but it’s also important to collect how your page is built. You need to keep track of the size of pages, how many synchronously loaded JavaScript you have and so on. For that kind of information you only need one run per URL.
 
 You should also try out our new setup with [WebPageReplay](../webpagereplay/).
 
 ### I want to test a user journey (multiple pages) how do I do that?
 Checkout the [scripting capabilities](../scripting/) that makes it easy to test multiple pages.
 
-### I want to test on different CPUs how do I do that?
-We currently don't built in support for changing the CPU. What we do know is that you should not use the built in support in Chrome or try to simulate slow CPUs by running on slow AWS instance. What should do is what WPTAgent do. You can check the code at [https://github.com/WPO-Foundation/wptagent/blob/main/wptagent.py](https://github.com/WPO-Foundation/wptagent/blob/main/wptagent.py) and do the same before you start a run and then remove it after the run.
+### I want to test on different CPU speeds how do I do that?
+If you use Chrome you can use <code>--chrome.CPUThrottlingRate</code>.
 
 ### Throttle or not throttle your connection?
 **PLEASE, YOU NEED TO ALWAYS THROTTLE YOUR CONNECTION!** You should always throttle/limit the connectivity because it will make it easier for you to find regressions. If you don't do it, you can run your tests with different connectivity profiles and regressions/improvements that you see is caused by your servers flaky internet connection. Check out our [connectivity guide]({{site.baseurl}}/documentation/sitespeed.io/connectivity/).
@@ -88,7 +88,7 @@ When you run <code>--preURL</code> the browser starts, then access the preURL an
 
 If you use the <code>--preScript</code> or <code>--multi</code> feature, it is the same behavior, we don't clear the cache between the URL you want to test.
 
-### My pre/post script doesn't work?
+### My pre/post/scripting script doesn't work?
 We use Selenium pre/post script navigation. You can [read more](/documentation/sitespeed.io/prepostscript/) about of our pre/post script setup and focus on the [debug section](/documentation/sitespeed.io/prepostscript/#debuglog-from-your-script) if you have any problem.
 
 If you have problem with Selenium (getting the right element etc), PLEASE do not create issues in sitespeed.io. Head over to the [Selenium community](https://docs.seleniumhq.org/) and they can help you.
@@ -109,7 +109,7 @@ If you need to debug CLI parameters the best way is to turn on verbose logging. 
 There's a plugin bundled with sitespeed.io called *analysisstorer* plugin that isn't enabled by default. It stores the original JSON data from all analyzers (from Browsertime, Coach data, WebPageTest etc) to disk. You can enable this plugin:
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.add analysisstorer
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.add analysisstorer
 ~~~
 
 The JSON files for the whole run (summary files) will end up in *$RESULT/data/*. JSON for each individual page is stored in *$RESULT/data/pages/$PAGE/data/*.
@@ -120,28 +120,15 @@ By default the # part of a URL is stripped off from your page. Yep we know, it i
 If you have pages that are generated differently depending of what's after you #-sign, you can use the <code>--useHash</code> switch. Then all pages will be tested as a unique page.
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --useHash https://www.sitespeed.io/#/super
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --useHash https://www.sitespeed.io/#/super
 ~~~
 
 You can also use the <code>--urlAlias</code> if you want to give the page a friendly name. Use it multiple times if you have multiple URLs.
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --useHash --urlAlias super --urlAlias duper https://www.sitespeed.io/#/super https://www.sitespeed.io/#/duper
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --useHash --urlAlias super --urlAlias duper https://www.sitespeed.io/#/super https://www.sitespeed.io/#/duper
 ~~~
 
-## Servers
-What you should know before you choose where to run sitespeed.io.
-
-### Cloud providers
-We've been testing out different cloud providers (AWS, Google Cloud, Digital Ocean, Linode etc) and the winner for us has been AWS. We've been using c5.large and testing the same size (or bigger) instances on other providers doesn't give the same stable metric overtime.
-
-One important learning is that you can run on <60% usage on your server, and everything looks fine but the metrics will not be stable since your instance is not isolated from other things that runs on your servers.
-
-### Bare metal
-We haven't tested on bare metal so if you have, please let us know how it worked out.
-
-### Kubernetes
-On Kubernetes you cannot use tc or Docker networks to set the connectivity but there has been tries with [TSProxy](https://github.com/WPO-Foundation/tsproxy), check out [#1829](https://github.com/sitespeedio/sitespeed.io/issues/1819).
 
 ### Running tests from multiple locations
 Can I test the same URLs from different locations and how do I make sure they don't override each others data in Graphite?

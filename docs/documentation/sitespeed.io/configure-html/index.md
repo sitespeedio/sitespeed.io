@@ -30,7 +30,7 @@ When your test, the pages page is generated where you can compare all the URLs t
 You can configure which metrics to show in the columns with the `--html.pageSummaryMetrics` cli parameter. Pass it multiple times to add multiple columns or use the configuration file json and create an array with metrics that you want use.
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --html.pageSummaryMetrics timings.pageLoadTime  --html.pageSummaryMetrics requests.total https://www.sitespeed.io 
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --html.pageSummaryMetrics timings.pageLoadTime  --html.pageSummaryMetrics requests.total https://www.sitespeed.io 
 ~~~
 
 Or use a configuration json:
@@ -67,7 +67,7 @@ The start page with summary boxes are also configurable. You can choose which me
 It follows the same pattern as page columns and uses the same friendly names. 
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --html.summaryBoxes timings.pageLoadTime  --html.summaryBoxes requests.total https://www.sitespeed.io 
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --html.summaryBoxes timings.pageLoadTime  --html.summaryBoxes requests.total https://www.sitespeed.io 
 ~~~
 
 
@@ -108,7 +108,7 @@ Say that you are testing on a slow 3g connection and the default settings for fi
 
 And then run:
  ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --html.summaryBoxesThresholds summaryLimits.json https://www.sitespeed.io 
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --html.summaryBoxesThresholds summaryLimits.json https://www.sitespeed.io 
 ~~~
 
 

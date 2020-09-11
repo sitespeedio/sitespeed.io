@@ -76,7 +76,7 @@ Scripting only works for Browsertime. It will not work with Lighthouse/Google Pa
 Run your script by passing it to sitespeed.io and adding the parameter ```--multi```. If you have multiple scripts, you can just pass them in as well.
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} script.js script2.js script3.js --multi
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} script.js script2.js script3.js --multi
 ~~~
 
 If you want to pass data between your scripts you can do that with the context object. Here's an example of the first script:
@@ -878,7 +878,10 @@ Add the *text* to the element by using the attribute name. If the element is not
 Add the *text* to the element by using class name. If the element is not found the command will throw an error.
 
 ### Screenshot
-Take a screenshot. The image will automatically be stored in the screenshot directory for the URL you are testing. This can be super helpful to use in a catch block if something fails. 
+Take a screenshot. The image is stored in the screenshot directory for the URL you are testing. This can be super helpful to use in a catch block if something fails. If you use sitespeed.io you can find the image in the screenshot tab for each individual run. 
+
+![Screenshots]({{site.baseurl}}/img/multiple-screenshots.jpg)
+{: .img-thumbnail-center}
 
 #### screenshot.take(name) 
 Give your screenshot a name and it will be used together with the iteration index to store the image.

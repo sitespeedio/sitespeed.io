@@ -48,6 +48,8 @@ jobs:
       run: bin/sitespeed.js https://www.sitespeed.io/ -n 1 --graphite.host 127.0.0.1 --xvfb
     - name: Run test without a CLI
       run: xvfb-run node test/runWithoutCli.js
+    - name: Run tests with CruX
+      run: bin/sitespeed.js -b chrome -n 1 --crux.key ${{ secrets.CRUX_KEY }} --xvfb https://www.sitespeed.io
     - name: Run tests on WebPageTest
       run: bin/sitespeed.js -b chrome -n 2 --summaryDetail --browsertime.chrome.timeline https://www.sitespeed.io/ --webpagetest.key ${{ secrets.WPT_KEY }} --xvfb
     
