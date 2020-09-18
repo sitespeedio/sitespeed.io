@@ -8,6 +8,9 @@ The new sitespeed.io 15.0 uses the brand new Browsertime 10! Browsertime mainly 
 ### Breaking changes
 * If you collect visual metrics, we do not calculate Contentful Speed Index and Perceptual Speed Index by default any more. Turn them on by using `--browsertime.visualMetricsPerceptual` and `--browsertime.visualMetricsContentful`. This will make your testing faster by default.
 
+### Added
+* The +1 container now uses Lighthoue 6.3.0 [plugin-lighthoue #61](https://github.com/sitespeedio/plugin-lighthouse/pull/61).
+
 ## 14.4.0 - 2020-08-27
 ### Added
 * Updated the Docker container to use Chrome 85 and Firefox 80. Updated the slim container to use Firefox 80. 
