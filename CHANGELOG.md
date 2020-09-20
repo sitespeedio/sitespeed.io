@@ -1,7 +1,44 @@
 # CHANGELOG - sitespeed.io
 
+## 15.0.0 - UNRELEASED
+
+The new sitespeed.io 15.0 uses the brand new Browsertime 10! Browsertime mainly included technical changes to make it easier to maintain Browsertime and focus on making Browsertime run faster. You can [read all about the changes in the changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1000---2020-09-20).
+
+### Breaking changes
+* If you collect visual metrics, we do not calculate Contentful Speed Index and Perceptual Speed Index by default any more. Turn them on by using `--browsertime.visualMetricsPerceptual` and `--browsertime.visualMetricsContentful`. This will make your testing faster by default.
+
+### Added
+* The +1 container now uses Lighthoue 6.3.0 [plugin-lighthoue #61](https://github.com/sitespeedio/plugin-lighthouse/pull/61).
+
+## 14.4.0 - 2020-08-27
+### Added
+* Updated the Docker container to use Chrome 85 and Firefox 80. Updated the slim container to use Firefox 80. 
+* Updated to Browsertime 9.4.0 that includes Chromedriver 85.
+
+### Fixed
+* Fix so its easier to run Chrome on Android with WebPageReplay [#3134](https://github.com/sitespeedio/sitespeed.io/pull/3134).
+
+## 14.3.2 - 2020-08-24
+### Fixed
+* Upgraded to [Browsertime 9.3.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#931---2020-08-24) that fixes a bug so that correct mobile emulation settings is set on Chrome, updated Throttle to 2.0.1 and update a couple of other packages. 
+
+## 14.3.1 - 2020-08-24
+### Fixed
+* Log at info level (not error) when Crux data is missing [#3133](https://github.com/sitespeedio/sitespeed.io/pull/3133).
+* Do not log error if you only collect origin data from Crux [#3130](https://github.com/sitespeedio/sitespeed.io/pull/3130).
+
+## 14.3.0 - 2020-08-18
+### Fixed
+* Fixed broken page weight in the Slack message.
+* Fix HTML plugin when using "browsertime.chrome.visualMetricsUsingTrace" - thank you MasonM for the PR [#3125 ](https://github.com/sitespeedio/sitespeed.io/pull/3125).
+
+### Added
+* Updated to [Browsertime 9.3.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#930---2020-08-17).
+* Updated third-party-web 0.12.2.
+* Updated AXE-core to 4.0.1.
+
 ## 14.2.3 - 2020-07-31
-* Updated to [Browseertime 9.2.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#921---2020-07-31)
+* Updated to [Browsertime 9.2.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#921---2020-07-31)
 * If Visual Metrics was turned on and you trid to add your own columns on the pags page, three Visual Metrics was alwasy added as reported in [#3111](https://github.com/sitespeedio/sitespeed.io/issues/3111) and fixed in PR [#3112](https://github.com/sitespeedio/sitespeed.io/pull/3112).
 
 * np/npm/slow internet glitches made 14.2.2 and 14.2.0 releases broken.

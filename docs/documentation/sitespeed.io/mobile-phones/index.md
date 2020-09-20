@@ -84,6 +84,8 @@ You can use the connection of your desktop by reverse tethering. And then set th
 5. Start throttle: <code>throttle 3g</code>
 6. Run sitespeed.io.
 
+If you use OS X you can use the [Ryan Wirth wrapper for gnirehtet](https://github.com/RyanWirth/gnirehtet) that makes it even simpler.
+
 Note: the first time you run gnirehtet you need to accept the vpn connection on your phone.
 
 #### TSProxy
