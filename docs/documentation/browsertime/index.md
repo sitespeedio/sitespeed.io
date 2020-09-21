@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Documentation Browsertime 9
+title: Documentation Browsertime 10
 description: Read about all you can do with Browsertime.
 keywords: tools, documentation, web performance
 nav: documentation

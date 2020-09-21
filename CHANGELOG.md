@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 15.0.0 - UNRELEASED
+## 15.0.0 - 2020-09-21
 
 The new sitespeed.io 15.0 uses the brand new Browsertime 10! Browsertime mainly included technical changes to make it easier to maintain Browsertime and focus on making Browsertime run faster. You can [read all about the changes in the changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1000---2020-09-20).
 
@@ -9,6 +9,8 @@ The new sitespeed.io 15.0 uses the brand new Browsertime 10! Browsertime mainly 
 
 ### Added
 * The +1 container now uses Lighthoue 6.3.0 [plugin-lighthoue #61](https://github.com/sitespeedio/plugin-lighthouse/pull/61).
+
+* Upgraded AXE-core to 4.0.2.
 
 ## 14.4.0 - 2020-08-27
 ### Added
