@@ -2,7 +2,7 @@
 
 ## 15.0.0 - 2020-09-21
 
-The new sitespeed.io 15.0 uses the brand new Browsertime 10! Browsertime mainly included technical changes to make it easier to maintain Browsertime and focus on making Browsertime run faster. You can [read all about the changes in the changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1000---2020-09-20).
+The new sitespeed.io 15.0 uses the brand new Browsertime 10! Browsertime mainly included technical changes to make it easier to maintain Browsertime and focus on making Browsertime run faster. We also tried to minimize the run time when you record a video, to make sure your tests run faster and save CPU time. You can [read all about the changes in the changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1000---2020-09-20).
 
 ### Breaking changes
 * If you collect visual metrics, we do not calculate Contentful Speed Index and Perceptual Speed Index by default any more. Turn them on by using `--browsertime.visualMetricsPerceptual` and `--browsertime.visualMetricsContentful`. This will make your testing faster by default.
