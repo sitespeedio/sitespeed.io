@@ -30,9 +30,6 @@
       "name": "Jonathan Lee"
     }
   ],
-  "publishConfig": {
-    "tag": "canary"
-  },
   "repository": {
     "type": "git",
     "url": "git://github.com/sitespeedio/sitespeed.io.git"
