@@ -1,9 +1,9 @@
 # CHANGELOG - sitespeed.io
 
 
-## 15.1.0 - UNRELEASED
+## 15.1.0 - 2020-09-22
 ### Added
-* Upgraded to [Browsertime 10.1.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1010---2020-09-22) that reverts the Long Tasks API in Chrome and add some more love for running tests on Android.
+* Upgraded to [Browsertime 10.1.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1010---2020-09-22) that reverts the Long Tasks API change in Chrome and add some more love for running tests on Android.
 
 ## 15.0.0 - 2020-09-21
 
