@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+
+## 15.1.0 - UNRELEASED
+### Added
+* Upgraded to [Browsertime 10.1.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1010---2020-09-22) that reverts the Long Tasks API in Chrome and add some more love for running tests on Android.
+
 ## 15.0.0 - 2020-09-21
 
 The new sitespeed.io 15.0 uses the brand new Browsertime 10! Browsertime mainly included technical changes to make it easier to maintain Browsertime and focus on making Browsertime run faster. We also tried to minimize the run time when you record a video, to make sure your tests run faster and save CPU time. You can [read all about the changes in the changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1000---2020-09-20).
