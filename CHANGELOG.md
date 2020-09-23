@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 15.2.0 - UNRELEASED
+## 15.2.0 - 2020-09-23
 ### Added
 * Firefox 81 in the Docker and Docker slim container.
 
