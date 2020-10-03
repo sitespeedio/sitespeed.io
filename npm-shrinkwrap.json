@@ -1172,9 +1172,9 @@
       "integrity": "sha512-qhAVI1+Av2X7qelOfAIYwXONood6XlZE/fXaBSmW/T5SzLAmCgzi+eiWE7fUvbHaeNBQH13UftjpXxsfLkMpgw=="
     },
     "browsertime": {
-      "version": "10.2.1",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-10.2.1.tgz",
-      "integrity": "sha512-okBJYw3asc8WIYjwyjg6sshR6YfTOMnhOX8T4fZj7SCQP5Kbzm7/atsuGGmIbGLzaWxKnNDkaFiz/fXazJGTeQ==",
+      "version": "10.3.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-10.3.0.tgz",
+      "integrity": "sha512-vPMHdhm3t4tI2wT+6OTFwu0QtFyNx+bgyGsn4rHTH9WKpLa2LBsWu0PBPrlMgOr/PesOc4QE0t4iRBoto2Obsw==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@sitespeed.io/chromedriver": "85.0.4183-83",
@@ -6880,9 +6880,9 @@
       "optional": true
     },
     "tinycolor2": {
-      "version": "1.4.1",
-      "resolved": "https://registry.npmjs.org/tinycolor2/-/tinycolor2-1.4.1.tgz",
-      "integrity": "sha1-9PrTM0R7wLB9TcjpIJ2POaisd+g=",
+      "version": "1.4.2",
+      "resolved": "https://registry.npmjs.org/tinycolor2/-/tinycolor2-1.4.2.tgz",
+      "integrity": "sha512-vJhccZPs965sV/L2sU4oRQVAos0pQXwsvTLkWYdqJ+a8Q5kPFzJTuOFwy7UniPli44NKQGAglksjvOcpo95aZA==",
       "optional": true
     },
     "tmp": {
