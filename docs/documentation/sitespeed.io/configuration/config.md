@@ -260,6 +260,7 @@ Options:
   --browsertime.androidRooted, --androidRooted                                                            If your phone is rooted you can use this to set it up following Mozillas best practice for stable metrics.  [boolean] [default: false]
   --browsertime.androidBatteryTemperatureLimit, --androidBatteryTemperatureLimit                          Do the battery temperature need to be below a specific limit before we start the test?
   --browsertime.androidBatteryTemperatureWaitTimeInSeconds, --androidBatteryTemperatureWaitTimeInSeconds  How long time to wait (in seconds) if the androidBatteryTemperatureWaitTimeInSeconds is not met before the next try  [default: 120]
+  --browsertime.androidVerifyNetwork, --androidVerifyNetwork                                              Before a test start, verify that the device has a Internet connection by pinging 8.8.8.8 (or a configurable domain with --androidPingAddress)  [boolean] [default: false]
   --browsertime.iqr                                                                                       Use IQR, or Inter Quartile Range filtering filters data based on the spread of the data. See  https://en.wikipedia.org/wiki/Interquartile_range. In some cases, IQR filtering may not filter out anything. This can happen if the acceptable range is wider than the bounds of your dataset.  [boolean] [default: false]
   --plugins.disable  [array]
   --plugins.load  [array]
