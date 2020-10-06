@@ -1,5 +1,13 @@
 # CHANGELOG - sitespeed.io
 
+## 15.3.0 - 2020-10-06
+### Added
+* Upgraded to [Browsertime 10.3.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1030---2020-10-03) with the following fixes:
+  * Add option to navigate with WebDriver instead of window.location with `--webdriverPageload`. Thank you [Andrew Creskey](https://github.com/acreskeyMoz) for the PR [#1396](https://github.com/sitespeedio/browsertime/pull/1396).
+  * Add option for specifying logging format in visualmetrics.py. Thank you [Gregory Mierzwinski](https://github.com/gmierz) for the PR throttl[#1399](https://github.com/sitespeedio/browsertime/pull/1399).
+  * Fix bufferSize to proper 100MB default size for Geckoprofiler, thank you [dpalmeiro](https://github.com/dpalmeiro) for the PR [#1394](https://github.com/sitespeedio/browsertime/pull/1394).
+  * Max number of tries to check battery temperature on Android to make sure a test doesn't wait forever to run [#1401](https://github.com/sitespeedio/browsertime/pull/1401).
+
 ## 15.2.0 - 2020-09-23
 ### Added
 * Firefox 81 in the Docker and Docker slim container.
