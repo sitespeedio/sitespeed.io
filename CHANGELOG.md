@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 15.4.0 - UNRELEASED
+### Added
+* New Browsertime 10.4.0 with Chromedriver 86 and Chrome 86 in the Docker container.
+
 ## 15.3.0 - 2020-10-06
 ### Added
 * Upgraded to [Browsertime 10.3.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1030---2020-10-03) with the following fixes:
