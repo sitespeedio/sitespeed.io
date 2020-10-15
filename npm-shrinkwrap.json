@@ -67,9 +67,9 @@
       "dev": true
     },
     "@babel/runtime": {
-      "version": "7.11.2",
-      "resolved": "https://registry.npmjs.org/@babel/runtime/-/runtime-7.11.2.tgz",
-      "integrity": "sha512-TeWkU52so0mPtDcaCTxNBI/IHiz0pZgr8VEFqXFtZWpYD08ZB6FaSwVAS8MKRQAP3bYKiVjwysOJgMFY28o6Tw==",
+      "version": "7.12.0",
+      "resolved": "https://registry.npmjs.org/@babel/runtime/-/runtime-7.12.0.tgz",
+      "integrity": "sha512-lS4QLXQ2Vbw2ubfQjeQcn+BZgZ5+ROHW9f+DWjEp5Y+NHYmkRGKqHSJ1tuhbUauKu2nhZNTBIvsIQ8dXfY5Gjw==",
       "optional": true,
       "requires": {
         "regenerator-runtime": "^0.13.4"
@@ -613,9 +613,9 @@
       }
     },
     "@sitespeed.io/edgedriver": {
-      "version": "84.0.524-0",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/edgedriver/-/edgedriver-84.0.524-0.tgz",
-      "integrity": "sha512-Gw5JPjofq5doXOKV5M5h/XNiFF5XP5/EJDgcxeBJgAFqZQQbQa0mRgVhD8xCT5B0Dxsa254F4/zegndsrkjYBg==",
+      "version": "86.0.622-38",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/edgedriver/-/edgedriver-86.0.622-38.tgz",
+      "integrity": "sha512-bC8K00gAHKlXYM0TuhJW3OZOEEz5+gHFFxSYc2A+ZwZAG9mVLEheOY8d5ompQF3mu1GjF348ADwbTXWZM51hgw==",
       "requires": {
         "node-downloader-helper": "1.0.13",
         "node-stream-zip": "1.11.2"
@@ -1194,13 +1194,13 @@
       "integrity": "sha512-qhAVI1+Av2X7qelOfAIYwXONood6XlZE/fXaBSmW/T5SzLAmCgzi+eiWE7fUvbHaeNBQH13UftjpXxsfLkMpgw=="
     },
     "browsertime": {
-      "version": "10.4.1",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-10.4.1.tgz",
-      "integrity": "sha512-32N8DWQnOBnNza9Cjz+mXLW3voUbaIViPqJpnJ1Of5BYnlRbOjbluhSWmcXIGheYfFJyVh27JFFbPM38AHim5w==",
+      "version": "10.5.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-10.5.0.tgz",
+      "integrity": "sha512-moSg/O7lGPs5k/6SEL3lodqBwzoTkcGg7oTnCk7rHLCLm2Q4/INT/s3mbV4o3nDZYWSMKJMb0Wg5vaPxB4iPXw==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@sitespeed.io/chromedriver": "86.0.4240-22",
-        "@sitespeed.io/edgedriver": "84.0.524-0",
+        "@sitespeed.io/edgedriver": "86.0.622-38",
         "@sitespeed.io/geckodriver": "0.27.0",
         "@sitespeed.io/throttle": "2.0.2",
         "@sitespeed.io/tracium": "0.3.3",

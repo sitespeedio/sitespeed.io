@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Added
+* Updated to Browsertime 10.5.0.
 
 ## 15.4.1 - 2020-10-13
 ### Fixed
