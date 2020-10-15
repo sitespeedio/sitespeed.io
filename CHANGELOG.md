@@ -1,8 +1,8 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 15.5.0 - 2020-10-15
 ### Added
-* Updated to Browsertime 10.5.0.
+* Updated to [Browsertime 10.5.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1050---2020-10-15) with Edgedriver 86.
 
 ## 15.4.1 - 2020-10-13
 ### Fixed
