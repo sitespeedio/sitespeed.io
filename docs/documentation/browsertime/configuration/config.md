@@ -125,6 +125,7 @@ Options:
   --androidRooted                               If your phone is rooted you can use this to set it up following Mozillas best practice for stable metrics.  [boolean] [default: false]
   --androidBatteryTemperatureLimit              Do the battery temperature need to be below a specific limit before we start the test?
   --androidBatteryTemperatureWaitTimeInSeconds  How long time to wait (in seconds) if the androidBatteryTemperatureWaitTimeInSeconds is not met before the next try  [default: 120]
+  --androidBatteryTemperatureReboot             If your phone does not get the minimum temperature aftet the wait time, reboot the phone.  [boolean] [default: false]
   --androidVerifyNetwork                        Before a test start, verify that the device has a Internet connection by pinging 8.8.8.8 (or a configurable domain with --androidPingAddress)  [boolean] [default: false]
   --processStartTime                            Capture browser process start time (in milliseconds). Android only for now.  [boolean] [default: false]
   --pageCompleteCheck                           Supply a JavaScript (inline or JavaScript file) that decides when the browser is finished loading the page and can start to collect metrics. The JavaScript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd. By default the tests ends 2 seconds after loadEventEnd. Also checkout --pageCompleteCheckInactivity and --pageCompleteCheckPollTimeout
