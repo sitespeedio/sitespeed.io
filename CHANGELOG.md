@@ -1,5 +1,13 @@
 # CHANGELOG - sitespeed.io
 
+## 15.6.0 - UNRELEASED
+### Added 
+* Updated to Firefox 82 in the Docker container.
+* Updated to [Browsertime 10.6.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1060---2020-10-20).
+
+### Fixed
+* Fixed broken slim container [#3166](https://github.com/sitespeedio/sitespeed.io/pull/3166).
+
 ## 15.5.1 - 2020-10-20
 ### Fixed
 * Fixed broken link in meta data and Slack to screenshot [#3163](https://github.com/sitespeedio/sitespeed.io/pull/3163).
