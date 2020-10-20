@@ -645,6 +645,27 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
+### Reuse scripts
+You can break out code in multiple files something like this.
+
+test.js
+~~~javascript
+const example = require('./exampleInclude');
+module.exports = async function(context, commands) {
+  example();
+};
+~~~
+
+exampleInclude.js
+~~~javascript
+module.exports = function() {
+  console.log('This is my include');
+};
+~~~
+
+And then run it:
+```sitespeed.io --multi test.js```
+
 ## Commands
 
 All commands will return a promise and you should await it to fulfil. If some command do not work, we will log that automatically and rethrow the error, so you can catch that and can act on that.
