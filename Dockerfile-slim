@@ -18,7 +18,7 @@ RUN buildDeps='wget bzip2' && apt-get update && apt -y install $buildDeps && \
     mv firefox /opt/ && \
     ln -s /opt/firefox/firefox /usr/local/bin/firefox && \
     # Install dependencies for Firefox
-    apt-get install -y --no-install-recommends --no-install-suggests \
+    apt-get install -y --no-install-recommends --no-install-suggests libxt6 \
         `apt-cache depends firefox-esr | awk '/Depends:/{print$2}'` && \
     # iproute2 = tc
     apt -y install tcpdump iproute2 ca-certificates sudo --no-install-recommends --no-install-suggests && \
