@@ -176,7 +176,7 @@ module.exports = {
 ## Debug
 There's a couple of way that makes it easier to debug your scripts:
 * Make sure to [use the log](#log-from-your-script) so you can see what happens in your log output.
-* Either run the script locally on your desktop without XVFB so you can see in the browser window what happens or use  <code>--browsertime.videoParams.debug</code> when you record the video. That way you will get one full video of all your scripts (but no Visual Metrics).
+* Either run the script locally on your desktop without XVFB (using [npm version of sitespeed.io](https://www.npmjs.com/package/sitespeed.io)) so you can see in the browser window what happens. Or if you use Docker you can add <code>--browsertime.videoParams.debug</code> when you record the video. That way you will get one full video of all your scripts (but no Visual Metrics).
 * Use try/catch and await promises so you catch things that doesn't work.
 * If you use plain JavaScript you can copy/paste it and run it in your browsers console to make sure it really works.
 * Take a [screenshot](/documentation/sitespeed.io/scripting/#screenshot) when your script fail to make it easier to see what's going on.
