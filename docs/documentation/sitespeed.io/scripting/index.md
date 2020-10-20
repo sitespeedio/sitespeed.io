@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Use scripts in sitespeed.io to measure a user journey.
-description: With scripts you can simulate a user visiting to miltiple pages, clicking on links, log in, adding items to the cart ... almost measure whatever you want!
+description: With scripts you can simulate a user visiting to multiple pages, clicking on links, log in, adding items to the cart ... almost measure whatever you want!
 keywords: selenium, web performance, sitespeed.io
 nav: documentation
 category: sitespeed.io
@@ -475,6 +475,17 @@ module.exports = async function(context, commands) {
   // We are in browsertime context so you can skip that from your options object
   context.log.info(context.options.my.password);
 };
+~~~
+
+If you use a configuration file you can pass on options like this:
+~~~json
+{
+    "browsertime": {
+        "my": {
+            "password": "paAssW0rd"
+        }
+    }
+}
 ~~~
 
 ### Error handling
