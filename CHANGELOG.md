@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 15.6.0 - UNRELEASED
+## 15.6.0 - 2020-10-20
 ### Added 
 * Updated to Firefox 82 in the Docker container.
 * Updated to [Browsertime 10.6.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1060---2020-10-20).
