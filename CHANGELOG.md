@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 15.5.1 - 2020-10-20
+### Fixed
+* Fixed broken link in meta data and Slack to screenshot [#3163](https://github.com/sitespeedio/sitespeed.io/pull/3163).
+
 ## 15.5.0 - 2020-10-15
 ### Added
 * Updated to [Browsertime 10.5.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1050---2020-10-15) with Edgedriver 86.
