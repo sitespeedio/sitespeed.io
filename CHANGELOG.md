@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## 15.6.1 - 2020-10-21
+### Fixed
+* Updated to Browsertime 10.6.1.
+* Fixed dependencies with security audits that could be automatically fixed.
+ 
 ## 15.6.0 - 2020-10-20
 ### Added 
 * Updated to Firefox 82 in the Docker container.
