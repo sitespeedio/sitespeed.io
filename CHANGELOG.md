@@ -1,5 +1,79 @@
 # CHANGELOG - sitespeed.io
 
+## 15.6.1 - 2020-10-21
+### Fixed
+* Updated to Browsertime 10.6.1.
+* Fixed dependencies with security audits that could be automatically fixed.
+ 
+## 15.6.0 - 2020-10-20
+### Added 
+* Updated to Firefox 82 in the Docker container.
+* Updated to [Browsertime 10.6.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1060---2020-10-20).
+
+### Fixed
+* Fixed broken slim container [#3166](https://github.com/sitespeedio/sitespeed.io/pull/3166).
+
+## 15.5.1 - 2020-10-20
+### Fixed
+* Fixed broken link in meta data and Slack to screenshot [#3163](https://github.com/sitespeedio/sitespeed.io/pull/3163).
+
+## 15.5.0 - 2020-10-15
+### Added
+* Updated to [Browsertime 10.5.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1050---2020-10-15) with Edgedriver 86.
+
+## 15.4.1 - 2020-10-13
+### Fixed
+* Updated to Browsertime 10.4.1 that fixes to that `-vvv` enables trace log level for Marionette when you use Firefox [#1405](https://github.com/sitespeedio/browsertime/pull/1405).
+
+## 15.4.0 - 2020-10-08
+### Added
+* New Browsertime 10.4.0 with Chromedriver 86 and Chrome 86 in the Docker container.
+
+## 15.3.0 - 2020-10-06
+### Added
+* Upgraded to [Browsertime 10.3.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1030---2020-10-03) with the following fixes:
+  * Add option to navigate with WebDriver instead of window.location with `--webdriverPageload`. Thank you [Andrew Creskey](https://github.com/acreskeyMoz) for the PR [#1396](https://github.com/sitespeedio/browsertime/pull/1396).
+  * Add option for specifying logging format in visualmetrics.py. Thank you [Gregory Mierzwinski](https://github.com/gmierz) for the PR throttl[#1399](https://github.com/sitespeedio/browsertime/pull/1399).
+  * Fix bufferSize to proper 100MB default size for Geckoprofiler, thank you [dpalmeiro](https://github.com/dpalmeiro) for the PR [#1394](https://github.com/sitespeedio/browsertime/pull/1394).
+  * Max number of tries to check battery temperature on Android to make sure a test doesn't wait forever to run [#1401](https://github.com/sitespeedio/browsertime/pull/1401).
+
+## 15.2.0 - 2020-09-23
+### Added
+* Firefox 81 in the Docker and Docker slim container.
+
+## 15.1.0 - 2020-09-22
+### Added
+* Upgraded to [Browsertime 10.1.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1010---2020-09-22) that reverts the Long Tasks API change in Chrome and add some more love for running tests on Android.
+
+## 15.0.0 - 2020-09-21
+
+The new sitespeed.io 15.0 uses the brand new Browsertime 10! Browsertime mainly included technical changes to make it easier to maintain Browsertime and focus on making Browsertime run faster. We also tried to minimize the run time when you record a video, to make sure your tests run faster and save CPU time. You can [read all about the changes in the changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1000---2020-09-20).
+
+### Breaking changes
+* If you collect visual metrics, we do not calculate Contentful Speed Index and Perceptual Speed Index by default any more. Turn them on by using `--browsertime.visualMetricsPerceptual` and `--browsertime.visualMetricsContentful`. This will make your testing faster by default.
+
+### Added
+* The +1 container now uses Lighthoue 6.3.0 [plugin-lighthoue #61](https://github.com/sitespeedio/plugin-lighthouse/pull/61).
+
+* Upgraded AXE-core to 4.0.2.
+
+## 14.4.0 - 2020-08-27
+### Added
+* Updated the Docker container to use Chrome 85 and Firefox 80. Updated the slim container to use Firefox 80. 
+* Updated to Browsertime 9.4.0 that includes Chromedriver 85.
+
+### Fixed
+* Fix so its easier to run Chrome on Android with WebPageReplay [#3134](https://github.com/sitespeedio/sitespeed.io/pull/3134).
+
+## 14.3.2 - 2020-08-24
+### Fixed
+* Upgraded to [Browsertime 9.3.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#931---2020-08-24) that fixes a bug so that correct mobile emulation settings is set on Chrome, updated Throttle to 2.0.1 and update a couple of other packages. 
+
+## 14.3.1 - 2020-08-24
+### Fixed
+* Log at info level (not error) when Crux data is missing [#3133](https://github.com/sitespeedio/sitespeed.io/pull/3133).
+* Do not log error if you only collect origin data from Crux [#3130](https://github.com/sitespeedio/sitespeed.io/pull/3130).
+
 ## 14.3.0 - 2020-08-18
 ### Fixed
 * Fixed broken page weight in the Slack message.

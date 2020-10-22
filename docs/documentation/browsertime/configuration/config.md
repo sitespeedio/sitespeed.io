@@ -28,7 +28,6 @@ chrome
   --chrome.collectPerfLog                                    Collect performance log from Chrome with Page and Network events and save to disk.  [boolean]
   --chrome.collectNetLog                                     Collect network log from Chrome and save to disk.  [boolean]
   --chrome.collectConsoleLog                                 Collect Chromes console log and save to disk.  [boolean]
-  --chrome.collectLongTasks                                  Collect CPU long tasks, using the Long Task API  [boolean]
   --chrome.CPUThrottlingRate                                 Enables CPU throttling to emulate slow CPUs. Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc)  [number]
   --chrome.includeResponseBodies                             Include response bodies in the HAR file.  [choices: "none", "all", "html"] [default: "none"]
   --chrome.cdp.performance                                   Collect Chrome perfromance metrics from Chrome DevTools Protocol  [boolean] [default: true]
@@ -51,8 +50,9 @@ firefox
   --firefox.geckoProfilerParams.features    Enabled features during gecko profiling  [string] [default: "js,stackwalk,leaf"]
   --firefox.geckoProfilerParams.threads     Threads to profile.  [string] [default: "GeckoMain,Compositor,Renderer"]
   --firefox.geckoProfilerParams.interval    Sampling interval in ms.  Defaults to 1 on desktop, and 4 on android.  [number]
-  --firefox.geckoProfilerParams.bufferSize  Buffer size in elements. Default is ~90MB.  [number] [default: 1000000]
-  --firefox.collectMozLog                   Collect the MOZ HTTP log  [boolean]
+  --firefox.geckoProfilerParams.bufferSize  Buffer size in elements. Default is ~90MB.  [number] [default: 13107200]
+  --firefox.collectMozLog                   Collect the MOZ HTTP log (by default). See --firefox.setMozLog if you need to specify the logs you wish to gather.  [boolean]
+  --firefox.setMozLog                       Use in conjunction with firefox.collectMozLog to set MOZ_LOG to something specific. Without this, the HTTP logs will be collected by default  [default: "timestamp,nsHttp:5,cache2:5,nsSocketTransport:5,nsHostResolver:5"]
   --firefox.disableBrowsertimeExtension     Disable installing the browsertime extension.  [boolean]
   --firefox.disableSafeBrowsing             Disable safebrowsing.  [boolean] [default: true]
   --firefox.disableTrackingProtection       Disable Tracking Protection.  [boolean] [default: true]
@@ -75,6 +75,7 @@ video
   --videoParams.filmstripQuality   The quality of the filmstrip screenshots. 0-100.  [default: 75]
   --videoParams.createFilmstrip    Create filmstrip screenshots.  [boolean] [default: true]
   --videoParams.nice               Use nice when running FFMPEG during the run. A value from -20 to 19  https://linux.die.net/man/1/nice  [default: 0]
+  --videoParams.convert            Convert the original video to a viewable format (for most video players). Turn that off to make a faster run.  [boolean] [default: true]
 
 edge
   --edge.edgedriverPath  To run Edge you need to supply the path to the msedgedriver that match your Egde version.
@@ -110,18 +111,22 @@ connectivity
   --connectivity.throttle.localhost                   Add latency/delay on localhost. Perfect for testing with WebPageReplay  [boolean] [default: false]
 
 Options:
-  --cpu                                         Easy way to enable both chrome.timeline and CPU long tasks for Chrome and geckoProfile for Firefox  [boolean]
+  --cpu                                         Easy way to enable both chrome.timeline for Chrome and geckoProfile for Firefox  [boolean]
   --androidPower                                Enables android power testing - charging must be disabled for this.(You have to disable charging yourself for this - it depends on the phone model).  [boolean]
   --video                                       Record a video and store the video. Set it to false to remove the video that is created by turning on visualMetrics. To remove fully turn off video recordings, make sure to set video and visualMetrics to false. Requires FFMpeg to be installed.  [boolean]
   --visualMetrics                               Collect Visual Metrics like First Visual Change, SpeedIndex, Perceptual Speed Index and Last Visual Change. Requires FFMpeg and Python dependencies  [boolean]
   --visualElements, --visuaElements             Collect Visual Metrics from elements. Works only with --visualMetrics turned on. By default you will get visual metrics from the largest image within the view port and the largest h1. You can also configure to pickup your own defined elements with --scriptInput.visualElements  [boolean]
+  --visualMetricsPerceptual                     Collect Perceptual Speed Index when you run --visualMetrics.  [boolean]
+  --visualMetricsContentful                     Collect Contentful Speed Index when you run --visualMetrics.  [boolean]
   --scriptInput.visualElements                  Include specific elements in visual elements. Give the element a name and select it with document.body.querySelector. Use like this: --scriptInput.visualElements name:domSelector see https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors. Add multiple instances to measure multiple elements. Visual Metrics will use these elements and calculate when they are visible and fully rendered.
-  --scriptInput.longTask, --minLongTaskLength   Set the minimum length of a task to be categorised as a CPU Long Task. It can never be smaller than 50. The value is in ms and you make Browsertime collect long tasks using --chrome.collectLongTasks or --cpu.  [number] [default: 50]
+  --scriptInput.longTask, --minLongTaskLength   Set the minimum length of a task to be categorised as a CPU Long Task. It can never be smaller than 50. The value is in ms and only works in Chromium browsers at the moment.  [number] [default: 50]
   --browser, -b                                 Specify browser. Safari only works on OS X/iOS. Edge only work on OS that supports Edge.  [choices: "chrome", "firefox", "edge", "safari"] [default: "chrome"]
   --android                                     Short key to use Android. Defaults to use com.android.chrome unless --browser is specified.  [boolean] [default: false]
   --androidRooted                               If your phone is rooted you can use this to set it up following Mozillas best practice for stable metrics.  [boolean] [default: false]
   --androidBatteryTemperatureLimit              Do the battery temperature need to be below a specific limit before we start the test?
   --androidBatteryTemperatureWaitTimeInSeconds  How long time to wait (in seconds) if the androidBatteryTemperatureWaitTimeInSeconds is not met before the next try  [default: 120]
+  --androidBatteryTemperatureReboot             If your phone does not get the minimum temperature aftet the wait time, reboot the phone.  [boolean] [default: false]
+  --androidVerifyNetwork                        Before a test start, verify that the device has a Internet connection by pinging 8.8.8.8 (or a configurable domain with --androidPingAddress)  [boolean] [default: false]
   --processStartTime                            Capture browser process start time (in milliseconds). Android only for now.  [boolean] [default: false]
   --pageCompleteCheck                           Supply a JavaScript (inline or JavaScript file) that decides when the browser is finished loading the page and can start to collect metrics. The JavaScript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd. By default the tests ends 2 seconds after loadEventEnd. Also checkout --pageCompleteCheckInactivity and --pageCompleteCheckPollTimeout
   --pageCompleteWaitTime                        How long time you want to wait for your pageComplteteCheck to finish, after it is signaled to closed. Extra parameter passed on to your pageCompleteCheck.  [default: 5000]
@@ -133,6 +138,7 @@ Options:
   --prettyPrint                                 Enable to print json/har with spaces and indentation. Larger files, but easier on the eye.  [boolean] [default: false]
   --delay                                       Delay between runs, in milliseconds  [number] [default: 0]
   --timeToSettle                                Extra time added for the browser to settle before starting to test a URL. This delay happens after the browser was opened and before the navigation to the URL  [number] [default: 0]
+  --webdriverPageload                           Use webdriver.get to initialize the page load instead of window.location.  [boolean] [default: false]
   --requestheader, -r                           Request header that will be added to the request. Add multiple instances to add multiple request headers. Works for Firefox and Chrome. Use the following format key:value
   --cookie                                      Cookie that will be added to the request. Add multiple instances to add multiple request cookies. Works for Firefox and Chrome. Use the following format cookieName=cookieValue
   --injectJs                                    Inject JavaScript into the current page at document_start. Works for Firefox and Chrome. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts

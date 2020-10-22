@@ -131,7 +131,7 @@ The Largest Contentful Paint (LCP) metric reports the render time of the largest
 Measure when specfific elements occur on the screen. To get this metric you need to annotate your HTML element with the attribute **elementtiming**.
 
 ### Cumulative Layout Shift
-Cumulative Layout Shift (CLS) measures the sum total of all individual layout shift scores for every unexpected layout shift that occurs during the entire lifespan of the page. This is a Chrome only metric.
+Cumulative Layout Shift (CLS) measures the sum total of all individual layout shift scores for every unexpected layout shift that occurs during the entire lifespan of the page. This is a Chrome only metric. Learn more about CLS at [Nic Jansmas blog post](https://nicj.net/cumulative-layout-shift-in-practice/).
 
 ### Time To DOM Content Flushed
 Internal Firefox metric activated by setting the preference  **dom.performance.time_to_dom_content_flushed.enabled** to true.

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Documentation sitespeed.io 14.x
+title: Documentation sitespeed.io 15.x
 description: Read about all you can do with sitespeed.io.
 keywords: tools, documentation, web performance
 nav: documentation
