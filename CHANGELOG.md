@@ -1,8 +1,9 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 15.6.2 - 2020-10-23
 ### Fixed
 * Make sure we catch all possible errors from Browsertime (like Android phones not being connected) and send an error message on the queue [#3170](https://github.com/sitespeedio/sitespeed.io/pull/3170).
+* Updated to Browsertime 10.6.2 with better error handling if navigation fails.
 
 ## 15.6.1 - 2020-10-21
 ### Fixed
