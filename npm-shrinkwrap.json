@@ -753,9 +753,9 @@
       "integrity": "sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ=="
     },
     "@types/node": {
-      "version": "14.14.0",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-14.14.0.tgz",
-      "integrity": "sha512-BfbIHP9IapdupGhq/hc+jT5dyiBVZ2DdeC5WwJWQWDb0GijQlzUFAeIQn/2GtvZcd2HVUU7An8felIICFTC2qg=="
+      "version": "14.14.2",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-14.14.2.tgz",
+      "integrity": "sha512-jeYJU2kl7hL9U5xuI/BhKPZ4vqGM/OmK6whiFAXVhlstzZhVamWhDSmHyGLIp+RVyuF9/d0dqr2P85aFj4BvJg=="
     },
     "@ungap/promise-all-settled": {
       "version": "1.1.2",
@@ -1166,9 +1166,9 @@
       }
     },
     "browsertime": {
-      "version": "10.6.1",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-10.6.1.tgz",
-      "integrity": "sha512-u4kLx++nVbYM5QFWRYJGWNKCPU+OWn7pgB/TufNXb24W2Pn59PErE64pngWDKyCNY9J/2FMp2224vPJB9A2b3A==",
+      "version": "10.6.2",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-10.6.2.tgz",
+      "integrity": "sha512-1bHJdFD5sdJG34C4+3da1EGMquHT7GPuMtDiNp3wETDTfccVHSqtwTZ8qULYYsDIvwszd7dbFzoX4/k8IM8z9A==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@sitespeed.io/chromedriver": "86.0.4240-22",
