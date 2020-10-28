@@ -1,8 +1,9 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 15.6.4 - 2020-10-28
 ### Fixed
-* Upgraded to Browsertime 10.6.4.
+* Upgraded to [Browsertime 10.6.4](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1064---2020-10-28).
+* Fix how file path is built, follow how we do it in Browsertime [#3171](https://github.com/sitespeedio/sitespeed.io/pull/3171).
 
 ## 15.6.3 - 2020-10-27
 ### Fixed
