@@ -1,8 +1,12 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### Fixed
+* Upgraded to Browsertime 10.6.4.
+
 ## 15.6.3 - 2020-10-27
 ### Fixed
-* Upgraded to [Browsertime 10.6.3](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1063---2020-10-26) that fixes the bug of navigating to the same URL twice (or more) in the same script.
+* Upgraded to [Browsertime 10.6.3](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1063---2020-10-26) that fixes the bug of navigating to the same URL twice (or more) in the same
 
 ## 15.6.2 - 2020-10-23
 ### Fixed
