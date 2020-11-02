@@ -56,7 +56,7 @@ block content
   .row
     .column
       include runInfo
-      if pages.length > 0
+      if Object.keys(pages).length > 0
         .responsive
           table(data-sortable, id='pages')
             +rowHeading(headings)
