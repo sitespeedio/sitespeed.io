@@ -1,5 +1,14 @@
 # CHANGELOG - sitespeed.io
 
+## 15.6.4 - 2020-10-28
+### Fixed
+* Upgraded to [Browsertime 10.6.4](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1064---2020-10-28).
+* Fix how file path is built, follow how we do it in Browsertime [#3171](https://github.com/sitespeedio/sitespeed.io/pull/3171).
+
+## 15.6.3 - 2020-10-27
+### Fixed
+* Upgraded to [Browsertime 10.6.3](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1063---2020-10-26) that fixes the bug of navigating to the same URL twice (or more) in the same
+
 ## 15.6.2 - 2020-10-23
 ### Fixed
 * Make sure we catch all possible errors from Browsertime (like Android phones not being connected) and send an error message on the queue [#3170](https://github.com/sitespeedio/sitespeed.io/pull/3170).
