@@ -56,18 +56,15 @@ block content
   .row
     .column
       include runInfo
-      if Object.keys(pages).length > 0
-        .responsive
-          table(data-sortable, id='pages')
-            +rowHeading(headings)
-            +rows(pages)
-
-  if removedUrls.length > 0
-    p The following pages was removed because they passed the budget configuration.
-    .responsive
-        table(data-sortable, id='removedpages')
-          +rowHeading(['URL'])
-          each url in removedUrls
+      .responsive
+        table(data-sortable, id='pages')
+          +rowHeading(headings)
+          +rows(pages, true)
+          if removedUrls.length > 0
             tr
-              td.url.pagesurl(data-title='URL')
-                a(href= url)= decodeURIComponent(url)
+              td(colspan=headings.length) 
+                b The following pages metrics/data was removed because they passed the budget configuration.
+            each url in removedUrls
+              tr
+                  td.url.pagesurl(data-title='URL', colspan=headings.length)
+                    a(href= url)= decodeURIComponent(url)
