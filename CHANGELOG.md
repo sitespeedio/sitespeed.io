@@ -12,6 +12,7 @@
 
 * Added a new plugin: The remove plugin. The remove plugin can remove test artifacts for URLs. It is used to remove passing URLs in your budget [3173](https://github.com/sitespeedio/sitespeed.io/pull/3173 ). Support for removing HTML/Slack data for a URL was added in [#3174](https://github.com/sitespeedio/sitespeed.io/pull/3174).
 
+* Updated dependencies: google-cloud/storage, aws-sdk, dayjs, influx and uuid [#3184](https://github.com/sitespeedio/sitespeed.io/pull/3184).
 
 ## 15.6.4 - 2020-10-28
 ### Fixed
