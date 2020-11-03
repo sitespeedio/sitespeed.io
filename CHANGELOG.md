@@ -1,5 +1,18 @@
 # CHANGELOG - sitespeed.io
 
+## 15.7.0 - UNRELEASED
+### Added
+* New feature: You can remove data for URLs that pass your budget using `--budget.removePassingResult`. Why do you want to do that? One use case is that you crawl your site with a budget. You test 200 pages and 5 of them fails, then you don't need the video/HTML for all those 195 pages that passed your test. But the data for the URLs that failed are interesting [#3175](https://github.com/sitespeedio/sitespeed.io/pull/3175).
+
+* Send messages to [Matrix](https://matrix.org) [clients](https://matrix.org/clients/). As a start you can send all error messages and/or budget result message. The errors makes it easier for you to keep track that your tests is working. The budget helps you to get reports on pages that fails your budget (blog post coming up). To send messages to Matrix you need to setup  `--matrix.host`, `--matrix.accessToken` and `--matrix.room `.  You can also finetune what messages to send with `--matrix.messages` and `--matrix.rooms`to send route messages to specific rooms. More about that when the documentation is updated [#3086](https://github.com/sitespeedio/sitespeed.io/pull/3086).
+
+
+### Tech
+* We added a new messgage *prepareToRender* that happens after the *summarize* step and before the *render* message in the queue. That way your plugin can do stuff before it renders content. It helps us to make it possible to remove test data for URLs that passes your performance budget [#3172](https://github.com/sitespeedio/sitespeed.io/pull/3172).
+
+* Added a new plugin: The remove plugin. The remove plugin can remove test artifacts for URLs. It is used to remove passing URLs in your budget [3173](https://github.com/sitespeedio/sitespeed.io/pull/3173 ). Support for removing HTML/Slack data for a URL was added in [#3174](https://github.com/sitespeedio/sitespeed.io/pull/3174).
+
+
 ## 15.6.4 - 2020-10-28
 ### Fixed
 * Upgraded to [Browsertime 10.6.4](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1064---2020-10-28).
