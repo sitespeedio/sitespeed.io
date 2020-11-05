@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 15.7.0 - UNRELEASED
+## 15.7.0 - 2020-11-2
 ### Added
 * New feature: You can remove data for URLs that pass your budget using `--budget.removePassingResult`. Why do you want to do that? One use case is that you crawl your site with a budget. You test 200 pages and 5 of them fails, then you don't need the video/HTML for all those 195 pages that passed your test. But the data for the URLs that failed are interesting [#3175](https://github.com/sitespeedio/sitespeed.io/pull/3175).
 
@@ -14,7 +14,7 @@
 
 * Updated dependencies: google-cloud/storage, aws-sdk, dayjs, influx and uuid [#3184](https://github.com/sitespeedio/sitespeed.io/pull/3184).
 
-## 15.6.4 - 2020-10-28
+## 15.6.4 - 05
 ### Fixed
 * Upgraded to [Browsertime 10.6.4](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1064---2020-10-28).
 * Fix how file path is built, follow how we do it in Browsertime [#3171](https://github.com/sitespeedio/sitespeed.io/pull/3171).
