@@ -150,10 +150,11 @@ Plugins
   --plugins.remove  Default plugins that you not want to run. Specify multiple plugin names separated by comma, or repeat the --plugins.remove option
 
 Budget
-  --budget.configPath        Path to the JSON budget file.
-  --budget.suppressExitCode  By default sitespeed.io returns a failure exit code, if the budget fails. Set this to true and sitespeed.io will return exit code 0 independent of the budget.
-  --budget.config            The JSON budget config as a string.
-  --budget.output            The output format of the budget.  [choices: "junit", "tap", "json"]
+  --budget.configPath                                         Path to the JSON budget file.
+  --budget.suppressExitCode                                   By default sitespeed.io returns a failure exit code, if the budget fails. Set this to true and sitespeed.io will return exit code 0 independent of the budget.
+  --budget.config                                             The JSON budget config as a string.
+  --budget.output                                             The output format of the budget.  [choices: "junit", "tap", "json"]
+  --budget.removeWorkingResult, --budget.removePassingResult  Remove the result of URLs that pass the budget. You can use this if you many URL and only care about the ones that fails your budget. All videos/HTML for the working URLs will be removed if you pass this on.  [boolean]
 
 Screenshot
   --browsertime.screenshot                                                                Set to false to disable screenshots  [boolean] [default: true]
@@ -248,6 +249,13 @@ CrUx
   --crux.key         You need to use a key to get data from CrUx. Get the key from https://developers.google.com/web/tools/chrome-user-experience-report/api/guides/getting-started#APIKey
   --crux.formFactor  A form factor is the type of device on which a user visits a website.  [string] [choices: "ALL", "DESKTOP", "PHONE", "TABLET"] [default: "ALL"]
   --crux.collect     Choose what data to collect. URL is data for a specific URL, ORIGIN for the domain and ALL for both of them  [string] [choices: "ALL", "URL", "ORIGIN"] [default: "ALL"]
+
+Matrix
+  --matrix.host         The Matrix host.
+  --matrix.accessToken  The Matrix access token.
+  --matrix.room         The default Matrix room. It is alsways used. You can override the room per message type using --matrix.rooms
+  --matrix.messages     Choose what type of message to send to Matrix. There are two types of messages: Error messages and budget messages. Errors are errors that happens through the tests (failures like strarting a test) and budget is test failing against your budget.  [choices: "error", "budget"] [default: ["error","budget"]]
+  --matrix.rooms        Send messages to different rooms. Current message types are [error,budget]. If you want to send error messages to a specific room use --matrix.rooms.error ROOM
 
 Options:
   --version, -V                                                                                           Show version number  [boolean]
