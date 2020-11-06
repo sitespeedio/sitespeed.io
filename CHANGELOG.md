@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## 15.7.2 - 2020-11-06
+### Fixed
+* Filmstrips are only stored to disk if we collect visual metrics using trace so we missed out on a configuration, that made us log error trying to get filmstrips that don't exist[#3188](https://github.com/sitespeedio/sitespeed.io/pull/3188).
+* Sending data to Matric sometimes failed when Matrix is overloaded. We now retry three times with a backoff of 5 seconds [#3189](https://github.com/sitespeedio/sitespeed.io/pull/3189).
+
 ## 15.7.1 - 2020-11-05
 ### Fixed
 * If a budget fails, log info instead of error [#3185](https://github.com/sitespeedio/sitespeed.io/pull/3185) and use error logs only for technical failures.
