@@ -43,6 +43,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Graphite](graphite/) - how to configure and store your metrics in Graphite (and using StatsD).
  * [How to Write a Good Bug Report](bug-report/) - if you write a good bug report, we can spend more time helping you fixing the problem instead of asking you questions
  * [Lighthouse](lighthouse/) - run Lighthouse from sitespeed.io.
+ * [Matrix](matrix/) - send messages to your Matrix client.
  * [Mobile phones](mobile-phones/) - test using your mobile phone. Chrome on Android and Safari on iOS.
  * [Performance Budget](performance-budget/) - make sure you are within your performance budget.
  * [Plugins](plugins/) - list/disable/enable or create your own plugin.

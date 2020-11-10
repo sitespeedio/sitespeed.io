@@ -273,3 +273,9 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 
 It will create a *budgetResult.json* in the outputFolder.
 
+### Remove working/passing result
+There's a feature where you can configure sitespeed.io to remove data (the result HTML/videos/screenshots) for all pages that passes your budget. This is useful if you crawl your site and only want to keep the result of the pages that fails, to save space. Use ```--budget.removeWorkingResult``` to remove data for pages that works.
+
+~~~bash
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --budget.configPath myBudget.json --budget.removeWorkingResult -b chrome -n 5
+~~~
