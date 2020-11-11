@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 15.7.3 - 2020-11-11
+### Fixed
+* Upgtraded to Browsertime 10.6.5 with a new version of Geckodriver for Firefox.
+
 ## 15.7.2 - 2020-11-06
 ### Fixed
 * Filmstrips are only stored to disk if we collect visual metrics using trace so we missed out on a configuration, that made us log error trying to get filmstrips that don't exist[#3188](https://github.com/sitespeedio/sitespeed.io/pull/3188).
