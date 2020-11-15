@@ -38,11 +38,6 @@ block content
         h5(id=adviceKey) #{advice.title} (#{adviceKey})
         p #{advice.description}
 
-      h2(id='accessibilityAdvice') Accessibility advice
-      each advice, adviceKey in coach.accessibility.adviceList
-        h5(id=adviceKey) #{advice.title} (#{adviceKey})
-        p #{advice.description}
-
     h2(id='timingMetrics') Timing metrics
 
     h5(id='backEndTime') BackEndTime / TTFB
