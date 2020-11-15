@@ -8,7 +8,7 @@ p Data collected using
     code --browsertime.chrome.includeResponseBodies html
     | to help Wappalyser find more information about technologies used.
 
-if advice.info.technology.length > 0
+if advice.info.technology && advice.info.technology.length > 0
     table
         tr
             th Technology
