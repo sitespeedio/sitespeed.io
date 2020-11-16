@@ -604,9 +604,9 @@
       }
     },
     "@sitespeed.io/geckodriver": {
-      "version": "0.28.0",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/geckodriver/-/geckodriver-0.28.0.tgz",
-      "integrity": "sha512-NgXdVOhJiJFHkHwavctgg7j7ds6Nqrm16R21gG204voYUD9YO+dbBE6VUIp/BxM40GbLyKaHyDkyH3/1DaxlQQ==",
+      "version": "0.27.0",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/geckodriver/-/geckodriver-0.27.0.tgz",
+      "integrity": "sha512-+4f9gevqerqksOZHu7/hnXYLzAz6prW132f/YCqt/HrS3ft9C3La2pg4Kbqw7JyHazIPJat13AV2c0gH/DJIqQ==",
       "requires": {
         "node-downloader-helper": "1.0.13",
         "node-stream-zip": "1.11.2",
@@ -1136,14 +1136,14 @@
       }
     },
     "browsertime": {
-      "version": "10.6.5",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-10.6.5.tgz",
-      "integrity": "sha512-fVlQH1wrAPoJv80mR7WON21YCOzZtTNFSSUUR0e4CziXubKI2cN81h794WXyBrrdhG37n5ZbcW493GwDtM/LTg==",
+      "version": "10.7.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-10.7.0.tgz",
+      "integrity": "sha512-gy3+GiOLpUYSwklFOIYC1tlpYBvA1qDgM9wVXBgQYFdcbOEq/zzCZZO8HY0Kz97+YOUmcAIy+2SjE31QX6IvyA==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@sitespeed.io/chromedriver": "86.0.4240-22",
         "@sitespeed.io/edgedriver": "86.0.622-38",
-        "@sitespeed.io/geckodriver": "0.28.0",
+        "@sitespeed.io/geckodriver": "0.27.0",
         "@sitespeed.io/throttle": "2.0.2",
         "@sitespeed.io/tracium": "0.3.3",
         "adbkit": "2.11.1",
