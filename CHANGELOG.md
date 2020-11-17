@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+## 15.8.0 - 2020-11-17
+### Added 
+* Updated to Firefox 83 in the Docker container.
 ## 15.7.4 - 2020-11-16
 ### Fixed
 * Upgraded Browsertime that reverted Geckodriver to 0.27.0 since there are problems starting Firefox on Android using 0.28.0. 
