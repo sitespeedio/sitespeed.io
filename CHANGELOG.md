@@ -1,9 +1,10 @@
 # CHANGELOG - sitespeed.io
 
-##  15.9.0 - UNRELASED
+##  15.9.0 - 2020-11-18
 ### Added
 * Updated to Chrome 87 in the Docker container
 * Updated to latest Browsertime with Chromedriver 87.
+* Added latest Browsertime [10.9.0](https://github.com/sitespeedio/browsertime/releases/tag/v10.9.0) with fixes for Firefox.
 
 ## 15.8.0 - 2020-11-17
 ### Added 

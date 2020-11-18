@@ -1136,9 +1136,9 @@
       }
     },
     "browsertime": {
-      "version": "10.8.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-10.8.0.tgz",
-      "integrity": "sha512-bkZvrdcF80qjV74KjKhB5TyqOqwvCmAmW4N96PzxIGdPa/BqIsuJTa3sQZE+2zuiF7IfJS97HkP1+9NPeyK9qg==",
+      "version": "10.9.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-10.9.0.tgz",
+      "integrity": "sha512-ungRPRy6tJh6KizLwMUS7kJHRVlc1Gf1/3qNmKCtjVgSjeNf3SknWozMa1TEd7nj/cHWsFdJmamamXuW5t4dVQ==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@sitespeed.io/chromedriver": "87.0.4280-20",
