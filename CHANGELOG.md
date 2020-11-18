@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+##  15.9.0 - UNRELASED
+### Added
+* Updated to Chrome 87 in the Docker container
+* Updated to latest Browsertime with Chromedriver 87.
+
 ## 15.8.0 - 2020-11-17
 ### Added 
 * Updated to Firefox 83 in the Docker container.

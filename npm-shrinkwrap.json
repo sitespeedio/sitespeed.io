@@ -574,9 +574,9 @@
       }
     },
     "@sitespeed.io/chromedriver": {
-      "version": "86.0.4240-22",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-86.0.4240-22.tgz",
-      "integrity": "sha512-f+4IQ24PS6xati001qw2Gp65yX7BnLWwBcE7peQ/1I/fl6NWpwzB9aFXwetSkw1Tstisj6+x7MDamB2DaZ7lYw==",
+      "version": "87.0.4280-20",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-87.0.4280-20.tgz",
+      "integrity": "sha512-BBIyhHx1I5ff9m0xO49ADfI/iDWNoG7STTBMVflMbpgKy8STtcce11A4wDwWyN1+XSteWYuvixl9/ARz0fNdpg==",
       "requires": {
         "node-downloader-helper": "1.0.14",
         "node-stream-zip": "1.11.3"
@@ -723,9 +723,9 @@
       "integrity": "sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ=="
     },
     "@types/node": {
-      "version": "14.14.7",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-14.14.7.tgz",
-      "integrity": "sha512-Zw1vhUSQZYw+7u5dAwNbIA9TuTotpzY/OF7sJM9FqPOF3SPjKnxrjoTktXDZgUjybf4cWVBP7O8wvKdSaGHweg=="
+      "version": "14.14.8",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-14.14.8.tgz",
+      "integrity": "sha512-z/5Yd59dCKI5kbxauAJgw6dLPzW+TNOItNE00PkpzNwUIEwdj/Lsqwq94H5DdYBX7C13aRA0CY32BK76+neEUA=="
     },
     "@ungap/promise-all-settled": {
       "version": "1.1.2",
@@ -1136,12 +1136,12 @@
       }
     },
     "browsertime": {
-      "version": "10.7.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-10.7.0.tgz",
-      "integrity": "sha512-gy3+GiOLpUYSwklFOIYC1tlpYBvA1qDgM9wVXBgQYFdcbOEq/zzCZZO8HY0Kz97+YOUmcAIy+2SjE31QX6IvyA==",
+      "version": "10.8.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-10.8.0.tgz",
+      "integrity": "sha512-bkZvrdcF80qjV74KjKhB5TyqOqwvCmAmW4N96PzxIGdPa/BqIsuJTa3sQZE+2zuiF7IfJS97HkP1+9NPeyK9qg==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
-        "@sitespeed.io/chromedriver": "86.0.4240-22",
+        "@sitespeed.io/chromedriver": "87.0.4280-20",
         "@sitespeed.io/edgedriver": "86.0.622-38",
         "@sitespeed.io/geckodriver": "0.27.0",
         "@sitespeed.io/throttle": "2.0.2",
