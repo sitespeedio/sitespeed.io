@@ -22,6 +22,9 @@
     "name": "Peter Hedenskog",
     "url": "https://www.peterhedenskog.com"
   },
+  "publishConfig": {
+    "tag": "canary"
+  },
   "contributors": [
     {
       "name": "Tobias Lidskog"
