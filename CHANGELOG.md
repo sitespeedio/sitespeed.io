@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+##  16.0.0 - UNRELEASED
+### Added
+* Updated to the Coach 6.0.0 (beta-1) [#3194](https://github.com/sitespeedio/sitespeed.io/pull/3194)
 ##  15.9.0 - 2020-11-18
 ### Added
 * Updated to Chrome 87 in the Docker container
