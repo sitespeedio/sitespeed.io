@@ -1,6 +1,6 @@
 {
   "name": "sitespeed.io",
-  "version": "15.7.3",
+  "version": "15.9.0",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -574,9 +574,9 @@
       }
     },
     "@sitespeed.io/chromedriver": {
-      "version": "86.0.4240-22",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-86.0.4240-22.tgz",
-      "integrity": "sha512-f+4IQ24PS6xati001qw2Gp65yX7BnLWwBcE7peQ/1I/fl6NWpwzB9aFXwetSkw1Tstisj6+x7MDamB2DaZ7lYw==",
+      "version": "87.0.4280-20",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-87.0.4280-20.tgz",
+      "integrity": "sha512-BBIyhHx1I5ff9m0xO49ADfI/iDWNoG7STTBMVflMbpgKy8STtcce11A4wDwWyN1+XSteWYuvixl9/ARz0fNdpg==",
       "requires": {
         "node-downloader-helper": "1.0.14",
         "node-stream-zip": "1.11.3"
@@ -604,9 +604,9 @@
       }
     },
     "@sitespeed.io/geckodriver": {
-      "version": "0.28.0",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/geckodriver/-/geckodriver-0.28.0.tgz",
-      "integrity": "sha512-NgXdVOhJiJFHkHwavctgg7j7ds6Nqrm16R21gG204voYUD9YO+dbBE6VUIp/BxM40GbLyKaHyDkyH3/1DaxlQQ==",
+      "version": "0.27.0",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/geckodriver/-/geckodriver-0.27.0.tgz",
+      "integrity": "sha512-+4f9gevqerqksOZHu7/hnXYLzAz6prW132f/YCqt/HrS3ft9C3La2pg4Kbqw7JyHazIPJat13AV2c0gH/DJIqQ==",
       "requires": {
         "node-downloader-helper": "1.0.13",
         "node-stream-zip": "1.11.2",
@@ -723,9 +723,9 @@
       "integrity": "sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ=="
     },
     "@types/node": {
-      "version": "14.14.7",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-14.14.7.tgz",
-      "integrity": "sha512-Zw1vhUSQZYw+7u5dAwNbIA9TuTotpzY/OF7sJM9FqPOF3SPjKnxrjoTktXDZgUjybf4cWVBP7O8wvKdSaGHweg=="
+      "version": "14.14.8",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-14.14.8.tgz",
+      "integrity": "sha512-z/5Yd59dCKI5kbxauAJgw6dLPzW+TNOItNE00PkpzNwUIEwdj/Lsqwq94H5DdYBX7C13aRA0CY32BK76+neEUA=="
     },
     "@ungap/promise-all-settled": {
       "version": "1.1.2",
@@ -1136,14 +1136,14 @@
       }
     },
     "browsertime": {
-      "version": "10.6.5",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-10.6.5.tgz",
-      "integrity": "sha512-fVlQH1wrAPoJv80mR7WON21YCOzZtTNFSSUUR0e4CziXubKI2cN81h794WXyBrrdhG37n5ZbcW493GwDtM/LTg==",
+      "version": "10.9.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-10.9.0.tgz",
+      "integrity": "sha512-ungRPRy6tJh6KizLwMUS7kJHRVlc1Gf1/3qNmKCtjVgSjeNf3SknWozMa1TEd7nj/cHWsFdJmamamXuW5t4dVQ==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
-        "@sitespeed.io/chromedriver": "86.0.4240-22",
+        "@sitespeed.io/chromedriver": "87.0.4280-20",
         "@sitespeed.io/edgedriver": "86.0.622-38",
-        "@sitespeed.io/geckodriver": "0.28.0",
+        "@sitespeed.io/geckodriver": "0.27.0",
         "@sitespeed.io/throttle": "2.0.2",
         "@sitespeed.io/tracium": "0.3.3",
         "adbkit": "2.11.1",

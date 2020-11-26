@@ -1,8 +1,20 @@
 # CHANGELOG - sitespeed.io
 
+##  15.9.0 - 2020-11-18
+### Added
+* Updated to Chrome 87 in the Docker container
+* Updated to latest Browsertime with Chromedriver 87.
+* Added latest Browsertime [10.9.0](https://github.com/sitespeedio/browsertime/releases/tag/v10.9.0) with fixes for Firefox.
+
+## 15.8.0 - 2020-11-17
+### Added 
+* Updated to Firefox 83 in the Docker container.
+## 15.7.4 - 2020-11-16
+### Fixed
+* Upgraded Browsertime that reverted Geckodriver to 0.27.0 since there are problems starting Firefox on Android using 0.28.0. 
 ## 15.7.3 - 2020-11-11
 ### Fixed
-* Upgtraded to Browsertime 10.6.5 with a new version of Geckodriver for Firefox.
+* Upgraded to Browsertime 10.6.5 with a new version of Geckodriver for Firefox.
 
 ## 15.7.2 - 2020-11-06
 ### Fixed
