@@ -696,7 +696,7 @@ Start and navigate to the URL and then automatically call the stop() function af
 ~~~javascript
 module.exports = async function(context, commands) {
   // Measure the page and give it the alias StartPage
-  return await commands.measure.start('https://www.sitespeed.io', 'StartPage');
+  return commands.measure.start('https://www.sitespeed.io', 'StartPage');
 };
 ~~~
 
