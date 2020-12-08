@@ -71,7 +71,7 @@ describe('resultUrls', function() {
       expect(
         resultUrls.absoluteSummaryPageUrl('http://www.foo.bar/xyz')
       ).to.equal(
-        `http://results.com/www.foo.bar/${timestampString}/pages/www.foo.bar/xyz/`
+        `http://results.com/www.foo.bar/${timestampString}/pages/www_foo_bar/xyz/`
       );
     });
     it('should create url with absolute output folder', function() {
@@ -82,7 +82,7 @@ describe('resultUrls', function() {
       );
       expect(
         resultUrls.absoluteSummaryPageUrl('http://www.foo.bar/xyz')
-      ).to.equal('http://results.com/leaf/pages/www.foo.bar/xyz/');
+      ).to.equal('http://results.com/leaf/pages/www_foo_bar/xyz/');
     });
     it('should create url with relative output folder', function() {
       const resultUrls = createResultUrls(
@@ -92,7 +92,7 @@ describe('resultUrls', function() {
       );
       expect(
         resultUrls.absoluteSummaryPageUrl('http://www.foo.bar/xyz')
-      ).to.equal('http://results.com/leaf/pages/www.foo.bar/xyz/');
+      ).to.equal('http://results.com/leaf/pages/www_foo_bar/xyz/');
     });
   });
   describe('#relativeSummaryPageUrl', function() {
@@ -104,7 +104,7 @@ describe('resultUrls', function() {
       );
       expect(
         resultUrls.relativeSummaryPageUrl('http://www.foo.bar/xyz')
-      ).to.equal('pages/www.foo.bar/xyz/');
+      ).to.equal('pages/www_foo_bar/xyz/');
     });
     it('should create url with absolute output folder', function() {
       const resultUrls = createResultUrls(
@@ -114,7 +114,7 @@ describe('resultUrls', function() {
       );
       expect(
         resultUrls.relativeSummaryPageUrl('http://www.foo.bar/xyz')
-      ).to.equal('pages/www.foo.bar/xyz/');
+      ).to.equal('pages/www_foo_bar/xyz/');
     });
     it('should create url with relative output folder', function() {
       const resultUrls = createResultUrls(
@@ -124,7 +124,7 @@ describe('resultUrls', function() {
       );
       expect(
         resultUrls.relativeSummaryPageUrl('http://www.foo.bar/xyz')
-      ).to.equal('pages/www.foo.bar/xyz/');
+      ).to.equal('pages/www_foo_bar/xyz/');
     });
   });
 });
