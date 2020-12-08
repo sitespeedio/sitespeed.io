@@ -21,7 +21,7 @@ const defaultContextFactory = (context = {}) => {
       filterRegistry,
       intel,
       statsHelpers,
-      resultUrls: resultUrls()
+      resultUrls: resultUrls('', {})
     },
     context
   );
