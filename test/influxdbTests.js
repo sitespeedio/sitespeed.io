@@ -361,7 +361,7 @@ describe('influxdb', function() {
       const seriesName = data[0].seriesName;
       const numberOfTags = Object.keys(data[0].tags).length;
       expect(seriesName).to.match(/score/);
-      expect(numberOfTags).to.equal(6);
+      expect(numberOfTags).to.equal(7);
     });
   });
 });
