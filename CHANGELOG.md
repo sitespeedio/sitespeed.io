@@ -3,6 +3,8 @@
 ##  16.0.0 - UNRELEASED
 ### Added
 * Updated to the Coach 6.0.0 (beta-1) [#3194](https://github.com/sitespeedio/sitespeed.io/pull/3194)
+* Updated to Browsertime 11 (alpha) [#3201](https://github.com/sitespeedio/sitespeed.io/pull/3201)
+* Introducing slug for your test and a new experimental setup [#3203](https://github.com/sitespeedio/sitespeed.io/pull/3203)
 ##  15.9.0 - 2020-11-18
 ### Added
 * Updated to Chrome 87 in the Docker container
