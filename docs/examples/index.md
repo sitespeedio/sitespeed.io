@@ -109,7 +109,6 @@ It will generate a HAR file, a video and a browsertime.json that hold all the me
                     "first-contentful-paint": 465,
                     "first-paint": 465
                 },
-                "rumSpeedIndex": 469,
                 "userTimings": {
                     "marks": [],
                     "measures": []
@@ -528,16 +527,6 @@ It will generate a HAR file, a video and a browsertime.json that hold all the me
                     "p99": 465,
                     "max": 465
                 }
-            },
-            "rumSpeedIndex": {
-                "median": 469,
-                "mean": 469,
-                "mdev": 0,
-                "min": 469,
-                "p10": 469,
-                "p90": 469,
-                "p99": 469,
-                "max": 469
             }
         },
         "visualMetrics": {
@@ -1565,7 +1554,6 @@ And it will generate a JSON that looks something like this:
         "responseEnd": 202,
         "responseStart": 199
       },
-      "rumSpeedIndex": 271.0001468658447,
       "timings": {
         "backEndTime": 199,
         "domContentLoadedTime": 220,

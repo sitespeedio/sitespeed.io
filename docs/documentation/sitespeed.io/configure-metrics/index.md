@@ -43,7 +43,6 @@ The file will look something like this:
 
 ~~~
 browsertime.pageSummary.statistics.timings.timings
-browsertime.pageSummary.statistics.timings.rumSpeedIndex
 browsertime.pageSummary.statistics.timings.fullyLoaded
 browsertime.pageSummary.statistics.timings.firstPaint
 browsertime.pageSummary.statistics.timings.userTimings
