@@ -21,7 +21,7 @@ const defaultContextFactory = (context = {}) => {
       filterRegistry,
       intel,
       statsHelpers,
-      resultUrls: resultUrls()
+      resultUrls: resultUrls('', {})
     },
     context
   );
@@ -228,7 +228,8 @@ describe('slack', () => {
         name: 'Simple test'
       });
       context.resultUrls = resultUrls(
-        'https://results.sitespeed.io/absolute/path'
+        'https://results.sitespeed.io/absolute/path',
+        {}
       );
       const plugin = pluginFactory(context);
       const mock = mockSend();
