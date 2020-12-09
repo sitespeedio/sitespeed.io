@@ -90,6 +90,29 @@ if  browsertime
               a(href=url) #{name}
             td.number #{h.time.ms(value)}
     .one-half.column
+      if (timings.largestContentfulPaint)
+        table
+          tr
+            th(colspan='2') Google Web Vitals
+          if (timings.largestContentfulPaint) 
+            tr
+              td
+                a(href=baseHelpURL + 'largestContentfulPaint') Largest Contentful Paint
+              td.number #{h.time.ms(Math.max(timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.renderTime, timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.loadTime))}
+          tr
+            td
+              a(href=baseHelpURL + 'layoutShift') Cumulative Layout Shift
+            td.number #{browsertime.pageinfo.layoutShift}
+          if browsertime.timings.firstInput !== undefined
+            tr 
+              td
+                a(href=baseHelpURL + 'firstInputDelay')  First Input Delay
+              td.number #{h.time.ms(browsertime.timings.firstInput.delay)}
+          else 
+            tr 
+              td
+                a(href=baseHelpURL + 'maxPotentialFirstInputDelay') Max Potential First Input Delay
+              td.number #{browsertime.cpu.longTasks.maxPotentialFid}
       table
         tr
           th(colspan='2') Extra timings
