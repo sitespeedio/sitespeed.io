@@ -68,5 +68,8 @@ if  thirdparty.possibileMissedThirdPartyDomains && thirdparty.possibileMissedThi
                     td #{domain}
 
 - const pagexray = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
+
+include ./thirdPartyCookies.pug
+
 if pagexray.firstParty.requests
   include ./firstParty.pug
