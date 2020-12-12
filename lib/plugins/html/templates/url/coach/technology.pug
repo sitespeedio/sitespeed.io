@@ -17,7 +17,7 @@ if advice.info.technology && advice.info.technology.length > 0
         each tech in advice.info.technology
             tr
                 td 
-                    a(href=tech.website)= tech.name + tech.version
+                    a(href=tech.website)= `${tech.name} ${tech.version}`
                 td #{tech.confidence}
                 td 
                     each category in tech.categories
