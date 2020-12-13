@@ -102,7 +102,7 @@ if  browsertime
           tr
             td
               a(href=baseHelpURL + 'layoutShift') Cumulative Layout Shift
-            td.number #{browsertime.pageinfo.layoutShift}
+            td.number #{browsertime.pageinfo.layoutShift.toFixed(2)}
           if browsertime.timings.firstInput !== undefined
             tr 
               td
