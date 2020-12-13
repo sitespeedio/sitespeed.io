@@ -16,15 +16,25 @@ mixin adviceInfo(name, id, perfectScore, node)
           each adviceName, idx in Object.getOwnPropertyNames(node.adviceList).filter(e => node.adviceList[e].score < 100)
             - const advice = node.adviceList[adviceName]
             tr(class=idx % 2 == 0 ? 'odd' : 'even')
-              td(data-title='Title') #{advice.title} (#{adviceName})
+              td(data-title='Title') 
+                b #{advice.title} (#{adviceName})
               td.url(data-title='Advice') #{advice.advice}
               td.number(data-title='Score') #{advice.score}
+            tr.u-hideable
+                td(colspan='3')
+                  b Description: 
+                  i #{advice.description}
             if (advice.offending.length > 0)
               tr.u-hideable
                 td.url.offendingurl(colspan='3')
+                  b Offenders: 
                   ul
                     each offender in advice.offending
-                      li #{offender}
+                      if offender.startsWith('http')
+                        li
+                          a(href=offender) #{offender}  
+                      else 
+                        li #{offender}
   else
     p #{perfectScore}
 
