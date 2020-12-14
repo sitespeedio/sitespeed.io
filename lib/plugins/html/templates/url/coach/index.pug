@@ -32,7 +32,7 @@ mixin adviceInfo(name, id, perfectScore, node)
                     each offender in advice.offending
                       if offender.startsWith('http')
                         li
-                          a(href=offender) #{offender}  
+                          a(href=offender) #{h.shortAsset(offender, true)}  
                       else 
                         li #{offender}
   else
