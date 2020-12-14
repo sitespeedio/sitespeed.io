@@ -204,7 +204,7 @@ if  browsertime
 
   a#extras-metrics
   h3 Extra metrics collected using scripting
-  if browsertime.extras
+  if browsertime.extras && Object.keys(browsertime.extras).length > 0
     table
       tr
         th name
