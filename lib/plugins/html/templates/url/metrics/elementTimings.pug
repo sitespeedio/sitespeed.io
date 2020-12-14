@@ -1,4 +1,4 @@
-if browsertime.timings.elementTimings !== undefined
+if browsertime.timings.elementTimings && Object.keys(browsertime.timings.elementTimings).length > 0
     a#elementTimings
     h3 Element timings
     table
