@@ -1,8 +1,46 @@
 - const browsertime = medianRun ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1] : pageInfo.data.browsertime.run 
 
-if  browsertime
+if browsertime
   - const timings = browsertime.timings;
   - const visualMetrics = browsertime.visualMetrics;
+  small 
+    | | 
+    a(href='#browsermetrics') Browser metrics
+    | &nbsp;|&nbsp;
+    if (options.browsertime.visualMetrics)
+      a(href='#visualmetrics') Visual Metrics
+      | &nbsp;|&nbsp;
+    if timings.largestContentfulPaint
+      a(href='#largestContentfulPaint') Largest Contentful Paint
+      | &nbsp;|&nbsp;
+    if browsertime.pageinfo && browsertime.pageinfo.layoutShift !== undefined
+      a(href='#layoutShift') Cumulative Layout Shift
+      | &nbsp;|&nbsp;
+    if browsertime.timings.elementTimings && Object.keys(browsertime.timings.elementTimings).length > 0
+      a(href='#elementTimings') Element Timings
+      | &nbsp;|&nbsp;
+    if browsertime.custom
+      a(href='#custom-scripts') Custom scripts
+      | &nbsp;|&nbsp;
+    if browsertime.extras && Object.keys(browsertime.extras).length > 0
+      a(href='#extra-metrics') Extra metrics
+      | &nbsp;|&nbsp;
+    if options.browsertime.visualElements
+      a(href='#visual-elements') Visual Elements
+      | &nbsp;|&nbsp;
+    if options.browsertime.visualElements
+      a(href='#visual-elements') Visual Elements
+      | &nbsp;|&nbsp;
+    if browsertime.timings.firstInput !== undefined
+      a(href='#firstInput') First Input Delay
+      | &nbsp;|&nbsp;
+    if browsertime.cdp && browsertime.cdp.performance
+      a(href='#cdp-performance') Metrics from CDP
+      | &nbsp;|&nbsp;
+    if timings.serverTimings && timings.serverTimings.length > 0
+      a(href='#server-timings') Server timings
+      | &nbsp;|&nbsp;
+
   - baseHelpURL = rootPath + 'help.html#';
 
   - const defaultVisualMetrics = ['SpeedIndex','FirstVisualChange','LastVisualChange','VisualProgress', 'PerceptualSpeedIndexProgress', 'ContentfulSpeedIndexProgress', 'videoRecordingStart', 'PerceptualSpeedIndex', 'ContentfulSpeedIndex', 'LastMeaningfulPaint', 'LargestImage', 'Heading' ,'VisualReadiness','VisualComplete85', 'VisualComplete95','VisualComplete99'];
@@ -202,7 +240,7 @@ if  browsertime
   else
     p There are no custom configured scripts.
 
-  a#extras-metrics
+  a#extra-metrics
   h3 Extra metrics collected using scripting
   if browsertime.extras && Object.keys(browsertime.extras).length > 0
     table
