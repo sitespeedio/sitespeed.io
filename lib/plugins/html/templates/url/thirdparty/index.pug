@@ -52,7 +52,8 @@ if thirdparty.assets && Object.keys(thirdparty.assets).length > 0
                 td.url.offendingurl
                     ul
                         each asset in thirdparty.assets[category]
-                            li #{asset.url} 
+                            li 
+                                a(href=asset.url) #{h.shortAsset(asset.url, true)}  
                                 b (#{asset.entity.name})
 
 if  thirdparty.possibileMissedThirdPartyDomains && thirdparty.possibileMissedThirdPartyDomains.length > 0 
@@ -68,5 +69,8 @@ if  thirdparty.possibileMissedThirdPartyDomains && thirdparty.possibileMissedThi
                     td #{domain}
 
 - const pagexray = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
+
+include ./thirdPartyCookies.pug
+
 if pagexray.firstParty.requests
   include ./firstParty.pug
