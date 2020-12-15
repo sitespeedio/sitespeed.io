@@ -21,7 +21,9 @@ if timings.largestContentfulPaint
           td  #{timings.largestContentfulPaint.id}
         if timings.largestContentfulPaint.url !== ''    
           td  
-            a(href=timings.largestContentfulPaint.url) #{timings.largestContentfulPaint.url}
+            a(href=timings.largestContentfulPaint.url)
+              img.screenshot(src=timings.largestContentfulPaint.url, alt='LCP', style='width:200px')
+              | #{timings.largestContentfulPaint.url}
         if timings.largestContentfulPaint.tagName 
           td #{timings.largestContentfulPaint.tagName}
         td  #{h.time.ms(timings.largestContentfulPaint.renderTime)}

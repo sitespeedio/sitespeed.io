@@ -40,6 +40,21 @@ mixin adviceInfo(name, id, perfectScore, node)
 
 - const advice = pageInfo.data.coach.run ? pageInfo.data.coach.run.advice : pageInfo.data.coach.pageSummary.advice;
 
+small 
+    if advice
+        || 
+        a(href='#coach-perf') Performance advice
+        | &nbsp;|&nbsp;
+        a(href='#coach-bestpractice') Best practice advice
+        | &nbsp;|&nbsp;
+        a(href='#coach-privacy') Privacy advice
+        | &nbsp;|&nbsp;
+        a(href='#page-info') Page info
+        | &nbsp;|&nbsp;
+    if advice.info.technology && advice.info.technology.length > 0 ||  (advice.info.thirdparty && Object.keys(advice.info.thirdparty.toolsByCategory).length > 0)
+        a(href='#technology') Technologies
+        | &nbsp;|&nbsp;
+
 h2 Coach
 p.small
   a(href='https://github.com/sitespeedio/coach') The coach

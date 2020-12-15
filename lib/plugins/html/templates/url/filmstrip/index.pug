@@ -7,7 +7,11 @@ mixin frame(filmstrip, iteration)
         span.videoframetext !{timing.name ? timing.name : timing.metric}
             b &nbsp;#{h.time.ms(timing.duration || timing.value)}
 
-a
+small
+    || 
+    a(href='#filmstrip') Filmstrip
+    | &nbsp;|&nbsp;
+a#filmstrip
 h2 Filmstrip
  
 - const videoIndex = medianRun ? medianRun.runIndex : iteration;
