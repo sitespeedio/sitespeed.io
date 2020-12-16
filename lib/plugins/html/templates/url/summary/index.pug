@@ -36,6 +36,29 @@ block content
 
   #tabSections
     section#summary-panel
+      small
+        | | 
+        a(href='#summary') Summary |
+        | &nbsp;|&nbsp;
+        if h.get(pageInfo.data, 'browsertime.pageSummary.statistics')
+          a#browsertime-timing-statistics
+        if options.browsertime.tcpdump
+          a(href='#tcpdump') Download TCP dump
+          | &nbsp;|&nbsp;
+        if options.html.logDownloadLink
+          a(href='#downloads') Download log
+          | &nbsp;|&nbsp;
+        if options.browsertime.video
+          a(href='#downloads') Download Video
+          | &nbsp;|&nbsp;
+        if options.browsertime.chrome && options.browsertime.chrome.timeline
+          a(href='#downloads') Download Timeline Log
+          | &nbsp;|&nbsp;
+        if d.browsertime && d.browsertime.har
+          a(href='#downloads') Download HAR
+          | &nbsp;|&nbsp;
+
+      a#summary
       h2 Summary
       .row
         .one-half.column
@@ -81,18 +104,18 @@ block content
             - fcp = get(d, 'browsertime.pageSummary.statistics.timings.paintTiming["first-contentful-paint"].median') 
             if fcp
               tr
-                td FCP [median]
+                td First Contentful Paint (FCP) [median]
                 td #{h.time.ms(fcp)}         
             - lcp = get(d, 'browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime.median')
             if lcp
               tr
-                td LCP [median]
+                td Largest Contentful Paint (LCP) [median]
                 td #{h.time.ms(lcp)}
             - cls = get(d, 'browsertime.pageSummary.statistics.pageinfo.layoutShift.median')
             if cls || cls === 0
                 tr
-                  td CLS [median]
-                  td #{cls}
+                  td Cumulative Layout Shift (CLS) [median]
+                  td #{cls.toFixed(2)}
             - tbt = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime.median')
             if tbt  
               tr
@@ -173,6 +196,7 @@ block content
                 img.screenshot(src='data/screenshots/wpt-1-firstView.png', alt='Screenshot of run 1')
       include ./summaryBox.pug
 
+      #downloads
       .downloads
         include ./downloads.pug
         include ./tcpdump.pug

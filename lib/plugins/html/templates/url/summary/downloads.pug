@@ -1,3 +1,4 @@
+a#downloads
 if options.html.logDownloadLink
       a.button.button-download(href=rootPath + 'logs/sitespeed.io.log', download) Download run log
 if options.browsertime.video
@@ -6,7 +7,7 @@ if options.browsertime.video
 if options.browsertime.chrome && options.browsertime.chrome.timeline
     - const tracePath = 'data/trace-' + (runNumber? runNumber : 1) + '.json.gz'
     a.button.button-download(href=tracePath, download=downloadName + '-timeline.json.gz') Download timeline
-if d.browsertime && d.browsertime.har    
+if d.browsertime && d.browsertime.har  
     - const harEnding = options.gzipHAR ? '.har.gz' : '.har'
     - const harName = 'data/browsertime' + harEnding
     - const harDownloadName = downloadName + harEnding

@@ -1,6 +1,12 @@
 - const videoIndex = medianRun ? medianRun.runIndex : iteration;
 - const width = options.mobile ? 'max-width: 400px;' : h.get(options, 'browsertime.chrome.android.package') ? 'max-width: 400px;' : 'width: 100%'
 
+small
+    || 
+    a(href='#video') Video
+    | &nbsp;|&nbsp;
+    a(href='#download-video') Download
+    | &nbsp;|&nbsp;
 a#video
 h3 Video
 .videoWrapper(style=width)
@@ -10,5 +16,6 @@ h3 Video
 
 script(src= assetsPath + 'js/video.novtt.min.js')
 
+a#download-video
 - const videoPath = 'data/video/' + (iteration ? iteration : medianRun.runIndex ) +'.mp4'
 a.button.button-download(href=videoPath, download=downloadName + '-video.mp4') Download video

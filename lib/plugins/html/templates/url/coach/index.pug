@@ -16,19 +16,44 @@ mixin adviceInfo(name, id, perfectScore, node)
           each adviceName, idx in Object.getOwnPropertyNames(node.adviceList).filter(e => node.adviceList[e].score < 100)
             - const advice = node.adviceList[adviceName]
             tr(class=idx % 2 == 0 ? 'odd' : 'even')
-              td(data-title='Title') #{advice.title} (#{adviceName})
+              td(data-title='Title') 
+                b #{advice.title} (#{adviceName})
               td.url(data-title='Advice') #{advice.advice}
               td.number(data-title='Score') #{advice.score}
+            tr.u-hideable
+                td(colspan='3')
+                  b Description: 
+                  i #{advice.description}
             if (advice.offending.length > 0)
               tr.u-hideable
                 td.url.offendingurl(colspan='3')
+                  b Offenders: 
                   ul
                     each offender in advice.offending
-                      li #{offender}
+                      if offender.startsWith('http')
+                        li
+                          a(href=offender) #{h.shortAsset(offender, true)}  
+                      else 
+                        li #{offender}
   else
     p #{perfectScore}
 
 - const advice = pageInfo.data.coach.run ? pageInfo.data.coach.run.advice : pageInfo.data.coach.pageSummary.advice;
+
+small 
+    if advice
+        || 
+        a(href='#coach-perf') Performance advice
+        | &nbsp;|&nbsp;
+        a(href='#coach-bestpractice') Best practice advice
+        | &nbsp;|&nbsp;
+        a(href='#coach-privacy') Privacy advice
+        | &nbsp;|&nbsp;
+        a(href='#page-info') Page info
+        | &nbsp;|&nbsp;
+    if advice.info.technology && advice.info.technology.length > 0 ||  (advice.info.thirdparty && Object.keys(advice.info.thirdparty.toolsByCategory).length > 0)
+        a(href='#technology') Technologies
+        | &nbsp;|&nbsp;
 
 h2 Coach
 p.small

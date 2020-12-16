@@ -10,13 +10,20 @@ mixin numberCell(title, number)
 mixin sizeCell(title, size)
   td.number(data-title=title, data-value= size)= h.size.format(size)
 
-a
-h2 CrUx
-p.small Chrome User Experience Report (CrUx) is powered by real user measurement across the public web, aggregated from users who have opted-in to syncing their browsing history, have not set up a Sync passphrase, and have usage statistic reporting enabled and is using Chrome.
-
 - const crux = pageInfo.data.crux.pageSummary;
 - const metrics = {first_contentful_paint:'First Contentful Paint (FCP)', largest_contentful_paint: 'Largest Contentful Paint (LCP)', first_input_delay:'First Input Delay (FID)', cumulative_layout_shift: 'Cumulative Layout Shift'}; 
 - const experiences = ['loadingExperience','originLoadingExperience'];
+
+small 
+  || 
+  each experience in experiences
+    each formFactor in Object.keys(crux[experience])
+      a(href='#' + experience + '-' + formFactor) #{experience} #{formFactor} |
+      | &nbsp;|&nbsp;
+
+a#crux
+h2 CrUx
+p.small Chrome User Experience Report (CrUx) is powered by real user measurement across the public web, aggregated from users who have opted-in to syncing their browsing history, have not set up a Sync passphrase, and have usage statistic reporting enabled and is using Chrome.
 
 each experience in experiences
   if experience === 'loadingExperience' && crux[experience]
@@ -28,6 +35,7 @@ each experience in experiences
   if crux[experience]
     each formFactor in Object.keys(crux[experience])
       if (crux[experience][formFactor] && crux[experience][formFactor].data)
+        a(id=experience + '-' + formFactor)
         h3 Form Factor #{formFactor}
         table
           thead

@@ -1,6 +1,8 @@
 # CHANGELOG - sitespeed.io
 
 ##  16.0.0 - UNRELEASED
+### Changed
+* Moved the WebPageTest plugin to a new repo: https://github.com/sitespeedio/plugin-webpagetest [#3205](https://github.com/sitespeedio/sitespeed.io/pull/3205).
 ### Added
 * Updated to the Coach 6.0.0 (beta-1) [#3194](https://github.com/sitespeedio/sitespeed.io/pull/3194)
 * Updated to Browsertime 11 (alpha) [#3201](https://github.com/sitespeedio/sitespeed.io/pull/3201)

@@ -1,8 +1,29 @@
 include ../../_tableMixins
 
+- const pagexray = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
+
+small 
+    || 
+    a(href='#pagexray-summary') Summary |
+    | &nbsp;|&nbsp;
+    a(href='#largest-assets') Largest responses |
+    | &nbsp;|&nbsp;
+    a(href='#requests-and-sizes-per-content-type') Requests and sizes per content type |
+    | &nbsp;|&nbsp;
+    a(href='#sizes-per-domain') Size and requests per domain |
+    | &nbsp;|&nbsp;
+    a(href='#expires-and-last-modified-stats') Expires and last modified statistics |
+    | &nbsp;|&nbsp;
+    if pageInfo.data.browsertime && pageInfo.data.browsertime.console
+      a(href='#console-log') Console log |
+      | &nbsp;|&nbsp;
+    if pagexray.afterOnLoad.requests > 0
+      a(href='#requests-after-onload') Requests loaded after onLoad event |
+      | &nbsp;|&nbsp;
+
+h3 
 a
 h2 PageXray
-- const pagexray = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
 p.small How the page is built.
 a#pagexray-summary
 .row
@@ -27,6 +48,12 @@ a#pagexray-summary
         tr
           td Responses missing compression
           +numberCell('', pagexray.missingCompression)
+        tr
+          td Number of cookies
+          +numberCell('', pagexray.cookies)
+        tr
+          td Third party cookies
+          +numberCell('', pagexray.cookieNamesThirdParties.length)
 
   .one-half.column
     table
@@ -43,10 +70,9 @@ include ./perContentType.pug
 include ./perDomain.pug
 
 a#expires-and-last-modified-stats
-h3 Expires, last modified and cookies stats
+h3 Expires and last modified statistics
 - expire = pagexray.expireStats
 - lastModified = pagexray.lastModifiedStats
-- cookies = pagexray.cookieStats
 .responsive
   table
     +rowHeading(['type', 'min', 'median', 'max'])
@@ -62,12 +88,6 @@ h3 Expires, last modified and cookies stats
         +durationCell('min', lastModified.min)
         +durationCell('median', lastModified.median)
         +durationCell('max', lastModified.max)
-    if cookies
-      tr
-        td(data-title='Type') Cookies
-        +numberCell('min', cookies.min)
-        +numberCell('median', cookies.median)
-        +numberCell('max', cookies.max)
 
 if pageInfo.data.browsertime && pageInfo.data.browsertime.console
     include ./console.pug

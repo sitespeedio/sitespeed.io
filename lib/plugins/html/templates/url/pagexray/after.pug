@@ -1,4 +1,5 @@
 if pagexray.afterOnLoad.requests > 0
+    a#requests-after-onload
     h3 Requests loaded after onLoad event
     table(data-sortable, id='contentSizeAfterOnload')
         +rowHeading(['Content', 'Transfer Size', 'Requests'])
