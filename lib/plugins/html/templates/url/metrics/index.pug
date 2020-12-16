@@ -155,9 +155,10 @@ if browsertime
         tr
           th(colspan='2') Extra timings
         if (timings.paintTiming && Object.keys(timings.paintTiming).length > 0)
+          - const paintTimingHelper = { "first-contentful-paint": 'First Contentful Paint', "first-paint": 'First Paint' };
           each value, name in timings.paintTiming
             tr
-              td #{name}
+              td #{paintTimingHelper[name]}
               td.number #{h.time.ms(value.toFixed(0))}
         else if timings.firstPaint > -1
           tr
