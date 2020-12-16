@@ -20,7 +20,7 @@ if browsertime.timings.elementTimings && Object.keys(browsertime.timings.element
                 a(href=value.url) #{value.url}
               td 
                 a(href=value.url)
-                  img.screenshot(src=value.url alt='LCP', style='width:200px')
+                  img.screenshot(src=value.url, alt='LCP', style='width:200px')
             td  #{value.tagName}
             td  #{h.time.ms(value.renderTime)}
             td  #{h.time.ms(value.loadTime)} 
