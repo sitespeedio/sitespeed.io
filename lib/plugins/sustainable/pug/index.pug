@@ -1,3 +1,12 @@
+small
+    | | 
+    a(href='#sustainable-per-domain') Per domain
+    | &nbsp;|&nbsp;
+    a(href='#dirtiest-assets') Dirtiest assets
+    | &nbsp;|&nbsp;
+    a(href='#sustainible-per-content-type') Per Content Type
+    | &nbsp;|&nbsp;
+
 h1 Sustainable Web
 
 - let sustainable = pageInfo.data.sustainable.run ? pageInfo.data.sustainable.run : pageInfo.data.sustainable.pageSummary
@@ -53,7 +62,7 @@ table
             td #{h.co2.format(totalCO2)}
             td #{h.size.format(totalTransfer * options.sustainable.pageViews)}
 - sustainable = pageInfo.data.sustainable.pageSummary ? pageInfo.data.sustainable.pageSummary.firstRun : sustainable
-
+a#sustainable-per-domain
 h2 Per domain
     if pageInfo.data.sustainable.pageSummary
         | (first run)
@@ -71,7 +80,7 @@ table
             - const percentage = (data.co2 / co2PerPageView) * 100
             td.number #{h.co2.format(data.co2)} (#{Number(percentage).toFixed(2)} %)
             td.number #{h.size.format(data.transferSize)}
-
+a#dirtiest-assets
 h2 Dirtiest assets
     if pageInfo.data.sustainable.pageSummary
         | (first run)
@@ -88,7 +97,7 @@ table
             - const percentage = (resource.co2 / co2PerPageView) * 100
             td.number #{h.co2.format(resource.co2)} (#{Number(percentage).toFixed(2)} %)
             td.number= h.size.format(resource.transferSize)
-
+a#sustainible-per-content-type
 h2 Per Content Type
     if pageInfo.data.sustainable.pageSummary
         | (first run)
