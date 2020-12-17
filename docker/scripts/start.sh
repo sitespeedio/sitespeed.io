@@ -2,6 +2,7 @@
 
 google-chrome --version
 firefox --version
+microsoft-edge --version
 
 BROWSERTIME=/usr/src/app/bin/browsertimeWebPageReplay.js
 SITESPEEDIO=/usr/src/app/bin/sitespeed.js
