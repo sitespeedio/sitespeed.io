@@ -104,18 +104,18 @@ block content
             - fcp = get(d, 'browsertime.pageSummary.statistics.timings.paintTiming["first-contentful-paint"].median') 
             if fcp
               tr
-                td FCP [median]
+                td First Contentful Paint (FCP) [median]
                 td #{h.time.ms(fcp)}         
             - lcp = get(d, 'browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime.median')
             if lcp
               tr
-                td LCP [median]
+                td Largest Contentful Paint (LCP) [median]
                 td #{h.time.ms(lcp)}
             - cls = get(d, 'browsertime.pageSummary.statistics.pageinfo.layoutShift.median')
             if cls || cls === 0
                 tr
-                  td CLS [median]
-                  td #{cls}
+                  td Cumulative Layout Shift (CLS) [median]
+                  td #{cls.toFixed(2)}
             - tbt = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime.median')
             if tbt  
               tr
