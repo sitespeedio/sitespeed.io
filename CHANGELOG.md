@@ -30,25 +30,25 @@
   * Remove RUM Speed Index [#12](https://github.com/sitespeedio/coach-core/pull/12).
   * Remove First Paint and timings calculated from the Navigation Timing API [#15](https://github.com/sitespeedio/coach-core/pull/15).
   * Removed the advice for PUSH [#26](https://github.com/sitespeedio/coach-core/pull/26).
-  * Removed the accesibilty advice [#32](https://github.com/sitespeedio/coach-core/pull/32). If you are a sitespeed.io use `--axe`. It's better to use AXE-core that gives better advice than the old coach advice.
+  * Removed the accessibilty advice [#32](https://github.com/sitespeedio/coach-core/pull/32). If you are a sitespeed.io use `--axe`. It's better to use AXE-core that gives better advice than the old coach advice.
   * Fully use the third-party-web to know about third parties instead of home grown solution.
   * Testing for JQuery removed the $ reference on the page [#22](https://github.com/sitespeedio/coach-core/pull/22).
-* Updated to [Browsertime 11](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1100---2020-12-18) [#3201](https://github.com/sitespeedio/sitespeed.io/pull/3201):
- * Record and keep the browser full screen (including URL bar) [#1435](https://github.com/sitespeedio/browsertime/pull/1435). All metrics should stay the same with this change but the video and the code will be easier :) When we implemented video a long time ago we wanted to cut out the URL bar but it made it harder to keep the video to look ok on different OS. 
- * Say goodbye to RUM Speed Index [#1439](https://github.com/sitespeedio/browsertime/pull/1439).
- * Domain name on disk now uses underscore instead of dots in the name [#1445](https://github.com/sitespeedio/browsertime/pull/1445).
- * Click the Android power button at the start of each test (instead of the home button [#1447](https://github.com/sitespeedio/browsertime/pull/1447).
- * Added a two minute timeout to get Geckoprofiler data [#1440](https://github.com/sitespeedio/browsertime/pull/1440).
- * Made sure HAR stuff respect the skipHar flag [#1438](https://github.com/sitespeedio/browsertime/pull/1438)
- * Fix process ID fetch for Galaxy S5, thank you [Michael Comella](https://github.com/mcomella) for PR [#1449](https://github.com/sitespeedio/browsertime/pull/1449)
- * If a web page timed out in Chrome, we missed to report that as an error, fixed in [#1453](https://github.com/sitespeedio/browsertime/pull/1453).
- * Automatically close "System not responding"-popup on Android if it exists [#1444](https://github.com/sitespeedio/browsertime/pull/1444).
- * Add support using alias from CLI and use alias as folder name on disk [#1443](https://github.com/sitespeedio/browsertime/pull/1443).
- * New option to store a more flat structure on disk converting the path part of the URL to one folder `--storeURLsAsFlatPageOnDisk`[#1450](https://github.com/sitespeedio/browsertime/pull/1450)
- * Updated to Selenium 4.0.0-alpha.8 [#1451](https://github.com/sitespeedio/browsertime/pull/1451).
- * Updated to Edgedriver 87
+* Updated to [Browsertime 11](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1100---2020-12-18):
+  * Record and keep the browser full screen (including URL bar) [#1435](https://github.com/sitespeedio/browsertime/pull/1435). All metrics should stay the same with this change but the video and the code will be easier :) When we implemented video a long time ago we wanted to cut out the URL bar but it made it harder to keep the video to look ok on different OS. 
+  * Say goodbye to RUM Speed Index [#1439](https://github.com/sitespeedio/browsertime/pull/1439).
+  * Domain name on disk now uses underscore instead of dots in the name [#1445](https://github.com/sitespeedio/browsertime/pull/1445).
+  * Click the Android power button at the start of each test (instead of the home button [#1447](https://github.com/sitespeedio/browsertime/pull/1447).
+  * Added a two minute timeout to get Geckoprofiler data [#1440](https://github.com/sitespeedio/browsertime/pull/1440).
+  * Made sure HAR stuff respect the skipHar flag [#1438](https://github.com/sitespeedio/browsertime/pull/1438)
+  * Fix process ID fetch for Galaxy S5, thank you [Michael Comella](https://github.com/mcomella) for PR [#1449](https://github.com/sitespeedio/browsertime/pull/1449)
+  * If a web page timed out in Chrome, we missed to report that as an error, fixed in [#1453](https://github.com/sitespeedio/browsertime/pull/1453).
+  * Automatically close "System not responding"-popup on Android if it exists [#1444](https://github.com/sitespeedio/browsertime/pull/1444).
+  * Add support using alias from CLI and use alias as folder name on disk [#1443](https://github.com/sitespeedio/browsertime/pull/1443).
+  * New option to store a more flat structure on disk converting the path part of the URL to one folder `--storeURLsAsFlatPageOnDisk`[#1450](https://github.com/sitespeedio/browsertime/pull/1450)
+  * Updated to Selenium 4.0.0-alpha.8 [#1451](https://github.com/sitespeedio/browsertime/pull/1451).
+  * Updated to Edgedriver 87
 * Updated to [PageXray 4.0.0](https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#version-400-2020-12-12) that fixes counting cookies.
- * Added Edge in the Docker container.
+* Added Edge in the Docker container.
 
 ### Fixed
 * Only show Element Timing and User Scripting section if we have those metrics [#3212](https://github.com/sitespeedio/sitespeed.io/pull/3212).
