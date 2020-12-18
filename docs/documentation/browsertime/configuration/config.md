@@ -166,6 +166,7 @@ Options:
   --xvfbParams.display                          The display used for xvfb  [default: 99]
   --tcpdump                                     Collect a tcpdump for each tested URL.  [boolean] [default: false]
   --tcpdumpPacketBuffered                       Use together with --tcpdump to save each packet directly to the file, instead of buffering.  [boolean] [default: false]
+  --urlAlias                                    Use an alias for the URL. You need to pass on the same amount of alias as URLs. The alias is used as the name of the URL and used for filepath. Pass on multiple --urlAlias for multiple alias/URLs. You can also add alias direct in your script.  [string]
   --preURL                                      A URL that will be accessed first by the browser before the URL that you wanna analyze. Use it to fill the cache.
   --preURLDelay                                 Delay between preURL and the URL you want to test (in milliseconds)  [default: 1500]
   --userTimingWhitelist                         All userTimings are captured by default this option takes a regex that will whitelist which userTimings to capture in the results.
