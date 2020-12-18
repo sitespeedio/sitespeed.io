@@ -2,11 +2,18 @@
 
 ##  16.0.0 - UNRELEASED
 ### Changed
-* Moved the WebPageTest plugin to a new repo: https://github.com/sitespeedio/plugin-webpagetest [#3205](https://github.com/sitespeedio/sitespeed.io/pull/3205).
+* Moved the WebPageTest plugin to a new repo: https://github.com/sitespeedio/plugin-webpagetest [#3205](https://github.com/sitespeedio/sitespeed.io/pull/3205). If you use WebPageTest either need to install the plugin or run the new WebPageTest container.
 ### Added
-* Updated to the Coach 6.0.0 (beta-1) [#3194](https://github.com/sitespeedio/sitespeed.io/pull/3194)
-* Updated to Browsertime 11 (alpha) [#3201](https://github.com/sitespeedio/sitespeed.io/pull/3201)
-* Introducing slug for your test and a new experimental setup [#3203](https://github.com/sitespeedio/sitespeed.io/pull/3203)
+* Updated to the Coach 6.0.0 (beta-1) [#3194](https://github.com/sitespeedio/sitespeed.io/pull/3194).
+* Updated to Browsertime 11 (alpha) [#3201](https://github.com/sitespeedio/sitespeed.io/pull/3201).
+* Introducing slug for your test and a new experimental setup [#3203](https://github.com/sitespeedio/sitespeed.io/pull/3203).
+* Highlight Google Web Vitals [#3204](https://github.com/sitespeedio/sitespeed.io/pull/3204).
+* Clicking on show/hide on the Coach result now also shows the Coach advice description [#3211](https://github.com/sitespeedio/sitespeed.io/pull/3211).
+* Add quick links within result pages to make it easier to find metrics [#3213](https://github.com/sitespeedio/sitespeed.io/pull/3213).
+* Show imaged for LCP and Element Timing images [#3216](https://github.com/sitespeedio/sitespeed.io/pull/3216).
+### Fixed
+* Only show Element Timing and User Scripting section if we have those metrics [#3212](https://github.com/sitespeedio/sitespeed.io/pull/3212).
+
 ##  15.9.0 - 2020-11-18
 ### Added
 * Updated to Chrome 87 in the Docker container
