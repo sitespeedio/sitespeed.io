@@ -5,7 +5,6 @@
 ### Upgrade from 15.X to 16.0
 * If you are using the WebPageTest plugin you need to either install it yourself from https://github.com/sitespeedio/plugin-webpagetest or use the (new) WebPageTest container.
 
-
 ### Changed
 * Moved the WebPageTest plugin to a new repo: https://github.com/sitespeedio/plugin-webpagetest [#3205](https://github.com/sitespeedio/sitespeed.io/pull/3205). If you use WebPageTest either need to install the plugin or run the new WebPageTest container.
 * The Coach has dropped the accessibility advice. Instead use AXE, enable it with `--axe.enable`.
@@ -49,6 +48,8 @@
   * Updated to Edgedriver 87
 * Updated to [PageXray 4.0.0](https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#version-400-2020-12-12) that fixes counting cookies.
 * Added Edge in the Docker container.
+* Upgraded to AXE-core 4.1.1.
+* The [GPSI-plugin](https://github.com/sitespeedio/plugin-gpsi) in the plus+1 container now batches jobs, sending 10 jobs at a time.
 
 ### Fixed
 * Only show Element Timing and User Scripting section if we have those metrics [#3212](https://github.com/sitespeedio/sitespeed.io/pull/3212).
