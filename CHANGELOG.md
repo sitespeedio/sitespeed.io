@@ -1,12 +1,60 @@
 # CHANGELOG - sitespeed.io
 
 ##  16.0.0 - UNRELEASED
+
+### Upgrade from 15.X to 16.0
+* If you are using the WebPageTest plugin you need to either install it yourself from https://github.com/sitespeedio/plugin-webpagetest or use the (new) WebPageTest container.
+
 ### Changed
-* Moved the WebPageTest plugin to a new repo: https://github.com/sitespeedio/plugin-webpagetest [#3205](https://github.com/sitespeedio/sitespeed.io/pull/3205).
+* Moved the WebPageTest plugin to a new repo: https://github.com/sitespeedio/plugin-webpagetest [#3205](https://github.com/sitespeedio/sitespeed.io/pull/3205). If you use WebPageTest either need to install the plugin or run the new WebPageTest container.
+* The Coach has dropped the accessibility advice. Instead use AXE, enable it with `--axe.enable`.
+* We removed the use of RUM-Speed Index.
+
 ### Added
-* Updated to the Coach 6.0.0 (beta-1) [#3194](https://github.com/sitespeedio/sitespeed.io/pull/3194)
-* Updated to Browsertime 11 (alpha) [#3201](https://github.com/sitespeedio/sitespeed.io/pull/3201)
-* Introducing slug for your test and a new experimental setup [#3203](https://github.com/sitespeedio/sitespeed.io/pull/3203)
+* Introducing slug for your test and a new experimental setup [#3203](https://github.com/sitespeedio/sitespeed.io/pull/3203).
+* Highlight Google Web Vitals [#3204](https://github.com/sitespeedio/sitespeed.io/pull/3204).
+* Clicking on show/hide on the Coach result now also shows the Coach advice description [#3211](https://github.com/sitespeedio/sitespeed.io/pull/3211).
+* Add quick links within result pages to make it easier to find metrics [#3213](https://github.com/sitespeedio/sitespeed.io/pull/3213).
+* Show image for LCP and Element Timing images [#3216](https://github.com/sitespeedio/sitespeed.io/pull/3216).
+* Updated to the [Coach 6.0.0](https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#600---2020-12-18) [#3194](https://github.com/sitespeedio/sitespeed.io/pull/3194):
+  * Added Element Timings, Paint Timings and Largest Contentful Paint [#16](https://github.com/sitespeedio/coach-core/pull/16).
+  * Added CLS advice [#18](https://github.com/sitespeedio/coach-core/pull/18).
+  * Added Long Task advice [#17](https://github.com/sitespeedio/coach-core/pull/17).
+  * Added support for HTTP3 [#26](https://github.com/sitespeedio/coach-core/pull/26).
+  * New info section where we share info third party statistics from third party web [#29](https://github.com/sitespeedio/coach-core/pull/29).
+  * New technology section with where Wappalyzer is used to get info [#28](https://github.com/sitespeedio/coach-core/pull/28).
+  * Added advice to avoid third party cookies [#39](https://github.com/sitespeedio/coach-core/pull/39).
+  * Upgraded to PageXray 3.0.0 [#38](https://github.com/sitespeedio/coach-core/pull/38).
+  * Added advice to avoid fingerprinting [#37](https://github.com/sitespeedio/coach-core/pull/37).
+  * Remove RUM Speed Index [#12](https://github.com/sitespeedio/coach-core/pull/12).
+  * Remove First Paint and timings calculated from the Navigation Timing API [#15](https://github.com/sitespeedio/coach-core/pull/15).
+  * Removed the advice for PUSH [#26](https://github.com/sitespeedio/coach-core/pull/26).
+  * Removed the accessibilty advice [#32](https://github.com/sitespeedio/coach-core/pull/32). If you are a sitespeed.io use `--axe`. It's better to use AXE-core that gives better advice than the old coach advice.
+  * Fully use the third-party-web to know about third parties instead of home grown solution.
+  * Testing for JQuery removed the $ reference on the page [#22](https://github.com/sitespeedio/coach-core/pull/22).
+* Updated to [Browsertime 11](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1100---2020-12-18):
+  * Record and keep the browser full screen (including URL bar) [#1435](https://github.com/sitespeedio/browsertime/pull/1435). All metrics should stay the same with this change but the video and the code will be easier :) When we implemented video a long time ago we wanted to cut out the URL bar but it made it harder to keep the video to look ok on different OS. 
+  * Say goodbye to RUM Speed Index [#1439](https://github.com/sitespeedio/browsertime/pull/1439).
+  * Domain name on disk now uses underscore instead of dots in the name [#1445](https://github.com/sitespeedio/browsertime/pull/1445).
+  * Click the Android power button at the start of each test (instead of the home button [#1447](https://github.com/sitespeedio/browsertime/pull/1447).
+  * Added a two minute timeout to get Geckoprofiler data [#1440](https://github.com/sitespeedio/browsertime/pull/1440).
+  * Made sure HAR stuff respect the skipHar flag [#1438](https://github.com/sitespeedio/browsertime/pull/1438)
+  * Fix process ID fetch for Galaxy S5, thank you [Michael Comella](https://github.com/mcomella) for PR [#1449](https://github.com/sitespeedio/browsertime/pull/1449)
+  * If a web page timed out in Chrome, we missed to report that as an error, fixed in [#1453](https://github.com/sitespeedio/browsertime/pull/1453).
+  * Automatically close "System not responding"-popup on Android if it exists [#1444](https://github.com/sitespeedio/browsertime/pull/1444).
+  * Add support using alias from CLI and use alias as folder name on disk [#1443](https://github.com/sitespeedio/browsertime/pull/1443).
+  * New option to store a more flat structure on disk converting the path part of the URL to one folder `--storeURLsAsFlatPageOnDisk`[#1450](https://github.com/sitespeedio/browsertime/pull/1450)
+  * Updated to Selenium 4.0.0-alpha.8 [#1451](https://github.com/sitespeedio/browsertime/pull/1451).
+  * Updated to Edgedriver 87
+* Updated to [PageXray 4.0.0](https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#version-400-2020-12-12) that fixes counting cookies.
+* Added Edge in the Docker container.
+* Upgraded to AXE-core 4.1.1.
+* The [GPSI-plugin](https://github.com/sitespeedio/plugin-gpsi) in the plus1 container now batches jobs, sending 10 jobs at a time.
+* The [Lighthouse-plugin](https://github.com/sitespeedio/plugin-lighthouse) in the plus1 container uses Lighthouse 7.0.0 (checkout the Lighthouse [changelog](https://github.com/GoogleChrome/lighthouse/releases/tag/v7.0.0) for breaking changes).
+
+### Fixed
+* Only show Element Timing and User Scripting section if we have those metrics [#3212](https://github.com/sitespeedio/sitespeed.io/pull/3212).
+
 ##  15.9.0 - 2020-11-18
 ### Added
 * Updated to Chrome 87 in the Docker container

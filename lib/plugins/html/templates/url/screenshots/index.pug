@@ -1,10 +1,10 @@
 if pageInfo.data.browsertime.run  && pageInfo.data.browsertime.run.screenshots
     small 
-    || 
-    each screenshot in pageInfo.data.browsertime.run.screenshots
-        - filename = screenshot.substring(screenshot.lastIndexOf('/') + 1, screenshot.length)
-        a(href='#' + filename) #{filename}
-        | &nbsp;|&nbsp;
+        || 
+        each screenshot in pageInfo.data.browsertime.run.screenshots
+            - filename = screenshot.substring(screenshot.lastIndexOf('/') + 1, screenshot.length)
+            a(href='#' + filename) #{filename}
+            | &nbsp;|&nbsp;
     a
     h2 Screenshots
     each screenshot in pageInfo.data.browsertime.run.screenshots

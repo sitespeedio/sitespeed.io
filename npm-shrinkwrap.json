@@ -1,6 +1,6 @@
 {
   "name": "sitespeed.io",
-  "version": "15.9.0",
+  "version": "16.0.0-beta.2",
   "lockfileVersion": 1,
   "requires": true,
   "dependencies": {
@@ -992,9 +992,9 @@
       "integrity": "sha512-32NDda82rhwD9/JBCCkB+MRYDp0oSvlo2IL6rQWA10PQi7tDUM3eqMSltXmY+Oyl/7N3P3qNtAlv7X0d9bI28w=="
     },
     "axe-core": {
-      "version": "4.0.2",
-      "resolved": "https://registry.npmjs.org/axe-core/-/axe-core-4.0.2.tgz",
-      "integrity": "sha512-arU1h31OGFu+LPrOLGZ7nB45v940NMDMEJeNmbutu57P+UFDVnkZg3e+J1I2HJRZ9hT7gO8J91dn/PMrAiKakA=="
+      "version": "4.1.1",
+      "resolved": "https://registry.npmjs.org/axe-core/-/axe-core-4.1.1.tgz",
+      "integrity": "sha512-5Kgy8Cz6LPC9DJcNb3yjAXTu3XihQgEdnIg50c//zOC/MyLP0Clg+Y8Sh9ZjjnvBrDZU4DgXS9C3T9r4/scGZQ=="
     },
     "babel-runtime": {
       "version": "6.26.0",
@@ -1104,9 +1104,9 @@
       }
     },
     "browsertime": {
-      "version": "11.0.0-beta.1",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-11.0.0-beta.1.tgz",
-      "integrity": "sha512-5nCFt9leIc0rhYHN1wn+oRTsUWiwbqQ5t3VeRjGo3kMOl9+0dxLfrHFxDKWqeLfERdKSmw3QC/Jc9Lpb+hOq1Q==",
+      "version": "11.0.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-11.0.0.tgz",
+      "integrity": "sha512-Xet8da2GUjZ1YGKWAjOEiRoZScst9DUPevEInfzCgqjWHrZXTxNVle5vvkYIgCmkFraVZaSoHiAOsj39OUzMDQ==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",
@@ -1488,9 +1488,9 @@
       }
     },
     "coach-core": {
-      "version": "6.0.0-beta.7",
-      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-6.0.0-beta.7.tgz",
-      "integrity": "sha512-Wxx4mLuk/7ewdgCJBhP2H8K7TP8UFTbYIKjmCa2JunCdW7HHZu+uBbH08aKWaQbUf3KIT3t56bupPKLXjQ7a3Q==",
+      "version": "6.0.0",
+      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-6.0.0.tgz",
+      "integrity": "sha512-gYeXPbJKskWYVohMNTpJipqKiJgtRbf25yOl8Kdmq3bsshgEtfI9ag40X8edBu6Doj8G3HKt9XVdob/umLd77Q==",
       "requires": {
         "filter-files": "0.4.0",
         "json-stable-stringify": "1.0.1",
