@@ -181,19 +181,6 @@ Metrics
   --metrics.filterList  List all configured filters for metrics in the data folder (configuredMetrics.txt)  [boolean] [default: false]
   --metrics.filter      Add/change/remove filters for metrics. If you want to send all metrics, use: *+ . If you want to remove all current metrics and send only the coach score: *- coach.summary.score.*  [array]
 
-WebPageTest
-  --webpagetest.host               The domain of your WebPageTest instance.  [default: "https://www.webpagetest.org"]
-  --webpagetest.key                The API key for you WebPageTest instance.
-  --webpagetest.location           The location for the test  [default: "Dulles:Chrome"]
-  --webpagetest.connectivity       The connectivity for the test.  [default: "Cable"]
-  --webpagetest.runs               The number of runs per URL.  [default: 3]
-  --webpagetest.custom             Execute arbitrary Javascript at the end of a test to collect custom metrics.
-  --webpagetest.file               Path to a script file
-  --webpagetest.script             The WebPageTest script as a string.
-  --webpagetest.includeRepeatView  Do repeat or single views  [boolean] [default: false]
-  --webpagetest.private            Wanna keep the runs private or not  [boolean] [default: true]
-  --webpagetest.timeline           Activates Chrome tracing and get the devtools.timeline (only works for Chrome).  [boolean] [default: false]
-
 Slack
   --slack.hookUrl       WebHook url for the Slack team (check https://<your team>.slack.com/apps/manage/custom-integrations).
   --slack.userName      User name to use when posting status to Slack.  [default: "Sitespeed.io"]
@@ -285,6 +272,7 @@ Options:
   --useHash                                                                                               If your site uses # for URLs and # give you unique URLs you need to turn on useHash. By default is it turned off, meaning URLs with hash and without hash are treated as the same URL  [boolean] [default: false]
   --multi                                                                                                 Test multiple URLs within the same browser session (same cache etc). Only works with Browsertime. Use this if you want to test multiple pages (use journey) or want to test multiple pages with scripts. You can mix URLs and scripts (the order will matter): login.js https://www.sitespeed.io/ logout.js - More details: https://www.sitespeed.io/documentation/sitespeed.io/scripting/  [boolean] [default: false]
   --name                                                                                                  Give your test a name.
+  --slug                                                                                                  Give your test a slug. The slug is used when you send the metrics to your data storage to identify the test and the folder of the tests. The max length of the slug is 200 characters and it can only contain a-z A-Z 0-9 and -_ characters.
   --config                                                                                                Path to JSON config file
   --help, -h                                                                                              Show help  [boolean]
 
