@@ -3,12 +3,12 @@
 ##  16.0.0 - UNRELEASED
 
 ### Upgrade from 15.X to 16.0
-* If you are using the WebPageTest plugin you need to either install it yourself from https://github.com/sitespeedio/plugin-webpagetest or use the (new) WebPageTest container.
+* If you are using the WebPageTest plugin you need to either install it yourself from https://github.com/sitespeedio/plugin-webpagetest or use the (new) WebPageTest container: `docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:16.0.0-webpagetest https://www.sitespeed.io --plugins.add /webpagetest --webpagetest.key KEY`
 
 ### Changed
-* Moved the WebPageTest plugin to a new repo: https://github.com/sitespeedio/plugin-webpagetest [#3205](https://github.com/sitespeedio/sitespeed.io/pull/3205). If you use WebPageTest either need to install the plugin or run the new WebPageTest container.
+* Moved the WebPageTest plugin to a new repo: https://github.com/sitespeedio/plugin-webpagetest [#3205](https://github.com/sitespeedio/sitespeed.io/pull/3205). If you use WebPageTest either need to install the plugin or run the new WebPageTest container. Read the [updated documentation](https://www.sitespeed.io/documentation/sitespeed.io/webpagetest/).
 * The Coach has dropped the accessibility advice. Instead use AXE, enable it with `--axe.enable`.
-* We removed the use of RUM-Speed Index.
+* We removed RUM-Speed Index.
 
 ### Added
 * Introducing slug for your test and a new experimental setup [#3203](https://github.com/sitespeedio/sitespeed.io/pull/3203).
