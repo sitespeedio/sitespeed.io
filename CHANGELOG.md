@@ -1,9 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-##  16.0.0 - UNRELEASED
-
-### Upgrade from 15.X to 16.0
-* If you are using the WebPageTest plugin you need to either install it yourself from https://github.com/sitespeedio/plugin-webpagetest or use the (new) WebPageTest container: `docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:16.0.0-webpagetest https://www.sitespeed.io --plugins.add /webpagetest --webpagetest.key KEY`
+##  16.0.0 - 2020-12-21
 
 ### Changed
 * Moved the WebPageTest plugin to a new repo: https://github.com/sitespeedio/plugin-webpagetest [#3205](https://github.com/sitespeedio/sitespeed.io/pull/3205). If you use WebPageTest either need to install the plugin or run the new WebPageTest container. Read the [updated documentation](https://www.sitespeed.io/documentation/sitespeed.io/webpagetest/).
@@ -54,6 +51,9 @@
 
 ### Fixed
 * Only show Element Timing and User Scripting section if we have those metrics [#3212](https://github.com/sitespeedio/sitespeed.io/pull/3212).
+
+### Upgrade from 15.X to 16.0
+* If you are using the WebPageTest plugin you need to either install it yourself from https://github.com/sitespeedio/plugin-webpagetest or use the (new) WebPageTest container: `docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:16.0.0-webpagetest https://www.sitespeed.io --plugins.add /webpagetest --webpagetest.key KEY`
 
 ##  15.9.0 - 2020-11-18
 ### Added
