@@ -94,9 +94,9 @@ First off, we have a breaking change if you use the WebPageTest plugin. We moved
 We moved out the WebPageTest plugin to a new repository. It will still work as before, but you need install the plugin or run the WebPageTest container (```docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:16.0.0-webpagetest https://www.sitespeed.io --plugins.add /webpagetest --webpagetest.key KEY```):
 
 There's a couple of reasons:
-1. It's easier to focus on the core functionality with Browsertime. Some people [still think](https://twitter.com/drewpost/status/1306206907313598469) sitespeed.io is built on top of WebPageTest. That is not true. It's built on top of Browsertime, our own engine ([used by Mozilla](https://blog.mozilla.org/performance/2020/12/15/2020-year-in-review/) to test performance regressions). But you can use WebPageTest as complement directly from sitespeed.io as you can with Lighthouse and other tools.
-2. The WebPageTest API library is the 3rd party library that we use is the library that [historically taken the longest time](https://github.com/marcelduran/webpagetest-api/issues/123) to fix security issues.
-3. A new repository makes it much easier for people at Catchpoint to contribute back to the WebPageTest plugin!
+1. It's easier to focus on the core functionality with Browsertime. Some people [still](https://twitter.com/drewpost/status/1306206907313598469) think sitespeed.io is built on top of WebPageTest. That is not true. It's built on top of Browsertime, our own engine ([used by Mozilla](https://blog.mozilla.org/performance/2020/12/15/2020-year-in-review/) to test performance regressions). But you can use WebPageTest as complement directly from sitespeed.io as you can with Lighthouse and other tools.
+2. [The WebPageTest API library](https://github.com/marcelduran/webpagetest-api) is the 3rd party library that we use that [historically has taken the longest time](https://github.com/marcelduran/webpagetest-api/issues/123) to fix security issues.
+3. A [new repository](https://github.com/sitespeedio/plugin-webpagetest) makes it much easier for people at Catchpoint to contribute back to the WebPageTest plugin!
 4. I'm [not interested in pushing users to become customers at Catchpoint](https://phabricator.wikimedia.org/T162515). WebPageTest is a good tool but I'm not sure Catchpoint is the company to make it better. Maybe they will prove me wrong :)
 
 ### Other changes
@@ -123,8 +123,7 @@ We are looking for new maintainers of the [Lighthouse](https://github.com/sitesp
 
 ## Support sitespeed.io
 
-We are still looking for supporters to support our server setup that makes 
-You can help us by [supporting us at Open Collective](https://opencollective.com/sitespeedio)!
+We are still looking for supporters to support our server setup that makes our tests run. You can help us by [supporting us at Open Collective](https://opencollective.com/sitespeedio)!
 
 ## And more in the latest releases
 We also done a couple of bug fixes. Checkout the [Browsertime changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md), the [sitespeed.io changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md) and the [Coach changelog](https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md) for the full list. 
