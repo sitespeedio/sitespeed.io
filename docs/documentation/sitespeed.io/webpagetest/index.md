@@ -17,17 +17,12 @@ twitterdescription: Drive WebPageTest using sitespeed.io and include the metrics
 {:toc}
 
 ## Using WebPageTest
-We love [WebPageTest](https://www.webpagetest.org/) (WPT), so we have integrated WebPageTest with sitespeed.io (it's a plugin). When including WPT you will get a tab for each result and if you are using Graphite, WebPageTest metrics will be automatically sent.
+To use WebPageTest you need to install the [WebPageTest plugin](https://github.com/sitespeedio/plugin-webpagetest) or run the Docker `sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-webpagetest` container.
 
-To use WPT you have a few options
-- You can get an [API key](https://www.webpagetest.org/getkey.php) (sponsored by Akamai) for the public version
-- Follow Pat Meenans instructions on how to get [a private version up and running in 5 minutes](http://calendar.perfplanet.com/2014/webpagetest-private-instances-in-five-minutes/).
-- Read how [Wikimedia setup an instance using AWS](https://wikitech.wikimedia.org/wiki/WebPageTest).
-
-You should use if you wanna need to run tests on browsers that WebPageTest supports but not sitespeed.io (Safari on Iphone and Microsoft browsers).
+To use WPT you need to setup your own WebPageTest instance (read how [Wikimedia setup an instance using AWS](https://wikitech.wikimedia.org/wiki/WebPageTest)) or have one of those (old) keys for the public instance.
 
 ## Configuration
-Internally sitespeed.io uses the [WebPageTest API](https://github.com/marcelduran/webpagetest-api), so you can do almost all the same thing as with the standalone API.
+The plugin uses the [WebPageTest API](https://github.com/marcelduran/webpagetest-api), so you can do almost all the same thing as with the standalone API.
 
 By default we have the following configuration options:
 
@@ -47,7 +42,7 @@ If you need anything else adding your own CLI parameter will propagate to the We
 Example: So say that you want to change the user agent of your test. In the API you can do that with <code>--useragent</code>. Pass the same to sitespeed.io by prefixing webpagetest like so <code>--webpagetest.useragent</code> in the cli.
 
 ~~~bash
-docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io --webpagetest.host my.wpt.host.com --webpagetest.useragent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36" https://www.sitespeed.io
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io{% include version/sitespeed.io.txt %}-webpagetest --plugins.add /webpagetest --webpagetest.host my.wpt.host.com --webpagetest.useragent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.59 Safari/537.36" https://www.sitespeed.io
 ~~~
 
 ## Default configurations
@@ -91,7 +86,7 @@ navigate    news.aol.com/world
 Then change your URL you want test (probably the last one) to \{\{\{URL\}\}\} and then all occurrences of \{\{\{URL\}\}\} will then be replaced with the current URL that should be tested. Now run sitespeed.io with the additional parameters:
 
 ~~~bash
-docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --webpagetest.file /sitespeed.io/wptScript.txt --webpagetest.host my.wpt.host.com http://example.org
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-webapgetest --plugins.add /webpagetest --webpagetest.file /sitespeed.io/wptScript.txt --webpagetest.host my.wpt.host.com http://example.org
 ~~~
 
 It is also possible to pass the WebPageTest script as a string into the `--webpagetest.script` flag. You can use the `scriptToString()` method provided in [webpagetest-api](https://github.com/marcelduran/webpagetest-api/#module-1) to create a string from a JSON object.
@@ -99,7 +94,7 @@ It is also possible to pass the WebPageTest script as a string into the `--webpa
 {% assign bashURLString = '{{{URL}}}}' %}
 
 ~~~bash
-docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --webpagetest.script "navigate \t www.aol.com \n navigate \t {{bashURLString}}" --webpagetest.host my.wpt.host.com http://example.org
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-webpagetest --plugins.add /webpagetest --webpagetest.script "navigate \t www.aol.com \n navigate \t {{bashURLString}}" --webpagetest.host my.wpt.host.com http://example.org
 ~~~
 
 ### Custom metrics
@@ -128,7 +123,7 @@ return viewport;
 You can then run sitespeed.io to pick up the new custom metrics:
 
 ~~~bash
-docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --webpagetest.custom /sitespeed.io/myScriptFile.txt --webpagetest.host my.wpt.host.com https://www.sitespeed.io
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-webpagetest --plugins.add /webpagetest --webpagetest.custom /sitespeed.io/myScriptFile.txt --webpagetest.host my.wpt.host.com https://www.sitespeed.io
 ~~~
 
 ## Run WebPageTest without Browsertime
@@ -136,5 +131,5 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 Sometimes you want to only collect data from WebPageTest and not from Browsertime. The best way to do that is to disable the Browsertime plugin with *--plugins.remove browsertime*
 
 ~~~bash
-docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --webpagetest.host my.wpt.host.com --plugins.remove browsertime https://www.sitespeed.io
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-webpagetest --plugins.add /webpagetest --webpagetest.host my.wpt.host.com --plugins.remove browsertime https://www.sitespeed.io
 ~~~

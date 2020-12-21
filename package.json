@@ -4,7 +4,7 @@
     "sitespeed.io": "./bin/sitespeed.js",
     "sitespeed.io-wpr": "./bin/browsertimeWebPageReplay.js"
   },
-  "version": "15.9.0",
+  "version": "16.0.0",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -21,9 +21,6 @@
   "author": {
     "name": "Peter Hedenskog",
     "url": "https://www.peterhedenskog.com"
-  },
-  "publishConfig": {
-    "tag": "canary"
   },
   "contributors": [
     {
@@ -77,7 +74,7 @@
     "aws-sdk": "2.784.0",
     "axe-core": "4.1.1",
     "browsertime": "11.0.0",
-    "coach-core": "6.0.0",
+    "coach-core": "6.0.1",
     "cli-color": "2.0.0",
     "concurrent-queue": "7.0.2",
     "dayjs": "1.9.4",
