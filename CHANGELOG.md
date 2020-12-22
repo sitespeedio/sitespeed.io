@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+##  16.0.1 - 2020-12-22
+### Fixed
+* There was a bug in 16.0.0 if you used an alias for a URL in a script that caused the test to fail. Fixed in [#3222](https://github.com/sitespeedio/sitespeed.io/pull/3222) and [#3223](https://github.com/sitespeedio/sitespeed.io/pull/3223).
 ##  16.0.0 - 2020-12-21
 
 ### Changed
