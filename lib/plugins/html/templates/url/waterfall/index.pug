@@ -34,5 +34,5 @@ a#download-HAR
   
   a.button.button-download(href=harName, download=harDownloadName) Download HAR
   if (options.html && options.html.compareURL && options.resultBaseURL)
-    - const compareURL =  options.html.compareURL + '?compare=1&har1=' + context.resultUrls.absoluteSummaryPagePath(daurl) + harName
+    - const compareURL =  options.html.compareURL + '?compare=1&har1=' + context.resultUrls.absoluteSummaryPagePath(daurl, daurlAlias) + harName
     a.button.button-download(href=compareURL) Compare
