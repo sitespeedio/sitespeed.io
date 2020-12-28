@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+##  16.0.2 - 2020-12-28
+### Fixed
+* Fix correct path for filmstrips when you use an alias [#3225](https://github.com/sitespeedio/sitespeed.io/pull/3225). In 16.0.0 the path to screenshots in the film strip was broken in the HTML if you use an alias for a URL.
 ##  16.0.1 - 2020-12-22
 ### Fixed
 * There was a bug in 16.0.0 if you used an alias for a URL in a script that caused the test to fail. Fixed in [#3222](https://github.com/sitespeedio/sitespeed.io/pull/3222) and [#3223](https://github.com/sitespeedio/sitespeed.io/pull/3223).
