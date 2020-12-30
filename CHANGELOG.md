@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## UNRELEASED
+### ADDED
+* Updated to latest (1.1.7-9) Graphite in the Docker compose file and disabled tags by default.
+
 ##  16.0.2 - 2020-12-28
 ### Fixed
 * Fix correct path for filmstrips when you use an alias [#3225](https://github.com/sitespeedio/sitespeed.io/pull/3225). In 16.0.0 the path to screenshots in the film strip was broken in the HTML if you use an alias for a URL.
