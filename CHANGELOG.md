@@ -1,8 +1,11 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
-### ADDED
+## 16.1.0 - 2020-12-31
+### Added
 * Updated to latest (1.1.7-9) Graphite in the Docker compose file and disabled tags by default.
+
+### Fixed
+* Using alias from the CLI didn't work correctly since 16.0.0 [#3227](https://github.com/sitespeedio/sitespeed.io/pull/3227).
 
 ##  16.0.2 - 2020-12-28
 ### Fixed
