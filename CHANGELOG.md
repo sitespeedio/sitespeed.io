@@ -6,6 +6,7 @@
 
 ### Added
 * Skip sending summary information to Graphite using `--graphite.skipSummary` [#3230](https://github.com/sitespeedio/sitespeed.io/pull/3230).
+* Collect third party cookie info and send it by default to data storage [#3231](https://github.com/sitespeedio/sitespeed.io/pull/3231).
 ## 16.1.0 - 2020-12-31
 ### Added
 * Updated to latest (1.1.7-9) Graphite in the Docker compose file and disabled tags by default.
