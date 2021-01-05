@@ -79,7 +79,8 @@ video
   --videoParams.convert            Convert the original video to a viewable format (for most video players). Turn that off to make a faster run.  [boolean] [default: true]
 
 edge
-  --edge.edgedriverPath  To run Edge you need to supply the path to the msedgedriver that match your Egde version.
+  --edge.edgedriverPath  Path to custom msedgedriver version (need to match your Egde version).
+  --edge.binaryPath      Path to custom Edge binary
 
 safari
   --safari.ios                   Use Safari on iOS. You need to choose browser Safari and iOS to run on iOS.  [boolean] [default: false]
@@ -172,7 +173,7 @@ Options:
   --userTimingWhitelist                         All userTimings are captured by default this option takes a regex that will whitelist which userTimings to capture in the results.
   --headless                                    Run the browser in headless mode. Works for Firefox and Chrome.  [boolean] [default: false]
   --extension                                   Path to a WebExtension to be installed in the browser. Note that --extension can be passed multiple times.
-  --spa                                         Convenient parameter to use if you test a SPA application: will automatically waity for X seconds after last network activity and use hash in file names. Read more: https://www.sitespeed.io/documentation/sitespeed.io/spa/  [boolean] [default: false]
+  --spa                                         Convenient parameter to use if you test a SPA application: will automatically wait for X seconds after last network activity and use hash in file names. Read more: https://www.sitespeed.io/documentation/sitespeed.io/spa/  [boolean] [default: false]
   --browserRestartTries                         If the browser fails to start, you can retry to start it this amount of times.  [number] [default: 3]
   -h, --help                                    Show help  [boolean]
   -V, --version                                 Show version number  [boolean]
