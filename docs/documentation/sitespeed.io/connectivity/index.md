@@ -115,7 +115,7 @@ $ throttle stop
 ### TSProxy
 [TSProxy](https://github.com/WPO-Foundation/tsproxy) is a Traffic-shaping SOCKS5 proxy built by [Patrick Meenan](https://twitter.com/patmeenan). You need Python 2.7 for it to work. When you run it through Browsertime/sitespeed.io configures Firefox and Chrome to automatically use the proxy.
 
-If use Kubernetes you can not use Docker networks or tc, but you can use TSProxy.
+If use Kubernetes you can not use Docker networks or tc, but you can use TSProxy. However there has been [many issues](https://github.com/WPO-Foundation/tsproxy/issues?q=is%3Aissue+is%3Aclosed) with TSProxy through the years, so if you can avoid using it, please do.
 
 ~~~bash
 sitespeed.io --browsertime.connectivity.engine tsproxy -c cable https://www.sitespeed.io/
