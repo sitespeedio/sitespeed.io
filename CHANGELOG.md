@@ -1,13 +1,14 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+##  16.2.0 - UNRELEASED
 ### Fixed
 * Update example carbon.conf to disable tags by default and a better retention example [#3229](https://github.com/sitespeedio/sitespeed.io/pull/3229).
-* Updated to Browsertime 11.0.1.
-* Safer check for Crux data if a domain do noyt exists in Crux [#3234](https://github.com/sitespeedio/sitespeed.io/pull/3234).
+* Updated to [Browsertime 11.0.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1101---2021-01-05) that makes it possible to choose Edge binary.
+* Safer check for Crux data if a domain do not exists in Crux [#3234](https://github.com/sitespeedio/sitespeed.io/pull/3234).
 ### Added
 * Skip sending summary information to Graphite using `--graphite.skipSummary` [#3230](https://github.com/sitespeedio/sitespeed.io/pull/3230).
 * Collect third party cookie info and send it by default to data storage [#3231](https://github.com/sitespeedio/sitespeed.io/pull/3231).
+* Configure your retention policy for your Graphite data, that makes it possible to match annotations and Graphite metrics data points using `--graphite.annotationRetentionMinutes` [#3235](https://github.com/sitespeedio/sitespeed.io/pull/3235). You should probably wait using this until we have updated our documentation.
 
 ## 16.1.0 - 2020-12-31
 ### Added
