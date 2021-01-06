@@ -99,6 +99,7 @@ Chrome
 
 Edge
   --browsertime.edge.edgedriverPath, --edge.edgedriverPath  To run Edge you need to supply the path to the msedgedriver
+  --browsertime.edge.binaryPath, --edge.binaryPath          Path to custom Edge binary
 
 Safari
   --browsertime.safari.ios, --safari.ios                                    Use Safari on iOS. You need to choose browser Safari and iOS to run on iOS. Only works on OS X Catalina and iOS 13 (and later).  [boolean] [default: false]
@@ -129,21 +130,23 @@ Grafana
   --grafana.annotationScreenshot  Include screenshot (from Browsertime/WebPageTest) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
 
 Graphite
-  --graphite.host                  The Graphite host used to store captured metrics.
-  --graphite.port                  The Graphite port used to store captured metrics.  [default: 2003]
-  --graphite.auth                  The Graphite user and password used for authentication. Format: user:password
-  --graphite.httpPort              The Graphite port used to access the user interface and send annotations event  [default: 8080]
-  --graphite.webHost               The graphite-web host. If not specified graphite.host will be used.
-  --graphite.namespace             The namespace key added to all captured metrics.  [default: "sitespeed_io.default"]
-  --graphite.includeQueryParams    Whether to include query parameters from the URL in the Graphite keys or not  [boolean] [default: false]
-  --graphite.arrayTags             Send the tags as Array or a String. In Graphite 1.0 the tags is a array. Before a String  [boolean] [default: true]
-  --graphite.annotationTitle       Add a title to the annotation sent for a run.
-  --graphite.annotationMessage     Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
-  --graphite.annotationScreenshot  Include screenshot (from Browsertime/WebPageTest) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
-  --graphite.statsd                Uses the StatsD interface  [boolean] [default: false]
-  --graphite.annotationTag         Add a extra tag to the annotation sent for a run. Repeat the --graphite.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
-  --graphite.bulkSize              Break up number of metrics to send with each request.  [number] [default: null]
-  --graphite.perIteration          Send each iteration of metrics to Graphite. By default we only send page summaries (the summaries of all runs) but you can also send all the runs. Make sure to setup statsd or Graphite correctly to handle it.  [boolean] [default: false]
+  --graphite.host                        The Graphite host used to store captured metrics.
+  --graphite.port                        The Graphite port used to store captured metrics.  [default: 2003]
+  --graphite.auth                        The Graphite user and password used for authentication. Format: user:password
+  --graphite.httpPort                    The Graphite port used to access the user interface and send annotations event  [default: 8080]
+  --graphite.webHost                     The graphite-web host. If not specified graphite.host will be used.
+  --graphite.namespace                   The namespace key added to all captured metrics.  [default: "sitespeed_io.default"]
+  --graphite.includeQueryParams          Whether to include query parameters from the URL in the Graphite keys or not  [boolean] [default: false]
+  --graphite.arrayTags                   Send the tags as Array or a String. In Graphite 1.0 the tags is a array. Before a String  [boolean] [default: true]
+  --graphite.annotationTitle             Add a title to the annotation sent for a run.
+  --graphite.annotationMessage           Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
+  --graphite.annotationScreenshot        Include screenshot (from Browsertime/WebPageTest) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
+  --graphite.annotationRetentionMinutes  The retention in minutes, to make annotation match the retention in Graphite.  [number]
+  --graphite.statsd                      Uses the StatsD interface  [boolean] [default: false]
+  --graphite.annotationTag               Add a extra tag to the annotation sent for a run. Repeat the --graphite.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
+  --graphite.bulkSize                    Break up number of metrics to send with each request.  [number] [default: null]
+  --graphite.skipSummary                 Skip sending summary messages data to Graphite (summaries over a domain).  [boolean] [default: false]
+  --graphite.perIteration                Send each iteration of metrics to Graphite. By default we only send page summaries (the summaries of all runs) but you can also send all the runs. Make sure to setup statsd or Graphite correctly to handle it.  [boolean] [default: false]
 
 Plugins
   --plugins.list    List all configured plugins in the log.  [boolean]
