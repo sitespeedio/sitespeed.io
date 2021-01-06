@@ -24,7 +24,7 @@ Let us go through this thoroughly:
 We don't collect any information from our users. None. Nada. We don't include 3rd party scripts either to make sure that your privacy isn't compromised.
 
 ## Who is collecting it?
-We don't collect any data from you with the sitespeed.io tools. But as we said before: Chrome/Firefox is probably calls home when you run your tests.
+We don't collect any data from you with the sitespeed.io tools. But as we said before: Chrome/Firefox/Edge/Safari is probably calling home when you run your tests.
 
 ## How is it collected?
 We don't collect any information.
