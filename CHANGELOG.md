@@ -4,7 +4,7 @@
 ### Fixed
 * Update example carbon.conf to disable tags by default and a better retention example [#3229](https://github.com/sitespeedio/sitespeed.io/pull/3229).
 * Updated to Browsertime 11.0.1.
-
+* Safer check for Crux data if a domain do noyt exists in Crux [#3234](https://github.com/sitespeedio/sitespeed.io/pull/3234).
 ### Added
 * Skip sending summary information to Graphite using `--graphite.skipSummary` [#3230](https://github.com/sitespeedio/sitespeed.io/pull/3230).
 * Collect third party cookie info and send it by default to data storage [#3231](https://github.com/sitespeedio/sitespeed.io/pull/3231).
