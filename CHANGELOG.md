@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-##  16.2.0 - UNRELEASED
+##  16.2.0 - 2021-01-06
 ### Fixed
 * Update example carbon.conf to disable tags by default and a better retention example [#3229](https://github.com/sitespeedio/sitespeed.io/pull/3229).
 * Updated to [Browsertime 11.0.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1101---2021-01-05) that makes it possible to choose Edge binary.
