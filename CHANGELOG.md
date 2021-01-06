@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+##  16.2.1 - 2021-01-06
+### Fixed 
+* The new `--graphite.annotationRetentionMinutes` formatted the annotation date wrong, fixed in [#3238](https://github.com/sitespeedio/sitespeed.io/pull/3238).
 ##  16.2.0 - 2021-01-06
 ### Fixed
 * Update example carbon.conf to disable tags by default and a better retention example [#3229](https://github.com/sitespeedio/sitespeed.io/pull/3229).
