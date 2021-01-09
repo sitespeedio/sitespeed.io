@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 16.3.0 - UNRELEASED
+### Added
+* You can now use `--addSlugToKey` to add the `--slug` to your Graphite key. It will be appended to your _graphite.namespace_ [#3240](https://github.com/sitespeedio/sitespeed.io/pull/3240).
+
 ##  16.2.1 - 2021-01-06
 ### Fixed 
 * The new `--graphite.annotationRetentionMinutes` formatted the annotation date wrong, fixed in [#3238](https://github.com/sitespeedio/sitespeed.io/pull/3238).
