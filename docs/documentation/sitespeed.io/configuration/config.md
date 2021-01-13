@@ -144,6 +144,7 @@ Graphite
   --graphite.annotationRetentionMinutes  The retention in minutes, to make annotation match the retention in Graphite.  [number]
   --graphite.statsd                      Uses the StatsD interface  [boolean] [default: false]
   --graphite.annotationTag               Add a extra tag to the annotation sent for a run. Repeat the --graphite.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
+  --graphite.addSlugToKey                Add the slug (name of the test) as an extra key in the namespace.  [boolean] [default: false]
   --graphite.bulkSize                    Break up number of metrics to send with each request.  [number] [default: null]
   --graphite.skipSummary                 Skip sending summary messages data to Graphite (summaries over a domain).  [boolean] [default: false]
   --graphite.perIteration                Send each iteration of metrics to Graphite. By default we only send page summaries (the summaries of all runs) but you can also send all the runs. Make sure to setup statsd or Graphite correctly to handle it.  [boolean] [default: false]
@@ -198,7 +199,7 @@ s3
   --s3.key                The S3 key.
   --s3.secret             The S3 secret.
   --s3.bucketname         Name of the S3 bucket,
-  --s3.path               Override the default folder path in the bucket where the results are uploaded. By default it's "DOMAIN_OR_FILENAME/TIMESTAMP", or the name of the folder if --outputFolder is specified.
+  --s3.path               Override the default folder path in the bucket where the results are uploaded. By default it's "DOMAIN_OR_FILENAME_OR_SLUG/TIMESTAMP", or the name of the folder if --outputFolder is specified.
   --s3.region             The S3 region. Optional depending on your settings.
   --s3.acl                The S3 canned ACL to set. Optional depending on your settings.
   --s3.removeLocalResult  Remove all the local result files after they have been uploaded to S3.  [boolean] [default: false]
@@ -211,7 +212,7 @@ GoogleCloudStorage
   --gcs.bucketname         Name of the Google Cloud storage bucket
   --gcs.public             Make uploaded results to Google Cloud storage publicly readable.  [boolean] [default: false]
   --gcs.gzip               Add content-encoding for gzip to the uploaded files. Read more at https://cloud.google.com/storage/docs/transcoding. If you host your results directly from the bucket, gzip must be set to false  [boolean] [default: false]
-  --gcs.path               Override the default folder path in the bucket where the results are uploaded. By default it's "DOMAIN_OR_FILENAME/TIMESTAMP", or the name of the folder if --outputFolder is specified.
+  --gcs.path               Override the default folder path in the bucket where the results are uploaded. By default it's "DOMAIN_OR_FILENAME_OR_SLUG/TIMESTAMP", or the name of the folder if --outputFolder is specified.
   --gcs.removeLocalResult  Remove all the local result files after they have been uploaded to Google Cloud storage.  [boolean] [default: false]
 
 HTML
@@ -266,7 +267,8 @@ Options:
   --mobile                                                                                                Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Apple iPhone 6.  [boolean] [default: false]
   --resultBaseURL, --resultBaseUrl                                                                        The base URL to the server serving the HTML result. In the format of https://result.sitespeed.io
   --gzipHAR                                                                                               Compress the HAR files with GZIP.  [boolean] [default: false]
-  --outputFolder                                                                                          The folder where the result will be stored.  [string]
+  --outputFolder                                                                                          The folder where the result will be stored. If you do not set it, the result will be stored in "DOMAIN_OR_FILENAME_OR_SLUG/TIMESTAMP"  [string]
+  --copyLatestFilesToBase                                                                                 Copy the latest screenshots to the root folder (so you can include it in Grafana). Do not work together it --outputFolder.  [boolean] [default: false]
   --firstParty                                                                                            A regex running against each request and categorize it as first vs third party URL. (ex: ".*sitespeed.*")
   --urlAlias                                                                                              Use an alias for the URL (if you feed URLs from a file you can instead have the alias in the file). You need to pass on the same amount of alias as URLs. The alias is used as the name of the URL on the HTML report and in Graphite/InfluxDB. Pass on multiple --urlAlias for multiple alias/URLs. This will override alias in a file.  [string]
   --groupAlias                                                                                            Use an alias for the group/domain. You need to pass on the same amount of alias as URLs. The alias is used as the name of the group in Graphite/InfluxDB. Pass on multiple --groupAlias for multiple alias/groups. This do not work for scripting at the moment.  [string]
