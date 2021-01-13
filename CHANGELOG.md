@@ -1,9 +1,14 @@
 # CHANGELOG - sitespeed.io
 
-## 16.3.0 - UNRELEASED
+## 16.3.0 - 2021-01-13
 ### Added
-* You can now use `--addSlugToKey` to add the `--slug` to your Graphite key. It will be appended to your _graphite.namespace_ [#3240](https://github.com/sitespeedio/sitespeed.io/pull/3240).
+There's a couple of new functionality that will have documentation in a week or two. Until then do not use it :)
 
+* You can now use `--addSlugToKey` to add the `--slug` to your Graphite key. It will be appended to your _graphite.namespace.pageSummary_ [#3240](https://github.com/sitespeedio/sitespeed.io/pull/3240).
+* New plugin to copy screenshots [#3243](https://github.com/sitespeedio/sitespeed.io/pull/3243) and videos [#3248](https://github.com/sitespeedio/sitespeed.io/pull/3248) as latest for that run.
+* Upload latest screenshots/videos to S3 [#3246](https://github.com/sitespeedio/sitespeed.io/pull/3246).
+### Fixed
+* The HTML links to pahges when using alias in a text file was broken as reported in [#3244](https://github.com/sitespeedio/sitespeed.io/issues/3244), fixed in PR [#3245](https://github.com/sitespeedio/sitespeed.io/pull/3245).  
 ##  16.2.1 - 2021-01-06
 ### Fixed 
 * The new `--graphite.annotationRetentionMinutes` formatted the annotation date wrong, fixed in [#3238](https://github.com/sitespeedio/sitespeed.io/pull/3238).
