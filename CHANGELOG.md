@@ -1,5 +1,13 @@
 # CHANGELOG - sitespeed.io
 
+## 16.3.1 - 2021-01-14
+
+### Fixed
+* Fixed broken URL in Slack message (if you used an alias) [#3254](https://github.com/sitespeedio/sitespeed.io/pull/3254)
+*  Make sure alias from the cli, from file or from script is handled the same way [#3253](https://github.com/sitespeedio/sitespeed.io/pull/3253).
+* Added missing slug in annitation [#3251](https://github.com/sitespeedio/sitespeed.io/pull/3251).
+* Add missing browser/connectivity name in the latest files [#3249](https://github.com/sitespeedio/sitespeed.io/pull/3249).
+
 ## 16.3.0 - 2021-01-13
 ### Added
 There's a couple of new functionality that will have documentation in a week or two. Until then do not use it :)
