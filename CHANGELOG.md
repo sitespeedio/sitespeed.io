@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+## 16.3.2 - 2021-01-14
+### Fixed
+* Make sure the right connectivity name is picked up for the latest copied file. Before the fix using alias for your connectivity didn't work [#3255](https://github.com/sitespeedio/sitespeed.io/pull/3255).
 ## 16.3.1 - 2021-01-14
 
 ### Fixed
