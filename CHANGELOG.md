@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io
 
+## 16.4.0 - UNRELEASED
+### Added
+* Added support for GCS to also upload latest screenshots/video [#3258](https://github.com/sitespeedio/sitespeed.io/pull/3258)-
+* Automatically create a result base URL if you upload to GCS (and do not configure one) [#3259](https://github.com/sitespeedio/sitespeed.io/pull/3259).
+* Include index.html when we log the link to the S3/GCS result bucket to make it easier to copy/paste [#3260](https://github.com/sitespeedio/sitespeed.io/pull/3260).
+
 ## 16.3.2 - 2021-01-14
 ### Fixed
 * Make sure the right connectivity name is picked up for the latest copied file. Before the fix using alias for your connectivity didn't work [#3255](https://github.com/sitespeedio/sitespeed.io/pull/3255).
