@@ -1,13 +1,13 @@
 # CHANGELOG - sitespeed.io
 
-## 16.4.0 - UNRELEASED
+## 16.4.0 - 2021-01-20
 ### Added
 * Added support for GCS to also upload latest screenshots/video [#3258](https://github.com/sitespeedio/sitespeed.io/pull/3258)-
 * Automatically create a result base URL if you upload to GCS (and do not configure one) [#3259](https://github.com/sitespeedio/sitespeed.io/pull/3259).
 * Include index.html when we log the link to the S3/GCS result bucket to make it easier to copy/paste [#3260](https://github.com/sitespeedio/sitespeed.io/pull/3260).
 
 ### Fixed
-* Updated to [Browsertime 11.0.2](https://github.com/sitespeedio/browsertime/releases/tag/v11.0.2).
+* Updated to [Browsertime 11.0.2](https://github.com/sitespeedio/browsertime/releases/tag/v11.0.2) that hopefully fixes the problem when you use an alias in scripting and the URL change between runs.
 
 ## 16.3.2 - 2021-01-14
 ### Fixed
