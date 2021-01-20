@@ -1,8 +1,9 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 16.5.0 - 2021-01-20
 ### Added
-* Upgraded to Chrome 88 in the Docker container and updated Browsertime that uses Chromedriver 88.
+* Upgraded to Chrome 88 in the Docker container and updated Browsertime that uses Chromedriver 88. Also upgraded Browsertime to 11.1.2 that fixes a bug if Browsertime do not collect any metrics, that broke testing with WebPageReplay.
+
 ## 16.4.0 - 2021-01-20
 ### Added
 * Added support for GCS to also upload latest screenshots/video [#3258](https://github.com/sitespeedio/sitespeed.io/pull/3258)-
