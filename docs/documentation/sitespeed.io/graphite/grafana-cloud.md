@@ -19,6 +19,7 @@ The final data flow is like this:
     * sitespeed urls config include multiple endpoints of our production application
     * sitespeed graphite config contains config of the carbon-relay-ng server (instance B)
 4. when test is done, sitespeed sends data to carbon-relay-ng instance (Instance B)
+5. CloudWatch event rules triggers a lambda function `stop_instances` every two hours:20 (e.g. 10:20 am)
 5. carbon-relay-ng instance sends data to Grafana Cloud
 6. Dashboards have access to Grafana Cloud and poll data when visited
 
