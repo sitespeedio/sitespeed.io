@@ -1,8 +1,8 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 16.6.0 - 2021-01-25
 ### Added
-* Upgraded to Browsertime 11.2.0
+* Upgraded to Browsertime 11.2.0 with support for listening on events for CDP in scripting.
 ## 16.5.0 - 2021-01-20
 ### Added
 * Upgraded to Chrome 88 in the Docker container and updated Browsertime that uses Chromedriver 88. Also upgraded Browsertime to 11.1.2 that fixes a bug if Browsertime do not collect any metrics, that broke testing with WebPageReplay.
