@@ -985,7 +985,7 @@ module.exports = async function(context, commands) {
 ~~~
 
 ### Chrome DevTools Protocol
-Send messages to Chrome using the [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/). This only works in Chrome. You can send and send and get the result.
+Send messages to Chrome using the [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/). This only works in Chrome/Edge at the moment. You can send, send and get and listen on events.
 
 #### cdp.send(command, args)
 Send a command to Chrome and don't expect something back.
@@ -1008,6 +1008,20 @@ module.exports = async function(context, commands) {
   const domCounters = await commands.cdp.sendAndGet('Memory.getDOMCounters');
   context.log.info('Memory.getDOMCounters %j', domCounters);
  }
+~~~
+
+#### cdp.on(event, functionOnEvent)
+You can listen to CDP events. Here's an example to get hold of all responses for a page.
+
+~~~javascript
+module.exports = async function(context, commands) {
+  const responses = [];
+  await commands.cdp.on('Network.responseReceived', params => {
+    responses.push(params);
+  });
+  await commands.measure.start('https://www.sitespeed.io/search/');
+  context.log.info('Responses %j', responses);
+};
 ~~~
 
 ### Error
