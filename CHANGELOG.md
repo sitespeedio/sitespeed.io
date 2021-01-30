@@ -1,5 +1,7 @@
 # CHANGELOG - sitespeed.io
-
+## UNRELEASED
+### Added
+* Updated to Browsertime 11.3.0 with better iOS simulator support.
 ## 16.6.0 - 2021-01-25
 ### Added
 * Upgraded to Browsertime 11.2.0 with support for listening on events for CDP in scripting.

@@ -7,9 +7,14 @@ if usingBrowsertime
   - const browserVersion = h.get(browser,'version');
   - const androidModel = h.get(android,'model');
   - const androidVersion = h.get(android,'androidVersion');
+  - const iosdDeviceName = h.get(ios,'deviceName');
+  - const iosDeviceUDID = h.get(ios,'deviceUDID');
+
   p.small Tested #{timestamp} using #{h.cap(browserName || options.browsertime.browser)} #{browserVersion}
     if (androidModel)
       | &nbsp;#{androidModel} (Android version #{androidVersion})
+    if (iosdDeviceName)
+      | &nbsp;#{iosdDeviceName} (#{iosDeviceUDID })
     | .
     if (options.safari && options.safari.deviceType)
       | Testing using an #{options.safari.deviceType}.
