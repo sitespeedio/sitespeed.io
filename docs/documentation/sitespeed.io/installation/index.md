@@ -40,11 +40,43 @@ That will output the data from the run in the current directory. You can read mo
 
 ## Node JS
 
-### Mac & Linux
+### Mac
+To be able to record a video of the screen and analyse the video, you need a couple of extra software except sitespeed.io. To install on a fresh Apple Mac M1:
+
+1. Install Homebrew [https://brew.sh](https://brew.sh)
+2. Install latest NodeJS LTS (and npm):
+    `brew install node@14`
+3. Make sure you can install using *npm* without using sudo. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
+4. Install ImageMagick 6
+    `brew install imagemagick@6`
+5. Install ffmpeg
+    `brew install ffmpeg`
+6. Install Python and Python dependencies ([Python best practices](https://opensource.com/article/19/5/python-3-default-mac)):
+    1. `brew install pyenv` 
+    2. `pyenv install 3.9.1`
+    3. `pyenv global 3.9.1`
+    4. `echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc`
+    5. `source ~/.zshrc`
+    6. `curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py`
+    7. `python -m pip install --user pillow`
+7. To be able to throttle the connection without adding a sudo password you need to run:
+    `echo "${USER} ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/sitespeedio"`
+8. If you plan to run the iOS Simulator, you also need to install Xcode. Ecither do it from the App store or follow [Mac Stadiums guide](https://docs.macstadium.com/docs/install-osx-build-tools) if you have a Apple developer account. Verify that Xcode work by running `xcrun simctl list devices` to list your devices.
+
+Now you are ready to install sitespeed.io:
+~~~bash
+npm install sitespeed.io -g
+~~~
+
+After that you can also install the browsers that you need for your testing: Chrome/Firefox/Edge.
+
+### Linux
 
 Prerequisites: Install [latest NodeJS LTS](https://nodejs.org/en/download/) ([Linux](https://github.com/creationix/nvm)) and make sure you have [npm](https://github.com/npm/npm) or [yarn](https://yarnpkg.com/) installed. Also install Chrome/Firefox/Edge (you need them to collect metrics).
 
-Make sure you install without sudo using sudo. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
+If you need videos and Visual Metrics you also need: imagemagick ffmpeg and pyssim (python -m pip install pyssim)
+
+Make sure you install without sudo using npm. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
 
 #### npm
 If you prefer npm, just run:
