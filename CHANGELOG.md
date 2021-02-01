@@ -1,7 +1,7 @@
 # CHANGELOG - sitespeed.io
-## UNRELEASED
+## 16.7.0 - 2021-02-01
 ### Added
-* Updated to Browsertime 11.3.0 with better iOS simulator support.
+* Updated to Browsertime 11.3.0 with better iOS simulator support. There are still some work to do, but you can try it out with `sitespeed.io https://www.wikipedia.org -b safari --safari.useSimulator --safari.deviceUDID YOUR_DEVICE_ID --video --visualMetrics`. List your device ids with `xcrun simctl list devices`.
 ## 16.6.0 - 2021-01-25
 ### Added
 * Upgraded to Browsertime 11.2.0 with support for listening on events for CDP in scripting.
