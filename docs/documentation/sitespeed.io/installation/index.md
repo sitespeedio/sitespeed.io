@@ -68,28 +68,42 @@ Now you are ready to install sitespeed.io:
 npm install sitespeed.io -g
 ~~~
 
-After that you can also install the browsers that you need for your testing: Chrome/Firefox/Edge.
+After that you can also install the browsers that you need for your testing: [Chrome](https://www.google.com/chrome/)/[Firefox](https://www.mozilla.org/en-GB/firefox/new/)/Edge.
 
 ### Linux
 
-Prerequisites: Install [latest NodeJS LTS](https://nodejs.org/en/download/) ([Linux](https://github.com/creationix/nvm)) and make sure you have [npm](https://github.com/npm/npm) or [yarn](https://yarnpkg.com/) installed. Also install Chrome/Firefox/Edge (you need them to collect metrics).
+Here's an example on how to install on Ubuntu 20.04. 
 
-If you need videos and Visual Metrics you also need: imagemagick ffmpeg and pyssim (python -m pip install pyssim)
+1. [Install NodeJS LTS ](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04)
+    * `curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh`
+    * `sudo bash nodesource_setup.sh`
+    * `sudo apt install -y nodejs`
+2. Install imagemagick and ffmpeg `sudo apt-get update -y && sudo apt-get install -y imagemagick ffmpeg`
+3. Install Python dependencies:
+    * `sudo apt-get install -y  python-is-python3 python3-dev python3-pip`  
+    * `python -m pip install pyssim`
+4. Install xvfb: `sudo apt-get install -y xvfb`
+5. Create a user that you will use to run sitespeed.io and switch to that user:
+    * `adduser sitespeedio`
+    * `usermod -aG sudo sitespeedio`
+    * `su - sitespeedio`
+6. Make sure that user can use sudo without password: `echo "${USER} ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/sitespeedio"`
+7. Make sure you can install using *npm* without using sudo. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
+8. Install sitespeed.io `EDGEDRIVER_VERSION=89.0.723.0 npm install sitespeed.io -g`
 
-Make sure you install without sudo using npm. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
-
-#### npm
-If you prefer npm, just run:
+Before you start your testing you need to install a browser. Here's how you can install Chrome.
 
 ~~~bash
-npm install sitespeed.io -g
+wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+sudo apt update
+sudo apt install -y google-chrome-stable
 ~~~
 
-#### yarn
-Or with [yarn](https://yarnpkg.com/):
+Try it out:
 
 ~~~bash
-yarn global add sitespeed.io
+sitespeed.io --browsertime.xvfb -n 1 -b chrome https://www.sitespeed.io --video --visualMetrics
 ~~~
 
 ### Windows
