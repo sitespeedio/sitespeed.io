@@ -268,3 +268,15 @@ At the moment there are a couple of limitations running Safari:
 * No built in setting connectivity
 
 You can help us [adding support in Browsertime](https://github.com/sitespeedio/browsertime)!
+
+## Test on iOS simulator
+You can use the iOS simulator to test run tests on different iOS devices. This works good if you use one of the new M1 Macs since it will then have the same CPU as an iPhone. You can read [Catchpoint blog post](https://blog.catchpoint.com/2021/01/28/with-m1-mac-minis-the-future-is-bright-for-mobile-device-testing/).
+
+To get it running you should have a Mac Mini M1 and Xcode installed. Checkout the [install instructions for Mac](https://www.sitespeed.io/documentation/sitespeed.io/installation/#mac).
+
+To run your test you need to sepcify the Safari deviceUDID = choosing what kind of device to use. You can list all your availible devices using `xcrun simctl list devices`.
+
+Then run your test:
+```bash
+sitespeed.io https://www.sitespeed.io -b safari --safari.useSimulator --safari.device UDID YOUR_DEVICE_ID --video --visualMetrics -c 4g
+```
