@@ -17,11 +17,12 @@ jobs:
         node-version: '12.x'
     - name: Install sitespeed.io
       run: npm ci
-    - name: Install dependencies and seup environment
+    - name: Install dependencies
       run: |
         sudo apt-get update
         sudo apt-get upgrade google-chrome-stable -y
-        docker-compose -f test/docker-compose.yml up -d
+    - name: Setup environment
+      run: docker-compose -f test/docker-compose.yml up -d
     - name: Browser versions
       run: |
         google-chrome --version
