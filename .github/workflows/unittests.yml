@@ -22,7 +22,7 @@ jobs:
       run: |
         npm ci
         sudo apt-get update
-        sudo apt-get upgrade google-chrome-stable -y
+        sudo ACCEPT_EULA=Y apt-get upgrade google-chrome-stable -y
     - name: Browser versions
       run: |
         google-chrome --version
