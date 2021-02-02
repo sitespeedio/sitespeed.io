@@ -1,4 +1,9 @@
 # CHANGELOG - sitespeed.io
+
+
+## 16.7.1 - 2021-02-02
+### Fixed
+* Updated to Browsertime 11.3.1 that open/closes the iOS simulator at the start/end of the test.
 ## 16.7.0 - 2021-02-01
 ### Added
 * Updated to Browsertime 11.3.0 with better iOS simulator support. There are still some work to do, but you can try it out with `sitespeed.io https://www.wikipedia.org -b safari --safari.useSimulator --safari.deviceUDID YOUR_DEVICE_ID --video --visualMetrics`. List your device ids with `xcrun simctl list devices`.
