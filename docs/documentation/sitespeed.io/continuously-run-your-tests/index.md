@@ -198,6 +198,8 @@ And then start: `nohup ./loop.sh nyc3-1 &`
 
 To verify that everything works you should tail the log: `tail -f /tmp/sitespeed.io`
 
+If you run on Mac you should use `screen` instead of *nohup*. First open an new screen instance: `screen`. Then start your tests `./loop.sh nyc3-1`.  And then detach your screen `ctrl+A and then press D`. To resume back to the screen use `screen -x`.
+
 ### Stop your tests
 
 Starting your test creates a file named **sitespeed.run** in your current folder. The script on the server will continue to run forever until you remove the control file:
