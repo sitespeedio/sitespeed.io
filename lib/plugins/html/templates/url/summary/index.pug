@@ -15,6 +15,13 @@ block content
     b #{d.browsertime.pageSummary.info.title}
     p !{d.browsertime.pageSummary.info.description}
 
+  if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.markedAsFailure
+    .errors
+      b This test was marked as a failure with the following #{h.plural(d.browsertime.pageSummary.failureMessages.length, 'message')}:
+      ul
+        each failureMessage in d.browsertime.pageSummary.failureMessages
+          li #{failureMessage}
+
   p
     .large All runs:&nbsp;
       each val, index in runPages
