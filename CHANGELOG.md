@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io
 
+## 16.8.0 - 2021-02-08
+### Added
+* Updated Browsertime with the ability to mark a run as a failure. We gonna add more docs and try this ourselved and push it in 17.0 [#3272](https://github.com/sitespeedio/sitespeed.io/pull/3272).
+### Fixed
+* The `--addSlugToKey` command introduced 16.3.0 was broken and inserted the slug at the wrong place. Fixed now and we gonna push it and the documentation on how to use it in 17.0 [#3274](https://github.com/sitespeedio/sitespeed.io/pull/3274).
 
 ## 16.7.1 - 2021-02-02
 ### Fixed
@@ -31,7 +36,7 @@
 ### Fixed
 * Fixed broken URL in Slack message (if you used an alias) [#3254](https://github.com/sitespeedio/sitespeed.io/pull/3254)
 *  Make sure alias from the cli, from file or from script is handled the same way [#3253](https://github.com/sitespeedio/sitespeed.io/pull/3253).
-* Added missing slug in annitation [#3251](https://github.com/sitespeedio/sitespeed.io/pull/3251).
+* Added missing slug in annotation [#3251](https://github.com/sitespeedio/sitespeed.io/pull/3251).
 * Add missing browser/connectivity name in the latest files [#3249](https://github.com/sitespeedio/sitespeed.io/pull/3249).
 
 ## 16.3.0 - 2021-01-13
