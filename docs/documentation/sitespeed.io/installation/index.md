@@ -67,6 +67,7 @@ Install on a fresh Apple Mac M1:
 7. To be able to throttle the connection without adding a sudo password you need to run:
     `echo "${USER} ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/sitespeedio"`
 8. If you plan to run the iOS Simulator, you also need to install Xcode. Ecither do it from the App store or follow [Mac Stadiums guide](https://docs.macstadium.com/docs/install-osx-build-tools) if you have a Apple developer account. Verify that Xcode work by running `xcrun simctl list devices` to list your devices.
+9. If you want to run test on Android devices, you also need ADB. Install it using Homebrew like this: `brew install --cask android-platform-tools`
 
 Now you are ready to install sitespeed.io:
 ~~~bash
@@ -74,6 +75,7 @@ npm install sitespeed.io -g
 ~~~
 
 After that you can also install the browsers that you need for your testing: [Chrome](https://www.google.com/chrome/)/[Firefox](https://www.mozilla.org/en-GB/firefox/new/)/Edge.
+
 
 ### Linux
 
