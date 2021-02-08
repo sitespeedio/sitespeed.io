@@ -38,12 +38,13 @@ When you store metrics for a URL in Graphite, you decide from the beginning how 
 ~~~shell
 [sitespeed]
 pattern = ^sitespeed_io\.
-retentions = 10m:60d,30m:90d
+retentions = 10m:40d
 ~~~
 
-Every metric that is sent to Graphite following the pattern (the namespace starting with sitespeed_io), Graphite prepares storage for it every ten minutes the first 60 days; after that Graphite uses the configuration in [storage-aggregation.conf](https://github.com/sitespeedio/docker-graphite-statsd/blob/main/conf/graphite/storage-aggregation.conf) to aggregate/downsize the metrics the next 90 days.
+Every metric that is sent to Graphite following the pattern (the namespace starting with sitespeed_io), Graphite prepares storage for it every ten minutes the first 40 days.
 
 Depending on how often you run your analysis, you may want to change the storage-schemas.conf. With the current config, if you analyse the same URL within 10 minutes, one of the runs will be discarded. But if you know you only run once an hour, you could increase the setting. Statsd has some really [good documentation](https://github.com/statsd/statsd/blob/master/docs/graphite.md) on how to configure Graphite.
+
 
 In this example with retention of 10 minutes, the metrics you will send will be in Graphite with a 10 minute interval. If you have a larger interval for example one hour and send annotations on specific seconds, you can then see a larger missmatch between the annotation and when the actual metric got into Graphite. If you are sending metrics to Graphite on a per iteration basis the subsequent runs may be discarded as they arrive within the timeframe. Below is an example taking in closer to real-time metrics and falling back to the default retentions.
 
@@ -51,6 +52,14 @@ In this example with retention of 10 minutes, the metrics you will send will be 
 [sitespeed_iterations]
 pattern = run-\d+\.
 retentions = 10s:6h,10m:60d,30m:90d
+~~~
+
+Another example is if wanna use the [Crux plugin](/documentation/sitespeed.io/crux/) to collect Crux data once day. And then you want to stotre that data for one year. Setup a pattern that match the Crux data and configure the retention.
+
+~~~shell
+[sitespeed_crux]
+pattern = ^sitespeed_io\.crux\.
+retentions = 1d:1y
 ~~~
 
 One thing to know if you change your Graphite configuration: ["Any existing metrics created will not automatically adopt the new schema. You must use whisper-resize.py to modify the metrics to the new schema. The other option is to delete existing whisper files (/opt/graphite/storage/whisper) and restart carbon-cache.py for the files to get recreated again."](http://mirabedini.com/blog/?p=517)
@@ -75,6 +84,19 @@ Each URL is by default split into domain and the URL when we send it to Graphite
 If you want metrics from each iteration you can use <code>--graphite.perIteration</code>. Using this will give raw metrics that are not aggregated (min, max, median, mean).
 
 If you use Graphite < 1.0 you need to make sure the tags in the annotations follow the old format, you do that by adding <code>--graphite.arrayTags</code>.
+
+You can choose to send metric per par page and summarized per domain. If you only test a couple of URLs you probably do not need the summarized per domain metrics and you can disable them by adding <code>--graphite.skipSummary</code>.
+
+You can add the slug of the test to the key (`--slug`). This will be the dafault early 2022 and you should start using it now to be able to see screenshots and latest videos directly in Grafana. Use it like this:
+`--graphite.addSlugToKey true --slug firstView --graphite.namespace sitespeed_io.desktop` and it will generate the key structure of **sitespeed_io.desktop.firstvView.**.
+
+### Uprade to use the test slug in the namespace
+In sitespeed.io **17.0.0** we introduced the ability to add the slug of your test as a key to Graphite. It enables the ability to show videos/screenshots and more directly in Grafana. In July 2021 it will be the default behavoir and in early 2022 we will remove the old behavoir. If you have old data you should convert it as soon as possible. When you do that you need add the new dashboards or if you have your own made dashboard, you need to convert them.
+
+There's three ways of converting to the new format:
+1. Run tests side by side and have the double amount of data for a while: Add new tests that sends the metrics with the new structure and when you have the history you, you can remove the data for the old tests and stop those tests.
+2. Move the old data to the new structure in Graphite. Since Graphite store metrics in plain files in a directory structure, you add a new folder structure and move the old data. You will have some downtime for the test when you do it, but you don't need to have multiple tests running at the same time.
+3. Remove the old data and start clean. If you don't need the history, you can just make the switch: remove all data in Graphite, update the dashboards and start the tesst with the `--graphite.addSlugToKey true` flag. 
 
 ### Debug
 If you want to test and verify what the metrics looks like that you send to Graphite you can use *tools/tcp-server.js* to verify what it looks like.
@@ -102,7 +124,7 @@ sitespeed_io.default.pageSummary.www_sitespeed_io._.chrome.native.browsertime.st
 You can read about the keys and the metrics that we send to Graphite in the [metrics documentation](/documentation/sitespeed.io/metrics/).
 
 ### Annotations
-You can send annotations to Graphite to mark when a run happens so you can go from the dashboard to any HTML-results page.
+You can send annotations to Graphite to mark when a run happens so you can go from the dashboard to any HTML-result page.
 
 You do that by configuring the URL that will serve the HTML with the CLI param *resultBaseURL* (the base URL for your S3 or GCS bucket) and configure the HTTP Basic auth username/password used by Graphite. You can do that by setting <code>--graphite.auth LOGIN:PASSWORD</code>.
 
@@ -118,6 +140,8 @@ You can also include a screenshot from the run in the annotation by adding <code
 
 ![Annotation with screenshots]({{site.baseurl}}/img/annotation-with-screenshot.png)
 {: .img-thumbnail-center}
+
+To make sure the annotations match the actual metric point in Grafana you should use <code>--graphite.annotationRetentionMinutes</code>. If you configured your *storage-schemas.conf* file to have a retention of 10 minutes (one new metric every 10 minutes) you should add <code>--graphite.annotationRetentionMinutes 10</code> to your configuration.
 
 ### Use Grafana annotations
 All default dashboards use Graphite annotations. But you can use Grafana built in annotations. That can be good if your organisation is already using them. Note that if you choose to do that, you need to update the dashboards to use Grafana annotations.
