@@ -3,6 +3,7 @@
 ## 16.8.0 - 2021-02-08
 ### Added
 * Updated Browsertime with the ability to mark a run as a failure. We gonna add more docs and try this ourselved and push it in 17.0 [#3272](https://github.com/sitespeedio/sitespeed.io/pull/3272).
+* Updated to latest VideoJS and changed how the video is displayed [#3268](https://github.com/sitespeedio/sitespeed.io/pull/3268).
 ### Fixed
 * The `--addSlugToKey` command introduced 16.3.0 was broken and inserted the slug at the wrong place. Fixed now and we gonna push it and the documentation on how to use it in 17.0 [#3274](https://github.com/sitespeedio/sitespeed.io/pull/3274).
 
