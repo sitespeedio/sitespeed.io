@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+## 16.8.1 - 2021-02-12
+### Fixed
+* Avoid sending slug/domain annotation names that collide. Fixed in [#3279](https://github.com/sitespeedio/sitespeed.io/pull/3279) and reported in [#3277](https://github.com/sitespeedio/sitespeed.io/issues/3277).
 ## 16.8.0 - 2021-02-08
 ### Added
 * Updated Browsertime with the ability to mark a run as a failure. We gonna add more docs and try this ourselved and push it in 17.0 [#3272](https://github.com/sitespeedio/sitespeed.io/pull/3272).
