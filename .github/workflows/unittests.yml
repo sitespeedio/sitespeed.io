@@ -18,9 +18,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-#    - name: Install dependencies  
-#     run: |
-#        npm ci
+   - name: Install dependencies  
+     run: npm ci
 #        sudo apt-get update
 #        sudo ACCEPT_EULA=Y apt-get upgrade google-chrome-stable -y
     - name: Browser versions
