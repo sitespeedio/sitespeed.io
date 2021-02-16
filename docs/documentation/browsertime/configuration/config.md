@@ -173,6 +173,7 @@ Options:
       --preURLDelay                                 Delay between preURL and the URL you want to test (in milliseconds)  [default: 1500]
       --userTimingWhitelist                         All userTimings are captured by default this option takes a regex that will whitelist which userTimings to capture in the results.
       --headless                                    Run the browser in headless mode. Works for Firefox and Chrome.  [boolean] [default: false]
+      --gnirehtet                                   Start gnirehtet and reverse tethering the traffic from your Android phone.  [boolean] [default: false]
       --extension                                   Path to a WebExtension to be installed in the browser. Note that --extension can be passed multiple times.
       --spa                                         Convenient parameter to use if you test a SPA application: will automatically wait for X seconds after last network activity and use hash in file names. Read more: https://www.sitespeed.io/documentation/sitespeed.io/spa/  [boolean] [default: false]
       --browserRestartTries                         If the browser fails to start, you can retry to start it this amount of times.  [number] [default: 3]
