@@ -90,10 +90,10 @@ You can choose to send metric per par page and summarized per domain. If you onl
 You can add the slug of the test to the key (`--slug`). This will be the dafault early 2022 and you should start using it now to be able to see screenshots and latest videos directly in Grafana. Use it like this:
 `--graphite.addSlugToKey true --slug firstView --graphite.namespace sitespeed_io.desktop` and it will generate the key structure of **sitespeed_io.desktop.firstvView.**.
 
-### Uprade to use the test slug in the namespace
-In sitespeed.io **17.0.0** we introduced the ability to add the slug of your test as a key to Graphite. It enables the ability to show videos/screenshots and more directly in Grafana. In July 2021 it will be the default behavoir and in early 2022 we will remove the old behavoir. If you have old data you should convert it as soon as possible. When you do that you need add the new dashboards or if you have your own made dashboard, you need to convert them.
+### Upgrade to use the test slug in the namespace
+In sitespeed.io **17.0.0** we introduced the ability to add the slug of your test as a key to Graphite. It enables the ability to show videos/screenshots and more directly in Grafana. In July 2021 it will be the default behavoir and we will remove the old setup. If you have old data you should convert it as soon as possible. When you do that you need add the new dashboards or if you have your own made dashboard, you need to convert them.
 
-There's three ways of converting to the new format:
+There is at least four ways of converting to the new format:
 1. Run tests side by side and have the double amount of data for a while: Add new tests that sends the metrics with the new structure and when you have the history you, you can remove the data for the old tests and stop those tests.
 2. Move the old data to the new structure in Graphite. Since Graphite store metrics in plain files in a directory structure, you add a new folder structure and move the old data. You will have some downtime for the test when you do it, but you don't need to have multiple tests running at the same time.
 3. Remove the old data and start clean. If you don't need the history, you can just make the switch: remove all data in Graphite, update the dashboards and start the tesst with the `--graphite.addSlugToKey true` flag. 
