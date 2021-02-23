@@ -98,6 +98,16 @@ There is at least four ways of converting to the new format:
 2. Move the old data to the new structure in Graphite. Since Graphite store metrics in plain files in a directory structure, you add a new folder structure and move the old data. You will have some downtime for the test when you do it, but you don't need to have multiple tests running at the same time.
 3. Remove the old data and start clean. If you don't need the history, you can just make the switch: remove all data in Graphite, update the dashboards and start the tesst with the `--graphite.addSlugToKey true` flag. 
 
+#### Change your home made Grafana dashboards
+
+
+![Add a test name as a variable]({{site.baseurl}}/img/add-testname.png)
+{: .img-thumbnail-center}
+
+![Change all the keys direct in the dashboard JSON]({{site.baseurl}}/img/change-dashboard-json.png)
+{: .img-thumbnail-center}
+
+
 ### Debug
 If you want to test and verify what the metrics looks like that you send to Graphite you can use *tools/tcp-server.js* to verify what it looks like.
 
