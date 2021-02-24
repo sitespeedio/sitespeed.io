@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 16.9.0 - UNRELEASED
+## 16.9.0 - 2021-02-24
 ### Added
 * Upgraded to Coach core 6.1 that finds Google reCAPTCHAs [#3284](https://github.com/sitespeedio/sitespeed.io/pull/3284).
 * Upgraded to Browsertime 11.5.0 that makes it easier to use gnirehtet [#3281](https://github.com/sitespeedio/sitespeed.io/pull/3281).
