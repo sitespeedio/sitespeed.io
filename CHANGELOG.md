@@ -1,12 +1,13 @@
 # CHANGELOG - sitespeed.io
 
-## UNRELEASED
+## 16.9.0 - UNRELEASED
 ### Added
 * Upgraded to Coach core 6.1 that finds Google reCAPTCHAs [#3284](https://github.com/sitespeedio/sitespeed.io/pull/3284).
 * Upgraded to Browsertime 11.5.0 that makes it easier to use gnirehtet [#3281](https://github.com/sitespeedio/sitespeed.io/pull/3281).
 
 ### Fixed
 * Upgraded to AXE-core 4.1.2 [#3282](https://github.com/sitespeedio/sitespeed.io/pull/3282)
+* Screenshots was not shown in the screenshot tab as reported in [#3286](https://github.com/sitespeedio/sitespeed.io/issues/3286) fixed in [#3278](https://github.com/sitespeedio/sitespeed.io/pull/3287).
 ## 16.8.1 - 2021-02-12
 ### Fixed
 * Avoid sending slug/domain annotation names that collide. Fixed in [#3279](https://github.com/sitespeedio/sitespeed.io/pull/3279) and reported in [#3277](https://github.com/sitespeedio/sitespeed.io/issues/3277).
