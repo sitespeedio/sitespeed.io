@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+## 16.9.1 - 2021-02-24
+### Fixed
+* The screenshot fix in 16.9.0 introduced an error when you copy latest images to the parent dir (upcoming feature in 17.0). Fixed in [#3288](https://github.com/sitespeedio/sitespeed.io/pull/3288).
 ## 16.9.0 - 2021-02-24
 ### Added
 * Upgraded to Coach core 6.1 that finds Google reCAPTCHAs [#3284](https://github.com/sitespeedio/sitespeed.io/pull/3284).
