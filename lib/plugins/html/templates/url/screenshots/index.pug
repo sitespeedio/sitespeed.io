@@ -1,11 +1,17 @@
-a
-h2 Screenshots
-
 if pageInfo.data.browsertime.run  && pageInfo.data.browsertime.run.screenshots
-     each screenshot in pageInfo.data.browsertime.run.screenshots
+    small 
+        || 
+        each screenshot in pageInfo.data.browsertime.run.screenshots
+            - filename = screenshot.substring(screenshot.lastIndexOf('/') + 1, screenshot.length)
+            a(href='#' + filename) #{filename}
+            | &nbsp;|&nbsp;
+    a
+    h2 Screenshots
+    each screenshot in pageInfo.data.browsertime.run.screenshots
         - filename = screenshot.substring(screenshot.lastIndexOf('/') + 1, screenshot.length)
         - screenshotName = rootPath + screenshot
         - style = options.mobile || options.android || (options.safari && options.safari.ios) ? 'max-width: 50%' : 'max-width: 100%'
+        a(id=filename)
         a(href=screenshotName)
             img.screenshot(src=screenshotName, alt=filename, style=style)
         p #{filename}

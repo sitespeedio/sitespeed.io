@@ -16,24 +16,49 @@ mixin adviceInfo(name, id, perfectScore, node)
           each adviceName, idx in Object.getOwnPropertyNames(node.adviceList).filter(e => node.adviceList[e].score < 100)
             - const advice = node.adviceList[adviceName]
             tr(class=idx % 2 == 0 ? 'odd' : 'even')
-              td(data-title='Title') #{advice.title} (#{adviceName})
+              td(data-title='Title') 
+                b #{advice.title} (#{adviceName})
               td.url(data-title='Advice') #{advice.advice}
               td.number(data-title='Score') #{advice.score}
+            tr.u-hideable
+                td(colspan='3')
+                  b Description: 
+                  i #{advice.description}
             if (advice.offending.length > 0)
               tr.u-hideable
                 td.url.offendingurl(colspan='3')
+                  b Offenders: 
                   ul
                     each offender in advice.offending
-                      li #{offender}
+                      if offender.startsWith('http')
+                        li
+                          a(href=offender) #{h.shortAsset(offender, true)}  
+                      else 
+                        li #{offender}
   else
     p #{perfectScore}
 
 - const advice = pageInfo.data.coach.run ? pageInfo.data.coach.run.advice : pageInfo.data.coach.pageSummary.advice;
 
+small 
+    if advice
+        || 
+        a(href='#coach-perf') Performance advice
+        | &nbsp;|&nbsp;
+        a(href='#coach-bestpractice') Best practice advice
+        | &nbsp;|&nbsp;
+        a(href='#coach-privacy') Privacy advice
+        | &nbsp;|&nbsp;
+        a(href='#page-info') Page info
+        | &nbsp;|&nbsp;
+    if advice.info.technology && advice.info.technology.length > 0 ||  (advice.info.thirdparty && Object.keys(advice.info.thirdparty.toolsByCategory).length > 0)
+        a(href='#technology') Technologies
+        | &nbsp;|&nbsp;
+
 h2 Coach
 p.small
   a(href='https://github.com/sitespeedio/coach') The coach
-  | &nbsp;helps you find performance problems on your web page using web performance best practice rules. And gives you advice on accessibility, privacy and best practices.
+  | &nbsp;helps you find performance problems on your web page using web performance best practice rules. And gives you advice on privacy and best practices.
 
 script(type='text/javascript').
   function toggleRow(toggleElement) {
@@ -57,7 +82,6 @@ script(type='text/javascript').
           - sLabel = 'label normal ' + h.scoreLabel(advice.score)
           - pLabel = 'label normal ' + h.scoreLabel(advice.performance.score)
           - prLabel = 'label normal ' + h.scoreLabel(advice.privacy.score)
-          - aLabel = 'label normal ' + h.scoreLabel(advice.accessibility.score)
           - bLabel = 'label normal ' +  h.scoreLabel(advice.bestpractice.score)
           li.group-item Total score&nbsp;
             span(class=sLabel) #{advice.score}
@@ -70,20 +94,15 @@ script(type='text/javascript').
             | &nbsp;
             span(class=prLabel) #{advice.privacy.score}  
           li.group-item 
-            a(href='#coach-access') Accessibility score
-            | &nbsp;
-            span(class=aLabel) #{advice.accessibility.score}
-          li.group-item 
             a(href='#coach-bestpractice') Best practice score
             | &nbsp;
             span(class=bLabel) #{advice.bestpractice.score}
     .row
       .twelve.columns
-        +adviceInfo('Accessibility advice', 'coach-access','You have a perfect accessibility score!', advice.accessibility)
-
         +adviceInfo('Performance advice','coach-perf','You have a perfect Performance score!', advice.performance)
 
         +adviceInfo('Best practice advice','coach-bestpractice','Your best practice score is perfect!', advice.bestpractice)
 
         +adviceInfo('Privacy advice','coach-privacy','Your privacy score is perfect!', advice.privacy)
     include ./pageInfo.pug
+    include ./technology.pug

@@ -1,0 +1,14 @@
+
+include ../../_tableMixins
+
+if pagexray.cookieNamesThirdParties.length > 0
+    a#third-party-cookies
+    h3 Third party cookies
+
+    .responsive
+    table(data-sortable, id='thirdPartyCookies')
+        +rowHeading(['Cookie name', 'Domain'])
+        each cookie in pagexray.cookieNamesThirdParties
+            tr
+                td(data-title='Name') #{cookie.name} 
+                td.url(data-title='Domain') #{cookie.domain}

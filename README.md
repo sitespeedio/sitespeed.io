@@ -24,7 +24,7 @@ Before we start telling you all about sitespeed.io you should just try it out:
  $ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
  ```
 
- Or using npm (you need Chrome or Firefox installed)
+ Or using npm (you need Chrome, Firefox, Edge or Safari installed or Chrome/Firefox on Android)
 
  ```bash
  $ npm i -g sitespeed.io && sitespeed.io https://www.sitespeed.io/

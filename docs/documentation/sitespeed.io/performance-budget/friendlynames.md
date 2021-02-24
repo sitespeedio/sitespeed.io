@@ -74,7 +74,6 @@
     },
    "score": {
          "score": limit,
-         "accessibility": limit,
          "bestpractice": limit,
          "privacy": limit,
          "performance": limit,

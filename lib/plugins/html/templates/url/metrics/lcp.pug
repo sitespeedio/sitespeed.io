@@ -10,6 +10,7 @@ if timings.largestContentfulPaint
           th Id
         if timings.largestContentfulPaint.url !== ''  
           th URL
+          th Image
         if timings.largestContentfulPaint.tagName  
           th Tag 
         th Render time
@@ -22,6 +23,9 @@ if timings.largestContentfulPaint
         if timings.largestContentfulPaint.url !== ''    
           td  
             a(href=timings.largestContentfulPaint.url) #{timings.largestContentfulPaint.url}
+          td 
+            a(href=timings.largestContentfulPaint.url)
+              img.screenshot(src=timings.largestContentfulPaint.url, alt='LCP', style='width:200px')
         if timings.largestContentfulPaint.tagName 
           td #{timings.largestContentfulPaint.tagName}
         td  #{h.time.ms(timings.largestContentfulPaint.renderTime)}

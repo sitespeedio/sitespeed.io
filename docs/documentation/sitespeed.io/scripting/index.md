@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Use scripts in sitespeed.io to measure a user journey.
-description: With scripts you can simulate a user visiting to miltiple pages, clicking on links, log in, adding items to the cart ... almost measure whatever you want!
+description: With scripts you can simulate a user visiting to multiple pages, clicking on links, log in, adding items to the cart ... almost measure whatever you want!
 keywords: selenium, web performance, sitespeed.io
 nav: documentation
 category: sitespeed.io
@@ -176,7 +176,7 @@ module.exports = {
 ## Debug
 There's a couple of way that makes it easier to debug your scripts:
 * Make sure to [use the log](#log-from-your-script) so you can see what happens in your log output.
-* Either run the script locally on your desktop without XVFB so you can see in the browser window what happens or use  <code>--browsertime.videoParams.debug</code> when you record the video. That way you will get one full video of all your scripts (but no Visual Metrics).
+* Either run the script locally on your desktop without XVFB (using [npm version of sitespeed.io](https://www.npmjs.com/package/sitespeed.io)) so you can see in the browser window what happens. Or if you use Docker you can add <code>--browsertime.videoParams.debug</code> when you record the video. That way you will get one full video of all your scripts (but no Visual Metrics).
 * Use try/catch and await promises so you catch things that doesn't work.
 * If you use plain JavaScript you can copy/paste it and run it in your browsers console to make sure it really works.
 * Take a [screenshot](/documentation/sitespeed.io/scripting/#screenshot) when your script fail to make it easier to see what's going on.
@@ -477,6 +477,17 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
+If you use a configuration file you can pass on options like this:
+~~~json
+{
+    "browsertime": {
+        "my": {
+            "password": "paAssW0rd"
+        }
+    }
+}
+~~~
+
 ### Error handling
 You can try/catch failing commands that throw errors. If an error is not caught in your script, it will be caught in sitespeed.io and the error will be logged and reported in the HTML and to your data storage (Graphite/InfluxDb) under the key *browsertime.statistics.errors*.
 
@@ -634,6 +645,27 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
+### Reuse scripts
+You can break out code in multiple files something like this.
+
+test.js
+~~~javascript
+const example = require('./exampleInclude');
+module.exports = async function(context, commands) {
+  example();
+};
+~~~
+
+exampleInclude.js
+~~~javascript
+module.exports = function() {
+  console.log('This is my include');
+};
+~~~
+
+And then run it:
+```sitespeed.io --multi test.js```
+
 ## Commands
 
 All commands will return a promise and you should await it to fulfil. If some command do not work, we will log that automatically and rethrow the error, so you can catch that and can act on that.
@@ -664,7 +696,7 @@ Start and navigate to the URL and then automatically call the stop() function af
 ~~~javascript
 module.exports = async function(context, commands) {
   // Measure the page and give it the alias StartPage
-  return await commands.measure.start('https://www.sitespeed.io', 'StartPage');
+  return commands.measure.start('https://www.sitespeed.io', 'StartPage');
 };
 ~~~
 
@@ -953,7 +985,7 @@ module.exports = async function(context, commands) {
 ~~~
 
 ### Chrome DevTools Protocol
-Send messages to Chrome using the [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/). This only works in Chrome. You can send and send and get the result.
+Send messages to Chrome using the [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/). This only works in Chrome/Edge at the moment. You can send, send and get and listen on events.
 
 #### cdp.send(command, args)
 Send a command to Chrome and don't expect something back.
@@ -976,6 +1008,20 @@ module.exports = async function(context, commands) {
   const domCounters = await commands.cdp.sendAndGet('Memory.getDOMCounters');
   context.log.info('Memory.getDOMCounters %j', domCounters);
  }
+~~~
+
+#### cdp.on(event, functionOnEvent)
+You can listen to CDP events. Here's an example to get hold of all responses for a page.
+
+~~~javascript
+module.exports = async function(context, commands) {
+  const responses = [];
+  await commands.cdp.on('Network.responseReceived', params => {
+    responses.push(params);
+  });
+  await commands.measure.start('https://www.sitespeed.io/search/');
+  context.log.info('Responses %j', responses);
+};
 ~~~
 
 ### Error

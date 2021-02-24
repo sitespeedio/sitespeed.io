@@ -1,8 +1,46 @@
 - const browsertime = medianRun ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1] : pageInfo.data.browsertime.run 
 
-if  browsertime
+if browsertime
   - const timings = browsertime.timings;
   - const visualMetrics = browsertime.visualMetrics;
+  small 
+    | | 
+    a(href='#browsermetrics') Browser metrics
+    | &nbsp;|&nbsp;
+    if (options.browsertime.visualMetrics)
+      a(href='#visualmetrics') Visual Metrics
+      | &nbsp;|&nbsp;
+    if timings.largestContentfulPaint
+      a(href='#largestContentfulPaint') Largest Contentful Paint
+      | &nbsp;|&nbsp;
+    if browsertime.pageinfo && browsertime.pageinfo.layoutShift !== undefined
+      a(href='#layoutShift') Cumulative Layout Shift
+      | &nbsp;|&nbsp;
+    if browsertime.timings.elementTimings && Object.keys(browsertime.timings.elementTimings).length > 0
+      a(href='#elementTimings') Element Timings
+      | &nbsp;|&nbsp;
+    if browsertime.custom
+      a(href='#custom-scripts') Custom scripts
+      | &nbsp;|&nbsp;
+    if browsertime.extras && Object.keys(browsertime.extras).length > 0
+      a(href='#extra-metrics') Extra metrics
+      | &nbsp;|&nbsp;
+    if options.browsertime.visualElements
+      a(href='#visual-elements') Visual Elements
+      | &nbsp;|&nbsp;
+    if options.browsertime.visualElements
+      a(href='#visual-elements') Visual Elements
+      | &nbsp;|&nbsp;
+    if browsertime.timings.firstInput !== undefined
+      a(href='#firstInput') First Input Delay
+      | &nbsp;|&nbsp;
+    if browsertime.cdp && browsertime.cdp.performance
+      a(href='#cdp-performance') Metrics from CDP
+      | &nbsp;|&nbsp;
+    if timings.serverTimings && timings.serverTimings.length > 0
+      a(href='#server-timings') Server timings
+      | &nbsp;|&nbsp;
+
   - baseHelpURL = rootPath + 'help.html#';
 
   - const defaultVisualMetrics = ['SpeedIndex','FirstVisualChange','LastVisualChange','VisualProgress', 'PerceptualSpeedIndexProgress', 'ContentfulSpeedIndexProgress', 'videoRecordingStart', 'PerceptualSpeedIndex', 'ContentfulSpeedIndex', 'LastMeaningfulPaint', 'LargestImage', 'Heading' ,'VisualReadiness','VisualComplete85', 'VisualComplete95','VisualComplete99'];
@@ -90,13 +128,38 @@ if  browsertime
               a(href=url) #{name}
             td.number #{h.time.ms(value)}
     .one-half.column
+      if (timings.largestContentfulPaint)
+        table
+          tr
+            th(colspan='2') Google Web Vitals
+          if (timings.largestContentfulPaint) 
+            tr
+              td
+                a(href=baseHelpURL + 'largestContentfulPaint') Largest Contentful Paint (LCP)
+              td.number #{h.time.ms(Math.max(timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.renderTime, timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.loadTime))}
+          tr
+            td
+              a(href=baseHelpURL + 'layoutShift') Cumulative Layout Shift (CLS)
+            td.number #{browsertime.pageinfo.layoutShift.toFixed(2)}
+          if browsertime.timings.firstInput !== undefined
+            tr 
+              td
+                a(href=baseHelpURL + 'firstInputDelay')  First Input Delay (FID)
+              td.number #{h.time.ms(browsertime.timings.firstInput.delay)}
+          else 
+            tr 
+              td
+                a(href=baseHelpURL + 'totalBlockingTime') Total Blocking Time (TBT)
+              td.number #{h.time.ms(browsertime.cpu.longTasks.totalBlockingTime)}
       table
         tr
           th(colspan='2') Extra timings
         if (timings.paintTiming && Object.keys(timings.paintTiming).length > 0)
+          - const paintTimingHelper = { "first-contentful-paint": {"name": 'First Contentful Paint (FCP)', "friendly": "first-contentful-paint"},  "first-paint": {"name": 'First Paint', "friendly": "firstPaint" }};
           each value, name in timings.paintTiming
             tr
-              td #{name}
+              td 
+                a(href=baseHelpURL + paintTimingHelper[name].friendly) #{paintTimingHelper[name].name}
               td.number #{h.time.ms(value.toFixed(0))}
         else if timings.firstPaint > -1
           tr
@@ -118,19 +181,15 @@ if  browsertime
             td
               a(href=baseHelpURL + 'timeToFirstInteractive') Time To First Interactive
             td.number #{h.time.ms(timings.timeToFirstInteractive.toFixed(0))}         
-        tr
-          td
-            a(href=baseHelpURL + 'rumSpeedIndex') RUM Speed Index
-          td.number #{h.time.ms(timings.rumSpeedIndex.toFixed(0))}
+        if (timings.largestContentfulPaint) 
+           tr
+            td
+              a(href=baseHelpURL + 'largestContentfulPaint') Largest Contentful Paint (LCP)
+            td.number #{h.time.ms(Math.max(timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.renderTime, timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.loadTime))}
         tr
           td
             a(href=baseHelpURL + 'loadEventEnd') Load Event End
           td.number #{h.time.ms(timings.loadEventEnd.toFixed(0))}
-        if (timings.largestContentfulPaint) 
-           tr
-            td
-              a(href=baseHelpURL + 'largestContentfulPaint') Largest Contentful Paint
-            td.number #{h.time.ms(Math.max(timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.renderTime, timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.loadTime))}
         if (timings.fullyLoaded) 
           tr
             td
@@ -183,9 +242,9 @@ if  browsertime
   else
     p There are no custom configured scripts.
 
-  a#extras-metrics
+  a#extra-metrics
   h3 Extra metrics collected using scripting
-  if browsertime.extras
+  if browsertime.extras && Object.keys(browsertime.extras).length > 0
     table
       tr
         th name

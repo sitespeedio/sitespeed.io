@@ -45,8 +45,9 @@ mixin getRow(name, object, path, runPath, metric, f)
 - btStatistics = h.get(pageInfo.data, 'browsertime.pageSummary.statistics')
 
 if btStatistics
+  a#browsertime-timing-statistics
   h2 Timings Summary
-  - timingMetrics = ['firstPaint', 'loadEventEnd','rumSpeedIndex']
+  - timingMetrics = ['firstPaint', 'loadEventEnd']
   .responsive
     table
       thead

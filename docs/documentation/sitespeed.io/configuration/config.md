@@ -26,6 +26,8 @@ Browser
   --browsertime.postScript, --postScript                                                        Selenium script(s) to run after you test your URL. They will run outside of the analyse phase. Note that --postScript can be passed multiple times.
   --browsertime.delay, --delay                                                                  Delay between runs, in milliseconds. Use it if your web server needs to rest between runs :)
   --browsertime.visualMetrics, --visualMetrics, --speedIndex                                    Calculate Visual Metrics like SpeedIndex, First Visual Change and Last Visual Change. Requires FFMpeg and Python dependencies  [boolean]
+  --browsertime.visualMetricsPerceptual, --visualMetricsPerceptual                              Collect Perceptual Speed Index when you run --visualMetrics.  [boolean]
+  --browsertime.visualMetricsContentful, --visualMetricsContentful                              Collect Contentful Speed Index when you run --visualMetrics.  [boolean]
   --browsertime.visualElements, --visualElements                                                Collect Visual Metrics from elements. Works only with --visualMetrics turned on. By default you will get visual metrics from the largest image within the view port and the largest h1. You can also configure to pickup your own defined elements with --scriptInput.visualElements  [boolean]
   --browsertime.scriptInput.visualElements, --scriptInput.visualElements                        Include specific elements in visual elements. Give the element a name and select it with document.body.querySelector. Use like this: --scriptInput.visualElements name:domSelector . Add multiple instances to measure multiple elements. Visual Metrics will use these elements and calculate when they are visible and fully rendered.
   --browsertime.scriptInput.longTask, --minLongTaskLength                                       Set the minimum length of a task to be categorised as a CPU Long Task. It can never be smaller than 50. The value is in ms and you make Browsertime collect long tasks using --chrome.collectLongTasks or --cpu.  [number] [default: 50]
@@ -33,6 +35,7 @@ Browser
   --browsertime.videoParams.framerate, --videoParams.framerate, --fps                           Frames per second in the video  [default: 30]
   --browsertime.videoParams.crf, --videoParams.crf                                              Constant rate factor for the end result video, see https://trac.ffmpeg.org/wiki/Encode/H.264#crf  [default: 23]
   --browsertime.videoParams.addTimer, --videoParams.addTimer                                    Add timer and metrics to the video  [boolean] [default: true]
+  --browsertime.videoParams.convert, --videoParams.convert                                      Convert the original video to a viewable format (for most video players). Turn that off to make a faster run.  [boolean] [default: true]
   --browsertime.cpu, --cpu                                                                      Easy way to enable both chrome.timeline and CPU long tasks for Chrome and geckoProfile for Firefox  [boolean]
   --browsertime.userTimingWhitelist, --userTimingWhitelist                                      This option takes a regex that will whitelist which userTimings to capture in the results. All userTimings are captured by default. T
   --axe.enable                                                                                  Run axe tests. Axe will run after all other metrics is collected and will add some extra time to each test.  [boolean]
@@ -61,6 +64,7 @@ Firefox
   --browsertime.firefox.geckoProfilerParams.threads, --firefox.geckoProfilerParams.threads        Threads to profile.  [string] [default: "GeckoMain,Compositor,Renderer"]
   --browsertime.firefox.geckoProfilerParams.interval, --firefox.geckoProfilerParams.interval      Sampling interval in ms.  Defaults to 1 on desktop, and 4 on android.  [number]
   --browsertime.firefox.geckoProfilerParams.bufferSize, --firefox.geckoProfilerParams.bufferSize  Buffer size in elements. Default is ~90MB.  [number] [default: 1000000]
+  --browsertime.firefox.geckodriverArgs, --firefox.geckodriverArgs                                Flags passed to Geckodriver see https://firefox-source-docs.mozilla.org/testing/geckodriver/Flags.html. Use it like --firefox.geckodriverArgs="--marionette-port"  --firefox.geckodriverArgs=1027  [string]
   --browsertime.firefox.windowRecorder, --firefox.windowRecorder                                  Use the internal compositor-based Firefox window recorder to emit PNG files for each frame that is a meaningful change.  The PNG output will further be merged into a variable frame rate video for analysis. Use this instead of ffmpeg to record a video (you still need the --video flag).  [boolean] [default: false]
   --browsertime.firefox.disableSafeBrowsing, --firefox.disableSafeBrowsing                        Disable safebrowsing.  [boolean] [default: true]
   --browsertime.firefox.disableTrackingProtection, --firefox.disableTrackingProtection            Disable Tracking Protection.  [boolean] [default: true]
@@ -95,11 +99,12 @@ Chrome
 
 Edge
   --browsertime.edge.edgedriverPath, --edge.edgedriverPath  To run Edge you need to supply the path to the msedgedriver
+  --browsertime.edge.binaryPath, --edge.binaryPath          Path to custom Edge binary
 
 Safari
   --browsertime.safari.ios, --safari.ios                                    Use Safari on iOS. You need to choose browser Safari and iOS to run on iOS. Only works on OS X Catalina and iOS 13 (and later).  [boolean] [default: false]
   --browsertime.safari.deviceName, --safari.deviceName                      Set the device name. Device names for connected devices are shown in iTunes.
-  --browsertime.safari.deviceUDID, --safari.deviceUDID                      Set the device UDID. If Xcode is installed, UDIDs for connected devices are available via the output of instruments(1) and in the Device and Simulators window (accessed in Xcode via "Window > Devices and Simulators")
+  --browsertime.safari.deviceUDID, --safari.deviceUDID                      Set the device UDID. If Xcode is installed, UDIDs for connected devices are available via the output of "xcrun simctl list devices" and in the Device and Simulators window (accessed in Xcode via "Window > Devices and Simulators")
   --browsertime.safari.deviceType, --safari.deviceType                      Set the device type. If the value of safari:deviceType is `iPhone`, safaridriver will only create a session using an iPhone device or iPhone simulator. If the value of safari:deviceType is `iPad`, safaridriver will only create a session using an iPad device or iPad simulator.
   --browsertime.safari.useTechnologyPreview, --safari.useTechnologyPreview  Use Safari Technology Preview  [boolean] [default: false]
   --browsertime.safari.diagnose, --safari.diagnose                          When filing a bug report against safaridriver, it is highly recommended that you capture and include diagnostics generated by safaridriver. Diagnostic files are saved to ~/Library/Logs/com.apple.WebDriver/
@@ -125,21 +130,24 @@ Grafana
   --grafana.annotationScreenshot  Include screenshot (from Browsertime/WebPageTest) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
 
 Graphite
-  --graphite.host                  The Graphite host used to store captured metrics.
-  --graphite.port                  The Graphite port used to store captured metrics.  [default: 2003]
-  --graphite.auth                  The Graphite user and password used for authentication. Format: user:password
-  --graphite.httpPort              The Graphite port used to access the user interface and send annotations event  [default: 8080]
-  --graphite.webHost               The graphite-web host. If not specified graphite.host will be used.
-  --graphite.namespace             The namespace key added to all captured metrics.  [default: "sitespeed_io.default"]
-  --graphite.includeQueryParams    Whether to include query parameters from the URL in the Graphite keys or not  [boolean] [default: false]
-  --graphite.arrayTags             Send the tags as Array or a String. In Graphite 1.0 the tags is a array. Before a String  [boolean] [default: true]
-  --graphite.annotationTitle       Add a title to the annotation sent for a run.
-  --graphite.annotationMessage     Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
-  --graphite.annotationScreenshot  Include screenshot (from Browsertime/WebPageTest) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
-  --graphite.statsd                Uses the StatsD interface  [boolean] [default: false]
-  --graphite.annotationTag         Add a extra tag to the annotation sent for a run. Repeat the --graphite.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
-  --graphite.bulkSize              Break up number of metrics to send with each request.  [number] [default: null]
-  --graphite.perIteration          Send each iteration of metrics to Graphite. By default we only send page summaries (the summaries of all runs) but you can also send all the runs. Make sure to setup statsd or Graphite correctly to handle it.  [boolean] [default: false]
+  --graphite.host                        The Graphite host used to store captured metrics.
+  --graphite.port                        The Graphite port used to store captured metrics.  [default: 2003]
+  --graphite.auth                        The Graphite user and password used for authentication. Format: user:password
+  --graphite.httpPort                    The Graphite port used to access the user interface and send annotations event  [default: 8080]
+  --graphite.webHost                     The graphite-web host. If not specified graphite.host will be used.
+  --graphite.namespace                   The namespace key added to all captured metrics.  [default: "sitespeed_io.default"]
+  --graphite.includeQueryParams          Whether to include query parameters from the URL in the Graphite keys or not  [boolean] [default: false]
+  --graphite.arrayTags                   Send the tags as Array or a String. In Graphite 1.0 the tags is a array. Before a String  [boolean] [default: true]
+  --graphite.annotationTitle             Add a title to the annotation sent for a run.
+  --graphite.annotationMessage           Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
+  --graphite.annotationScreenshot        Include screenshot (from Browsertime/WebPageTest) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
+  --graphite.annotationRetentionMinutes  The retention in minutes, to make annotation match the retention in Graphite.  [number]
+  --graphite.statsd                      Uses the StatsD interface  [boolean] [default: false]
+  --graphite.annotationTag               Add a extra tag to the annotation sent for a run. Repeat the --graphite.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
+  --graphite.addSlugToKey                Add the slug (name of the test) as an extra key in the namespace.  [boolean] [default: false]
+  --graphite.bulkSize                    Break up number of metrics to send with each request.  [number] [default: null]
+  --graphite.skipSummary                 Skip sending summary messages data to Graphite (summaries over a domain).  [boolean] [default: false]
+  --graphite.perIteration                Send each iteration of metrics to Graphite. By default we only send page summaries (the summaries of all runs) but you can also send all the runs. Make sure to setup statsd or Graphite correctly to handle it.  [boolean] [default: false]
 
 Plugins
   --plugins.list    List all configured plugins in the log.  [boolean]
@@ -147,10 +155,11 @@ Plugins
   --plugins.remove  Default plugins that you not want to run. Specify multiple plugin names separated by comma, or repeat the --plugins.remove option
 
 Budget
-  --budget.configPath        Path to the JSON budget file.
-  --budget.suppressExitCode  By default sitespeed.io returns a failure exit code, if the budget fails. Set this to true and sitespeed.io will return exit code 0 independent of the budget.
-  --budget.config            The JSON budget config as a string.
-  --budget.output            The output format of the budget.  [choices: "junit", "tap", "json"]
+  --budget.configPath                                         Path to the JSON budget file.
+  --budget.suppressExitCode                                   By default sitespeed.io returns a failure exit code, if the budget fails. Set this to true and sitespeed.io will return exit code 0 independent of the budget.
+  --budget.config                                             The JSON budget config as a string.
+  --budget.output                                             The output format of the budget.  [choices: "junit", "tap", "json"]
+  --budget.removeWorkingResult, --budget.removePassingResult  Remove the result of URLs that pass the budget. You can use this if you many URL and only care about the ones that fails your budget. All videos/HTML for the working URLs will be removed if you pass this on.  [boolean]
 
 Screenshot
   --browsertime.screenshot                                                                Set to false to disable screenshots  [boolean] [default: true]
@@ -176,19 +185,6 @@ Metrics
   --metrics.filterList  List all configured filters for metrics in the data folder (configuredMetrics.txt)  [boolean] [default: false]
   --metrics.filter      Add/change/remove filters for metrics. If you want to send all metrics, use: *+ . If you want to remove all current metrics and send only the coach score: *- coach.summary.score.*  [array]
 
-WebPageTest
-  --webpagetest.host               The domain of your WebPageTest instance.  [default: "https://www.webpagetest.org"]
-  --webpagetest.key                The API key for you WebPageTest instance.
-  --webpagetest.location           The location for the test  [default: "Dulles:Chrome"]
-  --webpagetest.connectivity       The connectivity for the test.  [default: "Cable"]
-  --webpagetest.runs               The number of runs per URL.  [default: 3]
-  --webpagetest.custom             Execute arbitrary Javascript at the end of a test to collect custom metrics.
-  --webpagetest.file               Path to a script file
-  --webpagetest.script             The WebPageTest script as a string.
-  --webpagetest.includeRepeatView  Do repeat or single views  [boolean] [default: false]
-  --webpagetest.private            Wanna keep the runs private or not  [boolean] [default: true]
-  --webpagetest.timeline           Activates Chrome tracing and get the devtools.timeline (only works for Chrome).  [boolean] [default: false]
-
 Slack
   --slack.hookUrl       WebHook url for the Slack team (check https://<your team>.slack.com/apps/manage/custom-integrations).
   --slack.userName      User name to use when posting status to Slack.  [default: "Sitespeed.io"]
@@ -203,7 +199,7 @@ s3
   --s3.key                The S3 key.
   --s3.secret             The S3 secret.
   --s3.bucketname         Name of the S3 bucket,
-  --s3.path               Override the default folder path in the bucket where the results are uploaded. By default it's "DOMAIN_OR_FILENAME/TIMESTAMP", or the name of the folder if --outputFolder is specified.
+  --s3.path               Override the default folder path in the bucket where the results are uploaded. By default it's "DOMAIN_OR_FILENAME_OR_SLUG/TIMESTAMP", or the name of the folder if --outputFolder is specified.
   --s3.region             The S3 region. Optional depending on your settings.
   --s3.acl                The S3 canned ACL to set. Optional depending on your settings.
   --s3.removeLocalResult  Remove all the local result files after they have been uploaded to S3.  [boolean] [default: false]
@@ -216,7 +212,7 @@ GoogleCloudStorage
   --gcs.bucketname         Name of the Google Cloud storage bucket
   --gcs.public             Make uploaded results to Google Cloud storage publicly readable.  [boolean] [default: false]
   --gcs.gzip               Add content-encoding for gzip to the uploaded files. Read more at https://cloud.google.com/storage/docs/transcoding. If you host your results directly from the bucket, gzip must be set to false  [boolean] [default: false]
-  --gcs.path               Override the default folder path in the bucket where the results are uploaded. By default it's "DOMAIN_OR_FILENAME/TIMESTAMP", or the name of the folder if --outputFolder is specified.
+  --gcs.path               Override the default folder path in the bucket where the results are uploaded. By default it's "DOMAIN_OR_FILENAME_OR_SLUG/TIMESTAMP", or the name of the folder if --outputFolder is specified.
   --gcs.removeLocalResult  Remove all the local result files after they have been uploaded to Google Cloud storage.  [boolean] [default: false]
 
 HTML
@@ -246,6 +242,13 @@ CrUx
   --crux.formFactor  A form factor is the type of device on which a user visits a website.  [string] [choices: "ALL", "DESKTOP", "PHONE", "TABLET"] [default: "ALL"]
   --crux.collect     Choose what data to collect. URL is data for a specific URL, ORIGIN for the domain and ALL for both of them  [string] [choices: "ALL", "URL", "ORIGIN"] [default: "ALL"]
 
+Matrix
+  --matrix.host         The Matrix host.
+  --matrix.accessToken  The Matrix access token.
+  --matrix.room         The default Matrix room. It is alsways used. You can override the room per message type using --matrix.rooms
+  --matrix.messages     Choose what type of message to send to Matrix. There are two types of messages: Error messages and budget messages. Errors are errors that happens through the tests (failures like strarting a test) and budget is test failing against your budget.  [choices: "error", "budget"] [default: ["error","budget"]]
+  --matrix.rooms        Send messages to different rooms. Current message types are [error,budget]. If you want to send error messages to a specific room use --matrix.rooms.error ROOM
+
 Options:
   --version, -V                                                                                           Show version number  [boolean]
   --debugMessages                                                                                         Debug mode logs all internal messages in the message queue to the log.  [boolean] [default: false]
@@ -257,13 +260,15 @@ Options:
   --browsertime.androidRooted, --androidRooted                                                            If your phone is rooted you can use this to set it up following Mozillas best practice for stable metrics.  [boolean] [default: false]
   --browsertime.androidBatteryTemperatureLimit, --androidBatteryTemperatureLimit                          Do the battery temperature need to be below a specific limit before we start the test?
   --browsertime.androidBatteryTemperatureWaitTimeInSeconds, --androidBatteryTemperatureWaitTimeInSeconds  How long time to wait (in seconds) if the androidBatteryTemperatureWaitTimeInSeconds is not met before the next try  [default: 120]
+  --browsertime.androidVerifyNetwork, --androidVerifyNetwork                                              Before a test start, verify that the device has a Internet connection by pinging 8.8.8.8 (or a configurable domain with --androidPingAddress)  [boolean] [default: false]
   --browsertime.iqr                                                                                       Use IQR, or Inter Quartile Range filtering filters data based on the spread of the data. See  https://en.wikipedia.org/wiki/Interquartile_range. In some cases, IQR filtering may not filter out anything. This can happen if the acceptable range is wider than the bounds of your dataset.  [boolean] [default: false]
   --plugins.disable  [array]
   --plugins.load  [array]
   --mobile                                                                                                Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Apple iPhone 6.  [boolean] [default: false]
   --resultBaseURL, --resultBaseUrl                                                                        The base URL to the server serving the HTML result. In the format of https://result.sitespeed.io
   --gzipHAR                                                                                               Compress the HAR files with GZIP.  [boolean] [default: false]
-  --outputFolder                                                                                          The folder where the result will be stored.  [string]
+  --outputFolder                                                                                          The folder where the result will be stored. If you do not set it, the result will be stored in "DOMAIN_OR_FILENAME_OR_SLUG/TIMESTAMP"  [string]
+  --copyLatestFilesToBase                                                                                 Copy the latest screenshots to the root folder (so you can include it in Grafana). Do not work together it --outputFolder.  [boolean] [default: false]
   --firstParty                                                                                            A regex running against each request and categorize it as first vs third party URL. (ex: ".*sitespeed.*")
   --urlAlias                                                                                              Use an alias for the URL (if you feed URLs from a file you can instead have the alias in the file). You need to pass on the same amount of alias as URLs. The alias is used as the name of the URL on the HTML report and in Graphite/InfluxDB. Pass on multiple --urlAlias for multiple alias/URLs. This will override alias in a file.  [string]
   --groupAlias                                                                                            Use an alias for the group/domain. You need to pass on the same amount of alias as URLs. The alias is used as the name of the group in Graphite/InfluxDB. Pass on multiple --groupAlias for multiple alias/groups. This do not work for scripting at the moment.  [string]
@@ -272,6 +277,7 @@ Options:
   --useHash                                                                                               If your site uses # for URLs and # give you unique URLs you need to turn on useHash. By default is it turned off, meaning URLs with hash and without hash are treated as the same URL  [boolean] [default: false]
   --multi                                                                                                 Test multiple URLs within the same browser session (same cache etc). Only works with Browsertime. Use this if you want to test multiple pages (use journey) or want to test multiple pages with scripts. You can mix URLs and scripts (the order will matter): login.js https://www.sitespeed.io/ logout.js - More details: https://www.sitespeed.io/documentation/sitespeed.io/scripting/  [boolean] [default: false]
   --name                                                                                                  Give your test a name.
+  --slug                                                                                                  Give your test a slug. The slug is used when you send the metrics to your data storage to identify the test and the folder of the tests. The max length of the slug is 200 characters and it can only contain a-z A-Z 0-9 and -_ characters.
   --config                                                                                                Path to JSON config file
   --help, -h                                                                                              Show help  [boolean]
 

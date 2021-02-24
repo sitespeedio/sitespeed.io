@@ -59,4 +59,12 @@ block content
       .responsive
         table(data-sortable, id='pages')
           +rowHeading(headings)
-          +rows(pages)
+          +rows(pages, true)
+          if removedUrls.length > 0
+            tr
+              td(colspan=headings.length) 
+                b The following pages metrics/data was removed because they passed the budget configuration.
+            each url in removedUrls
+              tr
+                  td.url.pagesurl(data-title='URL', colspan=headings.length)
+                    a(href= url)= decodeURIComponent(url)

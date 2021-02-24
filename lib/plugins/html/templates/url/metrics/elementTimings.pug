@@ -1,4 +1,4 @@
-if browsertime.timings.elementTimings !== undefined
+if browsertime.timings.elementTimings && Object.keys(browsertime.timings.elementTimings).length > 0
     a#elementTimings
     h3 Element timings
     table
@@ -6,6 +6,7 @@ if browsertime.timings.elementTimings !== undefined
           th Id
           if value.url !== ''  
             th URL
+            th Image
           th Tag 
           th Render time
           th Load time
@@ -17,6 +18,9 @@ if browsertime.timings.elementTimings !== undefined
             if value.url !== ''    
               td  
                 a(href=value.url) #{value.url}
+              td 
+                a(href=value.url)
+                  img.screenshot(src=value.url, alt='LCP', style='width:200px')
             td  #{value.tagName}
             td  #{h.time.ms(value.renderTime)}
             td  #{h.time.ms(value.loadTime)} 

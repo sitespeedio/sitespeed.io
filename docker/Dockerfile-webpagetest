@@ -1,0 +1,14 @@
+ARG version
+FROM sitespeedio/sitespeed.io:${version}
+
+ENV SITESPEED_IO_BROWSERTIME__XVFB true
+ENV SITESPEED_IO_BROWSERTIME__DOCKER true
+
+RUN sudo apt-get update && sudo apt-get install git -y
+
+WORKDIR /webpagetest
+RUN git clone https://github.com/sitespeedio/plugin-webpagetest.git .
+RUN npm install --production
+
+VOLUME /sitespeed.io
+WORKDIR /sitespeed.io

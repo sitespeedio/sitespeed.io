@@ -1,14 +1,21 @@
 - const videoIndex = medianRun ? medianRun.runIndex : iteration;
-- const width = options.mobile ? 'max-width: 400px;' : h.get(options, 'browsertime.chrome.android.package') ? 'max-width: 400px;' : 'width: 100%'
+- const width = options.mobile || options.android || (options.safari && options.safari.useSimulator) ? 'max-width: 400px; margin: 0 auto;' : 'max-width: 800px; margin: 0 auto;'
 
+small
+    || 
+    a(href='#video') Video
+    | &nbsp;|&nbsp;
+    a(href='#download-video') Download
+    | &nbsp;|&nbsp;
 a#video
 h3 Video
-.videoWrapper(style=width)
-  - screenshotName = 'data/screenshots/' + videoIndex + '.' + screenShotType
-  video.video-js.vjs-default-skin.vjs-big-play-centered(controls, preload='none', poster=screenshotName, data-setup='{ "fluid": true, "playbackRates": [0.1, 0.2, 0.5, 1] ,"volumeControl": false}')
-    source(src='data/video/' + videoIndex +'.mp4', type='video/mp4')
+  .videoWrapper(style=width)
+    - screenshotName = 'data/screenshots/' + videoIndex + '.' + screenShotType
+    video.video-js.vjs-default-skin.vjs-big-play-centered(controls, preload='none', poster=screenshotName, data-setup='{ "fluid": true, "playbackRates": [0.1, 0.2, 0.5, 1] ,"volumeControl": false}')
+      source(src='data/video/' + videoIndex +'.mp4', type='video/mp4')
 
-script(src= assetsPath + 'js/video.novtt.min.js')
+  script(src= assetsPath + 'js/video.core.novtt.min.js')
 
+a#download-video
 - const videoPath = 'data/video/' + (iteration ? iteration : medianRun.runIndex ) +'.mp4'
 a.button.button-download(href=videoPath, download=downloadName + '-video.mp4') Download video

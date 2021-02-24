@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Documentation sitespeed.io 14.x
+title: Documentation sitespeed.io 16.x
 description: Read about all you can do with sitespeed.io.
 keywords: tools, documentation, web performance
 nav: documentation
@@ -9,7 +9,7 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Documentation for sitespeed.io.
 ---
 
-# Documentation v14
+# Documentation v16
 
 <img src="{{site.baseurl}}/img/logos/sitespeed.io.png" class="pull-right img-big" alt="sitespeed.io logo" width="200" height="214">
 
@@ -43,6 +43,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Graphite](graphite/) - how to configure and store your metrics in Graphite (and using StatsD).
  * [How to Write a Good Bug Report](bug-report/) - if you write a good bug report, we can spend more time helping you fixing the problem instead of asking you questions
  * [Lighthouse](lighthouse/) - run Lighthouse from sitespeed.io.
+ * [Matrix](matrix/) - send messages to your Matrix client.
  * [Mobile phones](mobile-phones/) - test using your mobile phone. Chrome on Android and Safari on iOS.
  * [Performance Budget](performance-budget/) - make sure you are within your performance budget.
  * [Plugins](plugins/) - list/disable/enable or create your own plugin.

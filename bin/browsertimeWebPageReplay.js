@@ -174,7 +174,12 @@ async function runBrowsertime() {
   const engine = new browsertime.Engine(btOptions);
   const urls = getURLs(parsed.argv._);
 
-  await testURLs(engine, urls);
+  try {
+    await testURLs(engine, urls);
+  } catch (e) {
+    console.error('Could not run ' + e);
+    process.exit(1);
+  }
 
   process.exit();
 }

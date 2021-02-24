@@ -55,7 +55,6 @@ firstParty.requests
 firstParty.transferSize
 firstParty.contentSize
 score.score
-score.accessibility
 score.bestpractice
 score.privacy
 score.performance

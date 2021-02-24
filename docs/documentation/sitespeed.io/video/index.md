@@ -37,12 +37,15 @@ To collect Visual Metrics like firstVisualChange, SpeedIndex, visualComplete85%,
 If you want to keep the video when you collect metrics or only want the video, just add <code>--video</code> to the list of parameters.
 
 ### Firefox window recorder
-If you use Firefox you can use the built in window recoder (instead of using FFMPEG) to record the video. The Mozilla team uses it to make sure recording the video doesn't add any overhead. Turn it on with  <code>--firefox.windowRecorder</code>.
+If you use Firefox you can use the built in window recorder (instead of using FFMPEG) to record the video. The Mozilla team uses it to make sure recording the video doesn't add any overhead. Turn it on with  <code>--firefox.windowRecorder</code>.
 
 ### Video quality
 You can change the number of frames per second (default is 30) by using <code>--browsertime.videoParams.framerate</code>. If you have a large server with a lot of extra CPU you can increase the amount. You should probably not decrease it lower than 30 since it will affect the precision of Visual Metrics.
 
 You can also change the constant rate factor (see [https://trac.ffmpeg.org/wiki/Encode/H.264#crf](https://trac.ffmpeg.org/wiki/Encode/H.264#crf)) to change the quality of the video. CRF is added in the second step (we first record the video as lossless as possible).
+
+### Skip converting the video
+When you record a video, the video is first recorded with settings to make the video recording as fast as possible and with low overhead. Then the video is converted to a format that better works in most video players. If you want to speed up your tests, you may want to remove the video convertion, you can do that with <code>--browsertime.videoParams.convert false</code>. 
 
 ### Remove timer and metrics from the video
 The video will by default include a timer and show when visual metrics happens. If you want the video without any text/timer you just add <code>--browsertime.videoParams.addTimer false</code>.
