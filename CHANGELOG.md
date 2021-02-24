@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+## 16.9.2 - 2021-02-24
+### Fixed
+* Another screenshot fix, to make sure we support whatever image format when we copy the image from the last run [#3290](https://github.com/sitespeedio/sitespeed.io/pull/3290).
 ## 16.9.1 - 2021-02-24
 ### Fixed
 * The screenshot fix in 16.9.0 introduced an error when you copy latest images to the parent dir (upcoming feature in 17.0). Fixed in [#3288](https://github.com/sitespeedio/sitespeed.io/pull/3288).
