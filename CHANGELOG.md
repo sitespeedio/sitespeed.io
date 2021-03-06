@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+## 16.9.3 - UNRELEASED
+### Fixed
+* The Lighthouse plugin was upgraded to Lighthouse 7.2.0 and fixed broken support for alias.
+* Updated to AXE-core 4.1.3 [#3302](https://github.com/sitespeedio/sitespeed.io/pull/3302).
 ## 16.9.2 - 2021-02-24
 ### Fixed
 * Another screenshot fix, to make sure we support whatever image format when we copy the image from the last run [#3290](https://github.com/sitespeedio/sitespeed.io/pull/3290).
