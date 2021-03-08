@@ -1,4 +1,4 @@
-FROM sitespeedio/webbrowsers:chrome-88.0-firefox-84.0-edge-89.0-dev
+FROM sitespeedio/webbrowsers:chrome-89.0-firefox-86.0-edge-89.0-dev
 
 ENV SITESPEED_IO_BROWSERTIME__XVFB true
 ENV SITESPEED_IO_BROWSERTIME__DOCKER true
@@ -25,7 +25,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY package.* /usr/src/app/
-RUN EDGEDRIVER_VERSION=89.0.723.0 npm install --production
+RUN npm install --production
 COPY . /usr/src/app
 
 COPY docker/scripts/start.sh /start.sh

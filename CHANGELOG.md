@@ -1,6 +1,10 @@
 # CHANGELOG - sitespeed.io
 
-## 16.9.3 - UNRELEASED
+## 16.10.0 - UNRELEASED
+
+### Added
+* Updated to [Browsertime 11.6.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1160---2021-03-08) with Chromedriver 89, Edgedriver 89.
+* Updated Dockert containers to use Chrome 89 and Firefox 86.
 ### Fixed
 * The Lighthouse plugin was upgraded to Lighthouse 7.2.0 and fixed broken support for alias.
 * Updated to AXE-core 4.1.3 [#3302](https://github.com/sitespeedio/sitespeed.io/pull/3302).

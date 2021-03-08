@@ -52,6 +52,8 @@ firefox
       --firefox.geckoProfilerParams.threads     Threads to profile.  [string] [default: "GeckoMain,Compositor,Renderer"]
       --firefox.geckoProfilerParams.interval    Sampling interval in ms.  Defaults to 1 on desktop, and 4 on android.  [number]
       --firefox.geckoProfilerParams.bufferSize  Buffer size in elements. Default is ~90MB.  [number] [default: 13107200]
+      --firefox.perfStats                       Collect gecko performance statistics as measured internally by the firefox browser. See https://searchfox.org/mozilla-central/source/tools/performance/PerfStats.h#24-33  [boolean] [default: false]
+      --firefox.perfStatsParams.mask            Mask to decide which features to enable  [number] [default: 4294967295]
       --firefox.collectMozLog                   Collect the MOZ HTTP log (by default). See --firefox.setMozLog if you need to specify the logs you wish to gather.  [boolean]
       --firefox.setMozLog                       Use in conjunction with firefox.collectMozLog to set MOZ_LOG to something specific. Without this, the HTTP logs will be collected by default  [default: "timestamp,nsHttp:5,cache2:5,nsSocketTransport:5,nsHostResolver:5"]
       --firefox.disableBrowsertimeExtension     Disable installing the browsertime extension.  [boolean]
@@ -77,6 +79,7 @@ video
       --videoParams.createFilmstrip    Create filmstrip screenshots.  [boolean] [default: true]
       --videoParams.nice               Use nice when running FFMPEG during the run. A value from -20 to 19  https://linux.die.net/man/1/nice  [default: 0]
       --videoParams.convert            Convert the original video to a viewable format (for most video players). Turn that off to make a faster run.  [boolean] [default: true]
+      --videoParams.threads            Number of threads to use for video recording. Default is determined by ffmpeg.  [default: 0]
 
 edge
       --edge.edgedriverPath  Path to custom msedgedriver version (need to match your Egde version).
