@@ -4,10 +4,12 @@
 
 ### Added
 * Updated to [Browsertime 11.6.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1160---2021-03-08) with Chromedriver 89, Edgedriver 89.
-* Updated Dockert containers to use Chrome 89 and Firefox 86.
+* Updated Docker containers to use Chrome 89 and Firefox 86.
+
 ### Fixed
 * The Lighthouse plugin was upgraded to Lighthouse 7.2.0 and fixed broken support for alias.
 * Updated to AXE-core 4.1.3 [#3302](https://github.com/sitespeedio/sitespeed.io/pull/3302).
+* More fixes for showing correct screenshots [#3305](https://github.com/sitespeedio/sitespeed.io/pull/3305) and [#3306](https://github.com/sitespeedio/sitespeed.io/pull/3306).
 ## 16.9.2 - 2021-02-24
 ### Fixed
 * Another screenshot fix, to make sure we support whatever image format when we copy the image from the last run [#3290](https://github.com/sitespeedio/sitespeed.io/pull/3290).
