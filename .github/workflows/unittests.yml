@@ -20,8 +20,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install dependencies  
       run: npm ci
-#        sudo apt-get update
-#        sudo ACCEPT_EULA=Y apt-get upgrade google-chrome-stable -y
+        sudo apt-get update
+        sudo ACCEPT_EULA=Y apt-get upgrade google-chrome-stable -y
     - name: Browser versions
       run: |
         google-chrome --version
