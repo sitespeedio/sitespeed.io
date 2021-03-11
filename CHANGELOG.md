@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-## 16.10.0 - UNRELEASED
+## 16.10.0 - 2021-03-11
 
 ### Added
 * Updated to [Browsertime 11.6.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1160---2021-03-08) with Chromedriver 89, Edgedriver 89.
