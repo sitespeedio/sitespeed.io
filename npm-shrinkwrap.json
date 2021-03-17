@@ -752,9 +752,9 @@
       }
     },
     "@types/node": {
-      "version": "14.14.33",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-14.14.33.tgz",
-      "integrity": "sha512-oJqcTrgPUF29oUP8AsUqbXGJNuPutsetaa9kTQAQce5Lx5dTYWV02ScBiT/k1BX/Z7pKeqedmvp39Wu4zR7N7g=="
+      "version": "14.14.35",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-14.14.35.tgz",
+      "integrity": "sha512-Lt+wj8NVPx0zUmUwumiVXapmaLUcAk3yPuHCFVXras9k5VT9TdhJqKqGVUQCD60OTMCl0qxJ57OiTL0Mic3Iag=="
     },
     "abbrev": {
       "version": "1.1.1",
@@ -1099,9 +1099,9 @@
       }
     },
     "browsertime": {
-      "version": "11.6.1",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-11.6.1.tgz",
-      "integrity": "sha512-UtJVd7DcFNUx1xTmRuXFNCZ5q3uMJ28lXLnw4YlaqeGwbFlnvja6tvw7mTUvff81IodGiArzrybgNL8zI/5vCA==",
+      "version": "11.6.2",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-11.6.2.tgz",
+      "integrity": "sha512-y1zAiV1vUHqqbllw6gCrzjA7jgfmbApikbHq8eBaH0+ZHRHbAKDOczG7jB4iT6T13Tj7ihoDy2yMO7zUhJwBAg==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",
@@ -1127,7 +1127,7 @@
         "lodash.merge": "4.6.2",
         "lodash.pick": "4.4.0",
         "lodash.set": "4.3.2",
-        "selenium-webdriver": "4.0.0-beta.1",
+        "selenium-webdriver": "4.0.0-beta.2",
         "speedline-core": "1.4.3",
         "yargs": "16.2.0"
       }
@@ -5746,9 +5746,9 @@
       }
     },
     "selenium-webdriver": {
-      "version": "4.0.0-beta.1",
-      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.0.0-beta.1.tgz",
-      "integrity": "sha512-DJ10z6Yk+ZBaLrt1CLElytQ/FOayx29ANKDtmtyW1A6kCJx3+dsc5fFMOZxwzukDniyYsC3OObT5pUAsgkjpxQ==",
+      "version": "4.0.0-beta.2",
+      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.0.0-beta.2.tgz",
+      "integrity": "sha512-uuNl3T1JjhrXCO4UAAy+iIIgZ/PqgYNiYvy+yfWCY+x2vHH9y7tIdD9a/q1rwbf/5jD/ENwYlVuNj46uIngknA==",
       "requires": {
         "jszip": "^3.5.0",
         "rimraf": "^2.7.1",
