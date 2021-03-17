@@ -9,3 +9,6 @@ if d.browsertime && d.browsertime.har
     - const harName = 'data/browsertime' + harEnding
     - const harDownloadName = downloadName + harEnding
     a.button.button-download(href=harName, download=harDownloadName) Download HAR    
+if options.browsertime.chrome && options.browsertime.chrome.collectNetLog
+    - const netlogPath = 'data/chromeNetlog-' + (iteration ? iteration : 1) + '.json.gz'
+    a.button.button-download(href=netlogPath, download=downloadName + '-netlog.json.gz') Download netlog
