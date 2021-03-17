@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io
 
+## 16.10.2 - 2021-03-17
+### Fixed
+* Added missing download link in the HTML for the Chrome netlog [#3315](https://github.com/sitespeedio/sitespeed.io/pull/3315)
 ## 16.10.1 - 2021-03-17
 ### Fixed
 * Updated to [Browsertime 11.6.2](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1162---2021-03-17) with new Selenium beta 4 and a fix for getting the netlog for Chrome on Android.
