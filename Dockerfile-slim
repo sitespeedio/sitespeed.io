@@ -1,4 +1,4 @@
-FROM node:12.19.0-buster-slim
+FROM node:14.16.0-buster-slim
 
 ENV SITESPEED_IO_BROWSERTIME__DOCKER true
 ENV SITESPEED_IO_BROWSERTIME__VIDEO false
