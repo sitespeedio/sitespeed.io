@@ -69,6 +69,8 @@ docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --
 
 You will get result as you would with running this normally with summaries and waterfall graphs.
 
+If your container cannot see the device, make sure that you do not have the adb server running on the host (stop it with `adb kill-server`). Your phone can only be atatched to one adb server at a time.
+
 ### Connectivity
 
 If you run by default, the phone will use the current connection.
