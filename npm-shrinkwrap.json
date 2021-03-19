@@ -125,35 +125,53 @@
       }
     },
     "@devicefarmer/adbkit": {
-      "version": "2.11.3",
-      "resolved": "https://registry.npmjs.org/@devicefarmer/adbkit/-/adbkit-2.11.3.tgz",
-      "integrity": "sha512-rsgWREAvSRQjdP9/3GoAV6Tq+o97haywgbTfCgt5yUqiDpaaq3hlH9FTo9XsdG8x+Jd0VQ9nTC2IXsDu8JGRSA==",
+      "version": "3.2.0",
+      "resolved": "https://registry.npmjs.org/@devicefarmer/adbkit/-/adbkit-3.2.0.tgz",
+      "integrity": "sha512-wfpaoASfRKBBAdyECHViVC534AVethZOMTkECLc6yf+qK46AROpAU3WWT15FuqeYjdQNnAY0SXVy0Y+gysTEZg==",
       "requires": {
-        "@devicefarmer/adbkit-logcat": "^1.1.0",
-        "@devicefarmer/adbkit-monkey": "~1.0.1",
-        "bluebird": "~2.9.24",
-        "commander": "^2.3.0",
-        "debug": "~2.6.3",
+        "@devicefarmer/adbkit-logcat": "^2.1.1",
+        "@devicefarmer/adbkit-monkey": "~1.1.0",
+        "bluebird": "~3.7",
+        "commander": "^6.2.1",
+        "debug": "~4.3.1",
         "node-forge": "^0.10.0",
-        "split": "~0.3.3"
+        "split": "~1.0.1"
       },
       "dependencies": {
         "bluebird": {
-          "version": "2.9.34",
-          "resolved": "https://registry.npmjs.org/bluebird/-/bluebird-2.9.34.tgz",
-          "integrity": "sha1-L3tOyAIWMoqf3evfacjUlC/v99g="
+          "version": "3.7.2",
+          "resolved": "https://registry.npmjs.org/bluebird/-/bluebird-3.7.2.tgz",
+          "integrity": "sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg=="
+        },
+        "commander": {
+          "version": "6.2.1",
+          "resolved": "https://registry.npmjs.org/commander/-/commander-6.2.1.tgz",
+          "integrity": "sha512-U7VdrJFnJgo4xjrHpTzu0yrHPGImdsmD95ZlgYSEajAn2JKzDhDTPG9kBTefmObL2w/ngeZnilk+OV9CG3d7UA=="
+        },
+        "debug": {
+          "version": "4.3.1",
+          "resolved": "https://registry.npmjs.org/debug/-/debug-4.3.1.tgz",
+          "integrity": "sha512-doEwdvm4PCeK4K3RQN2ZC2BYUBaxwLARCqZmMjtF8a51J2Rb0xpVloFRnCODwqjpwnAoao4pelN8l3RJdv3gRQ==",
+          "requires": {
+            "ms": "2.1.2"
+          }
+        },
+        "ms": {
+          "version": "2.1.2",
+          "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz",
+          "integrity": "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w=="
         }
       }
     },
     "@devicefarmer/adbkit-logcat": {
-      "version": "1.1.0",
-      "resolved": "https://registry.npmjs.org/@devicefarmer/adbkit-logcat/-/adbkit-logcat-1.1.0.tgz",
-      "integrity": "sha512-K90P5gUXM/w+yzLvJIRQ+tJooNU6ipUPPQkljtPJ0laR66TGtpt4Gqsjm0n9dPHK1W5KGgU1R5wnCd6RTSlPNA=="
+      "version": "2.1.1",
+      "resolved": "https://registry.npmjs.org/@devicefarmer/adbkit-logcat/-/adbkit-logcat-2.1.1.tgz",
+      "integrity": "sha512-Wu9g/P6QatOtCr7D/HjjIN84Q6XhAOZLGf941HR2SMWZI7B/WwzxMpUSQN/d/lZT8qcxmH40X16p6GxQnlI6LQ=="
     },
     "@devicefarmer/adbkit-monkey": {
-      "version": "1.0.1",
-      "resolved": "https://registry.npmjs.org/@devicefarmer/adbkit-monkey/-/adbkit-monkey-1.0.1.tgz",
-      "integrity": "sha512-HilPrVrCosYWqSyjfpDtaaN1kJwdlBpS+IAflP3z+e7nsEgk3JGJf1Vg0NgHJooTf5HDfXSyZqMVg+5jvXCK0g==",
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/@devicefarmer/adbkit-monkey/-/adbkit-monkey-1.1.0.tgz",
+      "integrity": "sha512-De6bm/IQXTeYI0/fMO+lddEmNCenTOsHMqCga7oGWL1x71VsOlrytn0Kqso0Rzq96xzizMPZ8jgoGG5M6f2baQ==",
       "requires": {
         "async": "~0.2.9"
       }
@@ -638,9 +656,9 @@
       }
     },
     "@sitespeed.io/geckodriver": {
-      "version": "0.27.0",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/geckodriver/-/geckodriver-0.27.0.tgz",
-      "integrity": "sha512-+4f9gevqerqksOZHu7/hnXYLzAz6prW132f/YCqt/HrS3ft9C3La2pg4Kbqw7JyHazIPJat13AV2c0gH/DJIqQ==",
+      "version": "0.29.0",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/geckodriver/-/geckodriver-0.29.0.tgz",
+      "integrity": "sha512-eAklu9VvKJjlgMBxMzhODQAlT8LiVafyyc2yKMKHwIOGJH/Q4w1gnP/P0iqJmJXh2MziQ1B/hX1+vueq22VrjA==",
       "requires": {
         "node-downloader-helper": "1.0.13",
         "node-stream-zip": "1.11.2",
@@ -1099,15 +1117,15 @@
       }
     },
     "browsertime": {
-      "version": "11.6.3",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-11.6.3.tgz",
-      "integrity": "sha512-pyEWR+1wZnkPL6RuN9fvE/7yzhNnN2ppetqMsEoIfCCDys8O2bmeVGSLmuvUT8gskbwaoRqYZ9S9RccEoiFOMA==",
+      "version": "12.0.0-alpha.1",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-12.0.0-alpha.1.tgz",
+      "integrity": "sha512-nAerH///ol/0zKgjV3Fhjvy93aEEQya6CihxtxxVw6eVENeAGYSTZgls8gMB9gqYK+QqgWdkx66gSRmGYUh8PQ==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
-        "@devicefarmer/adbkit": "2.11.3",
+        "@devicefarmer/adbkit": "3.2.0",
         "@sitespeed.io/chromedriver": "89.0.4389-23",
         "@sitespeed.io/edgedriver": "89.0.774-8",
-        "@sitespeed.io/geckodriver": "0.27.0",
+        "@sitespeed.io/geckodriver": "0.29.0",
         "@sitespeed.io/throttle": "2.0.2",
         "@sitespeed.io/tracium": "0.3.3",
         "btoa": "1.2.1",
@@ -1473,7 +1491,8 @@
     "commander": {
       "version": "2.15.1",
       "resolved": "https://registry.npmjs.org/commander/-/commander-2.15.1.tgz",
-      "integrity": "sha512-VlfT9F3V0v+jr4yxPc5gg9s62/fIVWsd2Bk2iD435um1NlGMYdVCq+MjcXnhYq2icNOizHr1kK+5TI6H0Hy0ag=="
+      "integrity": "sha512-VlfT9F3V0v+jr4yxPc5gg9s62/fIVWsd2Bk2iD435um1NlGMYdVCq+MjcXnhYq2icNOizHr1kK+5TI6H0Hy0ag==",
+      "dev": true
     },
     "compressible": {
       "version": "2.0.18",
@@ -1647,6 +1666,7 @@
       "version": "2.6.9",
       "resolved": "https://registry.npmjs.org/debug/-/debug-2.6.9.tgz",
       "integrity": "sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==",
+      "dev": true,
       "requires": {
         "ms": "2.0.0"
       }
@@ -4278,7 +4298,8 @@
     "ms": {
       "version": "2.0.0",
       "resolved": "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz",
-      "integrity": "sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g="
+      "integrity": "sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=",
+      "dev": true
     },
     "mute-stream": {
       "version": "0.0.7",
@@ -5969,9 +5990,9 @@
       }
     },
     "split": {
-      "version": "0.3.3",
-      "resolved": "https://registry.npmjs.org/split/-/split-0.3.3.tgz",
-      "integrity": "sha1-zQ7qXmOiEd//frDwkcQTPi0N0o8=",
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/split/-/split-1.0.1.tgz",
+      "integrity": "sha512-mTyOoPbrivtXnwnIxZRFYRrPNtEFKlpB2fvjSnCQUiAA6qAZzqwna5envK4uk6OIeP17CsdF3rSBGYVBsU0Tkg==",
       "requires": {
         "through": "2"
       }

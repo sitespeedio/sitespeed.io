@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io
 
+### UNRELEASED
+### Added
+* Updated to Browsertime 12.0.0-alpha.1
+
 ## 16.10.3 - 2021-03-17
 ### Fixed
 * Updated to Browsertime 11.6.3 since last version broke getting the netlog on desktop for Chrome.
