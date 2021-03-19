@@ -1,8 +1,11 @@
 # CHANGELOG - sitespeed.io
 
-### UNRELEASED
+We plan to release 17.0.0 stable sometime in April 2021!
+
+### 17.0.0-alpha.1 - 2021-03-19
 ### Added
 * Updated to Browsertime 12.0.0-alpha.1
+* Added ´--preWarmServer`.
 
 ## 16.10.3 - 2021-03-17
 ### Fixed
