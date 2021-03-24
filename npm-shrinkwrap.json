@@ -125,53 +125,35 @@
       }
     },
     "@devicefarmer/adbkit": {
-      "version": "3.2.0",
-      "resolved": "https://registry.npmjs.org/@devicefarmer/adbkit/-/adbkit-3.2.0.tgz",
-      "integrity": "sha512-wfpaoASfRKBBAdyECHViVC534AVethZOMTkECLc6yf+qK46AROpAU3WWT15FuqeYjdQNnAY0SXVy0Y+gysTEZg==",
+      "version": "2.11.3",
+      "resolved": "https://registry.npmjs.org/@devicefarmer/adbkit/-/adbkit-2.11.3.tgz",
+      "integrity": "sha512-rsgWREAvSRQjdP9/3GoAV6Tq+o97haywgbTfCgt5yUqiDpaaq3hlH9FTo9XsdG8x+Jd0VQ9nTC2IXsDu8JGRSA==",
       "requires": {
-        "@devicefarmer/adbkit-logcat": "^2.1.1",
-        "@devicefarmer/adbkit-monkey": "~1.1.0",
-        "bluebird": "~3.7",
-        "commander": "^6.2.1",
-        "debug": "~4.3.1",
+        "@devicefarmer/adbkit-logcat": "^1.1.0",
+        "@devicefarmer/adbkit-monkey": "~1.0.1",
+        "bluebird": "~2.9.24",
+        "commander": "^2.3.0",
+        "debug": "~2.6.3",
         "node-forge": "^0.10.0",
-        "split": "~1.0.1"
+        "split": "~0.3.3"
       },
       "dependencies": {
         "bluebird": {
-          "version": "3.7.2",
-          "resolved": "https://registry.npmjs.org/bluebird/-/bluebird-3.7.2.tgz",
-          "integrity": "sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg=="
-        },
-        "commander": {
-          "version": "6.2.1",
-          "resolved": "https://registry.npmjs.org/commander/-/commander-6.2.1.tgz",
-          "integrity": "sha512-U7VdrJFnJgo4xjrHpTzu0yrHPGImdsmD95ZlgYSEajAn2JKzDhDTPG9kBTefmObL2w/ngeZnilk+OV9CG3d7UA=="
-        },
-        "debug": {
-          "version": "4.3.1",
-          "resolved": "https://registry.npmjs.org/debug/-/debug-4.3.1.tgz",
-          "integrity": "sha512-doEwdvm4PCeK4K3RQN2ZC2BYUBaxwLARCqZmMjtF8a51J2Rb0xpVloFRnCODwqjpwnAoao4pelN8l3RJdv3gRQ==",
-          "requires": {
-            "ms": "2.1.2"
-          }
-        },
-        "ms": {
-          "version": "2.1.2",
-          "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz",
-          "integrity": "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w=="
+          "version": "2.9.34",
+          "resolved": "https://registry.npmjs.org/bluebird/-/bluebird-2.9.34.tgz",
+          "integrity": "sha1-L3tOyAIWMoqf3evfacjUlC/v99g="
         }
       }
     },
     "@devicefarmer/adbkit-logcat": {
-      "version": "2.1.1",
-      "resolved": "https://registry.npmjs.org/@devicefarmer/adbkit-logcat/-/adbkit-logcat-2.1.1.tgz",
-      "integrity": "sha512-Wu9g/P6QatOtCr7D/HjjIN84Q6XhAOZLGf941HR2SMWZI7B/WwzxMpUSQN/d/lZT8qcxmH40X16p6GxQnlI6LQ=="
+      "version": "1.1.0",
+      "resolved": "https://registry.npmjs.org/@devicefarmer/adbkit-logcat/-/adbkit-logcat-1.1.0.tgz",
+      "integrity": "sha512-K90P5gUXM/w+yzLvJIRQ+tJooNU6ipUPPQkljtPJ0laR66TGtpt4Gqsjm0n9dPHK1W5KGgU1R5wnCd6RTSlPNA=="
     },
     "@devicefarmer/adbkit-monkey": {
-      "version": "1.1.0",
-      "resolved": "https://registry.npmjs.org/@devicefarmer/adbkit-monkey/-/adbkit-monkey-1.1.0.tgz",
-      "integrity": "sha512-De6bm/IQXTeYI0/fMO+lddEmNCenTOsHMqCga7oGWL1x71VsOlrytn0Kqso0Rzq96xzizMPZ8jgoGG5M6f2baQ==",
+      "version": "1.0.1",
+      "resolved": "https://registry.npmjs.org/@devicefarmer/adbkit-monkey/-/adbkit-monkey-1.0.1.tgz",
+      "integrity": "sha512-HilPrVrCosYWqSyjfpDtaaN1kJwdlBpS+IAflP3z+e7nsEgk3JGJf1Vg0NgHJooTf5HDfXSyZqMVg+5jvXCK0g==",
       "requires": {
         "async": "~0.2.9"
       }
@@ -1117,12 +1099,12 @@
       }
     },
     "browsertime": {
-      "version": "12.0.0-alpha.1",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-12.0.0-alpha.1.tgz",
-      "integrity": "sha512-nAerH///ol/0zKgjV3Fhjvy93aEEQya6CihxtxxVw6eVENeAGYSTZgls8gMB9gqYK+QqgWdkx66gSRmGYUh8PQ==",
+      "version": "12.0.0-alpha.2",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-12.0.0-alpha.2.tgz",
+      "integrity": "sha512-Hee8TAML1zAs6tu4dqPiu0Rt8YzzfEgWHK72cu4nhoXwZVu+Od2WQv/a5xrv4+6TXk3yEQB6Zzc0pLyIZXXMWQ==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
-        "@devicefarmer/adbkit": "3.2.0",
+        "@devicefarmer/adbkit": "2.11.3",
         "@sitespeed.io/chromedriver": "89.0.4389-23",
         "@sitespeed.io/edgedriver": "89.0.774-8",
         "@sitespeed.io/geckodriver": "0.29.0",
@@ -1491,8 +1473,7 @@
     "commander": {
       "version": "2.15.1",
       "resolved": "https://registry.npmjs.org/commander/-/commander-2.15.1.tgz",
-      "integrity": "sha512-VlfT9F3V0v+jr4yxPc5gg9s62/fIVWsd2Bk2iD435um1NlGMYdVCq+MjcXnhYq2icNOizHr1kK+5TI6H0Hy0ag==",
-      "dev": true
+      "integrity": "sha512-VlfT9F3V0v+jr4yxPc5gg9s62/fIVWsd2Bk2iD435um1NlGMYdVCq+MjcXnhYq2icNOizHr1kK+5TI6H0Hy0ag=="
     },
     "compressible": {
       "version": "2.0.18",
@@ -1666,7 +1647,6 @@
       "version": "2.6.9",
       "resolved": "https://registry.npmjs.org/debug/-/debug-2.6.9.tgz",
       "integrity": "sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==",
-      "dev": true,
       "requires": {
         "ms": "2.0.0"
       }
@@ -4298,8 +4278,7 @@
     "ms": {
       "version": "2.0.0",
       "resolved": "https://registry.npmjs.org/ms/-/ms-2.0.0.tgz",
-      "integrity": "sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=",
-      "dev": true
+      "integrity": "sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g="
     },
     "mute-stream": {
       "version": "0.0.7",
@@ -5990,9 +5969,9 @@
       }
     },
     "split": {
-      "version": "1.0.1",
-      "resolved": "https://registry.npmjs.org/split/-/split-1.0.1.tgz",
-      "integrity": "sha512-mTyOoPbrivtXnwnIxZRFYRrPNtEFKlpB2fvjSnCQUiAA6qAZzqwna5envK4uk6OIeP17CsdF3rSBGYVBsU0Tkg==",
+      "version": "0.3.3",
+      "resolved": "https://registry.npmjs.org/split/-/split-0.3.3.tgz",
+      "integrity": "sha1-zQ7qXmOiEd//frDwkcQTPi0N0o8=",
       "requires": {
         "through": "2"
       }

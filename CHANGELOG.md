@@ -3,11 +3,14 @@
 We plan to release 17.0.0 stable sometime in April 2021!
 
 ## UNRELEASED 
-## 17.0.0-alpha.1 - 2021-03-19
+## 17.0.0-alpha.2 - 2021-03-24
 ### Added
-* Updated to Browsertime 12.0.0-alpha.1
+* Updated to Browsertime 12.0.0-alpha.2
 * Added ´--preWarmServer`.
 * Send navigation timings metrics by default to Graphite/Influx [#3316](https://github.com/sitespeedio/sitespeed.io/pull/3316).
+* Updated the wpt-plugin to send TBT to data storage.
+* Updated the Lighthouse plugin to send GWV to data storage.
+
 ## 16.10.3 - 2021-03-17
 ### Fixed
 * Updated to Browsertime 11.6.3 since last version broke getting the netlog on desktop for Chrome.
