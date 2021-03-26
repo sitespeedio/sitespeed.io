@@ -752,9 +752,9 @@
       }
     },
     "@types/node": {
-      "version": "14.14.35",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-14.14.35.tgz",
-      "integrity": "sha512-Lt+wj8NVPx0zUmUwumiVXapmaLUcAk3yPuHCFVXras9k5VT9TdhJqKqGVUQCD60OTMCl0qxJ57OiTL0Mic3Iag=="
+      "version": "14.14.36",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-14.14.36.tgz",
+      "integrity": "sha512-kjivUwDJfIjngzbhooRnOLhGYz6oRFi+L+EpMjxroDYXwDw9lHrJJ43E+dJ6KAd3V3WxWAJ/qZE9XKYHhjPOFQ=="
     },
     "abbrev": {
       "version": "1.1.1",
@@ -1099,9 +1099,9 @@
       }
     },
     "browsertime": {
-      "version": "12.0.0-alpha.2",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-12.0.0-alpha.2.tgz",
-      "integrity": "sha512-Hee8TAML1zAs6tu4dqPiu0Rt8YzzfEgWHK72cu4nhoXwZVu+Od2WQv/a5xrv4+6TXk3yEQB6Zzc0pLyIZXXMWQ==",
+      "version": "12.0.0-alpha.3",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-12.0.0-alpha.3.tgz",
+      "integrity": "sha512-3L3ebU4lcWdswROZOEcY/x4nzY8Oqabwwg3UPkYspEp3/CHo3uj6Jj6C8NqOONPJEyCLUHWtRSB4b9Yc2/tZ+Q==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",

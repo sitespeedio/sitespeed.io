@@ -13,8 +13,8 @@ if browsertime
     if timings.largestContentfulPaint
       a(href='#largestContentfulPaint') Largest Contentful Paint
       | &nbsp;|&nbsp;
-    if browsertime.pageinfo && browsertime.pageinfo.layoutShift !== undefined
-      a(href='#layoutShift') Cumulative Layout Shift
+    if browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift !== undefined
+      a(href='#cumulativeLayoutShift') Cumulative Layout Shift
       | &nbsp;|&nbsp;
     if browsertime.timings.elementTimings && Object.keys(browsertime.timings.elementTimings).length > 0
       a(href='#elementTimings') Element Timings
@@ -139,8 +139,8 @@ if browsertime
               td.number #{h.time.ms(Math.max(timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.renderTime, timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.loadTime))}
           tr
             td
-              a(href=baseHelpURL + 'layoutShift') Cumulative Layout Shift (CLS)
-            td.number #{browsertime.pageinfo.layoutShift.toFixed(2)}
+              a(href=baseHelpURL + 'cumulativeLayoutShift') Cumulative Layout Shift (CLS)
+            td.number #{browsertime.pageinfo.cumulativeLayoutShift.toFixed(2)}
           if browsertime.timings.firstInput !== undefined
             tr 
               td
