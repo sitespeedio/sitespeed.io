@@ -132,6 +132,12 @@ if browsertime
         table
           tr
             th(colspan='2') Google Web Vitals
+          if (timings.paintTiming && timings.paintTiming['first-contentful-paint'])
+            tr
+              td
+                a(href=baseHelpURL + 'firstContentfulPaint') First Contentful Paint (LCP)
+              td.number #{h.time.ms(timings.paintTiming['first-contentful-paint'])}
+
           if (timings.largestContentfulPaint) 
             tr
               td
