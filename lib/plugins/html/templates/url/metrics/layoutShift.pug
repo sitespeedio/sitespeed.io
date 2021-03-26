@@ -1,9 +1,9 @@
-if browsertime.pageinfo && browsertime.pageinfo.layoutShift !== undefined
-    a#layoutShift
+if browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift!== undefined
+    a#cumulativeLayoutShift
     h3 Detected Cumulative Layout Shift
-    if (browsertime.pageinfo.layoutShift === 0) 
+    if (browsertime.pageinfo.cumulativeLayoutShift === 0) 
       p No layout shift detected.
     else
-      p #{browsertime.pageinfo.layoutShift.toFixed(2)} layout shift collected from the 
+      p #{browsertime.pageinfo.cumulativeLayoutShift.toFixed(2)} layout shift collected from the 
         a(href='https://web.dev/cls/') Cumulative Layout Shift API
         | .

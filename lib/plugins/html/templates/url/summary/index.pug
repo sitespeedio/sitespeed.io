@@ -118,7 +118,7 @@ block content
               tr
                 td Largest Contentful Paint (LCP) [median]
                 td #{h.time.ms(lcp)}
-            - cls = get(d, 'browsertime.pageSummary.statistics.pageinfo.layoutShift.median')
+            - cls = get(d, 'browsertime.pageSummary.statistics.pageinfo.cumulativeLayoutShift.median')
             if cls || cls === 0
                 tr
                   td Cumulative Layout Shift (CLS) [median]
