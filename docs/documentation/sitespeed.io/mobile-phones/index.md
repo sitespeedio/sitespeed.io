@@ -69,6 +69,8 @@ docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --
 
 You will get result as you would with running this normally with summaries and waterfall graphs.
 
+If your container cannot see the device, make sure that you do not have the adb server running on the host (stop it with `adb kill-server`). Your phone can only be atatched to one adb server at a time.
+
 ### Connectivity
 
 If you run by default, the phone will use the current connection.
@@ -177,6 +179,7 @@ sitespeed.io --android -b firefox https://www.sitespeed.io
 
 Note that collecting the HAR is turned off since we cannot use the HAR Export trigger on Android.
 
+
 ### Only run tests when battery temperature is below X
 You can configure your tests to run when the battery temperature of your phone is below a certain threshold. Over heated mobile phones throttles the CPU so its good to keep track of the temperature (if you send metrics to Graphite/InfluxDB the battery temperature is automatically sent).
 
@@ -222,6 +225,20 @@ Results from this are gathered into the `android.power` entry in the browsertime
 * wifi: The total wifi power used by the application.
 * full-wifi: The total wifi power used during the test (not specific to the application).
 * proportional: The proportionally smeared power usage portion of the application (power usage of background applications that are propotionally attributed to all open applications).
+
+### Debug logs on the phone
+
+If something seems broken and you don't get any good logs from sitespeed.io you can check the log on the phone. 
+
+```bash
+adb logcat
+```
+
+The log is very verbose, so you probably need to grep to only see specific log messages. For Chrome you can do like this to only get log messages from Chrome:
+
+```bash
+adb logcat | grep chromium
+```
 
 ## Test on iOS
 

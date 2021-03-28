@@ -1,4 +1,4 @@
-FROM sitespeedio/webbrowsers:chrome-89.0-firefox-86.0-edge-89.0-dev
+FROM sitespeedio/webbrowsers:chrome-89.0-firefox-86.0-edge-89.0-dev3
 
 ENV SITESPEED_IO_BROWSERTIME__XVFB true
 ENV SITESPEED_IO_BROWSERTIME__DOCKER true
@@ -10,7 +10,7 @@ COPY docker/webpagereplay/deterministic.js /webpagereplay/scripts/deterministic.
 COPY docker/webpagereplay/LICENSE /webpagereplay/
 
 
-RUN sudo apt-get update && sudo apt-get install libnss3-tools \
+RUN sudo apt-get update && sudo apt-get install libnss3-tools python2 \
     net-tools \
     build-essential \
     iproute2 -y && \

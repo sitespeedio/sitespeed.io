@@ -1,13 +1,41 @@
 # CHANGELOG - sitespeed.io
 
-## 16.10.0 - UNRELEASED
+We plan to release 17.0.0 stable sometime in April 2021!
+
+## UNRELEASED 
+
+## 17.0.0-alpha.3 - 2021-03-26
+### Added
+* Updated to Browsertime 12.0.0-alpha.3
+* Added ´--preWarmServer`.
+* Send navigation timings metrics by default to Graphite/Influx [#3316](https://github.com/sitespeedio/sitespeed.io/pull/3316).
+* Updated the wpt-plugin to send TBT and CLS to data storage.
+* Updated the Lighthouse plugin to send Goggle Web Vitals to data storage.
+* Updated the GPSI plugin to send Google Web Vitals to data storage (and show it in the HTML).
+* Renamed layouShift to cumulativeLayoutShift
+* Send TTFB and Google Web Vitals by default to data storage for Browsertime (making it easier to find them in Influx).
+
+## 16.10.3 - 2021-03-17
+### Fixed
+* Updated to Browsertime 11.6.3 since last version broke getting the netlog on desktop for Chrome.
+## 16.10.2 - 2021-03-17
+### Fixed
+* Added missing download link in the HTML for the Chrome netlog [#3315](https://github.com/sitespeedio/sitespeed.io/pull/3315)
+## 16.10.1 - 2021-03-17
+### Fixed
+* Updated to [Browsertime 11.6.2](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1162---2021-03-17) with new Selenium beta 4 and a fix for getting the netlog for Chrome on Android.
+
+## 16.10.0 - 2021-03-11
 
 ### Added
 * Updated to [Browsertime 11.6.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1160---2021-03-08) with Chromedriver 89, Edgedriver 89.
-* Updated Dockert containers to use Chrome 89 and Firefox 86.
+* Updated Docker containers to use Chrome 89 and Firefox 86.
+
 ### Fixed
 * The Lighthouse plugin was upgraded to Lighthouse 7.2.0 and fixed broken support for alias.
 * Updated to AXE-core 4.1.3 [#3302](https://github.com/sitespeedio/sitespeed.io/pull/3302).
+* More fixes for showing correct screenshots [#3305](https://github.com/sitespeedio/sitespeed.io/pull/3305) and [#3306](https://github.com/sitespeedio/sitespeed.io/pull/3306).
+* Updated to Browsertime 11.6.1 that makes sure TSProxy uses Python2 when you run in a Docker container.
 ## 16.9.2 - 2021-02-24
 ### Fixed
 * Another screenshot fix, to make sure we support whatever image format when we copy the image from the last run [#3290](https://github.com/sitespeedio/sitespeed.io/pull/3290).
