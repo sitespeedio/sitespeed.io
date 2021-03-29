@@ -78,7 +78,54 @@ function runWebPageReplay() {
   record_pid=$!
   sleep $RECORD_WAIT
 
-  execNode $BROWSERTIME --browsertime.chrome.args host-resolver-rules="MAP *:$HTTP_PORT 127.0.0.1:$WPR_HTTP_PORT,MAP *:$HTTPS_PORT 127.0.0.1:$WPR_HTTPS_PORT,EXCLUDE localhost" --browsertime.firefox.preference network.dns.forceResolve:127.0.0.1 --browsertime.connectivity.engine throttle --browsertime.connectivity.throttle.localhost --browsertime.connectivity.profile custom --browsertime.connectivity.latency $LATENCY "$@"
+  # Add functionality for blocking third-party domains in webpagereplay
+  PARAMS=()
+  FIRST_PARTY_DOMAINS=()  # create an array of all the first-party domains
+  while [[ $# -gt 0 ]]
+  do
+  key="$1"
+  case $key in
+      --chrome.blockDomainsExcept) # handle Space-Separated arguments
+      FIRST_PARTY_DOMAINS+=("$2")
+      PARAMS+=("$1")
+      PARAMS+=("$2")
+      shift # past argument
+      shift # past value
+      ;;
+      --chrome.blockDomainsExcept=*) # handle Equals-Separated arguments
+      FIRST_PARTY_DOMAINS+=(${1#*=})
+      PARAMS+=("$1")
+      shift # past argument value
+      ;;
+      *)    # unknown option
+      PARAMS+=("$1") # save it in an array for later
+      shift # past argument
+      ;;
+  esac
+  done
+  eval set -- '${PARAMS[@]}' # restore positional parameters
+
+  PREFIX="execNode ${BROWSERTIME} --browsertime.chrome.args host-resolver-rules=\""
+  SUFFIX="EXCLUDE localhost\" --browsertime.firefox.preference network.dns.forceResolve:127.0.0.1 --browsertime.connectivity.engine throttle --browsertime.connectivity.throttle.localhost --browsertime.connectivity.profile custom --browsertime.connectivity.latency $LATENCY "
+
+  EXEC_STRING=$PREFIX
+  if [ ${#FIRST_PARTY_DOMAINS[@]} -eq 0 ]
+  then 
+    # If chrome.blockDomainsExcept flag was not used
+    EXEC_STRING+=" MAP *:${HTTP_PORT} 127.0.0.1:${WPR_HTTP_PORT},"
+    EXEC_STRING+=" MAP *:$HTTPS_PORT 127.0.0.1:$WPR_HTTPS_PORT,"
+  else
+    # If chrome.blockDomainsExcept flag was used
+    EXEC_STRING=$PREFIX
+    for domain in "${FIRST_PARTY_DOMAINS[@]}"
+    do
+        EXEC_STRING+=" MAP $domain:${HTTP_PORT} 127.0.0.1:${WPR_HTTP_PORT},"
+        EXEC_STRING+=" MAP $domain:${HTTPS_PORT} 127.0.0.1:${WPR_HTTPS_PORT},"
+    done
+  fi
+  EXEC_STRING+=$SUFFIX
+
+  eval $EXEC_STRING '$@' # execute the execNode command
   RESULT+=$?
 
   kill -2 $record_pid
