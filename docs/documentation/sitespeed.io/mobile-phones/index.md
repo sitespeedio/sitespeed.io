@@ -79,14 +79,16 @@ If you run by default, the phone will use the current connection.
 
 You can use the connection of your desktop by reverse tethering. And then set the connectivity on your desktop computer.
 
-1. Download [gnirehtet](https://github.com/Genymobile/gnirehtet) (Java or Rust version)
-2. Install [Throttle](https://github.com/sitespeedio/throttle) (works on Mac OS X or Linux that has tc installed): <code>npm install @sitespeed.io/throttle -g</code>
-3. Make sure your phone is plugged into your desktop using USB.
-4. Start gnirehtet: <code>./gnirehtet run</code>
-5. Start throttle: <code>throttle 3g</code>
-6. Run sitespeed.io.
+It's easiest on you are on a Mac, install [gnirehtet](https://github.com/Genymobile/gnirehtet) using Homebrew: ```brew install gnirehtet``` and then run your tests like this:
 
-If you use OS X you can use the [Ryan Wirth wrapper for gnirehtet](https://github.com/RyanWirth/gnirehtet) that makes it even simpler.
+```bash
+sitespeed.io --android --video --visualMetrics --gnirehtet --connectivity.engine throttle -c 4g https://www.sitespeed.io
+```
+
+That will automatically start and stop gnirehtet. If you run with multiple devices on the same host, it seems to be better to manually start gnirehtet and the throttling:
+1. Start gnirehtet for all devices: ```gnirehtet autorun```
+2. Start throttle: ```throttle 4g```
+3. Start each test per device.
 
 Note: the first time you run gnirehtet you need to accept the vpn connection on your phone.
 
