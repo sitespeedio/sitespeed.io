@@ -1099,9 +1099,9 @@
       }
     },
     "browsertime": {
-      "version": "12.0.0-alpha.4",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-12.0.0-alpha.4.tgz",
-      "integrity": "sha512-hD0EucWmB+cdDIn1o0RHFtp92oO9I5PPKM701BhjXNS+tj2A7T9gCEwXrqFmc3d/Y/25849miBIz9JvV0xHXwA==",
+      "version": "12.0.0-alpha.5",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-12.0.0-alpha.5.tgz",
+      "integrity": "sha512-WG0ImCdiLQ+OSA4tO44XZRozu3V5s98NojYZ8dPkO02ne9k9winq0rBkcxYtTXkpbV4nTTrHCiBmx4Gz/jQbjA==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",
