@@ -5333,7 +5333,7 @@
     },
     "readable-stream": {
       "version": "2.3.6",
-      "resolved": "http://registry.npmjs.org/readable-stream/-/readable-stream-2.3.6.tgz",
+      "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.3.6.tgz",
       "integrity": "sha512-tQtKA9WIAhBF3+VLAseyMqZeBjW0AHJoxOtYqSUZNJxauErmLbVm2FW1y+J/YA9dUrAC39ITejlZWhVIwawkKw==",
       "requires": {
         "core-util-is": "~1.0.0",
@@ -6607,9 +6607,9 @@
       }
     },
     "urijs": {
-      "version": "1.19.2",
-      "resolved": "https://registry.npmjs.org/urijs/-/urijs-1.19.2.tgz",
-      "integrity": "sha512-s/UIq9ap4JPZ7H1EB5ULo/aOUbWqfDi7FKzMC2Nz+0Si8GiT1rIEaprt8hy3Vy2Ex2aJPpOQv4P4DuOZ+K1c6w=="
+      "version": "1.19.6",
+      "resolved": "https://registry.npmjs.org/urijs/-/urijs-1.19.6.tgz",
+      "integrity": "sha512-eSXsXZ2jLvGWeLYlQA3Gh36BcjF+0amo92+wHPyN1mdR8Nxf75fuEuYTd9c0a+m/vhCjRK0ESlE9YNLW+E1VEw=="
     },
     "url": {
       "version": "0.10.3",
