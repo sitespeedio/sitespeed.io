@@ -1622,9 +1622,9 @@
       }
     },
     "date-and-time": {
-      "version": "0.14.1",
-      "resolved": "https://registry.npmjs.org/date-and-time/-/date-and-time-0.14.1.tgz",
-      "integrity": "sha512-M4RggEH5OF2ZuCOxgOU67R6Z9ohjKbxGvAQz48vj53wLmL0bAgumkBvycR32f30pK+Og9pIR+RFDyChbaE4oLA=="
+      "version": "0.14.2",
+      "resolved": "https://registry.npmjs.org/date-and-time/-/date-and-time-0.14.2.tgz",
+      "integrity": "sha512-EFTCh9zRSEpGPmJaexg7HTuzZHh6cnJj1ui7IGCFNXzd2QdpsNh05Db5TF3xzJm30YN+A8/6xHSuRcQqoc3kFA=="
     },
     "date-format": {
       "version": "0.0.2",
@@ -5698,12 +5698,6 @@
             "strip-ansi": "^5.0.0"
           }
         },
-        "y18n": {
-          "version": "4.0.0",
-          "resolved": "https://registry.npmjs.org/y18n/-/y18n-4.0.0.tgz",
-          "integrity": "sha512-r9S/ZyXu/Xu9q1tYlpsLIsa3EeLXXk0VwlxqTcFRfg9EhMW+17kbt9G0NrgCmhGb5vT2hyhJZLfDGx+7+5Uj/w==",
-          "dev": true
-        },
         "yargs": {
           "version": "13.3.2",
           "resolved": "https://registry.npmjs.org/yargs/-/yargs-13.3.2.tgz",
@@ -6607,9 +6601,9 @@
       }
     },
     "urijs": {
-      "version": "1.19.2",
-      "resolved": "https://registry.npmjs.org/urijs/-/urijs-1.19.2.tgz",
-      "integrity": "sha512-s/UIq9ap4JPZ7H1EB5ULo/aOUbWqfDi7FKzMC2Nz+0Si8GiT1rIEaprt8hy3Vy2Ex2aJPpOQv4P4DuOZ+K1c6w=="
+      "version": "1.19.6",
+      "resolved": "https://registry.npmjs.org/urijs/-/urijs-1.19.6.tgz",
+      "integrity": "sha512-eSXsXZ2jLvGWeLYlQA3Gh36BcjF+0amo92+wHPyN1mdR8Nxf75fuEuYTd9c0a+m/vhCjRK0ESlE9YNLW+E1VEw=="
     },
     "url": {
       "version": "0.10.3",
@@ -6824,6 +6818,12 @@
       "resolved": "https://registry.npmjs.org/xtend/-/xtend-4.0.2.tgz",
       "integrity": "sha512-LKYU1iAXJXUgAXn9URjiu+MWhyUXHsvfp7mcuYm9dSUKK0/CjtrUwFAxD82/mCWbtLsGjFIad0wIsod4zrTAEQ==",
       "optional": true
+    },
+    "y18n": {
+      "version": "4.0.1",
+      "resolved": "https://registry.npmjs.org/y18n/-/y18n-4.0.1.tgz",
+      "integrity": "sha512-wNcy4NvjMYL8gogWWYAO7ZFWFfHcbdbE57tZO8e4cbpj8tfUcwrwqSl3ad8HxpYWCdXcJUCeKKZS62Av1affwQ==",
+      "dev": true
     },
     "yallist": {
       "version": "4.0.0",
