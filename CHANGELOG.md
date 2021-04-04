@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-We plan to release 17.0.0 stable sometime in April 2021!
+We plan to release 17.0.0 stable 14:th of April 2021.
 
 ## UNRELEASED 
 
