@@ -73,7 +73,7 @@ if btStatistics
         each timing in timingMetrics
           +getRow(timing, pageInfo, 'data.browsertime.pageSummary.statistics.timings.' + timing , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.' + timing, h.time.ms)
          
-        +getRow('CLS', pageInfo, 'data.browsertime.pageSummary.statistics.pageinfo.layoutShift' , pageInfo.data.browsertime.pageSummary.browserScripts, 'pageinfo.layoutShift', h.noop)
+        +getRow('CLS', pageInfo, 'data.browsertime.pageSummary.statistics.pageinfo.cumulativeLayoutShift' , pageInfo.data.browsertime.pageSummary.browserScripts, 'pageinfo.cumulativeLayoutShift', h.noop)
 
       if btStatistics.timings && btStatistics.timings.userTimings && btStatistics.timings.userTimings.marks
         tr 

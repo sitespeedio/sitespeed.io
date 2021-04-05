@@ -4,7 +4,7 @@
     "sitespeed.io": "./bin/sitespeed.js",
     "sitespeed.io-wpr": "./bin/browsertimeWebPageReplay.js"
   },
-  "version": "16.8.1",
+  "version": "17.0.0-alpha.3",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -64,7 +64,7 @@
     "mocha": "^5.0.4",
     "node-sass": "^4.14.1",
     "prettier": "^1.11.1",
-    "pug-lint": "^2.5.0",
+    "pug-lint": "^2.6.0",
     "pug-lint-config-clock": "^2.0.0"
   },
   "main": "./lib/sitespeed.js",
@@ -72,8 +72,8 @@
     "@google-cloud/storage": "5.4.0",
     "@tgwf/co2": "0.6.1",
     "aws-sdk": "2.784.0",
-    "axe-core": "4.1.2",
-    "browsertime": "11.5.0",
+    "axe-core": "4.1.4",
+    "browsertime": "12.0.0-alpha.5",
     "coach-core": "6.1.0",
     "cli-color": "2.0.0",
     "concurrent-queue": "7.0.2",
@@ -101,13 +101,16 @@
     "markdown": "0.5.0",
     "node-slack": "0.0.7",
     "p-limit": "2.2.2",
-    "pug": "3.0.0",
+    "pug": "3.0.2",
     "recursive-readdir": "2.2.2",
     "simplecrawler": "1.1.9",
     "tape": "4.13.0",
     "text-table": "0.2.0",
     "uuid": "8.3.2",
     "yargs": "16.2.0"
+  },
+  "publishConfig": {
+    "tag": "canary"
   },
   "config": {
     "commitizen": {
