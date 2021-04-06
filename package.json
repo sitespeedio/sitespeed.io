@@ -69,9 +69,9 @@
   },
   "main": "./lib/sitespeed.js",
   "dependencies": {
-    "@google-cloud/storage": "5.4.0",
+    "@google-cloud/storage": "5.8.3",
     "@tgwf/co2": "0.6.1",
-    "aws-sdk": "2.784.0",
+    "aws-sdk": "2.288.0",
     "axe-core": "4.1.4",
     "browsertime": "12.0.0-alpha.6",
     "coach-core": "6.1.0",
