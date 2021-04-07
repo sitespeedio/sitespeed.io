@@ -944,30 +944,25 @@
       "integrity": "sha512-+q/t7Ekv1EDY2l6Gda6LLiX14rU9TV20Wa3ofeQmwPFZbOMo9DXrLbOjFaaclkXKWidIaopwAObQDqwWtGUjqg=="
     },
     "aws-sdk": {
-      "version": "2.288.0",
-      "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.288.0.tgz",
-      "integrity": "sha512-kV0yLAP3DPfUpDfFOCvOn4s/69XqVH7D53Vnfgf6mgKO5bp1HVFpWfTJ/OZeiwRy7hfIi0xTiSEmPXaMG0ACkg==",
+      "version": "2.882.0",
+      "resolved": "https://registry.npmjs.org/aws-sdk/-/aws-sdk-2.882.0.tgz",
+      "integrity": "sha512-MC1tKQdvIBmSQmyFmS6McGGPrN6yvHmhP0SS0ovx+zF/BbvHPTpi5hIgqPSAkdb8/s0I16QtbwiLQgPT2pf1tA==",
       "requires": {
-        "buffer": "4.9.1",
+        "buffer": "4.9.2",
         "events": "1.1.1",
-        "ieee754": "1.1.8",
+        "ieee754": "1.1.13",
         "jmespath": "0.15.0",
         "querystring": "0.2.0",
         "sax": "1.2.1",
         "url": "0.10.3",
-        "uuid": "3.1.0",
+        "uuid": "3.3.2",
         "xml2js": "0.4.19"
       },
       "dependencies": {
-        "ieee754": {
-          "version": "1.1.8",
-          "resolved": "https://registry.npmjs.org/ieee754/-/ieee754-1.1.8.tgz",
-          "integrity": "sha1-vjPUCsEO8ZJnAfbwii2G+/0a0+Q="
-        },
         "uuid": {
-          "version": "3.1.0",
-          "resolved": "https://registry.npmjs.org/uuid/-/uuid-3.1.0.tgz",
-          "integrity": "sha512-DIWtzUkw04M4k3bf1IcpS2tngXEL26YUD2M0tMDUpnUrz2hgzUBlD55a4FjdLGPvfHxS6uluGWvaVEqgBcVa+g=="
+          "version": "3.3.2",
+          "resolved": "https://registry.npmjs.org/uuid/-/uuid-3.3.2.tgz",
+          "integrity": "sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA=="
         },
         "xml2js": {
           "version": "0.4.19",
@@ -1139,9 +1134,9 @@
       "integrity": "sha512-SB4/MIGlsiVkMcHmT+pSmIPoNDoHg+7cMzmt3Uxt628MTz2487DKSqK/fuhFBrkuqrYv5UCEnACpF4dTFNKc/g=="
     },
     "buffer": {
-      "version": "4.9.1",
-      "resolved": "https://registry.npmjs.org/buffer/-/buffer-4.9.1.tgz",
-      "integrity": "sha1-bRu2AbB6TvztlwlBMgkwJ8lbwpg=",
+      "version": "4.9.2",
+      "resolved": "https://registry.npmjs.org/buffer/-/buffer-4.9.2.tgz",
+      "integrity": "sha512-xq+q3SRMOxGivLhBNaUdC64hDTQwejJ+H0T/NB1XMtTVEwNTrfFF3gAxiyW0Bu/xWEGhjVKgUcMhCrUy2+uCWg==",
       "requires": {
         "base64-js": "^1.0.2",
         "ieee754": "^1.1.4",
