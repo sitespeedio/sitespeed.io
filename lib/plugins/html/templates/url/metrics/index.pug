@@ -135,7 +135,7 @@ if browsertime
           if (timings.paintTiming && timings.paintTiming['first-contentful-paint'])
             tr
               td
-                a(href=baseHelpURL + 'firstContentfulPaint') First Contentful Paint (LCP)
+                a(href=baseHelpURL + 'firstContentfulPaint') First Contentful Paint (FCP)
               td.number #{h.time.ms(timings.paintTiming['first-contentful-paint'])}
 
           if (timings.largestContentfulPaint) 
