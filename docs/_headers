@@ -3,6 +3,7 @@
 	x-frame-options: SAMEORIGIN
 	X-XSS-Protection: 1; mode=block
 	Referrer-Policy: no-referrer
+	Permissions-Policy: interest-cohort=()
 	Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'
 	Cache-Control: public, max-age=0, must-revalidate, no-transform
 	Strict-Transport-Security: max-age=31536000; includeSubDomains
