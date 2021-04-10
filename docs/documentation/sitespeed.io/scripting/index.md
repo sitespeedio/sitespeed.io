@@ -61,6 +61,8 @@ The commands object:
 * *[measure.start()](#measurestart)* - Use this when you want to start to measure a page. This will start the video and prepare everything to collect metrics. Note: it will not navigate to the URL.
 * *[measure.start(alias)](#measurestartalias)* - Use this when you want to start to measure a page. This will start the video and prepare everything to collect metrics. Note: it will not navigate to the URL and the next URL that will be accessed will get the alias.
 * *[measure.stop()](#measurestop)* - Collect metrics for a page.
+* *[timer.start()]()* Start a timer and measure the time.
+* *[timer.stopAndAdd()]() * Stop the timer and add the result to the last tested URL.
 
 And then you have a few help commands:
 * *[wait](#wait)* on a id to appear or wait x amount of ms.
@@ -673,7 +675,7 @@ All commands will return a promise and you should await it to fulfil. If some co
 The commands that ends with a **...AndWait** will wait for a new page to load, so use them only when you are clicking on a link and want a new page or view to load.
 
 ### Measure
-The measure command will prepare everything for measuring a new URL (clearing internal metrics, starting the video etc). If you give an URL to the measure command it will start to measure and navigate to that URL.
+The measure command will prepare everything for measuring navigating to a new URL (clearing internal metrics, starting the video etc). If you give an URL to the measure command it will start to measure and navigate to that URL.
 
 If you do not give it a URL, it will prepare everything and start the video. So it's up to you to navigate/click on a link/submit the page. You also need to stop the measurement so that Browsertime/sitespeed.io knows that you want the metrics.
 
@@ -794,6 +796,69 @@ module.exports = async function(context, commands) {
   );
   commands.measure.addObject(extraMetrics);
 };
+~~~
+
+### Stop Watch
+If need to measure something that is not a navigation, you can do that by using a stop watch and measure the time.
+
+
+#### stopWatch.get
+You give your stop watch a name (that name will be used for the metric in the result).
+
+Get your stop watch like this:
+
+~~~javascript
+const stopWatch = commands.stopWatch.get('My_watch');
+~~~
+
+#### start()
+
+When you get the watch it's automatically started. You can restart the watch:
+
+~~~javascript
+  stopWatch.start();
+~~~
+
+#### stop() or stopAndAdd()
+
+You stop your stop watch by either just stop it or stop it and add the metric to the last tested page.
+
+~~~javascript
+ // Stop the watch
+ stopWatch .stop();
+ // Or stop the watch and add it to the page
+ stopWatch.stopAndAdd(); 
+~~~
+
+If you want to measure how long time somethings takes before you navigate to a page you should follow this pattern:
+
+~~~javascript
+module.exports = async function(context, commands) {
+  const stopWatch = commands.stopWatch.get('Before_navigating_page');
+  // Do the thing you want to measure ...
+  // Then stop the watch 
+  const time = stopWatch.stop();
+  // Measure navigation to a page
+  await commands.measure.start(
+    'https://www.sitespeed.io'
+  );
+  // Then attach that timing to that page.
+  commands.measure.add(stopWatch.getName(), time);
+}
+~~~
+
+If you already measured a page and want to attach the metric to that page you can follow this pattern:
+
+~~~javascript
+module.exports = async function(context, commands) {
+
+  await commands.measure.start(
+    'https://www.sitespeed.io'
+  );
+  const stopWatch = commands.stopWatch.get('After_navigating_page');
+  // Do the thing you want to measure ...
+  stopWatch.stopAndAdd();
+}
 ~~~
 
 ### Click
