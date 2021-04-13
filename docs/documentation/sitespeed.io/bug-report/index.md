@@ -62,7 +62,7 @@ If you make your issue reproducible, the issue is the cream of the crop and will
 
 When we groom issues we will add a tag with the prioritization. We have three prio tags: **prio:high**,  **prio:medium** and **prio:low**.
 
-If a issue is bug that breaks functionality for many users or is a feature request that will help many users and its somnething we can implement, we gonna give it **prio:high**. If the issue is a bug that we plan to fix, it will have **prio:medium**. If your bug/issue gets **prio:low** we maybe will fix it sometimes in the future.
+If a issue is bug that breaks functionality for many users or is a feature request that will help many users and its somnething we can implement, we gonna give it **prio:high**. If the issue is a bug that we plan to fix, it will have **prio:medium**. If your bug/issue gets **prio:low** we maybe will fix it sometimes in the future. Also scripting issues releated to how you use scripting on your site always gets **prio:low** but we will try to help you the best we can.
 
 If you do not agree with our prioritization you can:
 * Explain the issue better and make sure we can reproduce your issue
