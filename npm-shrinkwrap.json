@@ -1423,9 +1423,9 @@
       "dev": true
     },
     "coach-core": {
-      "version": "6.3.1",
-      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-6.3.1.tgz",
-      "integrity": "sha512-fUfqazjmbRe0RYIWl3DoJuBFZEF/m/xn7PhY9t8p+WsgsEdT2INUo6CDangMiS0oE0yHh05U3NZNso3igj5VFA==",
+      "version": "6.3.2",
+      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-6.3.2.tgz",
+      "integrity": "sha512-n9plzdowYnO6B39jD8PvEeY5itL8fX8wN8UOnmZW23frLX1IQrPY8vUyE9XxRgfTnHSC+jMdyzMan2NjaPzOLw==",
       "requires": {
         "filter-files": "0.4.0",
         "json-stable-stringify": "1.0.1",
