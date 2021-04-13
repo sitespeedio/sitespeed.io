@@ -4,9 +4,9 @@ We plan to release 17.0.0 stable 14:th of April 2021.
 
 ## UNRELEASED 
 
-## 17.0.0-alpha.3 - 2021-03-26
+## 17.0.0-beta.1 - 2021-04-09
 ### Added
-* Updated to Browsertime 12.0.0-alpha.3
+* Updated to Browsertime 12.0.0-beta.1
 * Added ´--preWarmServer`.
 * Send navigation timings metrics by default to Graphite/Influx [#3316](https://github.com/sitespeedio/sitespeed.io/pull/3316).
 * Updated the wpt-plugin to send TBT and CLS to data storage.
@@ -14,6 +14,10 @@ We plan to release 17.0.0 stable 14:th of April 2021.
 * Updated the GPSI plugin to send Google Web Vitals to data storage (and show it in the HTML).
 * Renamed layouShift to cumulativeLayoutShift
 * Send TTFB and Google Web Vitals by default to data storage for Browsertime (making it easier to find them in Influx).
+
+### Fixed
+* Updated to [latest aws-sdk](https://github.com/sitespeedio/sitespeed.io/commit/427d69f7de5417fa0fd6e305457c61f4ab634811) , google cloud storage and axe-core 4.1.4 [#3334](https://github.com/sitespeedio/sitespeed.io/pull/3334)
+* Updated to latest Coach and PageXray.
 
 ## 16.10.3 - 2021-03-17
 ### Fixed
