@@ -27,6 +27,7 @@ chrome
       --chrome.timeline                                          Collect the timeline data. Drag and drop the JSON in your Chrome detvools timeline panel or check out the CPU metrics in the Browsertime.json  [boolean]
       --chrome.collectPerfLog                                    Collect performance log from Chrome with Page and Network events and save to disk.  [boolean]
       --chrome.collectNetLog                                     Collect network log from Chrome and save to disk.  [boolean]
+      --chrome.netLogCaptureMode                                 Choose capture mode for Chromes netlog.  [choices: "Default", "IncludeSensitive", "Everything"] [default: "IncludeSensitive"]
       --chrome.collectConsoleLog                                 Collect Chromes console log and save to disk.  [boolean]
       --chrome.CPUThrottlingRate                                 Enables CPU throttling to emulate slow CPUs. Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc)  [number]
       --chrome.includeResponseBodies                             Include response bodies in the HAR file.  [choices: "none", "all", "html"] [default: "none"]
@@ -52,6 +53,8 @@ firefox
       --firefox.geckoProfilerParams.threads     Threads to profile.  [string] [default: "GeckoMain,Compositor,Renderer"]
       --firefox.geckoProfilerParams.interval    Sampling interval in ms.  Defaults to 1 on desktop, and 4 on android.  [number]
       --firefox.geckoProfilerParams.bufferSize  Buffer size in elements. Default is ~90MB.  [number] [default: 13107200]
+      --firefox.perfStats                       Collect gecko performance statistics as measured internally by the firefox browser. See https://searchfox.org/mozilla-central/source/tools/performance/PerfStats.h#24-33  [boolean] [default: false]
+      --firefox.perfStatsParams.mask            Mask to decide which features to enable  [number] [default: 4294967295]
       --firefox.collectMozLog                   Collect the MOZ HTTP log (by default). See --firefox.setMozLog if you need to specify the logs you wish to gather.  [boolean]
       --firefox.setMozLog                       Use in conjunction with firefox.collectMozLog to set MOZ_LOG to something specific. Without this, the HTTP logs will be collected by default  [default: "timestamp,nsHttp:5,cache2:5,nsSocketTransport:5,nsHostResolver:5"]
       --firefox.disableBrowsertimeExtension     Disable installing the browsertime extension.  [boolean]
@@ -77,6 +80,7 @@ video
       --videoParams.createFilmstrip    Create filmstrip screenshots.  [boolean] [default: true]
       --videoParams.nice               Use nice when running FFMPEG during the run. A value from -20 to 19  https://linux.die.net/man/1/nice  [default: 0]
       --videoParams.convert            Convert the original video to a viewable format (for most video players). Turn that off to make a faster run.  [boolean] [default: true]
+      --videoParams.threads            Number of threads to use for video recording. Default is determined by ffmpeg.  [default: 0]
 
 edge
       --edge.edgedriverPath  Path to custom msedgedriver version (need to match your Egde version).
@@ -173,6 +177,7 @@ Options:
       --preURLDelay                                 Delay between preURL and the URL you want to test (in milliseconds)  [default: 1500]
       --userTimingWhitelist                         All userTimings are captured by default this option takes a regex that will whitelist which userTimings to capture in the results.
       --headless                                    Run the browser in headless mode. Works for Firefox and Chrome.  [boolean] [default: false]
+      --gnirehtet                                   Start gnirehtet and reverse tethering the traffic from your Android phone.  [boolean] [default: false]
       --extension                                   Path to a WebExtension to be installed in the browser. Note that --extension can be passed multiple times.
       --spa                                         Convenient parameter to use if you test a SPA application: will automatically wait for X seconds after last network activity and use hash in file names. Read more: https://www.sitespeed.io/documentation/sitespeed.io/spa/  [boolean] [default: false]
       --browserRestartTries                         If the browser fails to start, you can retry to start it this amount of times.  [number] [default: 3]

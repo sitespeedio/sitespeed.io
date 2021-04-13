@@ -29,7 +29,7 @@ try
 
 If you don't use Docker you need to:
 
-- Install the [Android SDK](http://developer.android.com/sdk/index.html#downloads) on your desktop (just the command line tools!). If you are on a Mac and use [Homebrew](http://brew.sh/) just run: <code>brew tap caskroom/cask && brew cask install android-platform-tools</code>
+- Install the [Android SDK](http://developer.android.com/sdk/index.html#downloads) on your desktop (just the command line tools!). If you are on a Mac and use [Homebrew](http://brew.sh/) just run: <code>brew install --cask android-platform-tools</code>
 
 #### On your phone
 You probably want to setup a new phone from scratch to have a dedicated device. When you start your phone for the first time, follow these instructions:
@@ -69,6 +69,8 @@ docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --
 
 You will get result as you would with running this normally with summaries and waterfall graphs.
 
+If your container cannot see the device, make sure that you do not have the adb server running on the host (stop it with `adb kill-server`). Your phone can only be atatched to one adb server at a time.
+
 ### Connectivity
 
 If you run by default, the phone will use the current connection.
@@ -77,14 +79,16 @@ If you run by default, the phone will use the current connection.
 
 You can use the connection of your desktop by reverse tethering. And then set the connectivity on your desktop computer.
 
-1. Download [gnirehtet](https://github.com/Genymobile/gnirehtet) (Java or Rust version)
-2. Install [Throttle](https://github.com/sitespeedio/throttle) (works on Mac OS X or Linux that has tc installed): <code>npm install @sitespeed.io/throttle -g</code>
-3. Make sure your phone is plugged into your desktop using USB.
-4. Start gnirehtet: <code>./gnirehtet run</code>
-5. Start throttle: <code>throttle 3g</code>
-6. Run sitespeed.io.
+It's easiest on you are on a Mac, install [gnirehtet](https://github.com/Genymobile/gnirehtet) using Homebrew: ```brew install gnirehtet``` and then run your tests like this:
 
-If you use OS X you can use the [Ryan Wirth wrapper for gnirehtet](https://github.com/RyanWirth/gnirehtet) that makes it even simpler.
+```bash
+sitespeed.io --android --video --visualMetrics --gnirehtet --connectivity.engine throttle -c 4g https://www.sitespeed.io
+```
+
+That will automatically start and stop gnirehtet. If you run with multiple devices on the same host, it seems to be better to manually start gnirehtet and the throttling:
+1. Start gnirehtet for all devices: ```gnirehtet autorun```
+2. Start throttle: ```throttle 4g```
+3. Start each test per device.
 
 Note: the first time you run gnirehtet you need to accept the vpn connection on your phone.
 
@@ -177,6 +181,7 @@ sitespeed.io --android -b firefox https://www.sitespeed.io
 
 Note that collecting the HAR is turned off since we cannot use the HAR Export trigger on Android.
 
+
 ### Only run tests when battery temperature is below X
 You can configure your tests to run when the battery temperature of your phone is below a certain threshold. Over heated mobile phones throttles the CPU so its good to keep track of the temperature (if you send metrics to Graphite/InfluxDB the battery temperature is automatically sent).
 
@@ -222,6 +227,20 @@ Results from this are gathered into the `android.power` entry in the browsertime
 * wifi: The total wifi power used by the application.
 * full-wifi: The total wifi power used during the test (not specific to the application).
 * proportional: The proportionally smeared power usage portion of the application (power usage of background applications that are propotionally attributed to all open applications).
+
+### Debug logs on the phone
+
+If something seems broken and you don't get any good logs from sitespeed.io you can check the log on the phone. 
+
+```bash
+adb logcat
+```
+
+The log is very verbose, so you probably need to grep to only see specific log messages. For Chrome you can do like this to only get log messages from Chrome:
+
+```bash
+adb logcat | grep chromium
+```
 
 ## Test on iOS
 
