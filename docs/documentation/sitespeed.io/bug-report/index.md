@@ -44,7 +44,7 @@ To help us reproduce your problem there are a couple of things we need:
 * If you don't use Docker: Include the browser version you are using.
 * If you have problems with headers/cookie/auth you can use [https://httpbin.org](https://httpbin.org) to reproduce your issue.
 
-If you make your issue reproducable, the issue is the cream of the crop and will get the tag <span class="reproducable">reproducable</span>! And if your bug report has that tag, it will get our attention.
+If you make your issue reproducible, the issue is the cream of the crop and will get the tag <span class="reproducible">reproducible</span>! And if your bug report has that tag, it will get our attention.
 
 ## What else you can do
 
@@ -58,6 +58,16 @@ If you make your issue reproducable, the issue is the cream of the crop and will
 
 * Is your problem related to that you are behind a proxy? Then we kindly recommend that you run your tests without a proxy. Run the tests on a network where you don't need to use a proxy.
 
+## How we prioritise bugs
+
+When we groom issues we will add a tag with the prioritization. We have three prio tags: **prio:high**,  **prio:medium** and **prio:low**.
+
+If a issue is bug that breaks functionality for many users or is a feature request that will help many users and its somnething we can implement, we gonna give it **prio:high**. If the issue is a bug that we plan to fix, it will have **prio:medium**. If your bug/issue gets **prio:low** we maybe will fix it sometimes in the future.
+
+If you do not agree with our prioritization you can:
+* Explain the issue better and make sure we can reproduce your issue
+* Do the PR yourself. We can help you test and verify it.
+* Support us at [Open Collective](https://opencollective.com/sitespeedio). We can not promise we will fix your issue but it will increase the chance of getting it fixed.
 ## How to make sure we try fix the bug as soon as possible
 
 Here's dos and don'ts if you want your bug fixed:
@@ -72,4 +82,3 @@ Please don't:
 * Contact us on email about the bug.
 
 If we ask you to contact us, then it is perfectly fine to do so :)
-
