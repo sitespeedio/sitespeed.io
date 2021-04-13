@@ -163,7 +163,7 @@ The change is rolled out like this:
 If you have old data you should convert it as soon as possible. When you do that you need add the new dashboards or if you have your own made dashboard, you need to convert them so they pickup the slug.
 
 
-### Convert Graphite data
+### Convert Graphite data structure
 Depending on how used you are to use the command line, there are different ways you can convert the data to the new format. If you feel you need input please feel free to create an issue at [GitHub](https://github.com/sitespeedio/sitespeed.io/issues/new).
 
 #### The simple way
@@ -190,11 +190,12 @@ If you got the skills you can move all data to the right directory and have keep
 
 First take a copy of your whisper directory so you have a backup if something goes wrong. Then create each new directory for each slug in your whisper directory and then move the data. The slug/test name is appended as a key/directory direct after your Graphite namespace. Say that you use a namespace `--graphite.namespace sitespeed_io.hepp` then the folder structure on your Graphite server is *whisper/sitespeed_io/hepp*. If you then add slug named *mySlug* you need to move all the test data into  *whisper/sitespeed_io/hepp/mySlug*.
 
-### Change your home made Grafana dashboards
+### Update to our new dashboards
 
 When you converted the data you need to update your graphs. If you use our premade graphs you can just [download the new versions](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/main/dashboards/graphite) and use them.
+### Change your home made Grafana dashboards
 
-If you have your own created dashboard, you need to add the testname as variable and update all the other variables. Start by adding the testname as in the screenshot below.
+If you have your own created dashboards, you need to add the testname as variable and update all the other variables. Start by adding the testname as in the screenshot below.
 
 ![Add a test name as a variable]({{site.baseurl}}/img/add-testname.jpg)
 {: .img-thumbnail}
@@ -209,7 +210,7 @@ When you changed all the variables, you need to update the metrics on your dashb
 ![Change all the keys direct in the dashboard JSON]({{site.baseurl}}/img/change-dashboard-json.jpg)
 {: .img-thumbnail}
 
-Copy the JSON and add it to your favourite editor and search and replace all keys. Search for the key **$base.$path.pageSummary.** and replace that with **$base.$path.$testname.pageSummary.**. Replace all occurrence. Then copy the changed JSON, pastes into Grafana and save the dashboard again.
+Copy the JSON and add it to your favourite editor and search and replace all keys. Search for the key `$base.$path.pageSummary.` and replace that with `$base.$path.$testname.pageSummary.`. Replace all occurrence. Then copy the changed JSON, pastes into Grafana and save the dashboard again.
 ## Dashboards
 We have [pre-made Grafana dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/main/dashboards/graphite) that works with Graphite. They are generic and as long as your [namespace](#namespace) consists of three parts (including the slug), they will work. You can import them one by one or [inject them using Docker](https://github.com/sitespeedio/grafana-bootstrap-docker).
 
