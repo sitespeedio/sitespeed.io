@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io
 
-We plan to release 17.0.0 stable 14:th of April 2021.
+We plan to release 17.0.0 stable 15:th of April 2021 (delayed one day because that we wanna wait on Chrome 90).
 
 ## UNRELEASED 
 
@@ -11,6 +11,8 @@ We plan to release 17.0.0 stable 14:th of April 2021.
 * Send navigation timings metrics by default to Graphite/Influx [#3316](https://github.com/sitespeedio/sitespeed.io/pull/3316).
 * Updated the wpt-plugin to send TBT and CLS to data storage.
 * Updated the Lighthouse plugin to send Goggle Web Vitals to data storage.
+* Updated to Lighthoue 7.3.0
+* Lighthouse and GPSI plugins published to npm
 * Updated the GPSI plugin to send Google Web Vitals to data storage (and show it in the HTML).
 * Renamed layouShift to cumulativeLayoutShift
 * Send TTFB and Google Web Vitals by default to data storage for Browsertime (making it easier to find them in Influx).
