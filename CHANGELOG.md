@@ -1,17 +1,71 @@
-# CHANGELOG - sitespeed.io
+# CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-We plan to release 17.0.0 stable 15:th of April 2021 (delayed one day because that we wanna wait on Chrome 90).
+## 17.0.0 - 2021-04.15 
+Woohoo we shipped 17.0.0! There are many changes and you should read through the full changelog and focus on the new best practise section and breaking changes.
+### New best practices
+One of the new things in 17 is the support for one extra key in Graphite: the name of the test. Set a computer friendly name of your test by using `--slug`. Then use the slug in the graphite key by adding `--graphite.addSlugToKey` to your run. When you do that change, should also convert your graphite data and your dashboards. The plan is like this:
+* In April 2021 you can convert your data and use the slug. You need to add `--graphite.addSlugToKey true` else you will get a log warning that you miss the slug for your test. All default dashboards in sitespeed.io will use the slug, so to use them you should add that new key and convert your data.
+* In September 2021 `--graphite.addSlugToKey true` will be set to default, meaning if you haven't upgraded your Graphite data yet, you need to set `--graphite.addSlugToKey false` to be able to run as before.
+* In November 2021 the CLI functionality will disappear and you need upgrade your Graphite metrics when you upgrade sitespeed.io. 
 
-## UNRELEASED 
+You can read how to upgrade in the [documentation](https://www.sitespeed.io/documentation/sitespeed.io/graphite/#upgrade-to-use-the-test-slug-in-the-namespace).
 
-## 17.0.0-beta.1 - 2021-04-09
+When you have updated you will add one extra parameter to your test: `--copyLatestFilesToBase`. When you have done all these step you are ready for ... using the new dashboards in Grafana with screenshot and video from last run. This is SUPER useful to be able to fast see what's going on. Checkout what it looks like [here](https://dashboard.sitespeed.io/d/000000064/page-metrics-mobile?orgId=1) and [here](https://dashboard.sitespeed.io/d/d-pdqGBGdse/wikipedia-login?orgId=1).
+
+We ship [all new dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/main/dashboards/graphite) with some extra focus on Google Web Vitals (for sitespeed.io, WebPageTest, Google Page Speed Insights, Lighthouse and CRUX). We understand that these metrics is important for some users so lets focus on them. We also ship a couple new example dahsboards for how to setup user journeys. Documentation for those will come soon.
+
+There's a new version of the Coach with a new super important privacy advice: Make sure you disable Chrome's new FLoC for your site. [Read more about FLoC](https://www.eff.org/deeplinks/2021/03/googles-floc-terrible-idea).
+
+### Breaking changes
+* We have changed some of the connectivity profiles, you can see the changes [here](https://github.com/sitespeedio/browsertime/pull/1160/files). This means that if you use 3g connectivity using Throttle, your tests will have a faster TTFB than before. If you wanna hold on to the old settings you can do that by adding `--browsertime.legacyConnectivityProfiles true` to your tests.
+* Read [the full list](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#changed) of other changes in Browsertime.
+
+### What to think about when upgrading
+You need to do a plan on when you want to upgrade Graphite to be able to use those new dashboards. You can upgrade to 17.0.0 and continue as before but to be able to use the new things in the dashboards you need to [upgrade your Graphite data](https://www.sitespeed.io/documentation/sitespeed.io/graphite/#upgrade-to-use-the-test-slug-in-the-namespace)).
+
+### Other notable changes
+Many thanks to [Inderpartap Singh Cheema](https://github.com/inderpartap) that fixed so that you can use `--chrome.blockDomainsExcept` together with WebPageReplay in the Docker container, so you more easily can focus on the performance disregarding 3rd party marketing scripts.
+
+We have a couple of new metrics that is the delta between TTFB and First Contentful Paint, Largest Contentful paint and First visual change [#1528]((https://github.com/sitespeedio/browsertime/pull/1528)). You can use this if you have unstable TTFB and want to alert on front end metrics. The metrics are automatically sent to Graphite.
+
+Lets continue with all the changes.
 ### Added
-* Updated to Browsertime 12.0.0-beta.1
-* Added ´--preWarmServer`.
+* Updated to [Browsertime 12.0.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1200---2021-04-15) with the following changes:
+  * Display standard deviation instead of the home made median deviation in the cli output [#1529](https://github.com/sitespeedio/browsertime/pull/1529).
+  * Renamed layoutShift to the more correct cumulativeLayoutShift. This will is a breaking change if you use that metric. Updates to the new and coming layout shift changes announced by Google will be implemented the coming weeks.
+  * Updated Chrome start flags on desktop following [best practices](https://github.com/GoogleChrome/chrome-launcher/blob/master/docs/chrome-flags-for-tools.md) and removing old flags [#1507](https://github.com/sitespeedio/browsertime/pull/1507).
+  * Updated Chrome start flags on Android following [best practices](https://github.com/GoogleChrome/chrome-launcher/blob/master/docs/chrome-flags-for-tools.md) and removing old flags [#1506](https://github.com/sitespeedio/browsertime/pull/1506).
+  * Finally the "new" connectivity settings are default. You can see the difference in https://github.com/sitespeedio/browsertime/blob/main/lib/connectivity/trafficShapeParser.js#L5-L104. Changed in [#1540](https://github.com/sitespeedio/browsertime/pull/1540). If you wanna run with the legacy setting use `--legacyConnectivityProfiles`. See [#1160](https://github.com/sitespeedio/browsertime/pull/1160) for the original change.
+  * The default minimum wait time for waiting if a test is finished is now 8 seconds (instead of 5) [#1542](https://github.com/sitespeedio/browsertime/pull/1542).
+  * Fix `--chrome.blockDomainsExcept` when you are using WebPageReplay [#1532](https://github.com/sitespeedio/browsertime/pull/1532). Thank you [Inderpartap Singh Cheema](https://github.com/inderpartap) for the original fix!
+  * Make sure gnirehtet is closed on the right device using device id [#1527](https://github.com/sitespeedio/browsertime/pull/1527)
+  * Upgraded to GeckoDriver 0.29.1.
+  * Updated wpr_cert.pem to a new version for WebPageReplay [#1316](https://github.com/sitespeedio/browsertime/pull/1316).
+  * Include Google Web Vitals in the HAR file [#1535](https://github.com/sitespeedio/browsertime/pull/1535).
+  * Added 3 seconds wait time for geckoprofiler to start see [#1538](https://github.com/sitespeedio/browsertime/issues/1538) and [#1539](https://github.com/sitespeedio/browsertime/pull/1539)
+  * Added a ten seconds wait if getting the HAR from Firefox fails the first time [#1546](https://github.com/sitespeedio/browsertime/pull/1546) fixes [#3346](https://github.com/sitespeedio/sitespeed.io/issues/3346).
+  * New metrics: Delta between TTFB and First Contentful Paint, Largest Contentful paint and First visual change [#1528](https://github.com/sitespeedio/browsertime/pull/1528). You can use this if you have unstable TTFB and want to alert on front end metrics. Lets see when other also implement this :)
+  * Made it easier for people to get Google Web Vitals. We copy that data under the googleWebVitals namespace in the result JSON [#1521](https://github.com/sitespeedio/browsertime/pull/1521).
+  * Added TTFB as a single metric [#1522](https://github.com/sitespeedio/browsertime/pull/1522).
+  * New stop watch command [#1512](https://github.com/sitespeedio/browsertime/pull/1512). Measure time by: 
+    ```const timer = commands.stopWatch.get('my_timer'); 
+       timer.start(); 
+      // Do something
+      // Stop the timer and add the result to the last tested URL
+      timer.stopAndAdd();
+    ```
+  * Pre test/warm a URL with `--preWarmServer`. Do that to make sure your server has cached everything that is needed before your test [#1515](https://github.com/sitespeedio/browsertime/pull/1515) and [#1516](https://github.com/sitespeedio/browsertime/pull/1516).
+  * Collect what HTML element change in cumulative layout shifts [#1534](https://github.com/sitespeedio/browsertime/pull/1534)
+  * Added support for recording video on Safari iOS [#1541](https://github.com/sitespeedio/browsertime/pull/1541).
+  * New commands: scrolling by Pixels, Lines or Pages forward, back or refresh navigations, create new tabs or windows and switch to them and new mouse events such as context click, single click, double click, click and hold, release, and movement. Thank you [Denis Palmeiro](https://github.com/dpalmeiro) for PR [#1533](https://github.com/sitespeedio/browsertime/pull/1533).
+  * Improve proxy configuration support, thank you [Olaf Meeuwissen](https://github.com/paddy-hack) for PR [#1542](https://github.com/sitespeedio/browsertime/pull/1524).
+  * Upgraded to Selenium 4.0.0-beta.3 [#1544](https://github.com/sitespeedio/browsertime/pull/1544).
+  * Updated to Chrome 90 in the Docker container and Chromedriver 90 as default [#1543](https://github.com/sitespeedio/browsertime/pull/1543).
+* Added `--preWarmServer` that makes a request to your web server to fill the server cache before you start your tests.
 * Send navigation timings metrics by default to Graphite/Influx [#3316](https://github.com/sitespeedio/sitespeed.io/pull/3316).
 * Updated the wpt-plugin to send TBT and CLS to data storage.
 * Updated the Lighthouse plugin to send Goggle Web Vitals to data storage.
-* Updated to Lighthoue 7.3.0
+* Updated to Lighthouse 7.3.0 in the Lighthouse plugin.
 * Lighthouse and GPSI plugins published to npm
 * Updated the GPSI plugin to send Google Web Vitals to data storage (and show it in the HTML).
 * Renamed layouShift to cumulativeLayoutShift
@@ -61,7 +115,7 @@ We plan to release 17.0.0 stable 15:th of April 2021 (delayed one day because th
 * Avoid sending slug/domain annotation names that collide. Fixed in [#3279](https://github.com/sitespeedio/sitespeed.io/pull/3279) and reported in [#3277](https://github.com/sitespeedio/sitespeed.io/issues/3277).
 ## 16.8.0 - 2021-02-08
 ### Added
-* Updated Browsertime with the ability to mark a run as a failure. We gonna add more docs and try this ourselved and push it in 17.0 [#3272](https://github.com/sitespeedio/sitespeed.io/pull/3272).
+* Updated Browsertime with the ability to mark a run as a failure. We gonna add more docs and try this ourselves and push it in 17.0 [#3272](https://github.com/sitespeedio/sitespeed.io/pull/3272).
 * Updated to latest VideoJS and changed how the video is displayed [#3268](https://github.com/sitespeedio/sitespeed.io/pull/3268).
 ### Fixed
 * The `--addSlugToKey` command introduced 16.3.0 was broken and inserted the slug at the wrong place. Fixed now and we gonna push it and the documentation on how to use it in 17.0 [#3274](https://github.com/sitespeedio/sitespeed.io/pull/3274).
@@ -107,7 +161,7 @@ There's a couple of new functionality that will have documentation in a week or 
 * New plugin to copy screenshots [#3243](https://github.com/sitespeedio/sitespeed.io/pull/3243) and videos [#3248](https://github.com/sitespeedio/sitespeed.io/pull/3248) as latest for that run.
 * Upload latest screenshots/videos to S3 [#3246](https://github.com/sitespeedio/sitespeed.io/pull/3246).
 ### Fixed
-* The HTML links to pahges when using alias in a text file was broken as reported in [#3244](https://github.com/sitespeedio/sitespeed.io/issues/3244), fixed in PR [#3245](https://github.com/sitespeedio/sitespeed.io/pull/3245).  
+* The HTML links to pages when using alias in a text file was broken as reported in [#3244](https://github.com/sitespeedio/sitespeed.io/issues/3244), fixed in PR [#3245](https://github.com/sitespeedio/sitespeed.io/pull/3245).  
 ##  16.2.1 - 2021-01-06
 ### Fixed 
 * The new `--graphite.annotationRetentionMinutes` formatted the annotation date wrong, fixed in [#3238](https://github.com/sitespeedio/sitespeed.io/pull/3238).
@@ -160,7 +214,7 @@ There's a couple of new functionality that will have documentation in a week or 
   * Remove RUM Speed Index [#12](https://github.com/sitespeedio/coach-core/pull/12).
   * Remove First Paint and timings calculated from the Navigation Timing API [#15](https://github.com/sitespeedio/coach-core/pull/15).
   * Removed the advice for PUSH [#26](https://github.com/sitespeedio/coach-core/pull/26).
-  * Removed the accessibilty advice [#32](https://github.com/sitespeedio/coach-core/pull/32). If you are a sitespeed.io use `--axe`. It's better to use AXE-core that gives better advice than the old coach advice.
+  * Removed the accessibility advice [#32](https://github.com/sitespeedio/coach-core/pull/32). If you are a sitespeed.io use `--axe`. It's better to use AXE-core that gives better advice than the old coach advice.
   * Fully use the third-party-web to know about third parties instead of home grown solution.
   * Testing for JQuery removed the $ reference on the page [#22](https://github.com/sitespeedio/coach-core/pull/22).
 * Updated to [Browsertime 11](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1100---2020-12-18):
