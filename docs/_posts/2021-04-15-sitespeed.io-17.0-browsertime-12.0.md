@@ -79,5 +79,8 @@ We have a couple of new metrics that is the delta between TTFB and First Content
 ## New privacy advice
 There's a new version of the Coach with a new super important privacy advice: Make sure you disable Chrome's new FLoC for your site. [Read more about FLoC](https://www.eff.org/deeplinks/2021/03/googles-floc-terrible-idea).
 
+![Privacy advice from the coach]({{site.baseurl}}/img/privacy-example.jpg)
+{: .img-thumbnail}
+
 
 /Peter
