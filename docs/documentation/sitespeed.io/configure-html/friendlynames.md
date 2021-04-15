@@ -19,7 +19,7 @@ cpu.totalBlockingTime
 cpu.maxPotentialFid
 cpu.longTasks
 cpu.longTasksTotalDuration
-pageinfo.layoutShift
+pageinfo.cumulativeLayoutShift
 requests.total
 requests.html
 requests.javascript

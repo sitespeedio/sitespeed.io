@@ -18,6 +18,7 @@ There's a new version of the Coach with a new super important privacy advice: Ma
 
 ### Breaking changes
 * We have changed some of the connectivity profiles, you can see the changes [here](https://github.com/sitespeedio/browsertime/pull/1160/files). This means that if you use 3g connectivity using Throttle, your tests will have a faster TTFB than before. If you wanna hold on to the old settings you can do that by adding `--browsertime.legacyConnectivityProfiles true` to your tests.
+* If you have a budget using layoutShift that metric has now been renamed to cumulativeLayoutShift.
 * Read [the full list](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#changed) of other changes in Browsertime.
 
 ### What to think about when upgrading

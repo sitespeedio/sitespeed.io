@@ -26,7 +26,7 @@
          "longTasksTotalDuration": limit,
     },
    "pageinfo": {
-         "layoutShift": limit,
+         "cumulativeLayoutShift": limit,
     },
    "requests": {
          "total": limit,
