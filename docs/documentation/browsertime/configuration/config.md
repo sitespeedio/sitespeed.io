@@ -103,8 +103,11 @@ Screenshot
       --screenshotParams.maxSize               The max size of the screenshot (width and height).  [default: 2000]
 
 proxy
-      --proxy.http   Http proxy (host:port)  [string]
-      --proxy.https  Https proxy (host:port)  [string]
+      --proxy.pac     Proxy auto-configuration (URL)  [string]
+      --proxy.ftp     Ftp proxy (host:port)  [string]
+      --proxy.http    Http proxy (host:port)  [string]
+      --proxy.https   Https proxy (host:port)  [string]
+      --proxy.bypass  Comma separated list of hosts to connect to directly, bypassing other proxies for that host  [string]
 
 connectivity
   -c, --connectivity.profile                              The connectivity profile.  [choices: "4g", "3g", "3gfast", "3gslow", "3gem", "2g", "cable", "native", "custom"] [default: "native"]
@@ -136,7 +139,7 @@ Options:
       --androidVerifyNetwork                        Before a test start, verify that the device has a Internet connection by pinging 8.8.8.8 (or a configurable domain with --androidPingAddress)  [boolean] [default: false]
       --processStartTime                            Capture browser process start time (in milliseconds). Android only for now.  [boolean] [default: false]
       --pageCompleteCheck                           Supply a JavaScript (inline or JavaScript file) that decides when the browser is finished loading the page and can start to collect metrics. The JavaScript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd. By default the tests ends 2 seconds after loadEventEnd. Also checkout --pageCompleteCheckInactivity and --pageCompleteCheckPollTimeout
-      --pageCompleteWaitTime                        How long time you want to wait for your pageComplteteCheck to finish, after it is signaled to closed. Extra parameter passed on to your pageCompleteCheck.  [default: 5000]
+      --pageCompleteWaitTime                        How long time you want to wait for your pageComplteteCheck to finish, after it is signaled to closed. Extra parameter passed on to your pageCompleteCheck.  [default: 8000]
       --pageCompleteCheckInactivity                 Alternative way to choose when to end your test. This will wait for 2 seconds of inactivity that happens after loadEventEnd.  [boolean] [default: false]
       --pageCompleteCheckPollTimeout                The time in ms to wait for running the page complete check the next time.  [number] [default: 1500]
       --pageCompleteCheckStartWait                  The time in ms to wait for running the page complete check for the first time. Use this when you have a pageLoadStrategy set to none  [number] [default: 5000]
@@ -173,7 +176,7 @@ Options:
       --tcpdump                                     Collect a tcpdump for each tested URL.  [boolean] [default: false]
       --tcpdumpPacketBuffered                       Use together with --tcpdump to save each packet directly to the file, instead of buffering.  [boolean] [default: false]
       --urlAlias                                    Use an alias for the URL. You need to pass on the same amount of alias as URLs. The alias is used as the name of the URL and used for filepath. Pass on multiple --urlAlias for multiple alias/URLs. You can also add alias direct in your script.  [string]
-      --preURL                                      A URL that will be accessed first by the browser before the URL that you wanna analyze. Use it to fill the cache.
+      --preURL                                      A URL that will be accessed first by the browser before the URL that you wanna analyze. Use it to fill the browser cache.
       --preURLDelay                                 Delay between preURL and the URL you want to test (in milliseconds)  [default: 1500]
       --userTimingWhitelist                         All userTimings are captured by default this option takes a regex that will whitelist which userTimings to capture in the results.
       --headless                                    Run the browser in headless mode. Works for Firefox and Chrome.  [boolean] [default: false]
@@ -181,5 +184,7 @@ Options:
       --extension                                   Path to a WebExtension to be installed in the browser. Note that --extension can be passed multiple times.
       --spa                                         Convenient parameter to use if you test a SPA application: will automatically wait for X seconds after last network activity and use hash in file names. Read more: https://www.sitespeed.io/documentation/sitespeed.io/spa/  [boolean] [default: false]
       --browserRestartTries                         If the browser fails to start, you can retry to start it this amount of times.  [number] [default: 3]
+      --preWarmServer                               Do pre test requests to the URL(s) that you want to test that is not measured. Do that to make sure your web server is ready to serve. The pre test requests is done with another browser instance that is closed after pre testing is done.  [boolean] [default: false]
+      --preWarmServerWaitTime                       The wait time before you start the real testing after your pre-cache request.  [number] [default: 5000]
   -h, --help                                        Show help  [boolean]
   -V, --version                                     Show version number  [boolean]

@@ -68,6 +68,8 @@ Screenshots are by default png but you probably want them to be jpg: ```--screen
 
 And then you should also make sure that all the result files (HTML/videos/screenshots) are removed from your local server and only exists on S3. Add ```--s3.removeLocalResult```.
 
+As a last thing you should also add `--copyLatestFilesToBase` that will make it possible to view latest screenshot and video in Grafana from S3.
+
 
 # Digital Ocean Spaces
 [Digital Ocean Spaces](https://developers.digitalocean.com/documentation/spaces/#aws-s3-compatibility)
