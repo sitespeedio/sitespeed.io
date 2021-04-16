@@ -22,7 +22,7 @@ Here we keep questions that are frequently asked at [Slack](https://sitespeedio.
 Read this before you start to collect metrics.
 
 ### How do I test cached pages?
-How do I test cached pages? The easiest way to do that is to use the **--preURL** parameter:
+How do I test cached pages? The easiest way to do that is to use the `--preURL` parameter:
 
 ~~~bash
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --preURL https://www.sitespeed.io/documentation/ https://www.sitespeed.io/
@@ -74,7 +74,7 @@ You should also try out our new setup with [WebPageReplay](../webpagereplay/).
 Checkout the [scripting capabilities](../scripting/) that makes it easy to test multiple pages.
 
 ### I want to test on different CPU speeds how do I do that?
-If you use Chrome you can use <code>--chrome.CPUThrottlingRate</code>.
+If you use Chrome you can use <code>--chrome.CPUThrottlingRate</code>. However there's a bug in Chromedriver so this only works if you run with the `--headless` parameter.
 
 ### Throttle or not throttle your connection?
 **PLEASE, YOU NEED TO ALWAYS THROTTLE YOUR CONNECTION!** You should always throttle/limit the connectivity because it will make it easier for you to find regressions. If you don't do it, you can run your tests with different connectivity profiles and regressions/improvements that you see is caused by your servers flaky internet connection. Check out our [connectivity guide]({{site.baseurl}}/documentation/sitespeed.io/connectivity/).
@@ -133,7 +133,20 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 ### Running tests from multiple locations
 Can I test the same URLs from different locations and how do I make sure they don't override each others data in Graphite?
 
-You should set different namespaces depending on location (**--graphite.namespace**). If you run one test from London, set the namespace to <code>--graphite.namespace sitespeed_io.london</code>. Then you can choose individual locations in the dropdown in the pre-made dashboards.
+You should set different namespaces depending on location (`--graphite.namespace`). If you run one test from London, set the namespace to <code>--graphite.namespace sitespeed_io.london</code>. Then you can choose individual locations in the dropdown in the pre-made dashboards.
+
+### Google Web Vitals
+To get Googles Web Vitals in your tests you need to use Chrome. sitespeed.io collects: First Contentful paint, Largest contentful paint, Cumulative Layout Shift, First Input Delay/Total Blocking time. 
+
+A good thing is to calibrate your test with the Chrome User Experience report data. Do that by run the [CrUx plugin](/documentation/sitespeed.io/crux/) and then try to tune what kind of connectivity setting you use and compare First and Largest contentful paint.
+
+To calibrate the Cumulative layout shift its good to [use scripting](/documentation/sitespeed.io/scripting/) and go to the page and [scroll the page](/documentation/sitespeed.io/scripting/#scroll-the-page-to-measure-cumulative-layout-shift).
+
+First Input Delay/Total Blocking time is harder. The best way is to test on a real mobile phone, preferable an older Android phone like Moto G5.
+
+### Google Page Speed Insights vs Lighthouse vs Chrome User Experience Report plugins
+
+It's a little bit confusing, what tool should you use and how do they work? [*Google Page Speed Insight plugin*](/documentation/sitespeed.io/google-page-speed-insights/) runs Lighthouse on Google servers and also collect Chrome User Experience data. If you run the [*Lighthouse plugin*](/documentation/sitespeed.io/lighthouse/) Lighthouse will run on your own machine. The [*Chrome User Experience Report plugin*](/documentation/sitespeed.io/crux/) collects data from the CrUx API that is collected from real Chrome users that access the website AND have the sync feature turned on in Chrome (=accepting Google collect the metrics).
 
 ## Store the data
 By default you can choose to store your metrics in a time series database (Graphite or InfluxDB).

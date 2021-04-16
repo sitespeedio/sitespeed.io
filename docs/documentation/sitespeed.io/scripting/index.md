@@ -372,6 +372,31 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
+### Scroll the page to measure Cumulative Layout Shift
+
+To get the Cumulative Layout Shift metric for Chrome closer to what real users get you can scroll the page and measure that. Depending on how your page work, you may want to tune the delay between the scrolling.
+
+
+~~~javascript
+module.exports = async function(context, commands) {
+  const delay = ms => new Promise(res => setTimeout(res, ms));
+  const delayTime = 250;
+
+  await commands.measure.start();
+  await commands.navigate(
+    'https://www.sitespeed.io/documentation/sitespeed.io/performance-dashboard/'
+  );
+  const pages = await commands.js.run(
+    'return document.body.scrollHeight / window.innerHeight;'
+  );
+  for (let page = 0; page < pages; page++) {
+    await commands.js.run('window.scrollBy(0, window.innerHeight);');
+    await delay(delayTime);
+  }
+  return commands.measure.stop();
+};
+~~~
+
 ### Add your own metrics
 You can add your own metrics by adding the extra JavaScript that is executed after the page has loaded BUT did you know that also can add your own metrics directly through scripting? The metrics will be added to the metric tab in the HTML output and automatically sent to Graphite/InfluxDB.
 
