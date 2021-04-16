@@ -1,0 +1,40 @@
+extends ./layout.pug
+include _tableMixins
+
+block content
+  include runInfo
+
+  if usingBrowsertime
+    h2 Runtime settings
+    table
+      tr 
+        td Sitespeed.io version
+        td #{version}
+      tr 
+        td Test time
+        td #{timestamp}
+      tr
+        td Browser 
+        td #{get(browser, 'name')}
+      tr 
+        td Version 
+        td #{get(browser, 'version')}
+      tr 
+        td User Agent
+        td #{get(browser, 'userAgent')}
+      tr 
+        td Connectivity
+        td #{get(connectivity, 'profile')} using #{get(connectivity, 'engine')} #{ get(connectivity, 'profile') !== 'native' ? `( Down: ${get(connectivity, 'settings.down')} Up: ${get(connectivity, 'settings.up')} RTT: ${get(connectivity, 'settings.rtt')})`: ''}
+      tr 
+        td Platform 
+        td #{android ? 'Android' : (ios ? 'iOS' : os.platform() + ' ' +  os.version() + ' ' ) }
+      if android
+        tr 
+          td Android
+          td #{JSON.stringify(android)}
+      if ios
+        tr 
+          td ios
+          td #{JSON.stringify(ios)}
+  else 
+    p No runtime settings if you do not run Browsertime.
