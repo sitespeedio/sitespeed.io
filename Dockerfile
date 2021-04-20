@@ -1,4 +1,4 @@
-FROM sitespeedio/webbrowsers:chrome-90.0-firefox-87.0-edge-89.0-dev
+FROM sitespeedio/webbrowsers:chrome-90.0-firefox-88.0-edge-89.0-dev
 
 ENV SITESPEED_IO_BROWSERTIME__XVFB true
 ENV SITESPEED_IO_BROWSERTIME__DOCKER true
