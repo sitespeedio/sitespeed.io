@@ -379,20 +379,13 @@ To get the Cumulative Layout Shift metric for Chrome closer to what real users g
 
 ~~~javascript
 module.exports = async function(context, commands) {
-  const delay = ms => new Promise(res => setTimeout(res, ms));
   const delayTime = 250;
 
   await commands.measure.start();
   await commands.navigate(
     'https://www.sitespeed.io/documentation/sitespeed.io/performance-dashboard/'
   );
-  const pages = await commands.js.run(
-    'return document.body.scrollHeight / window.innerHeight;'
-  );
-  for (let page = 0; page < pages; page++) {
-    await commands.js.run('window.scrollBy(0, window.innerHeight);');
-    await delay(delayTime);
-  }
+  await  commands.scroll.toBottom(delayTime);
   return commands.measure.stop();
 };
 ~~~
@@ -1040,12 +1033,20 @@ Scroll the page.
 
 #### scroll.byPixels(xPixels, yPixels)
 Scroll the page by the specified pixels.
+#### scroll.byPages(pages)
+Scroll the page by the specified pages.
 
+#### scroll.toBottom(delayTime)
+Scroll to the bottom of the page. Will scroll by pages and wait the delay time between each scroll. Default delay time is 250 ms.
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // ... navigate to page  ...
+  await commands.scroll.toBottom();
+}
+~~~
 #### scroll.byLines(lines)
 Scroll the page by the specified lines.  Only supported by Firefox.
-
-#### scroll.byPages(pages)
-Scroll the page by the specified pages. Only supported by Firefox.
 
 ### Add text
 You can add text to input elements. The element needs to visible.
