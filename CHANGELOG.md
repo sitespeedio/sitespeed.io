@@ -1,13 +1,16 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 17.1.0 - 2021-04.20
+## 17.1.1 - 2021-04-23
+### Fixed
+* Updated to latest Browsertime that fixes the missing dev-shm flag for Chrome making running Chrome in Docker crash for some sites see [#3357](https://github.com/sitespeedio/sitespeed.io/issues/3357).
+## 17.1.0 - 2021-04-20
 
 ### Added
 * Updated to Firefox 88 in the Docker containers.
-## 17.0.1 - 2021-04.17
+## 17.0.1 - 2021-04-17
 ### Fixed
 * Updated Browsertime to 12.0.1 that fixes the problem with Chrome/Chromedriver 90 that introduced longer time to close the browser than earlier versions, so when trying the next run, the previous browser is not closed, fixed by adding a 2 second sleep time when closing the browser.
-## 17.0.0 - 2021-04.15 
+## 17.0.0 - 2021-04-15 
 Woohoo we shipped 17.0.0! There are many changes and you should read through the full changelog and focus on the new best practise section and breaking changes.
 ### New best practices
 One of the new things in 17 is the support for one extra key in Graphite: the name of the test. Set a computer friendly name of your test by using `--slug`. Then use the slug in the graphite key by adding `--graphite.addSlugToKey` to your run. When you do that change, should also convert your graphite data and your dashboards. The plan is like this:
