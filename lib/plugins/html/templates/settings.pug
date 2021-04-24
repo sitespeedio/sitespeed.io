@@ -13,12 +13,15 @@ block content
       tr 
         td Test time
         td #{timestamp}
+      tr 
+        td Using Docker
+        td #{options.docker ? 'Yes' : 'No'}
       tr
         td Browser 
         td #{get(browser, 'name')}
       tr 
         td Version 
-        td #{get(browser, 'version')}
+        td #{get(browser, 'version', 'Unknown')}
       tr 
         td User Agent
         td #{get(browser, 'userAgent')}
@@ -29,12 +32,28 @@ block content
         td Platform 
         td #{android ? 'Android' : (ios ? 'iOS' : os.platform() + ' ' +  os.version() + ' ' ) }
       if android
-        tr 
-          td Android
-          td #{JSON.stringify(android)}
+        if android.model
+          tr 
+            td Phone model
+            td #{android.model}
+        if android.androidVersion
+          tr 
+            td Android version
+            td #{android.androidVersion}
+        if android.batteryTemperature
+          tr 
+            td Battery temperature
+            td Start: #{android.batteryTemperature.start} °C Stop: #{android.batteryTemperature.stop} °C
+
+          mode
       if ios
-        tr 
-          td ios
-          td #{JSON.stringify(ios)}
+        if ios.deviceName
+          tr 
+            td Device
+            td #{ios.deviceName}
+        if ios.deviceUDID
+          tr 
+            td UUID
+            td #{ios.deviceUDID}
   else 
     p No runtime settings if you do not run Browsertime.

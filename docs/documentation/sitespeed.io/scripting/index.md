@@ -379,20 +379,13 @@ To get the Cumulative Layout Shift metric for Chrome closer to what real users g
 
 ~~~javascript
 module.exports = async function(context, commands) {
-  const delay = ms => new Promise(res => setTimeout(res, ms));
   const delayTime = 250;
 
   await commands.measure.start();
   await commands.navigate(
     'https://www.sitespeed.io/documentation/sitespeed.io/performance-dashboard/'
   );
-  const pages = await commands.js.run(
-    'return document.body.scrollHeight / window.innerHeight;'
-  );
-  for (let page = 0; page < pages; page++) {
-    await commands.js.run('window.scrollBy(0, window.innerHeight);');
-    await delay(delayTime);
-  }
+  await  commands.scroll.toBottom(delayTime);
   return commands.measure.stop();
 };
 ~~~
@@ -936,6 +929,51 @@ Click on element that is found by the CSS selector that has the given value. Int
 #### click.bySelectorAndWait(selector)
 Click on element that is found by name CSS selector that has the given value and wait for the [page cmplete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to happen. Internally we use  ```document.querySelector(selector)``` to get the correct element.
 
+### Mouse
+The mouse command will perform various mouse events.
+
+#### mouse.moveTo.byXpath(xpath)
+Move mouse to an element that matches a XPath selector.
+
+#### mouse.moveTo.toPosition(xPos, yPos)
+Move mouse to a given position.
+
+#### mouse.moveTo.byOffset(xOff, yOff)
+Move mouse by a given offset to current location.
+
+#### mouse.contextClick.byXpath(xpath)
+Perform ContextClick on an element that matches a XPath selector.
+
+#### mouse.contextClick.atCursor()
+Perform ContextClick at the cursor's position.
+
+#### mouse.singleClick.byXpath(xpath, options)
+Perform mouse single click on an element matches a XPath selector.  Options is an optional parameter, and if the property 'wait' is set to true, browsertime will wait until the pageCompleteCheck has finished.
+
+#### mouse.singleClick.atCursor(options)
+Perform mouse single click at the cursor's position.  Options is an optional parameter, and if the property 'wait' is set to true, browsertime will wait until the pageCompleteCheck has finished.
+
+#### mouse.doubleClick.byXpath(xpath, options)
+Perform double single click on an element matches a XPath selector.  Options is an optional parameter, and if the property 'wait' is set to true, browsertime will wait until the pageCompleteCheck has finished.
+
+#### mouse.doubleClick.atCursor(options)
+Perform mouse double click at the cursor's position.  Options is an optional parameter, and if the property 'wait' is set to true, browsertime will wait until the pageCompleteCheck has finished.
+
+#### mouse.clickAndHold.byXpath(xpath)
+Click and hold an element that matches a XPath selector.
+
+#### mouse.clickAndHold.atCursor()
+Click and hold an element at the cursor's position.
+
+#### mouse.clickAndHold.atPosition(xPos, yPos)
+Click and hold an element at the specified position.
+
+#### mouse.clickAndHold.releaseAtXpath(xpah)
+Release mouse on element that matches the specified Xpath.
+
+#### mouse.clickAndHold.releaseAtPosition(xPos, yPos)
+Release mouse at specified coordinates.
+
 ### Wait
 There are a couple of help commands that makes it easier to wait. Either you can wait on a specific id to appear or for x amount of milliseconds.
 
@@ -981,6 +1019,35 @@ Navigate/go to a URL without measuring it.
 #### navigate(url)
 Navigate to a URL and do not measure it. It will use the default [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) and follow the exact same pattern for going to a page as normal Browsertime navigation except it will skip collecting any metrics.
 
+#### navigation.back()
+Navigate backward in history.
+
+#### navigation.forward()
+Navigate forward in history.
+
+#### navigation.refresh()
+Refresh page.
+
+### Scroll
+Scroll the page.
+
+#### scroll.byPixels(xPixels, yPixels)
+Scroll the page by the specified pixels.
+#### scroll.byPages(pages)
+Scroll the page by the specified pages.
+
+#### scroll.toBottom(delayTime)
+Scroll to the bottom of the page. Will scroll by pages and wait the delay time between each scroll. Default delay time is 250 ms.
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // ... navigate to page  ...
+  await commands.scroll.toBottom();
+}
+~~~
+#### scroll.byLines(lines)
+Scroll the page by the specified lines.  Only supported by Firefox.
+
 ### Add text
 You can add text to input elements. The element needs to visible.
 
@@ -1022,6 +1089,12 @@ Switch to window by name.
 
 #### switch.toParentFrame
 Switch to the parent frame.
+
+#### switch.toNewTab(url)
+Create a new tab and switch to it. Url parameter is optional which will trigger a navigation ot the given url.
+
+#### switch.toNewWindow(url)
+Create a new window and switch to it. Url parameter is optional which will trigger a navigation ot the given url.
 
 ### Set
 

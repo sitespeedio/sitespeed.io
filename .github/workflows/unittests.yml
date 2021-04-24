@@ -34,4 +34,4 @@ jobs:
     - name: Lint pug
       run: npm run pug-lint
     - name: Run unit tests
-      run: npm run test
+      run: npm test
