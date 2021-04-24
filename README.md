@@ -1,4 +1,4 @@
-# sitespeed.io
+# sitespeed.io documentation
 
 ![Unit tests](https://github.com/sitespeedio/sitespeed.io/workflows/Unit%20tests/badge.svg?branch=main)
 ![Linux browsers](https://github.com/sitespeedio/sitespeed.io/workflows/Linux%20browsers/badge.svg?branch=main)
