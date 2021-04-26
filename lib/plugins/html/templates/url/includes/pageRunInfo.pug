@@ -28,6 +28,7 @@ if pageInfo.data.browsertime
       | ).
     else if options.multi
       | .
+    a(href= rootPath + 'settings.html')= 'full settings'
 
 else if pageInfo.data.webpagetest
   p.small Tested #{timestamp} using WebPageTest #{options.webpagetest.location} using connectivity #{options.webpagetest.connectivity} for #{h.plural(options.webpagetest.runs, 'run')}.

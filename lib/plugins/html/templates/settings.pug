@@ -25,9 +25,24 @@ block content
       tr 
         td User Agent
         td #{get(browser, 'userAgent')}
+      if options.replay
+        tr
+          td Using WebPageReplay 
+          td Yes
+      if options.multi
+        tr
+          td Using multi mode
+          td Yes
+      if options.preURL 
+        tr 
+          td Using preURL 
+          td #{h.short(options.preURL, 60)}     
       tr 
         td Connectivity
-        td #{get(connectivity, 'profile')} using #{get(connectivity, 'engine')} #{ get(connectivity, 'profile') !== 'native' ? `( Down: ${get(connectivity, 'settings.down')} Up: ${get(connectivity, 'settings.up')} RTT: ${get(connectivity, 'settings.rtt')})`: ''}
+        td #{ get(connectivity, 'profile') === 'native' ? 'No connectivity settings' : ` ${get(connectivity, 'profile')} using ${get(connectivity, 'engine')} (Down: ${get(connectivity, 'settings.down')} Up: ${get(connectivity, 'settings.up')} RTT: ${get(connectivity, 'settings.rtt')})`}
+      tr 
+        td Number of runs
+        td #{get(options, 'browsertime.iterations')}
       tr 
         td Platform 
         td #{android ? 'Android' : (ios ? 'iOS' : os.platform() + ' ' +  os.version() + ' ' ) }

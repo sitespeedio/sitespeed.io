@@ -26,6 +26,7 @@ if usingBrowsertime
         a(href= rootPath + 'scripts.html')= 'script'
         | ).
         | .
+    a(href= rootPath + 'settings.html')= 'full settings'
 
 else if usingWebPageTest
   p.small Tested #{timestamp} using WebPageTest #{options.webpagetest.location} using connectivity #{options.webpagetest.connectivity} for #{h.plural(options.webpagetest.runs, 'run')}.
