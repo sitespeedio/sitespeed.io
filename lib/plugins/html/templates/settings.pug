@@ -13,15 +13,9 @@ block content
       tr 
         td Test time
         td #{timestamp}
-      tr 
-        td Using Docker
-        td #{options.docker ? 'Yes' : 'No'}
       tr
         td Browser 
-        td #{get(browser, 'name')}
-      tr 
-        td Version 
-        td #{get(browser, 'version', 'Unknown')}
+        td #{get(browser, 'name')} #{get(browser, 'version', 'Unknown')}
       tr 
         td User Agent
         td #{get(browser, 'userAgent')}
@@ -44,8 +38,8 @@ block content
         td Number of runs
         td #{get(options, 'browsertime.iterations')}
       tr 
-        td Platform 
-        td #{android ? 'Android' : (ios ? 'iOS' : os.platform() + ' ' +  os.version() + ' ' ) }
+        td OS
+        td #{android ? 'Android' : (ios ? 'iOS' :  (options.browsertime.docker ? 'Docker using ' + osName(): osName())) }
       if android
         if android.model
           tr 
