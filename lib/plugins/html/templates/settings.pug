@@ -15,10 +15,14 @@ block content
         td #{timestamp}
       tr
         td Browser 
-        td #{get(browser, 'name')} #{get(browser, 'version', 'Unknown')}
+        td #{h.cap(get(browser, 'name'))} #{get(browser, 'version', 'unknown')}
       tr 
         td User Agent
         td #{get(browser, 'userAgent')}
+      if options.mobile
+        tr 
+          td Emulated mobile
+          td Yes
       if options.replay
         tr
           td Using WebPageReplay 
@@ -31,6 +35,10 @@ block content
         tr 
           td Using preURL 
           td #{h.short(options.preURL, 60)}     
+      if !options.mobile && !ios && !android
+        tr
+          td View port
+          td #{options.viewPort}
       tr 
         td Connectivity
         td #{ get(connectivity, 'profile') === 'native' ? 'No connectivity settings' : ` ${get(connectivity, 'profile')} using ${get(connectivity, 'engine')} (Down: ${get(connectivity, 'settings.down')} Up: ${get(connectivity, 'settings.up')} RTT: ${get(connectivity, 'settings.rtt')})`}
@@ -53,8 +61,6 @@ block content
           tr 
             td Battery temperature
             td Start: #{android.batteryTemperature.start} °C Stop: #{android.batteryTemperature.stop} °C
-
-          mode
       if ios
         if ios.deviceName
           tr 
