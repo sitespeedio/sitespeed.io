@@ -23,6 +23,10 @@ block content
         tr 
           td Emulated mobile
           td Yes
+      if cpuBenchmark
+        tr
+          td CPU benchmark
+          td #{cpuBenchmark} (first run)
       if options.replay
         tr
           td Using WebPageReplay 
