@@ -82,6 +82,7 @@
     "fast-stats": "0.0.6",
     "find-up": "5.0.0",
     "fs-extra": "9.1.0",
+    "getos": "3.2.1",
     "influx": "5.6.3",
     "intel": "1.2.0",
     "jstransformer-markdown-it": "2.1.0",

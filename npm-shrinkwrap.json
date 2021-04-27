@@ -2788,6 +2788,21 @@
       "resolved": "https://registry.npmjs.org/get-stream/-/get-stream-6.0.0.tgz",
       "integrity": "sha512-A1B3Bh1UmL0bidM/YX2NsCOTnGJePL9rO/M+Mw3m9f2gUpfokS0hi5Eah0WSUEWZdZhIZtMjkIYS7mDfOqNHbg=="
     },
+    "getos": {
+      "version": "3.2.1",
+      "resolved": "https://registry.npmjs.org/getos/-/getos-3.2.1.tgz",
+      "integrity": "sha512-U56CfOK17OKgTVqozZjUKNdkfEv6jk5WISBJ8SHoagjE6L69zOwl3Z+O8myjY9MEW3i2HPWQBt/LTbCgcC973Q==",
+      "requires": {
+        "async": "^3.2.0"
+      },
+      "dependencies": {
+        "async": {
+          "version": "3.2.0",
+          "resolved": "https://registry.npmjs.org/async/-/async-3.2.0.tgz",
+          "integrity": "sha512-TR2mEZFVOj2pLStYxLht7TyfuRzaydfpxr3k9RpHIzMgw7A64dzsdqCxH1WJyQdoe8T10nDXd9wnEigmiuHIZw=="
+        }
+      }
+    },
     "getpass": {
       "version": "0.1.7",
       "resolved": "https://registry.npmjs.org/getpass/-/getpass-0.1.7.tgz",

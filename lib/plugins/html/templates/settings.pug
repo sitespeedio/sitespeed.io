@@ -47,7 +47,7 @@ block content
         td #{get(options, 'browsertime.iterations')}
       tr 
         td OS
-        td #{android ? 'Android' : (ios ? 'iOS' :  (options.browsertime.docker ? 'Docker using ' + osName(): osName())) }
+        td #{android ? 'Android' : (ios ? 'iOS' :  (options.browsertime.docker ? 'Docker using ' + os: os)) }
       if android
         if android.model
           tr 
