@@ -23,9 +23,9 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 
 Gives the following [report](https://examples.sitespeed.io/16.x/2020-12-21-10-46-45/index.html). The standard use case for sitespeed.io is to run it continuously and send the data to Graphite/Grafana and create dashboards looking like this:
 
-[![Example dashboard]({{site.baseurl}}/img/examples/dashboard-examples.png)](https://dashboard.sitespeed.io/dashboard/db/page-summary?orgId=1)
+[![Example dashboard]({{site.baseurl}}/img/examples/dashboard-examples.png)](https://dashboard.sitespeed.io/d/9NDMzFfMk/page-metrics-desktop)
 {: .img-thumbnail}
-Checkout our [example dashboard](https://dashboard.sitespeed.io/dashboard/db/page-summary?orgId=1) to see what it looks like to use sitespeed.io to continuously measure performance.
+Checkout our [example dashboard](https://dashboard.sitespeed.io/d/9NDMzFfMk/page-metrics-desktop) to see what it looks like to use sitespeed.io to continuously measure performance.
 
 ## Browsertime
 Browsertime collects metrics using JavaScript and will record the browser window using FFMPEG and produce a JSON file with the metrics collected, a HAR file that describes the request/responses and video and screenshots.
