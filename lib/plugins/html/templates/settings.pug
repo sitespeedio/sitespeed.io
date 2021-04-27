@@ -43,6 +43,10 @@ block content
         tr
           td View port
           td #{options.viewPort}
+      else
+        tr
+          td Window size
+          td #{windowSize}
       tr 
         td Connectivity
         td #{ get(connectivity, 'profile') === 'native' ? 'No connectivity settings' : ` ${get(connectivity, 'profile')} using ${get(connectivity, 'engine')} (Down: ${get(connectivity, 'settings.down')} Up: ${get(connectivity, 'settings.up')} RTT: ${get(connectivity, 'settings.rtt')})`}
