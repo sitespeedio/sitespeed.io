@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 17.2.0 - 2021-04-27
+### Added 
+* Show runtime settings in the HTML [#3359](https://github.com/sitespeedio/sitespeed.io/pull/3359). This makes it easier to see what settings are used. We gonna iterate and add more settings later.
+
+* Upgraded to [Browsertime 12.2.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1220---2021-04-27).
+
 ## 17.1.1 - 2021-04-23
 ### Fixed
 * Updated to latest Browsertime that fixes the missing dev-shm flag for Chrome making running Chrome in Docker crash for some sites see [#3357](https://github.com/sitespeedio/sitespeed.io/issues/3357).
