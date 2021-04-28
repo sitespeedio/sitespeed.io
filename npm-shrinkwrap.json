@@ -991,9 +991,9 @@
       "integrity": "sha512-32NDda82rhwD9/JBCCkB+MRYDp0oSvlo2IL6rQWA10PQi7tDUM3eqMSltXmY+Oyl/7N3P3qNtAlv7X0d9bI28w=="
     },
     "axe-core": {
-      "version": "4.1.4",
-      "resolved": "https://registry.npmjs.org/axe-core/-/axe-core-4.1.4.tgz",
-      "integrity": "sha512-Pdgfv6iP0gNx9ejRGa3zE7Xgkj/iclXqLfe7BnatdZz0QnLZ3jrRHUVH8wNSdN68w05Sk3ShGTb3ydktMTooig=="
+      "version": "4.2.0",
+      "resolved": "https://registry.npmjs.org/axe-core/-/axe-core-4.2.0.tgz",
+      "integrity": "sha512-1uIESzroqpaTzt9uX48HO+6gfnKu3RwvWdCcWSrX4csMInJfCo1yvKPNXCwXFRpJqRW25tiASb6No0YH57PXqg=="
     },
     "babel-runtime": {
       "version": "6.26.0",
