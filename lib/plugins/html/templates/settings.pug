@@ -49,7 +49,7 @@ block content
           td #{windowSize}
       tr 
         td Connectivity
-        td #{ get(connectivity, 'profile') === 'native' ? 'No connectivity settings' : ` ${get(connectivity, 'profile')} using ${get(connectivity, 'engine')} (Down: ${get(connectivity, 'settings.down')} Up: ${get(connectivity, 'settings.up')} RTT: ${get(connectivity, 'settings.rtt')})`}
+        td #{ get(connectivity, 'profile') === 'native' ? 'No connectivity settings' : ` ${get(connectivity, 'profile')} using ${get(connectivity, 'engine')} (Down: ${get(connectivity, 'settings.down', '')} Up: ${get(connectivity, 'settings.up', '')} RTT: ${get(connectivity, 'settings.rtt', '')})`}
       tr 
         td Number of runs
         td #{get(options, 'browsertime.iterations')}
