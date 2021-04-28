@@ -1,5 +1,14 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+### Added
+* Updated to Axe-core [4.2.0](https://github.com/dequelabs/axe-core/blob/develop/CHANGELOG.md#420-2021-04-23).
+* Show browser window size in runtime setting when using Android/iPhone [#3362](https://github.com/sitespeedio/sitespeed.io/pull/3362).
+
+### Fixed
+* [Do not show undefined when you only set RTT for throttle](https://github.com/sitespeedio/sitespeed.io/commit/5446a8e11424c8170a42533f0e40cbe28bf8a5c4).
+* [Fix test running without connectivity settings](https://github.com/sitespeedio/sitespeed.io/commit/3ac3c2ab6885689b6689c6f2974ae7c256be9faf).
+
 ## 17.2.0 - 2021-04-27
 ### Added 
 * Show runtime settings in the HTML [#3359](https://github.com/sitespeedio/sitespeed.io/pull/3359). This makes it easier to see what settings are used. We gonna iterate and add more settings later.
