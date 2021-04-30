@@ -73,7 +73,7 @@
     "@tgwf/co2": "0.6.1",
     "aws-sdk": "2.882.0",
     "axe-core": "4.2.0",
-    "browsertime": "12.3.0",
+    "browsertime": "12.3.1",
     "coach-core": "6.3.3",
     "cli-color": "2.0.0",
     "concurrent-queue": "7.0.2",
