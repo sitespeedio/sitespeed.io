@@ -11,6 +11,8 @@ if timings.largestContentfulPaint
         if timings.largestContentfulPaint.url !== ''  
           th URL
           th Image
+        else
+          th Element
         if timings.largestContentfulPaint.tagName  
           th Tag 
         th Render time
@@ -26,6 +28,12 @@ if timings.largestContentfulPaint
           td 
             a(href=timings.largestContentfulPaint.url)
               img.screenshot(src=timings.largestContentfulPaint.url, alt='LCP', style='width:200px')
+        else 
+          td 
+            - const screenshotNo = medianRun ? medianRun.runIndex : 1
+            - const screenshotName = 'data/screenshots/' + screenshotNo + '/largestContentfulPaint.' + screenShotType
+              a(href=screenshotName)
+                img.screenshot(src=screenshotName, alt='LCP', style='width:200px')
         if timings.largestContentfulPaint.tagName 
           td #{timings.largestContentfulPaint.tagName}
         td  #{h.time.ms(timings.largestContentfulPaint.renderTime)}
