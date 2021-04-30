@@ -96,7 +96,8 @@ safari
       --safari.useSimulator          If the value of useSimulator is true, safaridriver will only use iOS Simulator hosts. If the value of safari:useSimulator is false, safaridriver will not use iOS Simulator hosts. NOTE: An Xcode installation is required in order to run WebDriver tests on iOS Simulator hosts.  [boolean] [default: false]
 
 Screenshot
-      --screenshot                             Save one screen shot per iteration.  [boolean] [default: false]
+      --screenshot                             Save one screenshot per iteration.  [boolean] [default: false]
+      --screenshotLCP                          Save one screenshot per iteration that shows the largest contentful paint element (if the browser supports LCP).  [boolean] [default: false]
       --screenshotParams.type                  Set the file type of the screenshot  [choices: "png", "jpg"] [default: "jpg"]
       --screenshotParams.png.compressionLevel  zlib compression level  [default: 6]
       --screenshotParams.jpg.quality           Quality of the JPEG screenshot. 1-100  [default: 80]
