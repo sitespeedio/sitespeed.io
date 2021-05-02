@@ -7,7 +7,12 @@ if browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift!== undefin
       p #{browsertime.pageinfo.cumulativeLayoutShift.toFixed(2)} layout shift collected from the 
         a(href='https://web.dev/cls/') Cumulative Layout Shift API
         | .
-      p These HTML elements contribute most to the Cumulative Layout Shifts of the page.
+      p Sometimes it can be hard to understand what content that has shifted. If you cannot see that in the screenshot (highlighted yellow), checkout the video or the filmstrip of the run.
+      - const screenshotNo = medianRun ? medianRun.runIndex : 1
+      - const screenshotName = 'data/screenshots/' + screenshotNo + '/layoutShift.' + screenShotType
+      a(href=screenshotName)
+        img.screenshot(src=screenshotName, alt='Layout shift', style='max-width:100%; height: auto')
+      p These HTML elements contribute most to the Cumulative Layout Shifts of the page. The higher score, the more layout shift.
       table
         tr 
           th Score

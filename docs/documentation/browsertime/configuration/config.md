@@ -98,6 +98,7 @@ safari
 Screenshot
       --screenshot                             Save one screenshot per iteration.  [boolean] [default: false]
       --screenshotLCP                          Save one screenshot per iteration that shows the largest contentful paint element (if the browser supports LCP).  [boolean] [default: false]
+      --screenshotLS                           Save one screenshot per iteration that shows the layout shift elements (if the browser supports layout shift).  [boolean] [default: false]
       --screenshotParams.type                  Set the file type of the screenshot  [choices: "png", "jpg"] [default: "jpg"]
       --screenshotParams.png.compressionLevel  zlib compression level  [default: 6]
       --screenshotParams.jpg.quality           Quality of the JPEG screenshot. 1-100  [default: 80]
