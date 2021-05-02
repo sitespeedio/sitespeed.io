@@ -49,6 +49,6 @@ if timings.largestContentfulPaint
         img.screenshot(src=screenshotName, alt='LCP', style='max-width:100%; height: auto')
       p.small The largest contentful paint is highlighted in the image. If no element is highlighted the element was removed before the screenshot or the LCP API couldn't find the element.
       if timings.largestContentfulPaint.url !== ''
-        p The Largest Contentful Paint API highlighted this image as a part of the LCP.  
-          a(href=timings.largestContentfulPaint.url) 
-            img.screenshot(src=timings.largestContentfulPaint.url, alt='LCP', style='max-width:100%; height: auto')
+        p.small The Largest Contentful Paint API highlighted this image as a part of the LCP.  
+        a(href=timings.largestContentfulPaint.url) 
+          img.screenshot(src=timings.largestContentfulPaint.url, alt='LCP', style='max-width:100%; height: auto')
