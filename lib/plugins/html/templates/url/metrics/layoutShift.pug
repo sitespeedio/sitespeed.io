@@ -4,20 +4,23 @@ if browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift!== undefin
     if (browsertime.pageinfo.cumulativeLayoutShift === 0) 
       p No layout shift detected.
     else
-      p #{browsertime.pageinfo.cumulativeLayoutShift.toFixed(2)} layout shift collected from the 
+      p #{browsertime.pageinfo.cumulativeLayoutShift.toFixed(2)} cumulative layout shift collected from the 
         a(href='https://web.dev/cls/') Cumulative Layout Shift API
         | .
-      p Sometimes it can be hard to understand what content that has shifted. If you cannot see that in the screenshot (highlighted yellow), checkout the video or the filmstrip of the run.
-      - const screenshotNo = medianRun ? medianRun.runIndex : 1
-      - const screenshotName = 'data/screenshots/' + screenshotNo + '/layoutShift.' + screenShotType
-      a(href=screenshotName)
-        img.screenshot(src=screenshotName, alt='Layout shift', style='max-width:100%; height: auto')
-      p These HTML elements contribute most to the Cumulative Layout Shifts of the page. The higher score, the more layout shift.
-      table
-        tr 
-          th Score
-          th HTML Element
-        each info in browsertime.pageinfo.cumulativeLayoutShiftInfo
-          tr
-            td #{info.score.toFixed(5)}
-            td #{info.html}
+      .row
+        .one-half.column
+          p These HTML elements contribute most to the Cumulative Layout Shifts of the page. The higher score, the more layout shift.
+          table
+            tr 
+              th Score
+              th HTML Element
+            each info in browsertime.pageinfo.cumulativeLayoutShiftInfo
+              tr
+                td #{info.score.toFixed(5)}
+                td #{info.html}
+        .one-half.column
+          - const screenshotNo = medianRun ? medianRun.runIndex : 1
+          - const screenshotName = 'data/screenshots/' + screenshotNo + '/layoutShift.' + screenShotType
+          a(href=screenshotName)
+            img.screenshot(src=screenshotName, alt='Layout shift', style='max-width:100%; height: auto')
+          p.small The elements that have shifted place is highlighted in the image. If the element shifted outside of the viewport, you will not see it there. It can be hard to understand what content that has shifted, if that's the case, checkout the video or the filmstrip of the run.
