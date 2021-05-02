@@ -141,11 +141,11 @@ if browsertime
           if (timings.largestContentfulPaint) 
             tr
               td
-                a(href=baseHelpURL + 'largestContentfulPaint') Largest Contentful Paint (LCP)
+                a(href='#largestContentfulPaint') Largest Contentful Paint (LCP)
               td.number #{h.time.ms(Math.max(timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.renderTime, timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.loadTime))}
           tr
             td
-              a(href=baseHelpURL + 'cumulativeLayoutShift') Cumulative Layout Shift (CLS)
+              a(href='#cumulativeLayoutShift') Cumulative Layout Shift (CLS)
             td.number #{browsertime.pageinfo.cumulativeLayoutShift.toFixed(2)}
           if browsertime.timings.firstInput !== undefined
             tr 
