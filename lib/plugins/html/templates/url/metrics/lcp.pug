@@ -31,9 +31,6 @@ if timings.largestContentfulPaint
                   b URL 
                 td 
                   a(href=timings.largestContentfulPaint.url) #{h.shortAsset(timings.largestContentfulPaint.url)}
-              tr 
-                td(colspan='2')
-                  img.screenshot(src=timings.largestContentfulPaint.url, alt='LCP', style='width:200px')
             if timings.largestContentfulPaint.size
               tr 
                 td 
