@@ -153,7 +153,10 @@ docker run --cap-add=NET_ADMIN --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true -e 
 <hr>
 
 # Sponsors
-You can sponsor us to help us keep sitespeed.io running and making sure we can have the best test setup as possible. Read our [sponsor page](https://github.com/sponsors/soulgalore) for more info.
+
+<a href="https://www.macstadium.com"><img src="https://uploads-ssl.webflow.com/5ac3c046c82724970fc60918/5c019d917bba312af7553b49_MacStadium-developerlogo.png"></a>
+
+We have a Mac Mini sponsored by [MacStadium](https://www.macstadium.com) and you too can sponsor us to help us keep sitespeed.io running and making sure we can have the best test setup as possible. Read our [sponsor page](https://github.com/sponsors/soulgalore) for more info.
 
 [travis-image]: https://img.shields.io/travis/sitespeedio/sitespeed.io.svg?style=flat-square
 [travis-url]: https://travis-ci.org/sitespeedio/sitespeed.io
