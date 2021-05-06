@@ -1,9 +1,12 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+##  17.3.0 - 2021-05-06
 ### Added
 * Updated to Axe-core [4.2.0](https://github.com/dequelabs/axe-core/blob/develop/CHANGELOG.md#420-2021-04-23).
 * Show browser window size in runtime setting when using Android/iPhone [#3362](https://github.com/sitespeedio/sitespeed.io/pull/3362).
+* Also copy LS and LCP screenshots when using lateststorer plugin [#3371](https://github.com/sitespeedio/sitespeed.io/pull/3371).
+* Added colors (red/yellow/green) to Google Web Vitals summary box, using the same limits as set by Crux   [#3370](https://github.com/sitespeedio/sitespeed.io/pull/3370).
+* Updated to latest Browsertime and remake on how to show LCP and LS.
 
 ### Fixed
 * [Do not show undefined when you only set RTT for throttle](https://github.com/sitespeedio/sitespeed.io/commit/5446a8e11424c8170a42533f0e40cbe28bf8a5c4).
