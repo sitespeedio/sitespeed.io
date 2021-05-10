@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+##  17.3.1 - 2021-05-10
+### Fixed
+
+* 17.3.0 introduced a bug copying the same screenshot for multiple pages when you use the lateststorer plugin[#3376](https://github.com/sitespeedio/sitespeed.io/pull/3376).
 ##  17.3.0 - 2021-05-06
 ### Added
 * Updated to Axe-core [4.2.0](https://github.com/dequelabs/axe-core/blob/develop/CHANGELOG.md#420-2021-04-23).
