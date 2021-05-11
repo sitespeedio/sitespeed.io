@@ -219,7 +219,23 @@ The default namespace when you send metrics to Graphite is *sitespeed_io.default
 
 If you want more parts, the [default dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/main/dashboards/graphite) will break.
 
-When we use sitespeed.io we usually keep the first part (*sitespeed_io*) to separate metrics from other tools that sends metrics to Graphite.  We then change the second part: *sitespeed_io.desktop*,  *sitespeed_io.emulatedMobile* or *sitespeed_io.desktopSweden*. As long as your namespace has three parts, they will work with the [default dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/main/dashboards/graphite).
+When we use sitespeed.io we usually keep the first part (*sitespeed_io*) to separate metrics from other tools that sends metrics to Graphite. We then change the second part: *sitespeed_io.desktop*,  *sitespeed_io.emulatedMobile* or *sitespeed_io.desktopSweden*. As long as your namespace has three parts, they will work with the [default dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/main/dashboards/graphite).
+
+## Delete old tags/annotations
+By defaut annotations and there tags are stored in the SQLite database that comes with Graphite. The size of that database will increase over time and that will make the annotations slower to load in the Grafana GUI.
+
+To fix that you should setup a job in the crontab that delete old tags/events. Edit the crontab using `crontab -e` and make sure to change the path to the SQLite database and to the SQL script that will delete old entries.
+
+~~~
+0 0 * * 0 sqlite3 /path/to/graphite.db < /path/to/deleteoldevents.sql && sqlite3 /path/to/graphite.db 'VACUUM;'
+~~~
+
+The script should look like this. Here we gonna delete tags/annotations that are older than 34 days.
+
+~~~
+DELETE FROM tagging_taggeditem WHERE object_id IN (SELECT id FROM events_event WHERE "when" <= date('now','-34 day'));
+DELETE FROM events_event WHERE "when" <= date('now','-34 day');
+~~~
 
 ## Warning: Crawling and Graphite
 If you crawl a site that is not static, you will pick up new pages each run or each day, which will make the Graphite database grow daily. When you add metrics to Graphite, it prepares space for those metrics ahead of time, depending on your storage configuration (in Graphite). If you configured Graphite to store individual metrics every 15 minutes for 60 days, Graphite will allocate storage for that URL: 4 (per hour) * 24 (hours per day) * 60 (days), even though you might only test that URL once.
