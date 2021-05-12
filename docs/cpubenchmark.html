@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CPU Bechmark</title>
+</head>
+<body style="background-color: #FFF; font-size: xx-large; color:black;  text-align: center;">
+    <div id="cpu"></div>
+</body>
+</html>
+
+
+<script>
+    function runCPUBenchmark() {
+        const amount = 100000000;
+        const startTime = performance.now();
+        for ( let i = amount; i > 0; i-- ) {
+            // empty
+        }
+        const time =  Math.round( performance.now() - startTime );
+        const cpuDiv = document.getElementById('cpu');
+        cpuDiv.innerHTML = time;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+    runCPUBenchmark();
+}, false);
+</script>
