@@ -45,7 +45,7 @@ if timings.largestContentfulPaint
               td(colspan='2')
                b DOM path
             tr
-              td(colspan='2')
+              td.url(colspan='2')
                 #{timings.largestContentfulPaint.domPath}
     .one-half.column
       - const screenshotNo = medianRun ? medianRun.runIndex : 1
