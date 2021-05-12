@@ -14,10 +14,13 @@ if browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift!== undefin
             tr 
               th Score
               th HTML Element
+            - browsertime.pageinfo.cumulativeLayoutShiftInfo.sort(function(a, b){return b.score-a.score})
             each info in browsertime.pageinfo.cumulativeLayoutShiftInfo
               tr
                 td #{info.score.toFixed(5)}
-                td #{info.html}
+                td.url #{info.tags}
+              tr 
+                td(colspan='2') #{info.domPath}
         .one-half.column
           - const screenshotNo = medianRun ? medianRun.runIndex : 1
           - const screenshotName = 'data/screenshots/' + screenshotNo + '/layoutShift.' + screenShotType
