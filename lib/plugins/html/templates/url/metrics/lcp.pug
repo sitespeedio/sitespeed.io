@@ -10,8 +10,13 @@ if timings.largestContentfulPaint
             if timings.largestContentfulPaint.tagName 
               tr
                 td 
-                  b Element/tag
+                  b Element type
                 td #{timings.largestContentfulPaint.tagName}
+            if timings.largestContentfulPaint.tag 
+              tr
+                td 
+                  b Element/tag
+                td.url #{timings.largestContentfulPaint.tag}
             tr
               td 
                 b Render time 
