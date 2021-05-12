@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>CPU Bechmark</title>
-</head>
-<body style="background-color: #FFF; font-size: xx-large; color:black;  text-align: center;">
-    <div id="cpu"></div>
-</body>
-</html>
+---
+layout: notfound
+title: CPU Benchmark - sitespeed.io
+permalink: /cpu.html
+---
+<div class="data"> <div id="cpu"></div>
+<a href="https://www.sitespeed.io/"><img src="{{site.baseurl}}/img/powerpuffsitespeed.io.png" class="cent"></a></div>
 
 
 <script>
@@ -18,7 +16,7 @@
         }
         const time =  Math.round( performance.now() - startTime );
         const cpuDiv = document.getElementById('cpu');
-        cpuDiv.innerHTML = time;
+        cpuDiv.innerHTML = '<h1> CPU Benchmark: ' + time + '</h1>';
     }
 
     document.addEventListener('DOMContentLoaded', function() {
