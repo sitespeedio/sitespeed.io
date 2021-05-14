@@ -10,8 +10,13 @@ if timings.largestContentfulPaint
             if timings.largestContentfulPaint.tagName 
               tr
                 td 
-                  b Element/tag
+                  b Element type
                 td #{timings.largestContentfulPaint.tagName}
+            if timings.largestContentfulPaint.tag 
+              tr
+                td 
+                  b Element/tag
+                td.url.pagesurl #{timings.largestContentfulPaint.tag}
             tr
               td 
                 b Render time 
@@ -40,7 +45,7 @@ if timings.largestContentfulPaint
               td(colspan='2')
                b DOM path
             tr
-              td(colspan='2')
+              td.url.pagesurl(colspan='2')
                 #{timings.largestContentfulPaint.domPath}
     .one-half.column
       - const screenshotNo = medianRun ? medianRun.runIndex : 1

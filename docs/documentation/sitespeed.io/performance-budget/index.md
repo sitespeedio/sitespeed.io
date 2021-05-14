@@ -119,7 +119,6 @@ Here is an example of a fully configured budget file.
       "requests": 0
     },
     "score": {
-      "accessibility": 100,
       "bestpractice": 100,
       "privacy": 100,
       "performance": 100

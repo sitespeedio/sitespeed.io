@@ -40,7 +40,6 @@ Setup a simple budget that checks the URLs you test against number of requests, 
         "requests": 0
     },
     "score": {
-      "accessibility": 100,
       "bestpractice": 100,
       "privacy": 100,
       "performance": 100
