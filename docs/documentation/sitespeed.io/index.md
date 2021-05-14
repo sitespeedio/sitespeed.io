@@ -40,6 +40,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Chrome User Experience Report](crux/) - collect Chrome User Experience Report data in sitespeed.io.
  * [Developers](developers/) - start here when you want to do PRs or create a plugin.
  * [Google Page Speed Insights](google-page-speed-insights/) - run Google Page Speed Insights (GPSI) from sitespeed.io.
+ * [Google Web Vitals](google-web-vitals/) - get Google Web Vitals using sitespeed.io and other tools.
  * [Graphite](graphite/) - how to configure and store your metrics in Graphite (and using StatsD).
  * [How to Write a Good Bug Report](bug-report/) - if you write a good bug report, we can spend more time helping you fixing the problem instead of asking you questions
  * [Lighthouse](lighthouse/) - run Lighthouse from sitespeed.io.
