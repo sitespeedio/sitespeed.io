@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 17.4.0 - 2021-05-14
 
 ### Added
 * Updated Browsertime and more love for showing better info from LCP and LS [#3381](https://github.com/sitespeedio/sitespeed.io/pull/3381).
