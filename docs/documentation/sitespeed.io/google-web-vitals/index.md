@@ -35,9 +35,9 @@ Go the the metrics tab and scroll down to the Largest Contentful Paint metrics a
 ![Largest contentful paint]({{site.baseurl}}/img/lcp-result.png)
 {: .img-thumbnail}
 
-The screenshot is generated after the page finished loading. If the largest contentful element has been remove from the screen at that time, you will not see any highlight in the screenshot then you can use the information in the table to the left to identify the element.
+The screenshot is generated after the page finished loading. If the largest contentful element has been removed from the screen at that time, you will not see any highlight in the screenshot. You can then instead use the information in the table to the left to identify the element.
 
-If you have a hard time identify the element on the screenshot you can the color of the highlighting by `--browsertime.screenshotLCPColor blue`.
+If you have a hard time identify the element on the screenshot you can change the color of the highlighting by `--browsertime.screenshotLCPColor blue`.
 ### Cumulative Layout Shift (CLS)
 
 The [layout shift API](https://wicg.github.io/layout-instability/) helps you find the DOM elements that shifts on the screen that degrades the user experience. 
@@ -59,11 +59,11 @@ The best way to get valuable information is to use `--cpu` to get the Chrome tra
 ### Calibrating metrics against CrUX 75 percentile
 Using the [Chrome User Experience plugin](/documentation/sitespeed.io/crux/) you can get the metrics of what your user is experience and you can use those values to try to calibrate the metrics you get out of sitespeed.io. 
 
-It can be hard though since: In the real world people use a lot of different devices with different CPU, many many different connectivities and so on. The easiest thing to calibrate is to aim to have the same first contentful paint in your sitespeed.io test vs your Chrome user experience data by increasing/decreasing the connectivity until you have something like the same values.
+It can be hard though since: In the real world people use a lot of different devices with different CPU, many many different connectivities and so on. The easiest thing to calibrate is to have the same first contentful paint in your sitespeed.io test as in your Chrome user experience data. Do that by increasing/decreasing the connectivity until you have something like the same values.
 ### Bug reports
 If you don't get the correct metrics it could either be a bug in the browser API or in sitespeed.io. Try to access your page using Chrome and get the metrics from the API, if there's a bug you can file that for Chrome. If you suspect the bug to be in sitespeed.io please [file a issue in sitespeed.io](https://github.com/sitespeedio/sitespeed.io/issues).
 ## Using CruX
-Sitespeed.io comes with a [Chrome User Experience plugin](/documentation/sitespeed.io/crux/). That makes it easy to get the metrics that Google collects from your user and you can compare them with the ones you get that you collects using sitespeed.io. Go to the [CrUX documentation](/documentation/sitespeed.io/crux/) on how to set it up.
+Sitespeed.io comes with a [Chrome User Experience plugin](/documentation/sitespeed.io/crux/). That makes it easy to get the metrics that Google collects from your user. You can compare them with the ones you get from  sitespeed.io. Go to the [CrUX documentation](/documentation/sitespeed.io/crux/) on how to set it up.
 
 ## Using Lighthouse
 Use the [Lighthouse plugin](/documentation/sitespeed.io/lighthouse/) to run Lighthouse from sitespeed.io and collect Google Web Vitals.
