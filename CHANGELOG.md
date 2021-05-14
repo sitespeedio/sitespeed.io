@@ -4,6 +4,8 @@
 
 ### Added
 * Updated Browsertime and more love for showing better info from LCP and LS [#3381](https://github.com/sitespeedio/sitespeed.io/pull/3381).
+* Updated to Lighthouse 7.4.0 in the plus-1 Docker container.
+
 ##  17.3.1 - 2021-05-10
 ### Fixed
 
