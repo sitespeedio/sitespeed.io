@@ -37,6 +37,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Configure HTML output](configure-html/) - change the default HTML output.
  * [Configure Metrics](configure-metrics/) - configure which metrics you want to send to Graphite/InfluxDB.
  * [CPU](cpu/) - measure CPU metrics to see where your page spends the time.
+ * [CPU Benchmark](cpu-benchmark/) - benchmark the CPU that runs your browser and tests.
  * [Chrome User Experience Report](crux/) - collect Chrome User Experience Report data in sitespeed.io.
  * [Developers](developers/) - start here when you want to do PRs or create a plugin.
  * [Google Page Speed Insights](google-page-speed-insights/) - run Google Page Speed Insights (GPSI) from sitespeed.io.
