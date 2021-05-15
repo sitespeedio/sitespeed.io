@@ -61,7 +61,67 @@ Using the [Chrome User Experience plugin](/documentation/sitespeed.io/crux/) you
 
 It can be hard though since: In the real world people use a lot of different devices with different CPU, many many different connectivities and so on. The easiest thing to calibrate is to have the same first contentful paint in your sitespeed.io test as in your Chrome user experience data. Do that by increasing/decreasing the connectivity until you have something like the same values.
 ### Bug reports
-If you don't get the correct metrics it could either be a bug in the browser API or in sitespeed.io. Try to access your page using Chrome and get the metrics from the API, if there's a bug you can file that for Chrome. If you suspect the bug to be in sitespeed.io please [file a issue in sitespeed.io](https://github.com/sitespeedio/sitespeed.io/issues).
+If you don't get the correct metrics it could either be a bug in the browser API or in sitespeed.io.
+
+To verify and check that the metrics seems to be correct, you can load your page in Chrome and then copy/paste the following snippets in the console and look at the console log. That is useful if you want to [file a bug for Chrome](https://bugs.chromium.org/p/chromium/issues/entry).
+
+
+To get the first contentful paint:
+
+~~~javascript
+(function() {
+    const entries = window.performance.getEntriesByType('paint');
+    for (const entry of entries) {
+        console.log(entry);
+    }
+})();
+~~~
+
+To get the largest contentful paint element:
+
+~~~javascript
+(function() {
+const observer = new PerformanceObserver(list => {});
+  observer.observe({ type: 'largest-contentful-paint', buffered: true });
+  const entries = observer.takeRecords();
+  if (entries.length > 0) {
+    const largestEntry = entries[entries.length - 1];
+    console.log(largestEntry);
+  }
+})();
+~~~
+
+To get the layout shift information you can run:
+
+~~~javascript
+(function() {
+const observer = new PerformanceObserver(list => {});
+  observer.observe({ type: 'layout-shift', buffered: true });
+  const entries = observer.takeRecords();
+   for (let entry of entries) {
+    if (entry.hadRecentInput) {
+      continue;
+    } 
+    console.log(entry);
+  }
+})();
+~~~
+
+
+And to get the long tasks you can use:
+
+~~~javascript
+(function() {
+const observer = new PerformanceObserver(list => {});
+  observer.observe({ type: 'longtask', buffered: true });
+  const entries = observer.takeRecords();
+   for (let entry of entries) {
+    console.log(entry);
+  }
+})();
+~~~
+
+If you suspect the bug to be in sitespeed.io please [file a issue in sitespeed.io](https://github.com/sitespeedio/sitespeed.io/issues).
 ## Using CruX
 Sitespeed.io comes with a [Chrome User Experience plugin](/documentation/sitespeed.io/crux/). That makes it easy to get the metrics that Google collects from your user. You can compare them with the ones you get from  sitespeed.io. Go to the [CrUX documentation](/documentation/sitespeed.io/crux/) on how to set it up.
 
