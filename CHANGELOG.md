@@ -1,5 +1,15 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 17.5.0 - 2021-05-21
+
+### Added
+* Make it easier to set up budget for Google Web Vitals [#3386](https://github.com/sitespeedio/sitespeed.io/pull/3386)
+* Updated dashboards to in the Docker setup.
+
+### Fixed
+* New Browsertime [12.6.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1261---2021-05-21) that fixes a bug when you use a equals sign in the value field in a cookie.  
+* Updated dependencies with install warnings [#3387](https://github.com/sitespeedio/sitespeed.io/pull/3387),
+
 ## 17.4.0 - 2021-05-14
 
 ### Added
