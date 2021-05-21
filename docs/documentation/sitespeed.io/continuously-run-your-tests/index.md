@@ -182,6 +182,8 @@ And then start: `nohup ./loop.sh &`
 
 To verify that everything works you should tail the log: `tail -f /tmp/sitespeed.io`
 
+### Run on Mac
+
 If you run on Mac you should use `screen` instead of *nohup*. First open a new screen instance: `screen`. Then start your tests `./loop.sh`.  And then detach your screen `ctrl+A and then press D`. To resume back to the screen use `screen -x`.
 
 ### Stop your tests
