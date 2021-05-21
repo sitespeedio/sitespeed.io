@@ -1,3 +1,7 @@
+googleWebVitals.firstContentfulPaint
+googleWebVitals.largestContentfulPaint
+googleWebVitals.totalBlockingTime
+googleWebVitals.cumulativeLayoutShift
 timings.firstPaint
 timings.firstContentfulPaint
 timings.largestContentfulPaint
