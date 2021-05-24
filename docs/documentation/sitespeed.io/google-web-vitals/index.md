@@ -60,6 +60,31 @@ The best way to get valuable information is to use `--cpu` to get the Chrome tra
 Using the [Chrome User Experience plugin](/documentation/sitespeed.io/crux/) you can get the metrics of what your user is experience and you can use those values to try to calibrate the metrics you get out of sitespeed.io. 
 
 It can be hard though since: In the real world people use a lot of different devices with different CPU, many many different connectivities and so on. The easiest thing to calibrate is to have the same first contentful paint in your sitespeed.io test as in your Chrome user experience data. Do that by increasing/decreasing the connectivity until you have something like the same values.
+
+### Budget
+
+You can easily run your [budget tests](/documentation/sitespeed.io/performance-budget/) against Google Web Vitals. First create a budget configuration file.
+
+~~~json
+{
+  "budget": {
+    "googleWebVitals": {
+      "firstContentfulPaint": 500,
+      "largestContentfulPaint": 1200,
+      "totalBlockingTime": 200,
+      "cumulativeLayoutShift": 0
+    }
+  }
+}
+~~~
+
+And then run:
+
+~~~bash
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --budget.configPath budget.json https://www.sitespeed.io/
+~~~
+
+
 ### Bug reports
 If you don't get the correct metrics it could either be a bug in the browser API or in sitespeed.io.
 
