@@ -85,6 +85,15 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 ~~~
 
 
+### Metrics in Graphite and Grafana
+
+Our pre-made dashboards includes Google Web Vitals where you can see latest metrics and trends compared to last week.
+
+![Google Web Vitals trends]({{site.baseurl}}/img/Google-Web-Vitals-trends.png)
+{: .img-thumbnail}
+
+
+
 ### Bug reports
 If you don't get the correct metrics it could either be a bug in the browser API or in sitespeed.io.
 
@@ -148,7 +157,13 @@ const observer = new PerformanceObserver(list => {});
 
 If you suspect the bug to be in sitespeed.io please [file a issue in sitespeed.io](https://github.com/sitespeedio/sitespeed.io/issues).
 ## Using CruX
-Sitespeed.io comes with a [Chrome User Experience plugin](/documentation/sitespeed.io/crux/). That makes it easy to get the metrics that Google collects from your user. You can compare them with the ones you get from  sitespeed.io. Go to the [CrUX documentation](/documentation/sitespeed.io/crux/) on how to set it up.
+Sitespeed.io comes with a [Chrome User Experience plugin](/documentation/sitespeed.io/crux/). That makes it easy to get the metrics that Google collects from your users. You can compare them with the ones you get from  sitespeed.io. 
 
+Sending the CrUX data to Graphite you can see metrics both per URL and per origin. 
+
+![Crux]({{site.baseurl}}/img/crux-google-web-vitals.png)
+{: .img-thumbnail}
+
+Go to the [CrUX documentation](/documentation/sitespeed.io/crux/) on how to set it up.
 ## Using Lighthouse
 Use the [Lighthouse plugin](/documentation/sitespeed.io/lighthouse/) to run Lighthouse from sitespeed.io and collect Google Web Vitals.
