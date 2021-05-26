@@ -293,5 +293,7 @@ if browsertime
         td  #{element.y}
         td  #{element.width}
         td  #{element.height}
+        tr 
+          td.url.pagesurl(colspan=5) #{element.html}
 else
   p Missing data from Browsertime.
