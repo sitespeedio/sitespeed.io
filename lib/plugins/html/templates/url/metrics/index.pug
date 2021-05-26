@@ -28,9 +28,6 @@ if browsertime
     if options.browsertime.visualElements
       a(href='#visual-elements') Visual Elements
       | &nbsp;|&nbsp;
-    if options.browsertime.visualElements
-      a(href='#visual-elements') Visual Elements
-      | &nbsp;|&nbsp;
     if browsertime.timings.firstInput !== undefined
       a(href='#firstInput') First Input Delay
       | &nbsp;|&nbsp;
@@ -279,21 +276,23 @@ if browsertime
    h3 Visual Elements
    table
       tr
-       th name
-       th x
-       th y
-       th width
-       th height
+       th Name
+       th Display Time
+       th X 
+       th Y
+       th Width
+       th Height
       each element in browsertime.pageinfo.visualElements.heroes
        tr
         td  #{element.name}
          if (element.filename)
           | (#{element.filename})
+        td #{h.time.ms(visualMetrics[element.name].toFixed(0))}
         td  #{element.x}
         td  #{element.y}
         td  #{element.width}
         td  #{element.height}
         tr 
-          td.url.pagesurl(colspan=5) #{element.html}
+          td.url.pagesurl(colspan=6) #{element.html}
 else
   p Missing data from Browsertime.
