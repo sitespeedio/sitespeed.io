@@ -1,7 +1,14 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 17.5.0 - 2021-05-21
+## 17.6.0 - 2021-05-26
 
+### Added 
+* Updated to [Browsertime 12.7.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1270---2021-05-26) that fixes the problem with the broken CPU throttling in Chrome.
+* Chrome and Chromedriver 91. Edge 90 (Eddge 91 coming later this week) in the Docker container
+
+### Fixed
+* Display more information about the visual element that you are measuring [#3394](https://github.com/sitespeedio/sitespeed.io/pull/3394). Checkout the [updated documentation](https://www.sitespeed.io/documentation/sitespeed.io/video/#collect-visual-elements-metrics) on how to measure when elements are displayed in the viewport.
+## 17.5.0 - 2021-05-21
 ### Added
 * Make it easier to set up budget for Google Web Vitals [#3386](https://github.com/sitespeedio/sitespeed.io/pull/3386)
 * Updated dashboards to in the Docker setup.
