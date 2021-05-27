@@ -10,6 +10,7 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
+    - uses: browser-actions/setup-chrome@latest
     - uses: actions/checkout@v2
     - name: Use Node.js
       uses: actions/setup-node@v1
