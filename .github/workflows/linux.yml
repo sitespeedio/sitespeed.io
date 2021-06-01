@@ -20,7 +20,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo ACCEPT_EULA=Y apt-get upgrade google-chrome-stable -y
+        sudo apt-get upgrade google-chrome-stable -y
     - name: Setup environment
       run: docker-compose -f test/docker-compose.yml up -d
     - name: Browser versions
