@@ -1397,18 +1397,18 @@
       "dev": true
     },
     "coach-core": {
-      "version": "6.3.3",
-      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-6.3.3.tgz",
-      "integrity": "sha512-2+cUh1TJf0lnmnHSgh8vYXiAPJCmfVMxkMd38Kv74DCvqPqmzyf+NyfThWxCO6EXoF+0UDpu+Z3jQm0+Q2c63Q==",
+      "version": "6.4.0",
+      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-6.4.0.tgz",
+      "integrity": "sha512-jp5yCkxxN24BeuYPl3lFtrpO5W3I7BvVWU6nOcNkaRUFcw1OJkZ6gF65qkfZYQmLuVpoD/s4R9ZBirzTRp7nMQ==",
       "requires": {
         "filter-files": "0.4.0",
         "json-stable-stringify": "1.0.1",
         "lodash.groupby": "4.6.0",
         "lodash.merge": "4.6.2",
         "lodash.sortby": "4.7.0",
-        "pagexray": "4.1.0",
+        "pagexray": "4.3.0",
         "third-party-web": "0.12.3",
-        "wappalyzer-core": "6.5.32"
+        "wappalyzer-core": "6.6.0"
       }
     },
     "color-convert": {
@@ -4327,9 +4327,9 @@
       "integrity": "sha512-R4nPAVTAU0B9D35/Gk3uJf/7XYbQcyohSKdvAxIRSNghFl4e71hVoGnBNQz9cWaXxO2I10KTC+3jMdvvoKw6dQ=="
     },
     "pagexray": {
-      "version": "4.1.0",
-      "resolved": "https://registry.npmjs.org/pagexray/-/pagexray-4.1.0.tgz",
-      "integrity": "sha512-IXXeEkVQnQghXKTIknfZOb4vApIdOMwIm6G0x9Gtero3AwxC+0PspruQEj3IkDh6UYPRFwSVa/Fe9SvVxuY02Q==",
+      "version": "4.3.0",
+      "resolved": "https://registry.npmjs.org/pagexray/-/pagexray-4.3.0.tgz",
+      "integrity": "sha512-GmO7QPMpGZB6m2plydXqlUBwpEwTfXYz1DlDIVLrtuR1FTqhEmu2Oq8AuJxpDMTQNbZU0Rbwi1wMD92d9+u/Hg==",
       "requires": {
         "minimist": "1.2.5"
       }
@@ -5990,9 +5990,9 @@
       "dev": true
     },
     "wappalyzer-core": {
-      "version": "6.5.32",
-      "resolved": "https://registry.npmjs.org/wappalyzer-core/-/wappalyzer-core-6.5.32.tgz",
-      "integrity": "sha512-iFmq151BHYtCJg54uPHlyj93799lgg1kS/qlJAUSbfFordYILvBQ695JBOEwexQEpnB7ypKgSBUjwRg6h2Svmg=="
+      "version": "6.6.0",
+      "resolved": "https://registry.npmjs.org/wappalyzer-core/-/wappalyzer-core-6.6.0.tgz",
+      "integrity": "sha512-pdod7Zg1GwVJBSjMSmV8kiFfPhzUcRbjQeQo4Alcfu7p7epGYggP9xdBSY8o1PlJOvmW/FMQH5AEd7Scxb0wUA=="
     },
     "which": {
       "version": "1.3.1",
