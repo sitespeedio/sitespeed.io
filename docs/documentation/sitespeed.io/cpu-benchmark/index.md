@@ -33,5 +33,11 @@ Here's an example of what the variation looks like running on a Moto G4 running 
 
 
 ## Test page
-We also have a special test page you can use to see the benchmark on your own browser/computer/device without running sitespeed.io Access the page 
+We also have a special test page you can use to see the benchmark on your own browser/computer/device without running sitespeed.io. Access the page 
 [https://www.sitespeed.io/cpu.html](https://www.sitespeed.io/cpu.html) and look at the benchmark metric.
+
+You can also use the page to calibrate your CPU throttling rate when you use Chrome. Access the page and look at the result and fine tune your throttling rate.
+
+~~~shell
+sitespeed.io --chrome.CPUThrottlingRate 5 -b chrome https://www.sitespeed.io/cpu.html
+~~~

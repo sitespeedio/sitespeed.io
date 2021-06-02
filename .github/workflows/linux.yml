@@ -14,13 +14,16 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: '12.x'
+        node-version: '14.x'
     - name: Install sitespeed.io
       run: npm ci
-    - name: Install dependencies
+    - name: Install Chrome
       run: |
+        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+        sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
         sudo apt-get update
-        sudo ACCEPT_EULA=Y apt-get upgrade google-chrome-stable -y
+        sudo apt-get --only-upgrade install google-chrome-stable
+        google-chrome --version
     - name: Setup environment
       run: docker-compose -f test/docker-compose.yml up -d
     - name: Browser versions

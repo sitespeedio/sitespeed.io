@@ -72,10 +72,20 @@ If you run the Docker container we will automatically setup XVFB as a virtual fr
 ### Collect visual elements metrics
 You can choose to collect when visual elements are visible (and on their final position) on the screen. Turn on with <code>--visualElements</code> and collect Visual Metrics from elements. Works only with <code>--visualMetrics</code> turned on (default in Docker). By default you will get visual metrics from the largest image within the view port and the largest H1. 
 
-You can also configure to pickup your own defined elements with <code>--scriptInput.visualElements</code>. Give the element a name and select it with <code>document.body.querySelector</code>. Use it like this: <code>--scriptInput.visualElements name:domSelector</code> . Add multiple instances to measure multiple elements. Visual Metrics will use these elements and calculate when they are visible and fully rendered. These metrics will also be included in HAR file so you can look at the waterfall and see when elements are visual within the viewport.
+If you want to add your own element the easiest way is to follow the Element Timing API: annotate your element with the *elementtiming* annotation. This will work even if your browser do not support the Element Timning API!
+
+Say that we want to know when the sitespeed.io logo appears on the screen. Then we add the annotation and give that image a unique name (so we know what we are measuring). It will look like this:
+
+```html
+<img src="/img/team.png" alt="sitespeed.io Logo with My Little Pony style cats" elementtiming="logo">
+```
+
+If you cannot edit the HTML of the site, you can still measure when elements is painted on the screen but its a little more work. You can configure to pickup your own defined elements with <code>--scriptInput.visualElements</code>. Give the element a name and select it with <code>document.body.querySelector</code>. Use it like this: <code>--scriptInput.visualElements name:domSelector</code> . Add multiple instances to measure multiple elements. 
+
+Visual Metrics will use these elements and calculate when they are visible and fully rendered. These metrics will also be included in HAR file so you can look at the waterfall and see when elements are visual within the viewport.
 
  
-**Example**: Lets say that we want to measure when the logo of sitespeed.io is painted on screen.
+Lets say that we want to measure when the logo of sitespeed.io is painted on screen and cannot add the annotation.
 
 ![Logo sitespeed.io]({{site.baseurl}}/img/logo-example.jpg)
 {: .img-thumbnail}
