@@ -1,5 +1,18 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 17.7.0 - UNRELEASED
+
+### Added
+* New [Browsertime 12.8.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1280---2021-06-02) with Edgedriver 91 and updated to Firefox 89 and Edge 91 in the Docker container [#3404](https://github.com/sitespeedio/sitespeed.io/pull/3404).
+
+### Fixed
+* Catch if visual elements do not produce data (special case for amazon.com) [3402](https://github.com/sitespeedio/sitespeed.io/pull/3402).
+
+* Upgrade to AXE-core 4.2.1 [#3396](https://github.com/sitespeedio/sitespeed.io/pull/3396).
+
+### Tech
+* Switch to sass instead of node-sass [#3396](https://github.com/sitespeedio/sitespeed.io/pull/3396).
+
 ## 17.6.0 - 2021-05-26
 
 ### Added 
