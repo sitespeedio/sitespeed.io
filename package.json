@@ -4,7 +4,7 @@
     "sitespeed.io": "./bin/sitespeed.js",
     "sitespeed.io-wpr": "./bin/browsertimeWebPageReplay.js"
   },
-  "version": "17.6.0",
+  "version": "17.7.0",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -44,7 +44,7 @@
     "pug-lint": "pug-lint lib/plugins/html/templates",
     "test": "mocha",
     "check-licenses": "tools/check-licenses.js",
-    "build:css": "node-sass lib/plugins/html/src/sass/main.scss > lib/plugins/html/assets/css/index.css && cleancss -o lib/plugins/html/assets/css/index.min.css lib/plugins/html/assets/css/index.css && rm lib/plugins/html/assets/css/index.css",
+    "build:css": "sass lib/plugins/html/src/sass/main.scss > lib/plugins/html/assets/css/index.css && cleancss -o lib/plugins/html/assets/css/index.min.css lib/plugins/html/assets/css/index.css && rm lib/plugins/html/assets/css/index.css",
     "generate:assets": "mkdir -p assets/$npm_package_version && cp -R lib/plugins/html/assets/ assets/$npm_package_version/"
   },
   "engines": {
@@ -62,7 +62,7 @@
     "jsdoc": "^3.6.7",
     "license-checker": "^16.0.0",
     "mocha": "^5.0.4",
-    "node-sass": "^4.14.1",
+    "sass": "1.34.0",
     "prettier": "^1.11.1",
     "pug-lint": "^2.6.0",
     "pug-lint-config-clock": "^2.0.0"
@@ -72,9 +72,9 @@
     "@google-cloud/storage": "5.8.3",
     "@tgwf/co2": "0.6.1",
     "aws-sdk": "2.882.0",
-    "axe-core": "4.2.0",
-    "browsertime": "12.8.0",
-    "coach-core": "6.3.3",
+    "axe-core": "4.2.1",
+    "browsertime": "12.9.0",
+    "coach-core": "6.4.0",
     "cli-color": "2.0.0",
     "concurrent-queue": "7.0.2",
     "dayjs": "1.10.4",

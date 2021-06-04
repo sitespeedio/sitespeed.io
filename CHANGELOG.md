@@ -1,6 +1,23 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 17.6.0 - 2021-05-26
+## UNRELEASED
+### Added
+* New Browsertime 12.9.0.
+## 17.7.0 - 2021-06-03
+
+### Added
+* New [Browsertime 12.8.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1280---2021-06-02) with Edgedriver 91 and updated to Firefox 89 and Edge 91 in the Docker container [#3404](https://github.com/sitespeedio/sitespeed.io/pull/3404).
+* Updated to use [Coach-core 6.4.0](https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#640---2021-06-02) that uses wappalyzer-core 6.6.0 and a bug fix that make sure the private assets and cache header advice only checks GET requests.
+* The Lighthouse-plugin was updated to 8.0.0 in the +1 container.
+### Fixed
+* Catch if visual elements do not produce data (special case for amazon.com) [3402](https://github.com/sitespeedio/sitespeed.io/pull/3402).
+
+* Upgrade to AXE-core 4.2.1 [#3396](https://github.com/sitespeedio/sitespeed.io/pull/3396).
+
+### Tech
+* Switch to sass instead of node-sass [#3396](https://github.com/sitespeedio/sitespeed.io/pull/3396).
+
+## 17.6.0 - 3
 
 ### Added 
 * Updated to [Browsertime 12.7.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1270---2021-05-26) that fixes the problem with the broken CPU throttling in Chrome.
