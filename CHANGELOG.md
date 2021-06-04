@@ -4,6 +4,9 @@
 ### Added
 * New [Browsertime 12.9.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1290---2021-06-04) that updates Cumulative Layout Shift to the [new defintion](https://web.dev/evolving-cls/).
 
+### Fixed 
+* Guard if you try to run Safari simulator in Docker [#3405](https://github.com/sitespeedio/sitespeed.io/pull/3405)
+
 ## 17.7.0 - 2021-06-03
 
 ### Added
