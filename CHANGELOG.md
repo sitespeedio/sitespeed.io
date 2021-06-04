@@ -1,8 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 17.8.0 - 2021-06-04
 ### Added
-* New Browsertime 12.9.0.
+* New [Browsertime 12.9.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1290---2021-06-04) that updates Cumulative Layout Shift to the [new defintion](https://web.dev/evolving-cls/).
+
 ## 17.7.0 - 2021-06-03
 
 ### Added
