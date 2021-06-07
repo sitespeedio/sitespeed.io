@@ -32,7 +32,7 @@ Lets say tou want to test the following user journey: A user first visits the st
 You can do that now by just adding the ```--multi``` parameter:
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --multi https://www.sitespeed.io https://www.sitespeed.io/documentation/ https://www.sitespeed.io/documentation/sitespeed.io/
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --multi https://www.sitespeed.io https://www.sitespeed.io/documentation/ https://www.sitespeed.io/documentation/sitespeed.io/
 ~~~
 
 If you leave out ```--multi``` each and every URL will be tested by starting a new browser session with the cached cleared between each URL.
@@ -49,7 +49,7 @@ module.exports = async function(context, commands) {
 
 And run it with 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --multi script.js
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --multi script.js
 ~~~
 
 The new scripting capabilities adds a couple of commands to make scripting easier ([see the documentation](../documentation/sitespeed.io/scripting/)). And you can still also use raw Selenium if you prefer that.
@@ -128,7 +128,7 @@ module.exports = async function(context, commands) {
 And then you run it by passing on the script file, using  ```--spa``` to notify that you are testing a single page application and ```--multi``` that you test multiple pages withing one run. 
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} thirtydays.js --spa --multi
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} thirtydays.js --spa --multi
 ~~~
 
 Read the full [documentation](../documentation/sitespeed.io/spa/) for testing your single page application.

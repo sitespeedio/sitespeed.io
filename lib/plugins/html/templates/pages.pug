@@ -13,8 +13,7 @@ mixin rows(pages)
     tr
       td.url.pagesurl(data-title='URL')
         a(href= pageInfo.path + 'index.html')= decodeURIComponent(display)
-
-      if b.visualMetrics && b.visualMetrics[0]
+      if (b.visualMetrics && b.visualMetrics[0]) && (!hasPageSummaryMetricInput)
         +numberCell('First Visual Change', b.visualMetrics[0].FirstVisualChange)
         +numberCell('Speed Index', b.visualMetrics[0].SpeedIndex)
         +numberCell('Last Visual Change', b.visualMetrics[0].LastVisualChange)
@@ -44,7 +43,7 @@ mixin rows(pages)
 
 block content
   - headings = ['URL']
-  if options.browsertime.visualMetrics
+  if (options.browsertime.visualMetrics || (options.cpu && options.browsertime.chrome && options.browsertime.chrome.visualMetricsUsingTrace && options.browsertime.chrome.enableTraceScreenshots)) && !hasPageSummaryMetricInput
     - headings.push('First Visual Change', 'Speed Index', 'Last Visual Change')
   - metricList = html.pageSummaryMetrics
   each kv in metricList
@@ -60,4 +59,12 @@ block content
       .responsive
         table(data-sortable, id='pages')
           +rowHeading(headings)
-          +rows(pages)
+          +rows(pages, true)
+          if removedUrls.length > 0
+            tr
+              td(colspan=headings.length) 
+                b The following pages metrics/data was removed because they passed the budget configuration.
+            each url in removedUrls
+              tr
+                  td.url.pagesurl(data-title='URL', colspan=headings.length)
+                    a(href= url)= decodeURIComponent(url)

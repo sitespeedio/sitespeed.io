@@ -1,29 +1,12 @@
 if pageInfo.data.browsertime
-  - const profile = options.mobile ? 'emulated mobile' : ''
-  - const runTime = h.get(pageInfo, 'pageInfo.data.browsertime.run.timestamp', timestamp)
-  - const android = pageInfo.data.browsertime.run ? pageInfo.data.browsertime.run.android : pageInfo.data.browsertime.pageSummary.info.android 
-  - const browserName = h.get(browser,'name');
-  - const browserVersion = h.get(browser,'version','');
-  - const androidModel = h.get(android,'model','');
-  - const androidVersion = h.get(android,'androidVersion','');
-  - const connectivity = options.browsertime.connectivity.alias || options.browsertime.connectivity.profile
-  p.small Tested #{runTime} using #{h.cap(browserName || options.browsertime.browser)} #{browser.version}
-    if (androidModel)
-        | &nbsp;#{androidModel} (Android version #{androidVersion})
-    if pageInfo.data.browsertime && pageInfo.data.browsertime.run && pageInfo.data.browsertime.run.android
-      | &nbsp;with battery temperature #{pageInfo.data.browsertime.run.android.batteryTemperature.start}&#8451;
-    | .
-    if (options.safari && options.safari.deviceType)
-      | Testing using an #{options.safari.deviceType}.
-    | #{options.preURL ? ' preURL ' + h.short(options.preURL, 60) + ' ': ''}
-    | #{h.plural(options.browsertime.iterations, 'run')} #{profile} and connectivity #{connectivity}.#{ options.replay ? ' Using WebPageReplay.' : ''}#{ options.multi ? ' Using multi mode.' : ''}
-    | #{options.chrome && options.chrome.CPUThrottlingRate ? ' CPU Throttle Rate ' + options.chrome.CPUThrottlingRate + '.':''}
+  p.small Tested #{runTime} using #{h.cap(browserName || options.browsertime.browser)} #{browser.version}  
     if options.multi && options.html.showScript
       | (
       a(href= rootPath + 'scripts.html')= 'script'
       | ).
     else if options.multi
       | .
+    a(href= rootPath + 'settings.html')= '(runtime settings).'
 
 else if pageInfo.data.webpagetest
   p.small Tested #{timestamp} using WebPageTest #{options.webpagetest.location} using connectivity #{options.webpagetest.connectivity} for #{h.plural(options.webpagetest.runs, 'run')}.

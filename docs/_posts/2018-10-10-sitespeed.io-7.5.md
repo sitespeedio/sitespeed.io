@@ -55,7 +55,7 @@ We also made it easy to use Lighthouse and the Google PageSpeed Insights plugin 
 You can run it with: 
 
 ```bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:7.5.0-plus1 https://www.sitespeed.io/
+docker run --shm-size=1g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:7.5.0-plus1 https://www.sitespeed.io/
 ``` 
 
 And you will also automatically run Lighthouse and GPSI. We will release a new version of the container per release by adding *-plus1* to the tag. If you use Graphite/InfluxDb the score from Lighthouse and GPSI will be automatically stored.

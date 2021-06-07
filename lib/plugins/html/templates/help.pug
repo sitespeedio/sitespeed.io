@@ -38,11 +38,6 @@ block content
         h5(id=adviceKey) #{advice.title} (#{adviceKey})
         p #{advice.description}
 
-      h2(id='accessibilityAdvice') Accessibility advice
-      each advice, adviceKey in coach.accessibility.adviceList
-        h5(id=adviceKey) #{advice.title} (#{adviceKey})
-        p #{advice.description}
-
     h2(id='timingMetrics') Timing metrics
 
     h5(id='backEndTime') BackEndTime / TTFB
@@ -136,9 +131,6 @@ block content
 
     h5(id='Logo') Logo
     p The time when the logo (configured with --scriptInput.visualElements) within the viewport has finished painted at the final position on the screen. Calculated by analysing a video.
-
-    h5(id='rumSpeedIndex') RUM-SpeedIndex
-    p A browser version also created by Pat Meenan that calculates the SpeedIndex measurements using Resource Timings. It is not as perfect as Speed Index but a good start.
 
     h5(id='imageSizePerPage') Image transfer size per page
     p The size of images per page.

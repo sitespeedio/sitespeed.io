@@ -1,0 +1,38 @@
+a#technology
+h2 Technologies used to build the page.
+p Data collected using 
+    a(href='https://github.com/AliasIO/wappalyzer') Wappalyzer. 
+    | Use 
+    code --browsertime.firefox.includeResponseBodies html
+    | or 
+    code --browsertime.chrome.includeResponseBodies html
+    | to help Wappalyser find more information about technologies used.
+
+if advice.info.technology && advice.info.technology.length > 0
+    table
+        tr
+            th Technology
+            th Confidence
+            th Category
+        each tech in advice.info.technology
+            tr
+                td 
+                    a(href=tech.website)= `${tech.name} ${tech.version}`
+                td #{tech.confidence}
+                td 
+                    each category in tech.categories
+                        | #{category.name}
+else
+    p Wappalyzer didn't find any information.
+
+if (advice.info.thirdparty && Object.keys(advice.info.thirdparty.toolsByCategory).length > 0)
+    p Data collected using 
+        a(href='https://github.com/patrickhulce/third-party-web') Third Party Web.
+
+    table 
+        each data, category in advice.info.thirdparty.toolsByCategory
+            tr
+                th #{h.cap(category)}
+            each requests, tool in data
+                tr
+                    td #{tool}

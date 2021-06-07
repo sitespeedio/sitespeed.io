@@ -17,7 +17,7 @@ Yes we have finally released 4.0. We ([Peter](https://twitter.com/soulislove)/[T
 Before reading, you should just try it out:
 
 ~~~bash
-docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
+docker run --privileged --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io https://www.sitespeed.io/
 ~~~
 
 Or using npm:

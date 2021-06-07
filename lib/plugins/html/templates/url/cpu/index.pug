@@ -1,5 +1,24 @@
 - const browsertime = medianRun ? (pageInfo.data.browsertime ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1]: undefined) : pageInfo.data.browsertime.run 
-a
+
+small 
+    || 
+    if browsertime && browsertime.cpu && browsertime.cpu.longTasks
+      a(href='#long-tasks') CPU Long Tasks
+      | &nbsp;|&nbsp;
+    if browsertime && browsertime.timings && browsertime.timings.firstInput !== undefined
+      a(href='#first-input-delay') First Input Delay
+      | &nbsp;|&nbsp;
+    if browsertime && browsertime.cpu && browsertime.cpu.categories
+      a(href='#cpu-time-spent') CPU Time Spent
+      | &nbsp;|&nbsp;
+    if browsertime && browsertime.cpu && browsertime.cpu.urls && browsertime.cpu.urls.length > 0
+      a(href='#cpu-time-spent-per-request') CPU Time Spent Per Request
+      | &nbsp;|&nbsp;
+    if pageInfo.data.thirdparty
+      a(href='#cpu-time-per-tool') CPU Time Per Tool/Domain
+      | &nbsp;|&nbsp;
+
+a#cpu
 h2 CPU
 
 if browsertime && browsertime.cpu && browsertime.cpu.events        
@@ -17,6 +36,7 @@ if options.browsertime && options.browsertime.firefox && options.browsertime.fir
         a.button.button-download(href=tracePath, download=downloadName + '-geckoProfile.json.gz') Download trace
 
 if browsertime && browsertime.cpu && browsertime.cpu.longTasks
+  a#long-tasks
   h3 Long Tasks
   p Collected using the Long Task API. A long task is a task that take 50 milliseconds or more.
   if browsertime.cpu.longTasks.tasks > 0 
@@ -75,6 +95,7 @@ if browsertime && browsertime.cpu && browsertime.cpu.longTasks
     p No long tasks on the page!  
 
 if browsertime && browsertime.timings && browsertime.timings.firstInput !== undefined
+    a#first-input-delay
     h3 First Input Delay
     table
         tr
@@ -93,6 +114,7 @@ if browsertime && browsertime.timings && browsertime.timings.firstInput !== unde
             td  #{h.time.ms(browsertime.timings.firstInput.processingEnd)}
 
 if browsertime && browsertime.cpu && browsertime.cpu.categories
+    a#cpu-time-spent
     h3 CPU time spent    
     p Calculated using Tracium.
 
@@ -120,6 +142,7 @@ if browsertime && browsertime.cpu && browsertime.cpu.categories
                     td #{event.value.toFixed(0)}
 
     if browsertime && browsertime.cpu && browsertime.cpu.urls && browsertime.cpu.urls.length > 0
+        a#cpu-time-spent-per-request
         h3 Time spent per request
         table
             tr
@@ -135,6 +158,7 @@ if browsertime && browsertime.cpu && browsertime.cpu.categories
         - const thirdparty = medianRun ? pageInfo.data.thirdparty.pageSummary.runs[medianRun.runIndex - 1] : pageInfo.data.thirdparty.run
 
         if thirdparty && thirdparty.cpuPerTool  && Object.keys(thirdparty.cpuPerTool).length > 0
+            a#cpu-time-per-tool
             h3 CPU time spent
             table
                 tr

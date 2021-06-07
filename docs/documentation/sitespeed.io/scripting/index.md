@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Use scripts in sitespeed.io to measure a user journey.
-description: With scripts you can simulate a user visiting to miltiple pages, clicking on links, log in, adding items to the cart ... almost measure whatever you want!
+description: With scripts you can simulate a user visiting to multiple pages, clicking on links, log in, adding items to the cart ... almost measure whatever you want!
 keywords: selenium, web performance, sitespeed.io
 nav: documentation
 category: sitespeed.io
@@ -61,6 +61,8 @@ The commands object:
 * *[measure.start()](#measurestart)* - Use this when you want to start to measure a page. This will start the video and prepare everything to collect metrics. Note: it will not navigate to the URL.
 * *[measure.start(alias)](#measurestartalias)* - Use this when you want to start to measure a page. This will start the video and prepare everything to collect metrics. Note: it will not navigate to the URL and the next URL that will be accessed will get the alias.
 * *[measure.stop()](#measurestop)* - Collect metrics for a page.
+* *[timer.start()]()* Start a timer and measure the time.
+* *[timer.stopAndAdd()]() * Stop the timer and add the result to the last tested URL.
 
 And then you have a few help commands:
 * *[wait](#wait)* on a id to appear or wait x amount of ms.
@@ -76,7 +78,7 @@ Scripting only works for Browsertime. It will not work with Lighthouse/Google Pa
 Run your script by passing it to sitespeed.io and adding the parameter ```--multi```. If you have multiple scripts, you can just pass them in as well.
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} script.js script2.js script3.js --multi
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} script.js script2.js script3.js --multi
 ~~~
 
 If you want to pass data between your scripts you can do that with the context object. Here's an example of the first script:
@@ -176,7 +178,7 @@ module.exports = {
 ## Debug
 There's a couple of way that makes it easier to debug your scripts:
 * Make sure to [use the log](#log-from-your-script) so you can see what happens in your log output.
-* Either run the script locally on your desktop without XVFB so you can see in the browser window what happens or use  <code>--browsertime.videoParams.debug</code> when you record the video. That way you will get one full video of all your scripts (but no Visual Metrics).
+* Either run the script locally on your desktop without XVFB (using [npm version of sitespeed.io](https://www.npmjs.com/package/sitespeed.io)) so you can see in the browser window what happens. Or if you use Docker you can add <code>--browsertime.videoParams.debug</code> when you record the video. That way you will get one full video of all your scripts (but no Visual Metrics).
 * Use try/catch and await promises so you catch things that doesn't work.
 * If you use plain JavaScript you can copy/paste it and run it in your browsers console to make sure it really works.
 * Take a [screenshot](/documentation/sitespeed.io/scripting/#screenshot) when your script fail to make it easier to see what's going on.
@@ -370,6 +372,24 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
+### Scroll the page to measure Cumulative Layout Shift
+
+To get the Cumulative Layout Shift metric for Chrome closer to what real users get you can scroll the page and measure that. Depending on how your page work, you may want to tune the delay between the scrolling.
+
+
+~~~javascript
+module.exports = async function(context, commands) {
+  const delayTime = 250;
+
+  await commands.measure.start();
+  await commands.navigate(
+    'https://www.sitespeed.io/documentation/sitespeed.io/performance-dashboard/'
+  );
+  await  commands.scroll.toBottom(delayTime);
+  return commands.measure.stop();
+};
+~~~
+
 ### Add your own metrics
 You can add your own metrics by adding the extra JavaScript that is executed after the page has loaded BUT did you know that also can add your own metrics directly through scripting? The metrics will be added to the metric tab in the HTML output and automatically sent to Graphite/InfluxDB.
 
@@ -475,6 +495,17 @@ module.exports = async function(context, commands) {
   // We are in browsertime context so you can skip that from your options object
   context.log.info(context.options.my.password);
 };
+~~~
+
+If you use a configuration file you can pass on options like this:
+~~~json
+{
+    "browsertime": {
+        "my": {
+            "password": "paAssW0rd"
+        }
+    }
+}
 ~~~
 
 ### Error handling
@@ -634,6 +665,27 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
+### Reuse scripts
+You can break out code in multiple files something like this.
+
+test.js
+~~~javascript
+const example = require('./exampleInclude');
+module.exports = async function(context, commands) {
+  example();
+};
+~~~
+
+exampleInclude.js
+~~~javascript
+module.exports = function() {
+  console.log('This is my include');
+};
+~~~
+
+And then run it:
+```sitespeed.io --multi test.js```
+
 ## Commands
 
 All commands will return a promise and you should await it to fulfil. If some command do not work, we will log that automatically and rethrow the error, so you can catch that and can act on that.
@@ -641,7 +693,7 @@ All commands will return a promise and you should await it to fulfil. If some co
 The commands that ends with a **...AndWait** will wait for a new page to load, so use them only when you are clicking on a link and want a new page or view to load.
 
 ### Measure
-The measure command will prepare everything for measuring a new URL (clearing internal metrics, starting the video etc). If you give an URL to the measure command it will start to measure and navigate to that URL.
+The measure command will prepare everything for measuring navigating to a new URL (clearing internal metrics, starting the video etc). If you give an URL to the measure command it will start to measure and navigate to that URL.
 
 If you do not give it a URL, it will prepare everything and start the video. So it's up to you to navigate/click on a link/submit the page. You also need to stop the measurement so that Browsertime/sitespeed.io knows that you want the metrics.
 
@@ -664,7 +716,7 @@ Start and navigate to the URL and then automatically call the stop() function af
 ~~~javascript
 module.exports = async function(context, commands) {
   // Measure the page and give it the alias StartPage
-  return await commands.measure.start('https://www.sitespeed.io', 'StartPage');
+  return commands.measure.start('https://www.sitespeed.io', 'StartPage');
 };
 ~~~
 
@@ -764,6 +816,69 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
+### Stop Watch
+If need to measure something that is not a navigation, you can do that by using a stop watch and measure the time.
+
+
+#### stopWatch.get
+You give your stop watch a name (that name will be used for the metric in the result).
+
+Get your stop watch like this:
+
+~~~javascript
+const stopWatch = commands.stopWatch.get('My_watch');
+~~~
+
+#### start()
+
+When you get the watch it's automatically started. You can restart the watch:
+
+~~~javascript
+  stopWatch.start();
+~~~
+
+#### stop() or stopAndAdd()
+
+You stop your stop watch by either just stop it or stop it and add the metric to the last tested page.
+
+~~~javascript
+ // Stop the watch
+ stopWatch .stop();
+ // Or stop the watch and add it to the page
+ stopWatch.stopAndAdd(); 
+~~~
+
+If you want to measure how long time somethings takes before you navigate to a page you should follow this pattern:
+
+~~~javascript
+module.exports = async function(context, commands) {
+  const stopWatch = commands.stopWatch.get('Before_navigating_page');
+  // Do the thing you want to measure ...
+  // Then stop the watch 
+  const time = stopWatch.stop();
+  // Measure navigation to a page
+  await commands.measure.start(
+    'https://www.sitespeed.io'
+  );
+  // Then attach that timing to that page.
+  commands.measure.add(stopWatch.getName(), time);
+}
+~~~
+
+If you already measured a page and want to attach the metric to that page you can follow this pattern:
+
+~~~javascript
+module.exports = async function(context, commands) {
+
+  await commands.measure.start(
+    'https://www.sitespeed.io'
+  );
+  const stopWatch = commands.stopWatch.get('After_navigating_page');
+  // Do the thing you want to measure ...
+  stopWatch.stopAndAdd();
+}
+~~~
+
 ### Click
 The click command will click on links.
 
@@ -814,6 +929,51 @@ Click on element that is found by the CSS selector that has the given value. Int
 #### click.bySelectorAndWait(selector)
 Click on element that is found by name CSS selector that has the given value and wait for the [page cmplete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to happen. Internally we use  ```document.querySelector(selector)``` to get the correct element.
 
+### Mouse
+The mouse command will perform various mouse events.
+
+#### mouse.moveTo.byXpath(xpath)
+Move mouse to an element that matches a XPath selector.
+
+#### mouse.moveTo.toPosition(xPos, yPos)
+Move mouse to a given position.
+
+#### mouse.moveTo.byOffset(xOff, yOff)
+Move mouse by a given offset to current location.
+
+#### mouse.contextClick.byXpath(xpath)
+Perform ContextClick on an element that matches a XPath selector.
+
+#### mouse.contextClick.atCursor()
+Perform ContextClick at the cursor's position.
+
+#### mouse.singleClick.byXpath(xpath, options)
+Perform mouse single click on an element matches a XPath selector.  Options is an optional parameter, and if the property 'wait' is set to true, browsertime will wait until the pageCompleteCheck has finished.
+
+#### mouse.singleClick.atCursor(options)
+Perform mouse single click at the cursor's position.  Options is an optional parameter, and if the property 'wait' is set to true, browsertime will wait until the pageCompleteCheck has finished.
+
+#### mouse.doubleClick.byXpath(xpath, options)
+Perform double single click on an element matches a XPath selector.  Options is an optional parameter, and if the property 'wait' is set to true, browsertime will wait until the pageCompleteCheck has finished.
+
+#### mouse.doubleClick.atCursor(options)
+Perform mouse double click at the cursor's position.  Options is an optional parameter, and if the property 'wait' is set to true, browsertime will wait until the pageCompleteCheck has finished.
+
+#### mouse.clickAndHold.byXpath(xpath)
+Click and hold an element that matches a XPath selector.
+
+#### mouse.clickAndHold.atCursor()
+Click and hold an element at the cursor's position.
+
+#### mouse.clickAndHold.atPosition(xPos, yPos)
+Click and hold an element at the specified position.
+
+#### mouse.clickAndHold.releaseAtXpath(xpah)
+Release mouse on element that matches the specified Xpath.
+
+#### mouse.clickAndHold.releaseAtPosition(xPos, yPos)
+Release mouse at specified coordinates.
+
 ### Wait
 There are a couple of help commands that makes it easier to wait. Either you can wait on a specific id to appear or for x amount of milliseconds.
 
@@ -859,6 +1019,35 @@ Navigate/go to a URL without measuring it.
 #### navigate(url)
 Navigate to a URL and do not measure it. It will use the default [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) and follow the exact same pattern for going to a page as normal Browsertime navigation except it will skip collecting any metrics.
 
+#### navigation.back()
+Navigate backward in history.
+
+#### navigation.forward()
+Navigate forward in history.
+
+#### navigation.refresh()
+Refresh page.
+
+### Scroll
+Scroll the page.
+
+#### scroll.byPixels(xPixels, yPixels)
+Scroll the page by the specified pixels.
+#### scroll.byPages(pages)
+Scroll the page by the specified pages.
+
+#### scroll.toBottom(delayTime)
+Scroll to the bottom of the page. Will scroll by pages and wait the delay time between each scroll. Default delay time is 250 ms.
+
+~~~javascript
+module.exports = async function(context, commands) {
+  // ... navigate to page  ...
+  await commands.scroll.toBottom();
+}
+~~~
+#### scroll.byLines(lines)
+Scroll the page by the specified lines.  Only supported by Firefox.
+
 ### Add text
 You can add text to input elements. The element needs to visible.
 
@@ -900,6 +1089,12 @@ Switch to window by name.
 
 #### switch.toParentFrame
 Switch to the parent frame.
+
+#### switch.toNewTab(url)
+Create a new tab and switch to it. Url parameter is optional which will trigger a navigation ot the given url.
+
+#### switch.toNewWindow(url)
+Create a new window and switch to it. Url parameter is optional which will trigger a navigation ot the given url.
 
 ### Set
 
@@ -953,7 +1148,7 @@ module.exports = async function(context, commands) {
 ~~~
 
 ### Chrome DevTools Protocol
-Send messages to Chrome using the [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/). This only works in Chrome. You can send and send and get the result.
+Send messages to Chrome using the [Chrome DevTools Protocol](https://chromedevtools.github.io/devtools-protocol/). This only works in Chrome/Edge at the moment. You can send, send and get and listen on events.
 
 #### cdp.send(command, args)
 Send a command to Chrome and don't expect something back.
@@ -976,6 +1171,20 @@ module.exports = async function(context, commands) {
   const domCounters = await commands.cdp.sendAndGet('Memory.getDOMCounters');
   context.log.info('Memory.getDOMCounters %j', domCounters);
  }
+~~~
+
+#### cdp.on(event, functionOnEvent)
+You can listen to CDP events. Here's an example to get hold of all responses for a page.
+
+~~~javascript
+module.exports = async function(context, commands) {
+  const responses = [];
+  await commands.cdp.on('Network.responseReceived', params => {
+    responses.push(params);
+  });
+  await commands.measure.start('https://www.sitespeed.io/search/');
+  context.log.info('Responses %j', responses);
+};
 ~~~
 
 ### Error

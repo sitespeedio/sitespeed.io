@@ -15,6 +15,13 @@ block content
     b #{d.browsertime.pageSummary.info.title}
     p !{d.browsertime.pageSummary.info.description}
 
+  if d.browsertime && d.browsertime.pageSummary && d.browsertime.pageSummary.markedAsFailure
+    .errors
+      b This test was marked as a failure with the following #{h.plural(d.browsertime.pageSummary.failureMessages.length, 'message')}:
+      ul
+        each failureMessage in d.browsertime.pageSummary.failureMessages
+          li #{failureMessage}
+
   p
     .large All runs:&nbsp;
       each val, index in runPages
@@ -36,6 +43,29 @@ block content
 
   #tabSections
     section#summary-panel
+      small
+        | | 
+        a(href='#summary') Summary |
+        | &nbsp;|&nbsp;
+        if h.get(pageInfo.data, 'browsertime.pageSummary.statistics')
+          a#browsertime-timing-statistics
+        if options.browsertime.tcpdump
+          a(href='#tcpdump') Download TCP dump
+          | &nbsp;|&nbsp;
+        if options.html.logDownloadLink
+          a(href='#downloads') Download log
+          | &nbsp;|&nbsp;
+        if options.browsertime.video
+          a(href='#downloads') Download Video
+          | &nbsp;|&nbsp;
+        if options.browsertime.chrome && options.browsertime.chrome.timeline
+          a(href='#downloads') Download Timeline Log
+          | &nbsp;|&nbsp;
+        if d.browsertime && d.browsertime.har
+          a(href='#downloads') Download HAR
+          | &nbsp;|&nbsp;
+
+      a#summary
       h2 Summary
       .row
         .one-half.column
@@ -81,18 +111,18 @@ block content
             - fcp = get(d, 'browsertime.pageSummary.statistics.timings.paintTiming["first-contentful-paint"].median') 
             if fcp
               tr
-                td FCP [median]
+                td First Contentful Paint (FCP) [median]
                 td #{h.time.ms(fcp)}         
             - lcp = get(d, 'browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime.median')
             if lcp
               tr
-                td LCP [median]
+                td Largest Contentful Paint (LCP) [median]
                 td #{h.time.ms(lcp)}
-            - cls = get(d, 'browsertime.pageSummary.statistics.pageinfo.layoutShift.median')
+            - cls = get(d, 'browsertime.pageSummary.statistics.pageinfo.cumulativeLayoutShift.median')
             if cls || cls === 0
                 tr
-                  td CLS [median]
-                  td #{cls}
+                  td Cumulative Layout Shift (CLS) [median]
+                  td #{cls.toFixed(2)}
             - tbt = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime.median')
             if tbt  
               tr
@@ -149,18 +179,19 @@ block content
               tr
                 td Requests
                 td #{d.webpagetest.pageSummary.data.median.firstView.requestsFull}
-            if d.crux && d.crux.pageSummary && d.crux.pageSummary.loadingExperience && d.crux.pageSummary.loadingExperience.ALL && !d.browsertime
+            if d.crux && d.crux.pageSummary && d.crux.pageSummary.loadingExperience && d.crux.pageSummary.loadingExperience.ALL && d.crux.pageSummary.loadingExperience.ALL.data && !d.browsertime
               - const cruxMetrics = {first_contentful_paint:'First Contentful Paint (FCP)', largest_contentful_paint: 'Largest Contentful Paint (LCP)', first_input_delay:'First Input Delay (FID)', cumulative_layout_shift: 'Cumulative Layout Shift'}; 
               each name, key in cruxMetrics
-                tr 
-                  td Fast #{name} (CrUx overall)
-                  td #{Number(d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key].histogram[0].density * 100).toFixed(2)} %
-                tr 
-                  td Moderate #{name} (CrUx overall)
-                  td #{Number(d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key].histogram[1].density * 100).toFixed(2)} %
-                tr 
-                  td Slow #{name} (CrUx overall)
-                  td #{Number(d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key].histogram[2].density * 100).toFixed(2)} %
+                if d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key]
+                  tr 
+                    td Fast #{name} (CrUx overall)
+                    td #{Number(d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key].histogram[0].density * 100).toFixed(2)} %
+                  tr 
+                    td Moderate #{name} (CrUx overall)
+                    td #{Number(d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key].histogram[1].density * 100).toFixed(2)} %
+                  tr 
+                    td Slow #{name} (CrUx overall)
+                    td #{Number(d.crux.pageSummary.loadingExperience.ALL.data.record.metrics[key].histogram[2].density * 100).toFixed(2)} %
         .one-half.column
             if hasScreenShots
               - const width = options.mobile ? 150 : '100%';
@@ -173,6 +204,7 @@ block content
                 img.screenshot(src='data/screenshots/wpt-1-firstView.png', alt='Screenshot of run 1')
       include ./summaryBox.pug
 
+      #downloads
       .downloads
         include ./downloads.pug
         include ./tcpdump.pug

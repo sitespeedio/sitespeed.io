@@ -1,5 +1,11 @@
 {
  "budget": {
+   "googleWebVitals": {
+         "firstContentfulPaint": limit,
+         "largestContentfulPaint": limit,
+         "totalBlockingTime": limit,
+         "cumulativeLayoutShift": limit,
+    },
    "timings": {
          "firstPaint": limit,
          "firstContentfulPaint": limit,
@@ -26,7 +32,7 @@
          "longTasksTotalDuration": limit,
     },
    "pageinfo": {
-         "layoutShift": limit,
+         "cumulativeLayoutShift": limit,
     },
    "requests": {
          "total": limit,
@@ -74,7 +80,6 @@
     },
    "score": {
          "score": limit,
-         "accessibility": limit,
          "bestpractice": limit,
          "privacy": limit,
          "performance": limit,

@@ -4,6 +4,7 @@
 
 'use strict';
 
+const fs = require('fs');
 const cli = require('../lib/cli/cli');
 const sitespeed = require('../lib/sitespeed');
 
@@ -13,6 +14,10 @@ async function run(options) {
     const result = await sitespeed.run(options);
     if (result.errors.length > 0) {
       throw new Error('Errors while running:\n' + result.errors.join('\n'));
+    }
+
+    if (options.storeResult) {
+      fs.writeFileSync('result.json', JSON.stringify(result));
     }
 
     if (

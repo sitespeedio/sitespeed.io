@@ -26,7 +26,7 @@ We have [Docker images](https://hub.docker.com/r/sitespeedio/sitespeed.io/) with
 ### Mac & Linux
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io -b firefox
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io https://www.sitespeed.io -b firefox
 ~~~
 
 ### Windows
@@ -40,24 +40,77 @@ That will output the data from the run in the current directory. You can read mo
 
 ## Node JS
 
-### Mac & Linux
+### Mac
+To be able to record a video of the screen and analyse the video, you need a couple of extra software except sitespeed.io. 
 
-Prerequisites: Install [latest NodeJS LTS](https://nodejs.org/en/download/) ([Linux](https://github.com/creationix/nvm)) and make sure you have [npm](https://github.com/npm/npm) or [yarn](https://yarnpkg.com/) installed. Also install Chrome/Firefox/Edge (you need them to collect metrics).
+You need: [FFmpeg](https://ffmpeg.org), [ImageMagick 6](https://imagemagick.org/index.php) and [pillow](https://pillow.readthedocs.io/en/stable/).
 
-Make sure you install without sudo using sudo. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/main/npm-global-without-sudo.md).
+Install on a fresh Apple Mac M1:
 
-#### npm
-If you prefer npm, just run:
+1. Install Homebrew [https://brew.sh](https://brew.sh)
+2. Install latest NodeJS LTS (and npm). Either download it from [nodejs.org](https://nodejs.org/en/) or install using Homebrew:
+    `brew install node@14`
+3. Make sure you can install using *npm* without using sudo. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
+4. Install ImageMagick 6
+    `brew install imagemagick@6`
+5. Install ffmpeg
+    `brew install ffmpeg`
+6. Install Python and Python dependencies ([Python best practices](https://opensource.com/article/19/5/python-3-default-mac)) (or make sure you use the pre-installed Python 3):
+    1. `brew install pyenv` 
+    2. `pyenv install 3.9.1`
+    3. `pyenv global 3.9.1`
+    4. `echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> ~/.zshrc`
+    5. `source ~/.zshrc`
+    6. `curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py`
+    7. `python get-pip.py --user`
+    8. `python -m pip install --user pillow`
+7. To be able to throttle the connection without adding a sudo password you need to run:
+    `echo "${USER} ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/sitespeedio"`
+8. If you plan to run the iOS Simulator, you also need to install Xcode. Either do it from the App store,  follow [Mac Stadiums guide](https://docs.macstadium.com/docs/install-osx-build-tools) or download directly from [https://developer.apple.com/download/more/](https://developer.apple.com/download/more/). Verify that Xcode work by running `xcrun simctl list devices` to list your devices.
+9. If you want to run test on Android devices, you also need ADB. Install it using Homebrew like this: `brew install --cask android-platform-tools`
 
+Now you are ready to install sitespeed.io:
 ~~~bash
 npm install sitespeed.io -g
 ~~~
 
-#### yarn
-Or with [yarn](https://yarnpkg.com/):
+After that you can also install the browsers that you need for your testing: [Chrome](https://www.google.com/chrome/)/[Firefox](https://www.mozilla.org/en-GB/firefox/new/)/Edge.
+
+
+### Linux
+
+Here's an example on how to install on Ubuntu 20.04. 
+
+1. [Install NodeJS LTS ](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04)
+    * `curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh`
+    * `sudo bash nodesource_setup.sh`
+    * `sudo apt install -y nodejs`
+2. Install imagemagick and ffmpeg `sudo apt-get update -y && sudo apt-get install -y imagemagick ffmpeg`
+3. Install Python dependencies:
+    * `sudo apt-get install -y  python-is-python3 python3-dev python3-pip`  
+    * `python -m pip install pyssim`
+4. Install xvfb: `sudo apt-get install -y xvfb`
+5. Create a user that you will use to run sitespeed.io and switch to that user:
+    * `adduser sitespeedio`
+    * `usermod -aG sudo sitespeedio`
+    * `su - sitespeedio`
+6. Make sure that user can use sudo without password: `echo "${USER} ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/sitespeedio"`
+7. Make sure you can install using *npm* without using sudo. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
+8. Install sitespeed.io `EDGEDRIVER_VERSION=89.0.723.0 npm install sitespeed.io -g`
+
+Before you start your testing you need to install a browser. Here's how you can install Chrome.
 
 ~~~bash
-yarn global add sitespeed.io
+wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+sudo apt update
+sudo apt install -y google-chrome-stable
+~~~
+
+Try it out:
+
+~~~bash
+sitespeed.io --browsertime.xvfb -n 1 -b chrome https://www.sitespeed.io --video --visualMetrics
 ~~~
 
 ### Windows

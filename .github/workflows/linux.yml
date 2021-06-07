@@ -14,14 +14,18 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: '12.x'
+        node-version: '14.x'
     - name: Install sitespeed.io
       run: npm ci
-    - name: Install dependencies and seup environment
+    - name: Install Chrome
       run: |
+        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+        sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
         sudo apt-get update
-        sudo apt-get upgrade google-chrome-stable -y
-        docker-compose -f test/docker-compose.yml up -d
+        sudo apt-get --only-upgrade install google-chrome-stable
+        google-chrome --version
+    - name: Setup environment
+      run: docker-compose -f test/docker-compose.yml up -d
     - name: Browser versions
       run: |
         google-chrome --version
@@ -50,6 +54,4 @@ jobs:
       run: xvfb-run node test/runWithoutCli.js
     - name: Run tests with CruX
       run: bin/sitespeed.js -b chrome -n 1 --crux.key ${{ secrets.CRUX_KEY }} --xvfb https://www.sitespeed.io
-    - name: Run tests on WebPageTest
-      run: bin/sitespeed.js -b chrome -n 2 --summaryDetail --browsertime.chrome.timeline https://www.sitespeed.io/ --webpagetest.key ${{ secrets.WPT_KEY }} --xvfb
     

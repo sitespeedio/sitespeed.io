@@ -40,7 +40,6 @@ Setup a simple budget that checks the URLs you test against number of requests, 
         "requests": 0
     },
     "score": {
-      "accessibility": 100,
       "bestpractice": 100,
       "privacy": 100,
       "performance": 100
@@ -63,7 +62,7 @@ jobs:
       - name: code checkout
         uses: actions/checkout@v2
       - name: running sitespeed.io container with arguments and optional Docker options
-        run: docker run -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --budget.configPath .github/budget.json -n 1 
+        run: docker run -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --budget.configPath .github/budget.json -n 1 
 ```
 As arguments and Docker options you can use all [configurations options](/documentation/sitespeed.io/configuration/#the-options) as you usually do with sitespeed.io. Since we don't use any timing metrics in the budget we only do one run.
 
@@ -134,7 +133,7 @@ jobs:
       - run: docker run --shm-size=1g --rm sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/
 
       # No traffic shaping with performance budget
-      - run: docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -n 3 --budget.configPath myBudget.json https://www.sitespeed.io/
+      - run: docker run --shm-size=1g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -n 3 --budget.configPath myBudget.json https://www.sitespeed.io/
 
 workflows:
   version: 2

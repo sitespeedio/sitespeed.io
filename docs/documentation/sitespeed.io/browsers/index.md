@@ -90,7 +90,7 @@ If you need to pass on extra command line arguments to the Firefox binary you ca
 When you run Firefox in Docker you should use `--shm-size 2g` to make sure Firefox get enough shared memory (for Chrome we disabled the use of shm with --disable-dev-shm-usage).
 
 ~~~bash
-docker run --shm-size 2g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io -b firefox
+docker run --shm-size 2g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io -b firefox
 ~~~
 
 ## Chrome
@@ -104,11 +104,26 @@ Chrome has a [long list](https://peter.sh/experiments/chromium-command-line-swit
 
 When you add your command line switched you should skip the minus. For example: You want to use ```--deterministic-fetch``` then add it like ```--chrome.args deterministic-fetch```.
 
+If you want to use it in the configuration file, you can just add each arg in array. Here's an example for adding Chrome args from sitespeed.io:
+
+~~~json
+{
+    "browsertime": {
+        "chrome": {
+            "args" : [
+                "crash-test",
+                "deterministic-fetch"
+            ]
+        }
+    }
+}
+~~~
+
 ### Collect trace logs
  You can get the trace log from Chrome by adding ```--chrome.timeline```. Doing that you will see how much time the CPU spend in different categories and a trace log file that you can drag and drop into your devtools timeline.
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --chrome.timeline https://www.sitespeed.io/
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --chrome.timeline https://www.sitespeed.io/
 ~~~
 
 You can also choose which Chrome trace categories you want to collect by adding ```--chrome.traceCategories```  to your parameters.
@@ -188,7 +203,7 @@ By default the browser will collect data until  [window.performance.timing.loadE
 In this example we wait 10 seconds until the loadEventEnd happens, but you can also choose to trigger it at a specific event.
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --browsertime.pageCompleteCheck 'return (function() {try { return (Date.now() - window.performance.timing.loadEventEnd) > 10000;} catch(e) {} return true;})()'
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --browsertime.pageCompleteCheck 'return (function() {try { return (Date.now() - window.performance.timing.loadEventEnd) > 10000;} catch(e) {} return true;})()'
 ~~~
 
 You can also configure how long time your current check will wait until completing with ```--pageCompleteWaitTime```. By default the pageCompleteCheck waits for 5000 ms after the onLoad event to happen. If you want to increase that to 10 seconds use ```--pageCompleteWaitTime 10000```. This is also useful if you test with *pageCompleteCheckInactivity* and it takes long time for the server to respond, you can use the *pageCompleteWaitTime* to wait longer than the default value.
@@ -217,7 +232,7 @@ For example say we have one file called scripts.js that checks how many scripts 
 Then to pick up the script, you would run it like this:
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --browsertime.script scripts.js -b firefox
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --browsertime.script scripts.js -b firefox
 ~~~
 
 You will get a custom script section in the Browsertime tab.
@@ -235,7 +250,7 @@ Bonus: All custom scripts values will be sent to Graphite, no extra configuratio
 Visual metrics (Speed Index, Perceptual Speed Index, First and Last Visual Complete, and 85-95-99% Visual Complete) can be collected if you also record a video of the screen. If you use our Docker container you automagically get all what you need. Video and Visual Metrics is turned on by default.
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/
 ~~~
 
 On Android you need to follow [these instructions]({{site.baseurl}}/documentation/sitespeed.io/mobile-phones/#video-and-speedindex).
@@ -252,7 +267,7 @@ For example if you want to pass on an extra native arguments to Chrome. In stand
 You can generate a TCP dump with `--tcpdump`.
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --tcpdump
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --tcpdump
 ~~~
 
 You can then download the TCP dump for each iteration and the SSL key log file from the result page.
@@ -269,6 +284,16 @@ You can download the ChromeDriver yourself from the [Google repo](https://chrome
 You can also choose versions for Edge and Firefox with `EDGEDRIVER_VERSION` and `GECKODRIVER_VERSION`.
 
 If you don't want to install the drivers you can skip them with `CHROMEDRIVER_SKIP_DOWNLOAD=true`, `GECKODRIVER_SKIP_DOWNLOAD=true` and `EDGEDRIVER_SKIP_DOWNLOAD=true`.
+
+## Navigation and how we run the test
+
+By default a navigation to a new page happens when Selenium (WebDriver) runs a JavaScript that sets `window.location` to the new URL. You can also choose to use WebDriver navigation (*driver.get*) by adding `--browsertime.webdriverPageload true` to your test.
+
+By default the page load strategy is set to "none" meaning sitespeed.io gets control directly after the page started to navigate from WebDriver. You can choose page load strategy with `--browsertime.pageLoadStrategy`.
+
+Then the JavaScript configured by `--browsertime.pageCompleteCheck` is run to determine when the page is finished loading. By default that script waits for the on load event to happen.  That JavaScript that tries to determine if the page is finished runs after X seconds the first time, that is configured using `--browsertime.pageCompleteCheckStartWait`. The default is to wait 5 seconds before the first check. 
+
+During those seconds the browser needs to navigate (on a slow computer it can take time) and we also want to make sure we do not run that pageCompleteCheck too often because that can infer with metrics. After the first time the complete check has run you can choose how often it runs with `--browsertime.pageCompleteCheckPollTimeout`. Default is 1.5 seconds. When the page complete check tells us that the test is finished, we stop the video and start collect metrics for that page.
 
 ## How can I disable HTTP/2 (I only want to test HTTP/1.x)?
 In Chrome, you just add the switches <code>--browsertime.chrome.args disable-http2</code>.

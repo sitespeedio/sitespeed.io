@@ -45,8 +45,9 @@ mixin getRow(name, object, path, runPath, metric, f)
 - btStatistics = h.get(pageInfo.data, 'browsertime.pageSummary.statistics')
 
 if btStatistics
+  a#browsertime-timing-statistics
   h2 Timings Summary
-  - timingMetrics = ['firstPaint', 'loadEventEnd','rumSpeedIndex']
+  - timingMetrics = ['firstPaint', 'loadEventEnd']
   .responsive
     table
       thead
@@ -65,14 +66,14 @@ if btStatistics
               +getRow(name, pageInfo, 'data.browsertime.pageSummary.statistics.visualMetrics.' + name, pageInfo.data.browsertime.pageSummary.visualMetrics, name, h.time.ms)
       if btStatistics.timings && btStatistics.timings.pageTimings
         tr 
-          td.extraheader(colspan='5') RUM sMetrics
+          td.extraheader(colspan='5') RUM Metrics
           +getRow('TTFB', pageInfo, 'data.browsertime.pageSummary.statistics.timings.pageTimings.backEndTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.pageTimings.backEndTime', h.time.ms)
           +getRow('LCP', pageInfo, 'data.browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.largestContentfulPaint.renderTime', h.time.ms)
           +getRow('FCP', pageInfo, 'data.browsertime.pageSummary.statistics.timings.paintTiming["first-contentful-paint"]', pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.paintTiming["first-contentful-paint"]', h.time.ms)
         each timing in timingMetrics
           +getRow(timing, pageInfo, 'data.browsertime.pageSummary.statistics.timings.' + timing , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.' + timing, h.time.ms)
          
-        +getRow('CLS', pageInfo, 'data.browsertime.pageSummary.statistics.pageinfo.layoutShift' , pageInfo.data.browsertime.pageSummary.browserScripts, 'pageinfo.layoutShift', h.noop)
+        +getRow('CLS', pageInfo, 'data.browsertime.pageSummary.statistics.pageinfo.cumulativeLayoutShift' , pageInfo.data.browsertime.pageSummary.browserScripts, 'pageinfo.cumulativeLayoutShift', h.noop)
 
       if btStatistics.timings && btStatistics.timings.userTimings && btStatistics.timings.userTimings.marks
         tr 

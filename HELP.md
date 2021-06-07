@@ -19,5 +19,4 @@ Do you use sitespeed.io in your everyday work? Then we have a perfect propositio
 
 # Help wanted
 You can help us:
-* [Add connectivity support](https://github.com/sitespeedio/browsertime/issues/313) for Android phones.
 * Help us improve the documentation. We love your feedback and help [https://github.com/sitespeedio/sitespeed.io/tree/main/docs](https://github.com/sitespeedio/sitespeed.io/tree/main/docs).

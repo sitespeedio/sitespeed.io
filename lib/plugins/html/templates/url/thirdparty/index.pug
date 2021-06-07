@@ -1,13 +1,29 @@
 include ../../_tableMixins
 
-a
+- const pagexray = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
+- const thirdparty = medianRun ? pageInfo.data.thirdparty.pageSummary.runs[medianRun.runIndex - 1] : pageInfo.data.thirdparty.run;
+
+small
+    || 
+    if thirdparty.category && Object.keys(thirdparty.category).length > 0
+        a(href='#third-party-categories') Categories |
+        | &nbsp;|&nbsp;
+    if thirdparty.assets && Object.keys(thirdparty.assets).length > 0
+        a(href='#third-party-tools') Tools |
+        | &nbsp;|&nbsp;
+    if pagexray.cookieNamesThirdParties.length > 0
+        a(href='#third-party-cookies') Cookies |
+        | &nbsp;|&nbsp;
+    if pagexray.firstParty.requests
+        a(href='#first-vs-third') First vs third
+        | &nbsp;|&nbsp;
+a#third-party
+a#third-party-categories
 h2 Third party
 
 p Third party requests categorised by 
     a(href='https://github.com/patrickhulce/third-party-web') Third party web
     | .
-
-- const thirdparty = medianRun ? pageInfo.data.thirdparty.pageSummary.runs[medianRun.runIndex - 1] : pageInfo.data.thirdparty.run;
 
 if thirdparty.category && Object.keys(thirdparty.category).length > 0
     .row
@@ -29,6 +45,7 @@ if thirdparty.category && Object.keys(thirdparty.category).length > 0
                             +numberCell('Tools', metric.tools ? metric.tools.median :Object.keys(thirdparty.toolsByCategory[category]).length)
 
 if thirdparty.assets && Object.keys(thirdparty.assets).length > 0
+    a#third-party-tools
     h3 Third party requests and tools
     button.hidden-small.button.button--primary(onclick='toggleRow(this);') Show/hide third party URLs
     table
@@ -52,7 +69,8 @@ if thirdparty.assets && Object.keys(thirdparty.assets).length > 0
                 td.url.offendingurl
                     ul
                         each asset in thirdparty.assets[category]
-                            li #{asset.url} 
+                            li 
+                                a(href=asset.url) #{h.shortAsset(asset.url, true)}  
                                 b (#{asset.entity.name})
 
 if  thirdparty.possibileMissedThirdPartyDomains && thirdparty.possibileMissedThirdPartyDomains.length > 0 
@@ -67,6 +85,7 @@ if  thirdparty.possibileMissedThirdPartyDomains && thirdparty.possibileMissedThi
                 tr 
                     td #{domain}
 
-- const pagexray = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
+include ./thirdPartyCookies.pug
+
 if pagexray.firstParty.requests
   include ./firstParty.pug

@@ -17,7 +17,7 @@ There's a Google Page Speed Insights plugin at [https://github.com/sitespeedio/p
 You can run it with: 
 
 ```bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-plus1 https://www.sitespeed.io/ --plugins.remove /lighthouse
+docker run --shm-size=1g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-plus1 https://www.sitespeed.io/ --plugins.remove /lighthouse
 ``` 
 
 The container also includes Lighthouse. We automatically release a new version of the container per release by adding *-plus1* to the tag. If you use Graphite/InfluxDb the score from Lighthouse and GPSI will be automatically stored.

@@ -14,7 +14,7 @@ twitterdescription: Continuously run your tests.
 # Continuously run your tests
 {:.no_toc}
 
-We have an example setup that we use to collect metrics for [dashboard.sitespeed.io](https://dashboard.sitespeed.io) that you can use as inspiration. Or you can just run your test in the crontab or as a infinite loop on your server.
+We have an example setup that we use to collect metrics for [dashboard.sitespeed.io](https://dashboard.sitespeed.io) that you can use as inspiration. Or you can just run your test in the crontab or as a infinite loop on your server. In our example we use the Dockerized version of sitespeed.io. You can use Docker or you can run sitespeed.io standalone for more control.
 
 * Let's place the TOC here
 {:toc}
@@ -31,48 +31,45 @@ You go to your server, clone the repo, start the start script by pointing out wh
 
 The script creates a file called **sitespeed.run** in your current folder. If you gracefully want to stop your tests, remove that file `rm sitespeed.run` and wait for the tests to finish (`tail -f /tmp/sitespeed.io.log`).
 
-The first part before the first dot in the filename will be appended to the Graphite namespace namespace (`--graphite.namespace`). If your file is named *login.js* the namespace will be `login`. If your file is named *login.2.js* the namespace is still `login`.
+Do you want to add a new URL to test on desktop? Navigate to [**desktop**](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/main/tests/desktop) and create your new file there. Want to add a user journey? Add the script in the same place and name them *.js*.
 
-Do you want to add a new URL to test on desktop? Navigate to [**desktop/urls**](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/main/nyc3-1/desktop/urls) and create your new file there. Want to add a user journey? Add the script in [**desktop/scripts**](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/main/nyc3-1/desktop/scripts).
-
-Our example run tests for [desktop](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/main/nyc3-1/desktop), [emulated mobile](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/main/nyc3-1/mobile) (both URLs and scripts), testing using WebPageReplay ([replay](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/main/nyc3-1/replay/urls)) and WebPageTest ([webpagetest](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/main/nyc3-1/webpagetest/urls)). But you probably don't need all that so you can remove the code in the [**run.sh**](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/main/run.sh) script.
+Our example run tests for [desktop](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/main/tests/desktop)and [emulated mobile](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/main/tests/emulatedMobile) (both URLs and scripts).
 
 The structure looks like this:
 
 ```
 .
 ├── config
+│   ├── alexaDesktop.json
+│   ├── alexaMobile.json
+│   ├── crux.json
 │   ├── desktop.json
-│   ├── mobile.json
+│   ├── desktopMulti.json
+│   ├── emulatedMobile.json
+│   ├── emulatedMobileMulti.json
+│   ├── loginWikipedia.json
+│   ├── news.json
 │   ├── replay.json
-│   └── webpagetest.json
+│   └── spa.json
 ├── loop.sh
-├── nyc3-1
-│   ├── desktop
-│   │   ├── scripts
-│   │   │   ├── desktopMulti.js
-│   │   │   ├── loginWikipedia.js
-│   │   │   └── spa.js
-│   │   └── urls
-│   │       ├── alexaDesktop.txt
-│   │       ├── desktop.txt
-│   │       └── publicSectorDesktop.txt
-│   ├── mobile
-│   │   ├── scripts
-│   │   │   └── emulatedMobileMulti.js
-│   │   └── urls
-│   │       ├── alexaMobile.txt
-│   │       └── emulatedMobile.txt
-│   ├── replay
-│   │   └── urls
-│   │       └── replay.txt
-│   └── webpagetest
-│       └── urls
-│           └── news.txt
-└── run.sh
+├── run.sh
+└── tests
+    ├── desktop
+    │   ├── alexaDesktop.txt
+    │   ├── crux.txt
+    │   ├── desktop.txt
+    │   ├── desktopMulti.js
+    │   ├── loginWikipedia.js
+    │   ├── news.txt
+    │   ├── replay.replay
+    │   └── spa.js
+    └── emulatedMobile
+        ├── alexaMobile.txt
+        ├── emulatedMobile.txt
+        └── emulatedMobileMulti.js
 ```
 
-The [**loop.sh**](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/main/loop.sh) is the start point. Run it and feed it with the folder name of the server (in our case we only run the tests on server names *nyc3-1*). That script will git pull the rep for every iteration and run the script [**run.sh**](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/main/run.sh).
+The [**loop.sh**](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/main/loop.sh) is the start point. Run it. That script will git pull the rep for every iteration and run the script [**run.sh**](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/main/run.sh).
 
 Then [**run.sh**](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/main/run.sh) will use the right configuration in [**/config/**](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/main/config) and run the URLs/scripts that are configured. Our configuration files extends configuration files that only exits on the server where we hold secret information like username and passwords. You don't need set it up that way, if you use a private git repo.
 
@@ -132,43 +129,32 @@ Then our configuration files in [**/config/**](https://github.com/sitespeedio/da
 And when we run our tests, we map the volume on the server /config to our docker container. You can see that in the [run.sh](https://github.com/sitespeedio/dashboard.sitespeed.io/blob/main/run.sh) file. Look for `-v /config:/config`. That is the magic line.
 
 
-We then also map the current working dir to `-v "$(pwd)":/sitespeed.io` and then feed the the config file to sitespeed `--config /sitespeed.io/config`. That way, inside the Docker container we have **/config/** that has the secret configuration files and in **/sitespeed.io/config** the configuration we want to use for our tests.
+We then also map the current working dir to `-v "$(pwd):/sitespeed.io"` and then feed the the config file to sitespeed `--config /sitespeed.io/config`. That way, inside the Docker container we have **/config/** that has the secret configuration files and in **/sitespeed.io/config** the configuration we want to use for our tests.
 
 
 #### Change the tests
 Stop! Before you move on you need to change the tests you wanna run. Our current test structure looks like this:
 
 ```
-├── nyc3-1
-│   ├── desktop
-│   │   ├── scripts
-│   │   │   ├── desktopMulti.js
-│   │   │   ├── loginWikipedia.js
-│   │   │   └── spa.js
-│   │   └── urls
-│   │       ├── alexaDesktop.txt
-│   │       ├── desktop.txt
-│   │       └── publicSectorDesktop.txt
-│   ├── mobile
-│   │   ├── scripts
-│   │   │   └── emulatedMobileMulti.js
-│   │   └── urls
-│   │       ├── alexaMobile.txt
-│   │       └── emulatedMobile.txt
-│   ├── replay
-│   │   └── urls
-│   │       └── replay.txt
-│   └── webpagetest
-│       └── urls
-│           └── news.txt
+└── tests
+    ├── desktop
+    │   ├── alexaDesktop.txt
+    │   ├── crux.txt
+    │   ├── desktop.txt
+    │   ├── desktopMulti.js
+    │   ├── loginWikipedia.js
+    │   ├── news.txt
+    │   ├── replay.replay
+    │   └── spa.js
+    └── emulatedMobile
+        ├── alexaMobile.txt
+        ├── emulatedMobile.txt
+        └── emulatedMobileMulti.js
 ```
 
-We have one server that we call **nyc3-1**. If we want to run tests on multiple servers, we just add another folder. For example, we want to run another set of tests from NYC, we create a folder named **nyc3-2**. And then create the same folder structure.
+Adding a file text in the desktop folder with URLS will test those URLs. If you add a scripting file (ending with *.js*) a user journey will be tested. 
 
-In a folder named **urls** you can create your test files with the URLs you want to test. All the URLs within a text files will be tested after each other (with the browser closed between each run and with a new session). The name of the file will be used as the Graphite namespace (excluding the file ending). If your file is named **alexaMobile.txt** the namespace will be **alexaMobile**.
-
-In a folder named **scripts** you can create your own [scripting](/documentation/sitespeed.io/scripting/) tests. Here you can test your pages as a logged in user or test a user journey visiting multiple pages within the same browser session. The name will be used as the namespace.
-
+All tests needs to have a corresponding configuration file. Say that you have a test file named *alexaMobile.txt*. You then need to have a *alexaMobile.json* configuration file in the *config/* directory for the test to work.
 #### Change how you test
 
 The most important thing is to change so you run the latest stable version of sitespeed.io. In our test environment we run the latest build (to make sure we catch bug/regressions before we release them). It looks like this:
@@ -185,18 +171,20 @@ DOCKER_CONTAINER=sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}
 
 That way you have a safe and easy way to upgrade and roll back versions of sitespeed.io. When a new sitespeed.io version is released, you edit the file and change the version number. The next iteration of the loop the change will be picked up.
 
-In our tests we run all URL tests on Chrome and Firefox, tests the scripts in Chrome, run URL and scripts on emulated mobile using Chrome, run tests using [WebPageTest](/documentation/sitespeed.io/webpagetest/) and tests running [WebPageReplay](/documentation/sitespeed.io/webpagereplay).
+In our tests we run all URL tests on Chrome and Firefox, tests the scripts in Chrome and run URL and scripts on emulated mobile using Chrome.
 
 We run all these tests because we use it to verify that all the functionality is working on our side. You probably don't need to run all these tests. Then you can just remove those lines in **run.sh**.
 
 ### Run
 
 Go into the directory that where you cloned the directory: `cd dashboard.sitespeed.io`
-And then start: `nohup ./loop.sh nyc3-1 &`
-
-*nyc3-1* is the name of the start directory for the tests. If we would run multiple servers with different tests, we would have multiple folders and start each server differently.
+And then start: `nohup ./loop.sh &`
 
 To verify that everything works you should tail the log: `tail -f /tmp/sitespeed.io`
+
+### Run on Mac
+
+If you run on Mac you should use `screen` instead of *nohup*. First open a new screen instance: `screen`. Then start your tests `./loop.sh`.  And then detach your screen `ctrl+A and then press D`. To resume back to the screen use `screen -x`.
 
 ### Stop your tests
 
@@ -209,7 +197,7 @@ The script will then stop when it has finished the current run(s). Wait for it t
 Sometimes your cloud server reboots. To make sure it auto start your tests, you can add it to the crontab. Edit the crontab with `crontab -e` and add (make sure to change the path to your installation):
 
 ```bash
-@reboot rm /root/dashboard.sitespeed.io/sitespeed.run;cd /root/dashboard.sitespeed.io/ && ./loop.sh nyc3-1
+@reboot rm /root/dashboard.sitespeed.io/sitespeed.run;cd /root/dashboard.sitespeed.io/ && ./loop.sh 
 ```
 
 ### Keeping your instance updated
@@ -235,20 +223,18 @@ You can have a script *crontab.sh* file:
 # Specify the exact version of sitespeed.io. When you upgrade to the next version, pull it down and the change the tag
 DOCKER_CONTAINER=sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}
 
-# Setup the network and default ones we wanna use
-sudo /home/ubuntu/startNetworks.sh
-THREEG="--network 3g"
-CABLE="--network cable"
-
 # Simplify some configurations
 CONFIG="--config /sitespeed.io/default.json"
 DOCKER_SETUP="--shm-size=1g --rm -v /home/ubuntu/config:/sitespeed.io -v /result:/result -v /etc/localtime:/etc/localtime:ro --name sitespeed"
 
+# Make sure we can throttle the connection
+sudo modprobe ifb numifbs=1
+
 # Start running the tests
 # We run more tests on our test server but this gives you an idea of how you can configure it
-docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER -n 11 --browsertime.viewPort 1920x1080 --browsertime.chrome.collectTracingEvents /sitespeed.io/wikipedia.org.txt $CONFIG
-docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER -n 11 --browsertime.viewPort 1920x1080 /sitespeed.io/wikipedia.org.txt -b firefox $CONFIG
-docker run $THREEG $DOCKER_SETUP $DOCKER_CONTAINER --graphite.namespace sitespeed_io.emulatedMobile --cpu /sitespeed.io/m.wikipedia.org.txt -c 3g --mobile true $CONFIG
+docker run $DOCKER_SETUP $DOCKER_CONTAINER -n 11 --browsertime.viewPort 1920x1080 /sitespeed.io/wikipedia.org.txt $CONFIG
+docker run $DOCKER_SETUP $DOCKER_CONTAINER -n 11 --browsertime.viewPort 1920x1080 /sitespeed.io/wikipedia.org.txt -b firefox $CONFIG
+docker run $DOCKER_SETUP $DOCKER_CONTAINER --graphite.namespace sitespeed_io.emulatedMobile --cpu /sitespeed.io/m.wikipedia.org.txt -c 3g --connectivity.engine throttle --mobile true $CONFIG
 
 # We remove all docker stuff to get a clean next run
 docker system prune --all --volumes -f
@@ -256,8 +242,6 @@ docker system prune --all --volumes -f
 # Get the container so we have it the next time we wanna use it
 docker pull $DOCKER_CONTAINER
 ~~~
-
-In this example we use Docker networks to set the connectivity. [Read the documentation about connectivity](/documentation/sitespeed.io/connectivity/)) on how you can do that.
 
 ### Edit the crontab
 Then you can trigger the script from the crontab. In this example we run every hour but it depends on how many tests you run. `crontab -e`.
@@ -307,18 +291,12 @@ while true
 do
 
   DOCKER_SETUP="--shm-size=1g --rm -v /home/ubuntu/config:/sitespeed.io -v /result:/result -v /etc/localtime:/etc/localtime:ro "
-  THREEG="--network 3g"
-  THREEGEM="--network 3gem"
-  CABLE="--network cable"
   CONFIG="--config /sitespeed.io/default.json"
   echo 'Start a new loop '
-  echo "Start the networks ..."
-  sudo /home/ubuntu/startNetworks.sh
-  docker network ls
-
-  docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER -n 7 --browsertime.viewPort 1920x1080 --browsertime.cacheClearRaw true /sitespeed.io/wikipedia.org.txt $CONFIG
+ 
+  docker run $DOCKER_SETUP $DOCKER_CONTAINER -n 7 --browsertime.viewPort 1920x1080 --browsertime.cacheClearRaw true /sitespeed.io/wikipedia.org.txt $CONFIG
   control
-  docker run $CABLE $DOCKER_SETUP $DOCKER_CONTAINER -n 7 --browsertime.viewPort 1920x1080 /sitespeed.io/wikipedia.org.txt -b firefox $CONFIG
+  docker run $DOCKER_SETUP $DOCKER_CONTAINER -n 7 --browsertime.viewPort 1920x1080 /sitespeed.io/wikipedia.org.txt -b firefox $CONFIG
   cleanup
 done
 ~~~

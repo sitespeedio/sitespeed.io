@@ -36,14 +36,13 @@ are loading, so you will need to do an actual run to generate the list. The list
 named **configuredMetrics.txt**.
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --metrics.filterList
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --metrics.filterList
 ~~~
 
 The file will look something like this:
 
 ~~~
 browsertime.pageSummary.statistics.timings.timings
-browsertime.pageSummary.statistics.timings.rumSpeedIndex
 browsertime.pageSummary.statistics.timings.fullyLoaded
 browsertime.pageSummary.statistics.timings.firstPaint
 browsertime.pageSummary.statistics.timings.userTimings
@@ -59,7 +58,7 @@ You can also list all possible metrics that you can send. You can do that by usi
 generate a text file named **metrics.txt** in the data folder.
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --metrics.list
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --metrics.list
 ~~~
 
 
@@ -96,7 +95,7 @@ filter like this **coach.pageSummary.advice.performance.adviceList.\*.score** wi
 the name).
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --metrics.filter coach.pageSummary.advice.performance.adviceList.*.score -n 1
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --metrics.filter coach.pageSummary.advice.performance.adviceList.*.score -n 1
 ~~~
 
 The best way to test and verify on your local, is to checkout the sitespeed.io project and then start a TCP server that
@@ -115,10 +114,10 @@ $ Server listening on :::52860
 It will output the port, so you can then use it when you run sitespeed.io:
 
 ~~~bash
-docker run --net host --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --metrics.list https://www.sitespeed.io -n 1 --metrics.filter coach.pageSummary.advice.performance.adviceList.*.score --graphite.host 127.0.0.1 --graphite.port 52860
+docker run --net host --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --metrics.list https://www.sitespeed.io -n 1 --metrics.filter coach.pageSummary.advice.performance.adviceList.*.score --graphite.host 127.0.0.1 --graphite.port 52860
 ~~~
 
-The the previous example it will log all metrics you send to Graphite to the console.
+The previous example it will log all metrics you send to Graphite to the console.
 
 #### Example: Add all Coach advice
 
@@ -156,5 +155,5 @@ remove all configured metrics with the parameter value *\*-*. Here is an example
 **coach.pageSummary.advice.performance.adviceList.\*.score** metrics.
 
 ~~~bash
-docker run --net host --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --metrics.list https://www.sitespeed.io -n 1 --metrics.filter *- coach.pageSummary.advice.performance.adviceList.*.score --graphite.host 127.0.0.1 --graphite.port 52860
+docker run --net host --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --metrics.list https://www.sitespeed.io -n 1 --metrics.filter *- coach.pageSummary.advice.performance.adviceList.*.score --graphite.host 127.0.0.1 --graphite.port 52860
 ~~~

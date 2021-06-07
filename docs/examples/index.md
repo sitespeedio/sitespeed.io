@@ -18,14 +18,14 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 Sitespeed.io uses Browsertime, the Coach and PageXray to collect and generate the result, so looking at result pages from sitespeed.io will give you a idea of what you can get from all tools. Analysing two pages using Chrome looks like this:
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b chrome --cpu https://en.wikipedia.org/wiki/Main_Page https://en.wikipedia.org/wiki/Barack_Obama
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b chrome --cpu https://en.wikipedia.org/wiki/Main_Page https://en.wikipedia.org/wiki/Barack_Obama
 ~~~
 
-Gives the following [report](https://examples.sitespeed.io/13.x/2020-05-20-08-47-56/index.html). The standard use case for sitespeed.io is to run it continuously and send the data to Graphite/Grafana and create dashboards looking like this:
+Gives the following [report](https://examples.sitespeed.io/17.x/2021-05-23-07-23-07/). The standard use case for sitespeed.io is to run it continuously and send the data to Graphite/Grafana and create dashboards looking like this:
 
-[![Example dashboard]({{site.baseurl}}/img/examples/dashboard-examples.png)](https://dashboard.sitespeed.io/dashboard/db/page-summary?orgId=1)
+[![Example dashboard]({{site.baseurl}}/img/examples/dashboard-examples.png)](https://dashboard.sitespeed.io/d/9NDMzFfMk/page-metrics-desktop)
 {: .img-thumbnail}
-Checkout our [example dashboard](https://dashboard.sitespeed.io/dashboard/db/page-summary?orgId=1) to see what it looks like to use sitespeed.io to continuously measure performance.
+Checkout our [example dashboard](https://dashboard.sitespeed.io/d/9NDMzFfMk/page-metrics-desktop) to see what it looks like to use sitespeed.io to continuously measure performance.
 
 ## Browsertime
 Browsertime collects metrics using JavaScript and will record the browser window using FFMPEG and produce a JSON file with the metrics collected, a HAR file that describes the request/responses and video and screenshots.
@@ -109,7 +109,6 @@ It will generate a HAR file, a video and a browsertime.json that hold all the me
                     "first-contentful-paint": 465,
                     "first-paint": 465
                 },
-                "rumSpeedIndex": 469,
                 "userTimings": {
                     "marks": [],
                     "measures": []
@@ -528,16 +527,6 @@ It will generate a HAR file, a video and a browsertime.json that hold all the me
                     "p99": 465,
                     "max": 465
                 }
-            },
-            "rumSpeedIndex": {
-                "median": 469,
-                "mean": 469,
-                "mdev": 0,
-                "min": 469,
-                "p10": 469,
-                "p90": 469,
-                "p99": 469,
-                "max": 469
             }
         },
         "visualMetrics": {
@@ -1565,7 +1554,6 @@ And it will generate a JSON that looks something like this:
         "responseEnd": 202,
         "responseStart": 199
       },
-      "rumSpeedIndex": 271.0001468658447,
       "timings": {
         "backEndTime": 199,
         "domContentLoadedTime": 220,

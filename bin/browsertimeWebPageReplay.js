@@ -7,6 +7,7 @@ const browsertime = require('browsertime');
 const merge = require('lodash.merge');
 const getURLs = require('../lib/cli/util').getURLs;
 const get = require('lodash.get');
+const set = require('lodash.set');
 const findUp = require('find-up');
 const fs = require('fs');
 const browsertimeConfig = require('../lib/plugins/browsertime/index').config;
@@ -160,10 +161,25 @@ async function runBrowsertime() {
     }
   }
 
+  if (parsed.argv.android) {
+    if (parsed.argv.browser === 'chrome') {
+      // Default to Chrome Android.
+      set(
+        btOptions,
+        'chrome.android.package',
+        get(btOptions, 'chrome.android.package', 'com.android.chrome')
+      );
+    }
+  }
   const engine = new browsertime.Engine(btOptions);
   const urls = getURLs(parsed.argv._);
 
-  await testURLs(engine, urls);
+  try {
+    await testURLs(engine, urls);
+  } catch (e) {
+    console.error('Could not run ' + e);
+    process.exit(1);
+  }
 
   process.exit();
 }

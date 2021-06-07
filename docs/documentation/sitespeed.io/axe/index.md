@@ -23,7 +23,7 @@ twitterdescription:
 You enable testing with `--axe.enable`.
 
 ```bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --axe.enable https://www.sitespeed.io
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --axe.enable https://www.sitespeed.io
 ```
 
 That will run [axe-core](https://github.com/dequelabs/axe-core) and generate a new **axe** tab in your HTML result. The number of violations (per type) will automatically be sent to Graphite/InfluxDB.
@@ -33,7 +33,7 @@ That will run [axe-core](https://github.com/dequelabs/axe-core) and generate a n
 
 
 ## Configure Axe
-You can [configure Axe](https://github.com/dequelabs/axe-core/blob/main/doc/API.md#api-name-axeconfigure) which rules/checks that will be used. In the *axe* namespace we pass on all parameters to the configuration object of Axe. `--axe.checks` will result in a configuration object like:
+You can [configure Axe](https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#api-name-axeconfigure) which rules/checks that will be used. In the *axe* namespace we pass on all parameters to the configuration object of Axe. `--axe.checks` will result in a configuration object like:
 
 ```json
 checks: {

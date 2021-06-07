@@ -37,7 +37,7 @@ sitespeed.io --crux.key $CRUX_API_KEY --plugins.remove browsertime --graphite.na
 You will get a new tab in your result HTML with the CrUx data.
 
 ## Form factor
-The CrUx data has four different buckets depending on device: DESKTOP, PHONE, TABLET and ALL. You can choose which data to get with ```--crux.formFactor```. Getting only phone data: ```--crux.formFactor PHONE```. If you want to collect data for multiple form factors, add ```--crux.formFactor`` multiple times.
+The CrUx data has four different buckets depending on device: DESKTOP, PHONE, TABLET and ALL. You can choose which data to get with ```--crux.formFactor```. Getting only phone data: ```--crux.formFactor PHONE```. If you want to collect data for multiple form factors, add ```--crux.formFactor``` multiple times.
 
 ~~~bash
 sitespeed.io --crux.key $CRUX_API_KEY --crux.formFactor PHONE --crux.formFactor ALL https://www.sitespeed.io

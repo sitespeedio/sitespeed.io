@@ -21,7 +21,7 @@ In a [previous post]({{site.baseurl}}/usertimings-best-practices) on best practi
 allows you to now define that namespace to filter out all other that do not match. Yay! The following will whitelist and capture only user timings that are prefixed with `sitespeedio_`.
 
 ~~~bash
-docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io --userTimingWhitelist "^sitespeedio_" https://www.sitespeed.io/
+docker run --privileged --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io --userTimingWhitelist "^sitespeedio_" https://www.sitespeed.io/
 ~~~
 
 
@@ -33,7 +33,7 @@ This is great since it now easy to filter out only the user timings that you nee
 This feature allows for annotations automatically to be sent to Graphite and picked up Grafana, so we can link between metrics in Grafana and HTML result pages. These annotations can be configure along side of S3, so it's super easy to keep the result and have everything you need to keep track of your sites performance. Finally the gap between Grafana and the HTML generated results by sitespeedio is here :)
 
 ~~~bash
-docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -b firefox -n 1 --graphite.host <your graphite host>  --resultBaseURL https://example.yoursite.com https://www.sitespeed.io/
+docker run --privileged --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io -b firefox -n 1 --graphite.host <your graphite host>  --resultBaseURL https://example.yoursite.com https://www.sitespeed.io/
 ~~~
 
 ![Send annotations and link to the result pages]({{site.baseurl}}/img/annotations-example.png)
@@ -48,7 +48,7 @@ This feature will allow for capturing resulting HTML reports/videos and HAR file
 
 
 ~~~bash
-docker run --privileged --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io -b firefox -n 1 --graphite.host <location to your graphite instance> --resultBaseURL https://example.yoursite.com --s3.key <insert key here> --s3.secret <insert secret here> --s3.bucketname <insert your bucket name here> https://www.sitespeed.io/
+docker run --privileged --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io -b firefox -n 1 --graphite.host <location to your graphite instance> --resultBaseURL https://example.yoursite.com --s3.key <insert key here> --s3.secret <insert secret here> --s3.bucketname <insert your bucket name here> https://www.sitespeed.io/
 ~~~
 
 This is nice because you can setup S3 to keep the result for your runs for X days and have the same configuration for Graphite, so that you go back and forth from the graphs to the result pages (see next feature!).

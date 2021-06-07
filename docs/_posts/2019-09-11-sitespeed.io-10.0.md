@@ -27,7 +27,7 @@ So what's new in the latest version?
 With the new release you can automate parts of your accessibility testing using [Axe](https://github.com/dequelabs/axe-core). You can enable Axe tests with `--axe.enable`. It will run after all other metrics is collected.
 
 ```bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --axe.enable https://www.sitespeed.io
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --axe.enable https://www.sitespeed.io
 ```
 
 It will generate a new result tab in the page summary HTML, where you can see on a high level all violations:

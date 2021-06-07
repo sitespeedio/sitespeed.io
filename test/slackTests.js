@@ -21,7 +21,7 @@ const defaultContextFactory = (context = {}) => {
       filterRegistry,
       intel,
       statsHelpers,
-      resultUrls: resultUrls()
+      resultUrls: resultUrls('', {})
     },
     context
   );
@@ -219,7 +219,7 @@ describe('slack', () => {
       expect(mock.called).to.be.true;
       const params = mock.callArgs[0];
       expect(params.text).to.equal(
-        '1 page analysed for Simple test (1 run, Chrome/desktop/unknown)\n*Site summary*\nPage transfer weight: N/A\n\n'
+        '1 page analysed for Simple test (1 run, Chrome/desktop/unknown)\n*Site summary*\n\n'
       );
     });
 
@@ -228,7 +228,8 @@ describe('slack', () => {
         name: 'Simple test'
       });
       context.resultUrls = resultUrls(
-        'https://results.sitespeed.io/absolute/path'
+        'https://results.sitespeed.io/absolute/path',
+        {}
       );
       const plugin = pluginFactory(context);
       const mock = mockSend();
@@ -238,7 +239,7 @@ describe('slack', () => {
       const params = mock.callArgs[0];
       expect(params.text).to.equal(
         '1 page analysed for Simple test (1 run, Chrome/desktop/unknown)\n*Site summary* ' +
-          '(<https://results.sitespeed.io/absolute/path/index.html |result>)\nPage transfer weight: N/A\n\n'
+          '(<https://results.sitespeed.io/absolute/path/index.html |result>)\n\n'
       );
     });
 
@@ -259,7 +260,7 @@ describe('slack', () => {
       plugin.processMessage({ type: 's3.finished' });
       expect(mock.called).to.be.true;
       expect(mock.callArgs[0].text).to.equal(
-        '1 page analysed for S3 configured (1 run, Chrome/desktop/unknown)\n*Site summary*\nPage transfer weight: N/A\n\n'
+        '1 page analysed for S3 configured (1 run, Chrome/desktop/unknown)\n*Site summary*\n\n'
       );
     });
 
@@ -284,7 +285,7 @@ describe('slack', () => {
       plugin.processMessage({ type: 'gcs.finished' });
       expect(mock.called).to.be.true;
       expect(mock.callArgs[0].text).to.equal(
-        '1 page analysed for GCS (1 run, Chrome/desktop/unknown)\n*Site summary*\nPage transfer weight: N/A\n\n'
+        '1 page analysed for GCS (1 run, Chrome/desktop/unknown)\n*Site summary*\n\n'
       );
     });
   });

@@ -37,12 +37,15 @@ To collect Visual Metrics like firstVisualChange, SpeedIndex, visualComplete85%,
 If you want to keep the video when you collect metrics or only want the video, just add <code>--video</code> to the list of parameters.
 
 ### Firefox window recorder
-If you use Firefox you can use the built in window recoder (instead of using FFMPEG) to record the video. The Mozilla team uses it to make sure recording the video doesn't add any overhead. Turn it on with  <code>--firefox.windowRecorder</code>.
+If you use Firefox you can use the built in window recorder (instead of using FFMPEG) to record the video. The Mozilla team uses it to make sure recording the video doesn't add any overhead. Turn it on with  <code>--firefox.windowRecorder</code>.
 
 ### Video quality
 You can change the number of frames per second (default is 30) by using <code>--browsertime.videoParams.framerate</code>. If you have a large server with a lot of extra CPU you can increase the amount. You should probably not decrease it lower than 30 since it will affect the precision of Visual Metrics.
 
 You can also change the constant rate factor (see [https://trac.ffmpeg.org/wiki/Encode/H.264#crf](https://trac.ffmpeg.org/wiki/Encode/H.264#crf)) to change the quality of the video. CRF is added in the second step (we first record the video as lossless as possible).
+
+### Skip converting the video
+When you record a video, the video is first recorded with settings to make the video recording as fast as possible and with low overhead. Then the video is converted to a format that better works in most video players. If you want to speed up your tests, you may want to remove the video convertion, you can do that with <code>--browsertime.videoParams.convert false</code>. 
 
 ### Remove timer and metrics from the video
 The video will by default include a timer and show when visual metrics happens. If you want the video without any text/timer you just add <code>--browsertime.videoParams.addTimer false</code>.
@@ -67,13 +70,43 @@ If you want to change the quality (compression level 0-100) of the images you do
 If you run the Docker container we will automatically setup XVFB as a virtual frame buffer. If you run without Docker but still want to use XVFB, you add <code>--xvfb</code> and sitespeed.io will then start XVFB automatically, you only need to make sure it is installed.
 
 ### Collect visual elements metrics
-You can choose to collect when visual elements are visible (and on their final position) on the screen. Turn on with <code>--visualElement</code> and collect Visual Metrics from elements. Works only with <code>--visualMetrics</code> turned on (default in Docker). By default you will get visual metrics from the largest image within the view port and the largest H1. 
+You can choose to collect when visual elements are visible (and on their final position) on the screen. Turn on with <code>--visualElements</code> and collect Visual Metrics from elements. Works only with <code>--visualMetrics</code> turned on (default in Docker). By default you will get visual metrics from the largest image within the view port and the largest H1. 
 
-You can also configure to pickup your own defined elements with <code>--scriptInput.visualElements</code>. Give the element a name and select it with <code>document.body.querySelector</code>. Use it like this: <code>--scriptInput.visualElements name:domSelector</code> . Add multiple instances to measure multiple elements. Visual Metrics will use these elements and calculate when they are visible and fully rendered. These metrics will also be included in HAR file so you can look at the waterfall and see when elements are visual within the viewport.
+If you want to add your own element the easiest way is to follow the Element Timing API: annotate your element with the *elementtiming* annotation. This will work even if your browser do not support the Element Timning API!
+
+Say that we want to know when the sitespeed.io logo appears on the screen. Then we add the annotation and give that image a unique name (so we know what we are measuring). It will look like this:
+
+```html
+<img src="/img/team.png" alt="sitespeed.io Logo with My Little Pony style cats" elementtiming="logo">
+```
+
+If you cannot edit the HTML of the site, you can still measure when elements is painted on the screen but its a little more work. You can configure to pickup your own defined elements with <code>--scriptInput.visualElements</code>. Give the element a name and select it with <code>document.body.querySelector</code>. Use it like this: <code>--scriptInput.visualElements name:domSelector</code> . Add multiple instances to measure multiple elements. 
+
+Visual Metrics will use these elements and calculate when they are visible and fully rendered. These metrics will also be included in HAR file so you can look at the waterfall and see when elements are visual within the viewport.
+
  
+Lets say that we want to measure when the logo of sitespeed.io is painted on screen and cannot add the annotation.
 
- ![Visual elements in Graphite]({{site.baseurl}}/img/visual-elements-graphite.png)
-{: .img-thumbnail-center}
+![Logo sitespeed.io]({{site.baseurl}}/img/logo-example.jpg)
+{: .img-thumbnail}
+
+Open up devtools/web inspector and select the image:
+
+![Web Inspector seleting the logo]({{site.baseurl}}/img/web-inspector.png)
+{: .img-thumbnail}
+
+Next step is to find that element using `document.body.querySelector`. Do that in your web console. The logo has a unique class, so lets use that:  `document.body.querySelector(".navbar-brand")`.
+
+Then try it out in sitespeed.io. Lets name the element ... logo :)
+
+```bash
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b chrome https://www.sitespeed.io/ --scriptInput.visualElements "logo:.navbar-brand"  --visualElements
+```
+
+And you can see the result in the Visual Metrics section:
+
+![The logo in the result]({{site.baseurl}}/img/logo-result.jpg)
+{: .img-thumbnail}
 
 ## Compare two video runs (combine two videos)
 One of the things we love with [WebPageTest](https://www.webpagetest.org/) is the video where you can compare two different runs. Since sitespeed.io is serverless, it is nothing you can do on the fly. Instead we created a simple tool you can use. Only thing you need is Docker!

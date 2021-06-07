@@ -1,29 +1,59 @@
 if timings.largestContentfulPaint
-   a#largestContentfulPaint
-   h3 Largest Contentful Paint
-   p Read more about 
+  a#largestContentfulPaint
+  h3 Largest Contentful Paint
+  p When in time the page main content is rendered (collected using the Largest Contentful Paint API). Read more about 
     a(href='https://web.dev/largest-contentful-paint') Largest Contentful Paint
     | .
-   table
-      tr
-        if timings.largestContentfulPaint.id !== ''
-          th Id
-        if timings.largestContentfulPaint.url !== ''  
-          th URL
-        if timings.largestContentfulPaint.tagName  
-          th Tag 
-        th Render time
-        th Load time
-        if timings.largestContentfulPaint.size
-          th Size
-      tr
-        if timings.largestContentfulPaint.id !== ''
-          td  #{timings.largestContentfulPaint.id}
-        if timings.largestContentfulPaint.url !== ''    
-          td  
-            a(href=timings.largestContentfulPaint.url) #{timings.largestContentfulPaint.url}
-        if timings.largestContentfulPaint.tagName 
-          td #{timings.largestContentfulPaint.tagName}
-        td  #{h.time.ms(timings.largestContentfulPaint.renderTime)}
-        td  #{h.time.ms(timings.largestContentfulPaint.loadTime)}  
-        td  #{h.size.format(timings.largestContentfulPaint.size)}
+  .row
+    .one-half.column
+        table
+            if timings.largestContentfulPaint.tagName 
+              tr
+                td 
+                  b Element type
+                td #{timings.largestContentfulPaint.tagName}
+            if timings.largestContentfulPaint.tag 
+              tr
+                td 
+                  b Element/tag
+                td.url.pagesurl #{timings.largestContentfulPaint.tag}
+            tr
+              td 
+                b Render time 
+              td #{h.time.ms(timings.largestContentfulPaint.renderTime)}
+            if timings.largestContentfulPaint.id !== ''
+              tr 
+                td 
+                  b Element id
+                td #{timings.largestContentfulPaint.id}
+            tr
+              td 
+                b Load time
+              td #{h.time.ms(timings.largestContentfulPaint.loadTime)}
+            if timings.largestContentfulPaint.url !== ''  
+              tr 
+                td 
+                  b URL 
+                td 
+                  a(href=timings.largestContentfulPaint.url) #{h.shortAsset(timings.largestContentfulPaint.url)}
+            if timings.largestContentfulPaint.size
+              tr 
+                td 
+                  b Size (width*height)
+                td #{timings.largestContentfulPaint.size}
+            tr
+              td(colspan='2')
+               b DOM path
+            tr
+              td.url.pagesurl(colspan='2')
+                #{timings.largestContentfulPaint.domPath}
+    .one-half.column
+      - const screenshotNo = medianRun ? medianRun.runIndex : 1
+      - const screenshotName = 'data/screenshots/' + screenshotNo + '/largestContentfulPaint.' + screenShotType
+      a(href=screenshotName)
+        img.screenshot(src=screenshotName, alt='LCP', style='max-width:100%; height: auto')
+      p.small The largest contentful paint is highlighted in the image. If no element is highlighted the element was removed before the screenshot or the LCP API couldn't find the element.
+      if timings.largestContentfulPaint.url !== ''
+        p.small The Largest Contentful Paint API highlighted this image as a part of the LCP.  
+        a(href=timings.largestContentfulPaint.url) 
+          img.screenshot(src=timings.largestContentfulPaint.url, alt='LCP', style='max-width:100%; height: auto')

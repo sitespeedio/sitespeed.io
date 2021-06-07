@@ -1,0 +1,82 @@
+extends ./layout.pug
+include _tableMixins
+
+block content
+  include runInfo
+
+  if usingBrowsertime
+    h2 Runtime settings
+    table
+      tr 
+        td Sitespeed.io version
+        td #{version}
+      tr 
+        td Test time
+        td #{timestamp}
+      tr
+        td Browser 
+        td #{h.cap(get(browser, 'name'))} #{get(browser, 'version', 'unknown')}
+      tr 
+        td User Agent
+        td #{get(browser, 'userAgent')}
+      if options.mobile
+        tr 
+          td Emulated mobile
+          td Yes
+      if cpuBenchmark
+        tr
+          td CPU benchmark
+          td #{cpuBenchmark} (first run)
+      if options.replay
+        tr
+          td Using WebPageReplay 
+          td Yes
+      if options.multi
+        tr
+          td Using multi mode
+          td Yes
+      if options.preURL 
+        tr 
+          td Using preURL 
+          td #{h.short(options.preURL, 60)}     
+      if !options.mobile && !ios && !android
+        tr
+          td View port
+          td #{options.viewPort}
+      else
+        tr
+          td Window size
+          td #{windowSize}
+      tr 
+        td Connectivity
+        td #{ get(connectivity, 'profile') === 'native' ? 'No connectivity settings' : ` ${get(connectivity, 'profile')} using ${get(connectivity, 'engine')} (Down: ${get(connectivity, 'settings.down', '')} Up: ${get(connectivity, 'settings.up', '')} RTT: ${get(connectivity, 'settings.rtt', '')})`}
+      tr 
+        td Number of runs
+        td #{get(options, 'browsertime.iterations')}
+      tr 
+        td OS
+        td #{android ? 'Android' : (ios ? 'iOS' :  (options.browsertime.docker ? 'Docker using ' + os: os)) }
+      if android
+        if android.model
+          tr 
+            td Phone model
+            td #{android.model}
+        if android.androidVersion
+          tr 
+            td Android version
+            td #{android.androidVersion}
+        if android.batteryTemperature
+          tr 
+            td Battery temperature
+            td Start: #{android.batteryTemperature.start} °C Stop: #{android.batteryTemperature.stop} °C
+      if ios
+        if ios.deviceName
+          tr 
+            td Device
+            td #{ios.deviceName}
+        if ios.deviceUDID
+          tr 
+            td UUID
+            td #{ios.deviceUDID}
+  else 
+    p No runtime settings if you do not run Browsertime.

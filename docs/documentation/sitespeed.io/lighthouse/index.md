@@ -21,7 +21,7 @@ We also made it easy to use Lighthouse and the Google PageSpeed Insights plugin 
 You can run it with: 
 
 ```bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-plus1 https://www.sitespeed.io/
+docker run --shm-size=1g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-plus1 https://www.sitespeed.io/
 ``` 
 
 And you will also automatically run Lighthouse and GPSI. We automatically release a new version of the container per release by adding *-plus1* to the tag. If you use Graphite/InfluxDb the score from Lighthouse and GPSI will be automatically stored. If you want to add functionality please send PRs to [https://github.com/sitespeedio/plugin-lighthouse](https://github.com/sitespeedio/plugin-lighthouse) and [https://github.com/sitespeedio/plugin-gpsi](https://github.com/sitespeedio/plugin-gpsi).
@@ -31,7 +31,7 @@ The Lighthouse tests will run after Browsertime finished and run Chrome headless
 *Note:* If you want to run more plugins with <code>--plugins.add</code> that will override the default settings so you will need to add the Lighthouse plugin again like this:
 
 ```bash
-docker run --shm-size=1g --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-plus1 https://www.sitespeed.io/ --plugins.add analysisstorer --plugins.add /lighthouse
+docker run --shm-size=1g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-plus1 https://www.sitespeed.io/ --plugins.add analysisstorer --plugins.add /lighthouse
 ``` 
 
 The Lighthouse result is iframed into sitespeed.io:

@@ -29,7 +29,7 @@ try
 
 If you don't use Docker you need to:
 
-- Install the [Android SDK](http://developer.android.com/sdk/index.html#downloads) on your desktop (just the command line tools!). If you are on a Mac and use [Homebrew](http://brew.sh/) just run: <code>brew tap caskroom/cask && brew cask install android-platform-tools</code>
+- Install the [Android SDK](http://developer.android.com/sdk/index.html#downloads) on your desktop (just the command line tools!). If you are on a Mac and use [Homebrew](http://brew.sh/) just run: <code>brew install --cask android-platform-tools</code>. On Linux run: `apt-get install android-tools-adb`
 
 #### On your phone
 You probably want to setup a new phone from scratch to have a dedicated device. When you start your phone for the first time, follow these instructions:
@@ -64,10 +64,12 @@ sitespeed.io --android https://www.sitespeed.io
 Remember: To test on Android using Docker you need to be on Linux (tested on Ubuntu). It will not work on OS X.
 
 ```bash
-docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  -n 1 --android --browsertime.xvfb false https://www.sitespeed.io
+docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  -n 1 --android --browsertime.xvfb false https://www.sitespeed.io
 ```
 
 You will get result as you would with running this normally with summaries and waterfall graphs.
+
+If your container cannot see the device, make sure that you do not have the adb server running on the host (stop it with `adb kill-server`). Your phone can only be atatched to one adb server at a time.
 
 ### Connectivity
 
@@ -77,12 +79,16 @@ If you run by default, the phone will use the current connection.
 
 You can use the connection of your desktop by reverse tethering. And then set the connectivity on your desktop computer.
 
-1. Download [gnirehtet](https://github.com/Genymobile/gnirehtet) (Java or Rust version)
-2. Install [Throttle](https://github.com/sitespeedio/throttle) (works on Mac OS X or Linux that has tc installed): <code>npm install @sitespeed.io/throttle -g</code>
-3. Make sure your phone is plugged into your desktop using USB.
-4. Start gnirehtet: <code>./gnirehtet run</code>
-5. Start throttle: <code>throttle 3g</code>
-6. Run sitespeed.io.
+It's easiest on you are on a Mac, install [gnirehtet](https://github.com/Genymobile/gnirehtet) using Homebrew: ```brew install gnirehtet``` and then run your tests like this:
+
+```bash
+sitespeed.io --android --video --visualMetrics --gnirehtet --connectivity.engine throttle -c 4g https://www.sitespeed.io
+```
+
+That will automatically start and stop gnirehtet. If you run with multiple devices on the same host, it seems to be better to manually start gnirehtet and the throttling:
+1. Start gnirehtet for all devices: ```gnirehtet autorun```
+2. Start throttle: ```throttle 4g```
+3. Start each test per device.
 
 Note: the first time you run gnirehtet you need to accept the vpn connection on your phone.
 
@@ -108,7 +114,7 @@ sitespeed.io --android --video --visualMetrics https://www.sitespeed.io
 And using Docker (remember: only works in Linux hosts):
 
 ```bash
-docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  -n 1 --android --browsertime.xvfb false https://www.sitespeed.io
+docker run --privileged -v /dev/bus/usb:/dev/bus/usb -e START_ADB_SERVER=true --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  -n 1 --android --browsertime.xvfb false https://www.sitespeed.io
 ```
 
 If you want to run Docker on Mac OS X, you can follow Appiums [setup](https://github.com/appium/appium-docker-android) by creating a docker-machine, give out USB access and then run the container from that Docker machine.
@@ -175,6 +181,7 @@ sitespeed.io --android -b firefox https://www.sitespeed.io
 
 Note that collecting the HAR is turned off since we cannot use the HAR Export trigger on Android.
 
+
 ### Only run tests when battery temperature is below X
 You can configure your tests to run when the battery temperature of your phone is below a certain threshold. Over heated mobile phones throttles the CPU so its good to keep track of the temperature (if you send metrics to Graphite/InfluxDB the battery temperature is automatically sent).
 
@@ -221,6 +228,20 @@ Results from this are gathered into the `android.power` entry in the browsertime
 * full-wifi: The total wifi power used during the test (not specific to the application).
 * proportional: The proportionally smeared power usage portion of the application (power usage of background applications that are propotionally attributed to all open applications).
 
+### Debug logs on the phone
+
+If something seems broken and you don't get any good logs from sitespeed.io you can check the log on the phone. 
+
+```bash
+adb logcat
+```
+
+The log is very verbose, so you probably need to grep to only see specific log messages. For Chrome you can do like this to only get log messages from Chrome:
+
+```bash
+adb logcat | grep chromium
+```
+
 ## Test on iOS
 
 You can run your tests on Safari on iOS.
@@ -266,3 +287,15 @@ At the moment there are a couple of limitations running Safari:
 * No built in setting connectivity
 
 You can help us [adding support in Browsertime](https://github.com/sitespeedio/browsertime)!
+
+## Test on iOS simulator
+You can use the iOS simulator to test run tests on different iOS devices. This works good if you use one of the new M1 Macs since it will then have the same CPU as an iPhone. You can read [Catchpoint blog post](https://blog.catchpoint.com/2021/01/28/with-m1-mac-minis-the-future-is-bright-for-mobile-device-testing/).
+
+To get it running you should have a Mac Mini M1 and Xcode installed. Checkout the [install instructions for Mac](https://www.sitespeed.io/documentation/sitespeed.io/installation/#mac).
+
+To run your test you need to sepcify the Safari deviceUDID = choosing what kind of device to use. You can list all your availible devices using `xcrun simctl list devices`.
+
+Then run your test:
+```bash
+sitespeed.io https://www.sitespeed.io -b safari --safari.useSimulator --safari.device UDID YOUR_DEVICE_ID --video --visualMetrics -c 4g
+```

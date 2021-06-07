@@ -40,7 +40,7 @@ We work out how much energy it takes to serve a site, then work out how much CO2
 Enable the plugin by adding `--sustainable.enable`:
 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --sustainable.enable
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ --sustainable.enable
 ~~~
 
 ### The result

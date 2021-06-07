@@ -42,7 +42,7 @@
     },
     {
       "metric": "missingCompression",
-      "max": 0
+      "max": 4
     },
     {
       "metric": "contentTypes.css.requests",

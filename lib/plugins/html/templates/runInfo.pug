@@ -1,26 +1,14 @@
 h2.url #{h.plural(noPages,'page')} analysed for #{options.name ? options.name : h.short(context.name, 30)}
 
 if usingBrowsertime
-  - const profile = options.mobile ? 'emulated mobile' : ''
-  - const connectivity = options.browsertime.connectivity.alias || options.browsertime.connectivity.profile
-  - const browserName = h.get(browser,'name');
-  - const browserVersion = h.get(browser,'version');
-  - const androidModel = h.get(android,'model');
-  - const androidVersion = h.get(android,'androidVersion');
+
   p.small Tested #{timestamp} using #{h.cap(browserName || options.browsertime.browser)} #{browserVersion}
-    if (androidModel)
-      | &nbsp;#{androidModel} (Android version #{androidVersion})
-    | .
-    if (options.safari && options.safari.deviceType)
-      | Testing using an #{options.safari.deviceType}.
-    | #{options.preURL ? ' preURL ' + h.short(options.preURL, 60) + ' ' : ''}
-    | #{h.plural(options.browsertime.iterations, 'run')} #{profile} and connectivity #{connectivity}.#{ options.replay ? ' Using WebPageReplay.' : ''}#{ options.multi ? ' Using multi mode.' : ''}
-    | #{options.chrome && options.chrome.CPUThrottlingRate ? ' CPU Throttle Rate ' + options.chrome.CPUThrottlingRate + '.':''}
     if options.multi && options.html.showScript
         | (
         a(href= rootPath + 'scripts.html')= 'script'
         | ).
         | .
+    a(href= rootPath + 'settings.html')= '(runtime settings).'
 
 else if usingWebPageTest
   p.small Tested #{timestamp} using WebPageTest #{options.webpagetest.location} using connectivity #{options.webpagetest.connectivity} for #{h.plural(options.webpagetest.runs, 'run')}.
