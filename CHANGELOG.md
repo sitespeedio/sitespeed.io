@@ -1,7 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
 ## UNRELEASED
-
+### Fixed
+* Updated Browsertime to [12.9.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1291---2021-06-09) that fixes the problem with running Safari on iOS. However there are still one bug/problem that needs to be fixed with Safario on iOS: recording a video do not work.
 
 ## 17.8.0 - 2021-06-04
 ### Added
