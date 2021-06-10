@@ -1,9 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 17.8.1 - 2021-06-10
 ### Fixed
-* Updated Browsertime to [12.9.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1291---2021-06-09) that fixes the problem with running Safari on iOS. However there are still one bug/problem that needs to be fixed with Safario on iOS: recording a video do not work.
+* Updated Browsertime to [12.9.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1291---2021-06-09) that fixes the problem with running Safari on iOS. However there are still one bug/problem that needs to be fixed with Safari on iOS: recording a video do not work.
 
+* The docker-compose file now uses Grafana 8.0.0
 ## 17.8.0 - 2021-06-04
 ### Added
 * New [Browsertime 12.9.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1290---2021-06-04) that updates Cumulative Layout Shift to the [new defintion](https://web.dev/evolving-cls/).
