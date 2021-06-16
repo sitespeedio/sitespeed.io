@@ -17,7 +17,7 @@ block content
     p !{d.browsertime.run.description}
 
   p
-    .large All runs:&nbsp;
+    #pageNavigation.large All runs:&nbsp;
       each val, index in runPages
         - value = Number(index) + 1
         if (runNumber === value)
