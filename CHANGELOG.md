@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+### Fixed
+* Keep selected tab open across runs. Thank you [Tanishq](https://github.com/amtanq) for PR [#3409](https://github.com/sitespeedio/sitespeed.io/pull/3409).
+
 ## 17.8.1 - 2021-06-10
 ### Fixed
 * Updated Browsertime to [12.9.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1291---2021-06-09) that fixes the problem with running Safari on iOS. However there are still one bug/problem that needs to be fixed with Safari on iOS: recording a video do not work.
