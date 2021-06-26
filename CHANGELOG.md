@@ -4,6 +4,7 @@
 ### Fixed
 * Keep selected tab open across runs. Thank you [Tanishq](https://github.com/amtanq) for PR [#3409](https://github.com/sitespeedio/sitespeed.io/pull/3409).
 * Update Docker container to use NodeJS 14.7.1.
+* Upgraded to Browsertime 12.9.3.
 
 ## 17.8.1 - 2021-06-10
 ### Fixed
