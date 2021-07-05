@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+### Fixed
+* Updated to [Coach-core 6.4.2](https://github.com/sitespeedio/coach-core/blob/v6.4.2/CHANGELOG.md#642---2021-07-05).
 ## 17.8.2 - 2021-06-27
 ### Fixed
 * Keep selected tab open across runs. Thank you [Tanishq](https://github.com/amtanq) for PR [#3409](https://github.com/sitespeedio/sitespeed.io/pull/3409).
