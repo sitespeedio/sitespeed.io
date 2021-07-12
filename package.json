@@ -4,7 +4,7 @@
     "sitespeed.io": "./bin/sitespeed.js",
     "sitespeed.io-wpr": "./bin/browsertimeWebPageReplay.js"
   },
-  "version": "17.8.1",
+  "version": "17.8.3",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -72,9 +72,9 @@
     "@google-cloud/storage": "5.8.3",
     "@tgwf/co2": "0.6.1",
     "aws-sdk": "2.882.0",
-    "axe-core": "4.2.1",
-    "browsertime": "12.9.1",
-    "coach-core": "6.4.0",
+    "axe-core": "4.2.3",
+    "browsertime": "12.10.0",
+    "coach-core": "6.4.2",
     "cli-color": "2.0.0",
     "concurrent-queue": "7.0.2",
     "dayjs": "1.10.4",

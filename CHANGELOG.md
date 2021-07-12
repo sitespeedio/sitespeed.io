@@ -1,8 +1,16 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 17.8.3 - 2021-07-06
+### Fixed
+* Updated to [Coach-core 6.4.2](https://github.com/sitespeedio/coach-core/blob/v6.4.2/CHANGELOG.md#642---2021-07-05).
+* Updated to [Browsertime 12.10.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#12100---2021-07-05).
+
+## 17.8.2 - 2021-06-27
 ### Fixed
 * Keep selected tab open across runs. Thank you [Tanishq](https://github.com/amtanq) for PR [#3409](https://github.com/sitespeedio/sitespeed.io/pull/3409).
+* Update Docker container to use NodeJS 14.7.1.
+* Upgraded to [Browsertime 12.9.3](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1293---2021-06-24).
+* Updated [Coach-core](https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#641---2021-06-23): Use all headers for Wappalyzer (before only the main document was used) 
 
 ## 17.8.1 - 2021-06-10
 ### Fixed
