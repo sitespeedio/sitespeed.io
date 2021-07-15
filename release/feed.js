@@ -15,7 +15,7 @@ const getSortedFiles = dir => {
     .sort((a, b) => b.time - a.time);
 };
 
-const versionDir = '../docs/_includes/version/';
+const versionDir = './docs/_includes/version/';
 const sortedVersionFiles = getSortedFiles(versionDir);
 
 const feed = new Feed({
@@ -90,6 +90,6 @@ sortedVersionFiles.forEach(file => {
 
 feed.addCategory('Performance');
 
-const docPath = '../docs/';
+const docPath = './docs/';
 fs.writeFileSync(path.join(docPath, 'feed', 'rss.xml'), feed.rss2());
 fs.writeFileSync(path.join(docPath, 'feed', 'atom.xml'), feed.atom1());
