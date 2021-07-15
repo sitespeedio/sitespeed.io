@@ -70,7 +70,7 @@ const images = {
 
 sortedVersionFiles.forEach(file => {
   feed.addItem({
-    title: `${file.name} ${file.version}`,
+    title: `${file.name} ${file.version}`,
     id: `https://github.com/sitespeedio/${file.name}/blob/main/CHANGELOG.md#${
       file.version
     }`,
