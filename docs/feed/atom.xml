@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://www.sitespeed.io</id>
+    <title>sitespeed.io release feed</title>
+    <updated>2021-07-15T06:26:59.792Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <author>
+        <name>Peter Hedenskog</name>
+        <email>peter@soulgalore.com</email>
+        <uri>https://www.peterhedenskog.com</uri>
+    </author>
+    <link rel="alternate" href="https://www.sitespeed.io"/>
+    <link rel="self" href="https://www.sitespeed.io/feed/atom.xml"/>
+    <subtitle>Follow new releases of sitespeed.io tools</subtitle>
+    <logo>https://www.sitespeed.io/img/logos/sitespeed.io.png</logo>
+    <icon>http://www.sitespeed.io/favicon.ico</icon>
+    <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
+    <category term="Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 12.11.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#12.11.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
+        <updated>2021-07-15T06:26:59.792Z</updated>
+        <summary type="html"><![CDATA[Browsertime is the heart of sitespeed.io that handles everything with the browser. At the moment we support Chrome, Firefox, Edge and Safari on desktop, Chrome on Android and limited support for Safari on iOS]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 17.8.3]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#17.8.3</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
+        <updated>2021-07-06T20:35:52.676Z</updated>
+        <summary type="html"><![CDATA[Sitespeed.io is the complete toolbox to test the web performance of your web site. Use it to monitor your performance or checkout how your competition is doing.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[coach-core 6.4.2]]></title>
+        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.2</id>
+        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#"/>
+        <updated>2021-07-05T20:24:16.329Z</updated>
+        <summary type="html"><![CDATA[The coach helps you find performance problems on your web page.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[pagexray 4.3.0]]></title>
+        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.3.0</id>
+        <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#"/>
+        <updated>2021-06-20T21:29:43.034Z</updated>
+        <summary type="html"><![CDATA[We love HAR files but it’s hard to actually see how the page is composed only looking at the file. PageXray converts a HAR file to a JSON format that is easier to read and easier to use.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[throttle 2.1.1]]></title>
+        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.1</id>
+        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#"/>
+        <updated>2021-04-13T10:21:42.460Z</updated>
+        <summary type="html"><![CDATA[Throttle lets you simulate slow network connections on Linux and Mac OS X.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[coach 6.0.0]]></title>
+        <id>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#6.0.0</id>
+        <link href="https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#"/>
+        <updated>2021-02-05T10:01:42.663Z</updated>
+        <summary type="html"><![CDATA[The coach helps you find performance problems on your web page.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[chrome-har 0.11.12]]></title>
+        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.12</id>
+        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#"/>
+        <updated>2021-02-05T10:01:42.662Z</updated>
+        <summary type="html"><![CDATA[Create HAR files based on Chrome Debugging Protocol data.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[chrome-trace 0.2.2]]></title>
+        <id>https://github.com/sitespeedio/chrome-trace/blob/main/CHANGELOG.md#0.2.2</id>
+        <link href="https://github.com/sitespeedio/chrome-trace/blob/main/CHANGELOG.md#"/>
+        <updated>2019-06-15T10:36:36.903Z</updated>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[compare 1.0.0]]></title>
+        <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#1.0.0</id>
+        <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#"/>
+        <updated>2019-01-28T04:22:17.522Z</updated>
+        <summary type="html"><![CDATA[Make it easier to find regressions by comparing your HAR files.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+</feed>

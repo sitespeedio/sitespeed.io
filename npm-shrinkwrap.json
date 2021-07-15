@@ -2406,6 +2406,15 @@
       "resolved": "https://registry.npmjs.org/fast-text-encoding/-/fast-text-encoding-1.0.3.tgz",
       "integrity": "sha512-dtm4QZH9nZtcDt8qJiOH9fcQd1NAgi+K1O2DbE6GG1PPCK/BWfOH3idCTRQ4ImXRUOyopDEgDEnVEE7Y/2Wrig=="
     },
+    "feed": {
+      "version": "4.2.2",
+      "resolved": "https://registry.npmjs.org/feed/-/feed-4.2.2.tgz",
+      "integrity": "sha512-u5/sxGfiMfZNtJ3OvQpXcvotFpYkL0n9u9mM2vkui2nGo8b4wvDkJ8gAkYqbA8QpGyFCv3RK0Z+Iv+9veCS9bQ==",
+      "dev": true,
+      "requires": {
+        "xml-js": "^1.6.11"
+      }
+    },
     "figures": {
       "version": "2.0.0",
       "resolved": "https://registry.npmjs.org/figures/-/figures-2.0.0.tgz",
@@ -6156,6 +6165,23 @@
         "is-function": "^1.0.1",
         "parse-headers": "^2.0.0",
         "xtend": "^4.0.0"
+      }
+    },
+    "xml-js": {
+      "version": "1.6.11",
+      "resolved": "https://registry.npmjs.org/xml-js/-/xml-js-1.6.11.tgz",
+      "integrity": "sha512-7rVi2KMfwfWFl+GpPg6m80IVMWXLRjO+PxTq7V2CDhoGak0wzYzFgUY2m4XJ47OGdXd8eLE8EmwfAmdjw7lC1g==",
+      "dev": true,
+      "requires": {
+        "sax": "^1.2.4"
+      },
+      "dependencies": {
+        "sax": {
+          "version": "1.2.4",
+          "resolved": "https://registry.npmjs.org/sax/-/sax-1.2.4.tgz",
+          "integrity": "sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==",
+          "dev": true
+        }
       }
     },
     "xml-parse-from-string": {
