@@ -1191,6 +1191,16 @@
         "supports-color": "^2.0.0"
       }
     },
+    "changelog-parser": {
+      "version": "2.8.0",
+      "resolved": "https://registry.npmjs.org/changelog-parser/-/changelog-parser-2.8.0.tgz",
+      "integrity": "sha512-ZtSwN0hY7t+WpvaXqqXz98RHCNhWX9HsvCRAv1aBLlqJ7BpKtqdM6Nu6JOiUhRAWR7Gov0aN0fUnmflTz0WgZg==",
+      "dev": true,
+      "requires": {
+        "line-reader": "^0.2.4",
+        "remove-markdown": "^0.2.2"
+      }
+    },
     "character-parser": {
       "version": "2.2.0",
       "resolved": "https://registry.npmjs.org/character-parser/-/character-parser-2.2.0.tgz",
@@ -3691,6 +3701,12 @@
         "immediate": "~3.0.5"
       }
     },
+    "line-reader": {
+      "version": "0.2.4",
+      "resolved": "https://registry.npmjs.org/line-reader/-/line-reader-0.2.4.tgz",
+      "integrity": "sha1-xDkrWH3qOFgMlnhXDm6OSfzlJiI=",
+      "dev": true
+    },
     "linkify-it": {
       "version": "2.0.3",
       "resolved": "https://registry.npmjs.org/linkify-it/-/linkify-it-2.0.3.tgz",
@@ -4921,6 +4937,12 @@
       "version": "2.0.1",
       "resolved": "https://registry.npmjs.org/regexpp/-/regexpp-2.0.1.tgz",
       "integrity": "sha512-lv0M6+TkDVniA3aD1Eg0DVpfU/booSu7Eev3TDO/mZKHBfVjgCGTV4t4buppESEYDtkArYFOxTJWv6S5C+iaNw==",
+      "dev": true
+    },
+    "remove-markdown": {
+      "version": "0.2.2",
+      "resolved": "https://registry.npmjs.org/remove-markdown/-/remove-markdown-0.2.2.tgz",
+      "integrity": "sha1-ZrDO66n7d8qWNrsbAwfOIaMqEqY=",
       "dev": true
     },
     "request": {
