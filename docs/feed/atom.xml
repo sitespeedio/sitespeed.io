@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-07-16T07:09:15.206Z</updated>
+    <updated>2021-07-16T11:18:20.352Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,11 +17,11 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 17.9.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#17.9.0</id>
+        <title type="html"><![CDATA[sitespeed.io 17.10.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#17.10.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2021-07-16T07:09:15.206Z</updated>
-        <summary type="html"><![CDATA[ Updated to Browsertime 12.11.0. Updated to Firefox 90 in the browser container #3420. Update to AXE-core 4.2.3 #3417. Added support for Firefox memory report, turn it on with --firefox.memoryReport #3416 The +1 container has been updated to use Lightouse 8.1.0.]]></summary>
+        <updated>2021-07-16T11:18:20.352Z</updated>
+        <summary type="html"><![CDATA[ The Docker containers now contains Firefox 89 again. It seems like there's something with 90 that increase First Visual Change, especially when running in Docker. See https://phabricator.wikimedia.org/T286761 and https://bugzilla.mozilla.org/show_bug.cgi?id=1720843.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
