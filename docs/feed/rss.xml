@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Thu, 15 Jul 2021 06:26:59 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 16 Jul 2021 07:09:15 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,20 +17,20 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[sitespeed.io 17.9.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#17.9.0</guid>
+            <pubDate>Fri, 16 Jul 2021 07:09:15 GMT</pubDate>
+            <description><![CDATA[ Updated to Browsertime 12.11.0. Updated to Firefox 90 in the browser container #3420. Update to AXE-core 4.2.3 #3417. Added support for Firefox memory report, turn it on with --firefox.memoryReport #3416 The +1 container has been updated to use Lightouse 8.1.0.]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[browsertime 12.11.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#12.11.0</guid>
             <pubDate>Thu, 15 Jul 2021 06:26:59 GMT</pubDate>
             <description><![CDATA[ Added screen size for Moto G4 when you run Chrome as emulated mobile #1608. Added Firefox 90 in the Docker container #1609. Fixed so we support JavaScript that ends with a ; when you select an element for for clicking #1610. See #1606 and thank you Vicky Ledsom for reporting. Fixed recording videos on new Mac M1 for emulated mobile. We used to have a hack for getting the right DPI but it seems like that didn't work on Mac M1 (depending on what screen you are using) #1607.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 17.8.3]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#17.8.3</guid>
-            <pubDate>Tue, 06 Jul 2021 20:35:52 GMT</pubDate>
-            <description><![CDATA[ Updated to Coach-core 6.4.2. Updated to Browsertime 12.10.0.]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[coach-core 6.4.2]]></title>
