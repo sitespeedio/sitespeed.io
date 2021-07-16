@@ -17,71 +17,71 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[browsertime 12.11.0]]></title>
+            <title><![CDATA[browsertime 12.11.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#12.11.0</guid>
             <pubDate>Thu, 15 Jul 2021 06:26:59 GMT</pubDate>
-            <description><![CDATA[Browsertime is the heart of sitespeed.io that handles everything with the browser. At the moment we support Chrome, Firefox, Edge and Safari on desktop, Chrome on Android and limited support for Safari on iOS]]></description>
+            <description><![CDATA[ Added screen size for Moto G4 when you run Chrome as emulated mobile #1608. Added Firefox 90 in the Docker container #1609. Fixed so we support JavaScript that ends with a ; when you select an element for for clicking #1610. See #1606 and thank you Vicky Ledsom for reporting. Fixed recording videos on new Mac M1 for emulated mobile. We used to have a hack for getting the right DPI but it seems like that didn't work on Mac M1 (depending on what screen you are using) #1607.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 17.8.3]]></title>
+            <title><![CDATA[sitespeed.io 17.8.3]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#17.8.3</guid>
             <pubDate>Tue, 06 Jul 2021 20:35:52 GMT</pubDate>
-            <description><![CDATA[Sitespeed.io is the complete toolbox to test the web performance of your web site. Use it to monitor your performance or checkout how your competition is doing.]]></description>
+            <description><![CDATA[ Updated to Coach-core 6.4.2. Updated to Browsertime 12.10.0.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[coach-core 6.4.2]]></title>
+            <title><![CDATA[coach-core 6.4.2]]></title>
             <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.2</guid>
             <pubDate>Mon, 05 Jul 2021 20:24:16 GMT</pubDate>
-            <description><![CDATA[The coach helps you find performance problems on your web page.]]></description>
+            <description><![CDATA[ Make sure JQuery refs are set back to original ref #62 see #61.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[pagexray 4.3.0]]></title>
+            <title><![CDATA[pagexray 4.3.0]]></title>
             <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.3.0</guid>
             <pubDate>Sun, 20 Jun 2021 21:29:43 GMT</pubDate>
-            <description><![CDATA[We love HAR files but it’s hard to actually see how the page is composed only looking at the file. PageXray converts a HAR file to a JSON format that is easier to read and easier to use.]]></description>
+            <description><![CDATA[ Include request method per asset #105.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[throttle 2.1.1]]></title>
+            <title><![CDATA[throttle 2.1.1]]></title>
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.1</guid>
             <pubDate>Tue, 13 Apr 2021 10:21:42 GMT</pubDate>
-            <description><![CDATA[Throttle lets you simulate slow network connections on Linux and Mac OS X.]]></description>
+            <description><![CDATA[ A better check for missing net-tools on Linux, thank you Radu Micu for the PR #56.]]></description>
         </item>
         <item>
-            <title><![CDATA[coach 6.0.0]]></title>
+            <title><![CDATA[coach 6.0.0]]></title>
             <link>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#6.0.0</guid>
             <pubDate>Fri, 05 Feb 2021 10:01:42 GMT</pubDate>
-            <description><![CDATA[The coach helps you find performance problems on your web page.]]></description>
+            <description><![CDATA[ Use Browsertime 11.0.0 Use Coach-code 6.0 Use latest Firefox and Chrome]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[chrome-har 0.11.12]]></title>
+            <title><![CDATA[chrome-har 0.11.12]]></title>
             <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.12</guid>
             <pubDate>Fri, 05 Feb 2021 10:01:42 GMT</pubDate>
-            <description><![CDATA[Create HAR files based on Chrome Debugging Protocol data.]]></description>
         </item>
         <item>
-            <title><![CDATA[chrome-trace 0.2.2]]></title>
+            <title><![CDATA[chrome-trace 0.2.2]]></title>
             <link>https://github.com/sitespeedio/chrome-trace/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/chrome-trace/blob/main/CHANGELOG.md#0.2.2</guid>
             <pubDate>Sat, 15 Jun 2019 10:36:36 GMT</pubDate>
+            <description><![CDATA[ Catch if we can't find the first thread event. We now throws an exception (that's not optimal since we don't know what's wrong) with the info of what's wrong. We can change that later on.]]></description>
         </item>
         <item>
-            <title><![CDATA[compare 1.0.0]]></title>
+            <title><![CDATA[compare 1.0.0]]></title>
             <link>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#1.0.0</guid>
             <pubDate>Mon, 28 Jan 2019 04:22:17 GMT</pubDate>
-            <description><![CDATA[Make it easier to find regressions by comparing your HAR files.]]></description>
+            <description><![CDATA[ Added support for using Github gists see #34. Added support for using a config file to configure which HARs to test. Added support for copy/paste directly you HAR, configuration file or a gist URL or id. Refactor the CSS into Sass, development build process now uses BrowserSync. Service worker added for offline support. Workbox is used to achieve this. Added support for showing changes in request/responses if you compare the same page #63.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/compare.png" length="0" type="image/png"/>
         </item>
     </channel>
