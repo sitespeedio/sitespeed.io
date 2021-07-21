@@ -1,5 +1,17 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 18.0.0 - UNRELEASED
+### Breaking changes
+* Drop support for NodeJS 10.
+* If you use Chrome the ´--cpu´ is now true by default.
+
+### Added
+* Updated the Docker container to use Chrome 92.
+* Updated Browsertime to 13.0.0 (that uses Chromedriver 92)
+* Updated to latest PerfCascade so that the waterfall highlights which request that is the largest contentful paint (if its an image) and show render blocking info (if you use Chrome) [#3407](https://github.com/sitespeedio/sitespeed.io/pull/3407).
+
+### Fixed
+* Updated to Coach core 6.4.3
 ## 17.10.0 - 2021-07-16
 ### Added
 * The Docker containers now contains Firefox 89 again. It seems like there's something with 90 that increase First Visual Change, especially when running in Docker. See [https://phabricator.wikimedia.org/T286761](https://phabricator.wikimedia.org/T286761) and [https://bugzilla.mozilla.org/show_bug.cgi?id=1720843](https://bugzilla.mozilla.org/show_bug.cgi?id=1720843).
