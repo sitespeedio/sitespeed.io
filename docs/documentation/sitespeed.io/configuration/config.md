@@ -60,6 +60,8 @@ Firefox
       --browsertime.firefox.binaryPath, --firefox.binaryPath                                          Path to custom Firefox binary (e.g. Firefox Nightly). On OS X, the path should be to the binary inside the app bundle, e.g. /Applications/Firefox.app/Contents/MacOS/firefox-bin
       --browsertime.firefox.preference, --firefox.preference                                          Extra command line arguments to pass Firefox preferences by the format key:value To add multiple preferences, repeat --firefox.preference once per argument.
       --browsertime.firefox.acceptInsecureCerts, --firefox.acceptInsecureCerts                        Accept insecure certs  [boolean]
+      --browsertime.firefox.memoryReport, --firefox.memoryReport                                      Measure firefox resident memory after each iteration.  [boolean] [default: false]
+      --browsertime.firefox.memoryReportParams.minizeFirst, --firefox.memoryReportParams.minizeFirst  Force a collection before dumping and measuring the memory report.  [boolean] [default: false]
       --browsertime.firefox.geckoProfiler, --firefox.geckoProfiler                                    Collect a profile using the internal gecko profiler  [boolean] [default: false]
       --browsertime.firefox.geckoProfilerParams.features, --firefox.geckoProfilerParams.features      Enabled features during gecko profiling  [string] [default: "js,stackwalk,leaf"]
       --browsertime.firefox.geckoProfilerParams.threads, --firefox.geckoProfilerParams.threads        Threads to profile.  [string] [default: "GeckoMain,Compositor,Renderer"]
