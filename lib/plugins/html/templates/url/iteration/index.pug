@@ -59,6 +59,11 @@ block content
               tr
                 td Total page size
                 td #{h.size.format(totalTransferSize)}
+            - memory = get(d, 'browsertime.run.memory')
+            if memory
+              tr
+                td Memory
+                td #{h.size.format(memory)}
             - requests = get(d, 'pagexray.run.requests')
             if (requests)
               tr

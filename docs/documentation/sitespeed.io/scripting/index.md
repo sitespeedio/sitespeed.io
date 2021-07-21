@@ -912,10 +912,10 @@ Click on link that matches a XPath selector.
 Click on link that matches a XPath selector and wait for [page load complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to finish.
 
 #### click.byJs(js)
-Click on a link located by evaluating a JavaScript expression. The result of this expression must be an element or list of elements.
+Click on a link/element located by a JavaScript expression. Internally this will append a `.click()` to the JavaScript expression (for example if you add the JavaScript `document.querySelector("a")` to select the element, the backend code will run `document.querySelector("a").click()`). The result of this expression must be an element or list of elements.
 
 #### click.byJsAndWait(js)
-Click on a link located by evaluating a JavaScript expression. The result of this expression must be an element or list of elements. And wait for [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to finish.
+Click on a link located by JavaScript expression. Internally this will append a `.click()` to the JavaScript expression. The result of this expression must be an element or list of elements. And wait for [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to finish.
 
 #### click.byId(id)
 Click on link located by the ID attribute. Internally we use  ```document.getElementById(id)``` to get the correct element.

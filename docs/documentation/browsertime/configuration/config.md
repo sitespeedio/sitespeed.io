@@ -48,6 +48,8 @@ firefox
       --firefox.appconstants                    Include Firefox AppConstants information in the results  [boolean] [default: false]
       --firefox.acceptInsecureCerts             Accept insecure certs  [boolean]
       --firefox.windowRecorder                  Use the internal compositor-based Firefox window recorder to emit PNG files for each frame that is a meaningful change.  The PNG output will further be merged into a variable frame rate video for analysis. Use this instead of ffmpeg to record a video (you still need the --video flag).  [boolean] [default: false]
+      --firefox.memoryReport                    Measure firefox resident memory after each iteration.  [boolean] [default: false]
+      --firefox.memoryReportParams.minizeFirst  Force a collection before dumping and measuring the memory report.  [boolean] [default: false]
       --firefox.geckoProfiler                   Collect a profile using the internal gecko profiler  [boolean] [default: false]
       --firefox.geckoProfilerParams.features    Enabled features during gecko profiling  [string] [default: "js,stackwalk,leaf"]
       --firefox.geckoProfilerParams.threads     Threads to profile.  [string] [default: "GeckoMain,Compositor,Renderer"]

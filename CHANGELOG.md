@@ -1,8 +1,40 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 18.0.0 - UNRELEASED
+### Breaking changes
+* Drop support for NodeJS 10.
+* If you use Chrome the ´--cpu´ is now true by default.
+
+### Added
+* Updated the Docker container to use Chrome 92.
+* Updated Browsertime to 13.0.0 (that uses Chromedriver 92)
+* Updated to latest PerfCascade so that the waterfall highlights which request that is the largest contentful paint (if its an image) and show render blocking info (if you use Chrome) [#3407](https://github.com/sitespeedio/sitespeed.io/pull/3407).
+
+### Fixed
+* Updated to Coach core 6.4.3
+## 17.10.0 - 2021-07-16
+### Added
+* The Docker containers now contains Firefox 89 again. It seems like there's something with 90 that increase First Visual Change, especially when running in Docker. See [https://phabricator.wikimedia.org/T286761](https://phabricator.wikimedia.org/T286761) and [https://bugzilla.mozilla.org/show_bug.cgi?id=1720843](https://bugzilla.mozilla.org/show_bug.cgi?id=1720843).
+
+## 17.9.0 - 2021-07-16
+
+### Added
+* Updated to [Browsertime 12.11.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#12110---2021-07-15).
+* Updated to Firefox 90 in the browser container [#3420](https://github.com/sitespeedio/sitespeed.io/pull/3420).
+* Update to AXE-core 4.2.3 [#3417](https://github.com/sitespeedio/sitespeed.io/pull/3417).
+* Added support for Firefox memory report, turn it on with `--firefox.memoryReport` [#3416](https://github.com/sitespeedio/sitespeed.io/pull/3416)
+* The +1 container has been updated to use Lightouse 8.1.0.
+## 17.8.3 - 2021-07-06
+### Fixed
+* Updated to [Coach-core 6.4.2](https://github.com/sitespeedio/coach-core/blob/v6.4.2/CHANGELOG.md#642---2021-07-05).
+* Updated to [Browsertime 12.10.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#12100---2021-07-05).
+
+## 17.8.2 - 2021-06-27
 ### Fixed
 * Keep selected tab open across runs. Thank you [Tanishq](https://github.com/amtanq) for PR [#3409](https://github.com/sitespeedio/sitespeed.io/pull/3409).
+* Update Docker container to use NodeJS 14.7.1.
+* Upgraded to [Browsertime 12.9.3](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1293---2021-06-24).
+* Updated [Coach-core](https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#641---2021-06-23): Use all headers for Wappalyzer (before only the main document was used) 
 
 ## 17.8.1 - 2021-06-10
 ### Fixed
