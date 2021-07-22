@@ -1059,9 +1059,9 @@
       }
     },
     "browsertime": {
-      "version": "13.0.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-13.0.0.tgz",
-      "integrity": "sha512-QuRXEAKB0V0e4/ihZYKUZR5XYyGTEuWiRAc4//u/qRzj8ROXGUHSxXi1fZfqutCrmyKK1Dc0gR+iyLH5FSdF7A==",
+      "version": "13.1.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-13.1.0.tgz",
+      "integrity": "sha512-UBdUiZgXXseWGrISKbPF+wxB4doxJuj14eMM1oG3H+26AikjDjgUyeiej8GhhlTHKqKtVt/j7fUPv+0v+IvygA==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",
@@ -1096,20 +1096,6 @@
           "version": "1.10.5",
           "resolved": "https://registry.npmjs.org/dayjs/-/dayjs-1.10.5.tgz",
           "integrity": "sha512-BUFis41ikLz+65iH6LHQCDm4YPMj5r1YFLdupPIyM4SGcXMmtiLQ7U37i+hGS8urIuqe7I/ou3IS1jVc4nbN4g=="
-        },
-        "yargs": {
-          "version": "17.0.1",
-          "resolved": "https://registry.npmjs.org/yargs/-/yargs-17.0.1.tgz",
-          "integrity": "sha512-xBBulfCc8Y6gLFcrPvtqKz9hz8SO0l1Ni8GgDekvBX2ro0HRQImDGnikfc33cgzcYUSncapnNcZDjVFIH3f6KQ==",
-          "requires": {
-            "cliui": "^7.0.2",
-            "escalade": "^3.1.1",
-            "get-caller-file": "^2.0.5",
-            "require-directory": "^2.1.1",
-            "string-width": "^4.2.0",
-            "y18n": "^5.0.5",
-            "yargs-parser": "^20.2.2"
-          }
         }
       }
     },
