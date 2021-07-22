@@ -3,7 +3,7 @@
 ## 18.0.0 - UNRELEASED
 ### Breaking changes
 * Drop support for NodeJS 10.
-* If you use Chrome the ´--cpu´ is now true by default.
+* If you use Chrome the ´--chrome.timeline´ is now true by default.
 
 ### Added
 * Updated the Docker container to use Chrome 92.
