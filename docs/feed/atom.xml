@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-07-16T11:18:20.352Z</updated>
+    <updated>2021-07-22T07:23:05.501Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,10 +17,21 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
+        <title type="html"><![CDATA[browsertime 13.0.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#13.0.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
+        <updated>2021-07-22T07:23:05.501Z</updated>
+        <summary type="html"><![CDATA[ Updated the Docker container to use Chrome 92. Updated to Chromedriver 92. Upgrade to yargs 17 #1600. Fixed so that browsertime-result dir isn't created if you set your own result dir. Thank you Vicky Ledsom for PR #1611.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[sitespeed.io 17.10.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#17.10.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2021-07-16T11:18:20.352Z</updated>
+        <updated>2021-07-21T20:23:14.099Z</updated>
         <summary type="html"><![CDATA[ The Docker containers now contains Firefox 89 again. It seems like there's something with 90 that increase First Visual Change, especially when running in Docker. See https://phabricator.wikimedia.org/T286761 and https://bugzilla.mozilla.org/show_bug.cgi?id=1720843.]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -28,33 +39,22 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[browsertime 12.11.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#12.11.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2021-07-15T06:26:59.792Z</updated>
-        <summary type="html"><![CDATA[ Added screen size for Moto G4 when you run Chrome as emulated mobile #1608. Added Firefox 90 in the Docker container #1609. Fixed so we support JavaScript that ends with a ; when you select an element for for clicking #1610. See #1606 and thank you Vicky Ledsom for reporting. Fixed recording videos on new Mac M1 for emulated mobile. We used to have a hack for getting the right DPI but it seems like that didn't work on Mac M1 (depending on what screen you are using) #1607.]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[coach-core 6.4.2]]></title>
-        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.2</id>
-        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#"/>
-        <updated>2021-07-05T20:24:16.329Z</updated>
-        <summary type="html"><![CDATA[ Make sure JQuery refs are set back to original ref #62 see #61.]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[pagexray 4.3.0]]></title>
-        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.3.0</id>
+        <title type="html"><![CDATA[pagexray 4.3.1]]></title>
+        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.3.1</id>
         <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#"/>
-        <updated>2021-06-20T21:29:43.034Z</updated>
-        <summary type="html"><![CDATA[ Include request method per asset #105.]]></summary>
+        <updated>2021-07-21T20:23:14.098Z</updated>
+        <summary type="html"><![CDATA[ Added missing inbodyparser_blocking render blocking info for Chrome.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[coach-core 6.4.3]]></title>
+        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.3</id>
+        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#"/>
+        <updated>2021-07-21T20:23:14.097Z</updated>
+        <summary type="html"><![CDATA[ Updated to latest PageXray and Third patrty web 0.12.4.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
