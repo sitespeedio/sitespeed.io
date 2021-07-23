@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-07-22T07:23:05.501Z</updated>
+    <updated>2021-07-23T14:51:26.725Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,11 +17,11 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[browsertime 13.0.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#13.0.0</id>
+        <title type="html"><![CDATA[browsertime 13.1.2]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#13.1.2</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2021-07-22T07:23:05.501Z</updated>
-        <summary type="html"><![CDATA[ Updated the Docker container to use Chrome 92. Updated to Chromedriver 92. Upgrade to yargs 17 #1600. Fixed so that browsertime-result dir isn't created if you set your own result dir. Thank you Vicky Ledsom for PR #1611.]]></summary>
+        <updated>2021-07-23T14:51:26.725Z</updated>
+        <summary type="html"><![CDATA[ Increased the default URL bar size for visual metrics from 10 pixel to 18 pixel #1617.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
