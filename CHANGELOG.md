@@ -1,14 +1,15 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 18.0.0 - UNRELEASED
+## 18.0.0 - 2021-07-26
 ### Breaking changes
 * Drop support for NodeJS 10.
-* If you use Chrome the ´--chrome.timeline´ is now true by default. 
+* If you use Chrome the ´--chrome.timeline´ is now true by default (you can remove that from your configuration).
 
 ### Added
 * Updated the Docker container to use Chrome 92.
 * Updated to [Browsertime 13.1.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1300---2021-07-22) (that uses Chromedriver 92).
 * Updated to latest PerfCascade so that the waterfall highlights which request that is the largest contentful paint (if its an image) and show render blocking info (if you use Chrome) [#3407](https://github.com/sitespeedio/sitespeed.io/pull/3407).
+* Show render blocking info in the Page Xray section [#3246](https://github.com/sitespeedio/sitespeed.io/pull/3426).
 
 ### Fixed
 * Updated to Coach core 6.4.3
