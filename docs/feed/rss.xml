@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Fri, 23 Jul 2021 14:51:26 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 26 Jul 2021 15:39:23 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,20 +17,20 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[sitespeed.io 18.0.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#18.0.0</guid>
+            <pubDate>Mon, 26 Jul 2021 15:39:23 GMT</pubDate>
+            <description><![CDATA[ Updated the Docker container to use Chrome 92. Updated to Browsertime 13.1.1 (that uses Chromedriver 92). Updated to latest PerfCascade so that the waterfall highlights which request that is the largest contentful paint (if its an image) and show render blocking info (if you use Chrome) #3407. Show render blocking info in the Page Xray section #3246. Updated to Coach core 6.4.3]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[browsertime 13.1.2]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#13.1.2</guid>
             <pubDate>Fri, 23 Jul 2021 14:51:26 GMT</pubDate>
             <description><![CDATA[ Increased the default URL bar size for visual metrics from 10 pixel to 18 pixel #1617.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 17.10.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#17.10.0</guid>
-            <pubDate>Wed, 21 Jul 2021 20:23:14 GMT</pubDate>
-            <description><![CDATA[ The Docker containers now contains Firefox 89 again. It seems like there's something with 90 that increase First Visual Change, especially when running in Docker. See https://phabricator.wikimedia.org/T286761 and https://bugzilla.mozilla.org/show_bug.cgi?id=1720843.]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[pagexray 4.3.1]]></title>
