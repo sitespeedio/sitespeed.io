@@ -3,11 +3,11 @@
 ## 18.0.0 - UNRELEASED
 ### Breaking changes
 * Drop support for NodeJS 10.
-* If you use Chrome the ´--chrome.timeline´ is now true by default.
+* If you use Chrome the ´--chrome.timeline´ is now true by default. 
 
 ### Added
 * Updated the Docker container to use Chrome 92.
-* Updated to [Browsertime 13.0.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1300---2021-07-22) (that uses Chromedriver 92)
+* Updated to [Browsertime 13.1.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1300---2021-07-22) (that uses Chromedriver 92).
 * Updated to latest PerfCascade so that the waterfall highlights which request that is the largest contentful paint (if its an image) and show render blocking info (if you use Chrome) [#3407](https://github.com/sitespeedio/sitespeed.io/pull/3407).
 
 ### Fixed
