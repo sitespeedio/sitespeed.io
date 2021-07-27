@@ -149,11 +149,6 @@ You can also see a summary on the Page Xray tab and see what kind of blocking in
 ![Page Xray information about render blocking]({{site.baseurl}}/img/page-xray-blocking.jpg)
 {: .img-thumbnail}
 
-
-
-
-
-
 ### Choosing Chrome version
 You can choose which version of Chrome you want to run by using the ```--chrome.binaryPath``` and the full path to the Chrome binary.
 
