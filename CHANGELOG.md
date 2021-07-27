@@ -8,7 +8,7 @@
 ### Added
 * Updated the Docker container to use Chrome 92.
 * Updated to [Browsertime 13.1.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1300---2021-07-22) (that uses Chromedriver 92).
-* Updated to latest PerfCascade so that the waterfall highlights which request that is the largest contentful paint (if its an image) and show render blocking info (if you use Chrome) [#3407](https://github.com/sitespeedio/sitespeed.io/pull/3407).
+* Updated to latest PerfCascade so that the waterfall highlights which request that is the largest contentful paint (if its an image) and show render blocking info (if you use Chrome) [#3407](https://github.com/sitespeedio/sitespeed.io/pull/3407). You can checkout the [documentation](https://www.sitespeed.io/documentation/sitespeed.io/browsers/#render-blocking-information) about where to see the render blocking information.
 * Show render blocking info in the Page Xray section [#3246](https://github.com/sitespeedio/sitespeed.io/pull/3426).
 
 ### Fixed
