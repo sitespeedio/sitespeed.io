@@ -38,6 +38,11 @@ Go the the metrics tab and scroll down to the Largest Contentful Paint metrics a
 The screenshot is generated after the page finished loading. If the largest contentful element has been removed from the screen at that time, you will not see any highlight in the screenshot. You can then instead use the information in the table to the left to identify the element.
 
 If you have a hard time identify the element on the screenshot you can change the color of the highlighting by `--browsertime.screenshotLCPColor blue`.
+
+
+If the largest contentful paint is an image you can also see that highlighted in the waterfall.
+![Highlighted LCP]({{site.baseurl}}/img/lcp-waterfall.jpg)
+{: .img-thumbnail}
 ### Cumulative Layout Shift (CLS)
 
 The [layout shift API](https://wicg.github.io/layout-instability/) helps you find the DOM elements that shifts on the screen that degrades the user experience. 
