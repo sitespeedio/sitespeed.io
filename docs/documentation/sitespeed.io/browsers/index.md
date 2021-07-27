@@ -134,6 +134,26 @@ If you use Chrome you can collect everything that is logged to the console. You 
 ### Collect the net log
 Collect Chromes net log with ```--chrome.collectNetLog```. This is useful if you want to debug exact what happens with Chrome and your web page. You will get one log file per run.
 
+### Render blocking information
+If you use Chrome/Chromium you can get render blocking information (which requests blocks rendering). To get that from sitespeed.io  you need to get the Chrome timeline (and we get that by default). But if you wanna make sure to configure it you turn it on with the flag ```--chrome.timeline ``` or  ```--cpu```.
+
+You can see the blocking information in the waterfall. Requests that blocks has different coloring.
+![Blocking information in the waterfall]({{site.baseurl}}/img/potentially-blocking.jpg)
+{: .img-thumbnail}
+
+You can also click on the request and see the exact blocking info from Chrome.
+![See more blocking info in the waterfall]({{site.baseurl}}/img/see-more-blocking.jpg)
+{: .img-thumbnail}
+
+You can also see a summary on the Page Xray tab and see what kind of blocking information Chrome provides.
+![Page Xray information about render blocking]({{site.baseurl}}/img/page-xray-blocking.jpg)
+{: .img-thumbnail}
+
+
+
+
+
+
 ### Choosing Chrome version
 You can choose which version of Chrome you want to run by using the ```--chrome.binaryPath``` and the full path to the Chrome binary.
 
