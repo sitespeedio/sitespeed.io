@@ -248,7 +248,7 @@ You can run your tests on Safari on iOS.
 
 ### Prerequisites
 
-To be able to test you need latest OS X Catalina on your Mac computer and iOS 13 on your phone (or iPad).
+To be able to test you need latest OS X on your Mac computer and iOS on your phone (or iPad).
 
 #### Desktop
 
@@ -272,17 +272,17 @@ If you have any problems, make sure to read the [WebKit blog post about setting 
 
 ### Run
 
-You are now ready to test using your phone:
+You are now ready to test using your phone (you need to remove the Coach, Safari on iOS has some kind of issue with running large JavaScript blobs, see [#1275](https://github.com/sitespeedio/browsertime/issues/1275)):
 
 ```bash
-sitespeed.io -b safari --safari.ios https://www.sitespeed.io
+sitespeed.io -b safari --safari.ios --plugins.remove coach https://www.sitespeed.io 
 ```
 
 ### Limitations
 At the moment there are a couple of limitations running Safari:
 
 * No HAR file
-* No videos
+* No videos (see the work in [#1598](https://github.com/sitespeedio/browsertime/issues/1598)).
 * No way to set request headers
 * No built in setting connectivity
 
