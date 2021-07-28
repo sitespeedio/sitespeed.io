@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 18.0.1 - UNRELEASED
+### Fixed
+* Updated to [Browsertime 13.1.4](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1314---2021-07-28).
 ## 18.0.0 - 2021-07-26
 ### Breaking changes
 * Drop support for NodeJS 10.
