@@ -3,10 +3,11 @@
 ## 18.0.1 - UNRELEASED
 ### Fixed
 * Updated to [Browsertime 13.1.4](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1314---2021-07-28).
+* Added cli parameter for keeping the original video `--videoParams.keepOriginalVideo`. The functionalty already exists but it wasn't exposed in sitespeed.io [#3430](https://github.com/sitespeedio/sitespeed.io/pull/3430).
 ## 18.0.0 - 2021-07-26
 ### Breaking changes
 * Drop support for NodeJS 10.
-* If you use Chrome the ´--chrome.timeline´ is now true by default (you can remove that from your configuration).
+* If you use Chrome the `--chrome.timeline` is now true by default (you can remove that from your configuration).
 
 ### Added
 * Updated the Docker container to use Chrome 92.
