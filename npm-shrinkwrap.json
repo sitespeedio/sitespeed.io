@@ -2076,15 +2076,6 @@
           "integrity": "sha1-ewUhjd+WZ79/Nwv3/bLLFf3Qqkk=",
           "dev": true
         },
-        "glob-parent": {
-          "version": "5.0.0",
-          "resolved": "https://registry.npmjs.org/glob-parent/-/glob-parent-5.0.0.tgz",
-          "integrity": "sha512-Z2RwiujPRGluePM6j699ktJYxmPpJKCfpGA13jz2hmFZC7gKetzrWvg5KN3+OsIFmydGyZ1AVwERCq1w/ZZwRg==",
-          "dev": true,
-          "requires": {
-            "is-glob": "^4.0.1"
-          }
-        },
         "is-glob": {
           "version": "4.0.1",
           "resolved": "https://registry.npmjs.org/is-glob/-/is-glob-4.0.1.tgz",
