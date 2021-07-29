@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-07-29T07:53:51.548Z</updated>
+    <updated>2021-07-29T07:57:26.085Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,17 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
+    <entry>
+        <title type="html"><![CDATA[throttle 2.1.2]]></title>
+        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.2</id>
+        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#"/>
+        <updated>2021-07-29T07:57:26.085Z</updated>
+        <summary type="html"><![CDATA[ Fix breakage when multiple default routes are declared , thank you Andy Richardson for PR #62.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 18.0.1]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#18.0.1</id>
@@ -54,17 +65,6 @@
         <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#"/>
         <updated>2021-07-21T20:23:14.097Z</updated>
         <summary type="html"><![CDATA[ Updated to latest PageXray and Third patrty web 0.12.4.]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[throttle 2.1.1]]></title>
-        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.1</id>
-        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#"/>
-        <updated>2021-04-13T10:21:42.460Z</updated>
-        <summary type="html"><![CDATA[ A better check for missing net-tools on Linux, thank you Radu Micu for the PR #56.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>

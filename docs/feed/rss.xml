@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Thu, 29 Jul 2021 07:53:51 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 29 Jul 2021 07:57:26 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,13 @@
         <copyright>All rights reserved 2021, Peter Hedenskog and team</copyright>
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[throttle 2.1.2]]></title>
+            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.2</guid>
+            <pubDate>Thu, 29 Jul 2021 07:57:26 GMT</pubDate>
+            <description><![CDATA[ Fix breakage when multiple default routes are declared , thank you Andy Richardson for PR #62.]]></description>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 18.0.1]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
@@ -46,13 +53,6 @@
             <pubDate>Wed, 21 Jul 2021 20:23:14 GMT</pubDate>
             <description><![CDATA[ Updated to latest PageXray and Third patrty web 0.12.4.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[throttle 2.1.1]]></title>
-            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.1</guid>
-            <pubDate>Tue, 13 Apr 2021 10:21:42 GMT</pubDate>
-            <description><![CDATA[ A better check for missing net-tools on Linux, thank you Radu Micu for the PR #56.]]></description>
         </item>
         <item>
             <title><![CDATA[coach 6.0.0]]></title>
