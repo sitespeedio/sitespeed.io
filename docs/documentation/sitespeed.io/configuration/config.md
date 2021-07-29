@@ -46,6 +46,9 @@ Browser
       --browsertime.basicAuth, --basicAuth                                                          Use it if your server is behind Basic Auth. Format: username@password. Only works in Chrome and Firefox.
       --browsertime.headless, --headless                                                            Run the browser in headless mode. This is the browser internal headless mode, meaning you cannot collect Visual Metrics or in Chrome run any WebExtension (this means you cannot add cookies, requestheaders or use basic auth for headless Chrome). Only works in Chrome and Firefox.  [boolean] [default: false]
 
+video
+      --browsertime.videoParams.keepOriginalVideo, --videoParams.keepOriginalVideo  Keep the original video. Use it when you have a Visual Metrics bug and want to create an issue at GitHub. Supply the original video in the issue and we can reproduce your issue.  [boolean] [default: false]
+
 Filmstrip
       --browsertime.videoParams.filmstripFullSize, --videoParams.filmstripFullSize  Keep original sized screenshots in the filmstrip. Will make the run take longer time  [boolean] [default: false]
       --browsertime.videoParams.filmstripQuality, --videoParams.filmstripQuality    The quality of the filmstrip screenshots. 0-100.  [default: 75]
