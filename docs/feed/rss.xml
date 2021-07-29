@@ -36,6 +36,7 @@
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#13.1.4</guid>
             <pubDate>Wed, 28 Jul 2021 14:20:24 GMT</pubDate>
+            <description><![CDATA[ Increased the default URL bar size for visual metrics from 18 pixel to 20 pixel #1619.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>

@@ -43,6 +43,7 @@
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#13.1.4</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
         <updated>2021-07-28T14:20:24.023Z</updated>
+        <summary type="html"><![CDATA[ Increased the default URL bar size for visual metrics from 18 pixel to 20 pixel #1619.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
