@@ -1,9 +1,12 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 18.0.1 - UNRELEASED
+## 18.0.1 - 2021-07-29
 ### Fixed
 * Updated to [Browsertime 13.1.4](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1314---2021-07-28).
 * Added cli parameter for keeping the original video `--videoParams.keepOriginalVideo`. The functionalty already exists but it wasn't exposed in sitespeed.io [#3430](https://github.com/sitespeedio/sitespeed.io/pull/3430).
+* The GPSI-plugin has a fix to catch when first input delay data is missing.
+* Fix broken tags for InfluxDB when you get Crux data from the GPSI-plugin. [#3429](https://github.com/sitespeedio/sitespeed.io/pull/3429). Data from the plugin has a testType tag that can have the following values: googleWebVitals, score or crux. Crux data has two more tags: metric and experience.
+
 ## 18.0.0 - 2021-07-26
 ### Breaking changes
 * Drop support for NodeJS 10.
