@@ -29,6 +29,13 @@ function getResult(result) {
         allData += ' ' + fixed;
       }
     }
+
+    if (result.parsed.Changed) {
+      for (let changed of result.parsed.Changed) {
+        allData += ' ' + changed;
+      }
+    }
+
     return allData;
   }
 }
