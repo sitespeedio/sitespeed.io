@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-07-29T07:57:26.085Z</updated>
+    <updated>2021-08-09T19:47:15.952Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,11 +17,11 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[throttle 2.1.2]]></title>
-        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.2</id>
+        <title type="html"><![CDATA[throttle 3.0.0]]></title>
+        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.0.0</id>
         <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#"/>
-        <updated>2021-07-29T07:57:26.085Z</updated>
-        <summary type="html"><![CDATA[ Fix breakage when multiple default routes are declared , thank you Andy Richardson for PR #62.]]></summary>
+        <updated>2021-08-09T19:47:15.952Z</updated>
+        <summary type="html"><![CDATA[ When you run on Mac OS we changed so localhost traffic is not throttled by default. To throttle on localhost use --localhost. This makes sence if you use WebDriver to drive your browser on your local machine. And Mac OS now works the same as Linux.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
@@ -108,7 +108,7 @@
         <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#1.0.0</id>
         <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#"/>
         <updated>2019-01-28T04:22:17.522Z</updated>
-        <summary type="html"><![CDATA[ Added support for using Github gists see #34. Added support for using a config file to configure which HARs to test. Added support for copy/paste directly you HAR, configuration file or a gist URL or id. Refactor the CSS into Sass, development build process now uses BrowserSync. Service worker added for offline support. Workbox is used to achieve this. Added support for showing changes in request/responses if you compare the same page #63.]]></summary>
+        <summary type="html"><![CDATA[ Added support for using Github gists see #34. Added support for using a config file to configure which HARs to test. Added support for copy/paste directly you HAR, configuration file or a gist URL or id. Refactor the CSS into Sass, development build process now uses BrowserSync. Service worker added for offline support. Workbox is used to achieve this. Added support for showing changes in request/responses if you compare the same page #63. New internal structure and use the new configuration object all the way.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>

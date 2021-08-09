@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Thu, 29 Jul 2021 07:57:26 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 09 Aug 2021 19:47:15 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,11 +17,11 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[throttle 2.1.2]]></title>
+            <title><![CDATA[throttle 3.0.0]]></title>
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.2</guid>
-            <pubDate>Thu, 29 Jul 2021 07:57:26 GMT</pubDate>
-            <description><![CDATA[ Fix breakage when multiple default routes are declared , thank you Andy Richardson for PR #62.]]></description>
+            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.0.0</guid>
+            <pubDate>Mon, 09 Aug 2021 19:47:15 GMT</pubDate>
+            <description><![CDATA[ When you run on Mac OS we changed so localhost traffic is not throttled by default. To throttle on localhost use --localhost. This makes sence if you use WebDriver to drive your browser on your local machine. And Mac OS now works the same as Linux.]]></description>
         </item>
         <item>
             <title><![CDATA[sitespeed.io 18.0.1]]></title>
@@ -81,7 +81,7 @@
             <link>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#1.0.0</guid>
             <pubDate>Mon, 28 Jan 2019 04:22:17 GMT</pubDate>
-            <description><![CDATA[ Added support for using Github gists see #34. Added support for using a config file to configure which HARs to test. Added support for copy/paste directly you HAR, configuration file or a gist URL or id. Refactor the CSS into Sass, development build process now uses BrowserSync. Service worker added for offline support. Workbox is used to achieve this. Added support for showing changes in request/responses if you compare the same page #63.]]></description>
+            <description><![CDATA[ Added support for using Github gists see #34. Added support for using a config file to configure which HARs to test. Added support for copy/paste directly you HAR, configuration file or a gist URL or id. Refactor the CSS into Sass, development build process now uses BrowserSync. Service worker added for offline support. Workbox is used to achieve this. Added support for showing changes in request/responses if you compare the same page #63. New internal structure and use the new configuration object all the way.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/compare.png" length="0" type="image/png"/>
         </item>
     </channel>
