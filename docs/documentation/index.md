@@ -9,7 +9,7 @@ twitterdescription: Documentation for the sitespeed.io.
 ---
 # Documentation
 
-Use Docker or the latest LTS release (12.x) of NodeJS to run the sitespeed.io tools.
+Use Docker or the latest [LTS release of NodeJS](https://nodejs.org/) to run the sitespeed.io tools.
 
  * [sitespeed.io]({{site.baseurl}}/documentation/sitespeed.io/) - continuously monitor your web sites web performance  (including the Coach, Browsertime, PageXray and the rest).
  * [Coach]({{site.baseurl}}/documentation/coach/) - get help from the Coach how you can make your web page faster.
