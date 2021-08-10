@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Documentation for all sitespeed.io tools.
-description: Here's the documentation of how to use all the sitespeed.io tools. Use latest LTS release 12.x of NodeJS or Docker containers to get them up and running.
+description: Here's the documentation of how to use all the sitespeed.io tools. Use latest LTS release of NodeJS or Docker containers to get them up and running.
 keywords: tools, documentation, web performance, version, nodejs.
 nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
