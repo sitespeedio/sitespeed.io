@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+### Changed
+* Updated to [Browsertime 14.0.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1400---2021-08-12).
+
 ## 18.0.1 - 2021-07-29
 ### Fixed
 * Updated to [Browsertime 13.1.4](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1314---2021-07-28).
