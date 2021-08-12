@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-08-09T19:47:15.952Z</updated>
+    <updated>2021-08-12T11:15:39.588Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,17 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 14.0.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.0.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
+        <updated>2021-08-12T11:15:39.588Z</updated>
+        <summary type="html"><![CDATA[ Make it possible to set Chromdriver port, thank you Saurav Kumar for PR #1620. Updated to Edge 92, Edgedriver 92 and Firefox 92 beta to get the fix for https://bugzilla.mozilla.org/show_bug.cgi?id=1712983 in the Docker container. Updated Throttle to 2.2.1 that fixes when two default interfaces are defined on Linux. Updated to Throttle 3.0 that do not set throttling on localhost by default on Mac OS. If you run test against a local server or use WebPageReplay on a Mac, you should add --connectivity.throttle.localhost to your test and it will work as before.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[throttle 3.0.0]]></title>
         <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.0.0</id>
@@ -33,17 +44,6 @@
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
         <updated>2021-07-29T07:53:51.548Z</updated>
         <summary type="html"><![CDATA[ Updated to Browsertime 13.1.4. Added cli parameter for keeping the original video --videoParams.keepOriginalVideo. The functionalty already exists but it wasn't exposed in sitespeed.io #3430. The GPSI-plugin has a fix to catch when first input delay data is missing. Fix broken tags for InfluxDB when you get Crux data from the GPSI-plugin. #3429. Data from the plugin has a testType tag that can have the following values: googleWebVitals, score or crux. Crux data has two more tags: metric and experience.]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 13.1.4]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#13.1.4</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2021-07-28T14:20:24.023Z</updated>
-        <summary type="html"><![CDATA[ Increased the default URL bar size for visual metrics from 18 pixel to 20 pixel #1619.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
