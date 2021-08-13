@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Thu, 12 Aug 2021 20:55:42 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 13 Aug 2021 08:22:52 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,14 @@
         <copyright>All rights reserved 2021, Peter Hedenskog and team</copyright>
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 19.0.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#19.0.0</guid>
+            <pubDate>Fri, 13 Aug 2021 08:22:52 GMT</pubDate>
+            <description><![CDATA[ Updated to Edge 92 and Edgedriver 92 in the Docker container. Updated to Firefox 92 beta in the Docker container to fix the devtools slowness bug that was inroduced in Firefox 90. Updated to Browsertime 14.0.1. The new 14 version uses Throttle 3.0 that has change if you use it on Mac OS: Updated Throttle 3.0 that do not set throttling on localhost by default on Mac OS. If you run test against a local server or use WebPageReplay on a Mac, you should add --browsertime.connectivity.throttle.localhost to your test and it will work as before.]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[browsertime 14.0.1]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
@@ -30,14 +38,6 @@
             <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.0.0</guid>
             <pubDate>Mon, 09 Aug 2021 19:47:15 GMT</pubDate>
             <description><![CDATA[ When you run on Mac OS we changed so localhost traffic is not throttled by default. To throttle on localhost use --localhost. This makes sence if you use WebDriver to drive your browser on your local machine. And Mac OS now works the same as Linux.]]></description>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 18.0.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#18.0.1</guid>
-            <pubDate>Thu, 29 Jul 2021 07:53:51 GMT</pubDate>
-            <description><![CDATA[ Updated to Browsertime 13.1.4. Added cli parameter for keeping the original video --videoParams.keepOriginalVideo. The functionalty already exists but it wasn't exposed in sitespeed.io #3430. The GPSI-plugin has a fix to catch when first input delay data is missing. Fix broken tags for InfluxDB when you get Crux data from the GPSI-plugin. #3429. Data from the plugin has a testType tag that can have the following values: googleWebVitals, score or crux. Crux data has two more tags: metric and experience.]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[pagexray 4.3.1]]></title>
