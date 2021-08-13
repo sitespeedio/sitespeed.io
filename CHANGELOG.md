@@ -1,8 +1,12 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 19.0.0 - 2021-08-13
 ### Changed
-* Updated to [Browsertime 14.0.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1400---2021-08-12).
+* Updated to [Browsertime 14.0.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1401---2021-08-12). The new 14 version uses Throttle 3.0 that has change if you use it on Mac OS: Updated Throttle 3.0 that do not set throttling on localhost by default on Mac OS. If you run test against a local server or use WebPageReplay on a Mac, you should add `--browsertime.connectivity.throttle.localhost` to your test and it will work as before.
+
+### Added
+* Updated to Edge 92 and Edgedriver 92 in the Docker container.
+* Updated to Firefox 92 beta in the Docker container to fix the [devtools slowness bug](https://bugzilla.mozilla.org/show_bug.cgi?id=1712983) that was inroduced in Firefox 90. 
 
 ## 18.0.1 - 2021-07-29
 ### Fixed
