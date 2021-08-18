@@ -1,0 +1,39 @@
+extends ../layout.pug
+
+block content
+    h1 Metrics 
+
+    h5.url
+        a(href=daurl) #{decodeURIComponent(daTitle)}
+
+    include ../../includes/pageRunInfo
+
+    - const tools = ['browsertime', 'pagexray']
+    - const metrics = {};
+    - for (let tool of Object.keys(friendlyNames)) {
+        - if (tools.indexOf(tool) > -1) {
+        -   metrics[tool] = friendlyNames[tool]
+    -    }
+    - }
+
+    h3 Metrics per run
+    .responsive
+        table
+            tr
+                - let run = 1
+                th Metric
+                each page in runPages
+                    th
+                        b #{run}
+                        - run++
+            each tool in Object.keys(metrics)
+                each metricType in Object.keys(metrics[tool])
+                    each metric in Object.keys(metrics[tool][metricType])
+                        - const friendly = metrics[tool][metricType][metric]
+                        - const m = get (runPages[0], 'data.' + tool + '.run.' + (friendly.runPath || friendly.path), 'hepp')
+                        if (m !== 'hepp') 
+                            tr
+                                td 
+                                    b #{friendly.name}
+                                each page in runPages
+                                    td #{friendly.format(get (page, 'data.' + tool + '.run.' + (friendly.runPath || friendly.path)))}
