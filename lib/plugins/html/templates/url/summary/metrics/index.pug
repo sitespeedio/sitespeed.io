@@ -1,7 +1,7 @@
 extends ../layout.pug
 
 block content
-    h1 Metrics 
+    h1 Metrics  per run
     - const daTitle = daurlAlias ? daurlAlias : daurl
     h5.url
         a(href=daurl) #{decodeURIComponent(daTitle)}
@@ -16,7 +16,7 @@ block content
     -    }
     - }
 
-    h3 Metrics per run
+    h3 Side by side
     .responsive
         table
             tr
