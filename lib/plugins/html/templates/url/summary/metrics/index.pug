@@ -2,7 +2,7 @@ extends ../layout.pug
 
 block content
     h1 Metrics 
-
+    - const daTitle = daurlAlias ? daurlAlias : daurl
     h5.url
         a(href=daurl) #{decodeURIComponent(daTitle)}
 
