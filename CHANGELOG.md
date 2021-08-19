@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+### Added
+* You can now see curated metrics side by side for all runs [#3439](https://github.com/sitespeedio/sitespeed.io/pull/3439).
+### Fixed
+* Upgraded to Browsertime 14.0.2.
+
 ## 19.0.0 - 2021-08-13
 ### Changed
 * Updated to [Browsertime 14.0.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1401---2021-08-12). The new 14 version uses Throttle 3.0 that has change if you use it on Mac OS: Updated Throttle 3.0 that do not set throttling on localhost by default on Mac OS. If you run test against a local server or use WebPageReplay on a Mac, you should add `--browsertime.connectivity.throttle.localhost` to your test and it will work as before.
