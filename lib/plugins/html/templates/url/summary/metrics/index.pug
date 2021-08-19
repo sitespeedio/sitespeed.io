@@ -30,8 +30,8 @@ block content
                 each metricType in Object.keys(metrics[tool])
                     each metric in Object.keys(metrics[tool][metricType])
                         - const friendly = metrics[tool][metricType][metric]
-                        - const m = get (runPages[0], 'data.' + tool + '.run.' + (friendly.runPath || friendly.path), 'hepp')
-                        if (m !== 'hepp') 
+                        - const m = get (runPages[0], 'data.' + tool + '.run.' + (friendly.runPath || friendly.path), 'notused')
+                        if (m !== 'notused') 
                             tr
                                 td 
                                     b #{friendly.name}
