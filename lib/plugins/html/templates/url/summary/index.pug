@@ -27,9 +27,12 @@ block content
       each val, index in runPages
         - value = Number(index) + 1
         a(href='./' + value + '.html') #{value}
-        if (value !== Object.keys(runPages).length)
+        if (value === Object.keys(runPages).length)
           | &nbsp;-
-          |
+          a(href='metrics.html') (side by side)
+        else 
+            | &nbsp;-
+            |  
 
   if pageInfo.errors
     .errors
