@@ -1,10 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 19.1.0 - 2021-08-20
 ### Added
 * You can now see curated metrics side by side for all runs [#3439](https://github.com/sitespeedio/sitespeed.io/pull/3439).
+*  The WebPageTest plugin is using the latest (0.5.0) version of the WebPageTest API.
 ### Fixed
-* Upgraded to Browsertime 14.0.2.
+* Upgraded to [Browsertime 14.0.2](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1402---2021-08-20).
 
 ## 19.0.0 - 2021-08-13
 ### Changed
