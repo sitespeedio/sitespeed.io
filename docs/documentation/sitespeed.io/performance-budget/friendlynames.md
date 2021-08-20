@@ -31,8 +31,13 @@
          "longTasks": limit,
          "longTasksTotalDuration": limit,
     },
+   "browser": {
+         "cpuBenchmark": limit,
+    },
    "pageinfo": {
          "cumulativeLayoutShift": limit,
+         "domElements": limit,
+         "documentHeight": limit,
     },
    "requests": {
          "total": limit,

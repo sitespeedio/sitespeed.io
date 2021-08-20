@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Thu, 19 Aug 2021 23:12:29 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 20 Aug 2021 12:20:45 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,20 +17,20 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[sitespeed.io 19.1.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#19.1.0</guid>
+            <pubDate>Fri, 20 Aug 2021 12:20:45 GMT</pubDate>
+            <description><![CDATA[ You can now see curated metrics side by side for all runs #3439. The WebPageTest plugin is using the latest (0.5.0) version of the WebPageTest API. Upgraded to Browsertime 14.0.2.]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[browsertime 14.0.2]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.0.2</guid>
             <pubDate>Thu, 19 Aug 2021 23:12:29 GMT</pubDate>
             <description><![CDATA[ Removed that annoying extra line break in the log output #1626. TTFB was reported as a string instead of a number in the JSON output #1625.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 19.0.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#19.0.0</guid>
-            <pubDate>Fri, 13 Aug 2021 08:22:52 GMT</pubDate>
-            <description><![CDATA[ Updated to Edge 92 and Edgedriver 92 in the Docker container. Updated to Firefox 92 beta in the Docker container to fix the devtools slowness bug that was inroduced in Firefox 90. Updated to Browsertime 14.0.1. The new 14 version uses Throttle 3.0 that has change if you use it on Mac OS: Updated Throttle 3.0 that do not set throttling on localhost by default on Mac OS. If you run test against a local server or use WebPageReplay on a Mac, you should add --browsertime.connectivity.throttle.localhost to your test and it will work as before.]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[throttle 3.0.0]]></title>
