@@ -16,6 +16,9 @@ block content
     -    }
     - }
 
+    - const categoryNames = {googleWebVitals: "Google Web Vitals", timings: "Timing metrics", cpu: "CPU metrics", browser: 'Browser metrics', pageinfo: "Page metrics", thirdParty: "Third Party metrics", firstParty: "First Party metrics"}
+    - const noCategory = ['requests','transferSize', 'contentSize']
+
     h3 Side by side
     .responsive
         table
@@ -27,7 +30,17 @@ block content
                         b #{run}
                         - run++
             each tool in Object.keys(metrics)
+                - let category = ''
                 each metricType in Object.keys(metrics[tool])
+                    - if (category !== metricType) {
+                        - if (noCategory.indexOf(metricType) === -1) {
+                            - category = metricType   
+                            tr 
+                                th(colspan=runPages.length + 1) #{categoryNames[metricType] ? categoryNames[metricType] : metricType}
+                        - } else {
+                            - category = metricType 
+                        - }
+                    - }
                     each metric in Object.keys(metrics[tool][metricType])
                         - const friendly = metrics[tool][metricType][metric]
                         - const m = get (runPages[0], 'data.' + tool + '.run.' + (friendly.runPath || friendly.path), 'notused')
