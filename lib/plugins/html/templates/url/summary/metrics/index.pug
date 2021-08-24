@@ -21,38 +21,39 @@ block content
 
     h3 Side by side
     .responsive
-        table
-            tr
-                - let run = 1
-                th Metric
-                each page in runPages
-                    th
-                        b #{run}
-                        - run++
-                th Median
-                th Mean
-                th stddev
-            each tool in Object.keys(metrics)
-                - let category = ''
-                each metricType in Object.keys(metrics[tool])
-                    - if (category !== metricType) {
-                        - if (noCategory.indexOf(metricType) === -1) {
-                            - category = metricType   
-                            tr 
-                                th(colspan=runPages.length + 4) #{categoryNames[metricType] ? categoryNames[metricType] : metricType}
-                        - } else {
-                            - category = metricType 
+        .test(style="overflow-x:auto;")
+            table
+                tr
+                    - let run = 1
+                    th Metric
+                    each page in runPages
+                        th
+                            b #{run}
+                            - run++
+                    th Median
+                    th Mean
+                    th stddev
+                each tool in Object.keys(metrics)
+                    - let category = ''
+                    each metricType in Object.keys(metrics[tool])
+                        - if (category !== metricType) {
+                            - if (noCategory.indexOf(metricType) === -1) {
+                                - category = metricType   
+                                tr 
+                                    th(colspan=runPages.length + 4) #{categoryNames[metricType] ? categoryNames[metricType] : metricType}
+                            - } else {
+                                - category = metricType 
+                            - }
                         - }
-                    - }
-                    each metric in Object.keys(metrics[tool][metricType])
-                        - const friendly = metrics[tool][metricType][metric]
-                        - const m = get (runPages[0], 'data.' + tool + '.run.' + (friendly.runPath || friendly.path), 'notused')
-                        if (m !== 'notused') 
-                            tr
-                                td 
-                                    b #{friendly.name}
-                                each page in runPages
-                                    td #{friendly.format(get (page, 'data.' + tool + '.run.' + (friendly.runPath || friendly.path)))}
-                                td #{friendly.format(get (oldies, 'data.' + tool + '.pageSummary.statistics.' + friendly.summaryPath + '.median', ''))}
-                                td #{friendly.format(get (oldies, 'data.' + tool + '.pageSummary.statistics.' + friendly.summaryPath + '.mean', ''))}
-                                td #{friendly.format(get (oldies, 'data.' + tool + '.pageSummary.statistics.' + friendly.summaryPath + '.stddev', ''))}
+                        each metric in Object.keys(metrics[tool][metricType])
+                            - const friendly = metrics[tool][metricType][metric]
+                            - const m = get (runPages[0], 'data.' + tool + '.run.' + (friendly.runPath || friendly.path), 'notused')
+                            if (m !== 'notused') 
+                                tr
+                                    td 
+                                        b #{friendly.name}
+                                    each page in runPages
+                                        td #{friendly.format(get (page, 'data.' + tool + '.run.' + (friendly.runPath || friendly.path)))}
+                                    td #{friendly.format(get (oldies, 'data.' + tool + '.pageSummary.statistics.' + friendly.summaryPath + '.median', ''))}
+                                    td #{friendly.format(get (oldies, 'data.' + tool + '.pageSummary.statistics.' + friendly.summaryPath + '.mean', ''))}
+                                    td #{friendly.format(get (oldies, 'data.' + tool + '.pageSummary.statistics.' + friendly.summaryPath + '.stddev', ''))}
