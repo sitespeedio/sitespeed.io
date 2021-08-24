@@ -29,6 +29,9 @@ block content
                     th
                         b #{run}
                         - run++
+                th Median
+                th Mean
+                th stddev
             each tool in Object.keys(metrics)
                 - let category = ''
                 each metricType in Object.keys(metrics[tool])
@@ -36,7 +39,7 @@ block content
                         - if (noCategory.indexOf(metricType) === -1) {
                             - category = metricType   
                             tr 
-                                th(colspan=runPages.length + 1) #{categoryNames[metricType] ? categoryNames[metricType] : metricType}
+                                th(colspan=runPages.length + 4) #{categoryNames[metricType] ? categoryNames[metricType] : metricType}
                         - } else {
                             - category = metricType 
                         - }
@@ -50,3 +53,6 @@ block content
                                     b #{friendly.name}
                                 each page in runPages
                                     td #{friendly.format(get (page, 'data.' + tool + '.run.' + (friendly.runPath || friendly.path)))}
+                                td #{friendly.format(get (oldies, 'data.' + tool + '.pageSummary.statistics.' + friendly.summaryPath + '.median', ''))}
+                                td #{friendly.format(get (oldies, 'data.' + tool + '.pageSummary.statistics.' + friendly.summaryPath + '.mean', ''))}
+                                td #{friendly.format(get (oldies, 'data.' + tool + '.pageSummary.statistics.' + friendly.summaryPath + '.stddev', ''))}
