@@ -3,6 +3,12 @@
 ## UNRELEASED
 ### Added
 * Upgraded to AXE core 4.3.2 [#3441](https://github.com/sitespeedio/sitespeed.io/pull/3441). 
+* Added stddev/median/mean to the metrics side by side page [#3443](https://github.com/sitespeedio/sitespeed.io/pull/3443).
+* Added a generic text that we miss out of many metrics for Safari at the moment [#3442](https://github.com/sitespeedio/sitespeed.io/pull/3442).
+
+### Fixed
+* Upgrade PerfCascade that catches if an HAR entry is missing content type [#3445](https://github.com/sitespeedio/sitespeed.io/pull/3445).
+
 ## 19.1.0 - 2021-08-20
 ### Added
 * You can now see curated metrics side by side for all runs [#3439](https://github.com/sitespeedio/sitespeed.io/pull/3439).
