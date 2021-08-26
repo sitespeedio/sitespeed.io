@@ -297,5 +297,5 @@ To run your test you need to sepcify the Safari deviceUDID = choosing what kind 
 
 Then run your test:
 ```bash
-sitespeed.io https://www.sitespeed.io -b safari --safari.useSimulator --safari.device UDID YOUR_DEVICE_ID --video --visualMetrics -c 4g
+sitespeed.io https://www.sitespeed.io -b safari --safari.useSimulator --safari.deviceUDID YOUR_DEVICE_ID --video --visualMetrics -c 4g
 ```
