@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-08-20T12:20:45.817Z</updated>
+    <updated>2021-08-27T10:54:44.551Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,11 +17,11 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 19.1.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#19.1.0</id>
+        <title type="html"><![CDATA[sitespeed.io 19.2.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#19.2.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2021-08-20T12:20:45.817Z</updated>
-        <summary type="html"><![CDATA[ You can now see curated metrics side by side for all runs #3439. The WebPageTest plugin is using the latest (0.5.0) version of the WebPageTest API. Upgraded to Browsertime 14.0.2.]]></summary>
+        <updated>2021-08-27T10:54:44.551Z</updated>
+        <summary type="html"><![CDATA[ Upgraded to AXE core 4.3.2 #3441. Added stddev/median/mean to the metrics side by side page #3443. Added a generic text that we miss out of many metrics for Safari at the moment #3442. Add option to add friendly name to junit test cases. Use --budget.friendlyName to set that.  Thank you Vishal for the request. Done in PR #3448. Upgrade PerfCascade that catches if an HAR entry is missing content type #3445.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
