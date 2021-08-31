@@ -4,21 +4,24 @@ include ../../_tableMixins
 
 small 
     || 
-    a(href='#pagexray-summary') Summary |
+    a(href='#pagexray-summary') Summary 
     | &nbsp;|&nbsp;
-    a(href='#largest-assets') Largest responses |
+    a(href='#largest-assets') Largest responses 
     | &nbsp;|&nbsp;
-    a(href='#requests-and-sizes-per-content-type') Requests and sizes per content type |
+    a(href='#requests-and-sizes-per-content-type') Requests and sizes per content type 
     | &nbsp;|&nbsp;
-    a(href='#sizes-per-domain') Size and requests per domain |
+    a(href='#sizes-per-domain') Size and requests per domain 
     | &nbsp;|&nbsp;
-    a(href='#expires-and-last-modified-stats') Expires and last modified statistics |
+    a(href='#expires-and-last-modified-stats') Expires and last modified statistics 
     | &nbsp;|&nbsp;
     if pageInfo.data.browsertime && pageInfo.data.browsertime.console
-      a(href='#console-log') Console log |
+      a(href='#console-log') Console log 
       | &nbsp;|&nbsp;
     if pagexray.afterOnLoad.requests > 0
-      a(href='#requests-after-onload') Requests loaded after onLoad event |
+      a(href='#requests-after-onload') Requests loaded after onLoad event 
+      | &nbsp;|&nbsp;
+    if pagexray.renderBlocking
+      a(href='#requests-render-blocking') Render blocking requests 
       | &nbsp;|&nbsp;
 
 h3 
@@ -93,3 +96,5 @@ if pageInfo.data.browsertime && pageInfo.data.browsertime.console
     include ./console.pug
 
 include ./after.pug
+
+include ./blocking.pug

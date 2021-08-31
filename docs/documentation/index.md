@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Documentation for all sitespeed.io tools.
-description: Here's the documentation of how to use all the sitespeed.io tools. Use latest LTS release 12.x of NodeJS or Docker containers to get them up and running.
+description: Here's the documentation of how to use all the sitespeed.io tools. Use latest LTS release of NodeJS or Docker containers to get them up and running.
 keywords: tools, documentation, web performance, version, nodejs.
 nav: documentation
 image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
@@ -9,7 +9,7 @@ twitterdescription: Documentation for the sitespeed.io.
 ---
 # Documentation
 
-Use Docker or the latest LTS release (12.x) of NodeJS to run the sitespeed.io tools.
+Use Docker or the latest [LTS release of NodeJS](https://nodejs.org/) to run the sitespeed.io tools.
 
  * [sitespeed.io]({{site.baseurl}}/documentation/sitespeed.io/) - continuously monitor your web sites web performance  (including the Coach, Browsertime, PageXray and the rest).
  * [Coach]({{site.baseurl}}/documentation/coach/) - get help from the Coach how you can make your web page faster.

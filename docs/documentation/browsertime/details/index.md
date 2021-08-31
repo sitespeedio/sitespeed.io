@@ -23,7 +23,7 @@ twitterdescription:
 Use our Docker image (with Chrome, Firefox, XVFB and the dependencies needed to record a video):
 
 ~~~bash
-docker run --rm -v "$(pwd)":/browsertime-results sitespeedio/browsertime:{% include version/browsertime.txt %} --video --visualMetrics https://www.sitespeed.io/
+docker run --rm -v "$(pwd)":/browsertime sitespeedio/browsertime:{% include version/browsertime.txt %} --video --visualMetrics https://www.sitespeed.io/
 ~~~
 
 Or using NodeJS:

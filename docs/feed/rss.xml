@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>sitespeed.io release feed</title>
+        <link>https://www.sitespeed.io</link>
+        <description>Follow new releases of sitespeed.io tools</description>
+        <lastBuildDate>Fri, 27 Aug 2021 10:54:44 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <image>
+            <title>sitespeed.io release feed</title>
+            <url>https://www.sitespeed.io/img/logos/sitespeed.io.png</url>
+            <link>https://www.sitespeed.io</link>
+        </image>
+        <copyright>All rights reserved 2021, Peter Hedenskog and team</copyright>
+        <category>Performance</category>
+        <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 19.2.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#19.2.0</guid>
+            <pubDate>Fri, 27 Aug 2021 10:54:44 GMT</pubDate>
+            <description><![CDATA[ Upgraded to AXE core 4.3.2 #3441. Added stddev/median/mean to the metrics side by side page #3443. Added a generic text that we miss out of many metrics for Safari at the moment #3442. Add option to add friendly name to junit test cases. Use --budget.friendlyName to set that.  Thank you Vishal for the request. Done in PR #3448. Upgrade PerfCascade that catches if an HAR entry is missing content type #3445.]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 14.0.2]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.0.2</guid>
+            <pubDate>Thu, 19 Aug 2021 23:12:29 GMT</pubDate>
+            <description><![CDATA[ Removed that annoying extra line break in the log output #1626. TTFB was reported as a string instead of a number in the JSON output #1625.]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[throttle 3.0.0]]></title>
+            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.0.0</guid>
+            <pubDate>Mon, 09 Aug 2021 19:47:15 GMT</pubDate>
+            <description><![CDATA[ When you run on Mac OS we changed so localhost traffic is not throttled by default. To throttle on localhost use --localhost. This makes sence if you use WebDriver to drive your browser on your local machine. And Mac OS now works the same as Linux.]]></description>
+        </item>
+        <item>
+            <title><![CDATA[pagexray 4.3.1]]></title>
+            <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.3.1</guid>
+            <pubDate>Wed, 21 Jul 2021 20:23:14 GMT</pubDate>
+            <description><![CDATA[ Added missing inbodyparser_blocking render blocking info for Chrome.]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach-core 6.4.3]]></title>
+            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.3</guid>
+            <pubDate>Wed, 21 Jul 2021 20:23:14 GMT</pubDate>
+            <description><![CDATA[ Updated to latest PageXray and Third patrty web 0.12.4.]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach 6.0.0]]></title>
+            <link>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#6.0.0</guid>
+            <pubDate>Fri, 05 Feb 2021 10:01:42 GMT</pubDate>
+            <description><![CDATA[ Use Browsertime 11.0.0 Use Coach-code 6.0 Use latest Firefox and Chrome]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[chrome-har 0.11.12]]></title>
+            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.12</guid>
+            <pubDate>Fri, 05 Feb 2021 10:01:42 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[chrome-trace 0.2.2]]></title>
+            <link>https://github.com/sitespeedio/chrome-trace/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/chrome-trace/blob/main/CHANGELOG.md#0.2.2</guid>
+            <pubDate>Sat, 15 Jun 2019 10:36:36 GMT</pubDate>
+            <description><![CDATA[ Catch if we can't find the first thread event. We now throws an exception (that's not optimal since we don't know what's wrong) with the info of what's wrong. We can change that later on.]]></description>
+        </item>
+        <item>
+            <title><![CDATA[compare 1.0.0]]></title>
+            <link>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#1.0.0</guid>
+            <pubDate>Mon, 28 Jan 2019 04:22:17 GMT</pubDate>
+            <description><![CDATA[ Added support for using Github gists see #34. Added support for using a config file to configure which HARs to test. Added support for copy/paste directly you HAR, configuration file or a gist URL or id. Refactor the CSS into Sass, development build process now uses BrowserSync. Service worker added for offline support. Workbox is used to achieve this. Added support for showing changes in request/responses if you compare the same page #63. New internal structure and use the new configuration object all the way.]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/compare.png" length="0" type="image/png"/>
+        </item>
+    </channel>
+</rss>

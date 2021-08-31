@@ -106,7 +106,7 @@ if browsertime
           tr
             td
               a(href=baseHelpURL + 'VisualReadiness') Visual Readiness
-            td.number #{h.time.ms(visualMetrics.VisualReadiness.toFixed(0))}  
+            td.number #{h.time.ms(visualMetrics.VisualReadiness.toFixed(0))} 
       .one-half.column
         .ct-chart.ct-minor-sixth#ct-visualprogress
         include ./visualProgress.pug
@@ -134,7 +134,6 @@ if browsertime
               td
                 a(href=baseHelpURL + 'firstContentfulPaint') First Contentful Paint (FCP)
               td.number #{h.time.ms(timings.paintTiming['first-contentful-paint'])}
-
           if (timings.largestContentfulPaint) 
             tr
               td

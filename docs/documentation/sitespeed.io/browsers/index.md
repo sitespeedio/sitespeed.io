@@ -134,13 +134,28 @@ If you use Chrome you can collect everything that is logged to the console. You 
 ### Collect the net log
 Collect Chromes net log with ```--chrome.collectNetLog```. This is useful if you want to debug exact what happens with Chrome and your web page. You will get one log file per run.
 
+### Render blocking information
+If you use Chrome/Chromium you can get render blocking information (which requests blocks rendering). To get that from sitespeed.io  you need to get the Chrome timeline (and we get that by default). But if you wanna make sure to configure it you turn it on with the flag ```--chrome.timeline ``` or  ```--cpu```.
+
+You can see the blocking information in the waterfall. Requests that blocks has different coloring.
+![Blocking information in the waterfall]({{site.baseurl}}/img/potentially-blocking.jpg)
+{: .img-thumbnail}
+
+You can also click on the request and see the exact blocking info from Chrome.
+![See more blocking info in the waterfall]({{site.baseurl}}/img/see-more-blocking.jpg)
+{: .img-thumbnail}
+
+You can also see a summary on the Page Xray tab and see what kind of blocking information Chrome provides.
+![Page Xray information about render blocking]({{site.baseurl}}/img/page-xray-blocking.jpg)
+{: .img-thumbnail}
+
 ### Choosing Chrome version
 You can choose which version of Chrome you want to run by using the ```--chrome.binaryPath``` and the full path to the Chrome binary.
 
 Our Docker container only contains one version of Chrome and [let us know](https://github.com/sitespeedio/sitespeed.io/issues/new) if you need help to add more versions.
 
 ### Use a newer version of ChromeDriver
-ChromeDriver is the driver that handles the communication with Chrome. At the moment the ChromeDriver version needs to match the Chrome version. By default sitespeed.io and Browsertime comes with the ChromeDriver version that matches the Chrome version in the Docker container. If you wanna run tests on Chrome Beta/Canary you probably need to download a later version of ChromeDriver.
+ChromeDriver is the driver that handles the communication with Chrome. At the moment the ChromeDriver version needs to match the Chrome version ([here](https://bugs.chromium.org/p/chromedriver/issues/detail?id=3864) is a upstream request to remove that check). By default sitespeed.io and Browsertime comes with the ChromeDriver version that matches the Chrome version in the Docker container. If you want to run tests on other Chrome versions, you need to download the matching version of ChromeDriver.
 
 You download ChromeDriver from [http://chromedriver.chromium.org](http://chromedriver.chromium.org) and then use ```--chrome.chromedriverPath``` to set the path to the new version of the ChromeDriver.
 

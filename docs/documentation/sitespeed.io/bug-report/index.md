@@ -52,9 +52,9 @@ If you make your issue reproducible, the issue is the cream of the crop and will
 
 * Search current [GitHub issues](https://github.com/sitespeedio/sitespeed.io/issues). Is this bug reported before? Does it lack info? Please add your own comment to that issue if it is open. If you aren't sure that your bug is the same as the other bug, please create another issue. Do not hijack issues. Do not comment on closed issue, please create a new issue instead and add a reference to the old issue.
 
-* Do you think this is somehow related to Docker (generic Docker issues etc)? Then please [search](https://duckduckgo.com/) for the that problem or head over to [forums.docker.com](https://forums.docker.com/) and have a look there first.
+* Is there a problem with the video or the metrics from the video? Then make sure to enable the full original video so you can share that with us, do that by adding <code>--videoParams.keepOriginalVideo</code> to your run. Look in the *video* folder for that URL and you will see a video named *1-original.mp4*. Please share that video with us, then we can more easily reproduce/understand the problem.
 
-* Is there a problem with the video? Then make sure to enable the full original video so you can share that with us, do that by adding <code>--browsertime.videoParams.keepOriginalVideo</code> to your run (or if you use Browsertime: <code>--videoParams.keepOriginalVideo</code>).
+* Do you think this is somehow related to Docker (generic Docker issues etc)? Then please [search](https://duckduckgo.com/) for the that problem or head over to [forums.docker.com](https://forums.docker.com/) and have a look there first.
 
 * Is your problem related to that you are behind a proxy? Then we kindly recommend that you run your tests without a proxy. Run the tests on a network where you don't need to use a proxy.
 

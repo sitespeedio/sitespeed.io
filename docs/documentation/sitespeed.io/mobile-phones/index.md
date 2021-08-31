@@ -248,7 +248,7 @@ You can run your tests on Safari on iOS.
 
 ### Prerequisites
 
-To be able to test you need latest OS X Catalina on your Mac computer and iOS 13 on your phone (or iPad).
+To be able to test you need latest OS X on your Mac computer and iOS on your phone (or iPad).
 
 #### Desktop
 
@@ -272,17 +272,17 @@ If you have any problems, make sure to read the [WebKit blog post about setting 
 
 ### Run
 
-You are now ready to test using your phone:
+You are now ready to test using your phone (you need to remove the Coach, Safari on iOS has some kind of issue with running large JavaScript blobs, see [#1275](https://github.com/sitespeedio/browsertime/issues/1275)):
 
 ```bash
-sitespeed.io -b safari --safari.ios https://www.sitespeed.io
+sitespeed.io -b safari --safari.ios --plugins.remove coach https://www.sitespeed.io 
 ```
 
 ### Limitations
 At the moment there are a couple of limitations running Safari:
 
 * No HAR file
-* No videos
+* No videos (see the work in [#1598](https://github.com/sitespeedio/browsertime/issues/1598)).
 * No way to set request headers
 * No built in setting connectivity
 
@@ -297,5 +297,23 @@ To run your test you need to sepcify the Safari deviceUDID = choosing what kind 
 
 Then run your test:
 ```bash
-sitespeed.io https://www.sitespeed.io -b safari --safari.useSimulator --safari.device UDID YOUR_DEVICE_ID --video --visualMetrics -c 4g
+sitespeed.io https://www.sitespeed.io -b safari --safari.useSimulator --safari.deviceUDID YOUR_DEVICE_ID --video --visualMetrics -c 4g
 ```
+
+## Test on emulated mobile
+
+You can use desktop browser and emulate mobile browsers. If you use Chrome you can do that easiest with:
+
+```bash
+sitespeed.io https://www.sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "Moto G4"
+```
+
+You can see the list of different device names in Chrome devtools. You can also slow down your CPU with the CPU throttling command:
+
+```bash
+sitespeed.io https://www.sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "Moto G4" --browsertime.chrome.CPUThrottlingRate 6
+```
+
+To find a good throttling rate you can use our [CPU benchmark guide](https://www.sitespeed.io/documentation/sitespeed.io/cpu-benchmark/).
+
+

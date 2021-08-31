@@ -1,0 +1,22 @@
+if pagexray.renderBlocking
+    a#requests-render-blocking
+    h3 Render blocking requests
+    p Render blocking information directly from Chrome.
+    .responsive
+        table(data-sortable, id='contentSizeAfterOnload')
+            +rowHeading(['Blocking', 'In body parser blocking', 'Potentially blocking'])
+            tr
+                +numberCell('blocking', pagexray.renderBlocking.blocking)   
+                +numberCell('in_body_parser_blocking', pagexray.renderBlocking.in_body_parser_blocking)   
+                +numberCell('potentiallyBlocking', pagexray.renderBlocking.potentiallyBlocking)    
+
+    h4 Render information 
+    .responsive
+        table(data-sortable, id='renderBlockingAssets')
+            +rowHeading(['URL', 'Type'])
+            each asset in pagexray.assets
+                if asset.renderBlocking
+                    tr
+                        td.url.assetsurl(data-title='URL')
+                            a(href=asset.url)= h.shortAsset(asset.url)
+                        td(data-title='Render Blocking Type') #{asset.renderBlocking}

@@ -1,5 +1,79 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 19.2.0 - 2021-08-27
+### Added
+* Upgraded to AXE core 4.3.2 [#3441](https://github.com/sitespeedio/sitespeed.io/pull/3441). 
+* Added stddev/median/mean to the metrics side by side page [#3443](https://github.com/sitespeedio/sitespeed.io/pull/3443).
+* Added a generic text that we miss out of many metrics for Safari at the moment [#3442](https://github.com/sitespeedio/sitespeed.io/pull/3442).
+* Add option to add friendly name to junit test cases. Use `--budget.friendlyName` to set that.  Thank you [Vishal](https://github.com/vishallanke) for the request. Done in PR [#3448](https://github.com/sitespeedio/sitespeed.io/pull/3448).
+
+### Fixed
+* Upgrade PerfCascade that catches if an HAR entry is missing content type [#3445](https://github.com/sitespeedio/sitespeed.io/pull/3445).
+
+## 19.1.0 - 2021-08-20
+### Added
+* You can now see curated metrics side by side for all runs [#3439](https://github.com/sitespeedio/sitespeed.io/pull/3439).
+*  The WebPageTest plugin is using the latest (0.5.0) version of the WebPageTest API.
+### Fixed
+* Upgraded to [Browsertime 14.0.2](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1402---2021-08-20).
+
+## 19.0.0 - 2021-08-13
+### Changed
+* Updated to [Browsertime 14.0.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1401---2021-08-12). The new 14 version uses Throttle 3.0 that has change if you use it on Mac OS: Updated Throttle 3.0 that do not set throttling on localhost by default on Mac OS. If you run test against a local server or use WebPageReplay on a Mac, you should add `--browsertime.connectivity.throttle.localhost` to your test and it will work as before.
+
+### Added
+* Updated to Edge 92 and Edgedriver 92 in the Docker container.
+* Updated to Firefox 92 beta in the Docker container to fix the [devtools slowness bug](https://bugzilla.mozilla.org/show_bug.cgi?id=1712983) that was inroduced in Firefox 90. 
+
+## 18.0.1 - 2021-07-29
+### Fixed
+* Updated to [Browsertime 13.1.4](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1314---2021-07-28).
+* Added cli parameter for keeping the original video `--videoParams.keepOriginalVideo`. The functionalty already exists but it wasn't exposed in sitespeed.io [#3430](https://github.com/sitespeedio/sitespeed.io/pull/3430).
+* The GPSI-plugin has a fix to catch when first input delay data is missing.
+* Fix broken tags for InfluxDB when you get Crux data from the GPSI-plugin. [#3429](https://github.com/sitespeedio/sitespeed.io/pull/3429). Data from the plugin has a testType tag that can have the following values: googleWebVitals, score or crux. Crux data has two more tags: metric and experience.
+
+## 18.0.0 - 2021-07-26
+### Breaking changes
+* Drop support for NodeJS 10.
+* If you use Chrome the `--chrome.timeline` is now true by default (you can remove that from your configuration).
+
+### Added
+* Updated the Docker container to use Chrome 92.
+* Updated to [Browsertime 13.1.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1300---2021-07-22) (that uses Chromedriver 92).
+* Updated to latest PerfCascade so that the waterfall highlights which request that is the largest contentful paint (if its an image) and show render blocking info (if you use Chrome) [#3407](https://github.com/sitespeedio/sitespeed.io/pull/3407). You can checkout the [documentation](https://www.sitespeed.io/documentation/sitespeed.io/browsers/#render-blocking-information) about where to see the render blocking information.
+* Show render blocking info in the Page Xray section [#3246](https://github.com/sitespeedio/sitespeed.io/pull/3426).
+
+### Fixed
+* Updated to Coach core 6.4.3
+## 17.10.0 - 2021-07-16
+### Added
+* The Docker containers now contains Firefox 89 again. It seems like there's something with 90 that increase First Visual Change, especially when running in Docker. See [https://phabricator.wikimedia.org/T286761](https://phabricator.wikimedia.org/T286761) and [https://bugzilla.mozilla.org/show_bug.cgi?id=1720843](https://bugzilla.mozilla.org/show_bug.cgi?id=1720843).
+
+## 17.9.0 - 2021-07-16
+
+### Added
+* Updated to [Browsertime 12.11.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#12110---2021-07-15).
+* Updated to Firefox 90 in the browser container [#3420](https://github.com/sitespeedio/sitespeed.io/pull/3420).
+* Update to AXE-core 4.2.3 [#3417](https://github.com/sitespeedio/sitespeed.io/pull/3417).
+* Added support for Firefox memory report, turn it on with `--firefox.memoryReport` [#3416](https://github.com/sitespeedio/sitespeed.io/pull/3416)
+* The +1 container has been updated to use Lightouse 8.1.0.
+## 17.8.3 - 2021-07-06
+### Fixed
+* Updated to [Coach-core 6.4.2](https://github.com/sitespeedio/coach-core/blob/v6.4.2/CHANGELOG.md#642---2021-07-05).
+* Updated to [Browsertime 12.10.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#12100---2021-07-05).
+
+## 17.8.2 - 2021-06-27
+### Fixed
+* Keep selected tab open across runs. Thank you [Tanishq](https://github.com/amtanq) for PR [#3409](https://github.com/sitespeedio/sitespeed.io/pull/3409).
+* Update Docker container to use NodeJS 14.7.1.
+* Upgraded to [Browsertime 12.9.3](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1293---2021-06-24).
+* Updated [Coach-core](https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#641---2021-06-23): Use all headers for Wappalyzer (before only the main document was used) 
+
+## 17.8.1 - 2021-06-10
+### Fixed
+* Updated Browsertime to [12.9.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1291---2021-06-09) that fixes the problem with running Safari on iOS. However there are still one bug/problem that needs to be fixed with Safari on iOS: recording a video do not work.
+
+* The docker-compose file now uses Grafana 8.0.0
 ## 17.8.0 - 2021-06-04
 ### Added
 * New [Browsertime 12.9.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1290---2021-06-04) that updates Cumulative Layout Shift to the [new defintion](https://web.dev/evolving-cls/).
