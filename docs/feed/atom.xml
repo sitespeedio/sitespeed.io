@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-08-27T10:54:44.551Z</updated>
+    <updated>2021-08-31T17:53:30.654Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,22 +17,22 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 19.2.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#19.2.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2021-08-27T10:54:44.551Z</updated>
-        <summary type="html"><![CDATA[ Upgraded to AXE core 4.3.2 #3441. Added stddev/median/mean to the metrics side by side page #3443. Added a generic text that we miss out of many metrics for Safari at the moment #3442. Add option to add friendly name to junit test cases. Use --budget.friendlyName to set that.  Thank you Vishal for the request. Done in PR #3448. Upgrade PerfCascade that catches if an HAR entry is missing content type #3445.]]></summary>
+        <title type="html"><![CDATA[browsertime 14.0.3]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.0.3</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
+        <updated>2021-08-31T17:53:30.654Z</updated>
+        <summary type="html"><![CDATA[ Catch if Chrome is missing FCP #1627. Better error message if we have a Chrome/Chromedriver miss match #1628. Make sure only one trace listener is created for Chrome when we get a trace #1629.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[browsertime 14.0.2]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.0.2</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2021-08-19T23:12:29.771Z</updated>
-        <summary type="html"><![CDATA[ Removed that annoying extra line break in the log output #1626. TTFB was reported as a string instead of a number in the JSON output #1625.]]></summary>
+        <title type="html"><![CDATA[sitespeed.io 19.2.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#19.2.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
+        <updated>2021-08-27T10:54:44.551Z</updated>
+        <summary type="html"><![CDATA[ Upgraded to AXE core 4.3.2 #3441. Added stddev/median/mean to the metrics side by side page #3443. Added a generic text that we miss out of many metrics for Safari at the moment #3442. Add option to add friendly name to junit test cases. Use --budget.friendlyName to set that.  Thank you Vishal for the request. Done in PR #3448. Upgrade PerfCascade that catches if an HAR entry is missing content type #3445.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>

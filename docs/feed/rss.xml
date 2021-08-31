@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Fri, 27 Aug 2021 10:54:44 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 31 Aug 2021 17:53:30 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,20 +17,20 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[browsertime 14.0.3]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.0.3</guid>
+            <pubDate>Tue, 31 Aug 2021 17:53:30 GMT</pubDate>
+            <description><![CDATA[ Catch if Chrome is missing FCP #1627. Better error message if we have a Chrome/Chromedriver miss match #1628. Make sure only one trace listener is created for Chrome when we get a trace #1629.]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 19.2.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#19.2.0</guid>
             <pubDate>Fri, 27 Aug 2021 10:54:44 GMT</pubDate>
             <description><![CDATA[ Upgraded to AXE core 4.3.2 #3441. Added stddev/median/mean to the metrics side by side page #3443. Added a generic text that we miss out of many metrics for Safari at the moment #3442. Add option to add friendly name to junit test cases. Use --budget.friendlyName to set that.  Thank you Vishal for the request. Done in PR #3448. Upgrade PerfCascade that catches if an HAR entry is missing content type #3445.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 14.0.2]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.0.2</guid>
-            <pubDate>Thu, 19 Aug 2021 23:12:29 GMT</pubDate>
-            <description><![CDATA[ Removed that annoying extra line break in the log output #1626. TTFB was reported as a string instead of a number in the JSON output #1625.]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[throttle 3.0.0]]></title>
