@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+### Fixed
+* Upgraded to [Browsertime 14.0.3](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1403---2021-08-31)
+
 ## 19.2.0 - 2021-08-27
 ### Added
 * Upgraded to AXE core 4.3.2 [#3441](https://github.com/sitespeedio/sitespeed.io/pull/3441). 
