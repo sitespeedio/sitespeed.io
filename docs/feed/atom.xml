@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-08-31T17:53:30.654Z</updated>
+    <updated>2021-09-01T11:54:47.705Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,22 +17,22 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[browsertime 14.0.3]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.0.3</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2021-08-31T17:53:30.654Z</updated>
-        <summary type="html"><![CDATA[ Updated to Chromedriver 93 and added Chrome 93 in the Docker container #1630.]]></summary>
+        <title type="html"><![CDATA[sitespeed.io 19.3.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#19.3.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
+        <updated>2021-09-01T11:54:47.705Z</updated>
+        <summary type="html"><![CDATA[ Upgraded to Browsertime 14.1.0 with Chromedriver 93. Added Chrome 93 in the Docker container. Upgraded to Browsertime 14.0.3.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 19.2.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#19.2.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2021-08-27T10:54:44.551Z</updated>
-        <summary type="html"><![CDATA[ Upgraded to AXE core 4.3.2 #3441. Added stddev/median/mean to the metrics side by side page #3443. Added a generic text that we miss out of many metrics for Safari at the moment #3442. Add option to add friendly name to junit test cases. Use --budget.friendlyName to set that.  Thank you Vishal for the request. Done in PR #3448. Upgrade PerfCascade that catches if an HAR entry is missing content type #3445.]]></summary>
+        <title type="html"><![CDATA[browsertime 14.1.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.1.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
+        <updated>2021-09-01T06:39:34.366Z</updated>
+        <summary type="html"><![CDATA[ Updated to Chromedriver 93 and added Chrome 93 in the Docker container #1630.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
