@@ -21,7 +21,7 @@
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.0.3</guid>
             <pubDate>Tue, 31 Aug 2021 17:53:30 GMT</pubDate>
-            <description><![CDATA[ Catch if Chrome is missing FCP #1627. Better error message if we have a Chrome/Chromedriver miss match #1628. Make sure only one trace listener is created for Chrome when we get a trace #1629.]]></description>
+            <description><![CDATA[ Updated to Chromedriver 93 and added Chrome 93 in the Docker container #1630.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>

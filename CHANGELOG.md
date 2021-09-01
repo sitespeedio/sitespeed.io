@@ -4,6 +4,10 @@
 ### Fixed
 * Upgraded to [Browsertime 14.0.3](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1403---2021-08-31)
 
+### Added
+* Upgraded to [Browsertime 14.1.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1410---2021-09-01) with Chromedriver 93.
+* Added Chrome 93 in the Docker container.
+
 ## 19.2.0 - 2021-08-27
 ### Added
 * Upgraded to AXE core 4.3.2 [#3441](https://github.com/sitespeedio/sitespeed.io/pull/3441). 
