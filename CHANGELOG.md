@@ -1,5 +1,12 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+
+### Added
+* Add option to ignore robots.txt when crawling. Use `--crawler.ignoreRobotsTxt true` to ignore. Thank you [dammg](https://github.com/dammg) for PR [#3454](https://github.com/sitespeedio/sitespeed.io/pull/3454)!
+### Fixed
+* If generating a HTML file failed, all generation failed. This fixes that and continue with the next file [#3453](https://github.com/sitespeedio/sitespeed.io/pull/3453).
+
 ##  19.3.0 - 2021-09-01
 ### Added
 * Upgraded to [Browsertime 14.1.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1410---2021-09-01) with Chromedriver 93.
