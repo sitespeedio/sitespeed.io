@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Wed, 01 Sep 2021 11:54:47 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 04 Sep 2021 13:13:41 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,20 +17,20 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[browsertime 14.2.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.2.0</guid>
+            <pubDate>Sat, 04 Sep 2021 13:13:41 GMT</pubDate>
+            <description><![CDATA[ Updated to Selenium 4.0.0-RC1 #1631. Somehow Throttle has been degraded, with this fix we are back to using 3.0.0.]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 19.3.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#19.3.0</guid>
             <pubDate>Wed, 01 Sep 2021 11:54:47 GMT</pubDate>
             <description><![CDATA[ Upgraded to Browsertime 14.1.0 with Chromedriver 93. Added Chrome 93 in the Docker container. Upgraded to Browsertime 14.0.3.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 14.1.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.1.0</guid>
-            <pubDate>Wed, 01 Sep 2021 06:39:34 GMT</pubDate>
-            <description><![CDATA[ Updated to Chromedriver 93 and added Chrome 93 in the Docker container #1630.]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[throttle 3.0.0]]></title>

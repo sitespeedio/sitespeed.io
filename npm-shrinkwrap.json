@@ -67,9 +67,9 @@
       "dev": true
     },
     "@babel/runtime": {
-      "version": "7.15.3",
-      "resolved": "https://registry.npmjs.org/@babel/runtime/-/runtime-7.15.3.tgz",
-      "integrity": "sha512-OvwMLqNXkCXSz1kSm58sEsNuhqOx/fKpnUnKnFB5v8uDda5bLNEHNgKPvhDN6IU0LDcnHQ90LlJ0Q6jnyBSIBA==",
+      "version": "7.15.4",
+      "resolved": "https://registry.npmjs.org/@babel/runtime/-/runtime-7.15.4.tgz",
+      "integrity": "sha512-99catp6bHCaxr4sJ/DbTGgHS4+Rs2RVd2g7iOap6SLGPDknRK9ztKNsE/Fg6QhSeh1FGE5f6gHGQmvvn3I3xhw==",
       "optional": true,
       "requires": {
         "regenerator-runtime": "^0.13.4"
@@ -644,9 +644,9 @@
       }
     },
     "@sitespeed.io/throttle": {
-      "version": "2.1.1",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/throttle/-/throttle-2.1.1.tgz",
-      "integrity": "sha512-7k4PJj3+YZ6DKGQbsLTsrsVw+lW5Rsg/fMFTcBsM0lyJn17TY/RIBzUOusK7+eyFtoIddZpvimyNxUaKqfv0rQ==",
+      "version": "3.0.0",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/throttle/-/throttle-3.0.0.tgz",
+      "integrity": "sha512-tTAnBaoMwtdECY6SYno/OSRnzZsazg63zesRNBxQXkpDG+1FU1FTXLJQx6/2SkKJo6WvrELp8XhoUIV9SQvlCg==",
       "requires": {
         "minimist": "1.2.5"
       }
@@ -1047,16 +1047,16 @@
       }
     },
     "browsertime": {
-      "version": "14.1.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-14.1.0.tgz",
-      "integrity": "sha512-em7W/h7WLE0RkKPOfZY1/nzoAV8ygl4VLwClh+BYJs7eKt9KHgpnb9rkGHZm36KBtb5iOJ9VBmhxQuriOAycHg==",
+      "version": "14.2.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-14.2.0.tgz",
+      "integrity": "sha512-H50IWCGaEsyAa0gddr/KpEP4gy7IEdt2bm+GenJW6qGw+YXXjyB4WlsZ/Oy6J+YCkBYUfXQc5WEsss4wSIHc1g==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",
         "@sitespeed.io/chromedriver": "93.0.4577-15",
         "@sitespeed.io/edgedriver": "92.0.902-62",
         "@sitespeed.io/geckodriver": "0.29.1",
-        "@sitespeed.io/throttle": "2.1.1",
+        "@sitespeed.io/throttle": "3.0.0",
         "@sitespeed.io/tracium": "0.3.3",
         "btoa": "1.2.1",
         "chrome-har": "0.11.12",
@@ -1075,7 +1075,7 @@
         "lodash.merge": "4.6.2",
         "lodash.pick": "4.4.0",
         "lodash.set": "4.3.2",
-        "selenium-webdriver": "4.0.0-beta.4",
+        "selenium-webdriver": "4.0.0-rc-1",
         "speedline-core": "1.4.3",
         "yargs": "17.0.1"
       },
@@ -5165,9 +5165,9 @@
       "integrity": "sha1-e45lYZCyKOgaZq6nSEgNgozS03o="
     },
     "selenium-webdriver": {
-      "version": "4.0.0-beta.4",
-      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.0.0-beta.4.tgz",
-      "integrity": "sha512-+s/CIYkWzmnC9WASBxxVj7Lm0dcyl6OaFxwIJaFCT5WCuACiimEEr4lUnOOFP/QlKfkDQ56m+aRczaq2EvJEJg==",
+      "version": "4.0.0-rc-1",
+      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.0.0-rc-1.tgz",
+      "integrity": "sha512-bcrwFPRax8fifRP60p7xkWDGSJJoMkPAzufMlk5K2NyLPht/YZzR2WcIk1+3gR8VOCLlst1P2PI+MXACaFzpIw==",
       "requires": {
         "jszip": "^3.6.0",
         "rimraf": "^3.0.2",
