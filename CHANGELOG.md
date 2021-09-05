@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 19.4.0 - 2021-09-05
 
 ### Added
 * Add option to ignore robots.txt when crawling. Use `--crawler.ignoreRobotsTxt true` to ignore. Thank you [dammg](https://github.com/dammg) for PR [#3454](https://github.com/sitespeedio/sitespeed.io/pull/3454)!
