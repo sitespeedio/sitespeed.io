@@ -121,10 +121,11 @@ proxy
       --browsertime.proxy.https, --proxy.https  Https proxy (host:port)  [string]
 
 Crawler
-  -d, --crawler.depth     How deep to crawl (1=only one page, 2=include links from first page, etc.)
-  -m, --crawler.maxPages  The max number of pages to test. Default is no limit.
-      --crawler.exclude   Exclude URLs matching the provided regular expression (ex: "/some/path/", "://some\.domain/"). Can be provided multiple times.
-      --crawler.include   Discard URLs not matching the provided regular expression (ex: "/some/path/", "://some\.domain/"). Can be provided multiple times.
+  -d, --crawler.depth            How deep to crawl (1=only one page, 2=include links from first page, etc.)
+  -m, --crawler.maxPages         The max number of pages to test. Default is no limit.
+      --crawler.exclude          Exclude URLs matching the provided regular expression (ex: "/some/path/", "://some\.domain/"). Can be provided multiple times.
+      --crawler.include          Discard URLs not matching the provided regular expression (ex: "/some/path/", "://some\.domain/"). Can be provided multiple times.
+      --crawler.ignoreRobotsTxt  Ignore robots.txt rules of the crawled domain.  [boolean] [default: false]
 
 Grafana
       --grafana.host                  The Grafana host used when sending annotations.
