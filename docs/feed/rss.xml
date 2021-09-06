@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Sun, 05 Sep 2021 19:40:21 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 06 Sep 2021 06:25:42 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,19 +17,19 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[sitespeed.io 19.4.0]]></title>
+            <title><![CDATA[sitespeed.io 19.4.1]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#19.4.0</guid>
-            <pubDate>Sun, 05 Sep 2021 19:40:21 GMT</pubDate>
-            <description><![CDATA[ Add option to ignore robots.txt when crawling. Use --crawler.ignoreRobotsTxt true to ignore. Thank you dammg for PR #3454! Updated to Browsertime 14.2.0. If generating a HTML file failed, all generation failed. This fixes that and continue with the next file #3453.]]></description>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#19.4.1</guid>
+            <pubDate>Mon, 06 Sep 2021 06:25:42 GMT</pubDate>
+            <description><![CDATA[ Updated to Browsertime 14.2.1. Updated to AXE 4.3.3]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 14.2.0]]></title>
+            <title><![CDATA[browsertime 14.2.1]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.2.0</guid>
-            <pubDate>Sat, 04 Sep 2021 13:13:41 GMT</pubDate>
-            <description><![CDATA[ Updated to Selenium 4.0.0-RC1 #1631. Somehow Throttle has been degraded, with this fix we are back to using 3.0.0.]]></description>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.2.1</guid>
+            <pubDate>Mon, 06 Sep 2021 06:07:03 GMT</pubDate>
+            <description><![CDATA[ Updated Geckodriver dependency that uses a newer version of the tar-package.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
