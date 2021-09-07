@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+* Updated the Docker container to use Firefox 92 (instead of beta 92)
+* Updated the base Docker container to use a newer updated version of Ubuntu 20.04.
 ## 19.4.1 - 2021-09-06
 ### Fixed
 * Updated to [Browsertime 14.2.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1421---2021-09-06).
