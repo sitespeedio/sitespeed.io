@@ -1,4 +1,4 @@
-name: Docker scan
+name: Docker security scan
 on:
   push:
     branches:
