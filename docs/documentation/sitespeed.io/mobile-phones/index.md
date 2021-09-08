@@ -297,5 +297,23 @@ To run your test you need to sepcify the Safari deviceUDID = choosing what kind 
 
 Then run your test:
 ```bash
-sitespeed.io https://www.sitespeed.io -b safari --safari.useSimulator --safari.device UDID YOUR_DEVICE_ID --video --visualMetrics -c 4g
+sitespeed.io https://www.sitespeed.io -b safari --safari.useSimulator --safari.deviceUDID YOUR_DEVICE_ID --video --visualMetrics -c 4g
 ```
+
+## Test on emulated mobile
+
+You can use desktop browser and emulate mobile browsers. If you use Chrome you can do that easiest with:
+
+```bash
+sitespeed.io https://www.sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "Moto G4"
+```
+
+You can see the list of different device names in Chrome devtools. You can also slow down your CPU with the CPU throttling command:
+
+```bash
+sitespeed.io https://www.sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "Moto G4" --browsertime.chrome.CPUThrottlingRate 6
+```
+
+To find a good throttling rate you can use our [CPU benchmark guide](https://www.sitespeed.io/documentation/sitespeed.io/cpu-benchmark/).
+
+

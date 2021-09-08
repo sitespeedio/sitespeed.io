@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-08-13T08:22:52.889Z</updated>
+    <updated>2021-09-07T23:54:59.980Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,22 +17,22 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 19.0.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#19.0.0</id>
+        <title type="html"><![CDATA[sitespeed.io 19.4.2]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#19.4.2</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2021-08-13T08:22:52.889Z</updated>
-        <summary type="html"><![CDATA[ Updated to Edge 92 and Edgedriver 92 in the Docker container. Updated to Firefox 92 beta in the Docker container to fix the devtools slowness bug that was inroduced in Firefox 90. Updated to Browsertime 14.0.1. The new 14 version uses Throttle 3.0 that has change if you use it on Mac OS: Updated Throttle 3.0 that do not set throttling on localhost by default on Mac OS. If you run test against a local server or use WebPageReplay on a Mac, you should add --browsertime.connectivity.throttle.localhost to your test and it will work as before.]]></summary>
+        <updated>2021-09-07T23:54:59.980Z</updated>
+        <summary type="html"><![CDATA[ Updated the Docker container to use Firefox 92 (instead of beta 92) Updated the base Docker container to use a newer updated version of Ubuntu 20.04. See #3456.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[browsertime 14.0.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.0.1</id>
+        <title type="html"><![CDATA[browsertime 14.2.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.2.1</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2021-08-12T20:55:42.732Z</updated>
-        <summary type="html"><![CDATA[ More tuning to exclude the top browser bar when calculating visual metrics that fixes too early first visual change when testing emulated mobile using Chrome in Linux #1623.]]></summary>
+        <updated>2021-09-06T06:07:03.063Z</updated>
+        <summary type="html"><![CDATA[ Updated Geckodriver dependency that uses a newer version of the tar-package.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>

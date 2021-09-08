@@ -90,13 +90,14 @@ Here's an example on how to install on Ubuntu 20.04.
     * `sudo apt-get install -y  python-is-python3 python3-dev python3-pip`  
     * `python -m pip install pyssim`
 4. Install xvfb: `sudo apt-get install -y xvfb`
-5. Create a user that you will use to run sitespeed.io and switch to that user:
+5. Install ip and route for network throttling to work: `sudo apt-get install -y net-tools`
+6. Create a user that you will use to run sitespeed.io and switch to that user:
     * `adduser sitespeedio`
     * `usermod -aG sudo sitespeedio`
     * `su - sitespeedio`
-6. Make sure that user can use sudo without password: `echo "${USER} ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/sitespeedio"`
-7. Make sure you can install using *npm* without using sudo. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
-8. Install sitespeed.io `EDGEDRIVER_VERSION=89.0.723.0 npm install sitespeed.io -g`
+7. Make sure that user can use sudo without password: `echo "${USER} ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/sitespeedio"`
+8. Make sure you can install using *npm* without using sudo. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
+9. Install sitespeed.io `EDGEDRIVER_VERSION=89.0.723.0 npm install sitespeed.io -g`
 
 Before you start your testing you need to install a browser. Here's how you can install Chrome.
 

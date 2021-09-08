@@ -1,5 +1,45 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 19.4.2 - 2021-09-08
+### Fixed
+* Updated the Docker container to use Firefox 92 (instead of beta 92)
+* Updated the base Docker container to use a newer updated version of Ubuntu 20.04. See [#3456](https://github.com/sitespeedio/sitespeed.io/issues/3456).
+## 19.4.1 - 2021-09-06
+### Fixed
+* Updated to [Browsertime 14.2.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1421---2021-09-06).
+* Updated to AXE 4.3.3
+## 19.4.0 - 2021-09-05
+
+### Added
+* Add option to ignore robots.txt when crawling. Use `--crawler.ignoreRobotsTxt true` to ignore. Thank you [dammg](https://github.com/dammg) for PR [#3454](https://github.com/sitespeedio/sitespeed.io/pull/3454)!
+* Updated to [Browsertime 14.2.0](https://github.com/sitespeedio/browsertime/releases/tag/v14.2.0).
+### Fixed
+* If generating a HTML file failed, all generation failed. This fixes that and continue with the next file [#3453](https://github.com/sitespeedio/sitespeed.io/pull/3453).
+
+##  19.3.0 - 2021-09-01
+### Added
+* Upgraded to [Browsertime 14.1.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1410---2021-09-01) with Chromedriver 93.
+* Added Chrome 93 in the Docker container.
+
+### Fixed
+* Upgraded to [Browsertime 14.0.3](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1403---2021-08-31).
+## 19.2.0 - 2021-08-27
+### Added
+* Upgraded to AXE core 4.3.2 [#3441](https://github.com/sitespeedio/sitespeed.io/pull/3441). 
+* Added stddev/median/mean to the metrics side by side page [#3443](https://github.com/sitespeedio/sitespeed.io/pull/3443).
+* Added a generic text that we miss out of many metrics for Safari at the moment [#3442](https://github.com/sitespeedio/sitespeed.io/pull/3442).
+* Add option to add friendly name to junit test cases. Use `--budget.friendlyName` to set that.  Thank you [Vishal](https://github.com/vishallanke) for the request. Done in PR [#3448](https://github.com/sitespeedio/sitespeed.io/pull/3448).
+
+### Fixed
+* Upgrade PerfCascade that catches if an HAR entry is missing content type [#3445](https://github.com/sitespeedio/sitespeed.io/pull/3445).
+
+## 19.1.0 - 2021-08-20
+### Added
+* You can now see curated metrics side by side for all runs [#3439](https://github.com/sitespeedio/sitespeed.io/pull/3439).
+*  The WebPageTest plugin is using the latest (0.5.0) version of the WebPageTest API.
+### Fixed
+* Upgraded to [Browsertime 14.0.2](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1402---2021-08-20).
+
 ## 19.0.0 - 2021-08-13
 ### Changed
 * Updated to [Browsertime 14.0.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1401---2021-08-12). The new 14 version uses Throttle 3.0 that has change if you use it on Mac OS: Updated Throttle 3.0 that do not set throttling on localhost by default on Mac OS. If you run test against a local server or use WebPageReplay on a Mac, you should add `--browsertime.connectivity.throttle.localhost` to your test and it will work as before.
