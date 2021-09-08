@@ -121,10 +121,11 @@ proxy
       --browsertime.proxy.https, --proxy.https  Https proxy (host:port)  [string]
 
 Crawler
-  -d, --crawler.depth     How deep to crawl (1=only one page, 2=include links from first page, etc.)
-  -m, --crawler.maxPages  The max number of pages to test. Default is no limit.
-      --crawler.exclude   Exclude URLs matching the provided regular expression (ex: "/some/path/", "://some\.domain/"). Can be provided multiple times.
-      --crawler.include   Discard URLs not matching the provided regular expression (ex: "/some/path/", "://some\.domain/"). Can be provided multiple times.
+  -d, --crawler.depth            How deep to crawl (1=only one page, 2=include links from first page, etc.)
+  -m, --crawler.maxPages         The max number of pages to test. Default is no limit.
+      --crawler.exclude          Exclude URLs matching the provided regular expression (ex: "/some/path/", "://some\.domain/"). Can be provided multiple times.
+      --crawler.include          Discard URLs not matching the provided regular expression (ex: "/some/path/", "://some\.domain/"). Can be provided multiple times.
+      --crawler.ignoreRobotsTxt  Ignore robots.txt rules of the crawled domain.  [boolean] [default: false]
 
 Grafana
       --grafana.host                  The Grafana host used when sending annotations.
@@ -165,6 +166,7 @@ Budget
       --budget.suppressExitCode                                   By default sitespeed.io returns a failure exit code, if the budget fails. Set this to true and sitespeed.io will return exit code 0 independent of the budget.
       --budget.config                                             The JSON budget config as a string.
       --budget.output                                             The output format of the budget.  [choices: "junit", "tap", "json"]
+      --budget.friendlyName                                       Add a friendly name to the test case. At the moment this is only used in junit.
       --budget.removeWorkingResult, --budget.removePassingResult  Remove the result of URLs that pass the budget. You can use this if you many URL and only care about the ones that fails your budget. All videos/HTML for the working URLs will be removed if you pass this on.  [boolean]
 
 Screenshot

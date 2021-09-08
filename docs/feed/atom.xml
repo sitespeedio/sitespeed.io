@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-08-09T19:47:15.952Z</updated>
+    <updated>2021-09-07T23:54:59.980Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,33 +17,33 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
+        <title type="html"><![CDATA[sitespeed.io 19.4.2]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#19.4.2</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
+        <updated>2021-09-07T23:54:59.980Z</updated>
+        <summary type="html"><![CDATA[ Updated the Docker container to use Firefox 92 (instead of beta 92) Updated the base Docker container to use a newer updated version of Ubuntu 20.04. See #3456.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 14.2.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.2.1</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
+        <updated>2021-09-06T06:07:03.063Z</updated>
+        <summary type="html"><![CDATA[ Updated Geckodriver dependency that uses a newer version of the tar-package.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[throttle 3.0.0]]></title>
         <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.0.0</id>
         <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#"/>
         <updated>2021-08-09T19:47:15.952Z</updated>
         <summary type="html"><![CDATA[ When you run on Mac OS we changed so localhost traffic is not throttled by default. To throttle on localhost use --localhost. This makes sence if you use WebDriver to drive your browser on your local machine. And Mac OS now works the same as Linux.]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 18.0.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#18.0.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2021-07-29T07:53:51.548Z</updated>
-        <summary type="html"><![CDATA[ Updated to Browsertime 13.1.4. Added cli parameter for keeping the original video --videoParams.keepOriginalVideo. The functionalty already exists but it wasn't exposed in sitespeed.io #3430. The GPSI-plugin has a fix to catch when first input delay data is missing. Fix broken tags for InfluxDB when you get Crux data from the GPSI-plugin. #3429. Data from the plugin has a testType tag that can have the following values: googleWebVitals, score or crux. Crux data has two more tags: metric and experience.]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 13.1.4]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#13.1.4</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2021-07-28T14:20:24.023Z</updated>
-        <summary type="html"><![CDATA[ Increased the default URL bar size for visual metrics from 18 pixel to 20 pixel #1619.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>

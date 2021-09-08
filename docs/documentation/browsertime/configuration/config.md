@@ -10,6 +10,7 @@ chrome
       --chrome.args                                              Extra command line arguments to pass to the Chrome process (e.g. --no-sandbox). To add multiple arguments to Chrome, repeat --chrome.args once per argument.
       --chrome.binaryPath                                        Path to custom Chrome binary (e.g. Chrome Canary). On OS X, the path should be to the binary inside the app bundle, e.g. "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary"
       --chrome.chromedriverPath                                  Path to custom ChromeDriver binary. Make sure to use a ChromeDriver version that's compatible with the version of Chrome you're using
+      --chrome.chromedriverPort                                  Specify "--port" args for chromedriver prcocess  [number]
       --chrome.mobileEmulation.deviceName                        Name of device to emulate. Works only standalone (see list in Chrome DevTools, but add phone like 'iPhone 6'). This will override your userAgent string.
       --chrome.mobileEmulation.width                             Width in pixels of emulated mobile screen (e.g. 360)  [number]
       --chrome.mobileEmulation.height                            Height in pixels of emulated mobile screen (e.g. 640)  [number]

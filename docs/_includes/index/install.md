@@ -9,6 +9,8 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 
 If you want to test a user scenario/journey read [how to run test scripts](/documentation/sitespeed.io/scripting/).
 
+If you are new to the project you should watch the tutorial ["Getting started with Sitespeed.io using Docker"](https://www.youtube.com/watch?v=0xAdxCUX2Po).
+
 ## npm
 
 Install sitespeed.io globally:
