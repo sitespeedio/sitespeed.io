@@ -99,7 +99,13 @@ Here's an example on how to install on Ubuntu 20.04.
 8. Make sure you can install using *npm* without using sudo. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
 9. Install sitespeed.io `EDGEDRIVER_VERSION=89.0.723.0 npm install sitespeed.io -g`
 
-Before you start your testing you need to install a browser. Here's how you can install Chrome.
+Before you start your testing you need to install a browser. Here's how you can install Firefox.
+
+~~~bash
+sudo apt install firefox -y
+~~~
+
+And if you want to use Chrome you can install it like this:
 
 ~~~bash
 wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
@@ -108,7 +114,13 @@ sudo apt update
 sudo apt install -y google-chrome-stable
 ~~~
 
-Try it out:
+Try it out with Firefox:
+
+~~~bash
+sitespeed.io --browsertime.xvfb -n 1 -b firefox https://www.sitespeed.io --video --visualMetrics
+~~~
+
+Or with Chrome:
 
 ~~~bash
 sitespeed.io --browsertime.xvfb -n 1 -b chrome https://www.sitespeed.io --video --visualMetrics
