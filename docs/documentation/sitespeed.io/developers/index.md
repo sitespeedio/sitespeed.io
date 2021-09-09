@@ -174,10 +174,6 @@ If you are new to pug you can use [https://html2jade.org](https://html2jade.org)
 
  We love pull requests and before you make a big change or add functionality, please open an issue proposing the change to other contributors so you got feedback on the idea before take the time to write precious code!
 
-#### Committing changes
- * Install Commitizen with npm <code>npm install -g commitizen</code>
- * Then simply use command <code>git cz</code> instead of <code>git commit</code> when committing changes
-
 #### Before you send the pull request
 
 Before you send the PR make sure you:
