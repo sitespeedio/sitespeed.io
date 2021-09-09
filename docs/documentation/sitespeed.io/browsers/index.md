@@ -213,7 +213,7 @@ sitespeed.io --chrome.binaryPath "/Applications/Brave Browser.app/Contents/MacOS
 ~~~
 
 ## Choose when to end your test
-By default the browser will collect data until  [window.performance.timing.loadEventEnd happens + approx 5 seconds more](https://github.com/sitespeedio/browsertime/blob/d68261e554470f7b9df28797502f5edac3ace2e3/lib/core/seleniumRunner.js#L15). That is perfectly fine for most sites, but if you do Ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (```--browsertime.pageCompleteCheck```). When the scripts returns true the browser will close or if the timeout time is reached.
+By default the browser will collect data until  [window.performance.timing.loadEventEnd happens + 2 seconds more](https://github.com/sitespeedio/browsertime/blob/d68261e554470f7b9df28797502f5edac3ace2e3/lib/core/seleniumRunner.js#L15). That is perfectly fine for most sites, but if you do Ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (```--browsertime.pageCompleteCheck```). When the scripts returns true the browser will close or if the timeout time is reached.
 
 In this example we wait 10 seconds until the loadEventEnd happens, but you can also choose to trigger it at a specific event.
 
