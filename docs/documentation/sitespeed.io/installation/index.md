@@ -136,13 +136,13 @@ sudo apt install -y google-chrome-stable
 Try it out with Firefox:
 
 ~~~bash
-sitespeed.io --browsertime.xvfb -n 1 -b firefox https://www.sitespeed.io --video --visualMetrics --xvfb
+sitespeed.io -n 1 -b firefox https://www.sitespeed.io --video --visualMetrics --xvfb
 ~~~
 
 Or with Chrome:
 
 ~~~bash
-sitespeed.io --browsertime.xvfb -n 1 -b chrome https://www.sitespeed.io --video --visualMetrics --xvfb
+sitespeed.io -n 1 -b chrome https://www.sitespeed.io --video --visualMetrics --xvfb
 ~~~
 
 ### Windows
