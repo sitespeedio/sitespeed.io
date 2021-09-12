@@ -86,10 +86,16 @@ If you are using Ubuntu you can use our prebuilt script. It will install all dep
 bash <(curl -sL https://gist.githubusercontent.com/soulgalore/18fbf40670a343fa1cb0606756c90a00/raw/0597438f8e508755dfcbe18271b04b46d8fa389e/install-sitespeed.io-and-dependencies-ubuntu.sh)
 ~~~
 
+If you use Debian you can use (installs Firefox ESR and you might want to upgrade that):
+
+~~~bash
+wget -O - https://gist.githubusercontent.com/soulgalore/2f070b0a150360053f7198a4e9067db1/raw/33fb37e8770103ef535d44d83b6b8cb104ef9142/install-sitespeed.io-and-dependencies-debian.sh | bash
+~~~
+
 When it's finished you can try running sitespeed.io:
 
 ~~~bash
-sitespeed.io https://www.sitespeed.io -n 1 --xvfb -b chrome --video --visualMetrics
+sitespeed.io https://www.sitespeed.io --xvfb -b chrome --video --visualMetrics
 ~~~
 
 You can also install everything manually to have more control. This is what's needed on Ubuntu 20.04:
