@@ -79,7 +79,26 @@ After that you can also install the browsers that you need for your testing: [Ch
 
 ### Linux
 
-Here's an example on how to install on Ubuntu 20.04. 
+
+If you are using Ubuntu you can use our prebuilt script. It will install all dependencies that you need to run sitespeed.io including latest Firefox and Chrome. Use it if you have a new machine or just setup a new cloud instance. It will also create a new user *sitespeedio* that you will use to run sitespeed.io. The script will ask for a new password for that user:
+
+~~~bash
+bash <(curl -sL https://gist.githubusercontent.com/soulgalore/18fbf40670a343fa1cb0606756c90a00/raw/0597438f8e508755dfcbe18271b04b46d8fa389e/install-sitespeed.io-and-dependencies-ubuntu.sh)
+~~~
+
+If you use Debian you can use (installs Firefox ESR and you might want to upgrade that):
+
+~~~bash
+wget -O - https://gist.githubusercontent.com/soulgalore/2f070b0a150360053f7198a4e9067db1/raw/33fb37e8770103ef535d44d83b6b8cb104ef9142/install-sitespeed.io-and-dependencies-debian.sh | bash
+~~~
+
+When it's finished you can try running sitespeed.io:
+
+~~~bash
+sitespeed.io https://www.sitespeed.io --xvfb -b chrome --video --visualMetrics
+~~~
+
+You can also install everything manually to have more control. This is what's needed on Ubuntu 20.04:
 
 1. [Install NodeJS LTS ](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04)
     * `curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh`
@@ -90,16 +109,22 @@ Here's an example on how to install on Ubuntu 20.04.
     * `sudo apt-get install -y  python-is-python3 python3-dev python3-pip`  
     * `python -m pip install pyssim`
 4. Install xvfb: `sudo apt-get install -y xvfb`
-5. Install ip and route for network throttling to work: `sudo apt-get install -y net-tools`
+5. Install ip and route for network throttling to work: `sudo apt-get install -y net-tools iproute2`
 6. Create a user that you will use to run sitespeed.io and switch to that user:
     * `adduser sitespeedio`
     * `usermod -aG sudo sitespeedio`
     * `su - sitespeedio`
-7. Make sure that user can use sudo without password: `echo "${USER} ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/sitespeedio"`
+7. Make sure that user can use sudo without password: `echo "sitespeedio ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/sitespeedio"`
 8. Make sure you can install using *npm* without using sudo. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
 9. Install sitespeed.io `EDGEDRIVER_VERSION=89.0.723.0 npm install sitespeed.io -g`
 
-Before you start your testing you need to install a browser. Here's how you can install Chrome.
+Before you start your testing you need to install a browser. Here's how you can install Firefox.
+
+~~~bash
+sudo apt install firefox -y
+~~~
+
+And if you want to use Chrome you can install it like this:
 
 ~~~bash
 wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
@@ -108,10 +133,16 @@ sudo apt update
 sudo apt install -y google-chrome-stable
 ~~~
 
-Try it out:
+Try it out with Firefox:
 
 ~~~bash
-sitespeed.io --browsertime.xvfb -n 1 -b chrome https://www.sitespeed.io --video --visualMetrics
+sitespeed.io -n 1 -b firefox https://www.sitespeed.io --video --visualMetrics --xvfb
+~~~
+
+Or with Chrome:
+
+~~~bash
+sitespeed.io -n 1 -b chrome https://www.sitespeed.io --video --visualMetrics --xvfb
 ~~~
 
 ### Windows

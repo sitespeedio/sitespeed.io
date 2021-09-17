@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+### Added
+* Updated to Edge 93 in the Docker container
+* Updated to Browsertime 14.3.0.
+
 ## 19.4.2 - 2021-09-08
 ### Fixed
 * Updated the Docker container to use Firefox 92 (instead of beta 92)
