@@ -119,3 +119,9 @@ If you have multiple phones attached you probably want to run on a specific phon
 ```bash
 ANDROID=true DEVICE_SERIAL=ZY322GXR4B ./replay.sh --config android.json https://www.sitespeed.io -n 1 -b firefox
 ```
+
+If you want to slow down your test, you can add latency on your localhost that serves the web page. 
+
+```bash
+ANDROID=true ./replay.sh --config android.json --browsertime.connectivity.engine throttle --browsertime.connectivity.throttle.localhost true --browsertime.connectivity.profile custom --browsertime.connectivity.rtt 100 https://www.sitespeed.io
+```
