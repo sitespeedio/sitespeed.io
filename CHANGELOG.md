@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 19.6.0 - 2021-09-23
 ### Added
 * Updated to Chrome 94 in the Docker container.
 * Upgraded to [Browsertime 14.4.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1440---2021-09-22) that included Chromedriver 94.
