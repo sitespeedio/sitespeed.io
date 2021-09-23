@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-09-17T04:08:54.331Z</updated>
+    <updated>2021-09-23T12:01:08.443Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,22 +17,22 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 19.5.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#19.5.0</id>
+        <title type="html"><![CDATA[sitespeed.io 19.6.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#19.6.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2021-09-17T04:08:54.331Z</updated>
-        <summary type="html"><![CDATA[ Updated to Edge 93 in the Docker container. Updated to Browsertime 14.3.0. Updated WebPageReplay to new version #3642.]]></summary>
+        <updated>2021-09-23T12:01:08.443Z</updated>
+        <summary type="html"><![CDATA[ Updated to Chrome 94 in the Docker container. Upgraded to Browsertime 14.4.0 that included Chromedriver 94.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[browsertime 14.3.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.3.0</id>
+        <title type="html"><![CDATA[browsertime 14.4.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.4.0</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2021-09-16T20:31:31.643Z</updated>
-        <summary type="html"><![CDATA[ Update to Edgedriver 93. Update to Edge 93 in the Docker container #1641. Updated to a new fresh WebPageReplay version in the Docker container #1635 Enabling verbose logging (-vv and higher) with Chrome, broke tests. Fixed in #1640.]]></summary>
+        <updated>2021-09-22T20:15:08.247Z</updated>
+        <summary type="html"><![CDATA[ Updated to Chromedriver 94 and Chrome 94 in the Docker container #1643.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
