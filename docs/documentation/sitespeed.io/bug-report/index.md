@@ -37,6 +37,7 @@ The best way to make sure we can fix your issue, is to make sure we can reproduc
 To help us reproduce your problem there are a couple of things we need:
 
 * Show us exactly how you run your tests (all parameters, all configuration). Mask out any passwords. But please do not leave out things from the configuration!
+* If you run [scripting to measure a user journey](https://www.sitespeed.io/documentation/sitespeed.io/scripting/) please please please include the script so we can run it the same way you run it! That will make it possible for us to reproduce your issue and help us a lot!
 * Include the URL that causes the problem. If the URL isn't public, please try to reproduce the problem on another URL that we can test. If the URL is super secret, you can share that to us in an email (write it in the issue and you can get the address). But we prefer public URLs so others also can reproduce the problem.
 * Include the log output from your run. Please do not take a screenshot of the log, instead share the log as text either in the issue or in a [gist](https://gist.github.com/). 
 * Give us the exact version of sitespeed.io you are using (so we know we use the same version when we try to reproduce it).
