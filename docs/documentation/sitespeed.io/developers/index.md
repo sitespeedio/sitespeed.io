@@ -125,7 +125,7 @@ On your local machine you need:
 
 - [Install NodeJS](https://nodejs.org/en/download/) latest LTS version.
 - You need Git and fork [sitespeed.io](https://github.com/sitespeedio/sitespeed.io) and clone the forked repository.
-- Install Chrome/Firefox
+- Install Chrome/Firefox/Edge
 - Go to the cloned directory and run <code>npm install</code>
 - You are ready to go! To run locally: <code>bin/sitespeed.js https://www.sitespeed.io -n 1</code>
 - You can change the log level by adding the verbose flag. Verbose mode prints progress messages to the console. Enter up to three times (-vvv) to increase the level of detail: <code>bin/sitespeed.io https://www.sitespeed.io -n 1 -v</code>
@@ -174,10 +174,6 @@ If you are new to pug you can use [https://html2jade.org](https://html2jade.org)
 
  We love pull requests and before you make a big change or add functionality, please open an issue proposing the change to other contributors so you got feedback on the idea before take the time to write precious code!
 
-#### Committing changes
- * Install Commitizen with npm <code>npm install -g commitizen</code>
- * Then simply use command <code>git cz</code> instead of <code>git commit</code> when committing changes
-
 #### Before you send the pull request
 
 Before you send the PR make sure you:
@@ -185,6 +181,13 @@ Before you send the PR make sure you:
  * Make sure your code follow our lint rule by running: <code>npm run lint</code> and use <code>npm run lint:fix</code> if you have any breaking rules
  * Make sure your code don't break any tests: <code>npm test</code>
  * Update the documentation [https://github.com/sitespeedio/sitespeed.io/tree/main/docs](https://github.com/sitespeedio/sitespeed.io/tree/main/docs) in another pull request. When we merge the PR the documentation will automatically be updated so we do that when we push the next release
+
+### Debug metrics 
+Sometimes you want to verify that the metrics are correct, how do you do that?
+#### Visual metrics
+The best to verify that visual metrics are correct are to look at the film strip view and verify that the metrics correlate to the filmstrip. Through the years browsers has changed the URL bar or added some small infoboxes at the bottom of the browser window that affect visual metrics. You can easily see if those are picked up by looking at the filmstrip.
+
+If you don't have the filmstrip you can compare first visual change from visual metrics with first contentful paint, they usually match pretty good.
 
 ### Do a sitespeed.io release
 When you become a member of the sitespeed.io team you can push releases. You do that by running the release bash script in root: <code>./release.sh</code>

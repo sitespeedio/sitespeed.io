@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Tue, 07 Sep 2021 23:54:59 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 23 Sep 2021 12:01:08 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,19 +17,19 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[sitespeed.io 19.4.2]]></title>
+            <title><![CDATA[sitespeed.io 19.6.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#19.4.2</guid>
-            <pubDate>Tue, 07 Sep 2021 23:54:59 GMT</pubDate>
-            <description><![CDATA[ Updated the Docker container to use Firefox 92 (instead of beta 92) Updated the base Docker container to use a newer updated version of Ubuntu 20.04. See #3456.]]></description>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#19.6.0</guid>
+            <pubDate>Thu, 23 Sep 2021 12:01:08 GMT</pubDate>
+            <description><![CDATA[ Updated to Chrome 94 in the Docker container. Upgraded to Browsertime 14.4.0 that included Chromedriver 94.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 14.2.1]]></title>
+            <title><![CDATA[browsertime 14.4.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.2.1</guid>
-            <pubDate>Mon, 06 Sep 2021 06:07:03 GMT</pubDate>
-            <description><![CDATA[ Updated Geckodriver dependency that uses a newer version of the tar-package.]]></description>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.4.0</guid>
+            <pubDate>Wed, 22 Sep 2021 20:15:08 GMT</pubDate>
+            <description><![CDATA[ Updated to Chromedriver 94 and Chrome 94 in the Docker container #1643.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
