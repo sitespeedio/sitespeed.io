@@ -1,9 +1,14 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 19.6.0 - 2021-09-23
 ### Added
-* Updated to Edge 93 in the Docker container
-* Updated to Browsertime 14.3.0.
+* Updated to Chrome 94 in the Docker container.
+* Upgraded to [Browsertime 14.4.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1440---2021-09-22) that included Chromedriver 94.
+## 19.5.0 - 2021-09-17
+### Added
+* Updated to Edge 93 in the Docker container.
+* Updated to [Browsertime 14.3.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1430---2021-09-16).
+* Updated WebPageReplay to new version [#3642](https://github.com/sitespeedio/sitespeed.io/pull/3462).
 
 ## 19.4.2 - 2021-09-08
 ### Fixed
