@@ -5,6 +5,8 @@
 ### Changed
 * Set throttle as default connectivity engine if you use Mac or Linux [#3433](https://github.com/sitespeedio/sitespeed.io/pull/3433).
 * Set slug by default to true fro Graphite [#3434](https://github.com/sitespeedio/sitespeed.io/pull/3434). See https://www.sitespeed.io/documentation/sitespeed.io/graphite/#upgrade-to-use-the-test-slug-in-the-namespace 
+* Moto G4 (instead of iPhone 6) is the new default when you use --mobile for Chrome [#3467](https://github.com/sitespeedio/sitespeed.io/pull/3467).
+
 ## 19.6.0 - 2021-09-23
 ### Added
 * Updated to Chrome 94 in the Docker container.
