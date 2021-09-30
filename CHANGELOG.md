@@ -1,14 +1,12 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 20.0.0 - UNRELEASED
+## 20.0.0 - 2021-09-30
 
-Before you update to the new version: If you save your metrics to Graphite, have you upgraded those metrics to the new format as introduced in sitespeed.io the 15/4-2021? If not, please follow the [guide](https://www.sitespeed.io/documentation/sitespeed.io/graphite/#upgrade-to-use-the-test-slug-in-the-namespace) in the documentation. If you haven't done that and still upgrade to sitespeed.io 20 you need to make sure you add `--graphite.addSlugToKey false` to your test else the metrics will be reported under a new key structure.
-
-### Changed
-* Set throttle as default connectivity engine if you use Mac or Linux [#3433](https://github.com/sitespeedio/sitespeed.io/pull/3433).
-* Set slug by default to true in Graphite [#3434](https://github.com/sitespeedio/sitespeed.io/pull/3434). See https://www.sitespeed.io/documentation/sitespeed.io/graphite/#upgrade-to-use-the-test-slug-in-the-namespace 
-* Moto G4 (instead of iPhone 6) is the new default when you use --mobile for Chrome [#3467](https://github.com/sitespeedio/sitespeed.io/pull/3467).
-* Do not run the Coach on iOS [#3468](https://github.com/sitespeedio/sitespeed.io/pull/3468).
+### Breaking changes
+* Before you update to the new version: If you save your metrics to Graphite, have you upgraded those metrics to the new format as introduced in sitespeed.io the **15/4-2021**? If not, please follow the [guide](https://www.sitespeed.io/documentation/sitespeed.io/graphite/#upgrade-to-use-the-test-slug-in-the-namespace) in the documentation. If you haven't done that and still upgrade to sitespeed.io 20 you need to make sure you add `--graphite.addSlugToKey false` to your test else the metrics will be reported under a new key structure. The change was done in [#3434](https://github.com/sitespeedio/sitespeed.io/pull/3434).
+* Set [throttle](https://github.com/sitespeedio/throttle) as default connectivity engine if you use Mac or Linux [#3433](https://github.com/sitespeedio/sitespeed.io/pull/3433). This makes it much easier to enable throttling. Our Docker container is not affected by this change.
+* There's a new default mobile `--mobile` for Chrome. The new default is Moto G4 (instead of iPhone 6) [#3467](https://github.com/sitespeedio/sitespeed.io/pull/3467).
+* When you run your tests on Safari on iOS the Coach is disabled by default [#3468](https://github.com/sitespeedio/sitespeed.io/pull/3468).
 
 ### Added
 * [Browsertime 14.5.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1450---2021-09-30) with CSS selector support for the mouse commands.

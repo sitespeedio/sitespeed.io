@@ -36,6 +36,11 @@ function getResult(result) {
       }
     }
 
+    if (result.parsed['Breaking changes']) {
+      for (let breaking of result.parsed['Breaking changes']) {
+        allData += ' ' + breaking;
+      }
+    }
     return allData;
   }
 }
