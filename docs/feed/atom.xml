@@ -32,7 +32,7 @@
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#19.6.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
         <updated>2021-09-23T12:01:08.443Z</updated>
-        <summary type="html"><![CDATA[ Updated to Chrome 94 in the Docker container. Upgraded to Browsertime 14.4.0 that included Chromedriver 94.]]></summary>
+        <summary type="html"><![CDATA[ Browsertime 14.5.0 with CSS selector support for the mouse commands. Before you update to the new version: If you save your metrics to Graphite, have you upgraded those metrics to the new format as introduced in sitespeed.io the 15/4-2021? If not, please follow the guide in the documentation. If you haven't done that and still upgrade to sitespeed.io 20 you need to make sure you add --graphite.addSlugToKey false to your test else the metrics will be reported under a new key structure. The change was done in #3434. Set throttle as default connectivity engine if you use Mac or Linux #3433. This makes it much easier to enable throttling. Our Docker container is not affected by this change. There's a new default mobile --mobile for Chrome. The new default is Moto G4 (instead of iPhone 6) #3467. When you run your tests on Safari on iOS the Coach is disabled by default #3468.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
