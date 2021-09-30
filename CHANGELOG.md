@@ -10,6 +10,9 @@ Before you update to the new version: If you save your metrics to Graphite, have
 * Moto G4 (instead of iPhone 6) is the new default when you use --mobile for Chrome [#3467](https://github.com/sitespeedio/sitespeed.io/pull/3467).
 * Do not run the Coach on iOS [#3468](https://github.com/sitespeedio/sitespeed.io/pull/3468).
 
+### Added
+* [Browsertime 14.5.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1450---2021-09-30) with CSS selector support for the mouse commands.
+
 ## 19.6.0 - 2021-09-23
 ### Added
 * Updated to Chrome 94 in the Docker container.
