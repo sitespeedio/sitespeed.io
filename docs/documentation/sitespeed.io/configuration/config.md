@@ -151,7 +151,7 @@ Graphite
       --graphite.annotationRetentionMinutes  The retention in minutes, to make annotation match the retention in Graphite.  [number]
       --graphite.statsd                      Uses the StatsD interface  [boolean] [default: false]
       --graphite.annotationTag               Add a extra tag to the annotation sent for a run. Repeat the --graphite.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
-      --graphite.addSlugToKey                Add the slug (name of the test) as an extra key in the namespace.  [boolean] [default: false]
+      --graphite.addSlugToKey                Add the slug (name of the test) as an extra key in the namespace.  [boolean] [default: true]
       --graphite.bulkSize                    Break up number of metrics to send with each request.  [number] [default: null]
       --graphite.skipSummary                 Skip sending summary messages data to Graphite (summaries over a domain).  [boolean] [default: false]
       --graphite.perIteration                Send each iteration of metrics to Graphite. By default we only send page summaries (the summaries of all runs) but you can also send all the runs. Make sure to setup statsd or Graphite correctly to handle it.  [boolean] [default: false]
@@ -274,7 +274,7 @@ Options:
       --browsertime.preWarmServerWaitTime                                                                     The wait time before you start the real testing after your pre-cache request.  [number] [default: 5000]
       --plugins.disable  [array]
       --plugins.load  [array]
-      --mobile                                                                                                Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Apple iPhone 6.  [boolean] [default: false]
+      --mobile                                                                                                Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Moto G4.  [boolean] [default: false]
       --resultBaseURL, --resultBaseUrl                                                                        The base URL to the server serving the HTML result. In the format of https://result.sitespeed.io
       --gzipHAR                                                                                               Compress the HAR files with GZIP.  [boolean] [default: false]
       --outputFolder                                                                                          The folder where the result will be stored. If you do not set it, the result will be stored in "DOMAIN_OR_FILENAME_OR_SLUG/TIMESTAMP"  [string]
