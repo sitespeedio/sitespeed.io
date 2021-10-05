@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+
+## 20.1.0 - 2021-10-05
+### Added
+* Use Firefox 93 in the Docker and the Docker slim container [#3471](https://github.com/sitespeedio/sitespeed.io/pull/3471).
 ## 20.0.0 - 2021-09-30
 
 Please read the [20.0 blog post](https://www.sitespeed.io/sitespeed.io-20.0/)! 
