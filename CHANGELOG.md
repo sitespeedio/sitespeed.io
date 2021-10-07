@@ -1,6 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
 
+## UNRELEASED
+### Added
+* Add support for using cookies when crawling, thank you [dammg](https://github.com/dammg) for PR [#3472](https://github.com/sitespeedio/sitespeed.io/pull/3472)
+
 ## 20.1.0 - 2021-10-05
 ### Added
 * Use Firefox 93 in the Docker and the Docker slim container [#3471](https://github.com/sitespeedio/sitespeed.io/pull/3471).
