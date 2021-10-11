@@ -13,7 +13,10 @@
     "prettier/prettier": [
       "error",
       {
-        "singleQuote": true
+        "singleQuote": true,
+        "trailingComma": "none",
+        "arrowParens": "avoid",
+        "embeddedLanguageFormatting": "off"
       }
     ],
     "require-atomic-updates": 0,

@@ -3,9 +3,9 @@
 const cliUtil = require('../lib/cli/util'),
   expect = require('chai').expect;
 
-describe('cliUtil', function() {
-  describe('getURLs', function() {
-    it('should extract urls', function() {
+describe('cliUtil', function () {
+  describe('getURLs', function () {
+    it('should extract urls', function () {
       let urls = cliUtil.getURLs(['test/fixtures/sitespeed-urls.txt']);
       expect(urls[0] === 'https://www.sitespeed.io');
       expect(urls[3] === 'https://www.sitespeed.io/documentation/faq');
@@ -16,8 +16,8 @@ describe('cliUtil', function() {
     });
   });
 
-  describe('getAliases', function() {
-    it('should extract aliases', function() {
+  describe('getAliases', function () {
+    it('should extract aliases', function () {
       let aliases = cliUtil.getAliases(['test/fixtures/sitespeed-urls.txt']);
       expect(aliases['https://www.sitespeed.io']).to.be.undefined;
       expect(
@@ -159,9 +159,7 @@ describe('cliUtil', function() {
       };
       cliUtil.registerPluginOptions(fakeYargs, plugin);
 
-      expect(fakeYargs.calls)
-        .to.be.an('array')
-        .with.lengthOf(2);
+      expect(fakeYargs.calls).to.be.an('array').with.lengthOf(2);
 
       const expectedProp1 = ['test.prop1', { default: 80 }];
       expect(fakeYargs.calls.find(call => call[0] === 'test.prop1')).to.eql(
@@ -197,9 +195,7 @@ describe('cliUtil', function() {
       };
       cliUtil.registerPluginOptions(fakeYargs, plugin);
 
-      expect(fakeYargs.calls)
-        .to.be.an('array')
-        .with.lengthOf(2);
+      expect(fakeYargs.calls).to.be.an('array').with.lengthOf(2);
 
       const expectedProp1 = ['test.prop1', { default: 80 }];
       expect(fakeYargs.calls.find(call => call[0] === 'test.prop1')).to.eql(
@@ -233,9 +229,7 @@ describe('cliUtil', function() {
       };
       cliUtil.registerPluginOptions(fakeYargs, plugin);
 
-      expect(fakeYargs.calls)
-        .to.be.an('array')
-        .with.lengthOf(2);
+      expect(fakeYargs.calls).to.be.an('array').with.lengthOf(2);
 
       const expectedProp1 = ['test.prop1', { default: 80 }];
       expect(fakeYargs.calls.find(call => call[0] === 'test.prop1')).to.eql(

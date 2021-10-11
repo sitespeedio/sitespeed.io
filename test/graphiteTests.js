@@ -4,9 +4,9 @@ const DataGenerator = require('../lib/plugins/graphite/data-generator'),
   expect = require('chai').expect,
   dayjs = require('dayjs');
 
-describe('graphite', function() {
-  describe('dataGenerator', function() {
-    it('should generate data for gpsi.pageSummary', function() {
+describe('graphite', function () {
+  describe('dataGenerator', function () {
+    it('should generate data for gpsi.pageSummary', function () {
       const message = {
         type: 'gpsi.pageSummary',
         timestamp: '2016-01-08T12:59:06+01:00',
@@ -41,7 +41,7 @@ describe('graphite', function() {
       expect(data).to.match(/foo_bar/);
     });
 
-    it('should generate data for domains.summary', function() {
+    it('should generate data for domains.summary', function () {
       const message = {
         type: 'domains.summary',
         timestamp: '2016-01-08T12:59:06+01:00',
@@ -78,7 +78,7 @@ describe('graphite', function() {
       );
     });
 
-    it('should generate data in statsD format', function() {
+    it('should generate data in statsD format', function () {
       const message = {
         type: 'domains.summary',
         timestamp: '2016-01-08T12:59:06+01:00',
@@ -111,7 +111,7 @@ describe('graphite', function() {
       });
       const data = generator.dataFromMessage(message, dayjs());
 
-      data.forEach(function(line) {
+      data.forEach(function (line) {
         expect(line).to.match(
           /ns.summary.sub_domain_com.chrome.cable.domains.www.sitespeed.io.dns.(median|mean|min|p10|p90|p99|max):[\d]{1,}\|ms$/
         );
@@ -119,7 +119,7 @@ describe('graphite', function() {
     });
   });
 
-  describe('index', function() {
+  describe('index', function () {
     const messageMaker = require('../lib/support/messageMaker');
     const filterRegistry = require('../lib/support/filterRegistry');
     const intel = require('intel');
@@ -128,7 +128,7 @@ describe('graphite', function() {
     let plugin;
     let options;
 
-    beforeEach(function() {
+    beforeEach(function () {
       plugin = require('../lib/plugins/graphite');
       options = {
         graphite: {
@@ -137,13 +137,13 @@ describe('graphite', function() {
       };
     });
 
-    it('Should use graphite interface by default', function() {
+    it('Should use graphite interface by default', function () {
       plugin.open(context, options);
 
       expect(plugin.sender.facility).to.match(/graphite/i);
     });
 
-    it('Should use statsd interface', function() {
+    it('Should use statsd interface', function () {
       Object.assign(options.graphite, {
         statsd: true
       });
@@ -152,46 +152,46 @@ describe('graphite', function() {
       expect(plugin.sender.facility).to.match(/statsd/i);
     });
 
-    it('Should use graphite interface by default', function() {
+    it('Should use graphite interface by default', function () {
       plugin.open(context, options);
 
       expect(plugin.sender.facility).to.match(/graphite/i);
     });
   });
 
-  describe('helpers/is-statsd', function() {
+  describe('helpers/is-statsd', function () {
     const isStatsD = require('../lib/plugins/graphite/helpers/is-statsd');
 
-    it('Should be set to statsd', function() {
+    it('Should be set to statsd', function () {
       expect(isStatsD({ statsd: true })).to.be.true;
     });
-    it('Should not be set to statsd', function() {
+    it('Should not be set to statsd', function () {
       ['true', 1, null, false, undefined].forEach(
         value => expect(isStatsD({ statsd: value })).to.be.false
       );
     });
   });
 
-  describe('helpers/format-entry', function() {
+  describe('helpers/format-entry', function () {
     const formatEntry = require('../lib/plugins/graphite/helpers/format-entry');
 
-    it('Should retrieve the format of statsd', function() {
+    it('Should retrieve the format of statsd', function () {
       expect(formatEntry('statsd')).to.equal('%s:%s|ms');
     });
 
-    it('Should retrieve the default format of graphite', function() {
+    it('Should retrieve the default format of graphite', function () {
       ['StatsD', 'stats', 'graphite', null, false, undefined].forEach(value =>
         expect(formatEntry(value)).to.equal('%s %s %s')
       );
     });
   });
 
-  describe('GraphiteSender', function() {
+  describe('GraphiteSender', function () {
     const GraphiteSender = require('../lib/plugins/graphite/graphite-sender');
     const net = require('net');
     const { connect } = net;
 
-    afterEach(function() {
+    afterEach(function () {
       net.connect = connect;
     });
 
@@ -202,14 +202,14 @@ describe('graphite', function() {
       };
     }
 
-    it('Should send data to graphite via net', function(done) {
+    it('Should send data to graphite via net', function (done) {
       mock(() => done());
 
       const sender = new GraphiteSender('127.0.0.1', '2003');
       sender.send('some.data');
     });
 
-    it('Should send data to graphite in bulks', function(done) {
+    it('Should send data to graphite in bulks', function (done) {
       let sent = 0;
       mock(() => {
         ++sent === 2 && done();
@@ -220,12 +220,12 @@ describe('graphite', function() {
     });
   });
 
-  describe('StatsDSender', function() {
+  describe('StatsDSender', function () {
     const StatsDSender = require('../lib/plugins/graphite/statsd-sender');
     const dgram = require('dgram');
     const { createSocket } = dgram;
 
-    afterEach(function() {
+    afterEach(function () {
       dgram.createSocket = createSocket;
     });
 
@@ -233,7 +233,7 @@ describe('graphite', function() {
       dgram.createSocket = () => ({ send: fn });
     }
 
-    it('Should send data to statsd via dgram', function() {
+    it('Should send data to statsd via dgram', function () {
       let sent = false;
       mock(() => {
         sent = true;
@@ -245,7 +245,7 @@ describe('graphite', function() {
       expect(sent).to.be.true;
     });
 
-    it('Should send data to statsd in bulks', function() {
+    it('Should send data to statsd in bulks', function () {
       let sent = 0;
       mock(() => {
         sent++;

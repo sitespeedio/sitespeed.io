@@ -1,3 +1,3 @@
-module.exports = async function(context) {
+module.exports = async function (context) {
   context.log.info('In posttask!!!');
 };
