@@ -4,8 +4,8 @@
 const net = require('net');
 
 const server = net
-  .createServer(function(sock) {
-    sock.on('data', function(data) {
+  .createServer(function (sock) {
+    sock.on('data', function (data) {
       console.log(data.toString());
     });
   })

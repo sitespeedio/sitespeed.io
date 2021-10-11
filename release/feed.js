@@ -106,12 +106,8 @@ async function generateFeed() {
   sortedVersionFiles.forEach(file => {
     feed.addItem({
       title: `${file.name} ${file.version}`,
-      id: `https://github.com/sitespeedio/${file.name}/blob/main/CHANGELOG.md#${
-        file.version
-      }`,
-      link: `https://github.com/sitespeedio/${
-        file.name
-      }/blob/main/CHANGELOG.md#`,
+      id: `https://github.com/sitespeedio/${file.name}/blob/main/CHANGELOG.md#${file.version}`,
+      link: `https://github.com/sitespeedio/${file.name}/blob/main/CHANGELOG.md#`,
       description: descriptions[file.name],
       // content: content[file.name],
       author: [
