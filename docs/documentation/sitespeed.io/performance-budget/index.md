@@ -61,7 +61,7 @@ The simplest version of a budget file that will check for SpeedIndex higher than
 }
 ~~~
 
-#### Override per URL
+#### Override per URL or alias
 All URLs that you test then needs to have a SpeedIndex faster than 1000. But if you have one URL that you know are slower? You can override budget per URL.
 
 ~~~json
@@ -79,6 +79,22 @@ All URLs that you test then needs to have a SpeedIndex faster than 1000. But if 
 }
 ~~~
 
+If you use alias for URLs, you can use that instead:
+
+~~~json
+{
+ "budget": {
+   "myAlias": {
+      "timings": {
+        "SpeedIndex": 3000
+      }
+    },
+    "timings": {
+      "SpeedIndex":1000
+    }
+ }
+}
+~~~
 #### Full example
 
 Here is an example of a fully configured budget file.
