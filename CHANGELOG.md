@@ -3,7 +3,8 @@
 
 ## UNRELEASED
 ### Added
-* Add support for using cookies when crawling, thank you [dammg](https://github.com/dammg) for PR [#3472](https://github.com/sitespeedio/sitespeed.io/pull/3472)
+* Add support for using cookies when crawling, thank you [dammg](https://github.com/dammg) for PR [#3472](https://github.com/sitespeedio/sitespeed.io/pull/3472).
+* Browsertime 14.6.0.
 
 ## 20.1.0 - 2021-10-05
 ### Added

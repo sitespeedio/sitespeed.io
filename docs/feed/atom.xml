@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-10-05T11:18:09.906Z</updated>
+    <updated>2021-10-13T15:48:21.197Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,22 +17,22 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 20.1.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.1.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2021-10-05T11:18:09.906Z</updated>
-        <summary type="html"><![CDATA[ Use Firefox 93 in the Docker and the Docker slim container #3471.]]></summary>
+        <title type="html"><![CDATA[browsertime 14.6.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.6.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
+        <updated>2021-10-13T15:48:21.197Z</updated>
+        <summary type="html"><![CDATA[ Updated to Selenium 4.0.0 #1655. You can skip setting Browsertime default Firefox preferences with --firefox.noDefaultPrefs, thank you Gregory Mierzwinski for PR #1650. You can skip setting Browsertime default Chrome options with --chrome.noDefaultOptions, fixed in #1651. Updated to Firefox 93 in the Docker container. Updated eslint and prettier dependencies #1652. Log Firefox preference and Chrome args on debug level #1654]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[browsertime 14.5.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.5.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2021-09-30T08:13:45.991Z</updated>
-        <summary type="html"><![CDATA[ Added CSS selector support for mouse commands #1645 Internal refactoring of the mouse command #1646 and #1647.]]></summary>
+        <title type="html"><![CDATA[sitespeed.io 20.1.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.1.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
+        <updated>2021-10-05T11:18:09.906Z</updated>
+        <summary type="html"><![CDATA[ Use Firefox 93 in the Docker and the Docker slim container #3471.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
