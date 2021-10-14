@@ -61,7 +61,7 @@ The simplest version of a budget file that will check for SpeedIndex higher than
 }
 ~~~
 
-#### Override per URL
+#### Override per URL or alias
 All URLs that you test then needs to have a SpeedIndex faster than 1000. But if you have one URL that you know are slower? You can override budget per URL.
 
 ~~~json
@@ -78,6 +78,21 @@ All URLs that you test then needs to have a SpeedIndex faster than 1000. But if 
  }
 }
 ~~~
+
+If you use alias for URLs, you can use that instead:
+
+~~~json
+{
+ "budget": {
+   "myAlias": {
+      "timings": {
+        "SpeedIndex": 3000
+      }
+    },
+    "timings": {
+      "SpeedIndex":1000
+    }
+ }
 
 #### User Timing API metrics
 You can use User Timing API metrics in your budget. Both marks and measurements will be picked up under the name *usertimings*. Sitespeed.io will first look for a mark with that name, and if that do not exist it will look for a measurement.
@@ -104,6 +119,7 @@ You can use [metrics from your scripts](https://www.sitespeed.io/documentation/s
     }
 }
 ~~~
+
 #### Full example
 
 Here is an example of a fully configured budget file.
