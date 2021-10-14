@@ -1,13 +1,13 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
 
-## 20.2.0 - UNRELEASED
+## 20.2.0 - 2021-10-14
 ### Added
 * Add support for using cookies when crawling, thank you [dammg](https://github.com/dammg) for PR [#3472](https://github.com/sitespeedio/sitespeed.io/pull/3472).
 * [Browsertime 14.6.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1460---2021-10-13).
 * Use alias in your budget file [#3479](https://github.com/sitespeedio/sitespeed.io/pull/3479).
 * Support for using User Timing API marks/measures in the budget file [#3482](https://github.com/sitespeedio/sitespeed.io/pull/3482) and [#3483](https://github.com/sitespeedio/sitespeed.io/pull/3483).
-* Support for using custom metrics from scripting in your budget [#3484](https://github.com/sitespeedio/sitespeed.io/pull/3484)
+* Support for using custom metrics from scripting in your budget [#3484](https://github.com/sitespeedio/sitespeed.io/pull/3484) and [#3486](https://github.com/sitespeedio/sitespeed.io/pull/3486).
 
 ## 20.1.0 - 2021-10-05
 ### Added
