@@ -9,6 +9,9 @@
 * Support for using [User Timing API marks/measures in the budget file](https://www.sitespeed.io/documentation/sitespeed.io/performance-budget/#user-timing-api-metrics) [#3482](https://github.com/sitespeedio/sitespeed.io/pull/3482) and [#3483](https://github.com/sitespeedio/sitespeed.io/pull/3483). 
 * Support for [using custom metrics from scripting in your budget](https://www.sitespeed.io/documentation/sitespeed.io/performance-budget/#metrics-from-scripting) [#3484](https://github.com/sitespeedio/sitespeed.io/pull/3484) and [#3486](https://github.com/sitespeedio/sitespeed.io/pull/3486).
 
+### Fixed
+* Allow crawler to use cookies, thank you [dammg](https://github.com/dammg) for the PR [#3472](https://github.com/sitespeedio/sitespeed.io/pull/3472) with small fix [#3473](https://github.com/sitespeedio/sitespeed.io/pull/3473).
+
 ## 20.1.0 - 2021-10-05
 ### Added
 * Use Firefox 93 in the Docker and the Docker slim container [#3471](https://github.com/sitespeedio/sitespeed.io/pull/3471).
