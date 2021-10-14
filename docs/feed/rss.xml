@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Tue, 05 Oct 2021 11:18:09 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 13 Oct 2021 15:48:21 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,20 +17,20 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[browsertime 14.6.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.6.0</guid>
+            <pubDate>Wed, 13 Oct 2021 15:48:21 GMT</pubDate>
+            <description><![CDATA[ Updated to Selenium 4.0.0 #1655. You can skip setting Browsertime default Firefox preferences with --firefox.noDefaultPrefs, thank you Gregory Mierzwinski for PR #1650. You can skip setting Browsertime default Chrome options with --chrome.noDefaultOptions, fixed in #1651. Updated to Firefox 93 in the Docker container. Updated eslint and prettier dependencies #1652. Log Firefox preference and Chrome args on debug level #1654]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 20.1.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.1.0</guid>
             <pubDate>Tue, 05 Oct 2021 11:18:09 GMT</pubDate>
             <description><![CDATA[ Use Firefox 93 in the Docker and the Docker slim container #3471.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 14.5.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.5.0</guid>
-            <pubDate>Thu, 30 Sep 2021 08:13:45 GMT</pubDate>
-            <description><![CDATA[ Added CSS selector support for mouse commands #1645 Internal refactoring of the mouse command #1646 and #1647.]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[throttle 3.0.0]]></title>

@@ -30,6 +30,7 @@ chrome
       --chrome.collectNetLog                                     Collect network log from Chrome and save to disk.  [boolean]
       --chrome.netLogCaptureMode                                 Choose capture mode for Chromes netlog.  [choices: "Default", "IncludeSensitive", "Everything"] [default: "IncludeSensitive"]
       --chrome.collectConsoleLog                                 Collect Chromes console log and save to disk.  [boolean]
+      --chrome.noDefaultOptions                                  Prevent Browsertime from setting its default options for Chrome  [boolean]
       --chrome.CPUThrottlingRate                                 Enables CPU throttling to emulate slow CPUs. Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc)  [number]
       --chrome.includeResponseBodies                             Include response bodies in the HAR file.  [choices: "none", "all", "html"] [default: "none"]
       --chrome.cdp.performance                                   Collect Chrome perfromance metrics from Chrome DevTools Protocol  [boolean] [default: true]
@@ -61,6 +62,7 @@ firefox
       --firefox.collectMozLog                   Collect the MOZ HTTP log (by default). See --firefox.setMozLog if you need to specify the logs you wish to gather.  [boolean]
       --firefox.setMozLog                       Use in conjunction with firefox.collectMozLog to set MOZ_LOG to something specific. Without this, the HTTP logs will be collected by default  [default: "timestamp,nsHttp:5,cache2:5,nsSocketTransport:5,nsHostResolver:5"]
       --firefox.disableBrowsertimeExtension     Disable installing the browsertime extension.  [boolean]
+      --firefox.noDefaultPrefs                  Prevents browsertime from setting its default preferences.  [boolean] [default: false]
       --firefox.disableSafeBrowsing             Disable safebrowsing.  [boolean] [default: true]
       --firefox.disableTrackingProtection       Disable Tracking Protection.  [boolean] [default: true]
       --firefox.android.package                 Run Firefox or a GeckoView-consuming App on your Android device. Set to org.mozilla.geckoview_example for default Firefox version. You need to have adb installed to make this work.

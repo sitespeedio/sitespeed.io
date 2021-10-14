@@ -93,8 +93,33 @@ If you use alias for URLs, you can use that instead:
       "SpeedIndex":1000
     }
  }
+
+#### User Timing API metrics
+You can use User Timing API metrics in your budget. Both marks and measurements will be picked up under the name *usertimings*. Sitespeed.io will first look for a mark with that name, and if that do not exist it will look for a measurement.
+
+~~~json
+{
+    "budget": {
+       "usertimings": {
+         "headerLogo":1000
+       }
+    }
 }
 ~~~
+
+#### Metrics from scripting
+You can use [metrics from your scripts](https://www.sitespeed.io/documentation/sitespeed.io/scripting/#measureaddname-value) in your budget.
+
+~~~json
+{
+    "budget": {
+       "scriptingmetrics": {
+         "myOwnMetric": 20
+       }
+    }
+}
+~~~
+
 #### Full example
 
 Here is an example of a fully configured budget file.
@@ -194,6 +219,8 @@ And then you can always combine them all.
 If you need more metrics for your budget, either [create an issue](https://github.com/sitespeedio/sitespeed.io/issues/new) or look below for using the full internal data structure.
 
 #### All possible metrics you can configure
+
+Here's a list of all static metrics you can configure. Remember that you can also use your own metric, either from the [User Timing API (marks/measures)](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) or [metrics from scripting](https://www.sitespeed.io/documentation/sitespeed.io/scripting/#measureaddname-value).
 
 ~~~json
 {% include_relative friendlynames.md %}
