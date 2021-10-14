@@ -93,6 +93,7 @@ If you use alias for URLs, you can use that instead:
       "SpeedIndex":1000
     }
  }
+ ~~~
 
 #### User Timing API metrics
 You can use User Timing API metrics in your budget. Both marks and measurements will be picked up under the name *usertimings*. Sitespeed.io will first look for a mark with that name, and if that do not exist it will look for a measurement.
