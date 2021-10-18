@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Thu, 14 Oct 2021 06:49:09 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 18 Oct 2021 17:52:23 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,20 +17,28 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[browsertime 14.6.1]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.6.1</guid>
+            <pubDate>Mon, 18 Oct 2021 17:52:23 GMT</pubDate>
+            <description><![CDATA[ If loading the URL fails (we get an exception, the browser crashes etc) make sure we stop the video correctly so it can be used #1657.]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach ]]></title>
+            <link>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#</guid>
+            <pubDate>Fri, 15 Oct 2021 15:48:34 GMT</pubDate>
+            <description><![CDATA[ Updated to use latest Browsertime with latest Chromedriver Updated Docker container to use latest Chrome/Firefox Use Browsertime 11.0.0 Use Coach-code 6.0 Use latest Firefox and Chrome]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 20.2.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.2.0</guid>
             <pubDate>Thu, 14 Oct 2021 06:49:09 GMT</pubDate>
             <description><![CDATA[ Add support for using cookies when crawling, thank you dammg for PR #3472. Browsertime 14.6.0. Use alias in your budget file #3479. Support for using User Timing API marks/measures in the budget file #3482 and #3483. Support for using custom metrics from scripting in your budget #3484 and #3486. Allow crawler to use cookies, thank you dammg for the PR #3472 with small fix #3473.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 14.6.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.6.0</guid>
-            <pubDate>Wed, 13 Oct 2021 15:48:21 GMT</pubDate>
-            <description><![CDATA[ Updated to Selenium 4.0.0 #1655. You can skip setting Browsertime default Firefox preferences with --firefox.noDefaultPrefs, thank you Gregory Mierzwinski for PR #1650. You can skip setting Browsertime default Chrome options with --chrome.noDefaultOptions, fixed in #1651. Updated to Firefox 93 in the Docker container. Updated eslint and prettier dependencies #1652. Log Firefox preference and Chrome args on debug level #1654]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[throttle 3.0.0]]></title>
@@ -53,14 +61,6 @@
             <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.3</guid>
             <pubDate>Wed, 21 Jul 2021 20:23:14 GMT</pubDate>
             <description><![CDATA[ Updated to latest PageXray and Third patrty web 0.12.4.]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[coach 6.0.0]]></title>
-            <link>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#6.0.0</guid>
-            <pubDate>Fri, 05 Feb 2021 10:01:42 GMT</pubDate>
-            <description><![CDATA[ Use Browsertime 11.0.0 Use Coach-code 6.0 Use latest Firefox and Chrome]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>
