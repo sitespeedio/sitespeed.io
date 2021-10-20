@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-10-20T06:36:50.046Z</updated>
+    <updated>2021-10-20T12:57:35.685Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,17 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 20.3.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.3.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
+        <updated>2021-10-20T12:57:35.685Z</updated>
+        <summary type="html"><![CDATA[ Updated Browsertime that uses Chromedriver 95. Updated Chrome 95 in the Docker container.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 14.7.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.7.0</id>
@@ -33,17 +44,6 @@
         <link href="https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#"/>
         <updated>2021-10-15T15:48:34.463Z</updated>
         <summary type="html"><![CDATA[ Updated to use latest Browsertime with latest Chromedriver Updated Docker container to use latest Chrome/Firefox Use Browsertime 11.0.0 Use Coach-code 6.0 Use latest Firefox and Chrome]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 20.2.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.2.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2021-10-14T06:49:09.826Z</updated>
-        <summary type="html"><![CDATA[ Add support for using cookies when crawling, thank you dammg for PR #3472. Browsertime 14.6.0. Use alias in your budget file #3479. Support for using User Timing API marks/measures in the budget file #3482 and #3483. Support for using custom metrics from scripting in your budget #3484 and #3486. Allow crawler to use cookies, thank you dammg for the PR #3472 with small fix #3473.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>

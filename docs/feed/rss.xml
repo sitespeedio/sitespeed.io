@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Wed, 20 Oct 2021 06:36:50 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 20 Oct 2021 12:57:35 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,14 @@
         <copyright>All rights reserved 2021, Peter Hedenskog and team</copyright>
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 20.3.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.3.0</guid>
+            <pubDate>Wed, 20 Oct 2021 12:57:35 GMT</pubDate>
+            <description><![CDATA[ Updated Browsertime that uses Chromedriver 95. Updated Chrome 95 in the Docker container.]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[browsertime 14.7.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
@@ -31,14 +39,6 @@
             <pubDate>Fri, 15 Oct 2021 15:48:34 GMT</pubDate>
             <description><![CDATA[ Updated to use latest Browsertime with latest Chromedriver Updated Docker container to use latest Chrome/Firefox Use Browsertime 11.0.0 Use Coach-code 6.0 Use latest Firefox and Chrome]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 20.2.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.2.0</guid>
-            <pubDate>Thu, 14 Oct 2021 06:49:09 GMT</pubDate>
-            <description><![CDATA[ Add support for using cookies when crawling, thank you dammg for PR #3472. Browsertime 14.6.0. Use alias in your budget file #3479. Support for using User Timing API marks/measures in the budget file #3482 and #3483. Support for using custom metrics from scripting in your budget #3484 and #3486. Allow crawler to use cookies, thank you dammg for the PR #3472 with small fix #3473.]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[throttle 3.0.0]]></title>
