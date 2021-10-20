@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-10-18T17:52:23.134Z</updated>
+    <updated>2021-10-20T06:36:50.046Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,11 +17,11 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[browsertime 14.6.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.6.1</id>
+        <title type="html"><![CDATA[browsertime 14.7.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.7.0</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2021-10-18T17:52:23.134Z</updated>
-        <summary type="html"><![CDATA[ If loading the URL fails (we get an exception, the browser crashes etc) make sure we stop the video correctly so it can be used #1657.]]></summary>
+        <updated>2021-10-20T06:36:50.046Z</updated>
+        <summary type="html"><![CDATA[ Updated to Chromedriver 95. Added Chrome 95 in the Docker container.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>

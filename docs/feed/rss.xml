@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Mon, 18 Oct 2021 17:52:23 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 20 Oct 2021 06:36:50 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,11 +17,11 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[browsertime 14.6.1]]></title>
+            <title><![CDATA[browsertime 14.7.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.6.1</guid>
-            <pubDate>Mon, 18 Oct 2021 17:52:23 GMT</pubDate>
-            <description><![CDATA[ If loading the URL fails (we get an exception, the browser crashes etc) make sure we stop the video correctly so it can be used #1657.]]></description>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.7.0</guid>
+            <pubDate>Wed, 20 Oct 2021 06:36:50 GMT</pubDate>
+            <description><![CDATA[ Updated to Chromedriver 95. Added Chrome 95 in the Docker container.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
