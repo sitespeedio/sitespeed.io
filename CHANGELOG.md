@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 20.3.0 - UNRELEASED
+## 20.3.0 - 2021-10-20
 ### Added
 * Updated Browsertime that uses Chromedriver 95.
 * Updated Chrome 95 in the Docker container.
