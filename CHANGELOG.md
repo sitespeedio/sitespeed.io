@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 20.3.1 - 2021-10-21
+### Fixed
+* Fix to handle integer value Android device serial, thank you [Saurav Kumar](https://github.com/svkrclg) for PR [#3490](https://github.com/sitespeedio/sitespeed.io/pull/3490).
 ## 20.3.0 - 2021-10-20
 ### Added
 * Updated Browsertime that uses Chromedriver 95.
