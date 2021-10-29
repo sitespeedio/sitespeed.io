@@ -35,6 +35,8 @@ RUN mkdir -m 0750 /root/.android
 ADD docker/adb/insecure_shared_adbkey /root/.android/adbkey
 ADD docker/adb/insecure_shared_adbkey.pub /root/.android/adbkey.pub
 
+RUN npm install -g npm@latest
+
 # Allow all users to run commands needed by sitespeedio/throttle via sudo
 # See https://github.com/sitespeedio/throttle/blob/main/lib/tc.js
 RUN echo 'ALL ALL=NOPASSWD: /usr/sbin/tc, /usr/sbin/route, /usr/sbin/ip' > /etc/sudoers.d/tc
