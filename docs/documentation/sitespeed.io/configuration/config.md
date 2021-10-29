@@ -76,7 +76,7 @@ Firefox
       --browsertime.firefox.disableTrackingProtection, --firefox.disableTrackingProtection            Disable Tracking Protection.  [boolean] [default: true]
       --browsertime.firefox.android.package, --firefox.android.package                                Run Firefox or a GeckoView-consuming App on your Android device. Set to org.mozilla.geckoview_example for default Firefox version. You need to have adb installed to make this work.
       --browsertime.firefox.android.activity, --firefox.android.activity                              Name of the Activity hosting the GeckoView.
-      --browsertime.firefox.android.deviceSerial, --firefox.android.deviceSerial                      Choose which device to use. If you do not set it, first device will be used.
+      --browsertime.firefox.android.deviceSerial, --firefox.android.deviceSerial                      Choose which device to use. If you do not set it, first device will be used.  [string]
       --browsertime.firefox.android.intentArgument, --firefox.android.intentArgument                  Configure how the Android intent is launched.  Passed through to `adb shell am start ...`; follow the format at https://developer.android.com/studio/command-line/adb#IntentSpec. To add multiple arguments, repeat --firefox.android.intentArgument once per argument.
       --browsertime.firefox.profileTemplate, --firefox.profileTemplate                                Profile template directory that will be cloned and used as the base of each profile each instance of Firefox is launched against.  Use this to pre-populate databases with certificates, tracking protection lists, etc.
       --browsertime.firefox.collectMozLog, --firefox.collectMozLog                                    Collect the MOZ HTTP log  [boolean]
@@ -87,7 +87,7 @@ Chrome
       --browsertime.chrome.android.package, --chrome.android.package                  Run Chrome on your Android device. Set to com.android.chrome for default Chrome version. You need to have adb installed to run on Android.
       --browsertime.chrome.android.activity, --chrome.android.activity                Name of the Activity hosting the WebView.
       --browsertime.chrome.android.process, --chrome.android.process                  Process name of the Activity hosting the WebView. If not given, the process name is assumed to be the same as chrome.android.package.
-      --browsertime.chrome.android.deviceSerial, --chrome.android.deviceSerial        Choose which device to use. If you do not set it, the first found device will be used.
+      --browsertime.chrome.android.deviceSerial, --chrome.android.deviceSerial        Choose which device to use. If you do not set it, the first found device will be used.  [string]
       --browsertime.chrome.collectNetLog, --chrome.collectNetLog                      Collect network log from Chrome and save to disk.  [boolean]
       --browsertime.chrome.traceCategories, --chrome.traceCategories                  Set the trace categories.  [string]
       --browsertime.chrome.traceCategory, --chrome.traceCategory                      Add a trace category to the default ones. Use --chrome.traceCategory multiple times if you want to add multiple categories. Example: --chrome.traceCategory disabled-by-default-v8.cpu_profiler  [string]
@@ -287,6 +287,7 @@ Options:
       --useHash                                                                                               If your site uses # for URLs and # give you unique URLs you need to turn on useHash. By default is it turned off, meaning URLs with hash and without hash are treated as the same URL  [boolean] [default: false]
       --multi                                                                                                 Test multiple URLs within the same browser session (same cache etc). Only works with Browsertime. Use this if you want to test multiple pages (use journey) or want to test multiple pages with scripts. You can mix URLs and scripts (the order will matter): login.js https://www.sitespeed.io/ logout.js - More details: https://www.sitespeed.io/documentation/sitespeed.io/scripting/  [boolean] [default: false]
       --name                                                                                                  Give your test a name.
+  -o, --open                                                                                                  Open your test result in your default browser (Mac OS only).
       --slug                                                                                                  Give your test a slug. The slug is used when you send the metrics to your data storage to identify the test and the folder of the tests. The max length of the slug is 200 characters and it can only contain a-z A-Z 0-9 and -_ characters.
       --config                                                                                                Path to JSON config file
   -h, --help                                                                                                  Show help  [boolean]

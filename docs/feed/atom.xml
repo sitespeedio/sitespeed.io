@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-10-29T09:12:23.622Z</updated>
+    <updated>2021-10-29T18:47:30.652Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,43 +17,11 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[chrome-har 0.12.0]]></title>
-        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.12.0</id>
-        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#"/>
-        <updated>2021-10-29T09:12:23.622Z</updated>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 14.8.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.8.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2021-10-27T13:39:02.201Z</updated>
-        <summary type="html"><![CDATA[ New Edgedriver 95 and Edge 95 in the Docker container #1665. Fix for storing Firefox memory report and geckoprofile on Android 10+. Thank you Andrew Creskey for PR #1663.]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 20.3.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.3.1</id>
+        <title type="html"><![CDATA[sitespeed.io 20.4.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.4.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2021-10-24T13:03:03.597Z</updated>
-        <summary type="html"><![CDATA[ Fix to handle integer value Android device serial, thank you Saurav Kumar for PR #3490.]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[coach ]]></title>
-        <id>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#</id>
-        <link href="https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#"/>
-        <updated>2021-10-15T15:48:34.463Z</updated>
-        <summary type="html"><![CDATA[ Updated to use latest Browsertime with latest Chromedriver Updated Docker container to use latest Chrome/Firefox Use Browsertime 11.0.0 Use Coach-code 6.0 Use latest Firefox and Chrome]]></summary>
+        <updated>2021-10-29T18:47:30.652Z</updated>
+        <summary type="html"><![CDATA[ Updated to Browsertime 14.8.0 with Edgeriver 95. Updated to Edge 95 in the Docker container. Update to use NodeJS 16 in the Docker container #3495. On Mac OS: Use --open or -o to open the result in your default browser. Thank you Johanna Lindh for the idea! PR #3493. The +1 container now had Lighthouse 8.6.0. Removed npm from the Docker container when everything has been installed to fix npm security issues + decrease the size of the container.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
@@ -63,19 +31,8 @@
         <title type="html"><![CDATA[throttle 3.0.0]]></title>
         <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.0.0</id>
         <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#"/>
-        <updated>2021-08-09T19:47:15.952Z</updated>
+        <updated>2021-10-29T18:25:09.437Z</updated>
         <summary type="html"><![CDATA[ When you run on Mac OS we changed so localhost traffic is not throttled by default. To throttle on localhost use --localhost. This makes sence if you use WebDriver to drive your browser on your local machine. And Mac OS now works the same as Linux.]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[pagexray 4.3.1]]></title>
-        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.3.1</id>
-        <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#"/>
-        <updated>2021-07-21T20:23:14.098Z</updated>
-        <summary type="html"><![CDATA[ Added missing inbodyparser_blocking render blocking info for Chrome.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
@@ -85,7 +42,7 @@
         <title type="html"><![CDATA[coach-core 6.4.3]]></title>
         <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.3</id>
         <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#"/>
-        <updated>2021-07-21T20:23:14.097Z</updated>
+        <updated>2021-10-29T18:25:09.436Z</updated>
         <summary type="html"><![CDATA[ Updated to latest PageXray and Third patrty web 0.12.4.]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -93,11 +50,11 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[chrome-trace 0.2.2]]></title>
-        <id>https://github.com/sitespeedio/chrome-trace/blob/main/CHANGELOG.md#0.2.2</id>
-        <link href="https://github.com/sitespeedio/chrome-trace/blob/main/CHANGELOG.md#"/>
-        <updated>2019-06-15T10:36:36.903Z</updated>
-        <summary type="html"><![CDATA[ Catch if we can't find the first thread event. We now throws an exception (that's not optimal since we don't know what's wrong) with the info of what's wrong. We can change that later on.]]></summary>
+        <title type="html"><![CDATA[coach ]]></title>
+        <id>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#</id>
+        <link href="https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#"/>
+        <updated>2021-10-29T18:25:09.436Z</updated>
+        <summary type="html"><![CDATA[ Updated to use latest Browsertime with latest Chromedriver Updated Docker container to use latest Chrome/Firefox Use Browsertime 11.0.0 Use Coach-code 6.0 Use latest Firefox and Chrome]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
@@ -107,8 +64,51 @@
         <title type="html"><![CDATA[compare 1.0.0]]></title>
         <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#1.0.0</id>
         <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#"/>
-        <updated>2019-01-28T04:22:17.522Z</updated>
+        <updated>2021-10-29T18:25:09.436Z</updated>
         <summary type="html"><![CDATA[ Added support for using Github gists see #34. Added support for using a config file to configure which HARs to test. Added support for copy/paste directly you HAR, configuration file or a gist URL or id. Refactor the CSS into Sass, development build process now uses BrowserSync. Service worker added for offline support. Workbox is used to achieve this. Added support for showing changes in request/responses if you compare the same page #63. New internal structure and use the new configuration object all the way.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[pagexray 4.3.1]]></title>
+        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.3.1</id>
+        <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#"/>
+        <updated>2021-10-29T18:25:09.436Z</updated>
+        <summary type="html"><![CDATA[ Added missing inbodyparser_blocking render blocking info for Chrome.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 14.8.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.8.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
+        <updated>2021-10-29T18:25:09.435Z</updated>
+        <summary type="html"><![CDATA[ New Edgedriver 95 and Edge 95 in the Docker container #1665. Fix for storing Firefox memory report and geckoprofile on Android 10+. Thank you Andrew Creskey for PR #1663.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[chrome-har 0.12.0]]></title>
+        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.12.0</id>
+        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#"/>
+        <updated>2021-10-29T18:25:09.435Z</updated>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[chrome-trace 0.2.2]]></title>
+        <id>https://github.com/sitespeedio/chrome-trace/blob/main/CHANGELOG.md#0.2.2</id>
+        <link href="https://github.com/sitespeedio/chrome-trace/blob/main/CHANGELOG.md#"/>
+        <updated>2021-10-29T18:25:09.435Z</updated>
+        <summary type="html"><![CDATA[ Catch if we can't find the first thread event. We now throws an exception (that's not optimal since we don't know what's wrong) with the info of what's wrong. We can change that later on.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
