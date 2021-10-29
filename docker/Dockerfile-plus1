@@ -6,7 +6,8 @@ ENV SITESPEED_IO_BROWSERTIME__DOCKER true
 ENV SITESPEED_IO_PLUGINS__ADD /lighthouse,/gpsi
 
 RUN sudo apt-get update && sudo apt-get install git -y
-
+RUN node --version
+RUN npm --version
 WORKDIR /gpsi
 RUN git clone https://github.com/sitespeedio/plugin-gpsi.git .
 RUN npm install --production

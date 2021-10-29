@@ -1,6 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-
+## 20.4.1 - 2021-10-29
+### Fixed
+* Reverted the change with npm in the Docketr container since it broke both webpagetest and the +1 container installation
 ## 20.4.0 - 2021-10-29
 
 ### Added
