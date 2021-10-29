@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-10-24T13:03:03.597Z</updated>
+    <updated>2021-10-29T09:12:23.622Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,22 +17,32 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 20.3.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.3.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2021-10-24T13:03:03.597Z</updated>
-        <summary type="html"><![CDATA[ Fix to handle integer value Android device serial, thank you Saurav Kumar for PR #3490.]]></summary>
+        <title type="html"><![CDATA[chrome-har 0.12.0]]></title>
+        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.12.0</id>
+        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#"/>
+        <updated>2021-10-29T09:12:23.622Z</updated>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[browsertime 14.7.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.7.0</id>
+        <title type="html"><![CDATA[browsertime 14.8.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.8.0</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2021-10-20T06:36:50.046Z</updated>
-        <summary type="html"><![CDATA[ Updated to Chromedriver 95. Added Chrome 95 in the Docker container.]]></summary>
+        <updated>2021-10-27T13:39:02.201Z</updated>
+        <summary type="html"><![CDATA[ New Edgedriver 95 and Edge 95 in the Docker container #1665. Fix for storing Firefox memory report and geckoprofile on Android 10+. Thank you Andrew Creskey for PR #1663.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 20.3.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.3.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
+        <updated>2021-10-24T13:03:03.597Z</updated>
+        <summary type="html"><![CDATA[ Fix to handle integer value Android device serial, thank you Saurav Kumar for PR #3490.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
@@ -77,16 +87,6 @@
         <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#"/>
         <updated>2021-07-21T20:23:14.097Z</updated>
         <summary type="html"><![CDATA[ Updated to latest PageXray and Third patrty web 0.12.4.]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[chrome-har 0.11.12]]></title>
-        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.12</id>
-        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#"/>
-        <updated>2021-02-05T10:01:42.662Z</updated>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>

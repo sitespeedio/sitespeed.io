@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Sun, 24 Oct 2021 13:03:03 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 29 Oct 2021 09:12:23 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,20 +17,26 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[chrome-har 0.12.0]]></title>
+            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.12.0</guid>
+            <pubDate>Fri, 29 Oct 2021 09:12:23 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 14.8.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.8.0</guid>
+            <pubDate>Wed, 27 Oct 2021 13:39:02 GMT</pubDate>
+            <description><![CDATA[ New Edgedriver 95 and Edge 95 in the Docker container #1665. Fix for storing Firefox memory report and geckoprofile on Android 10+. Thank you Andrew Creskey for PR #1663.]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 20.3.1]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.3.1</guid>
             <pubDate>Sun, 24 Oct 2021 13:03:03 GMT</pubDate>
             <description><![CDATA[ Fix to handle integer value Android device serial, thank you Saurav Kumar for PR #3490.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 14.7.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.7.0</guid>
-            <pubDate>Wed, 20 Oct 2021 06:36:50 GMT</pubDate>
-            <description><![CDATA[ Updated to Chromedriver 95. Added Chrome 95 in the Docker container.]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[coach ]]></title>
@@ -62,12 +68,6 @@
             <pubDate>Wed, 21 Jul 2021 20:23:14 GMT</pubDate>
             <description><![CDATA[ Updated to latest PageXray and Third patrty web 0.12.4.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[chrome-har 0.11.12]]></title>
-            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.12</guid>
-            <pubDate>Fri, 05 Feb 2021 10:01:42 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[chrome-trace 0.2.2]]></title>
