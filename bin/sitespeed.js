@@ -7,6 +7,8 @@
 const fs = require('fs');
 const cli = require('../lib/cli/cli');
 const sitespeed = require('../lib/sitespeed');
+const { execSync } = require('child_process');
+const os = require('os');
 
 async function run(options) {
   process.exitCode = 1;
@@ -18,6 +20,10 @@ async function run(options) {
 
     if (options.storeResult) {
       fs.writeFileSync('result.json', JSON.stringify(result));
+    }
+
+    if ((options.open || options.o) && os.platform() === 'darwin') {
+      execSync('open ' + result.localPath + '/index.html');
     }
 
     if (
