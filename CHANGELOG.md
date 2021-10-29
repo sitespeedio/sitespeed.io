@@ -1,13 +1,17 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
 
-## 20.4.0 - UNRELEASED
+## 20.4.0 - 2021-10-29
 
 ### Added
 * Updated to [Browsertime 14.8.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md) with Edgeriver 95.
 * Updated to Edge 95 in the Docker container.
 * Update to use NodeJS 16 in the Docker container [#3495](https://github.com/sitespeedio/sitespeed.io/pull/3495).
 * On Mac OS: Use `--open` or `-o` to open the result in your default browser. Thank you [Johanna Lindh](https://github.com/zhouhana) for the idea! PR [#3493](https://github.com/sitespeedio/sitespeed.io/pull/3493).
+* The +1 container now had Lighthouse 8.6.0.
+
+### Fixed
+* Removed npm from the Docker container when everything has been installed to fix npm security issues + decrease the size of the container.
 ## 20.3.1 - 2021-10-21
 ### Fixed
 * Fix to handle integer value Android device serial, thank you [Saurav Kumar](https://github.com/svkrclg) for PR [#3490](https://github.com/sitespeedio/sitespeed.io/pull/3490).
