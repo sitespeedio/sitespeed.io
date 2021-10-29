@@ -21,7 +21,7 @@
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.4.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
         <updated>2021-10-29T18:47:30.652Z</updated>
-        <summary type="html"><![CDATA[ Updated to Browsertime 14.8.0 with Edgeriver 95. Updated to Edge 95 in the Docker container. Update to use NodeJS 16 in the Docker container #3495. On Mac OS: Use --open or -o to open the result in your default browser. Thank you Johanna Lindh for the idea! PR #3493. The +1 container now had Lighthouse 8.6.0. Removed npm from the Docker container when everything has been installed to fix npm security issues + decrease the size of the container.]]></summary>
+        <summary type="html"><![CDATA[ Reverted the change with npm in the Docketr container since it broke both webpagetest and the +1 container installation]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
