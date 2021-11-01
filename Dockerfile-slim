@@ -30,7 +30,7 @@ RUN buildDeps='wget bzip2' && apt-get update && apt -y install $buildDeps && \
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY . /usr/src/app
-RUN CHROMEDRIVER_SKIP_DOWNLOAD=true EGDEDRIVER_SKIP_DOWNLOAD=true npm install --production && npm cache clean --force && npm uninstall npm -g
+RUN npm install -g npm@latest && CHROMEDRIVER_SKIP_DOWNLOAD=true EGDEDRIVER_SKIP_DOWNLOAD=true npm install --production && npm cache clean --force && npm uninstall npm -g
 WORKDIR /usr/src/app
 COPY docker/scripts/start-slim.sh /start.sh
 
