@@ -4,9 +4,10 @@
 ### Fixed
 * Updated to AXE core 4.3.5 [#3501](https://github.com/sitespeedio/sitespeed.io/pull/3501).
 * Use latest npm in the Docker container [#3502](https://github.com/sitespeedio/sitespeed.io/pull/3502).
+* Fixed the bug that caused so that you couldn't use the analyisstorer plugin together with Graphite [#3506](https://github.com/sitespeedio/sitespeed.io/pull/3506).
 ## 20.4.1 - 2021-10-29
 ### Fixed
-* Reverted the change with npm in the Docketr container since it broke both webpagetest and the +1 container installation
+* Reverted the change with npm in the Docker container since it broke both webpagetest and the +1 container installation
 ## 20.4.0 - 2021-10-29
 
 ### Added
