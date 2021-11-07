@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Fri, 29 Oct 2021 18:47:30 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 07 Nov 2021 12:07:40 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,11 +17,11 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[sitespeed.io 20.4.0]]></title>
+            <title><![CDATA[sitespeed.io 20.4.2]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.4.0</guid>
-            <pubDate>Fri, 29 Oct 2021 18:47:30 GMT</pubDate>
-            <description><![CDATA[ Reverted the change with npm in the Docketr container since it broke both webpagetest and the +1 container installation]]></description>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.4.2</guid>
+            <pubDate>Sun, 07 Nov 2021 12:07:40 GMT</pubDate>
+            <description><![CDATA[ Updated to AXE core 4.3.5 #3501. Use latest npm in the Docker container #3502. Fixed the bug that caused so that you couldn't use the analyisstorer plugin together with Graphite #3506. Updated to yargs 17.2.1]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
