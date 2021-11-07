@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-11-07T12:07:40.761Z</updated>
+    <updated>2021-11-07T12:41:59.073Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,17 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 14.9.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.9.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
+        <updated>2021-11-07T12:41:59.073Z</updated>
+        <summary type="html"><![CDATA[ Updated to new Chome HAR PR #1666 that inlcudes chunk information. Updated to yargs 17.2.1 #1667.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 20.4.2]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.4.2</id>
@@ -77,17 +88,6 @@
         <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#"/>
         <updated>2021-10-29T18:25:09.436Z</updated>
         <summary type="html"><![CDATA[ Added missing inbodyparser_blocking render blocking info for Chrome.]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 14.8.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.8.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2021-10-29T18:25:09.435Z</updated>
-        <summary type="html"><![CDATA[ New Edgedriver 95 and Edge 95 in the Docker container #1665. Fix for storing Firefox memory report and geckoprofile on Android 10+. Thank you Andrew Creskey for PR #1663.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>

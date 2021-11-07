@@ -13,7 +13,7 @@
         "@tgwf/co2": "0.6.1",
         "aws-sdk": "2.882.0",
         "axe-core": "4.3.5",
-        "browsertime": "14.8.0",
+        "browsertime": "14.9.0",
         "cli-color": "2.0.0",
         "coach-core": "6.4.3",
         "concurrent-queue": "7.0.2",
@@ -1465,9 +1465,9 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "14.8.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-14.8.0.tgz",
-      "integrity": "sha512-Y8n743nH7mey7VGBc/1Wk55bWH17Gs48ycCn0HDp6EJo61D1r/z/ANylE2HhJqK6JC5S+bhjRHiZBvn+SG/NbQ==",
+      "version": "14.9.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-14.9.0.tgz",
+      "integrity": "sha512-64zpa7m8dGdyMxA31quEPFs58FrJI1mZKMgtBu0a0cFufy510R2mD4qabQFpO9StDrUoehMe2GnDgC2hArfiwg==",
       "dependencies": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",
@@ -1477,7 +1477,7 @@
         "@sitespeed.io/throttle": "3.0.0",
         "@sitespeed.io/tracium": "0.3.3",
         "btoa": "1.2.1",
-        "chrome-har": "0.11.12",
+        "chrome-har": "0.12.0",
         "chrome-remote-interface": "0.31.0",
         "dayjs": "1.10.5",
         "execa": "5.1.1",
@@ -1494,7 +1494,7 @@
         "lodash.set": "4.3.2",
         "selenium-webdriver": "4.0.0",
         "speedline-core": "1.4.3",
-        "yargs": "17.0.1"
+        "yargs": "17.2.1"
       },
       "bin": {
         "browsertime": "bin/browsertime.js"
@@ -1510,23 +1510,6 @@
       "version": "1.10.5",
       "resolved": "https://registry.npmjs.org/dayjs/-/dayjs-1.10.5.tgz",
       "integrity": "sha512-BUFis41ikLz+65iH6LHQCDm4YPMj5r1YFLdupPIyM4SGcXMmtiLQ7U37i+hGS8urIuqe7I/ou3IS1jVc4nbN4g=="
-    },
-    "node_modules/browsertime/node_modules/yargs": {
-      "version": "17.0.1",
-      "resolved": "https://registry.npmjs.org/yargs/-/yargs-17.0.1.tgz",
-      "integrity": "sha512-xBBulfCc8Y6gLFcrPvtqKz9hz8SO0l1Ni8GgDekvBX2ro0HRQImDGnikfc33cgzcYUSncapnNcZDjVFIH3f6KQ==",
-      "dependencies": {
-        "cliui": "^7.0.2",
-        "escalade": "^3.1.1",
-        "get-caller-file": "^2.0.5",
-        "require-directory": "^2.1.1",
-        "string-width": "^4.2.0",
-        "y18n": "^5.0.5",
-        "yargs-parser": "^20.2.2"
-      },
-      "engines": {
-        "node": ">=12"
-      }
     },
     "node_modules/btoa": {
       "version": "1.2.1",
@@ -1710,9 +1693,9 @@
       }
     },
     "node_modules/chrome-har": {
-      "version": "0.11.12",
-      "resolved": "https://registry.npmjs.org/chrome-har/-/chrome-har-0.11.12.tgz",
-      "integrity": "sha512-Fi/YCoUHjQMQC0sPKCdiuGVbApeEwIUNvISrlwZgbuUcxfHJA6MjD4RsIH/YSOAo/Z3ENiF+xaEpsdqqdETIjg==",
+      "version": "0.12.0",
+      "resolved": "https://registry.npmjs.org/chrome-har/-/chrome-har-0.12.0.tgz",
+      "integrity": "sha512-VRQOsN9omU6q5/8h6eU9tkHPV2VvOCAh1JL4Hpk8ZIyrTLFWdK0A7UOsKNplvr+9Ls/8Wr71G20cuX2OsRPbwA==",
       "dependencies": {
         "dayjs": "1.8.31",
         "debug": "4.1.1",
@@ -8678,9 +8661,9 @@
       }
     },
     "browsertime": {
-      "version": "14.8.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-14.8.0.tgz",
-      "integrity": "sha512-Y8n743nH7mey7VGBc/1Wk55bWH17Gs48ycCn0HDp6EJo61D1r/z/ANylE2HhJqK6JC5S+bhjRHiZBvn+SG/NbQ==",
+      "version": "14.9.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-14.9.0.tgz",
+      "integrity": "sha512-64zpa7m8dGdyMxA31quEPFs58FrJI1mZKMgtBu0a0cFufy510R2mD4qabQFpO9StDrUoehMe2GnDgC2hArfiwg==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",
@@ -8690,7 +8673,7 @@
         "@sitespeed.io/throttle": "3.0.0",
         "@sitespeed.io/tracium": "0.3.3",
         "btoa": "1.2.1",
-        "chrome-har": "0.11.12",
+        "chrome-har": "0.12.0",
         "chrome-remote-interface": "0.31.0",
         "dayjs": "1.10.5",
         "execa": "5.1.1",
@@ -8708,27 +8691,13 @@
         "lodash.set": "4.3.2",
         "selenium-webdriver": "4.0.0",
         "speedline-core": "1.4.3",
-        "yargs": "17.0.1"
+        "yargs": "17.2.1"
       },
       "dependencies": {
         "dayjs": {
           "version": "1.10.5",
           "resolved": "https://registry.npmjs.org/dayjs/-/dayjs-1.10.5.tgz",
           "integrity": "sha512-BUFis41ikLz+65iH6LHQCDm4YPMj5r1YFLdupPIyM4SGcXMmtiLQ7U37i+hGS8urIuqe7I/ou3IS1jVc4nbN4g=="
-        },
-        "yargs": {
-          "version": "17.0.1",
-          "resolved": "https://registry.npmjs.org/yargs/-/yargs-17.0.1.tgz",
-          "integrity": "sha512-xBBulfCc8Y6gLFcrPvtqKz9hz8SO0l1Ni8GgDekvBX2ro0HRQImDGnikfc33cgzcYUSncapnNcZDjVFIH3f6KQ==",
-          "requires": {
-            "cliui": "^7.0.2",
-            "escalade": "^3.1.1",
-            "get-caller-file": "^2.0.5",
-            "require-directory": "^2.1.1",
-            "string-width": "^4.2.0",
-            "y18n": "^5.0.5",
-            "yargs-parser": "^20.2.2"
-          }
         }
       }
     },
@@ -8870,9 +8839,9 @@
       "integrity": "sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ=="
     },
     "chrome-har": {
-      "version": "0.11.12",
-      "resolved": "https://registry.npmjs.org/chrome-har/-/chrome-har-0.11.12.tgz",
-      "integrity": "sha512-Fi/YCoUHjQMQC0sPKCdiuGVbApeEwIUNvISrlwZgbuUcxfHJA6MjD4RsIH/YSOAo/Z3ENiF+xaEpsdqqdETIjg==",
+      "version": "0.12.0",
+      "resolved": "https://registry.npmjs.org/chrome-har/-/chrome-har-0.12.0.tgz",
+      "integrity": "sha512-VRQOsN9omU6q5/8h6eU9tkHPV2VvOCAh1JL4Hpk8ZIyrTLFWdK0A7UOsKNplvr+9Ls/8Wr71G20cuX2OsRPbwA==",
       "requires": {
         "dayjs": "1.8.31",
         "debug": "4.1.1",
