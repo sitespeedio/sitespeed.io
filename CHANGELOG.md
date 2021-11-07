@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 20.4.2 - 2021-11-07
 ### Fixed
 * Updated to AXE core 4.3.5 [#3501](https://github.com/sitespeedio/sitespeed.io/pull/3501).
 * Use latest npm in the Docker container [#3502](https://github.com/sitespeedio/sitespeed.io/pull/3502).
