@@ -1,8 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 20.5.0 - 2021-11-09
 ### Added
-* Updated to Browsertime 14.9.0.
+* Updated to [Browsertime 14.9.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1490---2021-11-07) with updated Chrome HAR generator.
+
+### Fixed
+* Ignore Influxdb and Grafana setup messages when you use the analysisstorer plugin [#3508](https://github.com/sitespeedio/sitespeed.io/pull/3508).
 ## 20.4.2 - 2021-11-07
 ### Fixed
 * Updated to AXE core 4.3.5 [#3501](https://github.com/sitespeedio/sitespeed.io/pull/3501).
