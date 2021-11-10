@@ -23,7 +23,10 @@ cpu.totalBlockingTime
 cpu.maxPotentialFid
 cpu.longTasks
 cpu.longTasksTotalDuration
+browser.cpuBenchmark
 pageinfo.cumulativeLayoutShift
+pageinfo.domElements
+pageinfo.documentHeight
 requests.total
 requests.html
 requests.javascript

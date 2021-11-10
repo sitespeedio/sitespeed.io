@@ -23,13 +23,16 @@ block content
           li #{failureMessage}
 
   p
-    .large All runs:&nbsp;
+    .large#pageNavigation All runs:&nbsp;
       each val, index in runPages
         - value = Number(index) + 1
         a(href='./' + value + '.html') #{value}
-        if (value !== Object.keys(runPages).length)
+        if (value === Object.keys(runPages).length)
           | &nbsp;-
-          |
+          a(href='metrics.html') (side by side)
+        else 
+            | &nbsp;-
+            |  
 
   if pageInfo.errors
     .errors
@@ -83,6 +86,11 @@ block content
               tr
                 td Total Page Transfer Size
                 td #{h.size.format(totalTransferSize)}
+            - memory = get(d, 'browsertime.pageSummary.memory')
+            if memory
+              tr
+                td Memory
+                td #{h.size.format(memory)}
             - requests = get(d, 'pagexray.pageSummary.requests')
             if requests
               tr

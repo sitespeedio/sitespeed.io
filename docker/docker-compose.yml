@@ -1,7 +1,7 @@
 version: '3'
 services:
     grafana:
-      image: grafana/grafana:7.5.3
+      image: grafana/grafana:8.2.3
       hostname: grafana
       depends_on:
         - graphite
@@ -40,7 +40,7 @@ services:
         # - /absolute/path/to/graphite/conf/storage-aggregation.conf:/opt/graphite/conf/storage-aggregation.conf
         # - /absolute/path/to/graphite/conf/carbon.conf:/opt/graphite/conf/carbon.conf
     grafana-setup:
-      image: sitespeedio/grafana-bootstrap:17.5.0
+      image: sitespeedio/grafana-bootstrap:20.4.0
       links:
         - grafana
       environment:

@@ -1,4 +1,4 @@
-FROM sitespeedio/webbrowsers:chrome-91.0-firefox-89.0-edge-91.0-dev
+FROM sitespeedio/webbrowsers:chrome-95.0-firefox-93.0-edge-95.0-dev-2
 
 ENV SITESPEED_IO_BROWSERTIME__XVFB true
 ENV SITESPEED_IO_BROWSERTIME__DOCKER true
@@ -25,7 +25,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY package.* /usr/src/app/
-RUN npm install --production
+RUN npm install -g npm@latest && npm install --production && npm cache clean --force
 COPY . /usr/src/app
 
 COPY docker/scripts/start.sh /start.sh
@@ -34,6 +34,7 @@ COPY docker/scripts/start.sh /start.sh
 RUN mkdir -m 0750 /root/.android
 ADD docker/adb/insecure_shared_adbkey /root/.android/adbkey
 ADD docker/adb/insecure_shared_adbkey.pub /root/.android/adbkey.pub
+
 
 # Allow all users to run commands needed by sitespeedio/throttle via sudo
 # See https://github.com/sitespeedio/throttle/blob/main/lib/tc.js

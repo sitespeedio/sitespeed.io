@@ -46,6 +46,9 @@ Browser
       --browsertime.basicAuth, --basicAuth                                                          Use it if your server is behind Basic Auth. Format: username@password. Only works in Chrome and Firefox.
       --browsertime.headless, --headless                                                            Run the browser in headless mode. This is the browser internal headless mode, meaning you cannot collect Visual Metrics or in Chrome run any WebExtension (this means you cannot add cookies, requestheaders or use basic auth for headless Chrome). Only works in Chrome and Firefox.  [boolean] [default: false]
 
+video
+      --browsertime.videoParams.keepOriginalVideo, --videoParams.keepOriginalVideo  Keep the original video. Use it when you have a Visual Metrics bug and want to create an issue at GitHub. Supply the original video in the issue and we can reproduce your issue.  [boolean] [default: false]
+
 Filmstrip
       --browsertime.videoParams.filmstripFullSize, --videoParams.filmstripFullSize  Keep original sized screenshots in the filmstrip. Will make the run take longer time  [boolean] [default: false]
       --browsertime.videoParams.filmstripQuality, --videoParams.filmstripQuality    The quality of the filmstrip screenshots. 0-100.  [default: 75]
@@ -60,6 +63,8 @@ Firefox
       --browsertime.firefox.binaryPath, --firefox.binaryPath                                          Path to custom Firefox binary (e.g. Firefox Nightly). On OS X, the path should be to the binary inside the app bundle, e.g. /Applications/Firefox.app/Contents/MacOS/firefox-bin
       --browsertime.firefox.preference, --firefox.preference                                          Extra command line arguments to pass Firefox preferences by the format key:value To add multiple preferences, repeat --firefox.preference once per argument.
       --browsertime.firefox.acceptInsecureCerts, --firefox.acceptInsecureCerts                        Accept insecure certs  [boolean]
+      --browsertime.firefox.memoryReport, --firefox.memoryReport                                      Measure firefox resident memory after each iteration.  [boolean] [default: false]
+      --browsertime.firefox.memoryReportParams.minizeFirst, --firefox.memoryReportParams.minizeFirst  Force a collection before dumping and measuring the memory report.  [boolean] [default: false]
       --browsertime.firefox.geckoProfiler, --firefox.geckoProfiler                                    Collect a profile using the internal gecko profiler  [boolean] [default: false]
       --browsertime.firefox.geckoProfilerParams.features, --firefox.geckoProfilerParams.features      Enabled features during gecko profiling  [string] [default: "js,stackwalk,leaf"]
       --browsertime.firefox.geckoProfilerParams.threads, --firefox.geckoProfilerParams.threads        Threads to profile.  [string] [default: "GeckoMain,Compositor,Renderer"]
@@ -71,18 +76,18 @@ Firefox
       --browsertime.firefox.disableTrackingProtection, --firefox.disableTrackingProtection            Disable Tracking Protection.  [boolean] [default: true]
       --browsertime.firefox.android.package, --firefox.android.package                                Run Firefox or a GeckoView-consuming App on your Android device. Set to org.mozilla.geckoview_example for default Firefox version. You need to have adb installed to make this work.
       --browsertime.firefox.android.activity, --firefox.android.activity                              Name of the Activity hosting the GeckoView.
-      --browsertime.firefox.android.deviceSerial, --firefox.android.deviceSerial                      Choose which device to use. If you do not set it, first device will be used.
+      --browsertime.firefox.android.deviceSerial, --firefox.android.deviceSerial                      Choose which device to use. If you do not set it, first device will be used.  [string]
       --browsertime.firefox.android.intentArgument, --firefox.android.intentArgument                  Configure how the Android intent is launched.  Passed through to `adb shell am start ...`; follow the format at https://developer.android.com/studio/command-line/adb#IntentSpec. To add multiple arguments, repeat --firefox.android.intentArgument once per argument.
       --browsertime.firefox.profileTemplate, --firefox.profileTemplate                                Profile template directory that will be cloned and used as the base of each profile each instance of Firefox is launched against.  Use this to pre-populate databases with certificates, tracking protection lists, etc.
       --browsertime.firefox.collectMozLog, --firefox.collectMozLog                                    Collect the MOZ HTTP log  [boolean]
 
 Chrome
       --browsertime.chrome.args, --chrome.args                                        Extra command line arguments to pass to the Chrome process. If you use the command line, leave out the starting -- (--no-sandbox will be no-sandbox). If you use a configuration JSON file you should keep the starting --. To add multiple arguments to Chrome, repeat --browsertime.chrome.args once per argument. See https://peter.sh/experiments/chromium-command-line-switches/
-      --browsertime.chrome.timeline, --chrome.timeline                                Collect the timeline data. Drag and drop the JSON in your Chrome detvools timeline panel or check out the CPU metrics.  [boolean]
+      --browsertime.chrome.timeline, --chrome.timeline                                Collect the timeline data. Drag and drop the JSON in your Chrome detvools timeline panel or check out the CPU metrics.  [boolean] [default: true]
       --browsertime.chrome.android.package, --chrome.android.package                  Run Chrome on your Android device. Set to com.android.chrome for default Chrome version. You need to have adb installed to run on Android.
       --browsertime.chrome.android.activity, --chrome.android.activity                Name of the Activity hosting the WebView.
       --browsertime.chrome.android.process, --chrome.android.process                  Process name of the Activity hosting the WebView. If not given, the process name is assumed to be the same as chrome.android.package.
-      --browsertime.chrome.android.deviceSerial, --chrome.android.deviceSerial        Choose which device to use. If you do not set it, the first found device will be used.
+      --browsertime.chrome.android.deviceSerial, --chrome.android.deviceSerial        Choose which device to use. If you do not set it, the first found device will be used.  [string]
       --browsertime.chrome.collectNetLog, --chrome.collectNetLog                      Collect network log from Chrome and save to disk.  [boolean]
       --browsertime.chrome.traceCategories, --chrome.traceCategories                  Set the trace categories.  [string]
       --browsertime.chrome.traceCategory, --chrome.traceCategory                      Add a trace category to the default ones. Use --chrome.traceCategory multiple times if you want to add multiple categories. Example: --chrome.traceCategory disabled-by-default-v8.cpu_profiler  [string]
@@ -116,10 +121,11 @@ proxy
       --browsertime.proxy.https, --proxy.https  Https proxy (host:port)  [string]
 
 Crawler
-  -d, --crawler.depth     How deep to crawl (1=only one page, 2=include links from first page, etc.)
-  -m, --crawler.maxPages  The max number of pages to test. Default is no limit.
-      --crawler.exclude   Exclude URLs matching the provided regular expression (ex: "/some/path/", "://some\.domain/"). Can be provided multiple times.
-      --crawler.include   Discard URLs not matching the provided regular expression (ex: "/some/path/", "://some\.domain/"). Can be provided multiple times.
+  -d, --crawler.depth            How deep to crawl (1=only one page, 2=include links from first page, etc.)
+  -m, --crawler.maxPages         The max number of pages to test. Default is no limit.
+      --crawler.exclude          Exclude URLs matching the provided regular expression (ex: "/some/path/", "://some\.domain/"). Can be provided multiple times.
+      --crawler.include          Discard URLs not matching the provided regular expression (ex: "/some/path/", "://some\.domain/"). Can be provided multiple times.
+      --crawler.ignoreRobotsTxt  Ignore robots.txt rules of the crawled domain.  [boolean] [default: false]
 
 Grafana
       --grafana.host                  The Grafana host used when sending annotations.
@@ -145,7 +151,7 @@ Graphite
       --graphite.annotationRetentionMinutes  The retention in minutes, to make annotation match the retention in Graphite.  [number]
       --graphite.statsd                      Uses the StatsD interface  [boolean] [default: false]
       --graphite.annotationTag               Add a extra tag to the annotation sent for a run. Repeat the --graphite.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
-      --graphite.addSlugToKey                Add the slug (name of the test) as an extra key in the namespace.  [boolean] [default: false]
+      --graphite.addSlugToKey                Add the slug (name of the test) as an extra key in the namespace.  [boolean] [default: true]
       --graphite.bulkSize                    Break up number of metrics to send with each request.  [number] [default: null]
       --graphite.skipSummary                 Skip sending summary messages data to Graphite (summaries over a domain).  [boolean] [default: false]
       --graphite.perIteration                Send each iteration of metrics to Graphite. By default we only send page summaries (the summaries of all runs) but you can also send all the runs. Make sure to setup statsd or Graphite correctly to handle it.  [boolean] [default: false]
@@ -160,6 +166,7 @@ Budget
       --budget.suppressExitCode                                   By default sitespeed.io returns a failure exit code, if the budget fails. Set this to true and sitespeed.io will return exit code 0 independent of the budget.
       --budget.config                                             The JSON budget config as a string.
       --budget.output                                             The output format of the budget.  [choices: "junit", "tap", "json"]
+      --budget.friendlyName                                       Add a friendly name to the test case. At the moment this is only used in junit.
       --budget.removeWorkingResult, --budget.removePassingResult  Remove the result of URLs that pass the budget. You can use this if you many URL and only care about the ones that fails your budget. All videos/HTML for the working URLs will be removed if you pass this on.  [boolean]
 
 Screenshot
@@ -267,7 +274,7 @@ Options:
       --browsertime.preWarmServerWaitTime                                                                     The wait time before you start the real testing after your pre-cache request.  [number] [default: 5000]
       --plugins.disable  [array]
       --plugins.load  [array]
-      --mobile                                                                                                Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Apple iPhone 6.  [boolean] [default: false]
+      --mobile                                                                                                Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Moto G4.  [boolean] [default: false]
       --resultBaseURL, --resultBaseUrl                                                                        The base URL to the server serving the HTML result. In the format of https://result.sitespeed.io
       --gzipHAR                                                                                               Compress the HAR files with GZIP.  [boolean] [default: false]
       --outputFolder                                                                                          The folder where the result will be stored. If you do not set it, the result will be stored in "DOMAIN_OR_FILENAME_OR_SLUG/TIMESTAMP"  [string]
@@ -280,6 +287,7 @@ Options:
       --useHash                                                                                               If your site uses # for URLs and # give you unique URLs you need to turn on useHash. By default is it turned off, meaning URLs with hash and without hash are treated as the same URL  [boolean] [default: false]
       --multi                                                                                                 Test multiple URLs within the same browser session (same cache etc). Only works with Browsertime. Use this if you want to test multiple pages (use journey) or want to test multiple pages with scripts. You can mix URLs and scripts (the order will matter): login.js https://www.sitespeed.io/ logout.js - More details: https://www.sitespeed.io/documentation/sitespeed.io/scripting/  [boolean] [default: false]
       --name                                                                                                  Give your test a name.
+  -o, --open                                                                                                  Open your test result in your default browser (Mac OS only).
       --slug                                                                                                  Give your test a slug. The slug is used when you send the metrics to your data storage to identify the test and the folder of the tests. The max length of the slug is 200 characters and it can only contain a-z A-Z 0-9 and -_ characters.
       --config                                                                                                Path to JSON config file
   -h, --help                                                                                                  Show help  [boolean]

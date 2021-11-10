@@ -4,9 +4,9 @@ const DataGenerator = require('../lib/plugins/influxdb/data-generator'),
   dayjs = require('dayjs'),
   expect = require('chai').expect;
 
-describe('influxdb', function() {
-  describe('dataGenerator', function() {
-    it('should generate data for coach.summary', function() {
+describe('influxdb', function () {
+  describe('dataGenerator', function () {
+    it('should generate data for coach.summary', function () {
       const message = {
         uuid: '33774328-e781-4152-babe-a367cee27153',
         type: 'coach.summary',

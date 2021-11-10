@@ -67,5 +67,17 @@ You can also track CPU spent per tool/third party. It's turned off by default an
 
 ## Block all 3rd parties
 
-We have support to block specific third parties with `--block` but that isn't the most user friendly way if you wanna test you site without third parties. We added support for blocking every domain except the one you configure (inspired by [WebPageTest](https://www.webpagetest.org)). 
-Use `--chrome.blockDomainsExcept` to block all domains except. Use it multiple times to keep multiple domains. You can also use wildcard like *.sitespeed.io!
+We have two ways to block requests when you use sitespeed.io. Either you can use block `--block` that blocks a specific request (works in Chrome/Edge/Firefox) or you can use `--chrome.blockDomainsExcept` (Chrome/Edge) to block all domains except the ones you choose (you can use wildcard like *.sitespeed.io). You can use both multiple times to keep multiple domains/block multiple requests.
+
+With the block parameter you block specific requests. Here's an example from Wikipedia that blocks the first JavaScript request:
+
+~~~bash
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --block "https://en.wikipedia.org/w/load.php?lang=en&modules=startup&only=scripts&raw=1&skin=vector" https://en.wikipedia.org/wiki/Barack_Obama
+~~~
+
+
+Here's an example from a user that use WebPageReplay and want to block all domains except one:
+
+~~~bash
+docker run --cap-add=NET_ADMIN --rm -v "$(pwd):/sitespeed.io" -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --firstParty ".*(move.com|realtor.com|moveaws.com|rdcpix.com).*" --browsertime.chrome.blockDomainsExcept "*.realtor.com" https://www.realtor.com/
+~~~

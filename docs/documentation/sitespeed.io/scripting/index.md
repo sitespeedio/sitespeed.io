@@ -912,10 +912,10 @@ Click on link that matches a XPath selector.
 Click on link that matches a XPath selector and wait for [page load complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to finish.
 
 #### click.byJs(js)
-Click on a link located by evaluating a JavaScript expression. The result of this expression must be an element or list of elements.
+Click on a link/element located by a JavaScript expression. Internally this will append a `.click()` to the JavaScript expression (for example if you add the JavaScript `document.querySelector("a")` to select the element, the backend code will run `document.querySelector("a").click()`). The result of this expression must be an element or list of elements.
 
 #### click.byJsAndWait(js)
-Click on a link located by evaluating a JavaScript expression. The result of this expression must be an element or list of elements. And wait for [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to finish.
+Click on a link located by JavaScript expression. Internally this will append a `.click()` to the JavaScript expression. The result of this expression must be an element or list of elements. And wait for [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to finish.
 
 #### click.byId(id)
 Click on link located by the ID attribute. Internally we use  ```document.getElementById(id)``` to get the correct element.
@@ -935,6 +935,9 @@ The mouse command will perform various mouse events.
 #### mouse.moveTo.byXpath(xpath)
 Move mouse to an element that matches a XPath selector.
 
+#### mouse.moveTo.bySelector(selector)
+Move mouse to an element that matches a CSS selector.
+
 #### mouse.moveTo.toPosition(xPos, yPos)
 Move mouse to a given position.
 
@@ -944,23 +947,33 @@ Move mouse by a given offset to current location.
 #### mouse.contextClick.byXpath(xpath)
 Perform ContextClick on an element that matches a XPath selector.
 
+#### mouse.contextClick.bySelector(selector)
+Perform ContextClick on an element that matches a CSS selector.
 #### mouse.contextClick.atCursor()
 Perform ContextClick at the cursor's position.
 
 #### mouse.singleClick.byXpath(xpath, options)
 Perform mouse single click on an element matches a XPath selector.  Options is an optional parameter, and if the property 'wait' is set to true, browsertime will wait until the pageCompleteCheck has finished.
 
+#### mouse.singleClick.bySelector(selector, options)
+Perform mouse single click on an element matches a CSS selector.  Options is an optional parameter, and if the property 'wait' is set to true, browsertime will wait until the pageCompleteCheck has finished.
 #### mouse.singleClick.atCursor(options)
 Perform mouse single click at the cursor's position.  Options is an optional parameter, and if the property 'wait' is set to true, browsertime will wait until the pageCompleteCheck has finished.
 
 #### mouse.doubleClick.byXpath(xpath, options)
 Perform double single click on an element matches a XPath selector.  Options is an optional parameter, and if the property 'wait' is set to true, browsertime will wait until the pageCompleteCheck has finished.
 
+#### mouse.doubleClick.bySelector(selector, options)
+Perform double single click on an element matches a CSS selector.  Options is an optional parameter, and if the property 'wait' is set to true, browsertime will wait until the pageCompleteCheck has finished.
+
 #### mouse.doubleClick.atCursor(options)
 Perform mouse double click at the cursor's position.  Options is an optional parameter, and if the property 'wait' is set to true, browsertime will wait until the pageCompleteCheck has finished.
 
 #### mouse.clickAndHold.byXpath(xpath)
 Click and hold an element that matches a XPath selector.
+
+#### mouse.clickAndHold.bySelector(selector)
+Click and hold an element that matches a CSS selector.
 
 #### mouse.clickAndHold.atCursor()
 Click and hold an element at the cursor's position.
@@ -970,6 +983,9 @@ Click and hold an element at the specified position.
 
 #### mouse.clickAndHold.releaseAtXpath(xpah)
 Release mouse on element that matches the specified Xpath.
+
+#### mouse.clickAndHold.releaseAtSelector(selector)
+Release mouse on element that matches the specified CSS selector.
 
 #### mouse.clickAndHold.releaseAtPosition(xPos, yPos)
 Release mouse at specified coordinates.

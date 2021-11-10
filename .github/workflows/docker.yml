@@ -19,6 +19,8 @@ jobs:
       run: docker run --rm sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 -b chrome
     - name: Run test on default container for Firefox 
       run: docker run --rm sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 -b firefox
+    - name: Run test on default container for Edge 
+      run: docker run --rm sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 -b edge
     - name: Run test on slim container  
       run: docker run --rm sitespeedio/sitespeed.io:slim https://www.sitespeed.io -n 1
     - name: Test WebPageReplay in the default container    

@@ -17,7 +17,7 @@ block content
     p !{d.browsertime.run.description}
 
   p
-    .large All runs:&nbsp;
+    .large#pageNavigation All runs:&nbsp;
       each val, index in runPages
         - value = Number(index) + 1
         if (runNumber === value)
@@ -59,6 +59,11 @@ block content
               tr
                 td Total page size
                 td #{h.size.format(totalTransferSize)}
+            - memory = get(d, 'browsertime.run.memory')
+            if memory
+              tr
+                td Memory
+                td #{h.size.format(memory)}
             - requests = get(d, 'pagexray.run.requests')
             if (requests)
               tr
