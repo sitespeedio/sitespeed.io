@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 20.6.0 - UNRELEASED
+### Added
+* Updated to Browsertime 14.10.0 with Chromedriver 96 and Chrome 96 in the Docker container.
+
 ## 20.5.0 - 2021-11-09
 ### Added
 * Updated to [Browsertime 14.9.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1490---2021-11-07) with updated Chrome HAR generator.
