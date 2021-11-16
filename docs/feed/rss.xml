@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Tue, 09 Nov 2021 14:53:34 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 16 Nov 2021 15:17:40 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,20 +17,20 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[browsertime 14.10.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.10.0</guid>
+            <pubDate>Tue, 16 Nov 2021 15:17:40 GMT</pubDate>
+            <description><![CDATA[ Updated to Chromedriver 96 and Chrome 96 in the Docker container #1670. Added checks for Firefox HAR that it actually has a page. Updated day js.]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 20.5.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.5.0</guid>
             <pubDate>Tue, 09 Nov 2021 14:53:34 GMT</pubDate>
             <description><![CDATA[ Updated to Browsertime 14.9.0 with updated Chrome HAR generator. Ignore Influxdb and Grafana setup messages when you use the analysisstorer plugin #3508.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 14.9.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.9.0</guid>
-            <pubDate>Sun, 07 Nov 2021 12:41:59 GMT</pubDate>
-            <description><![CDATA[ Updated to new Chome HAR PR #1666 that inlcudes chunk information. Updated to yargs 17.2.1 #1667.]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[throttle 3.0.0]]></title>

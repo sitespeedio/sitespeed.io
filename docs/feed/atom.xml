@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-11-09T14:53:34.294Z</updated>
+    <updated>2021-11-16T15:17:40.176Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,22 +17,22 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 20.5.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.5.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2021-11-09T14:53:34.294Z</updated>
-        <summary type="html"><![CDATA[ Updated to Browsertime 14.9.0 with updated Chrome HAR generator. Ignore Influxdb and Grafana setup messages when you use the analysisstorer plugin #3508.]]></summary>
+        <title type="html"><![CDATA[browsertime 14.10.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.10.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
+        <updated>2021-11-16T15:17:40.176Z</updated>
+        <summary type="html"><![CDATA[ Updated to Chromedriver 96 and Chrome 96 in the Docker container #1670. Added checks for Firefox HAR that it actually has a page. Updated day js.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[browsertime 14.9.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.9.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2021-11-07T12:41:59.073Z</updated>
-        <summary type="html"><![CDATA[ Updated to new Chome HAR PR #1666 that inlcudes chunk information. Updated to yargs 17.2.1 #1667.]]></summary>
+        <title type="html"><![CDATA[sitespeed.io 20.5.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.5.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
+        <updated>2021-11-09T14:53:34.294Z</updated>
+        <summary type="html"><![CDATA[ Updated to Browsertime 14.9.0 with updated Chrome HAR generator. Ignore Influxdb and Grafana setup messages when you use the analysisstorer plugin #3508.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
