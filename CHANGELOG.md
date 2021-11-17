@@ -1,8 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 20.6.0 - UNRELEASED
+## 20.6.0 - 2021-11-17
+
+Note: Do your test fails with Firefox 94? See [Browsertime #1671](https://github.com/sitespeedio/browsertime/issues/1671). Until that is fixed in Firefox, it seems most use cases is fixed by adding a settle time (the browser rest for a while before we start the test). Try with `--browsertime.settleTime 10000` to add a 10 seconds wait time before the test starts.
 ### Added
-* Updated to Browsertime 14.10.0 with Chromedriver 96 and Chrome 96 in the Docker container.
+* Updated to [Browsertime 14.10.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14100---2021-11-16) with Chromedriver 96 and Chrome 96 in the Docker container.
 
 ## 20.5.0 - 2021-11-09
 ### Added
