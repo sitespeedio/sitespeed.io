@@ -14,10 +14,10 @@ jobs:
       uses: browser-actions/setup-firefox@latest
       with:
         firefox-version: 'latest-beta' #latest-devedition
-    - name: Install Chrome beta 
-      uses: browser-actions/setup-chrome@latest
-      with:
-        chrome-version: beta
+    #- name: Install Chrome beta 
+    #  uses: browser-actions/setup-chrome@latest
+    #  with:
+    #    chrome-version: beta
     - uses: actions/checkout@v2
     - name: Use Node.js
       uses: actions/setup-node@v1
@@ -29,8 +29,8 @@ jobs:
       run: |
         google-chrome --version
         firefox --version
-    - name: Run unit tests
-      run: npm test
+    #- name: Run unit tests
+    #  run: npm test
     - name: Run tests on Chrome beta
       run: bin/sitespeed.js -b chrome -n 1 --xvfb https://www.sitespeed.io
     - name: Run tests on Firefox beta
