@@ -8,6 +8,7 @@ on:
     - main
 jobs:
   build:
+    runs-on: ubuntu-latest
     steps:
     - name: Install Firefox beta
        uses: browser-actions/setup-firefox@latest
