@@ -1,5 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 ## 20.6.1 - 2021-11-20
+### Fixed
 * Updated to [Browsertime 14.10.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14101---2021-11-19) that disables the Chrome/Chromedriver version check by default.
 
 ## 20.6.0 - 2021-11-17
