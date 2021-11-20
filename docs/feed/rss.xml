@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Fri, 19 Nov 2021 21:52:19 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 20 Nov 2021 07:09:39 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,20 +17,20 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[sitespeed.io 20.6.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.6.1</guid>
+            <pubDate>Sat, 20 Nov 2021 07:09:39 GMT</pubDate>
+            <description><![CDATA[ Updated to Browsertime 14.10.1 that disables the Chrome/Chromedriver version check by default.]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[browsertime 14.10.1]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.10.1</guid>
             <pubDate>Fri, 19 Nov 2021 21:52:19 GMT</pubDate>
             <description><![CDATA[ Disabled the automatic Chrome/Chromedriver version check in Chromedriver #1676. Loop until we find a frame with a good viewport or until we run out of retries for Visual Metrics. Thank you Gregory Mierzwinski for PR #1668.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 20.6.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.6.0</guid>
-            <pubDate>Fri, 19 Nov 2021 14:20:02 GMT</pubDate>
-            <description><![CDATA[ Updated to Browsertime 14.10.0 with Chromedriver 96 and Chrome 96 in the Docker container.]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[throttle 3.0.0]]></title>

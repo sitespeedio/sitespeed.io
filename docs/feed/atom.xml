@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-11-19T21:52:19.814Z</updated>
+    <updated>2021-11-20T07:09:39.869Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,22 +17,22 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[browsertime 14.10.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.10.1</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2021-11-19T21:52:19.814Z</updated>
-        <summary type="html"><![CDATA[ Disabled the automatic Chrome/Chromedriver version check in Chromedriver #1676. Loop until we find a frame with a good viewport or until we run out of retries for Visual Metrics. Thank you Gregory Mierzwinski for PR #1668.]]></summary>
+        <title type="html"><![CDATA[sitespeed.io 20.6.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.6.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
+        <updated>2021-11-20T07:09:39.869Z</updated>
+        <summary type="html"><![CDATA[ Updated to Browsertime 14.10.1 that disables the Chrome/Chromedriver version check by default.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 20.6.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.6.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2021-11-19T14:20:02.954Z</updated>
-        <summary type="html"><![CDATA[ Updated to Browsertime 14.10.0 with Chromedriver 96 and Chrome 96 in the Docker container.]]></summary>
+        <title type="html"><![CDATA[browsertime 14.10.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.10.1</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
+        <updated>2021-11-19T21:52:19.814Z</updated>
+        <summary type="html"><![CDATA[ Disabled the automatic Chrome/Chromedriver version check in Chromedriver #1676. Loop until we find a frame with a good viewport or until we run out of retries for Visual Metrics. Thank you Gregory Mierzwinski for PR #1668.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
