@@ -13,7 +13,7 @@
         "@tgwf/co2": "0.6.1",
         "aws-sdk": "2.882.0",
         "axe-core": "4.3.5",
-        "browsertime": "14.10.2",
+        "browsertime": "14.11.0",
         "cli-color": "2.0.0",
         "coach-core": "6.4.3",
         "concurrent-queue": "7.0.2",
@@ -1465,9 +1465,9 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "14.10.2",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-14.10.2.tgz",
-      "integrity": "sha512-l4UmLjWLIk+zIgjHF8DPtoeFAdoauqYPpOLxh7jUbNqQSD2VlvnuKLd2UcJ831cfHUc8zgHtr5VruQ8NsbqzZg==",
+      "version": "14.11.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-14.11.0.tgz",
+      "integrity": "sha512-8NXsN4YqJs8mADfsO5K+Om87QAsLcG+5sGrw/SehB8mJYpDER6aiS/+XV7IUo3/lRv8qd4unwHkK6J+BQaKoMg==",
       "dependencies": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",
@@ -1492,7 +1492,7 @@
         "lodash.merge": "4.6.2",
         "lodash.pick": "4.4.0",
         "lodash.set": "4.3.2",
-        "selenium-webdriver": "4.0.0",
+        "selenium-webdriver": "4.1.0",
         "speedline-core": "1.4.3",
         "yargs": "17.2.1"
       },
@@ -3199,21 +3199,6 @@
       },
       "engines": {
         "node": "^10.12.0 || >=12.0.0"
-      }
-    },
-    "node_modules/flat-cache/node_modules/rimraf": {
-      "version": "3.0.2",
-      "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-3.0.2.tgz",
-      "integrity": "sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==",
-      "dev": true,
-      "dependencies": {
-        "glob": "^7.1.3"
-      },
-      "bin": {
-        "rimraf": "bin.js"
-      },
-      "funding": {
-        "url": "https://github.com/sponsors/isaacs"
       }
     },
     "node_modules/flatted": {
@@ -6132,6 +6117,20 @@
       "resolved": "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz",
       "integrity": "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w=="
     },
+    "node_modules/rimraf": {
+      "version": "3.0.2",
+      "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-3.0.2.tgz",
+      "integrity": "sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==",
+      "dependencies": {
+        "glob": "^7.1.3"
+      },
+      "bin": {
+        "rimraf": "bin.js"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/isaacs"
+      }
+    },
     "node_modules/robots-parser": {
       "version": "2.1.1",
       "resolved": "https://registry.npmjs.org/robots-parser/-/robots-parser-2.1.1.tgz",
@@ -6168,31 +6167,16 @@
       "integrity": "sha1-e45lYZCyKOgaZq6nSEgNgozS03o="
     },
     "node_modules/selenium-webdriver": {
-      "version": "4.0.0",
-      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.0.0.tgz",
-      "integrity": "sha512-tOlu6FnTjPq2FKpd153pl8o2cB7H40Rvl/ogiD2sapMv4IDjQqpIxbd+swDJe9UDLdszeh5CDis6lgy4e9UG1w==",
+      "version": "4.1.0",
+      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.1.0.tgz",
+      "integrity": "sha512-kUDH4N8WruYprTzvug4Pl73Th+WKb5YiLz8z/anOpHyUNUdM3UzrdTOxmSNaf9AczzBeY+qXihzku8D1lMaKOg==",
       "dependencies": {
         "jszip": "^3.6.0",
-        "rimraf": "^3.0.2",
         "tmp": "^0.2.1",
         "ws": ">=7.4.6"
       },
       "engines": {
         "node": ">= 10.15.0"
-      }
-    },
-    "node_modules/selenium-webdriver/node_modules/rimraf": {
-      "version": "3.0.2",
-      "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-3.0.2.tgz",
-      "integrity": "sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==",
-      "dependencies": {
-        "glob": "^7.1.3"
-      },
-      "bin": {
-        "rimraf": "bin.js"
-      },
-      "funding": {
-        "url": "https://github.com/sponsors/isaacs"
       }
     },
     "node_modules/semver": {
@@ -6895,20 +6879,6 @@
       },
       "engines": {
         "node": ">=8.17.0"
-      }
-    },
-    "node_modules/tmp/node_modules/rimraf": {
-      "version": "3.0.2",
-      "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-3.0.2.tgz",
-      "integrity": "sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==",
-      "dependencies": {
-        "glob": "^7.1.3"
-      },
-      "bin": {
-        "rimraf": "bin.js"
-      },
-      "funding": {
-        "url": "https://github.com/sponsors/isaacs"
       }
     },
     "node_modules/to-fast-properties": {
@@ -8661,9 +8631,9 @@
       }
     },
     "browsertime": {
-      "version": "14.10.2",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-14.10.2.tgz",
-      "integrity": "sha512-l4UmLjWLIk+zIgjHF8DPtoeFAdoauqYPpOLxh7jUbNqQSD2VlvnuKLd2UcJ831cfHUc8zgHtr5VruQ8NsbqzZg==",
+      "version": "14.11.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-14.11.0.tgz",
+      "integrity": "sha512-8NXsN4YqJs8mADfsO5K+Om87QAsLcG+5sGrw/SehB8mJYpDER6aiS/+XV7IUo3/lRv8qd4unwHkK6J+BQaKoMg==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",
@@ -8689,7 +8659,7 @@
         "lodash.merge": "4.6.2",
         "lodash.pick": "4.4.0",
         "lodash.set": "4.3.2",
-        "selenium-webdriver": "4.0.0",
+        "selenium-webdriver": "4.1.0",
         "speedline-core": "1.4.3",
         "yargs": "17.2.1"
       },
@@ -10059,17 +10029,6 @@
       "requires": {
         "flatted": "^3.1.0",
         "rimraf": "^3.0.2"
-      },
-      "dependencies": {
-        "rimraf": {
-          "version": "3.0.2",
-          "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-3.0.2.tgz",
-          "integrity": "sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==",
-          "dev": true,
-          "requires": {
-            "glob": "^7.1.3"
-          }
-        }
       }
     },
     "flatted": {
@@ -12435,6 +12394,14 @@
         }
       }
     },
+    "rimraf": {
+      "version": "3.0.2",
+      "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-3.0.2.tgz",
+      "integrity": "sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==",
+      "requires": {
+        "glob": "^7.1.3"
+      }
+    },
     "robots-parser": {
       "version": "2.1.1",
       "resolved": "https://registry.npmjs.org/robots-parser/-/robots-parser-2.1.1.tgz",
@@ -12465,24 +12432,13 @@
       "integrity": "sha1-e45lYZCyKOgaZq6nSEgNgozS03o="
     },
     "selenium-webdriver": {
-      "version": "4.0.0",
-      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.0.0.tgz",
-      "integrity": "sha512-tOlu6FnTjPq2FKpd153pl8o2cB7H40Rvl/ogiD2sapMv4IDjQqpIxbd+swDJe9UDLdszeh5CDis6lgy4e9UG1w==",
+      "version": "4.1.0",
+      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.1.0.tgz",
+      "integrity": "sha512-kUDH4N8WruYprTzvug4Pl73Th+WKb5YiLz8z/anOpHyUNUdM3UzrdTOxmSNaf9AczzBeY+qXihzku8D1lMaKOg==",
       "requires": {
         "jszip": "^3.6.0",
-        "rimraf": "^3.0.2",
         "tmp": "^0.2.1",
         "ws": ">=7.4.6"
-      },
-      "dependencies": {
-        "rimraf": {
-          "version": "3.0.2",
-          "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-3.0.2.tgz",
-          "integrity": "sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==",
-          "requires": {
-            "glob": "^7.1.3"
-          }
-        }
       }
     },
     "semver": {
@@ -13057,16 +13013,6 @@
       "integrity": "sha512-76SUhtfqR2Ijn+xllcI5P1oyannHNHByD80W1q447gU3mp9G9PSpGdWmjUOHRDPiHYacIk66W7ubDTuPF3BEtQ==",
       "requires": {
         "rimraf": "^3.0.0"
-      },
-      "dependencies": {
-        "rimraf": {
-          "version": "3.0.2",
-          "resolved": "https://registry.npmjs.org/rimraf/-/rimraf-3.0.2.tgz",
-          "integrity": "sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==",
-          "requires": {
-            "glob": "^7.1.3"
-          }
-        }
       }
     },
     "to-fast-properties": {
