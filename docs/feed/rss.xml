@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Sat, 20 Nov 2021 09:11:56 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 23 Nov 2021 08:19:44 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,20 +17,20 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[browsertime 14.11.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.11.0</guid>
+            <pubDate>Tue, 23 Nov 2021 08:19:44 GMT</pubDate>
+            <description><![CDATA[ Updated to Selenium 4.1.0 #1679 Use the viewport to determine if more cropping is needed in visual metrics. Thank you Gregory Mierzwinski for PR #1680.]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 20.6.2]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.6.2</guid>
-            <pubDate>Sat, 20 Nov 2021 09:11:56 GMT</pubDate>
-            <description><![CDATA[ Updated to Browsertime 14.10.2 that disables the Edge/Edgeedriver version check.]]></description>
+            <pubDate>Mon, 22 Nov 2021 02:17:06 GMT</pubDate>
+            <description><![CDATA[ Updated to Browsertime 14.10.2 that disables the Edge/Edgedriver version check.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 14.10.2]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.10.2</guid>
-            <pubDate>Sat, 20 Nov 2021 08:58:36 GMT</pubDate>
-            <description><![CDATA[ Disabled the version check for Edge/Edgedriver in Edgedriver #1678.]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[throttle 3.0.0]]></title>

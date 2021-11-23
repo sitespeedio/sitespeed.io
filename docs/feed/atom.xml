@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-11-20T09:11:56.002Z</updated>
+    <updated>2021-11-23T08:19:44.205Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,22 +17,22 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 20.6.2]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.6.2</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2021-11-20T09:11:56.002Z</updated>
-        <summary type="html"><![CDATA[ Updated to Browsertime 14.10.2 that disables the Edge/Edgeedriver version check.]]></summary>
+        <title type="html"><![CDATA[browsertime 14.11.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.11.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
+        <updated>2021-11-23T08:19:44.205Z</updated>
+        <summary type="html"><![CDATA[ Updated to Selenium 4.1.0 #1679 Use the viewport to determine if more cropping is needed in visual metrics. Thank you Gregory Mierzwinski for PR #1680.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[browsertime 14.10.2]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.10.2</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2021-11-20T08:58:36.205Z</updated>
-        <summary type="html"><![CDATA[ Disabled the version check for Edge/Edgedriver in Edgedriver #1678.]]></summary>
+        <title type="html"><![CDATA[sitespeed.io 20.6.2]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.6.2</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
+        <updated>2021-11-22T02:17:06.133Z</updated>
+        <summary type="html"><![CDATA[ Updated to Browsertime 14.10.2 that disables the Edge/Edgedriver version check.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>

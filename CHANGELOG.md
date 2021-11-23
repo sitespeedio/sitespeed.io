@@ -1,8 +1,14 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+
+## UNRELEASED
+### Added
+* Updated to Browsertime 14.11.0
+* Updated to green domains from the Green Web Foundation [#3513](https://github.com/sitespeedio/sitespeed.io/pull/3513).
+
 ## 20.6.2 - 2021-11-20
 ### Fixed
-* Updated to [Browsertime 14.10.2](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14102---2021-11-20) that disables the Edge/Edgeedriver version check.
+* Updated to [Browsertime 14.10.2](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14102---2021-11-20) that disables the Edge/Edgedriver version check.
 ## 20.6.1 - 2021-11-20
 ### Fixed
 * Updated to [Browsertime 14.10.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14101---2021-11-19) that disables the Chrome/Chromedriver version check.
