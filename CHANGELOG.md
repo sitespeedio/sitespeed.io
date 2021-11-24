@@ -3,8 +3,9 @@
 
 ## UNRELEASED
 ### Added
-* Updated to Browsertime 14.11.0
-* Updated to green domains from the Green Web Foundation [#3513](https://github.com/sitespeedio/sitespeed.io/pull/3513).
+* Updated to [Browsertime 14.11.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14110---2021-11-23)
+* Updated green domains from the Green Web Foundation [#3513](https://github.com/sitespeedio/sitespeed.io/pull/3513).
+* Updated PerfCascade that support chunks [#3514](https://github.com/sitespeedio/sitespeed.io/pull/3514).
 
 ## 20.6.2 - 2021-11-20
 ### Fixed
