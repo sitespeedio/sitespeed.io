@@ -125,7 +125,7 @@ if browsertime
               a(href=url) #{name}
             td.number #{h.time.ms(value)}
     .one-half.column
-      if (timings.largestContentfulPaint)
+      if (browsertime.googleWebVitals)
         table
           tr
             th(colspan='2') Google Web Vitals
@@ -159,10 +159,13 @@ if browsertime
         if (timings.paintTiming && Object.keys(timings.paintTiming).length > 0)
           - const paintTimingHelper = { "first-contentful-paint": {"name": 'First Contentful Paint (FCP)', "friendly": "first-contentful-paint"},  "first-paint": {"name": 'First Paint', "friendly": "firstPaint" }};
           each value, name in timings.paintTiming
-            tr
-              td 
-                a(href=baseHelpURL + paintTimingHelper[name].friendly) #{paintTimingHelper[name].name}
-              td.number #{h.time.ms(value.toFixed(0))}
+            if name === 'first-contentful-paint' && browsertime.googleWebVitals
+              // do nada
+            else 
+              tr
+                td 
+                  a(href=baseHelpURL + paintTimingHelper[name].friendly) #{paintTimingHelper[name].name}
+                td.number #{h.time.ms(value.toFixed(0))}
         else if timings.firstPaint > -1
           tr
             td
@@ -183,7 +186,7 @@ if browsertime
             td
               a(href=baseHelpURL + 'timeToFirstInteractive') Time To First Interactive
             td.number #{h.time.ms(timings.timeToFirstInteractive.toFixed(0))}         
-        if (timings.largestContentfulPaint) 
+        if (!browsertime.googleWebVitals && timings.largestContentfulPaint) 
            tr
             td
               a(href=baseHelpURL + 'largestContentfulPaint') Largest Contentful Paint (LCP)
