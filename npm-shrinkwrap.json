@@ -15,7 +15,7 @@
         "axe-core": "4.3.5",
         "browsertime": "14.11.0",
         "cli-color": "2.0.0",
-        "coach-core": "6.4.3",
+        "coach-core": "7.0.0-beta.1",
         "concurrent-queue": "7.0.2",
         "dayjs": "1.10.4",
         "fast-crc32c": "2.0.0",
@@ -1877,9 +1877,9 @@
       }
     },
     "node_modules/coach-core": {
-      "version": "6.4.3",
-      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-6.4.3.tgz",
-      "integrity": "sha512-m2GyucQq7DoKOCg8F0xvjvoXXyjT32ch44TFmQArH8H1uD63PNoRlxE24Dlqw9pGn73lwK456F24ZojGQe8vGg==",
+      "version": "7.0.0-beta.1",
+      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-7.0.0-beta.1.tgz",
+      "integrity": "sha512-UgOQpg80EnrDL0sEagPdw4NrP+VaR5N7NcZdLc6Fp+X7CIGEJ5cRj+dF+RWPxT+wi8/an4O/oOAcgMQAWEpEzw==",
       "dependencies": {
         "filter-files": "0.4.0",
         "json-stable-stringify": "1.0.1",
@@ -1887,11 +1887,11 @@
         "lodash.merge": "4.6.2",
         "lodash.sortby": "4.7.0",
         "pagexray": "4.3.1",
-        "third-party-web": "0.12.4",
+        "third-party-web": "0.12.6",
         "wappalyzer-core": "6.6.0"
       },
       "engines": {
-        "node": ">=10.13.0"
+        "node": ">=14.0.0"
       }
     },
     "node_modules/combined-stream": {
@@ -6809,9 +6809,9 @@
       "integrity": "sha1-f17oI66AUgfACvLfSoTsP8+lcLQ="
     },
     "node_modules/third-party-web": {
-      "version": "0.12.4",
-      "resolved": "https://registry.npmjs.org/third-party-web/-/third-party-web-0.12.4.tgz",
-      "integrity": "sha512-SaJdgPjCus/5ftexuCk8wJnYwe/nW9ZNDcWZc/dq90SREN6PvFEUva+kgaPZfT8opLDHvjJVAG9mNVvMnHeVgw=="
+      "version": "0.12.6",
+      "resolved": "https://registry.npmjs.org/third-party-web/-/third-party-web-0.12.6.tgz",
+      "integrity": "sha512-g01h+wXG7UsPOPOEGRnz8bvRr7XWYckI0afFaX6JPkAeuHbS1RUKmiZ5Y56em3CNAMu8iz1rxJEpkfjbAuVkMQ=="
     },
     "node_modules/through": {
       "version": "2.3.8",
@@ -8972,9 +8972,9 @@
       }
     },
     "coach-core": {
-      "version": "6.4.3",
-      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-6.4.3.tgz",
-      "integrity": "sha512-m2GyucQq7DoKOCg8F0xvjvoXXyjT32ch44TFmQArH8H1uD63PNoRlxE24Dlqw9pGn73lwK456F24ZojGQe8vGg==",
+      "version": "7.0.0-beta.1",
+      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-7.0.0-beta.1.tgz",
+      "integrity": "sha512-UgOQpg80EnrDL0sEagPdw4NrP+VaR5N7NcZdLc6Fp+X7CIGEJ5cRj+dF+RWPxT+wi8/an4O/oOAcgMQAWEpEzw==",
       "requires": {
         "filter-files": "0.4.0",
         "json-stable-stringify": "1.0.1",
@@ -8982,7 +8982,7 @@
         "lodash.merge": "4.6.2",
         "lodash.sortby": "4.7.0",
         "pagexray": "4.3.1",
-        "third-party-web": "0.12.4",
+        "third-party-web": "0.12.6",
         "wappalyzer-core": "6.6.0"
       }
     },
@@ -12947,9 +12947,9 @@
       "integrity": "sha1-f17oI66AUgfACvLfSoTsP8+lcLQ="
     },
     "third-party-web": {
-      "version": "0.12.4",
-      "resolved": "https://registry.npmjs.org/third-party-web/-/third-party-web-0.12.4.tgz",
-      "integrity": "sha512-SaJdgPjCus/5ftexuCk8wJnYwe/nW9ZNDcWZc/dq90SREN6PvFEUva+kgaPZfT8opLDHvjJVAG9mNVvMnHeVgw=="
+      "version": "0.12.6",
+      "resolved": "https://registry.npmjs.org/third-party-web/-/third-party-web-0.12.6.tgz",
+      "integrity": "sha512-g01h+wXG7UsPOPOEGRnz8bvRr7XWYckI0afFaX6JPkAeuHbS1RUKmiZ5Y56em3CNAMu8iz1rxJEpkfjbAuVkMQ=="
     },
     "through": {
       "version": "2.3.8",
