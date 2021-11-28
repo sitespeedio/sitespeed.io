@@ -7,6 +7,7 @@
 * Updated green domains from the Green Web Foundation [#3513](https://github.com/sitespeedio/sitespeed.io/pull/3513).
 * Updated PerfCascade that support chunks [#3514](https://github.com/sitespeedio/sitespeed.io/pull/3514).
 * Updated to Coach Core 7.0.0-beta1.
+* Updated to sustainable co2 0.8.0 [#3519](https://github.com/sitespeedio/sitespeed.io/pull/3519)
 
 ### Fixed
 * Added missing summary boxes on start page [#3515](https://github.com/sitespeedio/sitespeed.io/pull/3515).
