@@ -3,7 +3,7 @@
 
 ## 21.0.0 - UNRELEASED
 ### Added
-* Updated to [Browsertime 14.12.0]()
+* Updated to [Browsertime 14.12.0]() that fixes the FF 94 HAR issue.
 * Updated green domains from the Green Web Foundation [#3513](https://github.com/sitespeedio/sitespeed.io/pull/3513).
 * Updated PerfCascade that support chunks [#3514](https://github.com/sitespeedio/sitespeed.io/pull/3514).
 * Updated to Coach Core 7.0.0-beta1.
