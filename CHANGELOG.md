@@ -3,11 +3,12 @@
 
 ## 21.0.0 - UNRELEASED
 ### Added
-* Updated to [Browsertime 14.12.0]() that fixes the FF 94 HAR issue.
+* Updated to [Browsertime 14.12.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14120---2021-11-30) that fixes the FF 94 HAR issue.
 * Updated green domains from the Green Web Foundation [#3513](https://github.com/sitespeedio/sitespeed.io/pull/3513).
 * Updated PerfCascade that support chunks [#3514](https://github.com/sitespeedio/sitespeed.io/pull/3514).
 * Updated to Coach Core 7.0.0-beta1.
 * Updated to sustainable co2 0.8.0 [#3519](https://github.com/sitespeedio/sitespeed.io/pull/3519)
+* Updated to Firefox 94 in the Docker image.
 
 ### Fixed
 * Added missing summary boxes on start page [#3515](https://github.com/sitespeedio/sitespeed.io/pull/3515).
