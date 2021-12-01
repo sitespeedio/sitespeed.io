@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Wed, 01 Dec 2021 14:08:27 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 01 Dec 2021 15:01:46 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,12 +17,20 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[sitespeed.io 21.0.0]]></title>
+            <title><![CDATA[sitespeed.io 21.0.1]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#21.0.0</guid>
-            <pubDate>Wed, 01 Dec 2021 14:08:27 GMT</pubDate>
-            <description><![CDATA[ Updated to Browsertime 14.12.0 that fixes the FF 94 HAR issue. Updated green domains from the Green Web Foundation #3513. Updated PerfCascade that support chunks when you use Chrome(ium) #3514. Updated to Firefox 94 in the Docker image. Added missing summary boxes on start page #3515. Updated to Coach Core 7.0.0. This will probably change your Coach score. The new Coach has the following changes: Updated to sustainable plugin core code to co2 0.8.0. This include a biug fix to the 1byte model that will lower your co2 score #3519.]]></description>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#21.0.1</guid>
+            <pubDate>Wed, 01 Dec 2021 15:01:46 GMT</pubDate>
+            <description><![CDATA[ Updated Browsertime that logs Chrome document request failures on debug log level instead so that the log is not cluttered.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 14.12.1]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.12.1</guid>
+            <pubDate>Wed, 01 Dec 2021 14:48:17 GMT</pubDate>
+            <description><![CDATA[ Changed log level to debug for Chrome/Edge when document request fails. It turns out that IRL that happens a lot and spam the log. Lets iterate over that functionality.]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[coach 7.0.0]]></title>
@@ -39,14 +47,6 @@
             <pubDate>Wed, 01 Dec 2021 07:15:53 GMT</pubDate>
             <description><![CDATA[ Updated third-party-web to 0.12.6. Use Chrome(ium) render blocking information to know if a request is render blocking or not #66. Report offending JavaScript assets if the JavaScript max limits kicks in #70. New largest contentful paint advice #76. New first contentful paint advice #77. Added TBT in the CPU longtask advice #80. Report content and transfer size for offending URLs #81. Report offending assets with transfer/content size for page size limit #82. Fix cases when JQuery is undefined. Thank you shubham jajodia for PR #64. A better way to find offending layout shifters. Thank you shubham jajodia for PR #65. Removed mentions aboout server push #69 Added more information on how to debug CPU advice #71. Moved AMP advice to best practice instead of privacy #67. Increased favicon max size advice from 5 to 10 kb #68 Renamed the fastRender advice to avoidRenderBlocking #73 Remove the third party async advice #74 Updated the layout shift advice to use cumulative layout shift #75 Changed id of the Google Tag Manager advice #79]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 14.12.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.12.0</guid>
-            <pubDate>Tue, 30 Nov 2021 22:14:27 GMT</pubDate>
-            <description><![CDATA[ Updated to Firefox 94 in the Docker image. Adding error log message for Chrome/Edge when document request fails (faulty domain etc) #1682. Added 'devtools.netmonitor.persistlog': true preference for Firefox to fix the HAR issue introduced in Firefox 94 #1684.]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[throttle 3.0.0]]></title>
