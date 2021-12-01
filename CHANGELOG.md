@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 21.0.0 - UNRELEASED
+## 21.0.0 - 2021-12-01
 
 ### Changed
 * Updated to [Coach Core 7.0.0](https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#700---2021-12-01). This will probably change your Coach score. The new Coach has the following changes:
