@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+
+## 21.0.1 - 2021-12-01
+### Fixed
+* Updated Browsertime that logs Chrome document request failures on debug log level instead so that the log is not cluttered.
 ## 21.0.0 - 2021-12-01
 
 ### Changed
