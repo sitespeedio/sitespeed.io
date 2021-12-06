@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-12-01T15:01:46.757Z</updated>
+    <updated>2021-12-06T16:46:53.310Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,11 +17,11 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 21.0.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#21.0.1</id>
+        <title type="html"><![CDATA[sitespeed.io 21.1.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#21.1.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2021-12-01T15:01:46.757Z</updated>
-        <summary type="html"><![CDATA[ Updated Browsertime that logs Chrome document request failures on debug log level instead so that the log is not cluttered.]]></summary>
+        <updated>2021-12-06T16:46:53.310Z</updated>
+        <summary type="html"><![CDATA[ Added possibility choose name for storing a result JSON #3520. We use this for a feature that will be released soon.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>

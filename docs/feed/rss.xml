@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Wed, 01 Dec 2021 15:01:46 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 06 Dec 2021 16:46:53 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,11 +17,11 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[sitespeed.io 21.0.1]]></title>
+            <title><![CDATA[sitespeed.io 21.1.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#21.0.1</guid>
-            <pubDate>Wed, 01 Dec 2021 15:01:46 GMT</pubDate>
-            <description><![CDATA[ Updated Browsertime that logs Chrome document request failures on debug log level instead so that the log is not cluttered.]]></description>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#21.1.0</guid>
+            <pubDate>Mon, 06 Dec 2021 16:46:53 GMT</pubDate>
+            <description><![CDATA[ Added possibility choose name for storing a result JSON #3520. We use this for a feature that will be released soon.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
