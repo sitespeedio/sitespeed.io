@@ -19,7 +19,11 @@ async function run(options) {
     }
 
     if (options.storeResult) {
-      fs.writeFileSync('result.json', JSON.stringify(result));
+      if (options.storeResult != 'true') {
+        fs.writeFileSync(options.storeResult, JSON.stringify(result));
+      } else {
+        fs.writeFileSync('result.json', JSON.stringify(result));
+      }
     }
 
     if ((options.open || options.o) && os.platform() === 'darwin') {
