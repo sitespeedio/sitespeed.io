@@ -1,6 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
 
+## 21.1.0 - 2021-12-06
+### Added
+* Added possibility choose name for storing a result JSON [#3520](https://github.com/sitespeedio/sitespeed.io/pull/3520). We use this for a feature that will be released soon.
 ## 21.0.1 - 2021-12-01
 ### Fixed
 * Updated Browsertime that logs Chrome document request failures on debug log level instead so that the log is not cluttered.
