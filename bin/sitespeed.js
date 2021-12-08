@@ -14,9 +14,6 @@ async function run(options) {
   process.exitCode = 1;
   try {
     const result = await sitespeed.run(options);
-    if (result.errors.length > 0) {
-      throw new Error('Errors while running:\n' + result.errors.join('\n'));
-    }
 
     if (options.storeResult) {
       if (options.storeResult != 'true') {
@@ -24,6 +21,10 @@ async function run(options) {
       } else {
         fs.writeFileSync('result.json', JSON.stringify(result));
       }
+    }
+
+    if (result.errors.length > 0) {
+      throw new Error('Errors while running:\n' + result.errors.join('\n'));
     }
 
     if ((options.open || options.o) && os.platform() === 'darwin') {
