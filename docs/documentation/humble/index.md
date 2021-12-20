@@ -17,6 +17,6 @@ twitterdescription: Simulate slow network connections on your WiFi network.
 
 ## Introduction
 
-Connect your Raspberry Pi4 with your router turn on the Pi and join your new configurable WiFi network named **humble***. Access your Raspberry Pi4 through HTTP and choose the WiFi.
+Connect your Raspberry Pi4 with your router turn on the Pi and join your new configurable WiFi network named **humble**. Access your Raspberry Pi4 through HTTP and choose the WiFi.
 
 Read all about the project at GitHub: [https://github.com/sitespeedio/humble](https://github.com/sitespeedio/humble)
