@@ -1,8 +1,12 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
 ## UNRELEASED
-## Fixed
+### Fixed
 * The catching of errors in the queue was broken and reported the error x times (x=numbert of plugins). Also when we had an error the result JSON was not stored. [#3522](https://github.com/sitespeedio/sitespeed.io/pull/3522).
+
+### Added
+* Updated to Firefox 95 and Edge 96 in the Docker container.
+* Include page summary URL in the result JSON [#3523](https://github.com/sitespeedio/sitespeed.io/pull/3523).
 
 ## 21.1.0 - 2021-12-06
 ### Added
