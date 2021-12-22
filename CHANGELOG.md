@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 21.2.1 - 2021-12-22
+### Fixed
+* It turns out that Firefox 95 doesn't work with the HAR export trigger and the workaround that worked in Firefox 94 seems to not work in 95 see https://github.com/sitespeedio/browsertime/issues/1671#issuecomment-999412035. That's why we are reverting to Firefox 94 in the Docker containers.
 ## 21.2.0 - 2021-12-22
 ### Fixed
 * The catching of errors in the queue was broken and reported the error x times (x=numbert of plugins). Also when we had an error the result JSON was not stored. [#3522](https://github.com/sitespeedio/sitespeed.io/pull/3522).
