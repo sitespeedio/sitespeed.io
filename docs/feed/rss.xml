@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Thu, 09 Dec 2021 05:00:33 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 22 Dec 2021 05:54:08 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,35 +17,42 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[browsertime 14.12.2]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.12.2</guid>
-            <pubDate>Thu, 09 Dec 2021 05:00:33 GMT</pubDate>
-            <description><![CDATA[ Added more info log to get a better feeling for what's going on #1686. Fixed CPU throttling that was broken in Chrome 96 #1685]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 21.1.0]]></title>
+            <title><![CDATA[sitespeed.io 21.2.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#21.1.0</guid>
-            <pubDate>Mon, 06 Dec 2021 16:46:53 GMT</pubDate>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#21.2.0</guid>
+            <pubDate>Wed, 22 Dec 2021 05:54:08 GMT</pubDate>
+            <description><![CDATA[ Updated to Firefox 95 and Edge 96 in the Docker container. Include page summary URL in the result JSON #3523. The catching of errors in the queue was broken and reported the error x times (x=numbert of plugins). Also when we had an error the result JSON was not stored. #3522.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[coach 7.0.0]]></title>
-            <link>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#7.0.0</guid>
-            <pubDate>Wed, 01 Dec 2021 07:31:03 GMT</pubDate>
-            <description><![CDATA[ Updated to use latest Coach core and Browertime.]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+            <title><![CDATA[humble 0.1.0]]></title>
+            <link>https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#0.1.0</guid>
+            <pubDate>Wed, 22 Dec 2021 05:33:54 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[coach-core 7.0.0]]></title>
             <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.0.0</guid>
-            <pubDate>Wed, 01 Dec 2021 07:15:53 GMT</pubDate>
+            <pubDate>Wed, 22 Dec 2021 05:33:54 GMT</pubDate>
             <description><![CDATA[ Updated third-party-web to 0.12.6. Use Chrome(ium) render blocking information to know if a request is render blocking or not #66. Report offending JavaScript assets if the JavaScript max limits kicks in #70. New largest contentful paint advice #76. New first contentful paint advice #77. Added TBT in the CPU longtask advice #80. Report content and transfer size for offending URLs #81. Report offending assets with transfer/content size for page size limit #82. Fix cases when JQuery is undefined. Thank you shubham jajodia for PR #64. A better way to find offending layout shifters. Thank you shubham jajodia for PR #65. Removed mentions aboout server push #69 Added more information on how to debug CPU advice #71. Moved AMP advice to best practice instead of privacy #67. Increased favicon max size advice from 5 to 10 kb #68 Renamed the fastRender advice to avoidRenderBlocking #73 Remove the third party async advice #74 Updated the layout shift advice to use cumulative layout shift #75 Changed id of the Google Tag Manager advice #79]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach 7.0.0]]></title>
+            <link>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#7.0.0</guid>
+            <pubDate>Wed, 22 Dec 2021 05:33:54 GMT</pubDate>
+            <description><![CDATA[ Updated to use latest Coach core and Browertime.]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 14.12.2]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.12.2</guid>
+            <pubDate>Wed, 22 Dec 2021 05:33:54 GMT</pubDate>
+            <description><![CDATA[ Added more info log to get a better feeling for what's going on #1686. Fixed CPU throttling that was broken in Chrome 96 #1685]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[throttle 3.0.0]]></title>
