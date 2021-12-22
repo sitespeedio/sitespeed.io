@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 21.2.0 - 2021-12-22
 ### Fixed
 * The catching of errors in the queue was broken and reported the error x times (x=numbert of plugins). Also when we had an error the result JSON was not stored. [#3522](https://github.com/sitespeedio/sitespeed.io/pull/3522).
 
