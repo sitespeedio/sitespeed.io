@@ -1,21 +1,21 @@
 {
   "name": "sitespeed.io",
-  "version": "20.6.2",
+  "version": "21.2.2",
   "lockfileVersion": 2,
   "requires": true,
   "packages": {
     "": {
       "name": "sitespeed.io",
-      "version": "20.6.2",
+      "version": "21.2.2",
       "license": "MIT",
       "dependencies": {
         "@google-cloud/storage": "5.8.3",
-        "@tgwf/co2": "0.6.1",
+        "@tgwf/co2": "0.8.0",
         "aws-sdk": "2.882.0",
         "axe-core": "4.3.5",
-        "browsertime": "14.11.0",
+        "browsertime": "14.12.2",
         "cli-color": "2.0.0",
-        "coach-core": "7.0.0-beta.1",
+        "coach-core": "7.0.0",
         "concurrent-queue": "7.0.2",
         "dayjs": "1.10.4",
         "fast-crc32c": "2.0.0",
@@ -1015,9 +1015,9 @@
       "integrity": "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w=="
     },
     "node_modules/@tgwf/co2": {
-      "version": "0.6.1",
-      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.6.1.tgz",
-      "integrity": "sha512-1VQrbEC3qlp76+wdrHhDALeFTr5tyaovCWAQ9ZhSovbhVK9Zhapz3LR6HbG0gHWt8hGv1/PpfnhDa0ywu9uObQ==",
+      "version": "0.8.0",
+      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.8.0.tgz",
+      "integrity": "sha512-vN08Vf3ziOuaZ8MQM+rO3g9T5kPg2ygp6uE7GgLwkd7TvoIX10Zw3G1ouZtwxY5wy0oXuMRN6X3OGcrP1YGSVA==",
       "dependencies": {
         "debug": "^4.1.1"
       }
@@ -1465,9 +1465,9 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "14.11.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-14.11.0.tgz",
-      "integrity": "sha512-8NXsN4YqJs8mADfsO5K+Om87QAsLcG+5sGrw/SehB8mJYpDER6aiS/+XV7IUo3/lRv8qd4unwHkK6J+BQaKoMg==",
+      "version": "14.12.2",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-14.12.2.tgz",
+      "integrity": "sha512-y/ouU8ejg6OuxSw4GXVIHLL83vw65/45O5yWaYmj8rtoqaeghBzWsG+KiCtu5zJRH5B1SD+zM5x47hmxNYFvzQ==",
       "dependencies": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",
@@ -1877,9 +1877,9 @@
       }
     },
     "node_modules/coach-core": {
-      "version": "7.0.0-beta.1",
-      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-7.0.0-beta.1.tgz",
-      "integrity": "sha512-UgOQpg80EnrDL0sEagPdw4NrP+VaR5N7NcZdLc6Fp+X7CIGEJ5cRj+dF+RWPxT+wi8/an4O/oOAcgMQAWEpEzw==",
+      "version": "7.0.0",
+      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-7.0.0.tgz",
+      "integrity": "sha512-sRCeWcuSAPdi8S79qP5PTyCLXYKfNWH2SFB7eq6K5919wnLGZOGogU/psj7nOVL3/0yQLRgoUJivLicp16XpiA==",
       "dependencies": {
         "filter-files": "0.4.0",
         "json-stable-stringify": "1.0.1",
@@ -8258,9 +8258,9 @@
       }
     },
     "@tgwf/co2": {
-      "version": "0.6.1",
-      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.6.1.tgz",
-      "integrity": "sha512-1VQrbEC3qlp76+wdrHhDALeFTr5tyaovCWAQ9ZhSovbhVK9Zhapz3LR6HbG0gHWt8hGv1/PpfnhDa0ywu9uObQ==",
+      "version": "0.8.0",
+      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.8.0.tgz",
+      "integrity": "sha512-vN08Vf3ziOuaZ8MQM+rO3g9T5kPg2ygp6uE7GgLwkd7TvoIX10Zw3G1ouZtwxY5wy0oXuMRN6X3OGcrP1YGSVA==",
       "requires": {
         "debug": "^4.1.1"
       },
@@ -8631,9 +8631,9 @@
       }
     },
     "browsertime": {
-      "version": "14.11.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-14.11.0.tgz",
-      "integrity": "sha512-8NXsN4YqJs8mADfsO5K+Om87QAsLcG+5sGrw/SehB8mJYpDER6aiS/+XV7IUo3/lRv8qd4unwHkK6J+BQaKoMg==",
+      "version": "14.12.2",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-14.12.2.tgz",
+      "integrity": "sha512-y/ouU8ejg6OuxSw4GXVIHLL83vw65/45O5yWaYmj8rtoqaeghBzWsG+KiCtu5zJRH5B1SD+zM5x47hmxNYFvzQ==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",
@@ -8972,9 +8972,9 @@
       }
     },
     "coach-core": {
-      "version": "7.0.0-beta.1",
-      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-7.0.0-beta.1.tgz",
-      "integrity": "sha512-UgOQpg80EnrDL0sEagPdw4NrP+VaR5N7NcZdLc6Fp+X7CIGEJ5cRj+dF+RWPxT+wi8/an4O/oOAcgMQAWEpEzw==",
+      "version": "7.0.0",
+      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-7.0.0.tgz",
+      "integrity": "sha512-sRCeWcuSAPdi8S79qP5PTyCLXYKfNWH2SFB7eq6K5919wnLGZOGogU/psj7nOVL3/0yQLRgoUJivLicp16XpiA==",
       "requires": {
         "filter-files": "0.4.0",
         "json-stable-stringify": "1.0.1",

@@ -15,10 +15,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '14.x'
-    - name: Install Firefox
-      uses: browser-actions/setup-firefox@latest
-      with:
-        firefox-version: '93.0'
     - name: Install sitespeed.io
       run: npm ci
     - name: Install Chrome

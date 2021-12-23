@@ -94,7 +94,7 @@ docker run --shm-size 2g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io
 ~~~
 
 ## Chrome
-The latest version of Chrome should work out of the box. Latest version of stable [ChromeDriver](http://chromedriver.chromium.org) is bundled in sitespeed.io and needs to match your Chrome version.
+The latest version of Chrome should work out of the box. Latest version of stable [ChromeDriver](http://chromedriver.chromium.org) is bundled in sitespeed.io.
 
 ### Chrome setup
 When we start Chrome it is setup with [these](https://github.com/sitespeedio/browsertime/blob/main/lib/chrome/webdriver/chromeOptions.js) command line switches.
@@ -155,7 +155,7 @@ You can choose which version of Chrome you want to run by using the ```--chrome.
 Our Docker container only contains one version of Chrome and [let us know](https://github.com/sitespeedio/sitespeed.io/issues/new) if you need help to add more versions.
 
 ### Use a newer version of ChromeDriver
-ChromeDriver is the driver that handles the communication with Chrome. At the moment the ChromeDriver version needs to match the Chrome version ([here](https://bugs.chromium.org/p/chromedriver/issues/detail?id=3864) is a upstream request to remove that check). By default sitespeed.io and Browsertime comes with the ChromeDriver version that matches the Chrome version in the Docker container. If you want to run tests on other Chrome versions, you need to download the matching version of ChromeDriver.
+ChromeDriver is the driver that handles the communication with Chrome. By default sitespeed.io and Browsertime comes with the ChromeDriver version that matches the Chrome version in the Docker container. If you want to run tests on other Chromedriver versions, you need to download that version of ChromeDriver.
 
 You download ChromeDriver from [http://chromedriver.chromium.org](http://chromedriver.chromium.org) and then use ```--chrome.chromedriverPath``` to set the path to the new version of the ChromeDriver.
 
