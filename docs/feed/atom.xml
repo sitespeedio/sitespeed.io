@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-12-23T08:58:47.913Z</updated>
+    <updated>2021-12-25T10:17:27.280Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,32 +17,22 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
+        <title type="html"><![CDATA[humble 0.1.2]]></title>
+        <id>https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#0.1.2</id>
+        <link href="https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#"/>
+        <updated>2021-12-25T10:17:27.280Z</updated>
+        <summary type="html"><![CDATA[ Make sure unattended-upgrades runs automatically.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[sitespeed.io 21.2.2]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#21.2.2</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2021-12-23T08:58:47.913Z</updated>
+        <updated>2021-12-24T20:39:15.045Z</updated>
         <summary type="html"><![CDATA[ Fix the error introduced in 21.2.0 for "Include page summary URL in the result JSON"]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[humble 0.1.0]]></title>
-        <id>https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#0.1.0</id>
-        <link href="https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#"/>
-        <updated>2021-12-23T08:18:08.542Z</updated>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[coach-core 7.0.0]]></title>
-        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.0.0</id>
-        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#"/>
-        <updated>2021-12-23T08:18:08.540Z</updated>
-        <summary type="html"><![CDATA[ Updated third-party-web to 0.12.6. Use Chrome(ium) render blocking information to know if a request is render blocking or not #66. Report offending JavaScript assets if the JavaScript max limits kicks in #70. New largest contentful paint advice #76. New first contentful paint advice #77. Added TBT in the CPU longtask advice #80. Report content and transfer size for offending URLs #81. Report offending assets with transfer/content size for page size limit #82. Fix cases when JQuery is undefined. Thank you shubham jajodia for PR #64. A better way to find offending layout shifters. Thank you shubham jajodia for PR #65. Removed mentions aboout server push #69 Added more information on how to debug CPU advice #71. Moved AMP advice to best practice instead of privacy #67. Increased favicon max size advice from 5 to 10 kb #68 Renamed the fastRender advice to avoidRenderBlocking #73 Remove the third party async advice #74 Updated the layout shift advice to use cumulative layout shift #75 Changed id of the Google Tag Manager advice #79]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
@@ -52,8 +42,19 @@
         <title type="html"><![CDATA[coach 7.0.0]]></title>
         <id>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#7.0.0</id>
         <link href="https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#"/>
-        <updated>2021-12-23T08:18:08.540Z</updated>
+        <updated>2021-12-24T20:39:15.044Z</updated>
         <summary type="html"><![CDATA[ Updated to use latest Coach core and Browertime.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[coach-core 7.0.0]]></title>
+        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.0.0</id>
+        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#"/>
+        <updated>2021-12-24T20:39:15.043Z</updated>
+        <summary type="html"><![CDATA[ Updated third-party-web to 0.12.6. Use Chrome(ium) render blocking information to know if a request is render blocking or not #66. Report offending JavaScript assets if the JavaScript max limits kicks in #70. New largest contentful paint advice #76. New first contentful paint advice #77. Added TBT in the CPU longtask advice #80. Report content and transfer size for offending URLs #81. Report offending assets with transfer/content size for page size limit #82. Fix cases when JQuery is undefined. Thank you shubham jajodia for PR #64. A better way to find offending layout shifters. Thank you shubham jajodia for PR #65. Removed mentions aboout server push #69 Added more information on how to debug CPU advice #71. Moved AMP advice to best practice instead of privacy #67. Increased favicon max size advice from 5 to 10 kb #68 Renamed the fastRender advice to avoidRenderBlocking #73 Remove the third party async advice #74 Updated the layout shift advice to use cumulative layout shift #75 Changed id of the Google Tag Manager advice #79]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
@@ -63,7 +64,7 @@
         <title type="html"><![CDATA[browsertime 14.12.2]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.12.2</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2021-12-23T08:18:08.539Z</updated>
+        <updated>2021-12-24T20:39:15.042Z</updated>
         <summary type="html"><![CDATA[ Added more info log to get a better feeling for what's going on #1686. Fixed CPU throttling that was broken in Chrome 96 #1685]]></summary>
         <author>
             <name>Sitespeed.io</name>
