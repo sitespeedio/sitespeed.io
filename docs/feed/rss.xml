@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Sat, 25 Dec 2021 10:17:27 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 26 Dec 2021 13:39:04 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,13 @@
         <copyright>All rights reserved 2021, Peter Hedenskog and team</copyright>
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[throttle 3.1.0]]></title>
+            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.0</guid>
+            <pubDate>Sun, 26 Dec 2021 13:39:04 GMT</pubDate>
+            <description><![CDATA[ Add support for setting packet loss. Add --packetLoss and set the loss in percentage.]]></description>
+        </item>
         <item>
             <title><![CDATA[humble 0.1.2]]></title>
             <link>https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#</link>
@@ -54,13 +61,6 @@
             <pubDate>Fri, 24 Dec 2021 20:39:15 GMT</pubDate>
             <description><![CDATA[ Added more info log to get a better feeling for what's going on #1686. Fixed CPU throttling that was broken in Chrome 96 #1685]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[throttle 3.0.0]]></title>
-            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.0.0</guid>
-            <pubDate>Fri, 29 Oct 2021 18:25:09 GMT</pubDate>
-            <description><![CDATA[ When you run on Mac OS we changed so localhost traffic is not throttled by default. To throttle on localhost use --localhost. This makes sence if you use WebDriver to drive your browser on your local machine. And Mac OS now works the same as Linux.]]></description>
         </item>
         <item>
             <title><![CDATA[compare 1.0.0]]></title>
