@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+### Added
+* Updated to Browsertime 14.13.0
 ## 21.2.2 - 2021-12-23
 ### Fixed
 * Fix the error introduced in 21.2.0 for "Include page summary URL in the result JSON"

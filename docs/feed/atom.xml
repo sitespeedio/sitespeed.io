@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-12-26T13:39:04.396Z</updated>
+    <updated>2021-12-30T20:28:37.523Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,17 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 14.13.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.13.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
+        <updated>2021-12-30T20:28:37.523Z</updated>
+        <summary type="html"><![CDATA[ Append text to Chrome/Edge user agent using --chrome.appendToUserAgent #1688. When you use Chrome and use a "emulated device" that will use the user agent that you provide using --userAgent#1689.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[throttle 3.1.0]]></title>
         <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.0</id>
@@ -66,17 +77,6 @@
         <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#"/>
         <updated>2021-12-24T20:39:15.043Z</updated>
         <summary type="html"><![CDATA[ Updated third-party-web to 0.12.6. Use Chrome(ium) render blocking information to know if a request is render blocking or not #66. Report offending JavaScript assets if the JavaScript max limits kicks in #70. New largest contentful paint advice #76. New first contentful paint advice #77. Added TBT in the CPU longtask advice #80. Report content and transfer size for offending URLs #81. Report offending assets with transfer/content size for page size limit #82. Fix cases when JQuery is undefined. Thank you shubham jajodia for PR #64. A better way to find offending layout shifters. Thank you shubham jajodia for PR #65. Removed mentions aboout server push #69 Added more information on how to debug CPU advice #71. Moved AMP advice to best practice instead of privacy #67. Increased favicon max size advice from 5 to 10 kb #68 Renamed the fastRender advice to avoidRenderBlocking #73 Remove the third party async advice #74 Updated the layout shift advice to use cumulative layout shift #75 Changed id of the Google Tag Manager advice #79]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 14.12.2]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.12.2</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2021-12-24T20:39:15.042Z</updated>
-        <summary type="html"><![CDATA[ Added more info log to get a better feeling for what's going on #1686. Fixed CPU throttling that was broken in Chrome 96 #1685]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
