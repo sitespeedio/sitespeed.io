@@ -1,8 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 21.3.0 - 2022-01-01
 ### Added
-* Updated to Browsertime 14.13.0
+* Updated to [Browsertime 14.13.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14130---2021-12-30) with the following fixes for the user agent:
+  * Append text to Chrome/Edge user agent using `--chrome.appendToUserAgent`
+  * When you use Chrome/Edge and use a "emulated device" that will use the user agent that you provide using `--userAgent`. Else it will use the user agent from your emulated device setting.
+  * You can also use Edge to run emulated mobile with the same settings as Chrome.
 ## 21.2.2 - 2021-12-23
 ### Fixed
 * Fix the error introduced in 21.2.0 for "Include page summary URL in the result JSON"
@@ -13,7 +16,7 @@
 * It turns out that Firefox 95 doesn't work with the HAR export trigger and the workaround that worked in Firefox 94 seems to not work in 95 see https://github.com/sitespeedio/browsertime/issues/1671#issuecomment-999412035. That's why we are reverting to Firefox 94 in the Docker containers.
 ## 21.2.0 - 2021-12-22
 ### Fixed
-* The catching of errors in the queue was broken and reported the error x times (x=numbert of plugins). Also when we had an error the result JSON was not stored. [#3522](https://github.com/sitespeedio/sitespeed.io/pull/3522).
+* The catching of errors in the queue was broken and reported the error x times (x=number of plugins). Also when we had an error the result JSON was not stored. [#3522](https://github.com/sitespeedio/sitespeed.io/pull/3522).
 
 ### Added
 * Updated to Firefox 95 and Edge 96 in the Docker container.
