@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2021-12-30T20:28:37.523Z</updated>
+    <updated>2022-01-01T21:16:47.829Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,11 +17,11 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[browsertime 14.13.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.13.0</id>
+        <title type="html"><![CDATA[browsertime 14.13.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.13.1</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2021-12-30T20:28:37.523Z</updated>
-        <summary type="html"><![CDATA[ Append text to Chrome/Edge user agent using --chrome.appendToUserAgent #1688. When you use Chrome and use a "emulated device" that will use the user agent that you provide using --userAgent#1689.]]></summary>
+        <updated>2022-01-01T21:16:47.829Z</updated>
+        <summary type="html"><![CDATA[ Added missing --chrome.appendToUserAgent in the CLI help.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
