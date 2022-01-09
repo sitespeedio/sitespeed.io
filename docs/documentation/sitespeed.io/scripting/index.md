@@ -508,6 +508,8 @@ If you use a configuration file you can pass on options like this:
 }
 ~~~
 
+
+
 ### Error handling
 You can try/catch failing commands that throw errors. If an error is not caught in your script, it will be caught in sitespeed.io and the error will be logged and reported in the HTML and to your data storage (Graphite/InfluxDb) under the key *browsertime.statistics.errors*.
 
@@ -577,6 +579,42 @@ You will see the metric in the page summary and in the metrics section.
 {: .img-thumbnail}
 
 You can do mouse click, key press but there's no good way to do swiping as we know using the [Selenium Action API](https://selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/lib/input_exports_Actions.html). Your action will run after the page has loaded. If you wanna know what kind potential input delay you can have on load, you can use the *maxPotentialFid* metric that you will get by enabling `--cpu`.
+
+### Test multiple URLs
+
+If you want to test multiple URLs and need to do some specific things before each URL, you can do something like this (we pass on our [own options](#pass-your-own-options-to-your-script) to the script):
+
+~~~javascript
+module.exports = async function (context, commands) {
+  const urls = context.options.urls;
+  for (let url of urls) {
+   // Do the stuff for each url that you need to do
+   // Maybe login a user or add a cookie or something
+   // Then test the URL
+   await commands.measure.start(url);
+   // When the test is finished, clear the browser cache
+   await commands.cache.clear();
+   // Navigate to a blank page so you kind of start from scratch for the next URL
+   await commands.navigate('about:blank');
+  }
+};
+~~~
+
+Then run your tests like this:
+
+~~~bash
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} testMultipleUrls.js --multi --browsertime.urls https://www.sitespeed.io --browsertime.urls https://www.sitespeed.io/documentation -n 1
+~~~
+
+Or if you use JSON configuration, the same configuration looks like this:
+
+~~~json
+{ 
+  "browsertime": {
+    "urls": ["url1", "url2", "url3"]
+  }
+}
+~~~
 
 ## Tips and Tricks
 

@@ -100,7 +100,8 @@ async function generateFeed() {
     coach: 'https://www.sitespeed.io/img/logos/coach.png',
     'chrome-har': '',
     'chrome-trace': '',
-    compare: 'https://www.sitespeed.io/img/logos/compare.png'
+    compare: 'https://www.sitespeed.io/img/logos/compare.png',
+    humble: ''
   };
 
   sortedVersionFiles.forEach(file => {

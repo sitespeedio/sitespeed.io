@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Tue, 09 Nov 2021 14:53:34 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 01 Jan 2022 22:32:54 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,42 +17,49 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[sitespeed.io 20.5.0]]></title>
+            <title><![CDATA[sitespeed.io 21.3.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#20.5.0</guid>
-            <pubDate>Tue, 09 Nov 2021 14:53:34 GMT</pubDate>
-            <description><![CDATA[ Updated to Browsertime 14.9.0 with updated Chrome HAR generator. Ignore Influxdb and Grafana setup messages when you use the analysisstorer plugin #3508.]]></description>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#21.3.0</guid>
+            <pubDate>Sat, 01 Jan 2022 22:32:54 GMT</pubDate>
+            <description><![CDATA[ Updated to Browsertime 14.13.0 with the following fixes for the user agent:]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 14.9.0]]></title>
+            <title><![CDATA[browsertime 14.13.1]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.9.0</guid>
-            <pubDate>Sun, 07 Nov 2021 12:41:59 GMT</pubDate>
-            <description><![CDATA[ Updated to new Chome HAR PR #1666 that inlcudes chunk information. Updated to yargs 17.2.1 #1667.]]></description>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.13.1</guid>
+            <pubDate>Sat, 01 Jan 2022 21:16:47 GMT</pubDate>
+            <description><![CDATA[ Added missing --chrome.appendToUserAgent in the CLI help.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[throttle 3.0.0]]></title>
+            <title><![CDATA[throttle 3.1.0]]></title>
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.0.0</guid>
-            <pubDate>Fri, 29 Oct 2021 18:25:09 GMT</pubDate>
-            <description><![CDATA[ When you run on Mac OS we changed so localhost traffic is not throttled by default. To throttle on localhost use --localhost. This makes sence if you use WebDriver to drive your browser on your local machine. And Mac OS now works the same as Linux.]]></description>
+            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.0</guid>
+            <pubDate>Sun, 26 Dec 2021 13:39:04 GMT</pubDate>
+            <description><![CDATA[ Add support for setting packet loss. Add --packetLoss and set the loss in percentage.]]></description>
         </item>
         <item>
-            <title><![CDATA[coach-core 6.4.3]]></title>
-            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.3</guid>
-            <pubDate>Fri, 29 Oct 2021 18:25:09 GMT</pubDate>
-            <description><![CDATA[ Updated to latest PageXray and Third patrty web 0.12.4.]]></description>
+            <title><![CDATA[humble 0.1.2]]></title>
+            <link>https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#0.1.2</guid>
+            <pubDate>Sat, 25 Dec 2021 10:17:27 GMT</pubDate>
+            <description><![CDATA[ Make sure unattended-upgrades runs automatically.]]></description>
+        </item>
+        <item>
+            <title><![CDATA[coach 7.0.0]]></title>
+            <link>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#7.0.0</guid>
+            <pubDate>Fri, 24 Dec 2021 20:39:15 GMT</pubDate>
+            <description><![CDATA[ Updated to use latest Coach core and Browertime.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[coach ]]></title>
-            <link>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#</guid>
-            <pubDate>Fri, 29 Oct 2021 18:25:09 GMT</pubDate>
-            <description><![CDATA[ Updated to use latest Browsertime with latest Chromedriver Updated Docker container to use latest Chrome/Firefox Use Browsertime 11.0.0 Use Coach-code 6.0 Use latest Firefox and Chrome]]></description>
+            <title><![CDATA[coach-core 7.0.0]]></title>
+            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.0.0</guid>
+            <pubDate>Fri, 24 Dec 2021 20:39:15 GMT</pubDate>
+            <description><![CDATA[ Updated third-party-web to 0.12.6. Use Chrome(ium) render blocking information to know if a request is render blocking or not #66. Report offending JavaScript assets if the JavaScript max limits kicks in #70. New largest contentful paint advice #76. New first contentful paint advice #77. Added TBT in the CPU longtask advice #80. Report content and transfer size for offending URLs #81. Report offending assets with transfer/content size for page size limit #82. Fix cases when JQuery is undefined. Thank you shubham jajodia for PR #64. A better way to find offending layout shifters. Thank you shubham jajodia for PR #65. Removed mentions aboout server push #69 Added more information on how to debug CPU advice #71. Moved AMP advice to best practice instead of privacy #67. Increased favicon max size advice from 5 to 10 kb #68 Renamed the fastRender advice to avoidRenderBlocking #73 Remove the third party async advice #74 Updated the layout shift advice to use cumulative layout shift #75 Changed id of the Google Tag Manager advice #79]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>

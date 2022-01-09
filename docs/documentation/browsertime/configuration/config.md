@@ -30,6 +30,7 @@ chrome
       --chrome.collectNetLog                                     Collect network log from Chrome and save to disk.  [boolean]
       --chrome.netLogCaptureMode                                 Choose capture mode for Chromes netlog.  [choices: "Default", "IncludeSensitive", "Everything"] [default: "IncludeSensitive"]
       --chrome.collectConsoleLog                                 Collect Chromes console log and save to disk.  [boolean]
+      --chrome.appendToUserAgent                                 Append to the user agent.  [string]
       --chrome.noDefaultOptions                                  Prevent Browsertime from setting its default options for Chrome  [boolean]
       --chrome.CPUThrottlingRate                                 Enables CPU throttling to emulate slow CPUs. Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc)  [number]
       --chrome.includeResponseBodies                             Include response bodies in the HAR file.  [choices: "none", "all", "html"] [default: "none"]

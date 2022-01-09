@@ -76,6 +76,21 @@ If you run in Docker and you should. You will need to mount your plugin director
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b firefox --plugins.add /sitespeed.io/myplugin -n 1 https://www.sitespeed.io/
 ~~~
 
+Here's full example on how you could do it with the WebPageTest plugin:
+
+~~~bash
+cd
+mkdir test
+cd test
+git clone git@github.com:sitespeedio/plugin-webpagetest.git
+cd plugin-webpagetest
+npm install
+pwd
+/Users/peter/test/plugin-webpagetest
+docker run --rm -v /Users/peter/:/sitespeed.io sitespeedio/sitespeed.io --plugins.add /sitespeed.io/test/plugin-webpagetest/ https://www.sitespeed.io
+~~~
+
+
 ### Relative using NodeJS
 If you are running outside of Docker you can load it relative locally.
 

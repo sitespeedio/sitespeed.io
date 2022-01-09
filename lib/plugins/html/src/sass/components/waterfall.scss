@@ -1,4 +1,4 @@
-/*! github.com/micmro/PerfCascade Version:2.10.1 (09/06/2021) */
+/*! github.com/micmro/PerfCascade Version:2.11.0 (24/11/2021) */
 .water-fall-chart {width:100%; overflow: visible; font-size: 12px; line-height: 1em;}
 .water-fall-chart * {box-sizing: border-box;}
 .water-fall-chart button {cursor: pointer;}
@@ -133,6 +133,7 @@
 .block-send {fill: #b0bec5;}
 .block-wait {fill: #1ec659;}
 .block-receive {fill: #1eaaf1;}
+.block-receive-chunk {fill: #a1c3fa;}
 .block-undefined {fill: #0f0;}
 
 /* Info overlay SVG - wrapper */
