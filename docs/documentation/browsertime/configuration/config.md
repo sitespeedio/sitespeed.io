@@ -124,8 +124,9 @@ connectivity
       --connectivity.rtt, --connectivity.latency          This option requires --connectivity.profile be set to "custom".
       --connectivity.variance                             This option requires --connectivity.engine be set to "throttle". It will add a variance to the rtt between each run. --connectivity.variance 2 means it will run with a random variance of max 2% between runs.
       --connectivity.alias                                Give your connectivity profile a custom name
-      --connectivity.engine                               The engine for connectivity. Throttle works on Mac and tc based Linux. Use external if you set the connectivity outside of Browsertime. The best way do to this is described in https://github.com/sitespeedio/browsertime#connectivity.  [choices: "external", "throttle", "tsproxy"] [default: "external"]
+      --connectivity.engine                               The engine for connectivity. Throttle works on Mac and tc based Linux. For mobile you can use Humble if you have a Humble setup. Use external if you set the connectivity outside of Browsertime. The best way do to this is described in https://github.com/sitespeedio/browsertime#connectivity.  [choices: "external", "throttle", "tsproxy", "humble"] [default: "external"]
       --connectivity.throttle.localhost                   Add latency/delay on localhost. Perfect for testing with WebPageReplay  [boolean] [default: false]
+      --connectivity.humble.url                           The path to your Humble instance. For example http://raspberrypi:3000  [string]
 
 Options:
       --cpu                                         Easy way to enable both chrome.timeline for Chrome and geckoProfile for Firefox  [boolean]
