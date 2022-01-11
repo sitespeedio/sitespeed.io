@@ -6,6 +6,9 @@
   * Append text to Chrome/Edge user agent using `--chrome.appendToUserAgent`
   * When you use Chrome/Edge and use a "emulated device" that will use the user agent that you provide using `--userAgent`. Else it will use the user agent from your emulated device setting.
   * You can also use Edge to run emulated mobile with the same settings as Chrome.
+* Updated to a new build of WebPageReplay in the Docker container
+* Updated the Ubuntu base image to latest version and latest NodeJS in the Docketr container.
+
 ## 21.2.2 - 2021-12-23
 ### Fixed
 * Fix the error introduced in 21.2.0 for "Include page summary URL in the result JSON"
