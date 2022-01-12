@@ -1,7 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 21.4.0 - UNRELEASED
-
+## 21.4.0 - 2022-01-12
 ### Added
 * Updated to a new build of WebPageReplay in the Docker container
 * Updated the Ubuntu base image to latest version and latest NodeJS in the Docketr container.
