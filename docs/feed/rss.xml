@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Wed, 12 Jan 2022 12:45:30 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 12 Jan 2022 16:22:02 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,20 +17,20 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[browsertime 14.15.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.15.0</guid>
+            <pubDate>Wed, 12 Jan 2022 16:22:02 GMT</pubDate>
+            <description><![CDATA[ Added so you can append a String to Firefox User Agent #1694, thank you Henrik Skupin for pointing me in the right direction. With #1695 we now have --appendToUserAgent that works in Chrome/Edge and Firefox.]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 21.4.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#21.4.0</guid>
-            <pubDate>Wed, 12 Jan 2022 12:45:30 GMT</pubDate>
+            <pubDate>Wed, 12 Jan 2022 12:50:03 GMT</pubDate>
             <description><![CDATA[ Updated to a new build of WebPageReplay in the Docker container Updated the Ubuntu base image to latest version and latest NodeJS in the Docketr container. Upgraded Browdsertime #3528: Upgraded to Chrome 97 and Edge 97 in the Docker container. Upgraded to Chromedriver 97. Updated Chromedriver library that automatically picks up the Chromedriver if it's installed on Raspberry Pi.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 14.14.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.14.1</guid>
-            <pubDate>Wed, 12 Jan 2022 12:16:49 GMT</pubDate>
-            <description><![CDATA[ Updated Chromedriver library that pickup already installed driver on Raspberry Pis. This makes it easier to run tests on an Android device from a Raspberry Pi.]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[throttle 3.1.0]]></title>
