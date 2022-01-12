@@ -1,14 +1,22 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 21.4.0 - UNRELEASED
+
+### Added
+* Updated to a new build of WebPageReplay in the Docker container
+* Updated the Ubuntu base image to latest version and latest NodeJS in the Docketr container.
+* Upgraded Browdsertime [#3528](https://github.com/sitespeedio/sitespeed.io/pull/3528): 
+  * Add support for Humble as connectivity engine for mobile phone testing. Make sure to setup Humble on a Raspberry Pi 4 and the choose engine with --connectivity.engine humble and set the URL to your instance --connectivity.humble.url http://raspberrypi.local:3000. Added in #1691.
+* Upgraded to Chrome 97 and Edge 97 in the Docker container.
+* Upgraded to Chromedriver 97.
+### Fixed
+* Updated Chromedriver library that automatically picks up the Chromedriver if it's installed on Raspberry Pi.
 ## 21.3.0 - 2022-01-01
 ### Added
 * Updated to [Browsertime 14.13.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14130---2021-12-30) with the following fixes for the user agent:
   * Append text to Chrome/Edge user agent using `--chrome.appendToUserAgent`
   * When you use Chrome/Edge and use a "emulated device" that will use the user agent that you provide using `--userAgent`. Else it will use the user agent from your emulated device setting.
   * You can also use Edge to run emulated mobile with the same settings as Chrome.
-* Updated to a new build of WebPageReplay in the Docker container
-* Updated the Ubuntu base image to latest version and latest NodeJS in the Docketr container.
-
 ## 21.2.2 - 2021-12-23
 ### Fixed
 * Fix the error introduced in 21.2.0 for "Include page summary URL in the result JSON"
