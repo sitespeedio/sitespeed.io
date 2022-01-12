@@ -71,7 +71,7 @@ To get Humble up and running you need a Raspberry Pi 4. The Pi will share a trot
 To make sure sitespeed.io sets the connectivity you need to set the engine to `humble` and set the URL to the Raspberry Pi:
 
 ~~~shell
-sitespeed.io --browsertime.connectivity.engine=humble --browsertime.connectivity.humble.url=http://raspberrypi.local:3001 --android https://www.sitespeed.io 
+sitespeed.io --browsertime.connectivity.engine=humble --browsertime.connectivity.humble.url=http://raspberrypi.local:3001 --android --browsertime.connectivity.profile 3g https://www.sitespeed.io  
 ~~~
 
 ### Docker networks
