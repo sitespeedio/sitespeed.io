@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-01-01T22:32:54.782Z</updated>
+    <updated>2022-01-12T12:45:30.092Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,22 +17,22 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 21.3.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#21.3.0</id>
+        <title type="html"><![CDATA[sitespeed.io 21.4.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#21.4.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2022-01-01T22:32:54.782Z</updated>
-        <summary type="html"><![CDATA[ Updated to Browsertime 14.13.0 with the following fixes for the user agent:]]></summary>
+        <updated>2022-01-12T12:45:30.092Z</updated>
+        <summary type="html"><![CDATA[ Updated to a new build of WebPageReplay in the Docker container Updated the Ubuntu base image to latest version and latest NodeJS in the Docketr container. Upgraded Browdsertime #3528: Upgraded to Chrome 97 and Edge 97 in the Docker container. Upgraded to Chromedriver 97. Updated Chromedriver library that automatically picks up the Chromedriver if it's installed on Raspberry Pi.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[browsertime 14.13.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.13.1</id>
+        <title type="html"><![CDATA[browsertime 14.14.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.14.1</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2022-01-01T21:16:47.829Z</updated>
-        <summary type="html"><![CDATA[ Added missing --chrome.appendToUserAgent in the CLI help.]]></summary>
+        <updated>2022-01-12T12:16:49.370Z</updated>
+        <summary type="html"><![CDATA[ Updated Chromedriver library that pickup already installed driver on Raspberry Pis. This makes it easier to run tests on an Android device from a Raspberry Pi.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
@@ -54,7 +54,7 @@
         <id>https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#0.1.2</id>
         <link href="https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#"/>
         <updated>2021-12-25T10:17:27.280Z</updated>
-        <summary type="html"><![CDATA[ Make sure unattended-upgrades runs automatically.]]></summary>
+        <summary type="html"><![CDATA[ Updated throttle frontend to latest version where you can see throttling profiles set by using the API and with custom throttling support.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
