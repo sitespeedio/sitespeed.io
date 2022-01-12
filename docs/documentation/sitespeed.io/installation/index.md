@@ -151,6 +151,42 @@ Checkout [our GitHub action running in Windows](https://github.com/sitespeedio/b
 
 If you run on Windows you can run tests on Firefox, Chrome and Edge.
 
+### Raspberry Pi
+
+You can use your Raspberry Pi to run tests on your Android phone(s). To be able to run sitespeed.io you need to install NodeJS. Install [latest LTS](https://nodejs.org/en/), when I write this that version is 16.13.1.
+
+~~~bash
+wget https://nodejs.org/dist/v16.13.1/node-v16.13.1-linux-armv7l.tar.xz
+tar xf node-v16.13.1-linux-armv7l.tar.xz
+cd node-v16.13.1-linux-armv7l/
+sudo cp -R * /usr/local/
+~~~
+
+You also need to install ADB and Chromedriver.
+
+~~~bash
+sudo apt-get update
+sudo apt-get install chromium-chromedriver adb -y
+~~~
+
+And then you need the following to get the video and visual metrics:
+
+~~~bash
+sudo apt-get update -y && sudo apt-get install -y imagemagick ffmpeg
+sudo apt-get install -y python-is-python3 python3-dev python3-pip
+python -m pip install pyssim
+~~~
+
+~~~bash
+sudo npm install sitespeed.io -g
+~~~
+
+Then plugin your phone and run sitespeed.io:
+
+~~~bash
+sitespeed.io https://www.sitespeed.io --android -n 1 --video --visualMetrics
+~~~
+
 ### Skip installing ChromeDriver/GeckoDriver/EdgeDriver
 If you don't want to install ChromeDriver, EdgeDriver or GeckoDriver when you install through npm you can skip them with an environment variable.
 
@@ -175,8 +211,6 @@ EDGEDRIVER_SKIP_DOWNLOAD=true npm install sitespeed.io -g
 ### Updating ChromeDriver/GeckoDriver/EdgeDriver
 
 Using Docker the browser and driver is bundled with the correct versions. If you install everything yourself you may need to update driver versions.
-
-Since the ChromeDriver team decided that a ChromeDriver version needs to match a browser version, it has been more work to test other Chrome versions.
 
 You can download the ChromeDriver yourself from the [Google repo](https://chromedriver.storage.googleapis.com/index.html) and use ```--chrome.chromedriverPath``` to help Browsertime find it or you can choose which version to install when you install sitespeed.io with a environment variable: 
 ```CHROMEDRIVER_VERSION=81.0.4044.20 npm install ```
