@@ -153,9 +153,11 @@ If you run on Windows you can run tests on Firefox, Chrome and Edge.
 
 ### Raspberry Pi
 
-You can use your Raspberry Pi to run tests on your Android phone(s). To be able to run sitespeed.io you need to install NodeJS. Install [latest LTS](https://nodejs.org/en/), when I write this that version is 16.13.1.
+You can use your Raspberry Pi to run tests on your Android phone(s). This is the instructions to install on Raspberry Pi OS Lite.
 
-~~~bash
+To be able to run sitespeed.io you need to install NodeJS. Install [latest LTS](https://nodejs.org/en/), when I write this that version is 16.13.1.
+
+~~~
 wget https://nodejs.org/dist/v16.13.1/node-v16.13.1-linux-armv7l.tar.xz
 tar xf node-v16.13.1-linux-armv7l.tar.xz
 cd node-v16.13.1-linux-armv7l/
@@ -164,15 +166,15 @@ sudo cp -R * /usr/local/
 
 You also need to install ADB and Chromedriver.
 
-~~~bash
+~~~
 sudo apt-get update
 sudo apt-get install chromium-chromedriver adb -y
 ~~~
 
 And then you need the following to get the video and visual metrics:
 
-~~~bash
-sudo apt-get update -y && sudo apt-get install -y imagemagick ffmpeg
+~~~
+sudo apt-get update && sudo apt-get install -y imagemagick ffmpeg
 sudo apt-get install -y python-is-python3 python3-dev python3-pip
 python -m pip install pyssim
 ~~~
