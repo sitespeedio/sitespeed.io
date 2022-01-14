@@ -1,13 +1,13 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 21.5.0 - 2022-01-14
 ### Added
-* Upgraded to [Browsertime 14.15.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14150---2022-01-12) that adds support for `--appendToUserAgent` for Chrome/Edge/Firefox.
+* Upgraded to [Browsertime 14.15.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14150---2022-01-12) that adds support for `--appendToUserAgent` for Chrome/Edge/Firefox. Amd then Browsertime 14.16.0 that supports Geckodriver for Raspberry Pi.
 ## 21.4.0 - 2022-01-12
 ### Added
 * Updated to a new build of WebPageReplay in the Docker container
 * Updated the Ubuntu base image to latest version and latest NodeJS in the Docketr container.
-* Upgraded Browdsertime [#3528](https://github.com/sitespeedio/sitespeed.io/pull/3528): 
+* Upgraded Browsertime [#3528](https://github.com/sitespeedio/sitespeed.io/pull/3528): 
   * Add support for Humble as connectivity engine for mobile phone testing. Make sure to setup Humble on a Raspberry Pi 4 and the choose engine with --connectivity.engine humble and set the URL to your instance --connectivity.humble.url http://raspberrypi.local:3000. Added in #1691.
 * Upgraded to Chrome 97 and Edge 97 in the Docker container.
 * Upgraded to Chromedriver 97.
