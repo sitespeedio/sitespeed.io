@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-01-12T16:22:02.799Z</updated>
+    <updated>2022-01-14T15:12:48.794Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,22 +17,22 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[browsertime 14.15.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.15.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2022-01-12T16:22:02.799Z</updated>
-        <summary type="html"><![CDATA[ Added so you can append a String to Firefox User Agent #1694, thank you Henrik Skupin for pointing me in the right direction. With #1695 we now have --appendToUserAgent that works in Chrome/Edge and Firefox.]]></summary>
+        <title type="html"><![CDATA[sitespeed.io 21.5.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#21.5.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
+        <updated>2022-01-14T15:12:48.794Z</updated>
+        <summary type="html"><![CDATA[ Upgraded to Browsertime 14.15.0 that adds support for --appendToUserAgent for Chrome/Edge/Firefox. Amd then Browsertime 14.16.0 that supports Geckodriver for Raspberry Pi.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 21.4.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#21.4.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2022-01-12T12:50:03.287Z</updated>
-        <summary type="html"><![CDATA[ Updated to a new build of WebPageReplay in the Docker container Updated the Ubuntu base image to latest version and latest NodeJS in the Docketr container. Upgraded Browdsertime #3528: Upgraded to Chrome 97 and Edge 97 in the Docker container. Upgraded to Chromedriver 97. Updated Chromedriver library that automatically picks up the Chromedriver if it's installed on Raspberry Pi.]]></summary>
+        <title type="html"><![CDATA[browsertime 14.16.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.16.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
+        <updated>2022-01-14T15:01:30.357Z</updated>
+        <summary type="html"><![CDATA[ Upgraded Geckodriver downloader that downloads a pre-built Geckodriver on Raspberry Pis.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
@@ -42,8 +42,19 @@
         <title type="html"><![CDATA[throttle 3.1.0]]></title>
         <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.0</id>
         <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#"/>
-        <updated>2021-12-26T13:39:04.396Z</updated>
+        <updated>2022-01-14T14:58:16.633Z</updated>
         <summary type="html"><![CDATA[ Add support for setting packet loss. Add --packetLoss and set the loss in percentage.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[pagexray 4.3.1]]></title>
+        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.3.1</id>
+        <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#"/>
+        <updated>2022-01-14T14:58:16.631Z</updated>
+        <summary type="html"><![CDATA[ Added missing inbodyparser_blocking render blocking info for Chrome.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
@@ -53,7 +64,7 @@
         <title type="html"><![CDATA[humble 0.1.2]]></title>
         <id>https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#0.1.2</id>
         <link href="https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#"/>
-        <updated>2021-12-25T10:17:27.280Z</updated>
+        <updated>2022-01-14T14:58:16.630Z</updated>
         <summary type="html"><![CDATA[ Updated throttle frontend to latest version where you can see throttling profiles set by using the API and with custom throttling support.]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -64,7 +75,7 @@
         <title type="html"><![CDATA[coach 7.0.0]]></title>
         <id>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#7.0.0</id>
         <link href="https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#"/>
-        <updated>2021-12-24T20:39:15.044Z</updated>
+        <updated>2022-01-14T14:58:16.629Z</updated>
         <summary type="html"><![CDATA[ Updated to use latest Coach core and Browertime.]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -75,8 +86,18 @@
         <title type="html"><![CDATA[coach-core 7.0.0]]></title>
         <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.0.0</id>
         <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#"/>
-        <updated>2021-12-24T20:39:15.043Z</updated>
+        <updated>2022-01-14T14:58:16.628Z</updated>
         <summary type="html"><![CDATA[ Updated third-party-web to 0.12.6. Use Chrome(ium) render blocking information to know if a request is render blocking or not #66. Report offending JavaScript assets if the JavaScript max limits kicks in #70. New largest contentful paint advice #76. New first contentful paint advice #77. Added TBT in the CPU longtask advice #80. Report content and transfer size for offending URLs #81. Report offending assets with transfer/content size for page size limit #82. Fix cases when JQuery is undefined. Thank you shubham jajodia for PR #64. A better way to find offending layout shifters. Thank you shubham jajodia for PR #65. Removed mentions aboout server push #69 Added more information on how to debug CPU advice #71. Moved AMP advice to best practice instead of privacy #67. Increased favicon max size advice from 5 to 10 kb #68 Renamed the fastRender advice to avoidRenderBlocking #73 Remove the third party async advice #74 Updated the layout shift advice to use cumulative layout shift #75 Changed id of the Google Tag Manager advice #79]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[chrome-har 0.12.0]]></title>
+        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.12.0</id>
+        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#"/>
+        <updated>2022-01-14T14:58:16.626Z</updated>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
@@ -88,27 +109,6 @@
         <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#"/>
         <updated>2021-10-29T18:25:09.436Z</updated>
         <summary type="html"><![CDATA[ Added support for using Github gists see #34. Added support for using a config file to configure which HARs to test. Added support for copy/paste directly you HAR, configuration file or a gist URL or id. Refactor the CSS into Sass, development build process now uses BrowserSync. Service worker added for offline support. Workbox is used to achieve this. Added support for showing changes in request/responses if you compare the same page #63. New internal structure and use the new configuration object all the way.]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[pagexray 4.3.1]]></title>
-        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.3.1</id>
-        <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#"/>
-        <updated>2021-10-29T18:25:09.436Z</updated>
-        <summary type="html"><![CDATA[ Added missing inbodyparser_blocking render blocking info for Chrome.]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[chrome-har 0.12.0]]></title>
-        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.12.0</id>
-        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#"/>
-        <updated>2021-10-29T18:25:09.435Z</updated>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>

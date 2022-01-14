@@ -23,6 +23,7 @@ Browser
       --browsertime.selenium.url                                                                    Configure the path to the Selenium server when fetching timings using browsers. If not configured the supplied NodeJS/Selenium version is used.
       --browsertime.viewPort, --viewPort                                                            The browser view port size WidthxHeight like 400x300  [default: "1366x708"]
       --browsertime.userAgent, --userAgent                                                          The full User Agent string, defaults to the User Agent used by the browsertime.browser option.
+      --browsertime.appendToUserAgent, --appendToUserAgent                                          Append a String to the user agent. Works in Chrome/Edge and Firefox.
       --browsertime.preURL, --preURL                                                                A URL that will be accessed first by the browser before the URL that you wanna analyse. Use it to fill the cache.
       --browsertime.preScript, --preScript                                                          Selenium script(s) to run before you test your URL. They will run outside of the analyse phase. Note that --preScript can be passed multiple times.
       --browsertime.postScript, --postScript                                                        Selenium script(s) to run after you test your URL. They will run outside of the analyse phase. Note that --postScript can be passed multiple times.
