@@ -47,29 +47,86 @@ each experience in experiences
               if crux[experience][formFactor].data.record.metrics[key]
                 tr
                   td #{name} 75 percentile
-                  td #{crux[experience][formFactor].data.record.metrics[key].percentiles.p75} #{key.indexOf('cumulative') > -1 ? '': 'ms'}
+                  td #{key.indexOf('cumulative') > -1 ? crux[experience][formFactor].data.record.metrics[key].percentiles.p75 :  h.time.ms(crux[experience][formFactor].data.record.metrics[key].percentiles.p75)} 
         
         h4 Distribution
-        table
-          each name, key in metrics
-            if crux[experience][formFactor].data.record.metrics[key] && crux[experience][formFactor].data.record.metrics[key].histogram
-              tr
-                th #{name}
-                th Min
-                th Max
-                th Users
-              tr
-                td Fast
-                td #{crux[experience][formFactor].data.record.metrics[key].histogram[0].start}
-                td #{crux[experience][formFactor].data.record.metrics[key].histogram[0].end}
-                td #{Number(crux[experience][formFactor].data.record.metrics[key].histogram[0].density * 100).toFixed(2)} %
-              tr
-                td Moderate
-                td #{crux[experience][formFactor].data.record.metrics[key].histogram[1].start}
-                td #{crux[experience][formFactor].data.record.metrics[key].histogram[1].end}
-                td #{Number(crux[experience][formFactor].data.record.metrics[key].histogram[1].density * 100).toFixed(2)} %
-              tr
-                td Slow
-                td #{crux[experience][formFactor].data.record.metrics[key].histogram[2].start}
-                td #{crux[experience][formFactor].data.record.metrics[key].histogram[2].end}
-                td #{Number(crux[experience][formFactor].data.record.metrics[key].histogram[2].density * 100).toFixed(2)} %
+        - let FCPs = [Number(get(crux, `${experience}.${formFactor}.data.record.metrics.first_contentful_paint.histogram[0].density`, 0) * 100).toFixed(2), Number(get(crux, `${experience}.${formFactor}.data.record.metrics.first_contentful_paint.histogram[1].density`, 0) * 100).toFixed(2), Number(get(crux, `${experience}.${formFactor}.data.record.metrics.first_contentful_paint.histogram[2].density`, 0)*100).toFixed(2)];
+
+        - let LCPs = [Number(get(crux, `${experience}.${formFactor}.data.record.metrics.largest_contentful_paint.histogram[0].density`, 0) * 100).toFixed(2), Number(get(crux, `${experience}.${formFactor}.data.record.metrics.largest_contentful_paint.histogram[1].density`, 0) * 100).toFixed(2), Number(get(crux, `${experience}.${formFactor}.data.record.metrics.largest_contentful_paint.histogram[2].density`, 0)*100).toFixed(2)];
+
+        - let FIDs = [Number(get(crux, `${experience}.${formFactor}.data.record.metrics.first_input_delay.histogram[0].density`, 0) * 100).toFixed(2), Number(get(crux, `${experience}.${formFactor}.data.record.metrics.first_input_delay.histogram[1].density`, 0) * 100).toFixed(2), Number(get(crux, `${experience}.${formFactor}.data.record.metrics.first_input_delay.histogram[2].density`, 0)*100).toFixed(2)];
+
+        - let CLSs = [Number(get(crux, `${experience}.${formFactor}.data.record.metrics.cumulative_layout_shift.histogram[0].density`, 0) * 100).toFixed(2), Number(get(crux, `${experience}.${formFactor}.data.record.metrics.cumulative_layout_shift.histogram[1].density`, 0) * 100).toFixed(2), Number(get(crux, `${experience}.${formFactor}.data.record.metrics.cumulative_layout_shift.histogram[2].density`, 0)*100).toFixed(2)];
+
+        script(type='text/javascript').
+          document.addEventListener("DOMContentLoaded", function() {        
+                  const pie = new Chartist.Pie('#chartFCP#{experience + formFactor}', {
+                    series: [#{FCPs}],
+                    labels: ['Fast: #{FCPs[0]}%', 'Moderate #{FCPs[1]}%', 'Slow: #{FCPs[2]}%']
+                  }, {
+                    showLabel: false,
+                    plugins: [
+                      Chartist.plugins.legend(
+                         { clickable: false,
+                          position: 'bottom'
+                        }
+                      )
+                  ]
+                  });
+
+                  const pie2 = new Chartist.Pie('#chartLCP#{experience + formFactor}', {
+                    series: [#{LCPs}],
+                    labels: ['Fast: #{LCPs[0]}%', 'Moderate #{LCPs[1]}%', 'Slow: #{LCPs[2]}%']
+                  }, {
+                    showLabel: false,
+                    plugins: [
+                      Chartist.plugins.legend( 
+                        { clickable: false,
+                          position: 'bottom'
+                        })
+                  ]
+                  });
+
+                  const pie3 = new Chartist.Pie('#chartFID#{experience + formFactor}', {
+                    series: [#{FIDs}],
+                    labels: ['Fast: #{FIDs[0]}%', 'Moderate #{FIDs[1]}%', 'Slow: #{FIDs[2]}%']
+                  }, {
+                    showLabel: false,
+                    plugins: [
+                      Chartist.plugins.legend(
+                        { clickable: false,
+                          position: 'bottom'
+                        })
+                  ]
+                  });
+
+                  const pie4 = new Chartist.Pie('#chartCLS#{experience + formFactor}', {
+                    series: [#{CLSs}],
+                    labels: ['Fast: #{CLSs[0]}%', 'Moderate #{CLSs[1]}%', 'Slow: #{CLSs[2]}%']
+                  }, {
+                    showLabel: false,
+                    plugins: [
+                      Chartist.plugins.legend( 
+                        { clickable: false,
+                          position: 'bottom'
+                        })
+                  ]
+                  });
+
+          });
+        .responsive  
+          table
+            tr 
+              th #{metrics['first_contentful_paint']}
+              th #{metrics['largest_contentful_paint']}
+              th #{metrics['first_input_delay']} 
+              th #{metrics['cumulative_layout_shift']}
+            tr 
+              td 
+                .ct-chart(id='chartFCP' + experience + formFactor)
+              td
+                .ct-chart(id='chartLCP' + experience + formFactor)
+              td
+                .ct-chart(id='chartFID' + experience + formFactor)
+              td
+                .ct-chart(id='chartCLS' + experience + formFactor) 
