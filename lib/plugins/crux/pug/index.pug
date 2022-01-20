@@ -11,7 +11,7 @@ mixin sizeCell(title, size)
   td.number(data-title=title, data-value= size)= h.size.format(size)
 
 - const crux = pageInfo.data.crux.pageSummary;
-- const metrics = {first_contentful_paint:'First Contentful Paint (FCP)', largest_contentful_paint: 'Largest Contentful Paint (LCP)', first_input_delay:'First Input Delay (FID)', cumulative_layout_shift: 'Cumulative Layout Shift'}; 
+- const metrics = {first_contentful_paint:'First Contentful Paint (FCP)', largest_contentful_paint: 'Largest Contentful Paint (LCP)', first_input_delay:'First Input Delay (FID)', cumulative_layout_shift: 'Cumulative Layout Shift (CLS)'}; 
 - const experiences = ['loadingExperience','originLoadingExperience'];
 
 small 
@@ -126,11 +126,11 @@ each experience in experiences
               th #{metrics['first_input_delay']} 
               th #{metrics['cumulative_layout_shift']}
             tr 
-              td 
+              td(data-title=metrics['first_contentful_paint'])  
                 .ct-chart(id='chartFCP' + experience + formFactor)
-              td
+              td(data-title=metrics['largest_contentful_paint']) 
                 .ct-chart(id='chartLCP' + experience + formFactor)
-              td
+              td(data-title=metrics['first_input_delay']) 
                 .ct-chart(id='chartFID' + experience + formFactor)
-              td
+              td(data-title=metrics['cumulative_layout_shift']) 
                 .ct-chart(id='chartCLS' + experience + formFactor) 
