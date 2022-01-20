@@ -87,21 +87,20 @@
   fill: #EAB839;
 }
 
-
-
 .ct-chart {  
   .ct-legend {      
       position: relative;
       z-index: 10;
       list-style: none;
-      text-align: center;
+      text-align: left;
+      line-height: 0.8;
+      font-size: 0.8em;
 
       li {
           padding-left: 23px;
           margin-right: 10px;
           margin-bottom: 3px;
           cursor: pointer;
-          display: inline-block;
 
           &:before {
               width: 12px;
