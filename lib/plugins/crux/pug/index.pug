@@ -25,6 +25,10 @@ a#crux
 h2 CrUx
 p.small Chrome User Experience Report (CrUx) is powered by real user measurement across the public web, aggregated from users who have opted-in to syncing their browsing history, have not set up a Sync passphrase, and have usage statistic reporting enabled and is using Chrome.
 
+p.small The CrUx data has four different buckets (form factor) depending on device: DESKTOP, PHONE, TABLET and ALL. You can choose which data to get with 
+  code --crux.formFactor
+  | .
+
 each experience in experiences
   if experience === 'loadingExperience' && crux[experience]
     p Over the last 30 days, this is the field data for this page for Chrome users.
@@ -102,7 +106,7 @@ each experience in experiences
 
                   const pie4 = new Chartist.Pie('#chartCLS#{experience + formFactor}', {
                     series: [#{CLSs}],
-                    labels: ['Fast: #{CLSs[0]}%', 'Moderate #{CLSs[1]}%', 'Slow: #{CLSs[2]}%']
+                    labels: ['Good: #{CLSs[0]}%', 'Need improvement: #{CLSs[1]}%', 'Poor: #{CLSs[2]}%']
                   }, {
                     showLabel: false,
                     plugins: [
