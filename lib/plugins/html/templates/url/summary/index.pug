@@ -171,6 +171,28 @@ block content
               tr
                 td Last Visual Change [median]
                 td #{h.time.ms(lastVisualChange)}
+            - cruxFCP = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.first_contentful_paint.percentiles.p75');
+            if cruxFCP
+              tr
+                th(colspan='2') Chrome User Experience Report (CRUX)
+              tr
+                td First Contentful Paint [p75]
+                td #{h.time.ms(cruxFCP)}
+            - cruxLCP = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.largest_contentful_paint.percentiles.p75');
+            if cruxLCP
+              tr
+                td Largest Contentful Paint (LCP) [p75]
+                td #{h.time.ms(cruxLCP)}
+            - cruxFID = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.first_input_delay.percentiles.p75');
+            if cruxFID
+              tr
+                td First Input Delay (FID) [p75]
+                td #{h.time.ms(cruxFID)}
+            - cruxCLS = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.cumulative_layout_shift.percentiles.p75');
+            if cruxCLS
+              tr
+                td Cumulative Layout Shift (CLS) [p75]
+                td #{cruxFCP}
             if !d.browsertime && d.webpagetest
               tr
                 td Render (first view)
