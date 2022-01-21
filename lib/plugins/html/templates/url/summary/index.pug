@@ -77,6 +77,8 @@ block content
               th Metric
               th Value
             - performanceScore = get(d, 'coach.pageSummary.advice.performance.score')
+            tr
+              th(colspan='2') Page metrics
             if performanceScore
               tr
                 td Performance Score
@@ -96,32 +98,32 @@ block content
               tr
                 td Requests
                 td #{requests}
-            - ttfb = get(d, 'browsertime.pageSummary.statistics.timings.pageTimings.backEndTime.median') 
+            - ttfb = get(d, 'browsertime.pageSummary.statistics.timings.pageTimings.backEndTime.median')
+            tr
+              th(colspan='2') Timing metrics
             if ttfb
               tr
                 td TTFB [median]
                 td #{h.time.ms(ttfb)}
+            - firstPaint = get(d, 'browsertime.pageSummary.statistics.timings.firstPaint.median')
+            if firstPaint
+              tr
+                td First Paint [median]
+                td #{h.time.ms(firstPaint)}  
             - fullyLoaded = get(d, 'browsertime.pageSummary.statistics.timings.fullyLoaded.median')
             if fullyLoaded  
               tr
                 td Fully Loaded [median]
                 td #{h.time.ms(fullyLoaded)}
-            - firstVisualChange = get(d, 'browsertime.pageSummary.statistics.visualMetrics.FirstVisualChange.median')
-            - firstPaint = get(d, 'browsertime.pageSummary.statistics.timings.firstPaint.median')
-            if firstVisualChange
-              tr
-                td First Visual Change [median]
-                td #{h.time.ms(firstVisualChange)}
-            else if firstPaint
-              tr
-                td First Paint [median]
-                td #{h.time.ms(firstPaint)}  
             - fcp = get(d, 'browsertime.pageSummary.statistics.timings.paintTiming["first-contentful-paint"].median') 
+            - lcp = get(d, 'browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime.median')
+            if lcp
+              tr
+                th(colspan='2') Google Web Vitals
             if fcp
               tr
                 td First Contentful Paint (FCP) [median]
                 td #{h.time.ms(fcp)}         
-            - lcp = get(d, 'browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime.median')
             if lcp
               tr
                 td Largest Contentful Paint (LCP) [median]
@@ -144,6 +146,8 @@ block content
             - longTasks = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.tasks.median')
             if longTasks
               tr
+                th(colspan='2') CPU metrics
+              tr
                 td CPU long tasks [median]
                 td #{longTasks}
             - maxLongTask= get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.durations.max') 
@@ -151,6 +155,13 @@ block content
               tr
                 td CPU longest task duration
                 td #{h.time.ms(maxLongTask)}
+            - firstVisualChange = get(d, 'browsertime.pageSummary.statistics.visualMetrics.FirstVisualChange.median')
+            if firstVisualChange
+              tr
+                th(colspan='2') Visual Metrics
+              tr
+                td First Visual Change [median]
+                td #{h.time.ms(firstVisualChange)}
             - speedIndex = get(d, 'browsertime.pageSummary.statistics.visualMetrics.SpeedIndex.median')
             if speedIndex
               tr
@@ -194,6 +205,8 @@ block content
                 td Cumulative Layout Shift (CLS) [p75]
                 td #{cruxFCP}
             if !d.browsertime && d.webpagetest
+              tr
+                th(colspan='2') WebPageTest
               tr
                 td Render (first view)
                 td #{d.webpagetest.pageSummary.data.median.firstView.render}
