@@ -117,7 +117,7 @@ You should throttle the connection when you are fetching metrics. We have a [spe
 
 You can set the viewport & user agent, so you can fake testing a site as a mobile device.
 
-The simplest way is to just add <code>--mobile</code> as a parameter. The viewport will be set to 360x640 and the user agent will be Iphone6. If you use Chrome it will use the preset Apple iPhone 6 device.
+The simplest way is to just add <code>--mobile</code> as a parameter. If you use Chrome it will use the preset Moto G4 device.
 
 ~~~bash
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --mobile
