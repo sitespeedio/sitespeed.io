@@ -54,19 +54,22 @@ each experience in experiences
                   td #{key.indexOf('cumulative') > -1 ? crux[experience][formFactor].data.record.metrics[key].percentiles.p75 :  h.time.ms(crux[experience][formFactor].data.record.metrics[key].percentiles.p75)} 
         
         h4 Distribution
-        - let FCPs = [Number(get(crux, `${experience}.${formFactor}.data.record.metrics.first_contentful_paint.histogram[0].density`, 0) * 100).toFixed(2), Number(get(crux, `${experience}.${formFactor}.data.record.metrics.first_contentful_paint.histogram[1].density`, 0) * 100).toFixed(2), Number(get(crux, `${experience}.${formFactor}.data.record.metrics.first_contentful_paint.histogram[2].density`, 0)*100).toFixed(2)];
+        - let cruxus = `${experience}.${formFactor}.data.record.metrics`;
+        - let FCPs = [Number(get(crux, `${cruxus}.first_contentful_paint.histogram[0].density`, 0) * 100).toFixed(2), Number(get(crux, `${cruxus}.first_contentful_paint.histogram[1].density`, 0) * 100).toFixed(2), Number(get(crux, `${cruxus}.first_contentful_paint.histogram[2].density`, 0)*100).toFixed(2)];
 
-        - let LCPs = [Number(get(crux, `${experience}.${formFactor}.data.record.metrics.largest_contentful_paint.histogram[0].density`, 0) * 100).toFixed(2), Number(get(crux, `${experience}.${formFactor}.data.record.metrics.largest_contentful_paint.histogram[1].density`, 0) * 100).toFixed(2), Number(get(crux, `${experience}.${formFactor}.data.record.metrics.largest_contentful_paint.histogram[2].density`, 0)*100).toFixed(2)];
+        - let LCPs = [Number(get(crux, `${cruxus}.largest_contentful_paint.histogram[0].density`, 0) * 100).toFixed(2), Number(get(crux, `${cruxus}.largest_contentful_paint.histogram[1].density`, 0) * 100).toFixed(2), Number(get(crux, `${cruxus}.largest_contentful_paint.histogram[2].density`, 0)*100).toFixed(2)];
 
-        - let FIDs = [Number(get(crux, `${experience}.${formFactor}.data.record.metrics.first_input_delay.histogram[0].density`, 0) * 100).toFixed(2), Number(get(crux, `${experience}.${formFactor}.data.record.metrics.first_input_delay.histogram[1].density`, 0) * 100).toFixed(2), Number(get(crux, `${experience}.${formFactor}.data.record.metrics.first_input_delay.histogram[2].density`, 0)*100).toFixed(2)];
+        - let FIDs = [Number(get(crux, `${cruxus}.first_input_delay.histogram[0].density`, 0) * 100).toFixed(2), Number(get(crux, `${cruxus}.first_input_delay.histogram[1].density`, 0) * 100).toFixed(2), Number(get(crux, `${cruxus}.first_input_delay.histogram[2].density`, 0)*100).toFixed(2)];
 
-        - let CLSs = [Number(get(crux, `${experience}.${formFactor}.data.record.metrics.cumulative_layout_shift.histogram[0].density`, 0) * 100).toFixed(2), Number(get(crux, `${experience}.${formFactor}.data.record.metrics.cumulative_layout_shift.histogram[1].density`, 0) * 100).toFixed(2), Number(get(crux, `${experience}.${formFactor}.data.record.metrics.cumulative_layout_shift.histogram[2].density`, 0)*100).toFixed(2)];
+        - let CLSs = [Number(get(crux, `${cruxus}.cumulative_layout_shift.histogram[0].density`, 0) * 100).toFixed(2), Number(get(crux, `${cruxus}.cumulative_layout_shift.histogram[1].density`, 0) * 100).toFixed(2), Number(get(crux, `${cruxus}.cumulative_layout_shift.histogram[2].density`, 0)*100).toFixed(2)];
 
         script(type='text/javascript').
-          document.addEventListener("DOMContentLoaded", function() {        
-                  const pie = new Chartist.Pie('#chartFCP#{experience + formFactor}', {
-                    series: [#{FCPs}],
-                    labels: ['Fast: #{FCPs[0]}%', 'Moderate #{FCPs[1]}%', 'Slow: #{FCPs[2]}%']
+          document.addEventListener("DOMContentLoaded", function() {   
+
+                function drawPie(id, series, labels) {
+                  new Chartist.Pie(id, {
+                    series,
+                    labels,
                   }, {
                     showLabel: false,
                     plugins: [
@@ -77,45 +80,13 @@ each experience in experiences
                       )
                   ]
                   });
+                }     
 
-                  const pie2 = new Chartist.Pie('#chartLCP#{experience + formFactor}', {
-                    series: [#{LCPs}],
-                    labels: ['Fast: #{LCPs[0]}%', 'Moderate #{LCPs[1]}%', 'Slow: #{LCPs[2]}%']
-                  }, {
-                    showLabel: false,
-                    plugins: [
-                      Chartist.plugins.legend( 
-                        { clickable: false,
-                          position: 'bottom'
-                        })
-                  ]
-                  });
+                drawPie('#chartFCP#{experience + formFactor}', [#{FCPs}], ['Fast: #{FCPs[0]}%', 'Moderate #{FCPs[1]}%', 'Slow: #{FCPs[2]}%']);
+                drawPie('#chartLCP#{experience + formFactor}', [#{LCPs}], ['Fast: #{LCPs[0]}%', 'Moderate #{LCPs[1]}%', 'Slow: #{LCPs[2]}%']);
+                drawPie('#chartFID#{experience + formFactor}', [#{FIDs}], ['Fast: #{FIDs[0]}%', 'Moderate #{FIDs[1]}%', 'Slow: #{FIDs[2]}%']);
+                drawPie('#chartCLS#{experience + formFactor}', [#{CLSs}], ['Good: #{CLSs[0]}%', 'Need improvement: #{CLSs[1]}%', 'Poor: #{CLSs[2]}%']);
 
-                  const pie3 = new Chartist.Pie('#chartFID#{experience + formFactor}', {
-                    series: [#{FIDs}],
-                    labels: ['Fast: #{FIDs[0]}%', 'Moderate #{FIDs[1]}%', 'Slow: #{FIDs[2]}%']
-                  }, {
-                    showLabel: false,
-                    plugins: [
-                      Chartist.plugins.legend(
-                        { clickable: false,
-                          position: 'bottom'
-                        })
-                  ]
-                  });
-
-                  const pie4 = new Chartist.Pie('#chartCLS#{experience + formFactor}', {
-                    series: [#{CLSs}],
-                    labels: ['Good: #{CLSs[0]}%', 'Need improvement: #{CLSs[1]}%', 'Poor: #{CLSs[2]}%']
-                  }, {
-                    showLabel: false,
-                    plugins: [
-                      Chartist.plugins.legend( 
-                        { clickable: false,
-                          position: 'bottom'
-                        })
-                  ]
-                  });
 
           });
         .responsive  
