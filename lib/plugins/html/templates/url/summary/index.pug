@@ -203,7 +203,7 @@ block content
             if cruxCLS
               tr
                 td Cumulative Layout Shift (CLS) [p75]
-                td #{cruxFCP}
+                td #{cruxCLS.toFixed(2)}
             if !d.browsertime && d.webpagetest
               tr
                 th(colspan='2') WebPageTest
