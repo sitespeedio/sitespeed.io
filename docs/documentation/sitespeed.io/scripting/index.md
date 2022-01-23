@@ -965,8 +965,10 @@ Click on link located by the ID attribute. Internally we use  ```document.getEle
 Click on element that is found by the CSS selector that has the given value. Internally we use  ```document.querySelector(selector)``` to get the correct element.
 
 #### click.bySelectorAndWait(selector)
-Click on element that is found by name CSS selector that has the given value and wait for the [page cmplete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to happen. Internally we use  ```document.querySelector(selector)``` to get the correct element.
+Click on element that is found by name CSS selector that has the given value and wait for the [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to happen. Internally we use  ```document.querySelector(selector)``` to get the correct element.
 
+#### click.byName(name)
+Click on element located by the name. Internally we use  ```document.querySelector``` to get the correct element.
 ### Mouse
 The mouse command will perform various mouse events.
 
@@ -1264,6 +1266,26 @@ module.exports = async function(context, commands) {
 #### error(message)
 Create an error. Use it if you catch a thrown error, want to continue with something else, but still report the error.
 
+
+### Select
+Select command for selecting an option in a drop-down field.
+
+#### select.selectByIdValue(selectId, value)
+Select a field by the id of the select element and the value of the option.
+
+#### select.selectByNameAndValue(selectName, value)
+Select a field by the name of the select element and the value of the option.
+#### select.selectByIdAndIndex(selectId, index)
+Select a field by the id of the select element and the index of the option.
+#### select.selectByNameAndIndex(selectName, index)
+Select a field by the name of the select element and the index of the option.
+
+#### select.deselectById(selectId)
+Deselect a field by the id of the select element.
+#### select.getValuesById(selectId)
+Get the values of all options in a select field by the id of the select element.
+#### select.getSelectedValueById(selectId)
+Get the value of the selected option in a select field by the id of the select element.
 ### Meta data
 Add meta data to your script. The extra data will be visible in the HTML result page.
 
@@ -1284,7 +1306,7 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
-Will result in:
+###Will result in:
 
 ![Title and description for a script]({{site.baseurl}}/img/titleanddesc.png)
 {: .img-thumbnail}
