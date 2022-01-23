@@ -200,7 +200,7 @@ block content
                 td First Input Delay (FID) [p75]
                 td #{h.time.ms(cruxFID)}
             - cruxCLS = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.cumulative_layout_shift.percentiles.p75');
-            if cruxCLS
+            if cruxCLS || cruxCLS === 0
               tr
                 td Cumulative Layout Shift (CLS) [p75]
                 td #{cruxCLS.toFixed(2)}
