@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-01-24T18:24:22.864Z</updated>
+    <updated>2022-01-24T18:49:56.787Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,22 +17,22 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[browsertime 14.18.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.18.1</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2022-01-24T18:24:22.864Z</updated>
-        <summary type="html"><![CDATA[ If loading a URL failed and we retry and we logged that as an info message, but you as a user only need to know if it fails after X retries. The log message now logs at debug level #1701. The summary log message 2022-01-24 16:12:38] INFO: https://www.sitespeed.io 27 requests, TTFB: 962ms (σ917.00ms), firstPaint: 2.92s (σ3.07s), firstVisualChange: 2.94s (σ3.07s), FCP: 2.92s (σ3.07s), DOMContentLoaded: 3.22s (σ2.98s), LCP: 2.92s (σ3.07s), CLS: 0.0389 (σ0.03), TBT: 769ms (σ53.00ms), Load: 3.77s (σ3.12s), speedIndex: 2.96s (σ3.07s), visualComplete85: 2.95s (σ3.06s), lastVisualChange: 4.54s (σ3.30s) (21 runs) that summaries all the runs used mean instead of median metric. That sucks when you do many runs and want to compare them. That is now fixed to show median number instead [#1700.]]></summary>
+        <title type="html"><![CDATA[sitespeed.io 21.6.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#21.6.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
+        <updated>2022-01-24T18:49:56.787Z</updated>
+        <summary type="html"><![CDATA[ Updated to Browsertime 14.18.1 that makes the summary metric log message use median (instead of mean) and change a log message level to debug.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 21.6.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#21.6.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2022-01-24T12:51:07.218Z</updated>
-        <summary type="html"><![CDATA[ Updated to Edge stable release in the Docker container. Remove Crux distribution table and use pie charts instead #3537 Add extra sleep time between Crux calls to make sure to not overload the API limit #3536. Added extra Crux enable command line --crux.enable to enable Crux #3538. Its default value is true and you also need to supply the Crux key to run Crux. The reason for the new parameter is that you can now configure the key in your configuration JSON and set the enable to false and then you enable it with the CLI parameter when you actually need to run Crux. Show Crux-metrics on the Summary page #3540. Updated summary metrics tables with headings to make it easier to read #3541. Added Browsertime 14.17.0 with new Select and click.byName commands. With that Browsertime version you also need to have ffprobe installed when you run Visual Metrics but that should already be installed. Added Browsertime 14.18.0 with a fix for Firefox #1698]]></summary>
+        <title type="html"><![CDATA[browsertime 14.18.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.18.1</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
+        <updated>2022-01-24T18:24:22.864Z</updated>
+        <summary type="html"><![CDATA[ If loading a URL failed and we retry and we logged that as an info message, but you as a user only need to know if it fails after X retries. The log message now logs at debug level #1701. The summary log message 2022-01-24 16:12:38] INFO: https://www.sitespeed.io 27 requests, TTFB: 962ms (σ917.00ms), firstPaint: 2.92s (σ3.07s), firstVisualChange: 2.94s (σ3.07s), FCP: 2.92s (σ3.07s), DOMContentLoaded: 3.22s (σ2.98s), LCP: 2.92s (σ3.07s), CLS: 0.0389 (σ0.03), TBT: 769ms (σ53.00ms), Load: 3.77s (σ3.12s), speedIndex: 2.96s (σ3.07s), visualComplete85: 2.95s (σ3.06s), lastVisualChange: 4.54s (σ3.30s) (21 runs) that summaries all the runs used mean instead of median metric. That sucks when you do many runs and want to compare them. That is now fixed to show median number instead [#1700.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
