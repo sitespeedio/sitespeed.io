@@ -1,8 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 21.6.1 - 2022-01-24
 ### Fixed
-* Updated to Browsertime 14.18.1.
+* Updated to [Browsertime 14.18.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14181---2022-01-24) that makes the summary metric log message use median (instead of mean) and change a log message level to debug.
 ## 21.6.0 - 2022-01-24
 ### Added
 * Updated to Edge stable release in the Docker container.
