@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 21.6.0 - UNRELEASED
+## 21.6.0 - 2022-01-24
 ### Added
 * Updated to Edge stable release in the Docker container.
 * Remove Crux distribution table and use pie charts instead [#3537](https://github.com/sitespeedio/sitespeed.io/pull/3537)
@@ -8,7 +8,9 @@
 * Added extra Crux enable command line `--crux.enable` to enable Crux [#3538](https://github.com/sitespeedio/sitespeed.io/pull/3538). Its default value is `true` and you also need to supply the Crux key to run Crux. The reason for the new parameter is that you can now configure the key in your configuration JSON and set the enable to false and then you enable it with the CLI parameter when you actually need to run Crux.
 * Show Crux-metrics on the Summary page [#3540](https://github.com/sitespeedio/sitespeed.io/pull/3540).
 * Updated summary metrics tables with headings to make it easier to read [#3541](https://github.com/sitespeedio/sitespeed.io/pull/3541).
-* Added [Browsertime 14.17.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14170---2022-01-23) with new Select and click.byName commands.
+* Added [Browsertime 14.17.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14170---2022-01-23) with new Select and click.byName commands. With that Browsertime version you also need to have ffprobe installed when you run Visual Metrics but that should already be installed.
+* Added [Browsertime 14.18.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14180---2022-01-24) with a fix for Firefox [#1698](https://github.com/sitespeedio/browsertime/issues/1698)
+
 ## 21.5.0 - 2022-01-14
 ### Added
 * Upgraded to [Browsertime 14.15.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14150---2022-01-12) that adds support for `--appendToUserAgent` for Chrome/Edge/Firefox. And then Browsertime 14.16.0 that supports Geckodriver for Raspberry Pi.
