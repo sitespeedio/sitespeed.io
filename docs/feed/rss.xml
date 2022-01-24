@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Mon, 24 Jan 2022 09:36:06 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 24 Jan 2022 12:51:07 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,14 @@
         <copyright>All rights reserved 2021, Peter Hedenskog and team</copyright>
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 21.6.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#21.6.0</guid>
+            <pubDate>Mon, 24 Jan 2022 12:51:07 GMT</pubDate>
+            <description><![CDATA[ Updated to Edge stable release in the Docker container. Remove Crux distribution table and use pie charts instead #3537 Add extra sleep time between Crux calls to make sure to not overload the API limit #3536. Added extra Crux enable command line --crux.enable to enable Crux #3538. Its default value is true and you also need to supply the Crux key to run Crux. The reason for the new parameter is that you can now configure the key in your configuration JSON and set the enable to false and then you enable it with the CLI parameter when you actually need to run Crux. Show Crux-metrics on the Summary page #3540. Updated summary metrics tables with headings to make it easier to read #3541. Added Browsertime 14.17.0 with new Select and click.byName commands. With that Browsertime version you also need to have ffprobe installed when you run Visual Metrics but that should already be installed. Added Browsertime 14.18.0 with a fix for Firefox #1698]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[browsertime 14.18.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
@@ -30,14 +38,6 @@
             <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.0</guid>
             <pubDate>Mon, 24 Jan 2022 09:35:45 GMT</pubDate>
             <description><![CDATA[ Add support for setting packet loss. Add --packetLoss and set the loss in percentage.]]></description>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 21.5.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#21.5.0</guid>
-            <pubDate>Mon, 24 Jan 2022 09:35:45 GMT</pubDate>
-            <description><![CDATA[ Upgraded to Browsertime 14.15.0 that adds support for --appendToUserAgent for Chrome/Edge/Firefox. And then Browsertime 14.16.0 that supports Geckodriver for Raspberry Pi.]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[pagexray 4.3.1]]></title>
@@ -75,14 +75,6 @@
             <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.12.0</guid>
             <pubDate>Mon, 24 Jan 2022 09:35:45 GMT</pubDate>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 14.18.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.18.0</guid>
-            <pubDate>Mon, 24 Jan 2022 09:35:20 GMT</pubDate>
-            <description><![CDATA[ Updated to Edge stable in the Docker container. A more safe way to get dockumentURI for Firefox. See PR #1699 and bug #1698.]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[compare 1.0.0]]></title>
