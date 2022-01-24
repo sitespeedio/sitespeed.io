@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+### Fixed
+* Updated to Browsertime 14.18.1.
 ## 21.6.0 - 2022-01-24
 ### Added
 * Updated to Edge stable release in the Docker container.
