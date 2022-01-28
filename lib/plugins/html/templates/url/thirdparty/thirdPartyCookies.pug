@@ -8,7 +8,8 @@ if pagexray.cookieNamesThirdParties.length > 0
     .responsive
     table(data-sortable, id='thirdPartyCookies')
         +rowHeading(['Cookie name', 'Domain'])
-        each cookie in pagexray.cookieNamesThirdParties
+        - let cookies = pagexray.cookieNamesThirdParties.filter((v,i,a)=>a.findIndex(t=>(t.name===v.name && t.domain === v.domain))===i)
+        each cookie in cookies
             tr
                 td(data-title='Name') #{cookie.name} 
                 td.url(data-title='Domain') #{cookie.domain}
