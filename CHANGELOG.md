@@ -1,5 +1,12 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 21.7.0 - UNRELEASED
+### Added
+* When plugins is loaded, there's now a new extra last step where we try to load the plugin as a globally installed npm module [#3546](https://github.com/sitespeedio/sitespeed.io/pull/3546).
+
+### Fixed
+* Fix so that we do not display the same 3rd party cookie multiple times [#3545](https://github.com/sitespeedio/sitespeed.io/pull/3545).
+
 ## 21.6.1 - 2022-01-24
 ### Fixed
 * Updated to [Browsertime 14.18.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14181---2022-01-24) that makes the summary metric log message use median (instead of mean) and change a log message level to debug.
