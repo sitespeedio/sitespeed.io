@@ -4,9 +4,8 @@ labels: [bug]
 body:
   - type: markdown
     attributes:
-      value: |
-        Thanks for reporting issues back to sitespeed.io!
-  - type: checkbox
+      value: Thanks for reporting issues back to sitespeed.io!
+  - type: checkboxes
     id: Reproducable
     attributes:
       label: Documentation
