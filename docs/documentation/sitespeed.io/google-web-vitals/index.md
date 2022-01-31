@@ -32,7 +32,7 @@ To collect the metric first contentful paint we use the [Paint Timing API](https
 
 Go the the metrics tab and scroll down to the Largest Contentful Paint metrics and you will see a screenshot where the element that is the largest is highlighted in red. 
 
-![Largest contentful paint]({{site.baseurl}}/img/lcp-result.png)
+![Largest contentful paint]({{site.baseurl}}/img/lcp-result.png){:loading="lazy"}
 {: .img-thumbnail}
 
 The screenshot is generated after the page finished loading. If the largest contentful element has been removed from the screen at that time, you will not see any highlight in the screenshot. You can then instead use the information in the table to the left to identify the element.
@@ -41,7 +41,7 @@ If you have a hard time identify the element on the screenshot you can change th
 
 
 If the largest contentful paint is an image you can also see that highlighted in the waterfall.
-![Highlighted LCP]({{site.baseurl}}/img/lcp-waterfall.jpg)
+![Highlighted LCP]({{site.baseurl}}/img/lcp-waterfall.jpg){:loading="lazy"}
 {: .img-thumbnail}
 ### Cumulative Layout Shift (CLS)
 
@@ -49,7 +49,7 @@ The [layout shift API](https://wicg.github.io/layout-instability/) helps you fin
 
 If those elements are still in the viewport after the page finished loading we try to highlight them in a screenshot. By default all elements that has a shift value of 0.01 or higher is highlighted. You can change that with `--browsertime.screenshotLSLimit`. That can help you if you have a lot of elements that shifts. Say that you want to highlight only elements with a value higher than 0.1 then add `--browsertime.screenshotLSLimit 0.1` to your run settings.
 
-![Layout Shift]({{site.baseurl}}/img/ls-result.png)
+![Layout Shift]({{site.baseurl}}/img/ls-result.png){:loading="lazy"}
 {: .img-thumbnail}
 
 You can also change the color of the highlight: `--browsertime.screenshotLSColor blue`
@@ -94,7 +94,7 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 
 Our pre-made dashboards includes Google Web Vitals where you can see latest metrics and trends compared to last week.
 
-![Google Web Vitals trends]({{site.baseurl}}/img/Google-Web-Vitals-trends.png)
+![Google Web Vitals trends]({{site.baseurl}}/img/Google-Web-Vitals-trends.png){:loading="lazy"}
 {: .img-thumbnail}
 
 
@@ -166,7 +166,7 @@ Sitespeed.io comes with a [Chrome User Experience plugin](/documentation/sitespe
 
 Sending the CrUX data to Graphite you can see metrics both per URL and per origin. 
 
-![Crux]({{site.baseurl}}/img/crux-google-web-vitals.png)
+![Crux]({{site.baseurl}}/img/crux-google-web-vitals.png){:loading="lazy"}
 {: .img-thumbnail}
 
 Go to the [CrUX documentation](/documentation/sitespeed.io/crux/) on how to set it up.
