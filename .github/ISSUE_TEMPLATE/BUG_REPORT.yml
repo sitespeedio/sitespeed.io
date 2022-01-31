@@ -24,19 +24,10 @@ body:
     validations:
       required: true
   - type: textarea
-    id: what-happened
+    id: whaw
     attributes:
-      label: What happened?
-      description: A brief description of the behavior you observed.
-      placeholder: Tell us what you saw!
-    validations:
-      required: true
-  - type: textarea
-    id: what-expected
-    attributes:
-      label: What did you expect?
-      description: A brief description of the behavior you _expected_.
-      placeholder: Tell us what you expected to see instead!
+      label: What are you trying to accomplish
+      description: A brief description of what you tried to do and what went wrong.
     validations:
       required: true
   - type: input
@@ -50,7 +41,7 @@ body:
     id: how-to-reproduce
     attributes:
       label: How to reproduce
-      description: Please copy and paste how you run so we can reproduce. This will be automatically formatted into code, so no need for backticks.
+      description: Please copy and paste how you run so we can reproduce. This will be automatically formatted into code, so no need for backticks. Remember to follow the [how to make a good bug report guide](https://www.sitespeed.io/documentation/sitespeed.io/bug-report/)!
       render: shell
     validations:
       required: true
