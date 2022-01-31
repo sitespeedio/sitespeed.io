@@ -1,0 +1,64 @@
+name: Bug Report
+description: File a bug report
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting issues back to sitespeed.io!
+  - type: checkbox
+    id: Reproducable
+    attributes:
+      label: Documentation
+      description: Please double check that this question hasn't already answered in the [documentation](https://www.sitespeed.io/documentation/sitespeed.io/) (use the `Search`). Also please read [how to make a good bug report](https://www.sitespeed.io/documentation/sitespeed.io/bug-report/) and check [how to debug your script](https://www.sitespeed.io/documentation/sitespeed.io/scripting/#debug).
+      options:
+        - label: Yes, I've read the [how to make a reproducable bug guide](https://www.sitespeed.io/documentation/sitespeed.io/bug-report/)
+          required: true
+        - label: Yes, I've read the [how to debug my script guide](https://www.sitespeed.io/documentation/sitespeed.io/scripting/#debug)
+          required: false
+  - type: input
+    id: url
+    attributes:
+      label: URL
+      description: What URL did you run sitespeed.io on? If you can't share your URL please make a minimial repro to a public location (e.g. https://glitch.com/, http://jsbin.com/, etc)
+      placeholder: https://example.com
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: A brief description of the behavior you observed.
+      placeholder: Tell us what you saw!
+    validations:
+      required: true
+  - type: textarea
+    id: what-expected
+    attributes:
+      label: What did you expect?
+      description: A brief description of the behavior you _expected_.
+      placeholder: Tell us what you expected to see instead!
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: >
+        What version of sitespeed.io did you use, which browser version and what's your OS.
+    validations:
+      required: true
+  - type: textarea
+    id: how-to-reproduce
+    attributes:
+      label: How to reproduce
+      description: Please copy and paste how you run so we can reproduce. This will be automatically formatted into code, so no need for backticks.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell
