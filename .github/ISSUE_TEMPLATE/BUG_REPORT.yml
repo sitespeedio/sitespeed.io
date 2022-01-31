@@ -8,7 +8,7 @@ body:
   - type: checkboxes
     id: Reproducable
     attributes:
-      label: Documentation
+      label: Have you read the documentation?
       description: Please double check that this question hasn't already answered in the [documentation](https://www.sitespeed.io/documentation/sitespeed.io/) (use the `Search`). Also please read [how to make a good bug report](https://www.sitespeed.io/documentation/sitespeed.io/bug-report/) and check [how to debug your script](https://www.sitespeed.io/documentation/sitespeed.io/scripting/#debug).
       options:
         - label: Yes, I've read the [how to make a reproducable bug guide](https://www.sitespeed.io/documentation/sitespeed.io/bug-report/)
