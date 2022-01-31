@@ -44,8 +44,7 @@ body:
     id: versions
     attributes:
       label: Versions
-      description: >
-        What version of sitespeed.io did you use, which browser version and what's your OS.
+      description: What version of sitespeed.io did you use, which browser version and what's your OS.
     validations:
       required: true
   - type: textarea
@@ -62,3 +61,5 @@ body:
       label: Relevant log output
       description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
       render: shell
+    validations:
+      required: false
