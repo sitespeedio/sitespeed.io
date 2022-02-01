@@ -1415,7 +1415,7 @@ module.exports = async function(context, commands) {
 
   // Use the Selebium WebElement and click on it
   await seleniumElement.click();
-  // We make sure to wait for the new page to loead
+  // We make sure to wait for the new page to load
   await commands.wait.byPageToComplete();
 
   // Stop the measuerment
