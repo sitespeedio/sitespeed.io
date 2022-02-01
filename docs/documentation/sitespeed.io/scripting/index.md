@@ -130,19 +130,19 @@ if (exists) {
 
 One of the key things in your script is to be able to find the right element to invoke. If the element has an id it's easy. If not you can use developer tools in your favourite browser. The all work mostly the same: Open DevTools in the page you want to inspect, click on the element and right click on DevTools for that element. Then you will see something like this:
 
-![Using Safari to find the selector]({{site.baseurl}}/img/selector-safari.png)
+![Using Safari to find the selector]({{site.baseurl}}/img/selector-safari.png){:loading="lazy"}
 {: .img-thumbnail-center}
 <p class="image-info">
  <em class="small center">Using Safari to find the CSS Selector to the element</em>
 </p>
 
-![Using Firefox to find the selector]({{site.baseurl}}/img/selector-firefox.png)
+![Using Firefox to find the selector]({{site.baseurl}}/img/selector-firefox.png){:loading="lazy"}
 {: .img-thumbnail-center}
 <p class="image-info">
  <em class="small center">Using Firefox to find the CSS Selector to the element</em>
 </p>
 
-![Using Chrome to find the selector]({{site.baseurl}}/img/selector-chrome.png)
+![Using Chrome to find the selector]({{site.baseurl}}/img/selector-chrome.png){:loading="lazy"}
 {: .img-thumbnail-center}
 <p class="image-info">
  <em class="small center">Using Chrome to find the CSS Selector to the element</em>
@@ -575,7 +575,7 @@ module.exports = async function(context, commands) {
 
 You will see the metric in the page summary and in the metrics section.
 
-![First input delay]({{site.baseurl}}/img/first-input-delay.png)
+![First input delay]({{site.baseurl}}/img/first-input-delay.png){:loading="lazy"}
 {: .img-thumbnail}
 
 You can do mouse click, key press but there's no good way to do swiping as we know using the [Selenium Action API](https://selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/lib/input_exports_Actions.html). Your action will run after the page has loaded. If you wanna know what kind potential input delay you can have on load, you can use the *maxPotentialFid* metric that you will get by enabling `--cpu`.
@@ -621,14 +621,14 @@ Or if you use JSON configuration, the same configuration looks like this:
 ### Include the script in the HTML result
 If you wanna keep of what script you are running, you can include the script into the HTML result with ```--html.showScript```. You will then get a link to a page that show the script.
 
-![Page to page]({{site.baseurl}}/img/script-link.png)
+![Page to page]({{site.baseurl}}/img/script-link.png){:loading="lazy"}
 {: .img-thumbnail}
 
 ### Getting correct Visual Metrics
 Visual metrics is the metrics that are collected using the video recording of the screen. In most cases that will work just out of the box. One thing to know is that when you go from one page to another page, the browser keeps the layout of the old page. That means that your video will start with the first page (instead of white) when you navigate to the next page.
 
 It will look like this:
-![Page to page]({{site.baseurl}}/img/filmstrip-multiple-pages.jpg)
+![Page to page]({{site.baseurl}}/img/filmstrip-multiple-pages.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 This is perfectly fine in most cases. But if you want to start white (the metrics somehow isn't correct) or if you click a link and that click changes the layout and is caught as First Visual Change, there are workarounds.
@@ -816,7 +816,7 @@ module.exports = async function(context, commands) {
 
 And you will get that metric in the HTML:
 
-![Adding metrics from your script]({{site.baseurl}}/img/batteryTemperatureMetric.png)
+![Adding metrics from your script]({{site.baseurl}}/img/batteryTemperatureMetric.png){:loading="lazy"}
 {: .img-thumbnail}
 
 
@@ -836,7 +836,7 @@ module.exports = async function(context, commands) {
 
 And it will look like this:
 
-![Multiple metrics from a script]({{site.baseurl}}/img/scriptMetrics.png)
+![Multiple metrics from a script]({{site.baseurl}}/img/scriptMetrics.png){:loading="lazy"}
 {: .img-thumbnail}
 
 
@@ -1125,7 +1125,7 @@ Add the *text* to the element by using class name. If the element is not found t
 ### Screenshot
 Take a screenshot. The image is stored in the screenshot directory for the URL you are testing. This can be super helpful to use in a catch block if something fails. If you use sitespeed.io you can find the image in the screenshot tab for each individual run. 
 
-![Screenshots]({{site.baseurl}}/img/multiple-screenshots.jpg)
+![Screenshots]({{site.baseurl}}/img/multiple-screenshots.jpg){:loading="lazy"}
 {: .img-thumbnail-center}
 
 #### screenshot.take(name) 
@@ -1308,7 +1308,7 @@ module.exports = async function(context, commands) {
 
 ###Will result in:
 
-![Title and description for a script]({{site.baseurl}}/img/titleanddesc.png)
+![Title and description for a script]({{site.baseurl}}/img/titleanddesc.png){:loading="lazy"}
 {: .img-thumbnail}
 
 #### meta.setTitle(title)

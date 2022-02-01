@@ -54,7 +54,7 @@ The video will by default include a timer and show when visual metrics happens. 
 When the video is analysed with [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics) screenshots for
 a filmstrip is also created. With sitespeed.io 8.1 you can see them in the HTML.
 
-![Page to page]({{site.baseurl}}/img/filmstrip-multiple-pages.jpg)
+![Page to page]({{site.baseurl}}/img/filmstrip-multiple-pages.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 By default we only show screenshots that differs or have a metric that gets collected at the same time. If you want to see all the screenshots you can do that with <code>--filmstrip.showAll</code>.
@@ -87,12 +87,12 @@ Visual Metrics will use these elements and calculate when they are visible and f
  
 Lets say that we want to measure when the logo of sitespeed.io is painted on screen and cannot add the annotation.
 
-![Logo sitespeed.io]({{site.baseurl}}/img/logo-example.jpg)
+![Logo sitespeed.io]({{site.baseurl}}/img/logo-example.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 Open up devtools/web inspector and select the image:
 
-![Web Inspector seleting the logo]({{site.baseurl}}/img/web-inspector.png)
+![Web Inspector seleting the logo]({{site.baseurl}}/img/web-inspector.png){:loading="lazy"}
 {: .img-thumbnail}
 
 Next step is to find that element using `document.body.querySelector`. Do that in your web console. The logo has a unique class, so lets use that:  `document.body.querySelector(".navbar-brand")`.
@@ -105,7 +105,7 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 
 And you can see the result in the Visual Metrics section:
 
-![The logo in the result]({{site.baseurl}}/img/logo-result.jpg)
+![The logo in the result]({{site.baseurl}}/img/logo-result.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 ## Compare two video runs (combine two videos)
