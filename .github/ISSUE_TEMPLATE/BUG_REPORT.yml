@@ -30,11 +30,21 @@ body:
       description: A brief description of what you tried to do and what went wrong.
     validations:
       required: true
-  - type: input
-    id: versions
+  - type: dropdown
+    id: browser
     attributes:
-      label: Versions
-      description: What version of sitespeed.io did you use, which browser version and what's your OS.
+      label: What browser did you use? 
+      description: Extra bonus if you try the issue in multiple browsers
+      multiple: true
+      options:
+        - Chrome
+        - Firefox
+        - Edge
+        - Safari Mac OS
+        - Safari iOS
+        - Chrome Android
+        - Firefox Android
+        - Other
     validations:
       required: true
   - type: textarea
