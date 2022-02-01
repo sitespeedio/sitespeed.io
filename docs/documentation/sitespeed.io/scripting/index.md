@@ -185,7 +185,7 @@ context.log.info('Info logging from your script');
 * Run the script locally on your desktop without XVFB (using [npm version of sitespeed.io](https://www.npmjs.com/package/sitespeed.io)) so you can see in the browser window what happens. That is the easiest way to understand what's going on.
 * If you use Docker and cannot run your test locally you can add <code>--browsertime.videoParams.debug</code> when you record the video. That way you will get one full video of all your scripts (but no Visual Metrics). 
 ~~~bash
-docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ -n 1  --browsertime.videoParams.debug
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ -n 1  --browsertime.videoParams.debug
 ~~~
 And then look at the video in the **data/video** folder.
 * Use try/catch and await promises so you catch things that doesn't work.
