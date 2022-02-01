@@ -177,12 +177,55 @@ module.exports = {
 
 ## Debug
 There's a couple of way that makes it easier to debug your scripts:
-* Make sure to [use the log](#log-from-your-script) so you can see what happens in your log output. Add `context.log.info('Info logging from your script');` add your script will log in sitespeed.io default log.
-* Run the script locally on your desktop without XVFB (using [npm version of sitespeed.io](https://www.npmjs.com/package/sitespeed.io)) so you can see in the browser window what happens. Or if you use Docker you can add <code>--browsertime.videoParams.debug</code> when you record the video. That way you will get one full video of all your scripts (but no Visual Metrics).
+
+* Make sure to [use the log](#log-from-your-script) so you can see what happens in your log output. Your script can log to the sitespeed.io default log.
+~~~javascript
+context.log.info('Info logging from your script');
+~~~
+* Run the script locally on your desktop without XVFB (using [npm version of sitespeed.io](https://www.npmjs.com/package/sitespeed.io)) so you can see in the browser window what happens. That is the easiest way to understand what's going on.
+* If you use Docker and cannot run your test locally you can add <code>--browsertime.videoParams.debug</code> when you record the video. That way you will get one full video of all your scripts (but no Visual Metrics). 
+~~~bash
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ -n 1  --browsertime.videoParams.debug
+~~~
+And then look at the video in the **data/video** folder.
 * Use try/catch and await promises so you catch things that doesn't work.
+~~~javascript
+module.exports = async function(context, commands) {
+    await commands.navigate('https://www.sitespeed.io');
+    
+    await commands.measure.start();
+    // Click on the link and wait on navigation to happen but try catch it so we can catch if it fails
+    try {
+      await commands.click.bySelectorAndWait('body > nav > div > div > div > ul > li:nth-child(2) > a');
+      await commands.measure.stop();
+    } catch(e) {
+      context.log.error('Could not click on ....');
+    }
+};
+~~~
 * If you use plain JavaScript you can copy/paste it and run it in your browsers console to make sure it really works.
 * Take a [screenshot](/documentation/sitespeed.io/scripting/#screenshot) when your script fail to make it easier to see what's going on.
+* If you navigate by clicking on elements you can verify that you end up where you want by running JavaScript. Here's an example where the new URL is logged but you can also verfify that it is the right one.
+~~~javascript
+module.exports = async function(context, commands) {
+    await commands.measure.start('https://www.sitespeed.io');
+    // Hide everything
+    // We do not hide the body since the body needs to be visible when we do the magic to find the staret of the
+    // navigation by adding a layer of orange on top of the page
+    await commands.js.run('for (let node of document.body.childNodes) { if (node.style) node.style.display = "none";}');
+    // Start measurning
+    await commands.measure.start();
+    // Click on the link and wait on navigation to happen
+    await commands.click.bySelectorAndWait('body > nav > div > div > div > ul > li:nth-child(2) > a');
+    await commands.measure.stop();
+
+    // Did we we really end up on the page that we wanted? Lets check!
+    const url = await commands.js.run('return window.location.href');
+    context.log.info(`We ended up on ${url}`);
+};
+~~~
 * If you run into trouble, please make sure you make it easy for us to [reproduce your problem](/documentation/sitespeed.io/bug-report/#explain-how-to-reproduce-your-issue) when you report a issue.
+
 
 ## Examples
 Here are some examples on how you can use the scripting capabilities.
@@ -1306,7 +1349,7 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
-###Will result in:
+Will result in:
 
 ![Title and description for a script]({{site.baseurl}}/img/titleanddesc.png){:loading="lazy"}
 {: .img-thumbnail}
