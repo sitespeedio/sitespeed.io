@@ -1379,10 +1379,11 @@ module.exports = async function(context, commands) {
 Run a shell command directly on your phone. 
  
 ### Use Selenium directly
-You can use Selenium directly if you need to use things that are not available through our commands.
+You can use Selenium directly if you need to use things that are not available through our commands. We use the NodeJS flavor of Selenium.
 
 You get a hold of the Selenium objects through the context.
- The *selenium.webdriver* is the Selenium [WebDriver public API object](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html). And *selenium.driver* is the [instantiated version of the WebDriver](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebDriver.html) driving the current version of the browser.
+
+The *selenium.webdriver* is the Selenium [WebDriver public API object](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html). And *selenium.driver* is the [instantiated version of the WebDriver](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebDriver.html) driving the current version of the browser.
 
 Checkout this example to see how you can use them.
 
