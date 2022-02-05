@@ -13,8 +13,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build Docker containers
       run: |
-        docker build -t sitespeedio/sitespeed.io .
-        docker build -t sitespeedio/sitespeed.io:slim --file Dockerfile-slim .
+        docker build --platform linux/amd64 -t sitespeedio/sitespeed.io .
+        docker build --platform linux/amd64 -t sitespeedio/sitespeed.io:slim --file Dockerfile-slim .
     - name: Run test on default container for Chrome 
       run: docker run --rm sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 -b chrome
     - name: Run test on default container for Firefox 
