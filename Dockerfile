@@ -1,4 +1,4 @@
-FROM sitespeedio/webbrowsers:chrome-98.0-firefox-94.0-edge-97.0
+FROM sitespeedio/webbrowsers:chrome-98.0-firefox-94.0-edge-97.0-lkk
 
 ARG TARGETPLATFORM
 
