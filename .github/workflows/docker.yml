@@ -14,8 +14,8 @@ jobs:
     - name: Build Docker containers
       run: |
         docker buildx install
-        docker buildx build --load --platform linux/arm64,linux/amd64 -t sitespeedio/sitespeed.io .
-        docker buildx build --load --platform linux/arm64,linux/amd64 -t sitespeedio/sitespeed.io:slim --file Dockerfile-slim .
+        docker buildx build --load --platform linux/amd64 -t sitespeedio/sitespeed.io .
+        docker buildx build --load --platform linux/amd64 -t sitespeedio/sitespeed.io:slim --file Dockerfile-slim .
     - name: Run test on default container for Chrome 
       run: docker run --rm sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 -b chrome
     - name: Run test on default container for Firefox 
