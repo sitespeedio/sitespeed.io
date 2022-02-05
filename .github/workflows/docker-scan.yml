@@ -14,7 +14,8 @@ jobs:
       
       - name: Build an image from Dockerfile
         run: |
-          docker build --platform linux/amd64 -t docker.io/sitespeedio/sitespeed.io:${{ github.sha }} .
+          docker buildx install
+          docker buildx build --load --platform linux/amd64 -t docker.io/sitespeedio/sitespeed.io:${{ github.sha }} .
       
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
