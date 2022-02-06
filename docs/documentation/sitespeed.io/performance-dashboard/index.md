@@ -243,5 +243,7 @@ Total cost:
  * S3 $10-15 with data
  * Server for Graphite/Grafana
 
+You can evaluate sitespeed.io using a cheap VPS provided by Contabo (6 core, 20GB RAM, 1.4TB drive for less than 200$/year).
+
 You also need to think of the time it takes for you to set it up and upgrade new Docker containers when there are new browser versions and new versions of sitespeed.io. Updating to a new Docker container on one server usually takes less than 2 minutes :)
 
