@@ -1,4 +1,6 @@
-FROM node:14.17.6-buster-slim
+FROM node:16.13.2-bullseye-slim
+
+ARG TARGETPLATFORM
 
 ENV SITESPEED_IO_BROWSERTIME__DOCKER true
 ENV SITESPEED_IO_BROWSERTIME__VIDEO false
@@ -12,16 +14,24 @@ ENV PATH="/usr/local/bin:${PATH}"
 
 RUN buildDeps='wget bzip2' && apt-get update && apt -y install $buildDeps && \
     # Download and unpack the correct Firefox version
-    wget https://ftp.mozilla.org/pub/firefox/releases/${FIREFOX_VERSION}/linux-x86_64/en-US/firefox-${FIREFOX_VERSION}.tar.bz2 && \
-    tar -xjf firefox-${FIREFOX_VERSION}.tar.bz2 && \
-    rm firefox-${FIREFOX_VERSION}.tar.bz2 && \
-    mv firefox /opt/ && \
-    ln -s /opt/firefox/firefox /usr/local/bin/firefox && \
-    # Install dependencies for Firefox
-    apt-get install -y --no-install-recommends --no-install-suggests libxt6 \
-        `apt-cache depends firefox-esr | awk '/Depends:/{print$2}'` && \
+    if [ "$TARGETPLATFORM" = "linux/amd64" ] ; \
+      then \
+        wget https://ftp.mozilla.org/pub/firefox/releases/${FIREFOX_VERSION}/linux-x86_64/en-US/firefox-${FIREFOX_VERSION}.tar.bz2 && \
+        tar -xjf firefox-${FIREFOX_VERSION}.tar.bz2 && \
+        rm firefox-${FIREFOX_VERSION}.tar.bz2 && \
+        mv firefox /opt/ && \
+        ln -s /opt/firefox/firefox /usr/local/bin/firefox && \
+        # Install dependencies for Firefox
+        apt-get install -y --no-install-recommends --no-install-suggests libxt6 \
+            `apt-cache depends firefox-esr | awk '/Depends:/{print$2}'`; \
+    elif [ "$TARGETPLATFORM" = "linux/arm64" ] ; \
+        then \
+          apt-get update && \
+          apt-get install -y firefox-esr; \
+    fi
+
     # iproute2 = tc
-    apt -y install tcpdump iproute2 ca-certificates sudo --no-install-recommends --no-install-suggests && \
+RUN apt -y install tcpdump iproute2 ca-certificates sudo --no-install-recommends --no-install-suggests && \
     # Cleanup
     apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $toolDeps \
     && rm -rf /var/lib/apt/lists/* /tmp/* 
