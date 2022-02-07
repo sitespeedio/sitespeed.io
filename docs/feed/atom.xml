@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-02-07T08:15:18.273Z</updated>
+    <updated>2022-02-07T11:51:00.288Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,17 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 22.0.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#22.0.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
+        <updated>2022-02-07T11:51:00.288Z</updated>
+        <summary type="html"><![CDATA[ Build Docker containers for both amd64 and arm64 to make containers work on Mac M1. The arm container contains Firefox and Chromium. Thank you whichfinder and Radu Micu for the help! Fixed in PR #3554. When plugins is loaded, there's a new extra last step where we try to load the plugin as a globally installed npm module #3546. Fix so that we do not display the same 3rd party cookie multiple times #3545. Updated Coach Core that includes the latest version of third party web and PageXray that find more fonts without mime type. If you use the Lightouse plugin there's breaking changes: I been looking for a maintainer of the Lighthouse plugin for +1 year and I haven't found one. For me to be able to maintain it I want the plugin to be as simple as possible. I deeply regret merging the PR for adding multiple runs for Lighthouse. That PR goes against everything I know about measuring performance. Lighthouse is not built for getting correct performance metrics, it's built to help (Chrome) developers to get insights how they make the page "faster". Lets stick to the basics and keep it possible to get those recommendations from Lighthouse. Maybe someday Lighthouse will have support for user journeys, lets wait until that is officially supported and then I can check if it could be used in the plugin. By configuration JSON file. --lighthouse.config config.js By Lightouse flags file. --lighthouse.flags flag.json]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 14.20.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.20.0</id>
@@ -66,17 +77,6 @@
         <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#"/>
         <updated>2022-02-01T14:01:20.897Z</updated>
         <summary type="html"><![CDATA[ Add support for setting packet loss. Add --packetLoss and set the loss in percentage.]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 21.6.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#21.6.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2022-02-01T14:01:20.896Z</updated>
-        <summary type="html"><![CDATA[ Updated to Browsertime 14.18.1 that makes the summary metric log message use median (instead of mean) and change a log message level to debug.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
