@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-02-02T09:01:53.798Z</updated>
+    <updated>2022-02-07T08:15:18.273Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,11 +17,44 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[browsertime 14.19.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.19.0</id>
+        <title type="html"><![CDATA[browsertime 14.20.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.20.0</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2022-02-02T09:01:53.798Z</updated>
-        <summary type="html"><![CDATA[ Chrome and Chromedriver 98 #1704. Fix so we get the Firefox version on Android #1704.]]></summary>
+        <updated>2022-02-07T08:15:18.273Z</updated>
+        <summary type="html"><![CDATA[ Docker container for both amd64 and arm64.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[coach-core 7.1.0]]></title>
+        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.1.0</id>
+        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#"/>
+        <updated>2022-02-06T19:04:25.854Z</updated>
+        <summary type="html"><![CDATA[ Upgraded to PageXray 4.0.0. Upgraded to third party web 0.13.0.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[pagexray 4.4.0]]></title>
+        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.0</id>
+        <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#"/>
+        <updated>2022-02-04T09:31:40.035Z</updated>
+        <summary type="html"><![CDATA[ Fallback if mime types aren't mapped and use file endings. At the moment we fallback for some of the font types #109.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[chrome-har 0.13.0]]></title>
+        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.0</id>
+        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#"/>
+        <updated>2022-02-04T09:28:03.010Z</updated>
+        <summary type="html"><![CDATA[ Add _isLinkPreload on the request object if it is isLinkPreload #94.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
@@ -61,43 +94,11 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[pagexray 4.3.1]]></title>
-        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.3.1</id>
-        <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#"/>
-        <updated>2022-02-01T14:01:20.895Z</updated>
-        <summary type="html"><![CDATA[ Added missing inbodyparser_blocking render blocking info for Chrome.]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[coach 7.0.0]]></title>
         <id>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#7.0.0</id>
         <link href="https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#"/>
         <updated>2022-02-01T14:01:20.894Z</updated>
         <summary type="html"><![CDATA[ Updated to use latest Coach core and Browertime.]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[coach-core 7.0.0]]></title>
-        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.0.0</id>
-        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#"/>
-        <updated>2022-02-01T14:01:20.893Z</updated>
-        <summary type="html"><![CDATA[ Updated third-party-web to 0.12.6. Use Chrome(ium) render blocking information to know if a request is render blocking or not #66. Report offending JavaScript assets if the JavaScript max limits kicks in #70. New largest contentful paint advice #76. New first contentful paint advice #77. Added TBT in the CPU longtask advice #80. Report content and transfer size for offending URLs #81. Report offending assets with transfer/content size for page size limit #82. Fix cases when JQuery is undefined. Thank you shubham jajodia for PR #64. A better way to find offending layout shifters. Thank you shubham jajodia for PR #65. Removed mentions aboout server push #69 Added more information on how to debug CPU advice #71. Moved AMP advice to best practice instead of privacy #67. Increased favicon max size advice from 5 to 10 kb #68 Renamed the fastRender advice to avoidRenderBlocking #73 Remove the third party async advice #74 Updated the layout shift advice to use cumulative layout shift #75 Changed id of the Google Tag Manager advice #79]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[chrome-har 0.12.0]]></title>
-        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.12.0</id>
-        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#"/>
-        <updated>2022-02-01T14:01:20.891Z</updated>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
