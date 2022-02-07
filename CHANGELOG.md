@@ -8,6 +8,7 @@
 
 ### Fixed
 * Fix so that we do not display the same 3rd party cookie multiple times [#3545](https://github.com/sitespeedio/sitespeed.io/pull/3545).
+* Updated Coach Core that includes the latest version of third party web and PageXray that find more fonts without mime type.
 
 ## 21.6.1 - 2022-01-24
 ### Fixed
