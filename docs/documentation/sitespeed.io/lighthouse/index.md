@@ -12,7 +12,7 @@ twitterdescription: Run Lighthouse and Google PageSpeed Insights from sitespeed.
 
 # Lighthouse
 
-We've been missing an plugin for [Lighthouse](https://github.com/GoogleChrome/lighthouse) for a long time. But now it's time (thank you [Lorenzo Urbini](https://github.com/siteriaitaliana) for sharing your version a long time ago).
+In sitespeed.io 22.0 we updated the Lighouse plugin!
 
 You can find the plugin at [https://github.com/sitespeedio/plugin-lighthouse](https://github.com/sitespeedio/plugin-lighthouse) and it will work with sitespeed.io 7.5 and later.
 
@@ -38,5 +38,28 @@ The Lighthouse result is iframed into sitespeed.io:
 ![Lighthouse]({{site.baseurl}}/img/lighthouse-frame.png)
 {: .img-thumbnail}
 
-#### Disable GPSI
+## Configuration
+By default the plugin run the tests with desktop settings (*lighthouse/lighthouse-core/config/lr-desktop-config*). If you run sitespeed.io with `--mobile`, `--android` or `--ios` the plugin will run the tests with mobile settings (*lighthouse/lighthouse-core/config/lr-mobile-config*).
+
+If you want you can run the tests with your own configuration. You will do that by adding your own JavaScript configuration file ```--lighthouse.config config.js```.
+
+And a configuration file like this:
+
+```JavaScript
+module.exports = {
+  extends: 'lighthouse:default',
+  settings: {
+    onlyAudits: ['first-meaningful-paint', 'speed-index', 'interactive']
+  }
+};
+```
+
+You can also add Lighthouse flags by a JSON file ```--lighthouse.flags flag.json```.
+
+Read all about configuring Lighthouse at [https://github.com/GoogleChrome/lighthouse/blob/master/docs/configuration.md](https://github.com/GoogleChrome/lighthouse/blob/master/docs/configuration.md).
+
+## Disable GPSI
 If you only want to run Lighthouse and not GPSI you can disable it with `--plugins.remove /gpsi`.
+
+
+You can read more about sitespeed.io plugins [here](https://www.sitespeed.io/documentation/sitespeed.io/plugins/).
