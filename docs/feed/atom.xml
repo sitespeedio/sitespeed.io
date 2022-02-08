@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-02-08T14:08:12.807Z</updated>
+    <updated>2022-02-08T17:51:29.570Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,11 +17,11 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 22.1.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#22.1.0</id>
+        <title type="html"><![CDATA[sitespeed.io 22.1.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#22.1.1</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2022-02-08T14:08:12.807Z</updated>
-        <summary type="html"><![CDATA[ Upgraded to latest Browsertime with Egdedriver 98. Upgraded to Edge 98 and Firefox 97 in the (amd64) Docker containers.]]></summary>
+        <updated>2022-02-08T17:51:29.570Z</updated>
+        <summary type="html"><![CDATA[ The slim container with only Firefox was broken in last release. It's now re-released with Firefox 96 and Firefox 97 coming soon.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
