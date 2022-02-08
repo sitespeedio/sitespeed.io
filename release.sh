@@ -4,9 +4,6 @@ set -e
 # Remove the local sitespeed-result dir and node modules to start clean
 rm -fR sitespeed-result
 
-# Login early
-docker login
-
 # Super simple release script for sitespeed.io
 # Lets use it it for now and make it better over time :)
 # You need np for this to work
