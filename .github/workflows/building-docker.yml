@@ -1,4 +1,4 @@
-name: Build Docker container on new tag
+name: Build Docker containers on new tag
 on:
   push:
     tags:
@@ -37,7 +37,8 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           platforms: linux/amd64,linux/arm64
-          file: {context}/Dockerfile-slim
+          file: ./Dockerfile-slim
+          build-args: version=${{steps.tag.outputs.tag}} 
           push: true
           tags: sitespeedio/sitespeed.io:${{steps.tag.outputs.tag}}-slim
       -
@@ -45,7 +46,8 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           platforms: linux/amd64,linux/arm64
-          file: {context}/docker/Dockerfile-plus1
+          file: ./docker/Dockerfile-plus1
+          build-args: version=${{steps.tag.outputs.tag}} 
           push: true
           tags: sitespeedio/sitespeed.io:${{steps.tag.outputs.tag}}-plus1
        -
@@ -53,6 +55,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           platforms: linux/amd64,linux/arm64
-          file: {context}/docker/Dockerfile-webpagetest
+          file: ./docker/Dockerfile-webpagetest
+          build-args: version=${{steps.tag.outputs.tag}} 
           push: true
           tags: sitespeedio/sitespeed.io:${{steps.tag.outputs.tag}}-webpagetest
