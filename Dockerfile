@@ -1,6 +1,6 @@
 FROM sitespeedio/webbrowsers:chrome-98.0-firefox-94.0-edge-97.0-multi
 
-ARG TARGETPLATFORM
+ARG TARGETPLATFORM=linux/amd64
 
 ENV SITESPEED_IO_BROWSERTIME__XVFB true
 ENV SITESPEED_IO_BROWSERTIME__DOCKER true
