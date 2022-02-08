@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 22.1.1 - 2022-02-08
+### Fixed
+* The slim container with only Firefox was broken in last release. It's now re-released with Firefox 96 and Firefox 97 coming soon.
 ## 22.1.0 - 2022-02-08
 ### Added
 * Upgraded to latest Browsertime with Egdedriver 98.
