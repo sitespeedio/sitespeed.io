@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Mon, 07 Feb 2022 11:51:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 08 Feb 2022 14:08:12 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,19 +17,19 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[sitespeed.io 22.0.0]]></title>
+            <title><![CDATA[sitespeed.io 22.1.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#22.0.0</guid>
-            <pubDate>Mon, 07 Feb 2022 11:51:00 GMT</pubDate>
-            <description><![CDATA[ Build Docker containers for both amd64 and arm64 to make containers work on Mac M1. The arm container contains Firefox and Chromium. Thank you whichfinder and Radu Micu for the help! Fixed in PR #3554. When plugins is loaded, there's a new extra last step where we try to load the plugin as a globally installed npm module #3546. Fix so that we do not display the same 3rd party cookie multiple times #3545. Updated Coach Core that includes the latest version of third party web and PageXray that find more fonts without mime type. If you use the Lightouse plugin there's breaking changes: I been looking for a maintainer of the Lighthouse plugin for +1 year and I haven't found one. For me to be able to maintain it I want the plugin to be as simple as possible. I deeply regret merging the PR for adding multiple runs for Lighthouse. That PR goes against everything I know about measuring performance. Lighthouse is not built for getting correct performance metrics, it's built to help (Chrome) developers to get insights how they make the page "faster". Lets stick to the basics and keep it possible to get those recommendations from Lighthouse. Maybe someday Lighthouse will have support for user journeys, lets wait until that is officially supported and then I can check if it could be used in the plugin. By configuration JSON file. --lighthouse.config config.js By Lightouse flags file. --lighthouse.flags flag.json]]></description>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#22.1.0</guid>
+            <pubDate>Tue, 08 Feb 2022 14:08:12 GMT</pubDate>
+            <description><![CDATA[ Upgraded to latest Browsertime with Egdedriver 98. Upgraded to Edge 98 and Firefox 97 in the (amd64) Docker containers.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 14.20.0]]></title>
+            <title><![CDATA[browsertime 14.21.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.20.0</guid>
-            <pubDate>Mon, 07 Feb 2022 08:15:18 GMT</pubDate>
-            <description><![CDATA[ Docker container for both amd64 and arm64.]]></description>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.21.0</guid>
+            <pubDate>Tue, 08 Feb 2022 14:01:21 GMT</pubDate>
+            <description><![CDATA[ Upgraded to Egdedriver 98 Upgraded to Edge 98 and Firefox 97 in the Docker container]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
