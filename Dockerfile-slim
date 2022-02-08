@@ -20,8 +20,10 @@ RUN buildDeps='wget bzip2' && apt-get update && apt -y install $buildDeps && \
         apt-get install -y --no-install-recommends firefox; \
     elif [ "$TARGETPLATFORM" = "linux/arm64" ] ; \
         then \
-          apt-get update && \
-          apt-get install -y firefox-esr; \
+        # Install dependencies for Firefox, the repo is often behind
+        echo "deb http://deb.debian.org/debian/ unstable main contrib non-free" >> /etc/apt/sources.list.d/debian.list && \
+        apt-get update && \
+        apt-get install -y --no-install-recommends firefox; \
     fi
 
     # iproute2 = tc
