@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 22.1.0 - 2022-02-08
+### Added
+* Upgraded to latest Browsertime with Egdedriver 98.
+* Upgraded to Edge 98 and Firefox 97 in the (amd64) Docker containers.
 ## 22.0.0 - 2022-02-07
 
 ### Breaking changes
