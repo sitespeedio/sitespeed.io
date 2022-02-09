@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 22.1.2 - UNRELEASED
+## 22.1.2 - 2022-02-09
 ### Fixed
 * Updated to Browsertime 14.21.1 that disables the new Chrome splash screen by default.
 ## 22.1.1 - 2022-02-08
