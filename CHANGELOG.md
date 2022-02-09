@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 22.1.2 - UNRELEASED
+### Fixed
+* Updated to Browsertime 14.21.1 that disables the new Chrome splash screen by default.
 ## 22.1.1 - 2022-02-08
 ### Fixed
 * The slim container with only Firefox was broken in last release. It's now re-released with Firefox 96 and Firefox 97 coming soon.
