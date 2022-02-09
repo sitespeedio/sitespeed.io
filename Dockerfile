@@ -27,7 +27,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY package.* /usr/src/app/
-RUN npm install -g npm@latest && npm install --production && npm cache clean --force
+RUN npm install --production && npm cache clean --force
 COPY . /usr/src/app
 
 COPY docker/scripts/start.sh /start.sh
