@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-02-08T17:51:29.570Z</updated>
+    <updated>2022-02-09T08:26:36.450Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,22 +17,22 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 22.1.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#22.1.1</id>
+        <title type="html"><![CDATA[sitespeed.io 22.1.2]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#22.1.2</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2022-02-08T17:51:29.570Z</updated>
-        <summary type="html"><![CDATA[ The slim container with only Firefox was broken in last release. It's now re-released with Firefox 96 and Firefox 97 coming soon.]]></summary>
+        <updated>2022-02-09T08:26:36.450Z</updated>
+        <summary type="html"><![CDATA[ Updated to Browsertime 14.21.1 that disables the new Chrome splash screen by default.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[browsertime 14.21.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.21.0</id>
+        <title type="html"><![CDATA[browsertime 14.21.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.21.1</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2022-02-08T14:01:21.656Z</updated>
-        <summary type="html"><![CDATA[ Upgraded to Egdedriver 98 Upgraded to Edge 98 and Firefox 97 in the Docker container]]></summary>
+        <updated>2022-02-09T08:05:47.724Z</updated>
+        <summary type="html"><![CDATA[ Always disable the new ChromeWhatsNewUI splash screen in Chrome #1717. Remove the Firefox persist log configuration that was needed for FF 94+ #1716.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>

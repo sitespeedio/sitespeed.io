@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Tue, 08 Feb 2022 17:51:29 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 09 Feb 2022 08:26:36 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,19 +17,19 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[sitespeed.io 22.1.1]]></title>
+            <title><![CDATA[sitespeed.io 22.1.2]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#22.1.1</guid>
-            <pubDate>Tue, 08 Feb 2022 17:51:29 GMT</pubDate>
-            <description><![CDATA[ The slim container with only Firefox was broken in last release. It's now re-released with Firefox 96 and Firefox 97 coming soon.]]></description>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#22.1.2</guid>
+            <pubDate>Wed, 09 Feb 2022 08:26:36 GMT</pubDate>
+            <description><![CDATA[ Updated to Browsertime 14.21.1 that disables the new Chrome splash screen by default.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 14.21.0]]></title>
+            <title><![CDATA[browsertime 14.21.1]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.21.0</guid>
-            <pubDate>Tue, 08 Feb 2022 14:01:21 GMT</pubDate>
-            <description><![CDATA[ Upgraded to Egdedriver 98 Upgraded to Edge 98 and Firefox 97 in the Docker container]]></description>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.21.1</guid>
+            <pubDate>Wed, 09 Feb 2022 08:05:47 GMT</pubDate>
+            <description><![CDATA[ Always disable the new ChromeWhatsNewUI splash screen in Chrome #1717. Remove the Firefox persist log configuration that was needed for FF 94+ #1716.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
