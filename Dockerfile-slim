@@ -1,4 +1,4 @@
-FROM node:16.13.2-bullseye-slim
+FROM node:16.14.0-bullseye-slim
 
 ARG TARGETPLATFORM=linux/amd64
 
@@ -10,26 +10,11 @@ ENV SITESPEED_IO_BROWSERTIME__HEADLESS true
 
 ENV PATH="/usr/local/bin:${PATH}"
 
-RUN buildDeps='wget bzip2' && apt-get update && apt -y install $buildDeps && \
-    # Download and unpack the correct Firefox version
-    if [ "$TARGETPLATFORM" = "linux/amd64" ] ; \
-      then \
-        # Install dependencies for Firefox, the repo is often behind
-        echo "deb http://deb.debian.org/debian/ unstable main contrib non-free" >> /etc/apt/sources.list.d/debian.list && \
-        apt-get update && \
-        apt-get install -y --no-install-recommends firefox; \
-    elif [ "$TARGETPLATFORM" = "linux/arm64" ] ; \
-        then \
-        # Install dependencies for Firefox, the repo is often behind
-        echo "deb http://deb.debian.org/debian/ unstable main contrib non-free" >> /etc/apt/sources.list.d/debian.list && \
-        apt-get update && \
-        apt-get install -y --no-install-recommends firefox; \
-    fi
-
-    # iproute2 = tc
-RUN apt -y install tcpdump iproute2 ca-certificates sudo --no-install-recommends --no-install-suggests && \
+RUN echo "deb http://deb.debian.org/debian/ unstable main contrib non-free" >> /etc/apt/sources.list.d/debian.list && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends firefox tcpdump iproute2 ca-certificates sudo --no-install-recommends --no-install-suggests && \
     # Cleanup
-    apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $toolDeps \
+    apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
     && rm -rf /var/lib/apt/lists/* /tmp/* 
 
 # Install sitespeed.io
