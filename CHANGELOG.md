@@ -1,5 +1,69 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 22.1.2 - 2022-02-09
+### Fixed
+* Updated to Browsertime 14.21.1 that disables the new Chrome splash screen by default.
+## 22.1.1 - 2022-02-08
+### Fixed
+* The slim container with only Firefox was broken in last release. It's now re-released with Firefox 96 and Firefox 97 coming soon.
+## 22.1.0 - 2022-02-08
+### Added
+* Upgraded to latest Browsertime with Egdedriver 98.
+* Upgraded to Edge 98 and Firefox 97 in the (amd64) Docker containers.
+## 22.0.0 - 2022-02-07
+
+### Breaking changes
+* If you use the Lightouse plugin there's breaking changes:
+
+In the new version we drop support for the following:
+  * Running multiple runs with Lighthouse. 
+  * Using scripts to login the user (or whatever you need before you run your tests)
+It's a couple of reasons why I remove those features:
+* I been looking for a maintainer of the Lighthouse plugin for +1 year and I haven't found one. For me to be able to maintain it I want the plugin to be as simple as possible.
+* I deeply regret merging the PR for adding multiple runs for Lighthouse. That PR goes against everything I know about measuring performance. Lighthouse is not built for getting correct performance metrics, it's built to help (Chrome) developers to get insights how they make the page "faster". Lets stick to the basics and keep it possible to get those recommendations from Lighthouse.
+* Maybe someday Lighthouse will have support for user journeys, lets wait until that is officially supported and then I can check if it could be used in the plugin.
+
+With the new release we also break how you configure Lighthouse. People has had problem with that since day 1. With the new version we support two new ways to configure Lighthouse:
+- By configuration JSON file. `--lighthouse.config config.js`
+- By Lightouse flags file. `--lighthouse.flags flag.json`
+
+If you don't need to configure Lightouse you can use the default settings both for desktop and mobile. If you run without any settings, the plugin will use desktop settings. If you run with `--mobile`, `--android` or `--ios` the mobile settings will be used. 
+
+### Added
+* Build Docker containers for both amd64 and arm64 to make containers work on Mac M1. The arm container contains Firefox and Chromium. Thank you [whichfinder](https://github.com/whichfinder) and [Radu Micu](https://github.com/radum) for the help! Fixed in PR [#3554](https://github.com/sitespeedio/sitespeed.io/pull/3554).
+* When plugins is loaded, there's a new extra last step where we try to load the plugin as a globally installed npm module [#3546](https://github.com/sitespeedio/sitespeed.io/pull/3546).
+
+### Fixed
+* Fix so that we do not display the same 3rd party cookie multiple times [#3545](https://github.com/sitespeedio/sitespeed.io/pull/3545).
+* Updated Coach Core that includes the latest version of third party web and PageXray that find more fonts without mime type.
+
+## 21.6.1 - 2022-01-24
+### Fixed
+* Updated to [Browsertime 14.18.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14181---2022-01-24) that makes the summary metric log message use median (instead of mean) and change a log message level to debug.
+## 21.6.0 - 2022-01-24
+### Added
+* Updated to Edge stable release in the Docker container.
+* Remove Crux distribution table and use pie charts instead [#3537](https://github.com/sitespeedio/sitespeed.io/pull/3537)
+* Add extra sleep time between Crux calls to make sure to not overload the API limit [#3536](https://github.com/sitespeedio/sitespeed.io/pull/3536).
+* Added extra Crux enable command line `--crux.enable` to enable Crux [#3538](https://github.com/sitespeedio/sitespeed.io/pull/3538). Its default value is `true` and you also need to supply the Crux key to run Crux. The reason for the new parameter is that you can now configure the key in your configuration JSON and set the enable to false and then you enable it with the CLI parameter when you actually need to run Crux.
+* Show Crux-metrics on the Summary page [#3540](https://github.com/sitespeedio/sitespeed.io/pull/3540).
+* Updated summary metrics tables with headings to make it easier to read [#3541](https://github.com/sitespeedio/sitespeed.io/pull/3541).
+* Added [Browsertime 14.17.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14170---2022-01-23) with new Select and click.byName commands. With that Browsertime version you also need to have ffprobe installed when you run Visual Metrics but that should already be installed.
+* Added [Browsertime 14.18.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14180---2022-01-24) with a fix for Firefox [#1698](https://github.com/sitespeedio/browsertime/issues/1698)
+
+## 21.5.0 - 2022-01-14
+### Added
+* Upgraded to [Browsertime 14.15.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14150---2022-01-12) that adds support for `--appendToUserAgent` for Chrome/Edge/Firefox. And then Browsertime 14.16.0 that supports Geckodriver for Raspberry Pi.
+## 21.4.0 - 2022-01-12
+### Added
+* Updated to a new build of WebPageReplay in the Docker container
+* Updated the Ubuntu base image to latest version and latest NodeJS in the Docketr container.
+* Upgraded Browsertime [#3528](https://github.com/sitespeedio/sitespeed.io/pull/3528): 
+  * Add support for Humble as connectivity engine for mobile phone testing. Make sure to setup Humble on a Raspberry Pi 4 and the choose engine with --connectivity.engine humble and set the URL to your instance --connectivity.humble.url http://raspberrypi.local:3000. Added in #1691.
+* Upgraded to Chrome 97 and Edge 97 in the Docker container.
+* Upgraded to Chromedriver 97.
+### Fixed
+* Updated Chromedriver library that automatically picks up the Chromedriver if it's installed on Raspberry Pi.
 ## 21.3.0 - 2022-01-01
 ### Added
 * Updated to [Browsertime 14.13.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14130---2021-12-30) with the following fixes for the user agent:

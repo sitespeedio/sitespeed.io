@@ -10,7 +10,8 @@ Browser
       --browsertime.connectivity.down, --downstreamKbps, --browsertime.connectivity.downstreamKbps  This option requires --connectivity be set to "custom".
       --browsertime.connectivity.up, --upstreamKbps, --browsertime.connectivity.upstreamKbps        This option requires --connectivity be set to "custom".
       --browsertime.connectivity.rtt, --latency, --browsertime.connectivity.latency                 This option requires --connectivity be set to "custom".
-      --browsertime.connectivity.engine, --connectivity.engine                                      The engine for connectivity. Throttle works on Mac and tc based Linux. Use external if you set the connectivity outside of Browsertime. Use tsproxy if you are using Kubernetes. More documentation at https://www.sitespeed.io/documentation/sitespeed.io/connectivity/.  [string] [choices: "external", "throttle", "tsproxy"] [default: "external"]
+      --browsertime.connectivity.engine, --connectivity.engine                                      The engine for connectivity. Throttle works on Mac and tc based Linux. For mobile you can use Humble if you have a Humble setup. Use external if you set the connectivity outside of Browsertime. Use tsproxy if you are using Kubernetes. More documentation at https://www.sitespeed.io/documentation/sitespeed.io/connectivity/.  [string] [choices: "external", "throttle", "tsproxy", "humble"] [default: "external"]
+      --browsertime.connectivity.humble.url, --connectivity.humble.url                              The path to your Humble instance. For example http://raspberrypi:3000  [string]
       --browsertime.pageCompleteCheck, --pageCompleteCheck                                          Supply a JavaScript that decides when the browser is finished loading the page and can start to collect metrics. The JavaScript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd.
       --browsertime.pageCompleteWaitTime, --pageCompleteWaitTime                                    How long time you want to wait for your pageComplteteCheck to finish, after it is signaled to closed. Extra parameter passed on to your pageCompleteCheck.  [default: 5000]
       --browsertime.pageCompleteCheckInactivity, --pageCompleteCheckInactivity                      Alternative way to choose when to end your test. This will wait for 2 seconds of inactivity that happens after loadEventEnd.  [boolean] [default: false]
@@ -22,6 +23,7 @@ Browser
       --browsertime.selenium.url                                                                    Configure the path to the Selenium server when fetching timings using browsers. If not configured the supplied NodeJS/Selenium version is used.
       --browsertime.viewPort, --viewPort                                                            The browser view port size WidthxHeight like 400x300  [default: "1366x708"]
       --browsertime.userAgent, --userAgent                                                          The full User Agent string, defaults to the User Agent used by the browsertime.browser option.
+      --browsertime.appendToUserAgent, --appendToUserAgent                                          Append a String to the user agent. Works in Chrome/Edge and Firefox.
       --browsertime.preURL, --preURL                                                                A URL that will be accessed first by the browser before the URL that you wanna analyse. Use it to fill the cache.
       --browsertime.preScript, --preScript                                                          Selenium script(s) to run before you test your URL. They will run outside of the analyse phase. Note that --preScript can be passed multiple times.
       --browsertime.postScript, --postScript                                                        Selenium script(s) to run after you test your URL. They will run outside of the analyse phase. Note that --postScript can be passed multiple times.
@@ -248,6 +250,7 @@ Sustainable
 
 CrUx
       --crux.key         You need to use a key to get data from CrUx. Get the key from https://developers.google.com/web/tools/chrome-user-experience-report/api/guides/getting-started#APIKey
+      --crux.enable      Enable the CrUx plugin. This is on by defauly but you also need the Crux key. If you chose to disable it with this key, set this to false and you can still use the CrUx key in your configuration.  [default: true]
       --crux.formFactor  A form factor is the type of device on which a user visits a website.  [string] [choices: "ALL", "DESKTOP", "PHONE", "TABLET"] [default: "ALL"]
       --crux.collect     Choose what data to collect. URL is data for a specific URL, ORIGIN for the domain and ALL for both of them  [string] [choices: "ALL", "URL", "ORIGIN"] [default: "ALL"]
 

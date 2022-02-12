@@ -130,19 +130,19 @@ if (exists) {
 
 One of the key things in your script is to be able to find the right element to invoke. If the element has an id it's easy. If not you can use developer tools in your favourite browser. The all work mostly the same: Open DevTools in the page you want to inspect, click on the element and right click on DevTools for that element. Then you will see something like this:
 
-![Using Safari to find the selector]({{site.baseurl}}/img/selector-safari.png)
+![Using Safari to find the selector]({{site.baseurl}}/img/selector-safari.png){:loading="lazy"}
 {: .img-thumbnail-center}
 <p class="image-info">
  <em class="small center">Using Safari to find the CSS Selector to the element</em>
 </p>
 
-![Using Firefox to find the selector]({{site.baseurl}}/img/selector-firefox.png)
+![Using Firefox to find the selector]({{site.baseurl}}/img/selector-firefox.png){:loading="lazy"}
 {: .img-thumbnail-center}
 <p class="image-info">
  <em class="small center">Using Firefox to find the CSS Selector to the element</em>
 </p>
 
-![Using Chrome to find the selector]({{site.baseurl}}/img/selector-chrome.png)
+![Using Chrome to find the selector]({{site.baseurl}}/img/selector-chrome.png){:loading="lazy"}
 {: .img-thumbnail-center}
 <p class="image-info">
  <em class="small center">Using Chrome to find the CSS Selector to the element</em>
@@ -177,12 +177,55 @@ module.exports = {
 
 ## Debug
 There's a couple of way that makes it easier to debug your scripts:
-* Make sure to [use the log](#log-from-your-script) so you can see what happens in your log output.
-* Either run the script locally on your desktop without XVFB (using [npm version of sitespeed.io](https://www.npmjs.com/package/sitespeed.io)) so you can see in the browser window what happens. Or if you use Docker you can add <code>--browsertime.videoParams.debug</code> when you record the video. That way you will get one full video of all your scripts (but no Visual Metrics).
+
+* Make sure to [use the log](#log-from-your-script) so you can see what happens in your log output. Your script can log to the sitespeed.io default log.
+~~~javascript
+context.log.info('Info logging from your script');
+~~~
+* Run the script locally on your desktop without XVFB (using [npm version of sitespeed.io](https://www.npmjs.com/package/sitespeed.io)) so you can see in the browser window what happens. That is the easiest way to understand what's going on.
+* If you use Docker and cannot run your test locally you can add <code>--browsertime.videoParams.debug</code> when you record the video. That way you will get one full video of all your scripts (but no Visual Metrics). 
+~~~bash
+docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/ -n 1  --browsertime.videoParams.debug
+~~~
+And then look at the video in the **data/video** folder.
 * Use try/catch and await promises so you catch things that doesn't work.
+~~~javascript
+module.exports = async function(context, commands) {
+    await commands.navigate('https://www.sitespeed.io');
+    
+    await commands.measure.start();
+    // Click on the link and wait on navigation to happen but try catch it so we can catch if it fails
+    try {
+      await commands.click.bySelectorAndWait('body > nav > div > div > div > ul > li:nth-child(2) > a');
+      await commands.measure.stop();
+    } catch(e) {
+      context.log.error('Could not click on ....');
+    }
+};
+~~~
 * If you use plain JavaScript you can copy/paste it and run it in your browsers console to make sure it really works.
 * Take a [screenshot](/documentation/sitespeed.io/scripting/#screenshot) when your script fail to make it easier to see what's going on.
+* If you navigate by clicking on elements you can verify that you end up where you want by running JavaScript. Here's an example where the new URL is logged but you can also verfify that it is the right one.
+~~~javascript
+module.exports = async function(context, commands) {
+    await commands.measure.start('https://www.sitespeed.io');
+    // Hide everything
+    // We do not hide the body since the body needs to be visible when we do the magic to find the staret of the
+    // navigation by adding a layer of orange on top of the page
+    await commands.js.run('for (let node of document.body.childNodes) { if (node.style) node.style.display = "none";}');
+    // Start measurning
+    await commands.measure.start();
+    // Click on the link and wait on navigation to happen
+    await commands.click.bySelectorAndWait('body > nav > div > div > div > ul > li:nth-child(2) > a');
+    await commands.measure.stop();
+
+    // Did we we really end up on the page that we wanted? Lets check!
+    const url = await commands.js.run('return window.location.href');
+    context.log.info(`We ended up on ${url}`);
+};
+~~~
 * If you run into trouble, please make sure you make it easy for us to [reproduce your problem](/documentation/sitespeed.io/bug-report/#explain-how-to-reproduce-your-issue) when you report a issue.
+
 
 ## Examples
 Here are some examples on how you can use the scripting capabilities.
@@ -575,7 +618,7 @@ module.exports = async function(context, commands) {
 
 You will see the metric in the page summary and in the metrics section.
 
-![First input delay]({{site.baseurl}}/img/first-input-delay.png)
+![First input delay]({{site.baseurl}}/img/first-input-delay.png){:loading="lazy"}
 {: .img-thumbnail}
 
 You can do mouse click, key press but there's no good way to do swiping as we know using the [Selenium Action API](https://selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/lib/input_exports_Actions.html). Your action will run after the page has loaded. If you wanna know what kind potential input delay you can have on load, you can use the *maxPotentialFid* metric that you will get by enabling `--cpu`.
@@ -621,14 +664,14 @@ Or if you use JSON configuration, the same configuration looks like this:
 ### Include the script in the HTML result
 If you wanna keep of what script you are running, you can include the script into the HTML result with ```--html.showScript```. You will then get a link to a page that show the script.
 
-![Page to page]({{site.baseurl}}/img/script-link.png)
+![Page to page]({{site.baseurl}}/img/script-link.png){:loading="lazy"}
 {: .img-thumbnail}
 
 ### Getting correct Visual Metrics
 Visual metrics is the metrics that are collected using the video recording of the screen. In most cases that will work just out of the box. One thing to know is that when you go from one page to another page, the browser keeps the layout of the old page. That means that your video will start with the first page (instead of white) when you navigate to the next page.
 
 It will look like this:
-![Page to page]({{site.baseurl}}/img/filmstrip-multiple-pages.jpg)
+![Page to page]({{site.baseurl}}/img/filmstrip-multiple-pages.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 This is perfectly fine in most cases. But if you want to start white (the metrics somehow isn't correct) or if you click a link and that click changes the layout and is caught as First Visual Change, there are workarounds.
@@ -816,7 +859,7 @@ module.exports = async function(context, commands) {
 
 And you will get that metric in the HTML:
 
-![Adding metrics from your script]({{site.baseurl}}/img/batteryTemperatureMetric.png)
+![Adding metrics from your script]({{site.baseurl}}/img/batteryTemperatureMetric.png){:loading="lazy"}
 {: .img-thumbnail}
 
 
@@ -836,7 +879,7 @@ module.exports = async function(context, commands) {
 
 And it will look like this:
 
-![Multiple metrics from a script]({{site.baseurl}}/img/scriptMetrics.png)
+![Multiple metrics from a script]({{site.baseurl}}/img/scriptMetrics.png){:loading="lazy"}
 {: .img-thumbnail}
 
 
@@ -965,8 +1008,10 @@ Click on link located by the ID attribute. Internally we use  ```document.getEle
 Click on element that is found by the CSS selector that has the given value. Internally we use  ```document.querySelector(selector)``` to get the correct element.
 
 #### click.bySelectorAndWait(selector)
-Click on element that is found by name CSS selector that has the given value and wait for the [page cmplete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to happen. Internally we use  ```document.querySelector(selector)``` to get the correct element.
+Click on element that is found by name CSS selector that has the given value and wait for the [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test) to happen. Internally we use  ```document.querySelector(selector)``` to get the correct element.
 
+#### click.byName(name)
+Click on element located by the name. Internally we use  ```document.querySelector``` to get the correct element.
 ### Mouse
 The mouse command will perform various mouse events.
 
@@ -1123,7 +1168,7 @@ Add the *text* to the element by using class name. If the element is not found t
 ### Screenshot
 Take a screenshot. The image is stored in the screenshot directory for the URL you are testing. This can be super helpful to use in a catch block if something fails. If you use sitespeed.io you can find the image in the screenshot tab for each individual run. 
 
-![Screenshots]({{site.baseurl}}/img/multiple-screenshots.jpg)
+![Screenshots]({{site.baseurl}}/img/multiple-screenshots.jpg){:loading="lazy"}
 {: .img-thumbnail-center}
 
 #### screenshot.take(name) 
@@ -1264,6 +1309,26 @@ module.exports = async function(context, commands) {
 #### error(message)
 Create an error. Use it if you catch a thrown error, want to continue with something else, but still report the error.
 
+
+### Select
+Select command for selecting an option in a drop-down field.
+
+#### select.selectByIdValue(selectId, value)
+Select a field by the id of the select element and the value of the option.
+
+#### select.selectByNameAndValue(selectName, value)
+Select a field by the name of the select element and the value of the option.
+#### select.selectByIdAndIndex(selectId, index)
+Select a field by the id of the select element and the index of the option.
+#### select.selectByNameAndIndex(selectName, index)
+Select a field by the name of the select element and the index of the option.
+
+#### select.deselectById(selectId)
+Deselect a field by the id of the select element.
+#### select.getValuesById(selectId)
+Get the values of all options in a select field by the id of the select element.
+#### select.getSelectedValueById(selectId)
+Get the value of the selected option in a select field by the id of the select element.
 ### Meta data
 Add meta data to your script. The extra data will be visible in the HTML result page.
 
@@ -1286,7 +1351,7 @@ module.exports = async function(context, commands) {
 
 Will result in:
 
-![Title and description for a script]({{site.baseurl}}/img/titleanddesc.png)
+![Title and description for a script]({{site.baseurl}}/img/titleanddesc.png){:loading="lazy"}
 {: .img-thumbnail}
 
 #### meta.setTitle(title)
@@ -1314,28 +1379,47 @@ module.exports = async function(context, commands) {
 Run a shell command directly on your phone. 
  
 ### Use Selenium directly
-You can use Selenium directly if you need to use things that are not available through our commands.
+You can use Selenium directly if you need to use things that are not available through our commands. We use the NodeJS flavor of Selenium.
 
 You get a hold of the Selenium objects through the context.
- The *selenium.webdriver* that is the Selenium [WebDriver public API object](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html). And *selenium.driver* that's the [instantiated version of the WebDriver](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebDriver.html) driving the current version of the browser.
+
+The *selenium.webdriver* is the Selenium [WebDriver public API object](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html). And *selenium.driver* is the [instantiated version of the WebDriver](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebDriver.html) driving the current version of the browser.
 
 Checkout this example to see how you can use them.
 
 ~~~javascript
 module.exports = async function(context, commands) {
-  // we fetch the selenium webdriver from context
-  const webdriver = context.selenium.webdriver;
-  const driver = context.selenium.driver;
-  // before you start, make your username and password
-  const userName = 'YOUR_USERNAME_HERE';
-  const password = 'YOUR_PASSWORD_HERE';
-  const loginForm = await driver.findElement(webdriver.By.css('form'));
-  const loginInput = await driver.findElement(webdriver.By.id('wpName1'));
-  await loginInput.sendKeys(userName);
-  const passwordInput = await driver.findElement(webdriver.By.id('wpPassword1'));
-  await passwordInput.sendKeys(password);
-  // this example skips waiting for the next page and validating that the login was successful.
-  return loginForm.submit();
+  // We fetch the selenium webdriver from context
+  // The selenium-webdriver 
+  // https://www.selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/index.html
+  const seleniumWebdriver = context.selenium.webdriver;
+  // The driver exposes for example By that you use to find elements
+  const By = seleniumWebdriver.By;
+
+  // We use the driver to find an element
+  const seleniumDriver = context.selenium.driver;
+
+  // To navigate to a new page it is best to use our navigation commands
+  // so the script waits until the page is loaded
+  await commands.navigate('https://www.sitespeed.io');
+
+  // Lets use Selenium to find the Documentation link
+  const seleniumElement = await seleniumDriver.findElement(By.linkText('Documentation'));
+  
+  // So now we actually got a Selenium WebElement 
+  // https://www.selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebElement.html
+  context.log.info('The element tag is ', await seleniumElement.getTagName());
+
+  // We then use our command to start a measurement
+  await commands.measure.start('DocumentationPage');
+
+  // Use the Selebium WebElement and click on it
+  await seleniumElement.click();
+  // We make sure to wait for the new page to load
+  await commands.wait.byPageToComplete();
+
+  // Stop the measuerment
+  return commands.measure.stop();
 }
 ~~~
 

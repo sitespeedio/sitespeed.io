@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Sat, 01 Jan 2022 22:32:54 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 09 Feb 2022 08:26:36 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,49 +17,64 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[sitespeed.io 21.3.0]]></title>
+            <title><![CDATA[sitespeed.io 22.1.2]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#21.3.0</guid>
-            <pubDate>Sat, 01 Jan 2022 22:32:54 GMT</pubDate>
-            <description><![CDATA[ Updated to Browsertime 14.13.0 with the following fixes for the user agent:]]></description>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#22.1.2</guid>
+            <pubDate>Wed, 09 Feb 2022 08:26:36 GMT</pubDate>
+            <description><![CDATA[ Updated to Browsertime 14.21.1 that disables the new Chrome splash screen by default.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 14.13.1]]></title>
+            <title><![CDATA[browsertime 14.21.1]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.13.1</guid>
-            <pubDate>Sat, 01 Jan 2022 21:16:47 GMT</pubDate>
-            <description><![CDATA[ Added missing --chrome.appendToUserAgent in the CLI help.]]></description>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.21.1</guid>
+            <pubDate>Wed, 09 Feb 2022 08:05:47 GMT</pubDate>
+            <description><![CDATA[ Always disable the new ChromeWhatsNewUI splash screen in Chrome #1717. Remove the Firefox persist log configuration that was needed for FF 94+ #1716.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach-core 7.1.0]]></title>
+            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.1.0</guid>
+            <pubDate>Sun, 06 Feb 2022 19:04:25 GMT</pubDate>
+            <description><![CDATA[ Upgraded to PageXray 4.0.0. Upgraded to third party web 0.13.0.]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[pagexray 4.4.0]]></title>
+            <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.0</guid>
+            <pubDate>Fri, 04 Feb 2022 09:31:40 GMT</pubDate>
+            <description><![CDATA[ Fallback if mime types aren't mapped and use file endings. At the moment we fallback for some of the font types #109.]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[chrome-har 0.13.0]]></title>
+            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.0</guid>
+            <pubDate>Fri, 04 Feb 2022 09:28:03 GMT</pubDate>
+            <description><![CDATA[ Add _isLinkPreload on the request object if it is isLinkPreload #94.]]></description>
         </item>
         <item>
             <title><![CDATA[throttle 3.1.0]]></title>
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.0</guid>
-            <pubDate>Sun, 26 Dec 2021 13:39:04 GMT</pubDate>
+            <pubDate>Tue, 01 Feb 2022 14:01:20 GMT</pubDate>
             <description><![CDATA[ Add support for setting packet loss. Add --packetLoss and set the loss in percentage.]]></description>
         </item>
         <item>
             <title><![CDATA[humble 0.1.2]]></title>
             <link>https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#0.1.2</guid>
-            <pubDate>Sat, 25 Dec 2021 10:17:27 GMT</pubDate>
-            <description><![CDATA[ Make sure unattended-upgrades runs automatically.]]></description>
+            <pubDate>Tue, 01 Feb 2022 14:01:20 GMT</pubDate>
+            <description><![CDATA[ Updated throttle frontend to latest version where you can see throttling profiles set by using the API and with custom throttling support.]]></description>
         </item>
         <item>
             <title><![CDATA[coach 7.0.0]]></title>
             <link>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#7.0.0</guid>
-            <pubDate>Fri, 24 Dec 2021 20:39:15 GMT</pubDate>
+            <pubDate>Tue, 01 Feb 2022 14:01:20 GMT</pubDate>
             <description><![CDATA[ Updated to use latest Coach core and Browertime.]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[coach-core 7.0.0]]></title>
-            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.0.0</guid>
-            <pubDate>Fri, 24 Dec 2021 20:39:15 GMT</pubDate>
-            <description><![CDATA[ Updated third-party-web to 0.12.6. Use Chrome(ium) render blocking information to know if a request is render blocking or not #66. Report offending JavaScript assets if the JavaScript max limits kicks in #70. New largest contentful paint advice #76. New first contentful paint advice #77. Added TBT in the CPU longtask advice #80. Report content and transfer size for offending URLs #81. Report offending assets with transfer/content size for page size limit #82. Fix cases when JQuery is undefined. Thank you shubham jajodia for PR #64. A better way to find offending layout shifters. Thank you shubham jajodia for PR #65. Removed mentions aboout server push #69 Added more information on how to debug CPU advice #71. Moved AMP advice to best practice instead of privacy #67. Increased favicon max size advice from 5 to 10 kb #68 Renamed the fastRender advice to avoidRenderBlocking #73 Remove the third party async advice #74 Updated the layout shift advice to use cumulative layout shift #75 Changed id of the Google Tag Manager advice #79]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>
@@ -69,20 +84,6 @@
             <pubDate>Fri, 29 Oct 2021 18:25:09 GMT</pubDate>
             <description><![CDATA[ Added support for using Github gists see #34. Added support for using a config file to configure which HARs to test. Added support for copy/paste directly you HAR, configuration file or a gist URL or id. Refactor the CSS into Sass, development build process now uses BrowserSync. Service worker added for offline support. Workbox is used to achieve this. Added support for showing changes in request/responses if you compare the same page #63. New internal structure and use the new configuration object all the way.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/compare.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[pagexray 4.3.1]]></title>
-            <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.3.1</guid>
-            <pubDate>Fri, 29 Oct 2021 18:25:09 GMT</pubDate>
-            <description><![CDATA[ Added missing inbodyparser_blocking render blocking info for Chrome.]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[chrome-har 0.12.0]]></title>
-            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.12.0</guid>
-            <pubDate>Fri, 29 Oct 2021 18:25:09 GMT</pubDate>
         </item>
         <item>
             <title><![CDATA[chrome-trace 0.2.2]]></title>

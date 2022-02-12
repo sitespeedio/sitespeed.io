@@ -138,15 +138,15 @@ Collect Chromes net log with ```--chrome.collectNetLog```. This is useful if you
 If you use Chrome/Chromium you can get render blocking information (which requests blocks rendering). To get that from sitespeed.io  you need to get the Chrome timeline (and we get that by default). But if you wanna make sure to configure it you turn it on with the flag ```--chrome.timeline ``` or  ```--cpu```.
 
 You can see the blocking information in the waterfall. Requests that blocks has different coloring.
-![Blocking information in the waterfall]({{site.baseurl}}/img/potentially-blocking.jpg)
+![Blocking information in the waterfall]({{site.baseurl}}/img/potentially-blocking.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 You can also click on the request and see the exact blocking info from Chrome.
-![See more blocking info in the waterfall]({{site.baseurl}}/img/see-more-blocking.jpg)
+![See more blocking info in the waterfall]({{site.baseurl}}/img/see-more-blocking.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 You can also see a summary on the Page Xray tab and see what kind of blocking information Chrome provides.
-![Page Xray information about render blocking]({{site.baseurl}}/img/page-xray-blocking.jpg)
+![Page Xray information about render blocking]({{site.baseurl}}/img/page-xray-blocking.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 ### Choosing Chrome version
@@ -254,11 +254,11 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 ~~~
 
 You will get a custom script section in the Browsertime tab.
-![Custom scripts individual page]({{site.baseurl}}/img/customscripts.png)
+![Custom scripts individual page]({{site.baseurl}}/img/customscripts.png){:loading="lazy"}
 {: .img-thumbnail}
 
 And in the summary and detailed summary section.
-![Summary page]({{site.baseurl}}/img/summary.png)
+![Summary page]({{site.baseurl}}/img/summary.png){:loading="lazy"}
 {: .img-thumbnail}
 
 Bonus: All custom scripts values will be sent to Graphite, no extra configuration needed!

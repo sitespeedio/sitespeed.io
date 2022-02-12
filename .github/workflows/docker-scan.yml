@@ -14,7 +14,8 @@ jobs:
       
       - name: Build an image from Dockerfile
         run: |
-          docker build -t docker.io/sitespeedio/sitespeed.io:${{ github.sha }} .
+          docker buildx install
+          docker buildx build --load --platform linux/amd64 -t docker.io/sitespeedio/sitespeed.io:${{ github.sha }} .
       
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
@@ -24,4 +25,4 @@ jobs:
           exit-code: '1'
           ignore-unfixed: true
           vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
+          severity: 'CRITICAL'

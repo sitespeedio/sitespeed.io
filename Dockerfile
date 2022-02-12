@@ -1,9 +1,11 @@
-FROM sitespeedio/webbrowsers:chrome-96.0-firefox-94.0-edge-95.0-dev
+FROM sitespeedio/webbrowsers:chrome-98.0-firefox-97.0-edge-98.0
+
+ARG TARGETPLATFORM=linux/amd64
 
 ENV SITESPEED_IO_BROWSERTIME__XVFB true
 ENV SITESPEED_IO_BROWSERTIME__DOCKER true
 
-COPY docker/webpagereplay/wpr /usr/local/bin/
+COPY docker/webpagereplay/$TARGETPLATFORM/wpr /usr/local/bin/
 COPY docker/webpagereplay/wpr_cert.pem /webpagereplay/certs/
 COPY docker/webpagereplay/wpr_key.pem /webpagereplay/certs/
 COPY docker/webpagereplay/deterministic.js /webpagereplay/scripts/deterministic.js
@@ -25,7 +27,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY package.* /usr/src/app/
-RUN npm install -g npm@latest && npm install --production && npm cache clean --force
+RUN npm install --production && npm cache clean --force
 COPY . /usr/src/app
 
 COPY docker/scripts/start.sh /start.sh

@@ -21,7 +21,7 @@ You can run sitespeed.io using our Docker containers or using NodeJS.
 
 ## Docker
 
-We have [Docker images](https://hub.docker.com/r/sitespeedio/sitespeed.io/) with sitespeed.io, Chrome, Firefox, Xvfb and all the software needed for recording a video of the browser screen and analyse it to get Visual Metrics. It is super easy to use). Here's how to use the container with both Firefox & Chrome (install [Docker](https://docs.docker.com/install/) first).
+We have [Docker images](https://hub.docker.com/r/sitespeedio/sitespeed.io/) with sitespeed.io, Chrome, Firefox, Edge, Xvfb and all the software needed for recording a video of the browser screen and analyse it to get Visual Metrics. It is super easy to use). Here's how to use the container with both Firefox & Chrome (install [Docker](https://docs.docker.com/install/) first).
 
 ### Mac & Linux
 
@@ -151,6 +151,71 @@ Checkout [our GitHub action running in Windows](https://github.com/sitespeedio/b
 
 If you run on Windows you can run tests on Firefox, Chrome and Edge.
 
+### Raspberry Pi
+
+You can use your Raspberry Pi to run tests on your Android phone(s). 
+
+If you just want to run your test you can use Raspberry Pi OS Lite. If you also want to be able to see the phone screen on your desktop (for debugging) you can use Raspberry Pi OS Desktop.
+
+Independent if you use Raspberry Lite/Desktop you should do the following:
+
+1. Install NodeJS. Install [latest LTS](https://nodejs.org/en/), when I write this that version is 16.13.1.
+~~~
+wget https://nodejs.org/dist/v16.13.1/node-v16.13.1-linux-armv7l.tar.xz
+tar xf node-v16.13.1-linux-armv7l.tar.xz
+cd node-v16.13.1-linux-armv7l/
+sudo cp -R * /usr/local/
+~~~
+2. Install ADB and Chromedriver.
+~~~
+sudo apt-get update
+sudo apt-get install chromium-chromedriver adb -y
+~~~
+3. Install video and visual metrics dependencies.
+~~~
+sudo apt-get update && sudo apt-get install -y imagemagick ffmpeg
+sudo apt-get install -y python-is-python3 python3-dev python3-pip
+python -m pip install pyssim
+~~~
+4. And then install sitespeed.io.
+~~~bash
+sudo npm install sitespeed.io -g
+~~~
+5. (Optional) If you are using Raspberry Pi OS Desktop you can install scrcpy and vnc. Here's instructions how to use it together with a Mac. First install scrcpy:
+~~~bash
+sudo apt-get update && sudo apt-get install -y scrcpy
+~~~
+Then you need  to enable vnc server.
+~~~bash
+sudo systemctl enable vncserver-x11-serviced 
+~~~
+Then generate a password that you will use to connect to VNC from your computer
+~~~bash
+sudo vncpasswd -service 
+~~~
+Then setup auth by edit the file */etc/vnc/config.d/common.custom*:
+~~~bash
+sudo nano /etc/vnc/config.d/common.custom
+~~~
+Add `Authentication=VncAuth` in the file and save and close.
+Restart the vnc server:
+~~~bash
+sudo systemctl restart vncserver-x11-serviced
+~~~
+As the last step, make sure to export your display number to the environment variable DISPLAY.
+~~~bash
+echo 'export DISPLAY=:0' >> ~/.profile
+~~~
+Reboot your device:
+~~~bash
+sudo reboot
+~~~
+On your Mac, open "Screen Sharing" and then use *raspberrypi.local* as the hostname and the password you set in the previous step. You will then be able to see the Raspberry PI screen on your Mac.
+6. Plugin your phone, "Allow USB debugging" on your phone and run sitespeed.io:
+~~~bash
+sitespeed.io https://www.sitespeed.io --android -n 1 --video --visualMetrics
+~~~
+
 ### Skip installing ChromeDriver/GeckoDriver/EdgeDriver
 If you don't want to install ChromeDriver, EdgeDriver or GeckoDriver when you install through npm you can skip them with an environment variable.
 
@@ -175,8 +240,6 @@ EDGEDRIVER_SKIP_DOWNLOAD=true npm install sitespeed.io -g
 ### Updating ChromeDriver/GeckoDriver/EdgeDriver
 
 Using Docker the browser and driver is bundled with the correct versions. If you install everything yourself you may need to update driver versions.
-
-Since the ChromeDriver team decided that a ChromeDriver version needs to match a browser version, it has been more work to test other Chrome versions.
 
 You can download the ChromeDriver yourself from the [Google repo](https://chromedriver.storage.googleapis.com/index.html) and use ```--chrome.chromedriverPath``` to help Browsertime find it or you can choose which version to install when you install sitespeed.io with a environment variable: 
 ```CHROMEDRIVER_VERSION=81.0.4044.20 npm install ```

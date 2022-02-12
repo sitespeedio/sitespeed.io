@@ -37,19 +37,19 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 
 All data is produced under the new tab called  *Sustainable Web*.
 
-![Sustainable web tab]({{site.baseurl}}/img/sustainable-tab.png)
+![Sustainable web tab]({{site.baseurl}}/img/sustainable-tab.png){:loading="lazy"}
 {: .img-thumbnail}
 
 The plugin will use the transfer size of every asset and the domain (to know if the server run on green energy) and estimate the total amount of carbon emission for one page view.
 
 First you will see the amount of estimated carbon emission for one page view.
 
-![Estimated carbon emission per page view]({{site.baseurl}}/img/estimated-carbon.png)
+![Estimated carbon emission per page view]({{site.baseurl}}/img/estimated-carbon.png){:loading="lazy"}
 {: .img-thumbnail}
 
 But you can also add `--sustainable.pageViews` to your run and you will get the estimated carbon for that amount of page views. If you run it with  `--sustainable.pageViews 100000` you will get something like this:
 
-![Total carbon emission]({{site.baseurl}}/img/total-page-views-carbon.png)
+![Total carbon emission]({{site.baseurl}}/img/total-page-views-carbon.png){:loading="lazy"}
 {: .img-thumbnail}
 
 Both the amount per page view and the total among will be automatically sent to Graphite/InfluxDB.
@@ -58,21 +58,21 @@ We also categorise content per first/third party (with the `--firstParty` switch
 
 The next cut is per domain.
 
-![Carbon per domain]({{site.baseurl}}/img/carbon-per-domain.png)
+![Carbon per domain]({{site.baseurl}}/img/carbon-per-domain.png){:loading="lazy"}
 {: .img-thumbnail}
 
 The green sign that says *green* means that that domain is marked as running on green energy in the Green Web Foundation database.
 
 We also produce a list of the top ten dirtiest assets on the page. The ones that produces most carbon emission.
 
-![Carbon per asset]({{site.baseurl}}/img/carbon-per-asset.png)
+![Carbon per asset]({{site.baseurl}}/img/carbon-per-asset.png){:loading="lazy"}
 {: .img-thumbnail}
 
 Here we have one JavaScript bundle that produces 39% of the total emission for that page. I wonder what kind of cool  functionality they have on the page? :)
 
 We also slice and dice the data per content type. This is interesting because it can help you take environment friendly decisions. For example for this website, having a specific font stands for over 50% of the estimated carbon emission for that page.
 
-![Carbon per content type]({{site.baseurl}}/img/carbon-content-type.png)
+![Carbon per content type]({{site.baseurl}}/img/carbon-content-type.png){:loading="lazy"}
 {: .img-thumbnail}
 
 ### Extra configuration

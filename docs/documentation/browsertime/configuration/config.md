@@ -42,6 +42,7 @@ firefox
       --firefox.binaryPath                      Path to custom Firefox binary (e.g. Firefox Nightly). On OS X, the path should be to the binary inside the app bundle, e.g. /Applications/Firefox.app/Contents/MacOS/firefox-bin
       --firefox.geckodriverPath                 Path to custom geckodriver binary. Make sure to use a geckodriver version that's compatible with the version of Firefox (Gecko) you're using
       --firefox.geckodriverArgs                 Flags passed in to Geckodriver see https://firefox-source-docs.mozilla.org/testing/geckodriver/Flags.html. Use it like --firefox.geckodriverArgs="--marionette-port"  --firefox.geckodriverArgs=1027  [string]
+      --firefox.appendToUserAgent               Append to the user agent.  [string]
       --firefox.nightly                         Use Firefox Nightly. Works on OS X. For Linux you need to set the binary path.  [boolean]
       --firefox.beta                            Use Firefox Beta. Works on OS X. For Linux you need to set the binary path.  [boolean]
       --firefox.developer                       Use Firefox Developer. Works on OS X. For Linux you need to set the binary path.  [boolean]
@@ -124,8 +125,9 @@ connectivity
       --connectivity.rtt, --connectivity.latency          This option requires --connectivity.profile be set to "custom".
       --connectivity.variance                             This option requires --connectivity.engine be set to "throttle". It will add a variance to the rtt between each run. --connectivity.variance 2 means it will run with a random variance of max 2% between runs.
       --connectivity.alias                                Give your connectivity profile a custom name
-      --connectivity.engine                               The engine for connectivity. Throttle works on Mac and tc based Linux. Use external if you set the connectivity outside of Browsertime. The best way do to this is described in https://github.com/sitespeedio/browsertime#connectivity.  [choices: "external", "throttle", "tsproxy"] [default: "external"]
+      --connectivity.engine                               The engine for connectivity. Throttle works on Mac and tc based Linux. For mobile you can use Humble if you have a Humble setup. Use external if you set the connectivity outside of Browsertime. The best way do to this is described in https://github.com/sitespeedio/browsertime#connectivity.  [choices: "external", "throttle", "tsproxy", "humble"] [default: "external"]
       --connectivity.throttle.localhost                   Add latency/delay on localhost. Perfect for testing with WebPageReplay  [boolean] [default: false]
+      --connectivity.humble.url                           The path to your Humble instance. For example http://raspberrypi:3000  [string]
 
 Options:
       --cpu                                         Easy way to enable both chrome.timeline for Chrome and geckoProfile for Firefox  [boolean]
@@ -161,7 +163,7 @@ Options:
       --cookie                                      Cookie that will be added to the request. Add multiple instances to add multiple request cookies. Works for Firefox and Chrome. Use the following format cookieName=cookieValue
       --injectJs                                    Inject JavaScript into the current page at document_start. Works for Firefox and Chrome. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
       --block                                       Domain to block. Add multiple instances to add multiple domains that will be blocked. If you use Chrome you can also use --blockDomainsExcept (that is more performant). Works for Firefox and Chrome.
-      --percentiles                                 The percentile values within the data browsertime will calculate and report.  [array] [default: [0,10,90,99,100]]
+      --percentiles                                 The percentile values within the data browsertime will calculate and report. This argument uses Yargs arrays and you you to set them correctly it is recommended to use a configuraration file instead.  [array] [default: [0,10,90,99,100]]
       --decimals                                    The decimal points browsertime statistics round to.  [number] [default: 0]
       --iqr                                         Use IQR, or Inter Quartile Range filtering filters data based on the spread of the data. See  https://en.wikipedia.org/wiki/Interquartile_range. In some cases, IQR filtering may not filter out anything. This can happen if the acceptable range is wider than the bounds of your dataset.  [boolean] [default: false]
       --cacheClearRaw                               Use internal browser functionality to clear browser cache between runs instead of only using Selenium.  [boolean] [default: false]
@@ -170,6 +172,7 @@ Options:
       --postScript, --tearDown                      Selenium script(s) to run after you test your URL. They will run outside of the analyse phase. Note that --postScript can be passed multiple times.
       --script                                      Add custom Javascript to run after the page has finished loading to collect metrics. If a single js file is specified, it will be included in the category named "custom" in the output json. Pass a folder to include all .js scripts in the folder, and have the folder name be the category. Note that --script can be passed multiple times.
       --userAgent                                   Override user agent
+      --appendToUserAgent                           Append a String to the user agent. Works in Chrome/Edge and Firefox.
   -q, --silent                                      Only output info in the logs, not to the console. Enter twice to suppress summary line.  [count]
   -o, --output                                      Specify file name for Browsertime data (ex: 'browsertime'). Unless specified, file will be named browsertime.json
       --har                                         Specify file name for .har file (ex: 'browsertime'). Unless specified, file will be named browsertime.har
