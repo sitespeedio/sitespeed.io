@@ -10,7 +10,8 @@ Browser
       --browsertime.connectivity.down, --downstreamKbps, --browsertime.connectivity.downstreamKbps  This option requires --connectivity be set to "custom".
       --browsertime.connectivity.up, --upstreamKbps, --browsertime.connectivity.upstreamKbps        This option requires --connectivity be set to "custom".
       --browsertime.connectivity.rtt, --latency, --browsertime.connectivity.latency                 This option requires --connectivity be set to "custom".
-      --browsertime.connectivity.engine, --connectivity.engine                                      The engine for connectivity. Throttle works on Mac and tc based Linux. Use external if you set the connectivity outside of Browsertime. Use tsproxy if you are using Kubernetes. More documentation at https://www.sitespeed.io/documentation/sitespeed.io/connectivity/.  [string] [choices: "external", "throttle", "tsproxy"] [default: "external"]
+      --browsertime.connectivity.engine, --connectivity.engine                                      The engine for connectivity. Throttle works on Mac and tc based Linux. For mobile you can use Humble if you have a Humble setup. Use external if you set the connectivity outside of Browsertime. Use tsproxy if you are using Kubernetes. More documentation at https://www.sitespeed.io/documentation/sitespeed.io/connectivity/.  [string] [choices: "external", "throttle", "tsproxy", "humble"] [default: "external"]
+      --browsertime.connectivity.humble.url, --connectivity.humble.url                              The path to your Humble instance. For example http://raspberrypi:3000  [string]
       --browsertime.pageCompleteCheck, --pageCompleteCheck                                          Supply a JavaScript that decides when the browser is finished loading the page and can start to collect metrics. The JavaScript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd.
       --browsertime.pageCompleteWaitTime, --pageCompleteWaitTime                                    How long time you want to wait for your pageComplteteCheck to finish, after it is signaled to closed. Extra parameter passed on to your pageCompleteCheck.  [default: 5000]
       --browsertime.pageCompleteCheckInactivity, --pageCompleteCheckInactivity                      Alternative way to choose when to end your test. This will wait for 2 seconds of inactivity that happens after loadEventEnd.  [boolean] [default: false]
@@ -22,6 +23,7 @@ Browser
       --browsertime.selenium.url                                                                    Configure the path to the Selenium server when fetching timings using browsers. If not configured the supplied NodeJS/Selenium version is used.
       --browsertime.viewPort, --viewPort                                                            The browser view port size WidthxHeight like 400x300  [default: "1366x708"]
       --browsertime.userAgent, --userAgent                                                          The full User Agent string, defaults to the User Agent used by the browsertime.browser option.
+      --browsertime.appendToUserAgent, --appendToUserAgent                                          Append a String to the user agent. Works in Chrome/Edge and Firefox.
       --browsertime.preURL, --preURL                                                                A URL that will be accessed first by the browser before the URL that you wanna analyse. Use it to fill the cache.
       --browsertime.preScript, --preScript                                                          Selenium script(s) to run before you test your URL. They will run outside of the analyse phase. Note that --preScript can be passed multiple times.
       --browsertime.postScript, --postScript                                                        Selenium script(s) to run after you test your URL. They will run outside of the analyse phase. Note that --postScript can be passed multiple times.
@@ -76,7 +78,7 @@ Firefox
       --browsertime.firefox.disableTrackingProtection, --firefox.disableTrackingProtection            Disable Tracking Protection.  [boolean] [default: true]
       --browsertime.firefox.android.package, --firefox.android.package                                Run Firefox or a GeckoView-consuming App on your Android device. Set to org.mozilla.geckoview_example for default Firefox version. You need to have adb installed to make this work.
       --browsertime.firefox.android.activity, --firefox.android.activity                              Name of the Activity hosting the GeckoView.
-      --browsertime.firefox.android.deviceSerial, --firefox.android.deviceSerial                      Choose which device to use. If you do not set it, first device will be used.
+      --browsertime.firefox.android.deviceSerial, --firefox.android.deviceSerial                      Choose which device to use. If you do not set it, first device will be used.  [string]
       --browsertime.firefox.android.intentArgument, --firefox.android.intentArgument                  Configure how the Android intent is launched.  Passed through to `adb shell am start ...`; follow the format at https://developer.android.com/studio/command-line/adb#IntentSpec. To add multiple arguments, repeat --firefox.android.intentArgument once per argument.
       --browsertime.firefox.profileTemplate, --firefox.profileTemplate                                Profile template directory that will be cloned and used as the base of each profile each instance of Firefox is launched against.  Use this to pre-populate databases with certificates, tracking protection lists, etc.
       --browsertime.firefox.collectMozLog, --firefox.collectMozLog                                    Collect the MOZ HTTP log  [boolean]
@@ -84,10 +86,11 @@ Firefox
 Chrome
       --browsertime.chrome.args, --chrome.args                                        Extra command line arguments to pass to the Chrome process. If you use the command line, leave out the starting -- (--no-sandbox will be no-sandbox). If you use a configuration JSON file you should keep the starting --. To add multiple arguments to Chrome, repeat --browsertime.chrome.args once per argument. See https://peter.sh/experiments/chromium-command-line-switches/
       --browsertime.chrome.timeline, --chrome.timeline                                Collect the timeline data. Drag and drop the JSON in your Chrome detvools timeline panel or check out the CPU metrics.  [boolean] [default: true]
+      --browsertime.chrome.appendToUserAgent, --chrome.appendToUserAgent              Append to the user agent.  [string]
       --browsertime.chrome.android.package, --chrome.android.package                  Run Chrome on your Android device. Set to com.android.chrome for default Chrome version. You need to have adb installed to run on Android.
       --browsertime.chrome.android.activity, --chrome.android.activity                Name of the Activity hosting the WebView.
       --browsertime.chrome.android.process, --chrome.android.process                  Process name of the Activity hosting the WebView. If not given, the process name is assumed to be the same as chrome.android.package.
-      --browsertime.chrome.android.deviceSerial, --chrome.android.deviceSerial        Choose which device to use. If you do not set it, the first found device will be used.
+      --browsertime.chrome.android.deviceSerial, --chrome.android.deviceSerial        Choose which device to use. If you do not set it, the first found device will be used.  [string]
       --browsertime.chrome.collectNetLog, --chrome.collectNetLog                      Collect network log from Chrome and save to disk.  [boolean]
       --browsertime.chrome.traceCategories, --chrome.traceCategories                  Set the trace categories.  [string]
       --browsertime.chrome.traceCategory, --chrome.traceCategory                      Add a trace category to the default ones. Use --chrome.traceCategory multiple times if you want to add multiple categories. Example: --chrome.traceCategory disabled-by-default-v8.cpu_profiler  [string]
@@ -121,10 +124,11 @@ proxy
       --browsertime.proxy.https, --proxy.https  Https proxy (host:port)  [string]
 
 Crawler
-  -d, --crawler.depth     How deep to crawl (1=only one page, 2=include links from first page, etc.)
-  -m, --crawler.maxPages  The max number of pages to test. Default is no limit.
-      --crawler.exclude   Exclude URLs matching the provided regular expression (ex: "/some/path/", "://some\.domain/"). Can be provided multiple times.
-      --crawler.include   Discard URLs not matching the provided regular expression (ex: "/some/path/", "://some\.domain/"). Can be provided multiple times.
+  -d, --crawler.depth            How deep to crawl (1=only one page, 2=include links from first page, etc.)
+  -m, --crawler.maxPages         The max number of pages to test. Default is no limit.
+      --crawler.exclude          Exclude URLs matching the provided regular expression (ex: "/some/path/", "://some\.domain/"). Can be provided multiple times.
+      --crawler.include          Discard URLs not matching the provided regular expression (ex: "/some/path/", "://some\.domain/"). Can be provided multiple times.
+      --crawler.ignoreRobotsTxt  Ignore robots.txt rules of the crawled domain.  [boolean] [default: false]
 
 Grafana
       --grafana.host                  The Grafana host used when sending annotations.
@@ -150,7 +154,7 @@ Graphite
       --graphite.annotationRetentionMinutes  The retention in minutes, to make annotation match the retention in Graphite.  [number]
       --graphite.statsd                      Uses the StatsD interface  [boolean] [default: false]
       --graphite.annotationTag               Add a extra tag to the annotation sent for a run. Repeat the --graphite.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
-      --graphite.addSlugToKey                Add the slug (name of the test) as an extra key in the namespace.  [boolean] [default: false]
+      --graphite.addSlugToKey                Add the slug (name of the test) as an extra key in the namespace.  [boolean] [default: true]
       --graphite.bulkSize                    Break up number of metrics to send with each request.  [number] [default: null]
       --graphite.skipSummary                 Skip sending summary messages data to Graphite (summaries over a domain).  [boolean] [default: false]
       --graphite.perIteration                Send each iteration of metrics to Graphite. By default we only send page summaries (the summaries of all runs) but you can also send all the runs. Make sure to setup statsd or Graphite correctly to handle it.  [boolean] [default: false]
@@ -231,7 +235,7 @@ HTML
       --html.assetsBaseURL                  The base URL to the server serving the assets of HTML results. In the format of https://result.sitespeed.io. This can be used to reduce size in large setups. If set, disables writing of assets to the output folder.
       --html.compareURL, --html.compareUrl  Will add a link on the waterfall page, helping you to compare the HAR. The full path to your compare installation. In the format of https://compare.sitespeed.io/
       --html.pageSummaryMetrics             Select from a list of metrics to be displayed for given URL(s).  Pass on multiple --html.pageSummaryMetrics to add more than one column. This is best used as an array in your config.json file.  [default: ["transferSize.total","requests.total","thirdParty.requests","transferSize.javascript","transferSize.css","transferSize.image","score.performance"]]
-      --html.summaryBoxes                   Select required summary information to be displayed on result index page.  [default: ["score.score","score.accessibility","score.bestpractice","score.privacy","score.performance","timings.firstPaint","timings.firstContentfulPaint","timings.fullyLoaded","timings.pageLoadTime","timings.largestContentfulPaint","timings.FirstVisualChange","timings.LastVisualChange","timings.SpeedIndex","timings.PerceptualSpeedIndex","timings.VisualReadiness","timings.VisualComplete","pageinfo.cumulativeLayoutShift","requests.total","requests.javascript","requests.css","requests.image","transferSize.total","transferSize.html","transferSize.javascript","contentSize.javascript","transferSize.css","transferSize.image","thirdParty.transferSize","thirdParty.requests","webpagetest.SpeedIndex","webpagetest.lastVisualChange","webpagetest.render","webpagetest.visualComplete","webpagetest.visualComplete95","webpagetest.TTFB","webpagetest.fullyLoaded","axe.critical","axe.serious","axe.minor","axe.moderate","cpu.longTasksTotalDuration","cpu.longTasks","cpu.totalBlockingTime","cpu.maxPotentialFid","sustainable.totalCO2","sustainable.co2PerPageView","sustainable.co2FirstParty","sustainable.co2ThirdParty"]]
+      --html.summaryBoxes                   Select required summary information to be displayed on result index page.  [default: ["score.score","score.accessibility","score.bestpractice","score.privacy","score.performance","timings.firstPaint","timings.firstContentfulPaint","timings.fullyLoaded","timings.pageLoadTime","timings.largestContentfulPaint","timings.FirstVisualChange","timings.LastVisualChange","timings.SpeedIndex","timings.PerceptualSpeedIndex","timings.VisualReadiness","timings.VisualComplete","timings.backEndTime","googleWebVitals.cumulativeLayoutShift","requests.total","requests.javascript","requests.css","requests.image","transferSize.total","transferSize.html","transferSize.javascript","contentSize.javascript","transferSize.css","transferSize.image","thirdParty.transferSize","thirdParty.requests","webpagetest.SpeedIndex","webpagetest.lastVisualChange","webpagetest.render","webpagetest.visualComplete","webpagetest.visualComplete95","webpagetest.TTFB","webpagetest.fullyLoaded","axe.critical","axe.serious","axe.minor","axe.moderate","cpu.longTasksTotalDuration","cpu.longTasks","cpu.totalBlockingTime","cpu.maxPotentialFid","sustainable.totalCO2","sustainable.co2PerPageView","sustainable.co2FirstParty","sustainable.co2ThirdParty"]]
       --html.summaryBoxesThresholds         Configure the thresholds for red/yellow/green for the summary boxes.
 
 Text
@@ -246,6 +250,7 @@ Sustainable
 
 CrUx
       --crux.key         You need to use a key to get data from CrUx. Get the key from https://developers.google.com/web/tools/chrome-user-experience-report/api/guides/getting-started#APIKey
+      --crux.enable      Enable the CrUx plugin. This is on by defauly but you also need the Crux key. If you chose to disable it with this key, set this to false and you can still use the CrUx key in your configuration.  [default: true]
       --crux.formFactor  A form factor is the type of device on which a user visits a website.  [string] [choices: "ALL", "DESKTOP", "PHONE", "TABLET"] [default: "ALL"]
       --crux.collect     Choose what data to collect. URL is data for a specific URL, ORIGIN for the domain and ALL for both of them  [string] [choices: "ALL", "URL", "ORIGIN"] [default: "ALL"]
 
@@ -273,7 +278,7 @@ Options:
       --browsertime.preWarmServerWaitTime                                                                     The wait time before you start the real testing after your pre-cache request.  [number] [default: 5000]
       --plugins.disable  [array]
       --plugins.load  [array]
-      --mobile                                                                                                Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Apple iPhone 6.  [boolean] [default: false]
+      --mobile                                                                                                Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Moto G4.  [boolean] [default: false]
       --resultBaseURL, --resultBaseUrl                                                                        The base URL to the server serving the HTML result. In the format of https://result.sitespeed.io
       --gzipHAR                                                                                               Compress the HAR files with GZIP.  [boolean] [default: false]
       --outputFolder                                                                                          The folder where the result will be stored. If you do not set it, the result will be stored in "DOMAIN_OR_FILENAME_OR_SLUG/TIMESTAMP"  [string]
@@ -286,6 +291,7 @@ Options:
       --useHash                                                                                               If your site uses # for URLs and # give you unique URLs you need to turn on useHash. By default is it turned off, meaning URLs with hash and without hash are treated as the same URL  [boolean] [default: false]
       --multi                                                                                                 Test multiple URLs within the same browser session (same cache etc). Only works with Browsertime. Use this if you want to test multiple pages (use journey) or want to test multiple pages with scripts. You can mix URLs and scripts (the order will matter): login.js https://www.sitespeed.io/ logout.js - More details: https://www.sitespeed.io/documentation/sitespeed.io/scripting/  [boolean] [default: false]
       --name                                                                                                  Give your test a name.
+  -o, --open                                                                                                  Open your test result in your default browser (Mac OS only).
       --slug                                                                                                  Give your test a slug. The slug is used when you send the metrics to your data storage to identify the test and the folder of the tests. The max length of the slug is 200 characters and it can only contain a-z A-Z 0-9 and -_ characters.
       --config                                                                                                Path to JSON config file
   -h, --help                                                                                                  Show help  [boolean]

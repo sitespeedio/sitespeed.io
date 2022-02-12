@@ -145,7 +145,7 @@ workflows:
 You will notice that the last run is reading the performance budget file that exists in the git repo that was checked out. This will only work if you mount the checked out repo as a volume for sitespeed. This makes is really efficient and convenient to allow sitespeed to pick up configuration files and to output results to a location where one can post-process with other scripts.
 
 ## Gitlab CI
-Gitlab has prepared an easy way to test using sitespeed.io: [https://docs.gitlab.com/ee/ci/examples/browser_performance.html](https://docs.gitlab.com/ee/ci/examples/browser_performance.html). 
+Gitlab has prepared an easy way to test using sitespeed.io: [https://docs.gitlab.com/ee/user/project/merge_requests/browser_performance_testing.html](https://docs.gitlab.com/ee/user/project/merge_requests/browser_performance_testing.html). 
 
 ## Grunt plugin
 Checkout the [grunt plugin](https://github.com/sitespeedio/grunt-sitespeedio).

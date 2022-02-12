@@ -21,13 +21,13 @@
 Before we start telling you all about sitespeed.io you should just try it out:
 
  ```bash
- $ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
+ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
  ```
 
  Or using npm (you need Chrome, Firefox, Edge or Safari installed or Chrome/Firefox on Android)
 
  ```bash
- $ npm i -g sitespeed.io && sitespeed.io https://www.sitespeed.io/
+ npm i -g sitespeed.io && sitespeed.io https://www.sitespeed.io/
  ```
 
 Ok, now you have tried it, let us tell you more about sitespeed.io. We think of a complete web performance tool as having three key capabilities:
@@ -74,23 +74,23 @@ When you as user choose to test a URL, this is what happens on a high level:
  Using Docker (use latest Docker):
 
  ```bash
- $ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
+ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
  ```
 
  Or install using npm:
 
  ```bash
- $ npm i -g sitespeed.io
+ npm i -g sitespeed.io
  ```
 
  Or clone the repo and test the latest changes:
 
  ```bash
- $ git clone https://github.com/sitespeedio/sitespeed.io.git
- $ cd sitespeed.io
- $ npm install
- $ bin/sitespeed.js --help
- $ bin/sitespeed.js https://www.sitespeed.io/
+ git clone https://github.com/sitespeedio/sitespeed.io.git
+ cd sitespeed.io
+ npm install
+ bin/sitespeed.js --help
+ bin/sitespeed.js https://www.sitespeed.io/
 ```
 
 ## More details

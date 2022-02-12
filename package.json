@@ -4,7 +4,7 @@
     "sitespeed.io": "./bin/sitespeed.js",
     "sitespeed.io-wpr": "./bin/browsertimeWebPageReplay.js"
   },
-  "version": "19.2.0",
+  "version": "22.1.2",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -56,27 +56,26 @@
     "chai-as-promised": "7.1.1",
     "changelog-parser": "2.8.0",
     "clean-css-cli": "4.3.0",
-    "cz-customizable": "^6.2.0",
-    "eslint": "6.2.2",
-    "eslint-config-prettier": "6.1.0",
-    "eslint-plugin-prettier": "3.1.0",
+    "eslint": "8.0.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-prettier": "4.0.0",
     "feed": "4.2.2",
     "jsdoc": "^3.6.7",
     "license-checker": "^16.0.0",
     "mocha": "^5.0.4",
     "sass": "1.34.0",
-    "prettier": "^1.11.1",
+    "prettier": "2.4.1",
     "pug-lint": "^2.6.0",
     "pug-lint-config-clock": "^2.0.0"
   },
   "main": "./lib/sitespeed.js",
   "dependencies": {
     "@google-cloud/storage": "5.8.3",
-    "@tgwf/co2": "0.6.1",
+    "@tgwf/co2": "0.8.0",
     "aws-sdk": "2.882.0",
-    "axe-core": "4.3.2",
-    "browsertime": "14.0.2",
-    "coach-core": "6.4.3",
+    "axe-core": "4.3.5",
+    "browsertime": "14.21.1",
+    "coach-core": "7.1.0",
     "cli-color": "2.0.0",
     "concurrent-queue": "7.0.2",
     "dayjs": "1.10.4",
@@ -111,14 +110,6 @@
     "tape": "4.13.0",
     "text-table": "0.2.0",
     "uuid": "8.3.2",
-    "yargs": "17.0.1"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-customizable"
-    },
-    "cz-customizable": {
-      "config": "./cz-config.js"
-    }
+    "yargs": "17.2.1"
   }
 }

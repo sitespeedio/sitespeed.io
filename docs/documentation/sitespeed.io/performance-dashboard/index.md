@@ -49,7 +49,7 @@ The [example dashboards](https://dashboard.sitespeed.io) are generic dashboards 
 The dashboards have a couple of templates/variables (the dropdowns at the top of the page) that make the dashboards interactive and dynamic.
 A dashboard that shows metrics for a specific page has the following templates:
 
-![Page templates]({{site.baseurl}}/img/templates-page-2.png)
+![Page templates]({{site.baseurl}}/img/templates-page-2.png) {:loading="lazy"}
 {: .img-thumbnail}
 
 The *path* is the first path after the namespace. Using the default values, the namespace looks like this: *sitespeed_io.default*.
@@ -66,13 +66,13 @@ There are two pages that show individual metrics for a page (one for desktop and
 The [desktop page metrics](https://dashboard.sitespeed.io/d/9NDMzFfMk/page-metrics-desktop?orgId=1) shows metrics for a specific URL/page tested on desktop and [mobile page metrics](https://dashboard.sitespeed.io/d/000000064/page-metrics-mobile?orgId=1) for pages tested on mobile/emulated mobile.
 
 The dashboards looks something like this:
-![Page metrics]({{site.baseurl}}/img/pagesummary-example.jpg)
-{: .img-thumbnail}
+![Page metrics]({{site.baseurl}}/img/pagesummary-example.jpg){:loading="lazy"}
+{: .img-thumbnail }
 
 And scroll down to see more, do not forget to click on the rows to expand and see all metrics.
 
-![Page metrics example 2]({{site.baseurl}}/img/pagesummary-example-2.jpg)
-{: .img-thumbnail}
+![Page metrics example 2]({{site.baseurl}}/img/pagesummary-example-2.jpg){:loading="lazy"}
+{: .img-thumbnail }
 
 ## User Journeys example dashboards
 
@@ -80,7 +80,7 @@ We have a couple of example dashboards on how to add your own user journeys dash
 
 This is an example dashboard login into Wikipedia. That user journey measure four pages.
 
-![Login User Journey]({{site.baseurl}}/img/user-journey-example.jpg)
+![Login User Journey]({{site.baseurl}}/img/user-journey-example.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 We also have examples that take three pages.
@@ -88,7 +88,7 @@ We also have examples that take three pages.
 ## The leaderboard
 We are so proud of our [leaderboard dashboard](https://dashboard.sitespeed.io/dashboard/db/leaderboard) that it got its own [documentation page](/documentation/sitespeed.io/leaderboard/). Use the dashboard if you want to compare different sites or URLs.
 
-![Leaderboard]({{site.baseurl}}/img/leaderboard-dashboard.jpg)
+![Leaderboard]({{site.baseurl}}/img/leaderboard-dashboard.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 
@@ -96,19 +96,19 @@ We are so proud of our [leaderboard dashboard](https://dashboard.sitespeed.io/da
 
 Using our [Chrome User Experience Report plugin](/documentation/sitespeed.io/crux/) you can get the metrics Chrome collects from real users. We have a [ready made dashboard](https://dashboard.sitespeed.io/dashboard/db/chrome-user-experience-report) where you can look at the data on URL and origin level.
 
-![CruX]({{site.baseurl}}/img/crux-example.jpg)
+![CruX]({{site.baseurl}}/img/crux-example.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 ## WebPageTest dashboards
 We have four optional dashboards for WebPageTest that you can use if you drive WebPageTest using sitespeed.io. They follow the same pattern as the sitespeed.io dashboards with WebPageTest data.
 
-![WebPageTest]({{site.baseurl}}/img/webpagetest-dashboard.jpg)
+![WebPageTest]({{site.baseurl}}/img/webpagetest-dashboard.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 ## Plus 1
 We also have a dashboard for [showing GPSI/CrUx/Lighthouse metrics](https://dashboard.sitespeed.io/dashboard/db/plus1) if you use those products.
 
-![Plus 1 dashboard]({{site.baseurl}}/img/gpsi-lighthouse-example.jpg)
+![Plus 1 dashboard]({{site.baseurl}}/img/gpsi-lighthouse-example.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 
@@ -119,7 +119,7 @@ If you are new to [Grafana](https://grafana.com) you should checkout the [basic 
 
 You can configure all the thresholds (green/yellow/red) so that they match your needs:
 
-![Configure thresholds in Grafana]({{site.baseurl}}/img/configuring-thresholds-grafana.jpg)
+![Configure thresholds in Grafana]({{site.baseurl}}/img/configuring-thresholds-grafana.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 ## How to get the latest video/screenshot visible in Grafana

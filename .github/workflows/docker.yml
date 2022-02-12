@@ -13,16 +13,18 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build Docker containers
       run: |
-        docker build -t sitespeedio/sitespeed.io .
-        docker build -t sitespeedio/sitespeed.io:slim --file Dockerfile-slim .
+        docker buildx install
+        docker buildx build --load --platform linux/amd64 -t sitespeedio/sitespeed.io .
+        docker buildx build --load --platform linux/amd64 -t sitespeedio/sitespeed.io:slim --file Dockerfile-slim .
     - name: Run test on default container for Chrome 
       run: docker run --rm sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 -b chrome
     - name: Run test on default container for Firefox 
       run: docker run --rm sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 -b firefox
+    - name: Run test on default container for Edge 
+      run: docker run --rm sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 -b edge
     - name: Run test on slim container  
       run: docker run --rm sitespeedio/sitespeed.io:slim https://www.sitespeed.io -n 1
-    - name: Test WebPageReplay in the default container    
-      run: docker run --cap-add=NET_ADMIN --rm  -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 -b chrome 
-
- 
-        
+    - name: Test WebPageReplay with Chrome  
+      run: docker run --cap-add=NET_ADMIN --rm  -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io https://www.sitespeed.io -n 3 -b chrome 
+    - name: Test WebPageReplay with Firefox  
+      run: docker run --cap-add=NET_ADMIN --rm  -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io https://www.sitespeed.io -n 3 -b firefox --browsertime.firefox.acceptInsecureCerts true

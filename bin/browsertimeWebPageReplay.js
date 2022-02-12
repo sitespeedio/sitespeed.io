@@ -151,7 +151,7 @@ async function runBrowsertime() {
       const emulation = get(
         btOptions,
         'chrome.mobileEmulation.deviceName',
-        'iPhone 6'
+        'Moto G4'
       );
       btOptions.chrome.mobileEmulation = {
         deviceName: emulation

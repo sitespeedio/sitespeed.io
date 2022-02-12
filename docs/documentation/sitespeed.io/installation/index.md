@@ -21,7 +21,7 @@ You can run sitespeed.io using our Docker containers or using NodeJS.
 
 ## Docker
 
-We have [Docker images](https://hub.docker.com/r/sitespeedio/sitespeed.io/) with sitespeed.io, Chrome, Firefox, Xvfb and all the software needed for recording a video of the browser screen and analyse it to get Visual Metrics. It is super easy to use). Here's how to use the container with both Firefox & Chrome (install [Docker](https://docs.docker.com/install/) first).
+We have [Docker images](https://hub.docker.com/r/sitespeedio/sitespeed.io/) with sitespeed.io, Chrome, Firefox, Edge, Xvfb and all the software needed for recording a video of the browser screen and analyse it to get Visual Metrics. It is super easy to use). Here's how to use the container with both Firefox & Chrome (install [Docker](https://docs.docker.com/install/) first).
 
 ### Mac & Linux
 
@@ -79,7 +79,26 @@ After that you can also install the browsers that you need for your testing: [Ch
 
 ### Linux
 
-Here's an example on how to install on Ubuntu 20.04. 
+
+If you are using Ubuntu you can use our prebuilt script. It will install all dependencies that you need to run sitespeed.io including latest Firefox and Chrome. Use it if you have a new machine or just setup a new cloud instance. It will also create a new user *sitespeedio* that you will use to run sitespeed.io. The script will ask for a new password for that user:
+
+~~~bash
+bash <(curl -sL https://gist.githubusercontent.com/soulgalore/18fbf40670a343fa1cb0606756c90a00/raw/0597438f8e508755dfcbe18271b04b46d8fa389e/install-sitespeed.io-and-dependencies-ubuntu.sh)
+~~~
+
+If you use Debian you can use (installs Firefox ESR and you might want to upgrade that):
+
+~~~bash
+wget -O - https://gist.githubusercontent.com/soulgalore/2f070b0a150360053f7198a4e9067db1/raw/33fb37e8770103ef535d44d83b6b8cb104ef9142/install-sitespeed.io-and-dependencies-debian.sh | bash
+~~~
+
+When it's finished you can try running sitespeed.io:
+
+~~~bash
+sitespeed.io https://www.sitespeed.io --xvfb -b chrome --video --visualMetrics
+~~~
+
+You can also install everything manually to have more control. This is what's needed on Ubuntu 20.04:
 
 1. [Install NodeJS LTS ](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04)
     * `curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh`
@@ -90,16 +109,22 @@ Here's an example on how to install on Ubuntu 20.04.
     * `sudo apt-get install -y  python-is-python3 python3-dev python3-pip`  
     * `python -m pip install pyssim`
 4. Install xvfb: `sudo apt-get install -y xvfb`
-5. Install ip and route for network throttling to work: `sudo apt-get install -y net-tools`
+5. Install ip and route for network throttling to work: `sudo apt-get install -y net-tools iproute2`
 6. Create a user that you will use to run sitespeed.io and switch to that user:
     * `adduser sitespeedio`
     * `usermod -aG sudo sitespeedio`
     * `su - sitespeedio`
-7. Make sure that user can use sudo without password: `echo "${USER} ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/sitespeedio"`
+7. Make sure that user can use sudo without password: `echo "sitespeedio ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/sitespeedio"`
 8. Make sure you can install using *npm* without using sudo. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
 9. Install sitespeed.io `EDGEDRIVER_VERSION=89.0.723.0 npm install sitespeed.io -g`
 
-Before you start your testing you need to install a browser. Here's how you can install Chrome.
+Before you start your testing you need to install a browser. Here's how you can install Firefox.
+
+~~~bash
+sudo apt install firefox -y
+~~~
+
+And if you want to use Chrome you can install it like this:
 
 ~~~bash
 wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
@@ -108,10 +133,16 @@ sudo apt update
 sudo apt install -y google-chrome-stable
 ~~~
 
-Try it out:
+Try it out with Firefox:
 
 ~~~bash
-sitespeed.io --browsertime.xvfb -n 1 -b chrome https://www.sitespeed.io --video --visualMetrics
+sitespeed.io -n 1 -b firefox https://www.sitespeed.io --video --visualMetrics --xvfb
+~~~
+
+Or with Chrome:
+
+~~~bash
+sitespeed.io -n 1 -b chrome https://www.sitespeed.io --video --visualMetrics --xvfb
 ~~~
 
 ### Windows
@@ -119,6 +150,71 @@ sitespeed.io --browsertime.xvfb -n 1 -b chrome https://www.sitespeed.io --video 
 Checkout [our GitHub action running in Windows](https://github.com/sitespeedio/browsertime/blob/main/.github/workflows/windows.yml) to see how to install the dependencies needed.
 
 If you run on Windows you can run tests on Firefox, Chrome and Edge.
+
+### Raspberry Pi
+
+You can use your Raspberry Pi to run tests on your Android phone(s). 
+
+If you just want to run your test you can use Raspberry Pi OS Lite. If you also want to be able to see the phone screen on your desktop (for debugging) you can use Raspberry Pi OS Desktop.
+
+Independent if you use Raspberry Lite/Desktop you should do the following:
+
+1. Install NodeJS. Install [latest LTS](https://nodejs.org/en/), when I write this that version is 16.13.1.
+~~~
+wget https://nodejs.org/dist/v16.13.1/node-v16.13.1-linux-armv7l.tar.xz
+tar xf node-v16.13.1-linux-armv7l.tar.xz
+cd node-v16.13.1-linux-armv7l/
+sudo cp -R * /usr/local/
+~~~
+2. Install ADB and Chromedriver.
+~~~
+sudo apt-get update
+sudo apt-get install chromium-chromedriver adb -y
+~~~
+3. Install video and visual metrics dependencies.
+~~~
+sudo apt-get update && sudo apt-get install -y imagemagick ffmpeg
+sudo apt-get install -y python-is-python3 python3-dev python3-pip
+python -m pip install pyssim
+~~~
+4. And then install sitespeed.io.
+~~~bash
+sudo npm install sitespeed.io -g
+~~~
+5. (Optional) If you are using Raspberry Pi OS Desktop you can install scrcpy and vnc. Here's instructions how to use it together with a Mac. First install scrcpy:
+~~~bash
+sudo apt-get update && sudo apt-get install -y scrcpy
+~~~
+Then you need  to enable vnc server.
+~~~bash
+sudo systemctl enable vncserver-x11-serviced 
+~~~
+Then generate a password that you will use to connect to VNC from your computer
+~~~bash
+sudo vncpasswd -service 
+~~~
+Then setup auth by edit the file */etc/vnc/config.d/common.custom*:
+~~~bash
+sudo nano /etc/vnc/config.d/common.custom
+~~~
+Add `Authentication=VncAuth` in the file and save and close.
+Restart the vnc server:
+~~~bash
+sudo systemctl restart vncserver-x11-serviced
+~~~
+As the last step, make sure to export your display number to the environment variable DISPLAY.
+~~~bash
+echo 'export DISPLAY=:0' >> ~/.profile
+~~~
+Reboot your device:
+~~~bash
+sudo reboot
+~~~
+On your Mac, open "Screen Sharing" and then use *raspberrypi.local* as the hostname and the password you set in the previous step. You will then be able to see the Raspberry PI screen on your Mac.
+6. Plugin your phone, "Allow USB debugging" on your phone and run sitespeed.io:
+~~~bash
+sitespeed.io https://www.sitespeed.io --android -n 1 --video --visualMetrics
+~~~
 
 ### Skip installing ChromeDriver/GeckoDriver/EdgeDriver
 If you don't want to install ChromeDriver, EdgeDriver or GeckoDriver when you install through npm you can skip them with an environment variable.
@@ -144,8 +240,6 @@ EDGEDRIVER_SKIP_DOWNLOAD=true npm install sitespeed.io -g
 ### Updating ChromeDriver/GeckoDriver/EdgeDriver
 
 Using Docker the browser and driver is bundled with the correct versions. If you install everything yourself you may need to update driver versions.
-
-Since the ChromeDriver team decided that a ChromeDriver version needs to match a browser version, it has been more work to test other Chrome versions.
 
 You can download the ChromeDriver yourself from the [Google repo](https://chromedriver.storage.googleapis.com/index.html) and use ```--chrome.chromedriverPath``` to help Browsertime find it or you can choose which version to install when you install sitespeed.io with a environment variable: 
 ```CHROMEDRIVER_VERSION=81.0.4044.20 npm install ```

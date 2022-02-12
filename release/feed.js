@@ -36,6 +36,11 @@ function getResult(result) {
       }
     }
 
+    if (result.parsed['Breaking changes']) {
+      for (let breaking of result.parsed['Breaking changes']) {
+        allData += ' ' + breaking;
+      }
+    }
     return allData;
   }
 }
@@ -95,18 +100,15 @@ async function generateFeed() {
     coach: 'https://www.sitespeed.io/img/logos/coach.png',
     'chrome-har': '',
     'chrome-trace': '',
-    compare: 'https://www.sitespeed.io/img/logos/compare.png'
+    compare: 'https://www.sitespeed.io/img/logos/compare.png',
+    humble: ''
   };
 
   sortedVersionFiles.forEach(file => {
     feed.addItem({
       title: `${file.name} ${file.version}`,
-      id: `https://github.com/sitespeedio/${file.name}/blob/main/CHANGELOG.md#${
-        file.version
-      }`,
-      link: `https://github.com/sitespeedio/${
-        file.name
-      }/blob/main/CHANGELOG.md#`,
+      id: `https://github.com/sitespeedio/${file.name}/blob/main/CHANGELOG.md#${file.version}`,
+      link: `https://github.com/sitespeedio/${file.name}/blob/main/CHANGELOG.md#`,
       description: descriptions[file.name],
       // content: content[file.name],
       author: [

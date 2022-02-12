@@ -12,9 +12,9 @@ function createManager(url, outputFolder) {
   return resultsStorage(url, timestamp, { outputFolder }).storageManager;
 }
 
-describe('storageManager', function() {
-  describe('#rootPathFromUrl', function() {
-    it('should create path from url', function() {
+describe('storageManager', function () {
+  describe('#rootPathFromUrl', function () {
+    it('should create path from url', function () {
       const storageManager = createManager('http://www.foo.bar');
       const path = storageManager.rootPathFromUrl(
         'http://www.foo.bar/x/y/z.html'
@@ -22,7 +22,7 @@ describe('storageManager', function() {
       expect(path).to.equal('../../../../../');
     });
 
-    it('should create path from url with query string', function() {
+    it('should create path from url with query string', function () {
       const storageManager = createManager('http://www.foo.bar');
       const path = storageManager.rootPathFromUrl(
         'http://www.foo.bar/x/y/z?foo=bar'
@@ -31,14 +31,14 @@ describe('storageManager', function() {
     });
   });
 
-  describe('#getBaseDir', function() {
-    it('should create base dir with default output folder', function() {
+  describe('#getBaseDir', function () {
+    it('should create base dir with default output folder', function () {
       const storageManager = createManager('http://www.foo.bar');
       expect(storageManager.getBaseDir()).to.equal(
         path.resolve('sitespeed-result', 'www.foo.bar', timestampString)
       );
     });
-    it('should create base dir with custom output folder', function() {
+    it('should create base dir with custom output folder', function () {
       const storageManager = createManager(
         'http://www.foo.bar',
         '/tmp/sitespeed.io/foo'
@@ -47,14 +47,14 @@ describe('storageManager', function() {
     });
   });
 
-  describe('#getStoragePrefix', function() {
-    it('should create prefix with default output folder', function() {
+  describe('#getStoragePrefix', function () {
+    it('should create prefix with default output folder', function () {
       const storageManager = createManager('http://www.foo.bar');
       expect(storageManager.getStoragePrefix()).to.equal(
         path.join('www.foo.bar', timestampString)
       );
     });
-    it('should create prefix with custom output folder', function() {
+    it('should create prefix with custom output folder', function () {
       const storageManager = createManager(
         'http://www.foo.bar',
         '/tmp/sitespeed.io/foo'

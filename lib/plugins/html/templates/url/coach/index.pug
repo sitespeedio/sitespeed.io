@@ -28,8 +28,23 @@ mixin adviceInfo(name, id, perfectScore, node)
               tr.u-hideable
                 td.url.offendingurl(colspan='3')
                   b Offenders: 
-                  ul
-                    each offender in advice.offending
+                  if advice.offending[0].url
+                    table
+                      thead
+                        tr
+                          th URL
+                          th Transfer size
+                          th Content size 
+                      tbody
+                      each offender in advice.offending 
+                        tr
+                          td 
+                            a(href=offender.url) #{h.shortAsset(offender.url, true)} 
+                          td #{h.size.format(offender.transferSize)}
+                          td #{h.size.format(offender.contentSize)}   
+                  else
+                    ul 
+                    each offender in advice.offending    
                       if offender.startsWith('http')
                         li
                           a(href=offender) #{h.shortAsset(offender, true)}  

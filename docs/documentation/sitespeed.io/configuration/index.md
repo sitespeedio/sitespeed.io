@@ -117,7 +117,7 @@ You should throttle the connection when you are fetching metrics. We have a [spe
 
 You can set the viewport & user agent, so you can fake testing a site as a mobile device.
 
-The simplest way is to just add <code>--mobile</code> as a parameter. The viewport will be set to 360x640 and the user agent will be Iphone6. If you use Chrome it will use the preset Apple iPhone 6 device.
+The simplest way is to just add <code>--mobile</code> as a parameter. If you use Chrome it will use the preset Moto G4 device.
 
 ~~~bash
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --mobile
@@ -167,7 +167,7 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 
 You can keep all your configuration in a JSON file and then pass it on to sitespeed.io, and override with CLI parameters. We use [yargs](https://github.com/yargs/yargs) for the CLI and configuration.
 
-The CLI parameters can easily be converted to a JSON, using the full name of the cli name. A simple example is when you configure which browser to use. The shorthand name is `-b` but if you check the help (`--help`) you can see that the full name is `browsertime.browser`. That means that `-b`and `--browsertime.browser` is the same. And in your JSON configuration that looks like this:
+The CLI parameters can easily be converted to a JSON, using the full name of the cli name. A simple example is when you configure which browser to use. The shorthand name is `-b` but if you check the help (`--help`) you can see that the full name is `browsertime.browser`. That means that `-b` and `--browsertime.browser` is the same. And in your JSON configuration that looks like this:
 
 ~~~json
 {
@@ -230,6 +230,25 @@ You can also extend another JSON config file. The path needs to be absolute.
   "utc": true
 }
 ~~~
+
+If you have a parameter that you want to repeat, for example setting multiple request headers, the field needs to be an JSON array.
+
+~~~json
+{
+  "browsertime": {
+    "requestheader": "key:value"
+  }
+}
+~~~
+
+~~~json
+{
+  "browsertime": {
+    "requestheader": ["key:value", "key2:value2"]
+  }
+}
+~~~
+
 
 You can check out [our example configuration](https://github.com/sitespeedio/dashboard.sitespeed.io/tree/main/config) for [dashboard.sitespeed.io](https://dashboard.sitespeed.io). 
 

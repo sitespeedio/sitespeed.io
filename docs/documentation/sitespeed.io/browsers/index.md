@@ -94,7 +94,7 @@ docker run --shm-size 2g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io
 ~~~
 
 ## Chrome
-The latest version of Chrome should work out of the box. Latest version of stable [ChromeDriver](http://chromedriver.chromium.org) is bundled in sitespeed.io and needs to match your Chrome version.
+The latest version of Chrome should work out of the box. Latest version of stable [ChromeDriver](http://chromedriver.chromium.org) is bundled in sitespeed.io.
 
 ### Chrome setup
 When we start Chrome it is setup with [these](https://github.com/sitespeedio/browsertime/blob/main/lib/chrome/webdriver/chromeOptions.js) command line switches.
@@ -138,15 +138,15 @@ Collect Chromes net log with ```--chrome.collectNetLog```. This is useful if you
 If you use Chrome/Chromium you can get render blocking information (which requests blocks rendering). To get that from sitespeed.io  you need to get the Chrome timeline (and we get that by default). But if you wanna make sure to configure it you turn it on with the flag ```--chrome.timeline ``` or  ```--cpu```.
 
 You can see the blocking information in the waterfall. Requests that blocks has different coloring.
-![Blocking information in the waterfall]({{site.baseurl}}/img/potentially-blocking.jpg)
+![Blocking information in the waterfall]({{site.baseurl}}/img/potentially-blocking.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 You can also click on the request and see the exact blocking info from Chrome.
-![See more blocking info in the waterfall]({{site.baseurl}}/img/see-more-blocking.jpg)
+![See more blocking info in the waterfall]({{site.baseurl}}/img/see-more-blocking.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 You can also see a summary on the Page Xray tab and see what kind of blocking information Chrome provides.
-![Page Xray information about render blocking]({{site.baseurl}}/img/page-xray-blocking.jpg)
+![Page Xray information about render blocking]({{site.baseurl}}/img/page-xray-blocking.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 ### Choosing Chrome version
@@ -155,7 +155,7 @@ You can choose which version of Chrome you want to run by using the ```--chrome.
 Our Docker container only contains one version of Chrome and [let us know](https://github.com/sitespeedio/sitespeed.io/issues/new) if you need help to add more versions.
 
 ### Use a newer version of ChromeDriver
-ChromeDriver is the driver that handles the communication with Chrome. At the moment the ChromeDriver version needs to match the Chrome version ([here](https://bugs.chromium.org/p/chromedriver/issues/detail?id=3864) is a upstream request to remove that check). By default sitespeed.io and Browsertime comes with the ChromeDriver version that matches the Chrome version in the Docker container. If you want to run tests on other Chrome versions, you need to download the matching version of ChromeDriver.
+ChromeDriver is the driver that handles the communication with Chrome. By default sitespeed.io and Browsertime comes with the ChromeDriver version that matches the Chrome version in the Docker container. If you want to run tests on other Chromedriver versions, you need to download that version of ChromeDriver.
 
 You download ChromeDriver from [http://chromedriver.chromium.org](http://chromedriver.chromium.org) and then use ```--chrome.chromedriverPath``` to set the path to the new version of the ChromeDriver.
 
@@ -213,7 +213,7 @@ sitespeed.io --chrome.binaryPath "/Applications/Brave Browser.app/Contents/MacOS
 ~~~
 
 ## Choose when to end your test
-By default the browser will collect data until  [window.performance.timing.loadEventEnd happens + approx 5 seconds more](https://github.com/sitespeedio/browsertime/blob/d68261e554470f7b9df28797502f5edac3ace2e3/lib/core/seleniumRunner.js#L15). That is perfectly fine for most sites, but if you do Ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (```--browsertime.pageCompleteCheck```). When the scripts returns true the browser will close or if the timeout time is reached.
+By default the browser will collect data until  [window.performance.timing.loadEventEnd happens + 2 seconds more](https://github.com/sitespeedio/browsertime/blob/d68261e554470f7b9df28797502f5edac3ace2e3/lib/core/seleniumRunner.js#L15). That is perfectly fine for most sites, but if you do Ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (```--browsertime.pageCompleteCheck```). When the scripts returns true the browser will close or if the timeout time is reached.
 
 In this example we wait 10 seconds until the loadEventEnd happens, but you can also choose to trigger it at a specific event.
 
@@ -222,6 +222,9 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 ~~~
 
 You can also configure how long time your current check will wait until completing with ```--pageCompleteWaitTime```. By default the pageCompleteCheck waits for 5000 ms after the onLoad event to happen. If you want to increase that to 10 seconds use ```--pageCompleteWaitTime 10000```. This is also useful if you test with *pageCompleteCheckInactivity* and it takes long time for the server to respond, you can use the *pageCompleteWaitTime* to wait longer than the default value.
+
+![Navigation timeline]({{site.baseurl}}/img/navigation-timeline.jpg)
+{: .img-thumbnail}
 
 You can also choose to end the test after 5 seconds of inactivity that happens after loadEventEnd. Do that by adding
 ```--browsertime.pageCompleteCheckInactivity``` to your run. The test will then wait for loadEventEnd to happen and no requests in the Resource Timing API the last 5 seconds. Be-aware though that the script will empty the resource timing API data for every check so if you have your own script collecting data using the Resource Timing API it will fail.
@@ -251,11 +254,11 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 ~~~
 
 You will get a custom script section in the Browsertime tab.
-![Custom scripts individual page]({{site.baseurl}}/img/customscripts.png)
+![Custom scripts individual page]({{site.baseurl}}/img/customscripts.png){:loading="lazy"}
 {: .img-thumbnail}
 
 And in the summary and detailed summary section.
-![Summary page]({{site.baseurl}}/img/summary.png)
+![Summary page]({{site.baseurl}}/img/summary.png){:loading="lazy"}
 {: .img-thumbnail}
 
 Bonus: All custom scripts values will be sent to Graphite, no extra configuration needed!

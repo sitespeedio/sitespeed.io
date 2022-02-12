@@ -8,11 +8,11 @@ let aggregator = require('../lib/plugins/domains/aggregator'),
 
 Promise.promisifyAll(fs);
 
-describe('domains', function() {
-  describe('aggregator', function() {
+describe('domains', function () {
+  describe('aggregator', function () {
     let har;
 
-    beforeEach(function() {
+    beforeEach(function () {
       return fs
         .readFileAsync(
           path.resolve(__dirname, 'fixtures', 'www-theverge-com.har'),
@@ -24,8 +24,8 @@ describe('domains', function() {
         });
     });
 
-    describe('#addToAggregate', function() {
-      it('should add har to aggregate', function() {
+    describe('#addToAggregate', function () {
+      it('should add har to aggregate', function () {
         aggregator.addToAggregate(har, 'http://www.vox.com');
         const summary = aggregator.summarize();
         const voxDomain = summary.groups.total['cdn1.vox-cdn.com'];

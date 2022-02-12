@@ -4,11 +4,11 @@
 const dgram = require('dgram');
 
 const server = dgram.createSocket('udp4');
-server.on('message', function(msg) {
+server.on('message', function (msg) {
   console.log(msg.toString());
 });
 
-server.on('listening', function() {
+server.on('listening', function () {
   const address = server.address();
   console.log('udp server listening ' + address.address + ':' + address.port);
 });

@@ -1,5 +1,238 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 22.1.2 - 2022-02-09
+### Fixed
+* Updated to Browsertime 14.21.1 that disables the new Chrome splash screen by default.
+## 22.1.1 - 2022-02-08
+### Fixed
+* The slim container with only Firefox was broken in last release. It's now re-released with Firefox 96 and Firefox 97 coming soon.
+## 22.1.0 - 2022-02-08
+### Added
+* Upgraded to latest Browsertime with Egdedriver 98.
+* Upgraded to Edge 98 and Firefox 97 in the (amd64) Docker containers.
+## 22.0.0 - 2022-02-07
+
+### Breaking changes
+* If you use the Lightouse plugin there's breaking changes:
+
+In the new version we drop support for the following:
+  * Running multiple runs with Lighthouse. 
+  * Using scripts to login the user (or whatever you need before you run your tests)
+It's a couple of reasons why I remove those features:
+* I been looking for a maintainer of the Lighthouse plugin for +1 year and I haven't found one. For me to be able to maintain it I want the plugin to be as simple as possible.
+* I deeply regret merging the PR for adding multiple runs for Lighthouse. That PR goes against everything I know about measuring performance. Lighthouse is not built for getting correct performance metrics, it's built to help (Chrome) developers to get insights how they make the page "faster". Lets stick to the basics and keep it possible to get those recommendations from Lighthouse.
+* Maybe someday Lighthouse will have support for user journeys, lets wait until that is officially supported and then I can check if it could be used in the plugin.
+
+With the new release we also break how you configure Lighthouse. People has had problem with that since day 1. With the new version we support two new ways to configure Lighthouse:
+- By configuration JSON file. `--lighthouse.config config.js`
+- By Lightouse flags file. `--lighthouse.flags flag.json`
+
+If you don't need to configure Lightouse you can use the default settings both for desktop and mobile. If you run without any settings, the plugin will use desktop settings. If you run with `--mobile`, `--android` or `--ios` the mobile settings will be used. 
+
+### Added
+* Build Docker containers for both amd64 and arm64 to make containers work on Mac M1. The arm container contains Firefox and Chromium. Thank you [whichfinder](https://github.com/whichfinder) and [Radu Micu](https://github.com/radum) for the help! Fixed in PR [#3554](https://github.com/sitespeedio/sitespeed.io/pull/3554).
+* When plugins is loaded, there's a new extra last step where we try to load the plugin as a globally installed npm module [#3546](https://github.com/sitespeedio/sitespeed.io/pull/3546).
+
+### Fixed
+* Fix so that we do not display the same 3rd party cookie multiple times [#3545](https://github.com/sitespeedio/sitespeed.io/pull/3545).
+* Updated Coach Core that includes the latest version of third party web and PageXray that find more fonts without mime type.
+
+## 21.6.1 - 2022-01-24
+### Fixed
+* Updated to [Browsertime 14.18.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14181---2022-01-24) that makes the summary metric log message use median (instead of mean) and change a log message level to debug.
+## 21.6.0 - 2022-01-24
+### Added
+* Updated to Edge stable release in the Docker container.
+* Remove Crux distribution table and use pie charts instead [#3537](https://github.com/sitespeedio/sitespeed.io/pull/3537)
+* Add extra sleep time between Crux calls to make sure to not overload the API limit [#3536](https://github.com/sitespeedio/sitespeed.io/pull/3536).
+* Added extra Crux enable command line `--crux.enable` to enable Crux [#3538](https://github.com/sitespeedio/sitespeed.io/pull/3538). Its default value is `true` and you also need to supply the Crux key to run Crux. The reason for the new parameter is that you can now configure the key in your configuration JSON and set the enable to false and then you enable it with the CLI parameter when you actually need to run Crux.
+* Show Crux-metrics on the Summary page [#3540](https://github.com/sitespeedio/sitespeed.io/pull/3540).
+* Updated summary metrics tables with headings to make it easier to read [#3541](https://github.com/sitespeedio/sitespeed.io/pull/3541).
+* Added [Browsertime 14.17.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14170---2022-01-23) with new Select and click.byName commands. With that Browsertime version you also need to have ffprobe installed when you run Visual Metrics but that should already be installed.
+* Added [Browsertime 14.18.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14180---2022-01-24) with a fix for Firefox [#1698](https://github.com/sitespeedio/browsertime/issues/1698)
+
+## 21.5.0 - 2022-01-14
+### Added
+* Upgraded to [Browsertime 14.15.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14150---2022-01-12) that adds support for `--appendToUserAgent` for Chrome/Edge/Firefox. And then Browsertime 14.16.0 that supports Geckodriver for Raspberry Pi.
+## 21.4.0 - 2022-01-12
+### Added
+* Updated to a new build of WebPageReplay in the Docker container
+* Updated the Ubuntu base image to latest version and latest NodeJS in the Docketr container.
+* Upgraded Browsertime [#3528](https://github.com/sitespeedio/sitespeed.io/pull/3528): 
+  * Add support for Humble as connectivity engine for mobile phone testing. Make sure to setup Humble on a Raspberry Pi 4 and the choose engine with --connectivity.engine humble and set the URL to your instance --connectivity.humble.url http://raspberrypi.local:3000. Added in #1691.
+* Upgraded to Chrome 97 and Edge 97 in the Docker container.
+* Upgraded to Chromedriver 97.
+### Fixed
+* Updated Chromedriver library that automatically picks up the Chromedriver if it's installed on Raspberry Pi.
+## 21.3.0 - 2022-01-01
+### Added
+* Updated to [Browsertime 14.13.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14130---2021-12-30) with the following fixes for the user agent:
+  * Append text to Chrome/Edge user agent using `--chrome.appendToUserAgent`
+  * When you use Chrome/Edge and use a "emulated device" that will use the user agent that you provide using `--userAgent`. Else it will use the user agent from your emulated device setting.
+  * You can also use Edge to run emulated mobile with the same settings as Chrome.
+## 21.2.2 - 2021-12-23
+### Fixed
+* Fix the error introduced in 21.2.0 for "Include page summary URL in the result JSON"
+[#3525](https://github.com/sitespeedio/sitespeed.io/pull/3525). 
+
+## 21.2.1 - 2021-12-22
+### Fixed
+* It turns out that Firefox 95 doesn't work with the HAR export trigger and the workaround that worked in Firefox 94 seems to not work in 95 see https://github.com/sitespeedio/browsertime/issues/1671#issuecomment-999412035. That's why we are reverting to Firefox 94 in the Docker containers.
+## 21.2.0 - 2021-12-22
+### Fixed
+* The catching of errors in the queue was broken and reported the error x times (x=number of plugins). Also when we had an error the result JSON was not stored. [#3522](https://github.com/sitespeedio/sitespeed.io/pull/3522).
+
+### Added
+* Updated to Firefox 95 and Edge 96 in the Docker container.
+* Include page summary URL in the result JSON [#3523](https://github.com/sitespeedio/sitespeed.io/pull/3523).
+
+## 21.1.0 - 2021-12-06
+### Added
+* Added possibility choose name for storing a result JSON [#3520](https://github.com/sitespeedio/sitespeed.io/pull/3520). We use this for a feature that will be released soon.
+## 21.0.1 - 2021-12-01
+### Fixed
+* Updated Browsertime that logs Chrome document request failures on debug log level instead so that the log is not cluttered.
+
+## 21.0.0 - 2021-12-01
+
+### Changed
+* Updated to [Coach Core 7.0.0](https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#700---2021-12-01). This will probably change your Coach score. The new Coach has the following changes:
+  * Moved AMP advice to best practice instead of privacy [#67](https://github.com/sitespeedio/coach-core/pull/67).
+  * Increased favicon max size advice from 5 to 10 kb [#68](https://github.com/sitespeedio/coach-core/pull/68)
+  * Renamed the fastRender advice to avoidRenderBlocking [#73](https://github.com/sitespeedio/coach-core/pull/73)
+  * Remove the third party async advice [#74](https://github.com/sitespeedio/coach-core/pull/74)
+  * Updated the layout shift advice to use cumulative layout shift [#75](https://github.com/sitespeedio/coach-core/pull/75)
+  * Changed id of the Google Tag Manager advice [#79](https://github.com/sitespeedio/coach-core/pull/79)
+  * Updated third-party-web to 0.12.6.
+  * Use Chrome(ium) render blocking information to know if a request is render blocking or not [#66](https://github.com/sitespeedio/coach-core/pull/66).
+  * Report offending JavaScript assets if the JavaScript max limits kicks in [#70](https://github.com/sitespeedio/coach-core/pull/70).
+  * New largest contentful paint advice [#76](https://github.com/sitespeedio/coach-core/pull/76).
+  * New first contentful paint advice [#77](https://github.com/sitespeedio/coach-core/pull/77).
+  * Added TBT in the CPU longtask advice [#80](https://github.com/sitespeedio/coach-core/pull/80).
+  * Report content and transfer size for offending URLs [#81](https://github.com/sitespeedio/coach-core/pull/81).
+  * Report offending assets with transfer/content size for page size limit [#82](https://github.com/sitespeedio/coach-core/pull/82).
+  * Fix cases when JQuery is undefined. Thank you [shubham jajodia](https://github.com/jajo-shubham) for PR [#64](https://github.com/sitespeedio/coach-core/pull/64).
+  * A better way to find offending layout shifters. Thank you [shubham jajodia](https://github.com/jajo-shubham) for PR [#65](https://github.com/sitespeedio/coach-core/pull/65).
+  * Removed mentions aboout server push [#69](https://github.com/sitespeedio/coach-core/pull/69)
+  * Added more information on how to debug CPU advice [#71](https://github.com/sitespeedio/coach-core/pull/71).
+
+* Updated to sustainable plugin core code to [co2 0.8.0](https://github.com/thegreenwebfoundation/co2.js/blob/main/CHANGELOG.md#080---2021-11-28). This include a biug fix to the 1byte model that will lower your co2 score [#3519](https://github.com/sitespeedio/sitespeed.io/pull/3519). 
+
+### Added
+* Updated to [Browsertime 14.12.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14120---2021-11-30) that fixes the [FF 94 HAR issue](https://github.com/sitespeedio/browsertime/issues/1671).
+* Updated green domains from the Green Web Foundation [#3513](https://github.com/sitespeedio/sitespeed.io/pull/3513).
+* Updated PerfCascade that support chunks when you use Chrome(ium) [#3514](https://github.com/sitespeedio/sitespeed.io/pull/3514).
+* Updated to Firefox 94 in the Docker image.
+
+### Fixed
+* Added missing summary boxes on start page [#3515](https://github.com/sitespeedio/sitespeed.io/pull/3515).
+
+## 20.6.2 - 2021-11-20
+### Fixed
+* Updated to [Browsertime 14.10.2](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14102---2021-11-20) that disables the Edge/Edgedriver version check.
+## 20.6.1 - 2021-11-20
+### Fixed
+* Updated to [Browsertime 14.10.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14101---2021-11-19) that disables the Chrome/Chromedriver version check.
+
+## 20.6.0 - 2021-11-17
+
+Note: Do your test fails with Firefox 94? See [Browsertime #1671](https://github.com/sitespeedio/browsertime/issues/1671). Until that is fixed in Firefox, it seems most use cases is fixed by adding a settle time (the browser rest for a while before we start the test). Try with `--browsertime.settleTime 10000` to add a 10 seconds wait time before the test starts.
+### Added
+* Updated to [Browsertime 14.10.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14100---2021-11-16) with Chromedriver 96 and Chrome 96 in the Docker container.
+
+## 20.5.0 - 2021-11-09
+### Added
+* Updated to [Browsertime 14.9.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1490---2021-11-07) with updated Chrome HAR generator.
+
+### Fixed
+* Ignore Influxdb and Grafana setup messages when you use the analysisstorer plugin [#3508](https://github.com/sitespeedio/sitespeed.io/pull/3508).
+## 20.4.2 - 2021-11-07
+### Fixed
+* Updated to AXE core 4.3.5 [#3501](https://github.com/sitespeedio/sitespeed.io/pull/3501).
+* Use latest npm in the Docker container [#3502](https://github.com/sitespeedio/sitespeed.io/pull/3502).
+* Fixed the bug that caused so that you couldn't use the analyisstorer plugin together with Graphite [#3506](https://github.com/sitespeedio/sitespeed.io/pull/3506).
+* Updated to yargs 17.2.1
+## 20.4.1 - 2021-10-29
+### Fixed
+* Reverted the change with npm in the Docker container since it broke both webpagetest and the +1 container installation
+## 20.4.0 - 2021-10-29
+
+### Added
+* Updated to [Browsertime 14.8.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md) with Edgeriver 95.
+* Updated to Edge 95 in the Docker container.
+* Update to use NodeJS 16 in the Docker container [#3495](https://github.com/sitespeedio/sitespeed.io/pull/3495).
+* On Mac OS: Use `--open` or `-o` to open the result in your default browser. Thank you [Johanna Lindh](https://github.com/zhouhana) for the idea! PR [#3493](https://github.com/sitespeedio/sitespeed.io/pull/3493).
+* The +1 container now had Lighthouse 8.6.0.
+
+### Fixed
+* Removed npm from the Docker container when everything has been installed to fix npm security issues + decrease the size of the container.
+## 20.3.1 - 2021-10-21
+### Fixed
+* Fix to handle integer value Android device serial, thank you [Saurav Kumar](https://github.com/svkrclg) for PR [#3490](https://github.com/sitespeedio/sitespeed.io/pull/3490).
+## 20.3.0 - 2021-10-20
+### Added
+* Updated Browsertime that uses Chromedriver 95.
+* Updated Chrome 95 in the Docker container.
+
+## 20.2.0 - 2021-10-14
+### Added
+* Add support for using cookies when crawling, thank you [dammg](https://github.com/dammg) for PR [#3472](https://github.com/sitespeedio/sitespeed.io/pull/3472).
+* [Browsertime 14.6.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1460---2021-10-13).
+* [Use alias in your budget file](https://www.sitespeed.io/documentation/sitespeed.io/performance-budget/#override-per-url-or-alias) [#3479](https://github.com/sitespeedio/sitespeed.io/pull/3479).
+* Support for using [User Timing API marks/measures in the budget file](https://www.sitespeed.io/documentation/sitespeed.io/performance-budget/#user-timing-api-metrics) [#3482](https://github.com/sitespeedio/sitespeed.io/pull/3482) and [#3483](https://github.com/sitespeedio/sitespeed.io/pull/3483). 
+* Support for [using custom metrics from scripting in your budget](https://www.sitespeed.io/documentation/sitespeed.io/performance-budget/#metrics-from-scripting) [#3484](https://github.com/sitespeedio/sitespeed.io/pull/3484) and [#3486](https://github.com/sitespeedio/sitespeed.io/pull/3486).
+
+### Fixed
+* Allow crawler to use cookies, thank you [dammg](https://github.com/dammg) for the PR [#3472](https://github.com/sitespeedio/sitespeed.io/pull/3472) with small fix [#3473](https://github.com/sitespeedio/sitespeed.io/pull/3473).
+
+## 20.1.0 - 2021-10-05
+### Added
+* Use Firefox 93 in the Docker and the Docker slim container [#3471](https://github.com/sitespeedio/sitespeed.io/pull/3471).
+## 20.0.0 - 2021-09-30
+
+Please read the [20.0 blog post](https://www.sitespeed.io/sitespeed.io-20.0/)! 
+### Breaking changes
+* Before you update to the new version: If you save your metrics to Graphite, have you upgraded those metrics to the new format as introduced in sitespeed.io the **15/4-2021**? If not, please follow the [guide](https://www.sitespeed.io/documentation/sitespeed.io/graphite/#upgrade-to-use-the-test-slug-in-the-namespace) in the documentation. If you haven't done that and still upgrade to sitespeed.io 20 you need to make sure you add `--graphite.addSlugToKey false` to your test else the metrics will be reported under a new key structure. The change was done in [#3434](https://github.com/sitespeedio/sitespeed.io/pull/3434).
+* Set [throttle](https://github.com/sitespeedio/throttle) as default connectivity engine if you use Mac or Linux [#3433](https://github.com/sitespeedio/sitespeed.io/pull/3433). This makes it much easier to enable throttling. Our Docker container is not affected by this change.
+* There's a new default mobile `--mobile` for Chrome. The new default is Moto G4 (instead of iPhone 6) [#3467](https://github.com/sitespeedio/sitespeed.io/pull/3467).
+* When you run your tests on Safari on iOS the Coach is disabled by default [#3468](https://github.com/sitespeedio/sitespeed.io/pull/3468).
+
+### Added
+* [Browsertime 14.5.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1450---2021-09-30) with CSS selector support for the mouse commands.
+
+## 19.6.0 - 2021-09-23
+### Added
+* Updated to Chrome 94 in the Docker container.
+* Upgraded to [Browsertime 14.4.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1440---2021-09-22) that included Chromedriver 94.
+## 19.5.0 - 2021-09-17
+### Added
+* Updated to Edge 93 in the Docker container.
+* Updated to [Browsertime 14.3.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1430---2021-09-16).
+* Updated WebPageReplay to new version [#3642](https://github.com/sitespeedio/sitespeed.io/pull/3462).
+
+## 19.4.2 - 2021-09-08
+### Fixed
+* Updated the Docker container to use Firefox 92 (instead of beta 92)
+* Updated the base Docker container to use a newer updated version of Ubuntu 20.04. See [#3456](https://github.com/sitespeedio/sitespeed.io/issues/3456).
+## 19.4.1 - 2021-09-06
+### Fixed
+* Updated to [Browsertime 14.2.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1421---2021-09-06).
+* Updated to AXE 4.3.3
+## 19.4.0 - 2021-09-05
+
+### Added
+* Add option to ignore robots.txt when crawling. Use `--crawler.ignoreRobotsTxt true` to ignore. Thank you [dammg](https://github.com/dammg) for PR [#3454](https://github.com/sitespeedio/sitespeed.io/pull/3454)!
+* Updated to [Browsertime 14.2.0](https://github.com/sitespeedio/browsertime/releases/tag/v14.2.0).
+### Fixed
+* If generating a HTML file failed, all generation failed. This fixes that and continue with the next file [#3453](https://github.com/sitespeedio/sitespeed.io/pull/3453).
+
+##  19.3.0 - 2021-09-01
+### Added
+* Upgraded to [Browsertime 14.1.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1410---2021-09-01) with Chromedriver 93.
+* Added Chrome 93 in the Docker container.
+
+### Fixed
+* Upgraded to [Browsertime 14.0.3](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1403---2021-08-31).
 ## 19.2.0 - 2021-08-27
 ### Added
 * Upgraded to AXE core 4.3.2 [#3441](https://github.com/sitespeedio/sitespeed.io/pull/3441). 

@@ -88,7 +88,7 @@ It's also possible that you can run on a smaller instance, I've seen testing gov
 
 And also remember that all metrics will be dependent on what kind of instance type you use (CPU/memory etc). It will affect CPU metrics (long tasks etc) and all other metrics. Here's an example of what First Visual Change looks like running on three different instance types.
 
-![Running on three different server types]({{site.baseurl}}/img/server-instance-type.png)
+![Running on three different server types]({{site.baseurl}}/img/server-instance-type.png){:loading="lazy"}
 {: .img-thumbnail}
 
 
@@ -101,19 +101,19 @@ However keeping one instance (or multiple instances) isn't a bullet proof soluti
 
 Lets look at some graphs. Here's an example where we switched to a new instance, the exact same instance type, running the exact same code. You can see that the new instance is slower but much more stable metrics.
 
-![Running on the same server instance type]({{site.baseurl}}/img/aws-same-server-update.png)
+![Running on the same server instance type]({{site.baseurl}}/img/aws-same-server-update.png){:loading="lazy"}
 {: .img-thumbnail}
 
 You can keep track if how *"unstable"* the metrics are by looking at the standard deviation. Here you can see the standard deviation when we replayed on a same size instance.
-![Standard deviation]({{site.baseurl}}/img/aws-lower-stddev.png)
+![Standard deviation]({{site.baseurl}}/img/aws-lower-stddev.png){:loading="lazy"}
 {: .img-thumbnail}
 
 These metrics will be different depending on the URL you test (as long as you run different CSS/JavaScript). Here's another URL that we tested when we deployed on a new instance. Yeah, much more stable metrics.
-![New server, new URL]({{site.baseurl}}/img/new-server-again.png)
+![New server, new URL]({{site.baseurl}}/img/new-server-again.png){:loading="lazy"}
 {: .img-thumbnail}
 
 But look at the standard deviation. You can see that the max difference is now higher, but in general it looks like the deviation is lower. 
-![Higher stdeev]({{site.baseurl}}/img/higher-stddev.png)
+![Higher stdeev]({{site.baseurl}}/img/higher-stddev.png){:loading="lazy"}
 {: .img-thumbnail}
 
 Its important that you keep track of standard deviation for your metrics and look for changes!
@@ -142,7 +142,7 @@ The Facebook mobile performance team [wrote about it](https://developers.faceboo
 
 A couple of years ago we tested with Chrome, measuring start render on Wikipedia using a Moto G4 on WebPageTest and the result (median) looked like this: 
 
-![Chrome on Moto G4 measuring Wikipedia]({{site.baseurl}}/img/chrome-android-moto-g4.png)
+![Chrome on Moto G4 measuring Wikipedia]({{site.baseurl}}/img/chrome-android-moto-g4.png){:loading="lazy"}
 {: .img-thumbnail}
 
 The problem was that we where running on different phones (but same model) and we are pretty far from the flat line that we want.
@@ -155,7 +155,7 @@ One problem running tests on Android is that when the phone temperature gets hig
 
 To run your test you can either host your own mobile phones and drive them through a Mac Mini or find a hosting solution that can do the same. At the moment we do not have any recommendations for hosting, except for hosting the solution yourself.
 
-![Mobile deevice lab]({{site.baseurl}}/img/mobile-device-lab.jpg)
+![Mobile deevice lab]({{site.baseurl}}/img/mobile-device-lab.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 ### Number of runs
@@ -213,7 +213,7 @@ You can also use a replay server to try to minimize the noise. The sitespeed.io 
 
 Another way is to look at metrics trends and compare metrics with one week back in time to find regressions. This is a technique that [Timo Tijhof](https://twitter.com/TimoTijhof) been using for a long time and we adopted it in sitespeed.io years ago.
 
-![Compare one week back]({{site.baseurl}}/img/compare-one-week-back.png)
+![Compare one week back]({{site.baseurl}}/img/compare-one-week-back.png){:loading="lazy"}
 {: .img-thumbnail}
 
 A good way to test the stability of your tests is to setup a static HTML page on your server. You can take one of your important pages, store the page as HTML and make sure the CSS and JavaScript and images are the same over time (hard code so the correct versions are used). Add that page to your tests to see what kind of variance you get. Continue to test that page as long as you run your tests, to have a baseline for your tests.
@@ -288,7 +288,7 @@ If you for some reason don't want to use Browsertime or sitespeed.io I'm gonna h
 
 Another important thing is privacy. I think its's pretty easy to check if the tool you wanna use care about privacy of your data by checking how many third party tools the tools web site use. Here's what the number of third parties requests looks like for a couple of tools: 
 
-![Running on the same server instance type]({{site.baseurl}}/img/thirdparty-performance-tools.png)
+![Running on the same server instance type]({{site.baseurl}}/img/thirdparty-performance-tools.png){:loading="lazy"}
 {: .img-thumbnail}
 
 Best is to check yourself when you are evaluating a tool.
