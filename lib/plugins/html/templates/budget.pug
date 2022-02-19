@@ -6,8 +6,9 @@ mixin row(budget)
     each result in results
       tr
         td
-          a(href=url)= url
-          td #{result.metric} with value #{result.friendlyValue || result.value} limit #{result.limitType} #{result.friendlyLimit || result.limit}
+          a(href=url)= alias[url] ? alias[url].urlAlias  : url
+          p #{alias[url] ? url : ''}
+        td #{result.metric} with value #{result.friendlyValue || result.value} limit #{result.limitType} #{result.friendlyLimit || result.limit}
 
 block content
     h2 The budget
