@@ -54,6 +54,6 @@ block content
                                         b #{friendly.name}
                                     each page in runPages
                                         td #{friendly.format(get (page, 'data.' + tool + '.run.' + (friendly.runPath || friendly.path)))}
-                                    td #{friendly.format(get (mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.summaryPath + '.median', ''))}
-                                    td #{friendly.format(get (mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.summaryPath + '.mean', ''))}
-                                    td #{friendly.format(get (mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.summaryPath + '.stddev', ''))}
+                                    td #{friendly.format(get (mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.median', ''))}
+                                    td #{friendly.format(get (mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.mean', ''))}
+                                    td #{friendly.format(get (mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.stddev', ''))}
