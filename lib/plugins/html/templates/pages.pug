@@ -43,7 +43,7 @@ mixin rows(pages)
 
 block content
   - headings = ['URL']
-  if (options.browsertime.visualMetrics || (options.cpu && options.browsertime.chrome && options.browsertime.chrome.visualMetricsUsingTrace && options.browsertime.chrome.enableTraceScreenshots)) && !hasPageSummaryMetricInput
+  if (options.browsertime.visualMetrics && !hasPageSummaryMetricInput)
     - headings.push('First Visual Change', 'Speed Index', 'Last Visual Change')
   - metricList = html.pageSummaryMetrics
   each kv in metricList
