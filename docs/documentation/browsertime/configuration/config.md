@@ -24,8 +24,7 @@ chrome
       --chrome.enableTraceScreenshots, --enableTraceScreenshots  Include screenshots in the trace log (enabling the trace category disabled-by-default-devtools.screenshot).  [boolean]
       --chrome.enableChromeDriverLog                             Log Chromedriver communication to a log file.  [boolean]
       --chrome.enableVerboseChromeDriverLog                      Log verboose Chromedriver communication to a log file.  [boolean]
-      --chrome.visualMetricsUsingTrace                           Collect Visual Metrics using Chrome trace log. You need enable trace screenshots --chrome.enableTraceScreenshots and --cpu metrics for this to work.  [boolean] [default: false]
-      --chrome.timeline                                          Collect the timeline data. Drag and drop the JSON in your Chrome detvools timeline panel or check out the CPU metrics in the Browsertime.json  [boolean]
+      --chrome.timeline, --chrome.trace                          Collect the timeline data. Drag and drop the JSON in your Chrome detvools timeline panel or check out the CPU metrics in the Browsertime.json  [boolean]
       --chrome.collectPerfLog                                    Collect performance log from Chrome with Page and Network events and save to disk.  [boolean]
       --chrome.collectNetLog                                     Collect network log from Chrome and save to disk.  [boolean]
       --chrome.netLogCaptureMode                                 Choose capture mode for Chromes netlog.  [choices: "Default", "IncludeSensitive", "Everything"] [default: "IncludeSensitive"]
@@ -125,7 +124,7 @@ connectivity
       --connectivity.rtt, --connectivity.latency          This option requires --connectivity.profile be set to "custom".
       --connectivity.variance                             This option requires --connectivity.engine be set to "throttle". It will add a variance to the rtt between each run. --connectivity.variance 2 means it will run with a random variance of max 2% between runs.
       --connectivity.alias                                Give your connectivity profile a custom name
-      --connectivity.engine                               The engine for connectivity. Throttle works on Mac and tc based Linux. For mobile you can use Humble if you have a Humble setup. Use external if you set the connectivity outside of Browsertime. The best way do to this is described in https://github.com/sitespeedio/browsertime#connectivity.  [choices: "external", "throttle", "tsproxy", "humble"] [default: "external"]
+      --connectivity.engine                               The engine for connectivity. Throttle works on Mac and tc based Linux. For mobile you can use Humble if you have a Humble setup. Use external if you set the connectivity outside of Browsertime. The best way do to this is described in https://github.com/sitespeedio/browsertime#connectivity.  [choices: "external", "throttle", "humble"] [default: "external"]
       --connectivity.throttle.localhost                   Add latency/delay on localhost. Perfect for testing with WebPageReplay  [boolean] [default: false]
       --connectivity.humble.url                           The path to your Humble instance. For example http://raspberrypi:3000  [string]
 

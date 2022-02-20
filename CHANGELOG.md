@@ -3,6 +3,9 @@
 ## UNRELEASED
 ### Fixed
 * Fix broken JUnit output. Thank you [rghetu](https://github.com/rghetu) for finding it [#3569](https://github.com/sitespeedio/sitespeed.io/pull/3569).
+
+### Added
+* Use Browsertime 15.0.0.
 ## 22.1.2 - 2022-02-09
 ### Fixed
 * Updated to Browsertime 14.21.1 that disables the new Chrome splash screen by default.
