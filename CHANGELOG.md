@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 23.0.0
+## 23.0.0 - UNRELEASED
 
 ### Breaking changes
 * In this release we updated to Browsertime 15.0.0 that drops built in support for [TSProxy](https://github.com/WPO-Foundation/tsproxy).The reason to drop TSProxy is that it only works in Python 2 and the sunset for Python 2 was January 1, 2020. If you still need TSProxy you can set it up yourself.
