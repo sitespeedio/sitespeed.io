@@ -41,7 +41,7 @@ if browsertime
   - baseHelpURL = rootPath + 'help.html#';
 
   - const defaultVisualMetrics = ['SpeedIndex','FirstVisualChange','LastVisualChange','VisualProgress', 'PerceptualSpeedIndexProgress', 'ContentfulSpeedIndexProgress', 'videoRecordingStart', 'PerceptualSpeedIndex', 'ContentfulSpeedIndex', 'LastMeaningfulPaint', 'LargestImage', 'Heading' ,'VisualReadiness','VisualComplete85', 'VisualComplete95','VisualComplete99'];
-  if (options.browsertime.visualMetrics || (options.cpu && options.browsertime.chrome && options.browsertime.chrome.visualMetricsUsingTrace && options.browsertime.chrome.enableTraceScreenshots)) && visualMetrics
+  if (options.browsertime.visualMetrics && visualMetrics)
     a#visualmetrics
     h3 Visual Metrics
     .row

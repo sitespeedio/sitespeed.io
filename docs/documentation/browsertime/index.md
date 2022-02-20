@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Documentation Browsertime 14
+title: Documentation Browsertime 15
 description: Read about all you can do with Browsertime.
 keywords: tools, documentation, web performance
 nav: documentation
@@ -9,7 +9,7 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Documentation for Browsertime.
 ---
 
-# Documentation v14
+# Documentation v15
 
 <img src="{{site.baseurl}}/img/logos/browsertime.png" class="pull-right img-big" alt="Browsertime logo" width="200" height="175">
 

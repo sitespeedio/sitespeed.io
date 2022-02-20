@@ -128,7 +128,7 @@ Another good thing is to make sure you monitor your server to keep track of memo
 Running on bare metal servers helps you to avoid the noisy neighbour effect. However it doesn't automatically fixes your problem. You still need to configure/tune your OS to get stable metrics. We hope to include some examples to help you when we get our hands on a bare metal server :)
 
 #### Running on Kubernetes
-The problem running on Kubernetes is to get stable connectivity. On Kubernetes you cannot use TC or Docker networks to set the connectivity but you can use [TSProxy](https://github.com/WPO-Foundation/tsproxy). It's bundled in Browsertime and enable it with <code>--browsertime.connectivity.engine tsproxy</code>. For other synthetic tools I haven't seen a solution fixing the network connectivity problem (yet).
+The problem running on Kubernetes is to get stable connectivity. On Kubernetes you cannot use TC or Docker networks to set the connectivity. 
 
 ### Mobile
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Set the connectivity type before you start your tests.
-description: You can throttle the connection to make the connectivity slower to make it easier to catch regressions. The best way to do that is to setup a network bridge in Docker or use our connectivity engine Throttle. If you use Kubernetes you should use TSProxy.
+description: You can throttle the connection to make the connectivity slower to make it easier to catch regressions. The best way to do that is to setup a network bridge in Docker or use our connectivity engine Throttle.
 keywords: connectivity, throttle, emulate, users
 nav: documentation
 category: sitespeed.io
@@ -19,8 +19,7 @@ twitterdescription:
 ## Change/set connectivity
 You can and should throttle the connection to make the connectivity slower to make it easier to catch regressions. If you don’t do it, you can run your tests with different connectivity profiles and regressions/improvements that you see is caused by your servers flaky internet connection
 
-The best way to do that is to use our connectivity engine [Throttle](https://github.com/sitespeedio/throttle), setup a network bridge in Docker, use [Humble](https://github.com/sitespeedio/humble) the Raspberry Pi WiFi network link conditionerif you test with mobile phones or if you use Kubernetes you can use [TSProxy](https://github.com/WPO-Foundation/tsproxy).
-
+The best way to do that is to use our connectivity engine [Throttle](https://github.com/sitespeedio/throttle), setup a network bridge in Docker, use [Humble](https://github.com/sitespeedio/humble) the Raspberry Pi WiFi network link conditioner if you test with mobile phones.
 ### Throttle
 [Throttle](https://github.com/sitespeedio/throttle) uses *tc* on Linux and *pfctl* on Mac to change the connectivity. Throttle will need sudo rights for the user running sitespeed.io to work.
 
@@ -122,14 +121,5 @@ docker network rm 3g
 docker network rm 3gfast
 docker network rm 3gslow
 docker network rm cable
-~~~
-
-### TSProxy
-[TSProxy](https://github.com/WPO-Foundation/tsproxy) is a Traffic-shaping SOCKS5 proxy built by [Patrick Meenan](https://twitter.com/patmeenan). You need Python 2.7 for it to work. When you run it through Browsertime/sitespeed.io configures Firefox and Chrome to automatically use the proxy.
-
-If use Kubernetes you can not use Docker networks or tc, but you can use TSProxy. However there has been [many issues](https://github.com/WPO-Foundation/tsproxy/issues?q=is%3Aissue+is%3Aclosed) with TSProxy through the years, so if you can avoid using it, please do.
-
-~~~bash
-sitespeed.io --browsertime.connectivity.engine tsproxy -c cable https://www.sitespeed.io/
 ~~~
 
