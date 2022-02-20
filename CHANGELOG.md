@@ -1,11 +1,21 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 23.0.0
+
+### Breaking changes
+* In this release we updated to Browsertime 15.0.0 that drops built in support for [TSProxy](https://github.com/WPO-Foundation/tsproxy).The reason to drop TSProxy is that it only works in Python 2 and the sunset for Python 2 was January 1, 2020. If you still need TSProxy you can set it up yourself.
+
+* Browsertime also drop support for getting visual metrics from the trace log. It was added to evaluate if it could be a compliment to the video visual metrics but it was not. Removing it also decreased the number of dependencies in Browsertime.
+
+* Linux/Mac OS will flush the DNS between runs, that means that you can have some changes in DNS lookup time when you upgrade to 23.0.0.
+
 ### Fixed
 * Fix broken JUnit output. Thank you [rghetu](https://github.com/rghetu) for finding it [#3569](https://github.com/sitespeedio/sitespeed.io/pull/3569).
+* When comparing metrics side by side for different runs, mean/median and stddev was sometimes broken for some timing metrics. Fixed with [#3573](https://github.com/sitespeedio/sitespeed.io/pull/3573)
 
 ### Added
 * Use Browsertime 15.0.0.
+* Show alias name in the budget report page [#3572](https://github.com/sitespeedio/sitespeed.io/pull/3572).
 ## 22.1.2 - 2022-02-09
 ### Fixed
 * Updated to Browsertime 14.21.1 that disables the new Chrome splash screen by default.
@@ -19,7 +29,7 @@
 ## 22.0.0 - 2022-02-07
 
 ### Breaking changes
-* If you use the Lightouse plugin there's breaking changes:
+* If you use the Lighthouse plugin there's breaking changes:
 
 In the new version we drop support for the following:
   * Running multiple runs with Lighthouse. 
