@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Mon, 21 Feb 2022 07:40:28 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 21 Feb 2022 08:26:16 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,19 +17,19 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[sitespeed.io 23.0.0]]></title>
+            <title><![CDATA[sitespeed.io 23.0.1]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.0.0</guid>
-            <pubDate>Mon, 21 Feb 2022 07:40:28 GMT</pubDate>
-            <description><![CDATA[ Use Browsertime 15.0.0. Show alias name in the budget report page #3572. Fix broken JUnit output. Thank you rghetu for finding it #3569. When comparing metrics side by side for different runs, mean/median and stddev was sometimes broken for some timing metrics. Fixed with #3573 In this release we updated to Browsertime 15.0.0 that drops built in support for TSProxy. The reason to drop TSProxy is that it only works in Python 2 and the sunset for Python 2 was January 1, 2020. If you still need TSProxy you can set it up yourself. Browsertime also drop support for getting visual metrics from the trace log. It was added to evaluate if it could be a compliment to the video visual metrics but it was not. Removing it also decreased the number of dependencies in Browsertime. Linux/Mac OS will flush the DNS between runs, that means that you can have some changes in DNS lookup time when you upgrade to 23.0.0.]]></description>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.0.1</guid>
+            <pubDate>Mon, 21 Feb 2022 08:26:16 GMT</pubDate>
+            <description><![CDATA[ Bumped to Browsertime 15.0.1 to make sure connectivity is set only once. In last release it was set in the beginning of the test and for eacch iteration. In practice that doesn't matter but it's very confusing if you check the logs.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 15.0.0]]></title>
+            <title><![CDATA[browsertime 15.0.1]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.0.0</guid>
-            <pubDate>Sun, 20 Feb 2022 13:05:34 GMT</pubDate>
-            <description><![CDATA[ New alias for getting the Chrome trace log: --chrome.trace #1728. On OS X and Linux the DNS will be flushed between runs. You can disable that with --disableDNSFlush true #1732. Code cleanup: #1720 Moved test to Ava instead of mocha and moved most testing against a local HTTP server instead of internet #1725. Removed the built in support for TSProxy #1718. TSProxy only worked with Python 2.7 and we want to remove that dependency. Removed support for using speedline and the CLI arg --chrome.visualMetricsUsingTrace #1727.]]></description>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.0.1</guid>
+            <pubDate>Mon, 21 Feb 2022 08:22:26 GMT</pubDate>
+            <description><![CDATA[ Make sure connectivity is only set before the test begins #1733.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
