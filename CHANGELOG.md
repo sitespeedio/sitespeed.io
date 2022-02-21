@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 23.0.1 - 2022-02-21
+### Fixed
+* Bumped to Browsertime 15.0.1 to make sure connectivity is set only once. In last release it was set in the beginning of the test and for eacch iteration. In practice that doesn't matter but it's very confusing if you check the logs. 
 ## 23.0.0 - 2022-02-21
 
 ### Breaking changes
