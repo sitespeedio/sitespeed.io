@@ -1,9 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 23.0.0 - UNRELEASED
+## 23.0.0 - 2022-02-21
 
 ### Breaking changes
-* In this release we updated to Browsertime 15.0.0 that drops built in support for [TSProxy](https://github.com/WPO-Foundation/tsproxy).The reason to drop TSProxy is that it only works in Python 2 and the sunset for Python 2 was January 1, 2020. If you still need TSProxy you can set it up yourself.
+* In this release we updated to Browsertime 15.0.0 that drops built in support for [TSProxy](https://github.com/WPO-Foundation/tsproxy). The reason to drop TSProxy is that it only works in Python 2 and the sunset for Python 2 was January 1, 2020. If you still need TSProxy you can set it up yourself.
 
 * Browsertime also drop support for getting visual metrics from the trace log. It was added to evaluate if it could be a compliment to the video visual metrics but it was not. Removing it also decreased the number of dependencies in Browsertime.
 
@@ -16,6 +16,7 @@
 ### Added
 * Use Browsertime 15.0.0.
 * Show alias name in the budget report page [#3572](https://github.com/sitespeedio/sitespeed.io/pull/3572).
+
 ## 22.1.2 - 2022-02-09
 ### Fixed
 * Updated to Browsertime 14.21.1 that disables the new Chrome splash screen by default.
