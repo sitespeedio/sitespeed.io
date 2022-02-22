@@ -1,19 +1,19 @@
 {
   "name": "sitespeed.io",
-  "version": "22.1.2",
+  "version": "23.0.1",
   "lockfileVersion": 2,
   "requires": true,
   "packages": {
     "": {
       "name": "sitespeed.io",
-      "version": "22.1.2",
+      "version": "23.0.1",
       "license": "MIT",
       "dependencies": {
         "@google-cloud/storage": "5.8.3",
         "@tgwf/co2": "0.8.0",
         "aws-sdk": "2.882.0",
         "axe-core": "4.3.5",
-        "browsertime": "15.0.0",
+        "browsertime": "15.0.1",
         "cli-color": "2.0.0",
         "coach-core": "7.1.0",
         "concurrent-queue": "7.0.2",
@@ -1460,9 +1460,9 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "15.0.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-15.0.0.tgz",
-      "integrity": "sha512-2Ysyzf+UCjgNeEpIU2+6xiqzaNhwe5ABu1UHPLXpZJVDFUCrub+bzr71sw2IeGuFaKtEtOLbZgRZVB74/CS8oA==",
+      "version": "15.0.1",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-15.0.1.tgz",
+      "integrity": "sha512-nw9A+kBmTPAYJYOtpunrcgAYMj6sdFty1VsUAA9ew4BjvJOXCQmxVCfOFmtMlJX7XcixJ0Y9xVO61xiN/B37WQ==",
       "dependencies": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",
@@ -8603,9 +8603,9 @@
       }
     },
     "browsertime": {
-      "version": "15.0.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-15.0.0.tgz",
-      "integrity": "sha512-2Ysyzf+UCjgNeEpIU2+6xiqzaNhwe5ABu1UHPLXpZJVDFUCrub+bzr71sw2IeGuFaKtEtOLbZgRZVB74/CS8oA==",
+      "version": "15.0.1",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-15.0.1.tgz",
+      "integrity": "sha512-nw9A+kBmTPAYJYOtpunrcgAYMj6sdFty1VsUAA9ew4BjvJOXCQmxVCfOFmtMlJX7XcixJ0Y9xVO61xiN/B37WQ==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",
