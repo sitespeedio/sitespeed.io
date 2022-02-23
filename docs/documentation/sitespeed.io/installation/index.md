@@ -49,7 +49,7 @@ Install on a fresh Apple Mac M1:
 
 1. Install Homebrew [https://brew.sh](https://brew.sh)
 2. Install latest NodeJS LTS (and npm). Either download it from [nodejs.org](https://nodejs.org/en/) or install using Homebrew:
-    `brew install node@14`
+    `brew install node@16`
 3. Make sure you can install using *npm* without using sudo. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
 4. Install ImageMagick 6
     `brew install imagemagick@6`
@@ -101,7 +101,7 @@ sitespeed.io https://www.sitespeed.io --xvfb -b chrome --video --visualMetrics
 You can also install everything manually to have more control. This is what's needed on Ubuntu 20.04:
 
 1. [Install NodeJS LTS ](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04)
-    * `curl -sL https://deb.nodesource.com/setup_14.x -o nodesource_setup.sh`
+    * `curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh`
     * `sudo bash nodesource_setup.sh`
     * `sudo apt install -y nodejs`
 2. Install imagemagick and ffmpeg `sudo apt-get update -y && sudo apt-get install -y imagemagick ffmpeg`
@@ -116,7 +116,6 @@ You can also install everything manually to have more control. This is what's ne
     * `su - sitespeedio`
 7. Make sure that user can use sudo without password: `echo "sitespeedio ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/sitespeedio"`
 8. Make sure you can install using *npm* without using sudo. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
-9. Install sitespeed.io `EDGEDRIVER_VERSION=89.0.723.0 npm install sitespeed.io -g`
 
 Before you start your testing you need to install a browser. Here's how you can install Firefox.
 
