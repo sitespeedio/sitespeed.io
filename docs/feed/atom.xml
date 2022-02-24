@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-02-21T08:26:16.563Z</updated>
+    <updated>2022-02-24T11:41:01.679Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,22 +17,22 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 23.0.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.0.1</id>
+        <title type="html"><![CDATA[sitespeed.io 23.1.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.1.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2022-02-21T08:26:16.563Z</updated>
-        <summary type="html"><![CDATA[ Bumped to Browsertime 15.0.1 to make sure connectivity is set only once. In last release it was set in the beginning of the test and for eacch iteration. In practice that doesn't matter but it's very confusing if you check the logs.]]></summary>
+        <updated>2022-02-24T11:41:01.679Z</updated>
+        <summary type="html"><![CDATA[ Updated Browsertime that collect timings from main document. The result includes a field named mainDocumentTimings and contains blocked, dns, connect, send, wait, receive, ssl as long as you get a HAR file from the browser. Show Browsertime version in runtime settings #3575. Updated Chromedriver dependency that fixes installation on Mac M1 and some send keys issues.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[browsertime 15.0.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.0.1</id>
+        <title type="html"><![CDATA[browsertime 15.1.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.1.1</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2022-02-21T08:22:26.471Z</updated>
-        <summary type="html"><![CDATA[ Make sure connectivity is only set before the test begins #1733.]]></summary>
+        <updated>2022-02-24T10:17:34.808Z</updated>
+        <summary type="html"><![CDATA[ Updated Chromedriver dependency that fixes installation on M1 and some send keys issues.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
