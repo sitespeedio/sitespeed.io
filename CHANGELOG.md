@@ -1,9 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 23.1.0 - UNRELEASED
+## 23.1.0 - 2022-02-24
 ### Added
 * Updated [Browsertime](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1510---2022-02-24) that collect timings from main document. The result includes a field named mainDocumentTimings and contains blocked, dns, connect, send, wait, receive, ssl as long as you get a HAR file from the browser. 
-* Show Browsertimne version in runtime settings [#3575](https://github.com/sitespeedio/sitespeed.io/pull/3575).
+
+* Show Browsertime version in runtime settings [#3575](https://github.com/sitespeedio/sitespeed.io/pull/3575).
 
 ### Fixed
 * Updated Chromedriver dependency that fixes installation on Mac M1 and some send keys issues.
