@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+
+### Fixed
+* If you use alias and budget files, the outcome (result budget json and others) shoudl use the alias of the URL instead of the URL [#3582](https://github.com/sitespeedio/sitespeed.io/pull/3582).
 ## 23.1.0 - 2022-02-24
 ### Added
 * Updated [Browsertime](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1510---2022-02-24) that collect timings from main document. The result includes a field named mainDocumentTimings and contains blocked, dns, connect, send, wait, receive, ssl as long as you get a HAR file from the browser. 
