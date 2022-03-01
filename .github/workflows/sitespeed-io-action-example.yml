@@ -1,5 +1,8 @@
 name: sitespeed.io action example
-on: push
+on:
+  push:
+    branches:
+    - main
 jobs:
   run-sitespeed:
     runs-on: ubuntu-latest
@@ -7,6 +10,9 @@ jobs:
     steps:
       - name: code checkout
         uses: actions/checkout@v2
+      # Here we build our own container to make sure we test against our latest code
+      # but YOU can just used the latest version by specifying 
+      # sitespeedio/sitespeed.io:VERSION
       - name: Build Docker containers
         run: |
           docker buildx install
