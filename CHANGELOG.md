@@ -1,9 +1,13 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 23.2.0 - UNRELEASED
 
+### Added
+* Updated to Chrome and Edge 99 in the Docker container. Updated to Chromedriver and Edgedriver 99 [#3590](https://github.com/sitespeedio/sitespeed.io/pull/3590).
 ### Fixed
-* If you use alias and budget files, the outcome (result budget json and others) shoudl use the alias of the URL instead of the URL [#3582](https://github.com/sitespeedio/sitespeed.io/pull/3582).
+* If you use alias and budget files, the outcome (result budget json and others) should use the alias of the URL instead of the URL [#3582](https://github.com/sitespeedio/sitespeed.io/pull/3582).
+* Ignore sustainable.setup messages when storing analysistorer [#3578](https://github.com/sitespeedio/sitespeed.io/pull/3587).
+
 ## 23.1.0 - 2022-02-24
 ### Added
 * Updated [Browsertime](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1510---2022-02-24) that collect timings from main document. The result includes a field named mainDocumentTimings and contains blocked, dns, connect, send, wait, receive, ssl as long as you get a HAR file from the browser. 
