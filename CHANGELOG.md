@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+### Added
+* The +1 container is upgraded to use Lighthouse 9.4.0.
 ## 23.2.0 - 2022-03-05
 
 ### Added
