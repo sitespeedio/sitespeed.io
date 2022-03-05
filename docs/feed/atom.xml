@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-02-24T11:41:01.679Z</updated>
+    <updated>2022-03-05T08:57:21.519Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,55 +17,22 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 23.1.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.1.0</id>
+        <title type="html"><![CDATA[sitespeed.io 23.2.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.2.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2022-02-24T11:41:01.679Z</updated>
-        <summary type="html"><![CDATA[ Updated Browsertime that collect timings from main document. The result includes a field named mainDocumentTimings and contains blocked, dns, connect, send, wait, receive, ssl as long as you get a HAR file from the browser. Show Browsertime version in runtime settings #3575. Updated Chromedriver dependency that fixes installation on Mac M1 and some send keys issues.]]></summary>
+        <updated>2022-03-05T08:57:21.519Z</updated>
+        <summary type="html"><![CDATA[ Updated to Chrome and Edge 99 in the Docker container. Updated to Chromedriver and Edgedriver 99 #3590. If you use alias and budget files, the outcome (result budget json and others) should use the alias of the URL instead of the URL #3582. Ignore sustainable.setup messages when storing analysistorer #3578.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[browsertime 15.1.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.1.1</id>
+        <title type="html"><![CDATA[browsertime 15.2.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.2.0</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2022-02-24T10:17:34.808Z</updated>
-        <summary type="html"><![CDATA[ Updated Chromedriver dependency that fixes installation on M1 and some send keys issues.]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[coach-core 7.1.0]]></title>
-        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.1.0</id>
-        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#"/>
-        <updated>2022-02-06T19:04:25.854Z</updated>
-        <summary type="html"><![CDATA[ Upgraded to PageXray 4.0.0. Upgraded to third party web 0.13.0.]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[pagexray 4.4.0]]></title>
-        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.0</id>
-        <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#"/>
-        <updated>2022-02-04T09:31:40.035Z</updated>
-        <summary type="html"><![CDATA[ Fallback if mime types aren't mapped and use file endings. At the moment we fallback for some of the font types #109.]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[chrome-har 0.13.0]]></title>
-        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.0</id>
-        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#"/>
-        <updated>2022-02-04T09:28:03.010Z</updated>
-        <summary type="html"><![CDATA[ Add _isLinkPreload on the request object if it is isLinkPreload #94.]]></summary>
+        <updated>2022-03-04T09:50:00.997Z</updated>
+        <summary type="html"><![CDATA[ Updated to Chromedriver and Edgedriver 99. Updated Docker container to use Chrome and Edge 99 #1738. Added more view ports for emulated mobile in Chrome #1736.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
@@ -75,7 +42,7 @@
         <title type="html"><![CDATA[throttle 3.1.0]]></title>
         <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.0</id>
         <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#"/>
-        <updated>2022-02-01T14:01:20.897Z</updated>
+        <updated>2022-02-24T13:43:37.435Z</updated>
         <summary type="html"><![CDATA[ Add support for setting packet loss. Add --packetLoss and set the loss in percentage.]]></summary>
         <author>
             <name>Sitespeed.io</name>
@@ -86,8 +53,30 @@
         <title type="html"><![CDATA[humble 0.1.2]]></title>
         <id>https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#0.1.2</id>
         <link href="https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#"/>
-        <updated>2022-02-01T14:01:20.895Z</updated>
+        <updated>2022-02-24T13:43:37.433Z</updated>
         <summary type="html"><![CDATA[ Updated throttle frontend to latest version where you can see throttling profiles set by using the API and with custom throttling support.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[pagexray 4.4.0]]></title>
+        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.0</id>
+        <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#"/>
+        <updated>2022-02-24T13:43:37.433Z</updated>
+        <summary type="html"><![CDATA[ Fallback if mime types aren't mapped and use file endings. At the moment we fallback for some of the font types #109.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[coach-core 7.1.0]]></title>
+        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.1.0</id>
+        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#"/>
+        <updated>2022-02-24T13:43:37.432Z</updated>
+        <summary type="html"><![CDATA[ Upgraded to PageXray 4.0.0. Upgraded to third party web 0.13.0.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
@@ -97,8 +86,19 @@
         <title type="html"><![CDATA[coach 7.0.0]]></title>
         <id>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#7.0.0</id>
         <link href="https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#"/>
-        <updated>2022-02-01T14:01:20.894Z</updated>
+        <updated>2022-02-24T13:43:37.432Z</updated>
         <summary type="html"><![CDATA[ Updated to use latest Coach core and Browertime.]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[chrome-har 0.13.0]]></title>
+        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.0</id>
+        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#"/>
+        <updated>2022-02-24T13:43:37.431Z</updated>
+        <summary type="html"><![CDATA[ Add _isLinkPreload on the request object if it is isLinkPreload #94.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>

@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Thu, 24 Feb 2022 11:41:01 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 05 Mar 2022 08:57:21 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,65 +17,65 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[sitespeed.io 23.1.0]]></title>
+            <title><![CDATA[sitespeed.io 23.2.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.1.0</guid>
-            <pubDate>Thu, 24 Feb 2022 11:41:01 GMT</pubDate>
-            <description><![CDATA[ Updated Browsertime that collect timings from main document. The result includes a field named mainDocumentTimings and contains blocked, dns, connect, send, wait, receive, ssl as long as you get a HAR file from the browser. Show Browsertime version in runtime settings #3575. Updated Chromedriver dependency that fixes installation on Mac M1 and some send keys issues.]]></description>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.2.0</guid>
+            <pubDate>Sat, 05 Mar 2022 08:57:21 GMT</pubDate>
+            <description><![CDATA[ Updated to Chrome and Edge 99 in the Docker container. Updated to Chromedriver and Edgedriver 99 #3590. If you use alias and budget files, the outcome (result budget json and others) should use the alias of the URL instead of the URL #3582. Ignore sustainable.setup messages when storing analysistorer #3578.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 15.1.1]]></title>
+            <title><![CDATA[browsertime 15.2.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.1.1</guid>
-            <pubDate>Thu, 24 Feb 2022 10:17:34 GMT</pubDate>
-            <description><![CDATA[ Updated Chromedriver dependency that fixes installation on M1 and some send keys issues.]]></description>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.2.0</guid>
+            <pubDate>Fri, 04 Mar 2022 09:50:00 GMT</pubDate>
+            <description><![CDATA[ Updated to Chromedriver and Edgedriver 99. Updated Docker container to use Chrome and Edge 99 #1738. Added more view ports for emulated mobile in Chrome #1736.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[coach-core 7.1.0]]></title>
-            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.1.0</guid>
-            <pubDate>Sun, 06 Feb 2022 19:04:25 GMT</pubDate>
-            <description><![CDATA[ Upgraded to PageXray 4.0.0. Upgraded to third party web 0.13.0.]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[pagexray 4.4.0]]></title>
-            <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.0</guid>
-            <pubDate>Fri, 04 Feb 2022 09:31:40 GMT</pubDate>
-            <description><![CDATA[ Fallback if mime types aren't mapped and use file endings. At the moment we fallback for some of the font types #109.]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[chrome-har 0.13.0]]></title>
-            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.0</guid>
-            <pubDate>Fri, 04 Feb 2022 09:28:03 GMT</pubDate>
-            <description><![CDATA[ Add _isLinkPreload on the request object if it is isLinkPreload #94.]]></description>
         </item>
         <item>
             <title><![CDATA[throttle 3.1.0]]></title>
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.0</guid>
-            <pubDate>Tue, 01 Feb 2022 14:01:20 GMT</pubDate>
+            <pubDate>Thu, 24 Feb 2022 13:43:37 GMT</pubDate>
             <description><![CDATA[ Add support for setting packet loss. Add --packetLoss and set the loss in percentage.]]></description>
         </item>
         <item>
             <title><![CDATA[humble 0.1.2]]></title>
             <link>https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#0.1.2</guid>
-            <pubDate>Tue, 01 Feb 2022 14:01:20 GMT</pubDate>
+            <pubDate>Thu, 24 Feb 2022 13:43:37 GMT</pubDate>
             <description><![CDATA[ Updated throttle frontend to latest version where you can see throttling profiles set by using the API and with custom throttling support.]]></description>
+        </item>
+        <item>
+            <title><![CDATA[pagexray 4.4.0]]></title>
+            <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.0</guid>
+            <pubDate>Thu, 24 Feb 2022 13:43:37 GMT</pubDate>
+            <description><![CDATA[ Fallback if mime types aren't mapped and use file endings. At the moment we fallback for some of the font types #109.]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach-core 7.1.0]]></title>
+            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.1.0</guid>
+            <pubDate>Thu, 24 Feb 2022 13:43:37 GMT</pubDate>
+            <description><![CDATA[ Upgraded to PageXray 4.0.0. Upgraded to third party web 0.13.0.]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[coach 7.0.0]]></title>
             <link>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#</link>
             <guid>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#7.0.0</guid>
-            <pubDate>Tue, 01 Feb 2022 14:01:20 GMT</pubDate>
+            <pubDate>Thu, 24 Feb 2022 13:43:37 GMT</pubDate>
             <description><![CDATA[ Updated to use latest Coach core and Browertime.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[chrome-har 0.13.0]]></title>
+            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#</link>
+            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.0</guid>
+            <pubDate>Thu, 24 Feb 2022 13:43:37 GMT</pubDate>
+            <description><![CDATA[ Add _isLinkPreload on the request object if it is isLinkPreload #94.]]></description>
         </item>
         <item>
             <title><![CDATA[compare 1.0.0]]></title>
