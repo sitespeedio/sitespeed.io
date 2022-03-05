@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 23.2.0 - UNRELEASED
+## 23.2.0 - 2022-03-05
 
 ### Added
 * Updated to Chrome and Edge 99 in the Docker container. Updated to Chromedriver and Edgedriver 99 [#3590](https://github.com/sitespeedio/sitespeed.io/pull/3590).
