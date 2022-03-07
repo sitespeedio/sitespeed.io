@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://www.sitespeed.io</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-03-05T08:57:21.519Z</updated>
+    <updated>2022-03-07T14:30:13.873Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,22 +17,22 @@
     <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 23.2.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.2.0</id>
+        <title type="html"><![CDATA[sitespeed.io 23.3.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.3.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
-        <updated>2022-03-05T08:57:21.519Z</updated>
-        <summary type="html"><![CDATA[ Updated to Chrome and Edge 99 in the Docker container. Updated to Chromedriver and Edgedriver 99 #3590. If you use alias and budget files, the outcome (result budget json and others) should use the alias of the URL instead of the URL #3582. Ignore sustainable.setup messages when storing analysistorer #3578.]]></summary>
+        <updated>2022-03-07T14:30:13.873Z</updated>
+        <summary type="html"><![CDATA[ The +1 container is upgraded to use Lighthouse 9.4.0. Updated to Browsertime 15.3.0.]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[browsertime 15.2.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.2.0</id>
+        <title type="html"><![CDATA[browsertime 15.3.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.3.0</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
-        <updated>2022-03-04T09:50:00.997Z</updated>
-        <summary type="html"><![CDATA[ Updated to Chromedriver and Edgedriver 99. Updated Docker container to use Chrome and Edge 99 #1738. Added more view ports for emulated mobile in Chrome #1736.]]></summary>
+        <updated>2022-03-07T13:59:36.236Z</updated>
+        <summary type="html"><![CDATA[ Chrome: If you set --user-data-dir you can clean the directory between each iteration using --chrome.cleanUserDataDir #1739]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
