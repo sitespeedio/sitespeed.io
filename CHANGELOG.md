@@ -1,8 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 23.3.0 - 2022-03-07
 ### Added
 * The +1 container is upgraded to use Lighthouse 9.4.0.
+* Updated to [Browsertime 15.3.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1530---2022-03-07).
+
 ## 23.2.0 - 2022-03-05
 
 ### Added

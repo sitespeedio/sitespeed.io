@@ -31,6 +31,7 @@ chrome
       --chrome.collectConsoleLog                                 Collect Chromes console log and save to disk.  [boolean]
       --chrome.appendToUserAgent                                 Append to the user agent.  [string]
       --chrome.noDefaultOptions                                  Prevent Browsertime from setting its default options for Chrome  [boolean]
+      --chrome.cleanUserDataDir                                  If you use --user-data-dir as an argument to Chrome and want to clean that directory between each iteration you should use --chrome.cleanUserDataDir true.  [boolean]
       --chrome.CPUThrottlingRate                                 Enables CPU throttling to emulate slow CPUs. Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc)  [number]
       --chrome.includeResponseBodies                             Include response bodies in the HAR file.  [choices: "none", "all", "html"] [default: "none"]
       --chrome.cdp.performance                                   Collect Chrome perfromance metrics from Chrome DevTools Protocol  [boolean] [default: true]
