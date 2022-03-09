@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 23.4.0 - 2022-03-09
+### Added
+* Firefox 98 in the Docker container [#3592](https://github.com/sitespeedio/sitespeed.io/pull/3592).
+* Added link to each run in the side by side metric page, making it easier to go to the correct run [#3593](https://github.com/sitespeedio/sitespeed.io/pull/3593).
+
 ## 23.3.0 - 2022-03-07
 ### Added
 * The +1 container is upgraded to use Lighthouse 9.4.0.
