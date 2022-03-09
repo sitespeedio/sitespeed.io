@@ -52,8 +52,11 @@ block content
                                 tr
                                     td 
                                         b #{friendly.name}
+                                    - let pageIndex = 1
                                     each page in runPages
-                                        td #{friendly.format(get (page, 'data.' + tool + '.run.' + (friendly.runPath || friendly.path)))}
+                                        td 
+                                            a(href=pageIndex + '.html') #{friendly.format(get (page, 'data.' + tool + '.run.' + (friendly.runPath || friendly.path)))}
+                                            - pageIndex++
                                     td #{friendly.format(get (mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.median', ''))}
                                     td #{friendly.format(get (mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.mean', ''))}
                                     td #{friendly.format(get (mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.stddev', ''))}
