@@ -52,7 +52,7 @@ block content
                                 tr
                                     td 
                                         b #{friendly.name}
-                                    -let pageIndex = 1
+                                    - let pageIndex = 1
                                     each page in runPages
                                         td 
                                             a(href=pageIndex + '.html') #{friendly.format(get (page, 'data.' + tool + '.run.' + (friendly.runPath || friendly.path)))}
