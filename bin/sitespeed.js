@@ -29,6 +29,8 @@ async function run(options) {
 
     if ((options.open || options.o) && os.platform() === 'darwin') {
       execSync('open ' + result.localPath + '/index.html');
+    } else if ((options.open || options.o) && os.platform() === 'linux') {
+      execSync('xdg-open ' + result.localPath + '/index.html');
     }
 
     if (
