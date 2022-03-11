@@ -1,5 +1,13 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 23.4.0 - 2022-03-11
+### Added
+* The -slim DOcker container now uses Firefox 98.
+* Updated Grafana to latest 8.4.3 in the Docker compose file.
+* Updated [Graphite dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/main/dashboards/graphite) to use Timeseries graphs instead of old "Graph".
+* You can use `-o` or `--open` or `--view` to open the result page after you run sitespeed.io on Mac and Linux [#3569](https://github.com/sitespeedio/sitespeed.io/pull/3596). 
+* Open the result with `-o` on Linux using xdg-open [#3597](https://github.com/sitespeedio/sitespeed.io/pull/3597).
+
 ## 23.4.0 - 2022-03-09
 ### Added
 * Firefox 98 in the Docker container [#3592](https://github.com/sitespeedio/sitespeed.io/pull/3592).
