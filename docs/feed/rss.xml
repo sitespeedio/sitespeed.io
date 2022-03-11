@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>Follow new releases of sitespeed.io tools</description>
-        <lastBuildDate>Wed, 09 Mar 2022 17:55:42 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 11 Mar 2022 11:07:53 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,11 +17,11 @@
         <category>Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[sitespeed.io 23.4.0]]></title>
+            <title><![CDATA[sitespeed.io 23.5.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.4.0</guid>
-            <pubDate>Wed, 09 Mar 2022 17:55:42 GMT</pubDate>
-            <description><![CDATA[ Firefox 98 in the Docker container #3592. Added link to each run in the side by side metric page, making it easier to go to the correct run #3593.]]></description>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.5.0</guid>
+            <pubDate>Fri, 11 Mar 2022 11:07:53 GMT</pubDate>
+            <description><![CDATA[ The -slim DOcker container now uses Firefox 98. Updated Grafana to latest 8.4.3 in the Docker compose file. Updated Graphite dashboards to use Timeseries graphs instead of old "Graph". You can use -o or --open or --view to open the result page after you run sitespeed.io on Mac and Linux #3569. Open the result with -o on Linux using xdg-open #3597.]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
