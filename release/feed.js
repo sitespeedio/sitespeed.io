@@ -2,7 +2,7 @@ const Feed = require('feed').Feed;
 const fs = require('fs');
 const path = require('path');
 const parseChangelog = require('changelog-parser');
-
+const { marked } = require('marked');
 const getSortedFiles = dir => {
   const files = fs.readdirSync(dir);
 
@@ -21,24 +21,24 @@ function getResult(result) {
   if (result.parsed) {
     if (result.parsed.Added) {
       for (let added of result.parsed.Added) {
-        allData += ' ' + added;
+        allData += ' ' + marked.parse(added);
       }
     }
     if (result.parsed.Fixed) {
       for (let fixed of result.parsed.Fixed) {
-        allData += ' ' + fixed;
+        allData += ' ' + marked.parse(fixed);
       }
     }
 
     if (result.parsed.Changed) {
       for (let changed of result.parsed.Changed) {
-        allData += ' ' + changed;
+        allData += ' ' + marked.parse(changed);
       }
     }
 
     if (result.parsed['Breaking changes']) {
       for (let breaking of result.parsed['Breaking changes']) {
-        allData += ' ' + breaking;
+        allData += ' ' + marked.parse(breaking);
       }
     }
     return allData;
@@ -77,7 +77,10 @@ async function generateFeed() {
         tool.name === 'sitespeed.io'
           ? './CHANGELOG.md'
           : '../' + tool.name + '/CHANGELOG.md';
-      const result = await parseChangelog(changelog);
+      const result = await parseChangelog({
+        filePath: changelog,
+        removeMarkdown: false
+      });
       if (result.versions[0].date !== null) {
         content[tool.name] = getResult(result.versions[0]);
       } else if (result.versions[1]) {
