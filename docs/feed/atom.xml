@@ -14,14 +14,29 @@
     <subtitle>Follow new releases of sitespeed.io tools</subtitle>
     <logo>https://www.sitespeed.io/img/logos/sitespeed.io.png</logo>
     <icon>http://www.sitespeed.io/favicon.ico</icon>
-    <rights>All rights reserved 2021, Peter Hedenskog and team</rights>
+    <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Performance"/>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 23.5.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.5.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#"/>
         <updated>2022-03-11T11:07:53.102Z</updated>
-        <summary type="html"><![CDATA[ The -slim DOcker container now uses Firefox 98. Updated Grafana to latest 8.4.3 in the Docker compose file. Updated Graphite dashboards to use Timeseries graphs instead of old "Graph". You can use -o or --open or --view to open the result page after you run sitespeed.io on Mac and Linux #3569. Open the result with -o on Linux using xdg-open #3597.]]></summary>
+        <summary type="html"><![CDATA[ <ul>
+<li>The -slim Docker container now uses Firefox 98.</li>
+</ul>
+ <ul>
+<li>Updated Grafana to latest 8.4.3 in the Docker compose file.</li>
+</ul>
+ <ul>
+<li>Updated <a href="https://github.com/sitespeedio/grafana-bootstrap-docker/tree/main/dashboards/graphite">Graphite dashboards</a> to use Timeseries graphs instead of old &quot;Graph&quot;.</li>
+</ul>
+ <ul>
+<li>You can use <code>-o</code> or <code>--open</code> or <code>--view</code> to open the result page after you run sitespeed.io on Mac and Linux <a href="https://github.com/sitespeedio/sitespeed.io/pull/3596">#3569</a>.</li>
+</ul>
+ <ul>
+<li>Open the result with <code>-o</code> on Linux using xdg-open <a href="https://github.com/sitespeedio/sitespeed.io/pull/3597">#3597</a>.</li>
+</ul>
+]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
@@ -32,7 +47,16 @@
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.3.0</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#"/>
         <updated>2022-03-07T13:59:36.236Z</updated>
-        <summary type="html"><![CDATA[ Updated to Chromedriver and Edgedriver 99. Updated Docker container to use Chrome and Edge 99 #1738. Added more view ports for emulated mobile in Chrome #1736.]]></summary>
+        <summary type="html"><![CDATA[ <ul>
+<li>Updated to Chromedriver and Edgedriver 99.</li>
+</ul>
+ <ul>
+<li>Updated Docker container to use Chrome and Edge 99 <a href="https://github.com/sitespeedio/browsertime/pull/1738">#1738</a>.</li>
+</ul>
+ <ul>
+<li>Added more view ports for emulated mobile in Chrome <a href="https://github.com/sitespeedio/browsertime/pull/1736">#1736</a>.</li>
+</ul>
+]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
@@ -43,7 +67,10 @@
         <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.0</id>
         <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#"/>
         <updated>2022-02-24T13:43:37.435Z</updated>
-        <summary type="html"><![CDATA[ Add support for setting packet loss. Add --packetLoss and set the loss in percentage.]]></summary>
+        <summary type="html"><![CDATA[ <ul>
+<li>Add support for setting packet loss. Add <code>--packetLoss</code> and set the loss in percentage.</li>
+</ul>
+]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
@@ -54,7 +81,10 @@
         <id>https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#0.1.2</id>
         <link href="https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#"/>
         <updated>2022-02-24T13:43:37.433Z</updated>
-        <summary type="html"><![CDATA[ Updated throttle frontend to latest version where you can see throttling profiles set by using the API and with custom throttling support.]]></summary>
+        <summary type="html"><![CDATA[ <ul>
+<li>Updated throttle frontend to latest version where you can see throttling profiles set by using the API and with custom throttling support.</li>
+</ul>
+]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
@@ -65,7 +95,10 @@
         <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.0</id>
         <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#"/>
         <updated>2022-02-24T13:43:37.433Z</updated>
-        <summary type="html"><![CDATA[ Fallback if mime types aren't mapped and use file endings. At the moment we fallback for some of the font types #109.]]></summary>
+        <summary type="html"><![CDATA[ <ul>
+<li>Fallback if mime types aren&#39;t mapped and use file endings. At the moment we fallback for some of the font types <a href="https://github.com/sitespeedio/pagexray/pull/109">#109</a>.</li>
+</ul>
+]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
@@ -76,7 +109,13 @@
         <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.1.0</id>
         <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#"/>
         <updated>2022-02-24T13:43:37.432Z</updated>
-        <summary type="html"><![CDATA[ Upgraded to PageXray 4.0.0. Upgraded to third party web 0.13.0.]]></summary>
+        <summary type="html"><![CDATA[ <ul>
+<li>Upgraded to PageXray 4.0.0.</li>
+</ul>
+ <ul>
+<li>Upgraded to third party web 0.13.0.</li>
+</ul>
+]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
@@ -87,7 +126,10 @@
         <id>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#7.0.0</id>
         <link href="https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#"/>
         <updated>2022-02-24T13:43:37.432Z</updated>
-        <summary type="html"><![CDATA[ Updated to use latest Coach core and Browertime.]]></summary>
+        <summary type="html"><![CDATA[ <ul>
+<li>Updated to use latest Coach core and Browertime.</li>
+</ul>
+]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
@@ -98,7 +140,10 @@
         <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.0</id>
         <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#"/>
         <updated>2022-02-24T13:43:37.431Z</updated>
-        <summary type="html"><![CDATA[ Add _isLinkPreload on the request object if it is isLinkPreload #94.]]></summary>
+        <summary type="html"><![CDATA[ <ul>
+<li>Add _isLinkPreload on the request object if it is isLinkPreload <a href="https://github.com/sitespeedio/chrome-har/pull/94">#94</a>.</li>
+</ul>
+]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
@@ -109,7 +154,28 @@
         <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#1.0.0</id>
         <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#"/>
         <updated>2021-10-29T18:25:09.436Z</updated>
-        <summary type="html"><![CDATA[ Added support for using Github gists see #34. Added support for using a config file to configure which HARs to test. Added support for copy/paste directly you HAR, configuration file or a gist URL or id. Refactor the CSS into Sass, development build process now uses BrowserSync. Service worker added for offline support. Workbox is used to achieve this. Added support for showing changes in request/responses if you compare the same page #63. New internal structure and use the new configuration object all the way.]]></summary>
+        <summary type="html"><![CDATA[ <ul>
+<li>Added support for using Github gists see <a href="https://github.com/sitespeedio/compare/issues/34">#34</a>.</li>
+</ul>
+ <ul>
+<li>Added support for using a config file to configure which HARs to test.</li>
+</ul>
+ <ul>
+<li>Added support for copy/paste directly you HAR, configuration file or a gist URL or id.</li>
+</ul>
+ <ul>
+<li>Refactor the CSS into Sass, development build process now uses BrowserSync.</li>
+</ul>
+ <ul>
+<li>Service worker added for offline support. Workbox is used to achieve this.</li>
+</ul>
+ <ul>
+<li>Added support for showing changes in request/responses if you compare the same page <a href="https://github.com/sitespeedio/compare/pull/63">#63</a>.</li>
+</ul>
+ <ul>
+<li>New internal structure and use the new configuration object all the way.</li>
+</ul>
+]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
@@ -120,7 +186,10 @@
         <id>https://github.com/sitespeedio/chrome-trace/blob/main/CHANGELOG.md#0.2.2</id>
         <link href="https://github.com/sitespeedio/chrome-trace/blob/main/CHANGELOG.md#"/>
         <updated>2021-10-29T18:25:09.435Z</updated>
-        <summary type="html"><![CDATA[ Catch if we can't find the first thread event. We now throws an exception (that's not optimal since we don't know what's wrong) with the info of what's wrong. We can change that later on.]]></summary>
+        <summary type="html"><![CDATA[ <ul>
+<li>Catch if we can&#39;t find the first thread event. We now throws an exception (that&#39;s not optimal since we don&#39;t know what&#39;s wrong) with the info of what&#39;s wrong. We can change that later on.</li>
+</ul>
+]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
