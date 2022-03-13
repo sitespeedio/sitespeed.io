@@ -57,7 +57,7 @@ async function generateFeed() {
     language: 'en', // optional, used only in RSS 2.0, possible values: http://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes
     image: 'https://www.sitespeed.io/img/logos/sitespeed.io.png',
     favicon: 'http://www.sitespeed.io/favicon.ico',
-    copyright: 'All rights reserved 2021, Peter Hedenskog and team',
+    copyright: 'All rights reserved 2022, Peter Hedenskog and team',
     updated: new Date(sortedVersionFiles[0].time), // use the date from the latest updated version file
     feedLinks: {
       atom: 'https://www.sitespeed.io/feed/atom.xml',
