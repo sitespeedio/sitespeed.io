@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>coach release feed</title>
+        <link>https://www.sitespeed.io</link>
+        <description>New releases and changelog feed of coach</description>
+        <lastBuildDate>Thu, 24 Feb 2022 13:43:37 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <image>
+            <title>coach release feed</title>
+            <url>https://www.sitespeed.io/img/logos/coach.png</url>
+            <link>https://www.sitespeed.io</link>
+        </image>
+        <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
+        <category>Web Performance</category>
+        <atom:link href="https://www.sitespeed.io/feed/coach.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[coach 7.0.0]]></title>
+            <link>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#7.0.0</link>
+            <guid>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#7.0.0</guid>
+            <pubDate>Wed, 01 Dec 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to use latest Coach core and Browertime.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach 6.4.3]]></title>
+            <link>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#6.4.3</link>
+            <guid>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#6.4.3</guid>
+            <pubDate>Fri, 15 Oct 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to use latest Browsertime with latest Chromedriver</li>
+</ul>
+ <ul>
+<li>Updated Docker container to use latest Chrome/Firefox</li>
+</ul>
+ <ul>
+<li>Use Browsertime 11.0.0</li>
+</ul>
+ <ul>
+<li>Use Coach-code 6.0</li>
+</ul>
+ <ul>
+<li>Use latest Firefox and Chrome</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach 5.0.0]]></title>
+            <link>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#5.0.0</link>
+            <guid>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#5.0.0</guid>
+            <pubDate>Wed, 11 Mar 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Changed</h3>
+ <ul>
+<li>We moved out the core functionality to <a href="https://github.com/sitespeedio/coach-core">coach-core</a>. This makes it easy to use the Coach in your own code.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach 4.5.0]]></title>
+            <link>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.5.0</link>
+            <guid>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.5.0</guid>
+            <pubDate>Thu, 20 Feb 2020 00:00:00 GMT</pubDate>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach 4.4.1]]></title>
+            <link>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.4.1</link>
+            <guid>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.4.1</guid>
+            <pubDate>Fri, 07 Feb 2020 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Upgraded to Browsertime 8.0.1</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach 4.4.0]]></title>
+            <link>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.4.0</link>
+            <guid>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.4.0</guid>
+            <pubDate>Wed, 05 Feb 2020 00:00:00 GMT</pubDate>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach 4.3.1]]></title>
+            <link>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.3.1</link>
+            <guid>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.3.1</guid>
+            <pubDate>Fri, 10 Jan 2020 00:00:00 GMT</pubDate>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach 4.3.0]]></title>
+            <link>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.3.0</link>
+            <guid>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.3.0</guid>
+            <pubDate>Thu, 12 Dec 2019 00:00:00 GMT</pubDate>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach 4.2.0]]></title>
+            <link>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.2.0</link>
+            <guid>https://github.com/sitespeedio/coach/blob/main/CHANGELOG.md#4.2.0</guid>
+            <pubDate>Sat, 02 Nov 2019 00:00:00 GMT</pubDate>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+    </channel>
+</rss>

@@ -59,7 +59,7 @@
         "bluebird": "3.5.5",
         "chai": "4.2.0",
         "chai-as-promised": "7.1.1",
-        "changelog-parser": "2.8.0",
+        "changelog-parser": "2.8.1",
         "clean-css-cli": "4.3.0",
         "eslint": "8.0.0",
         "eslint-config-prettier": "8.3.0",
@@ -67,6 +67,7 @@
         "feed": "4.2.2",
         "jsdoc": "^3.6.7",
         "license-checker": "^16.0.0",
+        "marked": "4.0.12",
         "mocha": "^5.0.4",
         "prettier": "2.4.1",
         "pug-lint": "^2.6.0",
@@ -1628,9 +1629,9 @@
       }
     },
     "node_modules/changelog-parser": {
-      "version": "2.8.0",
-      "resolved": "https://registry.npmjs.org/changelog-parser/-/changelog-parser-2.8.0.tgz",
-      "integrity": "sha512-ZtSwN0hY7t+WpvaXqqXz98RHCNhWX9HsvCRAv1aBLlqJ7BpKtqdM6Nu6JOiUhRAWR7Gov0aN0fUnmflTz0WgZg==",
+      "version": "2.8.1",
+      "resolved": "https://registry.npmjs.org/changelog-parser/-/changelog-parser-2.8.1.tgz",
+      "integrity": "sha512-tNUYFRCEeWTXmwLqoNtOEzx9wcytg72MmGQqsEs14ClYwIDln7sbQw7FJj/dulXgSlsxkemc9gpPQhZYZx1TPw==",
       "dev": true,
       "dependencies": {
         "line-reader": "^0.2.4",
@@ -4164,6 +4165,18 @@
         "markdown-it": "bin/markdown-it.js"
       }
     },
+    "node_modules/jsdoc/node_modules/marked": {
+      "version": "2.1.3",
+      "resolved": "https://registry.npmjs.org/marked/-/marked-2.1.3.tgz",
+      "integrity": "sha512-/Q+7MGzaETqifOMWYEA7HVMaZb4XbcRfaOzcSsHZEith83KGlvaSG33u0SKu89Mj5h+T8V2hM+8O45Qc5XTgwA==",
+      "dev": true,
+      "bin": {
+        "marked": "bin/marked"
+      },
+      "engines": {
+        "node": ">= 10"
+      }
+    },
     "node_modules/jsdoc/node_modules/mkdirp": {
       "version": "1.0.4",
       "resolved": "https://registry.npmjs.org/mkdirp/-/mkdirp-1.0.4.tgz",
@@ -4726,15 +4739,15 @@
       }
     },
     "node_modules/marked": {
-      "version": "2.0.4",
-      "resolved": "https://registry.npmjs.org/marked/-/marked-2.0.4.tgz",
-      "integrity": "sha512-MIL0xKRDQM3DE7dJr/wa6JV0EmK9yZ3cwuTc2bu66FNm/tmEMm9cJCgJZpt9R+K1T+pB2iBNV55wvnwSd345zg==",
+      "version": "4.0.12",
+      "resolved": "https://registry.npmjs.org/marked/-/marked-4.0.12.tgz",
+      "integrity": "sha512-hgibXWrEDNBWgGiK18j/4lkS6ihTe9sxtV4Q1OQppb/0zzyPSzoFANBa5MfsG/zgsWklmNnhm0XACZOH/0HBiQ==",
       "dev": true,
       "bin": {
-        "marked": "bin/marked"
+        "marked": "bin/marked.js"
       },
       "engines": {
-        "node": ">= 8.16.2"
+        "node": ">= 12"
       }
     },
     "node_modules/mdurl": {
@@ -8735,9 +8748,9 @@
       }
     },
     "changelog-parser": {
-      "version": "2.8.0",
-      "resolved": "https://registry.npmjs.org/changelog-parser/-/changelog-parser-2.8.0.tgz",
-      "integrity": "sha512-ZtSwN0hY7t+WpvaXqqXz98RHCNhWX9HsvCRAv1aBLlqJ7BpKtqdM6Nu6JOiUhRAWR7Gov0aN0fUnmflTz0WgZg==",
+      "version": "2.8.1",
+      "resolved": "https://registry.npmjs.org/changelog-parser/-/changelog-parser-2.8.1.tgz",
+      "integrity": "sha512-tNUYFRCEeWTXmwLqoNtOEzx9wcytg72MmGQqsEs14ClYwIDln7sbQw7FJj/dulXgSlsxkemc9gpPQhZYZx1TPw==",
       "dev": true,
       "requires": {
         "line-reader": "^0.2.4",
@@ -10755,6 +10768,12 @@
             "uc.micro": "^1.0.5"
           }
         },
+        "marked": {
+          "version": "2.1.3",
+          "resolved": "https://registry.npmjs.org/marked/-/marked-2.1.3.tgz",
+          "integrity": "sha512-/Q+7MGzaETqifOMWYEA7HVMaZb4XbcRfaOzcSsHZEith83KGlvaSG33u0SKu89Mj5h+T8V2hM+8O45Qc5XTgwA==",
+          "dev": true
+        },
         "mkdirp": {
           "version": "1.0.4",
           "resolved": "https://registry.npmjs.org/mkdirp/-/mkdirp-1.0.4.tgz",
@@ -11230,9 +11249,9 @@
       "requires": {}
     },
     "marked": {
-      "version": "2.0.4",
-      "resolved": "https://registry.npmjs.org/marked/-/marked-2.0.4.tgz",
-      "integrity": "sha512-MIL0xKRDQM3DE7dJr/wa6JV0EmK9yZ3cwuTc2bu66FNm/tmEMm9cJCgJZpt9R+K1T+pB2iBNV55wvnwSd345zg==",
+      "version": "4.0.12",
+      "resolved": "https://registry.npmjs.org/marked/-/marked-4.0.12.tgz",
+      "integrity": "sha512-hgibXWrEDNBWgGiK18j/4lkS6ihTe9sxtV4Q1OQppb/0zzyPSzoFANBa5MfsG/zgsWklmNnhm0XACZOH/0HBiQ==",
       "dev": true
     },
     "mdurl": {

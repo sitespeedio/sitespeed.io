@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>sitespeed.io release feed</title>
+        <link>https://www.sitespeed.io</link>
+        <description>New releases and changelog feed of sitespeed.io</description>
+        <lastBuildDate>Fri, 11 Mar 2022 11:07:53 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <image>
+            <title>sitespeed.io release feed</title>
+            <url>https://www.sitespeed.io/img/logos/sitespeed.io.png</url>
+            <link>https://www.sitespeed.io</link>
+        </image>
+        <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
+        <category>Web Performance</category>
+        <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 23.4.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.4.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.4.0</guid>
+            <pubDate>Fri, 11 Mar 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>The -slim Docker container now uses Firefox 98.</li>
+</ul>
+ <ul>
+<li>Updated Grafana to latest 8.4.3 in the Docker compose file.</li>
+</ul>
+ <ul>
+<li>Updated <a href="https://github.com/sitespeedio/grafana-bootstrap-docker/tree/main/dashboards/graphite">Graphite dashboards</a> to use Timeseries graphs instead of old &quot;Graph&quot;.</li>
+</ul>
+ <ul>
+<li>You can use <code>-o</code> or <code>--open</code> or <code>--view</code> to open the result page after you run sitespeed.io on Mac and Linux <a href="https://github.com/sitespeedio/sitespeed.io/pull/3596">#3569</a>.</li>
+</ul>
+ <ul>
+<li>Open the result with <code>-o</code> on Linux using xdg-open <a href="https://github.com/sitespeedio/sitespeed.io/pull/3597">#3597</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 23.4.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.4.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.4.0</guid>
+            <pubDate>Wed, 09 Mar 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Firefox 98 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3592">#3592</a>.</li>
+</ul>
+ <ul>
+<li>Added link to each run in the side by side metric page, making it easier to go to the correct run <a href="https://github.com/sitespeedio/sitespeed.io/pull/3593">#3593</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 23.3.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.3.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.3.0</guid>
+            <pubDate>Mon, 07 Mar 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>The +1 container is upgraded to use Lighthouse 9.4.0.</li>
+</ul>
+ <ul>
+<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1530---2022-03-07">Browsertime 15.3.0</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 23.2.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.2.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.2.0</guid>
+            <pubDate>Sat, 05 Mar 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Chrome and Edge 99 in the Docker container. Updated to Chromedriver and Edgedriver 99 <a href="https://github.com/sitespeedio/sitespeed.io/pull/3590">#3590</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>If you use alias and budget files, the outcome (result budget json and others) should use the alias of the URL instead of the URL <a href="https://github.com/sitespeedio/sitespeed.io/pull/3582">#3582</a>.</li>
+</ul>
+ <ul>
+<li>Ignore sustainable.setup messages when storing analysistorer <a href="https://github.com/sitespeedio/sitespeed.io/pull/3587">#3578</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 23.1.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.1.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.1.0</guid>
+            <pubDate>Thu, 24 Feb 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1510---2022-02-24">Browsertime</a> that collect timings from main document. The result includes a field named mainDocumentTimings and contains blocked, dns, connect, send, wait, receive, ssl as long as you get a HAR file from the browser.</li>
+</ul>
+ <ul>
+<li>Show Browsertime version in runtime settings <a href="https://github.com/sitespeedio/sitespeed.io/pull/3575">#3575</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated Chromedriver dependency that fixes installation on Mac M1 and some send keys issues.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 23.0.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.0.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.0.1</guid>
+            <pubDate>Mon, 21 Feb 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Bumped to Browsertime 15.0.1 to make sure connectivity is set only once. In last release it was set in the beginning of the test and for eacch iteration. In practice that doesn&#39;t matter but it&#39;s very confusing if you check the logs.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 23.0.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.0.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.0.0</guid>
+            <pubDate>Mon, 21 Feb 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Use Browsertime 15.0.0.</li>
+</ul>
+ <ul>
+<li>Show alias name in the budget report page <a href="https://github.com/sitespeedio/sitespeed.io/pull/3572">#3572</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Fix broken JUnit output. Thank you <a href="https://github.com/rghetu">rghetu</a> for finding it <a href="https://github.com/sitespeedio/sitespeed.io/pull/3569">#3569</a>.</li>
+</ul>
+ <ul>
+<li>When comparing metrics side by side for different runs, mean/median and stddev was sometimes broken for some timing metrics. Fixed with <a href="https://github.com/sitespeedio/sitespeed.io/pull/3573">#3573</a></li>
+</ul>
+<h3>Breaking changes</h3>
+ <ul>
+<li>In this release we updated to Browsertime 15.0.0 that drops built in support for <a href="https://github.com/WPO-Foundation/tsproxy">TSProxy</a>. The reason to drop TSProxy is that it only works in Python 2 and the sunset for Python 2 was January 1, 2020. If you still need TSProxy you can set it up yourself.</li>
+</ul>
+ <ul>
+<li>Browsertime also drop support for getting visual metrics from the trace log. It was added to evaluate if it could be a compliment to the video visual metrics but it was not. Removing it also decreased the number of dependencies in Browsertime.</li>
+</ul>
+ <ul>
+<li>Linux/Mac OS will flush the DNS between runs, that means that you can have some changes in DNS lookup time when you upgrade to 23.0.0.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 22.1.2]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#22.1.2</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#22.1.2</guid>
+            <pubDate>Wed, 09 Feb 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated to Browsertime 14.21.1 that disables the new Chrome splash screen by default.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 22.1.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#22.1.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#22.1.1</guid>
+            <pubDate>Tue, 08 Feb 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>The slim container with only Firefox was broken in last release. It&#39;s now re-released with Firefox 96 and Firefox 97 coming soon.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 22.1.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#22.1.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#22.1.0</guid>
+            <pubDate>Tue, 08 Feb 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Upgraded to latest Browsertime with Egdedriver 98.</li>
+</ul>
+ <ul>
+<li>Upgraded to Edge 98 and Firefox 97 in the (amd64) Docker containers.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+    </channel>
+</rss>

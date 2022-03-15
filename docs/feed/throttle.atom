@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>throttle-release-feed</id>
+    <title>throttle release feed</title>
+    <updated>2022-02-24T13:43:37.435Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <author>
+        <name>Peter Hedenskog</name>
+        <email>peter@soulgalore.com</email>
+        <uri>https://www.peterhedenskog.com</uri>
+    </author>
+    <link rel="alternate" href="https://www.sitespeed.io"/>
+    <link rel="self" href="https://www.sitespeed.io/feed/throttle.atom"/>
+    <subtitle>New releases and changelog feed of throttle</subtitle>
+    <icon>http://www.sitespeed.io/favicon.ico</icon>
+    <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[throttle 3.1.0]]></title>
+        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.0</id>
+        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.0"/>
+        <updated>2021-12-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Add support for setting packet loss. Add <code>--packetLoss</code> and set the loss in percentage.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[throttle 3.0.0]]></title>
+        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.0.0</id>
+        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.0.0"/>
+        <updated>2021-08-09T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Changed</h3>
+ <ul>
+<li>When you run on Mac OS we changed so localhost traffic is not throttled by default. To throttle on localhost use <code>--localhost</code>. This makes sence if you use WebDriver to drive your browser on your local machine. And Mac OS now works the same as Linux.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[throttle 2.1.2]]></title>
+        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.2</id>
+        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.2"/>
+        <updated>2021-07-29T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix breakage when multiple default routes are declared , thank you <a href="https://github.com/andyrichardson">Andy Richardson</a> for PR <a href="https://github.com/sitespeedio/throttle/pull/62">#62</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[throttle 2.1.1]]></title>
+        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.1</id>
+        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.1"/>
+        <updated>2021-03-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>A better check for missing net-tools on Linux, thank you <a href="https://github.com/radum">Radu Micu</a> for the PR <a href="https://github.com/sitespeedio/throttle/pull/56">#56</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[throttle 2.1.0]]></title>
+        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.0</id>
+        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.0"/>
+        <updated>2021-03-10T00:00:00.000Z</updated>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[throttle 2.0.2]]></title>
+        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.0.2</id>
+        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.0.2"/>
+        <updated>2020-09-10T00:00:00.000Z</updated>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[throttle 2.0.1]]></title>
+        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.0.1</id>
+        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.0.1"/>
+        <updated>2020-08-22T00:00:00.000Z</updated>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+</feed>
