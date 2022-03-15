@@ -59,7 +59,7 @@
         "bluebird": "3.5.5",
         "chai": "4.2.0",
         "chai-as-promised": "7.1.1",
-        "changelog-parser": "2.8.0",
+        "changelog-parser": "2.8.1",
         "clean-css-cli": "4.3.0",
         "eslint": "8.0.0",
         "eslint-config-prettier": "8.3.0",
@@ -1629,9 +1629,9 @@
       }
     },
     "node_modules/changelog-parser": {
-      "version": "2.8.0",
-      "resolved": "https://registry.npmjs.org/changelog-parser/-/changelog-parser-2.8.0.tgz",
-      "integrity": "sha512-ZtSwN0hY7t+WpvaXqqXz98RHCNhWX9HsvCRAv1aBLlqJ7BpKtqdM6Nu6JOiUhRAWR7Gov0aN0fUnmflTz0WgZg==",
+      "version": "2.8.1",
+      "resolved": "https://registry.npmjs.org/changelog-parser/-/changelog-parser-2.8.1.tgz",
+      "integrity": "sha512-tNUYFRCEeWTXmwLqoNtOEzx9wcytg72MmGQqsEs14ClYwIDln7sbQw7FJj/dulXgSlsxkemc9gpPQhZYZx1TPw==",
       "dev": true,
       "dependencies": {
         "line-reader": "^0.2.4",
@@ -8748,9 +8748,9 @@
       }
     },
     "changelog-parser": {
-      "version": "2.8.0",
-      "resolved": "https://registry.npmjs.org/changelog-parser/-/changelog-parser-2.8.0.tgz",
-      "integrity": "sha512-ZtSwN0hY7t+WpvaXqqXz98RHCNhWX9HsvCRAv1aBLlqJ7BpKtqdM6Nu6JOiUhRAWR7Gov0aN0fUnmflTz0WgZg==",
+      "version": "2.8.1",
+      "resolved": "https://registry.npmjs.org/changelog-parser/-/changelog-parser-2.8.1.tgz",
+      "integrity": "sha512-tNUYFRCEeWTXmwLqoNtOEzx9wcytg72MmGQqsEs14ClYwIDln7sbQw7FJj/dulXgSlsxkemc9gpPQhZYZx1TPw==",
       "dev": true,
       "requires": {
         "line-reader": "^0.2.4",
