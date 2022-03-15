@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>chrome-trace-release-feed</id>
+    <title>chrome-trace release feed</title>
+    <updated>2021-10-29T18:25:09.435Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <author>
+        <name>Peter Hedenskog</name>
+        <email>peter@soulgalore.com</email>
+        <uri>https://www.peterhedenskog.com</uri>
+    </author>
+    <link rel="alternate" href="https://www.sitespeed.io"/>
+    <link rel="self" href="https://www.sitespeed.io/feed/chrome-trace.atom"/>
+    <subtitle>New releases and changelog feed of chrome-trace</subtitle>
+    <icon>http://www.sitespeed.io/favicon.ico</icon>
+    <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <category term="Web Performance"/>
+</feed>

@@ -62,13 +62,11 @@ function getFeed(tool, time) {
 }
 
 function addItemToFeed(feed, item, tool) {
-  const description = item.body.split('\n')[0];
   feed.addItem({
     title: `${tool} ${item.version}`,
     id: `https://github.com/sitespeedio/${tool}/blob/main/CHANGELOG.md#${item.version}`,
     link: `https://github.com/sitespeedio/${tool}/blob/main/CHANGELOG.md#${item.version}`,
-    description: description.startsWith('###') ? '' : description,
-    content: getResultAsHTML(item),
+    description: getResultAsHTML(item),
     author: [
       {
         name: 'Sitespeed.io',
