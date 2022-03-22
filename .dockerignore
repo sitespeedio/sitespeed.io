@@ -2,4 +2,5 @@
 !bin
 !lib
 !package.json
-!docker
+!LICENSE
+!npm-shrinkwrap.json
