@@ -17,6 +17,21 @@
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
     <entry>
+        <title type="html"><![CDATA[browsertime 15.3.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.3.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.3.0"/>
+        <updated>2022-03-07T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Chrome: If you set --user-data-dir you can clean the directory between each iteration using <code>--chrome.cleanUserDataDir</code> <a href="https://github.com/sitespeedio/browsertime/pull/1739">#1739</a></li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[browsertime 15.2.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.2.0</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.2.0"/>
@@ -174,27 +189,6 @@
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Docker container for both amd64 and arm64.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 14.19.2]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.19.2</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.19.2"/>
-        <updated>2022-02-05T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Upgraded to Geckodriver 0.30.0 <a href="https://github.com/sitespeedio/browsertime/pull/1710">#1710</a>.</li>
-</ul>
- <ul>
-<li>Upgraded to Chromedriver that always looks for Chromedriver in PATH for arm64.</li>
-</ul>
- <ul>
-<li>Fixed getting Geckoprofile on Android when you do not specify Android package <a href="https://github.com/sitespeedio/browsertime/pull/1712">#1712</a>.</li>
 </ul>
 ]]></summary>
         <author>

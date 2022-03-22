@@ -17,6 +17,18 @@
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/browsertime.rss" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[browsertime 15.3.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.3.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.3.0</guid>
+            <pubDate>Mon, 07 Mar 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Chrome: If you set --user-data-dir you can clean the directory between each iteration using <code>--chrome.cleanUserDataDir</code> <a href="https://github.com/sitespeedio/browsertime/pull/1739">#1739</a></li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[browsertime 15.2.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.2.0</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.2.0</guid>
@@ -150,24 +162,6 @@
             <description><![CDATA[<h3>Added</h3>
  <ul>
 <li>Docker container for both amd64 and arm64.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 14.19.2]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.19.2</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.19.2</guid>
-            <pubDate>Sat, 05 Feb 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Upgraded to Geckodriver 0.30.0 <a href="https://github.com/sitespeedio/browsertime/pull/1710">#1710</a>.</li>
-</ul>
- <ul>
-<li>Upgraded to Chromedriver that always looks for Chromedriver in PATH for arm64.</li>
-</ul>
- <ul>
-<li>Fixed getting Geckoprofile on Android when you do not specify Android package <a href="https://github.com/sitespeedio/browsertime/pull/1712">#1712</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
