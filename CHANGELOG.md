@@ -1,6 +1,13 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+
+## 23.5.1 - 2022-03-22
+### Fixed
+* Updated to latest NodeJS and Ubuntu updates in the Docker container with some security updates[#3306](https://github.com/sitespeedio/sitespeed.io/pull/3606). Also updated the slim container with latest NodeJS.
+* Make sure the shrinkwrap file is used when building the container [#3604](https://github.com/sitespeedio/sitespeed.io/pull/3604) and (hopefully) fix so that .dockerignore is not ignored when Github Actions build the containers.
+
 ## 23.5.0 - 2022-03-11
+
 ### Added
 * The -slim Docker container now uses Firefox 98.
 * Updated Grafana to latest 8.4.3 in the Docker compose file.
