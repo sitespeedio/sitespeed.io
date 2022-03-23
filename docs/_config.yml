@@ -4,7 +4,7 @@ markdown: kramdown
 compress_html:
   clippings: all
   endings: all
-include: ["_headers"]
+include: ["_headers", "_redirects"]
 highlighter: none
 kramdown:
   syntax_highlighter_opts:
