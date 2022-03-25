@@ -1,6 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
 
+## 23.6.1 - 2022-03-25
+### Fixed
+* Fixing text formatting in the JSON from latest run and make sure we display the time with UTC[#3611](https://github.com/sitespeedio/sitespeed.io/pull/3611).
 ## 23.6.0 - 2022-03-25
 ### Added
 * Various fixes to add more content to the JSON stored from the latest run, making it easier to show more meta data for a run in Grafana [#3607](https://github.com/sitespeedio/sitespeed.io/pull/3607), [#3609](https://github.com/sitespeedio/sitespeed.io/pull/3609) and [#3610](https://github.com/sitespeedio/sitespeed.io/pull/3610).
