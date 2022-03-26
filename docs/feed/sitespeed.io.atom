@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-03-25T08:30:09.607Z</updated>
+    <updated>2022-03-25T14:34:04.135Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 23.6.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.6.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.6.1"/>
+        <updated>2022-03-25T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fixing text formatting in the JSON from latest run and make sure we display the time with UTC<a href="https://github.com/sitespeedio/sitespeed.io/pull/3611">#3611</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 23.6.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.6.0</id>
@@ -199,21 +214,6 @@
 </ul>
  <ul>
 <li>Linux/Mac OS will flush the DNS between runs, that means that you can have some changes in DNS lookup time when you upgrade to 23.0.0.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 22.1.2]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#22.1.2</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#22.1.2"/>
-        <updated>2022-02-09T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated to Browsertime 14.21.1 that disables the new Chrome splash screen by default.</li>
 </ul>
 ]]></summary>
         <author>
