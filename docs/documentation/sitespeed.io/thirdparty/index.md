@@ -67,7 +67,7 @@ You can also track CPU spent per tool/third party. It's turned off by default an
 
 ## Block all 3rd parties
 
-We have two ways to block requests when you use sitespeed.io. Either you can use block `--block` that blocks a specific request (works in Chrome/Edge/Firefox) or you can use `--chrome.blockDomainsExcept` (Chrome/Edge) to block all domains except the ones you choose (you can use wildcard like *.sitespeed.io). You can use both multiple times to keep multiple domains/block multiple requests.
+We have two ways to block requests when you use sitespeed.io. Either you can use block `--block` that blocks a specific request and request patterns (works in Chrome/Edge) or domain (works in Chrome/Edge/Firefox) or you can use `--chrome.blockDomainsExcept` (Chrome/Edge) to block all domains except the ones you choose (you can use wildcard like *.sitespeed.io). You can use both multiple times to keep multiple domains/block multiple requests.
 
 With the block parameter you block specific requests. Here's an example from Wikipedia that blocks the first JavaScript request:
 
@@ -75,6 +75,11 @@ With the block parameter you block specific requests. Here's an example from Wik
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --block "https://en.wikipedia.org/w/load.php?lang=en&modules=startup&only=scripts&raw=1&skin=vector" https://en.wikipedia.org/wiki/Barack_Obama
 ~~~
 
+Block all requests that ends with .js:
+
+~~~bash
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io -n 1 -o --browsertime.block "*.js"
+~~~
 
 Here's an example from a user that use WebPageReplay and want to block all domains except one:
 
