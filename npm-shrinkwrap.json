@@ -7023,9 +7023,9 @@
       }
     },
     "node_modules/urijs": {
-      "version": "1.19.7",
-      "resolved": "https://registry.npmjs.org/urijs/-/urijs-1.19.7.tgz",
-      "integrity": "sha512-Id+IKjdU0Hx+7Zx717jwLPsPeUqz7rAtuVBRLLs+qn+J2nf9NGITWVCxcijgYxBqe83C7sqsQPs6H1pyz3x9gA=="
+      "version": "1.19.10",
+      "resolved": "https://registry.npmjs.org/urijs/-/urijs-1.19.10.tgz",
+      "integrity": "sha512-EzauQlgKuJgsXOqoMrCiePBf4At5jVqRhXykF3Wfb8ZsOBMxPcfiVBcsHXug4Aepb/ICm2PIgqAUGMelgdrWEg=="
     },
     "node_modules/url": {
       "version": "0.10.3",
@@ -13114,9 +13114,9 @@
       }
     },
     "urijs": {
-      "version": "1.19.7",
-      "resolved": "https://registry.npmjs.org/urijs/-/urijs-1.19.7.tgz",
-      "integrity": "sha512-Id+IKjdU0Hx+7Zx717jwLPsPeUqz7rAtuVBRLLs+qn+J2nf9NGITWVCxcijgYxBqe83C7sqsQPs6H1pyz3x9gA=="
+      "version": "1.19.10",
+      "resolved": "https://registry.npmjs.org/urijs/-/urijs-1.19.10.tgz",
+      "integrity": "sha512-EzauQlgKuJgsXOqoMrCiePBf4At5jVqRhXykF3Wfb8ZsOBMxPcfiVBcsHXug4Aepb/ICm2PIgqAUGMelgdrWEg=="
     },
     "url": {
       "version": "0.10.3",
