@@ -3,6 +3,8 @@
 ## 23.7.0 - 2022-03-31
 ### Added
 * Updated to Chrome/Chromedriver 100 and [Browsertime 15.4.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1540---2022-03-30).
+* Updated the +1 container to use Lighthouse 9.5.0.
+* Updated to [Axe-core 4.4.1](https://github.com/sitespeedio/sitespeed.io/pull/3615).
 
 ## 23.6.1 - 2022-03-25
 ### Fixed
