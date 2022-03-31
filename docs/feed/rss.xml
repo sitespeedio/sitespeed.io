@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Fri, 25 Mar 2022 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 31 Mar 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,39 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 23.7.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.7.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.7.0</guid>
+            <pubDate>Thu, 31 Mar 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Chrome/Chromedriver 100 and <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1540---2022-03-30">Browsertime 15.4.0</a>.</li>
+</ul>
+ <ul>
+<li>Updated the +1 container to use Lighthouse 9.5.0.</li>
+</ul>
+ <ul>
+<li>Updated to <a href="https://github.com/sitespeedio/sitespeed.io/pull/3615">Axe-core 4.4.1</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 15.4.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.4.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.4.0</guid>
+            <pubDate>Wed, 30 Mar 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Chrome and Chromedriver 100 <a href="https://github.com/sitespeedio/browsertime/pull/1743">#1743</a>.</li>
+</ul>
+ <ul>
+<li>There&#39;s a new version of the visual metrics script contributed by <a href="https://github.com/gmierz">Gregory Mierzwinski</a> that removed the dependency of ImageMagick and instead needs the Python dependencies <em>OpenCV-Python</em> and <em>Numpy</em>. The long term goal is to use this as default but for now you can test it with <code>--visualMetricsPortable</code>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 23.6.1]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.6.1</link>
@@ -214,38 +247,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 23.0.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.0.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.0.0</guid>
-            <pubDate>Mon, 21 Feb 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Use Browsertime 15.0.0.</li>
-</ul>
- <ul>
-<li>Show alias name in the budget report page <a href="https://github.com/sitespeedio/sitespeed.io/pull/3572">#3572</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Fix broken JUnit output. Thank you <a href="https://github.com/rghetu">rghetu</a> for finding it <a href="https://github.com/sitespeedio/sitespeed.io/pull/3569">#3569</a>.</li>
-</ul>
- <ul>
-<li>When comparing metrics side by side for different runs, mean/median and stddev was sometimes broken for some timing metrics. Fixed with <a href="https://github.com/sitespeedio/sitespeed.io/pull/3573">#3573</a></li>
-</ul>
-<h3>Breaking changes</h3>
- <ul>
-<li>In this release we updated to Browsertime 15.0.0 that drops built in support for <a href="https://github.com/WPO-Foundation/tsproxy">TSProxy</a>. The reason to drop TSProxy is that it only works in Python 2 and the sunset for Python 2 was January 1, 2020. If you still need TSProxy you can set it up yourself.</li>
-</ul>
- <ul>
-<li>Browsertime also drop support for getting visual metrics from the trace log. It was added to evaluate if it could be a compliment to the video visual metrics but it was not. Removing it also decreased the number of dependencies in Browsertime.</li>
-</ul>
- <ul>
-<li>Linux/Mac OS will flush the DNS between runs, that means that you can have some changes in DNS lookup time when you upgrade to 23.0.0.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[browsertime 15.0.1]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.0.1</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.0.1</guid>
@@ -324,18 +325,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>There&#39;s a new setup how we build Docker releases and this release uses the new pipeline.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 14.20.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.20.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.20.0</guid>
-            <pubDate>Mon, 07 Feb 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Docker container for both amd64 and arm64.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
