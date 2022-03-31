@@ -74,7 +74,7 @@
     "@google-cloud/storage": "5.8.3",
     "@tgwf/co2": "0.8.0",
     "aws-sdk": "2.882.0",
-    "axe-core": "4.3.5",
+    "axe-core": "4.4.1",
     "browsertime": "15.4.0",
     "coach-core": "7.1.0",
     "cli-color": "2.0.0",
