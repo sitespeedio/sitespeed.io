@@ -1,8 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 23.7.0 - 2022-03-31
 ### Added
-* Updated to Chrome/Chromedriver 100 and Browsertime 15.4.0.
+* Updated to Chrome/Chromedriver 100 and [Browsertime 15.4.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1540---2022-03-30).
 
 ## 23.6.1 - 2022-03-25
 ### Fixed
