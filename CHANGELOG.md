@@ -4,7 +4,7 @@
 ## 24.0.0 - 2022-04-06
 
 ### Changed 
-* Upgraded to [Browsertime 16.0.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1600---2022-04-05) that changed how the DNS is flushed. You need to add `--flushDNS` to your runs to flush the DNS.
+* Upgraded to [Browsertime 16.0.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1600---2022-04-05) that changed how the DNS is flushed. You need to add `--flushDNS` to your conifguration to flush the DNS between runs.
 
 ### Added
 * Use Firefox 99 and Edge/Edgedriver 100 in the Dockker container.
