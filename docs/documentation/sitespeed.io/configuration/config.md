@@ -46,6 +46,7 @@ Browser
       --browsertime.cookie, --cookie                                                                Cookie that will be added to the request. Add multiple instances to add multiple cookies. Use the following format cookieName=cookieValue. Only works in Chrome and Firefox.
       --browsertime.block, --block                                                                  Domain or URL or URL pattern to block. If you use Chrome you can also use --blockDomainsExcept (that is more performant). Works in Chrome/Edge. For Firefox you can only block domains.
       --browsertime.basicAuth, --basicAuth                                                          Use it if your server is behind Basic Auth. Format: username@password. Only works in Chrome and Firefox.
+      --browsertime.flushDNS, --flushDNS                                                            Flush the DNS between runs (works on Mac OS and Linux). The user needs sudo rights to flush the DNS.
       --browsertime.headless, --headless                                                            Run the browser in headless mode. This is the browser internal headless mode, meaning you cannot collect Visual Metrics or in Chrome run any WebExtension (this means you cannot add cookies, requestheaders or use basic auth for headless Chrome). Only works in Chrome and Firefox.  [boolean] [default: false]
 
 video

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-03-31T06:45:03.562Z</updated>
+    <updated>2022-04-06T18:30:06.326Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,32 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 24.0.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.0.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.0.0"/>
+        <updated>2022-04-06T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Use Firefox 99 and Edge/Edgedriver 100 in the Dockker container.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Better catch if Visual Metrics fails <a href="https://github.com/sitespeedio/sitespeed.io/pull/3619">#3619</a></li>
+</ul>
+ <ul>
+<li>Fixed JUnit/alias bug <a href="https://github.com/sitespeedio/sitespeed.io/pull/3620">#3620</a></li>
+</ul>
+<h3>Changed</h3>
+ <ul>
+<li>Upgraded to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1600---2022-04-05">Browsertime 16.0.0</a> that changed how the DNS is flushed. You need to add <code>--flushDNS</code> to your conifguration to flush the DNS between runs.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 23.7.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.7.0</id>
@@ -185,21 +211,6 @@
 <h3>Fixed</h3>
  <ul>
 <li>Updated Chromedriver dependency that fixes installation on Mac M1 and some send keys issues.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 23.0.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.0.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.0.1"/>
-        <updated>2022-02-21T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Bumped to Browsertime 15.0.1 to make sure connectivity is set only once. In last release it was set in the beginning of the test and for eacch iteration. In practice that doesn&#39;t matter but it&#39;s very confusing if you check the logs.</li>
 </ul>
 ]]></summary>
         <author>
