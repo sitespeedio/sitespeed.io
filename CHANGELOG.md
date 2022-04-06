@@ -1,5 +1,17 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+
+## 24.0.0 - 2022-04-06
+
+### Changed 
+* Upgraded to [Browsertime 16.0.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1600---2022-04-05) that changed how the DNS is flushed. You need to add `--flushDNS` to your runs to flush the DNS.
+
+### Added
+* Use Firefox 99 and Edge/Edgedriver 100 in the Dockker container.
+
+### Fixed
+* Better catch if Visual Metrics fails [#3619](https://github.com/sitespeedio/sitespeed.io/pull/3619)
+* Fixed JUnit/alias bug [#3620](https://github.com/sitespeedio/sitespeed.io/pull/3620)
 ## 23.7.0 - 2022-03-31
 ### Added
 * Updated to Chrome/Chromedriver 100 and [Browsertime 15.4.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1540---2022-03-30).
