@@ -289,7 +289,7 @@ if browsertime
         td  #{element.name}
          if (element.filename)
           | (#{element.filename})
-        if visualMetrics[element.name]
+        if element && visualMetrics && visualMetrics[element.name]
           td #{visualMetrics[element.name] ? h.time.ms(visualMetrics[element.name].toFixed(0)): ''}
         else 
           td
