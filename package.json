@@ -48,7 +48,7 @@
     "generate:assets": "mkdir -p assets/$npm_package_version && cp -R lib/plugins/html/assets/ assets/$npm_package_version/"
   },
   "engines": {
-    "node": ">=10.13.0"
+    "node": ">=14.19.1"
   },
   "devDependencies": {
     "bluebird": "3.5.5",

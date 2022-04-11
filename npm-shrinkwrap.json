@@ -75,7 +75,7 @@
         "sass": "1.34.0"
       },
       "engines": {
-        "node": ">=10.13.0"
+        "node": ">=14.19.1"
       }
     },
     "node_modules/@babel/helper-validator-identifier": {
