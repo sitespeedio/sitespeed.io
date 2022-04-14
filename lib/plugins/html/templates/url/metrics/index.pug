@@ -38,6 +38,9 @@ if browsertime
       a(href='#server-timings') Server timings
       | &nbsp;|&nbsp;
 
+  p
+    small #{ medianRun ? 'Data from run ' + medianRun.runIndex : ''}
+
   - baseHelpURL = rootPath + 'help.html#';
 
   - const defaultVisualMetrics = ['SpeedIndex','FirstVisualChange','LastVisualChange','VisualProgress', 'PerceptualSpeedIndexProgress', 'ContentfulSpeedIndexProgress', 'videoRecordingStart', 'PerceptualSpeedIndex', 'ContentfulSpeedIndex', 'LastMeaningfulPaint', 'LargestImage', 'Heading' ,'VisualReadiness','VisualComplete85', 'VisualComplete95','VisualComplete99'];
