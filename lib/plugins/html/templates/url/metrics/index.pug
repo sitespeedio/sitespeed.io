@@ -38,6 +38,9 @@ if browsertime
       a(href='#server-timings') Server timings
       | &nbsp;|&nbsp;
 
+  p
+    small #{ medianRun ? 'Data from run ' + medianRun.runIndex : ''}
+
   - baseHelpURL = rootPath + 'help.html#';
 
   - const defaultVisualMetrics = ['SpeedIndex','FirstVisualChange','LastVisualChange','VisualProgress', 'PerceptualSpeedIndexProgress', 'ContentfulSpeedIndexProgress', 'videoRecordingStart', 'PerceptualSpeedIndex', 'ContentfulSpeedIndex', 'LastMeaningfulPaint', 'LargestImage', 'Heading' ,'VisualReadiness','VisualComplete85', 'VisualComplete95','VisualComplete99'];
@@ -156,6 +159,10 @@ if browsertime
       table
         tr
           th(colspan='2') Extra timings
+        tr
+          td
+            a(href=baseHelpURL + 'ttfb') TTFB
+          td.number #{h.time.ms(timings.ttfb.toFixed(0))}
         if (timings.paintTiming && Object.keys(timings.paintTiming).length > 0)
           - const paintTimingHelper = { "first-contentful-paint": {"name": 'First Contentful Paint (FCP)', "friendly": "first-contentful-paint"},  "first-paint": {"name": 'First Paint', "friendly": "firstPaint" }};
           each value, name in timings.paintTiming
