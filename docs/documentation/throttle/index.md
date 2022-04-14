@@ -113,7 +113,7 @@ throttle --stop --localhost
 
 
 ```javascript
-const throttle = require('@sitespeed.io/throttle');
+import throttle from '@sitespeed.io/throttle'
 // Returns a promise
 throttle.start({up: 360, down: 780, rtt: 200}).then(() => ...
 ```
@@ -121,7 +121,7 @@ throttle.start({up: 360, down: 780, rtt: 200}).then(() => ...
 or
 
 ```javascript
-const throttle = require('@sitespeed.io/throttle');
+import throttle from '@sitespeed.io/throttle'
 // Returns a promise
 const options = {up: 360, down: 780, rtt: 200};
 await throttle.start(options);
