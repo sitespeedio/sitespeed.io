@@ -159,6 +159,10 @@ if browsertime
       table
         tr
           th(colspan='2') Extra timings
+        tr
+          td
+            a(href=baseHelpURL + 'ttfb') TTFB
+          td.number #{h.time.ms(timings.ttfb.toFixed(0))}
         if (timings.paintTiming && Object.keys(timings.paintTiming).length > 0)
           - const paintTimingHelper = { "first-contentful-paint": {"name": 'First Contentful Paint (FCP)', "friendly": "first-contentful-paint"},  "first-paint": {"name": 'First Paint', "friendly": "firstPaint" }};
           each value, name in timings.paintTiming
