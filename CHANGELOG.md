@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+### Added
+* Update Grafana auth settings to allow api token or basic auth, thank you [Vladimir Stepanov](https://github.com/vs-odessa) for PR [#3627](https://github.com/sitespeedio/sitespeed.io/pull/3627).
 
 ## 24.0.0 - 2022-04-06
 
