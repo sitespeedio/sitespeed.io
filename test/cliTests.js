@@ -54,10 +54,6 @@ describe('cli', () => {
       );
 
       expect(stdout).to.contain('--grafana.auth');
-      expect(stdout).to.contain(
-        'The Grafana auth/bearer value used when sending annotations to Grafana. See http://docs.grafana.org/http_api/auth/#authentication-api'
-      );
-
       expect(stdout).to.contain('--grafana.annotationTitle');
       expect(stdout).to.contain(
         'Add a title to the annotation sent for a run.'
