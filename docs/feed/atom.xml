@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-04-14T00:00:00.000Z</updated>
+    <updated>2022-04-20T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,46 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <entry>
+        <title type="html"><![CDATA[browsertime 16.1.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.1.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.1.0"/>
+        <updated>2022-04-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Added blocking of Chrome and Edge phone home domains <a href="https://github.com/sitespeedio/browsertime/pull/1763">#1763</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Handle negative x/y offsets when cropping images in the new portable visual metrocs script, thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1770">#1770</a>.</li>
+</ul>
+ <ul>
+<li>Bumped Throttle dependency <a href="https://github.com/sitespeedio/browsertime/pull/1769">#1769</a>.</li>
+</ul>
+ <ul>
+<li>Bumped chrome-har, chrome-remote-interface, dayjs and yargs dependencies <a href="https://github.com/sitespeedio/browsertime/pull/1771">#1771</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[throttle 3.1.1]]></title>
+        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.1</id>
+        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.1"/>
+        <updated>2022-04-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated minimist dependency.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[throttle 4.0.0]]></title>
         <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.0</id>
         <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.0"/>
@@ -26,7 +66,7 @@
 </ul>
 <h3>Changed</h3>
  <ul>
-<li>Converting the project to ES6 module. If you run Throttle by command line it will work exactly as before except that we dropped support for NodeJS 10 <a href="https://github.com/sitespeedio/throttle/pull/67">#67</a>.</li>
+<li>Converting the project to ES6 module. If you run Throttle by command line it will work exactly as before except that we dropped support for NodeJS 10 <a href="https://github.com/sitespeedio/throttle/pull/67">#67</a>. You can read <a href="https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c">Sindre Sorhus ESM package guide</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -42,6 +82,21 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Upgraded to PageXray 4.4.1 and Third Party Web 0.15.0.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 16.0.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.0.1</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.0.1"/>
+        <updated>2022-04-06T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>If visual metrics fails and you also use --visualElements, make sure that file is also stored so we can reporduce the issue <a href="https://github.com/sitespeedio/browsertime/pull/1757">#1757</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -68,21 +123,6 @@
 <h3>Changed</h3>
  <ul>
 <li>Upgraded to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1600---2022-04-05">Browsertime 16.0.0</a> that changed how the DNS is flushed. You need to add <code>--flushDNS</code> to your conifguration to flush the DNS between runs.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 16.0.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.0.1</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.0.1"/>
-        <updated>2022-04-06T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>If visual metrics fails and you also use --visualElements, make sure that file is also stored so we can reporduce the issue <a href="https://github.com/sitespeedio/browsertime/pull/1757">#1757</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -264,6 +304,21 @@
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[browsertime 15.3.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.3.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.3.0"/>
+        <updated>2022-03-07T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Chrome: If you set --user-data-dir you can clean the directory between each iteration using <code>--chrome.cleanUserDataDir</code> <a href="https://github.com/sitespeedio/browsertime/pull/1739">#1739</a></li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[sitespeed.io 23.3.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.3.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.3.0"/>
@@ -274,21 +329,6 @@
 </ul>
  <ul>
 <li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1530---2022-03-07">Browsertime 15.3.0</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 15.3.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.3.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.3.0"/>
-        <updated>2022-03-07T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Chrome: If you set --user-data-dir you can clean the directory between each iteration using <code>--chrome.cleanUserDataDir</code> <a href="https://github.com/sitespeedio/browsertime/pull/1739">#1739</a></li>
 </ul>
 ]]></summary>
         <author>
@@ -333,28 +373,6 @@
 <h3>Fixed</h3>
  <ul>
 <li>Added more view ports for emulated mobile in Chrome <a href="https://github.com/sitespeedio/browsertime/pull/1736">#1736</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 23.1.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.1.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.1.0"/>
-        <updated>2022-02-24T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1510---2022-02-24">Browsertime</a> that collect timings from main document. The result includes a field named mainDocumentTimings and contains blocked, dns, connect, send, wait, receive, ssl as long as you get a HAR file from the browser.</li>
-</ul>
- <ul>
-<li>Show Browsertime version in runtime settings <a href="https://github.com/sitespeedio/sitespeed.io/pull/3575">#3575</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Updated Chromedriver dependency that fixes installation on Mac M1 and some send keys issues.</li>
 </ul>
 ]]></summary>
         <author>
@@ -432,24 +450,6 @@
 </ul>
  <ul>
 <li>Removed support for using speedline and the CLI arg <code>--chrome.visualMetricsUsingTrace</code> <a href="https://github.com/sitespeedio/browsertime/pull/1727">#1727</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 14.21.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.21.1</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.21.1"/>
-        <updated>2022-02-09T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Always disable the new ChromeWhaxyNewUI splash screen in Chrome <a href="https://github.com/sitespeedio/browsertime/pull/1717">#1717</a>.</li>
-</ul>
- <ul>
-<li>Remove the Firefox persist log configuration that was needed for FF 94+ <a href="https://github.com/sitespeedio/browsertime/pull/1716">#1716</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -958,16 +958,6 @@
 <li>Removed test directory from the release, thank you <a href="https://github.com/yurynix">Yury Michurin</a> for the PR <a href="https://github.com/sitespeedio/chrome-har/pull/75">#75</a>.</li>
 </ul>
 ]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[throttle 2.0.1]]></title>
-        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.0.1</id>
-        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.0.1"/>
-        <updated>2020-08-22T00:00:00.000Z</updated>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>

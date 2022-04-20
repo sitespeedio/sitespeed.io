@@ -4,7 +4,7 @@
         <title>browsertime release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of browsertime</description>
-        <lastBuildDate>Wed, 06 Apr 2022 10:48:06 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 20 Apr 2022 11:40:17 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,28 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/browsertime.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[browsertime 16.1.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.1.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.1.0</guid>
+            <pubDate>Wed, 20 Apr 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Added blocking of Chrome and Edge phone home domains <a href="https://github.com/sitespeedio/browsertime/pull/1763">#1763</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Handle negative x/y offsets when cropping images in the new portable visual metrocs script, thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1770">#1770</a>.</li>
+</ul>
+ <ul>
+<li>Bumped Throttle dependency <a href="https://github.com/sitespeedio/browsertime/pull/1769">#1769</a>.</li>
+</ul>
+ <ul>
+<li>Bumped chrome-har, chrome-remote-interface, dayjs and yargs dependencies <a href="https://github.com/sitespeedio/browsertime/pull/1771">#1771</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[browsertime 16.0.1]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.0.1</link>
@@ -158,21 +180,6 @@
 </ul>
  <ul>
 <li>Removed support for using speedline and the CLI arg <code>--chrome.visualMetricsUsingTrace</code> <a href="https://github.com/sitespeedio/browsertime/pull/1727">#1727</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 14.21.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.21.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#14.21.1</guid>
-            <pubDate>Wed, 09 Feb 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Always disable the new ChromeWhaxyNewUI splash screen in Chrome <a href="https://github.com/sitespeedio/browsertime/pull/1717">#1717</a>.</li>
-</ul>
- <ul>
-<li>Remove the Firefox persist log configuration that was needed for FF 94+ <a href="https://github.com/sitespeedio/browsertime/pull/1716">#1716</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
