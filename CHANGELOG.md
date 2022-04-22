@@ -1,12 +1,16 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 24.1.0 - 2022-04-22
 ### Added
 * Update Grafana auth settings to allow api token or basic auth, thank you [Vladimir Stepanov](https://github.com/vs-odessa) for PR [#3627](https://github.com/sitespeedio/sitespeed.io/pull/3627).
 * Add TTFB to the metrics page [#3630](https://github.com/sitespeedio/sitespeed.io/pull/3630).
 * Use latest Coach core with updated PageXray and Third party web [#3629](https://github.com/sitespeedio/sitespeed.io/pull/3629).
 * Make it possible to disable annotations for Graphite. Set `--graphite.sendAnnotation false` to disable sending annotations [#3625](https://github.com/sitespeedio/sitespeed.io/pull/3625).
 * Show which run that is used in the metrics tab [#3631](https://github.com/sitespeedio/sitespeed.io/pull/3631).
+* Updated to [Browsertime 16.1.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1610---2022-04-20).
+### Updated
+* Update dependencies: google-cloud/storage, aws-sdk, dayjs, yargs [#3635](https://github.com/sitespeedio/sitespeed.io/pull/3635).
+
 ## 24.0.0 - 2022-04-06
 
 ### Changed 
