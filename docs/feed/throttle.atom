@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>throttle-release-feed</id>
     <title>throttle release feed</title>
-    <updated>2022-04-14T09:10:27.107Z</updated>
+    <updated>2022-04-20T11:37:49.769Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -26,7 +26,22 @@
 </ul>
 <h3>Changed</h3>
  <ul>
-<li>Converting the project to ES6 module. If you run Throttle by command line it will work exactly as before except that we dropped support for NodeJS 10 <a href="https://github.com/sitespeedio/throttle/pull/67">#67</a>.</li>
+<li>Converting the project to ES6 module. If you run Throttle by command line it will work exactly as before except that we dropped support for NodeJS 10 <a href="https://github.com/sitespeedio/throttle/pull/67">#67</a>. You can read <a href="https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c">Sindre Sorhus ESM package guide</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[throttle 3.1.1]]></title>
+        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.1</id>
+        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.1"/>
+        <updated>2022-04-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated minimist dependency.</li>
 </ul>
 ]]></summary>
         <author>
@@ -109,16 +124,6 @@
         <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.0.2</id>
         <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.0.2"/>
         <updated>2020-09-10T00:00:00.000Z</updated>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[throttle 2.0.1]]></title>
-        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.0.1</id>
-        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.0.1"/>
-        <updated>2020-08-22T00:00:00.000Z</updated>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>

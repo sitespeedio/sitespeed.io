@@ -134,7 +134,7 @@ Crawler
 Grafana
       --grafana.host                  The Grafana host used when sending annotations.
       --grafana.port                  The Grafana port used when sending annotations to Grafana.  [default: 80]
-      --grafana.auth                  The Grafana auth/bearer value used when sending annotations to Grafana. See http://docs.grafana.org/http_api/auth/#authentication-api
+      --grafana.auth                  The Grafana auth/bearer value used when sending annotations to Grafana. If you do not set Bearer/Auth, Bearer is automatically set. See http://docs.grafana.org/http_api/auth/#authentication-api
       --grafana.annotationTitle       Add a title to the annotation sent for a run.
       --grafana.annotationMessage     Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
       --grafana.annotationTag         Add a extra tag to the annotation sent for a run. Repeat the --grafana.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
@@ -152,6 +152,7 @@ Graphite
       --graphite.annotationTitle             Add a title to the annotation sent for a run.
       --graphite.annotationMessage           Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
       --graphite.annotationScreenshot        Include screenshot (from Browsertime/WebPageTest) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
+      --graphite.sendAnnotation              Send annotations when a run is finished. You need to specify a --resultBaseURL for this to work. However if you for example use a Prometheus exporter, you may want to make sure annotations are not sent, then set it to false.  [boolean] [default: true]
       --graphite.annotationRetentionMinutes  The retention in minutes, to make annotation match the retention in Graphite.  [number]
       --graphite.statsd                      Uses the StatsD interface  [boolean] [default: false]
       --graphite.annotationTag               Add a extra tag to the annotation sent for a run. Repeat the --graphite.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
