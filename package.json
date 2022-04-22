@@ -71,15 +71,15 @@
   },
   "main": "./lib/sitespeed.js",
   "dependencies": {
-    "@google-cloud/storage": "5.8.3",
+    "@google-cloud/storage": "5.19.3",
     "@tgwf/co2": "0.8.0",
-    "aws-sdk": "2.882.0",
+    "aws-sdk": "2.1118.0",
     "axe-core": "4.4.1",
     "browsertime": "16.1.0",
     "coach-core": "7.1.1",
     "cli-color": "2.0.0",
     "concurrent-queue": "7.0.2",
-    "dayjs": "1.10.4",
+    "dayjs": "1.11.1",
     "fast-crc32c": "2.0.0",
     "fast-stats": "0.0.6",
     "find-up": "5.0.0",
@@ -111,6 +111,6 @@
     "tape": "4.13.0",
     "text-table": "0.2.0",
     "uuid": "8.3.2",
-    "yargs": "17.2.1"
+    "yargs": "17.4.1"
   }
 }
