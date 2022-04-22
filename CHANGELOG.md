@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+##  UNRELEASED
+
+### Added
+* Updated base Docker image to use Ubuntu 22.04 [#3636](https://github.com/sitespeedio/sitespeed.io/pull/3636).
+
 ## 24.1.0 - 2022-04-22
 ### Added
 * Update Grafana auth settings to allow api token or basic auth, thank you [Vladimir Stepanov](https://github.com/vs-odessa) for PR [#3627](https://github.com/sitespeedio/sitespeed.io/pull/3627).
