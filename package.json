@@ -46,7 +46,7 @@
 		]
   },
   "scripts": {
-    "start-server": "serve test/data/html/",
+    "start-server": "serve test/data/html/ -l 3001",
     "stop-server": "sudo pkill serve",
     "lint": "eslint . && npm run pug-lint",
     "lint:fix": "eslint . --fix",

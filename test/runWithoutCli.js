@@ -1,5 +1,5 @@
 const sitespeed = require('../lib/sitespeed');
-const urls = ['http://127.0.0.1:3000/simple/'];
+const urls = ['http://127.0.0.1:3001/simple/'];
 
 async function run() {
   try {

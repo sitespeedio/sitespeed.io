@@ -37,24 +37,24 @@ jobs:
     - name: Start local HTTP server
       run: (npm run start-server&)
     - name: Test old budget
-      run: bin/sitespeed.js -b firefox -n 2 --budget.configPath test/oldBudget.json --summary --xvfb http://127.0.0.1:3000/simple/
+      run: bin/sitespeed.js -b firefox -n 2 --budget.configPath test/oldBudget.json --summary --xvfb http://127.0.0.1:3001/simple/
     - name: Test new budget file  
-      run: bin/sitespeed.js --useHash -n 1 --budget.configPath test/budget.json --xvfb  http://127.0.0.1:3000/simple/#heybaberia
+      run: bin/sitespeed.js --useHash -n 1 --budget.configPath test/budget.json --xvfb  http://127.0.0.1:3001/simple/#heybaberia
     - name: Use AXE
-      run: bin/sitespeed.js --useAlias start --mobile -n 1 --utc --axe.enable --xvfb http://127.0.0.1:3000/simple/
+      run: bin/sitespeed.js --useAlias start --mobile -n 1 --utc --axe.enable --xvfb http://127.0.0.1:3001/simple/
     - name: Use Fireefox with --mobile
-      run: bin/sitespeed.js -b firefox  --metrics.list --mobile -n 1 http://127.0.0.1:3000/simple/ --sustainable.enable --xvfb
+      run: bin/sitespeed.js -b firefox  --metrics.list --mobile -n 1 http://127.0.0.1:3001/simple/ --sustainable.enable --xvfb
     - name: Test --multi  
-      run: bin/sitespeed.js --multi -b chrome -n 1 test/prepostscripts/preSample.js http://127.0.0.1:3000/simple/ test/prepostscripts/postSample.js --xvfb
+      run: bin/sitespeed.js --multi -b chrome -n 1 test/prepostscripts/preSample.js http://127.0.0.1:3001/simple/ test/prepostscripts/postSample.js --xvfb
     - name: Test --multi and --tcpdump  
-      run: bin/sitespeed.js --multi -n 1 http://127.0.0.1:3000/simple/ http://127.0.0.1:3000/dimple/ --tcpdump --xvfb
+      run: bin/sitespeed.js --multi -n 1 http://127.0.0.1:3001/simple/ http://127.0.0.1:3001/dimple/ --tcpdump --xvfb
     - name: Test --multi with one file 
       run: bin/sitespeed.js --multi -n 3 test/prepostscripts/multi.js --xvfb
     - name: Test setting HTML output pageSummaries
-      run: bin/sitespeed.js http://127.0.0.1:3000/simple/ http://127.0.0.1:3000/dimple/ -v -n 1 --html.pageSummaryMetrics transferSize.css --html.pageSummaryMetrics requests.httpErrors --html.pageSummaryMetrics score.performance --xvfb
+      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ http://127.0.0.1:3001/dimple/ -v -n 1 --html.pageSummaryMetrics transferSize.css --html.pageSummaryMetrics requests.httpErrors --html.pageSummaryMetrics score.performance --xvfb
     - name: Test setting HTML output summary boxes 
-      run: bin/sitespeed.js http://127.0.0.1:3000/simple/ -v -n 1 --html.summaryBoxes score.performance --html.summaryBoxes timings.firstPaint --xvfb
+      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ -v -n 1 --html.summaryBoxes score.performance --html.summaryBoxes timings.firstPaint --xvfb
     - name: Run test with Graphite
-      run: bin/sitespeed.js http://127.0.0.1:3000/simple/ -n 1 --graphite.host 127.0.0.1 --xvfb
+      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ -n 1 --graphite.host 127.0.0.1 --xvfb
     - name: Run test without a CLI
       run: xvfb-run node test/runWithoutCli.js
