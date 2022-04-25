@@ -37,6 +37,13 @@
   "bugs": {
     "url": "https://github.com/sitespeedio/sitespeed.io/issues"
   },
+  "ava": {
+    "files": [
+			"test/**/*",
+			"!test/prepostscripts",
+			"!test/runWithoutCli.js"
+		]
+  },
   "scripts": {
     "lint": "eslint . && npm run pug-lint",
     "lint:fix": "eslint . --fix",
