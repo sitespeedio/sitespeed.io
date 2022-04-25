@@ -1,26 +1,32 @@
 'use strict';
 
 const pathFromRootToPageDir = require('../lib/core/resultsStorage/pathToFolder');
-const expect = require('chai').expect;
+const test = require('ava');
 
-describe('pathFromRootToPageDir', function () {
-  it('should create path from site root', function () {
-    const path = pathFromRootToPageDir('http://www.foo.bar', {});
-    expect(path).to.equal('pages/www_foo_bar/');
-  });
+test(`Test pathFromRootToPageDir should create path from site root`, t => {
+  const path = pathFromRootToPageDir('http://www.foo.bar', {});
+  t.is(path, 'pages/www_foo_bar/', 'should create path from site root');
+});
 
-  it('should create path from url', function () {
-    const path = pathFromRootToPageDir('http://www.foo.bar/x/y/z.html', {});
-    expect(path).to.equal('pages/www_foo_bar/x/y/z.html/');
-  });
+test(`Test pathFromRootToPageDir should create path from url`, t => {
+  const path = pathFromRootToPageDir('http://www.foo.bar/x/y/z.html', {});
+  t.is(path, 'pages/www_foo_bar/x/y/z.html/', 'should create path from url');
+});
 
-  it('should create path from url with sanitized characters', function () {
-    const path = pathFromRootToPageDir('http://www.foo.bar/x/y/z:200.html', {});
-    expect(path).to.equal('pages/www_foo_bar/x/y/z-200.html/');
-  });
+test(`Test pathFromRootToPageDir should create path from url with sanitized characters`, t => {
+  const path = pathFromRootToPageDir('http://www.foo.bar/x/y/z:200.html', {});
+  t.is(
+    path,
+    'pages/www_foo_bar/x/y/z-200.html/',
+    'should create path from url with sanitized characters'
+  );
+});
 
-  it('should create path from url with query string', function () {
-    const path = pathFromRootToPageDir('http://www.foo.bar/x/y/z?foo=bar', {});
-    expect(path).to.equal('pages/www_foo_bar/x/y/z/query-115ffe20/');
-  });
+test(`Test pathFromRootToPageDir should create path from url with query string`, t => {
+  const path = pathFromRootToPageDir('http://www.foo.bar/x/y/z?foo=bar', {});
+  t.is(
+    path,
+    'pages/www_foo_bar/x/y/z/query-115ffe20/',
+    'should create path from url with query string'
+  );
 });

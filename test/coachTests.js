@@ -1,19 +1,15 @@
 'use strict';
 
-const aggregator = require('../lib/plugins/coach/aggregator'),
-  fs = require('fs'),
-  path = require('path'),
-  expect = require('chai').expect;
+const test = require('ava');
+const aggregator = require('../lib/plugins/coach/aggregator');
+const fs = require('fs');
+const path = require('path');
 
 const coachRunPath = path.resolve(__dirname, 'fixtures', 'coach.run-0.json');
 const coachRun = JSON.parse(fs.readFileSync(coachRunPath, 'utf8'));
 
-describe('coach', function () {
-  describe('aggregator', function () {
-    it('should summarize data', function () {
-      aggregator.addToAggregate(coachRun, 'www.sitespeed.io');
-
-      expect(aggregator.summarize()).to.not.be.empty;
-    });
-  });
+test(`Should summarize Coach data`, t => {
+  aggregator.addToAggregate(coachRun, 'www.sitespeed.io');
+  const data = aggregator.summarize();
+  t.not(data, undefined);
 });
