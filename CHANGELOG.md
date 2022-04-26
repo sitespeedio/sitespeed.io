@@ -5,6 +5,10 @@
 ### Added
 * Updated base Docker image to use Ubuntu 22.04 [#3636](https://github.com/sitespeedio/sitespeed.io/pull/3636).
 
+### Tech
+* Use Ava for unit testing [#3637](https://github.com/sitespeedio/sitespeed.io/pull/3637)
+* Use local HTTP server to speed up GitHub Action tests [#3638](https://github.com/sitespeedio/sitespeed.io/pull/3638).
+
 ## 24.1.0 - 2022-04-22
 ### Added
 * Update Grafana auth settings to allow api token or basic auth, thank you [Vladimir Stepanov](https://github.com/vs-odessa) for PR [#3627](https://github.com/sitespeedio/sitespeed.io/pull/3627).
