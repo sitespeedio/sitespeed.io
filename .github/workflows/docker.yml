@@ -16,15 +16,19 @@ jobs:
         docker buildx install
         docker buildx build --load --platform linux/amd64 -t sitespeedio/sitespeed.io .
         docker buildx build --load --platform linux/amd64 -t sitespeedio/sitespeed.io:slim --file Dockerfile-slim .
+    - name: Install local HTTP server
+      run: npm install serve -g
+    - name: Start local HTTP server
+      run: (serve test/data/html/ -l 3001&)
     - name: Run test on default container for Chrome 
-      run: docker run --rm sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 -b chrome
+      run: docker run --rm --network=host  sitespeedio/sitespeed.io http://127.0.0.1:3001 -n 1 -b chrome
     - name: Run test on default container for Firefox 
-      run: docker run --rm sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 -b firefox
+      run: docker run --rm --network=host sitespeedio/sitespeed.io http://127.0.0.1:3001 -n 1 -b firefox
     - name: Run test on default container for Edge 
-      run: docker run --rm sitespeedio/sitespeed.io https://www.sitespeed.io -n 1 -b edge
+      run: docker run --rm --network=host sitespeedio/sitespeed.io http://127.0.0.1:3001  -n 1 -b edge
     - name: Run test on slim container  
-      run: docker run --rm sitespeedio/sitespeed.io:slim https://www.sitespeed.io -n 1 --browsertime.firefox.preference "devtools.netmonitor.persistlog:true"
+      run: docker run --rm --network=host sitespeedio/sitespeed.io:slim http://127.0.0.1:3001 -n 1 --browsertime.firefox.preference "devtools.netmonitor.persistlog:true"
     - name: Test WebPageReplay with Chrome  
-      run: docker run --cap-add=NET_ADMIN --rm  -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io https://www.sitespeed.io -n 3 -b chrome 
+      run: docker run --cap-add=NET_ADMIN --rm -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io https://www.sitespeed.io -n 3 -b chrome 
     - name: Test WebPageReplay with Firefox  
-      run: docker run --cap-add=NET_ADMIN --rm  -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io https://www.sitespeed.io -n 3 -b firefox --browsertime.firefox.acceptInsecureCerts true
+      run: docker run --cap-add=NET_ADMIN --rm --network=host -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io https://www.sitespeed.io -n 3 -b firefox --browsertime.firefox.acceptInsecureCerts true

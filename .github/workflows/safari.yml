@@ -19,5 +19,9 @@ jobs:
       run: |
         sudo safaridriver --enable 
         npm ci
+    - name: Install local HTTP server
+      run: npm install serve -g
+    - name: Start local HTTP server
+      run: (serve test/data/html/ -l 3001&)
     - name: Run test
-      run: bin/sitespeed.js -b safari https://www.sitespeed.io/
+      run: bin/sitespeed.js -b safari http://127.0.0.1:3001/

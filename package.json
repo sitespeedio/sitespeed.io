@@ -41,7 +41,8 @@
     "files": [
 			"test/**/*",
 			"!test/prepostscripts",
-			"!test/runWithoutCli.js"
+			"!test/runWithoutCli.js",
+      "!test/data"
 		]
   },
   "scripts": {

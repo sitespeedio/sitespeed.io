@@ -24,6 +24,6 @@ jobs:
     - name: Install dependencies
       run: choco install microsoft-edge --force
     - name: Run Edge test
-      run: node bin/sitespeed.js -b edge https://www.sitespeed.io/ 
+      run: node bin/sitespeed.js -b edge https://www.sitespeed.io/
       shell: cmd
       
