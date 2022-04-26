@@ -34,7 +34,7 @@ jobs:
       run: |
         google-chrome --version
         firefox --version
-    - name: Install Start local HTTP server
+    - name: Install local HTTP server
       run: npm install serve -g
     - name: Start local HTTP server
       run: (serve test/data/html/ -l 3001&)

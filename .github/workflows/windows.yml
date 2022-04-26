@@ -15,6 +15,10 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '16.x'
+    - name: Install local HTTP server
+      run: npm install serve -g
+    - name: Start local HTTP server
+      run: (serve test/data/html/ -l 3001&)
     - name: Install sitespeed.io
       run: npm ci
       env:
@@ -24,6 +28,6 @@ jobs:
     - name: Install dependencies
       run: choco install microsoft-edge --force
     - name: Run Edge test
-      run: node bin/sitespeed.js -b edge https://www.sitespeed.io/ 
+      run: node bin/sitespeed.js -b edge http://127.0.0.1:3001/ 
       shell: cmd
       
