@@ -1,13 +1,17 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-##  UNRELEASED
+##  24.2.0 - 2022-04-26
 
 ### Added
 * Updated base Docker image to use Ubuntu 22.04 [#3636](https://github.com/sitespeedio/sitespeed.io/pull/3636).
 
+### Fixed
+* Updated dependencies: aws-sdk, cli-color, fs-extra, influx, junit-report-builder and tape [#3640](https://github.com/sitespeedio/sitespeed.io/pull/3640) 
+
 ### Tech
 * Use Ava for unit testing [#3637](https://github.com/sitespeedio/sitespeed.io/pull/3637)
 * Use local HTTP server to speed up GitHub Action tests [#3638](https://github.com/sitespeedio/sitespeed.io/pull/3638).
+* Updated dev dependencies [#3639](https://github.com/sitespeedio/sitespeed.io/pull/3639).
 
 ## 24.1.0 - 2022-04-22
 ### Added
