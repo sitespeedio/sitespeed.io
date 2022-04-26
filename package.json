@@ -67,7 +67,7 @@
     "eslint-plugin-prettier": "4.0.0",
     "feed": "4.2.2",
     "jsdoc": "^3.6.7",
-    "license-checker": "^16.0.0",
+    "license-checker": "^25.0.0",
     "marked": "4.0.12",
     "sass": "1.51.0",
     "prettier": "2.6.2",
