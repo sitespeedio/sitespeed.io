@@ -40,8 +40,12 @@ jobs:
       run: (serve test/data/html/ -l 3001&)
     - name: Test old budget
       run: bin/sitespeed.js -b firefox -n 2 --budget.configPath test/oldBudget.json --summary --xvfb http://127.0.0.1:3001/simple/
-    - name: Test new budget file  
-      run: bin/sitespeed.js --useHash -n 1 --budget.configPath test/budget.json --xvfb  http://127.0.0.1:3001/simple/#heybaberia
+    - name: Test new budget file with junit 
+      run: bin/sitespeed.js --useHash -n 1 --budget.configPath test/budget.json --xvfb --budget.output junit http://127.0.0.1:3001/simple/#heybaberia
+    - name: Test new budget file with tap 
+      run: bin/sitespeed.js --useHash -n 1 --budget.configPath test/budget.json --xvfb --budget.output tap http://127.0.0.1:3001/simple/#heybaberia
+    - name: Test new budget file with json 
+      run: bin/sitespeed.js --useHash -n 1 --budget.configPath test/budget.json --xvfb --budget.output json http://127.0.0.1:3001/simple/#heybaberia
     - name: Use AXE
       run: bin/sitespeed.js --useAlias start --mobile -n 1 --utc --axe.enable --xvfb http://127.0.0.1:3001/simple/
     - name: Use Fireefox with --mobile
