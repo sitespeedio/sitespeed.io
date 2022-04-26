@@ -59,18 +59,18 @@
     "node": ">=14.19.1"
   },
   "devDependencies": {
-    "ava": "4.0.1",
+    "ava": "4.2.0",
     "changelog-parser": "2.8.1",
     "clean-css-cli": "4.3.0",
-    "eslint": "8.0.0",
-    "eslint-config-prettier": "8.3.0",
+    "eslint": "8.14.0",
+    "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.0.0",
     "feed": "4.2.2",
     "jsdoc": "^3.6.7",
     "license-checker": "^16.0.0",
     "marked": "4.0.12",
-    "sass": "1.34.0",
-    "prettier": "2.4.1",
+    "sass": "1.51.0",
+    "prettier": "2.6.2",
     "pug-lint": "^2.6.0",
     "pug-lint-config-clock": "^2.0.0"
   },
