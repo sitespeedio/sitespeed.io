@@ -1,5 +1,76 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+##  UNRELEASED
+
+### Added
+* Updated base Docker image to use Ubuntu 22.04 [#3636](https://github.com/sitespeedio/sitespeed.io/pull/3636).
+
+## 24.1.0 - 2022-04-22
+### Added
+* Update Grafana auth settings to allow api token or basic auth, thank you [Vladimir Stepanov](https://github.com/vs-odessa) for PR [#3627](https://github.com/sitespeedio/sitespeed.io/pull/3627).
+* Add TTFB to the metrics page [#3630](https://github.com/sitespeedio/sitespeed.io/pull/3630).
+* Use latest Coach core with updated PageXray and Third party web [#3629](https://github.com/sitespeedio/sitespeed.io/pull/3629).
+* Make it possible to disable annotations for Graphite. Set `--graphite.sendAnnotation false` to disable sending annotations [#3625](https://github.com/sitespeedio/sitespeed.io/pull/3625).
+* Show which run that is used in the metrics tab [#3631](https://github.com/sitespeedio/sitespeed.io/pull/3631).
+* Updated to [Browsertime 16.1.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1610---2022-04-20).
+### Updated
+* Update dependencies: google-cloud/storage, aws-sdk, dayjs, yargs [#3635](https://github.com/sitespeedio/sitespeed.io/pull/3635).
+
+## 24.0.0 - 2022-04-06
+
+### Changed 
+* Upgraded to [Browsertime 16.0.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1600---2022-04-05) that changed how the DNS is flushed. You need to add `--flushDNS` to your conifguration to flush the DNS between runs.
+
+### Added
+* Use Firefox 99 and Edge/Edgedriver 100 in the Dockker container.
+
+### Fixed
+* Better catch if Visual Metrics fails [#3619](https://github.com/sitespeedio/sitespeed.io/pull/3619)
+* Fixed JUnit/alias bug [#3620](https://github.com/sitespeedio/sitespeed.io/pull/3620)
+## 23.7.0 - 2022-03-31
+### Added
+* Updated to Chrome/Chromedriver 100 and [Browsertime 15.4.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1540---2022-03-30).
+* Updated the +1 container to use Lighthouse 9.5.0.
+* Updated to [Axe-core 4.4.1](https://github.com/sitespeedio/sitespeed.io/pull/3615).
+
+## 23.6.1 - 2022-03-25
+### Fixed
+* Fixing text formatting in the JSON from latest run and make sure we display the time with UTC[#3611](https://github.com/sitespeedio/sitespeed.io/pull/3611).
+## 23.6.0 - 2022-03-25
+### Added
+* Various fixes to add more content to the JSON stored from the latest run, making it easier to show more meta data for a run in Grafana [#3607](https://github.com/sitespeedio/sitespeed.io/pull/3607), [#3609](https://github.com/sitespeedio/sitespeed.io/pull/3609) and [#3610](https://github.com/sitespeedio/sitespeed.io/pull/3610).
+## 23.5.2 - 2022-03-22
+### Fixed
+* Updated to latest NodeJS and Ubuntu updates in the Docker container with some security updates[#3306](https://github.com/sitespeedio/sitespeed.io/pull/3606). Also updated the slim container with latest NodeJS.
+* Make sure the shrinkwrap file is used when building the container [#3604](https://github.com/sitespeedio/sitespeed.io/pull/3604) and (hopefully) fix so that .dockerignore is not ignored when Github Actions build the containers.
+
+## 23.5.0 - 2022-03-11
+
+### Added
+* The -slim Docker container now uses Firefox 98.
+* Updated Grafana to latest 8.4.3 in the Docker compose file.
+* Updated [Graphite dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/main/dashboards/graphite) to use Timeseries graphs instead of old "Graph".
+* You can use `-o` or `--open` or `--view` to open the result page after you run sitespeed.io on Mac and Linux [#3569](https://github.com/sitespeedio/sitespeed.io/pull/3596). 
+* Open the result with `-o` on Linux using xdg-open [#3597](https://github.com/sitespeedio/sitespeed.io/pull/3597).
+
+## 23.4.0 - 2022-03-09
+### Added
+* Firefox 98 in the Docker container [#3592](https://github.com/sitespeedio/sitespeed.io/pull/3592).
+* Added link to each run in the side by side metric page, making it easier to go to the correct run [#3593](https://github.com/sitespeedio/sitespeed.io/pull/3593).
+
+## 23.3.0 - 2022-03-07
+### Added
+* The +1 container is upgraded to use Lighthouse 9.4.0.
+* Updated to [Browsertime 15.3.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1530---2022-03-07).
+
+## 23.2.0 - 2022-03-05
+
+### Added
+* Updated to Chrome and Edge 99 in the Docker container. Updated to Chromedriver and Edgedriver 99 [#3590](https://github.com/sitespeedio/sitespeed.io/pull/3590).
+### Fixed
+* If you use alias and budget files, the outcome (result budget json and others) should use the alias of the URL instead of the URL [#3582](https://github.com/sitespeedio/sitespeed.io/pull/3582).
+* Ignore sustainable.setup messages when storing analysistorer [#3578](https://github.com/sitespeedio/sitespeed.io/pull/3587).
+
 ## 23.1.0 - 2022-02-24
 ### Added
 * Updated [Browsertime](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1510---2022-02-24) that collect timings from main document. The result includes a field named mainDocumentTimings and contains blocked, dns, connect, send, wait, receive, ssl as long as you get a HAR file from the browser. 

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>compare-release-feed</id>
+    <title>compare release feed</title>
+    <updated>2021-10-29T18:25:09.436Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <author>
+        <name>Peter Hedenskog</name>
+        <email>peter@soulgalore.com</email>
+        <uri>https://www.peterhedenskog.com</uri>
+    </author>
+    <link rel="alternate" href="https://www.sitespeed.io"/>
+    <link rel="self" href="https://www.sitespeed.io/feed/compare.atom"/>
+    <subtitle>New releases and changelog feed of compare</subtitle>
+    <logo>https://www.sitespeed.io/img/logos/compare.png</logo>
+    <icon>http://www.sitespeed.io/favicon.ico</icon>
+    <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[compare 1.0.0]]></title>
+        <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#1.0.0</id>
+        <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#1.0.0"/>
+        <updated>2018-11-28T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Added support for using Github gists see <a href="https://github.com/sitespeedio/compare/issues/34">#34</a>.</li>
+</ul>
+ <ul>
+<li>Added support for using a config file to configure which HARs to test.</li>
+</ul>
+ <ul>
+<li>Added support for copy/paste directly you HAR, configuration file or a gist URL or id.</li>
+</ul>
+ <ul>
+<li>Refactor the CSS into Sass, development build process now uses BrowserSync.</li>
+</ul>
+ <ul>
+<li>Service worker added for offline support. Workbox is used to achieve this.</li>
+</ul>
+ <ul>
+<li>Added support for showing changes in request/responses if you compare the same page <a href="https://github.com/sitespeedio/compare/pull/63">#63</a>.</li>
+</ul>
+<h3>Changed</h3>
+ <ul>
+<li>New internal structure and use the new configuration object all the way.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[compare 0.6.0]]></title>
+        <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.6.0</id>
+        <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.6.0"/>
+        <updated>2018-10-17T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Sort CPU events by name to make it easier to spot regressions</li>
+</ul>
+ <ul>
+<li>Upgraded to latest release of template7</li>
+</ul>
+ <ul>
+<li>Added more Visual Metrics.</li>
+</ul>
+ <ul>
+<li>Upgrad to PageXray 2.4.0</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[compare 0.5.1]]></title>
+        <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.5.1</id>
+        <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.5.1"/>
+        <updated>2018-06-01T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Layout -&gt; Rendering in latest Browsertime.</li>
+</ul>
+ <ul>
+<li>Upgraded to PerfCascade 2.5.2 fixiing Edge tab bug</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[compare 0.5.0]]></title>
+        <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.5.0</id>
+        <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.5.0"/>
+        <updated>2018-04-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>CPU metrics are now showed automatically.</li>
+</ul>
+ <ul>
+<li>Styled the PageXray info table to make it easier to read.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[compare 0.4.1]]></title>
+        <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.4.1</id>
+        <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.4.1"/>
+        <updated>2018-04-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Major code refactoring to make it easier to do changes in the future.</li>
+</ul>
+ <ul>
+<li>Uploading files failed on Firefox.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[compare 0.4.0]]></title>
+        <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.4.0</id>
+        <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.4.0"/>
+        <updated>2018-04-02T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Upgraded to PerfCascade 2.4.1</li>
+</ul>
+ <ul>
+<li>You can change/upload HAR files when you already compare two HARs.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>The layout in the PageXray table was dependent of the length of the URL. That could make some pages look really bad.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[compare 0.3.0]]></title>
+        <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.3.0</id>
+        <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.3.0"/>
+        <updated>2018-03-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Automatically load the HAR files if both files are given in the URL . Thanks <a href="https://github.com/Ivru">Ivru</a> for the PR <a href="https://github.com/sitespeedio/compare/pull/15">#15</a>.</li>
+</ul>
+ <ul>
+<li>You can automatically load one HAR file by adding ?har1=URL&amp;compare=1 as the full URL.</li>
+</ul>
+ <ul>
+<li>Updated to PageXray 2.2.1</li>
+</ul>
+ <ul>
+<li>You can now drag and drop one HAR file with multiple pages and compare the pages with each others <a href="https://github.com/sitespeedio/compare/issues/16">#16</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[compare 0.2.1]]></title>
+        <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.2.1</id>
+        <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.2.1"/>
+        <updated>2018-02-03T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Upgraded to PerfCascade 2.2.2 that makes HAR files from WebPageTest Linux render</li>
+</ul>
+ <ul>
+<li>Log errors to the console</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[compare 0.2.0]]></title>
+        <id>https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.2.0</id>
+        <link href="https://github.com/sitespeedio/compare/blob/main/CHANGELOG.md#0.2.0"/>
+        <updated>2018-02-01T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Upgraded to PageXray 2.1.0 and added more CPU metrics</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+</feed>

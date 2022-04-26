@@ -10,9 +10,9 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Use Node.js
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: '16.x'
     - name: Install sitespeed.io
@@ -24,6 +24,6 @@ jobs:
     - name: Install dependencies
       run: choco install microsoft-edge --force
     - name: Run Edge test
-      run: node bin/sitespeed.js -b edge https://www.sitespeed.io/ 
+      run: node bin/sitespeed.js -b edge https://www.sitespeed.io/
       shell: cmd
       

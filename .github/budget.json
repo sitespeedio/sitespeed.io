@@ -1,0 +1,13 @@
+{
+    "budget": {
+      "thirdParty": {
+          "requests": 0
+      },
+      "score": {
+        "bestpractice": 100,
+        "privacy": 100,
+        "performance": 98
+      }
+    }
+  }
+  

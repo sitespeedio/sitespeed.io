@@ -31,6 +31,13 @@ The log will look something like this:
 [2019-01-20 19:58:18] INFO: Budget: 3 working and 2 failing tests
 ~~~
 
+And if you check the return code after your run and you have failing budgets the exit code will be larger than zero.
+
+~~~shell
+echo $?
+1
+~~~
+
 
 The report looks like this.
 ![Example of the budget]({{site.baseurl}}/img/budget.png)

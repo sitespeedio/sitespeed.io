@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>throttle release feed</title>
+        <link>https://www.sitespeed.io</link>
+        <description>New releases and changelog feed of throttle</description>
+        <lastBuildDate>Wed, 20 Apr 2022 11:37:49 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
+        <category>Web Performance</category>
+        <atom:link href="https://www.sitespeed.io/feed/throttle.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[throttle 4.0.0]]></title>
+            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.0</link>
+            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.0</guid>
+            <pubDate>Thu, 14 Apr 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated dev dependencies to latest versions <a href="https://github.com/sitespeedio/throttle/pull/68">#68</a></li>
+</ul>
+<h3>Changed</h3>
+ <ul>
+<li>Converting the project to ES6 module. If you run Throttle by command line it will work exactly as before except that we dropped support for NodeJS 10 <a href="https://github.com/sitespeedio/throttle/pull/67">#67</a>. You can read <a href="https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c">Sindre Sorhus ESM package guide</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[throttle 3.1.1]]></title>
+            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.1</link>
+            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.1</guid>
+            <pubDate>Tue, 19 Apr 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated minimist dependency.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[throttle 3.1.0]]></title>
+            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.0</link>
+            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.0</guid>
+            <pubDate>Sun, 26 Dec 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Add support for setting packet loss. Add <code>--packetLoss</code> and set the loss in percentage.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[throttle 3.0.0]]></title>
+            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.0.0</link>
+            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.0.0</guid>
+            <pubDate>Mon, 09 Aug 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Changed</h3>
+ <ul>
+<li>When you run on Mac OS we changed so localhost traffic is not throttled by default. To throttle on localhost use <code>--localhost</code>. This makes sence if you use WebDriver to drive your browser on your local machine. And Mac OS now works the same as Linux.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[throttle 2.1.2]]></title>
+            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.2</link>
+            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.2</guid>
+            <pubDate>Thu, 29 Jul 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix breakage when multiple default routes are declared , thank you <a href="https://github.com/andyrichardson">Andy Richardson</a> for PR <a href="https://github.com/sitespeedio/throttle/pull/62">#62</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[throttle 2.1.1]]></title>
+            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.1</link>
+            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.1</guid>
+            <pubDate>Fri, 19 Mar 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>A better check for missing net-tools on Linux, thank you <a href="https://github.com/radum">Radu Micu</a> for the PR <a href="https://github.com/sitespeedio/throttle/pull/56">#56</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[throttle 2.1.0]]></title>
+            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.0</link>
+            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.0</guid>
+            <pubDate>Wed, 10 Mar 2021 00:00:00 GMT</pubDate>
+        </item>
+        <item>
+            <title><![CDATA[throttle 2.0.2]]></title>
+            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.0.2</link>
+            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.0.2</guid>
+            <pubDate>Thu, 10 Sep 2020 00:00:00 GMT</pubDate>
+        </item>
+    </channel>
+</rss>

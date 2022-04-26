@@ -2,12 +2,15 @@ extends ./layout.pug
 include _tableMixins
 
 mixin row(budget)
-  each results, url in budget
+  each results, urlOrAlias in budget
     each result in results
       tr
         td
-          a(href=url)= alias[url] ? alias[url].urlAlias  : url
-          p #{alias[url] ? url : ''}
+          if (urlOrAlias &&  urlOrAlias.startsWith('http')) 
+            a(href=urlOrAlias)= urlOrAlias
+          else 
+            a(href=aliasToUrl[urlOrAlias])= urlOrAlias 
+            p #{aliasToUrl[urlOrAlias]}
         td #{result.metric} with value #{result.friendlyValue || result.value} limit #{result.limitType} #{result.friendlyLimit || result.limit}
 
 block content

@@ -10,14 +10,18 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Use Node.js
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with:
         node-version: '16.x'
     - name: Install dependencies 
       run: |
         sudo safaridriver --enable 
         npm ci
+    - name: Install local HTTP server
+      run: npm install serve -g
+    - name: Start local HTTP server
+      run: (serve test/data/html/ -l 3001&)
     - name: Run test
-      run: bin/sitespeed.js -b safari https://www.sitespeed.io/
+      run: bin/sitespeed.js -b safari http://127.0.0.1:3001/

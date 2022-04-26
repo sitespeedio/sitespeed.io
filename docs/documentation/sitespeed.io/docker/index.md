@@ -197,3 +197,8 @@ Enter any password. This will start your VNC server which you can use by any VNC
 - Enter VNC server : `0.0.0.0:5900`
 - When prompted for password, enter the password you entered while creating the vnc server.
 - You should be able to view the contents of `Xvfb`.
+
+## Security
+In our build process we [run Trivy vulnerability scanner](https://github.com/sitespeedio/sitespeed.io/blob/main/.github/workflows/docker-scan.yml) on the docker image and we break builds on *CRITICAL* issues. The reason for that is that if should break in *HIGH* issues we would probably never be able to release any containers. We update the OS in Docker continously but it can happen that sometimes have HIGH issues.
+
+If you need to have a container that do not have lower security issues, you can do that by building your own containers and manage it yourself.

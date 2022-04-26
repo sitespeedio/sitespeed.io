@@ -44,8 +44,9 @@ Browser
       --axe.enable                                                                                  Run axe tests. Axe will run after all other metrics is collected and will add some extra time to each test.  [boolean]
   -r, --browsertime.requestheader, --requestheader                                                  Request header that will be added to the request. Add multiple instances to add multiple request headers. Use the following format key:value. Only works in Chrome and Firefox.
       --browsertime.cookie, --cookie                                                                Cookie that will be added to the request. Add multiple instances to add multiple cookies. Use the following format cookieName=cookieValue. Only works in Chrome and Firefox.
-      --browsertime.block, --block                                                                  Domain to block. Add multiple instances to add multiple domains that will be blocked. Only works in Chrome and Firefox.
+      --browsertime.block, --block                                                                  Domain or URL or URL pattern to block. If you use Chrome you can also use --blockDomainsExcept (that is more performant). Works in Chrome/Edge. For Firefox you can only block domains.
       --browsertime.basicAuth, --basicAuth                                                          Use it if your server is behind Basic Auth. Format: username@password. Only works in Chrome and Firefox.
+      --browsertime.flushDNS, --flushDNS                                                            Flush the DNS between runs (works on Mac OS and Linux). The user needs sudo rights to flush the DNS.
       --browsertime.headless, --headless                                                            Run the browser in headless mode. This is the browser internal headless mode, meaning you cannot collect Visual Metrics or in Chrome run any WebExtension (this means you cannot add cookies, requestheaders or use basic auth for headless Chrome). Only works in Chrome and Firefox.  [boolean] [default: false]
 
 video
@@ -133,7 +134,7 @@ Crawler
 Grafana
       --grafana.host                  The Grafana host used when sending annotations.
       --grafana.port                  The Grafana port used when sending annotations to Grafana.  [default: 80]
-      --grafana.auth                  The Grafana auth/bearer value used when sending annotations to Grafana. See http://docs.grafana.org/http_api/auth/#authentication-api
+      --grafana.auth                  The Grafana auth/bearer value used when sending annotations to Grafana. If you do not set Bearer/Auth, Bearer is automatically set. See http://docs.grafana.org/http_api/auth/#authentication-api
       --grafana.annotationTitle       Add a title to the annotation sent for a run.
       --grafana.annotationMessage     Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
       --grafana.annotationTag         Add a extra tag to the annotation sent for a run. Repeat the --grafana.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
@@ -151,6 +152,7 @@ Graphite
       --graphite.annotationTitle             Add a title to the annotation sent for a run.
       --graphite.annotationMessage           Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
       --graphite.annotationScreenshot        Include screenshot (from Browsertime/WebPageTest) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
+      --graphite.sendAnnotation              Send annotations when a run is finished. You need to specify a --resultBaseURL for this to work. However if you for example use a Prometheus exporter, you may want to make sure annotations are not sent, then set it to false.  [boolean] [default: true]
       --graphite.annotationRetentionMinutes  The retention in minutes, to make annotation match the retention in Graphite.  [number]
       --graphite.statsd                      Uses the StatsD interface  [boolean] [default: false]
       --graphite.annotationTag               Add a extra tag to the annotation sent for a run. Repeat the --graphite.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
@@ -291,7 +293,7 @@ Options:
       --useHash                                                                                               If your site uses # for URLs and # give you unique URLs you need to turn on useHash. By default is it turned off, meaning URLs with hash and without hash are treated as the same URL  [boolean] [default: false]
       --multi                                                                                                 Test multiple URLs within the same browser session (same cache etc). Only works with Browsertime. Use this if you want to test multiple pages (use journey) or want to test multiple pages with scripts. You can mix URLs and scripts (the order will matter): login.js https://www.sitespeed.io/ logout.js - More details: https://www.sitespeed.io/documentation/sitespeed.io/scripting/  [boolean] [default: false]
       --name                                                                                                  Give your test a name.
-  -o, --open                                                                                                  Open your test result in your default browser (Mac OS only).
+  -o, --open, --view                                                                                          Open your test result in your default browser (Mac OS or Linux with xdg-open).
       --slug                                                                                                  Give your test a slug. The slug is used when you send the metrics to your data storage to identify the test and the folder of the tests. The max length of the slug is 200 characters and it can only contain a-z A-Z 0-9 and -_ characters.
       --config                                                                                                Path to JSON config file
   -h, --help                                                                                                  Show help  [boolean]

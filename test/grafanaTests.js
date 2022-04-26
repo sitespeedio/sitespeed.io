@@ -1,19 +1,13 @@
-const expect = require('chai').expect;
+const test = require('ava');
 
-describe('grafana', () => {
-  function plugin() {
-    return require('../lib/plugins/grafana');
-  }
+function plugin() {
+  return require('../lib/plugins/grafana');
+}
 
-  describe('plugin', () => {
-    it('should have a .config property with default host port value', () => {
-      // Regression: ensure the original interface is not broken
-      expect(plugin().config).to.have.property('port', 80);
-    });
+test(`Grafana plugin should have a .config property with default host port value`, t => {
+  t.is(plugin().config.port, 80);
+});
 
-    it('should include missing annotationScreenshot default value', () => {
-      // Regression. All defaults should be exposed
-      expect(plugin().config).to.have.property('annotationScreenshot', false);
-    });
-  });
+test(`Grafana plugin should include missing annotationScreenshot default value`, t => {
+  t.is(plugin().config.annotationScreenshot, false);
 });

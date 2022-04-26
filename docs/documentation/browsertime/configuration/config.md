@@ -31,6 +31,7 @@ chrome
       --chrome.collectConsoleLog                                 Collect Chromes console log and save to disk.  [boolean]
       --chrome.appendToUserAgent                                 Append to the user agent.  [string]
       --chrome.noDefaultOptions                                  Prevent Browsertime from setting its default options for Chrome  [boolean]
+      --chrome.cleanUserDataDir                                  If you use --user-data-dir as an argument to Chrome and want to clean that directory between each iteration you should use --chrome.cleanUserDataDir true.  [boolean]
       --chrome.CPUThrottlingRate                                 Enables CPU throttling to emulate slow CPUs. Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc)  [number]
       --chrome.includeResponseBodies                             Include response bodies in the HAR file.  [choices: "none", "all", "html"] [default: "none"]
       --chrome.cdp.performance                                   Collect Chrome perfromance metrics from Chrome DevTools Protocol  [boolean] [default: true]
@@ -136,6 +137,7 @@ Options:
       --visualElements, --visuaElements             Collect Visual Metrics from elements. Works only with --visualMetrics turned on. By default you will get visual metrics from the largest image within the view port and the largest h1. You can also configure to pickup your own defined elements with --scriptInput.visualElements  [boolean]
       --visualMetricsPerceptual                     Collect Perceptual Speed Index when you run --visualMetrics.  [boolean]
       --visualMetricsContentful                     Collect Contentful Speed Index when you run --visualMetrics.  [boolean]
+      --visualMetricsPortable                       Use the portable visual-metrics processing script (no ImageMagick dependencies).  [boolean]
       --scriptInput.visualElements                  Include specific elements in visual elements. Give the element a name and select it with document.body.querySelector. Use like this: --scriptInput.visualElements name:domSelector see https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors. Add multiple instances to measure multiple elements. Visual Metrics will use these elements and calculate when they are visible and fully rendered.
       --scriptInput.longTask, --minLongTaskLength   Set the minimum length of a task to be categorised as a CPU Long Task. It can never be smaller than 50. The value is in ms and only works in Chromium browsers at the moment.  [number] [default: 50]
   -b, --browser                                     Specify browser. Safari only works on OS X/iOS. Edge only work on OS that supports Edge.  [choices: "chrome", "firefox", "edge", "safari"] [default: "chrome"]
@@ -161,7 +163,7 @@ Options:
   -r, --requestheader                               Request header that will be added to the request. Add multiple instances to add multiple request headers. Works for Firefox and Chrome. Use the following format key:value
       --cookie                                      Cookie that will be added to the request. Add multiple instances to add multiple request cookies. Works for Firefox and Chrome. Use the following format cookieName=cookieValue
       --injectJs                                    Inject JavaScript into the current page at document_start. Works for Firefox and Chrome. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
-      --block                                       Domain to block. Add multiple instances to add multiple domains that will be blocked. If you use Chrome you can also use --blockDomainsExcept (that is more performant). Works for Firefox and Chrome.
+      --block                                       Domain to block or URL or URL pattern to block. If you use Chrome you can also use --blockDomainsExcept (that is more performant). Works in Chrome/Edge. For Firefox you can only block domains.
       --percentiles                                 The percentile values within the data browsertime will calculate and report. This argument uses Yargs arrays and you you to set them correctly it is recommended to use a configuraration file instead.  [array] [default: [0,10,90,99,100]]
       --decimals                                    The decimal points browsertime statistics round to.  [number] [default: 0]
       --iqr                                         Use IQR, or Inter Quartile Range filtering filters data based on the spread of the data. See  https://en.wikipedia.org/wiki/Interquartile_range. In some cases, IQR filtering may not filter out anything. This can happen if the acceptable range is wider than the bounds of your dataset.  [boolean] [default: false]
@@ -191,6 +193,7 @@ Options:
       --userTimingWhitelist                         All userTimings are captured by default this option takes a regex that will whitelist which userTimings to capture in the results.
       --headless                                    Run the browser in headless mode. Works for Firefox and Chrome.  [boolean] [default: false]
       --gnirehtet                                   Start gnirehtet and reverse tethering the traffic from your Android phone.  [boolean] [default: false]
+      --flushDNS                                    Flush DNS between runs, works on Mac OS and Linux. Your user needs sudo rights to be able to flush the DNS.  [boolean] [default: false]
       --extension                                   Path to a WebExtension to be installed in the browser. Note that --extension can be passed multiple times.
       --spa                                         Convenient parameter to use if you test a SPA application: will automatically wait for X seconds after last network activity and use hash in file names. Read more: https://www.sitespeed.io/documentation/sitespeed.io/spa/  [boolean] [default: false]
       --browserRestartTries                         If the browser fails to start, you can retry to start it this amount of times.  [number] [default: 3]
