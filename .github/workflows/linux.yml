@@ -34,8 +34,10 @@ jobs:
       run: |
         google-chrome --version
         firefox --version
+    - name: Install Start local HTTP server
+      run: npm install serve -g
     - name: Start local HTTP server
-      run: (npm run start-server&)
+      run: (serve test/data/html/ -l 3001&)
     - name: Test old budget
       run: bin/sitespeed.js -b firefox -n 2 --budget.configPath test/oldBudget.json --summary --xvfb http://127.0.0.1:3001/simple/
     - name: Test new budget file  
