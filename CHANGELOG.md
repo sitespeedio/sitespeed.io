@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 24.3.0 - 2022-04-27
 ### Added
 * Updated to Chrome 101 in the Docker container [#3641](https://github.com/sitespeedio/sitespeed.io/pull/3641).
 
