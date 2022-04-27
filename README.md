@@ -20,15 +20,20 @@
 
 Before we start telling you all about sitespeed.io you should just try it out:
 
- ```bash
- docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
- ```
 
- Or using npm (you need Chrome, Firefox, Edge or Safari installed or Chrome/Firefox on Android)
+Using NodeJS/npm (you need Chrome, Firefox, Edge or Safari installed or Chrome/Firefox on Android)
 
  ```bash
  npm i -g sitespeed.io && sitespeed.io https://www.sitespeed.io/
  ```
+
+Or using Docker:
+
+ ```bash
+ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
+ ```
+
+
 
 Ok, now you have tried it, let us tell you more about sitespeed.io. We think of a complete web performance tool as having three key capabilities:
 
