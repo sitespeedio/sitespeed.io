@@ -182,36 +182,4 @@
             <uri>https://www.sitespeed.io</uri>
         </author>
     </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 15.0.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.0.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.0.0"/>
-        <updated>2022-02-20T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>New alias for getting the Chrome trace log: <code>--chrome.trace</code> <a href="https://github.com/sitespeedio/browsertime/pull/1728">#1728</a>.</li>
-</ul>
- <ul>
-<li>On OS X and Linux the DNS will be flushed between runs. You can disable that with <code>--disableDNSFlush true</code> <a href="https://github.com/sitespeedio/browsertime/pull/1732">#1732</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Code cleanup: <a href="https://github.com/sitespeedio/browsertime/pull/1720">#1720</a></li>
-</ul>
- <ul>
-<li>Moved test to <a href="https://avajs.dev">Ava</a> instead of mocha and moved most testing against a local HTTP server instead of internet <a href="https://github.com/sitespeedio/browsertime/pull/1725">#1725</a>.</li>
-</ul>
-<h3>Changed</h3>
- <ul>
-<li>Removed the built in support for TSProxy <a href="https://github.com/sitespeedio/browsertime/pull/1718">#1718</a>. TSProxy only worked with Python 2.7 and we want to remove that dependency.</li>
-</ul>
- <ul>
-<li>Removed support for using speedline and the CLI arg <code>--chrome.visualMetricsUsingTrace</code> <a href="https://github.com/sitespeedio/browsertime/pull/1727">#1727</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
 </feed>

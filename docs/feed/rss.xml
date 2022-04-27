@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Tue, 26 Apr 2022 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 27 Apr 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,18 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 24.3.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.3.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.3.0</guid>
+            <pubDate>Wed, 27 Apr 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Chrome 101 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3641">#3641</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 24.2.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.2.0</link>
@@ -300,21 +312,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 23.3.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.3.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.3.0</guid>
-            <pubDate>Mon, 07 Mar 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>The +1 container is upgraded to use Lighthouse 9.4.0.</li>
-</ul>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1530---2022-03-07">Browsertime 15.3.0</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[browsertime 15.3.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.3.0</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.3.0</guid>
@@ -377,35 +374,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Make sure connectivity is only set before the test begins <a href="https://github.com/sitespeedio/browsertime/pull/1733">#1733</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 15.0.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.0.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.0.0</guid>
-            <pubDate>Sun, 20 Feb 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>New alias for getting the Chrome trace log: <code>--chrome.trace</code> <a href="https://github.com/sitespeedio/browsertime/pull/1728">#1728</a>.</li>
-</ul>
- <ul>
-<li>On OS X and Linux the DNS will be flushed between runs. You can disable that with <code>--disableDNSFlush true</code> <a href="https://github.com/sitespeedio/browsertime/pull/1732">#1732</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Code cleanup: <a href="https://github.com/sitespeedio/browsertime/pull/1720">#1720</a></li>
-</ul>
- <ul>
-<li>Moved test to <a href="https://avajs.dev">Ava</a> instead of mocha and moved most testing against a local HTTP server instead of internet <a href="https://github.com/sitespeedio/browsertime/pull/1725">#1725</a>.</li>
-</ul>
-<h3>Changed</h3>
- <ul>
-<li>Removed the built in support for TSProxy <a href="https://github.com/sitespeedio/browsertime/pull/1718">#1718</a>. TSProxy only worked with Python 2.7 and we want to remove that dependency.</li>
-</ul>
- <ul>
-<li>Removed support for using speedline and the CLI arg <code>--chrome.visualMetricsUsingTrace</code> <a href="https://github.com/sitespeedio/browsertime/pull/1727">#1727</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
