@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+### Added
+* Updated to Edge 101 in the Docker container. Updated to latest [Browsertime 16.2.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1620---2022-05-01) with Edgedriver and Chromedriver 101.
+
 ## 24.3.0 - 2022-04-27
 ### Added
 * Updated to Chrome 101 in the Docker container [#3641](https://github.com/sitespeedio/sitespeed.io/pull/3641).
