@@ -1,8 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+##  24.4.0 - UNRELEASED
 ### Added
 * Updated to Edge 101 in the Docker container. Updated to latest [Browsertime 16.2.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1620---2022-05-01) with Edgedriver and Chromedriver 101.
+
+### Fixed
+* If `--firstParty` do not match any URL, make sure we still show first vs third party [#3643](https://github.com/sitespeedio/sitespeed.io/pull/3643).
 
 ## 24.3.0 - 2022-04-27
 ### Added
