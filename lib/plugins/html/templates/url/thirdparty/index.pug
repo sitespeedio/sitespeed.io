@@ -14,7 +14,7 @@ small
     if pagexray.cookieNamesThirdParties.length > 0
         a(href='#third-party-cookies') Cookies |
         | &nbsp;|&nbsp;
-    if pagexray.firstParty.requests
+    if pagexray.firstParty.requests || options.firstParty
         a(href='#first-vs-third') First vs third
         | &nbsp;|&nbsp;
 a#third-party
@@ -87,5 +87,5 @@ if  thirdparty.possibileMissedThirdPartyDomains && thirdparty.possibileMissedThi
 
 include ./thirdPartyCookies.pug
 
-if pagexray.firstParty.requests
+if pagexray.firstParty.requests || options.firstParty
   include ./firstParty.pug
