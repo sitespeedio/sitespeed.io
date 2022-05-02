@@ -1,7 +1,7 @@
 version: '3'
 services:
     grafana:
-      image: grafana/grafana:8.4.3
+      image: grafana/grafana:8.5.1
       hostname: grafana
       depends_on:
         - graphite
