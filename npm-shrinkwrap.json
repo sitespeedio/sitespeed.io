@@ -13,7 +13,7 @@
         "@tgwf/co2": "0.8.0",
         "aws-sdk": "2.1121.0",
         "axe-core": "4.4.1",
-        "browsertime": "16.2.0",
+        "browsertime": "16.2.1",
         "cli-color": "2.0.2",
         "coach-core": "7.1.1",
         "concurrent-queue": "7.0.2",
@@ -1681,9 +1681,9 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "16.2.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-16.2.0.tgz",
-      "integrity": "sha512-kkyAij+uQYYgVSkQ/O4fvFvZbgAYL0sKYV/dLfQNL4qU956/dn1nFFskD9/YULEEOauJy0lPGDGHeeKKibK/zw==",
+      "version": "16.2.1",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-16.2.1.tgz",
+      "integrity": "sha512-5WQMbePZ1HWlyW4JzxHqHrz73+VkM0ehvvQFaKSh2If9zqDvoge4NXp2xFTTipdqqFxZkTklby2A13u4kd/qGQ==",
       "dependencies": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",
@@ -9761,9 +9761,9 @@
       }
     },
     "browsertime": {
-      "version": "16.2.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-16.2.0.tgz",
-      "integrity": "sha512-kkyAij+uQYYgVSkQ/O4fvFvZbgAYL0sKYV/dLfQNL4qU956/dn1nFFskD9/YULEEOauJy0lPGDGHeeKKibK/zw==",
+      "version": "16.2.1",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-16.2.1.tgz",
+      "integrity": "sha512-5WQMbePZ1HWlyW4JzxHqHrz73+VkM0ehvvQFaKSh2If9zqDvoge4NXp2xFTTipdqqFxZkTklby2A13u4kd/qGQ==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",
