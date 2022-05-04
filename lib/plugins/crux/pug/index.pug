@@ -11,7 +11,7 @@ mixin sizeCell(title, size)
   td.number(data-title=title, data-value= size)= h.size.format(size)
 
 - const crux = pageInfo.data.crux.pageSummary;
-- const metrics = {first_contentful_paint:'First Contentful Paint (FCP)', largest_contentful_paint: 'Largest Contentful Paint (LCP)', first_input_delay:'First Input Delay (FID)', cumulative_layout_shift: 'Cumulative Layout Shift (CLS)'}; 
+- const metrics = {first_contentful_paint:'First Contentful Paint (FCP)', largest_contentful_paint: 'Largest Contentful Paint (LCP)', first_input_delay:'First Input Delay (FID)', cumulative_layout_shift: 'Cumulative Layout Shift (CLS)',experimental_interaction_to_next_paint: 'Interaction to next paint (INP)', experimental_time_to_first_byte: 'Time to first byte (TTFB)'}; 
 - const experiences = ['loadingExperience','originLoadingExperience'];
 
 small 
@@ -63,6 +63,10 @@ each experience in experiences
 
         - let CLSs = [Number(get(crux, `${cruxus}.cumulative_layout_shift.histogram[0].density`, 0) * 100).toFixed(2), Number(get(crux, `${cruxus}.cumulative_layout_shift.histogram[1].density`, 0) * 100).toFixed(2), Number(get(crux, `${cruxus}.cumulative_layout_shift.histogram[2].density`, 0)*100).toFixed(2)];
 
+        - let TTFBs = [Number(get(crux, `${cruxus}.experimental_time_to_first_byte.histogram[0].density`, 0) * 100).toFixed(2), Number(get(crux, `${cruxus}.experimental_time_to_first_byte.histogram[1].density`, 0) * 100).toFixed(2), Number(get(crux, `${cruxus}.experimental_time_to_first_byte.histogram[2].density`, 0)*100).toFixed(2)];
+
+        - let ITNPs = [Number(get(crux, `${cruxus}.experimental_interaction_to_next_paint.histogram[0].density`, 0) * 100).toFixed(2), Number(get(crux, `${cruxus}.experimental_interaction_to_next_paint.histogram[1].density`, 0) * 100).toFixed(2), Number(get(crux, `${cruxus}.experimental_interaction_to_next_paint.histogram[2].density`, 0)*100).toFixed(2)];
+
         script(type='text/javascript').
           document.addEventListener("DOMContentLoaded", function() {   
 
@@ -86,6 +90,8 @@ each experience in experiences
                 drawPie('#chartLCP#{experience + formFactor}', [#{LCPs}], ['Fast: #{LCPs[0]}%', 'Moderate #{LCPs[1]}%', 'Slow: #{LCPs[2]}%']);
                 drawPie('#chartFID#{experience + formFactor}', [#{FIDs}], ['Fast: #{FIDs[0]}%', 'Moderate #{FIDs[1]}%', 'Slow: #{FIDs[2]}%']);
                 drawPie('#chartCLS#{experience + formFactor}', [#{CLSs}], ['Good: #{CLSs[0]}%', 'Need improvement: #{CLSs[1]}%', 'Poor: #{CLSs[2]}%']);
+                drawPie('#chartTTFB#{experience + formFactor}', [#{TTFBs}], ['Good: #{TTFBs[0]}%', 'Need improvement: #{TTFBs[1]}%', 'Poor: #{TTFBs[2]}%']);
+                drawPie('#chartITNP#{experience + formFactor}', [#{ITNPs}], ['Good: #{ITNPs[0]}%', 'Need improvement: #{ITNPs[1]}%', 'Poor: #{ITNPs[2]}%']);
 
 
           });
@@ -95,7 +101,6 @@ each experience in experiences
               th #{metrics['first_contentful_paint']}
               th #{metrics['largest_contentful_paint']}
               th #{metrics['first_input_delay']} 
-              th #{metrics['cumulative_layout_shift']}
             tr 
               td(data-title=metrics['first_contentful_paint'])  
                 .ct-chart(id='chartFCP' + experience + formFactor)
@@ -103,5 +108,14 @@ each experience in experiences
                 .ct-chart(id='chartLCP' + experience + formFactor)
               td(data-title=metrics['first_input_delay']) 
                 .ct-chart(id='chartFID' + experience + formFactor)
+            tr
+              th #{metrics['cumulative_layout_shift']}
+              th #{metrics['experimental_interaction_to_next_paint']}
+              th #{metrics['experimental_time_to_first_byte']}
+            tr 
               td(data-title=metrics['cumulative_layout_shift']) 
-                .ct-chart(id='chartCLS' + experience + formFactor) 
+                .ct-chart(id='chartCLS' + experience + formFactor)
+              td(data-title=metrics['experimental_interaction_to_next_paint']) 
+                .ct-chart(id='chartITNP' + experience + formFactor) 
+              td(data-title=metrics['experimental_time_to_first_byte']) 
+                .ct-chart(id='chartTTFB' + experience + formFactor) 
