@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+### Added
+* Add INP and TTFB to the CRUX metrics [#3645](https://github.com/sitespeedio/sitespeed.io/pull/3645).
 ##  24.4.0 - 2022-05-04
 ### Added
 * Updated to Edge 101 in the Docker container. Updated to latest [Browsertime 16.2.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1620---2022-05-01) with Edgedriver and Chromedriver 101.
