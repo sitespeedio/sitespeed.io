@@ -1,4 +1,4 @@
-FROM node:16.14.2-bullseye-slim
+FROM node:16.15.0-bullseye-slim
 
 ARG TARGETPLATFORM=linux/amd64
 
