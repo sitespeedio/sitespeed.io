@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Wed, 27 Apr 2022 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 04 May 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,53 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 24.4.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.4.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.4.0</guid>
+            <pubDate>Wed, 04 May 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Edge 101 in the Docker container. Updated to latest <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1620---2022-05-01">Browsertime 16.2.0</a> with Edgedriver and Chromedriver 101.</li>
+</ul>
+ <ul>
+<li>Updated to Firefox 100 in the Docker container.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>If <code>--firstParty</code> do not match any URL, make sure we still show first vs third party <a href="https://github.com/sitespeedio/sitespeed.io/pull/3643">#3643</a>.</li>
+</ul>
+ <ul>
+<li>Updated to latest NodeJs in the slim container.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 16.2.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.2.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.2.0</guid>
+            <pubDate>Sun, 01 May 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Chrome and Chromedriver 101 <a href="https://github.com/sitespeedio/browsertime/pull/1773">#1773</a>.</li>
+</ul>
+ <ul>
+<li>Updated to Edge and Edgedriver 101 <a href="https://github.com/sitespeedio/browsertime/pull/1778">#1778</a>.</li>
+</ul>
+ <ul>
+<li>Use Geckodriver 0.31.0 <a href="https://github.com/sitespeedio/browsertime/pull/1775">#1775</a>.</li>
+</ul>
+ <ul>
+<li>Added new alias for warm cache load. You can now use either <code>--preURL</code> or <code>--warmLoad</code> <a href="https://github.com/sitespeedio/browsertime/pull/1774">#1774</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated to Selenium 4.1.2 <a href="https://github.com/sitespeedio/browsertime/pull/1779">#1779</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 24.3.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.3.0</link>
@@ -292,21 +339,6 @@
 </ul>
  <ul>
 <li>Open the result with <code>-o</code> on Linux using xdg-open <a href="https://github.com/sitespeedio/sitespeed.io/pull/3597">#3597</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 23.4.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.4.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.4.0</guid>
-            <pubDate>Wed, 09 Mar 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Firefox 98 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3592">#3592</a>.</li>
-</ul>
- <ul>
-<li>Added link to each run in the side by side metric page, making it easier to go to the correct run <a href="https://github.com/sitespeedio/sitespeed.io/pull/3593">#3593</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
