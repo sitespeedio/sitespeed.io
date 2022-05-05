@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-05-04T00:00:00.000Z</updated>
+    <updated>2022-05-05T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,28 @@
     <logo>https://www.sitespeed.io/img/logos/sitespeed.io.png</logo>
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 24.5.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.5.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.5.0"/>
+        <updated>2022-05-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Add INP and TTFB to the CRUX metrics <a href="https://github.com/sitespeedio/sitespeed.io/pull/3645">#3645</a>.</li>
+</ul>
+ <ul>
+<li>Updated the Chrome USer Experience dashboard to include the new metrics. You can see the dahsboard <a href="https://dashboard.sitespeed.io/d/t_bhsNGMk/chrome-user-experience-report">here</a> and download the new one from <a href="https://github.com/sitespeedio/grafana-bootstrap-docker/blob/main/dashboards/graphite/ChromeUserExperienceReport.json">here</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Bumped Browsertime with a new fix release for the upcoming portable visual metrics script.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 24.4.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.4.0</id>
@@ -33,6 +55,21 @@
 </ul>
  <ul>
 <li>Updated to latest NodeJs in the slim container.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 16.2.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.2.1</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.2.1"/>
+        <updated>2022-05-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Add an acceptable error of 5 pixels to last frame matches for the visual metric portable script, thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1780">#1780</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -376,33 +413,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 23.5.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.5.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.5.0"/>
-        <updated>2022-03-11T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>The -slim Docker container now uses Firefox 98.</li>
-</ul>
- <ul>
-<li>Updated Grafana to latest 8.4.3 in the Docker compose file.</li>
-</ul>
- <ul>
-<li>Updated <a href="https://github.com/sitespeedio/grafana-bootstrap-docker/tree/main/dashboards/graphite">Graphite dashboards</a> to use Timeseries graphs instead of old &quot;Graph&quot;.</li>
-</ul>
- <ul>
-<li>You can use <code>-o</code> or <code>--open</code> or <code>--view</code> to open the result page after you run sitespeed.io on Mac and Linux <a href="https://github.com/sitespeedio/sitespeed.io/pull/3596">#3569</a>.</li>
-</ul>
- <ul>
-<li>Open the result with <code>-o</code> on Linux using xdg-open <a href="https://github.com/sitespeedio/sitespeed.io/pull/3597">#3597</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[browsertime 15.3.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.3.0</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.3.0"/>
@@ -462,21 +472,6 @@
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Collect timings from main document. The result includes a field named mainDocumentTimings and contains blocked, dns, connect, send, wait, receive, ssl as long as you get a HAR file from the browser <a href="https://github.com/sitespeedio/browsertime/pull/1735">#1735</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 15.0.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.0.1</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.0.1"/>
-        <updated>2022-02-21T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Make sure connectivity is only set before the test begins <a href="https://github.com/sitespeedio/browsertime/pull/1733">#1733</a>.</li>
 </ul>
 ]]></summary>
         <author>
