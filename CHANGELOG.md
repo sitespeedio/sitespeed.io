@@ -4,6 +4,9 @@
 ### Added
 * Add INP and TTFB to the CRUX metrics [#3645](https://github.com/sitespeedio/sitespeed.io/pull/3645).
 * Updated the Chrome USer Experience dashboard to include the new metrics. You can see the dahsboard [here](https://dashboard.sitespeed.io/d/t_bhsNGMk/chrome-user-experience-report) and download the new one from [here](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/main/dashboards/graphite/ChromeUserExperienceReport.json).
+
+### Fixed
+* Bumped Browsertime with a new fix release for the upcoming portable visual metrics script.
 ##  24.4.0 - 2022-05-04
 ### Added
 * Updated to Edge 101 in the Docker container. Updated to latest [Browsertime 16.2.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1620---2022-05-01) with Edgedriver and Chromedriver 101.
