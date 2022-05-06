@@ -3,6 +3,8 @@
 ## 24.5.1 - 2022-05-06
 ### Fixed
 * Reverted to Ubuntu 20 in the Docker container. Ubuntu 22 gave Firefox problems on ARM and we also seen other problems with NodeJS in that container.
+* Updated PageXray/Coach Core that include SSL times in the total timings per domain (that was missed before).
+* Added more safe check when we miss Crux data.
 ## 24.5.0 - 2022-05-05
 ### Added
 * Add INP and TTFB to the CRUX metrics [#3645](https://github.com/sitespeedio/sitespeed.io/pull/3645).
