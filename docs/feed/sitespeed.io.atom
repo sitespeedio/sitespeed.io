@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-05-05T06:56:48.265Z</updated>
+    <updated>2022-05-06T18:07:52.483Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 24.5.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.5.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.5.1"/>
+        <updated>2022-05-06T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Reverted to Ubuntu 20 in the Docker container. Ubuntu 22 gave Firefox problems on ARM and we also seen other problems with NodeJS in that container.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 24.5.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.5.0</id>
@@ -197,24 +212,6 @@
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Various fixes to add more content to the JSON stored from the latest run, making it easier to show more meta data for a run in Grafana <a href="https://github.com/sitespeedio/sitespeed.io/pull/3607">#3607</a>, <a href="https://github.com/sitespeedio/sitespeed.io/pull/3609">#3609</a> and <a href="https://github.com/sitespeedio/sitespeed.io/pull/3610">#3610</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 23.5.2]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.5.2</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.5.2"/>
-        <updated>2022-03-22T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated to latest NodeJS and Ubuntu updates in the Docker container with some security updates<a href="https://github.com/sitespeedio/sitespeed.io/pull/3606">#3306</a>. Also updated the slim container with latest NodeJS.</li>
-</ul>
- <ul>
-<li>Make sure the shrinkwrap file is used when building the container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3604">#3604</a> and (hopefully) fix so that .dockerignore is not ignored when Github Actions build the containers.</li>
 </ul>
 ]]></summary>
         <author>
