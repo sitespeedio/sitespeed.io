@@ -41,7 +41,7 @@ To help us reproduce your problem there are a couple of things we need:
 * Include the URL that causes the problem. If the URL isn't public, please try to reproduce the problem on another URL that we can test. If the URL is super secret, you can share that to us in an email (write it in the issue and you can get the address). But we prefer public URLs so others also can reproduce the problem.
 * Include the log output from your run. Please do not take a screenshot of the log, instead share the log as text either in the issue or in a [gist](https://gist.github.com/). 
 * Give us the exact version of sitespeed.io you are using (so we know we use the same version when we try to reproduce it).
-* Tell us what OS you are using and if you are using Docker (you should!) give us the base OS where you run your container. 
+* Tell us what OS you are using and if you are using Docker give us the base OS where you run your container. 
 * If you don't use Docker: Include the browser version you are using.
 * If you have problems with headers/cookie/auth you can use [https://httpbin.org](https://httpbin.org) to reproduce your issue.
 
