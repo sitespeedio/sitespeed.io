@@ -4,7 +4,7 @@
 ### Added
 * Updated to [Browsertime 16.3.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1630---2022-05-07) that collects Largest Contentful Paint from the browser (if the browser suppoorts the LCP API).
 
-* Show total download time per domain [#3648[](https://github.com/sitespeedio/sitespeed.io/pull/3648).
+* Show total download time per domain [#3648](https://github.com/sitespeedio/sitespeed.io/pull/3648).
 ## 24.5.1 - 2022-05-06
 ### Fixed
 * Reverted to Ubuntu 20 in the Docker container. Ubuntu 22 gave Firefox problems on ARM and we also seen other problems with NodeJS in that container.
