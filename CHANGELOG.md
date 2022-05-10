@@ -1,8 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 24.6.0 - UNRELEASED
+## 24.6.0 - 2022-05-10
 ### Added
-* Updated to [Browsertime 16.3.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1630---2022-05-07).
+* Updated to [Browsertime 16.3.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1630---2022-05-07) that collects Largest Contentful Paint from the browser (if the browser suppoorts the LCP API).
+
 * Show total download time per domain [#3648[](https://github.com/sitespeedio/sitespeed.io/pull/3648).
 ## 24.5.1 - 2022-05-06
 ### Fixed
