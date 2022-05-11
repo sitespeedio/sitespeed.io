@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 24.7.0 - 2022-05-11
+### Added
+Updated to [Browsertime 16.4.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1640---2022-05-11) fixes a bug for LCP in the video and also output when LCP happens in the video.
+
+### Fixed
+* Make sure we got CLS from Browsertime when we try to render it [#3650](https://github.com/sitespeedio/sitespeed.io/pull/3650).
 ## 24.6.0 - 2022-05-10
 ### Added
 * Updated to [Browsertime 16.3.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1630---2022-05-07) that collects Largest Contentful Paint from the browser (if the browser suppoorts the LCP API).
