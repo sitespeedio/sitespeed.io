@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2022-05-07T14:31:01.501Z</updated>
+    <updated>2022-05-11T12:48:07.467Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,25 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 16.4.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.4.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.4.0"/>
+        <updated>2022-05-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>If we have the Largest Contentful Paint for the video, add that to the video text instead of DOMContentLoaded <a href="https://github.com/sitespeedio/browsertime/pull/1783">#1783</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Only get LCP in Visual Metrics if the LCP API gives us a element <a href="https://github.com/sitespeedio/browsertime/pull/1786">#1786</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 16.3.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.3.0</id>
@@ -181,28 +200,6 @@
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Chrome: If you set --user-data-dir you can clean the directory between each iteration using <code>--chrome.cleanUserDataDir</code> <a href="https://github.com/sitespeedio/browsertime/pull/1739">#1739</a></li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 15.2.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.2.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.2.0"/>
-        <updated>2022-03-04T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Chromedriver and Edgedriver 99.</li>
-</ul>
- <ul>
-<li>Updated Docker container to use Chrome and Edge 99 <a href="https://github.com/sitespeedio/browsertime/pull/1738">#1738</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Added more view ports for emulated mobile in Chrome <a href="https://github.com/sitespeedio/browsertime/pull/1736">#1736</a>.</li>
 </ul>
 ]]></summary>
         <author>

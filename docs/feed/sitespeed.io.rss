@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Tue, 10 May 2022 06:33:41 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 11 May 2022 12:52:06 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,6 +17,19 @@
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[sitespeed.io 24.7.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.7.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.7.0</guid>
+            <pubDate>Wed, 11 May 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+<h3>Fixed</h3>
+ <ul>
+<li>Make sure we got CLS from Browsertime when we try to render it <a href="https://github.com/sitespeedio/sitespeed.io/pull/3650">#3650</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 24.6.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.6.0</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.6.0</guid>
@@ -26,7 +39,7 @@
 <li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1630---2022-05-07">Browsertime 16.3.0</a> that collects Largest Contentful Paint from the browser (if the browser suppoorts the LCP API).</li>
 </ul>
  <ul>
-<li>Show total download time per domain [#3648<a href="https://github.com/sitespeedio/sitespeed.io/pull/3648"></a>.</li>
+<li>Show total download time per domain <a href="https://github.com/sitespeedio/sitespeed.io/pull/3648">#3648</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
@@ -182,18 +195,6 @@
 </ul>
  <ul>
 <li>Updated to <a href="https://github.com/sitespeedio/sitespeed.io/pull/3615">Axe-core 4.4.1</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 23.6.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.6.1</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.6.1</guid>
-            <pubDate>Fri, 25 Mar 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fixing text formatting in the JSON from latest run and make sure we display the time with UTC<a href="https://github.com/sitespeedio/sitespeed.io/pull/3611">#3611</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-05-10T00:00:00.000Z</updated>
+    <updated>2022-05-11T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,41 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <entry>
+        <title type="html"><![CDATA[sitespeed.io 24.7.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.7.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.7.0"/>
+        <updated>2022-05-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+<h3>Fixed</h3>
+ <ul>
+<li>Make sure we got CLS from Browsertime when we try to render it <a href="https://github.com/sitespeedio/sitespeed.io/pull/3650">#3650</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 16.4.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.4.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.4.0"/>
+        <updated>2022-05-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>If we have the Largest Contentful Paint for the video, add that to the video text instead of DOMContentLoaded <a href="https://github.com/sitespeedio/browsertime/pull/1783">#1783</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Only get LCP in Visual Metrics if the LCP API gives us a element <a href="https://github.com/sitespeedio/browsertime/pull/1786">#1786</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[sitespeed.io 24.6.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.6.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.6.0"/>
@@ -25,7 +60,7 @@
 <li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1630---2022-05-07">Browsertime 16.3.0</a> that collects Largest Contentful Paint from the browser (if the browser suppoorts the LCP API).</li>
 </ul>
  <ul>
-<li>Show total download time per domain [#3648<a href="https://github.com/sitespeedio/sitespeed.io/pull/3648"></a>.</li>
+<li>Show total download time per domain <a href="https://github.com/sitespeedio/sitespeed.io/pull/3648">#3648</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -464,21 +499,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 23.6.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.6.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#23.6.1"/>
-        <updated>2022-03-25T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fixing text formatting in the JSON from latest run and make sure we display the time with UTC<a href="https://github.com/sitespeedio/sitespeed.io/pull/3611">#3611</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[browsertime 15.3.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.3.0</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.3.0"/>
@@ -486,28 +506,6 @@
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Chrome: If you set --user-data-dir you can clean the directory between each iteration using <code>--chrome.cleanUserDataDir</code> <a href="https://github.com/sitespeedio/browsertime/pull/1739">#1739</a></li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 15.2.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.2.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.2.0"/>
-        <updated>2022-03-04T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Chromedriver and Edgedriver 99.</li>
-</ul>
- <ul>
-<li>Updated Docker container to use Chrome and Edge 99 <a href="https://github.com/sitespeedio/browsertime/pull/1738">#1738</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Added more view ports for emulated mobile in Chrome <a href="https://github.com/sitespeedio/browsertime/pull/1736">#1736</a>.</li>
 </ul>
 ]]></summary>
         <author>
