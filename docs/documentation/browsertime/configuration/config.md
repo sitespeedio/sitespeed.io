@@ -82,6 +82,7 @@ video
       --videoParams.addTimer           Add timer and metrics to the video.  [boolean] [default: true]
       --videoParams.debug              Turn on debug to record a video with all pre/post and scripts/URLS you test in one iteration. Visual Metrics will then automatically be disabled.  [boolean] [default: false]
       --videoParams.keepOriginalVideo  Keep the original video. Use it when you have a Visual Metrics bug and want to create an issue at GitHub  [boolean] [default: false]
+      --videoParams.thumbsize          The maximum size of the thumbnail in the filmstrip. Default is 400 pixels in either direction. If videoParams.filmstripFullSize is used that setting overrides this.  [default: 400]
       --videoParams.filmstripFullSize  Keep original sized screenshots. Will make the run take longer time  [boolean] [default: false]
       --videoParams.filmstripQuality   The quality of the filmstrip screenshots. 0-100.  [default: 75]
       --videoParams.createFilmstrip    Create filmstrip screenshots.  [boolean] [default: true]
