@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+### Fixed
+* If you set a user agent for Browsertime, also use it for the crawler [#3652](https://github.com/sitespeedio/sitespeed.io/pull/3652).
 ## 24.7.0 - 2022-05-11
 ### Added
 * Updated to [Browsertime 16.4.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1640---2022-05-11) fixes a bug for LCP in the video and also output when LCP happens in the video.
