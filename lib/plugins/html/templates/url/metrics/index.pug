@@ -16,6 +16,9 @@ if browsertime
     if browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift !== undefined
       a(href='#cumulativeLayoutShift') Cumulative Layout Shift
       | &nbsp;|&nbsp;
+    if timings.interactionToNextPaint
+      a(href='#interactionToNextPaint') Interaction To Next Paint
+      | &nbsp;|&nbsp;
     if browsertime.timings.elementTimings && Object.keys(browsertime.timings.elementTimings).length > 0
       a(href='#elementTimings') Element Timings
       | &nbsp;|&nbsp;
@@ -90,6 +93,11 @@ if browsertime
               td
                 a(href=baseHelpURL + 'LastMeaningfulPaint') Last Meaningful Paint
               td.number #{h.time.ms(visualMetrics.LastMeaningfulPaint.toFixed(0))}
+          if visualMetrics.LargestContentfulPaint
+            tr
+              td
+                a(href=baseHelpURL + 'LargestContentfulPaint') Largest Contentful Paint
+              td.number #{h.time.ms(visualMetrics.LargestContentfulPaint.toFixed(0))}
           tr
             td
               a(href=baseHelpURL + 'VisualComplete85') Visual Complete 85%
@@ -132,6 +140,11 @@ if browsertime
         table
           tr
             th(colspan='2') Google Web Vitals
+          if (timings.ttfb)
+            tr
+              td
+                a(href=baseHelpURL + 'ttfb') Time to first byte (TTFB)
+              td.number #{h.time.ms(timings.ttfb.toFixed(0))}
           if (timings.paintTiming && timings.paintTiming['first-contentful-paint'])
             tr
               td
@@ -147,6 +160,11 @@ if browsertime
               td
                 a(href='#cumulativeLayoutShift') Cumulative Layout Shift (CLS)
               td.number #{browsertime.pageinfo.cumulativeLayoutShift.toFixed(2)}
+          if (timings.interactionToNextPaint) 
+           tr
+              td
+                a(href='#interactionToNextPaint') Interaction to next paint (INP)
+              td.number #{h.time.ms(timings.interactionToNextPaint)}
           if browsertime.timings.firstInput !== undefined
             tr 
               td
@@ -238,6 +256,7 @@ if browsertime
   include ./lcp.pug
   include ./firstInput.pug
   include ./layoutShift.pug
+  include ./inp.pug
   include ./elementTimings.pug
   include ./serverTimings.pug
 

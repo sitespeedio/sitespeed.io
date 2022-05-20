@@ -93,6 +93,11 @@ block content
             if lcp
               tr
                 th(colspan='2') Google Web Vitals
+            - ttfb = get(d, 'browsertime.run.timings.pageTimings.backEndTime') 
+            if ttfb
+              tr
+                td TTFB
+                td #{h.time.ms(ttfb)}
             if fcp
               tr
                 td First Contentful Paint (FCP) 
@@ -106,6 +111,10 @@ block content
                 tr
                   td Cumulative Layout Shift (CLS) 
                   td #{cls.toFixed(2)}
+            - inp = get(d, 'browsertime.run.timings.interactionToNextPaint')
+            if inp
+              tr
+                td #{h.time.ms(inp)}
             - tbt = get(d, 'browsertime.run.cpu.longTasks.totalBlockingTime')
             if tbt  
               tr
@@ -128,6 +137,12 @@ block content
               tr
                 td CPU longest task duration
                 td #{h.time.ms(maxLongTask)}
+            - lastLongTask= get(d, 'browsertime.run.cpu.longTasks.lastLongTask') 
+            if lastLongTask 
+              tr
+                td CPU last long task happens at
+                td #{h.time.ms(lastLongTask)}
+
             - firstVisualChange = get(d, 'browsertime.run.visualMetrics.FirstVisualChange')
             if firstVisualChange
               tr

@@ -91,4 +91,5 @@ if btStatistics
         +getRow('Total Blocking Time', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'cpu.longTasks.totalBlockingTime', h.time.ms)
         +getRow('Max Potential FID', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.maxPotentialFid', pageInfo.data.browsertime.pageSummary.browserScripts, 'cpu.longTasks.maxPotentialFid', h.time.ms)
         +getRow('CPU long tasks ', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.tasks' , pageInfo.data.browsertime.pageSummary.browserScripts, 'cpu.longTasks.tasks', h.noop)
-        +getRow(' CPU longest task duration ', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.durations.max' , pageInfo.data.browsertime.pageSummary.browserScripts, 'cpu.longTasks.durations.max', h.time.ms)
+        +getRow('CPU longest task duration ', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.durations.max' , pageInfo.data.browsertime.pageSummary.browserScripts, 'cpu.longTasks.durations.max', h.time.ms)
+        +getRow('CPU last long task happens at', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.lastLongTask' , pageInfo.data.browsertime.pageSummary.browserScripts, 'cpu.longTasks.lastLongTask', h.time.ms)

@@ -1,0 +1,11 @@
+if browsertime.pageinfo && browsertime.pageinfo.interactionToNextPaintInfo!== undefined
+  a#interactionToNextPaint
+  h3 Interaction to Next Paint
+  p Interaction to Next Paint (INP) is an experimental metric that try to measure responsiveness. It's useful if you are testing user journeys. The metric is really new and we try to measure it as good as possible.  Read more about 
+    a(href='https://web.dev/inp/') Interaction to Next Paint
+    | .
+  .row
+    p The measured latency was #{h.time.ms(browsertime.pageinfo.interactionToNextPaintInfo.latency)}. And the events that contributed to the latency was:
+      ul
+        each entry in browsertime.pageinfo.interactionToNextPaintInfo.entries
+          li #{entry.name} - #{h.time.ms(entry.duration)}

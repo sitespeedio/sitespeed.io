@@ -117,9 +117,15 @@ block content
                 td #{h.time.ms(fullyLoaded)}
             - fcp = get(d, 'browsertime.pageSummary.statistics.timings.paintTiming["first-contentful-paint"].median') 
             - lcp = get(d, 'browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime.median')
+            - ttfb = get(d, 'browsertime.pageSummary.statistics.timings.pageTimings.backEndTime.median')
+            - inp = get(d, 'browsertime.pageSummary.statistics.timings.interactionToNextPaint.median')
             if lcp
               tr
-                th(colspan='2') Google Web Vitals
+                th(colspan='2') Google Web Vitals     
+            if ttfb
+              tr
+                td TTFB [median]
+                td #{h.time.ms(ttfb)}
             if fcp
               tr
                 td First Contentful Paint (FCP) [median]
@@ -133,6 +139,11 @@ block content
                 tr
                   td Cumulative Layout Shift (CLS) [median]
                   td #{cls.toFixed(2)}
+            - tbt = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime.median')
+            if inp
+                tr
+                  td Interaction To Next Paint (INP) [median]
+                  td #{h.time.ms(inp)}
             - tbt = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime.median')
             if tbt  
               tr
@@ -155,6 +166,11 @@ block content
               tr
                 td CPU longest task duration
                 td #{h.time.ms(maxLongTask)}
+            - lastLongTask = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.lastLongTask.median') 
+            if lastLongTask 
+              tr
+                td CPU last long task happens at
+                td #{h.time.ms(lastLongTask)}
             - firstVisualChange = get(d, 'browsertime.pageSummary.statistics.visualMetrics.FirstVisualChange.median')
             if firstVisualChange
               tr
