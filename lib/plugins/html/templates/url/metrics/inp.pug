@@ -8,4 +8,4 @@ if browsertime.pageinfo && browsertime.pageinfo.interactionToNextPaintInfo!== un
     p The measured latency was #{h.time.ms(browsertime.pageinfo.interactionToNextPaintInfo.latency)}. And the events that contributed to the latency was:
       ul
         each entry in browsertime.pageinfo.interactionToNextPaintInfo.entries
-          li #{entry.name} - #{h.time.ms(entry.duration)} 
+          li #{entry.name} - #{h.time.ms(entry.duration)}
