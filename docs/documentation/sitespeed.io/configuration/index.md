@@ -84,6 +84,14 @@ If you want to test multiple URLs in a sequence (where the browser cache is not 
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --multi https://www.sitespeed.io https://www.sitespeed.io/documentation/
 ~~~
 
+You can also add an group alias to the plain text file that replaces the domain part of the URL in the time series database. To do this, add a non-spaced string after each URL alias (this only works if you already have an alias for the URL):
+
+~~~
+http://www.yoursite.com/ Start_page Group1
+http://www.yoursite.com/my/really/important/page/ Important_Page Group1
+http://www.test.com/where/we/are/ We_are Group2
+~~~
+
 If you wanna do more complicated things like log in the user, add items to a cart etc, checkout [scripting](../scripting/).
 
 
