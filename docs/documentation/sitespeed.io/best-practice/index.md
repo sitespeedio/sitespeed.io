@@ -57,7 +57,7 @@ http://www.yoursite.com/my/really/important/page/ Important_Page
 http://www.yoursite.com/where/we/are/ We_are
 ~~~
 
-And then you give feed the file to sitespeed.io:
+And then you feed the file to sitespeed.io:
 
 ~~~bash
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} urls.txt
