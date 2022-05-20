@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2022-05-11T12:48:07.467Z</updated>
+    <updated>2022-05-20T09:03:57.936Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,61 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 16.7.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.7.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.7.0"/>
+        <updated>2022-05-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Include last CPU long task in the HAR file so we can show when it happens <a href="https://github.com/sitespeedio/browsertime/pull/1793">#1793</a>.</li>
+</ul>
+ <ul>
+<li>Inlclude TTFB and INP in the Google Web Vital namespace <a href="https://github.com/sitespeedio/browsertime/pull/1792">#1792</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 16.6.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.6.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.6.0"/>
+        <updated>2022-05-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Implemented experimental Interaction to next paint that&#39;s useful if you test user journeys <a href="https://github.com/sitespeedio/browsertime/pull/1791">#1791</a>.</li>
+</ul>
+ <ul>
+<li>Track when the last CPU long task happen as explained by Andy Davies of the webperf Slack channel <a href="https://github.com/sitespeedio/browsertime/pull/1789">#1789</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 16.5.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.5.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.5.0"/>
+        <updated>2022-05-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Make it possible to configure the max size in pixels for the filmstrip screenshots using <code>--videoParams.thumbsize</code> <a href="https://github.com/sitespeedio/browsertime/pull/1787">#1787</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Handle all boundaries when cropping image in portable script, thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1788">#1788</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 16.4.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.4.0</id>
@@ -141,65 +196,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>If visual metrics fails and you also use --visualElements, make sure that file is also stored so we can reporduce the issue <a href="https://github.com/sitespeedio/browsertime/pull/1757">#1757</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 16.0.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.0.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.0.0"/>
-        <updated>2022-04-05T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Firefox 99 in the Docker container</li>
-</ul>
- <ul>
-<li>Edge and Edgedriver 100</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Automatically save the original video if visual metrics fails <a href="https://github.com/sitespeedio/browsertime/pull/1755">#1755</a>.</li>
-</ul>
-<h3>Changed</h3>
- <ul>
-<li>When I introduced flushing of the DNS per run I missed that it makes you need to run sudo to do it (Mac/Linux). That sucks so instead of being able to disable the flushing <code>--disableDNSFlush</code> you now enables it with <code>--flushDNS</code> <a href="https://github.com/sitespeedio/browsertime/pull/1752">#1752</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 15.4.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.4.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.4.0"/>
-        <updated>2022-03-30T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Chrome and Chromedriver 100 <a href="https://github.com/sitespeedio/browsertime/pull/1743">#1743</a>.</li>
-</ul>
- <ul>
-<li>There&#39;s a new version of the visual metrics script contributed by <a href="https://github.com/gmierz">Gregory Mierzwinski</a> that removed the dependency of ImageMagick and instead needs the Python dependencies <em>OpenCV-Python</em> and <em>Numpy</em>. The long term goal is to use this as default but for now you can test it with <code>--visualMetricsPortable</code>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 15.3.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.3.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#15.3.0"/>
-        <updated>2022-03-07T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Chrome: If you set --user-data-dir you can clean the directory between each iteration using <code>--chrome.cleanUserDataDir</code> <a href="https://github.com/sitespeedio/browsertime/pull/1739">#1739</a></li>
 </ul>
 ]]></summary>
         <author>

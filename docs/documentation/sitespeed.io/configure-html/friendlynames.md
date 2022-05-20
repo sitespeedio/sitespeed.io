@@ -1,5 +1,7 @@
+googleWebVitals.timeToFirstByte
 googleWebVitals.firstContentfulPaint
 googleWebVitals.largestContentfulPaint
+googleWebVitals.interactionToNextPaint
 googleWebVitals.totalBlockingTime
 googleWebVitals.cumulativeLayoutShift
 timings.firstPaint

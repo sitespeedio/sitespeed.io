@@ -56,6 +56,7 @@ Filmstrip
       --browsertime.videoParams.filmstripFullSize, --videoParams.filmstripFullSize  Keep original sized screenshots in the filmstrip. Will make the run take longer time  [boolean] [default: false]
       --browsertime.videoParams.filmstripQuality, --videoParams.filmstripQuality    The quality of the filmstrip screenshots. 0-100.  [default: 75]
       --browsertime.videoParams.createFilmstrip, --videoParams.createFilmstrip      Create filmstrip screenshots.  [boolean] [default: true]
+      --browsertime.videoParams.thumbsize, --videoParams.thumbsize                  The maximum size of the thumbnail in the filmstrip. Default is 400 pixels in either direction. If browsertime.videoParams.filmstripFullSize is used that setting overrides this.  [default: 400]
       --filmstrip.showAll                                                           Show all screenshots in the filmstrip, independent if they have changed or not.  [boolean] [default: false]
 
 Firefox

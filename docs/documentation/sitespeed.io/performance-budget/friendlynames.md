@@ -1,8 +1,10 @@
 {
  "budget": {
    "googleWebVitals": {
+         "timeToFirstByte": limit,
          "firstContentfulPaint": limit,
          "largestContentfulPaint": limit,
+         "interactionToNextPaint": limit,
          "totalBlockingTime": limit,
          "cumulativeLayoutShift": limit,
     },
