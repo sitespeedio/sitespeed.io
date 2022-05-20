@@ -7,7 +7,7 @@
  * Use `--browsertime.videoParams.thumbsize` to set the max size of the filmstrip thumbnails.
  * Interaction to next paint is collected for browsers that supports it (useful for your user journeys)
  * The time when the last CPU long task happens is a new metric, thank you Andy Davies for that idea! 
-* You can now use groupAlias directly in a text file [#3655](https://github.com/sitespeedio/sitespeed.io/pull/3655). Documentation updates coming soon.
+* You can now use groupAlias directly in a text file [#3655](https://github.com/sitespeedio/sitespeed.io/pull/3655). You can read how in the [updated documentation](https://www.sitespeed.io/documentation/sitespeed.io/configuration/#analyse-by-urls).
 * Added an option for using the full Graphite namespace when latest screenshots/video is stored for a test [#3660](https://github.com/sitespeedio/sitespeed.io/pull/3660).
 ### Fixed
 * If you set a user agent for Browsertime, also use it for the crawler [#3652](https://github.com/sitespeedio/sitespeed.io/pull/3652).
