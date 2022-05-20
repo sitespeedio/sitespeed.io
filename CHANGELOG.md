@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 24.8.0 - UNRELEASED
 
 ### Added
 * Updated to [Browsertime 16.7.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1670---2022-05-20) from 16.4.0. With the latest versions we get:
@@ -10,6 +10,7 @@
 * You can now use groupAlias directly in a text file [#3655](https://github.com/sitespeedio/sitespeed.io/pull/3655)
 ### Fixed
 * If you set a user agent for Browsertime, also use it for the crawler [#3652](https://github.com/sitespeedio/sitespeed.io/pull/3652).
+* Fix missing browser info when storing latest run data [#3658](https://github.com/sitespeedio/sitespeed.io/pull/3658).
 
 ## 24.7.0 - 2022-05-11
 ### Added
