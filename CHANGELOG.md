@@ -1,13 +1,14 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 24.8.0 - UNRELEASED
+## 24.8.0 - 2022-05-20
 
 ### Added
 * Updated to [Browsertime 16.7.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1670---2022-05-20) from 16.4.0. With the latest versions we get:
  * Use `--browsertime.videoParams.thumbsize` to set the max size of the filmstrip thumbnails.
- * Interaction to next paint is collected for browsers that supports it (useful for your usert journeys)
- * Last CPU long task is a new metric.
-* You can now use groupAlias directly in a text file [#3655](https://github.com/sitespeedio/sitespeed.io/pull/3655)
+ * Interaction to next paint is collected for browsers that supports it (useful for your user journeys)
+ * The time when the last CPU long task happens is a new metric, thank you Andy Davies for that idea! 
+* You can now use groupAlias directly in a text file [#3655](https://github.com/sitespeedio/sitespeed.io/pull/3655). Documentation updates coming soon.
+* Added an option for using the full Graphite namespace when latest screenshots/video is stored for a test [#3660](https://github.com/sitespeedio/sitespeed.io/pull/3660).
 ### Fixed
 * If you set a user agent for Browsertime, also use it for the crawler [#3652](https://github.com/sitespeedio/sitespeed.io/pull/3652).
 * Fix missing browser info when storing latest run data [#3658](https://github.com/sitespeedio/sitespeed.io/pull/3658).
