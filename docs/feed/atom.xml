@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-05-20T00:00:00.000Z</updated>
+    <updated>2022-05-21T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,10 +16,10 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 24.8.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.8.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.8.0"/>
-        <updated>2022-05-20T00:00:00.000Z</updated>
+        <title type="html"><![CDATA[sitespeed.io 24.8.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.8.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.8.1"/>
+        <updated>2022-05-21T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1670---2022-05-20">Browsertime 16.7.0</a> from 16.4.0. With the latest versions we get:</li>
@@ -30,12 +30,15 @@
  <ul>
 <li>Added an option for using the full Graphite namespace when latest screenshots/video is stored for a test <a href="https://github.com/sitespeedio/sitespeed.io/pull/3660">#3660</a>.</li>
 </ul>
-<h3>Fixed</h3>
  <ul>
 <li>If you set a user agent for Browsertime, also use it for the crawler <a href="https://github.com/sitespeedio/sitespeed.io/pull/3652">#3652</a>.</li>
 </ul>
  <ul>
 <li>Fix missing browser info when storing latest run data <a href="https://github.com/sitespeedio/sitespeed.io/pull/3658">#3658</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Better fix for getting the correct browser name and version when storing latest run data <a href="https://github.com/sitespeedio/sitespeed.io/pull/3661">#3661</a>.</li>
 </ul>
 ]]></summary>
         <author>
