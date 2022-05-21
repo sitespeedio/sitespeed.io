@@ -1,6 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 24.8.0 - 2022-05-20
+
+## 24.8.1 - 2022-05-21
+
+### Fixed
+* Better fix for getting the correct browser name and version when storing latest run data [#3661](https://github.com/sitespeedio/sitespeed.io/pull/3661).
 
 ### Added
 * Updated to [Browsertime 16.7.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1670---2022-05-20) from 16.4.0. With the latest versions we get:
