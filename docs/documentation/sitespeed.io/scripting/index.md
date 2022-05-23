@@ -126,6 +126,31 @@ if (exists) {
 }
 ~~~
 
+## What about await/return and what do those mean?
+If you are new to NodeJS using await can be confusing, what does it mean and when should you use it?
+
+Some of the commands/function in Browsertime/sitespeed.io are asynchronous. This means that they return a promise. A promise is an action which will either be completed or rejected. It could be navigating to a new page, running JavaScript or waiting for an element to appear.
+
+To make sure your script wait on the action to complete, you use the `await` keyword.
+
+Navigating to sitespeed.io homepage and waiting on the navigation to complete: 
+
+~~~
+module.exports = async function(context, commands) {
+  await commands.navigate('https://www.sitespeed.io');
+  // We will get here when the action is finished since we use await
+}
+
+
+sitespeed.io/Browsertime gives full control to your script and is waiting for it to return a promise. That means that if you do many async functions/commands in your page, you should make sure you return the last 
+promise back to sitespeed.io/Browsertime. That way it will wait until everything in your script has finished. Checkout this examample where we test two pages, we wait for the first to finish and then return the last promise back.
+
+~~~
+module.exports = async function(context, commands) {
+    await commands.measure.start('https://www.sitespeed.io');
+    return commands.measure.start('https://www.sitespeed.io/documentation/');
+~~~
+
 ## Finding the right element
 
 One of the key things in your script is to be able to find the right element to invoke. If the element has an id it's easy. If not you can use developer tools in your favourite browser. The all work mostly the same: Open DevTools in the page you want to inspect, click on the element and right click on DevTools for that element. Then you will see something like this:
