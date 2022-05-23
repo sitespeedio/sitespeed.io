@@ -135,17 +135,18 @@ To make sure your script wait on the action to complete, you use the `await` key
 
 Navigating to sitespeed.io homepage and waiting on the navigation to complete: 
 
-~~~
+~~~javascript
 module.exports = async function(context, commands) {
   await commands.navigate('https://www.sitespeed.io');
   // We will get here when the action is finished since we use await
 }
+~~~
 
 
 sitespeed.io/Browsertime gives full control to your script and is waiting for it to return a promise. That means that if you do many async functions/commands in your page, you should make sure you return the last 
 promise back to sitespeed.io/Browsertime. That way it will wait until everything in your script has finished. Checkout this examample where we test two pages, we wait for the first to finish and then return the last promise back.
 
-~~~
+~~~javascript
 module.exports = async function(context, commands) {
     await commands.measure.start('https://www.sitespeed.io');
     return commands.measure.start('https://www.sitespeed.io/documentation/');
