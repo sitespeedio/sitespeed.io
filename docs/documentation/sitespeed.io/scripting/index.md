@@ -150,6 +150,7 @@ promise back to sitespeed.io/Browsertime. That way it will wait until everything
 module.exports = async function(context, commands) {
     await commands.measure.start('https://www.sitespeed.io');
     return commands.measure.start('https://www.sitespeed.io/documentation/');
+}
 ~~~
 
 ## Finding the right element
