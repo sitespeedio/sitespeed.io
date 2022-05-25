@@ -1,6 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
 
+
+## 24.9.0 - 2022-05-25
+### Added
+* Updated the Docker container to use Chrome 102 [#3665](https://github.com/sitespeedio/sitespeed.io/pull/3665).
+
 ## 24.8.1 - 2022-05-21
 
 ### Fixed
