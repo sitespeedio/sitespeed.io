@@ -597,7 +597,7 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
-You can also create your own errors. The error will be reported in the HTML and sent to Graphite/InfluxDB.
+You can also create your own errors. The error will be reported in the HTML and sent to Graphite/InfluxDB. If you report an error, the exit code from sitespeed.io will be > 0.
 
 ~~~javascript
 module.exports = async function(context, commands) {
