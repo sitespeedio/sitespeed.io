@@ -1110,10 +1110,10 @@ Wait for x ms.
 Wait for an element with id to appear before maxTime. The element needs to be visible for the user. If the element do not appear within maxTime an error will be thrown.
 
 #### wait.byXpath(xpath, maxTime)
-Wait for an element found by xpath to appear before maxTime. The element needs to be visible for the user. If the elemet do not appear within maxTime an error will be thrown.
+Wait for an element found by xpath to appear before maxTime. The element needs to be visible for the user. If the element do not appear within maxTime an error will be thrown.
 
 ####  wait.bySelector(selector, maxTime)
-Wait for an element found by selector to appear before maxTime. The element needs to be visible for the user. If the elemet do not appear within maxTime an error will be thrown.
+Wait for an element found by selector to appear before maxTime. The element needs to be visible for the user. If the element do not appear within maxTime an error will be thrown.
 
 #### wait.byPageToComplete()
 Wait for the page to finish loading by using the configured [page complete check](/documentation/sitespeed.io/browsers/#choose-when-to-end-your-test). This can be useful if you use Selenium to click on elements and want to wait on a new page to load.
