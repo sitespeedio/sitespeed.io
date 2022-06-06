@@ -130,6 +130,9 @@ connectivity
       --connectivity.throttle.localhost                   Add latency/delay on localhost. Perfect for testing with WebPageReplay  [boolean] [default: false]
       --connectivity.humble.url                           The path to your Humble instance. For example http://raspberrypi:3000  [string]
 
+debug
+      --debug  Run Browsertime in debug mode.  [boolean] [default: false]
+
 Options:
       --cpu                                         Easy way to enable both chrome.timeline for Chrome and geckoProfile for Firefox  [boolean]
       --androidPower                                Enables android power testing - charging must be disabled for this.(You have to disable charging yourself for this - it depends on the phone model).  [boolean]
