@@ -1,6 +1,13 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
 
+## 25.0.0 - UNRELEASED
+
+### Added
+* Added Firefox 101 and Edge 102 in the Docker container.
+
+### Fixed
+* Updated to Axe-core 4.2.2 [#3673](https://github.com/sitespeedio/sitespeed.io/pull/3673)
 
 ## 24.9.0 - 2022-05-25
 ### Added
