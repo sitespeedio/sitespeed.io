@@ -175,35 +175,10 @@ One of the key things in your script is to be able to find the right element to 
  <em class="small center">Using Chrome to find the CSS Selector to the element</em>
 </p>
 
-## Running setUp and tearDown in the same script
-
-Scripts can also directly define the ```--preScript``` and ```--postScript``` options by implementing a *setUp* and/or a *tearDown* function. These functions will get the same arguments than the test itself. When using this form, the three functions are declared in *module.exports* under the *setUp*, *tearDown* and *test* keys.
-
-Here's a minimal example:
-
-~~~javascript
-async function setUp(context, commands) {
-  // do some useful set up
-};
-
-async function perfTest(context, commands) {
-  // add your own code here
-};
-
-async function tearDown(context, commands) {
-  // do some cleanup here
-};
-
-module.exports = {
-  setUp: setUp,
-  tearDown: tearDown,
-  test: perfTest
-};
-~~~
-
-
 ## Debug
 There's a couple of way that makes it easier to debug your scripts:
+
+* Run in `--debug` mode and add breakpoints to your code. The browser will open with devtools open and will pause on each breakpoint. 
 
 * Make sure to [use the log](#log-from-your-script) so you can see what happens in your log output. Your script can log to the sitespeed.io default log.
 ~~~javascript
@@ -794,6 +769,33 @@ module.exports = function() {
 And then run it:
 ```sitespeed.io --multi test.js```
 
+
+## Running setUp and tearDown in the same script
+
+Scripts can also directly define the ```--preScript``` and ```--postScript``` options by implementing a *setUp* and/or a *tearDown* function. These functions will get the same arguments than the test itself. When using this form, the three functions are declared in *module.exports* under the *setUp*, *tearDown* and *test* keys.
+
+Here's a minimal example:
+
+~~~javascript
+async function setUp(context, commands) {
+  // do some useful set up
+};
+
+async function perfTest(context, commands) {
+  // add your own code here
+};
+
+async function tearDown(context, commands) {
+  // do some cleanup here
+};
+
+module.exports = {
+  setUp: setUp,
+  tearDown: tearDown,
+  test: perfTest
+};
+~~~
+
 ## Commands
 
 All commands will return a promise and you should await it to fulfil. If some command do not work, we will log that automatically and rethrow the error, so you can catch that and can act on that.
@@ -986,6 +988,23 @@ module.exports = async function(context, commands) {
   stopWatch.stopAndAdd();
 }
 ~~~
+
+### Breakpoint
+
+You can use breakpoints to debug your script. You can add breakpoints to your script that will be used when you run in `--debug` mode. At each breakpoint the browser will pause. You can continue by adding `window.browsertime.pause=false;` in your developer console.
+
+Debug mode works in Chrome/Firefox/Edge when running on desktop. It do not work in Docker and on mobile. When you run in debug mode, devtools will be automatically open so you can debug your script.
+
+In debug mode, the browser will pause after each iteration.
+
+~~~javascript
+module.exports = async function(context, commands) {
+  await commands.measure.start('https://www.sitespeed.io');
+  await commands.breakpoint('');
+  return commands.measure.start('https://www.sitespeed.io/documentation/');
+};
+~~~
+
 
 ### Click
 The click command will click on links.
