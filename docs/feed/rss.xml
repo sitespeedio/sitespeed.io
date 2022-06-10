@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Wed, 25 May 2022 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 10 Jun 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,56 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 25.0.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.0.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.0.0</guid>
+            <pubDate>Fri, 10 Jun 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Added Firefox 101 and Edge 102 in the Docker container.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated to Axe-core 4.2.2 <a href="https://github.com/sitespeedio/sitespeed.io/pull/3673">#3673</a></li>
+</ul>
+<h3>Changed</h3>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 16.8.1]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.8.1</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.8.1</guid>
+            <pubDate>Thu, 09 Jun 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix for getting the MOZ log, thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1802">#1802</a>.</li>
+</ul>
+ <ul>
+<li><a href="https://github.com/sitespeedio/browsertime/pull/1751">Removed unused functionality of the Visual metrics portable script</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 16.8.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.8.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.8.0</guid>
+            <pubDate>Mon, 06 Jun 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Add <code>--debug</code> mode. Debug mode will run your tests and open devtools in Chrome/Edge/Firefox on desktop and will stop after each iteration so you can inspect the page. You can add your own breakpoint in your script with the <code>breakpoint(name)</code> command. To continue after your breakpoint, add the following code in the developer console in your browser: <code>window.browsertime.pause=false;</code>  <a href="https://github.com/sitespeedio/browsertime/pull/1798">#1798</a>.</li>
+</ul>
+ <ul>
+<li>Use Selenium WebDriver 4.2.0 <a href="https://github.com/sitespeedio/browsertime/pull/1801">#1801</a>.</li>
+</ul>
+ <ul>
+<li>Updated to Firefox 101, Edge 102, Chrome 102 in the Docker container.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 24.9.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.9.0</link>
@@ -268,31 +318,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 16.2.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.2.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.2.0</guid>
-            <pubDate>Sun, 01 May 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Chrome and Chromedriver 101 <a href="https://github.com/sitespeedio/browsertime/pull/1773">#1773</a>.</li>
-</ul>
- <ul>
-<li>Updated to Edge and Edgedriver 101 <a href="https://github.com/sitespeedio/browsertime/pull/1778">#1778</a>.</li>
-</ul>
- <ul>
-<li>Use Geckodriver 0.31.0 <a href="https://github.com/sitespeedio/browsertime/pull/1775">#1775</a>.</li>
-</ul>
- <ul>
-<li>Added new alias for warm cache load. You can now use either <code>--preURL</code> or <code>--warmLoad</code> <a href="https://github.com/sitespeedio/browsertime/pull/1774">#1774</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Updated to Selenium 4.1.2 <a href="https://github.com/sitespeedio/browsertime/pull/1779">#1779</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[sitespeed.io 24.3.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.3.0</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.3.0</guid>
@@ -319,55 +344,6 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 24.1.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.1.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.1.0</guid>
-            <pubDate>Fri, 22 Apr 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Update Grafana auth settings to allow api token or basic auth, thank you <a href="https://github.com/vs-odessa">Vladimir Stepanov</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/3627">#3627</a>.</li>
-</ul>
- <ul>
-<li>Add TTFB to the metrics page <a href="https://github.com/sitespeedio/sitespeed.io/pull/3630">#3630</a>.</li>
-</ul>
- <ul>
-<li>Use latest Coach core with updated PageXray and Third party web <a href="https://github.com/sitespeedio/sitespeed.io/pull/3629">#3629</a>.</li>
-</ul>
- <ul>
-<li>Make it possible to disable annotations for Graphite. Set <code>--graphite.sendAnnotation false</code> to disable sending annotations <a href="https://github.com/sitespeedio/sitespeed.io/pull/3625">#3625</a>.</li>
-</ul>
- <ul>
-<li>Show which run that is used in the metrics tab <a href="https://github.com/sitespeedio/sitespeed.io/pull/3631">#3631</a>.</li>
-</ul>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1610---2022-04-20">Browsertime 16.1.0</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 16.1.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.1.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.1.0</guid>
-            <pubDate>Wed, 20 Apr 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Added blocking of Chrome and Edge phone home domains <a href="https://github.com/sitespeedio/browsertime/pull/1763">#1763</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Handle negative x/y offsets when cropping images in the new portable visual metrocs script, thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1770">#1770</a>.</li>
-</ul>
- <ul>
-<li>Bumped Throttle dependency <a href="https://github.com/sitespeedio/browsertime/pull/1769">#1769</a>.</li>
-</ul>
- <ul>
-<li>Bumped chrome-har, chrome-remote-interface, dayjs and yargs dependencies <a href="https://github.com/sitespeedio/browsertime/pull/1771">#1771</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[throttle 3.1.1]]></title>
@@ -406,18 +382,6 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 16.0.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.0.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.0.1</guid>
-            <pubDate>Wed, 06 Apr 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>If visual metrics fails and you also use --visualElements, make sure that file is also stored so we can reporduce the issue <a href="https://github.com/sitespeedio/browsertime/pull/1757">#1757</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[pagexray 4.4.1]]></title>

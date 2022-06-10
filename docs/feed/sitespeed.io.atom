@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-05-25T10:09:22.447Z</updated>
+    <updated>2022-06-10T08:00:18.361Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,26 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 25.0.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.0.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.0.0"/>
+        <updated>2022-06-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Added Firefox 101 and Edge 102 in the Docker container.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated to Axe-core 4.2.2 <a href="https://github.com/sitespeedio/sitespeed.io/pull/3673">#3673</a></li>
+</ul>
+<h3>Changed</h3>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 24.9.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.9.0</id>
@@ -194,36 +214,6 @@
 <h3>Fixed</h3>
  <ul>
 <li>Updated dependencies: aws-sdk, cli-color, fs-extra, influx, junit-report-builder and tape <a href="https://github.com/sitespeedio/sitespeed.io/pull/3640">#3640</a></li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 24.1.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.1.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.1.0"/>
-        <updated>2022-04-22T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Update Grafana auth settings to allow api token or basic auth, thank you <a href="https://github.com/vs-odessa">Vladimir Stepanov</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/3627">#3627</a>.</li>
-</ul>
- <ul>
-<li>Add TTFB to the metrics page <a href="https://github.com/sitespeedio/sitespeed.io/pull/3630">#3630</a>.</li>
-</ul>
- <ul>
-<li>Use latest Coach core with updated PageXray and Third party web <a href="https://github.com/sitespeedio/sitespeed.io/pull/3629">#3629</a>.</li>
-</ul>
- <ul>
-<li>Make it possible to disable annotations for Graphite. Set <code>--graphite.sendAnnotation false</code> to disable sending annotations <a href="https://github.com/sitespeedio/sitespeed.io/pull/3625">#3625</a>.</li>
-</ul>
- <ul>
-<li>Show which run that is used in the metrics tab <a href="https://github.com/sitespeedio/sitespeed.io/pull/3631">#3631</a>.</li>
-</ul>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1610---2022-04-20">Browsertime 16.1.0</a>.</li>
 </ul>
 ]]></summary>
         <author>
