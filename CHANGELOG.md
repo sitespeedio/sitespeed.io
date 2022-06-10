@@ -3,6 +3,14 @@
 
 ## 25.0.0 - UNRELEASED
 
+### Changed
+* `--debug` do not add verbose logging anymore, instead it uses Browsertimes debug mode. You can use [breakpoints](https://www.sitespeed.io/documentation/sitespeed.io/scripting/#breakpoint) to debug your script. You can add breakpoints to your script that will be used when you run in `--debug` mode. At each breakpoint the browser will pause. You can continue by adding `window.browsertime.pause=false;` in your developer console.
+
+Debug mode works in Chrome/Firefox/Edge when running on desktop. It do not work in Docker and on mobile. When you run in debug mode, devtools will be automatically open so you can debug your page.
+
+In debug mode, the browser will pause after each iteration.
+
+[Read the docs](https://www.sitespeed.io/documentation/sitespeed.io/scripting/#debug) on how to use debug. Wit
 ### Added
 * Added Firefox 101 and Edge 102 in the Docker container.
 
