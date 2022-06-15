@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-06-10T08:00:18.361Z</updated>
+    <updated>2022-06-15T11:31:08.115Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 25.1.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.1.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.1.0"/>
+        <updated>2022-06-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated Browsertime to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1690---2022-06-15">16.9.0</a> with the following changes:</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 25.0.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.0.0</id>
@@ -195,25 +210,6 @@
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Updated to Chrome 101 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3641">#3641</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 24.2.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.2.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.2.0"/>
-        <updated>2022-04-26T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated base Docker image to use Ubuntu 22.04 <a href="https://github.com/sitespeedio/sitespeed.io/pull/3636">#3636</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Updated dependencies: aws-sdk, cli-color, fs-extra, influx, junit-report-builder and tape <a href="https://github.com/sitespeedio/sitespeed.io/pull/3640">#3640</a></li>
 </ul>
 ]]></summary>
         <author>

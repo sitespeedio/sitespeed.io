@@ -4,7 +4,7 @@
         <title>browsertime release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of browsertime</description>
-        <lastBuildDate>Fri, 10 Jun 2022 07:51:10 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 15 Jun 2022 08:30:15 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,25 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/browsertime.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[browsertime 16.9.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.9.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.9.0</guid>
+            <pubDate>Wed, 15 Jun 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>New <code>wait.byCondition</code> command. Thank you <a href="https://github.com/Icecold777">Icecold777</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1803">#1803</a>.</li>
+</ul>
+ <ul>
+<li>Collect number of CPU longtasks before largest contentful paint <a href="https://github.com/sitespeedio/browsertime/pull/1806">#1806</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Instead of throwing errors and exit the tests if the page hasn&#39;t finished loading after 5 minutes, we now gracefully ends the test after 2 minutes (you can change that time with <code>--maxLoadTime</code>). That makes more sense than just throwing errors <a href="https://github.com/sitespeedio/browsertime/pull/1810">#1810</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[browsertime 16.8.1]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.8.1</link>
