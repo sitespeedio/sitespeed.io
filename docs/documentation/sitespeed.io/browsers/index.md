@@ -221,6 +221,8 @@ In this example we wait 10 seconds until the loadEventEnd happens, but you can a
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --browsertime.pageCompleteCheck 'return (function() {try { return (Date.now() - window.performance.timing.loadEventEnd) > 10000;} catch(e) {} return true;})()'
 ~~~
 
+If loadEventEnd never happens for the page, the test will wait for `--maxLoadTime` until the test stops. By default that time is two minutes (yes that is long).
+
 You can also configure how long time your current check will wait until completing with ```--pageCompleteWaitTime```. By default the pageCompleteCheck waits for 5000 ms after the onLoad event to happen. If you want to increase that to 10 seconds use ```--pageCompleteWaitTime 10000```. This is also useful if you test with *pageCompleteCheckInactivity* and it takes long time for the server to respond, you can use the *pageCompleteWaitTime* to wait longer than the default value.
 
 ![Navigation timeline]({{site.baseurl}}/img/navigation-timeline.jpg)
