@@ -1,6 +1,17 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
 
+## 25.1.0 - UNRELEASED
+### Added
+* Updated Browsertime to [16.9.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1690---2022-06-15) with the following changes:
+  * New `wait.byCondition` command. Thank you [Icecold777](https://github.com/Icecold777) for PR [#1803](https://github.com/sitespeedio/browsertime/pull/1803).
+  * Collect number of CPU longtasks before largest contentful paint [#1806](https://github.com/sitespeedio/browsertime/pull/1806).
+  * Instead of throwing errors and exit the tests if the page hasn't finished loading after 5 minutes, we now gracefully ends the test after 2 minutes (you can change that time with `--maxLoadTime`). That makes more sense than just throwing errors [#1810](https://github.com/sitespeedio/browsertime/pull/1810). 
+##  16.8.1 - 2022-06-09
+### Fixed
+* Fix for getting the MOZ log, thank you [Gregory Mierzwinski](https://github.com/gmierz) for PR [#1802](https://github.com/sitespeedio/browsertime/pull/1802).
+* [Removed unused functionality of the Visual metrics portable script](https://github.com/sitespeedio/browsertime/pull/1751).
+
 ## 25.0.0 - 2022-06-10
 
 ### Changed
