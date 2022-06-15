@@ -1,10 +1,10 @@
 browsertime.js [options] <url>/<scriptFile>
 
 timeouts
-      --timeouts.browserStart       Timeout when waiting for browser to start, in milliseconds  [number] [default: 60000]
-      --timeouts.pageLoad           Timeout when waiting for url to load, in milliseconds  [number] [default: 300000]
-      --timeouts.script             Timeout when running browser scripts, in milliseconds  [number] [default: 120000]
-      --timeouts.pageCompleteCheck  Timeout when waiting for page to complete loading, in milliseconds  [number] [default: 300000]
+      --timeouts.browserStart                      Timeout when waiting for browser to start, in milliseconds  [number] [default: 60000]
+      --timeouts.pageLoad                          Timeout when waiting for url to load, in milliseconds  [number] [default: 300000]
+      --timeouts.script                            Timeout when running browser scripts, in milliseconds  [number] [default: 120000]
+      --timeouts.pageCompleteCheck, --maxLoadTime  Timeout when waiting for page to complete loading, in milliseconds  [number] [default: 120000]
 
 chrome
       --chrome.args                                              Extra command line arguments to pass to the Chrome process (e.g. --no-sandbox). To add multiple arguments to Chrome, repeat --chrome.args once per argument.
