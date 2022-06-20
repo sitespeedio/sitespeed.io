@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>throttle-release-feed</id>
     <title>throttle release feed</title>
-    <updated>2022-04-20T11:37:49.769Z</updated>
+    <updated>2022-06-17T09:36:09.357Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[throttle 4.0.1]]></title>
+        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.1</id>
+        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.1"/>
+        <updated>2022-06-17T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Removed the dependecy of route. Using <code>ip route</code> instead and we already have <code>ip</code> as a requirement.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[throttle 4.0.0]]></title>
         <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.0</id>

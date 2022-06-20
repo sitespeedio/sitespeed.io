@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Wed, 15 Jun 2022 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 20 Jun 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,41 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 25.1.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.1.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.1.1</guid>
+            <pubDate>Mon, 20 Jun 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Upgraded to Browsertime <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1691---2022-06-19">16.9.1</a> that upgraded to Throttle 4 that internally uses <code>ip route</code> instead of <code>route</code> (one less dependency).</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 16.9.1]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.9.1</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.9.1</guid>
+            <pubDate>Sun, 19 Jun 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Upgraded to Throttle 4 that internally uses <code>ip route</code> instead of <code>route</code> (one less dependency) <a href="https://github.com/sitespeedio/browsertime/pull/1767">#1767</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[throttle 4.0.1]]></title>
+            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.1</link>
+            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.1</guid>
+            <pubDate>Fri, 17 Jun 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Removed the dependecy of route. Using <code>ip route</code> instead and we already have <code>ip</code> as a requirement.</li>
+</ul>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 25.1.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.1.0</link>
@@ -332,30 +367,6 @@
 </ul>
  <ul>
 <li>Updated to latest NodeJs in the slim container.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 16.2.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.2.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.2.1</guid>
-            <pubDate>Wed, 04 May 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Add an acceptable error of 5 pixels to last frame matches for the visual metric portable script, thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1780">#1780</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 24.3.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.3.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.3.0</guid>
-            <pubDate>Wed, 27 Apr 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Chrome 101 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3641">#3641</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>

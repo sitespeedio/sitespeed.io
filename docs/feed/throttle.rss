@@ -4,13 +4,24 @@
         <title>throttle release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of throttle</description>
-        <lastBuildDate>Wed, 20 Apr 2022 11:37:49 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 17 Jun 2022 09:36:09 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/throttle.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[throttle 4.0.1]]></title>
+            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.1</link>
+            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.1</guid>
+            <pubDate>Fri, 17 Jun 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Removed the dependecy of route. Using <code>ip route</code> instead and we already have <code>ip</code> as a requirement.</li>
+</ul>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[throttle 4.0.0]]></title>
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.0</link>
