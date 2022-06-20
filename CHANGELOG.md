@@ -1,6 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
 
+
+## 25.1.1 - 2022-06-20
+### Fixed
+* Upgraded to Browsertime [16.9.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1691---2022-06-19) that upgraded to Throttle 4 that internally uses `ip route` instead of `route` (one less dependency).
 ## 25.1.0 - 2022-06-15
 ### Added
 * Updated Browsertime to [16.9.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1690---2022-06-15) with the following changes:
