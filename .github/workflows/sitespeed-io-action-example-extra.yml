@@ -1,4 +1,4 @@
-name: sitespeed.io action example
+name: sitespeed.io extra action example
 on:
   push:
     branches:
