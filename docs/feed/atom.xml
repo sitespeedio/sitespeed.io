@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-06-20T00:00:00.000Z</updated>
+    <updated>2022-06-22T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,36 @@
     <logo>https://www.sitespeed.io/img/logos/sitespeed.io.png</logo>
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 25.2.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.2.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.2.0"/>
+        <updated>2022-06-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated the Docker container to use Chrome 103.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[throttle 4.0.2]]></title>
+        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.2</id>
+        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.2"/>
+        <updated>2022-06-21T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>The E6 Module convertion in 4.0 broke version check (&#39;--version&#39;) making installs failed. PR <a href="https://github.com/sitespeedio/throttle/pull/74">#74</a> is a temporaty fix for that.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 25.1.1]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.1.1</id>
@@ -409,31 +439,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Added missing SSL timings to the time per domain <a href="https://github.com/sitespeedio/pagexray/pull/117">#117</a></li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 24.4.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.4.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.4.0"/>
-        <updated>2022-05-04T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Edge 101 in the Docker container. Updated to latest <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1620---2022-05-01">Browsertime 16.2.0</a> with Edgedriver and Chromedriver 101.</li>
-</ul>
- <ul>
-<li>Updated to Firefox 100 in the Docker container.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>If <code>--firstParty</code> do not match any URL, make sure we still show first vs third party <a href="https://github.com/sitespeedio/sitespeed.io/pull/3643">#3643</a>.</li>
-</ul>
- <ul>
-<li>Updated to latest NodeJs in the slim container.</li>
 </ul>
 ]]></summary>
         <author>
@@ -940,16 +945,6 @@
         <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.12.0</id>
         <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.12.0"/>
         <updated>2020-10-29T00:00:00.000Z</updated>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[throttle 2.0.2]]></title>
-        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.0.2</id>
-        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.0.2"/>
-        <updated>2020-09-10T00:00:00.000Z</updated>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
