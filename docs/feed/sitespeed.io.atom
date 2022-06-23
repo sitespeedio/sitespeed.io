@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-06-22T08:53:32.879Z</updated>
+    <updated>2022-06-23T08:26:51.409Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 25.2.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.2.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.2.1"/>
+        <updated>2022-06-23T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Bug fix for adding custom CSS from plugins, than you <a href="https://github.com/josh-lr">Josh Duncan</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/3679">#3679</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 25.2.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.2.0</id>
@@ -178,28 +193,6 @@
 </ul>
  <ul>
 <li>Added more safe check when we miss Crux data.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 24.5.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.5.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.5.0"/>
-        <updated>2022-05-05T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Add INP and TTFB to the CRUX metrics <a href="https://github.com/sitespeedio/sitespeed.io/pull/3645">#3645</a>.</li>
-</ul>
- <ul>
-<li>Updated the Chrome USer Experience dashboard to include the new metrics. You can see the dahsboard <a href="https://dashboard.sitespeed.io/d/t_bhsNGMk/chrome-user-experience-report">here</a> and download the new one from <a href="https://github.com/sitespeedio/grafana-bootstrap-docker/blob/main/dashboards/graphite/ChromeUserExperienceReport.json">here</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Bumped Browsertime with a new fix release for the upcoming portable visual metrics script.</li>
 </ul>
 ]]></summary>
         <author>
