@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+### Fixed
+* Updated to Browsertime 16.10.1 that checks that the CDP port is not used before claiming it.
 ## 25.2.1 - 2022-06-23
 ### Fixed
 * Bug fix for adding custom CSS from plugins, than you [Josh Duncan](https://github.com/josh-lr) for PR [#3679](https://github.com/sitespeedio/sitespeed.io/pull/3679).
