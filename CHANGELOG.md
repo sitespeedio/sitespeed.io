@@ -1,8 +1,13 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 25.3.0 - 2022-06-28
 ### Fixed
-* Updated to Browsertime 16.10.1 that checks that the CDP port is not used before claiming it.
+* Updated to [Browsertime 16.10.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16101---2022-06-26) that checks that the CDP port is not used before claiming it.
+
+### Added
+* Updated to Firefox 102 and Edge 103 in the Docker container.
+* Updated to [Browsertime 16.11.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16110---2022-06-28).
+
 ## 25.2.1 - 2022-06-23
 ### Fixed
 * Bug fix for adding custom CSS from plugins, than you [Josh Duncan](https://github.com/josh-lr) for PR [#3679](https://github.com/sitespeedio/sitespeed.io/pull/3679).
