@@ -109,7 +109,7 @@ You can also install everything manually to have more control. This is what's ne
     * `sudo apt-get install -y  python-is-python3 python3-dev python3-pip`  
     * `python -m pip install pyssim`
 4. Install xvfb: `sudo apt-get install -y xvfb`
-5. Install ip and route for network throttling to work: `sudo apt-get install -y net-tools iproute2`
+5. Install ip and tc for network throttling to work: `sudo apt-get install -y net-tools`
 6. Create a user that you will use to run sitespeed.io and switch to that user:
     * `adduser sitespeedio`
     * `usermod -aG sudo sitespeedio`
