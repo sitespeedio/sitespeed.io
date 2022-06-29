@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-06-28T11:23:57.949Z</updated>
+    <updated>2022-06-29T21:01:03.844Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 25.3.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.3.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.3.1"/>
+        <updated>2022-06-29T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Upgraded to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16111---2022-06-29">Browsertime 16.11.1</a> that fixes the preWarmServer issue reported in <a href="https://github.com/sitespeedio/sitespeed.io/issues/3682">#3682</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 25.3.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.3.0</id>
@@ -176,24 +191,6 @@
 <h3>Fixed</h3>
  <ul>
 <li>Make sure we got CLS from Browsertime when we try to render it <a href="https://github.com/sitespeedio/sitespeed.io/pull/3650">#3650</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 24.6.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.6.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.6.0"/>
-        <updated>2022-05-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1630---2022-05-07">Browsertime 16.3.0</a> that collects Largest Contentful Paint from the browser (if the browser suppoorts the LCP API).</li>
-</ul>
- <ul>
-<li>Show total download time per domain <a href="https://github.com/sitespeedio/sitespeed.io/pull/3648">#3648</a>.</li>
 </ul>
 ]]></summary>
         <author>

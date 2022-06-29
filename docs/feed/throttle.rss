@@ -4,7 +4,7 @@
         <title>throttle release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of throttle</description>
-        <lastBuildDate>Tue, 21 Jun 2022 10:02:08 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 29 Jun 2022 20:44:23 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -12,13 +12,24 @@
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/throttle.rss" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[throttle 4.0.3]]></title>
+            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.3</link>
+            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.3</guid>
+            <pubDate>Wed, 29 Jun 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fixed <code>--version</code> so it actually shows the version again <a href="https://github.com/sitespeedio/throttle/pull/75">#75</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
             <title><![CDATA[throttle 4.0.2]]></title>
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.2</link>
             <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.2</guid>
             <pubDate>Tue, 21 Jun 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
-<li>The E6 Module convertion in 4.0 broke version check (&#39;--version&#39;) making installs failed. PR <a href="https://github.com/sitespeedio/throttle/pull/74">#74</a> is a temporaty fix for that.</li>
+<li>The E6 Module convertion in 4.0 broke version check (<code>--version</code>) making installs failed. PR <a href="https://github.com/sitespeedio/throttle/pull/74">#74</a> is a temporaty fix for that.</li>
 </ul>
 ]]></description>
         </item>

@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Tue, 28 Jun 2022 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 29 Jun 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,41 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 25.3.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.3.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.3.1</guid>
+            <pubDate>Wed, 29 Jun 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Upgraded to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16111---2022-06-29">Browsertime 16.11.1</a> that fixes the preWarmServer issue reported in <a href="https://github.com/sitespeedio/sitespeed.io/issues/3682">#3682</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 16.11.1]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.11.1</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.11.1</guid>
+            <pubDate>Wed, 29 Jun 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fixed <code>--preWarmServer</code> so it works with <code>--headless</code>, Docker and specific Android or iOS device <a href="https://github.com/sitespeedio/browsertime/pull/1815">#1815</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[throttle 4.0.3]]></title>
+            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.3</link>
+            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.3</guid>
+            <pubDate>Wed, 29 Jun 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fixed <code>--version</code> so it actually shows the version again <a href="https://github.com/sitespeedio/throttle/pull/75">#75</a>.</li>
+</ul>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 25.3.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.3.0</link>
@@ -111,7 +146,7 @@
             <pubDate>Tue, 21 Jun 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
-<li>The E6 Module convertion in 4.0 broke version check (&#39;--version&#39;) making installs failed. PR <a href="https://github.com/sitespeedio/throttle/pull/74">#74</a> is a temporaty fix for that.</li>
+<li>The E6 Module convertion in 4.0 broke version check (<code>--version</code>) making installs failed. PR <a href="https://github.com/sitespeedio/throttle/pull/74">#74</a> is a temporaty fix for that.</li>
 </ul>
 ]]></description>
         </item>
@@ -313,37 +348,6 @@
 <h3>Fixed</h3>
  <ul>
 <li>Make sure we got CLS from Browsertime when we try to render it <a href="https://github.com/sitespeedio/sitespeed.io/pull/3650">#3650</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 16.5.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.5.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.5.0</guid>
-            <pubDate>Wed, 11 May 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Make it possible to configure the max size in pixels for the filmstrip screenshots using <code>--videoParams.thumbsize</code> <a href="https://github.com/sitespeedio/browsertime/pull/1787">#1787</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Handle all boundaries when cropping image in portable script, thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1788">#1788</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 24.6.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.6.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#24.6.0</guid>
-            <pubDate>Tue, 10 May 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1630---2022-05-07">Browsertime 16.3.0</a> that collects Largest Contentful Paint from the browser (if the browser suppoorts the LCP API).</li>
-</ul>
- <ul>
-<li>Show total download time per domain <a href="https://github.com/sitespeedio/sitespeed.io/pull/3648">#3648</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
