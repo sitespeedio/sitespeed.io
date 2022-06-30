@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+
+## 25.3.2 - 2022-06-30
+### Fixed
+* Another go at fixing the preWarmServer issue [#3683](https://github.com/sitespeedio/sitespeed.io/pull/3683).
+
 ## 25.3.1 - 2022-06-29
 ### Fixed
 * Upgraded to [Browsertime 16.11.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16111---2022-06-29) that fixes the preWarmServer issue reported in [#3682](https://github.com/sitespeedio/sitespeed.io/issues/3682).
