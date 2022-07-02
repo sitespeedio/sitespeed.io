@@ -4,13 +4,24 @@
         <title>throttle release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of throttle</description>
-        <lastBuildDate>Wed, 29 Jun 2022 20:44:23 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 02 Jul 2022 06:51:22 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/throttle.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[throttle 5.0.0]]></title>
+            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.0</link>
+            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.0</guid>
+            <pubDate>Sat, 02 Jul 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Changed</h3>
+ <ul>
+<li>Dropped support for NodeJS 12 since it&#39;s unmaintaned.</li>
+</ul>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[throttle 4.0.3]]></title>
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.3</link>
@@ -113,12 +124,6 @@
 <li>A better check for missing net-tools on Linux, thank you <a href="https://github.com/radum">Radu Micu</a> for the PR <a href="https://github.com/sitespeedio/throttle/pull/56">#56</a>.</li>
 </ul>
 ]]></description>
-        </item>
-        <item>
-            <title><![CDATA[throttle 2.1.0]]></title>
-            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.0</link>
-            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.0</guid>
-            <pubDate>Wed, 10 Mar 2021 00:00:00 GMT</pubDate>
         </item>
     </channel>
 </rss>

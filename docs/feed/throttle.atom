@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>throttle-release-feed</id>
     <title>throttle release feed</title>
-    <updated>2022-06-29T20:44:23.106Z</updated>
+    <updated>2022-07-02T06:51:22.655Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[throttle 5.0.0]]></title>
+        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.0</id>
+        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.0"/>
+        <updated>2022-07-02T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Changed</h3>
+ <ul>
+<li>Dropped support for NodeJS 12 since it&#39;s unmaintaned.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[throttle 4.0.3]]></title>
         <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.3</id>
@@ -149,16 +164,6 @@
 <li>A better check for missing net-tools on Linux, thank you <a href="https://github.com/radum">Radu Micu</a> for the PR <a href="https://github.com/sitespeedio/throttle/pull/56">#56</a>.</li>
 </ul>
 ]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[throttle 2.1.0]]></title>
-        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.0</id>
-        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.0"/>
-        <updated>2021-03-10T00:00:00.000Z</updated>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>
