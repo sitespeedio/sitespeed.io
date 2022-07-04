@@ -74,7 +74,7 @@ if browsertime && browsertime.cpu && browsertime.cpu.longTasks
             td Total Long Tasks
             td #{browsertime.cpu.longTasks.tasks}
             td #{browsertime.cpu.longTasks.totalDuration.toFixed(0)}
-    
+    p CPU last long task happened at #{h.time.ms(browsertime.cpu.longTasks.lastLongTask)}
     h4 Individual Long Tasks
     table
         tr
