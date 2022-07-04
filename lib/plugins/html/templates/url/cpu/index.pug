@@ -63,6 +63,10 @@ if browsertime && browsertime.cpu && browsertime.cpu.longTasks
             td #{browsertime.cpu.longTasks.beforeFirstContentfulPaint.tasks}
             td #{browsertime.cpu.longTasks.beforeFirstContentfulPaint.totalDuration.toFixed(0)}
         tr
+            td Long Tasks before Largest Contentful Paint
+            td #{browsertime.cpu.longTasks.beforeLargestContentfulPaint.tasks}
+            td #{browsertime.cpu.longTasks.beforeLargestContentfulPaint.totalDuration.toFixed(0)}
+        tr
             td Long Tasks after Load Event End
             td #{browsertime.cpu.longTasks.afterLoadEventEnd.tasks}
             td #{browsertime.cpu.longTasks.afterLoadEventEnd.totalDuration.toFixed(0)}         
