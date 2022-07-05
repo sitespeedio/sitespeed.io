@@ -158,29 +158,36 @@ If you just want to run your test you can use Raspberry Pi OS Lite. If you also 
 
 Independent if you use Raspberry Lite/Desktop you should do the following:
 
-1. Install NodeJS. Install [latest LTS](https://nodejs.org/en/), when I write this that version is 16.13.1.
+1. Write the latest version Raspberry Pi OS Lite/ Raspberry Pi OS Desktop on a SD card. If you use the **Raspberry Pi Imager** make sure to enable ssh and choose username/password in the settings.
+2. Access your device using ssh.
+3. Install NodeJS. Install [latest LTS](https://nodejs.org/en/), when I write this that version is 16.15.1.
 ~~~
-wget https://nodejs.org/dist/v16.13.1/node-v16.13.1-linux-armv7l.tar.xz
-tar xf node-v16.13.1-linux-armv7l.tar.xz
-cd node-v16.13.1-linux-armv7l/
-sudo cp -R * /usr/local/
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt install nodejs
 ~~~
-2. Install ADB and Chromedriver.
+4. Install ADB and Chromedriver.
 ~~~
 sudo apt-get update
 sudo apt-get install chromium-chromedriver adb -y
 ~~~
-3. Install video and visual metrics dependencies.
+5. Install video and visual metrics dependencies.
 ~~~
 sudo apt-get update && sudo apt-get install -y imagemagick ffmpeg
-sudo apt-get install -y python-is-python3 python3-dev python3-pip
-python -m pip install pyssim
+# sudo apt-get install -y python-is-python3 python3-dev python3-pip
+python -m pip install pyssim OpenCV-Python Numpy
 ~~~
-4. And then install sitespeed.io.
+6. Follow [the instructions from npm how to install without sudo](https://github.com/sindresorhus/guides/blob/main/npm-global-without-sudo.md).
+7. And then install sitespeed.io.
 ~~~bash
-sudo npm install sitespeed.io -g
+npm install sitespeed.io -g
 ~~~
-5. (Optional) If you are using Raspberry Pi OS Desktop you can install scrcpy and vnc. Here's instructions how to use it together with a Mac. First install scrcpy:
+
+8. (Optional) You probably want to use [Gnirenhet](https://github.com/Genymobile/gnirehtet) to reverse tethering back the the traffic from the phone to the Raspberry Pi. That way you can throttle the connection on the Raspberry Pi and the phone will use the same connection.  Follow the instructions on 
+[https://github.com/Genymobile/gnirehtet/blob/master/DEVELOP.md](https://github.com/Genymobile/gnirehtet/blob/master/DEVELOP.md) how to build for Raspberry Pi.
+
+9. (Optional) You need Geckodriver if you want to run tests using Firefox on your phone. The easiest way to get Geckodriver on your Raspberry Pi is to build it on that Pi. You do that by cloning the Geckodriver repo and build the version you want. Checkout how it's done at [https://github.com/jamesmortensen/geckodriver-arm-binaries](https://github.com/jamesmortensen/geckodriver-arm-binaries) and adapt it to your Raspberry.
+
+10. (Optional) If you are using Raspberry Pi OS Desktop you can install scrcpy and vnc. Here's instructions how to use it together with a Mac. First install scrcpy:
 ~~~bash
 sudo apt-get update && sudo apt-get install -y scrcpy
 ~~~
@@ -190,7 +197,7 @@ sudo systemctl enable vncserver-x11-serviced
 ~~~
 Then generate a password that you will use to connect to VNC from your computer
 ~~~bash
-sudo vncpasswd -service 
+sudo vncpasswd -service
 ~~~
 Then setup auth by edit the file */etc/vnc/config.d/common.custom*:
 ~~~bash
@@ -209,8 +216,9 @@ Reboot your device:
 ~~~bash
 sudo reboot
 ~~~
-On your Mac, open "Screen Sharing" and then use *raspberrypi.local* as the hostname and the password you set in the previous step. You will then be able to see the Raspberry PI screen on your Mac.
-6. Plugin your phone, "Allow USB debugging" on your phone and run sitespeed.io:
+On your Mac, open "Screen Sharing" and then use *raspberrypi.local* as the hostname and the password you set in the previous step. You will then be able to see the Raspberry PI screen on your Mac. Start **scrcpy** and you will see the phone screen too.
+
+11. Plugin your phone, "Allow USB debugging" on your phone and run sitespeed.io:
 ~~~bash
 sitespeed.io https://www.sitespeed.io --android -n 1 --video --visualMetrics
 ~~~
