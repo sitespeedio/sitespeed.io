@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 25.4.0 - 2022-07-05
+### Added
+* Show how many long tasks happens before LCP [#3686](https://github.com/sitespeedio/sitespeed.io/pull/3686) and show when last long task happen [#3687](https://github.com/sitespeedio/sitespeed.io/pull/3687).
+
+### Fixed
+* Updated Browsertime with a fix for Geckodriver: when you run sitespeed.io on a Raspberry Pi it will pickup Geckodriver from the PATH.
 
 ## 25.3.2 - 2022-06-30
 ### Fixed
