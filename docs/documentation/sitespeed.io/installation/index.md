@@ -107,7 +107,7 @@ You can also install everything manually to have more control. This is what's ne
 2. Install imagemagick and ffmpeg `sudo apt-get update -y && sudo apt-get install -y imagemagick ffmpeg`
 3. Install Python dependencies:
     * `sudo apt-get install -y  python-is-python3 python3-dev python3-pip`  
-    * `python -m pip install pyssim`
+    * `python -m pip install pyssim OpenCV-Python Numpy`
 4. Install xvfb: `sudo apt-get install -y xvfb`
 5. Install ip and tc for network throttling to work: `sudo apt-get install -y net-tools`
 6. Create a user that you will use to run sitespeed.io and switch to that user:
@@ -116,6 +116,7 @@ You can also install everything manually to have more control. This is what's ne
     * `su - sitespeedio`
 7. Make sure that user can use sudo without password: `echo "sitespeedio ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/sitespeedio"`
 8. Make sure you can install using *npm* without using sudo. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
+9. Install sitespeed.io: `npm install sitespeed.io -g`
 
 Before you start your testing you need to install a browser. Here's how you can install Firefox.
 
@@ -173,7 +174,6 @@ sudo apt-get install chromium-chromedriver adb -y
 5. Install video and visual metrics dependencies.
 ~~~
 sudo apt-get update && sudo apt-get install -y imagemagick ffmpeg
-# sudo apt-get install -y python-is-python3 python3-dev python3-pip
 python -m pip install pyssim OpenCV-Python Numpy
 ~~~
 6. Follow [the instructions from npm how to install without sudo](https://github.com/sindresorhus/guides/blob/main/npm-global-without-sudo.md).
