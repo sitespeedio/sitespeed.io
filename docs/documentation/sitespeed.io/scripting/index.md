@@ -1364,7 +1364,7 @@ Create an error. Use it if you catch a thrown error, want to continue with somet
 ### Select
 Select command for selecting an option in a drop-down field.
 
-#### select.selectByIdValue(selectId, value)
+#### select.selectByIdAndValue(selectId, value)
 Select a field by the id of the select element and the value of the option.
 
 #### select.selectByNameAndValue(selectName, value)
