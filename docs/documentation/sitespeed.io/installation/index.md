@@ -116,7 +116,7 @@ You can also install everything manually to have more control. This is what's ne
     * `su - sitespeedio`
 7. Make sure that user can use sudo without password: `echo "sitespeedio ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/sitespeedio"`
 8. Make sure you can install using *npm* without using sudo. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
-9. Install sitespeed.io: `npm install sitespeed.io -g`
+9. Install sitespeed.io: `npm install sitespeed.io --location=global`
 
 Before you start your testing you need to install a browser. Here's how you can install Firefox.
 
@@ -133,16 +133,32 @@ sudo apt update
 sudo apt install -y google-chrome-stable
 ~~~
 
+And if you want to use Edge you can install it like this:
+
+~~~bash
+ curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+ sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+ sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main" > /etc/apt/sources.list.d/microsoft-edge-dev.list'
+ sudo apt-get update
+ sudo apt-get install -y microsoft-edge-stable
+~~~
+
 Try it out with Firefox:
 
 ~~~bash
-sitespeed.io -n 1 -b firefox https://www.sitespeed.io --video --visualMetrics --xvfb
+sitespeed.io -n 5 -b firefox https://www.sitespeed.io --video --visualMetrics --xvfb --browsertime.flushDNS true --connectivity.engine throttle -c cable
 ~~~
 
 Or with Chrome:
 
 ~~~bash
-sitespeed.io -n 1 -b chrome https://www.sitespeed.io --video --visualMetrics --xvfb
+sitespeed.io -n 5 -b chrome https://www.sitespeed.io --video --visualMetrics --xvfb --browsertime.flushDNS true --connectivity.engine throttle -c cable
+~~~
+
+Or with Edge:
+
+~~~bash
+sitespeed.io -n 5 -b edge https://www.sitespeed.io --video --visualMetrics --xvfb --browsertime.flushDNS true --connectivity.engine throttle -c cable
 ~~~
 
 ### Windows
@@ -179,7 +195,7 @@ python -m pip install pyssim OpenCV-Python Numpy
 6. Follow [the instructions from npm how to install without sudo](https://github.com/sindresorhus/guides/blob/main/npm-global-without-sudo.md).
 7. And then install sitespeed.io.
 ~~~bash
-npm install sitespeed.io -g
+npm install sitespeed.io --location=global
 ~~~
 
 8. (Optional) You probably want to use [Gnirenhet](https://github.com/Genymobile/gnirehtet) to reverse tethering back the the traffic from the phone to the Raspberry Pi. That way you can throttle the connection on the Raspberry Pi and the phone will use the same connection.  Follow the instructions on 
