@@ -107,7 +107,7 @@
     "lodash.set": "4.3.2",
     "lodash.union": "4.6.0",
     "markdown": "0.5.0",
-    "node-scp":"0.0.17",
+    "node-scp":"0.0.16",
     "node-slack": "0.0.7",
     "os-name": "4.0.0",
     "p-limit": "2.2.2",
