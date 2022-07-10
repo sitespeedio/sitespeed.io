@@ -40,7 +40,7 @@
         "lodash.set": "4.3.2",
         "lodash.union": "4.6.0",
         "markdown": "0.5.0",
-        "node-scp": "0.0.16",
+        "node-scp": "0.0.18",
         "node-slack": "0.0.7",
         "os-name": "4.0.0",
         "p-limit": "2.2.2",
@@ -5852,11 +5852,11 @@
       }
     },
     "node_modules/node-scp": {
-      "version": "0.0.16",
-      "resolved": "https://registry.npmjs.org/node-scp/-/node-scp-0.0.16.tgz",
-      "integrity": "sha512-e/DIuxe/Hik2WkzNkFUwsocp8UrElAEJS5YFQFwlDzIdBGuKoDO+Fn9rTNIHyeBEeb0yFsZnWzbQrYsBNpsWBg==",
+      "version": "0.0.18",
+      "resolved": "https://registry.npmjs.org/node-scp/-/node-scp-0.0.18.tgz",
+      "integrity": "sha512-PHRXMAb8Wfjtrsr6zz2UbOG+XcyDZUM/r8ZW0aUVxbuXfYex+wR0OD/jqw6TpdkvV+ddNLh+UBNV8oJ3R6Q9RA==",
       "dependencies": {
-        "ssh2": "^1.4.0"
+        "ssh2": "^1.6.0"
       }
     },
     "node_modules/node-slack": {
@@ -13054,11 +13054,11 @@
       "integrity": "sha512-PPmu8eEeG9saEUvI97fm4OYxXVB6bFvyNTyiUOBichBpFG8A1Ljw3bY62+5oOjDEMHRnd0Y7HQ+x7uzxOzC6JA=="
     },
     "node-scp": {
-      "version": "0.0.16",
-      "resolved": "https://registry.npmjs.org/node-scp/-/node-scp-0.0.16.tgz",
-      "integrity": "sha512-e/DIuxe/Hik2WkzNkFUwsocp8UrElAEJS5YFQFwlDzIdBGuKoDO+Fn9rTNIHyeBEeb0yFsZnWzbQrYsBNpsWBg==",
+      "version": "0.0.18",
+      "resolved": "https://registry.npmjs.org/node-scp/-/node-scp-0.0.18.tgz",
+      "integrity": "sha512-PHRXMAb8Wfjtrsr6zz2UbOG+XcyDZUM/r8ZW0aUVxbuXfYex+wR0OD/jqw6TpdkvV+ddNLh+UBNV8oJ3R6Q9RA==",
       "requires": {
-        "ssh2": "^1.4.0"
+        "ssh2": "^1.6.0"
       }
     },
     "node-slack": {
