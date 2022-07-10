@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+### Added
+* New scp plugin [#3691](https://github.com/sitespeedio/sitespeed.io/pull/3691).
 ## 25.4.0 - 2022-07-05
 ### Added
 * Show how many long tasks happens before LCP [#3686](https://github.com/sitespeedio/sitespeed.io/pull/3686) and show when last long task happen [#3687](https://github.com/sitespeedio/sitespeed.io/pull/3687).
