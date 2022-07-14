@@ -1,5 +1,5 @@
 - const videoIndex = medianRun ? medianRun.runIndex : iteration;
-- const width = options.mobile || options.android || (options.safari && options.safari.useSimulator) ? 'max-width: 400px; margin: 0 auto;' : 'max-width: 800px; margin: 0 auto;'
+- const width = options.mobile || options.android || (options.safari && options.safari.useSimulator) ? '400' : '800'
 
 small
     || 
@@ -9,9 +9,9 @@ small
     | &nbsp;|&nbsp;
 a#video
 h3 Video
-  .videoWrapper(style=width)
+  .videoWrapper
     - screenshotName = 'data/screenshots/' + videoIndex + '.' + screenShotType
-    video.video-js.vjs-default-skin.vjs-big-play-centered(controls, preload='none', poster=screenshotName, data-setup='{ "fluid": true, "playbackRates": [0.1, 0.2, 0.5, 1] ,"volumeControl": false}')
+    video(controls, preload='none', poster=screenshotName, width=width)
       source(src='data/video/' + videoIndex +'.mp4', type='video/mp4')
 
   script(src= assetsPath + 'js/video.core.novtt.min.js')
