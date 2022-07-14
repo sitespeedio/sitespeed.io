@@ -10,11 +10,8 @@ small
 a#video
 h3 Video
   .videoWrapper
-    - screenshotName = 'data/screenshots/' + videoIndex + '.' + screenShotType
-    video(controls, preload='none', poster=screenshotName, width=width)
+    video(controls, preload='none', width=width)
       source(src='data/video/' + videoIndex +'.mp4', type='video/mp4')
-
-  script(src= assetsPath + 'js/video.core.novtt.min.js')
 
 a#download-video
 - const videoPath = 'data/video/' + (iteration ? iteration : medianRun.runIndex ) +'.mp4'
