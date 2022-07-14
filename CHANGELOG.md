@@ -3,6 +3,13 @@
 ## UNRELEASED
 ### Added
 * New scp plugin [#3691](https://github.com/sitespeedio/sitespeed.io/pull/3691).
+
+### Fixed
+* Upgraded to [Browsertime 16.1.3](https://github.com/sitespeedio/browsertime/releases/tag/v16.11.3) that fixes:
+  * If one of the visual elements failed, all failed. Fixed in [#1818](https://github.com/sitespeedio/browsertime/pull/1818).
+  * Use buffered long tasks instead of injecting the measuremnt in the page [#1817](https://github.com/sitespeedio/browsertime/pull/1817).
+  * Fixed broken Chromedriver and Geckodriver install on Windows.
+
 ## 25.4.0 - 2022-07-05
 ### Added
 * Show how many long tasks happens before LCP [#3686](https://github.com/sitespeedio/sitespeed.io/pull/3686) and show when last long task happen [#3687](https://github.com/sitespeedio/sitespeed.io/pull/3687).
