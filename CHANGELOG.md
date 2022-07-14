@@ -1,8 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 25.5.0 - 2022-07-14
 ### Added
-* New scp plugin [#3691](https://github.com/sitespeedio/sitespeed.io/pull/3691).
+* New scp plugin [#3691](https://github.com/sitespeedio/sitespeed.io/pull/3691). The plugin is exprimental and documentation is coming in a couple of releases.
 
 ### Fixed
 * Upgraded to [Browsertime 16.1.3](https://github.com/sitespeedio/browsertime/releases/tag/v16.11.3) that fixes:
