@@ -134,6 +134,16 @@ Crawler
       --crawler.include          Discard URLs not matching the provided regular expression (ex: "/some/path/", "://some\.domain/"). Can be provided multiple times.
       --crawler.ignoreRobotsTxt  Ignore robots.txt rules of the crawled domain.  [boolean] [default: false]
 
+scp
+      --scp.host               The host.
+      --scp. destinationPath   The destionation path on the remote server where the files will be copied.
+      --scp.port               The port for ssh when scp the result to another server.  [default: 22]
+      --scp.username           The username. Use username/password or username/privateKey/pem.
+      --scp.password           The password if you do not use a pem file.
+      --scp.privateKey         Path to the pem file.
+      --scp.passphrase         The passphrase for the pem file.
+      --scp.removeLocalResult  Remove the files locally when the files has been copied to the other server.  [default: true]
+
 Grafana
       --grafana.host                  The Grafana host used when sending annotations.
       --grafana.port                  The Grafana port used when sending annotations to Grafana.  [default: 80]

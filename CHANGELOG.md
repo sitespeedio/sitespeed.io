@@ -9,6 +9,7 @@
   * If one of the visual elements failed, all failed. Fixed in [#1818](https://github.com/sitespeedio/browsertime/pull/1818).
   * Use buffered long tasks instead of injecting the measurement in the page [#1817](https://github.com/sitespeedio/browsertime/pull/1817).
   * Fixed broken Chromedriver and Geckodriver install on Windows.
+* Upgraded NodeJS in the Docker container + updated to latest updated Ubuntu 20.
 
 ## 25.4.0 - 2022-07-05
 ### Added

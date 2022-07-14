@@ -4,7 +4,7 @@
         <title>browsertime release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of browsertime</description>
-        <lastBuildDate>Tue, 05 Jul 2022 07:49:24 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 14 Jul 2022 09:21:30 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,24 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/browsertime.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[browsertime 16.11.3]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.11.3</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.11.3</guid>
+            <pubDate>Thu, 14 Jul 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>If one of the visual elements failed, all failed. Fixed in <a href="https://github.com/sitespeedio/browsertime/pull/1818">#1818</a>.</li>
+</ul>
+ <ul>
+<li>Use buffered long tasks instead of injecting the measuremnt in the page <a href="https://github.com/sitespeedio/browsertime/pull/1817">#1817</a>.</li>
+</ul>
+ <ul>
+<li>Fixed broken CHromedriver and Geckodriver install on Windows.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[browsertime 16.11.2]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.11.2</link>
@@ -146,21 +164,6 @@
 </ul>
  <ul>
 <li>Updated to Firefox 101, Edge 102, Chrome 102 in the Docker container.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 16.7.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.7.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.7.0</guid>
-            <pubDate>Fri, 20 May 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Include last CPU long task in the HAR file so we can show when it happens <a href="https://github.com/sitespeedio/browsertime/pull/1793">#1793</a>.</li>
-</ul>
- <ul>
-<li>Inlclude TTFB and INP in the Google Web Vital namespace <a href="https://github.com/sitespeedio/browsertime/pull/1792">#1792</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
