@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 25.5.1 - 2022-07-16
+### Fixed
+* No change but when 25.5.0 was publsihed Docker had problems so the container was not pushed as reported by [Marco Fontani](https://github.com/mfontani) (thank you!).
 ## 25.5.0 - 2022-07-14
 ### Added
 * New scp plugin [#3691](https://github.com/sitespeedio/sitespeed.io/pull/3691). The plugin is exprimental and documentation is coming in a couple of releases.
