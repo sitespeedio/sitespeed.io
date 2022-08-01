@@ -1,9 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 25.6.0 - UNRELEASED
+## 25.6.0 - 2022-08-01
 ### Added
 * Updated to Firefox 103 in the Docker container.
-
+* The +1 container uses Lighthouse 9.6.4.
 
 ### Fixed
 * Fixed error message when you run Axe and analysisstorer at the same time [#3703](https://github.com/sitespeedio/sitespeed.io/pull/3703).
