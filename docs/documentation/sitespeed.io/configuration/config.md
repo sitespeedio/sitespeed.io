@@ -136,7 +136,7 @@ Crawler
 
 scp
       --scp.host               The host.
-      --scp. destinationPath   The destionation path on the remote server where the files will be copied.
+      --scp. destinationPath   The destination path on the remote server where the files will be copied.
       --scp.port               The port for ssh when scp the result to another server.  [default: 22]
       --scp.username           The username. Use username/password or username/privateKey/pem.
       --scp.password           The password if you do not use a pem file.

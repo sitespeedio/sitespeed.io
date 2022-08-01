@@ -4,6 +4,7 @@
 ### Added
 * Updated to Firefox 103 in the Docker container.
 * The +1 container uses Lighthouse 9.6.4.
+* Removed videojs and use plain video element to display the video [#3697](https://github.com/sitespeedio/sitespeed.io/pull/3697). This makes the result pages cleaner. 
 
 ### Fixed
 * Fixed error message when you run Axe and analysisstorer at the same time [#3703](https://github.com/sitespeedio/sitespeed.io/pull/3703).

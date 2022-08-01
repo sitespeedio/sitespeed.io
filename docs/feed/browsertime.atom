@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2022-07-14T09:21:30.962Z</updated>
+    <updated>2022-07-17T20:37:08.792Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 16.11.4]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.11.4</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.11.4"/>
+        <updated>2022-07-17T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Automatically add white background between --preURL and the URL that you wanna test. This makes visual metrics usable when using preURL. <a href="https://github.com/sitespeedio/browsertime/pull/1819">#1819</a></li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 16.11.3]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.11.3</id>
@@ -170,27 +185,6 @@
 </ul>
  <ul>
 <li><a href="https://github.com/sitespeedio/browsertime/pull/1751">Removed unused functionality of the Visual metrics portable script</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 16.8.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.8.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.8.0"/>
-        <updated>2022-06-06T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Add <code>--debug</code> mode. Debug mode will run your tests and open devtools in Chrome/Edge/Firefox on desktop and will stop after each iteration so you can inspect the page. You can add your own breakpoint in your script with the <code>breakpoint(name)</code> command. To continue after your breakpoint, add the following code in the developer console in your browser: <code>window.browsertime.pause=false;</code>  <a href="https://github.com/sitespeedio/browsertime/pull/1798">#1798</a>.</li>
-</ul>
- <ul>
-<li>Use Selenium WebDriver 4.2.0 <a href="https://github.com/sitespeedio/browsertime/pull/1801">#1801</a>.</li>
-</ul>
- <ul>
-<li>Updated to Firefox 101, Edge 102, Chrome 102 in the Docker container.</li>
 </ul>
 ]]></summary>
         <author>
