@@ -1,5 +1,12 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 25.6.0 - UNRELEASED
+### Added
+* Updated to Firefox 103 in the Docker container.
+
+
+### Fixed
+* Fixed error message when you run Axe and analysisstorer at the same time [#3703](https://github.com/sitespeedio/sitespeed.io/pull/3703).
 ## 25.5.1 - 2022-07-16
 ### Fixed
 * No change but when 25.5.0 was publsihed Docker had problems so the container was not pushed as reported by [Marco Fontani](https://github.com/mfontani) (thank you!).
