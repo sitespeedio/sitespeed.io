@@ -120,7 +120,7 @@ Using sitespeed.io you can:
 
 See all the latest changes in the [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md).
 
-Checkout our example [dashboard.sitespeed.io](https://dashboard.sitespeed.io/dashboard/db/page-summary)
+Checkout our example [dashboard.sitespeed.io](https://dashboard.sitespeed.io/)
 
 A summary report in HTML:
 <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/start-readme.jpg">
