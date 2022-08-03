@@ -86,7 +86,7 @@ This is an example dashboard login into Wikipedia. That user journey measure fou
 We also have examples that take three pages.
 
 ## The leaderboard
-We are so proud of our [leaderboard dashboard](https://dashboard.sitespeed.io/dashboard/db/leaderboard) that it got its own [documentation page](/documentation/sitespeed.io/leaderboard/). Use the dashboard if you want to compare different sites or URLs.
+We are so proud of our [leaderboard dashboard](https://dashboard.sitespeed.io/d/000000060/leaderboard?orgId=1) that it got its own [documentation page](/documentation/sitespeed.io/leaderboard/). Use the dashboard if you want to compare different sites or URLs.
 
 ![Leaderboard]({{site.baseurl}}/img/leaderboard-dashboard.jpg){:loading="lazy"}
 {: .img-thumbnail}
@@ -94,21 +94,9 @@ We are so proud of our [leaderboard dashboard](https://dashboard.sitespeed.io/da
 
 ## Chrome User Experience Report
 
-Using our [Chrome User Experience Report plugin](/documentation/sitespeed.io/crux/) you can get the metrics Chrome collects from real users. We have a [ready made dashboard](https://dashboard.sitespeed.io/dashboard/db/chrome-user-experience-report) where you can look at the data on URL and origin level.
+Using our [Chrome User Experience Report plugin](/documentation/sitespeed.io/crux/) you can get the metrics Chrome collects from real users. We have a [ready made dashboard](https://dashboard.sitespeed.io/d/t_bhsNGMk/chrome-user-experience-report?orgId=1) where you can look at the data on URL and origin level.
 
 ![CruX]({{site.baseurl}}/img/crux-example.jpg){:loading="lazy"}
-{: .img-thumbnail}
-
-## WebPageTest dashboards
-We have four optional dashboards for WebPageTest that you can use if you drive WebPageTest using sitespeed.io. They follow the same pattern as the sitespeed.io dashboards with WebPageTest data.
-
-![WebPageTest]({{site.baseurl}}/img/webpagetest-dashboard.jpg){:loading="lazy"}
-{: .img-thumbnail}
-
-## Plus 1
-We also have a dashboard for [showing GPSI/CrUx/Lighthouse metrics](https://dashboard.sitespeed.io/dashboard/db/plus1) if you use those products.
-
-![Plus 1 dashboard]({{site.baseurl}}/img/gpsi-lighthouse-example.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 
