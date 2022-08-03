@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 25.7.0 - UNRELEASED
+### Added
+* Updated the Docker container to use Chrome 104.
 ## 25.6.0 - 2022-08-01
 ### Added
 * Updated to Firefox 103 in the Docker container.
