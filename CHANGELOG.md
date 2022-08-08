@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 25.7.0 - UNRELEASED
+## 25.7.0 -2022-08-08
 ### Added
 * Updated the Docker container to use Chrome 104 and Edge 104.
 * Updated to [Browsertime 16.12.0](https://github.com/sitespeedio/browsertime/releases/tag/v16.12.0) that uses Chromedriver 104.
