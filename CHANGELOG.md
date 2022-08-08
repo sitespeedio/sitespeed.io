@@ -4,6 +4,7 @@
 ### Added
 * Updated the Docker container to use Chrome 104 and Edge 104.
 * Updated to [Browsertime 16.12.0](https://github.com/sitespeedio/browsertime/releases/tag/v16.12.0) that uses Chromedriver 104.
+* Updated to  [Browsertime 16.13.0](https://github.com/sitespeedio/browsertime/releases/tag/v16.13.0) that uses Edgedriver 104 and updated Selenium version.
 ## 25.6.0 - 2022-08-01
 ### Added
 * Updated to Firefox 103 in the Docker container.
