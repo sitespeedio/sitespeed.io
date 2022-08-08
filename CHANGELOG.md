@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+### Fixed
+* The +1 container now uses PSI plugin version 4.1.0 (before 4.0.1).
 ## 25.7.0 -2022-08-08
 ### Added
 * Updated the Docker container to use Chrome 104 and Edge 104.
