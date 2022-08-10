@@ -16,14 +16,6 @@
 
 ## Welcome to the wonderful world of web performance!
 
-###  Vacation
-
-Another year and another summer vacation! I (Peter) will be on vacation from 23 of June and will be back in the middle of August. During the vacation I will only fix important reproducable bugs and do new releases when there's a new browser version. If you find a bug, please create a issue and [follow the instructions](https://www.sitespeed.io/documentation/sitespeed.io/bug-report/#explain-how-to-reproduce-your-issue) to make it reproducable. You can as always send PRs that fixes bugs, that will be the fastest way to get things fixed during the June -> August.
-
-Please do not ping me on Slack and as always never send DM on Slack (if I do not specifically ask you to do so). If I don't get pinged, I hope to have something really cool to show at the end of August :)
-
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/vacation.gif">
-
 ### What is sitespeed.io
 
 **Sitespeed.io is a *complete web performance tool* that helps you measure the performance of your website. What exactly does that mean?**
