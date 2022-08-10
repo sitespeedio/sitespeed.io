@@ -1,8 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 25.7.1 -2022-08-10
 ### Fixed
 * The +1 container now uses PSI plugin version 4.1.0 (before 4.0.1).
+* Updated to [Browsertime 16.13.1](https://github.com/sitespeedio/browsertime/releases/tag/v16.13.1) that always get the id from the Android phone when you run android tests.
+* The latest storer plugin sometimes missed writing Android data to the JSON. Fixed in [#3707](https://github.com/sitespeedio/sitespeed.io/pull/3707).
 ## 25.7.0 -2022-08-08
 ### Added
 * Updated the Docker container to use Chrome 104 and Edge 104.
