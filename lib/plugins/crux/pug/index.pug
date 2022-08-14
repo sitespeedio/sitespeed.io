@@ -18,9 +18,10 @@ if experiences
   small 
     || 
     each experience in experiences
-      each formFactor in Object.keys(crux[experience])
-        a(href='#' + experience + '-' + formFactor) #{experience} #{formFactor} |
-        | &nbsp;|&nbsp;
+      if crux[experience]
+        each formFactor in Object.keys(crux[experience])
+          a(href='#' + experience + '-' + formFactor) #{experience} #{formFactor} |
+          | &nbsp;|&nbsp;
 
   a#crux
   h2 CrUx
