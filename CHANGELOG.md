@@ -1,11 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 25.7.2 - UNRELEASED
+## 25.7.2 - 2022-08-14
 ### Fixed
 * Getting only some data from the CrUX API broke the HTML generation as reported in [#3708](https://github.com/sitespeedio/sitespeed.io/issues/3708) and fixed in [#3709](https://github.com/sitespeedio/sitespeed.io/pull/3709).
 * Updated to [Browsertime 16.13.2](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16132---2022-08-14) that fixes so the lastCPULong task is not added to the HAR.
 
-## 25.7.1 -2022-08-10
+## 25.7.1 - 2022-08-10
 ### Fixed
 * The +1 container now uses PSI plugin version 4.1.0 (before 4.0.1).
 * Updated to [Browsertime 16.13.1](https://github.com/sitespeedio/browsertime/releases/tag/v16.13.1) that always get the id from the Android phone when you run android tests.
