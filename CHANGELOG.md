@@ -1,8 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 25.7.2 - UNRELEASED
 ### Fixed
 * Getting only some data from the CrUX API broke the HTML generation as reported in [#3708](https://github.com/sitespeedio/sitespeed.io/issues/3708) and fixed in [#3709](https://github.com/sitespeedio/sitespeed.io/pull/3709).
+* Updated to [Browsertime 16.13.2](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16132---2022-08-14) that fixes so the lastCPULong task is not added to the HAR.
 
 ## 25.7.1 -2022-08-10
 ### Fixed
