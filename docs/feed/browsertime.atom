@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2022-08-10T08:45:51.793Z</updated>
+    <updated>2022-08-14T19:35:49.529Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 16.13.2]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.2</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.2"/>
+        <updated>2022-08-14T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Disable adding lastCPULongTask to the HAR data since it breaks waterfall view on slow mobile phones with late CPU long tasks <a href="https://github.com/sitespeedio/browsertime/pull/1828">#1828</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 16.13.1]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.1</id>
@@ -171,24 +186,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Verify that the CDP port is free before using it <a href="https://github.com/sitespeedio/browsertime/pull/1811">1811</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 16.10.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.10.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.10.0"/>
-        <updated>2022-06-23T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgraded the Docker container to use Chrome 103.</li>
-</ul>
- <ul>
-<li>Upgraded to Chromedriver 103.</li>
 </ul>
 ]]></summary>
         <author>

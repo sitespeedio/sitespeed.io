@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Wed, 10 Aug 2022 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 14 Aug 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,51 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 25.7.2]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.7.2</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.7.2</guid>
+            <pubDate>Sun, 14 Aug 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Getting only some data from the CrUX API broke the HTML generation as reported in <a href="https://github.com/sitespeedio/sitespeed.io/issues/3708">#3708</a> and fixed in <a href="https://github.com/sitespeedio/sitespeed.io/pull/3709">#3709</a>.</li>
+</ul>
+ <ul>
+<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16132---2022-08-14">Browsertime 16.13.2</a> that fixes so the lastCPULong task is not added to the HAR.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 16.13.2]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.2</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.2</guid>
+            <pubDate>Sun, 14 Aug 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Disable adding lastCPULongTask to the HAR data since it breaks waterfall view on slow mobile phones with late CPU long tasks <a href="https://github.com/sitespeedio/browsertime/pull/1828">#1828</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 25.7.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.7.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.7.1</guid>
+            <pubDate>Wed, 10 Aug 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>The +1 container now uses PSI plugin version 4.1.0 (before 4.0.1).</li>
+</ul>
+ <ul>
+<li>Updated to <a href="https://github.com/sitespeedio/browsertime/releases/tag/v16.13.1">Browsertime 16.13.1</a> that always get the id from the Android phone when you run android tests.</li>
+</ul>
+ <ul>
+<li>The latest storer plugin sometimes missed writing Android data to the JSON. Fixed in <a href="https://github.com/sitespeedio/sitespeed.io/pull/3707">#3707</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[browsertime 16.13.1]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.1</link>
@@ -280,33 +325,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Verify that the CDP port is free before using it <a href="https://github.com/sitespeedio/browsertime/pull/1811">1811</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 25.2.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.2.1</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.2.1</guid>
-            <pubDate>Thu, 23 Jun 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Bug fix for adding custom CSS from plugins, than you <a href="https://github.com/josh-lr">Josh Duncan</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/3679">#3679</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 16.10.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.10.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.10.0</guid>
-            <pubDate>Thu, 23 Jun 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgraded the Docker container to use Chrome 103.</li>
-</ul>
- <ul>
-<li>Upgraded to Chromedriver 103.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
