@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+### Fixed
+* Getting only some data from the CrUX API broke the HTML generation as reported in [#3708](https://github.com/sitespeedio/sitespeed.io/issues/3708) and fixed in [#3709](https://github.com/sitespeedio/sitespeed.io/pull/3709).
+
 ## 25.7.1 -2022-08-10
 ### Fixed
 * The +1 container now uses PSI plugin version 4.1.0 (before 4.0.1).
