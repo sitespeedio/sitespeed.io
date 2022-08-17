@@ -1,5 +1,5 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
-## 25.7.3 - UNRELEASED
+## 25.7.3 - 2022-08-17
 ### Fixed
 * Upgraded to [Browsertime 16.13.3](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16133---2022-08-17) that fixes a bug when setting cookies when navigating in Chrome/Edge when using scripting. 
 ## 25.7.2 - 2022-08-14
