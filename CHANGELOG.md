@@ -1,5 +1,7 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
-
+## 25.7.3 - UNRELEASED
+### Fixed
+* Upgraded to [Browsertime 16.13.3](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16133---2022-08-17) that fixes a bug when setting cookies when navigating in Chrome/Edge when using scripting. 
 ## 25.7.2 - 2022-08-14
 ### Fixed
 * Getting only some data from the CrUX API broke the HTML generation as reported in [#3708](https://github.com/sitespeedio/sitespeed.io/issues/3708) and fixed in [#3709](https://github.com/sitespeedio/sitespeed.io/pull/3709).
