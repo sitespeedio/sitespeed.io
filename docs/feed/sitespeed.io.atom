@@ -166,26 +166,4 @@
             <uri>https://www.sitespeed.io</uri>
         </author>
     </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 25.3.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.3.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.3.0"/>
-        <updated>2022-06-28T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Firefox 102 and Edge 103 in the Docker container.</li>
-</ul>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16110---2022-06-28">Browsertime 16.11.0</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16101---2022-06-26">Browsertime 16.10.1</a> that checks that the CDP port is not used before claiming it.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
 </feed>

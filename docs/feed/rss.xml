@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Sun, 14 Aug 2022 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 17 Aug 2022 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,30 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[browsertime 16.13.3]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.3</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.3</guid>
+            <pubDate>Wed, 17 Aug 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Make sure set cookies work when navigating in script for Chrome/Edge <a href="https://github.com/sitespeedio/browsertime/pull/1830">#1830</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 16.13.2]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.2</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.2</guid>
+            <pubDate>Sun, 14 Aug 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Disable adding lastCPULongTask to the HAR data since it breaks waterfall view on slow mobile phones with late CPU long tasks <a href="https://github.com/sitespeedio/browsertime/pull/1828">#1828</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 25.7.2]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.7.2</link>
@@ -31,13 +55,13 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 16.13.2]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.2</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.2</guid>
-            <pubDate>Sun, 14 Aug 2022 00:00:00 GMT</pubDate>
+            <title><![CDATA[browsertime 16.13.1]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.1</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.1</guid>
+            <pubDate>Wed, 10 Aug 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
-<li>Disable adding lastCPULongTask to the HAR data since it breaks waterfall view on slow mobile phones with late CPU long tasks <a href="https://github.com/sitespeedio/browsertime/pull/1828">#1828</a>.</li>
+<li>Make sure that Android id is always picked up from the phone if tests run on Android <a href="https://github.com/sitespeedio/browsertime/pull/1826">#1826</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
@@ -59,18 +83,6 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 16.13.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.1</guid>
-            <pubDate>Wed, 10 Aug 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Make sure that Android id is always picked up from the phone if tests run on Android <a href="https://github.com/sitespeedio/browsertime/pull/1826">#1826</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[browsertime 16.13.0]]></title>
@@ -157,6 +169,24 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
+            <title><![CDATA[browsertime 16.11.3]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.11.3</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.11.3</guid>
+            <pubDate>Thu, 14 Jul 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>If one of the visual elements failed, all failed. Fixed in <a href="https://github.com/sitespeedio/browsertime/pull/1818">#1818</a>.</li>
+</ul>
+ <ul>
+<li>Use buffered long tasks instead of injecting the measuremnt in the page <a href="https://github.com/sitespeedio/browsertime/pull/1817">#1817</a>.</li>
+</ul>
+ <ul>
+<li>Fixed broken CHromedriver and Geckodriver install on Windows.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 25.5.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.5.0</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.5.0</guid>
@@ -176,19 +206,13 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 16.11.3]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.11.3</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.11.3</guid>
-            <pubDate>Thu, 14 Jul 2022 00:00:00 GMT</pubDate>
+            <title><![CDATA[browsertime 16.11.2]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.11.2</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.11.2</guid>
+            <pubDate>Tue, 05 Jul 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
-<li>If one of the visual elements failed, all failed. Fixed in <a href="https://github.com/sitespeedio/browsertime/pull/1818">#1818</a>.</li>
-</ul>
- <ul>
-<li>Use buffered long tasks instead of injecting the measuremnt in the page <a href="https://github.com/sitespeedio/browsertime/pull/1817">#1817</a>.</li>
-</ul>
- <ul>
-<li>Fixed broken CHromedriver and Geckodriver install on Windows.</li>
+<li>Updated Geckodriver install, it will autoamtically pickup Geckodriver in the path for Raspberry Pis.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
@@ -208,18 +232,6 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 16.11.2]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.11.2</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.11.2</guid>
-            <pubDate>Tue, 05 Jul 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated Geckodriver install, it will autoamtically pickup Geckodriver in the path for Raspberry Pis.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[throttle 5.0.0]]></title>
@@ -245,18 +257,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 25.3.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.3.1</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.3.1</guid>
-            <pubDate>Wed, 29 Jun 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Upgraded to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16111---2022-06-29">Browsertime 16.11.1</a> that fixes the preWarmServer issue reported in <a href="https://github.com/sitespeedio/sitespeed.io/issues/3682">#3682</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[browsertime 16.11.1]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.11.1</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.11.1</guid>
@@ -269,6 +269,18 @@
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
+            <title><![CDATA[sitespeed.io 25.3.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.3.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.3.1</guid>
+            <pubDate>Wed, 29 Jun 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Upgraded to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16111---2022-06-29">Browsertime 16.11.1</a> that fixes the preWarmServer issue reported in <a href="https://github.com/sitespeedio/sitespeed.io/issues/3682">#3682</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[throttle 4.0.3]]></title>
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.3</link>
             <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.3</guid>
@@ -278,25 +290,6 @@
 <li>Fixed <code>--version</code> so it actually shows the version again <a href="https://github.com/sitespeedio/throttle/pull/75">#75</a>.</li>
 </ul>
 ]]></description>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 25.3.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.3.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.3.0</guid>
-            <pubDate>Tue, 28 Jun 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Firefox 102 and Edge 103 in the Docker container.</li>
-</ul>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16110---2022-06-28">Browsertime 16.11.0</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16101---2022-06-26">Browsertime 16.10.1</a> that checks that the CDP port is not used before claiming it.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[browsertime 16.11.0]]></title>
@@ -313,18 +306,6 @@
 <h3>Fixed</h3>
  <ul>
 <li>Upgraded to Selenium 4.3.0 <a href="https://github.com/sitespeedio/browsertime/pull/1813">#1813</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 16.10.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.10.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.10.1</guid>
-            <pubDate>Sun, 26 Jun 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Verify that the CDP port is free before using it <a href="https://github.com/sitespeedio/browsertime/pull/1811">1811</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
