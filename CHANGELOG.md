@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 25.8.1 - 2022-08-26
+### Fixed
+* Updated Browsertime to 16.14.1 that adds a guard for null values in rsd (this fixes the warning logs happening in 25.8.0).
 ## 25.8.0 - 2022-08-26
 ### Added
 * Updated to [Browsertime 16.14.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16140---2022-08-26). that collects relative standard deviation for metrics and the number of processes that runs on the server when you start a test. 
