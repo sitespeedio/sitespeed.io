@@ -1,11 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 25.8.0 - 2022-08-26
 ### Added
-* Updated to Browsertime 16.14.0.
-## 25.7.3
+* Updated to [Browsertime 16.14.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16140---2022-08-26). that collects relative standard deviation for metrics and the number of processes that runs on the server when you start a test. 
+## 25.7.3 - 2022-08-17
 ### Fixed
-* Upgraded to [Browsertime 16.13.3](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16133---2022-08-17) that fixes a bug when setting cookies when navigating in Chrome/Edge when using scripting. 7.3 - 2022-08-17
+* Upgraded to [Browsertime 16.13.3](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16133---2022-08-17) that fixes a bug when setting cookies when navigating in Chrome/Edge when using scripting.
 
 ## 25.7.2 - 2022-08-14
 ### Fixed
