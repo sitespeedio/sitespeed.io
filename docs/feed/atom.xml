@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <entry>
+        <title type="html"><![CDATA[sitespeed.io 25.8.2]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.8.2</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.8.2"/>
+        <updated>2022-08-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated Browsertime to 16.14.2 that fixes <code>--browsertime.preWarmServer</code> on Android and iOS.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[sitespeed.io 25.8.1]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.8.1</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.8.1"/>
@@ -38,6 +53,21 @@
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16140---2022-08-26">Browsertime 16.14.0</a>. that collects relative standard deviation for metrics and the number of processes that runs on the server when you start a test.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 16.14.2]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.14.2</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.14.2"/>
+        <updated>2022-08-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Using <code>--preWarmServer</code> didn&#39;t work on Android/iOS <a href="https://github.com/sitespeedio/browsertime/pull/1837">#1837</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -316,40 +346,6 @@
 </ul>
  <ul>
 <li>Fixed broken CHromedriver and Geckodriver install on Windows.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 25.4.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.4.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.4.0"/>
-        <updated>2022-07-05T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Show how many long tasks happens before LCP <a href="https://github.com/sitespeedio/sitespeed.io/pull/3686">#3686</a> and show when last long task happen <a href="https://github.com/sitespeedio/sitespeed.io/pull/3687">#3687</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Updated Browsertime with a fix for Geckodriver: when you run sitespeed.io on a Raspberry Pi it will pickup Geckodriver from the PATH.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 16.11.2]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.11.2</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.11.2"/>
-        <updated>2022-07-05T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated Geckodriver install, it will autoamtically pickup Geckodriver in the path for Raspberry Pis.</li>
 </ul>
 ]]></summary>
         <author>
