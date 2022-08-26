@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 25.8.2 - 2022-08-26
+### Fixed
+* Updated Browsertime to 16.14.2 that fixes `--browsertime.preWarmServer` on Android and iOS.
 ## 25.8.1 - 2022-08-26
 ### Fixed
 * Updated Browsertime to 16.14.1 that adds a guard for null values in rsd (this fixes the warning logs happening in 25.8.0).
