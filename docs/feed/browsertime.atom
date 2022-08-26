@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2022-08-17T04:48:36.602Z</updated>
+    <updated>2022-08-26T09:34:30.690Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,28 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 16.14.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.14.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.14.0"/>
+        <updated>2022-08-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Collect relative standard deviation and output that in the cli output <a href="https://github.com/sitespeedio/browsertime/pull/1834">#1834</a>. Before we only showed the actual standard deviation, with this fix we also show it in percentage, that makes it easier if you run tests on different hardware/networks and want to compare them.</li>
+</ul>
+ <ul>
+<li>Collect number of processes that runs on the server that do the testing, before a test starts <a href="https://github.com/sitespeedio/browsertime/pull/1833">#1833</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated to Selenium 4.4.0 and Throttle 5.0.0.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 16.13.3]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.3</id>
@@ -164,28 +186,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Fixed <code>--preWarmServer</code> so it works with <code>--headless</code>, Docker and specific Android or iOS device <a href="https://github.com/sitespeedio/browsertime/pull/1815">#1815</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 16.11.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.11.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.11.0"/>
-        <updated>2022-06-28T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Firefox 102 and Edge 103 in the Docker container.</li>
-</ul>
- <ul>
-<li>Use Edgedriver 103 <a href="https://github.com/sitespeedio/browsertime/pull/1812">#1812</a></li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Upgraded to Selenium 4.3.0 <a href="https://github.com/sitespeedio/browsertime/pull/1813">#1813</a>.</li>
 </ul>
 ]]></summary>
         <author>
