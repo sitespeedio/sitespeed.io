@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 25.8.3 - 2022-08-28
+### Fixed
+* Ooops, it turns out 25.8.2 didn't fix the preWarm issue, it's fixed in [3715](
+https://github.com/sitespeedio/sitespeed.io/pull/3715).
 ## 25.8.2 - 2022-08-26
 ### Fixed
 * Updated Browsertime to 16.14.2 that fixes `--browsertime.preWarmServer` on Android and iOS.
