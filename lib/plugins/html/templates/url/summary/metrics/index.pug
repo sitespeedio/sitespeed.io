@@ -33,6 +33,7 @@ block content
                     th Median
                     th Mean
                     th stddev
+                    th rsd
                 each tool in Object.keys(metrics)
                     - let category = ''
                     each metricType in Object.keys(metrics[tool])
@@ -40,7 +41,7 @@ block content
                             - if (noCategory.indexOf(metricType) === -1) {
                                 - category = metricType   
                                 tr 
-                                    th(colspan=runPages.length + 4) #{categoryNames[metricType] ? categoryNames[metricType] : metricType}
+                                    th(colspan=runPages.length + 5) #{categoryNames[metricType] ? categoryNames[metricType] : metricType}
                             - } else {
                                 - category = metricType 
                             - }
@@ -60,3 +61,5 @@ block content
                                     td #{friendly.format(get (mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.median', ''))}
                                     td #{friendly.format(get (mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.mean', ''))}
                                     td #{friendly.format(get (mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.stddev', ''))}
+                                    - rsd = get (mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.rsd', '')
+                                    td #{rsd !== '' ? Number(rsd).toFixed(2) + ' %' : 'N/A'}  
