@@ -68,6 +68,10 @@ block content
           tr 
             td Android version
             td #{android.androidVersion}
+        if android.wifi
+          tr 
+            td Wifi
+            td #{android.wifi}
         if android.batteryTemperature
           tr 
             td Battery temperature
