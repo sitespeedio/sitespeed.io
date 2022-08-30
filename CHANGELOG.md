@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 25.9.0 - 2022-08-30
+### Added
+* Updated to Browsertime 16.15.0 that include your Android phones connected wifi name in the result. That is now showed in the runtime settings page.
+
+* Show relative standard deviation on the compare runs page [#3716](https://github.com/sitespeedio/sitespeed.io/pull/3716).
+
 ## 25.8.3 - 2022-08-28
 ### Fixed
 * Ooops, it turns out 25.8.2 didn't fix the preWarm issue, it's fixed in [3715](
