@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 25.9.1 - 2022-08-30
+### Fixed
+* Updated to [Browsertime 16.5.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16151---2022-08-30) thar makes sure long tasks are measured direct after the test finish. This fixes late long tasks that happens on slow devices caused by Browsertime collecting metrics.
 ## 25.9.0 - 2022-08-30
 ### Added
 * Updated to Browsertime 16.15.0 that include your Android phones connected wifi name in the result. That is now showed in the runtime settings page.
