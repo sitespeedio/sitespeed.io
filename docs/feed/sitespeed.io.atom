@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-08-30T07:00:27.069Z</updated>
+    <updated>2022-08-30T19:44:38.974Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 25.9.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.9.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.9.1"/>
+        <updated>2022-08-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16151---2022-08-30">Browsertime 16.5.1</a> thar makes sure long tasks are measured direct after the test finish. This fixes late long tasks that happens on slow devices caused by Browsertime collecting metrics.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 25.9.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.9.0</id>
@@ -141,31 +156,6 @@
 </ul>
  <ul>
 <li>The latest storer plugin sometimes missed writing Android data to the JSON. Fixed in <a href="https://github.com/sitespeedio/sitespeed.io/pull/3707">#3707</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 25.6.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.6.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.6.0"/>
-        <updated>2022-08-01T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Firefox 103 in the Docker container.</li>
-</ul>
- <ul>
-<li>The +1 container uses Lighthouse 9.6.4.</li>
-</ul>
- <ul>
-<li>Removed videojs and use plain video element to display the video <a href="https://github.com/sitespeedio/sitespeed.io/pull/3697">#3697</a>. This makes the result pages cleaner.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Fixed error message when you run Axe and analysisstorer at the same time <a href="https://github.com/sitespeedio/sitespeed.io/pull/3703">#3703</a>.</li>
 </ul>
 ]]></summary>
         <author>
