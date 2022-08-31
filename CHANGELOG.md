@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 25.10.0 - 2022-08-31
+### Added
+* Updated to Chrome 105 and Firefox 104 in the Docker container [#3717](https://github.com/sitespeedio/sitespeed.io/pull/3717).
+
 ## 25.9.1 - 2022-08-30
 ### Fixed
 * Updated to [Browsertime 16.5.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16151---2022-08-30) thar makes sure long tasks are measured direct after the test finish. This fixes late long tasks that happens on slow devices caused by Browsertime collecting metrics.
