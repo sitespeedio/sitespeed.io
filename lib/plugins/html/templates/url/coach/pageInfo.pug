@@ -40,8 +40,8 @@ h2 Page info
                 td Session storage
                 +sizeCell('', advice.info.sessionStorageSize)
             tr
-                td HTML vs AMP
-                td.right #{advice.info.amp?'This is an AMP page':'Plain good HTML page'}
+                td Network Information API
+                td.right #{advice.info.networkConnectionType ? advice.info.networkConnectionType:'unknown'}
 
     .one-half.column
         if advice.info && advice.info.resourceHints
