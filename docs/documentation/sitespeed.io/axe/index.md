@@ -43,6 +43,17 @@ checks: {
 
 If you wanna avoid having over complicated cli-params you should use the [configuration as JSON feature](/documentation/sitespeed.io/configuration/#configuration-as-json).
 
+However you probably just want to configure run options, you can do that with adding a run prefix. Say for example you only want to test *wcag2aa* compliance, you can do that with the *runOnly* configuration in AXE. You can do that with a configuration like:
+
+```json
+{
+    "axe": {
+        "run": {
+            "runOnly": ["wcag2aa"]
+        }
+    }
+}
+```
 
 ## How it works behind the scene
 The Axe tests are run as a [postScript](/documentation/sitespeed.io/prepostscript/).
