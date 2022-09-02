@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+### Added
+* Make it possible to configure run options for AXE (before you could only configure configuration options) [#3718](https://github.com/sitespeedio/sitespeed.io/pull/3718). Checkout [how to configure AXE](https://www.sitespeed.io/documentation/sitespeed.io/axe/#configure-axe).* Removed showing if the page is an AMP page (that battle was won a long time ago) and instead show information from the Network information API when its available [#3719](https://github.com/sitespeedio/sitespeed.io/pull/3719).
+
+
 ## 25.10.0 - 2022-08-31
 ### Added
 * Updated to Chrome 105 and Firefox 104 in the Docker container [#3717](https://github.com/sitespeedio/sitespeed.io/pull/3717).
