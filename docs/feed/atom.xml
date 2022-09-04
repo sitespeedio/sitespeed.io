@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-08-31T00:00:00.000Z</updated>
+    <updated>2022-09-04T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,21 @@
     <logo>https://www.sitespeed.io/img/logos/sitespeed.io.png</logo>
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 25.11.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.11.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.11.0"/>
+        <updated>2022-09-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Make it possible to configure run options for AXE (before you could only configure configuration options) <a href="https://github.com/sitespeedio/sitespeed.io/pull/3718">#3718</a>. Checkout <a href="https://www.sitespeed.io/documentation/sitespeed.io/axe/#configure-axe">how to configure AXE</a>.* Removed showing if the page is an AMP page (that battle was won a long time ago) and instead show information from the Network information API when its available <a href="https://github.com/sitespeedio/sitespeed.io/pull/3719">#3719</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 25.10.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.10.0</id>
@@ -261,27 +276,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Disable adding lastCPULongTask to the HAR data since it breaks waterfall view on slow mobile phones with late CPU long tasks <a href="https://github.com/sitespeedio/browsertime/pull/1828">#1828</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 25.7.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.7.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.7.1"/>
-        <updated>2022-08-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>The +1 container now uses PSI plugin version 4.1.0 (before 4.0.1).</li>
-</ul>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/releases/tag/v16.13.1">Browsertime 16.13.1</a> that always get the id from the Android phone when you run android tests.</li>
-</ul>
- <ul>
-<li>The latest storer plugin sometimes missed writing Android data to the JSON. Fixed in <a href="https://github.com/sitespeedio/sitespeed.io/pull/3707">#3707</a>.</li>
 </ul>
 ]]></summary>
         <author>
