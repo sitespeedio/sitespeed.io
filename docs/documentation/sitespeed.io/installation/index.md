@@ -171,6 +171,8 @@ If you run on Windows you can run tests on Firefox, Chrome and Edge.
 
 You can use your Raspberry Pi to run tests on your Android phone(s). 
 
+We have a [pre-made image](https://github.com/sitespeedio/raspberrypi) that you can use or follow the instructions below to create your own.
+
 If you just want to run your test you can use Raspberry Pi OS Lite. If you also want to be able to see the phone screen on your desktop (for debugging) you can use Raspberry Pi OS Desktop.
 
 Independent if you use Raspberry Lite/Desktop you should do the following:
