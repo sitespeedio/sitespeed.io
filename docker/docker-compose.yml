@@ -1,7 +1,7 @@
 version: '3'
 services:
     grafana:
-      image: grafana/grafana:9.0.2
+      image: grafana/grafana:9.1.3
       hostname: grafana
       depends_on:
         - graphite
@@ -20,7 +20,7 @@ services:
         - grafana:/var/lib/grafana
       restart: always
     graphite:
-      image: sitespeedio/graphite:1.1.7-9
+      image: sitespeedio/graphite:1.1.10-3
       hostname: graphite
       ports:
         - "2003:2003"
