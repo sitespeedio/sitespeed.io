@@ -1,5 +1,35 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 26.0.0 - UNRELEASED
+### Changed
+Sending metrics per run to Graphite:
+* The default setup did miss a lot of important performance metrics, so you needed to set them up yourself. That is fixed in this PR.
+* There where a lot of data sent from PageXray, third party and the coach per run. That was not smart since those metrics rarely change between runs and take a lot of space. This PR sets default so none of those metrics are sent
+* We introduce a limited set of run metrics from Browsertime (visual metrics and Google Web Vitals and a couple of more) that can be used when sending data per run. This will help you keep track of those metrics together with the default median/min/max values. More info coming up. It's enabled by default, disable it with `--browsertime.limitedRunData false`
+* Sending data per run to Graphite was broken: We sent a new key per run meaning it will take up a lot of extra space in Graphite. With this fix we send them under the run key. That way we can configure Graphite to keep data under that key that happened every 20 s (or however fast it takes to do one run) and then automatically remove the data after a week.
+* Graphite configuration `--graphite.perIteration` and `--graphite.skipSummary` is removed. You can now configure which data to send to Graphite by using `--graphite.messages`. By default we send _pageSummary_ (data summarised per URL) and _summary_ (data summarised per domain). If you want to send _pageSummary_ and _run_ data (data for each run) you can do that with by adding `--graphite.messages run`  `--graphite.messages pageSummary`.
+* We removed the possibility to send VisualProgress and videoRecordingStart data to the datasource since that is something you do not need there.
+* We updated Grafana and the Graphite container to latest versions. The Graphite container contains _storage-schemas.conf_ configuration that is a good default:
+```
+[sitespeed_crux]
+pattern = ^sitespeed_io\.crux\.
+retentions = 1d:1y
+
+[sitespeed_run]
+pattern = ^sitespeed_io\.(.*)\.(.*)\.run\.
+retentions = 20s:8d
+
+[sitespeed]
+pattern = ^sitespeed_io\.
+retentions = 30m:40d
+```
+
+When you send data per run to Graphite it is stored every 20 second (do not make runs more often than that) and saved for 8 days. If you test many URLs this can still be a lot of data so use https://m30m.github.io/whisper-calculator/ to calculate how much space you need.
+
+See PR [#3721](https://github.com/sitespeedio/sitespeed.io/pull/3721).
+
+### Added
+* Checkout the [pre built Raspberry Pi image](https://github.com/sitespeedio/raspberrypi) for running sitespeed.io tests on your Android phone.
 ##  25.11.0 - 2022-09-04
 ### Added
 * Make it possible to configure run options for AXE (before you could only configure configuration options) [#3718](https://github.com/sitespeedio/sitespeed.io/pull/3718). Checkout [how to configure AXE](https://www.sitespeed.io/documentation/sitespeed.io/axe/#configure-axe).* Removed showing if the page is an AMP page (that battle was won a long time ago) and instead show information from the Network information API when its available [#3719](https://github.com/sitespeedio/sitespeed.io/pull/3719).
