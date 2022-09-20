@@ -30,6 +30,10 @@ See PR [#3721](https://github.com/sitespeedio/sitespeed.io/pull/3721).
 
 ### Added
 * Checkout the [pre built Raspberry Pi image](https://github.com/sitespeedio/raspberrypi) for running sitespeed.io tests on your Android phone.
+* Upgraded to Firefox 105 and Edge 105 in the Docker container.
+* Upgraded to Browsertime 16.16.0
+### Fixed
+* Fix graphite.sendAnnotation option [#3726](https://github.com/sitespeedio/sitespeed.io/pull/3726).
 ##  25.11.0 - 2022-09-04
 ### Added
 * Make it possible to configure run options for AXE (before you could only configure configuration options) [#3718](https://github.com/sitespeedio/sitespeed.io/pull/3718). Checkout [how to configure AXE](https://www.sitespeed.io/documentation/sitespeed.io/axe/#configure-axe).* Removed showing if the page is an AMP page (that battle was won a long time ago) and instead show information from the Network information API when its available [#3719](https://github.com/sitespeedio/sitespeed.io/pull/3719).
