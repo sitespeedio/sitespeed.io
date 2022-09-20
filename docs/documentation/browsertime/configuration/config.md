@@ -151,6 +151,7 @@ Options:
       --androidBatteryTemperatureWaitTimeInSeconds  How long time to wait (in seconds) if the androidBatteryTemperatureWaitTimeInSeconds is not met before the next try  [default: 120]
       --androidBatteryTemperatureReboot             If your phone does not get the minimum temperature aftet the wait time, reboot the phone.  [boolean] [default: false]
       --androidPretestPowerPress                    Press the power button on the phone before a test starts.  [boolean] [default: false]
+      --androidPretestPressHomeButton               Press the home button on the phone before a test starts.  [boolean] [default: false]
       --androidVerifyNetwork                        Before a test start, verify that the device has a Internet connection by pinging 8.8.8.8 (or a configurable domain with --androidPingAddress)  [boolean] [default: false]
       --processStartTime                            Capture browser process start time (in milliseconds). Android only for now.  [boolean] [default: false]
       --pageCompleteCheck                           Supply a JavaScript (inline or JavaScript file) that decides when the browser is finished loading the page and can start to collect metrics. The JavaScript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd. By default the tests ends 2 seconds after loadEventEnd. Also checkout --pageCompleteCheckInactivity and --pageCompleteCheckPollTimeout
