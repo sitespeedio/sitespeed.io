@@ -1,6 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 26.0.0 - UNRELEASED
+## 26.0.0 - 2022-09-23
+
+Hi and welcome to 26.0.0! There's a couple of small fixes and additions and one breaking change. You are only affected by the breaking change if you used to use `--graphite.perIteration` (sending data for all iterations to Graphite) or if you used `--graphite.skipSummary` (do not send summary information). Please read the changed section if you are affected!
+
+When you upgrade to 26.0.0 you will have an easier way of sending data per run to Graphite, there will be a blog post better explaining how you can use it.
+
 ### Changed
 Sending metrics per run to Graphite:
 * The default setup did miss a lot of important performance metrics, so you needed to set them up yourself. That is fixed in this PR.
