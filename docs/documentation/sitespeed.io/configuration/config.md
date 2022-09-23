@@ -5,6 +5,7 @@ Browser
   -n, --browsertime.iterations                                                                      How many times you want to test each page  [default: 3]
       --browsertime.spa, --spa                                                                      Convenient parameter to use if you test a SPA application: will automatically wait for X seconds after last network activity and use hash in file names. Read https://www.sitespeed.io/documentation/sitespeed.io/spa/  [boolean] [default: false]
       --browsertime.debug, --debug                                                                  Run Browsertime in debug mode. Use commands.breakpoint(name) to set btreakpoints in your script. Debug mode works for Firefox/Chrome/Edge on desktop.  [boolean] [default: false]
+      --browsertime.limitedRunData                                                                  Send only limited metrics from one run to the datasource.  [boolean] [default: true]
       --browsertime.gnirehtet, --gnirehtet                                                          Start gnirehtet and reverse tethering the traffic from your Android phone.  [boolean] [default: false]
   -c, --browsertime.connectivity.profile                                                            The connectivity profile. To actually set the connectivity you can choose between Docker networks or Throttle, read https://www.sitespeed.io/documentation/sitespeed.io/connectivity/  [string] [choices: "4g", "3g", "3gfast", "3gslow", "3gem", "2g", "cable", "native", "custom"] [default: "native"]
       --browsertime.connectivity.alias                                                              Give your connectivity profile a custom name  [string]
@@ -171,8 +172,7 @@ Graphite
       --graphite.annotationTag               Add a extra tag to the annotation sent for a run. Repeat the --graphite.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
       --graphite.addSlugToKey                Add the slug (name of the test) as an extra key in the namespace.  [boolean] [default: true]
       --graphite.bulkSize                    Break up number of metrics to send with each request.  [number] [default: null]
-      --graphite.skipSummary                 Skip sending summary messages data to Graphite (summaries over a domain).  [boolean] [default: false]
-      --graphite.perIteration                Send each iteration of metrics to Graphite. By default we only send page summaries (the summaries of all runs) but you can also send all the runs. Make sure to setup statsd or Graphite correctly to handle it.  [boolean] [default: false]
+      --graphite.messages  [default: ["pageSummary","summary"]]
 
 Plugins
       --plugins.list    List all configured plugins in the log.  [boolean]
