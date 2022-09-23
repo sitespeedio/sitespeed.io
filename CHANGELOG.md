@@ -1,6 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 26.0.0 - UNRELEASED
+## 26.0.0 - 2022-09-23
+
+Hi and welcome to 26.0.0! There's a couple of small fixes and additions and one breaking change. You are only affected by the breaking change if you used to use `--graphite.perIteration` (sending data for all iterations to Graphite) or if you used `--graphite.skipSummary` (do not send summary information). Please read the changed section if you are affected!
+
+When you upgrade to 26.0.0 you will have an easier way of sending data per run to Graphite, there will be a blog post better explaining how you can use it.
+
 ### Changed
 Sending metrics per run to Graphite:
 * The default setup did miss a lot of important performance metrics, so you needed to set them up yourself. That is fixed in this PR.
@@ -30,6 +35,12 @@ See PR [#3721](https://github.com/sitespeedio/sitespeed.io/pull/3721).
 
 ### Added
 * Checkout the [pre built Raspberry Pi image](https://github.com/sitespeedio/raspberrypi) for running sitespeed.io tests on your Android phone.
+* Upgraded to Firefox 105 and Edge 105 in the Docker container.
+* Upgraded to Browsertime 16.16.0
+* Include --preURL information in the latest storer info [#3729](https://github.com/sitespeedio/sitespeed.io/pull/3729).
+### Fixed
+* Fix graphite.sendAnnotation option [#3726](https://github.com/sitespeedio/sitespeed.io/pull/3726).
+* Show timestamp when each run happens on the run page [#3730](https://github.com/sitespeedio/sitespeed.io/pull/3730).
 ##  25.11.0 - 2022-09-04
 ### Added
 * Make it possible to configure run options for AXE (before you could only configure configuration options) [#3718](https://github.com/sitespeedio/sitespeed.io/pull/3718). Checkout [how to configure AXE](https://www.sitespeed.io/documentation/sitespeed.io/axe/#configure-axe).* Removed showing if the page is an AMP page (that battle was won a long time ago) and instead show information from the Network information API when its available [#3719](https://github.com/sitespeedio/sitespeed.io/pull/3719).

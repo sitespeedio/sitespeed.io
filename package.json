@@ -4,7 +4,7 @@
     "sitespeed.io": "./bin/sitespeed.js",
     "sitespeed.io-wpr": "./bin/browsertimeWebPageReplay.js"
   },
-  "version": "25.11.0",
+  "version": "26.0.0",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -80,7 +80,7 @@
     "@tgwf/co2": "0.8.0",
     "aws-sdk": "2.1121.0",
     "axe-core": "4.4.3",
-    "browsertime": "16.15.1",
+    "browsertime": "16.16.0",
     "coach-core": "7.1.2",
     "cli-color": "2.0.2",
     "concurrent-queue": "7.0.2",
