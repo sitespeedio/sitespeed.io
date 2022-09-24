@@ -50,7 +50,7 @@ module.exports = async function(context, commands) {
  try {
  await commands.click.byClassName('gf-timepicker-nav-btn');
  await commands.wait.byTime(1000);
- // We give the paghe an alias that will be used if the metrics is sent to Graphite/InfluxDB 
+ // We give the page an alias that will be used if the metrics is sent to Graphite/InfluxDB 
  await commands.measure.start('pageTimingMetricsLast30Days');
  await commands.click.byLinkTextAndWait('Last 30 days');
  await commands.measure.stop();

@@ -89,11 +89,11 @@ Or use a configuration json:
 
 # Configure the thresholds for red/yellow/green summary boxes
 
-You can override the default configurations that definees the colors of the summary boxes. The default code is set [here](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/plugins/html/setup/summaryBoxesDefaultLimits.js) and is a good starting point for what you can set.
+You can override the default configurations that defines the colors of the summary boxes. The default code is set [here](https://github.com/sitespeedio/sitespeed.io/blob/main/lib/plugins/html/setup/summaryBoxesDefaultLimits.js) and is a good starting point for what you can set.
 
 Define your JSON file with the limits and feed it to sitespeed.io with `--html.summaryBoxesThresholds`.
 
-Say that you are testing on a slow 3g connection and the default settings for first paint is unreleasistic (1000 ms for green and over 2000 gives you red). Create a JSON file name it summaryLimits.json:
+Say that you are testing on a slow 3g connection and the default settings for first paint is unrealistic (1000 ms for green and over 2000 gives you red). Create a JSON file name it summaryLimits.json:
 
 ~~~json
 {

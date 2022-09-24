@@ -86,7 +86,7 @@ navigate    news.aol.com/world
 Then change your URL you want test (probably the last one) to \{\{\{URL\}\}\} and then all occurrences of \{\{\{URL\}\}\} will then be replaced with the current URL that should be tested. Now run sitespeed.io with the additional parameters:
 
 ~~~bash
-docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-webapgetest --plugins.add /webpagetest --webpagetest.file /sitespeed.io/wptScript.txt --webpagetest.host my.wpt.host.com http://example.org
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-webpagetest --plugins.add /webpagetest --webpagetest.file /sitespeed.io/wptScript.txt --webpagetest.host my.wpt.host.com http://example.org
 ~~~
 
 It is also possible to pass the WebPageTest script as a string into the `--webpagetest.script` flag. You can use the `scriptToString()` method provided in [webpagetest-api](https://github.com/marcelduran/webpagetest-api/#module-1) to create a string from a JSON object.

@@ -63,7 +63,7 @@ If you make your issue reproducible, the issue is the cream of the crop and will
 
 When we groom issues we will add a tag with the prioritization. We have three prio tags: **prio:1**,  **prio:3** and **prio:5**.
 
-If a issue is bug that breaks functionality for many users or is a feature request that will help many users and its somnething we can implement, we gonna give it **prio:1**. If the issue is a bug that we plan to fix, it will have **prio:3**. If your bug/issue gets **prio:5** we maybe will fix it sometimes in the future. Also scripting issues releated to how you use scripting on your site always gets **prio:5** but we will try to help you the best we can.
+If a issue is bug that breaks functionality for many users or is a feature request that will help many users and its something we can implement, we gonna give it **prio:1**. If the issue is a bug that we plan to fix, it will have **prio:3**. If your bug/issue gets **prio:5** we maybe will fix it sometimes in the future. Also scripting issues related to how you use scripting on your site always gets **prio:5** but we will try to help you the best we can.
 
 If you do not agree with our prioritization you can:
 * Explain the issue better and make sure we can reproduce your issue
