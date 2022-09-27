@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 26.0.1 - 2022-09-27
+### Fixed
+* Upgrading to [Browsertime 16.17.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16170---2022-09-27) that contains a fix to collect battery temperature on Android, making it possible to send the data to Graphite again.
+
 ## 26.0.0 - 2022-09-23
 
 Hi and welcome to 26.0.0! There's a couple of small fixes and additions and one breaking change. You are only affected by the breaking change if you used to use `--graphite.perIteration` (sending data for all iterations to Graphite) or if you used `--graphite.skipSummary` (do not send summary information). Please read the changed section if you are affected!
