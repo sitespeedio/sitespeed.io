@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+### Added
+* Update to 0.10.4 co2 and make it possible change model [#3736](https://github.com/sitespeedio/sitespeed.io/pull/3736).
+
+
 ## 26.0.1 - 2022-09-27
 ### Fixed
 * Upgrading to [Browsertime 16.17.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16170---2022-09-27) that contains a fix to collect battery temperature on Android, making it possible to send the data to Graphite again.
