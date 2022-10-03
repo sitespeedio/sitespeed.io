@@ -78,7 +78,7 @@
   "dependencies": {
     "@google-cloud/storage": "5.19.3",
     "@influxdata/influxdb-client": "^1.28.0",
-    "@tgwf/co2": "0.8.0",
+    "@tgwf/co2": "0.10.4",
     "aws-sdk": "2.1121.0",
     "axe-core": "4.4.3",
     "browsertime": "16.17.0",
