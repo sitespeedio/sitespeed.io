@@ -4,7 +4,7 @@ Browser
   -b, --browsertime.browser, --browser                                                              Choose which Browser to use when you test. Safari only works on Mac OS X and iOS 13 (or later). Chrome needs to be the same version as the current installed  ChromeDriver (check the changelog for what version that is currently used). Use --chrome.chromedriverPath to use another ChromeDriver version.  [choices: "chrome", "firefox", "safari", "edge"] [default: "chrome"]
   -n, --browsertime.iterations                                                                      How many times you want to test each page  [default: 3]
       --browsertime.spa, --spa                                                                      Convenient parameter to use if you test a SPA application: will automatically wait for X seconds after last network activity and use hash in file names. Read https://www.sitespeed.io/documentation/sitespeed.io/spa/  [boolean] [default: false]
-      --browsertime.debug, --debug                                                                  Run Browsertime in debug mode. Use commands.breakpoint(name) to set btreakpoints in your script. Debug mode works for Firefox/Chrome/Edge on desktop.  [boolean] [default: false]
+      --browsertime.debug, --debug                                                                  Run Browsertime in debug mode. Use commands.breakpoint(name) to set breakpoints in your script. Debug mode works for Firefox/Chrome/Edge on desktop.  [boolean] [default: false]
       --browsertime.limitedRunData                                                                  Send only limited metrics from one run to the datasource.  [boolean] [default: true]
       --browsertime.gnirehtet, --gnirehtet                                                          Start gnirehtet and reverse tethering the traffic from your Android phone.  [boolean] [default: false]
   -c, --browsertime.connectivity.profile                                                            The connectivity profile. To actually set the connectivity you can choose between Docker networks or Throttle, read https://www.sitespeed.io/documentation/sitespeed.io/connectivity/  [string] [choices: "4g", "3g", "3gfast", "3gslow", "3gem", "2g", "cable", "native", "custom"] [default: "native"]
@@ -203,7 +203,7 @@ InfluxDB
       --influxdb.database              The database name used to store captured metrics.  [default: "sitespeed"]
       --influxdb.tags                  A comma separated list of tags and values added to each metric  [default: "category=default"]
       --influxdb.includeQueryParams    Whether to include query parameters from the URL in the InfluxDB keys or not  [boolean] [default: false]
-      --influxdb.groupSeparator        Choose which character that will seperate a group/domain. Default is underscore, set it to a dot if you wanna keep the original domain name.  [default: "_"]
+      --influxdb.groupSeparator        Choose which character that will separate a group/domain. Default is underscore, set it to a dot if you wanna keep the original domain name.  [default: "_"]
       --influxdb.annotationScreenshot  Include screenshot (from Browsertime) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
 
 Metrics

@@ -19,7 +19,7 @@ twitterdescription: Use Docker to run sitespeed.io.
 
 ## Containers
 
-Docker makes it easier to run sitspeed.io because you don't need to install every dependency needed for recording and analysing the browser screen. It's also easy to update your container to a new sitespeed.io version by changing the Docker tag. The drawback using Docker is that it will add some overhead, the container is Linux only (browsers are Linux version).
+Docker makes it easier to run sitespeed.io because you don't need to install every dependency needed for recording and analysing the browser screen. It's also easy to update your container to a new sitespeed.io version by changing the Docker tag. The drawback using Docker is that it will add some overhead, the container is Linux only (browsers are Linux version).
 
 
 We have a four ready made containers:

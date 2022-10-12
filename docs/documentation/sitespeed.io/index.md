@@ -24,7 +24,7 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Continuously run your tests](continuously-run-your-tests/) - how to setup your test to continuously run your tests.
  * [Docker](docker/) - how to use our Docker containers.
  * [F.A.Q and Best Practice](best-practice/) - here we keep track of questions we get in Slack.
- * [Metrics](metrics/) - defintions of all the metrics that is collected.
+ * [Metrics](metrics/) - definitions of all the metrics that is collected.
  * [Performance Dashboard](performance-dashboard/) - monitor your web site and keep track of your metrics and performance.
  * [Performance Leaderboard](leaderboard/) - compare your pages with your competition.
  * [Scripting](scripting/) - test a user journey, test multiple URLs, test login, test adding items to the cart with scripting.
