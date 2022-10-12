@@ -19,7 +19,7 @@ twitterdescription: Use the video in sitespeed.io
 ## The stack (easy with Docker)
 We use FFMpeg to record a video with 30 fps of the screen (but you can configure the number of frames per second). The easiest way is to use our Docker container with pre-installed FFMpeg and if you use the npm version, you can record a video too. Video works on Linux and OS X at the moment.
 
-When we got the video we use [Visual Metrics](https://github.com/WPO-Foundation/visualmetrics) (built by Pat Meenan) to analyse the video and get SpeedIndex and other visual metrics from the video. If you use our Docker container you get that for free, else you need to install all the [Visual Metrics dependencies](https://github.com/sitespeedio/browsertime/blob/main/.travis.yml) yourself. You need FFMPeg, ImageMagick and a couple Pythin libraries. Checkout Browsertimes [Travis-CI configuration](https://github.com/sitespeedio/browsertime/blob/main/.travis.yml) to see what's needed.
+When we got the video we use [Visual Metrics](https://github.com/WPO-Foundation/visualmetrics) (built by Pat Meenan) to analyse the video and get SpeedIndex and other visual metrics from the video. If you use our Docker container you get that for free, else you need to install all the [Visual Metrics dependencies](https://github.com/sitespeedio/browsertime/blob/main/.travis.yml) yourself. You need FFMPeg, ImageMagick and a couple Python libraries. Checkout Browsertimes [Travis-CI configuration](https://github.com/sitespeedio/browsertime/blob/main/.travis.yml) to see what's needed.
 
 We record the video in two steps: First we turn the background orange (that is used by VisualMetrics to know when the navigation starts), sets the background to white and let the browser go to the URL. The video is recorded lossless and then when the video has been analysed, we remove the orange frames and convert the video to a compressed mp4.
 
@@ -45,7 +45,7 @@ You can change the number of frames per second (default is 30) by using <code>--
 You can also change the constant rate factor (see [https://trac.ffmpeg.org/wiki/Encode/H.264#crf](https://trac.ffmpeg.org/wiki/Encode/H.264#crf)) to change the quality of the video. CRF is added in the second step (we first record the video as lossless as possible).
 
 ### Skip converting the video
-When you record a video, the video is first recorded with settings to make the video recording as fast as possible and with low overhead. Then the video is converted to a format that better works in most video players. If you want to speed up your tests, you may want to remove the video convertion, you can do that with <code>--browsertime.videoParams.convert false</code>. 
+When you record a video, the video is first recorded with settings to make the video recording as fast as possible and with low overhead. Then the video is converted to a format that better works in most video players. If you want to speed up your tests, you may want to remove the video conversion, you can do that with <code>--browsertime.videoParams.convert false</code>. 
 
 ### Remove timer and metrics from the video
 The video will by default include a timer and show when visual metrics happens. If you want the video without any text/timer you just add <code>--browsertime.videoParams.addTimer false</code>.
@@ -72,7 +72,7 @@ If you run the Docker container we will automatically setup XVFB as a virtual fr
 ### Collect visual elements metrics
 You can choose to collect when visual elements are visible (and on their final position) on the screen. Turn on with <code>--visualElements</code> and collect Visual Metrics from elements. Works only with <code>--visualMetrics</code> turned on (default in Docker). By default you will get visual metrics from the largest image within the view port and the largest H1. 
 
-If you want to add your own element the easiest way is to follow the Element Timing API: annotate your element with the *elementtiming* annotation. This will work even if your browser do not support the Element Timning API!
+If you want to add your own element the easiest way is to follow the Element Timing API: annotate your element with the *elementtiming* annotation. This will work even if your browser do not support the Element Timing API!
 
 Say that we want to know when the sitespeed.io logo appears on the screen. Then we add the annotation and give that image a unique name (so we know what we are measuring). It will look like this:
 
@@ -92,7 +92,7 @@ Lets say that we want to measure when the logo of sitespeed.io is painted on scr
 
 Open up devtools/web inspector and select the image:
 
-![Web Inspector seleting the logo]({{site.baseurl}}/img/web-inspector.png){:loading="lazy"}
+![Web Inspector selecting the logo]({{site.baseurl}}/img/web-inspector.png){:loading="lazy"}
 {: .img-thumbnail}
 
 Next step is to find that element using `document.body.querySelector`. Do that in your web console. The logo has a unique class, so lets use that:  `document.body.querySelector(".navbar-brand")`.

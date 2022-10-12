@@ -113,7 +113,7 @@ These metrics will be different depending on the URL you test (as long as you ru
 {: .img-thumbnail}
 
 But look at the standard deviation. You can see that the max difference is now higher, but in general it looks like the deviation is lower. 
-![Higher stdeev]({{site.baseurl}}/img/higher-stddev.png){:loading="lazy"}
+![Higher stddev]({{site.baseurl}}/img/higher-stddev.png){:loading="lazy"}
 {: .img-thumbnail}
 
 Its important that you keep track of standard deviation for your metrics and look for changes!

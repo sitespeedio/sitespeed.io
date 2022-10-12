@@ -24,7 +24,7 @@ sitespeed.io has a CrUx plugin that can collect data from the [Chrome User Exper
 sitespeed.io --crux.key $CRUX_API_KEY https://www.sitespeed.io
 ~~~
 
-If you send the data to Graphite you want to push the data to its own namespace ```--graphite.namespace sitespeedio.crux``` and you probably want to seperate the data from your sitespeed.io data, so you can disable Browsertime and do one run just to get the CrUx data. CrUx data changes doesn't change so often so you can just run it once per day.
+If you send the data to Graphite you want to push the data to its own namespace ```--graphite.namespace sitespeedio.crux``` and you probably want to separate the data from your sitespeed.io data, so you can disable Browsertime and do one run just to get the CrUx data. CrUx data changes doesn't change so often so you can just run it once per day.
 
 The plugin collect data for the specific URL that you test AND the origin (domain). 
 

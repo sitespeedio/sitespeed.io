@@ -28,10 +28,10 @@ The plugin will send a request to the Google Page Speed Servers and parse the re
 {: .img-thumbnail}
 
 The plugin also collect metrics for the specific page and the domain from the Chrome User Experience report:
-![GPSI distriubution]({{site.baseurl}}/img/gpsi-distribution.png)
+![GPSI distribution]({{site.baseurl}}/img/gpsi-distribution.png)
 {: .img-thumbnail}
 
 All scores and distributions is automatically sent to Graphite/InfluxDB.
 
-## Disable Lightouse
+## Disable Lighthouse
 If you only want to run GPSI and not Lighthouse you can disable it with `--plugins.remove /lighthouse`.
