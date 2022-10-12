@@ -1,19 +1,19 @@
 {
   "name": "sitespeed.io",
-  "version": "26.0.0",
+  "version": "26.0.1",
   "lockfileVersion": 2,
   "requires": true,
   "packages": {
     "": {
       "name": "sitespeed.io",
-      "version": "26.0.0",
+      "version": "26.0.1",
       "license": "MIT",
       "dependencies": {
         "@google-cloud/storage": "5.19.3",
-        "@tgwf/co2": "0.8.0",
+        "@tgwf/co2": "0.10.4",
         "aws-sdk": "2.1121.0",
         "axe-core": "4.4.3",
-        "browsertime": "16.16.0",
+        "browsertime": "16.17.0",
         "cli-color": "2.0.2",
         "coach-core": "7.1.2",
         "concurrent-queue": "7.0.2",
@@ -964,20 +964,27 @@
       "integrity": "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w=="
     },
     "node_modules/@tgwf/co2": {
-      "version": "0.8.0",
-      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.8.0.tgz",
-      "integrity": "sha512-vN08Vf3ziOuaZ8MQM+rO3g9T5kPg2ygp6uE7GgLwkd7TvoIX10Zw3G1ouZtwxY5wy0oXuMRN6X3OGcrP1YGSVA==",
+      "version": "0.10.4",
+      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.10.4.tgz",
+      "integrity": "sha512-IE9JZeetUeKR0/up+fOKY9RSZssA3YlL2axdou7nu8nQFAnzu46aQb2M4pTUE0DjR2InmCFPXSDQeI912LexYg==",
       "dependencies": {
-        "debug": "^4.1.1"
+        "debug": "^4.3.4"
       }
     },
     "node_modules/@tgwf/co2/node_modules/debug": {
-      "version": "4.1.1",
-      "resolved": "https://registry.npmjs.org/debug/-/debug-4.1.1.tgz",
-      "integrity": "sha512-pYAIzeRo8J6KPEaJ0VWOh5Pzkbw/RetuzehGM7QRRX5he4fPHx2rdKMB256ehJCkX+XRQm16eZLqLNS8RSZXZw==",
-      "deprecated": "Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)",
+      "version": "4.3.4",
+      "resolved": "https://registry.npmjs.org/debug/-/debug-4.3.4.tgz",
+      "integrity": "sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==",
       "dependencies": {
-        "ms": "^2.1.1"
+        "ms": "2.1.2"
+      },
+      "engines": {
+        "node": ">=6.0"
+      },
+      "peerDependenciesMeta": {
+        "supports-color": {
+          "optional": true
+        }
       }
     },
     "node_modules/@tgwf/co2/node_modules/ms": {
@@ -1711,9 +1718,9 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "16.16.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-16.16.0.tgz",
-      "integrity": "sha512-YmE6pnEgj9jRO97kVxUqvz5CqwhdUorhPOdv5jS50LO5zeuSNKIa5zIAxB3HYsxrk3gMKCRwuk3neNPqN5ZyZw==",
+      "version": "16.17.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-16.17.0.tgz",
+      "integrity": "sha512-8o/dv24UdTgKIhuAjndUs3FvhPvgT/m8YQw0TM6fE3lItAXzOC31uQYuaqubnz1ARwPprioa0vX7XNCYo4WBjQ==",
       "dependencies": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",
@@ -9297,19 +9304,19 @@
       }
     },
     "@tgwf/co2": {
-      "version": "0.8.0",
-      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.8.0.tgz",
-      "integrity": "sha512-vN08Vf3ziOuaZ8MQM+rO3g9T5kPg2ygp6uE7GgLwkd7TvoIX10Zw3G1ouZtwxY5wy0oXuMRN6X3OGcrP1YGSVA==",
+      "version": "0.10.4",
+      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.10.4.tgz",
+      "integrity": "sha512-IE9JZeetUeKR0/up+fOKY9RSZssA3YlL2axdou7nu8nQFAnzu46aQb2M4pTUE0DjR2InmCFPXSDQeI912LexYg==",
       "requires": {
-        "debug": "^4.1.1"
+        "debug": "^4.3.4"
       },
       "dependencies": {
         "debug": {
-          "version": "4.1.1",
-          "resolved": "https://registry.npmjs.org/debug/-/debug-4.1.1.tgz",
-          "integrity": "sha512-pYAIzeRo8J6KPEaJ0VWOh5Pzkbw/RetuzehGM7QRRX5he4fPHx2rdKMB256ehJCkX+XRQm16eZLqLNS8RSZXZw==",
+          "version": "4.3.4",
+          "resolved": "https://registry.npmjs.org/debug/-/debug-4.3.4.tgz",
+          "integrity": "sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==",
           "requires": {
-            "ms": "^2.1.1"
+            "ms": "2.1.2"
           }
         },
         "ms": {
@@ -9875,9 +9882,9 @@
       }
     },
     "browsertime": {
-      "version": "16.16.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-16.16.0.tgz",
-      "integrity": "sha512-YmE6pnEgj9jRO97kVxUqvz5CqwhdUorhPOdv5jS50LO5zeuSNKIa5zIAxB3HYsxrk3gMKCRwuk3neNPqN5ZyZw==",
+      "version": "16.17.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-16.17.0.tgz",
+      "integrity": "sha512-8o/dv24UdTgKIhuAjndUs3FvhPvgT/m8YQw0TM6fE3lItAXzOC31uQYuaqubnz1ARwPprioa0vX7XNCYo4WBjQ==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",
