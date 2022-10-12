@@ -43,6 +43,8 @@ if experiences
         if (crux[experience][formFactor] && crux[experience][formFactor].data)
           a(id=experience + '-' + formFactor)
           h3 Form Factor #{formFactor}
+          - const collectionPeriod = crux[experience][formFactor].data.record.collectionPeriod;
+          p Data collected between #{collectionPeriod.firstDate.year}-#{collectionPeriod.firstDate.month}-#{collectionPeriod.firstDate.day} and #{collectionPeriod.lastDate.year}-#{collectionPeriod.lastDate.month}-#{collectionPeriod.lastDate.day}
           table
             thead
               tr
