@@ -11,7 +11,7 @@
       "dependencies": {
         "@google-cloud/storage": "5.19.3",
         "@influxdata/influxdb-client": "^1.28.0",
-        "@tgwf/co2": "0.10.4",
+        "@tgwf/co2": "0.11.3",
         "aws-sdk": "2.1121.0",
         "axe-core": "4.4.3",
         "browsertime": "16.17.0",
@@ -970,9 +970,9 @@
       "integrity": "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w=="
     },
     "node_modules/@tgwf/co2": {
-      "version": "0.10.4",
-      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.10.4.tgz",
-      "integrity": "sha512-IE9JZeetUeKR0/up+fOKY9RSZssA3YlL2axdou7nu8nQFAnzu46aQb2M4pTUE0DjR2InmCFPXSDQeI912LexYg==",
+      "version": "0.11.3",
+      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.11.3.tgz",
+      "integrity": "sha512-aFM52uDV0M/tx/BYu1w3K215pei5J2PHlsnaQKSr9/sJ5k2az1M2x8x/3Q70EJiEB8MtsHE2wWl8y17TacfKRQ==",
       "dependencies": {
         "debug": "^4.3.4"
       }
@@ -9315,9 +9315,9 @@
       }
     },
     "@tgwf/co2": {
-      "version": "0.10.4",
-      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.10.4.tgz",
-      "integrity": "sha512-IE9JZeetUeKR0/up+fOKY9RSZssA3YlL2axdou7nu8nQFAnzu46aQb2M4pTUE0DjR2InmCFPXSDQeI912LexYg==",
+      "version": "0.11.3",
+      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.11.3.tgz",
+      "integrity": "sha512-aFM52uDV0M/tx/BYu1w3K215pei5J2PHlsnaQKSr9/sJ5k2az1M2x8x/3Q70EJiEB8MtsHE2wWl8y17TacfKRQ==",
       "requires": {
         "debug": "^4.3.4"
       },
