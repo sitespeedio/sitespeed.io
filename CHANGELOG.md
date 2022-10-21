@@ -1,9 +1,13 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 26.1.0 - 2022-10-21
 ### Added
-* Update to 0.10.4 co2 and make it possible change model [#3736](https://github.com/sitespeedio/sitespeed.io/pull/3736).
+* Update to 0.10.4 co2 and make it possible change model [#3736](https://github.com/sitespeedio/sitespeed.io/pull/3736) and the to 0.11.3 in [#3741](https://github.com/sitespeedio/sitespeed.io/pull/3741)
+* Upgraded Docker container to use Chrome, Edge and Firefox 106.
+* Show start/end date for collected Crux data [#3740](https://github.com/sitespeedio/sitespeed.io/pull/3740)
 
+### Fixed
+* Better explanation for some PageXray metrics [#3743](https://github.com/sitespeedio/sitespeed.io/pull/3743).
 
 ## 26.0.1 - 2022-09-27
 ### Fixed
