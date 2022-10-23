@@ -141,17 +141,5 @@
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
-        <item>
-            <title><![CDATA[browsertime 16.13.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.1</guid>
-            <pubDate>Wed, 10 Aug 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Make sure that Android id is always picked up from the phone if tests run on Android <a href="https://github.com/sitespeedio/browsertime/pull/1826">#1826</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
     </channel>
 </rss>

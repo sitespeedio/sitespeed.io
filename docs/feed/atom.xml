@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2022-09-27T00:00:00.000Z</updated>
+    <updated>2022-10-21T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,31 @@
     <logo>https://www.sitespeed.io/img/logos/sitespeed.io.png</logo>
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 26.1.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#26.1.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#26.1.0"/>
+        <updated>2022-10-21T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Update to 0.10.4 co2 and make it possible change model <a href="https://github.com/sitespeedio/sitespeed.io/pull/3736">#3736</a> and the to 0.11.3 in <a href="https://github.com/sitespeedio/sitespeed.io/pull/3741">#3741</a></li>
+</ul>
+ <ul>
+<li>Upgraded Docker container to use Chrome, Edge and Firefox 106.</li>
+</ul>
+ <ul>
+<li>Show start/end date for collected Crux data <a href="https://github.com/sitespeedio/sitespeed.io/pull/3740">#3740</a></li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Better explanation for some PageXray metrics <a href="https://github.com/sitespeedio/sitespeed.io/pull/3743">#3743</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 26.0.1]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#26.0.1</id>
@@ -262,21 +287,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 25.8.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.8.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.8.0"/>
-        <updated>2022-08-26T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16140---2022-08-26">Browsertime 16.14.0</a>. that collects relative standard deviation for metrics and the number of processes that runs on the server when you start a test.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[browsertime 16.14.2]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.14.2</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.14.2"/>
@@ -351,21 +361,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Disable adding lastCPULongTask to the HAR data since it breaks waterfall view on slow mobile phones with late CPU long tasks <a href="https://github.com/sitespeedio/browsertime/pull/1828">#1828</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 16.13.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.1</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.1"/>
-        <updated>2022-08-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Make sure that Android id is always picked up from the phone if tests run on Android <a href="https://github.com/sitespeedio/browsertime/pull/1826">#1826</a>.</li>
 </ul>
 ]]></summary>
         <author>
