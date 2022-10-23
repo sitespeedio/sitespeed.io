@@ -259,6 +259,7 @@ Text
 
 Sustainable
       --sustainable.enable                 Test if the web page is sustainable.  [boolean]
+      --sustainable.model                  Model used for measure digital carbon emissions.  [choices: "1byte", "swd"] [default: "1byte"]
       --sustainable.pageViews              Number of page views used when calculating CO2.
       --sustainable.disableHosting         Disable the hosting check. Default we do a check to a local database of domains with green hosting provided by the Green Web Foundation  [boolean] [default: false]
       --sustainable.useGreenWebHostingAPI  Instead of using the local copy of the hosting database, you can use the latest version through the Green Web Foundation API. This means sitespeed.io will make HTTP GET to the the hosting info.  [boolean] [default: false]
