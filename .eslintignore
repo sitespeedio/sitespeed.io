@@ -4,4 +4,6 @@ assets/*
 sitespeed-result/*
 lib/plugins/yslow/scripts/*
 lib/plugins/html/assets/js/*
+lib/plugins/browsertime/index.js
+lib/plugins/browsertime/analyzer.js
 test/data/*
