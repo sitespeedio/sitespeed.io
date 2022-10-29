@@ -139,8 +139,14 @@ async function runBrowsertime() {
     }
   };
 
+
+
   const {BrowsertimeEngine, configureLogging} = await import ('browsertime');
   const btOptions = merge({}, parsed.argv.browsertime, defaultConfig);
+   // hack to keep backward compability to --android
+   if (parsed.argv.android[0] === true) {
+    set(btOptions, 'android.enabled', true);
+  }
   configureLogging(parsed.argv);
 
   // We have a special hack in sitespeed.io when you set --mobile
