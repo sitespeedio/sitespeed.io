@@ -3,7 +3,6 @@
 'use strict';
 
 const yargs = require('yargs');
-const browsertime = require('browsertime');
 const merge = require('lodash.merge');
 const getURLs = require('../lib/cli/util').getURLs;
 const get = require('lodash.get');
@@ -140,8 +139,15 @@ async function runBrowsertime() {
     }
   };
 
+
+
+  const {BrowsertimeEngine, configureLogging} = await import ('browsertime');
   const btOptions = merge({}, parsed.argv.browsertime, defaultConfig);
-  browsertime.logging.configure(parsed.argv);
+   // hack to keep backward compability to --android
+   if (parsed.argv.android[0] === true) {
+    set(btOptions, 'android.enabled', true);
+  }
+  configureLogging(parsed.argv);
 
   // We have a special hack in sitespeed.io when you set --mobile
   if (parsed.argv.mobile) {
@@ -171,7 +177,7 @@ async function runBrowsertime() {
       );
     }
   }
-  const engine = new browsertime.Engine(btOptions);
+  const engine = new BrowsertimeEngine(btOptions);
   const urls = getURLs(parsed.argv._);
 
   try {
