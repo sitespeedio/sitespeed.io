@@ -30,6 +30,7 @@ COPY package.json /usr/src/app/
 COPY npm-shrinkwrap.json /usr/src/app/
 RUN npm install --production && npm cache clean --force
 COPY . /usr/src/app
+RUN chmod a+w /usr/src/app
 
 COPY docker/scripts/start.sh /start.sh
 
