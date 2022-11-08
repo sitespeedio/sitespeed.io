@@ -51,7 +51,7 @@ jobs:
     - name: Use Fireefox with --mobile
       run: bin/sitespeed.js -b firefox  --metrics.list --mobile -n 1 http://127.0.0.1:3001/simple/ --sustainable.enable --xvfb
     - name: Test --multi  
-      run: bin/sitespeed.js --multi -b chrome -n 1 test/prepostscripts/preSample.js http://127.0.0.1:3001/simple/ test/prepostscripts/ postSample.js --xvfb --browsertime.cjs
+      run: bin/sitespeed.js --multi -b chrome -n 1 test/prepostscripts/preSample.js http://127.0.0.1:3001/simple/ test/prepostscripts/postSample.js --xvfb --browsertime.cjs
     - name: Test --multi and --tcpdump  
       run: bin/sitespeed.js --multi -n 1 http://127.0.0.1:3001/simple/ http://127.0.0.1:3001/dimple/ --tcpdump --xvfb --browsertime.cjs
     - name: Test --multi with one file 
