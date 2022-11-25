@@ -1,4 +1,4 @@
----
+t---
 layout: default
 title: Install sitespeed.io using npm/yarn or Docker.
 description: Install "npm install sitespeed.io -g" or "yarn global add sitespeed.io".
@@ -63,11 +63,12 @@ Install on a fresh Apple Mac M1:
     5. `source ~/.zshrc`
     6. `curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py`
     7. `python get-pip.py --user`
-    8. `python -m pip install --user pillow`
+    8. `python -m pip install --user pillow pyssim OpenCV-Python Numpy`
 7. To be able to throttle the connection without adding a sudo password you need to run:
     `echo "${USER} ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/sitespeedio"`
 8. If you plan to run the iOS Simulator, you also need to install Xcode. Either do it from the App store,  follow [Mac Stadiums guide](https://docs.macstadium.com/docs/install-osx-build-tools) or download directly from [https://developer.apple.com/download/more/](https://developer.apple.com/download/more/). Verify that Xcode work by running `xcrun simctl list devices` to list your devices.
 9. If you want to run test on Android devices, you also need ADB. Install it using Homebrew like this: `brew install --cask android-platform-tools`
+10. To be able to record a video you need to give access to **Screen Recording** for the **Terminal** App. You do that under **Privacy** settings.
 
 Now you are ready to install sitespeed.io:
 ~~~bash
