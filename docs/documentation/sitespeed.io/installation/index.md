@@ -1,4 +1,4 @@
-t---
+---
 layout: default
 title: Install sitespeed.io using npm/yarn or Docker.
 description: Install "npm install sitespeed.io -g" or "yarn global add sitespeed.io".
