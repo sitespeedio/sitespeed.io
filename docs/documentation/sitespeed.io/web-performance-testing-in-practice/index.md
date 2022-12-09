@@ -125,7 +125,13 @@ Another good thing is to make sure you monitor your server to keep track of memo
 
 
 #### Running on bare metal
-Running on bare metal servers helps you to avoid the noisy neighbour effect. However it doesn't automatically fixes your problem. You still need to configure/tune your OS to get stable metrics. We hope to include some examples to help you when we get our hands on a bare metal server :)
+Running on bare metal servers helps you to avoid the noisy neighbour effect. However it doesn't automatically fixes your problem. You still need to configure/tune your OS to get stable metrics. There's a couple of things you should think of:
+
+* Check the CPU governor on your OS. The CPU governor controls how the CPU raises and lowers its frequency in response to the demands the user is placing on their device. Governors have a large impact on performance and power save. You need to configure your server to have the same frequency all the time.
+* Which DNS server that is used can make a big difference. Keep a look at your DNS times and make sure they are stable.
+* Some browsers need to have many open files, make sure to increase the limit.
+
+
 
 #### Running on Kubernetes
 The problem running on Kubernetes is to get stable connectivity. On Kubernetes you cannot use TC or Docker networks to set the connectivity. 
@@ -147,13 +153,15 @@ A couple of years ago we tested with Chrome, measuring start render on Wikipedia
 
 The problem was that we where running on different phones (but same model) and we are pretty far from the flat line that we want.
 
-What phones should you use? If you plan to run tests on Android you should aim for a phone in the middle market segment. Using slow phones is good for showing the performance for some of your users, but getting stable metrics on slowish phones are hard. I've been using Moto G4 and G5. 
+There's a workaround for this problem: when you set the CPU/GPU performance and pin those, you will get more stable metrics. To do that you need to run your test on a phone where you can use root.
+
+What phones should you use? If you plan to run tests on Android you should aim for a phone in the middle market segment. Using slow phones is good for showing the performance for some of your users, but getting stable metrics on slowish phones are hard. I've been using Moto G4 and G5. At Wikimedia we run phones that matches our 75/95 percentile of our users performance.
 
 One problem running tests on Android is that when the phone temperature gets high, Android will change CPU frequencies and that will affect your metrics. To avoid that you can check the battery temperature before you start your tests (that's implemented in Browsertime/sitespeed.io). You can also root your phone and then set the frequency for you CPU so that it will not change. That is supported for Moto G5 and Pixel 1 using Browsertime/sitespeed.io (thank you Mozilla for contributing that part).
 
 #### Mobile hosting
 
-To run your test you can either host your own mobile phones and drive them through a Mac Mini or find a hosting solution that can do the same. At the moment we do not have any recommendations for hosting, except for hosting the solution yourself.
+To run your test you can either host your own mobile phones and drive them through a Mac Mini, Raspberry Pi or find a hosting solution that can do the same. At the moment we do not have any recommendations for hosting, except for hosting the solution yourself. If you use sitespeed.io we have a [pre-made Raspberry Pi to run your tests](https://github.com/sitespeedio/raspberrypi).
 
 ![Mobile deevice lab]({{site.baseurl}}/img/mobile-device-lab.jpg){:loading="lazy"}
 {: .img-thumbnail}
