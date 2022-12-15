@@ -119,26 +119,24 @@ But look at the standard deviation. You can see that the max difference is now h
 Its important that you keep track of standard deviation for your metrics and look for changes!
 
 #### Tuning your instance
-Before you start to run your tests, there are a couple of things you can do to tune your instance before you start to run your tests. It depends on the OS you are using but it general you should look into turn off automatic updates. For example, running on Ubuntu you can make sure you don't run unattended upgrade automatically. Instead you will shutdown your tests and update the server now and then.
+Before you start to run your tests, there are a couple of things you can do to tune your instance before you start to run your tests. It depends on the OS you are using but it general you should only run security updates automatically. For example, running on Ubuntu you can make sure you [run unattended upgrade automatically](https://help.ubuntu.com/community/AutomaticSecurityUpdates). 
 
 Another good thing is to make sure you monitor your server to keep track of memory, disk and CPU usage. That can help you find reasons why performance metrics are unstable.
 
 
 #### Running on bare metal
-Running on bare metal servers helps you to avoid the noisy neighbour effect. However it doesn't automatically fixes your problem. You still need to configure/tune your OS to get stable metrics. There's a couple of things you should think of:
+Running on bare metal servers helps you to avoid the noisy neighbour effect. However it doesn't automatically fixes your problem. You still need to configure/tune your OS to get stable metrics. There's a couple of things you need to do:
 
-* Check the CPU governor on your OS. The CPU governor controls how the CPU raises and lowers its frequency in response to the demands the user is placing on their device. Governors have a large impact on performance and power save. You need to configure your server to have the same frequency all the time.
-* Which DNS server that is used can make a big difference. Keep a look at your DNS times and make sure they are stable.
-* Some browsers need to have many open files, make sure to increase the limit.
-
-
+1. Set the CPU governor to *performance*. The CPU governor controls how the CPU raises and lowers its frequency in response to the demands the user is placing on their device. Governors have a large impact on performance and power save. You need to configure your server to have the same frequency all the time. If you are using Ubuntu you should set the governer to *performance* and pin the frequency. You can do that with *cpufrequtils*.  Install `sudo apt-get install cpufrequtils` and checkout the [help page](https://manpages.ubuntu.com/manpages/xenial/man1/cpufreq-set.1.html). [Here's](https://ahnbk.com/?p=1467) another way to do it.
+2. Which DNS server that is used can make a big difference. Keep a look at your DNS times and make sure they are stable. If not read the [manpage](https://ubuntu.com/server/docs/service-domain-name-service-dns) on how to change it.
+3. Number of open files can be quite low on Linux, check it with `ulimit -a`. Increase following [these instructions](https://linuxhint.com/increase-open-file-limit-ubuntu/).
 
 #### Running on Kubernetes
-The problem running on Kubernetes is to get stable connectivity. On Kubernetes you cannot use TC or Docker networks to set the connectivity. 
+Do not use Kubernetes for performance tests. The problem running on Kubernetes is to get stable connectivity. On Kubernetes you cannot use [tc](https://tldp.org/HOWTO/Traffic-Control-HOWTO/intro.html) or Docker networks to set the connectivity. 
 
 ### Mobile
 
-To run mobile phones tests you need to have a phone (yeah!) and somewhere to host your phone.
+To run mobile phones tests you need to have a phone and somewhere to host your phone.
 
 #### Mobile phones
 
