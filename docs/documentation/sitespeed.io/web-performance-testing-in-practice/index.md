@@ -127,9 +127,29 @@ Another good thing is to make sure you monitor your server to keep track of memo
 #### Running on bare metal
 Running on bare metal servers helps you to avoid the noisy neighbour effect. However it doesn't automatically fixes your problem. You still need to configure/tune your OS to get stable metrics. There's a couple of things you need to do:
 
-1. Set the CPU governor to *performance*. The CPU governor controls how the CPU raises and lowers its frequency in response to the demands the user is placing on their device. Governors have a large impact on performance and power save. You need to configure your server to have the same frequency all the time. If you are using Ubuntu you should set the governer to *performance* and pin the frequency. You can do that with *cpufrequtils*.  Install `sudo apt-get install cpufrequtils` and checkout the [help page](https://manpages.ubuntu.com/manpages/xenial/man1/cpufreq-set.1.html). [Here's](https://ahnbk.com/?p=1467) another way to do it.
-2. Which DNS server that is used can make a big difference. Keep a look at your DNS times and make sure they are stable. If not read the [manpage](https://ubuntu.com/server/docs/service-domain-name-service-dns) on how to change it.
-3. Number of open files can be quite low on Linux, check it with `ulimit -a`. Increase following [these instructions](https://linuxhint.com/increase-open-file-limit-ubuntu/).
+##### Pin the CPU governor
+Set the CPU governor to *performance*. The CPU governor controls how the CPU raises and lowers its frequency in response to the demands the user is placing on their device. Governors have a large impact on performance and power save. You need to configure your server to have the same frequency all the time. If you are using Ubuntu you should set the governer to *performance* and pin the frequency. You can do that with *cpufrequtils* or the newer *cpupower* (by installing the linux-tools that match your kernel).
+
+Install `sudo apt-get install cpufrequtils` and checkout the [help page](https://manpages.ubuntu.com/manpages/xenial/man1/cpufreq-set.1.html). The key is to pin the min and the max frequence to be the same.
+
+Check how many cores and min and max frequency by running `cpufreq-info`. Then you can see how you can set the frequency with `cpufreq-set --help`.
+
+Say that the max frequency for your server is 4.00 GHz you want to pin it to use 2.00 GHz (in practice you want to match the frequency with what your users have and you can do that with [the CPU benchmark](/documentation/sitespeed.io/cpu-benchmark/)). They you use the `cpufreq-set` command. 
+
+```cpufreq-set -d 2.00Ghz -u 2.00Ghz -g performance```
+
+That sets the governor to performance and pin it to 2.00Ghz. Then you need to do that for all your cores. You choose core with `-c` so if you have two cores you should run:
+
+```
+cpufreq-set -d 2.00Ghz -u 2.00Ghz -g performance -c 0
+cpufreq-set -d 2.00Ghz -u 2.00Ghz -g performance -c 1
+```
+
+##### Choose DNS server
+Which DNS server that is used can make a big difference. Keep a look at your DNS times and make sure they are stable. If not read the [manpage](https://ubuntu.com/server/docs/service-domain-name-service-dns) on how to change it.
+
+##### Open files
+Number of open files can be quite low on Linux, check it with `ulimit -a`. Increase following [these instructions](https://linuxhint.com/increase-open-file-limit-ubuntu/).
 
 #### Running on Kubernetes
 Do not use Kubernetes for performance tests. The problem running on Kubernetes is to get stable connectivity. On Kubernetes you cannot use [tc](https://tldp.org/HOWTO/Traffic-Control-HOWTO/intro.html) or Docker networks to set the connectivity. 
