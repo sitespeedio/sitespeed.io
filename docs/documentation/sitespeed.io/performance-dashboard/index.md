@@ -202,9 +202,9 @@ To run this in production (=not on your local dev machine) you should make some 
 10. Optional: Disable anonymous users access in Grafana.
 
 ## System Requirements / Memory & CPU
-How large will your instances need to be to run the tests? You need to have enough memory for Chrome/Firefox (yep they can really use a lot of memory for some sites). Before, we used a $80 instance on Digital Ocean (8GB memory, 4 Core processors) but we switched to use AWS c5.large for dashboard.sitespeed.io. We have tried out most cloud providers and at the time AWS gave us the most stable metrics.
+To ensure smooth performance while running tests with sitespeed.io, it is important to have sufficient memory for Chrome and Firefox, as they can require a significant amount of memory for certain websites. In the past, we have used an $80 instance on Digital Ocean (8GB memory, 4 Core processors), but currently, we use a bare metal server at Hetzner for our dashboard.sitespeed.io. We have found that bare metal servers provide the most stable metrics.
 
-To summarize, your test should perform well on (physical or virtual) hardware greater than:
+In summary, for optimal performance, your test environment should have the following minimum hardware specifications:
  - 8GB Memory
  - 4 CPUs
 
@@ -215,15 +215,19 @@ docker run -e MAX_OLD_SPACE_SIZE=4096 --rm -v "$(pwd):/sitespeed.io" sitespeedio
 ```
 
 ## Cost
-Sitespeed.io is Open Source and totally free. But what does it cost to have an instance of sitespeed.io up and running?
+Sitespeed.io is an open-source tool that is completely free to use. However, there are some costs associated with running an instance of the tool.
 
-Setting up an [AWS instance](https://aws.amazon.com/) c5.large has an upfront price $515 for a year (it is much cheaper to pay up front). Or you can use an optimized Droplet for $40 a month at [Digital Ocean](https://www.digitalocean.com/) (they have served us well in our testing).
+For optimal performance, we recommend using a bare-metal server from [Hetzner](https://www.hetzner.com). This is what we use for our own instances and it is available for less than $500 per year.
 
-You also need to pay for S3 (to store the videos and HTML). For [https://dashboard.sitespeed.io](https://dashboard.sitespeed.io) we pay $10-15 per month (depending how long you want to store the data).
+Alternatively, you can use an AWS instance c5.large, with an upfront price of $515 per year. Or you can use an optimized Droplet for $40 a month from Digital Ocean.
 
-Does your organisation already use Graphite/InfluxDB and Grafana? Then use what you have. Otherwise you need to have a server hosting Graphite/Grafana. We pay $20 per month at Digital Ocean for that. Depending on how many metrics and for how long you want to store them, you may need an extra disk. As always, you should also backup your data.
+You will also need to pay for S3 storage to store the videos and HTML or choose to host them yourself.
 
-How many runs can you do per month? Many of the paid services, you also pay per run or have a maximum amount of runs. With our one instance at AWS we do 11 runs for 9 different URLs then we run 5 runs for 4 other URLs. That is 119 runs per hour. 2856 per day and 85680 runs per month. We test Wikipedia on our instance so it is possible that your site is a little slower, then you will not be able to make the same amount of runs per month.
+Overall, the cost of running an instance of Sitespeed.io will depend on your specific setup and usage. However, with the flexibility of the cloud hosting providers, you can scale up or down as needed, so you only pay for what you need.
+
+If your organization already uses Graphite/InfluxDB and Grafana, continue using them. If not, you will need to set up a server to host them. Hosting costs can be around $20 per month on platforms such as Digital Ocean. Keep in mind that the amount of storage needed may vary based on the amount of metrics being collected and how long they are being stored for. Remember to always backup your data.
+
+The number of runs that can be done per month can vary depending on the service being used. Some paid services charge per run or have a limit on the number of runs. Our organization uses one instance on AWS and can perform 11 runs for 9 different URLs, followed by 5 runs for 4 other URLs. This results in a total of 119 runs per hour, 2856 runs per day, and 85680 runs per month. Keep in mind that these numbers are based on testing Wikipedia on our instance and your site may be slower, resulting in a lower number of runs per month.
 
 Total cost:
 

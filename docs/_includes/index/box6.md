@@ -3,8 +3,8 @@
 
 [<img src="{{site.baseurl}}/img/public.png" class="pull-left img-big" alt="The power of sitespeed.io" width="150" height="150" alt="sitespeed.io Public Enemy logo">]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#cost)
 
-Sitespeed.io is Open Source and totally free. But what does it cost to have an instance of sitespeed.io up and running?
+Sitespeed.io is freely available as Open Source software, with no hidden costs. However, running an instance of the tool does come with some expenses.
 
-If you don't run on your own servers, we recommend running on [Digital Ocean](https://www.digitalocean.com/) optimized droplets 2 vCPUs or on [AWS](https://aws.amazon.com/) c5.large, storing the data at S3. On one instance you can run something like 80000+ runs per month for a total cost of $695 per year.
+To keep costs low, we recommend using cloud/server hosting services such as [Hetzner](https://www.hetzner.com), and storing data on S3. With one instance, you can run a large number of tests per month, with an estimated cost of around $500 per year.
 
-[Look more into the cost details]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#cost).
+To get a more detailed understanding of the costs involved, please [refer to our cost breakdown information]({{site.baseurl}}/documentation/sitespeed.io/performance-dashboard/#cost).
