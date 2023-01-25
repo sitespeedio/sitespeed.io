@@ -1,7 +1,7 @@
 ## We believe in privacy
 * * *
-We take your privacy really serious: Our [documentation site](https://www.sitespeed.io/), our [dashboard](https://dashboard.sitespeed.io) and our [compare tool](https://dashboard.sitespeed.io) do not use any tracking software at all (no Google Analytics or any other tracking software). None of the sitespeed.io tools call home.
+At sitespeed.io, we understand the importance of privacy and take it extremely seriously. That's why our [documentation site](https://www.sitespeed.io/), [dashboard](https://dashboard.sitespeed.io), and [compare tool](https://dashboard.sitespeed.io) are completely free of any tracking software, including Google Analytics or any other similar programs. None of our tools will send any data back to us, giving you complete control over your information.
 
-But beware: Chrome and Firefox can call home (we know for fact that they both do). We would love PRs and tips how to make sure browsers don't call home when you run your tests.
+But we also know that your browser can be a weak point. Chrome and Firefox have been known to send data back to their servers. We're always working to find ways to prevent this, and we welcome any contributions or suggestions from our users to improve your privacy when using our tools.
 
-[Read more]({{site.baseurl}}/important/) about how we do things.
+We take pride in our commitment to protecting your privacy and ensuring that you have complete control over your data. To learn more about our privacy practices, please [read more]({{site.baseurl}}/important/).

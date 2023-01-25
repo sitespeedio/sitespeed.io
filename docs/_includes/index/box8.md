@@ -1,8 +1,5 @@
 ## Contribute
 * * *
 
-There's a lot of things you can do to help us make sitespeed.io even better than it is today.
 
-If you code, write documentation or do UX you can check the [help section](https://github.com/sitespeedio/sitespeed.io/blob/main/HELP.md) and the [full issue list](https://github.com/sitespeedio/sitespeed.io/issues).
-
-[These people](https://github.com/sitespeedio/sitespeed.io/blob/main/CONTRIBUTORS.md) has already improved sitespeed.io with pull requests or ideas (massive love!).
+Join the effort to make Sitespeed.io even better! Whether you're a developer, writer, or UX expert, there are many ways you can contribute to the improvement of our tool. Check out our [help section](https://github.com/sitespeedio/sitespeed.io/blob/main/HELP.md) and [full issue list](https://github.com/sitespeedio/sitespeed.io/issues) for opportunities to get involved. And a big thank you to [all those]((https://github.com/sitespeedio/sitespeed.io/blob/main/CONTRIBUTORS.md)) who have already made contributions through pull requests or ideas. Your support is greatly appreciated.
