@@ -74,7 +74,7 @@ test(`pluginDefaults should not include options without an explicit default set`
 });
 
 test(`registerPluginOptions  should not setup options with invalid values`, t => {
-  class TestPlugin extends Plugin {
+  class TestPlugin extends SitespeedioPlugin {
     constructor(options, context, queue) {
       super({ name: 'test', options, context, queue });
     }
