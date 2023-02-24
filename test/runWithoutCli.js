@@ -1,4 +1,4 @@
-import { run as _run } from '../lib/sitespeed';
+import { run as _run } from '../lib/sitespeed.js';
 const urls = ['http://127.0.0.1:3001/simple/'];
 
 async function run() {
