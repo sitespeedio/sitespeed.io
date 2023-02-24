@@ -4,7 +4,9 @@ import {
   pluginDefaults,
   registerPluginOptions
 } from '../lib/cli/util.js';
+import intel from 'intel';
 import { SitespeedioPlugin } from '@sitespeed.io/plugin';
+import { messageMaker } from '../lib/support/messageMaker.js';
 
 import test from 'ava';
 
@@ -79,7 +81,7 @@ test(`registerPluginOptions  should not setup options with invalid values`, t =>
       super({ name: 'test', options, context, queue });
     }
   }
-  const plugin = new TestPlugin();
+  const plugin = new TestPlugin({}, { messageMaker, intel });
 
   const codeUnderTest = () => registerPluginOptions(mockYargs(), plugin);
 

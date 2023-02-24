@@ -1,5 +1,6 @@
 import test from 'ava';
 import dayjs from 'dayjs';
+import intel from 'intel';
 import { default as GraphitePlugin } from '../lib/plugins/graphite/index.js';
 
 import { GraphiteDataGenerator as DataGenerator } from '../lib/plugins/graphite/data-generator.js';
@@ -90,7 +91,6 @@ test(`Use graphite interface by default`, async t => {
 
   const { messageMaker } = await import('../lib/support/messageMaker.js');
   const filterRegistry = await import('../lib/support/filterRegistry.js');
-  const intel = await import('intel');
   const statsHelpers = await import('../lib/support/statsHelpers.js');
   const context = { messageMaker, filterRegistry, intel, statsHelpers };
   const plugin = new GraphitePlugin(options, context);
