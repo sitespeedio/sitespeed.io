@@ -119,20 +119,44 @@ But look at the standard deviation. You can see that the max difference is now h
 Its important that you keep track of standard deviation for your metrics and look for changes!
 
 #### Tuning your instance
-Before you start to run your tests, there are a couple of things you can do to tune your instance before you start to run your tests. It depends on the OS you are using but it general you should look into turn off automatic updates. For example, running on Ubuntu you can make sure you don't run unattended upgrade automatically. Instead you will shutdown your tests and update the server now and then.
+Before you start to run your tests, there are a couple of things you can do to tune your instance before you start to run your tests. It depends on the OS you are using but it general you should only run security updates automatically. For example, running on Ubuntu you can make sure you [run unattended upgrade automatically](https://help.ubuntu.com/community/AutomaticSecurityUpdates). 
 
 Another good thing is to make sure you monitor your server to keep track of memory, disk and CPU usage. That can help you find reasons why performance metrics are unstable.
 
 
 #### Running on bare metal
-Running on bare metal servers helps you to avoid the noisy neighbour effect. However it doesn't automatically fixes your problem. You still need to configure/tune your OS to get stable metrics. We hope to include some examples to help you when we get our hands on a bare metal server :)
+Running on bare metal servers helps you to avoid the noisy neighbour effect. However it doesn't automatically fixes your problem. You still need to configure/tune your OS to get stable metrics. There's a couple of things you need to do:
+
+##### Pin the CPU governor
+Set the CPU governor to *performance*. The CPU governor controls how the CPU raises and lowers its frequency in response to the demands the user is placing on their device. Governors have a large impact on performance and power save. You need to configure your server to have the same frequency all the time. If you are using Ubuntu you should set the governer to *performance* and pin the frequency. You can do that with *cpufrequtils* or the newer *cpupower* (by installing the linux-tools that match your kernel).
+
+Install `sudo apt-get install cpufrequtils` and checkout the [help page](https://manpages.ubuntu.com/manpages/xenial/man1/cpufreq-set.1.html). The key is to pin the min and the max frequence to be the same.
+
+Check how many cores and min and max frequency by running `cpufreq-info`. Then you can see how you can set the frequency with `cpufreq-set --help`.
+
+Say that the max frequency for your server is 4.00 GHz you want to pin it to use 2.00 GHz (in practice you want to match the frequency with what your users have and you can do that with [the CPU benchmark](/documentation/sitespeed.io/cpu-benchmark/)). They you use the `cpufreq-set` command. 
+
+```cpufreq-set -d 2.00Ghz -u 2.00Ghz -g performance```
+
+That sets the governor to performance and pin it to 2.00Ghz. Then you need to do that for all your cores. You choose core with `-c` so if you have two cores you should run:
+
+```
+cpufreq-set -d 2.00Ghz -u 2.00Ghz -g performance -c 0
+cpufreq-set -d 2.00Ghz -u 2.00Ghz -g performance -c 1
+```
+
+##### Choose DNS server
+Which DNS server that is used can make a big difference. Keep a look at your DNS times and make sure they are stable. If not read the [manpage](https://ubuntu.com/server/docs/service-domain-name-service-dns) on how to change it.
+
+##### Open files
+Number of open files can be quite low on Linux, check it with `ulimit -a`. Increase following [these instructions](https://linuxhint.com/increase-open-file-limit-ubuntu/).
 
 #### Running on Kubernetes
-The problem running on Kubernetes is to get stable connectivity. On Kubernetes you cannot use TC or Docker networks to set the connectivity. 
+Do not use Kubernetes for performance tests. The problem running on Kubernetes is to get stable connectivity. On Kubernetes you cannot use [tc](https://tldp.org/HOWTO/Traffic-Control-HOWTO/intro.html) or Docker networks to set the connectivity. 
 
 ### Mobile
 
-To run mobile phones tests you need to have a phone (yeah!) and somewhere to host your phone.
+To run mobile phones tests you need to have a phone and somewhere to host your phone.
 
 #### Mobile phones
 
@@ -147,13 +171,15 @@ A couple of years ago we tested with Chrome, measuring start render on Wikipedia
 
 The problem was that we where running on different phones (but same model) and we are pretty far from the flat line that we want.
 
-What phones should you use? If you plan to run tests on Android you should aim for a phone in the middle market segment. Using slow phones is good for showing the performance for some of your users, but getting stable metrics on slowish phones are hard. I've been using Moto G4 and G5. 
+There's a workaround for this problem: when you set the CPU/GPU performance and pin those, you will get more stable metrics. To do that you need to run your test on a phone where you can use root.
+
+What phones should you use? If you plan to run tests on Android you should aim for a phone in the middle market segment. Using slow phones is good for showing the performance for some of your users, but getting stable metrics on slowish phones are hard. I've been using Moto G4 and G5. At Wikimedia we run phones that matches our 75/95 percentile of our users performance.
 
 One problem running tests on Android is that when the phone temperature gets high, Android will change CPU frequencies and that will affect your metrics. To avoid that you can check the battery temperature before you start your tests (that's implemented in Browsertime/sitespeed.io). You can also root your phone and then set the frequency for you CPU so that it will not change. That is supported for Moto G5 and Pixel 1 using Browsertime/sitespeed.io (thank you Mozilla for contributing that part).
 
 #### Mobile hosting
 
-To run your test you can either host your own mobile phones and drive them through a Mac Mini or find a hosting solution that can do the same. At the moment we do not have any recommendations for hosting, except for hosting the solution yourself.
+To run your test you can either host your own mobile phones and drive them through a Mac Mini, Raspberry Pi or find a hosting solution that can do the same. At the moment we do not have any recommendations for hosting, except for hosting the solution yourself. If you use sitespeed.io we have a [pre-made Raspberry Pi to run your tests](https://github.com/sitespeedio/raspberrypi).
 
 ![Mobile deevice lab]({{site.baseurl}}/img/mobile-device-lab.jpg){:loading="lazy"}
 {: .img-thumbnail}

@@ -1,6 +1,7 @@
 ## Thank you!
 * * *
-Sitespeed.io is built upon Open Source tools, we have a special place in our hearts for those projects ([see the full list]({{site.baseurl}}/documentation/sitespeed.io/developers/#built-upon-open-source)):
+
+We are incredibly grateful for the Open Source tools that form the foundation of Sitespeed.io. Our hearts are filled with appreciation for these amazing projects and the communities that support them. We would like to extend a special thank you to ([see the full list]({{site.baseurl}}/documentation/sitespeed.io/developers/#built-upon-open-source)):
 
  * [Selenium](http://www.seleniumhq.org/)
  * [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics)
