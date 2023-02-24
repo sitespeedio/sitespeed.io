@@ -61,6 +61,7 @@
       "devDependencies": {
         "ava": "4.3.3",
         "changelog-parser": "2.8.1",
+        "clean-css-cli": "5.6.0",
         "eslint": "8.31.0",
         "eslint-config-prettier": "8.5.0",
         "eslint-plugin-prettier": "4.2.1",
@@ -2230,6 +2231,45 @@
       "resolved": "https://registry.npmjs.org/ci-parallel-vars/-/ci-parallel-vars-1.0.1.tgz",
       "integrity": "sha512-uvzpYrpmidaoxvIQHM+rKSrigjOe9feHYbw4uOI2gdfe1C3xIlxO+kVXq83WQWNniTf8bAxVpy+cQeFQsMERKg==",
       "dev": true
+    },
+    "node_modules/clean-css": {
+      "version": "5.3.2",
+      "resolved": "https://registry.npmjs.org/clean-css/-/clean-css-5.3.2.tgz",
+      "integrity": "sha512-JVJbM+f3d3Q704rF4bqQ5UUyTtuJ0JRKNbTKVEeujCCBoMdkEi+V+e8oktO9qGQNSvHrFTM6JZRXrUvGR1czww==",
+      "dev": true,
+      "dependencies": {
+        "source-map": "~0.6.0"
+      },
+      "engines": {
+        "node": ">= 10.0"
+      }
+    },
+    "node_modules/clean-css-cli": {
+      "version": "5.6.0",
+      "resolved": "https://registry.npmjs.org/clean-css-cli/-/clean-css-cli-5.6.0.tgz",
+      "integrity": "sha512-68vorNEG808D1QzeerO9AlwQVTuaR8YSK4aqwIsjJq0wDSyPH11ApHY0O+EQrdEGUZcN+d72v+Nn/gpxjAFewQ==",
+      "dev": true,
+      "dependencies": {
+        "chokidar": "^3.5.2",
+        "clean-css": "^5.3.0",
+        "commander": "7.x",
+        "glob": "^7.1.6"
+      },
+      "bin": {
+        "cleancss": "bin/cleancss"
+      },
+      "engines": {
+        "node": ">= 10.12.0"
+      }
+    },
+    "node_modules/clean-css-cli/node_modules/commander": {
+      "version": "7.2.0",
+      "resolved": "https://registry.npmjs.org/commander/-/commander-7.2.0.tgz",
+      "integrity": "sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==",
+      "dev": true,
+      "engines": {
+        "node": ">= 10"
+      }
     },
     "node_modules/clean-regexp": {
       "version": "1.0.0",
@@ -8027,6 +8067,15 @@
       "resolved": "https://registry.npmjs.org/snakeize/-/snakeize-0.1.0.tgz",
       "integrity": "sha1-EMCI2LWOsHazIpu1oE4jLOEmQi0="
     },
+    "node_modules/source-map": {
+      "version": "0.6.1",
+      "resolved": "https://registry.npmjs.org/source-map/-/source-map-0.6.1.tgz",
+      "integrity": "sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==",
+      "dev": true,
+      "engines": {
+        "node": ">=0.10.0"
+      }
+    },
     "node_modules/source-map-js": {
       "version": "1.0.2",
       "resolved": "https://registry.npmjs.org/source-map-js/-/source-map-js-1.0.2.tgz",
@@ -10927,6 +10976,35 @@
       "resolved": "https://registry.npmjs.org/ci-parallel-vars/-/ci-parallel-vars-1.0.1.tgz",
       "integrity": "sha512-uvzpYrpmidaoxvIQHM+rKSrigjOe9feHYbw4uOI2gdfe1C3xIlxO+kVXq83WQWNniTf8bAxVpy+cQeFQsMERKg==",
       "dev": true
+    },
+    "clean-css": {
+      "version": "5.3.2",
+      "resolved": "https://registry.npmjs.org/clean-css/-/clean-css-5.3.2.tgz",
+      "integrity": "sha512-JVJbM+f3d3Q704rF4bqQ5UUyTtuJ0JRKNbTKVEeujCCBoMdkEi+V+e8oktO9qGQNSvHrFTM6JZRXrUvGR1czww==",
+      "dev": true,
+      "requires": {
+        "source-map": "~0.6.0"
+      }
+    },
+    "clean-css-cli": {
+      "version": "5.6.0",
+      "resolved": "https://registry.npmjs.org/clean-css-cli/-/clean-css-cli-5.6.0.tgz",
+      "integrity": "sha512-68vorNEG808D1QzeerO9AlwQVTuaR8YSK4aqwIsjJq0wDSyPH11ApHY0O+EQrdEGUZcN+d72v+Nn/gpxjAFewQ==",
+      "dev": true,
+      "requires": {
+        "chokidar": "^3.5.2",
+        "clean-css": "^5.3.0",
+        "commander": "7.x",
+        "glob": "^7.1.6"
+      },
+      "dependencies": {
+        "commander": {
+          "version": "7.2.0",
+          "resolved": "https://registry.npmjs.org/commander/-/commander-7.2.0.tgz",
+          "integrity": "sha512-QrWXB+ZQSVPmIWIhtEO9H+gwHaMGYiF5ChvoJ+K9ZGHG/sVsa6yiesAD1GC/x46sET00Xlwo1u49RVVVzvcSkw==",
+          "dev": true
+        }
+      }
     },
     "clean-regexp": {
       "version": "1.0.0",
@@ -15371,6 +15449,12 @@
       "version": "0.1.0",
       "resolved": "https://registry.npmjs.org/snakeize/-/snakeize-0.1.0.tgz",
       "integrity": "sha1-EMCI2LWOsHazIpu1oE4jLOEmQi0="
+    },
+    "source-map": {
+      "version": "0.6.1",
+      "resolved": "https://registry.npmjs.org/source-map/-/source-map-0.6.1.tgz",
+      "integrity": "sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==",
+      "dev": true
     },
     "source-map-js": {
       "version": "1.0.2",

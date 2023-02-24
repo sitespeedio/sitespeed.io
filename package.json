@@ -62,6 +62,7 @@
   "devDependencies": {
     "ava": "4.3.3",
     "changelog-parser": "2.8.1",
+    "clean-css-cli": "5.6.0",
     "eslint": "8.31.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-prettier": "4.2.1",
