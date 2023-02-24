@@ -1,9 +1,9 @@
-const sitespeed = require('../lib/sitespeed');
+import { run as _run } from '../lib/sitespeed';
 const urls = ['http://127.0.0.1:3001/simple/'];
 
 async function run() {
   try {
-    let result = await sitespeed.run({
+    let result = await _run({
       urls,
       browsertime: {
         iterations: 1,
@@ -19,14 +19,16 @@ async function run() {
       /* eslint-disable no-console */
       console.error(result.errors);
       /* eslint-enable no-console */
+      // eslint-disable-next-line unicorn/no-process-exit
       process.exit(1);
     }
-  } catch (e) {
+  } catch (error) {
     /* eslint-disable no-console */
-    console.error(e);
+    console.error(error);
     /* eslint-enable no-console */
+    // eslint-disable-next-line unicorn/no-process-exit
     process.exit(1);
   }
 }
 
-run();
+await run();

@@ -1,17 +1,14 @@
 #!/usr/bin/env node
 /*eslint no-console: 0*/
+import { init } from 'license-checker';
 
-'use strict';
-
-const checker = require('license-checker');
-
-checker.init(
+init(
   {
     start: '.'
   },
-  function (err, json) {
-    if (err) {
-      console.error(err.message);
+  function (error, json) {
+    if (error) {
+      console.error(error.message);
       process.exit(1);
     } else {
       const incompatibleDependencies = Object.keys(json).filter(packageName => {
@@ -24,12 +21,12 @@ checker.init(
             .filter(
               license =>
                 !(
-                  license.match(/LGPL/) ||
-                  license.match(/MIT/) ||
-                  license.match(/BSD/)
+                  /LGPL/.test(license) ||
+                  /MIT/.test(license) ||
+                  /BSD/.test(license)
                 )
             )
-            .find(license => license.match(/GPL/))
+            .some(license => license.match(/GPL/))
         )
           return packageName;
       });

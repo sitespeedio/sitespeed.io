@@ -38,6 +38,18 @@ chrome
       --chrome.blockDomainsExcept, --blockDomainsExcept          Block all domains except this domain. Use it multiple time to keep multiple domains. You can also wildcard domains like *.sitespeed.io. Use this when you wanna block out all third parties.
       --chrome.ignoreCertificateErrors                           Make Chrome ignore certificate errors.  Defaults to true.  [boolean] [default: true]
 
+android
+      --android.powerTesting, --androidPower                                                       Enables android power testing - charging must be disabled for this.(You have to disable charging yourself for this - it depends on the phone model).  [boolean]
+      --android.ignoreShutdownFailures, --ignoreShutdownFailures                                   If set, shutdown failures will be ignored on Android.  [boolean] [default: false]
+      --android.rooted, --androidRooted                                                            If your phone is rooted you can use this to set it up following Mozillas best practice for stable metrics.  [boolean] [default: false]
+      --android.batteryTemperatureLimit, --androidBatteryTemperatureLimit                          Do the battery temperature need to be below a specific limit before we start the test?
+      --android.batteryTemperatureWaitTimeInSeconds, --androidBatteryTemperatureWaitTimeInSeconds  How long time to wait (in seconds) if the androidBatteryTemperatureWaitTimeInSeconds is not met before the next try  [default: 120]
+      --android.batteryTemperatureReboot, --androidBatteryTemperatureReboot                        If your phone does not get the minimum temperature aftet the wait time, reboot the phone.  [boolean] [default: false]
+      --android.pretestPowerPress, --androidPretestPowerPress                                      Press the power button on the phone before a test starts.  [boolean] [default: false]
+      --android.pretestPressHomeButton, --androidPretestPressHomeButton                            Press the home button on the phone before a test starts.  [boolean] [default: false]
+      --android.verifyNetwork, --androidVerifyNetwork                                              Before a test start, verify that the device has a Internet connection by pinging 8.8.8.8 (or a configurable domain with --androidPingAddress)  [boolean] [default: false]
+      --android.gnirehtet, --gnirehtet                                                             Start gnirehtet and reverse tethering the traffic from your Android phone.  [boolean] [default: false]
+
 firefox
       --firefox.binaryPath                      Path to custom Firefox binary (e.g. Firefox Nightly). On OS X, the path should be to the binary inside the app bundle, e.g. /Applications/Firefox.app/Contents/MacOS/firefox-bin
       --firefox.geckodriverPath                 Path to custom geckodriver binary. Make sure to use a geckodriver version that's compatible with the version of Firefox (Gecko) you're using
@@ -134,76 +146,67 @@ debug
       --debug  Run Browsertime in debug mode.  [boolean] [default: false]
 
 Options:
-      --cpu                                         Easy way to enable both chrome.timeline for Chrome and geckoProfile for Firefox  [boolean]
-      --androidPower                                Enables android power testing - charging must be disabled for this.(You have to disable charging yourself for this - it depends on the phone model).  [boolean]
-      --video                                       Record a video and store the video. Set it to false to remove the video that is created by turning on visualMetrics. To remove fully turn off video recordings, make sure to set video and visualMetrics to false. Requires FFMpeg to be installed.  [boolean]
-      --visualMetrics                               Collect Visual Metrics like First Visual Change, SpeedIndex, Perceptual Speed Index and Last Visual Change. Requires FFMpeg and Python dependencies  [boolean]
-      --visualElements, --visuaElements             Collect Visual Metrics from elements. Works only with --visualMetrics turned on. By default you will get visual metrics from the largest image within the view port and the largest h1. You can also configure to pickup your own defined elements with --scriptInput.visualElements  [boolean]
-      --visualMetricsPerceptual                     Collect Perceptual Speed Index when you run --visualMetrics.  [boolean]
-      --visualMetricsContentful                     Collect Contentful Speed Index when you run --visualMetrics.  [boolean]
-      --visualMetricsPortable                       Use the portable visual-metrics processing script (no ImageMagick dependencies).  [boolean]
-      --scriptInput.visualElements                  Include specific elements in visual elements. Give the element a name and select it with document.body.querySelector. Use like this: --scriptInput.visualElements name:domSelector see https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors. Add multiple instances to measure multiple elements. Visual Metrics will use these elements and calculate when they are visible and fully rendered.
-      --scriptInput.longTask, --minLongTaskLength   Set the minimum length of a task to be categorised as a CPU Long Task. It can never be smaller than 50. The value is in ms and only works in Chromium browsers at the moment.  [number] [default: 50]
-  -b, --browser                                     Specify browser. Safari only works on OS X/iOS. Edge only work on OS that supports Edge.  [choices: "chrome", "firefox", "edge", "safari"] [default: "chrome"]
-      --ignoreShutdownFailures                      If set, shutdown failures will be ignored on Android.  [boolean] [default: false]
-      --android                                     Short key to use Android. Defaults to use com.android.chrome unless --browser is specified.  [boolean] [default: false]
-      --androidRooted                               If your phone is rooted you can use this to set it up following Mozillas best practice for stable metrics.  [boolean] [default: false]
-      --androidBatteryTemperatureLimit              Do the battery temperature need to be below a specific limit before we start the test?
-      --androidBatteryTemperatureWaitTimeInSeconds  How long time to wait (in seconds) if the androidBatteryTemperatureWaitTimeInSeconds is not met before the next try  [default: 120]
-      --androidBatteryTemperatureReboot             If your phone does not get the minimum temperature aftet the wait time, reboot the phone.  [boolean] [default: false]
-      --androidPretestPowerPress                    Press the power button on the phone before a test starts.  [boolean] [default: false]
-      --androidPretestPressHomeButton               Press the home button on the phone before a test starts.  [boolean] [default: false]
-      --androidVerifyNetwork                        Before a test start, verify that the device has a Internet connection by pinging 8.8.8.8 (or a configurable domain with --androidPingAddress)  [boolean] [default: false]
-      --processStartTime                            Capture browser process start time (in milliseconds). Android only for now.  [boolean] [default: false]
-      --pageCompleteCheck                           Supply a JavaScript (inline or JavaScript file) that decides when the browser is finished loading the page and can start to collect metrics. The JavaScript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd. By default the tests ends 2 seconds after loadEventEnd. Also checkout --pageCompleteCheckInactivity and --pageCompleteCheckPollTimeout
-      --pageCompleteWaitTime                        How long time you want to wait for your pageComplteteCheck to finish, after it is signaled to closed. Extra parameter passed on to your pageCompleteCheck.  [default: 8000]
-      --pageCompleteCheckInactivity                 Alternative way to choose when to end your test. This will wait for 2 seconds of inactivity that happens after loadEventEnd.  [boolean] [default: false]
-      --pageCompleteCheckPollTimeout                The time in ms to wait for running the page complete check the next time.  [number] [default: 1500]
-      --pageCompleteCheckStartWait                  The time in ms to wait for running the page complete check for the first time. Use this when you have a pageLoadStrategy set to none  [number] [default: 5000]
-      --pageLoadStrategy                            Set the strategy to waiting for document readiness after a navigation event. After the strategy is ready, your pageCompleteCheck will start runninhg.  [string] [choices: "eager", "none", "normal"] [default: "none"]
-  -n, --iterations                                  Number of times to test the url (restarting the browser between each test)  [number] [default: 3]
-      --prettyPrint                                 Enable to print json/har with spaces and indentation. Larger files, but easier on the eye.  [boolean] [default: false]
-      --delay                                       Delay between runs, in milliseconds  [number] [default: 0]
-      --timeToSettle                                Extra time added for the browser to settle before starting to test a URL. This delay happens after the browser was opened and before the navigation to the URL  [number] [default: 0]
-      --webdriverPageload                           Use webdriver.get to initialize the page load instead of window.location.  [boolean] [default: false]
-  -r, --requestheader                               Request header that will be added to the request. Add multiple instances to add multiple request headers. Works for Firefox and Chrome. Use the following format key:value
-      --cookie                                      Cookie that will be added to the request. Add multiple instances to add multiple request cookies. Works for Firefox and Chrome. Use the following format cookieName=cookieValue
-      --injectJs                                    Inject JavaScript into the current page at document_start. Works for Firefox and Chrome. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
-      --block                                       Domain to block or URL or URL pattern to block. If you use Chrome you can also use --blockDomainsExcept (that is more performant). Works in Chrome/Edge. For Firefox you can only block domains.
-      --percentiles                                 The percentile values within the data browsertime will calculate and report. This argument uses Yargs arrays and you you to set them correctly it is recommended to use a configuraration file instead.  [array] [default: [0,10,90,99,100]]
-      --decimals                                    The decimal points browsertime statistics round to.  [number] [default: 0]
-      --iqr                                         Use IQR, or Inter Quartile Range filtering filters data based on the spread of the data. See  https://en.wikipedia.org/wiki/Interquartile_range. In some cases, IQR filtering may not filter out anything. This can happen if the acceptable range is wider than the bounds of your dataset.  [boolean] [default: false]
-      --cacheClearRaw                               Use internal browser functionality to clear browser cache between runs instead of only using Selenium.  [boolean] [default: false]
-      --basicAuth                                   Use it if your server is behind Basic Auth. Format: username@password (Only Chrome and Firefox at the moment).
-      --preScript, --setUp                          Selenium script(s) to run before you test your URL/script. They will run outside of the analyse phase. Note that --preScript can be passed multiple times.
-      --postScript, --tearDown                      Selenium script(s) to run after you test your URL. They will run outside of the analyse phase. Note that --postScript can be passed multiple times.
-      --script                                      Add custom Javascript to run after the page has finished loading to collect metrics. If a single js file is specified, it will be included in the category named "custom" in the output json. Pass a folder to include all .js scripts in the folder, and have the folder name be the category. Note that --script can be passed multiple times.
-      --userAgent                                   Override user agent
-      --appendToUserAgent                           Append a String to the user agent. Works in Chrome/Edge and Firefox.
-  -q, --silent                                      Only output info in the logs, not to the console. Enter twice to suppress summary line.  [count]
-  -o, --output                                      Specify file name for Browsertime data (ex: 'browsertime'). Unless specified, file will be named browsertime.json
-      --har                                         Specify file name for .har file (ex: 'browsertime'). Unless specified, file will be named browsertime.har
-      --skipHar                                     Pass --skipHar to not collect a HAR file.  [boolean]
-      --gzipHar                                     Pass --gzipHar to gzip the HAR file  [boolean]
-      --config                                      Path to JSON config file. You can also use a .browsertime.json file that will automatically be found by Browsertime using find-up.
-      --viewPort                                    Size of browser window WIDTHxHEIGHT or "maximize". Note that "maximize" is ignored for xvfb.
-      --resultDir                                   Set result directory for the files produced by Browsertime
-      --useSameDir                                  Store all files in the same structure and do not use the path structure released in 4.0. Use this only if you are testing ONE URL.
-      --xvfb                                        Start xvfb before the browser is started  [boolean] [default: false]
-      --xvfbParams.display                          The display used for xvfb  [default: 99]
-      --tcpdump                                     Collect a tcpdump for each tested URL.  [boolean] [default: false]
-      --tcpdumpPacketBuffered                       Use together with --tcpdump to save each packet directly to the file, instead of buffering.  [boolean] [default: false]
-      --urlAlias                                    Use an alias for the URL. You need to pass on the same amount of alias as URLs. The alias is used as the name of the URL and used for filepath. Pass on multiple --urlAlias for multiple alias/URLs. You can also add alias direct in your script.  [string]
-      --preURL, --warmLoad                          A URL that will be accessed first by the browser before the URL that you wanna analyze. Use it to fill the browser cache.
-      --preURLDelay, --warmLoadDealy                Delay between preURL and the URL you want to test (in milliseconds)  [default: 1500]
-      --userTimingWhitelist                         All userTimings are captured by default this option takes a regex that will whitelist which userTimings to capture in the results.
-      --headless                                    Run the browser in headless mode. Works for Firefox and Chrome.  [boolean] [default: false]
-      --gnirehtet                                   Start gnirehtet and reverse tethering the traffic from your Android phone.  [boolean] [default: false]
-      --flushDNS                                    Flush DNS between runs, works on Mac OS and Linux. Your user needs sudo rights to be able to flush the DNS.  [boolean] [default: false]
-      --extension                                   Path to a WebExtension to be installed in the browser. Note that --extension can be passed multiple times.
-      --spa                                         Convenient parameter to use if you test a SPA application: will automatically wait for X seconds after last network activity and use hash in file names. Read more: https://www.sitespeed.io/documentation/sitespeed.io/spa/  [boolean] [default: false]
-      --browserRestartTries                         If the browser fails to start, you can retry to start it this amount of times.  [number] [default: 3]
-      --preWarmServer                               Do pre test requests to the URL(s) that you want to test that is not measured. Do that to make sure your web server is ready to serve. The pre test requests is done with another browser instance that is closed after pre testing is done.  [boolean] [default: false]
-      --preWarmServerWaitTime                       The wait time before you start the real testing after your pre-cache request.  [number] [default: 5000]
-  -h, --help                                        Show help  [boolean]
-  -V, --version                                     Show version number  [boolean]
+      --cpu                                        Easy way to enable both chrome.timeline for Chrome and geckoProfile for Firefox  [boolean]
+      --video                                      Record a video and store the video. Set it to false to remove the video that is created by turning on visualMetrics. To remove fully turn off video recordings, make sure to set video and visualMetrics to false. Requires FFMpeg to be installed.  [boolean]
+      --visualMetrics                              Collect Visual Metrics like First Visual Change, SpeedIndex, Perceptual Speed Index and Last Visual Change. Requires FFMpeg and Python dependencies  [boolean]
+      --visualElements, --visuaElements            Collect Visual Metrics from elements. Works only with --visualMetrics turned on. By default you will get visual metrics from the largest image within the view port and the largest h1. You can also configure to pickup your own defined elements with --scriptInput.visualElements  [boolean]
+      --visualMetricsPerceptual                    Collect Perceptual Speed Index when you run --visualMetrics.  [boolean]
+      --visualMetricsContentful                    Collect Contentful Speed Index when you run --visualMetrics.  [boolean]
+      --visualMetricsPortable                      Use the portable visual-metrics processing script (no ImageMagick dependencies).  [boolean] [default: true]
+      --scriptInput.visualElements                 Include specific elements in visual elements. Give the element a name and select it with document.body.querySelector. Use like this: --scriptInput.visualElements name:domSelector see https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors. Add multiple instances to measure multiple elements. Visual Metrics will use these elements and calculate when they are visible and fully rendered.
+      --scriptInput.longTask, --minLongTaskLength  Set the minimum length of a task to be categorised as a CPU Long Task. It can never be smaller than 50. The value is in ms and only works in Chromium browsers at the moment.  [number] [default: 50]
+  -b, --browser                                    Specify browser. Safari only works on OS X/iOS. Edge only work on OS that supports Edge.  [choices: "chrome", "firefox", "edge", "safari"] [default: "chrome"]
+      --android                                    Short key to use Android. Defaults to use com.android.chrome unless --browser is specified.  [boolean] [default: false]
+      --processStartTime                           Capture browser process start time (in milliseconds). Android only for now.  [boolean] [default: false]
+      --pageCompleteCheck                          Supply a JavaScript (inline or JavaScript file) that decides when the browser is finished loading the page and can start to collect metrics. The JavaScript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd. By default the tests ends 2 seconds after loadEventEnd. Also checkout --pageCompleteCheckInactivity and --pageCompleteCheckPollTimeout
+      --pageCompleteWaitTime                       How long time you want to wait for your pageComplteteCheck to finish, after it is signaled to closed. Extra parameter passed on to your pageCompleteCheck.  [default: 8000]
+      --pageCompleteCheckInactivity                Alternative way to choose when to end your test. This will wait for 2 seconds of inactivity that happens after loadEventEnd.  [boolean] [default: false]
+      --pageCompleteCheckPollTimeout               The time in ms to wait for running the page complete check the next time.  [number] [default: 1500]
+      --pageCompleteCheckStartWait                 The time in ms to wait for running the page complete check for the first time. Use this when you have a pageLoadStrategy set to none  [number] [default: 5000]
+      --pageLoadStrategy                           Set the strategy to waiting for document readiness after a navigation event. After the strategy is ready, your pageCompleteCheck will start runninhg.  [string] [choices: "eager", "none", "normal"] [default: "none"]
+  -n, --iterations                                 Number of times to test the url (restarting the browser between each test)  [number] [default: 3]
+      --prettyPrint                                Enable to print json/har with spaces and indentation. Larger files, but easier on the eye.  [boolean] [default: false]
+      --delay                                      Delay between runs, in milliseconds  [number] [default: 0]
+      --timeToSettle                               Extra time added for the browser to settle before starting to test a URL. This delay happens after the browser was opened and before the navigation to the URL  [number] [default: 0]
+      --webdriverPageload                          Use webdriver.get to initialize the page load instead of window.location.  [boolean] [default: false]
+  -r, --requestheader                              Request header that will be added to the request. Add multiple instances to add multiple request headers. Works for Firefox and Chrome. Use the following format key:value
+      --cookie                                     Cookie that will be added to the request. Add multiple instances to add multiple request cookies. Works for Firefox and Chrome. Use the following format cookieName=cookieValue
+      --injectJs                                   Inject JavaScript into the current page at document_start. Works for Firefox and Chrome. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
+      --block                                      Domain to block or URL or URL pattern to block. If you use Chrome you can also use --blockDomainsExcept (that is more performant). Works in Chrome/Edge. For Firefox you can only block domains.
+      --percentiles                                The percentile values within the data browsertime will calculate and report. This argument uses Yargs arrays and you you to set them correctly it is recommended to use a configuraration file instead.  [array] [default: [0,10,90,99,100]]
+      --decimals                                   The decimal points browsertime statistics round to.  [number] [default: 0]
+      --iqr                                        Use IQR, or Inter Quartile Range filtering filters data based on the spread of the data. See  https://en.wikipedia.org/wiki/Interquartile_range. In some cases, IQR filtering may not filter out anything. This can happen if the acceptable range is wider than the bounds of your dataset.  [boolean] [default: false]
+      --cacheClearRaw                              Use internal browser functionality to clear browser cache between runs instead of only using Selenium.  [boolean] [default: false]
+      --basicAuth                                  Use it if your server is behind Basic Auth. Format: username@password (Only Chrome and Firefox at the moment).
+      --preScript, --setUp                         Selenium script(s) to run before you test your URL/script. They will run outside of the analyse phase. Note that --preScript can be passed multiple times.
+      --postScript, --tearDown                     Selenium script(s) to run after you test your URL. They will run outside of the analyse phase. Note that --postScript can be passed multiple times.
+      --script                                     Add custom Javascript to run after the page has finished loading to collect metrics. If a single js file is specified, it will be included in the category named "custom" in the output json. Pass a folder to include all .js scripts in the folder, and have the folder name be the category. Note that --script can be passed multiple times.
+      --userAgent                                  Override user agent
+      --appendToUserAgent                          Append a String to the user agent. Works in Chrome/Edge and Firefox.
+  -q, --silent                                     Only output info in the logs, not to the console. Enter twice to suppress summary line.  [count]
+  -o, --output                                     Specify file name for Browsertime data (ex: 'browsertime'). Unless specified, file will be named browsertime.json
+      --har                                        Specify file name for .har file (ex: 'browsertime'). Unless specified, file will be named browsertime.har
+      --skipHar                                    Pass --skipHar to not collect a HAR file.  [boolean]
+      --gzipHar                                    Pass --gzipHar to gzip the HAR file  [boolean]
+      --config                                     Path to JSON config file. You can also use a .browsertime.json file that will automatically be found by Browsertime using find-up.
+      --viewPort                                   Size of browser window WIDTHxHEIGHT or "maximize". Note that "maximize" is ignored for xvfb.
+      --resultDir                                  Set result directory for the files produced by Browsertime
+      --useSameDir                                 Store all files in the same structure and do not use the path structure released in 4.0. Use this only if you are testing ONE URL.
+      --xvfb                                       Start xvfb before the browser is started  [boolean] [default: false]
+      --xvfbParams.display                         The display used for xvfb  [default: 99]
+      --tcpdump                                    Collect a tcpdump for each tested URL.  [boolean] [default: false]
+      --tcpdumpPacketBuffered                      Use together with --tcpdump to save each packet directly to the file, instead of buffering.  [boolean] [default: false]
+      --urlAlias                                   Use an alias for the URL. You need to pass on the same amount of alias as URLs. The alias is used as the name of the URL and used for filepath. Pass on multiple --urlAlias for multiple alias/URLs. You can also add alias direct in your script.  [string]
+      --preURL, --warmLoad                         A URL that will be accessed first by the browser before the URL that you wanna analyze. Use it to fill the browser cache.
+      --preURLDelay, --warmLoadDealy               Delay between preURL and the URL you want to test (in milliseconds)  [default: 1500]
+      --userTimingWhitelist                        All userTimings are captured by default this option takes a regex that will whitelist which userTimings to capture in the results.
+      --headless                                   Run the browser in headless mode. Works for Firefox and Chrome.  [boolean] [default: false]
+      --flushDNS                                   Flush DNS between runs, works on Mac OS and Linux. Your user needs sudo rights to be able to flush the DNS.  [boolean] [default: false]
+      --extension                                  Path to a WebExtension to be installed in the browser. Note that --extension can be passed multiple times.
+      --spa                                        Convenient parameter to use if you test a SPA application: will automatically wait for X seconds after last network activity and use hash in file names. Read more: https://www.sitespeed.io/documentation/sitespeed.io/spa/  [boolean] [default: false]
+      --cjs                                        Load scripting files that ends with .js as common js. Default (false) loads files as esmodules.  [boolean] [default: false]
+      --browserRestartTries                        If the browser fails to start, you can retry to start it this amount of times.  [number] [default: 3]
+      --preWarmServer                              Do pre test requests to the URL(s) that you want to test that is not measured. Do that to make sure your web server is ready to serve. The pre test requests is done with another browser instance that is closed after pre testing is done.  [boolean] [default: false]
+      --preWarmServerWaitTime                      The wait time before you start the real testing after your pre-cache request.  [number] [default: 5000]
+  -h, --help                                       Show help  [boolean]
+  -V, --version                                    Show version number  [boolean]
