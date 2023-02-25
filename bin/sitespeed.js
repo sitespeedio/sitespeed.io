@@ -2,24 +2,30 @@
 
 /*eslint no-console: 0*/
 
-'use strict';
+import { writeFileSync } from 'node:fs';
+import { execSync } from 'node:child_process';
+import { platform } from 'node:os';
+import { parseCommandLine } from '../lib/cli/cli.js';
+import { run } from '../lib/sitespeed.js';
 
-const fs = require('fs');
-const cli = require('../lib/cli/cli');
-const sitespeed = require('../lib/sitespeed');
-const { execSync } = require('child_process');
-const os = require('os');
+async function start() {
+  let parsed = await parseCommandLine();
+  let budgetFailing = false;
+  // hack for getting in the unchanged cli options
+  parsed.options.explicitOptions = parsed.explicitOptions;
+  parsed.options.urls = parsed.urls;
+  parsed.options.urlsMetaData = parsed.urlsMetaData;
 
-async function run(options) {
+  let options = parsed.options;
   process.exitCode = 1;
   try {
-    const result = await sitespeed.run(options);
+    const result = await run(options);
 
     if (options.storeResult) {
       if (options.storeResult != 'true') {
-        fs.writeFileSync(options.storeResult, JSON.stringify(result));
+        writeFileSync(options.storeResult, JSON.stringify(result));
       } else {
-        fs.writeFileSync('result.json', JSON.stringify(result));
+        writeFileSync('result.json', JSON.stringify(result));
       }
     }
 
@@ -27,9 +33,9 @@ async function run(options) {
       throw new Error('Errors while running:\n' + result.errors.join('\n'));
     }
 
-    if ((options.open || options.o) && os.platform() === 'darwin') {
+    if ((options.open || options.o) && platform() === 'darwin') {
       execSync('open ' + result.localPath + '/index.html');
-    } else if ((options.open || options.o) && os.platform() === 'linux') {
+    } else if ((options.open || options.o) && platform() === 'linux') {
       execSync('xdg-open ' + result.localPath + '/index.html');
     }
 
@@ -47,17 +53,12 @@ async function run(options) {
     ) {
       process.exitCode = 0;
     }
-  } catch (e) {
+  } catch (error) {
     process.exitCode = 1;
+    console.log(error);
   } finally {
     process.exit();
   }
 }
-let parsed = cli.parseCommandLine();
-let budgetFailing = false;
-// hack for getting in the unchanged cli options
-parsed.options.explicitOptions = parsed.explicitOptions;
-parsed.options.urls = parsed.urls;
-parsed.options.urlsMetaData = parsed.urlsMetaData;
 
-run(parsed.options);
+await start();

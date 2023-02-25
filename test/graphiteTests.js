@@ -1,8 +1,9 @@
-'use strict';
+import test from 'ava';
+import dayjs from 'dayjs';
+import intel from 'intel';
+import { default as GraphitePlugin } from '../lib/plugins/graphite/index.js';
 
-const DataGenerator = require('../lib/plugins/graphite/data-generator');
-const test = require('ava');
-const dayjs = require('dayjs');
+import { GraphiteDataGenerator as DataGenerator } from '../lib/plugins/graphite/data-generator.js';
 
 test(`Test dataGenerator`, t => {
   const message = {
@@ -73,29 +74,26 @@ test(`Test generate data in statsD format`, t => {
     graphite: { statsd: true }
   });
   const data = generator.dataFromMessage(message, dayjs());
-
   const statsDFormat = new RegExp(
-    /ns.summary.sub_domain_com.chrome.cable.domains.www.sitespeed.io.dns.(median|mean|min|p10|p90|p99|max):[\d]{1,}\|ms$/
+    /ns.summary.sub_domain_com.chrome.cable.domains.www.sitespeed.io.dns.(median|mean|min|p10|p90|p99|max):\d+\|ms$/
   );
   for (let line of data) {
     t.true(statsDFormat.test(line));
   }
 });
 
-test(`Use graphite interface by default`, t => {
-  const plugin = require('../lib/plugins/graphite');
+test(`Use graphite interface by default`, async t => {
   const options = {
     graphite: {
       host: '127.0.0.1'
     }
   };
-  const messageMaker = require('../lib/support/messageMaker');
-  const filterRegistry = require('../lib/support/filterRegistry');
-  const intel = require('intel');
-  const statsHelpers = require('../lib/support/statsHelpers');
-  const context = { messageMaker, filterRegistry, intel, statsHelpers };
 
+  const { messageMaker } = await import('../lib/support/messageMaker.js');
+  const filterRegistry = await import('../lib/support/filterRegistry.js');
+  const statsHelpers = await import('../lib/support/statsHelpers.js');
+  const context = { messageMaker, filterRegistry, intel, statsHelpers };
+  const plugin = new GraphitePlugin(options, context);
   plugin.open(context, options);
-  console.log(plugin.sender.facility);
   t.is(plugin.sender.facility, 'Graphite');
 });

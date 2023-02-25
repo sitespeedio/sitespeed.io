@@ -1,12 +1,15 @@
-'use strict';
+import test from 'ava';
+import { join, resolve } from 'node:path';
+import { promisify } from 'node:util';
+import { execFile as _execFile } from 'node:child_process';
+const execFile = promisify(_execFile);
 
-const test = require('ava');
-const path = require('path');
-const util = require('util');
-const execFile = util.promisify(require('child_process').execFile);
+import { fileURLToPath } from 'node:url';
+
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 function runSitespeed(options = []) {
-  const cli = path.join(path.resolve(__dirname), '../bin/sitespeed.js');
+  const cli = join(resolve(__dirname), '../bin/sitespeed.js');
   return execFile('node', [cli].concat(options));
 }
 
@@ -15,9 +18,9 @@ test(`Test cli without any arguments`, async t => {
   let exitCode = 0;
   try {
     await runSitespeed();
-  } catch (err) {
-    stderr = err.stderr;
-    exitCode = err.code;
+  } catch (error) {
+    stderr = error.stderr;
+    exitCode = error.code;
   }
   t.not(stderr, undefined, 'Should output in standard error');
   t.not(exitCode, 0, 'Should exit with error code');
