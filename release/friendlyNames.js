@@ -1,6 +1,4 @@
-'use strict';
-
-const friendly = require('../lib/support/friendlynames');
+import friendly from '../lib/support/friendlynames';
 
 for (let key of Object.keys(friendly)) {
   for (let tool of Object.keys(friendly[key])) {

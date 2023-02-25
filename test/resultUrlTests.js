@@ -1,8 +1,7 @@
-'use strict';
+import dayjs from 'dayjs';
+import test from 'ava';
 
-const resultsStorage = require('../lib/core/resultsStorage');
-const dayjs = require('dayjs');
-const test = require('ava');
+import { resultsStorage } from '../lib/core/resultsStorage/index.js';
 
 const timestamp = dayjs();
 const timestampString = timestamp.format('YYYY-MM-DD-HH-mm-ss');
@@ -13,11 +12,7 @@ function createResultUrls(url, outputFolder, resultBaseURL) {
 }
 
 test(`Test hasBaseUrl should be false if base url is missing`, t => {
-  const resultUrls = createResultUrls(
-    'http://www.foo.bar',
-    undefined,
-    undefined
-  );
+  const resultUrls = createResultUrls('http://www.foo.bar');
   t.is(
     resultUrls.hasBaseUrl(),
     false,

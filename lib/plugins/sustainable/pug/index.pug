@@ -44,22 +44,22 @@ table
         th Transfer Size
     tr
         td 1 page view total
-        td #{h.co2.format(co2PerPageView)}
+        td #{h.co2(co2PerPageView)}
         td #{h.size.format(totalTransfer)}
 
     tr
         td 1 page view first party
-        td #{h.co2.format(co2FirstParty)} (#{Number(co2FirstParty / (co2FirstParty + co2ThirdParty) * 100).toFixed(2)} %)
+        td #{h.co2(co2FirstParty)} (#{Number(co2FirstParty / (co2FirstParty + co2ThirdParty) * 100).toFixed(2)} %)
         td #{h.size.format(firstPartyTransferPerPage)}
     tr
         td 1 page view third party
-        td #{h.co2.format(co2ThirdParty)} (#{Number(co2ThirdParty / (co2FirstParty + co2ThirdParty) * 100).toFixed(2)} %)
+        td #{h.co2(co2ThirdParty)} (#{Number(co2ThirdParty / (co2FirstParty + co2ThirdParty) * 100).toFixed(2)} %)
         td #{h.size.format(thirdPartyTransferPerPage)}
 
     if (options.sustainable && options.sustainable.pageViews)
         tr
             td #{options.sustainable.pageViews.toLocaleString()} page views
-            td #{h.co2.format(totalCO2)}
+            td #{h.co2(totalCO2)}
             td #{h.size.format(totalTransfer * options.sustainable.pageViews)}
 - sustainable = pageInfo.data.sustainable.pageSummary ? pageInfo.data.sustainable.pageSummary.firstRun : sustainable
 a#sustainable-per-domain
@@ -78,7 +78,7 @@ table
                 - if (sustainable.hostingGreenCheck.indexOf(data.domain) > -1)
                     span(class='label normal ok') green
             - const percentage = (data.co2 / co2PerPageView) * 100
-            td.number #{h.co2.format(data.co2)} (#{Number(percentage).toFixed(2)} %)
+            td.number #{h.co2(data.co2)} (#{Number(percentage).toFixed(2)} %)
             td.number #{h.size.format(data.transferSize)}
 a#dirtiest-assets
 h2 Dirtiest assets
@@ -95,7 +95,7 @@ table
             td.url.assetsurl(data-title='URL')
                 a(href=resource.url)= h.shortAsset(resource.url)
             - const percentage = (resource.co2 / co2PerPageView) * 100
-            td.number #{h.co2.format(resource.co2)} (#{Number(percentage).toFixed(2)} %)
+            td.number #{h.co2(resource.co2)} (#{Number(percentage).toFixed(2)} %)
             td.number= h.size.format(resource.transferSize)
 a#sustainible-per-content-type
 h2 Per Content Type
@@ -111,5 +111,5 @@ table
         tr
             td #{t.type}
             - const percentage = (t.co2 / co2PerPageView) * 100
-            td.number #{h.co2.format(t.co2)} (#{Number(percentage).toFixed(2)} %)
+            td.number #{h.co2(t.co2)} (#{Number(percentage).toFixed(2)} %)
             td.number= h.size.format(t.transferSize)

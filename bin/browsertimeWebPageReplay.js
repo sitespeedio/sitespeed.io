@@ -1,25 +1,29 @@
 #!/usr/bin/env node
 
-'use strict';
+import { readFileSync } from 'node:fs';
 
-const yargs = require('yargs');
-const merge = require('lodash.merge');
-const getURLs = require('../lib/cli/util').getURLs;
-const get = require('lodash.get');
-const set = require('lodash.set');
-const findUp = require('find-up');
-const fs = require('fs');
-const browsertimeConfig = require('../lib/plugins/browsertime/index').config;
+import merge from 'lodash.merge';
+import set from 'lodash.set';
+import get from 'lodash.get';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
+
+import { findUpSync }  from 'find-up';
+import { BrowsertimeEngine, configureLogging } from 'browsertime';
+
+import { getURLs } from '../lib/cli/util.js';
+
+import {config as browsertimeConfig} from '../lib/plugins/browsertime/index.js';
 
 const iphone6UserAgent =
   'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 ' +
   '(KHTML, like Gecko) Version/6.0 Mobile/10B329 Safari/8536.25';
 
-const configPath = findUp.sync(['.sitespeed.io.json']);
+const configPath = findUpSync(['.sitespeed.io.json']);
 let config;
 
 try {
-  config = configPath ? JSON.parse(fs.readFileSync(configPath)) : {};
+  config = configPath ? JSON.parse(readFileSync(configPath)) : {};
 } catch (e) {
   if (e instanceof SyntaxError) {
     /* eslint no-console: off */
@@ -49,7 +53,8 @@ async function testURLs(engine, urls) {
 }
 
 async function runBrowsertime() {
-  let parsed = yargs
+  let yargsInstance = yargs(hideBin(process.argv));
+  let parsed =  yargsInstance
     .env('SITESPEED_IO')
     .require(1, 'urlOrFile')
     .option('browsertime.browser', {
@@ -139,9 +144,6 @@ async function runBrowsertime() {
     }
   };
 
-
-
-  const {BrowsertimeEngine, configureLogging} = await import ('browsertime');
   const btOptions = merge({}, parsed.argv.browsertime, defaultConfig);
    // hack to keep backward compability to --android
    if (parsed.argv.android[0] === true) {

@@ -5,10 +5,11 @@
     "es6": true
   },
   "parserOptions": {
-    "ecmaVersion": 2018
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
-  "plugins": ["prettier"],
-  "extends": "eslint:recommended",
+  "plugins": ["prettier", "unicorn"],
+  "extends": ["eslint:recommended", "plugin:unicorn/recommended"],
   "rules": {
     "prettier/prettier": [
       "error",
@@ -21,6 +22,10 @@
     ],
     "require-atomic-updates": 0,
     "no-extra-semi": 0,
-    "no-mixed-spaces-and-tabs": 0
+    "no-mixed-spaces-and-tabs": 0,
+    "unicorn/filename-case": 0,
+    "unicorn/prevent-abbreviations": 0,
+    "unicorn/no-array-reduce": 0,
+    "unicorn/prefer-spread":0
   }
 }
