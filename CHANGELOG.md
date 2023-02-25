@@ -1,5 +1,45 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 27.0.0 - UNRELEASED
+
+### Breaking changes
+The project was transitioned to a [pure ESM package](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c) [#1859](https://github.com/sitespeedio/browsertime/pull/1859), allowing us to stay current with dependencies that have made the same transition and ensuring the ability to always utilize the latest versions of our dependencies. This is important for us and will make the project easier to maintain.
+
+
+#### CLI users
+If you are a command line user and use scripting, you will need to do a change to your scripts or add a extra configuration. 
+
+The new browsertime version treat all JavaScript files that ends with *.js* as ESM modules, that means your old script files will not work out of the box. There's a couple of fixes for that:
+
+**The best fix**:
+Change your code so your scripts also follows ESM package. If you have simple scripts you probably just need to change your exports. The old way looked like this:
+
+```
+module.exports = async function(context, commands) {
+...
+}
+```
+
+change that to:
+```
+export default async function (context, commands) {
+...
+}
+```
+
+If you have more complicated scripts, follow the [ESM package guide](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c). 
+
+This is the best fix and will woirk 100% of the time.
+
+**The quick fix**: Rename your *.js* to *.cjs* that way NodeJS will treat your file as a common JS file and everything will just work. For example if you have a file names `login.js` you can rename that to `login.cjs` and make sure you load that new file.
+
+**Another quick fix alternative**: As a last alternative add `--browsertime.cjs` as a parameter to your test. That way the scripting file will be treated as a commonjs file. This is a hack, so to make sure it works, the user that runs Browsertime need to have write privileges to the folder where you have your scripting files. Browsertime will create a package.json file on the same levels as yoru script file. If you already have a package.json there, it will be overwritten.
+
+#### Non cli users 
+Documentattion coming soon.
+
+Read [Sindre Sorhus Pure ESM package guide](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c) on how you can move your project.
+
 ## 26.1.0 - 2022-10-21
 ### Added
 * Update to 0.10.4 co2 and make it possible change model [#3736](https://github.com/sitespeedio/sitespeed.io/pull/3736) and the to 0.11.3 in [#3741](https://github.com/sitespeedio/sitespeed.io/pull/3741)
