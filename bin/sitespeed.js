@@ -22,10 +22,10 @@ async function start() {
     const result = await run(options);
 
     if (options.storeResult) {
-      if (options.storeResult != 'true') {
-        writeFileSync(options.storeResult, JSON.stringify(result));
-      } else {
+      if (options.storeResult == 'true') {
         writeFileSync('result.json', JSON.stringify(result));
+      } else {
+        writeFileSync(options.storeResult, JSON.stringify(result));
       }
     }
 
