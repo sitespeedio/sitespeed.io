@@ -3,7 +3,7 @@
 ## 27.0.0 - UNRELEASED
 
 ### Breaking changes
-The project was transitioned to a [pure ESM package](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c) [#1859](https://github.com/sitespeedio/browsertime/pull/1859), allowing us to stay current with dependencies that have made the same transition and ensuring the ability to always utilize the latest versions of our dependencies. This is important for us and will make the project easier to maintain.
+The project was transitioned to a [pure ESM package](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c) in Browsertime [#1859](https://github.com/sitespeedio/browsertime/pull/1859) and sitespeed.io [#3769](https://github.com/sitespeedio/sitespeed.io/pull/3769), allowing us to stay current with dependencies that have made the same transition and ensuring the ability to always utilize the latest versions of our dependencies. This is important for us and will make the project easier to maintain.
 
 
 #### CLI users
@@ -39,6 +39,12 @@ This is the best fix and will woirk 100% of the time.
 Documentattion coming soon.
 
 Read [Sindre Sorhus Pure ESM package guide](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c) on how you can move your project.
+
+#### Plugin creators
+Documentattion coming soon.
+
+### Fixed
+* All dependencies has been updated to latest versions [#3774](https://github.com/sitespeedio/sitespeed.io/pull/3774).
 
 ## 26.1.0 - 2022-10-21
 ### Added
