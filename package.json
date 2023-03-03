@@ -111,17 +111,17 @@
     "lodash.set": "4.3.2",
     "lodash.union": "4.6.0",
     "markdown": "0.5.0",
-    "node-scp": "0.0.18",
+    "node-scp": "0.0.22",
     "node-slack": "0.0.7",
-    "os-name": "4.0.0",
-    "p-limit": "2.2.2",
+    "os-name": "5.1.0",
+    "p-limit": "4.0.0",
     "pug": "3.0.2",
     "recursive-readdir": "2.2.2",
     "simplecrawler": "1.1.9",
     "@sitespeed.io/plugin": "0.0.4",
-    "tape": "5.5.3",
+    "tape": "5.6.3",
     "text-table": "0.2.0",
-    "uuid": "8.3.2",
+    "uuid": "9.0.0",
     "yargs": "17.7.1"
   }
 }
