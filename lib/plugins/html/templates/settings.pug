@@ -64,6 +64,10 @@ block content
           tr 
             td Phone model
             td #{android.model}
+        if android.id
+          tr
+            td Id
+            td #{android.id}
         if android.androidVersion
           tr 
             td Android version
