@@ -43,6 +43,16 @@ Read [Sindre Sorhus Pure ESM package guide](https://gist.github.com/sindresorhus
 #### Plugin creators
 Documentattion coming soon.
 
+#### Remove ImageMagick dependency
+We moved to use a new Visual Metrics script as default contributed by Gregory Mierzwinski that do not use ImageMagick. Mozilla has used this script for many months and we have internally used it in our test infrastructure since it was first released.
+
+If you run sitespeed.io direct using NodeJs (and not using Docker) you need to install two new Python dependencies OpenCV-Python Numpy. They are used instead of ImageMagick.
+
+```python -m pip install --user OpenCV-Python Numpy```
+
+If you still want to use ImageMagick you can do that by setting ```browsertime.visualMetricsPortable false``` 
+
+
 ### Fixed
 * All dependencies has been updated to latest versions [#3774](https://github.com/sitespeedio/sitespeed.io/pull/3774).
 
