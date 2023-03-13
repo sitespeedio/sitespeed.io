@@ -1,4 +1,4 @@
-import friendly from '../lib/support/friendlynames';
+import friendly from '../lib/support/friendlynames.js';
 
 console.log('{');
 console.log(' "budget": {');
