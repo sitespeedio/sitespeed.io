@@ -178,6 +178,13 @@ async function runBrowsertime() {
         get(btOptions, 'chrome.android.package', 'com.android.chrome')
       );
     }
+    else if (parsed.argv.browser === 'firefox') {
+      set(
+        btOptions,
+        'firefox.android.package',
+        get(btOptions, 'firefox.android.package', 'org.mozilla.firefox')
+      );
+    }
   }
   const engine = new BrowsertimeEngine(btOptions);
   const urls = getURLs(parsed.argv._);
