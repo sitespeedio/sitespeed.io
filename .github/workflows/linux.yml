@@ -67,4 +67,4 @@ jobs:
     - name: Run test with Influx 1.8
       run: bin/sitespeed.js http://127.0.0.1:3001/simple/ -n 1 --influxdb.host 127.0.0.1 --xvfb
     - name: Run test with Influx 2.6.1
-      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ -n 1 --influxdb.host 127.0.0.1 --influxdb.port 8087 --influxdb.version 2 --influxdb.org sitespeed --influxdb.token sitespeed --xvfb
+      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ -n 1 --influxdb.host 127.0.0.1 --influxdb.port 8087 --influxdb.version 2 --influxdb.organisation sitespeed --influxdb.token sitespeed --xvfb
