@@ -1,12 +1,12 @@
 {
   "name": "sitespeed.io",
-  "version": "27.0.0-beta.8",
+  "version": "27.0.0-beta.9",
   "lockfileVersion": 2,
   "requires": true,
   "packages": {
     "": {
       "name": "sitespeed.io",
-      "version": "27.0.0-beta.8",
+      "version": "27.0.0-beta.9",
       "license": "MIT",
       "dependencies": {
         "@google-cloud/storage": "6.9.4",
