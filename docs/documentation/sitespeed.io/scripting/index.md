@@ -22,6 +22,8 @@ twitterdescription: Use scripts in sitespeed.io to measure a user journey.
 
 Test by scripting was introduced in sitespeed.io 8.0 and Browsertime 4.0 and makes it possible to measure a user journey. A user can visit multiple pages, clicking on links, log in, adding items to the cart ... yeah almost measure anything you want.
 
+In sitespeed.io 27.0 the project was moved to a [pure ESM package](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c). You can choose to either have your scripting file be a ESM or CommonJS file. If you use ESM your file should end with *.mjs* . If it is common JS use *.cjs*. All our examples on this page is ESM. Before 27.0 all files was common JS.
+
 Scripting work the same in Browsertime and sitespeed.io, the documentation here are for both of the tools.
 
 You have three different choices when you create your script:
