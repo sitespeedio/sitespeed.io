@@ -42,6 +42,7 @@ android
       --android.powerTesting, --androidPower                                                       Enables android power testing - charging must be disabled for this.(You have to disable charging yourself for this - it depends on the phone model).  [boolean]
       --android.ignoreShutdownFailures, --ignoreShutdownFailures                                   If set, shutdown failures will be ignored on Android.  [boolean] [default: false]
       --android.rooted, --androidRooted                                                            If your phone is rooted you can use this to set it up following Mozillas best practice for stable metrics.  [boolean] [default: false]
+      --android.pinCPUSpeed, --androidPinCPUSpeed                                                  Using a Samsung A51 you can choose how to pin the CPU to better align the speed with your users  [choices: "min", "middle", "max"] [default: "min"]
       --android.batteryTemperatureLimit, --androidBatteryTemperatureLimit                          Do the battery temperature need to be below a specific limit before we start the test?
       --android.batteryTemperatureWaitTimeInSeconds, --androidBatteryTemperatureWaitTimeInSeconds  How long time to wait (in seconds) if the androidBatteryTemperatureWaitTimeInSeconds is not met before the next try  [default: 120]
       --android.batteryTemperatureReboot, --androidBatteryTemperatureReboot                        If your phone does not get the minimum temperature aftet the wait time, reboot the phone.  [boolean] [default: false]
@@ -63,6 +64,7 @@ firefox
       --firefox.includeResponseBodies           Include response bodies in HAR  [choices: "none", "all", "html"] [default: "none"]
       --firefox.appconstants                    Include Firefox AppConstants information in the results  [boolean] [default: false]
       --firefox.acceptInsecureCerts             Accept insecure certs  [boolean]
+      --firefox.bidihar                         Use the new bidi HAR generator  [boolean] [default: false]
       --firefox.windowRecorder                  Use the internal compositor-based Firefox window recorder to emit PNG files for each frame that is a meaningful change.  The PNG output will further be merged into a variable frame rate video for analysis. Use this instead of ffmpeg to record a video (you still need the --video flag).  [boolean] [default: false]
       --firefox.memoryReport                    Measure firefox resident memory after each iteration.  [boolean] [default: false]
       --firefox.memoryReportParams.minizeFirst  Force a collection before dumping and measuring the memory report.  [boolean] [default: false]
@@ -99,6 +101,7 @@ video
       --videoParams.filmstripQuality   The quality of the filmstrip screenshots. 0-100.  [default: 75]
       --videoParams.createFilmstrip    Create filmstrip screenshots.  [boolean] [default: true]
       --videoParams.nice               Use nice when running FFMPEG during the run. A value from -20 to 19  https://linux.die.net/man/1/nice  [default: 0]
+      --videoParams.taskset            Start FFMPEG with taskset -c <CPUS> to pin FFMPG to specific CPU(s). Specify a numerical list of processors. The list may contain multiple items, separated by comma, and ranges. For example, "0,5,7,9-11".
       --videoParams.convert            Convert the original video to a viewable format (for most video players). Turn that off to make a faster run.  [boolean] [default: true]
       --videoParams.threads            Number of threads to use for video recording. Default is determined by ffmpeg.  [default: 0]
 

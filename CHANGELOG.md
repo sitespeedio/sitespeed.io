@@ -1,18 +1,21 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 27.0.0 - UNRELEASED
+## 27.0.0 - 2023-04-04
+
+Wow it's been many months since I did a new release wih sitespeed.io. I've had a lot to do in my personal life, a lot at work and low energy to finish the big changes I've done in both Browsertime and sitespeed.io. And here it is: 27.0.0. It can still have some rough edges so please [report any bugs](https://github.com/sitespeedio/sitespeed.io/issues) and I will try to fix them ASAP.
+
+There's been many additions to Browsertime the last months and I'll update the CHANGELOG and make sure the documentation in uptodate the coming weeks.
 
 ### Breaking changes
-The project was transitioned to a [pure ESM package](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c) [#1859](https://github.com/sitespeedio/browsertime/pull/1859), allowing us to stay current with dependencies that have made the same transition and ensuring the ability to always utilize the latest versions of our dependencies. This is important for us and will make the project easier to maintain.
-
+The project was transitioned to a [pure ESM package](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c) both Browsertime [#1859](https://github.com/sitespeedio/browsertime/pull/1859) and sitespeed.io [#3769](https://github.com/sitespeedio/sitespeed.io/pull/3769). That allow us to stay uptodate with dependencies. This is important for us and will make the project easier to maintain.
 
 #### CLI users
-If you are a command line user and use scripting, you will need to do a change to your scripts or add a extra configuration. 
+If you are a command line user and use [scripting](https://www.sitespeed.io/documentation/sitespeed.io/scripting/), you will need to do a change to your scripts or add some extra configuration. 
 
-The new browsertime version treat all JavaScript files that ends with *.js* as ESM modules, that means your old script files will not work out of the box. There's a couple of fixes for that:
+**The quick fix**: Rename your *.js* scripting files to *.cjs* that way NodeJS will treat your file as a common JS file and everything will just work. For example if you have a file names `login.js` you can rename that to `login.cjs` and make sure you load that new file. Then sitespeed.io 27.0.0 will just work as before.
 
 **The best fix**:
-Change your code so your scripts also follows ESM package. If you have simple scripts you probably just need to change your exports. The old way looked like this:
+Change your code so your scripts also follows ESM. If you have simple scripts you probably just need to change your exports. The old way looked like this:
 
 ```
 module.exports = async function(context, commands) {
@@ -29,17 +32,36 @@ export default async function (context, commands) {
 
 If you have more complicated scripts, follow the [ESM package guide](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c). 
 
-This is the best fix and will woirk 100% of the time.
+Then rename your file to be named *.mjs. If your file is named `collect.js` change it to `collect.mjs`. This is the best fix and will work 100% of the time. That way NodeJS will know that you are using the ESM standard. You can read more in [how NodeJs choose to load files](https://nodejs.org/docs/latest-v18.x/api/packages.html#determining-module-system).
 
-**The quick fix**: Rename your *.js* to *.cjs* that way NodeJS will treat your file as a common JS file and everything will just work. For example if you have a file names `login.js` you can rename that to `login.cjs` and make sure you load that new file.
 
 **Another quick fix alternative**: As a last alternative add `--browsertime.cjs` as a parameter to your test. That way the scripting file will be treated as a commonjs file. This is a hack, so to make sure it works, the user that runs Browsertime need to have write privileges to the folder where you have your scripting files. Browsertime will create a package.json file on the same levels as your script file. If you already have a package.json there, it will be overwritten.
 
 #### Non cli users 
-Documentattion coming soon.
+Documentation coming soon.
 
 Read [Sindre Sorhus Pure ESM package guide](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c) on how you can move your project.
 
+#### Plugin creators
+Documentattion coming soon. You will need to upgrade your plugin to ESM. You can check how we [did it](https://github.com/sitespeedio/plugin-lighthouse/pull/111) for the Lightouse plugin.
+
+#### Remove ImageMagick dependency
+We moved to use a new Visual Metrics script as default contributed by Gregory Mierzwinski that do not use ImageMagick. Mozilla has used this script for many months and we have internally used it in our test infrastructure since it was first released.
+
+If you run sitespeed.io direct using NodeJs (and not using Docker) you need to install two new Python dependencies OpenCV-Python Numpy. They are used instead of ImageMagick.
+
+```python -m pip install --user OpenCV-Python Numpy```
+
+If you still want to use ImageMagick you can do that by setting ```browsertime.visualMetricsPortable false``` 
+
+
+### Fixed
+* All dependencies has been updated to latest versions [#3774](https://github.com/sitespeedio/sitespeed.io/pull/3774).
+
+### Added
+* A lot of things has happened in Browsertime, checkout [the changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md).
+* Updated to Chrome 111, Firefox 111 and Edge 111 in the Docker container.
+* The Lightouse plugin has been updated to Lighthouse 10. 
 ## 26.1.0 - 2022-10-21
 ### Added
 * Update to 0.10.4 co2 and make it possible change model [#3736](https://github.com/sitespeedio/sitespeed.io/pull/3736) and the to 0.11.3 in [#3741](https://github.com/sitespeedio/sitespeed.io/pull/3741)
