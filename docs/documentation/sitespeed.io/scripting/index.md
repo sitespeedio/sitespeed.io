@@ -22,6 +22,8 @@ twitterdescription: Use scripts in sitespeed.io to measure a user journey.
 
 Test by scripting was introduced in sitespeed.io 8.0 and Browsertime 4.0 and makes it possible to measure a user journey. A user can visit multiple pages, clicking on links, log in, adding items to the cart ... yeah almost measure anything you want.
 
+In sitespeed.io 27.0 the project was moved to a [pure ESM package](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c). You can choose to either have your scripting file be a ESM or CommonJS file. If you use ESM your file should end with *.mjs* . If it is common JS use *.cjs*. All our examples on this page is ESM. Before 27.0 all files was common JS.
+
 Scripting work the same in Browsertime and sitespeed.io, the documentation here are for both of the tools.
 
 You have three different choices when you create your script:
@@ -37,7 +39,7 @@ Independent of your implementation, your script will get access to two objects: 
 The simplest version of a script looks like this:
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   // add your own code here
 }
 ~~~
@@ -84,7 +86,7 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 If you want to pass data between your scripts you can do that with the context object. Here's an example of the first script:
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   // First you do what you need to do ...
   // then just add a field to the context
   context.myId = 15;
@@ -94,7 +96,7 @@ module.exports = async function(context, commands) {
 Then in your next script you can get that id:
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   const idToUse = context.myId;
 }
 ~~~
@@ -107,7 +109,7 @@ In some scenarios you want to do different things dependent on what shows on you
 Here's an simple example, IRL you will need to get something from the page:
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   // We are in browsertime context so you can skip that from your options object
   const secretValue = await commands.js.run('return 12');
   // if secretValue === 12 ...
@@ -136,7 +138,7 @@ To make sure your script wait on the action to complete, you use the `await` key
 Navigating to sitespeed.io homepage and waiting on the navigation to complete: 
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   await commands.navigate('https://www.sitespeed.io');
   // We will get here when the action is finished since we use await
 }
@@ -147,7 +149,7 @@ sitespeed.io/Browsertime gives full control to your script and is waiting for it
 promise back to sitespeed.io/Browsertime. That way it will wait until everything in your script has finished. Checkout this examample where we test two pages, we wait for the first to finish and then return the last promise back.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
     await commands.measure.start('https://www.sitespeed.io');
     return commands.measure.start('https://www.sitespeed.io/documentation/');
 }
@@ -192,7 +194,7 @@ docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io:{% include ve
 And then look at the video in the **data/video** folder.
 * Use try/catch and await promises so you catch things that doesn't work.
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
     await commands.navigate('https://www.sitespeed.io');
     
     await commands.measure.start();
@@ -209,7 +211,7 @@ module.exports = async function(context, commands) {
 * Take a [screenshot](/documentation/sitespeed.io/scripting/#screenshot) when your script fail to make it easier to see what's going on.
 * If you navigate by clicking on elements you can verify that you end up where you want by running JavaScript. Here's an example where the new URL is logged but you can also verfify that it is the right one.
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
     await commands.measure.start('https://www.sitespeed.io');
     // Hide everything
     // We do not hide the body since the body needs to be visible when we do the magic to find the staret of the
@@ -235,7 +237,7 @@ Here are some examples on how you can use the scripting capabilities.
 ### Measure the actual login step
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   // Navigate to a URL, but do not measure the URL
   await commands.navigate(
     'https://en.wikipedia.org/w/index.php?title=Special:UserLogin&returnto=Main+Page'
@@ -270,7 +272,7 @@ module.exports = async function(context, commands) {
 ### Measure the login step and more pages
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   // We start by navigating to the login page.
   await commands.navigate(
     'https://en.wikipedia.org/w/index.php?title=Special:UserLogin&returnto=Main+Page'
@@ -317,7 +319,7 @@ Testing a page after you have logged in:
 First create a script that logs in the user (login.js):
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   await commands.navigate(
     'https://en.wikipedia.org/w/index.php?title=Special:UserLogin&returnto=Main+Page'
   );
@@ -349,7 +351,7 @@ sitespeed.io --preScript login.js https://en.wikipedia.org/wiki/Barack_Obama
 #### More complicated login example
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   await commands.navigate(
     'https://example.org'
   );
@@ -396,7 +398,7 @@ module.exports = async function(context, commands) {
 Test multiple pages in a script:
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   await commands.measure.start('https://www.sitespeed.io');
   await commands.measure.start('https://www.sitespeed.io/examples/');
   return commands.measure.start('https://www.sitespeed.io/documentation/');
@@ -408,7 +410,7 @@ module.exports = async function(context, commands) {
 If you test multiple pages you will see that the layout is kept in the browser until the first paint of the new page. You can hack that by removing the current body and set the background color to white. Then every video will start white.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
     await commands.measure.start('https://www.sitespeed.io');
     await commands.js.run('document.body.innerHTML = ""; document.body.style.backgroundColor = "white";');
     await commands.measure.start('https://www.sitespeed.io/examples/');
@@ -423,7 +425,7 @@ To get the Cumulative Layout Shift metric for Chrome closer to what real users g
 
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   const delayTime = 250;
 
   await commands.measure.start();
@@ -441,7 +443,7 @@ You can add your own metrics by adding the extra JavaScript that is executed aft
 In this example we collect the temperature from our Android phone that runs the tests:
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   // Get the temperature from the phone
   const temperature = await commands.android.shell("dumpsys battery | grep temperature | grep -Eo '[0-9]{1,3}'");
   // Start the test
@@ -458,7 +460,7 @@ In this example we collect the number of comments on a blog post using commands.
 to collect an element, use regex to parse out the number, and add it back as a custom metric.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
    await commands.measure.start('blog-post'); //alias is now blog-post
    await commands.navigate('https://www.exampleBlog/blog-post');
    
@@ -480,7 +482,7 @@ module.exports = async function(context, commands) {
 One of the really cool things with scripting is that you can measure all the pages in a checkout process. This is an example shop where you put one item in your cart and checkout as a guest.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   // Start by measuring the first page of the shop
   await commands.measure.start('https://shop.example.org');
 
@@ -524,7 +526,7 @@ module.exports = async function(context, commands) {
 You can log to the same output as sitespeed.io:
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   context.log.info('Info logging from your script');
   context.log.error('Error logging from your script');
 };
@@ -536,7 +538,7 @@ You can add your own parameters to the options object (by adding a parameter) an
 For example: you wanna pass on a password to your script, you can do that by adding <code>--browsertime.my.password MY_PASSWORD</code> and then in your code get a hold of that with:
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   // We are in browsertime context so you can skip that from your options object
   context.log.info(context.options.my.password);
 };
@@ -563,7 +565,7 @@ If you do catch the error, you should make sure you report it yourself with the 
 Here's an example of catching a URL that don't work and still continue to test another one. Remember since a navigation fails, this will be reported automatically and you don't need to do anything.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   await commands.measure.start('https://www.sitespeed.io');
   try {
     await commands.measure.start('https://nonworking.url/');
@@ -575,7 +577,7 @@ module.exports = async function(context, commands) {
 You can also create your own errors. The error will be reported in the HTML and sent to Graphite/InfluxDB. If you report an error, the exit code from sitespeed.io will be > 0.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   // ...
   try {
     // Click on a link
@@ -596,7 +598,7 @@ How do we measure FID with sitespeed.io? You can measure clicks and button using
 Here's an example on measuring open the navigation on Wikipedia on mobile. I run my tests on a Alacatel One phone.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   // We have some Selenium context
   const webdriver = context.selenium.webdriver;
   const driver = context.selenium.driver;
@@ -681,7 +683,7 @@ This is perfectly fine in most cases. But if you want to start white (the metric
 If you just want to start white and navigate to the next page you can just clear the HTML between pages:
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
     await commands.measure.start('https://www.sitespeed.io');
     // Renove the HTML and make sure the background is white
     await commands.js.run('document.body.innerHTML = ""; document.body.style.backgroundColor = "white";');
@@ -692,7 +694,7 @@ module.exports = async function(context, commands) {
 If you want to click a link and want to make sure that the HTML doesn't change when you click the link, you can try to hide the HTML and then click the link.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
     await commands.measure.start('https://www.sitespeed.io');
     // Hide everything
     // We do not hide the body since the body needs to be visible when we do the magic to find the staret of the
@@ -711,7 +713,7 @@ module.exports = async function(context, commands) {
 If you have one page that needs some special handling that maybe do a couple of late and really slow AJAX requests, you can catch that with your on wait for the page to finish.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   // First test a couple pages with default page complete check
   await commands.measure.start('https://<page1>');
   await commands.measure.start('https://<page2>');
@@ -738,7 +740,7 @@ If you for some reason want to test the same URL within the same run multiple ti
 But there is a hack you can do. If you add a dummy query parameter (and give the page an alias) you can test them twice a
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
     await commands.measure.start('https://www.sitespeed.io/', 'HomePage');
 
     // Do something smart that then make you need to test the same URL again
@@ -754,7 +756,7 @@ You can break out code in multiple files something like this.
 test.js
 ~~~javascript
 const example = require('./exampleInclude');
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   example();
 };
 ~~~
@@ -811,7 +813,7 @@ If you do not give it a URL, it will prepare everything and start the video. So 
 Start and navigate to the URL and then automatically call the stop() function after the page has stopped navigating decided by the current pageCompleteCheck.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   await commands.measure.start('https://www.sitespeed.io');
   // If you want to measure multiple URLs after each other
   // you can just line them up
@@ -824,7 +826,7 @@ module.exports = async function(context, commands) {
 Start and navigate to the URL and then automatically call the stop() function after the page has stopped navigating decided by the current pageCompleteCheck. The page will also get the alias that will be used when you send the metrics to Graphite/InfluxDB. Use it when you have complex URLs.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   // Measure the page and give it the alias StartPage
   return commands.measure.start('https://www.sitespeed.io', 'StartPage');
 };
@@ -834,7 +836,7 @@ module.exports = async function(context, commands) {
 Start to measure. Browsertime/sitespeed.io will pick up the next URL and measure that. You need to call the stop() function yourself.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   // Start by navigating to a page
   await commands.navigate('https://www.example.org');
   // Start a measurement
@@ -852,7 +854,7 @@ If you start a measurement without giving a URL you need to also call measure.st
 Start to measure. Browsertime/sitespeed.io will pick up the next URL and measure that. You need to call the stop() function yourself. The page will also get the alias that will be used when you send the metrics to Graphite/InfluxDB. Use it when you have complex URLs.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   // Start by navigating to a page
   await commands.navigate('https://www.example.org');
   // Start a measurement and give it an alias that is used if you send the metrics to Graphite/InfluxDB for the next URL
@@ -875,7 +877,7 @@ Add your own measurements directly from your script. The data will be availible 
 To be able to add any metrics, you need to have started a measurements.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   // Get the temperature from the phone
   const temperature = await commands.android.shell("dumpsys battery | grep temperature | grep -Eo '[0-9]{1,3}'");
   // Start the test
@@ -895,7 +897,7 @@ And you will get that metric in the HTML:
 #### measure.addObject(object)
 You can also add multiple metrics in one go.
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
  
   const extraMetrics = { a: 1, b: 2, c: 3};
   // Start the test
@@ -915,7 +917,7 @@ And it will look like this:
 And you can also add deep nested objects (no support in the HTML yet though, only in the data source).
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
  
   const extraMetrics = { android: {cpu: {temperature: 27, cores: 2}}};
   // Start the test
@@ -961,7 +963,7 @@ You stop your stop watch by either just stop it or stop it and add the metric to
 If you want to measure how long time somethings takes before you navigate to a page you should follow this pattern:
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   const stopWatch = commands.stopWatch.get('Before_navigating_page');
   // Do the thing you want to measure ...
   // Then stop the watch 
@@ -978,7 +980,7 @@ module.exports = async function(context, commands) {
 If you already measured a page and want to attach the metric to that page you can follow this pattern:
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
 
   await commands.measure.start(
     'https://www.sitespeed.io'
@@ -998,7 +1000,7 @@ Debug mode works in Chrome/Firefox/Edge when running on desktop. It do not work 
 In debug mode, the browser will pause after each iteration.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   await commands.measure.start('https://www.sitespeed.io');
   await commands.breakpoint('');
   return commands.measure.start('https://www.sitespeed.io/documentation/');
@@ -1151,7 +1153,7 @@ Run JavaScript. Will throw an error if the JavaScript fails.
 If you want to get values from the web page, this is your best friend. Make sure to return the value and you can use it in your script.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   // We are in browsertime context so you can skip that from your options object
   const secretValue = await commands.js.run('return 12');
   // if secretValue === 12 ...
@@ -1190,7 +1192,7 @@ Scroll the page by the specified pages.
 Scroll to the bottom of the page. Will scroll by pages and wait the delay time between each scroll. Default delay time is 250 ms.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   // ... navigate to page  ...
   await commands.scroll.toBottom();
 }
@@ -1276,7 +1278,7 @@ There's an experimental command for clearing the cache. The command works both f
 Clear the browser cache. Remove cache and cookies.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   // First you probably visit a couple of pages and then clear the cache
   await commands.cache.clear();
   // And then visit another page
@@ -1287,7 +1289,7 @@ module.exports = async function(context, commands) {
 Clear the browser cache but keep cookies.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   // If you have login cookies that lives really long you may want to test aceesing the page as a logged in user
   // but without a browser cache. You can try that with ...
 
@@ -1306,7 +1308,7 @@ Send a command to Chrome and don't expect something back.
 Here's an example of injecting JavaScript that runs on every new document.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   await commands.cdp.send('Page.addScriptToEvaluateOnNewDocument',{source: 'console.log("hello");'});
   await commands.measure.start('https://www.sitespeed.io');
 }
@@ -1316,7 +1318,7 @@ module.exports = async function(context, commands) {
 Send a command to Chrome and get the result back.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   await commands.measure.start('https://www.sitespeed.io');
   const domCounters = await commands.cdp.sendAndGet('Memory.getDOMCounters');
   context.log.info('Memory.getDOMCounters %j', domCounters);
@@ -1327,7 +1329,7 @@ module.exports = async function(context, commands) {
 You can listen to CDP events. Here's an example to get hold of all responses for a page.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   const responses = [];
   await commands.cdp.on('Network.responseReceived', params => {
     responses.push(params);
@@ -1337,11 +1339,50 @@ module.exports = async function(context, commands) {
 };
 ~~~
 
+#### cdp.dp.getRawClient()
+Get the raw CDP client so you can do whatever you want. Here's an example on how to change the server header on the response.
+
+~~~javascript
+export default async function (context, commands) {
+  const cdpClient = commands.cdp.getRawClient();
+  await cdpClient.Fetch.enable({
+    patterns: [
+      {
+        urlPattern: '*',
+        requestStage: 'Response'
+      }
+    ]
+  });
+
+  cdpClient.Fetch.requestPaused(async reqEvent => {
+    const { requestId } = reqEvent;
+    let responseHeaders = reqEvent.responseHeaders || [];
+
+    const newServerHeader = { name: 'server', value: 'Haxxor' };
+    const foundHeaderIndex = responseHeaders.findIndex(
+      h => h.name === 'server'
+    );
+    if (foundHeaderIndex) {
+      responseHeaders[foundHeaderIndex] = newServerHeader;
+    } else {
+      responseHeaders.push(newServerHeader);
+    }
+
+    return cdpClient.Fetch.continueResponse({
+      requestId,
+      responseCode: 200,
+      responseHeaders
+    });
+  });
+
+  await commands.measure.start('https://www.sitespeed.io/search/');
+}
+~~~
 ### Error
 You can create your own error. The error will be attached to the latest tested page. Say that you have a script where you first measure a page and then want to click on a specific link and the link doesn't exist. Then you can attach your own error with your own error text. The error will be sent to your datasource and will be visible in the HTML result.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   // Start by navigating to a page
   await commands.navigate('https://www.example.org');
   // Start a measurement
@@ -1386,7 +1427,7 @@ Add meta data to your script. The extra data will be visible in the HTML result 
 Setting meta data like this:
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   commands.meta.setTitle('Test Grafana SPA');
   commands.meta.setDescription('Test the first page, click the timepicker and then choose <b>Last 30 days</b> and measure that page.');
   await commands.measure.start(
@@ -1415,7 +1456,7 @@ Add a description of your script. The description can be text/HTML.
 If you run your tests in an Android phone you probably want to interact with your phone throught the shell.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   // Get the temperature from the phone
   const temperature = await commands.android.shell("dumpsys battery | grep temperature | grep -Eo '[0-9]{1,3}'");
   context.log.info('The battery temperature is %s', temperature/10);
@@ -1439,7 +1480,7 @@ The *selenium.webdriver* is the Selenium [WebDriver public API object](https://s
 Checkout this example to see how you can use them.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   // We fetch the selenium webdriver from context
   // The selenium-webdriver 
   // https://www.selenium.dev/selenium/docs/api/javascript/module/selenium-webdriver/index.html

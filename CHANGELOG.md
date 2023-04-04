@@ -35,7 +35,7 @@ If you have more complicated scripts, follow the [ESM package guide](https://gis
 Then rename your file to be named *.mjs. If your file is named `collect.js` change it to `collect.mjs`. This is the best fix and will work 100% of the time. That way NodeJS will know that you are using the ESM standard. You can read more in [how NodeJs choose to load files](https://nodejs.org/docs/latest-v18.x/api/packages.html#determining-module-system).
 
 
-**Another quick fix alternative**: As a last alternative add `--browsertime.cjs` as a parameter to your test. That way the scripting file will be treated as a commonjs file. This is a hack, so to make sure it works, the user that runs Browsertime need to have write privileges to the folder where you have your scripting files. Browsertime will create a package.json file on the same levels as yoru script file. If you already have a package.json there, it will be overwritten.
+**Another quick fix alternative**: As a last alternative add `--browsertime.cjs` as a parameter to your test. That way the scripting file will be treated as a commonjs file. This is a hack, so to make sure it works, the user that runs Browsertime need to have write privileges to the folder where you have your scripting files. Browsertime will create a package.json file on the same levels as your script file. If you already have a package.json there, it will be overwritten.
 
 #### Non cli users 
 Documentation coming soon.

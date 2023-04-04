@@ -65,7 +65,7 @@ There's a plugin bundled with sitespeed.io called *analysisstorer* plugin that i
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --plugins.add analysisstorer
 ~~~
 
-If you want to run plugins that you created yourself or that are shared from others, you can either install the plugin using npm (locally) and load it by name or point out the directory where the plugin lives.
+If you want to run plugins that you created yourself or that are shared from others, you can either install the plugin using npm (locally or globally) and load it by name or point out the directory where the plugin lives.
 
 
 ### Mount your plugin in Docker
@@ -87,15 +87,28 @@ cd plugin-webpagetest
 npm install
 pwd
 /Users/peter/test/plugin-webpagetest
-docker run --rm -v /Users/peter/:/sitespeed.io sitespeedio/sitespeed.io --plugins.add /sitespeed.io/test/plugin-webpagetest/ https://www.sitespeed.io
+docker run --rm -v /Users/peter/:/sitespeed.io sitespeedio/sitespeed.io --plugins.add /sitespeed.io/test/plugin-webpagetest/index.js https://www.sitespeed.io
 ~~~
 
 
 ### Relative using NodeJS
-If you are running outside of Docker you can load it relative locally.
+If you have your plugin installed on your computer you can load it by a relative path.
 
 ~~~bash
 sitespeed.io https://www.sitespeed.io --plugins.add ../my/super/plugin
+~~~
+
+### Globally using NodeJS
+If you installed your plugin globally, you can find it by it name. In this example we first install the lighthouse plugin:
+
+~~~bash
+npm install @sitespeed.io/plugin-lighthouse -g
+~~~
+
+And then run it:
+
+~~~bash
+sitespeed.io https://www.sitespeed.io --plugins.add @sitespeed.io/plugin-lighthouse
 ~~~
 
 ### Pre-baked Docker file
@@ -129,47 +142,65 @@ Finally you can run it the same way as mentioned above without the volume mount 
 docker run --rm -v "$(pwd):/sitespeed.io" my-custom-sitespeedio -b firefox --my-custom-plugin.option test -n 1 https://www.sitespeed.io/
 ~~~
 
-Pretty cool, huh? :-)
-
 ## How to create your own plugin
-First let us know about your cool plugin! Then share it with others by publish it to npm or just use GitHub.
+Plugins in sitespeed.io should inherit the [sitespeed.io plugin](https://github.com/sitespeedio/plugin/blob/main/plugin.js). This has been added in sitespeed.io 27.0.0. Implement that base class and you will get some functioonality for free.
+
+In your dependencies for your plugin, make sure to add the latest version of the plugin.
+
+~~~javascript
+ "@sitespeed.io/plugin": "0.0.5"
+~~~
 
 ### Basic structure
 Your plugin needs to follow this structure.
 
 ~~~javascript
-const path = require('path');
+import { SitespeedioPlugin } from '@sitespeed.io/plugin';
 
-module.exports = {
-  name() {
-    // This is ... shocking news: the name of the plugin
-    return path.basename(__dirname);
-  },
+export default class MyPlugin extends SitespeedioPlugin {
+  constructor(options, context, queue) {
+    super({ name: 'MyPlugin', options, context, queue });
+    // You need to call the constructor of the base plugin to make sure
+    // yoo can get hold of all the 
+  }
 
-  open(context, options) {
-    // when sitespeed.io start it calls the open function once for all plugins
-    // the context holds information for this specific run that
-    // generated at runtime, for example you can get hold of the storageManager
-    // that stores files to disk.
-    // The options is the configuration supplied for the run.
-  },
-  processMessage(message, queue) {
-    // The plugin will get all messages sent through the queue
-    // and can act on specific messages by type:
-    // message.type
-  },
-  close(options, errors) {
-    // When all URLs are finished all plugins close function is called once.
+   open() {
+     // when sitespeed.io start it calls the open function once for all plugins
+     // here you can prepare the things you need.
+
+     // If you want to log a message to the log you can log on info level
+     super.log('My plugin is starting');
+
+     // Or you can choose log level, here we debug log
+     super.log('This is debug info', 'debug');
+     }
+    
+    async processMessage(message) {
+      // The plugin will get all messages sent through the queue
+      // and can act on specific messages by type:
+      // message.type
+      super.log(`Got a message of type ${message.type}`);
+
+      // If you need the startup options that was passed to sitespeed.io
+      // you can get those from the base class.
+      const options = super.getOptions();
+
+      // if your plugin needs to store data to disk, you can do that with thhe
+      // storage manager
+      const storageManager = super.getStorageManager();
+
+    }
+
+    close() {
+    // When all messages are done, the close function is called once.
     // Options are the configuration options and errors a array of errors
     // from the run.
+     super.log('Closing down my plugin');
   }
 };
 ~~~
 
-### name()
-This is the name of your plugin. You can use the name when you want to target specific options to your plugin. If you're plugin name is *browsertime* you can make sure all your options start with that name.
-
-### open(context, options)
+### open()
 The open function is called once when sitespeed.io starts, it's in this function you can initialise whatever you need within your plugin. You will get the *context* and the *options*.
 
 The *context* holds information for this specific run that generated at runtime and looks like this:
