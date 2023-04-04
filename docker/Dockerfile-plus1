@@ -3,7 +3,7 @@ FROM sitespeedio/sitespeed.io:${version}
 
 ENV SITESPEED_IO_BROWSERTIME__XVFB true
 ENV SITESPEED_IO_BROWSERTIME__DOCKER true
-ENV SITESPEED_IO_PLUGINS__ADD /lighthouse,/gpsi
+ENV SITESPEED_IO_PLUGINS__ADD /lighthouse/index.js,/gpsi/index.js
 
 RUN sudo apt-get update && sudo apt-get install git -y
 RUN node --version
