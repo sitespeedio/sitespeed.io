@@ -43,7 +43,7 @@ Documentation coming soon.
 Read [Sindre Sorhus Pure ESM package guide](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c) on how you can move your project.
 
 #### Plugin creators
-Documentattion coming soon. You will need to upgrade your plugin to ESM. You can check how we [did it](https://github.com/sitespeedio/plugin-lighthouse/pull/111) for the Lightouse plugin.
+Documentattion coming soon. You will need to upgrade your plugin to ESM. You can check how we [did it](https://github.com/sitespeedio/plugin-lighthouse/pull/111) for the Lighthouse plugin.
 
 #### Remove ImageMagick dependency
 We moved to use a new Visual Metrics script as default contributed by Gregory Mierzwinski that do not use ImageMagick. Mozilla has used this script for many months and we have internally used it in our test infrastructure since it was first released.
@@ -59,7 +59,17 @@ If you still want to use ImageMagick you can do that by setting ```browsertime.v
 * All dependencies has been updated to latest versions [#3774](https://github.com/sitespeedio/sitespeed.io/pull/3774).
 
 ### Added
-* A lot of things has happened in Browsertime, checkout [the changelog](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md).
+* [A lot of things has happened](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md) in Browsertime:
+  * There's a new better way to get the HAR from Firefox using WebDriver BiDi network events. Thank you Julian Descottes and others at Mozilla that made this happen! With the new version we hope to see less overhead getting the HAR + it works on Firefox on Android #1918. You can turn it on with --browsertime.firefox.bidihar.
+  * Updated to Geckodriver 0.33 
+  * Fixed the interaction to next paint error message that started to appear in latest Chrome  
+  * Safer check for getting last meaningful paint 
+  * Log the CPU benchmark metric to the console. This is useful (at least for me) when debugging instances with a lot of instability.
+  * In Chrome 111 some metrics become more instable when running on host with limited CPU. This change also exists in 112 beta. However we where missing out on a couple of command line magic to disable features in Chrome.
+  * On Linux you can use taskset to assing FFMPEG to specific CPUs using --videoParams.taskset "0,5,7,9-11" . It will start FFMPEG with taskset -c <CPUS> to pin FFMPG to specific CPU(s). Specify a numerical list of processors. The list may contain multiple items, separated by comma, and ranges. For example, "0,5,7,9-11". Use it together with isolcpus.
+  * If you use a rooted Samsung A51 you can now choose the CPU speed (min/middle/max) using --android.pinCPUSpeed min|middle|max
+  * Expose chrome-remote-interface client to scripting. This makes it so much easier to run whatever CDP command. Get the raw version `commands.cdp.getRawClient()`.
+  * Pin CPU freq to fastest for Samsung A51 (if you have a rooted device) 
 * Updated to Chrome 111, Firefox 111 and Edge 111 in the Docker container.
 * The Lightouse plugin has been updated to Lighthouse 10. 
 ## 26.1.0 - 2022-10-21
