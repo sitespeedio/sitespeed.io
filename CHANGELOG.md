@@ -33,7 +33,7 @@ This is the best fix and will woirk 100% of the time.
 
 **The quick fix**: Rename your *.js* to *.cjs* that way NodeJS will treat your file as a common JS file and everything will just work. For example if you have a file names `login.js` you can rename that to `login.cjs` and make sure you load that new file.
 
-**Another quick fix alternative**: As a last alternative add `--browsertime.cjs` as a parameter to your test. That way the scripting file will be treated as a commonjs file. This is a hack, so to make sure it works, the user that runs Browsertime need to have write privileges to the folder where you have your scripting files. Browsertime will create a package.json file on the same levels as yoru script file. If you already have a package.json there, it will be overwritten.
+**Another quick fix alternative**: As a last alternative add `--browsertime.cjs` as a parameter to your test. That way the scripting file will be treated as a commonjs file. This is a hack, so to make sure it works, the user that runs Browsertime need to have write privileges to the folder where you have your scripting files. Browsertime will create a package.json file on the same levels as your script file. If you already have a package.json there, it will be overwritten.
 
 #### Non cli users 
 Documentattion coming soon.

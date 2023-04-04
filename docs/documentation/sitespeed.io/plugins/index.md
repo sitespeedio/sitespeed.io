@@ -87,12 +87,12 @@ cd plugin-webpagetest
 npm install
 pwd
 /Users/peter/test/plugin-webpagetest
-docker run --rm -v /Users/peter/:/sitespeed.io sitespeedio/sitespeed.io --plugins.add /sitespeed.io/test/plugin-webpagetest/ https://www.sitespeed.io
+docker run --rm -v /Users/peter/:/sitespeed.io sitespeedio/sitespeed.io --plugins.add /sitespeed.io/test/plugin-webpagetest/index.js https://www.sitespeed.io
 ~~~
 
 
 ### Relative using NodeJS
-If you have your plugin installed on yoru computer you can load it by a relative path.
+If you have your plugin installed on your computer you can load it by a relative path.
 
 ~~~bash
 sitespeed.io https://www.sitespeed.io --plugins.add ../my/super/plugin

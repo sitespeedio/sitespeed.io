@@ -1339,6 +1339,45 @@ export default async function (context, commands) {
 };
 ~~~
 
+#### cdp.dp.getRawClient()
+Get the raw CDP client so you can do whatever you want. Here's an example on how to change the server header on the response.
+
+~~~javascript
+export default async function (context, commands) {
+  const cdpClient = commands.cdp.getRawClient();
+  await cdpClient.Fetch.enable({
+    patterns: [
+      {
+        urlPattern: '*',
+        requestStage: 'Response'
+      }
+    ]
+  });
+
+  cdpClient.Fetch.requestPaused(async reqEvent => {
+    const { requestId } = reqEvent;
+    let responseHeaders = reqEvent.responseHeaders || [];
+
+    const newServerHeader = { name: 'server', value: 'Haxxor' };
+    const foundHeaderIndex = responseHeaders.findIndex(
+      h => h.name === 'server'
+    );
+    if (foundHeaderIndex) {
+      responseHeaders[foundHeaderIndex] = newServerHeader;
+    } else {
+      responseHeaders.push(newServerHeader);
+    }
+
+    return cdpClient.Fetch.continueResponse({
+      requestId,
+      responseCode: 200,
+      responseHeaders
+    });
+  });
+
+  await commands.measure.start('https://www.sitespeed.io/search/');
+}
+~~~
 ### Error
 You can create your own error. The error will be attached to the latest tested page. Say that you have a script where you first measure a page and then want to click on a specific link and the link doesn't exist. Then you can attach your own error with your own error text. The error will be sent to your datasource and will be visible in the HTML result.
 
