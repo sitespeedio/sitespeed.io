@@ -6,9 +6,6 @@
     "sitespeed.io-wpr": "./bin/browsertimeWebPageReplay.js"
   },
   "version": "27.0.0-beta.9",
-  "publishConfig": {
-    "tag": "beta"
-  },
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
