@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2022-09-27T08:25:55.644Z</updated>
+    <updated>2023-04-04T07:00:47.351Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,194 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.5.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.5.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.5.0"/>
+        <updated>2022-04-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>There&#39;s a new better way to get the HAR from <a href="https://github.com/firefox-devtools/bidi-har-export">Firefox using WebDriver BiDi network events</a>. Thank you <a href="https://github.com/juliandescottes">Julian Descottes</a> and others at Mozilla that made this happen! With the new version we hope to see less overhead getting the HAR +  it works on Firefox on Android <a href="https://github.com/sitespeedio/browsertime/pull/1918">#1918</a>. You can turn it on with <code>--firefox.bidihar</code>.</li>
+</ul>
+ <ul>
+<li>Updated to Geckodriver 0.33 <a href="https://github.com/sitespeedio/browsertime/pull/1928">#1928</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Fixed the interaction to next paint error message that started to appear in latest Chrome <a href="https://github.com/sitespeedio/browsertime/pull/1924">#1924</a>.</li>
+</ul>
+ <ul>
+<li>Safer check for getting last meaningful paint  <a href="https://github.com/sitespeedio/browsertime/pull/1927">#1927</a></li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.4.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.4.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.4.0"/>
+        <updated>2022-03-29T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Log the CPU benchmark metric to the console. This is useful (at least for me) when debugging instances with a lot of instability. <a href="https://github.com/sitespeedio/browsertime/pull/1920">#1920</a>.</li>
+</ul>
+ <ul>
+<li>In Chrome 111 some metrics become more instable when running on host with limited CPU. This change also exists in 112 beta. However we where missing out on a couple of command line magic to disable features in Chrome, this fixes that <a href="https://github.com/sitespeedio/browsertime/pull/1921">#1921</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.3.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.3.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.3.0"/>
+        <updated>2022-03-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>On Linux you can use taskset to assing FFMPEG to specific CPUs using <code>--videoParams.taskset &quot;0,5,7,9-11&quot; </code>. It will start FFMPEG with <code>taskset -c &lt;CPUS&gt;</code> to pin FFMPG to specific CPU(s). Specify a numerical list of processors. The list may contain multiple items, separated by comma, and ranges. For example, &quot;0,5,7,9-11&quot;. Use it together with isolcpus. Added in <a href="https://github.com/sitespeedio/browsertime/pull/1917">#1917</a>.</li>
+</ul>
+ <ul>
+<li>If you use a rooted Samsung A51 you can now choose the CPU speed (min/middle/max) using <code>--android.pinCPUSpeed min|middle|max</code> <a href="https://github.com/sitespeedio/browsertime/pull/1915">#1915</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Bumped Selenium-webdriver to 4.8.2 <a href="https://github.com/sitespeedio/browsertime/pull/1916">#1916</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.2.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.2.1</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.2.1"/>
+        <updated>2022-03-16T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Bumped Geckodriver to 0.32.2 and Edgedriver to 111.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.2.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.2.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.2.0"/>
+        <updated>2022-03-14T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated Chrome, Chromedriver, Edge and Firefox to 111.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.1.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.1.1</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.1.1"/>
+        <updated>2022-03-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated  jimp, yargs, webdriver, execa and chrome-remote-interface dependencies <a href="https://github.com/sitespeedio/browsertime/pull/1909">#1909</a>.</li>
+</ul>
+ <ul>
+<li>Added extra log message when using the package.json hack.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.1.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.1.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.1.0"/>
+        <updated>2022-02-24T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Expose chrome-remote-interface client to scripting. This makes it so much easier to run whatever CDP command. Get the raw version <code>commands.cdp.getRawClient();</code>. See PR <a href="https://github.com/sitespeedio/browsertime/pull/1905">#1905</a> for a concrete example until we update the documentation.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Fix visual-complete progress calculations to not use fuzz/slop, thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1902">#1902</a>.</li>
+</ul>
+ <ul>
+<li>Update to new Chrome HAR <a href="https://github.com/sitespeedio/browsertime/pull/1906">#1906</a>.</li>
+</ul>
+ <ul>
+<li>Fix flushing DNS on Ubuntu 22.04 <a href="https://github.com/sitespeedio/browsertime/pull/1907">#1907</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.0.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.0.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.0.0"/>
+        <updated>2022-02-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Selenium 4.8.</li>
+</ul>
+ <ul>
+<li>Updated dependencies: execa, days, find-up, get-ports, jimp, yargs <a href="https://github.com/sitespeedio/browsertime/pull/1860">#1860</a></li>
+</ul>
+ <ul>
+<li>Updated to Chrome, Firefox and Edge 109 in the Docker container. Also updated all drivers.</li>
+</ul>
+ <ul>
+<li>Updated to NodeJS 18 and Ubuntu 22.04 in the Docker container.</li>
+</ul>
+ <ul>
+<li>Get CPU metrics using Glean on Firefox, thank you <a href="https://github.com/afinder-mozilla">afinder-mozilla</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1875">#1875</a></li>
+</ul>
+ <ul>
+<li>Provide active tab id to gecko profiler StartProfiler API in Firefox, thank you <a href="https://github.com/canova">Nazım Can Altınova</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1874">#1874</a>.</li>
+</ul>
+ <ul>
+<li>There&#39;s two new methods to switch to frame: <code>switch.toFrameByXpath(xpath)</code> and <code>switch.toFrameBySelector(selector)</code> <a href="https://github.com/sitespeedio/browsertime/pull/1880">#1880</a>.</li>
+</ul>
+ <ul>
+<li>Add a timeout to gecko profiler gzipping phase, thank you <a href="https://github.com/canova">Nazım Can Altınova</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1896">#1896</a></li>
+</ul>
+ <ul>
+<li>Pin CPU freq to fastest for Samsung A51 (if you have a rooted device) <a href="https://github.com/sitespeedio/browsertime/pull/1895">#1895</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Pause the gecko profiler before starting to collect the profile data, thank you <a href="https://github.com/canova">Nazım Can Altınova</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1856">#1856</a>.</li>
+</ul>
+ <ul>
+<li>All Android configurations has been moved to an Android group. That makes it easier when you run --help and can see all Android configuration grouped together. For example <code>--androidBatteryTemperature</code> is now <code>--android.batteryTemperatureLimit</code>. Old names will still work but are deprecated <a href="https://github.com/sitespeedio/browsertime/pull/1865">#1865</a>.</li>
+</ul>
+ <ul>
+<li>Updated to Chromedriver 110 to work with Android 13 <a href="https://github.com/sitespeedio/browsertime/pull/1894">#1894</a>.</li>
+</ul>
+<h3>Breaking changes</h3>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 16.17.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.17.0</id>
@@ -49,118 +237,6 @@
 </ul>
  <ul>
 <li>Before you start a test on Android you can push the home button using <code>--androidPretestPressHomeButton</code> <a href="https://github.com/sitespeedio/browsertime/pull/1844">#1844</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 16.15.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.15.1</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.15.1"/>
-        <updated>2022-08-30T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Make sure long tasks are collected direct after a test ends. On a slow device it sometimes happened that long tasks was browsertime running scripts to collect metrics <a href="https://github.com/sitespeedio/browsertime/pull/1841">#1841</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 16.15.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.15.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.15.0"/>
-        <updated>2022-08-30T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Always get the wifi name that your Android phone is using and add it to the result <a href="https://github.com/sitespeedio/browsertime/pull/1839">#1839</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 16.14.2]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.14.2</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.14.2"/>
-        <updated>2022-08-26T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Using <code>--preWarmServer</code> didn&#39;t work on Android/iOS <a href="https://github.com/sitespeedio/browsertime/pull/1837">#1837</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 16.14.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.14.1</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.14.1"/>
-        <updated>2022-08-26T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Guard relative standard deviation agains 0 standard deviation <a href="https://github.com/sitespeedio/browsertime/pull/1835">#1835</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 16.14.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.14.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.14.0"/>
-        <updated>2022-08-26T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Collect relative standard deviation and output that in the cli output <a href="https://github.com/sitespeedio/browsertime/pull/1834">#1834</a>. Before we only showed the actual standard deviation, with this fix we also show it in percentage, that makes it easier if you run tests on different hardware/networks and want to compare them.</li>
-</ul>
- <ul>
-<li>Collect number of processes that runs on the server that do the testing, before a test starts <a href="https://github.com/sitespeedio/browsertime/pull/1833">#1833</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Updated to Selenium 4.4.0 and Throttle 5.0.0.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 16.13.3]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.3</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.3"/>
-        <updated>2022-08-17T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Make sure set cookies work when navigating in script for Chrome/Edge <a href="https://github.com/sitespeedio/browsertime/pull/1830">#1830</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 16.13.2]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.2</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.2"/>
-        <updated>2022-08-14T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Disable adding lastCPULongTask to the HAR data since it breaks waterfall view on slow mobile phones with late CPU long tasks <a href="https://github.com/sitespeedio/browsertime/pull/1828">#1828</a>.</li>
 </ul>
 ]]></summary>
         <author>
