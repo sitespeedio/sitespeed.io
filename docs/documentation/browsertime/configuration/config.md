@@ -64,6 +64,7 @@ firefox
       --firefox.includeResponseBodies           Include response bodies in HAR  [choices: "none", "all", "html"] [default: "none"]
       --firefox.appconstants                    Include Firefox AppConstants information in the results  [boolean] [default: false]
       --firefox.acceptInsecureCerts             Accept insecure certs  [boolean]
+      --firefox.bidihar                         Use the new bidi HAR generator  [boolean] [default: false]
       --firefox.windowRecorder                  Use the internal compositor-based Firefox window recorder to emit PNG files for each frame that is a meaningful change.  The PNG output will further be merged into a variable frame rate video for analysis. Use this instead of ffmpeg to record a video (you still need the --video flag).  [boolean] [default: false]
       --firefox.memoryReport                    Measure firefox resident memory after each iteration.  [boolean] [default: false]
       --firefox.memoryReportParams.minizeFirst  Force a collection before dumping and measuring the memory report.  [boolean] [default: false]
