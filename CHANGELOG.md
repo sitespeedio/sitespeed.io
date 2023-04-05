@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 27.1.0 - UNRELEASED 
+## 27.1.0 -  2023-04-05
 
 ### Added
 * Chrome 112 in the Docker container.
