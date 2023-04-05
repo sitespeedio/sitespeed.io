@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2023-04-04T20:34:01.392Z</updated>
+    <updated>2023-04-05T13:25:46.498Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,6 +17,27 @@
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
     <entry>
+        <title type="html"><![CDATA[sitespeed.io 27.1.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.1.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.1.0"/>
+        <updated>2023-04-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Chrome 112 in the Docker container.</li>
+</ul>
+ <ul>
+<li>Updated Browsertime:</li>
+</ul>
+ <ul>
+<li>The plugin-lighthouse uses Lighthouse 10.1.0 and --headless=new</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[sitespeed.io 27.0.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.0.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.0.0"/>
@@ -29,7 +50,10 @@
 <li>Updated to Chrome 111, Firefox 111 and Edge 111 in the Docker container.</li>
 </ul>
  <ul>
-<li>The Lightouse plugin has been updated to Lighthouse 10.</li>
+<li>The Lighthouse plugin has been updated to Lighthouse 10.</li>
+</ul>
+ <ul>
+<li>Support for InfluxDb 2, thank you <a href="https://github.com/Damien-Ar">Damien-Ar</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/3711">#3711</a> and <a href="https://github.com/boitcex">Roman Voitseshevsky</a> for adding tests in <a href="https://github.com/sitespeedio/sitespeed.io/pull/3790">#3790</a>.</li>
 </ul>
 <h3>Fixed</h3>
  <ul>
@@ -206,21 +230,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Ooops, it turns out 25.8.2 didn&#39;t fix the preWarm issue, it&#39;s fixed in [3715](</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 25.8.2]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.8.2</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.8.2"/>
-        <updated>2022-08-26T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated Browsertime to 16.14.2 that fixes <code>--browsertime.preWarmServer</code> on Android and iOS.</li>
 </ul>
 ]]></summary>
         <author>

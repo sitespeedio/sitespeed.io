@@ -4,7 +4,7 @@
         <title>browsertime release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of browsertime</description>
-        <lastBuildDate>Tue, 04 Apr 2023 20:34:01 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 05 Apr 2023 12:51:21 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,25 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/browsertime.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[browsertime 17.6.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.6.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.6.0</guid>
+            <pubDate>Tue, 05 Apr 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Upgraded to Chrome/Chromedriver 112 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/1932">#1932</a>.</li>
+</ul>
+ <ul>
+<li>If you use <code>--headless</code> Chrome will use the new headless switch <a href="https://github.com/sitespeedio/browsertime/pull/1933">#1933</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Increased the default wait time from 2 to 5 seconds when a element a clicked and the page complete check runs <a href="https://github.com/sitespeedio/browsertime/pull/1931">#1931</a></li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[browsertime 17.5.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.5.0</link>
@@ -195,21 +214,6 @@
 <h3>Fixed</h3>
  <ul>
 <li>Fix so we collect battery temperature statistics on Android (again) <a href="https://github.com/sitespeedio/browsertime/pull/1851">#1851</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 16.16.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.16.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.16.0</guid>
-            <pubDate>Tue, 20 Sep 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Chrome 105, Firefox 104 and Chromedriver 105 <a href="https://github.com/sitespeedio/browsertime/pull/1843">#1843</a>.</li>
-</ul>
- <ul>
-<li>Before you start a test on Android you can push the home button using <code>--androidPretestPressHomeButton</code> <a href="https://github.com/sitespeedio/browsertime/pull/1844">#1844</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
