@@ -71,7 +71,8 @@ If you still want to use ImageMagick you can do that by setting ```browsertime.v
   * Expose chrome-remote-interface client to scripting. This makes it so much easier to run whatever CDP command. Get the raw version `commands.cdp.getRawClient()`.
   * Pin CPU freq to fastest for Samsung A51 (if you have a rooted device) 
 * Updated to Chrome 111, Firefox 111 and Edge 111 in the Docker container.
-* The Lightouse plugin has been updated to Lighthouse 10. 
+* The Lighthouse plugin has been updated to Lighthouse 10. 
+* Support for InfluxDb 2, thank you [Damien-Ar](https://github.com/Damien-Ar) for PR [#3711](https://github.com/sitespeedio/sitespeed.io/pull/3711) and [Roman Voitseshevsky](https://github.com/boitcex) for adding tests in [#3790](https://github.com/sitespeedio/sitespeed.io/pull/3790).
 ## 26.1.0 - 2022-10-21
 ### Added
 * Update to 0.10.4 co2 and make it possible change model [#3736](https://github.com/sitespeedio/sitespeed.io/pull/3736) and the to 0.11.3 in [#3741](https://github.com/sitespeedio/sitespeed.io/pull/3741)
