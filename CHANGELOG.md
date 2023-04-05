@@ -1,9 +1,15 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 27.1.0 - UNRELEASED 
 
 ### Added
 * Chrome 112 in the Docker container.
+* Updated Browsertime:
+  * Increased the default wait time from 2 to 5 seconds when a element a clicked and the page complete check runs [#1931](https://github.com/sitespeedio/browsertime/pull/1931)
+  * Upgraded to Chromedriver 112 [#1932](https://github.com/sitespeedio/browsertime/pull/1932).
+  * If you use `--headless` Chrome will use the new headless switch [#1933](https://github.com/sitespeedio/browsertime/pull/1933).
+* The plugin-lighthouse uses Lighthouse 10.1.0 and --headless=new 
+
 ## 27.0.0 - 2023-04-04
 
 Wow it's been many months since I did a new release wih sitespeed.io. I've had a lot to do in my personal life, a lot at work and low energy to finish the big changes I've done in both Browsertime and sitespeed.io. And here it is: 27.0.0. It can still have some rough edges so please [report any bugs](https://github.com/sitespeedio/sitespeed.io/issues) and I will try to fix them ASAP.
