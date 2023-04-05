@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+
+### Added
+* Chrome 112 in the Docker container.
 ## 27.0.0 - 2023-04-04
 
 Wow it's been many months since I did a new release wih sitespeed.io. I've had a lot to do in my personal life, a lot at work and low energy to finish the big changes I've done in both Browsertime and sitespeed.io. And here it is: 27.0.0. It can still have some rough edges so please [report any bugs](https://github.com/sitespeedio/sitespeed.io/issues) and I will try to fix them ASAP.
