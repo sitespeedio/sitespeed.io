@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 27.2.0 -  2023-04-07
+### Added
+* Updated Edge and Edgedriver to 112.
+
 ## 27.1.0 -  2023-04-05
 
 ### Added
