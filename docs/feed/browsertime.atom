@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2023-04-05T12:51:21.497Z</updated>
+    <updated>2023-04-11T08:29:19.501Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,40 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.8.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.8.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.8.0"/>
+        <updated>2022-04-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Upgraded to Firefox 112 in the Docker container.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Upgraded to Firefox HAR 0.0.8 <a href="https://github.com/sitespeedio/browsertime/pull/1937">#1937</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.7.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.7.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.7.0"/>
+        <updated>2022-04-07T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Added Edge/Edgedriver 112.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 17.6.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.6.0</id>
@@ -169,78 +203,6 @@
 </ul>
  <ul>
 <li>Fix flushing DNS on Ubuntu 22.04 <a href="https://github.com/sitespeedio/browsertime/pull/1907">#1907</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 17.0.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.0.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.0.0"/>
-        <updated>2022-02-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Selenium 4.8.</li>
-</ul>
- <ul>
-<li>Updated dependencies: execa, days, find-up, get-ports, jimp, yargs <a href="https://github.com/sitespeedio/browsertime/pull/1860">#1860</a></li>
-</ul>
- <ul>
-<li>Updated to Chrome, Firefox and Edge 109 in the Docker container. Also updated all drivers.</li>
-</ul>
- <ul>
-<li>Updated to NodeJS 18 and Ubuntu 22.04 in the Docker container.</li>
-</ul>
- <ul>
-<li>Get CPU metrics using Glean on Firefox, thank you <a href="https://github.com/afinder-mozilla">afinder-mozilla</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1875">#1875</a></li>
-</ul>
- <ul>
-<li>Provide active tab id to gecko profiler StartProfiler API in Firefox, thank you <a href="https://github.com/canova">Nazım Can Altınova</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1874">#1874</a>.</li>
-</ul>
- <ul>
-<li>There&#39;s two new methods to switch to frame: <code>switch.toFrameByXpath(xpath)</code> and <code>switch.toFrameBySelector(selector)</code> <a href="https://github.com/sitespeedio/browsertime/pull/1880">#1880</a>.</li>
-</ul>
- <ul>
-<li>Add a timeout to gecko profiler gzipping phase, thank you <a href="https://github.com/canova">Nazım Can Altınova</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1896">#1896</a></li>
-</ul>
- <ul>
-<li>Pin CPU freq to fastest for Samsung A51 (if you have a rooted device) <a href="https://github.com/sitespeedio/browsertime/pull/1895">#1895</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Pause the gecko profiler before starting to collect the profile data, thank you <a href="https://github.com/canova">Nazım Can Altınova</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1856">#1856</a>.</li>
-</ul>
- <ul>
-<li>All Android configurations has been moved to an Android group. That makes it easier when you run --help and can see all Android configuration grouped together. For example <code>--androidBatteryTemperature</code> is now <code>--android.batteryTemperatureLimit</code>. Old names will still work but are deprecated <a href="https://github.com/sitespeedio/browsertime/pull/1865">#1865</a>.</li>
-</ul>
- <ul>
-<li>Updated to Chromedriver 110 to work with Android 13 <a href="https://github.com/sitespeedio/browsertime/pull/1894">#1894</a>.</li>
-</ul>
-<h3>Breaking changes</h3>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 16.17.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.17.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.17.0"/>
-        <updated>2022-09-27T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Add ability to ignore shutdown failures on android, thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1850">#1850</a>.</li>
-</ul>
- <ul>
-<li>Updated to Firefox 105 and Edge 105 in the Docker container.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Fix so we collect battery temperature statistics on Android (again) <a href="https://github.com/sitespeedio/browsertime/pull/1851">#1851</a>.</li>
 </ul>
 ]]></summary>
         <author>
