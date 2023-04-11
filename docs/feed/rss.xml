@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Wed, 05 Apr 2023 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 11 Apr 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,34 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 27.3.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.3.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.3.0</guid>
+            <pubDate>Tue, 11 Apr 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Upgraded Firefox to 112 and added new Browsertime with updated HAR version.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Better handling if getting the HAR fails <a href="https://github.com/sitespeedio/sitespeed.io/pull/3810">#3810</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 27.2.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.2.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.2.0</guid>
+            <pubDate>Fri, 07 Apr 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated Edge and Edgedriver to 112.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 27.1.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.1.0</link>
@@ -74,6 +102,18 @@
 ]]></description>
         </item>
         <item>
+            <title><![CDATA[coach-core 7.1.3]]></title>
+            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.1.3</link>
+            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.1.3</guid>
+            <pubDate>Fri, 10 Feb 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fixed exporting to work with ESM modules too.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 26.1.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#26.1.0</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#26.1.0</guid>
@@ -106,25 +146,6 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 16.17.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.17.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.17.0</guid>
-            <pubDate>Tue, 27 Sep 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Add ability to ignore shutdown failures on android, thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1850">#1850</a>.</li>
-</ul>
- <ul>
-<li>Updated to Firefox 105 and Edge 105 in the Docker container.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Fix so we collect battery temperature statistics on Android (again) <a href="https://github.com/sitespeedio/browsertime/pull/1851">#1851</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[sitespeed.io 26.0.0]]></title>
@@ -208,33 +229,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16151---2022-08-30">Browsertime 16.5.1</a> thar makes sure long tasks are measured direct after the test finish. This fixes late long tasks that happens on slow devices caused by Browsertime collecting metrics.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 25.9.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.9.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.9.0</guid>
-            <pubDate>Tue, 30 Aug 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Browsertime 16.15.0 that include your Android phones connected wifi name in the result. That is now showed in the runtime settings page.</li>
-</ul>
- <ul>
-<li>Show relative standard deviation on the compare runs page <a href="https://github.com/sitespeedio/sitespeed.io/pull/3716">#3716</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 25.8.3]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.8.3</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.8.3</guid>
-            <pubDate>Sun, 28 Aug 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Ooops, it turns out 25.8.2 didn&#39;t fix the preWarm issue, it&#39;s fixed in [3715](</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
@@ -344,6 +338,34 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 17.8.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.8.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.8.0</guid>
+            <pubDate>Mon, 11 Apr 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Upgraded to Firefox 112 in the Docker container.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Upgraded to Firefox HAR 0.0.8 <a href="https://github.com/sitespeedio/browsertime/pull/1937">#1937</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 17.7.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.7.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.7.0</guid>
+            <pubDate>Thu, 07 Apr 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Added Edge/Edgedriver 112.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[browsertime 17.6.0]]></title>
@@ -490,53 +512,6 @@
  <ul>
 <li>Fix flushing DNS on Ubuntu 22.04 <a href="https://github.com/sitespeedio/browsertime/pull/1907">#1907</a>.</li>
 </ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 17.0.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.0.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.0.0</guid>
-            <pubDate>Thu, 10 Feb 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Selenium 4.8.</li>
-</ul>
- <ul>
-<li>Updated dependencies: execa, days, find-up, get-ports, jimp, yargs <a href="https://github.com/sitespeedio/browsertime/pull/1860">#1860</a></li>
-</ul>
- <ul>
-<li>Updated to Chrome, Firefox and Edge 109 in the Docker container. Also updated all drivers.</li>
-</ul>
- <ul>
-<li>Updated to NodeJS 18 and Ubuntu 22.04 in the Docker container.</li>
-</ul>
- <ul>
-<li>Get CPU metrics using Glean on Firefox, thank you <a href="https://github.com/afinder-mozilla">afinder-mozilla</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1875">#1875</a></li>
-</ul>
- <ul>
-<li>Provide active tab id to gecko profiler StartProfiler API in Firefox, thank you <a href="https://github.com/canova">Nazım Can Altınova</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1874">#1874</a>.</li>
-</ul>
- <ul>
-<li>There&#39;s two new methods to switch to frame: <code>switch.toFrameByXpath(xpath)</code> and <code>switch.toFrameBySelector(selector)</code> <a href="https://github.com/sitespeedio/browsertime/pull/1880">#1880</a>.</li>
-</ul>
- <ul>
-<li>Add a timeout to gecko profiler gzipping phase, thank you <a href="https://github.com/canova">Nazım Can Altınova</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1896">#1896</a></li>
-</ul>
- <ul>
-<li>Pin CPU freq to fastest for Samsung A51 (if you have a rooted device) <a href="https://github.com/sitespeedio/browsertime/pull/1895">#1895</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Pause the gecko profiler before starting to collect the profile data, thank you <a href="https://github.com/canova">Nazım Can Altınova</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1856">#1856</a>.</li>
-</ul>
- <ul>
-<li>All Android configurations has been moved to an Android group. That makes it easier when you run --help and can see all Android configuration grouped together. For example <code>--androidBatteryTemperature</code> is now <code>--android.batteryTemperatureLimit</code>. Old names will still work but are deprecated <a href="https://github.com/sitespeedio/browsertime/pull/1865">#1865</a>.</li>
-</ul>
- <ul>
-<li>Updated to Chromedriver 110 to work with Android 13 <a href="https://github.com/sitespeedio/browsertime/pull/1894">#1894</a>.</li>
-</ul>
-<h3>Breaking changes</h3>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
@@ -811,18 +786,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Updated the link about FLOC to use <a href="https://www.eff.org/deeplinks/2021/03/googles-floc-terrible-idea">https://www.eff.org/deeplinks/2021/03/googles-floc-terrible-idea</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[coach-core 6.3.2]]></title>
-            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.3.2</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.3.2</guid>
-            <pubDate>Tue, 13 Apr 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Catch when you test a URL without a domain see <a href="https://github.com/sitespeedio/sitespeed.io/issues/3043">https://github.com/sitespeedio/sitespeed.io/issues/3043</a></li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
