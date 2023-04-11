@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 27.3.0 -  2023-04-11
+### Added
+* Upgraded Firefox to 112 and added new Browsertime with updated HAR version.
+
+### Fixed
+* Better handling if getting the HAR fails [#3810](https://github.com/sitespeedio/sitespeed.io/pull/3810).
 ## 27.2.0 -  2023-04-07
 ### Added
 * Updated Edge and Edgedriver to 112.
