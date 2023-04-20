@@ -21,12 +21,10 @@ async function start() {
   try {
     const result = await run(options);
 
-    if (options.storeResult) {
-      if (options.storeResult == 'true') {
-        writeFileSync('result.json', JSON.stringify(result));
-      } else {
-        writeFileSync(options.storeResult, JSON.stringify(result));
-      }
+    // This can be used as an option to get hold of where the data is stored 
+    // for third parties
+    if (options.storeResult == 'true') {
+      writeFileSync('result.json', JSON.stringify(result));
     }
 
     if (result.errors.length > 0) {
