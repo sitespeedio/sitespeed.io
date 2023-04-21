@@ -69,6 +69,7 @@ firefox
       --firefox.memoryReport                    Measure firefox resident memory after each iteration.  [boolean] [default: false]
       --firefox.memoryReportParams.minizeFirst  Force a collection before dumping and measuring the memory report.  [boolean] [default: false]
       --firefox.geckoProfiler                   Collect a profile using the internal gecko profiler  [boolean] [default: false]
+      --firefox.geckoProfilerRecordingType      Expose the start/stop commands for the gecko profiler  [string] [choices: "pageload", "custom"] [default: "pageload"]
       --firefox.geckoProfilerParams.features    Enabled features during gecko profiling  [string] [default: "js,stackwalk,leaf"]
       --firefox.geckoProfilerParams.threads     Threads to profile.  [string] [default: "GeckoMain,Compositor,Renderer"]
       --firefox.geckoProfilerParams.interval    Sampling interval in ms.  Defaults to 1 on desktop, and 4 on android.  [number]
@@ -150,6 +151,7 @@ debug
 
 Options:
       --cpu                                        Easy way to enable both chrome.timeline for Chrome and geckoProfile for Firefox  [boolean]
+      --enableProfileRun                           Make one extra run that collects the profiling trace log (no other metrics is collected). For Chrome it will collect the timeline trace, for Firefox it will get the Geckoprofiler trace. This means you do not need to get the trace for all runs and can skip the overhead it produces.  [boolean]
       --video                                      Record a video and store the video. Set it to false to remove the video that is created by turning on visualMetrics. To remove fully turn off video recordings, make sure to set video and visualMetrics to false. Requires FFMpeg to be installed.  [boolean]
       --visualMetrics                              Collect Visual Metrics like First Visual Change, SpeedIndex, Perceptual Speed Index and Last Visual Change. Requires FFMpeg and Python dependencies  [boolean]
       --visualElements, --visuaElements            Collect Visual Metrics from elements. Works only with --visualMetrics turned on. By default you will get visual metrics from the largest image within the view port and the largest h1. You can also configure to pickup your own defined elements with --scriptInput.visualElements  [boolean]
