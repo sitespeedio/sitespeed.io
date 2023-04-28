@@ -96,7 +96,7 @@ Firefox
 
 Chrome
       --browsertime.chrome.args, --chrome.args                                        Extra command line arguments to pass to the Chrome process. If you use the command line, leave out the starting -- (--no-sandbox will be no-sandbox). If you use a configuration JSON file you should keep the starting --. To add multiple arguments to Chrome, repeat --browsertime.chrome.args once per argument. See https://peter.sh/experiments/chromium-command-line-switches/
-      --browsertime.chrome.timeline, --chrome.timeline                                Collect the timeline data. Drag and drop the JSON in your Chrome detvools timeline panel or check out the CPU metrics.  [boolean] [default: true]
+      --browsertime.chrome.timeline, --chrome.timeline                                Collect the timeline data. Drag and drop the JSON in your Chrome detvools timeline panel or check out the CPU metrics.  [boolean] [default: false]
       --browsertime.chrome.appendToUserAgent, --chrome.appendToUserAgent              Append to the user agent.  [string]
       --browsertime.chrome.android.package, --chrome.android.package                  Run Chrome on your Android device. Set to com.android.chrome for default Chrome version. You need to have adb installed to run on Android.
       --browsertime.chrome.android.activity, --chrome.android.activity                Name of the Activity hosting the WebView.
@@ -294,6 +294,7 @@ Options:
       --browsertime.xvfb, --xvfb                              Start xvfb before the browser is started  [boolean] [default: false]
       --browsertime.xvfbParams.display, --xvfbParams.display  The display used for xvfb  [default: 99]
       --browsertime.visualMetricsPortable                     Use the portable visual-metrics processing script (no ImageMagick dependencies).  [boolean] [default: true]
+      --browsertime.enableProfileRun, --enableProfileRun      Make one extra run that collects the profiling trace log (no other metrics is collected). For Chrome it will collect the timeline trace, for Firefox it will get the Geckoprofiler trace. This means you do not need to get the trace for all runs and can skip the overhead it produces.  [boolean]
       --browsertime.cjs, --cjs                                Load scripting files that ends with .js as common js. Default (false) loads files as esmodules.  [boolean] [default: false]
       --browsertime.tcpdump, --tcpdump                        Collect a tcpdump for each tested URL. The user that runs sitespeed.io should have sudo rights for tcpdump to work.  [boolean] [default: false]
       --browsertime.android, --android                        Short key to use Android. Will automatically use com.android.chrome for Chrome and stable Firefox. If you want to use another Chrome version, use --chrome.android.package  [boolean] [default: false]

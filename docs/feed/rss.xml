@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Tue, 11 Apr 2023 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 28 Apr 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,21 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 27.3.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.3.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.3.1</guid>
+            <pubDate>Fri, 28 Apr 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix broken --firstParty parameter as reported in <a href="https://github.com/sitespeedio/sitespeed.io/issues/3822">#3822</a> and fixed in  <a href="https://github.com/sitespeedio/sitespeed.io/pull/3823">#3823</a></li>
+</ul>
+ <ul>
+<li>Fix broken crawler <a href="https://github.com/sitespeedio/sitespeed.io/pull/3820">#3820</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 27.3.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.3.0</link>
@@ -222,18 +237,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 25.9.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.9.1</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.9.1</guid>
-            <pubDate>Tue, 30 Aug 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16151---2022-08-30">Browsertime 16.5.1</a> thar makes sure long tasks are measured direct after the test finish. This fixes late long tasks that happens on slow devices caused by Browsertime collecting metrics.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[throttle 5.0.0]]></title>
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.0</link>
             <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.0</guid>
@@ -302,6 +305,25 @@
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
         </item>
         <item>
+            <title><![CDATA[browsertime 17.9.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.9.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.9.0</guid>
+            <pubDate>Tue, 19 Apr 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>New command to start geckoprofiling when scripting using Firefox. Thank you <a href="https://github.com/92kns">KS</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1934">#1934</a>. This is probably only something you need if you work at Mozilla. There&#39;s also a follow PR <a href="https://github.com/sitespeedio/browsertime/pull/1940">#1940</a> that fixes some of the issues I&#39;ve been wanted to fix with the Geckoprofiler code.</li>
+</ul>
+ <ul>
+<li>Use <code>--enableProfileRun</code> to make one extra run where metrics aren&#39;t collected but Geckoprofiler or Chromes timeline log is turned on. This useful if you are worrying about the trace causing overhead, but you still wan trace from the test/journey. It&#39;s a little rough at the moment so it will a follow up in the future <a href="https://github.com/sitespeedio/browsertime/pull/1943">#1943</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Bump Chrome remote interface and execa <a href="https://github.com/sitespeedio/browsertime/pull/1941">#1941</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[throttle 3.1.1]]></title>
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.1</link>
             <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#3.1.1</guid>
@@ -338,6 +360,18 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 17.8.1]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.8.1</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.8.1</guid>
+            <pubDate>Tue, 12 Apr 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Upgraded to Firefox HAR 0.0.10 <a href="https://github.com/sitespeedio/browsertime/pull/1939">#1939</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[browsertime 17.8.0]]></title>
@@ -474,43 +508,6 @@
             <description><![CDATA[<h3>Added</h3>
  <ul>
 <li>Updated Chrome, Chromedriver, Edge and Firefox to 111.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 17.1.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.1.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.1.1</guid>
-            <pubDate>Fri, 04 Mar 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated  jimp, yargs, webdriver, execa and chrome-remote-interface dependencies <a href="https://github.com/sitespeedio/browsertime/pull/1909">#1909</a>.</li>
-</ul>
- <ul>
-<li>Added extra log message when using the package.json hack.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 17.1.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.1.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.1.0</guid>
-            <pubDate>Thu, 24 Feb 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Expose chrome-remote-interface client to scripting. This makes it so much easier to run whatever CDP command. Get the raw version <code>commands.cdp.getRawClient();</code>. See PR <a href="https://github.com/sitespeedio/browsertime/pull/1905">#1905</a> for a concrete example until we update the documentation.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Fix visual-complete progress calculations to not use fuzz/slop, thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1902">#1902</a>.</li>
-</ul>
- <ul>
-<li>Update to new Chrome HAR <a href="https://github.com/sitespeedio/browsertime/pull/1906">#1906</a>.</li>
-</ul>
- <ul>
-<li>Fix flushing DNS on Ubuntu 22.04 <a href="https://github.com/sitespeedio/browsertime/pull/1907">#1907</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
