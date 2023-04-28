@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 27.3.1 - 2023-04-28
+### Fixed
+* Fix broken --firstParty parameter as reported in [#3822](https://github.com/sitespeedio/sitespeed.io/issues/3822) and fixed in  [#3823](https://github.com/sitespeedio/sitespeed.io/pull/3823)
+* Fix broken crawler [#3820](https://github.com/sitespeedio/sitespeed.io/pull/3820).
 ## 27.3.0 -  2023-04-11
 ### Added
 * Upgraded Firefox to 112 and added new Browsertime with updated HAR version.
