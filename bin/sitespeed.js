@@ -115,6 +115,8 @@ async function start() {
   parsed.options.urlsMetaData = parsed.urlsMetaData;
 
   let options = parsed.options;
+  process.exitCode = 1;
+
   if (options.api && options.api.hostname) {
     api(options);
   } else {
@@ -123,8 +125,13 @@ async function start() {
 
       // This can be used as an option to get hold of where the data is stored
       // for third parties
-      if (options.storeResult == 'true') {
-        writeFileSync('result.json', JSON.stringify(result));
+      if (options.storeResult) {
+        if (options.storeResult == 'true') {
+          writeFileSync('result.json', JSON.stringify(result));
+        } else {
+          // Use the name supplied
+          writeFileSync(options.storeResult, JSON.stringify(result));
+        }
       }
 
       if (result.errors.length > 0) {
