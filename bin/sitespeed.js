@@ -72,16 +72,22 @@ async function api(options) {
           apiOptions,
           spinner
         );
-        spinner.succeed(`Got test result with id ${testId}`);
+        if (result.status === 'completed') {
+          spinner.succeed(`Got test result with id ${testId}`);
 
-        if (options.api.json) {
-          console.log(JSON.stringify(result));
-        } else {
-          console.log(result.result);
+          if (options.api.json) {
+            console.log(JSON.stringify(result));
+          } else {
+            console.log(result.result);
+          }
+        } else if (result.status === 'failed') {
+          spinner.fail('Test failed');
+          process.exitCode = 1;
+          process.exit();
         }
       }
     } catch (error) {
-      spinner.fail(error.message);
+      spinner.fail(error.toString());
       process.exitCode = 1;
       process.exit();
     }
@@ -112,7 +118,6 @@ async function start() {
   if (options.api && options.api.hostname) {
     api(options);
   } else {
-    process.exitCode = 1;
     try {
       const result = await run(options);
 
