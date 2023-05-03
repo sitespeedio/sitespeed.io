@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 27.5.1 - 2023-05-03
+### Fixed
+* Another fix for storing result data as JSON.
+
 ## 27.5.0 - 2023-05-03
 ### Added 
 * Use Chrome 113 in the Docker container.
