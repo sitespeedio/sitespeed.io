@@ -1,5 +1,12 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 27.5.0 - 2023-05-03
+### Added 
+* Use Chrome 113 in the Docker container.
+
+### Fixed
+* Fixed wrong error code when exiting, introduced earlier today.
+* More tuning of the coming API.
 ## 27.4.1 - 2023-05-03
 
 ### Fixed
