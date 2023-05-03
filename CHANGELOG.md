@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 27.4.1 - 2023-05-03
+
+### Fixed
+* Fixed the silent part of the API.
 ## 27.4.0 - 2023-05-03
 ### Added
 * Prepare to add support for the sitespeed.io API where you can launch tests on other servers. This is not ready yet but a makes it easier for me to test the upcoming functionality.
