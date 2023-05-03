@@ -5,7 +5,7 @@
     "sitespeed.io": "./bin/sitespeed.js",
     "sitespeed.io-wpr": "./bin/browsertimeWebPageReplay.js"
   },
-  "version": "27.3.1",
+  "version": "27.4.1",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
@@ -113,6 +113,7 @@
     "markdown": "0.5.0",
     "node-scp": "0.0.22",
     "node-slack": "0.0.7",
+    "ora": "6.3.0",
     "os-name": "5.1.0",
     "p-limit": "4.0.0",
     "pug": "3.0.2",
