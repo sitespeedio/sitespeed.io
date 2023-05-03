@@ -134,6 +134,16 @@ proxy
       --browsertime.proxy.http, --proxy.http    Http proxy (host:port)  [string]
       --browsertime.proxy.https, --proxy.https  Https proxy (host:port)  [string]
 
+API
+      --api.key         The API key to use
+      --api.hostname    The hostname of the API server.
+      --api.serverName  The serverName that will run the actual test
+      --api.type        The type of API call you want to do: S  [choices: "add", "addAndGetResult", "get"] [default: "addAndGetResult"]
+      --api.silent      Set to true if you do not want to log anything from the comunication  [default: false]
+      --api.port        The port for the API
+      --api.id          The id of the test. You it when you want to get the test result.
+      --api.json        Output the result as JSON.
+
 Crawler
   -d, --crawler.depth            How deep to crawl (1=only one page, 2=include links from first page, etc.)
   -m, --crawler.maxPages         The max number of pages to test. Default is no limit.
