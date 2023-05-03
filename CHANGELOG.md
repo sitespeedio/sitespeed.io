@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 27.4.0 - 2023-05-03
+### Added
+* Prepare to add support for the sitespeed.io API where you can launch tests on other servers. This is not ready yet but a makes it easier for me to test the upcoming functionality.
 ## 27.3.1 - 2023-04-28
 ### Fixed
 * Fix broken --firstParty parameter as reported in [#3822](https://github.com/sitespeedio/sitespeed.io/issues/3822) and fixed in  [#3823](https://github.com/sitespeedio/sitespeed.io/pull/3823)
