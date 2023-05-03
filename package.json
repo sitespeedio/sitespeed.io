@@ -5,7 +5,7 @@
     "sitespeed.io": "./bin/sitespeed.js",
     "sitespeed.io-wpr": "./bin/browsertimeWebPageReplay.js"
   },
-  "version": "27.3.1",
+  "version": "27.4.0",
   "description": "Analyze the web performance of your site",
   "keywords": [
     "performance",
