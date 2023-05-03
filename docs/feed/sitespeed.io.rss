@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Wed, 03 May 2023 07:43:06 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 03 May 2023 13:14:39 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,37 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 27.5.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.5.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.5.0</guid>
+            <pubDate>Wed, 03 May 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Use Chrome 113 in the Docker container.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Fixed wrong error code when exiting, introduced earlier today.</li>
+</ul>
+ <ul>
+<li>More tuning of the coming API.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 27.4.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.4.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.4.1</guid>
+            <pubDate>Wed, 03 May 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fixed the silent part of the API.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 27.4.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.4.0</link>
@@ -145,68 +176,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Upgrading to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16170---2022-09-27">Browsertime 16.17.0</a> that contains a fix to collect battery temperature on Android, making it possible to send the data to Graphite again.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 26.0.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#26.0.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#26.0.0</guid>
-            <pubDate>Fri, 23 Sep 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Checkout the <a href="https://github.com/sitespeedio/raspberrypi">pre built Raspberry Pi image</a> for running sitespeed.io tests on your Android phone.</li>
-</ul>
- <ul>
-<li>Upgraded to Firefox 105 and Edge 105 in the Docker container.</li>
-</ul>
- <ul>
-<li>Upgraded to Browsertime 16.16.0</li>
-</ul>
- <ul>
-<li>Include --preURL information in the latest storer info <a href="https://github.com/sitespeedio/sitespeed.io/pull/3729">#3729</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Fix graphite.sendAnnotation option <a href="https://github.com/sitespeedio/sitespeed.io/pull/3726">#3726</a>.</li>
-</ul>
- <ul>
-<li>Show timestamp when each run happens on the run page <a href="https://github.com/sitespeedio/sitespeed.io/pull/3730">#3730</a>.</li>
-</ul>
-<h3>Changed</h3>
- <ul>
-<li>The default setup did miss a lot of important performance metrics, so you needed to set them up yourself. That is fixed in this PR.</li>
-</ul>
- <ul>
-<li>There where a lot of data sent from PageXray, third party and the coach per run. That was not smart since those metrics rarely change between runs and take a lot of space. This PR sets default so none of those metrics are sent</li>
-</ul>
- <ul>
-<li>We introduce a limited set of run metrics from Browsertime (visual metrics and Google Web Vitals and a couple of more) that can be used when sending data per run. This will help you keep track of those metrics together with the default median/min/max values. More info coming up. It&#39;s enabled by default, disable it with <code>--browsertime.limitedRunData false</code></li>
-</ul>
- <ul>
-<li>Sending data per run to Graphite was broken: We sent a new key per run meaning it will take up a lot of extra space in Graphite. With this fix we send them under the run key. That way we can configure Graphite to keep data under that key that happened every 20 s (or however fast it takes to do one run) and then automatically remove the data after a week.</li>
-</ul>
- <ul>
-<li>Graphite configuration <code>--graphite.perIteration</code> and <code>--graphite.skipSummary</code> is removed. You can now configure which data to send to Graphite by using <code>--graphite.messages</code>. By default we send <em>pageSummary</em> (data summarised per URL) and <em>summary</em> (data summarised per domain). If you want to send <em>pageSummary</em> and <em>run</em> data (data for each run) you can do that with by adding <code>--graphite.messages run</code>  <code>--graphite.messages pageSummary</code>.</li>
-</ul>
- <ul>
-<li>We removed the possibility to send VisualProgress and videoRecordingStart data to the datasource since that is something you do not need there.</li>
-</ul>
- <ul>
-<li>We updated Grafana and the Graphite container to latest versions. The Graphite container contains <em>storage-schemas.conf</em> configuration that is a good default:</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 25.11.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.11.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#25.11.0</guid>
-            <pubDate>Sun, 04 Sep 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Make it possible to configure run options for AXE (before you could only configure configuration options) <a href="https://github.com/sitespeedio/sitespeed.io/pull/3718">#3718</a>. Checkout <a href="https://www.sitespeed.io/documentation/sitespeed.io/axe/#configure-axe">how to configure AXE</a>.* Removed showing if the page is an AMP page (that battle was won a long time ago) and instead show information from the Network information API when its available <a href="https://github.com/sitespeedio/sitespeed.io/pull/3719">#3719</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>

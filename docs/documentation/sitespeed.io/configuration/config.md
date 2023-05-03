@@ -139,7 +139,7 @@ API
       --api.hostname    The hostname of the API server.
       --api.serverName  The serverName that will run the actual test
       --api.type        The type of API call you want to do: S  [choices: "add", "addAndGetResult", "get"] [default: "addAndGetResult"]
-      --api.silent      Set to true if you do not want to log anything from the comunication  [default: false]
+      --api.silent      Set to true if you do not want to log anything from the comunication  [boolean] [default: false]
       --api.port        The port for the API
       --api.id          The id of the test. You it when you want to get the test result.
       --api.json        Output the result as JSON.
