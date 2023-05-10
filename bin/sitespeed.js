@@ -38,6 +38,16 @@ async function api(options) {
     apiOptions.api.scripting = scripting.toString();
   }
 
+  if (apiOptions.mobile) {
+    apiOptions.api.testType = 'emulatedMobile';
+  } else if (apiOptions.android) {
+    apiOptions.api.testType = 'android';
+  } else if (apiOptions.safari && apiOptions.safari.ios) {
+    apiOptions.api.testType = 'ios';
+  } else {
+    apiOptions.api.testType = 'desktop';
+  }
+
   if (options.config) {
     const config = JSON.parse(
       await readFileSync(
