@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 27.6.1 - 2023-05-10
+
+### Fixed
+* Another fix to the API.
 
 ## 27.6.0 - 2023-05-10
 ### Fixed
