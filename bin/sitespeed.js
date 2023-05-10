@@ -56,7 +56,7 @@ async function api(options) {
     }).start();
 
     try {
-      const data = await addTest(hostname, apiOptions, spinner);
+      const data = await addTest(hostname, apiOptions);
       const testId = JSON.parse(data).id;
       spinner.color = 'yellow';
       spinner.text = `Added test with id ${testId}`;
@@ -74,7 +74,6 @@ async function api(options) {
         );
         if (result.status === 'completed') {
           spinner.succeed(`Got test result with id ${testId}`);
-
           if (options.api.json) {
             console.log(JSON.stringify(result));
           } else {
@@ -87,7 +86,7 @@ async function api(options) {
         }
       }
     } catch (error) {
-      spinner.fail(error.toString());
+      spinner.fail(error.message);
       process.exitCode = 1;
       process.exit();
     }
@@ -115,7 +114,6 @@ async function start() {
   parsed.options.urlsMetaData = parsed.urlsMetaData;
 
   let options = parsed.options;
-  process.exitCode = 1;
 
   if (options.api && options.api.hostname) {
     api(options);
