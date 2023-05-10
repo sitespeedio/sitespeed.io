@@ -134,16 +134,6 @@ proxy
       --browsertime.proxy.http, --proxy.http    Http proxy (host:port)  [string]
       --browsertime.proxy.https, --proxy.https  Https proxy (host:port)  [string]
 
-API
-      --api.key         The API key to use
-      --api.hostname    The hostname of the API server.
-      --api.serverName  The serverName that will run the actual test
-      --api.type        The type of API call you want to do: S  [choices: "add", "addAndGetResult", "get"] [default: "addAndGetResult"]
-      --api.silent      Set to true if you do not want to log anything from the comunication  [boolean] [default: false]
-      --api.port        The port for the API
-      --api.id          The id of the test. You it when you want to get the test result.
-      --api.json        Output the result as JSON.
-
 Crawler
   -d, --crawler.depth            How deep to crawl (1=only one page, 2=include links from first page, etc.)
   -m, --crawler.maxPages         The max number of pages to test. Default is no limit.
@@ -297,6 +287,17 @@ Sustainable
       --sustainable.pageViews              Number of page views used when calculating CO2.
       --sustainable.disableHosting         Disable the hosting check. Default we do a check to a local database of domains with green hosting provided by the Green Web Foundation  [boolean] [default: false]
       --sustainable.useGreenWebHostingAPI  Instead of using the local copy of the hosting database, you can use the latest version through the Green Web Foundation API. This means sitespeed.io will make HTTP GET to the the hosting info.  [boolean] [default: false]
+
+API
+      --api.key       The API key to use.
+      --api.action    The type of API call you want to do: You get add a test and wait for the result, just add a test or get the result. To get the result, make sure you add the id using --api.id  [choices: "add", "addAndGetResult", "get"] [default: "addAndGetResult"]
+      --api.hostname  The hostname of the API server.
+      --api.location  The location of the worker that run the test.
+      --api.testType  The test type you want to run. The location needs tp have the chosen test type.  [choices: "desktop", "emulatedMobile", "android", "ios"] [default: "desktop"]
+      --api.silent    Set to true if you do not want to log anything from the communication  [boolean] [default: false]
+      --api.port      The port for the API
+      --api.id        The id of the test. Use it when you want to get the test result.  [string]
+      --api.json      Output the result as JSON.
 
 Options:
       --debugMessages                                         Debug mode logs all internal messages in the message queue to the log.  [boolean] [default: false]
