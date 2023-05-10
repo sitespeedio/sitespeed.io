@@ -30,6 +30,16 @@ async function api(options) {
   // a forever loop
   delete apiOptions.api.hostname;
 
+  if (apiOptions.mobile) {
+    apiOptions.api.testType = 'emulatedMobile';
+  } else if (apiOptions.android) {
+    apiOptions.api.testType = 'android';
+  } else if (apiOptions.safari && apiOptions.safari.ios) {
+    apiOptions.api.testType = 'ios';
+  } else {
+    apiOptions.api.testType = 'desktop';
+  }
+
   /*
     // Add support for running multi tests
     if (options.multi) {
