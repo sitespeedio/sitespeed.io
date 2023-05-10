@@ -30,14 +30,13 @@ async function api(options) {
   // a forever loop
   delete apiOptions.api.hostname;
 
-  /*
-    // Add support for running multi tests
-    if (options.multi) {
-      const scripting = await readFileSync(
-        new URL(resolve(process.cwd(), options._[0]), import.meta.url)
-      );
-    }
-    */
+  // Add support for running multi tests
+  if (options.multi) {
+    const scripting = await readFileSync(
+      new URL(resolve(process.cwd(), options._[0]), import.meta.url)
+    );
+    apiOptions.api.scripting = scripting.toString();
+  }
 
   if (options.config) {
     const config = JSON.parse(
