@@ -1,5 +1,13 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+
+## 27.6.0 - 2023-05-10
+### Fixed
+* More fixes to the upcoming API, and fixing wrong exit code.
+
+### Added
+* Firefox and Edge 113 in the Docker container.
+
 ## 27.5.1 - 2023-05-03
 ### Fixed
 * Another fix for storing result data as JSON.
