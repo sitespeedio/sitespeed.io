@@ -21,19 +21,31 @@ small
 a#cpu
 h2 CPU
 
-if browsertime && browsertime.cpu && browsertime.cpu.events        
+if browsertime && browsertime.cpu && browsertime.cpu.events && !options.browsertime.enableProfileRun       
     p Download the Chrome trace log and drag and drop it into Developer Tools / Performance in Chrome.
     .downloads
         if options.browsertime.chrome && options.browsertime.chrome.timeline
         - const tracePath = 'data/trace-' + (runNumber? runNumber : 1) + '.json.gz'
         a.button.button-download(href=tracePath, download=downloadName + '-timeline.json.gz') Download trace log 
 
-if options.browsertime && options.browsertime.firefox && options.browsertime.firefox.geckoProfiler && options.browser === 'firefox'         
+if options.browsertime && options.browsertime.firefox && options.browsertime.firefox.geckoProfiler && options.browser === 'firefox' && !options.browsertime.enableProfileRun       
     p Download the Firefox Geckoprofiler trace and drag and drop it into 
         a(href='https://profiler.firefox.com') https://profiler.firefox.com 
     .downloads
         - const tracePath = 'data/geckoProfile-' + (runNumber? runNumber : 1) + '.json.gz'
         a.button.button-download(href=tracePath, download=downloadName + '-geckoProfile.json.gz') Download trace
+
+if options.browsertime && options.browsertime.enableProfileRun
+    if options.browser === 'firefox' 
+        p Download the Firefox Geckoprofiler trace and drag and drop it into 
+        a(href='https://profiler.firefox.com') https://profiler.firefox.com 
+        .downloads
+            - const tracePath = 'data/geckoProfile-1-extra.json.gz'
+            a.button.button-download(href=tracePath, download=downloadName + '-geckoProfile.json.gz') Download extra run trace log
+    else if options.browser === 'chrome'
+        p Download the Chrome trace log and drag and drop it into Developer Tools / Performance in Chrome.
+        - const tracePath = 'data/trace-1-extra-run.json.gz'
+        a.button.button-download(href=tracePath, download=downloadName + '-timeline.json.gz') Download extra run trace log 
 
 if browsertime && browsertime.cpu && browsertime.cpu.longTasks
   a#long-tasks

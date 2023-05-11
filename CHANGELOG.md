@@ -1,5 +1,43 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 27.6.2 - 2023-05-11
+### Fixed
+* Finally fixed so you can use scripting from the API and removed the paramater testType since we can find that out programatically.
+
+## 27.6.1 - 2023-05-10
+
+### Fixed
+* Another fix to the API.
+
+## 27.6.0 - 2023-05-10
+### Fixed
+* More fixes to the upcoming API, and fixing wrong exit code.
+
+### Added
+* Firefox and Edge 113 in the Docker container.
+
+## 27.5.1 - 2023-05-03
+### Fixed
+* Another fix for storing result data as JSON.
+
+## 27.5.0 - 2023-05-03
+### Added 
+* Use Chrome 113 in the Docker container.
+
+### Fixed
+* Fixed wrong error code when exiting, introduced earlier today.
+* More tuning of the coming API.
+## 27.4.1 - 2023-05-03
+
+### Fixed
+* Fixed the silent part of the API.
+## 27.4.0 - 2023-05-03
+### Added
+* Prepare to add support for the sitespeed.io API where you can launch tests on other servers. This is not ready yet but a makes it easier for me to test the upcoming functionality.
+## 27.3.1 - 2023-04-28
+### Fixed
+* Fix broken --firstParty parameter as reported in [#3822](https://github.com/sitespeedio/sitespeed.io/issues/3822) and fixed in  [#3823](https://github.com/sitespeedio/sitespeed.io/pull/3823)
+* Fix broken crawler [#3820](https://github.com/sitespeedio/sitespeed.io/pull/3820).
 ## 27.3.0 -  2023-04-11
 ### Added
 * Upgraded Firefox to 112 and added new Browsertime with updated HAR version.

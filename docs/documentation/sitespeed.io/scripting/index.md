@@ -1236,6 +1236,11 @@ If frame/window is not found, an error will be thrown.
 #### switch.toFrame(id)
 Switch to a frame by its id.
 
+
+#### switch.toFrameByXpath(xpath)
+Switch to window by xpath.
+#### switch.toFrameBySelector(selector)
+Switch to window by CSS selector.
 #### switch.toWindow(name)
 Switch to window by name.
 
