@@ -293,7 +293,6 @@ API
       --api.action    The type of API call you want to do: You get add a test and wait for the result, just add a test or get the result. To get the result, make sure you add the id using --api.id  [choices: "add", "addAndGetResult", "get"] [default: "addAndGetResult"]
       --api.hostname  The hostname of the API server.
       --api.location  The location of the worker that run the test.
-      --api.testType  The test type you want to run. The location needs tp have the chosen test type.  [choices: "desktop", "emulatedMobile", "android", "ios"] [default: "desktop"]
       --api.silent    Set to true if you do not want to log anything from the communication  [boolean] [default: false]
       --api.port      The port for the API
       --api.id        The id of the test. Use it when you want to get the test result.  [string]
