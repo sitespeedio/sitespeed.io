@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 27.6.2 - 2023-05-11
+### Fixed
+* Finally fixed so you can use scripting from the API and removed the paramater testType since we can find that out programatically.
+
 ## 27.6.1 - 2023-05-10
 
 ### Fixed
