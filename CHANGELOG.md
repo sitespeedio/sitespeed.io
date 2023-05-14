@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 27.6.3 - UNRELEASED
+### Fixed
+* Bumped the Ubuntu image + updated to latest Node JS LTS + included ImageMagick again in the Docker container [#3841](https://github.com/sitespeedio/sitespeed.io/pull/3841).
+
 ## 27.6.2 - 2023-05-11
 ### Fixed
 * Finally fixed so you can use scripting from the API and removed the paramater testType since we can find that out programatically.
