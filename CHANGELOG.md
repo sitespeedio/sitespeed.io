@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 27.6.3 - UNRELEASED
+## 27.6.3 - 2023-05-15
 ### Fixed
 * Bumped the Ubuntu image + updated to latest Node JS LTS + included ImageMagick again in the Docker container [#3841](https://github.com/sitespeedio/sitespeed.io/pull/3841).
 
