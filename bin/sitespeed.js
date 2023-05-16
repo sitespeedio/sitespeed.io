@@ -5,7 +5,7 @@
 import { writeFileSync } from 'node:fs';
 import { execSync } from 'node:child_process';
 import { platform } from 'node:os';
-import { resolve } from 'node:path';
+import { resolve, basename } from 'node:path';
 import { readFileSync } from 'node:fs';
 
 import merge from 'lodash.merge';
@@ -36,6 +36,7 @@ async function api(options) {
       new URL(resolve(process.cwd(), options._[0]), import.meta.url)
     );
     apiOptions.api.scripting = scripting.toString();
+    apiOptions.api.scriptingName = basename(options._[0]);
   }
 
   if (apiOptions.mobile) {
