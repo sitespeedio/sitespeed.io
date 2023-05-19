@@ -1,10 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+##  27.6.4 - UNRELEASED
 ### Fixed
 * New fixed version of the ARM container with a working version of Firefox [#3844](https://github.com/sitespeedio/sitespeed.io/pull/3844)
 * Fixes for the API: Pass on scriptname and pass on Browsertime data in the result.
-
+* New Browsertime version(s) with updated Interaction To Next Paint script and updated Chromedriver/Edgedriver to 113 [#3851](https://github.com/sitespeedio/sitespeed.io/pull/3851) and [#3853](https://github.com/sitespeedio/sitespeed.io/pull/3853).
+* Upgrade yargs, ora, fs-extra, axe-core [#3852](https://github.com/sitespeedio/sitespeed.io/pull/3852).
 
 ## 27.6.3 - 2023-05-15
 ### Fixed
