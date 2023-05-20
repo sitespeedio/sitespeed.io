@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2023-04-21T03:50:49.259Z</updated>
+    <updated>2023-05-19T14:55:04.406Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,43 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.10.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.10.1</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.10.1"/>
+        <updated>2022-05-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated code to collect Interaction To Next Paint <a href="https://github.com/sitespeedio/browsertime/pull/1952">#1952</a>. This new version follow updated version(s) of Google Web Vitals.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.10.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.10.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.10.0"/>
+        <updated>2022-05-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Chrome, Edge and Firefox 113 <a href="https://github.com/sitespeedio/browsertime/pull/1946">#1946</a>, Chromedriver 113 <a href="https://github.com/sitespeedio/browsertime/pull/1947">#1947</a> and Edgedriver 113 <a href="https://github.com/sitespeedio/browsertime/pull/1949">#1949</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Bugfix for running iPhone Siumlator (and run tests on latest Mac OS) <a href="https://github.com/sitespeedio/browsertime/pull/1945">#1945</a>.</li>
+</ul>
+ <ul>
+<li>Bumped dependencies for Selenium, yargs and jimp <a href="https://github.com/sitespeedio/browsertime/pull/1950">#1950</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 17.9.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.9.0</id>
@@ -167,36 +204,6 @@
 <h3>Fixed</h3>
  <ul>
 <li>Bumped Selenium-webdriver to 4.8.2 <a href="https://github.com/sitespeedio/browsertime/pull/1916">#1916</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 17.2.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.2.1</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.2.1"/>
-        <updated>2022-03-16T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Bumped Geckodriver to 0.32.2 and Edgedriver to 111.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 17.2.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.2.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.2.0"/>
-        <updated>2022-03-14T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated Chrome, Chromedriver, Edge and Firefox to 111.</li>
 </ul>
 ]]></summary>
         <author>

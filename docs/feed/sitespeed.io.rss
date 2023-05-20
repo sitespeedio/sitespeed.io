@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Mon, 15 May 2023 04:20:20 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 20 May 2023 03:33:06 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,27 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 27.6.4]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.4</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.4</guid>
+            <pubDate>Sat, 20 May 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>New fixed version of the ARM container with a working version of Firefox <a href="https://github.com/sitespeedio/sitespeed.io/pull/3844">#3844</a></li>
+</ul>
+ <ul>
+<li>Fixes for the API: Pass on scriptname and pass on Browsertime data in the result.</li>
+</ul>
+ <ul>
+<li>New Browsertime version(s) with updated Interaction To Next Paint script and updated Chromedriver/Edgedriver to 113 <a href="https://github.com/sitespeedio/sitespeed.io/pull/3851">#3851</a> and <a href="https://github.com/sitespeedio/sitespeed.io/pull/3853">#3853</a>.</li>
+</ul>
+ <ul>
+<li>Upgrade yargs, ora, fs-extra, axe-core <a href="https://github.com/sitespeedio/sitespeed.io/pull/3852">#3852</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 27.6.3]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.3</link>
@@ -134,22 +155,6 @@
 </ul>
  <ul>
 <li>Fix broken crawler <a href="https://github.com/sitespeedio/sitespeed.io/pull/3820">#3820</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 27.3.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.3.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.3.0</guid>
-            <pubDate>Tue, 11 Apr 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgraded Firefox to 112 and added new Browsertime with updated HAR version.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Better handling if getting the HAR fails <a href="https://github.com/sitespeedio/sitespeed.io/pull/3810">#3810</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
