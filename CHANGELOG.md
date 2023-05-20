@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-##  27.6.4 - UNRELEASED
+##  27.6.4 - 2023-05-20
 ### Fixed
 * New fixed version of the ARM container with a working version of Firefox [#3844](https://github.com/sitespeedio/sitespeed.io/pull/3844)
 * Fixes for the API: Pass on scriptname and pass on Browsertime data in the result.
