@@ -12,9 +12,8 @@ twitterdescription: Run Lighthouse and Google PageSpeed Insights from sitespeed.
 
 # Lighthouse
 
-In sitespeed.io 22.0 we updated the Lighouse plugin!
 
-You can find the plugin at [https://github.com/sitespeedio/plugin-lighthouse](https://github.com/sitespeedio/plugin-lighthouse) and it will work with sitespeed.io 7.5 and later.
+You can find the plugin at [https://github.com/sitespeedio/plugin-lighthouse](https://github.com/sitespeedio/plugin-lighthouse) and it will work with sitespeed.io 27 and later.
 
 We also made it easy to use Lighthouse and the Google PageSpeed Insights plugin by releasing the +1 Docker container.
 
@@ -31,7 +30,7 @@ The Lighthouse tests will run after Browsertime finished and run Chrome headless
 *Note:* If you want to run more plugins with <code>--plugins.add</code> that will override the default settings so you will need to add the Lighthouse plugin again like this:
 
 ```bash
-docker run --shm-size=1g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-plus1 https://www.sitespeed.io/ --plugins.add analysisstorer --plugins.add /lighthouse
+docker run --shm-size=1g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-plus1 https://www.sitespeed.io/ --plugins.add analysisstorer --plugins.add /lighthouse/index.js
 ``` 
 
 The Lighthouse result is iframed into sitespeed.io:
