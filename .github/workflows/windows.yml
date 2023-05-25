@@ -26,4 +26,7 @@ jobs:
     - name: Run Edge test
       run: node bin/sitespeed.js -b edge https://www.sitespeed.io/
       shell: cmd
-      
+    - name: Run Edge test with scripting
+      run: node bin/sitespeed.js -b edge --multi test/prepostscripts/multiWindows.js -n 1
+      shell: cmd
+    
