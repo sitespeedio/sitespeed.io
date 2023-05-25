@@ -23,10 +23,15 @@ jobs:
     - run: choco outdated
     - name: Install dependencies
       run: choco install microsoft-edge --force
+    - name: Install sitespeed.io globally
+      run: npm install sitespeed.io -g
     - name: Run Edge test
       run: node bin/sitespeed.js -b edge https://www.sitespeed.io/
       shell: cmd
     - name: Run Edge test with scripting
       run: node bin/sitespeed.js -b edge --multi test/prepostscripts/multiWindows.cjs -n 1
+      shell: cmd
+    - name: Run Edge test with scripting with global install
+      run: sitespeed.io -b edge --multi test/prepostscripts/multiWindows.cjs -n 1
       shell: cmd
     
