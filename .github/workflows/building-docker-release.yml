@@ -35,6 +35,7 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
+          provenance: false
           tags: sitespeedio/sitespeed.io:${{steps.tag.outputs.tag}},sitespeedio/sitespeed.io:latest
       -
         name: Build and push sitespeed.io+1
@@ -45,6 +46,7 @@ jobs:
           file: ./docker/Dockerfile-plus1
           build-args: version=${{steps.tag.outputs.tag}} 
           push: true
+          provenance: false
           tags: sitespeedio/sitespeed.io:${{steps.tag.outputs.tag}}-plus1
       -
         name: Build and push sitespeed.io+wpt
@@ -55,6 +57,7 @@ jobs:
           file: ./docker/Dockerfile-webpagetest
           build-args: version=${{steps.tag.outputs.tag}} 
           push: true
+          provenance: false
           tags: sitespeedio/sitespeed.io:${{steps.tag.outputs.tag}}-webpagetest
       -
         name: Build and push sitespeed.io-slim
@@ -65,4 +68,5 @@ jobs:
           file: ./Dockerfile-slim
           build-args: version=${{steps.tag.outputs.tag}} 
           push: true
+          provenance: false
           tags: sitespeedio/sitespeed.io:${{steps.tag.outputs.tag}}-slim
