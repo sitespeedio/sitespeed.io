@@ -25,4 +25,5 @@ jobs:
         with:
           platforms: linux/amd64
           push: true
+          provenance: false
           tags: sitespeedio/sitespeed.io-autobuild:main
