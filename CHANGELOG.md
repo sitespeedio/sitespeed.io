@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+##  27.6.5 - 2023-05-26
+### Fixed
+* Bumped Browsertime with a fix for host-resolver-rules, thank you [Mikhail](https://github.com/atuchin-m) for PR [#1953](https://github.com/sitespeedio/browsertime/pull/1953).
+* Hopefully fixed the broken manifest file for the Docker containers by updating the Docker build actions to latest versions and added provenance: false. 
+
 ##  27.6.4 - 2023-05-20
 ### Fixed
 * New fixed version of the ARM container with a working version of Firefox [#3844](https://github.com/sitespeedio/sitespeed.io/pull/3844)
