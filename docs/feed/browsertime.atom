@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2023-05-19T14:55:04.406Z</updated>
+    <updated>2023-05-26T13:14:56.986Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.10.2]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.10.2</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.10.2"/>
+        <updated>2022-05-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix for--host-resolver-rules, thank you <a href="https://github.com/atuchin-m">Mikhail</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1953">#1953</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 17.10.1]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.10.1</id>
@@ -182,28 +197,6 @@
 </ul>
  <ul>
 <li>In Chrome 111 some metrics become more instable when running on host with limited CPU. This change also exists in 112 beta. However we where missing out on a couple of command line magic to disable features in Chrome, this fixes that <a href="https://github.com/sitespeedio/browsertime/pull/1921">#1921</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 17.3.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.3.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.3.0"/>
-        <updated>2022-03-26T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>On Linux you can use taskset to assing FFMPEG to specific CPUs using <code>--videoParams.taskset &quot;0,5,7,9-11&quot; </code>. It will start FFMPEG with <code>taskset -c &lt;CPUS&gt;</code> to pin FFMPG to specific CPU(s). Specify a numerical list of processors. The list may contain multiple items, separated by comma, and ranges. For example, &quot;0,5,7,9-11&quot;. Use it together with isolcpus. Added in <a href="https://github.com/sitespeedio/browsertime/pull/1917">#1917</a>.</li>
-</ul>
- <ul>
-<li>If you use a rooted Samsung A51 you can now choose the CPU speed (min/middle/max) using <code>--android.pinCPUSpeed min|middle|max</code> <a href="https://github.com/sitespeedio/browsertime/pull/1915">#1915</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Bumped Selenium-webdriver to 4.8.2 <a href="https://github.com/sitespeedio/browsertime/pull/1916">#1916</a>.</li>
 </ul>
 ]]></summary>
         <author>
