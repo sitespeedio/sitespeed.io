@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2023-05-20T03:33:06.771Z</updated>
+    <updated>2023-05-26T16:07:54.619Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,24 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 27.6.5]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.5</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.5"/>
+        <updated>2023-05-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Bumped Browsertime with a fix for host-resolver-rules, thank you <a href="https://github.com/atuchin-m">Mikhail</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1953">#1953</a>.</li>
+</ul>
+ <ul>
+<li>Hopefully fixed the broken manifest file for the Docker containers by updating the Docker build actions to latest versions and added provenance: false.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 27.6.4]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.4</id>
@@ -164,24 +182,6 @@
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Prepare to add support for the sitespeed.io API where you can launch tests on other servers. This is not ready yet but a makes it easier for me to test the upcoming functionality.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 27.3.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.3.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.3.1"/>
-        <updated>2023-04-28T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix broken --firstParty parameter as reported in <a href="https://github.com/sitespeedio/sitespeed.io/issues/3822">#3822</a> and fixed in  <a href="https://github.com/sitespeedio/sitespeed.io/pull/3823">#3823</a></li>
-</ul>
- <ul>
-<li>Fix broken crawler <a href="https://github.com/sitespeedio/sitespeed.io/pull/3820">#3820</a>.</li>
 </ul>
 ]]></summary>
         <author>

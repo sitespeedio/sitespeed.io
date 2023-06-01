@@ -296,6 +296,7 @@ API
       --api.silent    Set to true if you do not want to log anything from the communication  [boolean] [default: false]
       --api.port      The port for the API
       --api.id        The id of the test. Use it when you want to get the test result.  [string]
+      --api.priority  The priority of the test. Highest priority is 1.
       --api.json      Output the result as JSON.
 
 Options:
