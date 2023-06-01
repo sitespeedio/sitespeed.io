@@ -1,10 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-##  27.7.0 - UNRELEASED
+##  27.7.0 - 2023-06-01
 ### Added
 * New Chrome 114 in the Docker container and updated Chromedriver (114) with a new Browsertime [#3868](https://github.com/sitespeedio/sitespeed.io/pull/3868).
 * Use latest Co2 [#3867](https://github.com/sitespeedio/sitespeed.io/pull/3867).
-* Updated to latest Axe core [#3863](https://github.com/sitespeedio/sitespeed.io/pull/3863)
+* Updated to latest Axe core [#3863](https://github.com/sitespeedio/sitespeed.io/pull/3863).
+* Added label to test runs in the API [#3869](https://github.com/sitespeedio/sitespeed.io/pull/3869).
 
 ##  27.6.5 - 2023-05-26
 ### Fixed
