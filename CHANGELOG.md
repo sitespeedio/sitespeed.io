@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+##  27.8.0 - 2023-06-07
+### Added
+* Added upcoming exporting of the HAR file from Browsertime for the upcoming API [#3871](https://github.com/sitespeedio/sitespeed.io/pull/3871).
+
 ##  27.7.0 - 2023-06-01
 ### Added
 * New Chrome 114 in the Docker container and updated Chromedriver (114) with a new Browsertime [#3868](https://github.com/sitespeedio/sitespeed.io/pull/3868).
