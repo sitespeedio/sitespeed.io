@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Wed, 07 Jun 2023 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 12 Jun 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,43 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 27.9.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.0</guid>
+            <pubDate>Mon, 12 Jun 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Firefox and Edge 114 in the Docker container.</li>
+</ul>
+ <ul>
+<li>Updated coach-core with latest third party web, wappalyzer and a fix for when Chrome do not fire FCP <a href="https://github.com/sitespeedio/sitespeed.io/pull/3876">#3876</a></li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach-core 7.2.0]]></title>
+            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.2.0</link>
+            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.2.0</guid>
+            <pubDate>Mon, 12 Jun 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Upgraded to third party web 0.23.0. <a href="https://github.com/sitespeedio/coach-core/pull/98">#98</a>.</li>
+</ul>
+ <ul>
+<li>Upgraded to latest wappalyzer <a href="https://github.com/sitespeedio/coach-core/pull/100">#100</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Make sure to skip advice if Chrome is missing FCP <a href="https://github.com/sitespeedio/coach-core/pull/95">#95</a>.</li>
+</ul>
+ <ul>
+<li>Update dev dependencies</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 27.8.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.8.0</link>
@@ -144,25 +181,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Another fix for storing result data as JSON.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 27.5.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.5.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.5.0</guid>
-            <pubDate>Wed, 03 May 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Use Chrome 113 in the Docker container.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Fixed wrong error code when exiting, introduced earlier today.</li>
-</ul>
- <ul>
-<li>More tuning of the coming API.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
@@ -732,18 +750,6 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[coach-core 6.3.3]]></title>
-            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.3.3</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.3.3</guid>
-            <pubDate>Wed, 14 Apr 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated the link about FLOC to use <a href="https://www.eff.org/deeplinks/2021/03/googles-floc-terrible-idea">https://www.eff.org/deeplinks/2021/03/googles-floc-terrible-idea</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[pagexray 4.1.0]]></title>
