@@ -16,6 +16,21 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[sitespeed.io 27.9.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.1</guid>
+            <pubDate>Mon, 12 Jun 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Upgraded Browsertime that logs if LCP is not present (instead of logging null)</li>
+</ul>
+ <ul>
+<li>Fix when configure to log to file (that was broken when we moved to ESM) <a href="https://github.com/sitespeedio/sitespeed.io/pull/3879">#3879</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 27.9.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.0</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.0</guid>
@@ -174,18 +189,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 27.5.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.5.1</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.5.1</guid>
-            <pubDate>Wed, 03 May 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Another fix for storing result data as JSON.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[chrome-har 0.13.1]]></title>
             <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.1</link>
             <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.1</guid>
@@ -254,6 +257,18 @@
 <li>Removed the dependecy of route. Using <code>ip route</code> instead and we already have <code>ip</code> as a requirement.</li>
 </ul>
 ]]></description>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 17.11.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.0</guid>
+            <pubDate>Sun, 12 Jun 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>If Chrome do not collect largest contentful paint, log that instead of just log null <a href="https://github.com/sitespeedio/browsertime/pull/1957">#1957</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[browsertime 17.11.0]]></title>
@@ -465,28 +480,6 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 17.5.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.5.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.5.0</guid>
-            <pubDate>Mon, 04 Apr 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>There&#39;s a new better way to get the HAR from <a href="https://github.com/firefox-devtools/bidi-har-export">Firefox using WebDriver BiDi network events</a>. Thank you <a href="https://github.com/juliandescottes">Julian Descottes</a> and others at Mozilla that made this happen! With the new version we hope to see less overhead getting the HAR +  it works on Firefox on Android <a href="https://github.com/sitespeedio/browsertime/pull/1918">#1918</a>. You can turn it on with <code>--firefox.bidihar</code>.</li>
-</ul>
- <ul>
-<li>Updated to Geckodriver 0.33 <a href="https://github.com/sitespeedio/browsertime/pull/1928">#1928</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Fixed the interaction to next paint error message that started to appear in latest Chrome <a href="https://github.com/sitespeedio/browsertime/pull/1924">#1924</a>.</li>
-</ul>
- <ul>
-<li>Safer check for getting last meaningful paint  <a href="https://github.com/sitespeedio/browsertime/pull/1927">#1927</a></li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[coach-core 7.1.0]]></title>
