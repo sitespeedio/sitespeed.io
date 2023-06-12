@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+##  27.9.1 - 2023-06-12
+### Fixed
+* Upgraded Browsertime that logs if LCP is not present (instead of logging null)
+* Fix when configure to log to file (that was broken when we moved to ESM) [#3879](https://github.com/sitespeedio/sitespeed.io/pull/3879).
+
 ##  27.9.0 - 2023-06-12
 ### Added
 * Firefox and Edge 114 in the Docker container.
