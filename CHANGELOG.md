@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+##  27.9.2 - 2023-06-14
+### Fixed
+* Make sure config files are read sync [#3882](https://github.com/sitespeedio/sitespeed.io/pull/3882).
+
+
 ##  27.9.1 - 2023-06-12
 ### Fixed
 * Upgraded Browsertime that logs if LCP is not present (instead of logging null)
