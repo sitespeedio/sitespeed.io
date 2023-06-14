@@ -29,4 +29,7 @@ jobs:
     - name: Run Edge test with scripting
       run: node bin/sitespeed.js -b edge --multi test/prepostscripts/multiWindows.cjs -n 1
       shell: cmd
+    - name: Test devtools error
+      run: node bin/sitespeed.js -b edge --multi test/prepostscripts/windows.cjs -n 1
+      shell: cmd
     
