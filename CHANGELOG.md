@@ -1,5 +1,21 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+##  27.9.2 - 2023-06-14
+### Fixed
+* Make sure config files are read sync [#3882](https://github.com/sitespeedio/sitespeed.io/pull/3882).
+
+
+##  27.9.1 - 2023-06-12
+### Fixed
+* Upgraded Browsertime that logs if LCP is not present (instead of logging null)
+* Fix when configure to log to file (that was broken when we moved to ESM) [#3879](https://github.com/sitespeedio/sitespeed.io/pull/3879).
+
+##  27.9.0 - 2023-06-12
+### Added
+* Firefox and Edge 114 in the Docker container.
+* Updated coach-core with latest third party web, wappalyzer and a fix for when Chrome do not fire FCP [#3876](https://github.com/sitespeedio/sitespeed.io/pull/3876)
+
+
 ##  27.8.0 - 2023-06-07
 ### Added
 * Added upcoming exporting of the HAR file from Browsertime for the upcoming API [#3871](https://github.com/sitespeedio/sitespeed.io/pull/3871).
