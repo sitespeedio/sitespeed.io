@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+##  27.9.3 - 2023-06-19
+### Fixed
+* Upgraded Browsertime with the following fixes:
+  * Fix --debug mode. Thank you [Gregory Mierzwinski](https://github.com/gmierz) for PR [#1959](https://github.com/sitespeedio/browsertime/pull/1959).
+  * Update ff-test-bidi-har-export to 0.0.11 that fixes some error logs [#1961](https://github.com/sitespeedio/browsertime/pull/1961).
+
 ##  27.9.2 - 2023-06-14
 ### Fixed
 * Make sure config files are read sync [#3882](https://github.com/sitespeedio/sitespeed.io/pull/3882).
