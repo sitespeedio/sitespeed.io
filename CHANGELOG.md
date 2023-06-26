@@ -1,11 +1,14 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 28.0.0 - UNRELEASED
+## 28.0.0 - 2023-06-26
 
 ### Breaking change
 There where a bug in how the `browsertime.pageSummary` message was created where data was attached to the browserScript key (for example, the HAR file was attached to the element). This has been fixed and everything will work as before except if you have created your own plugin and listen to `browsertime.pageSummary` messages and where using the faulty attached data.
 
 The changes where done in [#3888](https://github.com/sitespeedio/sitespeed.io/pull/3888) and [#3890](https://github.com/sitespeedio/sitespeed.io/pull/3890).
+
+### Fixed
+* Updated Coach core to 7.2.1 that catch if local or session storage isn't accessible.
 
 ##  27.9.3 - 2023-06-19
 ### Fixed
