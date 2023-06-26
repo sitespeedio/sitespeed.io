@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2023-06-19T00:00:00.000Z</updated>
+    <updated>2023-06-26T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,36 @@
     <logo>https://www.sitespeed.io/img/logos/sitespeed.io.png</logo>
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 28.0.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#28.0.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#28.0.0"/>
+        <updated>2023-06-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated Coach core to 7.2.1 that catch if local or session storage isn&#39;t accessible.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[coach-core 7.2.1]]></title>
+        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.2.1</id>
+        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.2.1"/>
+        <updated>2023-06-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Catch if local storage or session storage isn&#39;t accessible.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 27.9.3]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.3</id>
@@ -195,21 +225,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Bumped the Ubuntu image + updated to latest Node JS LTS + included ImageMagick again in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3841">#3841</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 27.6.2]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.2</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.2"/>
-        <updated>2023-05-11T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Finally fixed so you can use scripting from the API and removed the paramater testType since we can find that out programatically.</li>
 </ul>
 ]]></summary>
         <author>
@@ -835,28 +850,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Use all headers for Wappalyzer (before only the main document was used) <a href="https://github.com/sitespeedio/coach-core/pull/60">#60</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[coach-core 6.4.0]]></title>
-        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.0</id>
-        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.0"/>
-        <updated>2021-06-02T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to PageXray 4.2.0 that adds support for getting render blocking info in Chrome.</li>
-</ul>
- <ul>
-<li>Update wappalyzer-core from 6.5.32 to 6.6.0 <a href="https://github.com/sitespeedio/coach-core/pull/57">#57</a></li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Only look for GET request for private and caching headers <a href="https://github.com/sitespeedio/coach-core/pull/55">#55</a>. See <a href="https://github.com/sitespeedio/coach-core/issues/53">#53</a>.</li>
 </ul>
 ]]></summary>
         <author>
