@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+
+## 28.1.0 - 2023-06-27
+### Added
+* Use `--graphite.proxyPath` to add extra proxy path to an annotation event in Graphite. Thank you [Jonathan Goodman](https://github.com/Shalankwa) for PR [#3893](https://github.com/sitespeedio/sitespeed.io/pull/3893).
+
 ## 28.0.0 - 2023-06-26
 
 ### Breaking change
