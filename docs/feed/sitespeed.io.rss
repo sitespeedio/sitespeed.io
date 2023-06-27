@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Mon, 26 Jun 2023 07:19:34 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 27 Jun 2023 14:24:02 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,18 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 28.1.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#28.1.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#28.1.0</guid>
+            <pubDate>Tue, 27 Jun 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Use <code>--graphite.proxyPath</code> to add extra proxy path to an annotation event in Graphite. Thank you <a href="https://github.com/Shalankwa">Jonathan Goodman</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/3893">#3893</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 28.0.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#28.0.0</link>
@@ -147,18 +159,6 @@
 </ul>
  <ul>
 <li>Upgrade yargs, ora, fs-extra, axe-core <a href="https://github.com/sitespeedio/sitespeed.io/pull/3852">#3852</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 27.6.3]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.3</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.3</guid>
-            <pubDate>Mon, 15 May 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Bumped the Ubuntu image + updated to latest Node JS LTS + included ImageMagick again in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3841">#3841</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>

@@ -166,7 +166,7 @@ Graphite
       --graphite.auth                        The Graphite user and password used for authentication. Format: user:password
       --graphite.httpPort                    The Graphite port used to access the user interface and send annotations event  [default: 8080]
       --graphite.webHost                     The graphite-web host. If not specified graphite.host will be used.
-      --graphite.proxyPath                   The added path to graphite-web api when behind a proxy. [default: ""]
+      --graphite.proxyPath                   Extra path to graphite-web when behind a proxy, used when sending annotations.  [default: ""]
       --graphite.namespace                   The namespace key added to all captured metrics.  [default: "sitespeed_io.default"]
       --graphite.includeQueryParams          Whether to include query parameters from the URL in the Graphite keys or not  [boolean] [default: false]
       --graphite.arrayTags                   Send the tags as Array or a String. In Graphite 1.0 the tags is a array. Before a String  [boolean] [default: true]
