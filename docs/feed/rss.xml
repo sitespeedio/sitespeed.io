@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Wed, 14 Jun 2023 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 27 Jun 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,54 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 28.1.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#28.1.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#28.1.0</guid>
+            <pubDate>Tue, 27 Jun 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Use <code>--graphite.proxyPath</code> to add extra proxy path to an annotation event in Graphite. Thank you <a href="https://github.com/Shalankwa">Jonathan Goodman</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/3893">#3893</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 28.0.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#28.0.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#28.0.0</guid>
+            <pubDate>Mon, 26 Jun 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated Coach core to 7.2.1 that catch if local or session storage isn&#39;t accessible.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach-core 7.2.1]]></title>
+            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.2.1</link>
+            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.2.1</guid>
+            <pubDate>Thu, 22 Jun 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Catch if local storage or session storage isn&#39;t accessible.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 27.9.3]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.3</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.3</guid>
+            <pubDate>Mon, 19 Jun 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Upgraded Browsertime with the following fixes:</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 27.9.2]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.2</link>
@@ -149,42 +197,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 27.6.3]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.3</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.3</guid>
-            <pubDate>Mon, 15 May 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Bumped the Ubuntu image + updated to latest Node JS LTS + included ImageMagick again in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3841">#3841</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 27.6.2]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.2</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.2</guid>
-            <pubDate>Thu, 11 May 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Finally fixed so you can use scripting from the API and removed the paramater testType since we can find that out programatically.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 27.6.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.1</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.1</guid>
-            <pubDate>Wed, 10 May 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Another fix to the API.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[chrome-har 0.13.1]]></title>
             <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.1</link>
             <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.1</guid>
@@ -244,6 +256,21 @@
 ]]></description>
         </item>
         <item>
+            <title><![CDATA[browsertime 17.11.2]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.2</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.2</guid>
+            <pubDate>Sun, 19 Jun 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix --debug mode. Thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1959">#1959</a>.</li>
+</ul>
+ <ul>
+<li>Update ff-test-bidi-har-export to 0.0.11 that fixes some error logs <a href="https://github.com/sitespeedio/browsertime/pull/1961">#1961</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[throttle 4.0.1]]></title>
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.1</link>
             <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.1</guid>
@@ -255,9 +282,9 @@
 ]]></description>
         </item>
         <item>
-            <title><![CDATA[browsertime 17.11.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.0</guid>
+            <title><![CDATA[browsertime 17.11.1]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.1</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.1</guid>
             <pubDate>Sun, 12 Jun 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
@@ -442,25 +469,6 @@
             <description><![CDATA[<h3>Added</h3>
  <ul>
 <li>Added Edge/Edgedriver 112.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 17.6.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.6.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.6.0</guid>
-            <pubDate>Tue, 05 Apr 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgraded to Chrome/Chromedriver 112 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/1932">#1932</a>.</li>
-</ul>
- <ul>
-<li>If you use <code>--headless</code> Chrome will use the new headless switch <a href="https://github.com/sitespeedio/browsertime/pull/1933">#1933</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Increased the default wait time from 2 to 5 seconds when a element a clicked and the page complete check runs <a href="https://github.com/sitespeedio/browsertime/pull/1931">#1931</a></li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
@@ -693,25 +701,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Use all headers for Wappalyzer (before only the main document was used) <a href="https://github.com/sitespeedio/coach-core/pull/60">#60</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[coach-core 6.4.0]]></title>
-            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.0</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.0</guid>
-            <pubDate>Wed, 02 Jun 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to PageXray 4.2.0 that adds support for getting render blocking info in Chrome.</li>
-</ul>
- <ul>
-<li>Update wappalyzer-core from 6.5.32 to 6.6.0 <a href="https://github.com/sitespeedio/coach-core/pull/57">#57</a></li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Only look for GET request for private and caching headers <a href="https://github.com/sitespeedio/coach-core/pull/55">#55</a>. See <a href="https://github.com/sitespeedio/coach-core/issues/53">#53</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>

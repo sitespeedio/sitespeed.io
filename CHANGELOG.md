@@ -1,5 +1,26 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+
+## 28.1.0 - 2023-06-27
+### Added
+* Use `--graphite.proxyPath` to add extra proxy path to an annotation event in Graphite. Thank you [Jonathan Goodman](https://github.com/Shalankwa) for PR [#3893](https://github.com/sitespeedio/sitespeed.io/pull/3893).
+
+## 28.0.0 - 2023-06-26
+
+### Breaking change
+There where a bug in how the `browsertime.pageSummary` message was created where data was attached to the browserScript key (for example, the HAR file was attached to the element). This has been fixed and everything will work as before except if you have created your own plugin and listen to `browsertime.pageSummary` messages and where using the faulty attached data.
+
+The changes where done in [#3888](https://github.com/sitespeedio/sitespeed.io/pull/3888) and [#3890](https://github.com/sitespeedio/sitespeed.io/pull/3890).
+
+### Fixed
+* Updated Coach core to 7.2.1 that catch if local or session storage isn't accessible.
+
+##  27.9.3 - 2023-06-19
+### Fixed
+* Upgraded Browsertime with the following fixes:
+  * Fix --debug mode. Thank you [Gregory Mierzwinski](https://github.com/gmierz) for PR [#1959](https://github.com/sitespeedio/browsertime/pull/1959).
+  * Update ff-test-bidi-har-export to 0.0.11 that fixes some error logs [#1961](https://github.com/sitespeedio/browsertime/pull/1961).
+
 ##  27.9.2 - 2023-06-14
 ### Fixed
 * Make sure config files are read sync [#3882](https://github.com/sitespeedio/sitespeed.io/pull/3882).

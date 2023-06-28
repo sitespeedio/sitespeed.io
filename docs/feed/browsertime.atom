@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2023-06-12T20:48:55.617Z</updated>
+    <updated>2023-06-19T17:16:23.023Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,9 +17,27 @@
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
     <entry>
-        <title type="html"><![CDATA[browsertime 17.11.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.0"/>
+        <title type="html"><![CDATA[browsertime 17.11.2]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.2</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.2"/>
+        <updated>2022-06-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix --debug mode. Thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1959">#1959</a>.</li>
+</ul>
+ <ul>
+<li>Update ff-test-bidi-har-export to 0.0.11 that fixes some error logs <a href="https://github.com/sitespeedio/browsertime/pull/1961">#1961</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.11.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.1</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.1"/>
         <updated>2022-06-12T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
@@ -166,28 +184,6 @@
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Added Edge/Edgedriver 112.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 17.6.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.6.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.6.0"/>
-        <updated>2022-04-05T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgraded to Chrome/Chromedriver 112 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/1932">#1932</a>.</li>
-</ul>
- <ul>
-<li>If you use <code>--headless</code> Chrome will use the new headless switch <a href="https://github.com/sitespeedio/browsertime/pull/1933">#1933</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Increased the default wait time from 2 to 5 seconds when a element a clicked and the page complete check runs <a href="https://github.com/sitespeedio/browsertime/pull/1931">#1931</a></li>
 </ul>
 ]]></summary>
         <author>

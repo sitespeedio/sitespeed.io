@@ -1,7 +1,7 @@
 - const seriesVisualProgress = [];
 - let oldPercent = -1;
 - let oldValue = -1;
-each eachRow in browsertime.visualMetrics.VisualProgress
+each eachRow in visualMetrics.VisualProgress
   - const newValue = eachRow.timestamp
   - const percent = eachRow.percent
   //- Sometimes VisualMetrics report the same percentage multiple times after each other
