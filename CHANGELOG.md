@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 28.2.0 - 2023-07-07
+### Added
+* Updated the Docker container to use Firefox 115.
 
 ## 28.1.0 - 2023-06-27
 ### Added
