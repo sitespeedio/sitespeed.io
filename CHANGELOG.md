@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 29.0.0. - UNRELEASED
+### Breaking change
+
+* Change timestamp for Graphite/InfluxDB metrics/annotations. The old implementation used the start time for the test all metrics sent except *browsertime.run* metrics (data for each run). This fix changes so metrics (and annotations) uses the *browsertime.pageSummary* runTime (when the actual first iteration happen for a test). This makes more sense if you test multiple pages within the same test [#3900](https://github.com/sitespeedio/sitespeed.io/pull/3900).
+
+
 ## 28.2.0 - 2023-07-07
 ### Added
 * Updated the Docker container to use Firefox 115.
