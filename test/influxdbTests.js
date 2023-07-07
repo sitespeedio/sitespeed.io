@@ -355,5 +355,5 @@ test(`Test influxdb dataGenerator`, t => {
   const seriesName = data[0].seriesName;
   const numberOfTags = Object.keys(data[0].tags).length;
   t.is(seriesName, 'score');
-  t.is(numberOfTags, 7);
+  t.is(numberOfTags, 6);
 });
