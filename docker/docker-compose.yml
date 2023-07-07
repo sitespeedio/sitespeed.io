@@ -27,8 +27,8 @@ services:
         - "8080:80"
       restart: always
       volumes:
-        # In production you should configure/map these to your container
-        # Make sure whisper and graphite.db/grafana.db lives outside your containerr
+        # In production, you should configure/map these to your container
+        # Make sure whisper and graphite.db/grafana.db lives outside your container
         # https://www.sitespeed.io/documentation/sitespeed.io/graphite/#graphite-for-production-important
         - whisper:/opt/graphite/storage/whisper
         # Download an empty graphite.db from https://github.com/sitespeedio/sitespeed.io/tree/main/docker/graphite
