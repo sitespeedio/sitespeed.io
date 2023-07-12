@@ -38,7 +38,7 @@ When you store metrics for a URL in Graphite, you decide from the beginning how 
 ~~~shell
 [sitespeed]
 pattern = ^sitespeed_io\.
-retentions = 10m:40d
+retentions = 30m:40d
 ~~~
 
 Every metric that is sent to Graphite following the pattern (the namespace starting with sitespeed_io), Graphite prepares storage for it every ten minutes the first 40 days.
