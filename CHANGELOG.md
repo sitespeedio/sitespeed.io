@@ -7,6 +7,9 @@
 
 * When the slug concept was introduced in 17.0.0 also a bug was accidently added that add the domain as a slug if the slug was missing. As long as you added `--slug` that was not a problem and you will not be affected by this bug. However if you do not use `--slug` (you really should since 20.0.0) the slug portion would be automatically populated [#3901](https://github.com/sitespeedio/sitespeed.io/pull/3901).
 
+### Fixed
+* Crux: Remove experimental from INP [#3906](https://github.com/sitespeedio/sitespeed.io/pull/3906).
+
 ## 28.2.0 - 2023-07-07
 ### Added
 * Updated the Docker container to use Firefox 115.
