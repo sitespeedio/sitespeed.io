@@ -58,8 +58,8 @@ body:
   - type: textarea
     id: logs
     attributes:
-      label: Relevant log output
-      description: Please copy and paste any relevant log output (please DO NOT take a screenshot of the log output). This will be automatically formatted into code, so no need for backticks.
+      label: Log output
+      description: Please copy and paste the full log output from your test (please DO NOT take a screenshot of the log output). This will be automatically formatted into code, so no need for backticks. If the log output is large please use a [gist](https://gist.github.com)!
       render: shell
     validations:
       required: false
