@@ -15,7 +15,7 @@
         "@tgwf/co2": "0.13.4",
         "aws-sdk": "2.1327.0",
         "axe-core": "4.7.2",
-        "browsertime": "17.11.2",
+        "browsertime": "17.12.0",
         "cli-color": "2.0.3",
         "coach-core": "7.2.1",
         "concurrent-queue": "7.0.2",
@@ -1005,13 +1005,24 @@
       }
     },
     "node_modules/@sitespeed.io/chromedriver": {
-      "version": "114.0.5735-90",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-114.0.5735-90.tgz",
-      "integrity": "sha512-buKrmpoJrN9AA6AeMAQffrzqml6lF+BCi2G73gY4QCnXjv0tcroMK38vMmswGpPtMz31Zyspht5uxR7FX1AY1w==",
+      "version": "115.0.5790-98",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-115.0.5790-98.tgz",
+      "integrity": "sha512-8HOYBZaid7PZhqe1lSO3X/l9WS/bLrYlsh0Pu7mphVYSvYH7Lkx80yQ5s7ccjBMEgCiUX58XbwZ6NtRL3n7ZHg==",
       "hasInstallScript": true,
       "dependencies": {
-        "node-downloader-helper": "2.1.5",
+        "node-downloader-helper": "2.1.7",
         "node-stream-zip": "1.15.0"
+      }
+    },
+    "node_modules/@sitespeed.io/chromedriver/node_modules/node-downloader-helper": {
+      "version": "2.1.7",
+      "resolved": "https://registry.npmjs.org/node-downloader-helper/-/node-downloader-helper-2.1.7.tgz",
+      "integrity": "sha512-3dBuMF/XPy5WFi3XiiXaglafzoycRH5GjmRz1nAt2uI9D+TcBrc+n/AzH8bzLHR85Wsf6vZSZblzw+MiUS/WNQ==",
+      "bin": {
+        "ndh": "bin/ndh"
+      },
+      "engines": {
+        "node": ">=14.18"
       }
     },
     "node_modules/@sitespeed.io/edgedriver": {
@@ -1872,13 +1883,13 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "17.11.2",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-17.11.2.tgz",
-      "integrity": "sha512-9ELgoajRcgFhKMal3vZUw6O8pbdZsLBfYkjdMLeammeG900HnCAPVVHkDiH/alhFofNgpuRvElbPsTyLGQ6mIA==",
+      "version": "17.12.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-17.12.0.tgz",
+      "integrity": "sha512-ZOmQzRfLXiAZJSzrxmvKDoLF9dk7SUPoI15dMcB3Qq99K9wghIo9qiu0JbEMHNTFbX7RjXdviAB1fyRcHm/Fog==",
       "dependencies": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",
-        "@sitespeed.io/chromedriver": "114.0.5735-90",
+        "@sitespeed.io/chromedriver": "115.0.5790-98",
         "@sitespeed.io/edgedriver": "113.0.1774-9b",
         "@sitespeed.io/geckodriver": "0.33.0",
         "@sitespeed.io/throttle": "5.0.0",
@@ -10188,12 +10199,19 @@
       }
     },
     "@sitespeed.io/chromedriver": {
-      "version": "114.0.5735-90",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-114.0.5735-90.tgz",
-      "integrity": "sha512-buKrmpoJrN9AA6AeMAQffrzqml6lF+BCi2G73gY4QCnXjv0tcroMK38vMmswGpPtMz31Zyspht5uxR7FX1AY1w==",
+      "version": "115.0.5790-98",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-115.0.5790-98.tgz",
+      "integrity": "sha512-8HOYBZaid7PZhqe1lSO3X/l9WS/bLrYlsh0Pu7mphVYSvYH7Lkx80yQ5s7ccjBMEgCiUX58XbwZ6NtRL3n7ZHg==",
       "requires": {
-        "node-downloader-helper": "2.1.5",
+        "node-downloader-helper": "2.1.7",
         "node-stream-zip": "1.15.0"
+      },
+      "dependencies": {
+        "node-downloader-helper": {
+          "version": "2.1.7",
+          "resolved": "https://registry.npmjs.org/node-downloader-helper/-/node-downloader-helper-2.1.7.tgz",
+          "integrity": "sha512-3dBuMF/XPy5WFi3XiiXaglafzoycRH5GjmRz1nAt2uI9D+TcBrc+n/AzH8bzLHR85Wsf6vZSZblzw+MiUS/WNQ=="
+        }
       }
     },
     "@sitespeed.io/edgedriver": {
@@ -10844,13 +10862,13 @@
       }
     },
     "browsertime": {
-      "version": "17.11.2",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-17.11.2.tgz",
-      "integrity": "sha512-9ELgoajRcgFhKMal3vZUw6O8pbdZsLBfYkjdMLeammeG900HnCAPVVHkDiH/alhFofNgpuRvElbPsTyLGQ6mIA==",
+      "version": "17.12.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-17.12.0.tgz",
+      "integrity": "sha512-ZOmQzRfLXiAZJSzrxmvKDoLF9dk7SUPoI15dMcB3Qq99K9wghIo9qiu0JbEMHNTFbX7RjXdviAB1fyRcHm/Fog==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",
-        "@sitespeed.io/chromedriver": "114.0.5735-90",
+        "@sitespeed.io/chromedriver": "115.0.5790-98",
         "@sitespeed.io/edgedriver": "113.0.1774-9b",
         "@sitespeed.io/geckodriver": "0.33.0",
         "@sitespeed.io/throttle": "5.0.0",
