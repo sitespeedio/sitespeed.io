@@ -29,8 +29,8 @@ The changes where done in [#3888](https://github.com/sitespeedio/sitespeed.io/pu
 * Updated Coach core to 7.2.1 that catch if local or session storage isn't accessible.
 
 ### Added
-* New Chrome and Chromedriver 115.
-* New Browsertime 17.12.0
+* New Chrome 115.
+* New Browsertime 17.12.1.
 
 ##  27.9.3 - 2023-06-19
 ### Fixed
