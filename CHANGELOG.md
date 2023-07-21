@@ -10,6 +10,10 @@
 ### Fixed
 * Crux: Remove experimental from INP [#3906](https://github.com/sitespeedio/sitespeed.io/pull/3906).
 
+### Added
+* New Chrome 115 and Chromedriver 115 (and a fix for the broken Chromedriver 115 on Mac).
+* New Browsertime 17.13.0.
+
 ## 28.2.0 - 2023-07-07
 ### Added
 * Updated the Docker container to use Firefox 115.
@@ -28,9 +32,6 @@ The changes where done in [#3888](https://github.com/sitespeedio/sitespeed.io/pu
 ### Fixed
 * Updated Coach core to 7.2.1 that catch if local or session storage isn't accessible.
 
-### Added
-* New Chrome 115.
-* New Browsertime 17.12.1.
 
 ##  27.9.3 - 2023-06-19
 ### Fixed
