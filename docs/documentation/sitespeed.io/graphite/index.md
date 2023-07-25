@@ -192,7 +192,8 @@ First take a copy of your whisper directory so you have a backup if something go
 
 ### Update to our new dashboards
 
-When you converted the data you need to update your graphs. If you use our premade graphs you can just [download the new versions](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/main/dashboards/graphite) and use them.
+When you converted the data you need to update your graphs. If you use our premade graphs you can just [download the new versions](https://github.com/sitespeedio/sitespeed.io/tree/main/docker/grafana/provisioning/dashboards) and use them.
+
 ### Change your home made Grafana dashboards
 
 If you have your own created dashboards, you need to add the testname as variable and update all the other variables. Start by adding the testname as in the screenshot below.
@@ -212,14 +213,17 @@ When you changed all the variables, you need to update the metrics on your dashb
 
 Copy the JSON and add it to your favourite editor and search and replace all keys. Search for the key `$base.$path.pageSummary.` and replace that with `$base.$path.$testname.pageSummary.`. Replace all occurrence. Then copy the changed JSON, pastes into Grafana and save the dashboard again.
 ## Dashboards
-We have [pre-made Grafana dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/main/dashboards/graphite) that works with Graphite. They are generic and as long as your [namespace](#namespace) consists of three parts (including the slug), they will work. You can import them one by one or [inject them using Docker](https://github.com/sitespeedio/grafana-bootstrap-docker).
+We have [pre-made Grafana dashboards](https://github.com/sitespeedio/sitespeed.io/tree/main/docker/grafana/provisioning/dashboards) that works with Graphite. They are generic and as long as your [namespace](#namespace) consists of three parts (including the slug), they will work. You can import them one by one. You can also checkout our [docker-compose file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml) on how to set it up.
+
+
+
 
 ## Namespace
 The default namespace when you send metrics to Graphite is *sitespeed_io.default*. You can change the namespace with `--graphite.namespace`. All premade dashboards are prepared to work with namespaces that starts with two parts: *first.second* and with adding a slug/test name. To add a slug add `--graphite.addSlugToKey true` and the actual test name/slug to all your test by adding `--slug YOUR_TEST_NAME`.
 
-If you want more parts, the [default dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/main/dashboards/graphite) will break.
+If you want more parts, the [default dashboards](https://github.com/sitespeedio/sitespeed.io/tree/main/docker/grafana/provisioning/dashboards) will break.
 
-When we use sitespeed.io we usually keep the first part (*sitespeed_io*) to separate metrics from other tools that sends metrics to Graphite. We then change the second part: *sitespeed_io.desktop*,  *sitespeed_io.emulatedMobile* or *sitespeed_io.desktopSweden*. As long as your namespace has three parts, they will work with the [default dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/main/dashboards/graphite).
+When we use sitespeed.io we usually keep the first part (*sitespeed_io*) to separate metrics from other tools that sends metrics to Graphite. We then change the second part: *sitespeed_io.desktop*,  *sitespeed_io.emulatedMobile* or *sitespeed_io.desktopSweden*. As long as your namespace has three parts, they will work with the [default dashboards](https://github.com/sitespeedio/sitespeed.io/tree/main/docker/grafana/provisioning/dashboards).
 
 ## Delete old tags/annotations
 By default annotations and there tags are stored in the SQLite database that comes with Graphite. The size of that database will increase over time and that will make the annotations slower to load in the Grafana GUI.

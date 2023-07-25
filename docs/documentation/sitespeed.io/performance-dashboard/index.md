@@ -37,18 +37,18 @@ If you want to play with the dashboards, the default login is sitespeedio and pa
 When you run this in production make sure to checkout [our production guidelines](#production-guidelines).
 
 ## Docker compose file
-We have prepared a Docker Compose file that downloads and sets up Graphite/Grafana and sitespeed.io with a couple of example dashboards. It works perfectly when you want to try it out on localhost, but if you want to run it in production, you should modify it by making sure that the metrics are stored outside of your container/volumes. If you prefer InfluxDB over Graphite, you can use that too, but right now we only have [one ready-made dashboard](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/main/dashboards/influxdb/pageSummary.json) for InfluxDB (thank you Olivier Jan for contributing to that dashboard!).
+We have prepared a Docker Compose file that downloads and sets up Graphite/Grafana and sitespeed.io with a couple of example dashboards. It works perfectly when you want to try it out on localhost, but if you want to run it in production, you should modify it by making sure that the metrics are stored outside of your container/volumes. If you prefer InfluxDB over Graphite, you can use that too, but there's no pre made dashboards.
 
 ## Pre-made example dashboards
-We insert ready-made dashboards with a Docker container using curl, making it easy for you to get started. You can check out the container with the dashboards here: [https://github.com/sitespeedio/grafana-bootstrap-docker](https://github.com/sitespeedio/grafana-bootstrap-docker)
+We insert ready-made dashboards with our docker compose file using provisioning. You can checkout the [compose file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml) and use it as an example.
 
-Some of our dashboards uses Grafana plugins. To make sure the dashboards work you need to install these three plugins: *grafana-piechart-panel,marcusolsson-json-datasource,marcusolsson-dynamictext-panel*
+Some of our dashboards uses Grafana plugins. To make sure the dashboards work you need to install these three plugins: *marcusolsson-json-datasource,marcusolsson-dynamictext-panel*
 
 If you setup Grafana using Docker you can install those using the envireonment configuration:
 
 ```
  environment:
-        - GF_INSTALL_PLUGINS=grafana-piechart-panel,marcusolsson-json-datasource,marcusolsson-dynamictext-panel
+        - GF_INSTALL_PLUGINS=marcusolsson-json-datasource,marcusolsson-dynamictext-panel
         ...
 
 ```
