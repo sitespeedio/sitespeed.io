@@ -42,6 +42,19 @@ We have prepared a Docker Compose file that downloads and sets up Graphite/Grafa
 ## Pre-made example dashboards
 We insert ready-made dashboards with a Docker container using curl, making it easy for you to get started. You can check out the container with the dashboards here: [https://github.com/sitespeedio/grafana-bootstrap-docker](https://github.com/sitespeedio/grafana-bootstrap-docker)
 
+Some of our dashboards uses Grafana plugins. To make sure the dashboards work you need to install these three plugins: *grafana-piechart-panel,marcusolsson-json-datasource,marcusolsson-dynamictext-panel*
+
+If you setup Grafana using Docker you can install those using the envireonment configuration:
+
+```
+ environment:
+        - GF_INSTALL_PLUGINS=grafana-piechart-panel,marcusolsson-json-datasource,marcusolsson-dynamictext-panel
+        ...
+
+```
+
+The JSON-datasource needs to point to where you store the sitespeed.io result. We store our result at https://data.sitespeed.io so our endpoint URL for the JSON datasource is https://data.sitespeed.io.
+
 # Example dashboards
 
 The [example dashboards](https://dashboard.sitespeed.io) are generic dashboards that will work with all data/metrics you collect using sitespeed.io. We worked hard to make them and the great thing is that you can use them as base dashboards to create additional dashboards if you like.
@@ -61,9 +74,9 @@ If you choose one of the values in a template, the rest will be populated. You c
 The default namespace is *sitespeed_io.default* and the example dashboards are built upon a constant template variable called $base that is the first part of the namespace (that default is *sitespeed_io* but feel free to change that, and then change the constant).
 
 ## Page metrics
-There are two pages that show individual metrics for a page (one for desktop and one for mobile). You should use these as example dashboards to inspire you what you can do. We try to squeeze in all data in these dashboards and you can view those by expanding each row.
+You should use these as example dashboards to inspire you what you can do. We try to squeeze in all data in these dashboards and you can view those by expanding each row.
 
-The [desktop page metrics](https://dashboard.sitespeed.io/d/9NDMzFfMk/page-metrics-desktop?orgId=1) shows metrics for a specific URL/page tested on desktop and [mobile page metrics](https://dashboard.sitespeed.io/d/000000064/page-metrics-mobile?orgId=1) for pages tested on mobile/emulated mobile.
+The [page metrics](https://dashboard.sitespeed.io/d/9NDMzFfMk/page-metrics) shows metrics for a specific URL/page.
 
 The dashboards looks something like this:
 ![Page metrics]({{site.baseurl}}/img/pagesummary-example.jpg){:loading="lazy"}
