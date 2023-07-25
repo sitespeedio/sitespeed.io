@@ -15,7 +15,7 @@ services:
         - GF_AUTH_ANONYMOUS_ENABLED=true
         - GF_USERS_ALLOW_SIGN_UP=false
         - GF_USERS_ALLOW_ORG_CREATE=false
-        - GF_INSTALL_PLUGINS=grafana-piechart-panel
+        - GF_INSTALL_PLUGINS=grafana-piechart-panel,marcusolsson-json-datasource,marcusolsson-dynamictext-panel
       volumes:
         - grafana:/var/lib/grafana
       restart: always
