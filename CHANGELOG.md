@@ -16,7 +16,7 @@ The breaking changes in this release will not break anything, however some behav
 * New Chrome 115 and Chromedriver 115 (and a fix for the broken Chromedriver 115 on Mac).
 * New Edge and Edgedriver 115
 * New Browsertime 17.14.0. Most notable change is that if you collect the Chrome devtools trace using `--cpu` we will now also collect the number of elements that needs recalculate styles before FCP/LCP. There will be a blog post about this change later on.
-* Updated the [main page merics dashboard](https://dashboard.sitespeed.io/d/9NDMzFfMk/page-metrics), you can download the new version [here](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/main/dashboards/graphite/PageMetrics.json). The new dashboard needs to have the https://github.com/grafana/grafana-json-datasource/ datasource installed.
+* Updated the [main page merics dashboard](https://dashboard.sitespeed.io/d/9NDMzFfMk/page-metrics), you can download the new version [here](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/main/dashboards/graphite/PageMetrics.json). The new dashboard needs to have the three plugins installed: ```grafana-piechart-panel,marcusolsson-json-datasource,marcusolsson-dynamictext-panel```. If you are unsure how to do that, more documentation will come soon.
 
 ## 28.2.0 - 2023-07-07
 ### Added
