@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 29.1.0 - 2023-07-25
+
+### Added
+* I finally [archived the old dashboard setups for Graphite](https://github.com/sitespeedio/grafana-bootstrap-docker) and moved the dashboards to [the main repository](https://github.com/sitespeedio/sitespeed.io/tree/main/docker/grafana/provisioning/dashboards). I also updated the [docker compose file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml) to provision the dashboards and Graphite and the new JSON datasource. I've been thinking of doing that for years but never got around. With the release of a new dashboard in 29.0.0 I missed adding that we now also use a JSON datasource. The documentation is updated but need some more love, that will come the coming week.
+
 ## 29.0.0 - 2023-07-25
 ### Breaking change
 
