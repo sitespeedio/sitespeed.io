@@ -1,18 +1,22 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 29.0.0. - UNRELEASED
+## 29.0.0 - 2023-07-25
 ### Breaking change
 
-* Change timestamp for Graphite/InfluxDB metrics/annotations. The old implementation used the start time for the test all metrics sent except *browsertime.run* metrics (data for each run). This fix changes so metrics (and annotations) uses the *browsertime.pageSummary* runTime (when the actual first iteration happen for a test). This makes more sense if you test multiple pages within the same test [#3900](https://github.com/sitespeedio/sitespeed.io/pull/3900).
+The breaking changes in this release will not break anything, however some behaviours are changed in rare cases, please read:
+
+* Changed timestamp for Graphite/InfluxDB metrics/annotations. The old implementation used the start time for the test all metrics sent except *browsertime.run* metrics (data for each run). This fix changes so metrics (and annotations) uses the *browsertime.pageSummary* runTime (when the actual first iteration happen for a test). This makes more sense if you test multiple pages within the same test [#3900](https://github.com/sitespeedio/sitespeed.io/pull/3900).
 
 * When the slug concept was introduced in 17.0.0 also a bug was accidently added that add the domain as a slug if the slug was missing. As long as you added `--slug` that was not a problem and you will not be affected by this bug. However if you do not use `--slug` (you really should since 20.0.0) the slug portion would be automatically populated [#3901](https://github.com/sitespeedio/sitespeed.io/pull/3901).
 
 ### Fixed
-* Crux: Remove experimental from INP [#3906](https://github.com/sitespeedio/sitespeed.io/pull/3906).
+* Crux: Remove experimental from INP when getting Crux data [#3906](https://github.com/sitespeedio/sitespeed.io/pull/3906).
 
 ### Added
 * New Chrome 115 and Chromedriver 115 (and a fix for the broken Chromedriver 115 on Mac).
-* New Browsertime 17.13.0.
+* New Edge and Edgedriver 115
+* New Browsertime 17.14.0. Most notable change is that if you collect the Chrome devtools trace using `--cpu` we will now also collect the number of elements that needs recalculate styles before FCP/LCP. There will be a blog post about this change later on.
+* Updated the [main page merics dashboard](https://dashboard.sitespeed.io/d/9NDMzFfMk/page-metrics), you can download the new version [here](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/main/dashboards/graphite/PageMetrics.json).
 
 ## 28.2.0 - 2023-07-07
 ### Added
