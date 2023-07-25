@@ -1,7 +1,7 @@
 version: '3'
 services:
     grafana:
-      image: grafana/grafana:10.0.1
+      image: grafana/grafana:10.0.2
       hostname: grafana
       depends_on:
         - graphite
@@ -10,14 +10,19 @@ services:
       ports:
         - "3000:3000"
       environment:
+       # See https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/
         - GF_SECURITY_ADMIN_PASSWORD=hdeAga76VG6ga7plZ1
         - GF_SECURITY_ADMIN_USER=sitespeedio
         - GF_AUTH_ANONYMOUS_ENABLED=true
         - GF_USERS_ALLOW_SIGN_UP=false
         - GF_USERS_ALLOW_ORG_CREATE=false
         - GF_INSTALL_PLUGINS=grafana-piechart-panel,marcusolsson-json-datasource,marcusolsson-dynamictext-panel
+        - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/var/lib/grafana/dashboards/Welcome.json
       volumes:
         - grafana:/var/lib/grafana
+        - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+        - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+        - ./grafana/provisioning/dashboards:/var/lib/grafana/dashboards
       restart: always
     graphite:
       image: sitespeedio/graphite:1.1.10-3
@@ -39,13 +44,6 @@ services:
         # - /absolute/path/to/graphite/conf/storage-schemas.conf:/opt/graphite/conf/storage-schemas.conf
         # - /absolute/path/to/graphite/conf/storage-aggregation.conf:/opt/graphite/conf/storage-aggregation.conf
         # - /absolute/path/to/graphite/conf/carbon.conf:/opt/graphite/conf/carbon.conf
-    grafana-setup:
-      image: sitespeedio/grafana-bootstrap:29.0.0
-      links:
-        - grafana
-      environment:
-        - GF_PASSWORD=hdeAga76VG6ga7plZ1
-        - GF_USER=sitespeedio
 volumes:
     grafana:
     whisper:
