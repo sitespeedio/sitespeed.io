@@ -25,3 +25,5 @@ jobs:
       run: (serve test/data/html/ -l 3001&)
     - name: Run test
       run: bin/sitespeed.js -b safari http://127.0.0.1:3001/
+    - name: Run Safari test with config
+      run: node bin/sitespeed.js -b safari --config test/exampleConfig.json http://127.0.0.1:3001/
