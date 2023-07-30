@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+
+### Fixed
+* Reading configuration files on Windows failed. Thank you [Edson1337](https://github.com/Edson1337) for reporting, fixed in [#3921](https://github.com/sitespeedio/sitespeed.io/pull/3921).
+
 ## 29.1.0 - 2023-07-25
 
 ### Added
