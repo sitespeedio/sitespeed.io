@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 29.1.2 - 2023-07-31
+### Fixed
+* Updating Browsertime that makes it possible to run the AMD docker image on ARM M1 Macs. Add `--platform linux/amd64` and in Docker desktop turn on *"Use Rosetta for x86/amd64 emulation"*.
+
 ## 29.1.1 - 2023-07-30
 
 ### Fixed
