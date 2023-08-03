@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Mon, 31 Jul 2023 21:52:56 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 03 Aug 2023 12:31:28 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,18 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 29.1.3]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.1.3</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.1.3</guid>
+            <pubDate>Thu, 03 Aug 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>HTML result page was broken when you had element timings that was not images. Thank you <a href="https://github.com/dooglewoogle">dooglewoogle</a> for reporting, fixed in <a href="https://github.com/sitespeedio/sitespeed.io/pull/3927">#3927</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 29.1.2]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.1.2</link>
@@ -133,21 +145,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Make sure config files are read sync <a href="https://github.com/sitespeedio/sitespeed.io/pull/3882">#3882</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 27.9.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.1</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.1</guid>
-            <pubDate>Mon, 12 Jun 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Upgraded Browsertime that logs if LCP is not present (instead of logging null)</li>
-</ul>
- <ul>
-<li>Fix when configure to log to file (that was broken when we moved to ESM) <a href="https://github.com/sitespeedio/sitespeed.io/pull/3879">#3879</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
