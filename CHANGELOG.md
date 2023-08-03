@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 29.1.3 - 2023-08-03
+### Fixed
+* HTML result page was broken when you had element timings that was not images. Thank you [dooglewoogle](https://github.com/dooglewoogle) for reporting, fixed in [#3927](https://github.com/sitespeedio/sitespeed.io/pull/3927).
+
 ## 29.1.2 - 2023-07-31
 ### Fixed
 * Updating Browsertime that makes it possible to run the AMD docker image on ARM M1 Macs. Add `--platform linux/amd64` and in Docker desktop turn on *"Use Rosetta for x86/amd64 emulation"*.
