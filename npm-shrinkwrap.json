@@ -19,7 +19,7 @@
         "cli-color": "2.0.3",
         "coach-core": "7.2.1",
         "concurrent-queue": "7.0.2",
-        "dayjs": "1.11.7",
+        "dayjs": "1.11.9",
         "fast-crc32c": "2.0.0",
         "fast-stats": "0.0.6",
         "find-up": "6.3.0",
@@ -1908,11 +1908,6 @@
         "jimp": "0.22.10"
       }
     },
-    "node_modules/browsertime/node_modules/dayjs": {
-      "version": "1.11.9",
-      "resolved": "https://registry.npmjs.org/dayjs/-/dayjs-1.11.9.tgz",
-      "integrity": "sha512-QvzAURSbQ0pKdIye2txOzNaHmxtUBXerpY0FJsFXUMKbIZeFm5ht1LS/jFsrncjnmtv8HsG0W2g6c0zUjZWmpA=="
-    },
     "node_modules/btoa": {
       "version": "1.2.1",
       "resolved": "https://registry.npmjs.org/btoa/-/btoa-1.2.1.tgz",
@@ -2114,6 +2109,11 @@
       "engines": {
         "node": ">=14.19.1"
       }
+    },
+    "node_modules/chrome-har/node_modules/dayjs": {
+      "version": "1.11.7",
+      "resolved": "https://registry.npmjs.org/dayjs/-/dayjs-1.11.7.tgz",
+      "integrity": "sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ=="
     },
     "node_modules/chrome-har/node_modules/debug": {
       "version": "4.3.4",
@@ -2697,9 +2697,9 @@
       }
     },
     "node_modules/dayjs": {
-      "version": "1.11.7",
-      "resolved": "https://registry.npmjs.org/dayjs/-/dayjs-1.11.7.tgz",
-      "integrity": "sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ=="
+      "version": "1.11.9",
+      "resolved": "https://registry.npmjs.org/dayjs/-/dayjs-1.11.9.tgz",
+      "integrity": "sha512-QvzAURSbQ0pKdIye2txOzNaHmxtUBXerpY0FJsFXUMKbIZeFm5ht1LS/jFsrncjnmtv8HsG0W2g6c0zUjZWmpA=="
     },
     "node_modules/dbug": {
       "version": "0.4.2",
@@ -10878,13 +10878,6 @@
         "lodash.set": "4.3.2",
         "selenium-webdriver": "4.10.0",
         "yargs": "17.7.2"
-      },
-      "dependencies": {
-        "dayjs": {
-          "version": "1.11.9",
-          "resolved": "https://registry.npmjs.org/dayjs/-/dayjs-1.11.9.tgz",
-          "integrity": "sha512-QvzAURSbQ0pKdIye2txOzNaHmxtUBXerpY0FJsFXUMKbIZeFm5ht1LS/jFsrncjnmtv8HsG0W2g6c0zUjZWmpA=="
-        }
       }
     },
     "btoa": {
@@ -11030,6 +11023,11 @@
         "uuid": "9.0.0"
       },
       "dependencies": {
+        "dayjs": {
+          "version": "1.11.7",
+          "resolved": "https://registry.npmjs.org/dayjs/-/dayjs-1.11.7.tgz",
+          "integrity": "sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ=="
+        },
         "debug": {
           "version": "4.3.4",
           "resolved": "https://registry.npmjs.org/debug/-/debug-4.3.4.tgz",
@@ -11470,9 +11468,9 @@
       }
     },
     "dayjs": {
-      "version": "1.11.7",
-      "resolved": "https://registry.npmjs.org/dayjs/-/dayjs-1.11.7.tgz",
-      "integrity": "sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ=="
+      "version": "1.11.9",
+      "resolved": "https://registry.npmjs.org/dayjs/-/dayjs-1.11.9.tgz",
+      "integrity": "sha512-QvzAURSbQ0pKdIye2txOzNaHmxtUBXerpY0FJsFXUMKbIZeFm5ht1LS/jFsrncjnmtv8HsG0W2g6c0zUjZWmpA=="
     },
     "dbug": {
       "version": "0.4.2",

@@ -87,7 +87,7 @@
     "coach-core": "7.2.1",
     "cli-color": "2.0.3",
     "concurrent-queue": "7.0.2",
-    "dayjs": "1.11.7",
+    "dayjs": "1.11.9",
     "fast-crc32c": "2.0.0",
     "fast-stats": "0.0.6",
     "find-up": "6.3.0",
