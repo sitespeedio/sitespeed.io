@@ -57,5 +57,3 @@ Sitespeed.io is the complete toolbox to test the web performance of your web sit
  * [Third party requests](thirdparty/) - keep track of those 3rd party scripts.
  * [Video](video/) - all that you can do with the video and filmstrip.
  * [WebPageReplay](webpagereplay/) - WebPageReplay is proxy that first records your web site and then replay it locally. That can help you find performance regression in the front-end code easier: Latency/server timings are constant.
- * [WebPageTest](webpagetest/) - drive WebPageTest and fetch metrics and graph them.
-

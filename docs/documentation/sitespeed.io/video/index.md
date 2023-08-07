@@ -109,7 +109,7 @@ And you can see the result in the Visual Metrics section:
 {: .img-thumbnail}
 
 ## Compare two video runs (combine two videos)
-One of the things we love with [WebPageTest](https://www.webpagetest.org/) is the video where you can compare two different runs. Since sitespeed.io is serverless, it is nothing you can do on the fly. Instead we created a simple tool you can use. Only thing you need is Docker!
+We have created a simple tool you can use. Only thing you need is Docker!
 
 1. <code>curl -O https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/tools/combineVideos.sh<code>
 2. <code>chmod +x combineVideos.sh<code>

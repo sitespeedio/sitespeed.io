@@ -73,7 +73,7 @@ And then you have a few help commands:
 * *[switch](#switch)* to another frame or window.
 * *[set](#set)* innerHtml, innerText or value to an element.
 
-Scripting only works for Browsertime. It will not work with Lighthouse/Google Pagespeed Insights or WebPageTest. If you need scripting for WebPageTest [read the WebPageTest scripting documentation](/documentation/sitespeed.io/webpagetest/#webpagetest-scripting).
+Scripting only works for Browsertime. It will not work with Lighthouse/Google Pagespeed Insights.
 {: .note .note-info}
 
 ## Run

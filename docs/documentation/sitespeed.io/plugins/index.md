@@ -299,7 +299,7 @@ You start by listening to the generic setup message **sitespeedio.setup**. When 
  * id = the id of the plugin, need to be unique.
  * name = the friendly name displayed in the tab showing the data.
  * pug = the pug file as a String.
- * type = can be run or pageSummary. **run** is data you collect on every run and it will be a tab on each run page. **pageSummary** is data for a specific page and will generate a tab on the page summary page. Most cases you will only need pageSummary data but if you have a tool that do multiple runs, then you should send the data per run (as Browsertime and WebPageTest do).
+ * type = can be run or pageSummary. **run** is data you collect on every run and it will be a tab on each run page. **pageSummary** is data for a specific page and will generate a tab on the page summary page. Most cases you will only need pageSummary data but if you have a tool that do multiple runs, then you should send the data per run (as Browsertime).
 
 Sending a pug looks something like this:
 

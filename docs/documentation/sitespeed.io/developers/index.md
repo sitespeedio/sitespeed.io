@@ -33,7 +33,6 @@ Sitespeed.io uses a lot of other Open Source tools so massive love to those proj
 
 And we also have plugins so that you can use:
 
- * [WebPageTest](https://www.webpagetest.org) through the [WebPageTest API](https://github.com/marcelduran/webpagetest-api)
  * [gpagespeed](https://www.npmjs.com/package/gpagespeed)
 
 And of course we use all the tools in the [sitespeed.io suite]({{site.baseurl}}/documentation/).

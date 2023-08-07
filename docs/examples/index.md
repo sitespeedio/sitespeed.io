@@ -1592,7 +1592,7 @@ And it will generate a JSON that looks something like this:
 
 ## PageXray
 
-PageXray will convert your HAR file to a new JSON format. If your HAR file is from WebPageTest or Browsertime it will pickup some extra info.
+PageXray will convert your HAR file to a new JSON format. If your HAR file is from Browsertime it will pickup some extra info.
 
 Run it locally in NodeJS or in the browser:
 
