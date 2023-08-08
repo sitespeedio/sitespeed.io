@@ -1,5 +1,14 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 29.2.0 - 2023-08-08
+### Fixed
+* Another fix for making sure annotations for Graphite have the correct timestamp [#3931](https://github.com/sitespeedio/sitespeed.io/pull/3931).
+* Update dayjs and ora dependencies.
+
+### Added
+* Firefox 116 in the Docker container.
+
+
 ## 29.1.3 - 2023-08-03
 ### Fixed
 * HTML result page was broken when you had element timings that was not images. Thank you [dooglewoogle](https://github.com/dooglewoogle) for reporting, fixed in [#3927](https://github.com/sitespeedio/sitespeed.io/pull/3927).
