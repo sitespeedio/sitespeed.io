@@ -142,10 +142,6 @@ async function start() {
         }
       }
 
-      if (result.errors.length > 0) {
-        throw new Error('Errors while running:\n' + result.errors.join('\n'));
-      }
-
       if ((options.open || options.o) && platform() === 'darwin') {
         execSync('open ' + result.localPath + '/index.html');
       } else if ((options.open || options.o) && platform() === 'linux') {
@@ -165,6 +161,10 @@ async function start() {
         (parsed.options.budget && parsed.options.budget.suppressExitCode)
       ) {
         process.exitCode = 0;
+      }
+      if (result.errors.length > 0) {
+        console.log('Errors while running:\n' + result.errors.join('\n'));
+        throw new Error('Errors while running:\n' + result.errors.join('\n'));
       }
     } catch (error) {
       process.exitCode = 1;
