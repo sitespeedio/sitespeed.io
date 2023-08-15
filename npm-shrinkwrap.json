@@ -12,7 +12,7 @@
         "@google-cloud/storage": "6.9.5",
         "@influxdata/influxdb-client": "1.33.2",
         "@sitespeed.io/plugin": "0.0.6",
-        "@tgwf/co2": "0.13.4",
+        "@tgwf/co2": "0.13.6",
         "aws-sdk": "2.1327.0",
         "axe-core": "4.7.2",
         "browsertime": "17.14.1",
@@ -1093,9 +1093,12 @@
       "integrity": "sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w=="
     },
     "node_modules/@tgwf/co2": {
-      "version": "0.13.4",
-      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.13.4.tgz",
-      "integrity": "sha512-3p8lig821BXBFugUfnB+wcFenWZiulH4tKY4wwmYekt6+fzmKU0+tQsdOEzpU9smTMA2Gjx0GfsSgARPRFJ+Zg=="
+      "version": "0.13.6",
+      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.13.6.tgz",
+      "integrity": "sha512-uV8y2voiAb9iQwzK+5dTFLNBu5P5/oCyMAvqD3/+X74sMCc/N2+4MhIY9JmpO1gBQykE647dd4l/40GiE7cKSw==",
+      "engines": {
+        "node": ">=14.0.0"
+      }
     },
     "node_modules/@tokenizer/token": {
       "version": "0.3.0",
@@ -10255,9 +10258,9 @@
       }
     },
     "@tgwf/co2": {
-      "version": "0.13.4",
-      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.13.4.tgz",
-      "integrity": "sha512-3p8lig821BXBFugUfnB+wcFenWZiulH4tKY4wwmYekt6+fzmKU0+tQsdOEzpU9smTMA2Gjx0GfsSgARPRFJ+Zg=="
+      "version": "0.13.6",
+      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.13.6.tgz",
+      "integrity": "sha512-uV8y2voiAb9iQwzK+5dTFLNBu5P5/oCyMAvqD3/+X74sMCc/N2+4MhIY9JmpO1gBQykE647dd4l/40GiE7cKSw=="
     },
     "@tokenizer/token": {
       "version": "0.3.0",
