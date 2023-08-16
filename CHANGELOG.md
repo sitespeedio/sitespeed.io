@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 29.2.1 - 2023-08-16
+### Fixed
+* Updated Browsertime with a new minor versioon of Chromederiver and updated Docker container with a new minor version.
+
 ## 29.2.0 - 2023-08-08
 ### Fixed
 * Another fix for making sure annotations for Graphite have the correct timestamp [#3931](https://github.com/sitespeedio/sitespeed.io/pull/3931).
