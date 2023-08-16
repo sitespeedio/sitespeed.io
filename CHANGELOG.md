@@ -1,8 +1,12 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 29.3.0 - 2023-08-16
+### Added
+* Chrome and Chromedriver 116.
+
 ## 29.2.1 - 2023-08-16
 ### Fixed
-* Updated Browsertime with a new minor versioon of Chromederiver and updated Docker container with a new minor version.
+* Updated Browsertime with a new minor version of Chromederiver and updated Docker container with a new minor version.
 * Uppdated CO2 to 0.13.6 [#3936](https://github.com/sitespeedio/sitespeed.io/pull/3936).
 * Make sure catched errors gets to the standard out and after budget/open the browser [#3939](https://github.com/sitespeedio/sitespeed.io/pull/3939).
 
