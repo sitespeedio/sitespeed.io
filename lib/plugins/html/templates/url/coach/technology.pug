@@ -1,7 +1,11 @@
+- const wappalyserVersion = pageInfo.data.coach.run ? pageInfo.data.coach.run.wappalyzerVersion : pageInfo.data.coach.pageSummary.wappalyzerVersion;
+- const thirdPartyWebVersion = pageInfo.data.coach.run ? pageInfo.data.coach.run.thirdPartyWebVersion : pageInfo.data.coach.pageSummary.thirdPartyWebVersion;
+
 a#technology
 h2 Technologies used to build the page.
 p Data collected using 
-    a(href='https://github.com/AliasIO/wappalyzer') Wappalyzer. 
+    a(href='https://github.com/dochne/wappalyzer') Wappalyzer
+    | version #{wappalyserVersion}.
     | Use 
     code --browsertime.firefox.includeResponseBodies html
     | or 
@@ -27,7 +31,7 @@ else
 
 if (advice.info.thirdparty && Object.keys(advice.info.thirdparty.toolsByCategory).length > 0)
     p Data collected using 
-        a(href='https://github.com/patrickhulce/third-party-web') Third Party Web.
+        a(href='https://github.com/patrickhulce/third-party-web') Third Party Web #{thirdPartyWebVersion} 
 
     table 
         each data, category in advice.info.thirdparty.toolsByCategory
