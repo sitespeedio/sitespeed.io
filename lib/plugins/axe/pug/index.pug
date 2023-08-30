@@ -1,13 +1,11 @@
 
 - const axe = pageInfo.data.axe.run ? pageInfo.data.axe.run : pageInfo.data.axe.pageSummary
 
-
 a
 h2 Axe
-p  Axe is an accessibility testing engine for websites and other HTML-based user interfaces. Read more about 
-    a(href='https://github.com/dequelabs/axe-core') axe-core
-    | . #{axe.testEngine ? 'Tested using ' + axe.testEngine.name + ' ' +  axe.testEngine.version + '.' : ''}
-
+p  Axe is an accessibility testing engine for websites and other HTML-based user interfaces. Tested using #{axe.testEngine.name} version #{axe.testEngine.version}. Read more about 
+    a(href='https://github.com/dequelabs/axe-core') axe-core 
+    | .
 
 if pageInfo.data.axe.run
     h3 Violations
