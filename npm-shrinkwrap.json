@@ -17,7 +17,7 @@
         "axe-core": "4.7.2",
         "browsertime": "17.15.0",
         "cli-color": "2.0.3",
-        "coach-core": "7.2.1",
+        "coach-core": "8.0.0",
         "concurrent-queue": "7.0.2",
         "dayjs": "1.11.9",
         "fast-crc32c": "2.0.0",
@@ -2425,9 +2425,9 @@
       }
     },
     "node_modules/coach-core": {
-      "version": "7.2.1",
-      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-7.2.1.tgz",
-      "integrity": "sha512-Mci7Pwf+jmUmpAuao07v1n1yyHs3rQJQwLfRh7xs8ixzl7i0t1XfYWWKF2rdM7UeVmkJUadTdw24N3QotYBWSQ==",
+      "version": "8.0.0",
+      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-8.0.0.tgz",
+      "integrity": "sha512-Jq1n+utKMuXJA0KC1JjTyCBQJPQFEsPdTN/HiSwvW4U8p5B/pe9lxvrYNIc7Oc/VhkBjXgNlfdsxIbxtCfh0xw==",
       "dependencies": {
         "filter-files": "0.4.0",
         "json-stable-stringify": "1.0.2",
@@ -2435,8 +2435,8 @@
         "lodash.merge": "4.6.2",
         "lodash.sortby": "4.7.0",
         "pagexray": "4.4.2",
-        "third-party-web": "0.23.0",
-        "wappalyzer-core": "6.10.62"
+        "third-party-web": "0.24.0",
+        "wappalyzer-core": "6.10.66"
       },
       "engines": {
         "node": ">=14.0.0"
@@ -8781,9 +8781,9 @@
       "integrity": "sha1-f17oI66AUgfACvLfSoTsP8+lcLQ="
     },
     "node_modules/third-party-web": {
-      "version": "0.23.0",
-      "resolved": "https://registry.npmjs.org/third-party-web/-/third-party-web-0.23.0.tgz",
-      "integrity": "sha512-JMN1CYDnalQKs4Iyp2/HH1bhy4Euw5Tt1SSAANxmIQCXHrsMiD0c46KNDiRteuKkghXNEOzFlGoXAp3ewXdCXQ=="
+      "version": "0.24.0",
+      "resolved": "https://registry.npmjs.org/third-party-web/-/third-party-web-0.24.0.tgz",
+      "integrity": "sha512-mMkV7LE857QCG9DM/mkZoqsEEbJmtimnWBgm/bAmJuRlfVM29OLhPFse1ayrW1xmtJqg7bVU6ZBtjz8vVQGq2g=="
     },
     "node_modules/through": {
       "version": "2.3.8",
@@ -9125,9 +9125,10 @@
       }
     },
     "node_modules/wappalyzer-core": {
-      "version": "6.10.62",
-      "resolved": "https://registry.npmjs.org/wappalyzer-core/-/wappalyzer-core-6.10.62.tgz",
-      "integrity": "sha512-cCRWcH1L5E6UhCgnPw3w09bBfqH35OL87RjQri7QtQRqxjBlHr+BWKRObphAG0nBo1N01VZe/1EE/zRtEaUBHw==",
+      "version": "6.10.66",
+      "resolved": "https://registry.npmjs.org/wappalyzer-core/-/wappalyzer-core-6.10.66.tgz",
+      "integrity": "sha512-7EOYy4DpdRcfoW00SfCwKjJE3//AAbyl2dzuG6DgICKPoRf60ero/1fBHOB2ipVTmIxpnnlsJ8jY0r5McwRwtA==",
+      "deprecated": "Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.",
       "funding": [
         {
           "url": "https://github.com/sponsors/aliasio"
@@ -11239,9 +11240,9 @@
       }
     },
     "coach-core": {
-      "version": "7.2.1",
-      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-7.2.1.tgz",
-      "integrity": "sha512-Mci7Pwf+jmUmpAuao07v1n1yyHs3rQJQwLfRh7xs8ixzl7i0t1XfYWWKF2rdM7UeVmkJUadTdw24N3QotYBWSQ==",
+      "version": "8.0.0",
+      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-8.0.0.tgz",
+      "integrity": "sha512-Jq1n+utKMuXJA0KC1JjTyCBQJPQFEsPdTN/HiSwvW4U8p5B/pe9lxvrYNIc7Oc/VhkBjXgNlfdsxIbxtCfh0xw==",
       "requires": {
         "filter-files": "0.4.0",
         "json-stable-stringify": "1.0.2",
@@ -11249,8 +11250,8 @@
         "lodash.merge": "4.6.2",
         "lodash.sortby": "4.7.0",
         "pagexray": "4.4.2",
-        "third-party-web": "0.23.0",
-        "wappalyzer-core": "6.10.62"
+        "third-party-web": "0.24.0",
+        "wappalyzer-core": "6.10.66"
       }
     },
     "code-excerpt": {
@@ -16073,9 +16074,9 @@
       "integrity": "sha1-f17oI66AUgfACvLfSoTsP8+lcLQ="
     },
     "third-party-web": {
-      "version": "0.23.0",
-      "resolved": "https://registry.npmjs.org/third-party-web/-/third-party-web-0.23.0.tgz",
-      "integrity": "sha512-JMN1CYDnalQKs4Iyp2/HH1bhy4Euw5Tt1SSAANxmIQCXHrsMiD0c46KNDiRteuKkghXNEOzFlGoXAp3ewXdCXQ=="
+      "version": "0.24.0",
+      "resolved": "https://registry.npmjs.org/third-party-web/-/third-party-web-0.24.0.tgz",
+      "integrity": "sha512-mMkV7LE857QCG9DM/mkZoqsEEbJmtimnWBgm/bAmJuRlfVM29OLhPFse1ayrW1xmtJqg7bVU6ZBtjz8vVQGq2g=="
     },
     "through": {
       "version": "2.3.8",
@@ -16351,9 +16352,9 @@
       "dev": true
     },
     "wappalyzer-core": {
-      "version": "6.10.62",
-      "resolved": "https://registry.npmjs.org/wappalyzer-core/-/wappalyzer-core-6.10.62.tgz",
-      "integrity": "sha512-cCRWcH1L5E6UhCgnPw3w09bBfqH35OL87RjQri7QtQRqxjBlHr+BWKRObphAG0nBo1N01VZe/1EE/zRtEaUBHw=="
+      "version": "6.10.66",
+      "resolved": "https://registry.npmjs.org/wappalyzer-core/-/wappalyzer-core-6.10.66.tgz",
+      "integrity": "sha512-7EOYy4DpdRcfoW00SfCwKjJE3//AAbyl2dzuG6DgICKPoRf60ero/1fBHOB2ipVTmIxpnnlsJ8jY0r5McwRwtA=="
     },
     "webidl-conversions": {
       "version": "3.0.1",
