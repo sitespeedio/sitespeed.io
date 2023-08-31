@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2023-08-16T13:24:36.637Z</updated>
+    <updated>2023-08-31T20:36:31.599Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,27 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 29.4.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.4.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.4.0"/>
+        <updated>2023-08-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Display axe-core version on the summary page (before it was only showed on each run page) <a href="https://github.com/sitespeedio/sitespeed.io/pull/3950">#3950</a>.</li>
+</ul>
+ <ul>
+<li>Display third-party-web and wappalyzer version in the HTML output (by upgrading to <a href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#800---2023-08-30">Coach 8.0.0</a>) <a href="https://github.com/sitespeedio/sitespeed.io/pull/3953">#3953</a>.</li>
+</ul>
+ <ul>
+<li>Display co2 version in the HTML output <a href="https://github.com/sitespeedio/sitespeed.io/pull/3954">#3953</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 29.3.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.3.0</id>
@@ -170,21 +191,6 @@
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Updated the Docker container to use Firefox 115.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 28.1.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#28.1.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#28.1.0"/>
-        <updated>2023-06-27T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Use <code>--graphite.proxyPath</code> to add extra proxy path to an annotation event in Graphite. Thank you <a href="https://github.com/Shalankwa">Jonathan Goodman</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/3893">#3893</a>.</li>
 </ul>
 ]]></summary>
         <author>

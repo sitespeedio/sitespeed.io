@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Wed, 16 Aug 2023 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 31 Aug 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,101 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 29.4.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.4.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.4.0</guid>
+            <pubDate>Thu, 31 Aug 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Display axe-core version on the summary page (before it was only showed on each run page) <a href="https://github.com/sitespeedio/sitespeed.io/pull/3950">#3950</a>.</li>
+</ul>
+ <ul>
+<li>Display third-party-web and wappalyzer version in the HTML output (by upgrading to <a href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#800---2023-08-30">Coach 8.0.0</a>) <a href="https://github.com/sitespeedio/sitespeed.io/pull/3953">#3953</a>.</li>
+</ul>
+ <ul>
+<li>Display co2 version in the HTML output <a href="https://github.com/sitespeedio/sitespeed.io/pull/3954">#3953</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach-core 8.0.2]]></title>
+            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.2</link>
+            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.2</guid>
+            <pubDate>Thu, 31 Aug 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Another update to PageXray with a safer HTTP header check.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach-core 8.0.1]]></title>
+            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.1</link>
+            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.1</guid>
+            <pubDate>Thu, 31 Aug 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated PageXray.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[pagexray 4.4.4]]></title>
+            <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.4</link>
+            <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.4</guid>
+            <pubDate>Thu, 31 Aug 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Added a safer header check <a href="https://github.com/sitespeedio/pagexray/pull/125">#125</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[pagexray 4.4.3]]></title>
+            <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.3</link>
+            <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.3</guid>
+            <pubDate>Thu, 31 Aug 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>If the meta section from a HAR file from Browsertime was missing, we didn&#39;t catch that. Fixed in <a href="https://github.com/sitespeedio/pagexray/pull/124">#124</a>.</li>
+</ul>
+ <ul>
+<li>Update to latest minimist <a href="https://github.com/sitespeedio/pagexray/pull/122">#122</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach-core 8.0.0]]></title>
+            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.0</link>
+            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.0</guid>
+            <pubDate>Wed, 30 Aug 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Expose third party web and wappalyzer versions <a href="https://github.com/sitespeedio/coach-core/pull/111">#111</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated to Wappalyzer 6.10.66 <a href="https://github.com/sitespeedio/coach-core/pull/110">#110</a>.</li>
+</ul>
+ <ul>
+<li>Updated third party web 0.24.0 <a href="https://github.com/sitespeedio/coach-core/pull/108">#108</a>.</li>
+</ul>
+ <ul>
+<li>Fix correct LCP attribute <a href="https://github.com/sitespeedio/coach-core/pull/107">#107</a>.</li>
+</ul>
+<h3>Changed</h3>
+ <ul>
+<li>Remove advice about disableFLoCHeader <a href="https://github.com/sitespeedio/coach-core/pull/106">#106</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 29.3.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.3.0</link>
@@ -156,18 +251,6 @@
             <description><![CDATA[<h3>Added</h3>
  <ul>
 <li>Updated the Docker container to use Firefox 115.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 28.1.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#28.1.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#28.1.0</guid>
-            <pubDate>Tue, 27 Jun 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Use <code>--graphite.proxyPath</code> to add extra proxy path to an annotation event in Graphite. Thank you <a href="https://github.com/Shalankwa">Jonathan Goodman</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/3893">#3893</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
@@ -497,17 +580,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[chrome-har 0.13.0]]></title>
-            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.0</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.0</guid>
-            <pubDate>Fri, 04 Feb 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Add _isLinkPreload on the request object if it is isLinkPreload <a href="https://github.com/sitespeedio/chrome-har/pull/94">#94</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
             <title><![CDATA[pagexray 4.4.0]]></title>
             <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.0</link>
             <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.0</guid>
@@ -518,6 +590,17 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[chrome-har 0.13.0]]></title>
+            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.0</link>
+            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.0</guid>
+            <pubDate>Fri, 04 Feb 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Add _isLinkPreload on the request object if it is isLinkPreload <a href="https://github.com/sitespeedio/chrome-har/pull/94">#94</a>.</li>
+</ul>
+]]></description>
         </item>
         <item>
             <title><![CDATA[throttle 3.1.0]]></title>
@@ -654,18 +737,6 @@
 ]]></description>
         </item>
         <item>
-            <title><![CDATA[coach-core 6.4.3]]></title>
-            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.3</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.3</guid>
-            <pubDate>Wed, 21 Jul 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated to latest PageXray and Third patrty web 0.12.4.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[pagexray 4.3.1]]></title>
             <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.3.1</link>
             <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.3.1</guid>
@@ -676,18 +747,6 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[coach-core 6.4.2]]></title>
-            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.2</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.2</guid>
-            <pubDate>Mon, 05 Jul 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Make sure JQuery refs are set back to original ref <a href="https://github.com/sitespeedio/coach-core/pull/62">#62</a> see <a href="https://github.com/sitespeedio/coach-core/issues/61">#61</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[pagexray 4.3.0]]></title>
@@ -744,30 +803,6 @@
             <description><![CDATA[<h3>Changed</h3>
  <ul>
 <li>The new header structure actually sucked. Instead follow other tools and flatten headers returning an array <a href="https://github.com/sitespeedio/pagexray/pull/98">#98</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[pagexray 3.1.1]]></title>
-            <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#3.1.1</link>
-            <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#3.1.1</guid>
-            <pubDate>Fri, 11 Dec 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Ooops, missed to expose the third party cookie data <a href="https://github.com/sitespeedio/pagexray/pull/97">#97</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[pagexray 3.1.0]]></title>
-            <link>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#3.1.0</link>
-            <guid>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#3.1.0</guid>
-            <pubDate>Fri, 11 Dec 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Get third party domains for cookies <a href="https://github.com/sitespeedio/pagexray/pull/96">#96</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/pagexray.png" length="0" type="image/png"/>
