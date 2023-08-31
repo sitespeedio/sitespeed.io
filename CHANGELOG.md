@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 29.4.0 - UNRELEASED
+### Added
+* Display axe-core version on the summary page (before it was only showed on each run page) [#3950](https://github.com/sitespeedio/sitespeed.io/pull/3950).
+* Display third-party-web and wappalyzer version in the HTML output (by upgrading to [Coach 8.0.0](https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#800---2023-08-30)) [#3953](https://github.com/sitespeedio/sitespeed.io/pull/3953).
+* Display co2 version in the HTML output [#3953](https://github.com/sitespeedio/sitespeed.io/pull/3954).
+
 ## 29.3.0 - 2023-08-16
 ### Added
 * Chrome and Chromedriver 116.
