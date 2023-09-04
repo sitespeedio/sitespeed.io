@@ -15,7 +15,7 @@
         "@tgwf/co2": "0.13.6",
         "aws-sdk": "2.1327.0",
         "axe-core": "4.7.2",
-        "browsertime": "17.15.0",
+        "browsertime": "17.16.0",
         "cli-color": "2.0.3",
         "coach-core": "8.0.2",
         "concurrent-queue": "7.0.2",
@@ -1870,9 +1870,9 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "17.15.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-17.15.0.tgz",
-      "integrity": "sha512-ZtHvX9L9SYgCLqjV/I0IJRTeb++z2B9odNb4J6VPa2ruJS77fWQL+Lwmor9OtLvc91s28e8bHiIagJFDt8fEYA==",
+      "version": "17.16.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-17.16.0.tgz",
+      "integrity": "sha512-YBoEgbdqDsuyxHaraTl76yKzU/BIU7S+sE4fiUxUxo4mOI+h9s9lgSerZpObt+ruaGC+/NiVOgvLb+ZPvPFCzQ==",
       "dependencies": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",
@@ -1887,7 +1887,7 @@
         "dayjs": "1.11.9",
         "execa": "7.2.0",
         "fast-stats": "0.0.6",
-        "ff-test-bidi-har-export": "0.0.11",
+        "ff-test-bidi-har-export": "0.0.12",
         "find-up": "6.3.0",
         "get-port": "6.1.2",
         "hasbin": "1.2.3",
@@ -3891,9 +3891,9 @@
       }
     },
     "node_modules/ff-test-bidi-har-export": {
-      "version": "0.0.11",
-      "resolved": "https://registry.npmjs.org/ff-test-bidi-har-export/-/ff-test-bidi-har-export-0.0.11.tgz",
-      "integrity": "sha512-a4AvGtVGdzRza29cD5GKAz8lUmXHZmnCcJluCH4UrL19QcUi9z6MaUrqqWyJBmWr1RBUmuCOf534mFQpYIaorA=="
+      "version": "0.0.12",
+      "resolved": "https://registry.npmjs.org/ff-test-bidi-har-export/-/ff-test-bidi-har-export-0.0.12.tgz",
+      "integrity": "sha512-ccJZc14x/1ymgcLpUBz52Rci/UsbboqJ5wgiPrcHQMyh8YOwNJLGt3yGygIHNhiShZ8aA8H4jOmQU980Ngot9Q=="
     },
     "node_modules/figures": {
       "version": "5.0.0",
@@ -10852,9 +10852,9 @@
       }
     },
     "browsertime": {
-      "version": "17.15.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-17.15.0.tgz",
-      "integrity": "sha512-ZtHvX9L9SYgCLqjV/I0IJRTeb++z2B9odNb4J6VPa2ruJS77fWQL+Lwmor9OtLvc91s28e8bHiIagJFDt8fEYA==",
+      "version": "17.16.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-17.16.0.tgz",
+      "integrity": "sha512-YBoEgbdqDsuyxHaraTl76yKzU/BIU7S+sE4fiUxUxo4mOI+h9s9lgSerZpObt+ruaGC+/NiVOgvLb+ZPvPFCzQ==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",
@@ -10869,7 +10869,7 @@
         "dayjs": "1.11.9",
         "execa": "7.2.0",
         "fast-stats": "0.0.6",
-        "ff-test-bidi-har-export": "0.0.11",
+        "ff-test-bidi-har-export": "0.0.12",
         "find-up": "6.3.0",
         "get-port": "6.1.2",
         "hasbin": "1.2.3",
@@ -12377,9 +12377,9 @@
       }
     },
     "ff-test-bidi-har-export": {
-      "version": "0.0.11",
-      "resolved": "https://registry.npmjs.org/ff-test-bidi-har-export/-/ff-test-bidi-har-export-0.0.11.tgz",
-      "integrity": "sha512-a4AvGtVGdzRza29cD5GKAz8lUmXHZmnCcJluCH4UrL19QcUi9z6MaUrqqWyJBmWr1RBUmuCOf534mFQpYIaorA=="
+      "version": "0.0.12",
+      "resolved": "https://registry.npmjs.org/ff-test-bidi-har-export/-/ff-test-bidi-har-export-0.0.12.tgz",
+      "integrity": "sha512-ccJZc14x/1ymgcLpUBz52Rci/UsbboqJ5wgiPrcHQMyh8YOwNJLGt3yGygIHNhiShZ8aA8H4jOmQU980Ngot9Q=="
     },
     "figures": {
       "version": "5.0.0",
