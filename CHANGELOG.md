@@ -4,6 +4,7 @@
 ## 29.5.0 - 2023-09-05
 ### Added
 * Updated to Firefox 117 and Edge 116 in the Docker container [#3958](https://github.com/sitespeedio/sitespeed.io/pull/3958).
+* Note that if you use the BiDi HAR for Firefox this version only work with Firefox 117+. If you use Firefox < 117 you need to stay on previous sitespeed.io version until you upgrade.
 
 ## 29.4.0 - 2023-08-31
 ### Added
