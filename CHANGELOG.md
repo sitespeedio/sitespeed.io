@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+
+## 29.5.0 - 2023-09-05
+### Added
+* Updated to Firefox 117 and Edge 116 in the Docker container [#3958](https://github.com/sitespeedio/sitespeed.io/pull/3958).
+
 ## 29.4.0 - 2023-08-31
 ### Added
 * Display axe-core version on the summary page (before it was only showed on each run page) [#3950](https://github.com/sitespeedio/sitespeed.io/pull/3950).
