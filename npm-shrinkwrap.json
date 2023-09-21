@@ -14,7 +14,7 @@
         "@sitespeed.io/plugin": "0.0.6",
         "@tgwf/co2": "0.13.6",
         "aws-sdk": "2.1327.0",
-        "axe-core": "4.7.2",
+        "axe-core": "4.8.1",
         "browsertime": "17.16.0",
         "cli-color": "2.0.3",
         "coach-core": "8.0.2",
@@ -1691,9 +1691,9 @@
       "integrity": "sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA=="
     },
     "node_modules/axe-core": {
-      "version": "4.7.2",
-      "resolved": "https://registry.npmjs.org/axe-core/-/axe-core-4.7.2.tgz",
-      "integrity": "sha512-zIURGIS1E1Q4pcrMjp+nnEh+16G56eG/MUllJH8yEvw7asDo7Ac9uhC9KIH5jzpITueEZolfYglnCGIuSBz39g==",
+      "version": "4.8.1",
+      "resolved": "https://registry.npmjs.org/axe-core/-/axe-core-4.8.1.tgz",
+      "integrity": "sha512-9l850jDDPnKq48nbad8SiEelCv4OrUWrKab/cPj0GScVg6cb6NbCCt/Ulk26QEq5jP9NnGr04Bit1BHyV6r5CQ==",
       "engines": {
         "node": ">=4"
       }
@@ -10717,9 +10717,9 @@
       "integrity": "sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA=="
     },
     "axe-core": {
-      "version": "4.7.2",
-      "resolved": "https://registry.npmjs.org/axe-core/-/axe-core-4.7.2.tgz",
-      "integrity": "sha512-zIURGIS1E1Q4pcrMjp+nnEh+16G56eG/MUllJH8yEvw7asDo7Ac9uhC9KIH5jzpITueEZolfYglnCGIuSBz39g=="
+      "version": "4.8.1",
+      "resolved": "https://registry.npmjs.org/axe-core/-/axe-core-4.8.1.tgz",
+      "integrity": "sha512-9l850jDDPnKq48nbad8SiEelCv4OrUWrKab/cPj0GScVg6cb6NbCCt/Ulk26QEq5jP9NnGr04Bit1BHyV6r5CQ=="
     },
     "babel-runtime": {
       "version": "6.26.0",
