@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Tue, 05 Sep 2023 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 22 Sep 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,21 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[sitespeed.io 29.6.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.6.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.6.0</guid>
+            <pubDate>Fri, 22 Sep 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated Chrome and Edge to 117, also NodeJS 18.18.0 and a latest updated version of Ubuntu 22.04 <a href="https://github.com/sitespeedio/sitespeed.io/pull/3965">#3965</a>.</li>
+</ul>
+ <ul>
+<li>Updated to Axe core 4.8.1 <a href="https://github.com/sitespeedio/sitespeed.io/pull/3964">#3964</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 29.5.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.5.0</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.5.0</guid>
@@ -23,6 +38,9 @@
             <description><![CDATA[<h3>Added</h3>
  <ul>
 <li>Updated to Firefox 117 and Edge 116 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3958">#3958</a>.</li>
+</ul>
+ <ul>
+<li>Note that if you use the BiDi HAR for Firefox this version only work with Firefox 117+. If you use Firefox &lt; 117 you need to stay on previous sitespeed.io version until you upgrade.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
@@ -226,31 +244,6 @@
             <description><![CDATA[<h3>Added</h3>
  <ul>
 <li>I finally <a href="https://github.com/sitespeedio/grafana-bootstrap-docker">archived the old dashboard setups for Graphite</a> and moved the dashboards to <a href="https://github.com/sitespeedio/sitespeed.io/tree/main/docker/grafana/provisioning/dashboards">the main repository</a>. I also updated the <a href="https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml">docker compose file</a> to provision the dashboards and Graphite and the new JSON datasource. I&#39;ve been thinking of doing that for years but never got around. With the release of a new dashboard in 29.0.0 I missed adding that we now also use a JSON datasource. The documentation is updated but need some more love, that will come the coming week.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 29.0.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.0.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.0.0</guid>
-            <pubDate>Tue, 25 Jul 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>New Chrome 115 and Chromedriver 115 (and a fix for the broken Chromedriver 115 on Mac).</li>
-</ul>
- <ul>
-<li>New Edge and Edgedriver 115</li>
-</ul>
- <ul>
-<li>New Browsertime 17.14.0. Most notable change is that if you collect the Chrome devtools trace using <code>--cpu</code> we will now also collect the number of elements that needs recalculate styles before FCP/LCP. There will be a blog post about this change later on.</li>
-</ul>
- <ul>
-<li>Updated the <a href="https://dashboard.sitespeed.io/d/9NDMzFfMk/page-metrics">main page merics dashboard</a>, you can download the new version <a href="https://github.com/sitespeedio/grafana-bootstrap-docker/blob/main/dashboards/graphite/PageMetrics.json">here</a>. The new dashboard needs to have the three plugins installed: <code>grafana-piechart-panel,marcusolsson-json-datasource,marcusolsson-dynamictext-panel</code>. If you are unsure how to do that, more documentation will come soon.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Crux: Remove experimental from INP when getting Crux data <a href="https://github.com/sitespeedio/sitespeed.io/pull/3906">#3906</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
