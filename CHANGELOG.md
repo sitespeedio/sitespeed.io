@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 29.6.0 - UNRELEASED
+### Added
+* Updated Chrome and Edge to 117, also NodeJS 18.18.0 and a latest updated version of Ubuntu 22.04 [#3965](https://github.com/sitespeedio/sitespeed.io/pull/3965).
+* Updated to Axe core 4.8.1 [#3964](https://github.com/sitespeedio/sitespeed.io/pull/3964).
 
 ## 29.5.0 - 2023-09-05
 ### Added
