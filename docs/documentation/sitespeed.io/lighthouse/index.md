@@ -58,7 +58,7 @@ You can also add Lighthouse flags by a JSON file ```--lighthouse.flags flag.json
 Read all about configuring Lighthouse at [https://github.com/GoogleChrome/lighthouse/blob/master/docs/configuration.md](https://github.com/GoogleChrome/lighthouse/blob/master/docs/configuration.md).
 
 ## Disable GPSI
-If you only want to run Lighthouse and not GPSI you can disable it with `--plugins.remove /gpsi`.
+If you only want to run Lighthouse and not GPSI you can disable it with `----plugins.remove /gpsi/lib/index.js`.
 
 
 You can read more about sitespeed.io plugins [here](https://www.sitespeed.io/documentation/sitespeed.io/plugins/).
