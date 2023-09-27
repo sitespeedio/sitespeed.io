@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 29.7.0 - 2023-09-27
+### Added
+* Updated Firefox to 118 in the Docker container [#118](https://github.com/sitespeedio/sitespeed.io/pull/3968).
+* Users of the +1 container will have Lighthouse version 11.1.0. 
+
 ## 29.6.0 - 2023-09-22
 ### Added
 * Updated Chrome and Edge to 117, also NodeJS 18.18.0 and a latest updated version of Ubuntu 22.04 [#3965](https://github.com/sitespeedio/sitespeed.io/pull/3965).
