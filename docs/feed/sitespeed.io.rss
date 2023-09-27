@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Fri, 22 Sep 2023 17:39:37 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 27 Sep 2023 12:37:05 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,21 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 29.7.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.7.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.7.0</guid>
+            <pubDate>Wed, 27 Sep 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated Firefox to 118 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3968">#118</a>.</li>
+</ul>
+ <ul>
+<li>Users of the +1 container will have Lighthouse version 11.1.0.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 29.6.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.6.0</link>
@@ -145,18 +160,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Reading configuration files on Windows failed. Thank you <a href="https://github.com/Edson1337">Edson1337</a> for reporting, fixed in <a href="https://github.com/sitespeedio/sitespeed.io/pull/3921">#3921</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 29.1.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.1.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.1.0</guid>
-            <pubDate>Tue, 25 Jul 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>I finally <a href="https://github.com/sitespeedio/grafana-bootstrap-docker">archived the old dashboard setups for Graphite</a> and moved the dashboards to <a href="https://github.com/sitespeedio/sitespeed.io/tree/main/docker/grafana/provisioning/dashboards">the main repository</a>. I also updated the <a href="https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml">docker compose file</a> to provision the dashboards and Graphite and the new JSON datasource. I&#39;ve been thinking of doing that for years but never got around. With the release of a new dashboard in 29.0.0 I missed adding that we now also use a JSON datasource. The documentation is updated but need some more love, that will come the coming week.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>

@@ -2,7 +2,7 @@
 
 ## 29.7.0 - 2023-09-27
 ### Added
-* Updated Firefox to 118 in the Docker container [#118](https://github.com/sitespeedio/sitespeed.io/pull/3968).
+* Updated Firefox to 118 in the Docker container [#3968](https://github.com/sitespeedio/sitespeed.io/pull/3968).
 * Users of the +1 container will have Lighthouse version 11.1.0. 
 
 ## 29.6.0 - 2023-09-22
