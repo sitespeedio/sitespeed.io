@@ -7,36 +7,37 @@ timeouts
       --timeouts.pageCompleteCheck, --maxLoadTime  Timeout when waiting for page to complete loading, in milliseconds  [number] [default: 120000]
 
 chrome
-      --chrome.args                                              Extra command line arguments to pass to the Chrome process (e.g. --no-sandbox). To add multiple arguments to Chrome, repeat --chrome.args once per argument.
-      --chrome.binaryPath                                        Path to custom Chrome binary (e.g. Chrome Canary). On OS X, the path should be to the binary inside the app bundle, e.g. "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary"
-      --chrome.chromedriverPath                                  Path to custom ChromeDriver binary. Make sure to use a ChromeDriver version that's compatible with the version of Chrome you're using
-      --chrome.chromedriverPort                                  Specify "--port" args for chromedriver prcocess  [number]
-      --chrome.mobileEmulation.deviceName                        Name of device to emulate. Works only standalone (see list in Chrome DevTools, but add phone like 'iPhone 6'). This will override your userAgent string.
-      --chrome.mobileEmulation.width                             Width in pixels of emulated mobile screen (e.g. 360)  [number]
-      --chrome.mobileEmulation.height                            Height in pixels of emulated mobile screen (e.g. 640)  [number]
-      --chrome.mobileEmulation.pixelRatio                        Pixel ratio of emulated mobile screen (e.g. 2.0)
-      --chrome.android.package                                   Run Chrome on your Android device. Set to com.android.chrome for default Chrome version. You need to have adb installed to make this work.
-      --chrome.android.activity                                  Name of the Activity hosting the WebView.
-      --chrome.android.process                                   Process name of the Activity hosting the WebView. If not given, the process name is assumed to be the same as chrome.android.package.
-      --chrome.android.deviceSerial                              Choose which device to use. If you do not set it, first device will be used.
-      --chrome.traceCategories                                   A comma separated list of Tracing event categories to include in the Trace log. Default no trace categories is collected.  [string]
-      --chrome.traceCategory                                     Add a trace category to the default ones. Use --chrome.traceCategory multiple times if you want to add multiple categories. Example: --chrome.traceCategory disabled-by-default-v8.cpu_profiler  [string]
-      --chrome.enableTraceScreenshots, --enableTraceScreenshots  Include screenshots in the trace log (enabling the trace category disabled-by-default-devtools.screenshot).  [boolean]
-      --chrome.enableChromeDriverLog                             Log Chromedriver communication to a log file.  [boolean]
-      --chrome.enableVerboseChromeDriverLog                      Log verboose Chromedriver communication to a log file.  [boolean]
-      --chrome.timeline, --chrome.trace                          Collect the timeline data. Drag and drop the JSON in your Chrome detvools timeline panel or check out the CPU metrics in the Browsertime.json  [boolean]
-      --chrome.collectPerfLog                                    Collect performance log from Chrome with Page and Network events and save to disk.  [boolean]
-      --chrome.collectNetLog                                     Collect network log from Chrome and save to disk.  [boolean]
-      --chrome.netLogCaptureMode                                 Choose capture mode for Chromes netlog.  [choices: "Default", "IncludeSensitive", "Everything"] [default: "IncludeSensitive"]
-      --chrome.collectConsoleLog                                 Collect Chromes console log and save to disk.  [boolean]
-      --chrome.appendToUserAgent                                 Append to the user agent.  [string]
-      --chrome.noDefaultOptions                                  Prevent Browsertime from setting its default options for Chrome  [boolean]
-      --chrome.cleanUserDataDir                                  If you use --user-data-dir as an argument to Chrome and want to clean that directory between each iteration you should use --chrome.cleanUserDataDir true.  [boolean]
-      --chrome.CPUThrottlingRate                                 Enables CPU throttling to emulate slow CPUs. Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc)  [number]
-      --chrome.includeResponseBodies                             Include response bodies in the HAR file.  [choices: "none", "all", "html"] [default: "none"]
-      --chrome.cdp.performance                                   Collect Chrome perfromance metrics from Chrome DevTools Protocol  [boolean] [default: true]
-      --chrome.blockDomainsExcept, --blockDomainsExcept          Block all domains except this domain. Use it multiple time to keep multiple domains. You can also wildcard domains like *.sitespeed.io. Use this when you wanna block out all third parties.
-      --chrome.ignoreCertificateErrors                           Make Chrome ignore certificate errors.  Defaults to true.  [boolean] [default: true]
+      --chrome.args                                                Extra command line arguments to pass to the Chrome process (e.g. --no-sandbox). To add multiple arguments to Chrome, repeat --chrome.args once per argument.
+      --chrome.binaryPath                                          Path to custom Chrome binary (e.g. Chrome Canary). On OS X, the path should be to the binary inside the app bundle, e.g. "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary"
+      --chrome.chromedriverPath                                    Path to custom ChromeDriver binary. Make sure to use a ChromeDriver version that's compatible with the version of Chrome you're using
+      --chrome.chromedriverPort                                    Specify "--port" args for chromedriver prcocess  [number]
+      --chrome.mobileEmulation.deviceName                          Name of device to emulate. Works only standalone (see list in Chrome DevTools, but add phone like 'iPhone 6'). This will override your userAgent string.
+      --chrome.mobileEmulation.width                               Width in pixels of emulated mobile screen (e.g. 360)  [number]
+      --chrome.mobileEmulation.height                              Height in pixels of emulated mobile screen (e.g. 640)  [number]
+      --chrome.mobileEmulation.pixelRatio                          Pixel ratio of emulated mobile screen (e.g. 2.0)
+      --chrome.android.package                                     Run Chrome on your Android device. Set to com.android.chrome for default Chrome version. You need to have adb installed to make this work.
+      --chrome.android.activity                                    Name of the Activity hosting the WebView.
+      --chrome.android.process                                     Process name of the Activity hosting the WebView. If not given, the process name is assumed to be the same as chrome.android.package.
+      --chrome.android.deviceSerial                                Choose which device to use. If you do not set it, first device will be used.
+      --chrome.traceCategories                                     A comma separated list of Tracing event categories to include in the Trace log. Default no trace categories is collected.  [string]
+      --chrome.traceCategory                                       Add a trace category to the default ones. Use --chrome.traceCategory multiple times if you want to add multiple categories. Example: --chrome.traceCategory disabled-by-default-v8.cpu_profiler  [string]
+      --chrome.enableTraceScreenshots, --enableTraceScreenshots    Include screenshots in the trace log (enabling the trace category disabled-by-default-devtools.screenshot).  [boolean]
+      --chrome.enableChromeDriverLog                               Log Chromedriver communication to a log file.  [boolean]
+      --chrome.enableVerboseChromeDriverLog                        Log verboose Chromedriver communication to a log file.  [boolean]
+      --chrome.timeline, --chrome.trace                            Collect the timeline data. Drag and drop the JSON in your Chrome detvools timeline panel or check out the CPU metrics in the Browsertime.json  [boolean]
+      --chrome.timelineRecordingType, --chrome.traceRecordingType  Expose the start/stop commands for the chrome trace  [string] [choices: "pageload", "custom"] [default: "pageload"]
+      --chrome.collectPerfLog                                      Collect performance log from Chrome with Page and Network events and save to disk.  [boolean]
+      --chrome.collectNetLog                                       Collect network log from Chrome and save to disk.  [boolean]
+      --chrome.netLogCaptureMode                                   Choose capture mode for Chromes netlog.  [choices: "Default", "IncludeSensitive", "Everything"] [default: "IncludeSensitive"]
+      --chrome.collectConsoleLog                                   Collect Chromes console log and save to disk.  [boolean]
+      --chrome.appendToUserAgent                                   Append to the user agent.  [string]
+      --chrome.noDefaultOptions                                    Prevent Browsertime from setting its default options for Chrome  [boolean]
+      --chrome.cleanUserDataDir                                    If you use --user-data-dir as an argument to Chrome and want to clean that directory between each iteration you should use --chrome.cleanUserDataDir true.  [boolean]
+      --chrome.CPUThrottlingRate                                   Enables CPU throttling to emulate slow CPUs. Throttling rate as a slowdown factor (1 is no throttle, 2 is 2x slowdown, etc)  [number]
+      --chrome.includeResponseBodies                               Include response bodies in the HAR file.  [choices: "none", "all", "html"] [default: "none"]
+      --chrome.cdp.performance                                     Collect Chrome perfromance metrics from Chrome DevTools Protocol  [boolean] [default: true]
+      --chrome.blockDomainsExcept, --blockDomainsExcept            Block all domains except this domain. Use it multiple time to keep multiple domains. You can also wildcard domains like *.sitespeed.io. Use this when you wanna block out all third parties.
+      --chrome.ignoreCertificateErrors                             Make Chrome ignore certificate errors.  Defaults to true.  [boolean] [default: true]
 
 android
       --android.powerTesting, --androidPower                                                       Enables android power testing - charging must be disabled for this.(You have to disable charging yourself for this - it depends on the phone model).  [boolean]
