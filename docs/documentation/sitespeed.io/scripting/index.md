@@ -13,40 +13,50 @@ twitterdescription: Use scripts in sitespeed.io to measure a user journey.
 # Scripting
 {:.no_toc}
 
-* Lets place the TOC here
-{:toc}
-
-# Test by scripting
-
-<img src="{{site.baseurl}}/img/user-journey.png" class="pull-right img-big" alt="The user journey" width="250">
-
-Test by scripting was introduced in sitespeed.io 8.0 and Browsertime 4.0 and makes it possible to measure a user journey. A user can visit multiple pages, clicking on links, log in, adding items to the cart ... yeah almost measure anything you want.
-
-In sitespeed.io 27.0 the project was moved to a [pure ESM package](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c). You can choose to either have your scripting file be a ESM or CommonJS file. If you use ESM your file should end with *.mjs* . If it is common JS use *.cjs*. All our examples on this page is ESM. Before 27.0 all files was common JS.
+Scripting in sitespeed.io allows you to measure user journeys by interacting with web pages. You create scripts in NodeJS that utilize context for accessing options and commands for webpage interactions like clicks, navigation, and starting/stopping measurements. Run your script with sitespeed.io to gather performance data. This feature is powerful for simulating real-user interactions and collecting performance metrics for complex workflows.
 
 Scripting work the same in Browsertime and sitespeed.io, the documentation here are for both of the tools.
 
-You have three different choices when you create your script:
-* You can use our [commands objects](/documentation/sitespeed.io/scripting/#commands). They are wrappers around plain JavaScript to make it easier to create your scripts. We prepared for many scenarios but if you need to do really complicated things, you also need [run plain JavaScript](/documentation/sitespeed.io/scripting/#jsrunjavascript) to be able to do what you want. But hey, that's easy!
-* Or you can run plain JavaScript to navigate or do what you need by using the command [js.run()](/documentation/sitespeed.io/scripting/#jsrunjavascript). That will make it easy to copy/paste your JavaScript from your browsers console and test what you want to do.
-* If you are used to do everything with Selenium you can [use ... Selenium](/documentation/sitespeed.io/scripting/#use-selenium-directly) :)
+In sitespeed.io 27.0 the project was moved to a [pure ESM package](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c). You can choose to either have your scripting file be a ESM or CommonJS file. If you use ESM your file should end with *.mjs* . If it is common JS use *.cjs*. All our examples on this page is ESM. Before 27.0 all files was common JS.
 
-If you use plain JavaScript or Selenium you will still need to use our [measure command](/documentation/sitespeed.io/scripting/#measure) to get measuring and collecting metrics correct.
+<img src="{{site.baseurl}}/img/user-journey.png" class="pull-right img-big" alt="The user journey" width="250">
 
+# Index
+{:.no_toc}
 
-Independent of your implementation, your script will get access to two objects: The *context* object that holds information about the current run and the *commands* object that has commands/shortcuts to navigate in the page.
+* Lets place the TOC here
+{:toc}
 
-The simplest version of a script looks like this:
+## Scripting basics
+
+### Simple script
+
+Start by creating a script file, say *measure.mjs*, with the following content:
 
 ~~~javascript
 export default async function (context, commands) {
-  // add your own code here
-}
+  return commands.measure.start('https://www.sitespeed.io');
+};
 ~~~
 
-Inside of that function you can use the context and commands objects.
+Run your script with the command: ```sitespeed.io -n 1 --multi measure.js```.
 
-The context object:
+This script will measure the performance of the specified URL. For more advanced scripting options like handling clicks, navigation, and other interactions, scroll down​.
+
+### Details
+
+In scripting with Sitespeed.io, you have three options:
+
+1. Use **commands objects** which simplify script creation by wrapping plain JavaScript. For complex tasks, you might need to use plain JavaScript.
+2. Execute plain JavaScript using the command `js.run()`, ideal for reusing code snippets from your browser's console.
+3. If you are familiar with Selenium, you can use it directly in sitespeed.io.
+
+Regardless of the approach, use the **measure command** for accurate metric collection. Every script gets two objects: `context` for accessing options and utilities, and `commands` for interacting with webpages, like navigating and measuring.
+
+#### Context
+
+The context object are passed on to your function and give you access to the following:
+
 * *options* - All the options sent from the CLI to Browsertime.
 * *log* - an instance to the log system so you can log from your navigation script.
 * *index* - the index of the runs, so you can keep track of which run you are currently on.
@@ -54,33 +64,17 @@ The context object:
 * *selenium.webdriver* -  The Selenium [WebDriver public API object](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index.html).
 * *selenium.driver* - The [instantiated version of the WebDriver](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/index_exports_WebDriver.html) driving the current version of the browser.
 
-You can also use the context object to pass on data to other scripts within the same run/iteration. Add your own field and use it in your next script.
+In the code you can use the context like this:
 
-The commands object:
-* *[navigate(URL)](#navigateurl)* - Use this if you want to use the exact way as Browsertime navigates to a new URL (same settings with pageCompleteCheck etc). Note: the URL will not be measured automatically.
-* *[measure.start(URL)](#measurestarturl)* - Start measuring and navigate to a new page in one go.
-* *[measure.start(URL,alias)](#measurestarturl-alias)* - Start measuring and navigate to a new page in one go, while register an alias for that URL.
-* *[measure.start()](#measurestart)* - Use this when you want to start to measure a page. This will start the video and prepare everything to collect metrics. Note: it will not navigate to the URL.
-* *[measure.start(alias)](#measurestartalias)* - Use this when you want to start to measure a page. This will start the video and prepare everything to collect metrics. Note: it will not navigate to the URL and the next URL that will be accessed will get the alias.
-* *[measure.stop()](#measurestop)* - Collect metrics for a page.
-* *[timer.start()]()* Start a timer and measure the time.
-* *[timer.stopAndAdd()]() * Stop the timer and add the result to the last tested URL.
-
-And then you have a few help commands:
-* *[wait](#wait)* on a id to appear or wait x amount of ms.
-* *[click](#click)* on a link and/or wait for the next page to load.
-* *[js](#run-javascript)* - run JavaScript in the browser.
-* *[switch](#switch)* to another frame or window.
-* *[set](#set)* innerHtml, innerText or value to an element.
-
-Scripting only works for Browsertime. It will not work with Lighthouse/Google Pagespeed Insights or WebPageTest. If you need scripting for WebPageTest [read the WebPageTest scripting documentation](/documentation/sitespeed.io/webpagetest/#webpagetest-scripting).
-{: .note .note-info}
-
-## Run
-Run your script by passing it to sitespeed.io and adding the parameter ```--multi```. If you have multiple scripts, you can just pass them in as well.
-
-~~~bash
-docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} script.js script2.js script3.js --multi
+~~~javascript
+export default async function (context, commands) {
+  // 
+   context.log.info(
+    `My script is starting, you passed on ${context.options.iterations} iterations`
+  );
+  context.log.info(`Iteration number ${context.index}`);
+  ...
+}
 ~~~
 
 If you want to pass data between your scripts you can do that with the context object. Here's an example of the first script:
@@ -101,35 +95,31 @@ export default async function (context, commands) {
 }
 ~~~
 
-That way you can just split your long scripts into multiple files and make it easier to manage.
 
-## Getting values from your page
-In some scenarios you want to do different things dependent on what shows on your page. For example: You are testing a shop checkout and you need to verify that the item is in stock. You can run JavaScript and get the value back to your script.
+#### Commands
+Commands are an help object that helps you interacting with webpages, like navigating and measuring. You can see the full list of commands [here]() and here's a short list of some of the most important one.
 
-Here's an simple example, IRL you will need to get something from the page:
+* *[navigate(URL)](#navigateurl)* - Use this if you want to use the exact way as Browsertime navigates to a new URL (same settings with pageCompleteCheck etc). Note: the URL will not be measured automatically.
+* *[measure.start(URL)](#measurestarturl)* - Start measuring and navigate to a new page in one go.
+* *[measure.start(URL,alias)](#measurestarturl-alias)* - Start measuring and navigate to a new page in one go, while register an alias for that URL.
+* *[measure.start()](#measurestart)* - Use this when you want to start to measure a page. This will start the video and prepare everything to collect metrics. Note: it will not navigate to the URL.
+* *[measure.start(alias)](#measurestartalias)* - Use this when you want to start to measure a page. This will start the video and prepare everything to collect metrics. Note: it will not navigate to the URL and the next URL that will be accessed will get the alias.
+* *[measure.stop()](#measurestop)* - Collect metrics for a page.
+* *[timer.start()]()* Start a timer and measure the time.
+* *[timer.stopAndAdd()]()* Stop the timer and add the result to the last tested URL.
 
-~~~javascript
-export default async function (context, commands) {
-  // We are in browsertime context so you can skip that from your options object
-  const secretValue = await commands.js.run('return 12');
-  // if secretValue === 12 ...
-}
-~~~
+And then you have a few help commands:
+* *[wait](#wait)* on a id to appear or wait x amount of ms.
+* *[click](#click)* on a link and/or wait for the next page to load.
+* *[js](#run-javascript)* - run JavaScript in the browser.
+* *[switch](#switch)* to another frame or window.
+* *[set](#set)* innerHtml, innerText or value to an element.
 
-If you want to have different flows depending on a element exists you can do something like this:
+Scripting only works for Browsertime. It will not work with Lighthouse/Google Pagespeed Insights or WebPageTest.
+{: .note .note-info}
 
-~~~javascript
-...
-const exists = await commands.js.run('return (document.getElementById("nonExistsingID") != null) ');
-if (exists) {
-    // The element with that id exists
-} else {
-    // There's no element with that id
-}
-~~~
-
-## What about await/return and what do those mean?
-If you are new to NodeJS using await can be confusing, what does it mean and when should you use it?
+### Await, return and promises.
+If you are new to NodeJS using promises/await can be confusing, what does it mean and when should you use it?
 
 Some of the commands/function in Browsertime/sitespeed.io are asynchronous. This means that they return a promise. A promise is an action which will either be completed or rejected. It could be navigating to a new page, running JavaScript or waiting for an element to appear.
 
@@ -145,8 +135,7 @@ export default async function (context, commands) {
 ~~~
 
 
-sitespeed.io/Browsertime gives full control to your script and is waiting for it to return a promise. That means that if you do many async functions/commands in your page, you should make sure you return the last 
-promise back to sitespeed.io/Browsertime. That way it will wait until everything in your script has finished. Checkout this examample where we test two pages, we wait for the first to finish and then return the last promise back.
+sitespeed.io/Browsertime gives full control to your script and is waiting for it to return a promise. That means that if you do many async functions/commands in your page, you should make sure you return the last promise back to sitespeed.io/Browsertime. That way it will wait until everything in your script has finished. Checkout this examample where we test two pages, we wait for the first to finish and then return the last promise back.
 
 ~~~javascript
 export default async function (context, commands) {
@@ -154,6 +143,170 @@ export default async function (context, commands) {
     return commands.measure.start('https://www.sitespeed.io/documentation/');
 }
 ~~~
+
+
+### Run
+Run your script by passing it to sitespeed.io and adding the parameter ```--multi```. 
+
+~~~bash
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} script.js --multi
+~~~
+
+#### Using multiple scripts
+
+If you have multiple scripts, you can just pass them in as well.
+
+~~~bash
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} script.mjs script2.mjs script3.mjs --multi
+~~~
+
+That way you can just split your long scripts into multiple files and make it easier to manage. In this example sitespeed.io will for each iteratiomn invoke *script.mjs* then *script2.mjs* and last *script3.mjs*
+
+#### Reuse scripts
+You can break out code in multiple files.
+
+*test.mjs*
+~~~javascript
+import { example } from './exampleInclude.mjs';
+export default async function (context, commands) {
+  example();
+}
+~~~
+
+*exampleInclude.mjs*
+~~~javascript
+export async function example() {
+  console.log('This is my example function');
+}
+
+~~~
+
+And then run it:
+```sitespeed.io --multi test.mjs```
+
+
+#### Using setUp and tearDown in the same script
+
+This is a feature used by Mozilla and was created years ago. Nowadays you can probably just do everything in one script. 
+
+Scripts can also directly define the ```--preScript``` and ```--postScript``` options by implementing a *setUp* and/or a *tearDown* function. These functions will get the same arguments than the test itself. When using this form, the three functions are declared in *module.exports* under the *setUp*, *tearDown* and *test* keys. This works for commons JS files.
+
+Here's a minimal example:
+
+~~~javascript
+async function setUp(context, commands) {
+  // do some useful set up
+};
+
+async function perfTest(context, commands) {
+  // add your own code here
+};
+
+async function tearDown(context, commands) {
+  // do some cleanup here
+};
+
+module.exports = {
+  setUp: setUp,
+  tearDown: tearDown,
+  test: perfTest
+};
+~~~
+
+
+## Measure
+
+In sitespeed.io, measurements can be conducted using a meassure command for page navigation performance, gathering various metrics during page load. Alternatively, the StopWatch command is used for measuring arbitrary durations, such as the time taken for certain actions to complete. When you create your script you need to know what you want to measure.
+
+
+### The measure command
+
+The measure is used for preparing and measuring the navigation to a new URL, it starts the video recording, clears internal metrics, and collects technical metrics from the browser once the measurement is stopped​.
+
+In web performance measurement, a *"navigation"* refers to the process of moving from one URL to another, which triggers a series of events in the browser. This includes the unloading of the current page, fetching and executing necessary resources for the new page, rendering the new page, and completing the loading of the new page. The `commands.measure` in sitespeed.io is designed to measure the performance metrics of such navigations, capturing data like page load time, resource timings, and other relevant metrics from the start to the end of the navigation process.
+
+~~~javascript
+export default async function (context, commands) {
+  // Navigate to https://www.sitespeed.io and measure the navigation
+  return commands.measure.start('https://www.sitespeed.io');
+};
+~~~
+
+If you do not give the measure command a URL, the command will prepare everything and start the video. Then it’s up to you to navigate/click on a link/submit the page. You also need to stop the measurement so that Browsertime/sitespeed.io knows that you want the metrics.
+
+Here's an example where we measure navigationg to the sitespeed.io documentationg page by first navigation to the sitespeed.io start page and then clicking on a link.
+
+~~~javascript
+export default async function (context, commands) {
+  
+  await commands.navigate('https://www.sitespeed.io');
+
+  await commands.measure.start('Documentation');
+  // Using a xxxAndWait command will make the page wait for a navigation
+  await commands.click.byLinkTextAndWait('Documentation');
+  return commands.measure.stop();
+}
+~~~
+
+### The stop watch command
+The Stop Watch command is utilized when there's a need to measure something that is not a navigation, like the time taken for certain processes or actions. It's more manual where you start and stop the watch to measure the elapsed time​​.  
+
+The stop watch metric will be automatically added to the page that was measured before the stop watch.
+
+~~~javascript
+export default async function (context, commands) {
+  const stopWatch = commands.stopWatch.get('Before_navigating_page');
+  // Do the thing you want to measure ...
+  // Then stop the watch 
+  const time = stopWatch.stop();
+  // Measure navigation to a page
+  await commands.measure.start('https://www.sitespeed.io');
+  // Then attach that timing to that page.
+  commands.measure.add(stopWatch.getName(), time);
+}
+~~~
+
+### Using user timings and element timings API
+If you are in control of the page you are testing you can (and should) use the [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/Performance_API/User_timing) and the [Element Timing API](https://wicg.github.io/element-timing/). 
+
+These are JavaScript APIs built into the browser. Almost all browser supports the User Timing API and Chrome(ium) browsers support the Element Timing API. 
+
+Browsertime/sitespeed.io will automatically pick up those metrics when you run the measure command.
+
+You can also get those metrics running the JavsScript command. That is useful if you want to collect these metrics yourself and they happen after a page navigation.
+
+~~~javascript
+export default async function (context, commands) {
+  await commands.navigate('https://www.sitespeed.io');
+
+  // The sitespeed.io start page has a user timing mark named userTimingHeader
+  const userTimingHeader = await commands.js.run(
+    `return performance.getEntriesByName('userTimingHeader')[0].startTime;`
+  );
+
+  // The sitespeed.io start page has a element timing api for the logo
+  const logoRenderTime = await commands.js.run(`
+  const observer = new PerformanceObserver(list => {});
+  observer.observe({ type: 'element', buffered: true });
+  const entries = observer.takeRecords();
+  for (let entry of entries) {
+    if (entry.identifier === 'logo') {
+      return Number(entry.renderTime.toFixed(0));
+    }
+  }
+  `);
+
+  context.log.info(
+    `User Timing header: ${userTimingHeader} ms  and Logo Element render time ${logoRenderTime} ms`
+  );
+}
+~~~
+
+### Measuring SPA
+At the moment browser metrics like paint metrics that you can collect from JavaScript aren't updated when you are using a SPA/a soft navigation. There are [work beeing done here](https://github.com/w3c/performance-timeline/issues/168) and [here](https://developer.chrome.com/blog/soft-navigations-experiment/) in this area and we will work to use that in upcoming releases.
+
+In the current release, you need to record a video of the screen and use the visual metrics. Combine that with User Timings and Element timings and you can measure the most things. We are gonna update the documentation when we have a implementation working for soft navigations.
+
 
 ## Finding the right element
 
@@ -210,6 +363,7 @@ export default async function (context, commands) {
 * If you use plain JavaScript you can copy/paste it and run it in your browsers console to make sure it really works.
 * Take a [screenshot](/documentation/sitespeed.io/scripting/#screenshot) when your script fail to make it easier to see what's going on.
 * If you navigate by clicking on elements you can verify that you end up where you want by running JavaScript. Here's an example where the new URL is logged but you can also verfify that it is the right one.
+
 ~~~javascript
 export default async function (context, commands) {
     await commands.measure.start('https://www.sitespeed.io');
@@ -231,7 +385,7 @@ export default async function (context, commands) {
 * If you run into trouble, please make sure you make it easy for us to [reproduce your problem](/documentation/sitespeed.io/bug-report/#explain-how-to-reproduce-your-issue) when you report a issue.
 
 
-## Examples
+## Example code
 Here are some examples on how you can use the scripting capabilities.
 
 ### Measure the actual login step
@@ -581,7 +735,7 @@ export default async function (context, commands) {
   // ...
   try {
     // Click on a link
-    await click.byLinkTextAndWait('Checkout');
+    await commands.click.byLinkTextAndWait('Checkout');
   } catch (e) {
     // Oh no, the content team has changed the name of the link!
      commands.error('The link named Checkout do not exist on the page');
@@ -708,6 +862,31 @@ export default async function (context, commands) {
 };
 ~~~
 
+### Getting values from your page
+In some scenarios you want to do different things dependent on what shows on your page. For example: You are testing a shop checkout and you need to verify that the item is in stock. You can run JavaScript and get the value back to your script.
+
+Here's an simple example, IRL you will need to get something from the page:
+
+~~~javascript
+export default async function (context, commands) {
+  // We are in browsertime context so you can skip that from your options object
+  const secretValue = await commands.js.run('return 12');
+  // if secretValue === 12 ...
+}
+~~~
+
+If you want to have different flows depending on a element exists you can do something like this:
+
+~~~javascript
+...
+const exists = await commands.js.run('return (document.getElementById("nonExistsingID") != null) ');
+if (exists) {
+    // The element with that id exists
+} else {
+    // There's no element with that id
+}
+~~~
+
 ### Test one page that need a much longer page complete check than others
 
 If you have one page that needs some special handling that maybe do a couple of late and really slow AJAX requests, you can catch that with your on wait for the page to finish.
@@ -747,54 +926,6 @@ export default async function (context, commands) {
     // ...
 
     return commands.navigate('https://www.sitespeed.io/?dummy', 'BackToHomepage');
-};
-~~~
-
-### Reuse scripts
-You can break out code in multiple files something like this.
-
-test.js
-~~~javascript
-const example = require('./exampleInclude');
-export default async function (context, commands) {
-  example();
-};
-~~~
-
-exampleInclude.js
-~~~javascript
-module.exports = function() {
-  console.log('This is my include');
-};
-~~~
-
-And then run it:
-```sitespeed.io --multi test.js```
-
-
-## Running setUp and tearDown in the same script
-
-Scripts can also directly define the ```--preScript``` and ```--postScript``` options by implementing a *setUp* and/or a *tearDown* function. These functions will get the same arguments than the test itself. When using this form, the three functions are declared in *module.exports* under the *setUp*, *tearDown* and *test* keys.
-
-Here's a minimal example:
-
-~~~javascript
-async function setUp(context, commands) {
-  // do some useful set up
-};
-
-async function perfTest(context, commands) {
-  // add your own code here
-};
-
-async function tearDown(context, commands) {
-  // do some cleanup here
-};
-
-module.exports = {
-  setUp: setUp,
-  tearDown: tearDown,
-  test: perfTest
 };
 ~~~
 
@@ -955,7 +1086,7 @@ You stop your stop watch by either just stop it or stop it and add the metric to
 
 ~~~javascript
  // Stop the watch
- stopWatch .stop();
+ stopWatch.stop();
  // Or stop the watch and add it to the page
  stopWatch.stopAndAdd(); 
 ~~~
