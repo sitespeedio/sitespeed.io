@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Wed, 27 Sep 2023 12:37:05 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 16 Oct 2023 13:51:54 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,13 +17,35 @@
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[sitespeed.io 29.8.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.8.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.8.0</guid>
+            <pubDate>Mon, 16 Oct 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Chrome/Chromedriver 118 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3975">#3975</a>.</li>
+</ul>
+ <ul>
+<li>Users of the +1 container will get Lighthouse 11.2.0 from this release.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated to Axe-core 4.8.2 <a href="https://github.com/sitespeedio/sitespeed.io/pull/3977">#3977</a>.</li>
+</ul>
+ <ul>
+<li>A better error message when ypu try to measure a navigation without navigating <a href="https://github.com/sitespeedio/sitespeed.io/pull/3980">#3980</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 29.7.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.7.0</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.7.0</guid>
             <pubDate>Wed, 27 Sep 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Added</h3>
  <ul>
-<li>Updated Firefox to 118 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3968">#118</a>.</li>
+<li>Updated Firefox to 118 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3968">#3968</a>.</li>
 </ul>
  <ul>
 <li>Users of the +1 container will have Lighthouse version 11.1.0.</li>
@@ -148,18 +170,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Updating Browsertime that makes it possible to run the AMD docker image on ARM M1 Macs. Add <code>--platform linux/amd64</code> and in Docker desktop turn on <em>&quot;Use Rosetta for x86/amd64 emulation&quot;</em>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 29.1.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.1.1</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.1.1</guid>
-            <pubDate>Sun, 30 Jul 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Reading configuration files on Windows failed. Thank you <a href="https://github.com/Edson1337">Edson1337</a> for reporting, fixed in <a href="https://github.com/sitespeedio/sitespeed.io/pull/3921">#3921</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>

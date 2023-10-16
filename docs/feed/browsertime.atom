@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2023-09-05T05:27:36.625Z</updated>
+    <updated>2023-10-11T12:38:00.618Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,24 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.17.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.17.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.17.0"/>
+        <updated>2022-10-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Firefox 118, Edge 117 and Chrome/Chromedriver 118 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/1996">#1996</a>.</li>
+</ul>
+ <ul>
+<li>Expose trace start/stop for Chrome in scripting (the same way as for Firefox). Thank you <a href="https://github.com/92kns">KS</a> for <a href="https://github.com/sitespeedio/browsertime/pull/1988">#1988</a>. Documentation is coming when the functionality is rolled out in sitespeed.io.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 17.16.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.16.0</id>
@@ -153,24 +171,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Hmm, Chromedriver 115 doesn&#39;t seems to work on Mac so reverted to 114.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 17.12.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.12.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.12.0"/>
-        <updated>2022-07-19T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Chrome and Chromedriver 115. The Chrome team has changed the hosting of Chromedriver, so the logic for downloading Chromedriver has changed <a href="https://github.com/sitespeedio/browsertime/pull/1967">#1967</a>.</li>
-</ul>
- <ul>
-<li>If you collect the Chrome devtools trace using <code>--cpu</code> we will now also collect the number of elements that needs recalculate styles before FCP/LCP.<a href="https://github.com/sitespeedio/browsertime/pull/1964">#1964</a>.</li>
 </ul>
 ]]></summary>
         <author>

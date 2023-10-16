@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Wed, 27 Sep 2023 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 16 Oct 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,13 +16,35 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[sitespeed.io 29.8.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.8.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.8.0</guid>
+            <pubDate>Mon, 16 Oct 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Chrome/Chromedriver 118 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3975">#3975</a>.</li>
+</ul>
+ <ul>
+<li>Users of the +1 container will get Lighthouse 11.2.0 from this release.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated to Axe-core 4.8.2 <a href="https://github.com/sitespeedio/sitespeed.io/pull/3977">#3977</a>.</li>
+</ul>
+ <ul>
+<li>A better error message when ypu try to measure a navigation without navigating <a href="https://github.com/sitespeedio/sitespeed.io/pull/3980">#3980</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 29.7.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.7.0</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.7.0</guid>
             <pubDate>Wed, 27 Sep 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Added</h3>
  <ul>
-<li>Updated Firefox to 118 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3968">#118</a>.</li>
+<li>Updated Firefox to 118 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3968">#3968</a>.</li>
 </ul>
  <ul>
 <li>Users of the +1 container will have Lighthouse version 11.1.0.</li>
@@ -229,18 +251,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 29.1.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.1.1</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.1.1</guid>
-            <pubDate>Sun, 30 Jul 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Reading configuration files on Windows failed. Thank you <a href="https://github.com/Edson1337">Edson1337</a> for reporting, fixed in <a href="https://github.com/sitespeedio/sitespeed.io/pull/3921">#3921</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[chrome-har 0.13.2]]></title>
             <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.2</link>
             <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.2</guid>
@@ -310,6 +320,21 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 17.17.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.17.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.17.0</guid>
+            <pubDate>Tue, 11 Oct 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Firefox 118, Edge 117 and Chrome/Chromedriver 118 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/1996">#1996</a>.</li>
+</ul>
+ <ul>
+<li>Expose trace start/stop for Chrome in scripting (the same way as for Firefox). Thank you <a href="https://github.com/92kns">KS</a> for <a href="https://github.com/sitespeedio/browsertime/pull/1988">#1988</a>. Documentation is coming when the functionality is rolled out in sitespeed.io.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[browsertime 17.16.0]]></title>
@@ -424,21 +449,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Hmm, Chromedriver 115 doesn&#39;t seems to work on Mac so reverted to 114.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 17.12.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.12.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.12.0</guid>
-            <pubDate>Tue, 19 Jul 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Chrome and Chromedriver 115. The Chrome team has changed the hosting of Chromedriver, so the logic for downloading Chromedriver has changed <a href="https://github.com/sitespeedio/browsertime/pull/1967">#1967</a>.</li>
-</ul>
- <ul>
-<li>If you collect the Chrome devtools trace using <code>--cpu</code> we will now also collect the number of elements that needs recalculate styles before FCP/LCP.<a href="https://github.com/sitespeedio/browsertime/pull/1964">#1964</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>

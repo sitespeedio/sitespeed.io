@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2023-09-27T00:00:00.000Z</updated>
+    <updated>2023-10-16T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,13 +16,38 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <entry>
+        <title type="html"><![CDATA[sitespeed.io 29.8.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.8.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.8.0"/>
+        <updated>2023-10-16T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Chrome/Chromedriver 118 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3975">#3975</a>.</li>
+</ul>
+ <ul>
+<li>Users of the +1 container will get Lighthouse 11.2.0 from this release.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated to Axe-core 4.8.2 <a href="https://github.com/sitespeedio/sitespeed.io/pull/3977">#3977</a>.</li>
+</ul>
+ <ul>
+<li>A better error message when ypu try to measure a navigation without navigating <a href="https://github.com/sitespeedio/sitespeed.io/pull/3980">#3980</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[sitespeed.io 29.7.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.7.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.7.0"/>
         <updated>2023-09-27T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
-<li>Updated Firefox to 118 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3968">#118</a>.</li>
+<li>Updated Firefox to 118 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3968">#3968</a>.</li>
 </ul>
  <ul>
 <li>Users of the +1 container will have Lighthouse version 11.1.0.</li>
@@ -271,21 +296,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 29.1.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.1.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.1.1"/>
-        <updated>2023-07-30T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Reading configuration files on Windows failed. Thank you <a href="https://github.com/Edson1337">Edson1337</a> for reporting, fixed in <a href="https://github.com/sitespeedio/sitespeed.io/pull/3921">#3921</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[chrome-har 0.13.2]]></title>
         <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.2</id>
         <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.2"/>
@@ -366,6 +376,24 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Fixed exporting to work with ESM modules too.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.17.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.17.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.17.0"/>
+        <updated>2022-10-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Firefox 118, Edge 117 and Chrome/Chromedriver 118 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/1996">#1996</a>.</li>
+</ul>
+ <ul>
+<li>Expose trace start/stop for Chrome in scripting (the same way as for Firefox). Thank you <a href="https://github.com/92kns">KS</a> for <a href="https://github.com/sitespeedio/browsertime/pull/1988">#1988</a>. Documentation is coming when the functionality is rolled out in sitespeed.io.</li>
 </ul>
 ]]></summary>
         <author>
@@ -510,24 +538,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Hmm, Chromedriver 115 doesn&#39;t seems to work on Mac so reverted to 114.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 17.12.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.12.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.12.0"/>
-        <updated>2022-07-19T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Chrome and Chromedriver 115. The Chrome team has changed the hosting of Chromedriver, so the logic for downloading Chromedriver has changed <a href="https://github.com/sitespeedio/browsertime/pull/1967">#1967</a>.</li>
-</ul>
- <ul>
-<li>If you collect the Chrome devtools trace using <code>--cpu</code> we will now also collect the number of elements that needs recalculate styles before FCP/LCP.<a href="https://github.com/sitespeedio/browsertime/pull/1964">#1964</a>.</li>
 </ul>
 ]]></summary>
         <author>
