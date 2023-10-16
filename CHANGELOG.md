@@ -1,5 +1,14 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 29.8.0 - 2023-10-16
+### Added
+* Updated to Chrome/Chromedriver 118 in the Docker container [#3975](https://github.com/sitespeedio/sitespeed.io/pull/3975).
+* Users of the +1 container will get Lighthouse 11.2.0 from this release.
+
+### Fixed
+* Updated to Axe-core 4.8.2 [#3977](https://github.com/sitespeedio/sitespeed.io/pull/3977).
+* A better error message when ypu try to measure a navigation without navigating [#3980](https://github.com/sitespeedio/sitespeed.io/pull/3980).
+
 ## 29.7.0 - 2023-09-27
 ### Added
 * Updated Firefox to 118 in the Docker container [#3968](https://github.com/sitespeedio/sitespeed.io/pull/3968).
