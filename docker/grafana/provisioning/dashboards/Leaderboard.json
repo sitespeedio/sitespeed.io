@@ -249,7 +249,7 @@
     {
       "cacheTimeout": "",
       "datasource": "graphite",
-      "description": "The Speed Index is the average time at which visible parts of the page are displayed. It is expressed in milliseconds and dependent on size of the view port. It was created by Pat Meenan and you can checkout the full documentation [here](https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index).",
+      "description": "The Speed Index is the average time at which visible parts of the page are displayed. It is expressed in milliseconds and dependent on size of the view port. It was created by Pat Meenan and you can checkout the full documentation [here](https://docs.webpagetest.org/metrics/speedindex/).",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -601,7 +601,7 @@
           "dashLength": 10,
           "dashes": false,
           "datasource": "graphite",
-          "description": "The Speed Index is the average time at which visible parts of the page are displayed. It is expressed in milliseconds and dependent on size of the view port. It was created by Pat Meenan and you can checkout the full documentation [here](https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index).",
+          "description": "The Speed Index is the average time at which visible parts of the page are displayed. It is expressed in milliseconds and dependent on size of the view port. It was created by Pat Meenan and you can checkout the full documentation [here](https://docs.webpagetest.org/metrics/speedindex/).",
           "fieldConfig": {
             "defaults": {
               "custom": {}
