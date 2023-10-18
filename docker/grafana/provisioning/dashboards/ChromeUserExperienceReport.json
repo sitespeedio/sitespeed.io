@@ -1,0 +1,4391 @@
+{
+  "__inputs": [
+    {
+      "name": "graphite",
+      "label": "graphite",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "graphite",
+      "pluginName": "Graphite"
+    },
+    {
+      "name": "VAR_BASE",
+      "type": "constant",
+      "label": "sitespeed_io",
+      "value": "sitespeed_io",
+      "description": ""
+    }
+  ],
+  "__elements": [],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "8.5.1"
+    },
+    {
+      "type": "panel",
+      "id": "grafana-piechart-panel",
+      "name": "Pie Chart (old)",
+      "version": "1.6.2"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph (old)",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "graphite",
+      "name": "Graphite",
+      "version": "1.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    }
+  ],
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "iteration": 1651731137841,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "E-Pn3IaGz"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 2,
+      "panels": [],
+      "title": "CrUX data for page $group$page",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "First Contentful Paint",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 1000
+              },
+              {
+                "color": "red",
+                "value": 3000
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 0,
+        "y": 1
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "alias($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.FIRST_CONTENTFUL_PAINT_MS.p75, 'First Contentful Paint')",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "Largest Contentful Paint",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 2500
+              },
+              {
+                "color": "red",
+                "value": 4000
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 8,
+        "y": 1
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "alias($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.LARGEST_CONTENTFUL_PAINT_MS.p75, 'Largest Contentful Paint')",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "First Input Delay",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 100
+              },
+              {
+                "color": "red",
+                "value": 300
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 16,
+        "y": 1
+      },
+      "id": 6,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "alias($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.FIRST_INPUT_DELAY_MS.p75, 'First Input Delay')",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "Cumulative Layout Shift",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 0.1
+              },
+              {
+                "color": "red",
+                "value": 0.25
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 0,
+        "y": 7
+      },
+      "id": 7,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "alias($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.CUMULATIVE_LAYOUT_SHIFT_SCORE.p75, 'Cumulative Layout Shift')",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "Interaction To Next Paint",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 200
+              },
+              {
+                "color": "red",
+                "value": 500
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 8,
+        "y": 7
+      },
+      "id": 44,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refId": "A",
+          "target": "alias($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.INTERACTION_TO_NEXT_PAINT_MS.p75, 'Interaction to next paint')",
+          "textEditor": false
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "Time To First Byte",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 800
+              },
+              {
+                "color": "red",
+                "value": 1800
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 16,
+        "y": 7
+      },
+      "id": 45,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refId": "A",
+          "target": "alias($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.p75, 'Time To First Byte')",
+          "textEditor": false
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "aliasColors": {
+        "slow": "#E02F44"
+      },
+      "breakPoint": "50%",
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "description": "",
+      "fontSize": "80%",
+      "format": "percent",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 14
+      },
+      "id": 23,
+      "legend": {
+        "show": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 1,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.FIRST_CONTENTFUL_PAINT_MS.fast, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.FIRST_CONTENTFUL_PAINT_MS.moderate, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.FIRST_CONTENTFUL_PAINT_MS.slow, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "title": "First Contentful Paint",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {
+        "slow": "#E02F44"
+      },
+      "breakPoint": "50%",
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "description": "",
+      "fontSize": "80%",
+      "format": "percent",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 14
+      },
+      "id": 16,
+      "legend": {
+        "show": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 1,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.LARGEST_CONTENTFUL_PAINT_MS.fast, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.LARGEST_CONTENTFUL_PAINT_MS.moderate, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.LARGEST_CONTENTFUL_PAINT_MS.slow, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "title": "Largest Contentful Paint",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {
+        "slow": "#E02F44"
+      },
+      "breakPoint": "50%",
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "description": "",
+      "fontSize": "80%",
+      "format": "percent",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 14
+      },
+      "id": 25,
+      "legend": {
+        "show": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 1,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.FIRST_INPUT_DELAY_MS.fast, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.FIRST_INPUT_DELAY_MS, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.FIRST_INPUT_DELAY_MS, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "title": "First Input Delay",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {
+        "slow": "#E02F44"
+      },
+      "breakPoint": "50%",
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "description": "",
+      "fontSize": "80%",
+      "format": "percent",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 22
+      },
+      "id": 26,
+      "legend": {
+        "show": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 1,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.CUMULATIVE_LAYOUT_SHIFT_SCORE.fast, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.CUMULATIVE_LAYOUT_SHIFT_SCORE.moderate, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.CUMULATIVE_LAYOUT_SHIFT_SCORE.slow, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "title": "Cumulative Layout Shift",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {
+        "slow": "#E02F44"
+      },
+      "breakPoint": "50%",
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "description": "",
+      "fontSize": "80%",
+      "format": "percent",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 22
+      },
+      "id": 46,
+      "legend": {
+        "show": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 1,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.INTERACTION_TO_NEXT_PAINT_MS.fast, 100), 10)",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.INTERACTION_TO_NEXT_PAINT_MS.moderate, 100), 10)",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.INTERACTION_TO_NEXT_PAINT_MS.slow, 100), 10)",
+          "textEditor": false
+        }
+      ],
+      "title": "Interaction To Next Paint",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {
+        "slow": "#E02F44"
+      },
+      "breakPoint": "50%",
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "description": "",
+      "fontSize": "80%",
+      "format": "percent",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 22
+      },
+      "id": 47,
+      "legend": {
+        "show": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 1,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.fast, 100), 10)",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.moderate, 100), 10)",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.slow, 100), 10)",
+          "textEditor": false
+        }
+      ],
+      "title": "Time To First Byte",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {
+        "slow": "dark-red"
+      },
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "decimals": 0,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 4,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 0,
+        "y": 30
+      },
+      "hiddenSeries": false,
+      "id": 15,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": true,
+      "pluginVersion": "8.5.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.FIRST_CONTENTFUL_PAINT_MS.fast, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.FIRST_CONTENTFUL_PAINT_MS.moderate, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.FIRST_CONTENTFUL_PAINT_MS.slow, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": "30d",
+      "timeRegions": [],
+      "title": "First Contentful Paint",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1865",
+          "decimals": 0,
+          "format": "percent",
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1866",
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {
+        "slow": "dark-red"
+      },
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "decimals": 0,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 4,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 8,
+        "y": 30
+      },
+      "hiddenSeries": false,
+      "id": 24,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": true,
+      "pluginVersion": "8.5.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.LARGEST_CONTENTFUL_PAINT_MS.fast, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.LARGEST_CONTENTFUL_PAINT_MS.moderate, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.LARGEST_CONTENTFUL_PAINT_MS.slow, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": "30d",
+      "timeRegions": [],
+      "title": "Largest Contentful Paint",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1865",
+          "decimals": 0,
+          "format": "percent",
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1866",
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {
+        "slow": "dark-red"
+      },
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "decimals": 0,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 4,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 16,
+        "y": 30
+      },
+      "hiddenSeries": false,
+      "id": 17,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": true,
+      "pluginVersion": "8.5.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.FIRST_INPUT_DELAY_MS.fast, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.FIRST_INPUT_DELAY_MS, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.FIRST_INPUT_DELAY_MS, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": "30d",
+      "timeRegions": [],
+      "title": "First Input Delay",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1865",
+          "decimals": 0,
+          "format": "percent",
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1866",
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {
+        "slow": "dark-red"
+      },
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "decimals": 0,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 4,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 0,
+        "y": 39
+      },
+      "hiddenSeries": false,
+      "id": 18,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": true,
+      "pluginVersion": "8.5.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.CUMULATIVE_LAYOUT_SHIFT_SCORE.fast, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.CUMULATIVE_LAYOUT_SHIFT_SCORE.moderate, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.CUMULATIVE_LAYOUT_SHIFT_SCORE.slow, 100), 10)",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": "30d",
+      "timeRegions": [],
+      "title": "Cumulative Layout Shift",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1865",
+          "decimals": 0,
+          "format": "percent",
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1866",
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {
+        "slow": "dark-red"
+      },
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "decimals": 0,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 4,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 8,
+        "y": 39
+      },
+      "hiddenSeries": false,
+      "id": 48,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": true,
+      "pluginVersion": "8.5.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.INTERACTION_TO_NEXT_PAINT_MS.fast, 100), 10)",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.INTERACTION_TO_NEXT_PAINT_MS.moderate, 100), 10)",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.INTERACTION_TO_NEXT_PAINT_MS.slow, 100), 10)",
+          "textEditor": false
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": "30d",
+      "timeRegions": [],
+      "title": "Interaction To Next Paint",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1865",
+          "decimals": 0,
+          "format": "percent",
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1866",
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {
+        "slow": "dark-red"
+      },
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "decimals": 0,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 4,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 10,
+        "w": 8,
+        "x": 16,
+        "y": 39
+      },
+      "hiddenSeries": false,
+      "id": 49,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": true,
+      "pluginVersion": "8.5.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.fast, 100), 10)",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.moderate, 100), 10)",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.slow, 100), 10)",
+          "textEditor": false
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": "30d",
+      "timeRegions": [],
+      "title": "Time To First Byte",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1865",
+          "decimals": 0,
+          "format": "percent",
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1866",
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "E-Pn3IaGz"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 49
+      },
+      "id": 32,
+      "panels": [],
+      "title": "History",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "displayName": "First Contentful Paint",
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 0,
+        "y": 50
+      },
+      "id": 33,
+      "maxDataPoints": "",
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.3.3",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "alias($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.FIRST_CONTENTFUL_PAINT_MS.p75, 'First Contentful Paint')",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "timeFrom": "30d",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "displayName": "Largest Contentful Paint",
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 8,
+        "y": 50
+      },
+      "id": 34,
+      "maxDataPoints": "",
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.3.3",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "alias($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.LARGEST_CONTENTFUL_PAINT_MS.p75, 'Largest Contentful Paint')",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "timeFrom": "30d",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "displayName": "First Input Delay",
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 16,
+        "y": 50
+      },
+      "id": 35,
+      "maxDataPoints": "",
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.3.3",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "alias($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.FIRST_INPUT_DELAY_MS.p75, 'First Input Delay')",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "timeFrom": "30d",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "displayName": "Cumulative Layout Shift",
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 0,
+        "y": 57
+      },
+      "id": 50,
+      "maxDataPoints": "",
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.3.3",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "alias($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.CUMULATIVE_LAYOUT_SHIFT_SCORE.p75, 'Cumulative Layout Shift')",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "timeFrom": "30d",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "displayName": "Interaction To Next Paint",
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 8,
+        "y": 57
+      },
+      "id": 36,
+      "maxDataPoints": "",
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.3.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refId": "A",
+          "target": "alias($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.INTERACTION_TO_NEXT_PAINT_MS.p75, 'Cumulative Layout Shift')",
+          "textEditor": false
+        }
+      ],
+      "timeFrom": "30d",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "displayName": "Time To Fist Byte",
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 16,
+        "y": 57
+      },
+      "id": 51,
+      "maxDataPoints": "",
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.3.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refId": "A",
+          "target": "alias($base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.p75, 'Cumulative Layout Shift')",
+          "textEditor": false
+        }
+      ],
+      "timeFrom": "30d",
+      "type": "timeseries"
+    },
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "E-Pn3IaGz"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 64
+      },
+      "id": 9,
+      "panels": [],
+      "title": "CrUX data for origin $group",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "First Contentful Paint",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 1000
+              },
+              {
+                "color": "red",
+                "value": 3000
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 0,
+        "y": 65
+      },
+      "id": 10,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.FIRST_CONTENTFUL_PAINT_MS.p75, 'First Contentful Paint')",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "Largest Contentful Paint",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 2500
+              },
+              {
+                "color": "red",
+                "value": 4000
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 8,
+        "y": 65
+      },
+      "id": 11,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.LARGEST_CONTENTFUL_PAINT_MS.p75, 'Largest Contentful Paint')",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "First Input Delay",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 100
+              },
+              {
+                "color": "red",
+                "value": 300
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 16,
+        "y": 65
+      },
+      "id": 12,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.FIRST_INPUT_DELAY_MS.p75, 'First Input Delay')",
+          "textEditor": true,
+          "datasource": "graphite"
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "Cumulative Layout Shift",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 0.1
+              },
+              {
+                "color": "red",
+                "value": 0.25
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 0,
+        "y": 71
+      },
+      "id": 13,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.CUMULATIVE_LAYOUT_SHIFT_SCORE.p75, 'Cumulative Layout Shift')",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "Interaction To Next Paint",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 200
+              },
+              {
+                "color": "red",
+                "value": 500
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 8,
+        "y": 71
+      },
+      "id": 52,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refId": "A",
+          "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.INTERACTION_TO_NEXT_PAINT_MS.p75, 'Cumulative Layout Shift')",
+          "textEditor": false
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "displayName": "Time To First Byte",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 800
+              },
+              {
+                "color": "red",
+                "value": 1800
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 16,
+        "y": 71
+      },
+      "id": 53,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "8.5.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refId": "A",
+          "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.p75, 'Cumulative Layout Shift')",
+          "textEditor": false
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "aliasColors": {
+        "slow": "#E02F44"
+      },
+      "breakPoint": "50%",
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "description": "",
+      "fontSize": "80%",
+      "format": "percent",
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 0,
+        "y": 77
+      },
+      "id": 27,
+      "legend": {
+        "show": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 1,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.FIRST_CONTENTFUL_PAINT_MS.fast, 100), 9)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.FIRST_CONTENTFUL_PAINT_MS.moderate, 100), 9)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.FIRST_CONTENTFUL_PAINT_MS.slow, 100), 9)",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "title": "First Contentful Paint",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {
+        "slow": "#E02F44"
+      },
+      "breakPoint": "50%",
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "description": "",
+      "fontSize": "80%",
+      "format": "percent",
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 8,
+        "y": 77
+      },
+      "id": 43,
+      "legend": {
+        "show": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 1,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "pluginVersion": "7.0.3",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.LARGEST_CONTENTFUL_PAINT_MS.fast, 100), 9)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.LARGEST_CONTENTFUL_PAINT_MS.moderate, 100), 9)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.LARGEST_CONTENTFUL_PAINT_MS.slow, 100), 9)",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "title": "Largest Contentful Paint",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {
+        "slow": "#E02F44"
+      },
+      "breakPoint": "50%",
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "description": "",
+      "fontSize": "80%",
+      "format": "percent",
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 16,
+        "y": 77
+      },
+      "id": 29,
+      "legend": {
+        "show": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 1,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.FIRST_INPUT_DELAY_MS.fast, 100), 9)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.FIRST_INPUT_DELAY_MS.moderate, 100), 9)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.FIRST_INPUT_DELAY_MS, 100), 9)",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "title": "First Input Delay",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {
+        "slow": "#E02F44"
+      },
+      "breakPoint": "50%",
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "description": "",
+      "fontSize": "80%",
+      "format": "percent",
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 0,
+        "y": 84
+      },
+      "id": 30,
+      "legend": {
+        "show": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 1,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.CUMULATIVE_LAYOUT_SHIFT_SCORE.fast, 100), 9)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.CUMULATIVE_LAYOUT_SHIFT_SCORE.moderate, 100), 9)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.CUMULATIVE_LAYOUT_SHIFT_SCORE.slow, 100), 9)",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "title": "Cumulative Layout Shift",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {
+        "slow": "#E02F44"
+      },
+      "breakPoint": "50%",
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "description": "",
+      "fontSize": "80%",
+      "format": "percent",
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 8,
+        "y": 84
+      },
+      "id": 54,
+      "legend": {
+        "show": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 1,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.INTERACTION_TO_NEXT_PAINT_MS.fast, 100), 9)",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.INTERACTION_TO_NEXT_PAINT_MS.moderate, 100), 9)",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.INTERACTION_TO_NEXT_PAINT_MS.slow, 100), 9)",
+          "textEditor": false
+        }
+      ],
+      "title": "Interaction To Next Paint",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {
+        "slow": "#E02F44"
+      },
+      "breakPoint": "50%",
+      "combine": {
+        "label": "Others",
+        "threshold": 0
+      },
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "description": "",
+      "fontSize": "80%",
+      "format": "percent",
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 16,
+        "y": 84
+      },
+      "id": 55,
+      "legend": {
+        "show": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 1,
+      "nullPointMode": "connected",
+      "pieType": "pie",
+      "strokeWidth": 1,
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.fast, 100), 9)",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.moderate, 100), 9)",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.slow, 100), 9)",
+          "textEditor": false
+        }
+      ],
+      "title": "Time To First Byte",
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {
+        "slow": "dark-red"
+      },
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "decimals": 0,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 4,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 0,
+        "y": 91
+      },
+      "hiddenSeries": false,
+      "id": 19,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": true,
+      "pluginVersion": "8.5.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.FIRST_CONTENTFUL_PAINT_MS.fast, 100), 9)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.FIRST_CONTENTFUL_PAINT_MS.moderate, 100), 9)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.FIRST_CONTENTFUL_PAINT_MS.slow, 100), 9)",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": "30d",
+      "timeRegions": [],
+      "title": "First Contentful Paint",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1865",
+          "decimals": 0,
+          "format": "percent",
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1866",
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {
+        "slow": "dark-red"
+      },
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "decimals": 0,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 4,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 8,
+        "y": 91
+      },
+      "hiddenSeries": false,
+      "id": 20,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": true,
+      "pluginVersion": "8.5.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.LARGEST_CONTENTFUL_PAINT_MS.fast, 100), 9)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.LARGEST_CONTENTFUL_PAINT_MS.moderate, 100), 9)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.LARGEST_CONTENTFUL_PAINT_MS.slow, 100), 9)",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": "30d",
+      "timeRegions": [],
+      "title": "Largest Contentful Paint",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1865",
+          "decimals": 0,
+          "format": "percent",
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1866",
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {
+        "slow": "dark-red"
+      },
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "decimals": 0,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 4,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 16,
+        "y": 91
+      },
+      "hiddenSeries": false,
+      "id": 21,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": true,
+      "pluginVersion": "8.5.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.FIRST_INPUT_DELAY_MS.fast, 100), 9)",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.FIRST_INPUT_DELAY_MS.moderate, 100), 9)",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.FIRST_INPUT_DELAY_MS, 100), 9)",
+          "textEditor": false
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": "30d",
+      "timeRegions": [],
+      "title": "First Input Delay",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1865",
+          "decimals": 0,
+          "format": "percent",
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1866",
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {
+        "slow": "dark-red"
+      },
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "decimals": 0,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 4,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 0,
+        "y": 100
+      },
+      "hiddenSeries": false,
+      "id": 22,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": true,
+      "pluginVersion": "8.5.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.CUMULATIVE_LAYOUT_SHIFT_SCORE.fast, 100), 9)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.CUMULATIVE_LAYOUT_SHIFT_SCORE.moderate, 100), 9)",
+          "textEditor": false,
+          "datasource": "graphite"
+        },
+        {
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.CUMULATIVE_LAYOUT_SHIFT_SCORE.slow, 100), 9)",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": "30d",
+      "timeRegions": [],
+      "title": "Cumulative Layout Shift",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1865",
+          "decimals": 0,
+          "format": "percent",
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1866",
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {
+        "slow": "dark-red"
+      },
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "decimals": 0,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 4,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 8,
+        "y": 100
+      },
+      "hiddenSeries": false,
+      "id": 56,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": true,
+      "pluginVersion": "8.5.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.INTERACTION_TO_NEXT_PAINT_MS.fast, 100), 9)",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.INTERACTION_TO_NEXT_PAINT_MS.moderate, 100), 9)",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.INTERACTION_TO_NEXT_PAINT_MS.slow, 100), 9)",
+          "textEditor": false
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": "30d",
+      "timeRegions": [],
+      "title": "Interaction To Next Paint",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1865",
+          "decimals": 0,
+          "format": "percent",
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1866",
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "aliasColors": {
+        "slow": "dark-red"
+      },
+      "bars": true,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "decimals": 0,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 4,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 8,
+        "x": 16,
+        "y": 100
+      },
+      "hiddenSeries": false,
+      "id": 57,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "connected",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": true,
+      "pluginVersion": "8.5.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "A",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.fast, 100), 9)",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "B",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.moderate, 100), 9)",
+          "textEditor": false
+        },
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refCount": 0,
+          "refId": "C",
+          "target": "aliasByNode(scale($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.slow, 100), 9)",
+          "textEditor": false
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": "30d",
+      "timeRegions": [],
+      "title": "Time To First Byte",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "mode": "time",
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1865",
+          "decimals": 0,
+          "format": "percent",
+          "logBase": 1,
+          "max": "100",
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1866",
+          "format": "short",
+          "logBase": 1,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false
+      }
+    },
+    {
+      "collapsed": false,
+      "datasource": {
+        "type": "graphite",
+        "uid": "E-Pn3IaGz"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 109
+      },
+      "id": 38,
+      "panels": [],
+      "title": "History",
+      "type": "row"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "displayName": "First Contentful Paint",
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 0,
+        "y": 110
+      },
+      "id": 39,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.3.3",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.FIRST_CONTENTFUL_PAINT_MS.p75, 'First Contentful Paint')",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "timeFrom": "30d",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "displayName": "Largest Contentful Paint",
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 8,
+        "y": 110
+      },
+      "id": 40,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.3.3",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.LARGEST_CONTENTFUL_PAINT_MS.p75, 'Largest Contentful Paint')",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "timeFrom": "30d",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "displayName": "First Input Delay",
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 16,
+        "y": 110
+      },
+      "id": 41,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.3.3",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.FIRST_INPUT_DELAY_MS.p75, 'First Input Delay')",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "timeFrom": "30d",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "displayName": "Cumulative Layout Shift",
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 0,
+        "y": 116
+      },
+      "id": 42,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.3.3",
+      "targets": [
+        {
+          "refId": "A",
+          "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.CUMULATIVE_LAYOUT_SHIFT_SCORE.p75, 'Cumulative Layout Shift')",
+          "textEditor": false,
+          "datasource": "graphite"
+        }
+      ],
+      "timeFrom": "30d",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "displayName": "Interaction To Next Paint",
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 8,
+        "y": 116
+      },
+      "id": 58,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.3.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refId": "A",
+          "target": "alias($base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.INTERACTION_TO_NEXT_PAINT_MS.p75, 'Cumulative Layout Shift')",
+          "textEditor": false
+        }
+      ],
+      "timeFrom": "30d",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "graphite",
+        "uid": "graphite"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 10,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "displayName": "Time To First Byte",
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 8,
+        "x": 16,
+        "y": 116
+      },
+      "id": 59,
+      "options": {
+        "legend": {
+          "calcs": [
+            "max",
+            "min"
+          ],
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "8.3.3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "graphite",
+            "uid": "graphite"
+          },
+          "refId": "A",
+          "target": "$base.$path.$testname.summary.$group.crux.originLoadingExperience.$formFactor.TIME_TO_FIRST_BYTE_MS.p75",
+          "textEditor": false
+        }
+      ],
+      "timeFrom": "30d",
+      "type": "timeseries"
+    }
+  ],
+  "schemaVersion": 36,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "hide": 2,
+        "label": "sitespeed_io",
+        "name": "base",
+        "query": "sitespeed_io",
+        "skipUrlSync": false,
+        "type": "constant",
+        "current": {
+          "value": "sitespeed_io",
+          "text": "sitespeed_io",
+          "selected": false
+        },
+        "options": [
+          {
+            "value": "sitespeed_io",
+            "text": "sitespeed_io",
+            "selected": false
+          }
+        ]
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "graphite",
+          "uid": "graphite"
+        },
+        "definition": "$base.*",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "path",
+        "options": [],
+        "query": "$base.*",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "graphite",
+          "uid": "graphite"
+        },
+        "definition": "$base.$path.*",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "testname",
+        "options": [],
+        "query": "$base.$path.*",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "graphite",
+          "uid": "graphite"
+        },
+        "definition": "$base.$path.$testname.pageSummary.*",
+        "hide": 0,
+        "includeAll": false,
+        "label": "domain",
+        "multi": false,
+        "name": "group",
+        "options": [],
+        "query": "$base.$path.$testname.pageSummary.*",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "graphite",
+          "uid": "graphite"
+        },
+        "definition": "$base.$path.$testname.pageSummary.$group.*",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "page",
+        "options": [],
+        "query": "$base.$path.$testname.pageSummary.$group.*",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {},
+        "datasource": {
+          "type": "graphite",
+          "uid": "graphite"
+        },
+        "definition": "$base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.*",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Form Factor",
+        "multi": false,
+        "name": "formFactor",
+        "options": [],
+        "query": "$base.$path.$testname.pageSummary.$group.$page.crux.loadingExperience.*",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-2d",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "Chrome User Experience Report",
+  "uid": "t_bhsNGMk",
+  "version": 17,
+  "weekStart": ""
+}

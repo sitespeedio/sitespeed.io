@@ -179,7 +179,7 @@ Graphite
       --graphite.annotationTag               Add a extra tag to the annotation sent for a run. Repeat the --graphite.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
       --graphite.addSlugToKey                Add the slug (name of the test) as an extra key in the namespace.  [boolean] [default: true]
       --graphite.bulkSize                    Break up number of metrics to send with each request.  [number]
-      --graphite.messages  [default: ["pageSummary","summary"]]
+      --graphite.messages                    Define which messages to send to Graphite. By default we do not send data per run, but you can change that by adding run as one of the options  [default: ["pageSummary","summary"]]
 
 InfluxDB
       --influxdb.protocol              The protocol used to store connect to the InfluxDB host.  [default: "http"]

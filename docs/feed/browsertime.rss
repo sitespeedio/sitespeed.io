@@ -4,7 +4,7 @@
         <title>browsertime release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of browsertime</description>
-        <lastBuildDate>Mon, 19 Jun 2023 17:16:23 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 11 Oct 2023 12:38:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,146 +17,133 @@
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/browsertime.rss" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[browsertime 17.11.2]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.2</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.2</guid>
-            <pubDate>Sun, 19 Jun 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix --debug mode. Thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1959">#1959</a>.</li>
-</ul>
- <ul>
-<li>Update ff-test-bidi-har-export to 0.0.11 that fixes some error logs <a href="https://github.com/sitespeedio/browsertime/pull/1961">#1961</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 17.11.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.1</guid>
-            <pubDate>Sun, 12 Jun 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>If Chrome do not collect largest contentful paint, log that instead of just log null <a href="https://github.com/sitespeedio/browsertime/pull/1957">#1957</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 17.11.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.0</guid>
-            <pubDate>Wed, 01 Jun 2022 00:00:00 GMT</pubDate>
+            <title><![CDATA[browsertime 17.17.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.17.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.17.0</guid>
+            <pubDate>Tue, 11 Oct 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Added</h3>
  <ul>
-<li>Use Chrome ane Chromedriver 114.</li>
+<li>Firefox 118, Edge 117 and Chrome/Chromedriver 118 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/1996">#1996</a>.</li>
+</ul>
+ <ul>
+<li>Expose trace start/stop for Chrome in scripting (the same way as for Firefox). Thank you <a href="https://github.com/92kns">KS</a> for <a href="https://github.com/sitespeedio/browsertime/pull/1988">#1988</a>. Documentation is coming when the functionality is rolled out in sitespeed.io.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 17.16.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.16.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.16.0</guid>
+            <pubDate>Sun, 04 Sep 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Firefox 117 and Edge 116 in the Docker container.</li>
 </ul>
 <h3>Fixed</h3>
  <ul>
-<li>Fixed broken Docker auto build that skipped adding Docker manifest file.</li>
+<li>Updated the BiDi HAR exporter for Firefox to version 0.0.12. This version will not work with Firefox 116 so if you use the BiDi HAR exporter you need to upgrade to Firefox 117.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 17.10.2]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.10.2</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.10.2</guid>
-            <pubDate>Thu, 26 May 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix for --host-resolver-rules, thank you <a href="https://github.com/atuchin-m">Mikhail</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1953">#1953</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 17.10.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.10.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.10.1</guid>
-            <pubDate>Thu, 19 May 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated code to collect Interaction To Next Paint <a href="https://github.com/sitespeedio/browsertime/pull/1952">#1952</a>. This new version follow updated version(s) of Google Web Vitals.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 17.10.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.10.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.10.0</guid>
-            <pubDate>Thu, 19 May 2022 00:00:00 GMT</pubDate>
+            <title><![CDATA[browsertime 17.15.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.15.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.15.0</guid>
+            <pubDate>Tue, 16 Aug 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Added</h3>
  <ul>
-<li>Chrome, Edge and Firefox 113 <a href="https://github.com/sitespeedio/browsertime/pull/1946">#1946</a>, Chromedriver 113 <a href="https://github.com/sitespeedio/browsertime/pull/1947">#1947</a> and Edgedriver 113 <a href="https://github.com/sitespeedio/browsertime/pull/1949">#1949</a>.</li>
+<li>Updated Chrome and Chromedriver to 116.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 17.14.3]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.3</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.3</guid>
+            <pubDate>Tue, 16 Aug 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated to Selenium 4.11.1 <a href="https://github.com/sitespeedio/browsertime/pull/1978">#1978</a>.</li>
+</ul>
+ <ul>
+<li>Updated Chrome and Chromedriver to minor versions.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 17.14.2]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.2</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.2</guid>
+            <pubDate>Sun, 31 Jul 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>The auto build of release Docker container was broken so no tagged containers was pushed.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 17.14.1]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.1</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.1</guid>
+            <pubDate>Sun, 31 Jul 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Default jimp resize didn&#39;t handle large values (2000) when running in Docker AMD on a ARM machine so changing to another algorithm (HERMITE) <a href="https://github.com/sitespeedio/browsertime/pull/1977">#1977</a>.</li>
+</ul>
+ <ul>
+<li>Update: chrome-har, dayjs, execa, chrome-remote-interface and jimp <a href="https://github.com/sitespeedio/browsertime/pull/1976">#1976</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 17.14.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.0</guid>
+            <pubDate>Sun, 24 Jul 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Edge and Edgedriver 115 <a href="https://github.com/sitespeedio/browsertime/pull/1973">#1973</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 17.13.1]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.13.1</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.13.1</guid>
+            <pubDate>Fri, 22 Jul 2022 00:00:00 GMT</pubDate>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 17.13.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.13.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.13.0</guid>
+            <pubDate>Thu, 21 Jul 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Edgedriver 114 <a href="https://github.com/sitespeedio/browsertime/pull/1969">#1969</a></li>
 </ul>
 <h3>Fixed</h3>
  <ul>
-<li>Bugfix for running iPhone Siumlator (and run tests on latest Mac OS) <a href="https://github.com/sitespeedio/browsertime/pull/1945">#1945</a>.</li>
-</ul>
- <ul>
-<li>Bumped dependencies for Selenium, yargs and jimp <a href="https://github.com/sitespeedio/browsertime/pull/1950">#1950</a>.</li>
+<li>Fix for Chromedriver 115 so that it works on Mac again <a href="https://github.com/sitespeedio/browsertime/pull/1971">#1971</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 17.9.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.9.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.9.0</guid>
-            <pubDate>Tue, 19 Apr 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>New command to start geckoprofiling when scripting using Firefox. Thank you <a href="https://github.com/92kns">KS</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1934">#1934</a>. This is probably only something you need if you work at Mozilla. There&#39;s also a follow PR <a href="https://github.com/sitespeedio/browsertime/pull/1940">#1940</a> that fixes some of the issues I&#39;ve been wanted to fix with the Geckoprofiler code.</li>
-</ul>
- <ul>
-<li>Use <code>--enableProfileRun</code> to make one extra run where metrics aren&#39;t collected but Geckoprofiler or Chromes timeline log is turned on. This useful if you are worrying about the trace causing overhead, but you still wan trace from the test/journey. It&#39;s a little rough at the moment so it will a follow up in the future <a href="https://github.com/sitespeedio/browsertime/pull/1943">#1943</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Bump Chrome remote interface and execa <a href="https://github.com/sitespeedio/browsertime/pull/1941">#1941</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 17.8.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.8.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.8.1</guid>
-            <pubDate>Tue, 12 Apr 2022 00:00:00 GMT</pubDate>
+            <title><![CDATA[browsertime 17.12.1]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.12.1</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.12.1</guid>
+            <pubDate>Tue, 19 Jul 2022 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
-<li>Upgraded to Firefox HAR 0.0.10 <a href="https://github.com/sitespeedio/browsertime/pull/1939">#1939</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 17.8.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.8.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.8.0</guid>
-            <pubDate>Mon, 11 Apr 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgraded to Firefox 112 in the Docker container.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Upgraded to Firefox HAR 0.0.8 <a href="https://github.com/sitespeedio/browsertime/pull/1937">#1937</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 17.7.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.7.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.7.0</guid>
-            <pubDate>Thu, 07 Apr 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Added Edge/Edgedriver 112.</li>
+<li>Hmm, Chromedriver 115 doesn&#39;t seems to work on Mac so reverted to 114.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>

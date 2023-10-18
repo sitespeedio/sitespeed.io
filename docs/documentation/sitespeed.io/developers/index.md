@@ -174,6 +174,8 @@ If you are new to pug you can use [https://html2jade.org](https://html2jade.org)
 
  We love pull requests and before you make a big change or add functionality, please open an issue proposing the change to other contributors so you got feedback on the idea before take the time to write precious code!
 
+ When you make your pull request, you can follow the guide from GitHub on [how to make a pull requests from a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
+
 #### Before you send the pull request
 
 Before you send the PR make sure you:

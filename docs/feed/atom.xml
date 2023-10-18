@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2023-06-27T00:00:00.000Z</updated>
+    <updated>2023-10-16T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,13 +16,23 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 28.1.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#28.1.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#28.1.0"/>
-        <updated>2023-06-27T00:00:00.000Z</updated>
+        <title type="html"><![CDATA[sitespeed.io 29.8.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.8.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.8.0"/>
+        <updated>2023-10-16T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
-<li>Use <code>--graphite.proxyPath</code> to add extra proxy path to an annotation event in Graphite. Thank you <a href="https://github.com/Shalankwa">Jonathan Goodman</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/3893">#3893</a>.</li>
+<li>Updated to Chrome/Chromedriver 118 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3975">#3975</a>.</li>
+</ul>
+ <ul>
+<li>Users of the +1 container will get Lighthouse 11.2.0 from this release.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated to Axe-core 4.8.2 <a href="https://github.com/sitespeedio/sitespeed.io/pull/3977">#3977</a>.</li>
+</ul>
+ <ul>
+<li>A better error message when ypu try to measure a navigation without navigating <a href="https://github.com/sitespeedio/sitespeed.io/pull/3980">#3980</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -31,13 +41,268 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 28.0.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#28.0.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#28.0.0"/>
-        <updated>2023-06-26T00:00:00.000Z</updated>
+        <title type="html"><![CDATA[sitespeed.io 29.7.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.7.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.7.0"/>
+        <updated>2023-09-27T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated Firefox to 118 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3968">#3968</a>.</li>
+</ul>
+ <ul>
+<li>Users of the +1 container will have Lighthouse version 11.1.0.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 29.6.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.6.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.6.0"/>
+        <updated>2023-09-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated Chrome and Edge to 117, also NodeJS 18.18.0 and a latest updated version of Ubuntu 22.04 <a href="https://github.com/sitespeedio/sitespeed.io/pull/3965">#3965</a>.</li>
+</ul>
+ <ul>
+<li>Updated to Axe core 4.8.1 <a href="https://github.com/sitespeedio/sitespeed.io/pull/3964">#3964</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 29.5.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.5.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.5.0"/>
+        <updated>2023-09-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Firefox 117 and Edge 116 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3958">#3958</a>.</li>
+</ul>
+ <ul>
+<li>Note that if you use the BiDi HAR for Firefox this version only work with Firefox 117+. If you use Firefox &lt; 117 you need to stay on previous sitespeed.io version until you upgrade.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 29.4.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.4.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.4.0"/>
+        <updated>2023-08-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Display axe-core version on the summary page (before it was only showed on each run page) <a href="https://github.com/sitespeedio/sitespeed.io/pull/3950">#3950</a>.</li>
+</ul>
+ <ul>
+<li>Display third-party-web and wappalyzer version in the HTML output (by upgrading to <a href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#800---2023-08-30">Coach 8.0.0</a>) <a href="https://github.com/sitespeedio/sitespeed.io/pull/3953">#3953</a>.</li>
+</ul>
+ <ul>
+<li>Display co2 version in the HTML output <a href="https://github.com/sitespeedio/sitespeed.io/pull/3954">#3953</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[coach-core 8.0.2]]></title>
+        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.2</id>
+        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.2"/>
+        <updated>2023-08-31T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
-<li>Updated Coach core to 7.2.1 that catch if local or session storage isn&#39;t accessible.</li>
+<li>Another update to PageXray with a safer HTTP header check.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[coach-core 8.0.1]]></title>
+        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.1</id>
+        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.1"/>
+        <updated>2023-08-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated PageXray.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[pagexray 4.4.4]]></title>
+        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.4</id>
+        <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.4"/>
+        <updated>2023-08-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Added a safer header check <a href="https://github.com/sitespeedio/pagexray/pull/125">#125</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[pagexray 4.4.3]]></title>
+        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.3</id>
+        <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.3"/>
+        <updated>2023-08-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>If the meta section from a HAR file from Browsertime was missing, we didn&#39;t catch that. Fixed in <a href="https://github.com/sitespeedio/pagexray/pull/124">#124</a>.</li>
+</ul>
+ <ul>
+<li>Update to latest minimist <a href="https://github.com/sitespeedio/pagexray/pull/122">#122</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[coach-core 8.0.0]]></title>
+        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.0</id>
+        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.0"/>
+        <updated>2023-08-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Expose third party web and wappalyzer versions <a href="https://github.com/sitespeedio/coach-core/pull/111">#111</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated to Wappalyzer 6.10.66 <a href="https://github.com/sitespeedio/coach-core/pull/110">#110</a>.</li>
+</ul>
+ <ul>
+<li>Updated third party web 0.24.0 <a href="https://github.com/sitespeedio/coach-core/pull/108">#108</a>.</li>
+</ul>
+ <ul>
+<li>Fix correct LCP attribute <a href="https://github.com/sitespeedio/coach-core/pull/107">#107</a>.</li>
+</ul>
+<h3>Changed</h3>
+ <ul>
+<li>Remove advice about disableFLoCHeader <a href="https://github.com/sitespeedio/coach-core/pull/106">#106</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 29.3.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.3.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.3.0"/>
+        <updated>2023-08-16T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Chrome and Chromedriver 116.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 29.2.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.2.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.2.1"/>
+        <updated>2023-08-16T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated Browsertime with a new minor version of Chromederiver and updated Docker container with a new minor version.</li>
+</ul>
+ <ul>
+<li>Uppdated CO2 to 0.13.6 <a href="https://github.com/sitespeedio/sitespeed.io/pull/3936">#3936</a>.</li>
+</ul>
+ <ul>
+<li>Make sure catched errors gets to the standard out and after budget/open the browser <a href="https://github.com/sitespeedio/sitespeed.io/pull/3939">#3939</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 29.2.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.2.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.2.0"/>
+        <updated>2023-08-08T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Firefox 116 in the Docker container.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Another fix for making sure annotations for Graphite have the correct timestamp <a href="https://github.com/sitespeedio/sitespeed.io/pull/3931">#3931</a>.</li>
+</ul>
+ <ul>
+<li>Update dayjs and ora dependencies.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 29.1.3]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.1.3</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.1.3"/>
+        <updated>2023-08-03T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>HTML result page was broken when you had element timings that was not images. Thank you <a href="https://github.com/dooglewoogle">dooglewoogle</a> for reporting, fixed in <a href="https://github.com/sitespeedio/sitespeed.io/pull/3927">#3927</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 29.1.2]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.1.2</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.1.2"/>
+        <updated>2023-07-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updating Browsertime that makes it possible to run the AMD docker image on ARM M1 Macs. Add <code>--platform linux/amd64</code> and in Docker desktop turn on <em>&quot;Use Rosetta for x86/amd64 emulation&quot;</em>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[chrome-har 0.13.2]]></title>
+        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.2</id>
+        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.2"/>
+        <updated>2023-07-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated tough-cookie, thank you <a href="https://github.com/lallenlowe">lallenlowe</a> for PR <a href="https://github.com/sitespeedio/chrome-har/pull/107">#107</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -53,72 +318,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Catch if local storage or session storage isn&#39;t accessible.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 27.9.3]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.3</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.3"/>
-        <updated>2023-06-19T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Upgraded Browsertime with the following fixes:</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 27.9.2]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.2</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.2"/>
-        <updated>2023-06-14T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Make sure config files are read sync <a href="https://github.com/sitespeedio/sitespeed.io/pull/3882">#3882</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 27.9.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.1"/>
-        <updated>2023-06-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Upgraded Browsertime that logs if LCP is not present (instead of logging null)</li>
-</ul>
- <ul>
-<li>Fix when configure to log to file (that was broken when we moved to ESM) <a href="https://github.com/sitespeedio/sitespeed.io/pull/3879">#3879</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 27.9.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.0"/>
-        <updated>2023-06-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Firefox and Edge 114 in the Docker container.</li>
-</ul>
- <ul>
-<li>Updated coach-core with latest third party web, wappalyzer and a fix for when Chrome do not fire FCP <a href="https://github.com/sitespeedio/sitespeed.io/pull/3876">#3876</a></li>
 </ul>
 ]]></summary>
         <author>
@@ -152,87 +351,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 27.8.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.8.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.8.0"/>
-        <updated>2023-06-07T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Added upcoming exporting of the HAR file from Browsertime for the upcoming API <a href="https://github.com/sitespeedio/sitespeed.io/pull/3871">#3871</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 27.7.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.7.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.7.0"/>
-        <updated>2023-06-01T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>New Chrome 114 in the Docker container and updated Chromedriver (114) with a new Browsertime <a href="https://github.com/sitespeedio/sitespeed.io/pull/3868">#3868</a>.</li>
-</ul>
- <ul>
-<li>Use latest Co2 <a href="https://github.com/sitespeedio/sitespeed.io/pull/3867">#3867</a>.</li>
-</ul>
- <ul>
-<li>Updated to latest Axe core <a href="https://github.com/sitespeedio/sitespeed.io/pull/3863">#3863</a>.</li>
-</ul>
- <ul>
-<li>Added label to test runs in the API <a href="https://github.com/sitespeedio/sitespeed.io/pull/3869">#3869</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 27.6.5]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.5</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.5"/>
-        <updated>2023-05-26T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Bumped Browsertime with a fix for host-resolver-rules, thank you <a href="https://github.com/atuchin-m">Mikhail</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1953">#1953</a>.</li>
-</ul>
- <ul>
-<li>Hopefully fixed the broken manifest file for the Docker containers by updating the Docker build actions to latest versions and added provenance: false.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 27.6.4]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.4</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.4"/>
-        <updated>2023-05-20T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>New fixed version of the ARM container with a working version of Firefox <a href="https://github.com/sitespeedio/sitespeed.io/pull/3844">#3844</a></li>
-</ul>
- <ul>
-<li>Fixes for the API: Pass on scriptname and pass on Browsertime data in the result.</li>
-</ul>
- <ul>
-<li>New Browsertime version(s) with updated Interaction To Next Paint script and updated Chromedriver/Edgedriver to 113 <a href="https://github.com/sitespeedio/sitespeed.io/pull/3851">#3851</a> and <a href="https://github.com/sitespeedio/sitespeed.io/pull/3853">#3853</a>.</li>
-</ul>
- <ul>
-<li>Upgrade yargs, ora, fs-extra, axe-core <a href="https://github.com/sitespeedio/sitespeed.io/pull/3852">#3852</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[chrome-har 0.13.1]]></title>
         <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.1</id>
         <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.1"/>
@@ -258,6 +376,168 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Fixed exporting to work with ESM modules too.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.17.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.17.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.17.0"/>
+        <updated>2022-10-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Firefox 118, Edge 117 and Chrome/Chromedriver 118 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/1996">#1996</a>.</li>
+</ul>
+ <ul>
+<li>Expose trace start/stop for Chrome in scripting (the same way as for Firefox). Thank you <a href="https://github.com/92kns">KS</a> for <a href="https://github.com/sitespeedio/browsertime/pull/1988">#1988</a>. Documentation is coming when the functionality is rolled out in sitespeed.io.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.16.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.16.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.16.0"/>
+        <updated>2022-09-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Firefox 117 and Edge 116 in the Docker container.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated the BiDi HAR exporter for Firefox to version 0.0.12. This version will not work with Firefox 116 so if you use the BiDi HAR exporter you need to upgrade to Firefox 117.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.15.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.15.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.15.0"/>
+        <updated>2022-08-16T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated Chrome and Chromedriver to 116.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.14.3]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.3</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.3"/>
+        <updated>2022-08-16T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated to Selenium 4.11.1 <a href="https://github.com/sitespeedio/browsertime/pull/1978">#1978</a>.</li>
+</ul>
+ <ul>
+<li>Updated Chrome and Chromedriver to minor versions.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.14.2]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.2</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.2"/>
+        <updated>2022-07-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>The auto build of release Docker container was broken so no tagged containers was pushed.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.14.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.1</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.1"/>
+        <updated>2022-07-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Default jimp resize didn&#39;t handle large values (2000) when running in Docker AMD on a ARM machine so changing to another algorithm (HERMITE) <a href="https://github.com/sitespeedio/browsertime/pull/1977">#1977</a>.</li>
+</ul>
+ <ul>
+<li>Update: chrome-har, dayjs, execa, chrome-remote-interface and jimp <a href="https://github.com/sitespeedio/browsertime/pull/1976">#1976</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.14.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.0"/>
+        <updated>2022-07-24T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Edge and Edgedriver 115 <a href="https://github.com/sitespeedio/browsertime/pull/1973">#1973</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.13.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.13.1</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.13.1"/>
+        <updated>2022-07-22T00:00:00.000Z</updated>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.13.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.13.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.13.0"/>
+        <updated>2022-07-21T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Edgedriver 114 <a href="https://github.com/sitespeedio/browsertime/pull/1969">#1969</a></li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Fix for Chromedriver 115 so that it works on Mac again <a href="https://github.com/sitespeedio/browsertime/pull/1971">#1971</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.12.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.12.1</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.12.1"/>
+        <updated>2022-07-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Hmm, Chromedriver 115 doesn&#39;t seems to work on Mac so reverted to 114.</li>
 </ul>
 ]]></summary>
         <author>
@@ -311,24 +591,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[browsertime 17.11.2]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.2</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.2"/>
-        <updated>2022-06-19T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix --debug mode. Thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1959">#1959</a>.</li>
-</ul>
- <ul>
-<li>Update ff-test-bidi-har-export to 0.0.11 that fixes some error logs <a href="https://github.com/sitespeedio/browsertime/pull/1961">#1961</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[throttle 4.0.1]]></title>
         <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.1</id>
         <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#4.0.1"/>
@@ -336,92 +598,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Removed the dependecy of route. Using <code>ip route</code> instead and we already have <code>ip</code> as a requirement.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 17.11.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.1</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.1"/>
-        <updated>2022-06-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>If Chrome do not collect largest contentful paint, log that instead of just log null <a href="https://github.com/sitespeedio/browsertime/pull/1957">#1957</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 17.11.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.11.0"/>
-        <updated>2022-06-01T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Use Chrome ane Chromedriver 114.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Fixed broken Docker auto build that skipped adding Docker manifest file.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 17.10.2]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.10.2</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.10.2"/>
-        <updated>2022-05-26T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix for --host-resolver-rules, thank you <a href="https://github.com/atuchin-m">Mikhail</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1953">#1953</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 17.10.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.10.1</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.10.1"/>
-        <updated>2022-05-19T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated code to collect Interaction To Next Paint <a href="https://github.com/sitespeedio/browsertime/pull/1952">#1952</a>. This new version follow updated version(s) of Google Web Vitals.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 17.10.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.10.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.10.0"/>
-        <updated>2022-05-19T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Chrome, Edge and Firefox 113 <a href="https://github.com/sitespeedio/browsertime/pull/1946">#1946</a>, Chromedriver 113 <a href="https://github.com/sitespeedio/browsertime/pull/1947">#1947</a> and Edgedriver 113 <a href="https://github.com/sitespeedio/browsertime/pull/1949">#1949</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Bugfix for running iPhone Siumlator (and run tests on latest Mac OS) <a href="https://github.com/sitespeedio/browsertime/pull/1945">#1945</a>.</li>
-</ul>
- <ul>
-<li>Bumped dependencies for Selenium, yargs and jimp <a href="https://github.com/sitespeedio/browsertime/pull/1950">#1950</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -452,28 +628,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Added missing SSL timings to the time per domain <a href="https://github.com/sitespeedio/pagexray/pull/117">#117</a></li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 17.9.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.9.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.9.0"/>
-        <updated>2022-04-19T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>New command to start geckoprofiling when scripting using Firefox. Thank you <a href="https://github.com/92kns">KS</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1934">#1934</a>. This is probably only something you need if you work at Mozilla. There&#39;s also a follow PR <a href="https://github.com/sitespeedio/browsertime/pull/1940">#1940</a> that fixes some of the issues I&#39;ve been wanted to fix with the Geckoprofiler code.</li>
-</ul>
- <ul>
-<li>Use <code>--enableProfileRun</code> to make one extra run where metrics aren&#39;t collected but Geckoprofiler or Chromes timeline log is turned on. This useful if you are worrying about the trace causing overhead, but you still wan trace from the test/journey. It&#39;s a little rough at the moment so it will a follow up in the future <a href="https://github.com/sitespeedio/browsertime/pull/1943">#1943</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Bump Chrome remote interface and execa <a href="https://github.com/sitespeedio/browsertime/pull/1941">#1941</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -531,55 +685,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[browsertime 17.8.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.8.1</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.8.1"/>
-        <updated>2022-04-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Upgraded to Firefox HAR 0.0.10 <a href="https://github.com/sitespeedio/browsertime/pull/1939">#1939</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 17.8.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.8.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.8.0"/>
-        <updated>2022-04-11T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgraded to Firefox 112 in the Docker container.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Upgraded to Firefox HAR 0.0.8 <a href="https://github.com/sitespeedio/browsertime/pull/1937">#1937</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 17.7.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.7.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.7.0"/>
-        <updated>2022-04-07T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Added Edge/Edgedriver 112.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[pagexray 4.4.1]]></title>
         <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.1</id>
         <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.1"/>
@@ -613,13 +718,13 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[chrome-har 0.13.0]]></title>
-        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.0</id>
-        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.0"/>
+        <title type="html"><![CDATA[pagexray 4.4.0]]></title>
+        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.0</id>
+        <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.0"/>
         <updated>2022-02-04T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
-<li>Add _isLinkPreload on the request object if it is isLinkPreload <a href="https://github.com/sitespeedio/chrome-har/pull/94">#94</a>.</li>
+<li>Fallback if mime types aren&#39;t mapped and use file endings. At the moment we fallback for some of the font types <a href="https://github.com/sitespeedio/pagexray/pull/109">#109</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -628,13 +733,13 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[pagexray 4.4.0]]></title>
-        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.0</id>
-        <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.0"/>
+        <title type="html"><![CDATA[chrome-har 0.13.0]]></title>
+        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.0</id>
+        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.0"/>
         <updated>2022-02-04T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
-<li>Fallback if mime types aren&#39;t mapped and use file endings. At the moment we fallback for some of the font types <a href="https://github.com/sitespeedio/pagexray/pull/109">#109</a>.</li>
+<li>Add _isLinkPreload on the request object if it is isLinkPreload <a href="https://github.com/sitespeedio/chrome-har/pull/94">#94</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -798,21 +903,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[coach-core 6.4.3]]></title>
-        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.3</id>
-        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.3"/>
-        <updated>2021-07-21T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated to latest PageXray and Third patrty web 0.12.4.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[pagexray 4.3.1]]></title>
         <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.3.1</id>
         <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.3.1"/>
@@ -820,36 +910,6 @@
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Added missing in_body_parser_blocking render blocking info for Chrome.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[coach-core 6.4.2]]></title>
-        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.2</id>
-        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.2"/>
-        <updated>2021-07-05T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Make sure JQuery refs are set back to original ref <a href="https://github.com/sitespeedio/coach-core/pull/62">#62</a> see <a href="https://github.com/sitespeedio/coach-core/issues/61">#61</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[coach-core 6.4.1]]></title>
-        <id>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.1</id>
-        <link href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#6.4.1"/>
-        <updated>2021-06-23T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Use all headers for Wappalyzer (before only the main document was used) <a href="https://github.com/sitespeedio/coach-core/pull/60">#60</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -925,36 +985,6 @@
         <summary type="html"><![CDATA[<h3>Changed</h3>
  <ul>
 <li>The new header structure actually sucked. Instead follow other tools and flatten headers returning an array <a href="https://github.com/sitespeedio/pagexray/pull/98">#98</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[pagexray 3.1.1]]></title>
-        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#3.1.1</id>
-        <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#3.1.1"/>
-        <updated>2020-12-11T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Ooops, missed to expose the third party cookie data <a href="https://github.com/sitespeedio/pagexray/pull/97">#97</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[pagexray 3.1.0]]></title>
-        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#3.1.0</id>
-        <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#3.1.0"/>
-        <updated>2020-12-11T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Get third party domains for cookies <a href="https://github.com/sitespeedio/pagexray/pull/96">#96</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -1043,21 +1073,6 @@
         <summary type="html"><![CDATA[<h3>Changed</h3>
  <ul>
 <li>We moved out the core functionality to <a href="https://github.com/sitespeedio/coach-core">coach-core</a>. This makes it easy to use the Coach in your own code.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[chrome-har 0.11.7]]></title>
-        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.7</id>
-        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.7"/>
-        <updated>2020-03-09T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>And excluded the shrinkwrap file again.</li>
 </ul>
 ]]></summary>
         <author>
