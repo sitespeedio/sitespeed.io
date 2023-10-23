@@ -1,5 +1,14 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 29.9.0 - 2023-10-23
+### Added
+* Updated Browsertime to 17.18.0:
+  * Updated to Chromedriver 119 [#2003](https://github.com/sitespeedio/browsertime/pull/2003). 119 works with both Chrome 118 and 119 so it fixes [#1197](https://github.com/sitespeedio/browsertime/issues/1997).
+  * Add support for network idle method to know when to end a test that uses network logs. Uses Bidi for Firefox and CDP for Chrome to listen on network events to know when to end a test. By default 5 seconds idle network time ends a tests (you could have network responses that hasn't arrived yet) [#1960](https://github.com/sitespeedio/browsertime/pull/1960). Potentially this can help SPA users or users where the page uses iframes. You can try it out by adding `--browsertime.pageCompleteCheckNetworkIdle true` to your command line. This is still some work in progress but feel free to try ut out.
+  * The resources script now collects number of resources served from the browser cashe for browser that supports that through the resource timing API [#1998](https://github.com/sitespeedio/browsertime/pull/1998)  
+  * Make sure timer always is cleared. There was case of where we do a rase beteween a promise and a timeout where the timeout timer wasn't cleared/removed [#2005](https://github.com/sitespeedio/browsertime/pull/2005).
+  * Better way to get the url when you use GeckoProfiler.stop for Firefox, thank you [Nazım Can Altınova](https://github.com/canova) for PR [#1999](https://github.com/sitespeedio/browsertime/pull/1999)
+
 ## 29.8.0 - 2023-10-16
 ### Added
 * Updated to Chrome/Chromedriver 118 in the Docker container [#3975](https://github.com/sitespeedio/sitespeed.io/pull/3975).
