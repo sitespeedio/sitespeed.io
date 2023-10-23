@@ -55,34 +55,27 @@ The big picture looks something like this:
 Here's an example on how to use sitespeed.io directly from NodeJS. This will generate the result to disk but you will not get it as a JSON object (only the budget result). We maybe change that in the future. If you need the JSON you can either read it from disk or use the Browsertime plugin directly.
 
 ~~~javascript
-'use strict';
 
-const sitespeed = require('sitespeed.io');
+import { run as runSitespeedio } from 'sitespeed.io';
 const urls = ['https://www.sitespeed.io/'];
 
 async function run() {
   try {
-    const result = await sitespeed.run({
+    const result = await runSitespeedio({
       urls,
       browsertime: {
         iterations: 1,
-        connectivity: {
-          profile: 'native',
-          downstreamKbps: undefined,
-          upstreamKbps: undefined,
-          latency: undefined,
-          engine: 'external'
-        },
         browser: 'chrome'
       }
     });
     console.log(result);
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error(error);
   }
 }
 
-run();
+await run();
+
 ~~~
 
 ### Use Browsertime from NodeJS
