@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Mon, 16 Oct 2023 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 23 Oct 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,18 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 29.9.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.9.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.9.0</guid>
+            <pubDate>Mon, 23 Oct 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated Browsertime to 17.18.0:</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 29.8.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.8.0</link>
@@ -239,18 +251,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 29.1.2]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.1.2</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.1.2</guid>
-            <pubDate>Mon, 31 Jul 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updating Browsertime that makes it possible to run the AMD docker image on ARM M1 Macs. Add <code>--platform linux/amd64</code> and in Docker desktop turn on <em>&quot;Use Rosetta for x86/amd64 emulation&quot;</em>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[chrome-har 0.13.2]]></title>
             <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.2</link>
             <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.2</guid>
@@ -320,6 +320,31 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 17.18.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.18.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.18.0</guid>
+            <pubDate>Sun, 23 Oct 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Chromedriver 119 <a href="https://github.com/sitespeedio/browsertime/pull/2003">#2003</a>. 119 works with both Chrome 118 and 119 so it fixes <a href="https://github.com/sitespeedio/browsertime/issues/1997">#1197</a>.</li>
+</ul>
+ <ul>
+<li>Add support for network idle method to know when to end a test that uses network logs. Uses Bidi for Firefox and CDP for Chrome to listen on network events to know when to end a test. By default 5 seconds idle network time ends a tests (you could have network responses that hasn&#39;t arrived yet) <a href="https://github.com/sitespeedio/browsertime/pull/1960">#1960</a>. Potentially this can help SPA users or users where the page uses iframes. You can try it out by adding <code>--pageCompleteCheckNetworkIdle</code> yo your command line. This is still some work in progress but feel free to try ut out.</li>
+</ul>
+ <ul>
+<li>The resources script now collects number of resources served from the browser cashe for browser that supports that through the resource timing API <a href="https://github.com/sitespeedio/browsertime/pull/1998">#1998</a></li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Make sure timer always is cleared. There was case of where we do a rase beteween a promise and a timeout where the timeout timer wasn&#39;t cleared/removed <a href="https://github.com/sitespeedio/browsertime/pull/2005">#2005</a>.</li>
+</ul>
+ <ul>
+<li>Better way to get the url when you use GeckoProfiler.stop for Firefox, thank you <a href="https://github.com/canova">Nazım Can Altınova</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1999">#1999</a></li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[browsertime 17.17.0]]></title>
@@ -437,18 +462,6 @@
 <h3>Fixed</h3>
  <ul>
 <li>Fix for Chromedriver 115 so that it works on Mac again <a href="https://github.com/sitespeedio/browsertime/pull/1971">#1971</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 17.12.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.12.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.12.1</guid>
-            <pubDate>Tue, 19 Jul 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Hmm, Chromedriver 115 doesn&#39;t seems to work on Mac so reverted to 114.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
