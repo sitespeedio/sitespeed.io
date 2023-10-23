@@ -5,6 +5,7 @@ timeouts
       --timeouts.pageLoad                          Timeout when waiting for url to load, in milliseconds  [number] [default: 300000]
       --timeouts.script                            Timeout when running browser scripts, in milliseconds  [number] [default: 120000]
       --timeouts.pageCompleteCheck, --maxLoadTime  Timeout when waiting for page to complete loading, in milliseconds  [number] [default: 120000]
+      --timeouts.networkIdle                       Timeout when running pageCompleteCheckNetworkIdle, in milliseconds  [number] [default: 5000]
 
 chrome
       --chrome.args                                                Extra command line arguments to pass to the Chrome process (e.g. --no-sandbox). To add multiple arguments to Chrome, repeat --chrome.args once per argument.
@@ -167,6 +168,7 @@ Options:
       --pageCompleteCheck                          Supply a JavaScript (inline or JavaScript file) that decides when the browser is finished loading the page and can start to collect metrics. The JavaScript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd. By default the tests ends 2 seconds after loadEventEnd. Also checkout --pageCompleteCheckInactivity and --pageCompleteCheckPollTimeout
       --pageCompleteWaitTime                       How long time you want to wait for your pageComplteteCheck to finish, after it is signaled to closed. Extra parameter passed on to your pageCompleteCheck.  [default: 8000]
       --pageCompleteCheckInactivity                Alternative way to choose when to end your test. This will wait for 2 seconds of inactivity that happens after loadEventEnd.  [boolean] [default: false]
+      --pageCompleteCheckNetworkIdle               Alternative way to choose when to end your test that works in Chrome and Firefox. Uses CDP or WebDriver Bidi to look at network traffic instead of running JavaScript in the browser to know when to end the test. By default this will wait 5 seconds of inactivity in the network log (no requets/responses in 5 seconds). Use --timeouts.networkIdle to change the 5 seconds. The test will end after 2 minutes if there is still activity on the network. You can change that timout using --timeouts.pageCompleteCheck  [boolean] [default: false]
       --pageCompleteCheckPollTimeout               The time in ms to wait for running the page complete check the next time.  [number] [default: 1500]
       --pageCompleteCheckStartWait                 The time in ms to wait for running the page complete check for the first time. Use this when you have a pageLoadStrategy set to none  [number] [default: 5000]
       --pageLoadStrategy                           Set the strategy to waiting for document readiness after a navigation event. After the strategy is ready, your pageCompleteCheck will start runninhg.  [string] [choices: "eager", "none", "normal"] [default: "none"]
