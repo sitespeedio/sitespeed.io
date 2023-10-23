@@ -90,23 +90,23 @@ run();
 In this example you run Browsertime directly from NodeJS, using the default JavaScripts to collect metrics. 
 
 ~~~javascript
-'use strict';
-
-const browsertime = require('browsertime');
+import { BrowsertimeEngine, browserScripts } from 'browsertime';
 
 // The setup is the same configuration as you use in the CLI
 const browsertimeSetupOptions = { iterations: 1, browser: 'chrome' };
-const engine = new browsertime.Engine(browsertimeSetupOptions);
+const engine = new BrowsertimeEngine(browsertimeSetupOptions);
 // You can choose what JavaScript to run, in this example we use the default categories
 // and the default JavaScript
-const scriptsCategories = await browsertime.browserScripts.allScriptCategories;
-const scripts = await browsertime.browserScripts.getScriptsForCategories(scriptsCategories);
+const scriptCategories = await browserScripts.allScriptCategories();
+let scriptsByCategory = await browserScripts.getScriptsForCategories(
+  scriptCategories
+);
 
 async function run() {
   try {
     await engine.start();    
     // Get the result
-    const result = await engine.run('https://www.sitespeed.io/', scripts);
+    const result = await engine.run('https://www.sitespeed.io/',  scriptsByCategory);
     console.log(result);
   } catch (e) {
     console.error(e);
@@ -115,7 +115,7 @@ async function run() {
   }
 }
 
-run();
+await run();
 ~~~
 
 ## Developing sitespeed.io
