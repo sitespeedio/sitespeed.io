@@ -1,5 +1,15 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+
+## 30.0.0 - UNRELEASED
+### Breaking changes
+* Drop support for NodeJS 16.
+
+### Added
+* The Docker container now uses NodeJS 20.
+* Updated to Firefox 119 and Edge 118 in the Docker container.
+* Updated the base container to use latest tagged Ubuntu 22.04
+
 ## 29.9.0 - 2023-10-23
 ### Added
 * Updated Browsertime to 17.18.0:
