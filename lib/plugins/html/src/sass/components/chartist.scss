@@ -613,3 +613,34 @@
     left: 0; }
 
 /*# sourceMappingURL=chartist.css.map */
+
+.ct-legend {
+  display: flex;
+  // justify-content: center;
+  // align-items: center;
+  margin-top: 10px;
+  margin-left: 16px;
+  margin-bottom: 14x;
+}
+
+.ct-legend-item {
+  display: flex;
+  // align-items: center;
+  margin-right: 15px;
+  line-height: 18px;
+}
+
+.ct-legend-item i {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+}
+
+.baseline-series .ct-point, .baseline-series .ct-line {
+  stroke: green;
+}
+
+.current-series .ct-point, .current-series .ct-line {
+  stroke: blue;
+}

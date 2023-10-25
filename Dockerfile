@@ -44,4 +44,6 @@ RUN echo 'ALL ALL=NOPASSWD: /usr/sbin/tc, /usr/sbin/route, /usr/sbin/ip' > /etc/
 
 ENTRYPOINT ["/start.sh"]
 VOLUME /sitespeed.io
+VOLUME /baseline
+
 WORKDIR /sitespeed.io
