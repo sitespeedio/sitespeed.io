@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 30.1.0 - UNRELEASED
+## 30.1.0 - 2023-11-01
 ### Added
 * The Docker slim container uses Debian Bookworm [#3996](https://github.com/sitespeedio/sitespeed.io/pull/3996).
 * Updated to Chrome 119 in the Docker container.
@@ -8,7 +8,6 @@
 ### Fixed
 * Fixed analysisstorer trying to save setup messages [#3995](https://github.com/sitespeedio/sitespeed.io/pull/3995).
 * Updated to Browsertime 17.18.1 [#3992](https://github.com/sitespeedio/sitespeed.io/pull/3992).
-
 
 ## 30.0.0 - 2023-10-25
 ### Breaking changes
