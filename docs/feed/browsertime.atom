@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2023-10-23T16:03:28.746Z</updated>
+    <updated>2023-10-31T15:06:16.803Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,24 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 17.18.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.18.1</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.18.1"/>
+        <updated>2022-10-31T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>WebDriver 4.14.0</li>
+</ul>
+ <ul>
+<li>Chromedriver 119.0.6045-59</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 17.18.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.18.0</id>
@@ -167,25 +185,6 @@
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.13.1</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.13.1"/>
         <updated>2022-07-22T00:00:00.000Z</updated>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 17.13.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.13.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.13.0"/>
-        <updated>2022-07-21T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Edgedriver 114 <a href="https://github.com/sitespeedio/browsertime/pull/1969">#1969</a></li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Fix for Chromedriver 115 so that it works on Mac again <a href="https://github.com/sitespeedio/browsertime/pull/1971">#1971</a>.</li>
-</ul>
-]]></summary>
         <author>
             <name>Sitespeed.io</name>
             <uri>https://www.sitespeed.io</uri>

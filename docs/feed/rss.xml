@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Wed, 25 Oct 2023 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 01 Nov 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,28 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 30.1.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.1.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.1.0</guid>
+            <pubDate>Wed, 01 Nov 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>The Docker slim container uses Debian Bookworm <a href="https://github.com/sitespeedio/sitespeed.io/pull/3996">#3996</a>.</li>
+</ul>
+ <ul>
+<li>Updated to Chrome 119 in the Docker container.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Fixed analysisstorer trying to save setup messages <a href="https://github.com/sitespeedio/sitespeed.io/pull/3995">#3995</a>.</li>
+</ul>
+ <ul>
+<li>Updated to Browsertime 17.18.1 <a href="https://github.com/sitespeedio/sitespeed.io/pull/3992">#3992</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 30.0.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.0.0</link>
@@ -242,25 +264,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 29.2.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.2.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.2.0</guid>
-            <pubDate>Tue, 08 Aug 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Firefox 116 in the Docker container.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Another fix for making sure annotations for Graphite have the correct timestamp <a href="https://github.com/sitespeedio/sitespeed.io/pull/3931">#3931</a>.</li>
-</ul>
- <ul>
-<li>Update dayjs and ora dependencies.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[chrome-har 0.13.2]]></title>
             <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.2</link>
             <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.2</guid>
@@ -330,6 +333,21 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 17.18.1]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.18.1</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.18.1</guid>
+            <pubDate>Mon, 31 Oct 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>WebDriver 4.14.0</li>
+</ul>
+ <ul>
+<li>Chromedriver 119.0.6045-59</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[browsertime 17.18.0]]></title>
@@ -458,22 +476,6 @@
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.13.1</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.13.1</guid>
             <pubDate>Fri, 22 Jul 2022 00:00:00 GMT</pubDate>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 17.13.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.13.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.13.0</guid>
-            <pubDate>Thu, 21 Jul 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Edgedriver 114 <a href="https://github.com/sitespeedio/browsertime/pull/1969">#1969</a></li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Fix for Chromedriver 115 so that it works on Mac again <a href="https://github.com/sitespeedio/browsertime/pull/1971">#1971</a>.</li>
-</ul>
-]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
