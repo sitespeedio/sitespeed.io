@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 30.2.1 - 2023-11-03
+### Fixed
+* The Docker+1 container got a fix for Lighthouse that didn't work in 30.2.0 (adding dev-shm when starting Chrome).
+
 ## 30.2.0 - 2023-11-03
 
 ### Added
