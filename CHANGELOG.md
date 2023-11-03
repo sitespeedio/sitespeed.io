@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+
+### Fixed
+* The Docker+1 container has been upgraded to Lighthouse 11.3.0.
+
 ## 30.1.0 - 2023-11-01
 ### Added
 * The Docker slim container uses Debian Bookworm [#3996](https://github.com/sitespeedio/sitespeed.io/pull/3996).
