@@ -15,7 +15,7 @@
         "@tgwf/co2": "0.13.6",
         "aws-sdk": "2.1327.0",
         "axe-core": "4.8.2",
-        "browsertime": "17.18.1",
+        "browsertime": "17.19.0",
         "cli-color": "2.0.3",
         "coach-core": "8.0.2",
         "concurrent-queue": "7.0.2",
@@ -1010,9 +1010,9 @@
       }
     },
     "node_modules/@sitespeed.io/edgedriver": {
-      "version": "115.0.1901-183",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/edgedriver/-/edgedriver-115.0.1901-183.tgz",
-      "integrity": "sha512-8Pw9xAHWTAoOJmJctuA2vebQ9GVgtMiQB0w9010jgjALjOm8RySadK7sTJj3HyAi+R3AerqASDr0eJdiYnEgPQ==",
+      "version": "119.0.2151-42",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/edgedriver/-/edgedriver-119.0.2151-42.tgz",
+      "integrity": "sha512-+jGP9BmWgh/yoNcJKyiYP0anF0m2H6+cjk1MaHvzgkIdrFMVfJQIN9+tmwCBiN4Ave52IHjDdHhEjK7B+SWvrA==",
       "hasInstallScript": true,
       "dependencies": {
         "node-downloader-helper": "2.1.7",
@@ -1870,14 +1870,14 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "17.18.1",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-17.18.1.tgz",
-      "integrity": "sha512-db7LuGFXk8IBoVG7Gx09cDf/tJVz342QQ+MDNgUFYnbRLUtpu2ZQM8s0pTrclWZIILmwKm6uZINobIYgaEZk4w==",
+      "version": "17.19.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-17.19.0.tgz",
+      "integrity": "sha512-KbMcdQBPT7sWAkDhNmV1C1HjpyDqaZ4N0kIGqm9SunFsgA62Ndpqg/SgaAEXxcmpC7xJ1P+ivvz6+5+cWHUdaQ==",
       "dependencies": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",
         "@sitespeed.io/chromedriver": "119.0.6045-59",
-        "@sitespeed.io/edgedriver": "115.0.1901-183",
+        "@sitespeed.io/edgedriver": "119.0.2151-42",
         "@sitespeed.io/geckodriver": "0.33.0",
         "@sitespeed.io/throttle": "5.0.0",
         "@sitespeed.io/tracium": "0.3.3",
@@ -1898,7 +1898,7 @@
         "lodash.merge": "4.6.2",
         "lodash.pick": "4.4.0",
         "lodash.set": "4.3.2",
-        "selenium-webdriver": "4.14.0",
+        "selenium-webdriver": "4.15.0",
         "yargs": "17.7.2"
       },
       "bin": {
@@ -8014,9 +8014,9 @@
       "integrity": "sha1-e45lYZCyKOgaZq6nSEgNgozS03o="
     },
     "node_modules/selenium-webdriver": {
-      "version": "4.14.0",
-      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.14.0.tgz",
-      "integrity": "sha512-637rs8anqMKHbWxcBZpyG3Gcs+rBUtAUiqk0O/knUqH4Paj3MFUZrz88/pVGOLNryEVy2z92fZomT8p1ENl1gA==",
+      "version": "4.15.0",
+      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.15.0.tgz",
+      "integrity": "sha512-BNG1bq+KWiBGHcJ/wULi0eKY0yaDqFIbEmtbsYJmfaEghdCkXBsx1akgOorhNwjBipOr0uwpvNXqT6/nzl+zjg==",
       "dependencies": {
         "jszip": "^3.10.1",
         "tmp": "^0.2.1",
@@ -10205,9 +10205,9 @@
       }
     },
     "@sitespeed.io/edgedriver": {
-      "version": "115.0.1901-183",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/edgedriver/-/edgedriver-115.0.1901-183.tgz",
-      "integrity": "sha512-8Pw9xAHWTAoOJmJctuA2vebQ9GVgtMiQB0w9010jgjALjOm8RySadK7sTJj3HyAi+R3AerqASDr0eJdiYnEgPQ==",
+      "version": "119.0.2151-42",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/edgedriver/-/edgedriver-119.0.2151-42.tgz",
+      "integrity": "sha512-+jGP9BmWgh/yoNcJKyiYP0anF0m2H6+cjk1MaHvzgkIdrFMVfJQIN9+tmwCBiN4Ave52IHjDdHhEjK7B+SWvrA==",
       "requires": {
         "node-downloader-helper": "2.1.7",
         "node-stream-zip": "1.15.0"
@@ -10852,14 +10852,14 @@
       }
     },
     "browsertime": {
-      "version": "17.18.1",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-17.18.1.tgz",
-      "integrity": "sha512-db7LuGFXk8IBoVG7Gx09cDf/tJVz342QQ+MDNgUFYnbRLUtpu2ZQM8s0pTrclWZIILmwKm6uZINobIYgaEZk4w==",
+      "version": "17.19.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-17.19.0.tgz",
+      "integrity": "sha512-KbMcdQBPT7sWAkDhNmV1C1HjpyDqaZ4N0kIGqm9SunFsgA62Ndpqg/SgaAEXxcmpC7xJ1P+ivvz6+5+cWHUdaQ==",
       "requires": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "2.11.3",
         "@sitespeed.io/chromedriver": "119.0.6045-59",
-        "@sitespeed.io/edgedriver": "115.0.1901-183",
+        "@sitespeed.io/edgedriver": "119.0.2151-42",
         "@sitespeed.io/geckodriver": "0.33.0",
         "@sitespeed.io/throttle": "5.0.0",
         "@sitespeed.io/tracium": "0.3.3",
@@ -10881,7 +10881,7 @@
         "lodash.merge": "4.6.2",
         "lodash.pick": "4.4.0",
         "lodash.set": "4.3.2",
-        "selenium-webdriver": "4.14.0",
+        "selenium-webdriver": "4.15.0",
         "yargs": "17.7.2"
       }
     },
@@ -15517,9 +15517,9 @@
       "integrity": "sha1-e45lYZCyKOgaZq6nSEgNgozS03o="
     },
     "selenium-webdriver": {
-      "version": "4.14.0",
-      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.14.0.tgz",
-      "integrity": "sha512-637rs8anqMKHbWxcBZpyG3Gcs+rBUtAUiqk0O/knUqH4Paj3MFUZrz88/pVGOLNryEVy2z92fZomT8p1ENl1gA==",
+      "version": "4.15.0",
+      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.15.0.tgz",
+      "integrity": "sha512-BNG1bq+KWiBGHcJ/wULi0eKY0yaDqFIbEmtbsYJmfaEghdCkXBsx1akgOorhNwjBipOr0uwpvNXqT6/nzl+zjg==",
       "requires": {
         "jszip": "^3.10.1",
         "tmp": "^0.2.1",
