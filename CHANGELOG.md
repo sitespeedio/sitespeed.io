@@ -1,13 +1,14 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 30.2.0 - 2023-11-03
 
 ### Added
-* Updated to Browsertime 17.19.0 with Edgedriver 119.
+* Updated to Browsertime 17.19.0 with Edgedriver 119 [#3998](https://github.com/sitespeedio/sitespeed.io/pull/3998).
 * Updated the Docker container with Edge 119.
 
 ### Fixed
 * The Docker+1 container has been upgraded to Lighthouse 11.3.0.
+* Add support for getting verbose logs and Chromedriver logs from the recording phase of WebPageReplay [#3999](https://github.com/sitespeedio/sitespeed.io/pull/3999).
 
 ## 30.1.0 - 2023-11-01
 ### Added
