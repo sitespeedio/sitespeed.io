@@ -123,6 +123,13 @@ async function runBrowsertime() {
       describe:
         'Short key to use Android. Will automatically use com.android.chrome for Chrome and stable Firefox. If you want to use another Chrome version, use --chrome.android.package'
     })
+    .option('verbose', {
+      alias: ['v'],
+      describe:
+        'Verbose mode prints progress messages to the console. Enter up to three times (-vvv)' +
+        ' to increase the level of detail.',
+      type: 'count'
+    })
     .config(config);
 
   const defaultConfig = {
