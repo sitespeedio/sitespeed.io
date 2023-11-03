@@ -2,6 +2,10 @@
 
 ## UNRELEASED
 
+### Added
+* Updated to Browsertime 17.19.0 with Edgedriver 119.
+* Updated the Docker container with Edge 119.
+
 ### Fixed
 * The Docker+1 container has been upgraded to Lighthouse 11.3.0.
 
