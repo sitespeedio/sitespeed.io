@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+### Fixed
+* * Downgrade puppeteer in the +1 container for Lighthouse, thank you [bairov pavel](https://github.com/Amerousful) for PR [#123](https://github.com/sitespeedio/plugin-lighthouse/pull/123).
+
+
 ## 30.2.1 - 2023-11-03
 ### Fixed
 * The Docker+1 container got a fix for Lighthouse that didn't work in 30.2.0 (adding dev-shm when starting Chrome).
