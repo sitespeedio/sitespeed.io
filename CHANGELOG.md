@@ -2,8 +2,10 @@
 
 ## UNRELEASED
 ### Fixed
-* * Downgrade puppeteer in the +1 container for Lighthouse, thank you [bairov pavel](https://github.com/Amerousful) for PR [#123](https://github.com/sitespeedio/plugin-lighthouse/pull/123).
+* Downgrade puppeteer in the +1 container for Lighthouse, thank you [bairov pavel](https://github.com/Amerousful) for PR [#123](https://github.com/sitespeedio/plugin-lighthouse/pull/123).
 
+### Added
+* Upgrade to Browsertime 18.0.0.
 
 ## 30.2.1 - 2023-11-03
 ### Fixed
