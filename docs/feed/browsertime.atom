@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2023-11-03T07:38:38.470Z</updated>
+    <updated>2023-11-07T12:18:11.063Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,10 +17,31 @@
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
     <entry>
+        <title type="html"><![CDATA[browsertime 18.0.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#18.0.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#18.0.0"/>
+        <updated>2023-11-07T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated all dev-dependencies to latest versions <a href="https://github.com/sitespeedio/browsertime/pull/2013">#2013</a>.</li>
+</ul>
+ <ul>
+<li>Updated  GitHub Actions to use latest versions of actions and Ubuntu 22.04 <a href="https://github.com/sitespeedio/browsertime/pull/2012">#2012</a>, <a href="https://github.com/sitespeedio/browsertime/pull/2014">#2014</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2016">#2016</a></li>
+</ul>
+ <ul>
+<li>Updated all dependencies to latest versions: ADB kit 3.2.5 <a href="https://github.com/sitespeedio/browsertime/pull/2017">#2017</a>, execa, dayjs, get-port and Chromedriver <a href="https://github.com/sitespeedio/browsertime/pull/2015">#2015</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[browsertime 17.19.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.19.0</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.19.0"/>
-        <updated>2022-11-03T00:00:00.000Z</updated>
+        <updated>2023-11-03T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Updated to Chrome, Firefox and Edge 119 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2010">#2010</a>.</li>
@@ -42,7 +63,7 @@
         <title type="html"><![CDATA[browsertime 17.18.1]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.18.1</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.18.1"/>
-        <updated>2022-10-31T00:00:00.000Z</updated>
+        <updated>2023-10-31T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>WebDriver 4.14.0</li>
@@ -60,7 +81,7 @@
         <title type="html"><![CDATA[browsertime 17.18.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.18.0</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.18.0"/>
-        <updated>2022-10-23T00:00:00.000Z</updated>
+        <updated>2023-10-23T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Updated to Chromedriver 119 <a href="https://github.com/sitespeedio/browsertime/pull/2003">#2003</a>. 119 works with both Chrome 118 and 119 so it fixes <a href="https://github.com/sitespeedio/browsertime/issues/1997">#1197</a>.</li>
@@ -88,7 +109,7 @@
         <title type="html"><![CDATA[browsertime 17.17.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.17.0</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.17.0"/>
-        <updated>2022-10-11T00:00:00.000Z</updated>
+        <updated>2023-10-11T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Firefox 118, Edge 117 and Chrome/Chromedriver 118 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/1996">#1996</a>.</li>
@@ -106,7 +127,7 @@
         <title type="html"><![CDATA[browsertime 17.16.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.16.0</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.16.0"/>
-        <updated>2022-09-04T00:00:00.000Z</updated>
+        <updated>2023-09-04T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Firefox 117 and Edge 116 in the Docker container.</li>
@@ -125,7 +146,7 @@
         <title type="html"><![CDATA[browsertime 17.15.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.15.0</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.15.0"/>
-        <updated>2022-08-16T00:00:00.000Z</updated>
+        <updated>2023-08-16T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Updated Chrome and Chromedriver to 116.</li>
@@ -140,7 +161,7 @@
         <title type="html"><![CDATA[browsertime 17.14.3]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.3</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.3"/>
-        <updated>2022-08-16T00:00:00.000Z</updated>
+        <updated>2023-08-16T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Updated to Selenium 4.11.1 <a href="https://github.com/sitespeedio/browsertime/pull/1978">#1978</a>.</li>
@@ -158,7 +179,7 @@
         <title type="html"><![CDATA[browsertime 17.14.2]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.2</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.2"/>
-        <updated>2022-07-31T00:00:00.000Z</updated>
+        <updated>2023-07-31T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>The auto build of release Docker container was broken so no tagged containers was pushed.</li>
@@ -173,28 +194,13 @@
         <title type="html"><![CDATA[browsertime 17.14.1]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.1</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.1"/>
-        <updated>2022-07-31T00:00:00.000Z</updated>
+        <updated>2023-07-31T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Default jimp resize didn&#39;t handle large values (2000) when running in Docker AMD on a ARM machine so changing to another algorithm (HERMITE) <a href="https://github.com/sitespeedio/browsertime/pull/1977">#1977</a>.</li>
 </ul>
  <ul>
 <li>Update: chrome-har, dayjs, execa, chrome-remote-interface and jimp <a href="https://github.com/sitespeedio/browsertime/pull/1976">#1976</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 17.14.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.14.0"/>
-        <updated>2022-07-24T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Edge and Edgedriver 115 <a href="https://github.com/sitespeedio/browsertime/pull/1973">#1973</a>.</li>
 </ul>
 ]]></summary>
         <author>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2023-11-03T13:59:36.253Z</updated>
+    <updated>2023-11-09T09:27:59.964Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,28 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 30.3.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.3.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.3.0"/>
+        <updated>2023-11-09T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Upgrade to Browsertime 18.0.0.</li>
+</ul>
+ <ul>
+<li>Added suupport to run user journeys with WebPageReplay <a href="https://github.com/sitespeedio/sitespeed.io/pull/4005">#4005</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Downgrade puppeteer in the +1 container for Lighthouse, thank you <a href="https://github.com/Amerousful">bairov pavel</a> for PR <a href="https://github.com/sitespeedio/plugin-lighthouse/pull/123">#123</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 30.2.1]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.2.1</id>
@@ -193,27 +215,6 @@
 </ul>
  <ul>
 <li>Note that if you use the BiDi HAR for Firefox this version only work with Firefox 117+. If you use Firefox &lt; 117 you need to stay on previous sitespeed.io version until you upgrade.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 29.4.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.4.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.4.0"/>
-        <updated>2023-08-31T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Display axe-core version on the summary page (before it was only showed on each run page) <a href="https://github.com/sitespeedio/sitespeed.io/pull/3950">#3950</a>.</li>
-</ul>
- <ul>
-<li>Display third-party-web and wappalyzer version in the HTML output (by upgrading to <a href="https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#800---2023-08-30">Coach 8.0.0</a>) <a href="https://github.com/sitespeedio/sitespeed.io/pull/3953">#3953</a>.</li>
-</ul>
- <ul>
-<li>Display co2 version in the HTML output <a href="https://github.com/sitespeedio/sitespeed.io/pull/3954">#3953</a>.</li>
 </ul>
 ]]></summary>
         <author>
