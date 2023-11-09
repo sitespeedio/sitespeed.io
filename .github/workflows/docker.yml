@@ -28,8 +28,10 @@ jobs:
       run: docker run --rm -v "$(pwd)":/sitespeed.io --network=host sitespeedio/sitespeed.io http://127.0.0.1:3001  -n 1 -b edge
     - name: Run test on slim container  
       run: docker run --rm -v "$(pwd)":/sitespeed.io --network=host sitespeedio/sitespeed.io:slim http://127.0.0.1:3001 -n 1 --browsertime.firefox.preference "devtools.netmonitor.persistlog:true"
-    - name: Test WebPageReplay with Chrome  
+    - name: Test WebPageReplay with Chrome
       run: docker run --cap-add=NET_ADMIN --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io https://www.sitespeed.io -n 3 -b chrome 
+    - name: Test WebPageReplay user journey with Chrome
+      run: docker run --cap-add=NET_ADMIN --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io test/prepostscripts/multiWindows.cjs -n 1 -b chrome --multi
     - name: Test WebPageReplay with Firefox  
       run: docker run --cap-add=NET_ADMIN --rm -v "$(pwd)":/sitespeed.io --network=host -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io https://www.sitespeed.io -n 3 -b firefox --browsertime.firefox.acceptInsecureCerts true
     - name: Run Chrome test with config
