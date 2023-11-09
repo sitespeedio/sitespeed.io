@@ -1,11 +1,13 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
-### Fixed
-* Downgrade puppeteer in the +1 container for Lighthouse, thank you [bairov pavel](https://github.com/Amerousful) for PR [#123](https://github.com/sitespeedio/plugin-lighthouse/pull/123).
+## 30.3.0 - 2023-11-09
 
 ### Added
 * Upgrade to Browsertime 18.0.0.
+* Added suupport to run user journeys with WebPageReplay [#4005](https://github.com/sitespeedio/sitespeed.io/pull/4005).
+
+### Fixed
+* Downgrade puppeteer in the +1 container for Lighthouse, thank you [bairov pavel](https://github.com/Amerousful) for PR [#123](https://github.com/sitespeedio/plugin-lighthouse/pull/123).
 
 ## 30.2.1 - 2023-11-03
 ### Fixed
