@@ -24,6 +24,11 @@ jobs:
         sudo apt-get update
         sudo apt-get --only-upgrade install google-chrome-stable
         google-chrome --version
+    - name: Install dependencies
+      run: |
+          python -m pip install --upgrade --user pip
+          python -m pip install --user scipy
+          python -m pip show scipy
     - name: Install Firefox
       uses: browser-actions/setup-firefox@latest
       #with:
