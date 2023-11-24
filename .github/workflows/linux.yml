@@ -70,3 +70,5 @@ jobs:
       run: bin/sitespeed.js http://127.0.0.1:3001/simple/ -n 1 --influxdb.host 127.0.0.1 --influxdb.port 8087 --influxdb.version 2 --influxdb.organisation sitespeed --influxdb.token sitespeed --xvfb
     - name: Run Chrome test with config
       run: node bin/sitespeed.js --config test/exampleConfig.json http://127.0.0.1:3001/simple/ --xvfb
+    - name: Run Chrome test using compare plugin
+      run: node bin/sitespeed.js --compare.id compare --compare.saveBaseline --compare.baselinePath test/ http://127.0.0.1:3001/simple/ --xvfb
