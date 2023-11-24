@@ -11,4 +11,7 @@ if d.browsertime && d.browsertime.har
     - const harEnding = options.gzipHAR ? '.har.gz' : '.har'
     - const harName = 'data/browsertime' + harEnding
     - const harDownloadName = downloadName + harEnding
-    a.button.button-download(href=harName, download=harDownloadName) Download HAR    
+    a.button.button-download(href=harName, download=harDownloadName) Download HAR
+if options.browsertime.chrome && options.browsertime.chrome.collectConsoleLog
+    - const consoleLogPath = 'data/console-' + (runNumber? runNumber : 1) + '.json.gz'
+    a.button.button-download(href=consoleLogPath, download=downloadName + '-consoleLogs.json.gz') Download Console Logs
