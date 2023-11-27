@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2023-11-27T13:24:22.355Z</updated>
+    <updated>2023-11-27T23:30:41.279Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,6 +17,21 @@
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
     <entry>
+        <title type="html"><![CDATA[sitespeed.io 30.4.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.4.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.4.1"/>
+        <updated>2023-11-28T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix for Firefox when generating the result HTML. It was broken since we where missing CPU data.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[sitespeed.io 30.4.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.4.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.4.0"/>
@@ -29,7 +44,7 @@
 <li>Firefox 120 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4010">#4010</a>.</li>
 </ul>
  <ul>
-<li>Button to download the console logs, thank you <a href="https://github.com/Amerousful">bairov pavel</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4007">#4007</a></li>
+<li>Button to download the console logs, thank you <a href="https://github.com/Amerousful">bairov pavel</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4007">#4007</a>.</li>
 </ul>
 <h3>Fixed</h3>
  <ul>
@@ -204,24 +219,6 @@
 </ul>
  <ul>
 <li>Users of the +1 container will have Lighthouse version 11.1.0.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 29.6.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.6.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.6.0"/>
-        <updated>2023-09-22T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated Chrome and Edge to 117, also NodeJS 18.18.0 and a latest updated version of Ubuntu 22.04 <a href="https://github.com/sitespeedio/sitespeed.io/pull/3965">#3965</a>.</li>
-</ul>
- <ul>
-<li>Updated to Axe core 4.8.1 <a href="https://github.com/sitespeedio/sitespeed.io/pull/3964">#3964</a>.</li>
 </ul>
 ]]></summary>
         <author>
