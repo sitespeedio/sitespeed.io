@@ -178,7 +178,7 @@ if browsertime
               td
                 a(href=baseHelpURL + 'firstInputDelay')  First Input Delay (FID)
               td.number #{h.time.ms(timings.firstInput.delay)}
-          else 
+          else if (cpu && cpu.longTasks)
             tr 
               td
                 a(href=baseHelpURL + 'totalBlockingTime') Total Blocking Time (TBT)
