@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Documentation sitespeed.io 29.x
+title: Documentation sitespeed.io 30.x
 description: Read about all you can do with sitespeed.io.
 keywords: tools, documentation, web performance
 nav: documentation
@@ -9,7 +9,7 @@ image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Documentation for sitespeed.io.
 ---
 
-# Documentation v29
+# Documentation v30
 
 <img src="{{site.baseurl}}/img/logos/sitespeed.io.png" class="pull-right img-big" alt="sitespeed.io logo" width="200" height="214">
 
