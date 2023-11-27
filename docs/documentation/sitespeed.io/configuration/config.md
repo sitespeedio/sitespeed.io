@@ -302,6 +302,17 @@ API
       --api.priority  The priority of the test. Highest priority is 1.
       --api.json      Output the result as JSON.
 
+compare
+      --compare.id                          The id of the test. Will be used to find the baseline test, that is using the id as a part of the name.  [string]
+      --compare.baselinePath                Specifies the path to the baseline data file. This file is used as a reference for comparison against the current test data.  [string]
+      --compare.saveBaseline                Determines whether to save the current test data as the new baseline. Set to true to save the current data as baseline for future comparisons.  [boolean] [default: false]
+      --compare.testType                    Selects the statistical test type to be used for comparison. Options are mannwhitneyu for the Mann-Whitney U test and wilcoxon for the Wilcoxon signed-rank test.  [choices: "mannwhitneyu", " wilcoxon"] [default: "mannwhitneyu"]
+      --compare.alternative                 Specifies the alternative hypothesis to be tested. Options are less for one-sided test where the first group is expected to be less than the second, greater for one-sided test with the first group expected to be greater, or two-sided for a two-sided test.  [choices: "less", " greater", "two-sided"] [default: "less"]
+      --compare.wilcoxon.correction         Enables or disables the continuity correction in the Wilcoxon signed-rank test. Set to true to enable the correction.  [boolean] [default: false]
+      --compare.wilcoxon.zeroMethod         Specifies the method for handling zero differences in the Wilcoxon test. wilcox discards all zero-difference pairs, pratt includes all, and zsplit splits them evenly among positive and negative ranks.  [choices: "wilcox", " pratt", "zsplit"] [default: "zsplit"]
+      --compare.mannwhitneyu.useContinuity  Determines whether to use continuity correction in the Mann-Whitney U test. Set to true to apply the correction.  [boolean] [default: false]
+      --compare.mannwhitneyu.method  [choices: "auto", " exact", "symptotic"] [default: "auto"]
+
 Options:
       --debugMessages                                         Debug mode logs all internal messages in the message queue to the log.  [boolean] [default: false]
   -v, --verbose                                               Verbose mode prints progress messages to the console. Enter up to three times (-vvv) to increase the level of detail.  [count]

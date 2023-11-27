@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Thu, 09 Nov 2023 09:27:59 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 27 Nov 2023 13:24:22 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,6 +17,28 @@
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[sitespeed.io 30.4.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.4.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.4.0</guid>
+            <pubDate>Mon, 27 Nov 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>The new compare plugin <a href="https://github.com/sitespeedio/sitespeed.io/pull/4009">PR 4009</a> makes it easy to use Mann Whitney U/Wilcox for support to find performance egressions. Read all about the plugin in the <a href="https://www.sitespeed.io/documentation/sitespeed.io/compare/">documentation</a>.</li>
+</ul>
+ <ul>
+<li>Firefox 120 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4010">#4010</a>.</li>
+</ul>
+ <ul>
+<li>Button to download the console logs, thank you <a href="https://github.com/Amerousful">bairov pavel</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4007">#4007</a></li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Upgrade to Browsretime 19.1.0 with a fix for Geckodriver so that the correct ARM version is installed on Mac Arm machines.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 30.3.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.3.0</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.3.0</guid>
@@ -26,7 +48,7 @@
 <li>Upgrade to Browsertime 18.0.0.</li>
 </ul>
  <ul>
-<li>Added suupport to run user journeys with WebPageReplay <a href="https://github.com/sitespeedio/sitespeed.io/pull/4005">#4005</a>.</li>
+<li>Added support to run user journeys with WebPageReplay <a href="https://github.com/sitespeedio/sitespeed.io/pull/4005">#4005</a>.</li>
 </ul>
 <h3>Fixed</h3>
  <ul>
@@ -173,21 +195,6 @@
 </ul>
  <ul>
 <li>Updated to Axe core 4.8.1 <a href="https://github.com/sitespeedio/sitespeed.io/pull/3964">#3964</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 29.5.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.5.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#29.5.0</guid>
-            <pubDate>Tue, 05 Sep 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Firefox 117 and Edge 116 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/3958">#3958</a>.</li>
-</ul>
- <ul>
-<li>Note that if you use the BiDi HAR for Firefox this version only work with Firefox 117+. If you use Firefox &lt; 117 you need to stay on previous sitespeed.io version until you upgrade.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
