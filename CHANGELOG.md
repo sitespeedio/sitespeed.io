@@ -1,10 +1,16 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 30.4.0 - 2023-11-27
+### Fixed
+* Upgrade to Browsretime 19.1.0 with a fix for Geckodriver so that the correct ARM version is installed on Mac Arm machines.
+### Added
+* The new compare plugin makes it easy to use Mann Whitney U/Wilcox for support to find performance egressions. Read all about the plugin in the [documentation](https://www.sitespeed.io/documentation/sitespeed.io/compare/).
+
 ## 30.3.0 - 2023-11-09
 
 ### Added
 * Upgrade to Browsertime 18.0.0.
-* Added suupport to run user journeys with WebPageReplay [#4005](https://github.com/sitespeedio/sitespeed.io/pull/4005).
+* Added support to run user journeys with WebPageReplay [#4005](https://github.com/sitespeedio/sitespeed.io/pull/4005).
 
 ### Fixed
 * Downgrade puppeteer in the +1 container for Lighthouse, thank you [bairov pavel](https://github.com/Amerousful) for PR [#123](https://github.com/sitespeedio/plugin-lighthouse/pull/123).
