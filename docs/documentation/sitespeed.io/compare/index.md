@@ -32,7 +32,7 @@ Utilizing these tests through the compare plugin allows for a sophisticated appr
 ## Prerequisites
 To get the compare plugin to work, you need to have Python installed and the [scipy](https://scipy.org) library in Python. The easiest way to install that is with pip: `python -m pip install scipy`.  If you use our Docker containers this is already installed.
 
-## Save the baseline (, save the world)
+## Save the baseline (save the world)
 By default tests run against a baseline test and look for regressions in the new test. That means that for your test to work you need to collect a baseline. You do that by adding `--compare.saveBaseline` to your test. And you also need to give your test an unique id. You do that by adding `--compare.id myId`. Adding those to your test will store the baseline on disk. By default that file is stored in your current directory. You can also change that by adding `--compare.baselinePath` to set the path to the file. That is useful in Docker if you want the file to be stores outside the container.
 
 To save a baseline using NodeJS:
