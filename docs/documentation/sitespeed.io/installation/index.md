@@ -63,7 +63,7 @@ Install on a fresh Apple Mac M1:
     5. `source ~/.zshrc`
     6. `curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py`
     7. `python get-pip.py --user`
-    8. `python -m pip install --user pillow pyssim OpenCV-Python Numpy`
+    8. `python -m pip install --user pillow pyssim OpenCV-Python Numpy scipy`
 7. To be able to throttle the connection without adding a sudo password you need to run:
     `echo "${USER} ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/sitespeedio"`
 8. If you plan to run the iOS Simulator, you also need to install Xcode. Either do it from the App store,  follow [Mac Stadiums guide](https://docs.macstadium.com/docs/install-osx-build-tools) or download directly from [https://developer.apple.com/download/more/](https://developer.apple.com/download/more/). Verify that Xcode work by running `xcrun simctl list devices` to list your devices.
@@ -108,7 +108,7 @@ You can also install everything manually to have more control. This is what's ne
 2. Install imagemagick and ffmpeg `sudo apt-get update -y && sudo apt-get install -y imagemagick ffmpeg`
 3. Install Python dependencies:
     * `sudo apt-get install -y  python-is-python3 python3-dev python3-pip`  
-    * `python -m pip install pyssim OpenCV-Python Numpy`
+    * `python -m pip install pyssim OpenCV-Python Numpy scipy`
 4. Install xvfb: `sudo apt-get install -y xvfb`
 5. Install ip and tc for network throttling to work: `sudo apt-get install -y net-tools`
 6. Create a user that you will use to run sitespeed.io and switch to that user:
@@ -193,7 +193,7 @@ sudo apt-get install chromium-chromedriver adb -y
 5. Install video and visual metrics dependencies.
 ~~~
 sudo apt-get update && sudo apt-get install -y imagemagick ffmpeg
-python -m pip install pyssim OpenCV-Python Numpy
+python -m pip install pyssim OpenCV-Python Numpy scipy
 ~~~
 6. Follow [the instructions from npm how to install without sudo](https://github.com/sindresorhus/guides/blob/main/npm-global-without-sudo.md).
 7. And then install sitespeed.io.
