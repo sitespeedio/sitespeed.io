@@ -4,7 +4,9 @@
 ### Fixed
 * Upgrade to Browsretime 19.1.0 with a fix for Geckodriver so that the correct ARM version is installed on Mac Arm machines.
 ### Added
-* The new compare plugin makes it easy to use Mann Whitney U/Wilcox for support to find performance egressions. Read all about the plugin in the [documentation](https://www.sitespeed.io/documentation/sitespeed.io/compare/).
+* The new compare plugin [PR 4009](https://github.com/sitespeedio/sitespeed.io/pull/4009) makes it easy to use Mann Whitney U/Wilcox for support to find performance egressions. Read all about the plugin in the [documentation](https://www.sitespeed.io/documentation/sitespeed.io/compare/).
+* Firefox 120 in the Docker container [#4010](https://github.com/sitespeedio/sitespeed.io/pull/4010).
+* Button to download the console logs, thank you [bairov pavel](https://github.com/Amerousful) for PR [#4007](https://github.com/sitespeedio/sitespeed.io/pull/4007)
 
 ## 30.3.0 - 2023-11-09
 
