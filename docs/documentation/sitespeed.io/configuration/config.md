@@ -303,7 +303,7 @@ API
       --api.json      Output the result as JSON.
 
 compare
-      --compare.id                          The id of the test. Will be used to find the baseline test, that is using the id as a part of the name.  [string]
+      --compare.id                          The id of the test. Will be used to find the baseline test, that is using the id as a part of the name. If you do not add an id, an id will be generated using the URL and that will only work if you baseline against the exact same URL.  [string]
       --compare.baselinePath                Specifies the path to the baseline data file. This file is used as a reference for comparison against the current test data.  [string]
       --compare.saveBaseline                Determines whether to save the current test data as the new baseline. Set to true to save the current data as baseline for future comparisons.  [boolean] [default: false]
       --compare.testType                    Selects the statistical test type to be used for comparison. Options are mannwhitneyu for the Mann-Whitney U test and wilcoxon for the Wilcoxon signed-rank test.  [choices: "mannwhitneyu", " wilcoxon"] [default: "mannwhitneyu"]
