@@ -115,7 +115,7 @@ each metricGroup, groupName in compare.metrics
             }
           ]
           };
-          var optionsApa = {
+          var chartOptions = {
           showLine: false,
           axisX: {
             
@@ -124,7 +124,7 @@ each metricGroup, groupName in compare.metrics
               
           }
           };
-          var chart = new Chartist.Line(`#chart-${metricId}`, chartData, optionsApa);
+          var chart = new Chartist.Line(`#chart-${metricId}`, chartData, chartOptions);
 
         // Take care of series that has the same value
         chart.on('draw', function(data) {
