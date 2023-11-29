@@ -1,4 +1,7 @@
 - const compare = pageInfo.data.compare.pageSummary;
+- var createGraphLink = function(metricGroup, metricName) {
+-   return '#chart-' + metricGroup.replace(/\./g, '_') + '_' + metricName.replace(/\./g, '_');
+- }
 
 h1 Compare
 
@@ -58,7 +61,8 @@ table
         each values, metricName in metricGroup
           tr
             td
-              b #{groupName + '.' + metricName}
+              a(href=createGraphLink(groupName, metricName)) 
+                b #{groupName + '.' + metricName}
             if values.statisticalTestU === "N/A"
               td N/A
             else
