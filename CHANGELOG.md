@@ -1,5 +1,14 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 30.6.0 - 2023-11-29
+
+### Added
+* Make sure browser cpu benchmark is included in the baseline [#4015](https://github.com/sitespeedio/sitespeed.io/pull/4015).
+* Fixed so baseline metrics is linked to graphs [#4016](https://github.com/sitespeedio/sitespeed.io/pull/4016).
+
+### Fixed
+* Fix decimals on Google Web Vitals in baseline [#4014](https://github.com/sitespeedio/sitespeed.io/pull/4014).
+
 ## 30.5.0 - 2023-11-28
 ### Added
 * The new compare plugin can now run without an id. The id will then be generated from the URL. If you don't give it an id, yoiu can only compare pages with the exact same URL [#4013](https://github.com/sitespeedio/sitespeed.io/pull/4013).
