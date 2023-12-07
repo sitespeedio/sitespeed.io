@@ -2,9 +2,11 @@ import sys
 import json
 from scipy.stats import wilcoxon, mannwhitneyu
 
+
 def has_variability(sample):
     """Check if the sample has more than one unique value."""
     return len(set(sample)) > 1
+
 
 def perform_test(test_type, baseline, current, **kwargs):
     """Perform the statistical test based on the test type."""
@@ -17,6 +19,7 @@ def perform_test(test_type, baseline, current, **kwargs):
         return mannwhitneyu(current, baseline, **kwargs)
     else:
         raise ValueError("Invalid test type. Choose 'wilcoxon' or 'mannwhitneyu'.")
+
 
 input_data = json.loads(sys.stdin.read())
 options = input_data['options']
