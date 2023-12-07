@@ -17,6 +17,12 @@ p
 h2 Settings
 p 
   | The test conducted in this comparison is the #{compare.meta.testOptions.testType} test. The alternative hypothesis used for this test is "#{compare.meta.testOptions.alternative}".
+  if compare.meta.testOptions.alternative === 'less'
+    | This means that we test if the baseline is significant less that the current tests.
+  else if compare.meta.testOptions.alternative === 'greater'
+    | This means that we test if the baseline is siginficant higher than the current tests.
+  else if compare.meta.testOptions.alternative === 'two-sided'
+    | This means that we test the baseline vs the current tests both ways, if there are any change in both directions.
   if compare.meta.testOptions.testType === 'mannwhitneyu'
     | For more information on the settings of the Mann-Whitney U test, please refer to the 
     a(href='https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mannwhitneyu.html') official documentation.
