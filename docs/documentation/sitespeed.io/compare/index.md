@@ -98,7 +98,10 @@ And the compare graphs will look like this for every metric:
 ### Understanding Significant Changes
 
 In the results table, you'll see a list of all metrics with their corresponding scores.
-If a score is below 0.05, it indicates a statistically significant difference between the baseline and the current data. This means that the changes observed in the metric are likely not due to chance.
+
+If a score is below 0.05, it indicates a statistically significant difference between the baseline and the current data. By default we test if the current data is greater than the baseline. You can change that using `--compare.alternative`. You can test if it's smaller or if there are any difference between the two ('two-sided'). 
+
+If the score is below 0.05, it means that the changes observed in the metric are likely not due to chance.
 
 ### What does 'No Test Conducted' Mean?
 
