@@ -12,9 +12,9 @@ def perform_test(test_type, baseline, current, **kwargs):
         return None, "No variability"
 
     if test_type == 'wilcoxon':
-        return wilcoxon(baseline, current, **kwargs)
+        return wilcoxon(current, baseline, **kwargs)
     elif test_type == 'mannwhitneyu':
-        return mannwhitneyu(baseline, current, **kwargs)
+        return mannwhitneyu(current, baseline, **kwargs)
     else:
         raise ValueError("Invalid test type. Choose 'wilcoxon' or 'mannwhitneyu'.")
 

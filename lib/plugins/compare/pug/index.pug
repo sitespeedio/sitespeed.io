@@ -18,9 +18,9 @@ h2 Settings
 p 
   | The test conducted in this comparison is the #{compare.meta.testOptions.testType} test. The alternative hypothesis used for this test is "#{compare.meta.testOptions.alternative}".
   if compare.meta.testOptions.alternative === 'less'
-    | This means that we test if the baseline is significant less that the current tests.
+    | This means that we test if the current test is significant less that the baseline tests.
   else if compare.meta.testOptions.alternative === 'greater'
-    | This means that we test if the baseline is siginficant higher than the current tests.
+    | This means that we test if the current test is siginficant higher than the baseline tests.
   else if compare.meta.testOptions.alternative === 'two-sided'
     | This means that we test the baseline vs the current tests both ways, if there are any change in both directions.
   if compare.meta.testOptions.testType === 'mannwhitneyu'
