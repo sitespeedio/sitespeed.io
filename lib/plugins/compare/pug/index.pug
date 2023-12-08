@@ -90,7 +90,7 @@ each metricGroup, groupName in compare.metrics
   each values, metricName in metricGroup
     - var fullMetricName = groupName + '.' + metricName
     - var metricId = fullMetricName.replace(/\./g, '_')
-    h3 #{fullMetricName}
+    h3 #{fullMetricName} #{values.statisticalTestU === "N/A"? '' : values.statisticalTestU < 0.05 ? '(significant change)' : ''}
     .ct-chart(id=`chart-${metricId}`)
       .ct-legend
         span.ct-legend-item
