@@ -2,6 +2,11 @@
 - var createGraphLink = function(metricGroup, metricName) {
 -   return '#chart-' + metricGroup.replace(/\./g, '_') + '_' + metricName.replace(/\./g, '_');
 - }
+- var cliffDeltaHelper = function(delta) {
+-   if (delta < 0.3) return `Small effect (${h.decimals(delta)})`;
+-   if (delta < 0.5) return `Medium effect (${h.decimals(delta)})`;
+-   if (delta >= 0.5) return `Large effect (${h.decimals(delta)})`;
+- }
 
 h1 Compare
 
@@ -82,7 +87,8 @@ table
             if values.statisticalTestU === "N/A"
               td No Test Conducted
             else
-              td #{values.statisticalTestU < 0.05 ? 'Yes' : 'No'}
+              td #{values.statisticalTestU < 0.05 ? 'Yes - ' + cliffDeltaHelper(values.cliffsDelta) : 'No'}
+
 
 h2 Graphs
 
