@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2023-12-07T18:24:24.713Z</updated>
+    <updated>2023-12-08T00:49:06.552Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,24 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 30.8.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.8.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.8.0"/>
+        <updated>2023-12-07T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Use Cliffs delta to know the size of the significant change <a href="https://github.com/sitespeedio/sitespeed.io/pull/4024">#4024</a>.</li>
+</ul>
+ <ul>
+<li>Show if the graph has a siginficant change or not in the compare plugin <a href="https://github.com/sitespeedio/sitespeed.io/pull/4025">#4025</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 30.7.1]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.7.1</id>
@@ -178,31 +196,6 @@
 </ul>
  <ul>
 <li>Add support for getting verbose logs and Chromedriver logs from the recording phase of WebPageReplay <a href="https://github.com/sitespeedio/sitespeed.io/pull/3999">#3999</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 30.1.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.1.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.1.0"/>
-        <updated>2023-11-01T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>The Docker slim container uses Debian Bookworm <a href="https://github.com/sitespeedio/sitespeed.io/pull/3996">#3996</a>.</li>
-</ul>
- <ul>
-<li>Updated to Chrome 119 in the Docker container.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Fixed analysisstorer trying to save setup messages <a href="https://github.com/sitespeedio/sitespeed.io/pull/3995">#3995</a>.</li>
-</ul>
- <ul>
-<li>Updated to Browsertime 17.18.1 <a href="https://github.com/sitespeedio/sitespeed.io/pull/3992">#3992</a>.</li>
 </ul>
 ]]></summary>
         <author>
