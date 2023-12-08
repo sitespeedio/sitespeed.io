@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 30.8.0 - 2023-12-07
+### Added
+* Use Cliffs delta to know the size of the significant change [#4024](https://github.com/sitespeedio/sitespeed.io/pull/4024).
+* Show if the graph has a siginficant change or not in the compare plugin [#4025](https://github.com/sitespeedio/sitespeed.io/pull/4025).
+
+
 ## 30.7.1 - 2023-12-07
 ### Fixed
 * The old settings for MannWhitneyU tests where confusing. We compared the the baseline is less than the current tests. This PR switched so we instead look if the current tests are greater than the baseline. We also added some better explaining text on result page[#4023](https://github.com/sitespeedio/sitespeed.io/pull/4023).
