@@ -14,6 +14,10 @@ At the moment we are one core member that works on sitespeed.io in our free time
 ## Peter Hedenskog
 <a href="https://twitter.com/soulislove"><img src="{{site.baseurl}}/img/aboutus/peter.jpg" class="photo pull-left" width="200" height="200"></a>  I created sitespeed.io late 2012. It's been a lot of work and incredibly [fun](http://www.peterhedenskog.com/blog/2015/02/building-a-new-sitespeed.io/)! I'm a web performance geek, love the web and think Open Source is the way forward. I work in the Quality and test team at [Wikimedia](https://www.wikimedia.org/).
 
+You should also look at [the others performance tools](https://github.com/sitespeedio) we created through the years. 
+
+Through the use of [Browsertime](https://github.com/sitespeedio/browsertime) Mozilla has become a code contributor to the tool, making it easier to stay bleeding edge :)
+
 ## Retired
 We also have people that contributed alot through the years.
 
