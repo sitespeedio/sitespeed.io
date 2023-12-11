@@ -234,7 +234,7 @@ export default async function (context, commands) {
 
 If you do not give the measure command a URL, the command will prepare everything and start the video. Then it’s up to you to navigate/click on a link/submit the page. You also need to stop the measurement so that Browsertime/sitespeed.io knows that you want the metrics.
 
-Here's an example where we measure navigationg to the sitespeed.io documentationg page by first navigation to the sitespeed.io start page and then clicking on a link.
+Here's an example where we measure navigating to the sitespeed.io documentation page by first navigation to the sitespeed.io start page and then clicking on a link.
 
 ~~~javascript
 export default async function (context, commands) {
