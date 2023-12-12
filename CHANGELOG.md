@@ -4,6 +4,7 @@
 ### Added
 * Chrome and Edge 120 in the Docker container [#4027](https://github.com/sitespeedio/sitespeed.io/pull/4027).
 * Updated to Browsertime 19.2.0.
+* For users of the +1 container Lighthouse has been upgraded to 11.4.0.
 
 ## 30.8.0 - 2023-12-07
 ### Added
