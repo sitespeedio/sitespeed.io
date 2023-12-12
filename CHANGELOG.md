@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 30.9.0 - 2023-12-12
+### Added
+* Chrome and Edge 120 in the Docker container [#4027](https://github.com/sitespeedio/sitespeed.io/pull/4027).
+* Updated to Browsertime 19.2.0.
+
 ## 30.8.0 - 2023-12-07
 ### Added
 * Use Cliffs delta to know the size of the significant change [#4024](https://github.com/sitespeedio/sitespeed.io/pull/4024).
