@@ -74,8 +74,8 @@ table
             td
               a(href=createGraphLink(groupName, metricName)) 
                 b #{groupName + '.' + metricName}
-            if values.statisticalTestU === "N/A"
-              td N/A
+            if values.statisticalTestU === "N/A" || values.statisticalTestU === "Datasets are identical"
+              td #{values.statisticalTestU}
             else
               td #{h.decimals(values.statisticalTestU)}
             td #{h.decimals(values.baseline.mean)}
@@ -84,7 +84,7 @@ table
             td #{h.decimals(values.current.median)}
             td #{h.decimals(values.baseline.stdev)}
             td #{h.decimals(values.current.stdev)}
-            if values.statisticalTestU === "N/A"
+            if values.statisticalTestU === "N/A" || values.statisticalTestU === "Datasets are identical"
               td No Test Conducted
             else
               td #{values.statisticalTestU < 0.05 ? 'Yes - ' + cliffDeltaHelper(values.cliffsDelta) : 'No'}
@@ -96,7 +96,7 @@ each metricGroup, groupName in compare.metrics
   each values, metricName in metricGroup
     - var fullMetricName = groupName + '.' + metricName
     - var metricId = fullMetricName.replace(/\./g, '_')
-    h3 #{fullMetricName} #{values.statisticalTestU === "N/A"? '' : values.statisticalTestU < 0.05 ? '(significant change)' : ''}
+    h3 #{fullMetricName} #{values.statisticalTestU === "N/A" || values.statisticalTestU === "Datasets are identical" ? '' : values.statisticalTestU < 0.05 ? '(significant change)' : ''}
     .ct-chart(id=`chart-${metricId}`)
       .ct-legend
         span.ct-legend-item
