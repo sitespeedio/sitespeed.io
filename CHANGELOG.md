@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 30.10.0 - 2023-12-15
+### Added
+* Add isSignificant metric to send to Graphite when using the compare plugin. Will send 0 if there's no siginificant change, else send the Cliffs delta to know how large the change is [#4030](https://github.com/sitespeedio/sitespeed.io/pull/4030).
+
 ## 30.9.0 - 2023-12-12
 ### Added
 * Chrome and Edge 120 in the Docker container [#4027](https://github.com/sitespeedio/sitespeed.io/pull/4027).
