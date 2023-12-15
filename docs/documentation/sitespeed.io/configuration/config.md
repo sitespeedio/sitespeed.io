@@ -235,9 +235,9 @@ Slack
       --slack.hookUrl       WebHook url for the Slack team (check https://<your team>.slack.com/apps/manage/custom-integrations).
       --slack.userName      User name to use when posting status to Slack.  [default: "Sitespeed.io"]
       --slack.channel       The slack channel without the # (if something else than the default channel for your hook).
-      --slack.type          Send summary for a run, metrics from all URLs, only on errors or all to Slack.  [choices: "summary", "url", "error", "all"] [default: "all"]
-      --slack.limitWarning  The limit to get a warning in Slack using the limitMetric  [default: 90]
-      --slack.limitError    The limit to get a error in Slack using the limitMetric  [default: 80]
+      --slack.type          Send summary for a tested URL, metrics from all URLs (summary), only on errors from your tests or all to Slack.  [choices: "summary", "url", "error", "all"] [default: "all"]
+      --slack.limitWarning  The limit to get a warning in Slack using the limitMetric.  [default: 90]
+      --slack.limitError    The limit to get a error in Slack using the limitMetric.  [default: 80]
       --slack.limitMetric   The metric that will be used to set warning/error. You can choose only one at the moment.  [choices: "coachScore", "speedIndex", "firstVisualChange", "firstPaint", "visualComplete85", "lastVisualChange", "fullyLoaded"] [default: "coachScore"]
 
 s3

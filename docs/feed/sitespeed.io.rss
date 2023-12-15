@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Tue, 12 Dec 2023 08:09:57 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 15 Dec 2023 13:49:22 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,18 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 30.10.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.10.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.10.0</guid>
+            <pubDate>Fri, 15 Dec 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Add isSignificant metric to send to Graphite when using the compare plugin. Will send 0 if there&#39;s no siginificant change, else send the Cliffs delta to know how large the change is <a href="https://github.com/sitespeedio/sitespeed.io/pull/4030">#4030</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 30.9.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.9.0</link>
@@ -153,18 +165,6 @@
 <h3>Fixed</h3>
  <ul>
 <li>Downgrade puppeteer in the +1 container for Lighthouse, thank you <a href="https://github.com/Amerousful">bairov pavel</a> for PR <a href="https://github.com/sitespeedio/plugin-lighthouse/pull/123">#123</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 30.2.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.2.1</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.2.1</guid>
-            <pubDate>Fri, 03 Nov 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>The Docker+1 container got a fix for Lighthouse that didn&#39;t work in 30.2.0 (adding dev-shm when starting Chrome).</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
