@@ -28,6 +28,14 @@ Sensitive to Subtle Changes: The Mann Whitney U test, used for comparing two ind
 
 Utilizing these tests through the compare plugin allows for a sophisticated approach to web performance analysis. For instance, after deploying a new feature or update, you can compare the new performance data against a baseline using these tests. If the tests indicate a significant performance drop, it's a strong signal that the recent changes have negatively impacted the site's speed.
 
+Looking at medians can make it hard to see small changes. This is an example where we look at first visual change for the Barack Obama page. You can see that the metrics goes up at one point but then sometimes it comes back.
+![Median graph]({{site.baseurl}}/img/median.png){:loading="lazy"}
+{: .img-thumbnail}
+
+
+Looking for a signifacnt change help, this is the graph for the same metric when the change occured.
+![Significant graphs]({{site.baseurl}}/img/significant.png){:loading="lazy"}
+{: .img-thumbnail}
 
 ## Prerequisites
 To get the compare plugin to work, you need to have Python installed and the [scipy](https://scipy.org) library in Python. The easiest way to install that is with pip: `python -m pip install scipy`.  If you use our Docker containers this is already installed.
