@@ -16,14 +16,15 @@ twitterdescription: Install sitespeed.io using npm, yarn or Docker.
 * Lets place the TOC here
 {:toc}
 
-# Install
-You can run sitespeed.io using our Docker containers or using NodeJS.
+# Installation
 
-## Docker
+You can install sitespeed.io using Docker or NodeJS. 
 
-We have [Docker images](https://hub.docker.com/r/sitespeedio/sitespeed.io/) with sitespeed.io, Chrome, Firefox, Edge, Xvfb and all the software needed for recording a video of the browser screen and analyse it to get Visual Metrics. It is super easy to use). Here's how to use the container with both Firefox & Chrome (install [Docker](https://docs.docker.com/install/) first).
+## Using Docker
 
-### Mac & Linux
+Docker images include sitespeed.io, browsers (Chrome, Firefox, Edge), and tools for video recording and analysis.
+
+### Example command (Mac & Linux)
 
 ~~~bash
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io https://www.sitespeed.io -b firefox
@@ -38,18 +39,17 @@ C:\Users\Vicky> docker run --rm -v ${pwd}:/sitespeed.io sitespeedio/sitespeed.io
 
 That will output the data from the run in the current directory. You can read more about running the containers [here](/documentation/sitespeed.io/docker/).
 
-## Node JS
+## Using Node JS
 
-### Mac
-To be able to record a video of the screen and analyse the video, you need a couple of extra software except sitespeed.io. 
+Requires additional software like FFmpeg, ImageMagick, and Python dependencies.
 
-You need: [FFmpeg](https://ffmpeg.org), [ImageMagick 6](https://imagemagick.org/index.php) and [pillow](https://pillow.readthedocs.io/en/stable/).
+### Installation steps for Apple Mac M1
 
 Install on a fresh Apple Mac M1:
 
-1. Install Homebrew [https://brew.sh](https://brew.sh)
+1. Install Homebrew: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 2. Install latest NodeJS LTS (and npm). Either download it from [nodejs.org](https://nodejs.org/en/) or install using Homebrew:
-    `brew install node@16`
+    `brew install node@20`
 3. Make sure you can install using *npm* without using sudo. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
 4. Install ImageMagick 6
     `brew install imagemagick@6`
@@ -79,7 +79,6 @@ After that you can also install the browsers that you need for your testing: [Ch
 
 
 ### Linux
-
 
 If you are using Ubuntu you can use our prebuilt script. It will install all dependencies that you need to run sitespeed.io including latest Firefox and Chrome. Use it if you have a new machine or just setup a new cloud instance. It will also create a new user *sitespeedio* that you will use to run sitespeed.io. The script will ask for a new password for that user:
 

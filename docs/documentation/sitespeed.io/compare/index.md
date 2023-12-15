@@ -10,13 +10,13 @@ twitterdescription: Use Mann Whitney U or Wilcox statistical methods to know if 
 ---
 [Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / Compare
 
-# Compare
+# Compare - Statistical Methods for Regression Analysis
 {:.no_toc}
 
 * Let's place the TOC here
 {:toc}
 
-In the intricate world of web performance analysis, detecting performance regressions can be difficult. Subtle changes in your website code or infrastructure can lead to significant variations in performance, often hidden beneath layers of data. This is where the Mann Whitney U and Wilcoxon signed-rank tests, incorporated into sitespeed.io's compare plugin, shine as powerful statistical tools.
+Sitespeed.io utilizes Mann Whitney U and Wilcoxon tests for detecting performance regressions.
 
 ## Why Mann Whitney U and Wilcoxon for Web Performance?
 
@@ -87,7 +87,7 @@ The columns:
 6. **Current Median**: The median value for the current test run for each metric.
 7. **Baseline Std Dev**: Standard deviation for the baseline test run for each metric. This measures the amount of variation from the average.
 8. **Current Std Dev**: Standard deviation for the current test run for each metric.
-9. **Significant Change?**: This column indicates whether the change between the baseline and current test runs is statistically significant for each metric.
+9. **Significant Change?**: This column indicates whether the change between the baseline and current test runs is statistically significant for each metric.  If the change is statistically significant then we use [Cliffs Delta](https://en.wikipedia.org/wiki/Effect_size#Effect_size_for_ordinal_data) to know if the change is small, medium or large.
 
 
 And the compare graphs will look like this for every metric:
