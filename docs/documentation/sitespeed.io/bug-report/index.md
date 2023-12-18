@@ -75,7 +75,7 @@ Here's dos and don'ts if you want your bug fixed:
 
 Please do:
 * [Provide a reproducible test case](#explain-how-to-reproduce-your-issue).
-* If you don't get a response in a couple of days, write a message in the [general channel in Slack](https://sitespeedio.herokuapp.com/).
+* If you don't get a response in a couple of days, write a message in the [general channel in Slack](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw).
 
 Please don't:
 * Contact us on direct messages on Slack about the bug.

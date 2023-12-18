@@ -16,7 +16,7 @@ twitterdescription:
 * Lets place the TOC here
 {:toc}
 
-Here we keep questions that are frequently asked at [Slack](https://sitespeedio.herokuapp.com/) or at [GitHub](https://github.com/sitespeedio/sitespeed.io/issues/new).
+Here we keep questions that are frequently asked at [Slack](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw) or at [GitHub](https://github.com/sitespeedio/sitespeed.io/issues/new).
 
 ## Running tests
 Read this before you start to collect metrics.

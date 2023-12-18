@@ -10,6 +10,6 @@ body:
     id: your-idea
     attributes:
       label: Feature/improvement
-      description: You can also disuss new features/improvements in the [sitespeed.io Slack channel](https://sitespeedio.herokuapp.com/).
+      description: You can also disuss new features/improvements in the [sitespeed.io Slack channel](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw).
     validations:
       required: true
