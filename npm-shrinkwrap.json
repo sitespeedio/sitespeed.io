@@ -12,7 +12,7 @@
         "@google-cloud/storage": "6.9.5",
         "@influxdata/influxdb-client": "1.33.2",
         "@sitespeed.io/plugin": "0.0.6",
-        "@tgwf/co2": "0.13.6",
+        "@tgwf/co2": "0.13.10",
         "aws-sdk": "2.1327.0",
         "axe-core": "4.8.2",
         "browsertime": "19.3.1",
@@ -1026,9 +1026,9 @@
       }
     },
     "node_modules/@tgwf/co2": {
-      "version": "0.13.6",
-      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.13.6.tgz",
-      "integrity": "sha512-uV8y2voiAb9iQwzK+5dTFLNBu5P5/oCyMAvqD3/+X74sMCc/N2+4MhIY9JmpO1gBQykE647dd4l/40GiE7cKSw==",
+      "version": "0.13.10",
+      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.13.10.tgz",
+      "integrity": "sha512-iQZMYdLP+l1Kyi03EEE4jAZgzlAA8HRAbfgT3GgN6sUgbSoNS/UHijICUqgkum9aHIkDSOrtwkgbB/x3Gc/cQA==",
       "engines": {
         "node": ">=14.0.0"
       }
@@ -10048,9 +10048,9 @@
       }
     },
     "@tgwf/co2": {
-      "version": "0.13.6",
-      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.13.6.tgz",
-      "integrity": "sha512-uV8y2voiAb9iQwzK+5dTFLNBu5P5/oCyMAvqD3/+X74sMCc/N2+4MhIY9JmpO1gBQykE647dd4l/40GiE7cKSw=="
+      "version": "0.13.10",
+      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.13.10.tgz",
+      "integrity": "sha512-iQZMYdLP+l1Kyi03EEE4jAZgzlAA8HRAbfgT3GgN6sUgbSoNS/UHijICUqgkum9aHIkDSOrtwkgbB/x3Gc/cQA=="
     },
     "@tokenizer/token": {
       "version": "0.3.0",
