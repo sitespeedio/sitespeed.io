@@ -12,113 +12,103 @@
 [![Changelog #212][changelog-image]][changelog-url]
 
 
-[Website](https://www.sitespeed.io/) | [Documentation](https://www.sitespeed.io/documentation/sitespeed.io/) | [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md) | [Twitter](https://twitter.com/SiteSpeedio)
+[Website](https://www.sitespeed.io/) | [Documentation](https://www.sitespeed.io/documentation/sitespeed.io/) | [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md) | [Mastodon](https://fosstodon.org/@sitespeedio)
 
-## Welcome to the wonderful world of web performance!
+- [Welcome to the Wonderful World of Web Performance](#welcome-to-the-wonderful-world-of-web-performance)
+  - [What is sitespeed.io?](#what-is-sitespeedio)
+  - [Why Choose sitespeed.io?](#why-choose-sitespeedio)
+  - [Dive Into Our Documentation](#dive-into-our-documentation)
+- [Introduction](#introduction)
+- [Installation](#installation)
+  - [Docker](#docker)
+  - [NodeJS](#nodejs)
+- [Usage](#usage)
+  - [Examples](#examples)
+- [Contributing](#contributing)
+- [Reporting Issues](#reporting-issues)
+- [Community and Support](#community-and-support)
+- [License](#license)
 
-### What is sitespeed.io
+# Welcome to the wonderful world of web performance! {#welcome-to-the-wonderful-world-of-web-performance}
 
-**Sitespeed.io is a *complete web performance tool* that helps you measure the performance of your website. What exactly does that mean?**
+Welcome to `sitespeed.io`, the comprehensive web performance tool designed for everyone passionate about web speed. Whether you're a developer, a site owner, or just someone curious about website performance, `sitespeed.io` offers a powerful yet user-friendly way to analyze and optimize your website.
 
-Before we start telling you all about sitespeed.io you should just try it out:
+## What is sitespeed.io?
+
+`sitespeed.io` is more than just a tool; it's a complete solution for measuring, monitoring, and improving your website's performance. Built with simplicity and efficiency in mind, it enables you to:
+
+- **Test Websites Using Real Browsers**: Simulate real user interactions and conditions to get accurate performance data.
+- **Speed Optimization Feedback**: Get detailed insights into your website's construction and discover opportunities for enhancing speed.
+- **Track Performance Over Time**: Monitor changes and trends in your website's performance to stay ahead of potential issues.
+
+## Why Choose sitespeed.io?
+
+- **Open Source and Community-Driven**: Built and maintained by a community, ensuring continuous improvement and innovation.
+- **Versatile and Extensible**: Whether you're running a simple blog or a complex e-commerce site, `sitespeed.io` adapts to your needs.
+- **Seamless Integration**: Easily incorporate `sitespeed.io` into your development workflow, continuous integration systems, and monitoring setups.
+
+## Dive Into Our Documentation
+
+We've put countless hours into our [documentation](https://www.sitespeed.io/documentation/sitespeed.io/) to help you get the most out of `sitespeed.io`. From installation guides to advanced usage scenarios, our documentation is a treasure trove of information and tips.
 
 
-Using NodeJS/npm (you need Chrome, Firefox, Edge or Safari installed or Chrome/Firefox on Android)
+# Introduction
 
- ```bash
- npm i -g sitespeed.io && sitespeed.io https://www.sitespeed.io/
- ```
+Sitespeed.io is a complete web performance tool that helps you measure the performance of your website. It is designed to:
 
-Or using Docker:
+1. Test websites using real browsers, simulating real user connectivity.
+2. Analyze your page’s construction and provide feedback for speed optimization.
+3. Collect and maintain data on page construction for easy tracking of changes.
 
- ```bash
- docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
- ```
+Use cases on when to use sitespeed.io.
+**Web performance audit**: Run performance tests from your terminal.
+**Continuous Integration**: Detect web performance regressions early in the development cycle.
+**Production Monitoring**: Monitor performance in production and get alerted on regressions.
 
 
+# Installation
 
-Ok, now you have tried it, let us tell you more about sitespeed.io. We think of a complete web performance tool as having three key capabilities:
-
- - It test web sites using real browsers, simulating real users connectivity and collect important user centric metrics like Speed Index and First Visual Render.
- - It analyse how your page is built and give feedback how you can make it faster for the end user.
- - It collect and keep data how your pages is built so you easily can track changes.
-
-**What is sitespeed.io good for?**
-
-It is usually used in two different areas:
-
- - Running in your continuous integration to find web performance regressions early: on commits or when you move code to your test environment
- - Monitoring your performance in production, alerting on regressions.
-
-To understand how sitespeed.io does these things, let's talk about how it works.
-
-First a few key concepts:
-
- - Sitespeed.io is built upon a couple of other Open Source tools in the sitespeed.io suite.
- - [Browsertime](https://github.com/sitespeedio/browsertime) is the tool that drives the browser and collect metrics.
- - [The Coach](https://github.com/sitespeedio/coach) knows how to build fast websites and analyse your page and give you feedback what you should change.
- - Visual Metrics is metrics collected from a video recording of the browser screen.
- - Everything in sitespeed.io is a [plugin](https://www.sitespeed.io/documentation/sitespeed.io/plugins/) and they communicate by passing messages on a queue.
-
-When you as user choose to test a URL, this is what happens on a high level:
-
- 1. sitespeed.io starts and initialise all configured plugins.
- 2. The URL is passed around the plugins through the queue.
-    1. Browsertime gets the URL and opens the browser.
-    2. It starts to record a video of the browser screen.
-    3. The browser access the URL.
-    4. When the page is finished, Browsertime takes a screenshot of the page.
-    5. Then run some JavaScripts to analyse the page (using Coach and Browsertime scripts).
-    6. Stop the video and close the browser.
-    7. Analyse the video to get Visual Metrics like First Visual Change and Speed Index.
-    8. Browsertime passes all metrics and data on the queue so other plugins can use it.
- 3. The HTML/Graphite/InfluxDB plugin collects the metrics in queue.
- 4. When all URLs are tested, sitespeed sends a message telling plugins to summarise the metrics and then render it.
- 5. Plugins pickup the render message and the HTML plugin writes the HTML to disk.
-
- ## Try it out
-
- Using Docker (use latest Docker):
+## Docker
 
  ```bash
  docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
  ```
 
- Or install using npm:
+## NodeJS
 
  ```bash
  npm i -g sitespeed.io
+ sitespeed.io https://www.example.com
  ```
 
- Or clone the repo and test the latest changes:
+Using NodeJS requires additional software like FFmpeg and Python dependencies if you want all functionality. You can read how to install that [here](https://www.sitespeed.io/documentation/sitespeed.io/installation/).
+
+
+# Usage
+
+sitespeed.io is designed to be straightforward to use, regardless of your experience level. Here's a quick guide on how to get started.
 
  ```bash
- git clone https://github.com/sitespeedio/sitespeed.io.git
- cd sitespeed.io
- npm install
- bin/sitespeed.js --help
- bin/sitespeed.js https://www.sitespeed.io/
-```
+sitespeed.io https://www.example.com --browser chrome -n 5
+ ```
 
-## More details
+That will test *https://www.example.com* using Chrome with 5 iterations.
 
-Using sitespeed.io you can:
-* Test your web site against Web Performance best practices using the [Coach](https://github.com/sitespeedio/coach).
-* Collect Navigation Timing API, User Timing API and Visual Metrics from Firefox/Chrome using [Browsertime](https://github.com/sitespeedio/browsertime).
-* Run your custom-made JavaScript and collect whichever metric(s) you need.
-* Test one or multiple pages, across one or many runs to get more-accurate metrics.
-* Create HTML-result pages or store the metrics in Graphite.
-* Write your own plugins that can do whatever tests you want/need.
 
-See all the latest changes in the [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md).
+You can checkout all configuration options [here](https://www.sitespeed.io/documentation/sitespeed.io/configuration/) or run `sitespeed.io --help` to see all the options.
 
-Checkout our example [dashboard.sitespeed.io](https://dashboard.sitespeed.io/)
 
-A summary report in HTML:
+## Examples
+
+sitespeed.io generates HTML reports. 
+
+Here's an example of a summary report in HTML:
 <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/start-readme.jpg">
 
-Individual page report:
+And an individual page report:
 <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/start-url-readme.jpg">
+
+sitespeed.io makes it easy to monitor your websites performance over time. We have an example setup up and running at [dashboard.sitespeed.io](https://dashboard.sitespeed.io/) using sitespeed.io, Graphite and Grafana.
 
 Collected metrics from a URL in Graphite/Grafana:
 <img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/grafana-readme.jpg">
@@ -128,46 +118,38 @@ And look at trends in Grafana:
 
 Video - easiest using Docker. This gif is optimized, the quality is much better IRL:
 
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/barack.gif">
+<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/barack.gif">s
 
-## Test using WebPageReplay
-We have a special Docker container that comes with [WebPageReplay](https://github.com/catapult-project/catapult/blob/main/web_page_replay_go/README.md) installed. This is a really early alpha release but we think you should try it out.
+# Contributing
 
-WebPageReplay will let you replay your page locally (getting rid of server latency etc) and makes it easier to have stable metrics and find front end regressions.
+We welcome contributions from the community! Whether you're fixing a bug, adding a feature, or improving documentation, your help is valuable. Here’s how you can contribute:
 
-It works like this:
-1. WebPageReplay is started in record mode
-2. Browsertime access the URLs you choose one time (so it is recorded)
-3. WebPageReplay is closed down
-4. WebPageReplay in replay mode is started
-5. Sitespeed.io (using Browsertime) test the URL so many times you choose
-6. WebPageReplay in replay mode is closed down
+1. **Create an Issue**: Create an issue and discuss with us how to implement the issue.
+2. **Fork and Clone**: Fork the repository and clone it locally.
+3. **Create a Branch**: Create a new branch for your feature or bug fix.
+4. **Develop**: Make your changes. Ensure you adhere to the coding standards and write tests if applicable.
+5. **Test**: Run tests to ensure everything works as expected.
+6. **Submit a Pull Request**: Push your changes to your fork and submit a pull request to the main repository.
 
-You can change latency by setting a Docker environment variable. Use REPLAY to turn on the replay functionality.
+Before contributing, please read our [CONTRIBUTING.md](.gitub/CONTRIBUTING.md) for more detailed information on how to contribute.
 
-Default browser is Chrome:
+# Reporting Issues
+Found a bug or have a feature request? Please use the [GitHub Issues](https://github.com/sitespeedio/sitespeed.io/issues) to report them. Be sure to check existing issues to avoid duplicates.
 
-```
-docker run --cap-add=NET_ADMIN --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io -n 5 -b chrome https://en.wikipedia.org/wiki/Barack_Obama
-```
+# Community and Support
 
-Use Firefox:
+Join our community! Whether you need help, want to share your experience, or discuss potential improvements, there are several ways to get involved:
 
-```
-docker run --cap-add=NET_ADMIN --rm -v "$(pwd)":/sitespeed.io -e REPLAY=true -e LATENCY=100 sitespeedio/sitespeed.io -n 11 -b firefox https://en.wikipedia.org/wiki/Barack_Obama
-```
+- **Slack**: Connect with fellow users and the development team on [Slack](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw).
+- **GitHub Issues**: For technical questions, feature requests, and bug reports, use our [GitHub issues](https://github.com/sitespeedio/sitespeed.io/issues).
+- **RSS/Changelog**: Latest releases and information can always be found in our [RSS feed](https://github.com/sitespeedio/sitespeed.io/releases.atom) and in our [changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md).
+- **Mastodon**: Follow us on Mastodon [https://fosstodon.org/@sitespeedio](https://fosstodon.org/@sitespeedio).
 
-<hr>
+We're excited to have you in our community and look forward to your contributions and interactions!
 
-# Sponsors
+# License
+[The MIT License (MIT)](LICENSE).
 
-<a href="https://www.macstadium.com"><img src="https://uploads-ssl.webflow.com/5ac3c046c82724970fc60918/5c019d917bba312af7553b49_MacStadium-developerlogo.png"></a>
-
-We have a Mac Mini sponsored by [MacStadium](https://www.macstadium.com) and you too can sponsor us to help us keep sitespeed.io running and making sure we can have the best test setup as possible. Read our [sponsor page](https://github.com/sponsors/soulgalore) for more info.
-
-[travis-image]: https://img.shields.io/travis/sitespeedio/sitespeed.io.svg?style=flat-square
-[travis-url]: https://travis-ci.org/sitespeedio/sitespeed.io
-[stars-url]: https://github.com/sitespeedio/sitespeed.io/stargazers
 [stars-image]: https://img.shields.io/github/stars/sitespeedio/sitespeed.io.svg?style=flat-square
 [downloads-image]: https://img.shields.io/npm/dt/sitespeed.io.svg?style=flat-square
 [downloads-url]: https://npmjs.org/package/sitespeed.io
