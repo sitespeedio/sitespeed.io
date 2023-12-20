@@ -14,6 +14,8 @@
 
 [Website](https://www.sitespeed.io/) | [Documentation](https://www.sitespeed.io/documentation/sitespeed.io/) | [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md) | [Mastodon](https://fosstodon.org/@sitespeedio)
 
+
+# Table of Contents
 - [Welcome to the Wonderful World of Web Performance](#welcome-to-the-wonderful-world-of-web-performance)
   - [What is sitespeed.io?](#what-is-sitespeedio)
   - [Why Choose sitespeed.io?](#why-choose-sitespeedio)
@@ -28,6 +30,7 @@
 - [Reporting Issues](#reporting-issues)
 - [Community and Support](#community-and-support)
 - [License](#license)
+
 
 # Welcome to the wonderful world of web performance! {#welcome-to-the-wonderful-world-of-web-performance}
 
@@ -50,7 +53,6 @@ Welcome to `sitespeed.io`, the comprehensive web performance tool designed for e
 ## Dive Into Our Documentation
 
 We've put countless hours into our [documentation](https://www.sitespeed.io/documentation/sitespeed.io/) to help you get the most out of `sitespeed.io`. From installation guides to advanced usage scenarios, our documentation is a treasure trove of information and tips.
-
 
 # Introduction
 
@@ -150,6 +152,7 @@ We're excited to have you in our community and look forward to your contribution
 # License
 [The MIT License (MIT)](LICENSE).
 
+[stars-url]: https://github.com/sitespeedio/sitespeed.io/stargazers
 [stars-image]: https://img.shields.io/github/stars/sitespeedio/sitespeed.io.svg?style=flat-square
 [downloads-image]: https://img.shields.io/npm/dt/sitespeed.io.svg?style=flat-square
 [downloads-url]: https://npmjs.org/package/sitespeed.io
