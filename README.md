@@ -62,7 +62,7 @@ Sitespeed.io is a complete web performance tool that helps you measure the perfo
 2. Analyze your page’s construction and provide feedback for speed optimization.
 3. Collect and maintain data on page construction for easy tracking of changes.
 
-Use cases on when to use sitespeed.io.
+Use cases on when to use `sitespeed.io`.
 - **Web performance audit**: Run performance tests from your terminal.
 - **Continuous Integration**: Detect web performance regressions early in the development cycle.
 - **Production Monitoring**: Monitor performance in production and get alerted on regressions.
@@ -83,7 +83,7 @@ This command pulls the latest sitespeed.io Docker image and runs a test on the s
 
 ## NodeJS
 
-If you prefer installing sitespeed.io as an npm package, ensure you have NodeJS installed on your system. Then, install sitespeed.io globally using npm:
+If you prefer installing `sitespeed.io` as an npm package, ensure you have NodeJS installed on your system. Then, install `sitespeed.io` globally using npm:
 
  ```bash
  npm i -g sitespeed.io
@@ -129,25 +129,52 @@ Whether you're running a quick check or a detailed analysis, sitespeed.io provid
 
 ## Examples
 
-sitespeed.io generates HTML reports. 
+`sitespeed.io` provides insightful HTML reports that help you visualize and understand your website's performance. Here are some examples to illustrate what you can achieve:
 
-Here's an example of a summary report in HTML:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/start-readme.jpg">
+### Summary Report
 
-And an individual page report:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/start-url-readme.jpg">
+Here's an example of a summary report in HTML, offering a comprehensive overview of your site's performance metrics:
 
-sitespeed.io makes it easy to monitor your websites performance over time. We have an example setup up and running at [dashboard.sitespeed.io](https://dashboard.sitespeed.io/) using sitespeed.io, Graphite and Grafana.
+![Summary Report](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/start-readme.jpg)
 
-Collected metrics from a URL in Graphite/Grafana:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/grafana-readme.jpg">
+This report includes key performance indicators like load times, page size, and request counts, giving you a quick snapshot of your site’s overall health.
 
-And look at trends in Grafana:
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/grafana-trends-readme.jpg">
+### Individual Page Report
 
-Video - easiest using Docker. This gif is optimized, the quality is much better IRL:
+For more detailed analysis, here's an individual page report:
 
-<img src="https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/barack.gif">s
+![Individual Page Report](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/start-url-readme.jpg)
+
+This report dives deeper into a single page's performance, providing metrics on aspects like scripting, rendering, and network activity, crucial for pinpointing specific areas of improvement.
+
+### Performance Monitoring Dashboard
+
+To monitor your website’s performance over time, check out our live setup at [dashboard.sitespeed.io](https://dashboard.sitespeed.io/), which integrates `sitespeed.io` with Graphite and Grafana.
+
+#### Metrics in Graphite/Grafana
+
+Collected metrics from a URL visualized in Graphite/Grafana:
+
+![Graphite/Grafana Metrics](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/grafana-readme.jpg)
+
+This setup allows for continuous tracking of performance, helping you identify trends and potential issues.
+
+#### Trends in Grafana
+
+Trends over time in Grafana provide a long-term view of your site's performance:
+
+![Grafana Trends](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/grafana-trends-readme.jpg)
+
+With these insights, you can make informed decisions about optimizations and track the impact of changes you make.
+
+### Video Performance Analysis (Docker)
+
+For visual feedback, `sitespeed.io` can generate videos, making it easier to see how your site loads in real-time. Here's an optimized sample video:
+
+![Video Analysis](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/barack.gif)
+
+Video analysis is most easily done using Docker and offers a unique perspective on user experience, highlighting areas that need attention.
+
 
 # Contributing
 
