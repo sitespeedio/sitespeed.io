@@ -32,7 +32,7 @@
 - [License](#license)
 
 
-# Welcome to the wonderful world of web performance! {#welcome-to-the-wonderful-world-of-web-performance}
+# Welcome to the wonderful world of web performance!
 
 Welcome to `sitespeed.io`, the comprehensive web performance tool designed for everyone passionate about web speed. Whether you're a developer, a site owner, or just someone curious about website performance, `sitespeed.io` offers a powerful yet user-friendly way to analyze and optimize your website.
 
