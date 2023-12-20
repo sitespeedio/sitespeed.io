@@ -63,42 +63,69 @@ Sitespeed.io is a complete web performance tool that helps you measure the perfo
 3. Collect and maintain data on page construction for easy tracking of changes.
 
 Use cases on when to use sitespeed.io.
-**Web performance audit**: Run performance tests from your terminal.
-**Continuous Integration**: Detect web performance regressions early in the development cycle.
-**Production Monitoring**: Monitor performance in production and get alerted on regressions.
-
+- **Web performance audit**: Run performance tests from your terminal.
+- **Continuous Integration**: Detect web performance regressions early in the development cycle.
+- **Production Monitoring**: Monitor performance in production and get alerted on regressions.
 
 # Installation
 
+Getting started with `sitespeed.io` is straightforward. You can install it using Docker or NodeJS, depending on your preference and setup. Follow these simple steps to begin optimizing your website's performance.
+
 ## Docker
+
+Using Docker is the easiest way to get started with `sitespeed.io`, especially if you don't want to handle dependencies manually. Run the following command to use `sitespeed.io` in a Docker container:
 
  ```bash
  docker run --rm -v "$(pwd)":/sitespeed.io sitespeedio/sitespeed.io https://www.sitespeed.io/
  ```
 
+This command pulls the latest sitespeed.io Docker image and runs a test on the sitespeed.io website. The **-v "$(pwd)":/sitespeed.io** part mounts the current directory into the container, allowing you to easily access test results.
+
 ## NodeJS
+
+If you prefer installing sitespeed.io as an npm package, ensure you have NodeJS installed on your system. Then, install sitespeed.io globally using npm:
 
  ```bash
  npm i -g sitespeed.io
- sitespeed.io https://www.example.com
  ```
 
-Using NodeJS requires additional software like FFmpeg and Python dependencies if you want all functionality. You can read how to install that [here](https://www.sitespeed.io/documentation/sitespeed.io/installation/).
+ After installation, you can start using sitespeed.io by running:
+  
+```bash
+sitespeed.io https://www.example.com
+```
 
+Replace https://www.example.com with the URL you wish to test. Note that using NodeJS might require additional dependencies like FFmpeg and Python. Detailed installation instructions for these dependencies can be found [here](https://www.sitespeed.io/documentation/sitespeed.io/installation/).
+
+Choose the method that best suits your environment and get ready to dive into web performance optimization with sitespeed.io!
 
 # Usage
 
-sitespeed.io is designed to be straightforward to use, regardless of your experience level. Here's a quick guide on how to get started.
+`sitespeed.io` is tailored to be user-friendly, making web performance testing accessible regardless of your technical expertise. Here's a straightforward guide to help you begin your web performance optimization journey.
+
+## Basic Usage
+
+To start testing your website, simply run `sitespeed.io` with the URL of the site you want to analyze. For example:
 
  ```bash
 sitespeed.io https://www.example.com --browser chrome -n 5
  ```
 
-That will test *https://www.example.com* using Chrome with 5 iterations.
+This command tests https://www.example.com using Chrome and performs 5 iterations of the test. This approach helps in obtaining a more accurate median performance measurement by testing the site multiple times.
 
+## Advanced Configuration
 
-You can checkout all configuration options [here](https://www.sitespeed.io/documentation/sitespeed.io/configuration/) or run `sitespeed.io --help` to see all the options.
+sitespeed.io offers a wide range of configuration options to tailor the tests to your specific needs. You can specify different browsers, adjust connectivity settings, and much more. For a comprehensive list of all available options, visit our [configuration documentation](https://www.sitespeed.io/documentation/sitespeed.io/configuration/).
 
+Additionally, for a quick overview of all command-line options, you can run:
+
+```bash
+sitespeed.io --help
+```
+
+This command displays all the available flags and settings you can use with sitespeed.io, helping you fine-tune your performance testing to fit your unique requirements.
+
+Whether you're running a quick check or a detailed analysis, sitespeed.io provides the flexibility and power you need to deeply understand and improve your website's performance.
 
 ## Examples
 
