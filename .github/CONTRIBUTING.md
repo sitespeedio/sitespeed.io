@@ -21,4 +21,4 @@ If you have an idea or something that you need sitespeed.io to handle, add an is
 
 Thanks for your time & support!
 
-Peter, Tobias & Jonathan
+Peter

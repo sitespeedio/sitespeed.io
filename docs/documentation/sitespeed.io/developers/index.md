@@ -193,7 +193,7 @@ To be able to release a new version you new to have access to our Docker account
 
 To do a release you need to first install np (a better *npm publish*): <code>npm install --global np</code>
 
-Before you do a release, remember to let your latest code change run a couple of hours on our test server before you push the release (the latest code is automatically deployed on the test server). You will find errors from the test server on the [#alert channel on Slack](https://sitespeedio.herokuapp.com/).
+Before you do a release, remember to let your latest code change run a couple of hours on our test server before you push the release (the latest code is automatically deployed on the test server). You will find errors from the test server on the [#alert channel on Slack](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw).
 
 Do the release:
 
