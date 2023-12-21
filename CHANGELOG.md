@@ -1,5 +1,13 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 30.11.0 - UNRELEASED
+### Fixed
+* Moved functionality from co2 to sitespeed.io see [#4034](https://github.com/sitespeedio/sitespeed.io/pull/4034).
+
+### Added 
+* Upgraded the Docker container to use Firefox 121 see [#4033](https://github.com/sitespeedio/sitespeed.io/pull/4033).
+* Updated to [Browsertime 19.3.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1931---2023-12-18) [#4031](https://github.com/sitespeedio/sitespeed.io/pull/4031).
+
 ## 30.10.0 - 2023-12-15
 ### Added
 * Add isSignificant metric to send to Graphite when using the compare plugin. Will send 0 if there's no siginificant change, else send the Cliffs delta to know how large the change is [#4030](https://github.com/sitespeedio/sitespeed.io/pull/4030).
