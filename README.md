@@ -20,16 +20,19 @@
   - [What is sitespeed.io?](#what-is-sitespeedio)
   - [Why Choose sitespeed.io?](#why-choose-sitespeedio)
   - [Dive Into Our Documentation](#dive-into-our-documentation)
-- [Introduction](#introduction)
 - [Installation](#installation)
   - [Docker](#docker)
   - [NodeJS](#nodejs)
 - [Usage](#usage)
-  - [Examples](#examples)
+  - [Basic Usage](#basic-usage)
+  - [Advanced Configuration](#advanced-configuration)
+  - [Mobile Performance Testing](#mobile-performance-testing)
+- [Examples](#examples)
 - [Contributing](#contributing)
 - [Reporting Issues](#reporting-issues)
 - [Community and Support](#community-and-support)
 - [License](#license)
+
 
 
 # Welcome to the wonderful world of web performance!
@@ -44,6 +47,11 @@ Welcome to `sitespeed.io`, the comprehensive web performance tool designed for e
 - **Speed Optimization Feedback**: Get detailed insights into your website's construction and discover opportunities for enhancing speed.
 - **Track Performance Over Time**: Monitor changes and trends in your website's performance to stay ahead of potential issues.
 
+Use cases on when to use `sitespeed.io`.
+- **Web performance audit**: Run performance tests from your terminal.
+- **Continuous Integration**: Detect web performance regressions early in the development cycle.
+- **Production Monitoring**: Monitor performance in production and get alerted on regressions.
+
 ## Why Choose sitespeed.io?
 
 - **Open Source and Community-Driven**: Built and maintained by a community, ensuring continuous improvement and innovation.
@@ -54,18 +62,6 @@ Welcome to `sitespeed.io`, the comprehensive web performance tool designed for e
 
 We've put countless hours into our [documentation](https://www.sitespeed.io/documentation/sitespeed.io/) to help you get the most out of `sitespeed.io`. From installation guides to advanced usage scenarios, our documentation is a treasure trove of information and tips.
 
-# Introduction
-
-Sitespeed.io is a complete web performance tool that helps you measure the performance of your website. It is designed to:
-
-1. Test websites using real browsers, simulating real user connectivity.
-2. Analyze your page’s construction and provide feedback for speed optimization.
-3. Collect and maintain data on page construction for easy tracking of changes.
-
-Use cases on when to use `sitespeed.io`.
-- **Web performance audit**: Run performance tests from your terminal.
-- **Continuous Integration**: Detect web performance regressions early in the development cycle.
-- **Production Monitoring**: Monitor performance in production and get alerted on regressions.
 
 # Installation
 
@@ -127,6 +123,32 @@ This command displays all the available flags and settings you can use with site
 
 Whether you're running a quick check or a detailed analysis, sitespeed.io provides the flexibility and power you need to deeply understand and improve your website's performance.
 
+## Mobile Performance Testing
+
+In today's mobile-first world, ensuring your website performs optimally on smartphones and tablets is crucial. With `sitespeed.io`, you can simulate and analyze the performance of your website on mobile devices, helping you understand and improve the user experience for mobile audiences.
+
+### Why Test on Mobile?
+
+- **User Experience**: A significant portion of web traffic comes from mobile devices. Testing on mobile ensures your site is optimized for these users.
+- **Search Engine Ranking**: Search engines like Google prioritize mobile-friendly websites in their search results.
+- **Performance Insights**: Mobile devices have different performance characteristics than desktops, such as CPU limitations and network variability.
+
+### How sitespeed.io Helps
+
+- **Real Browser Testing**: Simulate mobile browsers to get accurate performance data as experienced by real users.
+- **Device-Specific Metrics**: Gain insights into how your site performs on different mobile devices and networks.
+- **Responsive Design Analysis**: Test how well your site adapts to various screen sizes and orientations.
+
+### Getting Started
+
+To start testing your website’s mobile performance, you need to setup your mobile phone for testing. We got [documentation for setting up your Android phone](https://www.sitespeed.io/documentation/sitespeed.io/mobile-phones/#test-on-android) and [iOS](https://www.sitespeed.io/documentation/sitespeed.io/mobile-phones/#test-on-ios). 
+
+When your setup is ready, you can run tests on your Android phone.
+
+```bash
+sitespeed.io https://www.example.com --android
+```
+
 ## Examples
 
 `sitespeed.io` provides insightful HTML reports that help you visualize and understand your website's performance. Here are some examples to illustrate what you can achieve:
@@ -167,9 +189,9 @@ Trends over time in Grafana provide a long-term view of your site's performance:
 
 With these insights, you can make informed decisions about optimizations and track the impact of changes you make.
 
-### Video Performance Analysis (Docker)
+### Video Performance Analysis
 
-For visual feedback, `sitespeed.io` can generate videos, making it easier to see how your site loads in real-time. Here's an optimized sample video:
+For visual feedback, `sitespeed.io` can generate videos, making it easier to see how your site loads in real-time. Here's an sample video:
 
 ![Video Analysis](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docs/img/barack.gif)
 
