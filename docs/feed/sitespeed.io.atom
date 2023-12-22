@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2023-12-21T12:44:25.207Z</updated>
+    <updated>2023-12-22T05:08:07.023Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 31.0.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.0.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.0.0"/>
+        <updated>2023-12-22T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>The new version of Browsertime also fix the bug in Firefox 121 on Mac so you can start it.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 30.11.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.11.0</id>
@@ -167,31 +182,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Fix for Firefox when generating the result HTML. It was broken since we where missing CPU data.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 30.4.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.4.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.4.0"/>
-        <updated>2023-11-27T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>The new compare plugin <a href="https://github.com/sitespeedio/sitespeed.io/pull/4009">PR 4009</a> makes it easy to use Mann Whitney U/Wilcox for support to find performance egressions. Read all about the plugin in the <a href="https://www.sitespeed.io/documentation/sitespeed.io/compare/">documentation</a>.</li>
-</ul>
- <ul>
-<li>Firefox 120 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4010">#4010</a>.</li>
-</ul>
- <ul>
-<li>Button to download the console logs, thank you <a href="https://github.com/Amerousful">bairov pavel</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4007">#4007</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Upgrade to Browsertime 19.1.0 with a fix for Geckodriver so that the correct ARM version is installed on Mac Arm machines.</li>
 </ul>
 ]]></summary>
         <author>

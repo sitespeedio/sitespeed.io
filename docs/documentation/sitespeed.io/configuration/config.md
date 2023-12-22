@@ -1,7 +1,7 @@
 sitespeed.js [options] <url>/<file>
 
 Browser
-  -b, --browsertime.browser, --browser                                                              Choose which Browser to use when you test. Safari only works on Mac OS X and iOS 13 (or later). Chrome needs to be the same version as the current installed  ChromeDriver (check the changelog for what version that is currently used). Use --chrome.chromedriverPath to use another ChromeDriver version.  [choices: "chrome", "firefox", "safari", "edge"] [default: "chrome"]
+  -b, --browsertime.browser, --browser                                                              Choose which Browser to use when you test. Safari only works on Mac OS X and iOS 13 (or later).  [choices: "chrome", "firefox", "safari", "edge"] [default: "chrome"]
   -n, --browsertime.iterations                                                                      How many times you want to test each page  [default: 3]
       --browsertime.spa, --spa                                                                      Convenient parameter to use if you test a SPA application: will automatically wait for X seconds after last network activity and use hash in file names. Read https://www.sitespeed.io/documentation/sitespeed.io/spa/  [boolean] [default: false]
       --browsertime.debug, --debug                                                                  Run Browsertime in debug mode. Use commands.breakpoint(name) to set breakpoints in your script. Debug mode works for Firefox/Chrome/Edge on desktop.  [boolean] [default: false]
@@ -156,7 +156,7 @@ Grafana
       --grafana.host                  The Grafana host used when sending annotations.
       --grafana.port                  The Grafana port used when sending annotations to Grafana.  [default: 80]
       --grafana.auth                  The Grafana auth/bearer value used when sending annotations to Grafana. If you do not set Bearer/Auth, Bearer is automatically set. See http://docs.grafana.org/http_api/auth/#authentication-api
-      --grafana.annotationTitle       Add a title to the annotation sent for a run.
+      --grafana.annotationTitle
       --grafana.annotationMessage     Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
       --grafana.annotationTag         Add a extra tag to the annotation sent for a run. Repeat the --grafana.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
       --grafana.annotationScreenshot  Include screenshot (from Browsertime/WebPageTest) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
