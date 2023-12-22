@@ -130,6 +130,21 @@ Screenshot
       --screenshotParams.jpg.quality           Quality of the JPEG screenshot. 1-100  [default: 80]
       --screenshotParams.maxSize               The max size of the screenshot (width and height).  [default: 2000]
 
+PageLoad
+      --pageCompleteCheck             Supply a JavaScript (inline or JavaScript file) that decides when the browser is finished loading the page and can start to collect metrics. The JavaScript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd. By default the tests ends 2 seconds after loadEventEnd. Also checkout --pageCompleteCheckInactivity and --pageCompleteCheckPollTimeout
+      --pageCompleteWaitTime          How long time you want to wait for your pageComplteteCheck to finish, after it is signaled to closed. Extra parameter passed on to your pageCompleteCheck.  [default: 8000]
+      --pageCompleteCheckInactivity   Alternative way to choose when to end your test. This will wait for 2 seconds of inactivity that happens after loadEventEnd.  [boolean] [default: false]
+      --pageCompleteCheckNetworkIdle  Alternative way to choose when to end your test that works in Chrome and Firefox. Uses CDP or WebDriver Bidi to look at network traffic instead of running JavaScript in the browser to know when to end the test. By default this will wait 5 seconds of inactivity in the network log (no requets/responses in 5 seconds). Use --timeouts.networkIdle to change the 5 seconds. The test will end after 2 minutes if there is still activity on the network. You can change that timout using --timeouts.pageCompleteCheck  [boolean] [default: false]
+      --pageCompleteCheckPollTimeout  The time in ms to wait for running the page complete check the next time.  [number] [default: 1500]
+      --pageCompleteCheckStartWait    The time in ms to wait for running the page complete check for the first time. Use this when you have a pageLoadStrategy set to none  [number] [default: 5000]
+      --pageLoadStrategy              Set the strategy to waiting for document readiness after a navigation event. After the strategy is ready, your pageCompleteCheck will start running.  [string] [choices: "eager", "none", "normal"] [default: "none"]
+      --timeToSettle                  Extra time added for the browser to settle before starting to test a URL. This delay happens after the browser was opened and before the navigation to the URL  [number] [default: 0]
+      --webdriverPageload             Use webdriver.get to initialize the page load instead of window.location.  [boolean] [default: false]
+      --cacheClearRaw                 Use internal browser functionality to clear browser cache between runs instead of only using Selenium.  [boolean] [default: false]
+      --flushDNS                      Flush DNS between runs, works on Mac OS and Linux. Your user needs sudo rights to be able to flush the DNS.  [boolean] [default: false]
+      --spa                           Convenient parameter to use if you test a SPA application: will automatically wait for X seconds after last network activity and use hash in file names. Read more: https://www.sitespeed.io/documentation/sitespeed.io/spa/  [boolean] [default: false]
+      --browserRestartTries           If the browser fails to start, you can retry to start it this amount of times.  [number] [default: 3]
+
 proxy
       --proxy.pac     Proxy auto-configuration (URL)  [string]
       --proxy.ftp     Ftp proxy (host:port)  [string]
@@ -165,18 +180,9 @@ Options:
   -b, --browser                                    Specify browser. Safari only works on OS X/iOS. Edge only work on OS that supports Edge.  [choices: "chrome", "firefox", "edge", "safari"] [default: "chrome"]
       --android                                    Short key to use Android. Defaults to use com.android.chrome unless --browser is specified.  [boolean] [default: false]
       --processStartTime                           Capture browser process start time (in milliseconds). Android only for now.  [boolean] [default: false]
-      --pageCompleteCheck                          Supply a JavaScript (inline or JavaScript file) that decides when the browser is finished loading the page and can start to collect metrics. The JavaScript snippet is repeatedly queried to see if page has completed loading (indicated by the script returning true). Use it to fetch timings happening after the loadEventEnd. By default the tests ends 2 seconds after loadEventEnd. Also checkout --pageCompleteCheckInactivity and --pageCompleteCheckPollTimeout
-      --pageCompleteWaitTime                       How long time you want to wait for your pageComplteteCheck to finish, after it is signaled to closed. Extra parameter passed on to your pageCompleteCheck.  [default: 8000]
-      --pageCompleteCheckInactivity                Alternative way to choose when to end your test. This will wait for 2 seconds of inactivity that happens after loadEventEnd.  [boolean] [default: false]
-      --pageCompleteCheckNetworkIdle               Alternative way to choose when to end your test that works in Chrome and Firefox. Uses CDP or WebDriver Bidi to look at network traffic instead of running JavaScript in the browser to know when to end the test. By default this will wait 5 seconds of inactivity in the network log (no requets/responses in 5 seconds). Use --timeouts.networkIdle to change the 5 seconds. The test will end after 2 minutes if there is still activity on the network. You can change that timout using --timeouts.pageCompleteCheck  [boolean] [default: false]
-      --pageCompleteCheckPollTimeout               The time in ms to wait for running the page complete check the next time.  [number] [default: 1500]
-      --pageCompleteCheckStartWait                 The time in ms to wait for running the page complete check for the first time. Use this when you have a pageLoadStrategy set to none  [number] [default: 5000]
-      --pageLoadStrategy                           Set the strategy to waiting for document readiness after a navigation event. After the strategy is ready, your pageCompleteCheck will start runninhg.  [string] [choices: "eager", "none", "normal"] [default: "none"]
   -n, --iterations                                 Number of times to test the url (restarting the browser between each test)  [number] [default: 3]
       --prettyPrint                                Enable to print json/har with spaces and indentation. Larger files, but easier on the eye.  [boolean] [default: false]
       --delay                                      Delay between runs, in milliseconds  [number] [default: 0]
-      --timeToSettle                               Extra time added for the browser to settle before starting to test a URL. This delay happens after the browser was opened and before the navigation to the URL  [number] [default: 0]
-      --webdriverPageload                          Use webdriver.get to initialize the page load instead of window.location.  [boolean] [default: false]
   -r, --requestheader                              Request header that will be added to the request. Add multiple instances to add multiple request headers. Works for Firefox and Chrome. Use the following format key:value
       --cookie                                     Cookie that will be added to the request. Add multiple instances to add multiple request cookies. Works for Firefox and Chrome. Use the following format cookieName=cookieValue
       --injectJs                                   Inject JavaScript into the current page at document_start. Works for Firefox and Chrome. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
@@ -184,7 +190,6 @@ Options:
       --percentiles                                The percentile values within the data browsertime will calculate and report. This argument uses Yargs arrays and you you to set them correctly it is recommended to use a configuraration file instead.  [array] [default: [0,10,90,99,100]]
       --decimals                                   The decimal points browsertime statistics round to.  [number] [default: 0]
       --iqr                                        Use IQR, or Inter Quartile Range filtering filters data based on the spread of the data. See  https://en.wikipedia.org/wiki/Interquartile_range. In some cases, IQR filtering may not filter out anything. This can happen if the acceptable range is wider than the bounds of your dataset.  [boolean] [default: false]
-      --cacheClearRaw                              Use internal browser functionality to clear browser cache between runs instead of only using Selenium.  [boolean] [default: false]
       --basicAuth                                  Use it if your server is behind Basic Auth. Format: username@password (Only Chrome and Firefox at the moment).
       --preScript, --setUp                         Selenium script(s) to run before you test your URL/script. They will run outside of the analyse phase. Note that --preScript can be passed multiple times.
       --postScript, --tearDown                     Selenium script(s) to run after you test your URL. They will run outside of the analyse phase. Note that --postScript can be passed multiple times.
@@ -207,13 +212,10 @@ Options:
       --urlAlias                                   Use an alias for the URL. You need to pass on the same amount of alias as URLs. The alias is used as the name of the URL and used for filepath. Pass on multiple --urlAlias for multiple alias/URLs. You can also add alias direct in your script.  [string]
       --preURL, --warmLoad                         A URL that will be accessed first by the browser before the URL that you wanna analyze. Use it to fill the browser cache.
       --preURLDelay, --warmLoadDealy               Delay between preURL and the URL you want to test (in milliseconds)  [default: 1500]
-      --userTimingWhitelist                        All userTimings are captured by default this option takes a regex that will whitelist which userTimings to capture in the results.
+      --userTimingAllowList                        All userTimings are captured by default this option takes a regex that will allow which userTimings to capture in the results.
       --headless                                   Run the browser in headless mode. Works for Firefox and Chrome.  [boolean] [default: false]
-      --flushDNS                                   Flush DNS between runs, works on Mac OS and Linux. Your user needs sudo rights to be able to flush the DNS.  [boolean] [default: false]
       --extension                                  Path to a WebExtension to be installed in the browser. Note that --extension can be passed multiple times.
-      --spa                                        Convenient parameter to use if you test a SPA application: will automatically wait for X seconds after last network activity and use hash in file names. Read more: https://www.sitespeed.io/documentation/sitespeed.io/spa/  [boolean] [default: false]
       --cjs                                        Load scripting files that ends with .js as common js. Default (false) loads files as esmodules.  [boolean] [default: false]
-      --browserRestartTries                        If the browser fails to start, you can retry to start it this amount of times.  [number] [default: 3]
       --preWarmServer                              Do pre test requests to the URL(s) that you want to test that is not measured. Do that to make sure your web server is ready to serve. The pre test requests is done with another browser instance that is closed after pre testing is done.  [boolean] [default: false]
       --preWarmServerWaitTime                      The wait time before you start the real testing after your pre-cache request.  [number] [default: 5000]
   -h, --help                                       Show help  [boolean]

@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 31.0.0 - 2023-12-22
+### Breaking
+* Updated to [Browsertime 20](https://github.com/sitespeedio/browsertime/releases/tag/v20.0.0). The new version of Browsertime renames `--userTimingWhitelist` to `--userTimingAllowList` so if you use that functionality you need to change the name before you upgrade!
+### Fixed
+* The new version of Browsertime also fix the bug in Firefox 121 on Mac so you can start it.
+
 ## 30.11.0 - 2023-12-21
 ### Fixed
 * Moved functionality from co2 to sitespeed.io see [#4034](https://github.com/sitespeedio/sitespeed.io/pull/4034).
