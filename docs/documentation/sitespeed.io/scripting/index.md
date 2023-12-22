@@ -39,7 +39,7 @@ export default async function (context, commands) {
 };
 ~~~
 
-Run your script with the command: ```sitespeed.io -n 1 --multi measure.js```.
+Run your script with the command: ```sitespeed.io -n 1 --multi measure.mjs```.
 
 This script will measure the performance of the specified URL. For more advanced scripting options like handling clicks, navigation, and other interactions, scroll down​.
 
