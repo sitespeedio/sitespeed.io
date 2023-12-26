@@ -16,45 +16,24 @@ twitterdescription: Introduction for sitespeed.io.
 * Let's place the TOC here
 {:toc}
 
-**Sitespeed.io is a *complete web performance tool* that helps you measure the performance of your website. What exactly does that mean?**
+Sitespeed.io is a complete web performance tool that helps you measure the performance of your website. It is designed to:
 
-We think of a complete web performance tool as having three key capabilities:
+1. Test websites using real browsers, simulating real user connectivity.
+2. Analyze your page's construction and provide feedback for speed optimization.
+3. Collect and maintain data on page construction for easy tracking of changes.
 
- - It should test web sites using real browsers, simulating real users connectivity and collect important user centric metrics like Speed Index and First Visual Render.
- - It should analyse how your page is built and give feedback how you can make it faster for the end user.
- - It should collect and keep data on how your pages are built so you can easily track changes.
+**Use Cases**
+- **Continuous Integration**: Detect web performance regressions early in the development cycle.
+- **Production Monitoring**: Monitor performance in production and get alerted on regressions.
+- **Web performance audit**: Run performance tests from your terminal.
 
-**What is sitespeed.io good for?**
+**How it Works**
+- Built on open source tools like Browsertime and The Coach.
+- Uses a plugin-based architecture for flexibility.
+- High-level process: Initialization → URL Testing → Metrics Collection → Summary and Rendering.
 
-It is usually used in two different areas:
-
- - Running in your continuous integration to find web performance regressions early: on commits or when you move code to your test environment
- - Monitoring your performance in production, alerting on regressions.
-
-To understand how sitespeed.io does these things, let's talk about how it works.
-
-First a few key concepts:
-
- - Sitespeed.io is built upon a couple of other Open Source tools in the sitespeed.io suite.
- - [Browsertime](../../browsertime/) is the tool that drives the browser and collect metrics.
- - [The Coach](../../coach/) knows how to build fast websites and analyse your page and give you feedback what you should change.
- - Visual Metrics is metrics collected from a video recording of the browser screen.
- - Everything in sitespeed.io is a [plugin](../plugins/) and they communicate by passing messages on a queue.
-
-When you as user choose to test a URL, this is what happens on a high level:
-
- 1. sitespeed.io starts and initialises all configured plugins.
- 2. The URL is passed around the plugins through the queue.
-    1. Browsertime gets the URL and opens the browser.
-    2. It starts to record a video of the browser screen.
-    3. The browser accesses the URL.
-    4. When the page is finished, Browsertime takes a screenshot of the page.
-    5. It then runs some JavaScript to analyse the page (using Coach and Browsertime scripts).
-    6. It stops the video and closes the browser.
-    7. Analyses the video to get Visual Metrics like First Visual Change and Speed Index.
-    8. Browsertime passes all metrics and data on the queue so other plugins can use it.
- 3. The HTML/Graphite/InfluxDB plugin collects the metrics in queue.
- 4. When all URLs are tested, sitespeed sends a message telling plugins to summarise the metrics and then render it.
- 5. Plugins pickup the render message and the HTML plugin writes the HTML to disk.
-
-Now it's time for you to [install and run sitespeed.io](../installation/).
+**Example Workflow**
+1. Initialize sitespeed.io and its plugins.
+2. Test a URL: Open in browser → Record video → Analyze page → Collect metrics.
+3. Collect and summarize metrics using plugins like HTML/Graphite/InfluxDB.
+4. Generate and store HTML reports.

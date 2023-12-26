@@ -10,11 +10,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Use Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
-        node-version: '18.x'
+        node-version: '20.x'
     - name: Install sitespeed.io
       run: npm ci
     - name: Install Chrome
@@ -24,6 +24,11 @@ jobs:
         sudo apt-get update
         sudo apt-get --only-upgrade install google-chrome-stable
         google-chrome --version
+    - name: Install dependencies
+      run: |
+          python -m pip install --upgrade --user pip
+          python -m pip install --user scipy
+          python -m pip show scipy
     - name: Install Firefox
       uses: browser-actions/setup-firefox@latest
       #with:
@@ -70,3 +75,5 @@ jobs:
       run: bin/sitespeed.js http://127.0.0.1:3001/simple/ -n 1 --influxdb.host 127.0.0.1 --influxdb.port 8087 --influxdb.version 2 --influxdb.organisation sitespeed --influxdb.token sitespeed --xvfb
     - name: Run Chrome test with config
       run: node bin/sitespeed.js --config test/exampleConfig.json http://127.0.0.1:3001/simple/ --xvfb
+    - name: Run Chrome test using compare plugin
+      run: node bin/sitespeed.js --compare.id compare --compare.saveBaseline --compare.baselinePath test/ http://127.0.0.1:3001/simple/ --xvfb

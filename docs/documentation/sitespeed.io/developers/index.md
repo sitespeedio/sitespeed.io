@@ -54,34 +54,27 @@ The big picture looks something like this:
 Here's an example on how to use sitespeed.io directly from NodeJS. This will generate the result to disk but you will not get it as a JSON object (only the budget result). We maybe change that in the future. If you need the JSON you can either read it from disk or use the Browsertime plugin directly.
 
 ~~~javascript
-'use strict';
 
-const sitespeed = require('sitespeed.io');
+import { run as runSitespeedio } from 'sitespeed.io';
 const urls = ['https://www.sitespeed.io/'];
 
 async function run() {
   try {
-    const result = await sitespeed.run({
+    const result = await runSitespeedio({
       urls,
       browsertime: {
         iterations: 1,
-        connectivity: {
-          profile: 'native',
-          downstreamKbps: undefined,
-          upstreamKbps: undefined,
-          latency: undefined,
-          engine: 'external'
-        },
         browser: 'chrome'
       }
     });
     console.log(result);
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error(error);
   }
 }
 
-run();
+await run();
+
 ~~~
 
 ### Use Browsertime from NodeJS
@@ -89,23 +82,23 @@ run();
 In this example you run Browsertime directly from NodeJS, using the default JavaScripts to collect metrics. 
 
 ~~~javascript
-'use strict';
-
-const browsertime = require('browsertime');
+import { BrowsertimeEngine, browserScripts } from 'browsertime';
 
 // The setup is the same configuration as you use in the CLI
 const browsertimeSetupOptions = { iterations: 1, browser: 'chrome' };
-const engine = new browsertime.Engine(browsertimeSetupOptions);
+const engine = new BrowsertimeEngine(browsertimeSetupOptions);
 // You can choose what JavaScript to run, in this example we use the default categories
 // and the default JavaScript
-const scriptsCategories = await browsertime.browserScripts.allScriptCategories;
-const scripts = await browsertime.browserScripts.getScriptsForCategories(scriptsCategories);
+const scriptCategories = await browserScripts.allScriptCategories();
+let scriptsByCategory = await browserScripts.getScriptsForCategories(
+  scriptCategories
+);
 
 async function run() {
   try {
     await engine.start();    
     // Get the result
-    const result = await engine.run('https://www.sitespeed.io/', scripts);
+    const result = await engine.run('https://www.sitespeed.io/',  scriptsByCategory);
     console.log(result);
   } catch (e) {
     console.error(e);
@@ -114,7 +107,7 @@ async function run() {
   }
 }
 
-run();
+await run();
 ~~~
 
 ## Developing sitespeed.io
@@ -173,6 +166,8 @@ If you are new to pug you can use [https://html2jade.org](https://html2jade.org)
 
  We love pull requests and before you make a big change or add functionality, please open an issue proposing the change to other contributors so you got feedback on the idea before take the time to write precious code!
 
+ When you make your pull request, you can follow the guide from GitHub on [how to make a pull requests from a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
+
 #### Before you send the pull request
 
 Before you send the PR make sure you:
@@ -197,7 +192,7 @@ To be able to release a new version you new to have access to our Docker account
 
 To do a release you need to first install np (a better *npm publish*): <code>npm install --global np</code>
 
-Before you do a release, remember to let your latest code change run a couple of hours on our test server before you push the release (the latest code is automatically deployed on the test server). You will find errors from the test server on the [#alert channel on Slack](https://sitespeedio.herokuapp.com/).
+Before you do a release, remember to let your latest code change run a couple of hours on our test server before you push the release (the latest code is automatically deployed on the test server). You will find errors from the test server on the [#alert channel on Slack](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw).
 
 Do the release:
 

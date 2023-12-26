@@ -45,3 +45,4 @@ Many many many thanks to:
 * [Devrim Tufan](https://github.com/tufandevrim)
 * [Keith Cirkel](https://github.com/keithamus)
 * [Jonathan Lee](https://github.com/beenanner)
+* [Pavel Bairov](https://github.com/Amerousful)

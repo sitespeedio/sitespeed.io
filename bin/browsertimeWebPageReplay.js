@@ -36,9 +36,18 @@ try {
   throw e;
 }
 
-async function testURLs(engine, urls) {
+async function testURLs(engine, urls, isMulti) {
   try {
     await engine.start();
+
+    if(isMulti) {
+      const result = await engine.runMultiple(urls);
+      for (let errors of result[0].errors) {
+        if (errors.length > 0) {
+          process.exitCode = 1;
+        }
+      }
+    } else {
     for (let url of urls) {
       const result = await engine.run(url);
       for (let errors of result[0].errors) {
@@ -46,6 +55,7 @@ async function testURLs(engine, urls) {
           process.exitCode = 1;
         }
       }
+    }
     }
   } finally {
     engine.stop();
@@ -123,6 +133,23 @@ async function runBrowsertime() {
       describe:
         'Short key to use Android. Will automatically use com.android.chrome for Chrome and stable Firefox. If you want to use another Chrome version, use --chrome.android.package'
     })
+    .option('chrome.enableChromeDriverLog', {
+      describe: 'Log Chromedriver communication to a log file.',
+      type: 'boolean',
+      group: 'chrome'
+    })
+    .option('chrome.enableVerboseChromeDriverLog', {
+      describe: 'Log verboose Chromedriver communication to a log file.',
+      type: 'boolean',
+      group: 'chrome'
+    })
+    .option('verbose', {
+      alias: ['v'],
+      describe:
+        'Verbose mode prints progress messages to the console. Enter up to three times (-vvv)' +
+        ' to increase the level of detail.',
+      type: 'count'
+    })
     .config(config);
 
   const defaultConfig = {
@@ -186,11 +213,12 @@ async function runBrowsertime() {
       );
     }
   }
+
   const engine = new BrowsertimeEngine(btOptions);
-  const urls = getURLs(parsed.argv._);
+  const urls = parsed.argv.multi ? parsed.argv._ : getURLs(parsed.argv._);
 
   try {
-    await testURLs(engine, urls);
+    await testURLs(engine, urls,  parsed.argv.multi);
   } catch (e) {
     console.error('Could not run ' + e);
     process.exit(1);

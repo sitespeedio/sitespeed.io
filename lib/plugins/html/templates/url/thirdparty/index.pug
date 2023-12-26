@@ -21,9 +21,10 @@ a#third-party
 a#third-party-categories
 h2 Third party
 
+- const thirdPartyWebVersion = pageInfo.data.coach.run ? pageInfo.data.coach.run.thirdPartyWebVersion : pageInfo.data.coach.pageSummary.thirdPartyWebVersion; 
 p Third party requests categorised by 
     a(href='https://github.com/patrickhulce/third-party-web') Third party web
-    | .
+    | &nbsp;version #{thirdPartyWebVersion}.
 
 if thirdparty.category && Object.keys(thirdparty.category).length > 0
     .row

@@ -67,6 +67,9 @@ block content
         if d.browsertime && d.browsertime.har
           a(href='#downloads') Download HAR
           | &nbsp;|&nbsp;
+        if options.browsertime.chrome && options.browsertime.chrome.collectConsoleLog
+          a(href='#downloads') Download Console Logs
+          | &nbsp;|&nbsp;
 
       a#summary
       h2 Summary
