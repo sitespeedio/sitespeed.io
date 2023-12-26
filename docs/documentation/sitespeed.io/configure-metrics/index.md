@@ -63,7 +63,7 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 
 
 ## Configure/filter metrics
-You can add/change/remove filters with **\-\-metrics.filter**.
+You can add/change/remove filters with **\-\-metrics.filter**. We use yargs to pass on parameters and complicated parameters like metrics.filter works best if you use a configuration json file.
 
 ### Add a metric
 If you want to add metrics, start by looking at the generated metrics file, so you can see what you would send.
