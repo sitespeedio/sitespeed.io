@@ -163,7 +163,7 @@ sitespeed.io -n 5 -b edge https://www.sitespeed.io --video --visualMetrics --xvf
 
 ### Windows
 
-Checkout [our GitHub action running in Windows](https://github.com/sitespeedio/browsertime/blob/main/.github/workflows/windows.yml) to see how to install the dependencies needed.
+Checkout [our GitHub action running in Windows](https://github.com/sitespeedio/sitespeed.io/blob/main/.github/workflows/windowsFull.yml) to see how to install the dependencies needed.
 
 If you run on Windows you can run tests on Firefox, Chrome and Edge.
 
