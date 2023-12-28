@@ -1,5 +1,206 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 31.0.0 - 2023-12-22
+### Breaking
+* Updated to [Browsertime 20](https://github.com/sitespeedio/browsertime/releases/tag/v20.0.0). The new version of Browsertime renames `--userTimingWhitelist` to `--userTimingAllowList` so if you use that functionality you need to change the name before you upgrade!
+### Fixed
+* The new version of Browsertime also fix the bug in Firefox 121 on Mac so you can start it.
+
+## 30.11.0 - 2023-12-21
+### Fixed
+* Moved functionality from co2 to sitespeed.io see [#4034](https://github.com/sitespeedio/sitespeed.io/pull/4034).
+
+### Added 
+* Upgraded the Docker container to use Firefox 121 [#4033](https://github.com/sitespeedio/sitespeed.io/pull/4033).
+* Updated to [Browsertime 19.3.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1931---2023-12-18) [#4031](https://github.com/sitespeedio/sitespeed.io/pull/4031).
+
+## 30.10.0 - 2023-12-15
+### Added
+* Add isSignificant metric to send to Graphite when using the compare plugin. Will send 0 if there's no siginificant change, else send the Cliffs delta to know how large the change is [#4030](https://github.com/sitespeedio/sitespeed.io/pull/4030).
+
+## 30.9.0 - 2023-12-12
+### Added
+* Chrome and Edge 120 in the Docker container [#4027](https://github.com/sitespeedio/sitespeed.io/pull/4027).
+* Updated to Browsertime 19.2.0.
+* For users of the +1 container Lighthouse has been upgraded to 11.4.0.
+
+## 30.8.0 - 2023-12-07
+### Added
+* Use Cliffs delta to know the size of the significant change [#4024](https://github.com/sitespeedio/sitespeed.io/pull/4024).
+* Show if the graph has a siginficant change or not in the compare plugin [#4025](https://github.com/sitespeedio/sitespeed.io/pull/4025).
+
+
+## 30.7.1 - 2023-12-07
+### Fixed
+* The old settings for MannWhitneyU tests where confusing. We compared the the baseline is less than the current tests. This PR switched so we instead look if the current tests are greater than the baseline. We also added some better explaining text on result page[#4023](https://github.com/sitespeedio/sitespeed.io/pull/4023).
+
+## 30.7.0 - 2023-11-30
+### Added
+* Show Axe individual issues on the page summary (not only on each individual run) [#4019](https://github.com/sitespeedio/sitespeed.io/pull/4019). Thank you [shaqb](https://github.com/shaqb) for pointing that out. The total number of issues is also sent to Graphite under *statistics.axe.violationIssues*. 
+
+## 30.6.0 - 2023-11-29
+
+### Added
+* Make sure browser cpu benchmark is included in the baseline [#4015](https://github.com/sitespeedio/sitespeed.io/pull/4015).
+* Fixed so baseline metrics is linked to graphs [#4016](https://github.com/sitespeedio/sitespeed.io/pull/4016).
+
+### Fixed
+* Fix decimals on Google Web Vitals in baseline [#4014](https://github.com/sitespeedio/sitespeed.io/pull/4014).
+
+## 30.5.0 - 2023-11-28
+### Added
+* The new compare plugin can now run without an id. The id will then be generated from the URL. If you don't give it an id, yoiu can only compare pages with the exact same URL [#4013](https://github.com/sitespeedio/sitespeed.io/pull/4013).
+
+## 30.4.1 - 2023-11-28
+### Fixed
+* Fix for Firefox when generating the result HTML. It was broken since we where missing CPU data.
+
+## 30.4.0 - 2023-11-27
+### Fixed
+* Upgrade to Browsertime 19.1.0 with a fix for Geckodriver so that the correct ARM version is installed on Mac Arm machines.
+### Added
+* The new compare plugin [PR 4009](https://github.com/sitespeedio/sitespeed.io/pull/4009) makes it easy to use Mann Whitney U/Wilcox for support to find performance egressions. Read all about the plugin in the [documentation](https://www.sitespeed.io/documentation/sitespeed.io/compare/).
+* Firefox 120 in the Docker container [#4010](https://github.com/sitespeedio/sitespeed.io/pull/4010).
+* Button to download the console logs, thank you [bairov pavel](https://github.com/Amerousful) for PR [#4007](https://github.com/sitespeedio/sitespeed.io/pull/4007).
+
+## 30.3.0 - 2023-11-09
+
+### Added
+* Upgrade to Browsertime 18.0.0.
+* Added support to run user journeys with WebPageReplay [#4005](https://github.com/sitespeedio/sitespeed.io/pull/4005).
+
+### Fixed
+* Downgrade puppeteer in the +1 container for Lighthouse, thank you [bairov pavel](https://github.com/Amerousful) for PR [#123](https://github.com/sitespeedio/plugin-lighthouse/pull/123).
+
+## 30.2.1 - 2023-11-03
+### Fixed
+* The Docker+1 container got a fix for Lighthouse that didn't work in 30.2.0 (adding dev-shm when starting Chrome).
+
+## 30.2.0 - 2023-11-03
+
+### Added
+* Updated to Browsertime 17.19.0 with Edgedriver 119 [#3998](https://github.com/sitespeedio/sitespeed.io/pull/3998).
+* Updated the Docker container with Edge 119.
+
+### Fixed
+* The Docker+1 container has been upgraded to Lighthouse 11.3.0.
+* Add support for getting verbose logs and Chromedriver logs from the recording phase of WebPageReplay [#3999](https://github.com/sitespeedio/sitespeed.io/pull/3999).
+
+## 30.1.0 - 2023-11-01
+### Added
+* The Docker slim container uses Debian Bookworm [#3996](https://github.com/sitespeedio/sitespeed.io/pull/3996).
+* Updated to Chrome 119 in the Docker container.
+
+### Fixed
+* Fixed analysisstorer trying to save setup messages [#3995](https://github.com/sitespeedio/sitespeed.io/pull/3995).
+* Updated to Browsertime 17.18.1 [#3992](https://github.com/sitespeedio/sitespeed.io/pull/3992).
+
+## 30.0.0 - 2023-10-25
+### Breaking changes
+* Drop support for NodeJS 16 (security ended in September).
+
+### Added
+* The Docker container now uses NodeJS 20.
+* Updated to Firefox 119 and Edge 118 in the Docker container.
+* Updated the base container to use latest tagged Ubuntu 22.04.
+
+## 29.9.0 - 2023-10-23
+### Added
+* Updated Browsertime to 17.18.0:
+  * Updated to Chromedriver 119 [#2003](https://github.com/sitespeedio/browsertime/pull/2003). 119 works with both Chrome 118 and 119 so it fixes [#1197](https://github.com/sitespeedio/browsertime/issues/1997).
+  * Add support for network idle method to know when to end a test that uses network logs. Uses Bidi for Firefox and CDP for Chrome to listen on network events to know when to end a test. By default 5 seconds idle network time ends a tests (you could have network responses that hasn't arrived yet) [#1960](https://github.com/sitespeedio/browsertime/pull/1960). Potentially this can help SPA users or users where the page uses iframes. You can try it out by adding `--browsertime.pageCompleteCheckNetworkIdle true` to your command line. This is still some work in progress but feel free to try ut out.
+  * The resources script now collects number of resources served from the browser cashe for browser that supports that through the resource timing API [#1998](https://github.com/sitespeedio/browsertime/pull/1998)  
+  * Make sure timer always is cleared. There was case of where we do a rase beteween a promise and a timeout where the timeout timer wasn't cleared/removed [#2005](https://github.com/sitespeedio/browsertime/pull/2005).
+  * Better way to get the url when you use GeckoProfiler.stop for Firefox, thank you [Nazım Can Altınova](https://github.com/canova) for PR [#1999](https://github.com/sitespeedio/browsertime/pull/1999)
+
+## 29.8.0 - 2023-10-16
+### Added
+* Updated to Chrome/Chromedriver 118 in the Docker container [#3975](https://github.com/sitespeedio/sitespeed.io/pull/3975).
+* Users of the +1 container will get Lighthouse 11.2.0 from this release.
+
+### Fixed
+* Updated to Axe-core 4.8.2 [#3977](https://github.com/sitespeedio/sitespeed.io/pull/3977).
+* A better error message when ypu try to measure a navigation without navigating [#3980](https://github.com/sitespeedio/sitespeed.io/pull/3980).
+
+## 29.7.0 - 2023-09-27
+### Added
+* Updated Firefox to 118 in the Docker container [#3968](https://github.com/sitespeedio/sitespeed.io/pull/3968).
+* Users of the +1 container will have Lighthouse version 11.1.0. 
+
+## 29.6.0 - 2023-09-22
+### Added
+* Updated Chrome and Edge to 117, also NodeJS 18.18.0 and a latest updated version of Ubuntu 22.04 [#3965](https://github.com/sitespeedio/sitespeed.io/pull/3965).
+* Updated to Axe core 4.8.1 [#3964](https://github.com/sitespeedio/sitespeed.io/pull/3964).
+
+## 29.5.0 - 2023-09-05
+### Added
+* Updated to Firefox 117 and Edge 116 in the Docker container [#3958](https://github.com/sitespeedio/sitespeed.io/pull/3958).
+* Note that if you use the BiDi HAR for Firefox this version only work with Firefox 117+. If you use Firefox < 117 you need to stay on previous sitespeed.io version until you upgrade.
+
+## 29.4.0 - 2023-08-31
+### Added
+* Display axe-core version on the summary page (before it was only showed on each run page) [#3950](https://github.com/sitespeedio/sitespeed.io/pull/3950).
+* Display third-party-web and wappalyzer version in the HTML output (by upgrading to [Coach 8.0.0](https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#800---2023-08-30)) [#3953](https://github.com/sitespeedio/sitespeed.io/pull/3953).
+* Display co2 version in the HTML output [#3953](https://github.com/sitespeedio/sitespeed.io/pull/3954).
+
+## 29.3.0 - 2023-08-16
+### Added
+* Chrome and Chromedriver 116.
+
+## 29.2.1 - 2023-08-16
+### Fixed
+* Updated Browsertime with a new minor version of Chromederiver and updated Docker container with a new minor version.
+* Uppdated CO2 to 0.13.6 [#3936](https://github.com/sitespeedio/sitespeed.io/pull/3936).
+* Make sure catched errors gets to the standard out and after budget/open the browser [#3939](https://github.com/sitespeedio/sitespeed.io/pull/3939).
+
+## 29.2.0 - 2023-08-08
+### Fixed
+* Another fix for making sure annotations for Graphite have the correct timestamp [#3931](https://github.com/sitespeedio/sitespeed.io/pull/3931).
+* Update dayjs and ora dependencies.
+
+### Added
+* Firefox 116 in the Docker container.
+
+
+## 29.1.3 - 2023-08-03
+### Fixed
+* HTML result page was broken when you had element timings that was not images. Thank you [dooglewoogle](https://github.com/dooglewoogle) for reporting, fixed in [#3927](https://github.com/sitespeedio/sitespeed.io/pull/3927).
+
+## 29.1.2 - 2023-07-31
+### Fixed
+* Updating Browsertime that makes it possible to run the AMD docker image on ARM M1 Macs. Add `--platform linux/amd64` and in Docker desktop turn on *"Use Rosetta for x86/amd64 emulation"*.
+
+## 29.1.1 - 2023-07-30
+
+### Fixed
+* Reading configuration files on Windows failed. Thank you [Edson1337](https://github.com/Edson1337) for reporting, fixed in [#3921](https://github.com/sitespeedio/sitespeed.io/pull/3921).
+
+## 29.1.0 - 2023-07-25
+
+### Added
+* I finally [archived the old dashboard setups for Graphite](https://github.com/sitespeedio/grafana-bootstrap-docker) and moved the dashboards to [the main repository](https://github.com/sitespeedio/sitespeed.io/tree/main/docker/grafana/provisioning/dashboards). I also updated the [docker compose file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml) to provision the dashboards and Graphite and the new JSON datasource. I've been thinking of doing that for years but never got around. With the release of a new dashboard in 29.0.0 I missed adding that we now also use a JSON datasource. The documentation is updated but need some more love, that will come the coming week.
+
+## 29.0.0 - 2023-07-25
+### Breaking change
+
+The breaking changes in this release will not break anything, however some behaviours are changed in rare cases, please read:
+
+* Changed timestamp for Graphite/InfluxDB metrics/annotations. The old implementation used the start time for the test all metrics sent except *browsertime.run* metrics (data for each run). This fix changes so metrics (and annotations) uses the *browsertime.pageSummary* runTime (when the actual first iteration happen for a test). This makes more sense if you test multiple pages within the same test [#3900](https://github.com/sitespeedio/sitespeed.io/pull/3900).
+
+* When the slug concept was introduced in 17.0.0 also a bug was accidently added that add the domain as a slug if the slug was missing. As long as you added `--slug` that was not a problem and you will not be affected by this bug. However if you do not use `--slug` (you really should since 20.0.0) the slug portion would be automatically populated [#3901](https://github.com/sitespeedio/sitespeed.io/pull/3901) with the domain. If you send your metrics to Graphite and do not use `--slug` and use the dashboard that use the slug, you need to add `--slug` to your run for your dashboards to continue to work.
+
+### Fixed
+* Crux: Remove experimental from INP when getting Crux data [#3906](https://github.com/sitespeedio/sitespeed.io/pull/3906).
+
+### Added
+* New Chrome 115 and Chromedriver 115 (and a fix for the broken Chromedriver 115 on Mac).
+* New Edge and Edgedriver 115
+* New Browsertime 17.14.0. Most notable change is that if you collect the Chrome devtools trace using `--cpu` we will now also collect the number of elements that needs recalculate styles before FCP/LCP. There will be a blog post about this change later on.
+* Updated the [main page merics dashboard](https://dashboard.sitespeed.io/d/9NDMzFfMk/page-metrics), you can download the new version [here](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/main/dashboards/graphite/PageMetrics.json). The new dashboard needs to have the three plugins installed: ```grafana-piechart-panel,marcusolsson-json-datasource,marcusolsson-dynamictext-panel```. If you are unsure how to do that, more documentation will come soon.
+
+## 28.2.0 - 2023-07-07
+### Added
+* Updated the Docker container to use Firefox 115.
 
 ## 28.1.0 - 2023-06-27
 ### Added
@@ -14,6 +215,7 @@ The changes where done in [#3888](https://github.com/sitespeedio/sitespeed.io/pu
 
 ### Fixed
 * Updated Coach core to 7.2.1 that catch if local or session storage isn't accessible.
+
 
 ##  27.9.3 - 2023-06-19
 ### Fixed

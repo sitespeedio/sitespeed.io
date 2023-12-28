@@ -21,6 +21,7 @@ twitterdescription: Use Docker to run sitespeed.io.
 
 Docker makes it easier to run sitespeed.io because you don't need to install every dependency needed for recording and analysing the browser screen. It's also easy to update your container to a new sitespeed.io version by changing the Docker tag. The drawback using Docker is that it will add some overhead, the container is Linux only (browsers are Linux version).
 
+We publich containers for AMD and ARM. The AMD containers contains the latest Chrome/Firefox/Edge. The ARM container are behind and use latest Chrome/Firefox that was published for ARM.
 
 We have a four ready made containers:
 * One slim container that contains only Firefox. You run Firefox headless. Use the container `sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-slim`. The container do not have FFMpeg and Imagemagick so you can not get any Visual Metrics using this container.
@@ -42,7 +43,7 @@ The [slim container](https://github.com/sitespeedio/sitespeed.io/blob/main/Docke
 We lock down the browsers to specific versions for maximum compatibility and stability with sitespeed.io's current feature set; upgrading once we verify browser compatibility.
 {: .note .note-info}
 
-## Running in Docker
+## Running using Docker
 
 The simplest way to run using Chrome:
 
@@ -64,6 +65,21 @@ docker run --shm-size 2g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io
 
 Using `-v "$(pwd):/sitespeed.io"` will map the current directory inside Docker and output the result directory there.
 {: .note .note-info}
+
+
+## Running on Mac M1 ARM
+We have ARM container that will be used by default but it will use an older version of Chromium and a newer version of Firefox. The problem is that the Chrome team (Google, 30000+ engineers) do not build Chrome/Chromium on ARM Linux so we rely on *ppa:saiarcot895/chromium-beta* and use the latest version from there.
+
+It's probably better to run the AMD containers. If you have a newer version of Docker desktop installed, you can *"Use Rosetta for x86/amd64 emulation"* to run the AMD containers. Go to settings and turn it on (see the screenshot).
+
+![Turn on Rosetta]({{site.baseurl}}/img/rosetta-docker.jpg)
+{: .img-thumbnail}
+
+Then run by specifying the platform *--platform linux/amd64*.
+
+```bash
+docker run --rm -v "$(pwd):/sitespeed.io" --platform linux/amd64 sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/
+```
 
 ## More about volumes
 

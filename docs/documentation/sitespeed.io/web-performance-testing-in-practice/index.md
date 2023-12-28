@@ -364,7 +364,7 @@ But when should you use InfluxDB? Well, almost never :) The great thing with Gra
 If you wanna use sitespeed.io for your synthetic monitoring testing you can dig deeper into the [documentation](/documentation/sitespeed.io/). If you have problems/issues the best way is to create an [issue at GitHub](https://github.com/sitespeedio/sitespeed.io/issues/new). That way others also can help out and can find the solution. If you have a bug, it super useful if you help us [creating a reproducible issue](/documentation/sitespeed.io/bug-report/).
 
 
-If you want to chat about setup you can do that in [our Slack channel](https://sitespeedio.herokuapp.com). 
+If you want to chat about setup you can do that in [our Slack channel](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw). 
 
 /[Peter]()
 

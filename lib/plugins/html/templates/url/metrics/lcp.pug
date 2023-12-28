@@ -21,6 +21,17 @@ if timings.largestContentfulPaint
               td 
                 b Render time 
               td #{h.time.ms(timings.largestContentfulPaint.renderTime)}
+
+            if renderBlocking && renderBlocking.recalculateStyle.beforeLCP
+              tr 
+                td
+                  b Elements that needed recalculate style before LCP
+                td #{renderBlocking.recalculateStyle.beforeLCP.elements}    
+              tr
+                td 
+                  b Time spent in recalculate style before LCP
+                td #{h.time.ms(renderBlocking.recalculateStyle.beforeLCP.durationInMillis)}  
+
             if timings.largestContentfulPaint.id !== ''
               tr 
                 td 

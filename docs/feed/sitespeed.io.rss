@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Tue, 27 Jun 2023 14:24:02 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 22 Dec 2023 05:08:07 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,148 +17,144 @@
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[sitespeed.io 28.1.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#28.1.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#28.1.0</guid>
-            <pubDate>Tue, 27 Jun 2023 00:00:00 GMT</pubDate>
+            <title><![CDATA[sitespeed.io 31.0.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.0.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.0.0</guid>
+            <pubDate>Fri, 22 Dec 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>The new version of Browsertime also fix the bug in Firefox 121 on Mac so you can start it.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 30.11.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.11.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.11.0</guid>
+            <pubDate>Thu, 21 Dec 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Added</h3>
  <ul>
-<li>Use <code>--graphite.proxyPath</code> to add extra proxy path to an annotation event in Graphite. Thank you <a href="https://github.com/Shalankwa">Jonathan Goodman</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/3893">#3893</a>.</li>
+<li>Upgraded the Docker container to use Firefox 121 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4033">#4033</a>.</li>
+</ul>
+ <ul>
+<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1931---2023-12-18">Browsertime 19.3.0</a> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4031">#4031</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Moved functionality from co2 to sitespeed.io see <a href="https://github.com/sitespeedio/sitespeed.io/pull/4034">#4034</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 28.0.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#28.0.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#28.0.0</guid>
-            <pubDate>Mon, 26 Jun 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated Coach core to 7.2.1 that catch if local or session storage isn&#39;t accessible.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 27.9.3]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.3</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.3</guid>
-            <pubDate>Mon, 19 Jun 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Upgraded Browsertime with the following fixes:</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 27.9.2]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.2</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.2</guid>
-            <pubDate>Wed, 14 Jun 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Make sure config files are read sync <a href="https://github.com/sitespeedio/sitespeed.io/pull/3882">#3882</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 27.9.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.1</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.1</guid>
-            <pubDate>Mon, 12 Jun 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Upgraded Browsertime that logs if LCP is not present (instead of logging null)</li>
-</ul>
- <ul>
-<li>Fix when configure to log to file (that was broken when we moved to ESM) <a href="https://github.com/sitespeedio/sitespeed.io/pull/3879">#3879</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 27.9.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.9.0</guid>
-            <pubDate>Mon, 12 Jun 2023 00:00:00 GMT</pubDate>
+            <title><![CDATA[sitespeed.io 30.10.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.10.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.10.0</guid>
+            <pubDate>Fri, 15 Dec 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Added</h3>
  <ul>
-<li>Firefox and Edge 114 in the Docker container.</li>
-</ul>
- <ul>
-<li>Updated coach-core with latest third party web, wappalyzer and a fix for when Chrome do not fire FCP <a href="https://github.com/sitespeedio/sitespeed.io/pull/3876">#3876</a></li>
+<li>Add isSignificant metric to send to Graphite when using the compare plugin. Will send 0 if there&#39;s no siginificant change, else send the Cliffs delta to know how large the change is <a href="https://github.com/sitespeedio/sitespeed.io/pull/4030">#4030</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 27.8.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.8.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.8.0</guid>
-            <pubDate>Wed, 07 Jun 2023 00:00:00 GMT</pubDate>
+            <title><![CDATA[sitespeed.io 30.9.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.9.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.9.0</guid>
+            <pubDate>Tue, 12 Dec 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Added</h3>
  <ul>
-<li>Added upcoming exporting of the HAR file from Browsertime for the upcoming API <a href="https://github.com/sitespeedio/sitespeed.io/pull/3871">#3871</a>.</li>
+<li>Chrome and Edge 120 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4027">#4027</a>.</li>
+</ul>
+ <ul>
+<li>Updated to Browsertime 19.2.0.</li>
+</ul>
+ <ul>
+<li>For users of the +1 container Lighthouse has been upgraded to 11.4.0.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 27.7.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.7.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.7.0</guid>
-            <pubDate>Thu, 01 Jun 2023 00:00:00 GMT</pubDate>
+            <title><![CDATA[sitespeed.io 30.8.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.8.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.8.0</guid>
+            <pubDate>Thu, 07 Dec 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Added</h3>
  <ul>
-<li>New Chrome 114 in the Docker container and updated Chromedriver (114) with a new Browsertime <a href="https://github.com/sitespeedio/sitespeed.io/pull/3868">#3868</a>.</li>
+<li>Use Cliffs delta to know the size of the significant change <a href="https://github.com/sitespeedio/sitespeed.io/pull/4024">#4024</a>.</li>
 </ul>
  <ul>
-<li>Use latest Co2 <a href="https://github.com/sitespeedio/sitespeed.io/pull/3867">#3867</a>.</li>
-</ul>
- <ul>
-<li>Updated to latest Axe core <a href="https://github.com/sitespeedio/sitespeed.io/pull/3863">#3863</a>.</li>
-</ul>
- <ul>
-<li>Added label to test runs in the API <a href="https://github.com/sitespeedio/sitespeed.io/pull/3869">#3869</a>.</li>
+<li>Show if the graph has a siginficant change or not in the compare plugin <a href="https://github.com/sitespeedio/sitespeed.io/pull/4025">#4025</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 27.6.5]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.5</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.5</guid>
-            <pubDate>Fri, 26 May 2023 00:00:00 GMT</pubDate>
+            <title><![CDATA[sitespeed.io 30.7.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.7.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.7.1</guid>
+            <pubDate>Thu, 07 Dec 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
-<li>Bumped Browsertime with a fix for host-resolver-rules, thank you <a href="https://github.com/atuchin-m">Mikhail</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1953">#1953</a>.</li>
-</ul>
- <ul>
-<li>Hopefully fixed the broken manifest file for the Docker containers by updating the Docker build actions to latest versions and added provenance: false.</li>
+<li>The old settings for MannWhitneyU tests where confusing. We compared the the baseline is less than the current tests. This PR switched so we instead look if the current tests are greater than the baseline. We also added some better explaining text on result page<a href="https://github.com/sitespeedio/sitespeed.io/pull/4023">#4023</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 27.6.4]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.4</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#27.6.4</guid>
-            <pubDate>Sat, 20 May 2023 00:00:00 GMT</pubDate>
+            <title><![CDATA[sitespeed.io 30.7.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.7.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.7.0</guid>
+            <pubDate>Thu, 30 Nov 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Show Axe individual issues on the page summary (not only on each individual run) <a href="https://github.com/sitespeedio/sitespeed.io/pull/4019">#4019</a>. Thank you <a href="https://github.com/shaqb">shaqb</a> for pointing that out. The total number of issues is also sent to Graphite under <em>statistics.axe.violationIssues</em>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 30.6.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.6.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.6.0</guid>
+            <pubDate>Wed, 29 Nov 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Make sure browser cpu benchmark is included in the baseline <a href="https://github.com/sitespeedio/sitespeed.io/pull/4015">#4015</a>.</li>
+</ul>
+ <ul>
+<li>Fixed so baseline metrics is linked to graphs <a href="https://github.com/sitespeedio/sitespeed.io/pull/4016">#4016</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Fix decimals on Google Web Vitals in baseline <a href="https://github.com/sitespeedio/sitespeed.io/pull/4014">#4014</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 30.5.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.5.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.5.0</guid>
+            <pubDate>Tue, 28 Nov 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>The new compare plugin can now run without an id. The id will then be generated from the URL. If you don&#39;t give it an id, yoiu can only compare pages with the exact same URL <a href="https://github.com/sitespeedio/sitespeed.io/pull/4013">#4013</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 30.4.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.4.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.4.1</guid>
+            <pubDate>Tue, 28 Nov 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
-<li>New fixed version of the ARM container with a working version of Firefox <a href="https://github.com/sitespeedio/sitespeed.io/pull/3844">#3844</a></li>
-</ul>
- <ul>
-<li>Fixes for the API: Pass on scriptname and pass on Browsertime data in the result.</li>
-</ul>
- <ul>
-<li>New Browsertime version(s) with updated Interaction To Next Paint script and updated Chromedriver/Edgedriver to 113 <a href="https://github.com/sitespeedio/sitespeed.io/pull/3851">#3851</a> and <a href="https://github.com/sitespeedio/sitespeed.io/pull/3853">#3853</a>.</li>
-</ul>
- <ul>
-<li>Upgrade yargs, ora, fs-extra, axe-core <a href="https://github.com/sitespeedio/sitespeed.io/pull/3852">#3852</a>.</li>
+<li>Fix for Firefox when generating the result HTML. It was broken since we where missing CPU data.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>

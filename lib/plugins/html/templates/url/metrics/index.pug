@@ -9,6 +9,7 @@ if browsertime
   - const extras = medianRun ? pageInfo.data.browsertime.pageSummary.extras[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.extras 
   - const custom = medianRun ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1].custom : pageInfo.data.browsertime.run.custom
   - const cdp = medianRun ? pageInfo.data.browsertime.pageSummary.cdp[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.cdp
+  - const renderBlocking = medianRun ? pageInfo.data.browsertime.pageSummary.renderBlocking[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.renderBlocking
 
   small 
     | | 
@@ -177,11 +178,22 @@ if browsertime
               td
                 a(href=baseHelpURL + 'firstInputDelay')  First Input Delay (FID)
               td.number #{h.time.ms(timings.firstInput.delay)}
-          else 
+          else if (cpu && cpu.longTasks)
             tr 
               td
                 a(href=baseHelpURL + 'totalBlockingTime') Total Blocking Time (TBT)
               td.number #{h.time.ms(cpu.longTasks.totalBlockingTime)}
+      
+      if renderBlocking && renderBlocking.recalculateStyle.beforeFCP
+        table
+          tr
+            th(colspan='2') First Contentful Paint info
+          tr 
+            td Elements that needed recalculate style before FCP
+                td #{renderBlocking.recalculateStyle.beforeFCP.elements}    
+          tr
+            td Time spent in recalculate style before FCP
+                td #{h.time.ms(renderBlocking.recalculateStyle.beforeFCP.durationInMillis)}  
       table
         tr
           th(colspan='2') Extra timings
