@@ -1,0 +1,37 @@
+name: Example to run sitespeed.io on Windows
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+    - name: Install sitespeed.io
+      run: npm install sitespeed.io -g
+    - name: Install dependencies
+      run: |
+        choco install ffmpeg 
+        choco outdated
+        choco install python
+        choco install microsoft-edge
+        choco install googlechrome
+        choco install firefox
+        python -m pip install --upgrade --user pip
+        python -m pip install --upgrade --user setuptools
+        python -m pip install --user pyssim OpenCV-Python Numpy scipy
+        python -m pip --version
+        python -m pip show Pillow
+        python -m pip show pyssim
+      shell: cmd
+    - name: Example running test on Windows
+      run: sitespeed.io -n 1 --video --visualMetrics https://www.sitespeed.io/ 
+      shell: bash
