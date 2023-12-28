@@ -22,9 +22,7 @@ jobs:
         choco install ffmpeg 
         choco outdated
         choco install python
-        choco install microsoft-edge
         choco install googlechrome
-        choco install firefox
         python -m pip install --upgrade --user pip
         python -m pip install --upgrade --user setuptools
         python -m pip install --user pyssim OpenCV-Python Numpy scipy
