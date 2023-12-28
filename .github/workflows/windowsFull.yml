@@ -31,5 +31,5 @@ jobs:
         python -m pip show pyssim
       shell: cmd
     - name: Example running test on Windows
-      run: sitespeed.io -n 1 --video --visualMetrics https://www.sitespeed.io/ 
+      run: sitespeed.io -n 1 --video --visualMetrics --viewPort 1024x768 https://www.sitespeed.io/ 
       shell: bash
