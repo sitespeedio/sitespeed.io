@@ -29,7 +29,7 @@ mixin rows(pages)
           if (fullPath !== undefined)
             - break
         - value = pageInfo.data[toolName] ? get(pageInfo.data[toolName].pageSummary, fullPath, 0) : 0
-        if (fullPath.indexOf('Size') > -1)
+        if (fullPath && fullPath.indexOf('Size') > -1)
           +kbSizeCell(name, value)
         else if metricType === 'performance'
           td.number(data-title=name, data-value=value)
