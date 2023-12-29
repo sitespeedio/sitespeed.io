@@ -1,7 +1,3 @@
-## Performance leaderboard
+## Google Web Vitals
 * * *
-[<img src="{{site.baseurl}}/img/leaderboard.png" class="pull-left img-big" alt="Performance leaderboard" width="200" height="141">]({{site.baseurl}}/documentation/sitespeed.io/leaderboard/)
-
-Do you want to compare your performance against other web sites? Use the performance leaderboard! You can check out our [example dashboard](https://dashboard.sitespeed.io/dashboard/db/leaderboard) or go directly to the [documentation]({{site.baseurl}}/documentation/sitespeed.io/leaderboard/). 
-
-You can compare performance timings, how the page is built, how much CPU the page is using and many many more things. And the leaderboard is also configurable through Grafana, so you can add the metrics that are important to you!
+Experience unparalleled performance tracking and monitoring with our advanced Google Web Vitals monitoring tools. From First Contentful Paint to Largest Contentful Paint, Cumulative Layout Shift, and Total Blocking Time/First Input Delay, we've got you covered. Discover the most efficient way to track and monitor all your key performance metrics. Visit our [Google Web Vitals documentation](/documentation/sitespeed.io/google-web-vitals/) now to learn more.

@@ -1,13 +1,11 @@
 
 - const axe = pageInfo.data.axe.run ? pageInfo.data.axe.run : pageInfo.data.axe.pageSummary
 
-
 a
 h2 Axe
-p  Axe is an accessibility testing engine for websites and other HTML-based user interfaces. Read more about 
-    a(href='https://github.com/dequelabs/axe-core') axe-core
-    | . #{axe.testEngine ? 'Tested using ' + axe.testEngine.name + ' ' +  axe.testEngine.version + '.' : ''}
-
+p  Axe is an accessibility testing engine for websites and other HTML-based user interfaces. Tested using #{axe.testEngine.name} version #{axe.testEngine.version}. Read more about 
+    a(href='https://github.com/dequelabs/axe-core') axe-core 
+    | .
 
 if pageInfo.data.axe.run
     h3 Violations
@@ -44,13 +42,13 @@ else
         tbody
             tr
                 td Critical 
-                td #{axe.violations.critical.median}
+                td #{axe.violations.critical.median} (#{axe.violationIssues.critical.median} issues)
             tr
                 td Serious
-                td #{axe.violations.serious.median}
+                td #{axe.violations.serious.median} (#{axe.violationIssues.serious.median} issues)
             tr
                 td Moderate
-                td #{axe.violations.moderate.median}
+                td #{axe.violations.moderate.median} (#{axe.violationIssues.moderate.median} issues)
             tr
                 td Minor
-                td #{axe.violations.minor.median}
+                td #{axe.violations.minor.median} (#{axe.violationIssues.minor.median} issues)

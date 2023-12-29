@@ -1,0 +1,5 @@
+# Redirects from what the browser requests to what we serve
+/feed/index.xml     /feed/blog.xml
+/feeds              /feed/rss.xml
+/feed               /feed/rss.xml   302
+/rss                /feed/rss.xml

@@ -38,7 +38,7 @@ When you store metrics for a URL in Graphite, you decide from the beginning how 
 ~~~shell
 [sitespeed]
 pattern = ^sitespeed_io\.
-retentions = 10m:40d
+retentions = 30m:40d
 ~~~
 
 Every metric that is sent to Graphite following the pattern (the namespace starting with sitespeed_io), Graphite prepares storage for it every ten minutes the first 40 days.
@@ -124,12 +124,12 @@ Append a message to the annotation with <code>--graphite.annotationMessage</code
 
 You can add extra tags with <code>--graphite.annotationTag</code>. For multiple tags, add the parameter multiple times. Just make sure that the tags doesn't collide with our internal tags.
 
-![Annotations]({{site.baseurl}}/img/graphite-annotations.png)
+![Annotations]({{site.baseurl}}/img/graphite-annotations.png){:loading="lazy"}
 {: .img-thumbnail-center}
 
 You can also include a screenshot from the run in the annotation by adding <code>--graphite.annotationScreenshot</code> to your configuration.
 
-![Annotation with screenshots]({{site.baseurl}}/img/annotation-with-screenshot.png)
+![Annotation with screenshots]({{site.baseurl}}/img/annotation-with-screenshot.png){:loading="lazy"}
 {: .img-thumbnail-center}
 
 To make sure the annotations match the actual metric point in Grafana you should use <code>--graphite.annotationRetentionMinutes</code>. If you configured your *storage-schemas.conf* file to have a retention of 10 minutes (one new metric every 10 minutes) you should add <code>--graphite.annotationRetentionMinutes 10</code> to your configuration.
@@ -143,7 +143,7 @@ Then setup your Grafana API token, follow the instructions at [http://docs.grafa
 
 You need to create a new annotation setup in Grafana that matches the templates (the dropdowns) in your dashboard (the same way the default "run" Graphite annotation is setup). It will look something like this:
 
-![Setup Grafana annotations]({{site.baseurl}}/img/grafana-annotations.png)
+![Setup Grafana annotations]({{site.baseurl}}/img/grafana-annotations.png){:loading="lazy"}
 {: .img-thumbnail-center}
 
 
@@ -151,7 +151,7 @@ You need to create a new annotation setup in Grafana that matches the templates 
 ## Upgrade to use the test slug in the namespace
 In sitespeed.io **17.0.0** we introduced the ability to add the slug of your test as a key to Graphite. The slug is the name of your test and it enables the ability to show videos/screenshots (and more) directly in Grafana and makes it easier to differentiate tests. It looks like this:
 
-![New look using the slug]({{site.baseurl}}/img/use-slug.jpg)
+![New look using the slug]({{site.baseurl}}/img/use-slug.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 
@@ -192,34 +192,54 @@ First take a copy of your whisper directory so you have a backup if something go
 
 ### Update to our new dashboards
 
-When you converted the data you need to update your graphs. If you use our premade graphs you can just [download the new versions](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/main/dashboards/graphite) and use them.
+When you converted the data you need to update your graphs. If you use our premade graphs you can just [download the new versions](https://github.com/sitespeedio/sitespeed.io/tree/main/docker/grafana/provisioning/dashboards) and use them.
+
 ### Change your home made Grafana dashboards
 
 If you have your own created dashboards, you need to add the testname as variable and update all the other variables. Start by adding the testname as in the screenshot below.
 
-![Add a test name as a variable]({{site.baseurl}}/img/add-testname.jpg)
+![Add a test name as a variable]({{site.baseurl}}/img/add-testname.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 Then update all variables to use the newly create variable. Here's an example what it looks like when you update domain/group.
 
-![Repeat adding the testname for all variables]({{site.baseurl}}/img/add-testname-all.jpg)
+![Repeat adding the testname for all variables]({{site.baseurl}}/img/add-testname-all.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 When you changed all the variables, you need to update the metrics on your dashboard. Open the dashboard settings and view the dashboard as JSON model as in the screenshot.
 
-![Change all the keys direct in the dashboard JSON]({{site.baseurl}}/img/change-dashboard-json.jpg)
+![Change all the keys direct in the dashboard JSON]({{site.baseurl}}/img/change-dashboard-json.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 Copy the JSON and add it to your favourite editor and search and replace all keys. Search for the key `$base.$path.pageSummary.` and replace that with `$base.$path.$testname.pageSummary.`. Replace all occurrence. Then copy the changed JSON, pastes into Grafana and save the dashboard again.
 ## Dashboards
-We have [pre-made Grafana dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/main/dashboards/graphite) that works with Graphite. They are generic and as long as your [namespace](#namespace) consists of three parts (including the slug), they will work. You can import them one by one or [inject them using Docker](https://github.com/sitespeedio/grafana-bootstrap-docker).
+We have [pre-made Grafana dashboards](https://github.com/sitespeedio/sitespeed.io/tree/main/docker/grafana/provisioning/dashboards) that works with Graphite. They are generic and as long as your [namespace](#namespace) consists of three parts (including the slug), they will work. You can import them one by one. You can also checkout our [docker-compose file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml) on how to set it up.
+
+
+
 
 ## Namespace
 The default namespace when you send metrics to Graphite is *sitespeed_io.default*. You can change the namespace with `--graphite.namespace`. All premade dashboards are prepared to work with namespaces that starts with two parts: *first.second* and with adding a slug/test name. To add a slug add `--graphite.addSlugToKey true` and the actual test name/slug to all your test by adding `--slug YOUR_TEST_NAME`.
 
-If you want more parts, the [default dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/main/dashboards/graphite) will break.
+If you want more parts, the [default dashboards](https://github.com/sitespeedio/sitespeed.io/tree/main/docker/grafana/provisioning/dashboards) will break.
 
-When we use sitespeed.io we usually keep the first part (*sitespeed_io*) to separate metrics from other tools that sends metrics to Graphite.  We then change the second part: *sitespeed_io.desktop*,  *sitespeed_io.emulatedMobile* or *sitespeed_io.desktopSweden*. As long as your namespace has three parts, they will work with the [default dashboards](https://github.com/sitespeedio/grafana-bootstrap-docker/tree/main/dashboards/graphite).
+When we use sitespeed.io we usually keep the first part (*sitespeed_io*) to separate metrics from other tools that sends metrics to Graphite. We then change the second part: *sitespeed_io.desktop*,  *sitespeed_io.emulatedMobile* or *sitespeed_io.desktopSweden*. As long as your namespace has three parts, they will work with the [default dashboards](https://github.com/sitespeedio/sitespeed.io/tree/main/docker/grafana/provisioning/dashboards).
+
+## Delete old tags/annotations
+By default annotations and there tags are stored in the SQLite database that comes with Graphite. The size of that database will increase over time and that will make the annotations slower to load in the Grafana GUI.
+
+To fix that you should setup a job in the crontab that delete old tags/events. Edit the crontab using `crontab -e` and make sure to change the path to the SQLite database and to the SQL script that will delete old entries.
+
+~~~
+0 0 * * 0 sqlite3 /path/to/graphite.db < /path/to/deleteoldevents.sql && sqlite3 /path/to/graphite.db 'VACUUM;'
+~~~
+
+The script should look like this. Here we gonna delete tags/annotations that are older than 34 days.
+
+~~~
+DELETE FROM tagging_taggeditem WHERE object_id IN (SELECT id FROM events_event WHERE "when" <= date('now','-34 day'));
+DELETE FROM events_event WHERE "when" <= date('now','-34 day');
+~~~
 
 ## Warning: Crawling and Graphite
 If you crawl a site that is not static, you will pick up new pages each run or each day, which will make the Graphite database grow daily. When you add metrics to Graphite, it prepares space for those metrics ahead of time, depending on your storage configuration (in Graphite). If you configured Graphite to store individual metrics every 15 minutes for 60 days, Graphite will allocate storage for that URL: 4 (per hour) * 24 (hours per day) * 60 (days), even though you might only test that URL once.
@@ -243,17 +263,17 @@ If you are using AWS you always gives your servers a security group. The servers
 The Graphite server can the open 2003 and 8080 only for that group (write the group name in the source/security group field). In this example we also run Grafana on port 3000 and have it open to the world.
 
 
-![Security group AWS]({{site.baseurl}}/img/security-group-aws.png)
+![Security group AWS]({{site.baseurl}}/img/security-group-aws.png){:loading="lazy"}
 {: .img-thumbnail}
 
 Make sure that when you send data between the server that you using the **Private DNS/Private IP** of the server (else they cannot reach each other). You find the private IP in the *description* section of your server in the admin.
 
-![Private IP AWS]({{site.baseurl}}/img/private-ip.jpg)
+![Private IP AWS]({{site.baseurl}}/img/private-ip.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 If you are using Digital Ocean, you can setup the firewall rule in the admin. Here you add each instance that need to be able to send data (*sitespeed.io-worker* in this example). On this server we also Grafana for HTTP/HTTPS traffic.
 
-![Firewall setup Digital Ocean]({{site.baseurl}}/img/firewall-digitalocean.png)
+![Firewall setup Digital Ocean]({{site.baseurl}}/img/firewall-digitalocean.png){:loading="lazy"}
 {: .img-thumbnail}
 
 ## Storing the data

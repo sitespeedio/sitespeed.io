@@ -17,13 +17,13 @@ twitterdescription: The web performance leaderboard.
 * Let's place the TOC here
 {:toc}
 
-The [leaderboard dashboard](https://dashboard.sitespeed.io/dashboard/db/leaderboard) is the easiest way to compare how you are doing against your competition. To get it going you need [Grafana](https://grafana.com) (6.2 or later) and Graphite. If you don't have that already, you can follow the instructions in [performance dashboard documentation](/documentation/sitespeed.io/performance-dashboard/#up-and-running-in-almost-5-minutes). And to run your tests, you should follow [our example](https://github.com/sitespeedio/dashboard.sitespeed.io).
+The [leaderboard dashboard](https://dashboard.sitespeed.io/d/000000060/leaderboard) is the easiest way to compare how you are doing against your competition. To get it going you need [Grafana](https://grafana.com) (6.2 or later) and Graphite. If you don't have that already, you can follow the instructions in [performance dashboard documentation](/documentation/sitespeed.io/performance-dashboard/#up-and-running-in-almost-5-minutes). And to run your tests, you should follow [our example](https://github.com/sitespeedio/dashboard.sitespeed.io).
 
 The dashboard list the pages that you test. With fastest/best URL first (yes it is a leaderboard!). It looks like this:
 ![Leaderboard example]({{site.baseurl}}/img/leaderboard-example.png)
 {: .img-thumbnail}
 
-But you really should try out our demo at [dashboard.sitespeed.io](https://dashboard.sitespeed.io/dashboard/db/leaderboard)  to really get a feel for it. The dashboard is generic and will work out of the box. But you can also modify it!
+But you really should try out our demo at [dashboard.sitespeed.io](https://dashboard.sitespeed.io/d/000000060/leaderboard)  to really get a feel for it. The dashboard is generic and will work out of the box. But you can also modify it!
 
 The current version compares visual metrics, how the page is built, CPU time spent metrics and how many 3rd parties that is used.
 
@@ -62,7 +62,7 @@ https://www.amazon.com/
 
 And then we just use the namespace **alexaDesktop**. 
 
-When you try out our setup at [dashboard.sitespeed.io](https://dashboard.sitespeed.io/d/000000060/leaderboard) you should also look at the namespaces **alexaMobile**, **news** and **publicSectorDesktop** to check out more examples. And one more thing: you can also combine namespaces and compare multiple tests by using the namespace path: 
+And one more thing: you can also combine namespaces and compare multiple tests by using the namespace path: 
 
 ![Score leaderboard]({{site.baseurl}}/img/combine-namespaces.png)
 {: .img-thumbnail-center}

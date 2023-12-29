@@ -10,12 +10,28 @@ if timings.largestContentfulPaint
             if timings.largestContentfulPaint.tagName 
               tr
                 td 
-                  b Element/tag
+                  b Element type
                 td #{timings.largestContentfulPaint.tagName}
+            if timings.largestContentfulPaint.tag 
+              tr
+                td 
+                  b Element/tag
+                td.url.pagesurl #{timings.largestContentfulPaint.tag}
             tr
               td 
                 b Render time 
               td #{h.time.ms(timings.largestContentfulPaint.renderTime)}
+
+            if renderBlocking && renderBlocking.recalculateStyle.beforeLCP
+              tr 
+                td
+                  b Elements that needed recalculate style before LCP
+                td #{renderBlocking.recalculateStyle.beforeLCP.elements}    
+              tr
+                td 
+                  b Time spent in recalculate style before LCP
+                td #{h.time.ms(renderBlocking.recalculateStyle.beforeLCP.durationInMillis)}  
+
             if timings.largestContentfulPaint.id !== ''
               tr 
                 td 
@@ -40,7 +56,7 @@ if timings.largestContentfulPaint
               td(colspan='2')
                b DOM path
             tr
-              td(colspan='2')
+              td.url.pagesurl(colspan='2')
                 #{timings.largestContentfulPaint.domPath}
     .one-half.column
       - const screenshotNo = medianRun ? medianRun.runIndex : 1

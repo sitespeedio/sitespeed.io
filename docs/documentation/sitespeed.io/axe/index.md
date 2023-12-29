@@ -33,7 +33,9 @@ That will run [axe-core](https://github.com/dequelabs/axe-core) and generate a n
 
 
 ## Configure Axe
-You can [configure Axe](https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#api-name-axeconfigure) which rules/checks that will be used. In the *axe* namespace we pass on all parameters to the configuration object of Axe. `--axe.checks` will result in a configuration object like:
+You can [configure Axe](https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#api-name-axeconfigure) which rules/checks that will be used. 
+
+You need to read [Axe official documentation](https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#api-name-axeconfigure) to get a feeling for what you can configure with Axe.  In the *axe* namespace we pass on all parameters to the configuration object of Axe. `--axe.checks` will result in a configuration object like:
 
 ```json
 checks: {
@@ -41,8 +43,22 @@ checks: {
 }
 ```
 
-If you wanna avoid having over complicated cli-params you should use the [configuration as JSON feature](/documentation/sitespeed.io/configuration/#configuration-as-json).
+That way you can configure all things you can configure in the [Axe configuration](https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#api-name-axeconfigure).
 
+
+However you probably just want to configure [run options](https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#api-name-axerun), you can do that with adding a run prefix. Say for example you only want to test *wcag2aa* compliance, you can do that with the *runOnly* configuration in AXE. You can do that with a configuration like:
+
+```json
+{
+    "axe": {
+        "run": {
+            "runOnly": ["wcag2aa"]
+        }
+    }
+}
+```
+
+If you wanna avoid having over complicated cli-parameters you should use the [configuration as JSON feature](/documentation/sitespeed.io/configuration/#configuration-as-json).
 
 ## How it works behind the scene
 The Axe tests are run as a [postScript](/documentation/sitespeed.io/prepostscript/).

@@ -19,12 +19,15 @@ twitterdescription: Use Docker to run sitespeed.io.
 
 ## Containers
 
-Docker is the preferred installation method because every dependency is handled for you for all the features in sitespeed.io.
+Docker makes it easier to run sitespeed.io because you don't need to install every dependency needed for recording and analysing the browser screen. It's also easy to update your container to a new sitespeed.io version by changing the Docker tag. The drawback using Docker is that it will add some overhead, the container is Linux only (browsers are Linux version).
 
-We have a three ready made containers:
+We publich containers for AMD and ARM. The AMD containers contains the latest Chrome/Firefox/Edge. The ARM container are behind and use latest Chrome/Firefox that was published for ARM.
+
+We have a four ready made containers:
 * One slim container that contains only Firefox. You run Firefox headless. Use the container `sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-slim`. The container do not have FFMpeg and Imagemagick so you can not get any Visual Metrics using this container.
-* One with [Chrome, Firefox & Xvfb](https://hub.docker.com/r/sitespeedio/sitespeed.io/). It also contains FFMpeg and Imagemagick, so we can record a video and get metrics like Speed Index using [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics). This is the default container and use it with `sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}` 
+* One with [Chrome, Firefox and Edge](https://hub.docker.com/r/sitespeedio/sitespeed.io/). It also contains FFMpeg and Imagemagick, so we can record a video and get metrics like Speed Index using [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics). This is the default container and use it with `sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}` . If you use the *arm64* version of the container, that container will have Firefox and Chromium installed.
 * One container that is based in the default container and includes the [Google Page Speed Insights](https://github.com/sitespeedio/plugin-gpsi) and [Lighthouse plugin](https://github.com/sitespeedio/plugin-lighthouse). Use it with `sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-plus1`.
+* Another container that is based in the default container and includes the [WebPageTest plugin](https://github.com/sitespeedio/plugin-webpagetest). Use it with `sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-webpagetest`
 
 ### Structure
 
@@ -40,7 +43,7 @@ The [slim container](https://github.com/sitespeedio/sitespeed.io/blob/main/Docke
 We lock down the browsers to specific versions for maximum compatibility and stability with sitespeed.io's current feature set; upgrading once we verify browser compatibility.
 {: .note .note-info}
 
-## Running in Docker
+## Running using Docker
 
 The simplest way to run using Chrome:
 
@@ -62,6 +65,21 @@ docker run --shm-size 2g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io
 
 Using `-v "$(pwd):/sitespeed.io"` will map the current directory inside Docker and output the result directory there.
 {: .note .note-info}
+
+
+## Running on Mac M1 ARM
+We have ARM container that will be used by default but it will use an older version of Chromium and a newer version of Firefox. The problem is that the Chrome team (Google, 30000+ engineers) do not build Chrome/Chromium on ARM Linux so we rely on *ppa:saiarcot895/chromium-beta* and use the latest version from there.
+
+It's probably better to run the AMD containers. If you have a newer version of Docker desktop installed, you can *"Use Rosetta for x86/amd64 emulation"* to run the AMD containers. Go to settings and turn it on (see the screenshot).
+
+![Turn on Rosetta]({{site.baseurl}}/img/rosetta-docker.jpg)
+{: .img-thumbnail}
+
+Then run by specifying the platform *--platform linux/amd64*.
+
+```bash
+docker run --rm -v "$(pwd):/sitespeed.io" --platform linux/amd64 sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io/
+```
 
 ## More about volumes
 
@@ -195,3 +213,8 @@ Enter any password. This will start your VNC server which you can use by any VNC
 - Enter VNC server : `0.0.0.0:5900`
 - When prompted for password, enter the password you entered while creating the vnc server.
 - You should be able to view the contents of `Xvfb`.
+
+## Security
+In our build process we [run Trivy vulnerability scanner](https://github.com/sitespeedio/sitespeed.io/blob/main/.github/workflows/docker-scan.yml) on the docker image and we break builds on *CRITICAL* issues. The reason for that is that if should break in *HIGH* issues we would probably never be able to release any containers. We update the OS in Docker continously but it can happen that sometimes have HIGH issues.
+
+If you need to have a container that do not have lower security issues, you can do that by building your own containers and manage it yourself.

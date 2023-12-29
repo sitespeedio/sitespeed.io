@@ -1,8 +1,19 @@
 #!/bin/bash
+#
+# All browsers do not exist in all architectures.
+if [[ `which google-chrome` ]]; then
+   google-chrome --version
+elif [[ `which chromium-browser` ]]; then
+   chromium-browser --version
+fi
 
-google-chrome --version
-firefox --version
-microsoft-edge --version
+if [[ `which firefox` ]]; then
+   firefox --version
+fi
+
+if [[ `which microsoft-edge` ]]; then
+   microsoft-edge --version
+fi
 
 BROWSERTIME=/usr/src/app/bin/browsertimeWebPageReplay.js
 SITESPEEDIO=/usr/src/app/bin/sitespeed.js

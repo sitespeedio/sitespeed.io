@@ -1,0 +1,72 @@
+name: Build Docker containers on new tag
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      -
+          name: Checkout
+          uses: actions/checkout@v4
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Get the tag
+        id: tag
+        uses: dawidd6/action-get-tag@v1
+        with:
+          strip_v: true
+      -
+        name: Build and push sitespeed.io
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          provenance: false
+          tags: sitespeedio/sitespeed.io:${{steps.tag.outputs.tag}},sitespeedio/sitespeed.io:latest
+      -
+        name: Build and push sitespeed.io+1
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          file: ./docker/Dockerfile-plus1
+          build-args: version=${{steps.tag.outputs.tag}} 
+          push: true
+          provenance: false
+          tags: sitespeedio/sitespeed.io:${{steps.tag.outputs.tag}}-plus1
+      -
+        name: Build and push sitespeed.io+wpt
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          file: ./docker/Dockerfile-webpagetest
+          build-args: version=${{steps.tag.outputs.tag}} 
+          push: true
+          provenance: false
+          tags: sitespeedio/sitespeed.io:${{steps.tag.outputs.tag}}-webpagetest
+      -
+        name: Build and push sitespeed.io-slim
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          file: ./Dockerfile-slim
+          build-args: version=${{steps.tag.outputs.tag}} 
+          push: true
+          provenance: false
+          tags: sitespeedio/sitespeed.io:${{steps.tag.outputs.tag}}-slim

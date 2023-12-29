@@ -1,8 +1,7 @@
-'use strict';
+import dayjs from 'dayjs';
+import test from 'ava';
 
-const resultsStorage = require('../lib/core/resultsStorage');
-const dayjs = require('dayjs');
-const expect = require('chai').expect;
+import { resultsStorage } from '../lib/core/resultsStorage/index.js';
 
 const timestamp = dayjs();
 const timestampString = timestamp.format('YYYY-MM-DD-HH-mm-ss');
@@ -12,119 +11,141 @@ function createResultUrls(url, outputFolder, resultBaseURL) {
     .resultUrls;
 }
 
-describe('resultUrls', function() {
-  describe('#hasBaseUrl', function() {
-    it('should be false if base url is missing', function() {
-      const resultUrls = createResultUrls(
-        'http://www.foo.bar',
-        undefined,
-        undefined
-      );
-      expect(resultUrls.hasBaseUrl()).to.be.false;
-    });
+test(`Test hasBaseUrl should be false if base url is missing`, t => {
+  const resultUrls = createResultUrls('http://www.foo.bar');
+  t.is(
+    resultUrls.hasBaseUrl(),
+    false,
+    'hasBaseUrl should be false if base url is missing'
+  );
+});
 
-    it('should be true if base url is present', function() {
-      const resultUrls = createResultUrls(
-        'http://www.foo.bar',
-        undefined,
-        'http://results.com'
-      );
-      expect(resultUrls.hasBaseUrl()).to.be.true;
-    });
-  });
+test(`Test hasBaseUrl should be true if base url is present`, t => {
+  const resultUrls = createResultUrls(
+    'http://www.foo.bar',
+    undefined,
+    'http://results.com'
+  );
+  t.is(
+    resultUrls.hasBaseUrl(),
+    true,
+    'hasBaseUrl should be true if base url is present'
+  );
+});
 
-  describe('#reportSummaryUrl', function() {
-    it('should create url with default output folder', function() {
-      const resultUrls = createResultUrls(
-        'http://www.foo.bar',
-        undefined,
-        'http://results.com'
-      );
-      expect(resultUrls.reportSummaryUrl()).to.equal(
-        `http://results.com/www.foo.bar/${timestampString}`
-      );
-    });
-    it('should create url with absolute output folder', function() {
-      const resultUrls = createResultUrls(
-        'http://www.foo.bar',
-        '/root/leaf',
-        'http://results.com'
-      );
-      expect(resultUrls.reportSummaryUrl()).to.equal('http://results.com/leaf');
-    });
-    it('should create url with relative output folder', function() {
-      const resultUrls = createResultUrls(
-        'http://www.foo.bar',
-        '../leaf',
-        'http://results.com'
-      );
-      expect(resultUrls.reportSummaryUrl()).to.equal('http://results.com/leaf');
-    });
-  });
-  describe('#absoluteSummaryPageUrl', function() {
-    it('should create url with default output folder', function() {
-      const resultUrls = createResultUrls(
-        'http://www.foo.bar',
-        undefined,
-        'http://results.com'
-      );
-      expect(
-        resultUrls.absoluteSummaryPageUrl('http://www.foo.bar/xyz')
-      ).to.equal(
-        `http://results.com/www.foo.bar/${timestampString}/pages/www_foo_bar/xyz/`
-      );
-    });
-    it('should create url with absolute output folder', function() {
-      const resultUrls = createResultUrls(
-        'http://www.foo.bar',
-        '/root/leaf',
-        'http://results.com'
-      );
-      expect(
-        resultUrls.absoluteSummaryPageUrl('http://www.foo.bar/xyz')
-      ).to.equal('http://results.com/leaf/pages/www_foo_bar/xyz/');
-    });
-    it('should create url with relative output folder', function() {
-      const resultUrls = createResultUrls(
-        'http://www.foo.bar',
-        '../leaf',
-        'http://results.com'
-      );
-      expect(
-        resultUrls.absoluteSummaryPageUrl('http://www.foo.bar/xyz')
-      ).to.equal('http://results.com/leaf/pages/www_foo_bar/xyz/');
-    });
-  });
-  describe('#relativeSummaryPageUrl', function() {
-    it('should create url with default output folder', function() {
-      const resultUrls = createResultUrls(
-        'http://www.foo.bar',
-        undefined,
-        'http://results.com'
-      );
-      expect(
-        resultUrls.relativeSummaryPageUrl('http://www.foo.bar/xyz')
-      ).to.equal('pages/www_foo_bar/xyz/');
-    });
-    it('should create url with absolute output folder', function() {
-      const resultUrls = createResultUrls(
-        'http://www.foo.bar',
-        '/root/leaf',
-        'http://results.com'
-      );
-      expect(
-        resultUrls.relativeSummaryPageUrl('http://www.foo.bar/xyz')
-      ).to.equal('pages/www_foo_bar/xyz/');
-    });
-    it('should create url with relative output folder', function() {
-      const resultUrls = createResultUrls(
-        'http://www.foo.bar',
-        '../leaf',
-        'http://results.com'
-      );
-      expect(
-        resultUrls.relativeSummaryPageUrl('http://www.foo.bar/xyz')
-      ).to.equal('pages/www_foo_bar/xyz/');
-    });
-  });
+test(`Test reportSummaryUrl should create url with default output folder`, t => {
+  const resultUrls = createResultUrls(
+    'http://www.foo.bar',
+    undefined,
+    'http://results.com'
+  );
+  t.is(
+    resultUrls.reportSummaryUrl(),
+    `http://results.com/www.foo.bar/${timestampString}`,
+    'reportSummaryUrl should create url with default output folder'
+  );
+});
+
+test(`Test should create url with absolute output folder`, t => {
+  const resultUrls = createResultUrls(
+    'http://www.foo.bar',
+    '/root/leaf',
+    'http://results.com'
+  );
+  t.is(
+    resultUrls.reportSummaryUrl(),
+    `http://results.com/leaf`,
+    'reportSummaryUrl should create url with absolute output folder'
+  );
+});
+
+test(`Test should create url with relative output folder`, t => {
+  const resultUrls = createResultUrls(
+    'http://www.foo.bar',
+    '../leaf',
+    'http://results.com'
+  );
+  t.is(
+    resultUrls.reportSummaryUrl(),
+    `http://results.com/leaf`,
+    'reportSummaryUrl should create url with relative output folder'
+  );
+});
+
+test(`Test absoluteSummaryPageUrl should create url with default output folder`, t => {
+  const resultUrls = createResultUrls(
+    'http://www.foo.bar',
+    undefined,
+    'http://results.com'
+  );
+  t.is(
+    resultUrls.absoluteSummaryPageUrl('http://www.foo.bar/xyz'),
+    `http://results.com/www.foo.bar/${timestampString}/pages/www_foo_bar/xyz/`,
+    'should create url with default output folderfolder'
+  );
+});
+
+test(`Test absoluteSummaryPageUrl should create url with absolute output folder`, t => {
+  const resultUrls = createResultUrls(
+    'http://www.foo.bar',
+    '/root/leaf',
+    'http://results.com'
+  );
+  t.is(
+    resultUrls.absoluteSummaryPageUrl('http://www.foo.bar/xyz'),
+    `http://results.com/leaf/pages/www_foo_bar/xyz/`,
+    'should create url with absolute output folder'
+  );
+});
+
+test(`Test absoluteSummaryPageUrl should create url with relative output folder`, t => {
+  const resultUrls = createResultUrls(
+    'http://www.foo.bar',
+    '../leaf',
+    'http://results.com'
+  );
+  t.is(
+    resultUrls.absoluteSummaryPageUrl('http://www.foo.bar/xyz'),
+    `http://results.com/leaf/pages/www_foo_bar/xyz/`,
+    'should create url with absolute relative folder'
+  );
+});
+
+test(`Test relativeSummaryPageUrl should create url with default output folder`, t => {
+  const resultUrls = createResultUrls(
+    'http://www.foo.bar',
+    undefined,
+    'http://results.com'
+  );
+  t.is(
+    resultUrls.relativeSummaryPageUrl('http://www.foo.bar/xyz'),
+    `pages/www_foo_bar/xyz/`,
+    'should create url with default output folder'
+  );
+});
+
+test(`Test relativeSummaryPageUrl should create url with absolute output folder`, t => {
+  const resultUrls = createResultUrls(
+    'http://www.foo.bar',
+    '/root/leaf',
+    'http://results.com'
+  );
+  t.is(
+    resultUrls.relativeSummaryPageUrl('http://www.foo.bar/xyz'),
+    `pages/www_foo_bar/xyz/`,
+    'should create url with absolute output folder'
+  );
+});
+
+test(`Test relativeSummaryPageUrl should create url with relative output folder`, t => {
+  const resultUrls = createResultUrls(
+    'http://www.foo.bar',
+    '../leaf',
+    'http://results.com'
+  );
+  t.is(
+    resultUrls.relativeSummaryPageUrl('http://www.foo.bar/xyz'),
+    `pages/www_foo_bar/xyz/`,
+    'should create url with relative output folder'
+  );
 });

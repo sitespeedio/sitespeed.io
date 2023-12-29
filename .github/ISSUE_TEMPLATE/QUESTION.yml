@@ -1,0 +1,15 @@
+name: Question
+description: Ask a question about sitespeed.io
+labels: [question]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Ask a question about sitespeed.io
+  - type: textarea
+    id: your-question
+    attributes:
+      label: Your question
+      description: Please double check that this question hasn't already answered in the [documentation](https://www.sitespeed.io/documentation/sitespeed.io/) (use the `Search`) or [old GitHub issues](https://github.com/sitespeedio/sitespeed.io/issues?q=is%3Aissue+is%3Aclosed). You can also ask questions in the [sitespeed.io Slack channel](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw). And if your question is more like a bug, please [use the bug report form](https://github.com/sitespeedio/sitespeed.io/issues/new?assignees=&labels=bug&template=BUG_REPORT.yml)
+    validations:
+      required: true

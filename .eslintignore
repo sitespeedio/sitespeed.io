@@ -4,3 +4,6 @@ assets/*
 sitespeed-result/*
 lib/plugins/yslow/scripts/*
 lib/plugins/html/assets/js/*
+bin/browsertimeWebPageReplay.js
+test/data/*
+test/prepostscripts/*

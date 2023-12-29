@@ -40,7 +40,6 @@ Setup a simple budget that checks the URLs you test against number of requests, 
         "requests": 0
     },
     "score": {
-      "accessibility": 100,
       "bestpractice": 100,
       "privacy": 100,
       "performance": 100
@@ -89,7 +88,7 @@ docker run -v ${WORKSPACE}:/sitespeed.io sitespeedio/sitespeed.io --outputFolder
 
  The HTML result pages runs JavaScript, so you need to change the [Jenkins Content Security Policy](https://wiki.jenkins-ci.org/display/JENKINS/Configuring+Content+Security+Policy) for them to work with the plugin.
 
- When you start Jenkins make sure to set the environment variable <code>-Dhudson.model.DirectoryBrowserSupport.CSP="sandbox allow-scripts; style-src 'unsafe-inline' *;script-src 'unsafe-inline' *;"</code>.
+ When you start Jenkins make sure to set the environment variable <code>-Dhudson.model.DirectoryBrowserSupport.CSP="default-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self' 'unsafe-inline' data:;"</code>.
 
 * If you want to break your build, you should generate a JUnit XML and use the built-in post task *Publish JUnit test result report*. Make sure to make the budget file available inside the Docker container. In this example we have it inside the Jenkins workspace.
 
@@ -146,7 +145,7 @@ workflows:
 You will notice that the last run is reading the performance budget file that exists in the git repo that was checked out. This will only work if you mount the checked out repo as a volume for sitespeed. This makes is really efficient and convenient to allow sitespeed to pick up configuration files and to output results to a location where one can post-process with other scripts.
 
 ## Gitlab CI
-Gitlab has prepared an easy way to test using sitespeed.io: [https://docs.gitlab.com/ee/ci/examples/browser_performance.html](https://docs.gitlab.com/ee/ci/examples/browser_performance.html). 
+Gitlab has prepared an easy way to test using sitespeed.io: [https://docs.gitlab.com/ee/user/project/merge_requests/browser_performance_testing.html](https://docs.gitlab.com/ee/user/project/merge_requests/browser_performance_testing.html). 
 
 ## Grunt plugin
 Checkout the [grunt plugin](https://github.com/sitespeedio/grunt-sitespeedio).

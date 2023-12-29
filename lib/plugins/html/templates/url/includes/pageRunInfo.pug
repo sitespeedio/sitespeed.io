@@ -1,5 +1,5 @@
 if pageInfo.data.browsertime
-  p.small Tested #{runTime} using #{h.cap(browserName || options.browsertime.browser)} #{browser.version}  
+  p.small Tested #{timestamp} using #{h.cap(browserName || options.browsertime.browser)} #{browser.version} 
     if options.multi && options.html.showScript
       | (
       a(href= rootPath + 'scripts.html')= 'script'

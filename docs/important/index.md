@@ -52,7 +52,7 @@ We have stayed away from taking money contributions so far (except an award from
 We are pretty confident that how we work and how we keep sitespeed.io going, will make our project outlive many commercial web performance tools (we've been going strong the last 5 years). It's pretty simple: We do this because we love it and we have a mission to make web performance tools free and available for everyone. Commercial products always needs paying customers to keep going.
 
 ## We want to help you
-We really (yes I mean really) focus on helping you as a user. If you have a problem please [create an issue](https://github.com/sitespeedio/sitespeed.io/issues/new) or talk to us on our [Slack channel](https://sitespeedio.herokuapp.com/).
+We really (yes I mean really) focus on helping you as a user. If you have a problem please [create an issue](https://github.com/sitespeedio/sitespeed.io/issues/new) or talk to us on our [Slack channel](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw).
 
 If there's a common problem or a bug and we talk about it on Slack we will kindly ask you to create an issue. Issues are great because it helps people that has the same problem.
 

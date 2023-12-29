@@ -1,9 +1,11 @@
-FROM sitespeedio/webbrowsers:chrome-90.0-firefox-88.0-edge-89.0-dev
+FROM sitespeedio/webbrowsers:chrome-120.0-firefox-121.0-edge-120.0
+
+ARG TARGETPLATFORM=linux/amd64
 
 ENV SITESPEED_IO_BROWSERTIME__XVFB true
 ENV SITESPEED_IO_BROWSERTIME__DOCKER true
 
-COPY docker/webpagereplay/wpr /usr/local/bin/
+COPY docker/webpagereplay/$TARGETPLATFORM/wpr /usr/local/bin/
 COPY docker/webpagereplay/wpr_cert.pem /webpagereplay/certs/
 COPY docker/webpagereplay/wpr_key.pem /webpagereplay/certs/
 COPY docker/webpagereplay/deterministic.js /webpagereplay/scripts/deterministic.js
@@ -24,8 +26,9 @@ RUN wpr installroot --https_cert_file /webpagereplay/certs/wpr_cert.pem --https_
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-COPY package.* /usr/src/app/
-RUN npm install --production
+COPY package.json /usr/src/app/
+COPY npm-shrinkwrap.json /usr/src/app/
+RUN npm install --production && npm cache clean --force
 COPY . /usr/src/app
 
 COPY docker/scripts/start.sh /start.sh
@@ -41,4 +44,6 @@ RUN echo 'ALL ALL=NOPASSWD: /usr/sbin/tc, /usr/sbin/route, /usr/sbin/ip' > /etc/
 
 ENTRYPOINT ["/start.sh"]
 VOLUME /sitespeed.io
+VOLUME /baseline
+
 WORKDIR /sitespeed.io

@@ -1,0 +1,65 @@
+extends ../layout.pug
+
+block content
+    h1 Metrics  per run
+    - const daTitle = daurlAlias ? daurlAlias : daurl
+    h5.url
+        a(href=daurl) #{decodeURIComponent(daTitle)}
+
+    include ../../includes/pageRunInfo
+
+    - const tools = ['browsertime', 'pagexray']
+    - const metrics = {};
+    - for (let tool of Object.keys(friendlyNames)) {
+        - if (tools.indexOf(tool) > -1) {
+        -   metrics[tool] = friendlyNames[tool]
+    -    }
+    - }
+
+    - const categoryNames = {googleWebVitals: "Google Web Vitals", timings: "Timing metrics", cpu: "CPU metrics", browser: 'Browser metrics', pageinfo: "Page metrics", thirdParty: "Third Party metrics", firstParty: "First Party metrics"}
+    - const noCategory = ['requests','transferSize', 'contentSize']
+
+    h3 Side by side
+    .responsive
+        .test(style='overflow-x:auto;')
+            table
+                tr
+                    - let run = 1
+                    th Metric
+                    each page in runPages
+                        th
+                            b #{run}
+                            - run++
+                    th Median
+                    th Mean
+                    th stddev
+                    th rsd
+                each tool in Object.keys(metrics)
+                    - let category = ''
+                    each metricType in Object.keys(metrics[tool])
+                        - if (category !== metricType) {
+                            - if (noCategory.indexOf(metricType) === -1) {
+                                - category = metricType   
+                                tr 
+                                    th(colspan=runPages.length + 5) #{categoryNames[metricType] ? categoryNames[metricType] : metricType}
+                            - } else {
+                                - category = metricType 
+                            - }
+                        - }
+                        each metric in Object.keys(metrics[tool][metricType])
+                            - const friendly = metrics[tool][metricType][metric]
+                            - const m = get (runPages[0], 'data.' + tool + '.run.' + (friendly.runPath || friendly.path), 'notused')
+                            if (m !== 'notused') 
+                                tr
+                                    td 
+                                        b #{friendly.name}
+                                    - let pageIndex = 1
+                                    each page in runPages
+                                        td 
+                                            a(href=pageIndex + '.html') #{friendly.format(get (page, 'data.' + tool + '.run.' + (friendly.runPath || friendly.path)))}
+                                            - pageIndex++
+                                    td #{friendly.format(get (mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.median', ''))}
+                                    td #{friendly.format(get (mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.mean', ''))}
+                                    td #{friendly.format(get (mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.stddev', ''))}
+                                    - rsd = get (mySummary, 'data.' + tool + '.pageSummary.statistics.' + friendly.runPath + '.rsd', '')
+                                    td #{rsd !== '' ? Number(rsd).toFixed(2) + ' %' : 'N/A'}  

@@ -17,7 +17,7 @@ block content
     p !{d.browsertime.run.description}
 
   p
-    .large All runs:&nbsp;
+    .large#pageNavigation All runs:&nbsp;
       each val, index in runPages
         - value = Number(index) + 1
         if (runNumber === value)
@@ -49,6 +49,8 @@ block content
             tr
               th Metric
               th Value
+            tr
+              th(colspan='2') Page metrics
             - performanceScore = get(d, 'coach.run.advice.performance.score')
             if performanceScore
               tr
@@ -59,46 +61,60 @@ block content
               tr
                 td Total page size
                 td #{h.size.format(totalTransferSize)}
+            - memory = get(d, 'browsertime.run.memory')
+            if memory
+              tr
+                td Memory
+                td #{h.size.format(memory)}
             - requests = get(d, 'pagexray.run.requests')
             if (requests)
               tr
                 td Requests
                 td #{requests}
             - ttfb = get(d, 'browsertime.run.timings.pageTimings.backEndTime') 
+            tr
+              th(colspan='2') Timing metrics
             if ttfb
               tr
                 td TTFB
                 td #{h.time.ms(ttfb)}
+            - firstPaint = get(d, 'browsertime.run.timings.firstPaint')
+            if firstPaint
+              tr
+                td First Paint
+                td #{h.time.ms(firstPaint)} 
             - fullyLoaded = get(d, 'browsertime.run.fullyLoaded') 
             if fullyLoaded
               tr
                 td Fully Loaded
-                td #{h.time.ms(fullyLoaded.toFixed(0))}
-            - firstVisualChange = get(d, 'browsertime.run.visualMetrics.FirstVisualChange')
-            - firstPaint = get(d, 'browsertime.run.timings.firstPaint')
-            if firstVisualChange
-              tr
-                td First Visual Change
-                td #{h.time.ms(firstVisualChange)}
-            else if firstPaint
-              tr
-                td First Paint
-                td #{h.time.ms(firstPaint)}  
+                td #{h.time.ms(fullyLoaded.toFixed(0))} 
             - fcp = get(d, 'browsertime.run.timings.paintTiming["first-contentful-paint"]') 
-            if fcp
-              tr
-                td FCP
-                td #{h.time.ms(fcp)}         
             - lcp = get(d, 'browsertime.run.timings.largestContentfulPaint.renderTime')
             if lcp
               tr
-                td LCP
+                th(colspan='2') Google Web Vitals
+            - ttfb = get(d, 'browsertime.run.timings.pageTimings.backEndTime') 
+            if ttfb
+              tr
+                td TTFB
+                td #{h.time.ms(ttfb)}
+            if fcp
+              tr
+                td First Contentful Paint (FCP) 
+                td #{h.time.ms(fcp)}         
+            if lcp
+              tr
+                td Largest Contentful Paint (LCP) 
                 td #{h.time.ms(lcp)}
             - cls = get(d, 'browsertime.run.pageinfo.cumulativeLayoutShift')
             if cls || cls === 0
                 tr
-                  td CLS
-                  td #{cls}
+                  td Cumulative Layout Shift (CLS) 
+                  td #{cls.toFixed(2)}
+            - inp = get(d, 'browsertime.run.timings.interactionToNextPaint')
+            if inp
+              tr
+                td #{h.time.ms(inp)}
             - tbt = get(d, 'browsertime.run.cpu.longTasks.totalBlockingTime')
             if tbt  
               tr
@@ -112,6 +128,8 @@ block content
             - longTasks = get(d, 'browsertime.run.cpu.longTasks.tasks')
             if longTasks
               tr
+                th(colspan='2') CPU metrics
+              tr
                 td CPU long tasks
                 td #{longTasks}
             - maxLongTask= get(d, 'browsertime.run.cpu.longTasks.durations.max') 
@@ -119,6 +137,19 @@ block content
               tr
                 td CPU longest task duration
                 td #{h.time.ms(maxLongTask)}
+            - lastLongTask= get(d, 'browsertime.run.cpu.longTasks.lastLongTask') 
+            if lastLongTask 
+              tr
+                td CPU last long task happens at
+                td #{h.time.ms(lastLongTask)}
+
+            - firstVisualChange = get(d, 'browsertime.run.visualMetrics.FirstVisualChange')
+            if firstVisualChange
+              tr
+                th(colspan='2') Visual Metrics
+              tr
+                td First Visual Change
+                td #{h.time.ms(firstVisualChange)}
             - speedIndex = get(d, 'browsertime.run.visualMetrics.SpeedIndex')
             if speedIndex
               tr
@@ -140,6 +171,8 @@ block content
                 td Last Visual Change
                 td #{h.time.ms(lastVisualChange)}
             if !d.browsertime && d.webpagetest
+              tr
+                th(colspan='2') WebPageTest
               tr
                 td Render (first view)
                 td #{d.webpagetest.run.firstView.render}
@@ -193,7 +226,7 @@ block content
       section#pagexray-panel
         include ../pagexray/index.pug
 
-    if options.cpu || (options.browsertime && options.browsertime.chrome && options.browsertime.chrome.collectLongTasks) || (options.browsertime && options.browsertime.firefox && options.browsertime.firefox.geckoProfiler)
+    if options.cpu || (options.browsertime && options.browsertime.chrome && options.browsertime.chrome.collectLongTasks) || (options.browsertime && options.browsertime.firefox && options.browsertime.firefox.geckoProfiler || options.browsertime &&options.browsertime.enableProfileRun)
       section#cpu-panel
         include ../cpu/index.pug     
     

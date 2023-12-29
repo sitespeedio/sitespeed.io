@@ -21,7 +21,7 @@ Sitespeed.io uses Browsertime, the Coach and PageXray to collect and generate th
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} -b chrome --cpu https://en.wikipedia.org/wiki/Main_Page https://en.wikipedia.org/wiki/Barack_Obama
 ~~~
 
-Gives the following [report](https://examples.sitespeed.io/16.x/2020-12-21-10-46-45/index.html). The standard use case for sitespeed.io is to run it continuously and send the data to Graphite/Grafana and create dashboards looking like this:
+Gives the following [report](https://examples.sitespeed.io/17.x/2021-05-23-07-23-07/). The standard use case for sitespeed.io is to run it continuously and send the data to Graphite/Grafana and create dashboards looking like this:
 
 [![Example dashboard]({{site.baseurl}}/img/examples/dashboard-examples.png)](https://dashboard.sitespeed.io/d/9NDMzFfMk/page-metrics-desktop)
 {: .img-thumbnail}
@@ -1014,7 +1014,7 @@ And it will generate a JSON that looks something like this:
         },
         "optimizely": {
           "advice": "",
-          "description": "Use Optimizely with care because it hurts your performance since Javascript is loaded synchronously inside of the head tag, making the first paint happen later. Only turn on Optimzely (= load the javascript) when you run your A/B tests.",
+          "description": "Use Optimizely with care because it hurts your performance since Javascript is loaded synchronously inside of the head tag, making the first paint happen later. Only turn on Optimizely (= load the javascript) when you run your A/B tests.",
           "id": "optimizely",
           "offending": [
           ],
@@ -1210,7 +1210,7 @@ And it will generate a JSON that looks something like this:
         },
         "cacheHeaders": {
           "advice": "",
-          "description": "The easiest way to make your page fast is to avoid doing requests to the server. Setting a cache header on your server response will tell the browser that it doesn't need to downloand the asset again during the configured cache time! Always try to set a cache time if the content doesn't change for every request.",
+          "description": "The easiest way to make your page fast is to avoid doing requests to the server. Setting a cache header on your server response will tell the browser that it doesn't need to download the asset again during the configured cache time! Always try to set a cache time if the content doesn't change for every request.",
           "id": "cacheHeaders",
           "offending": [
           ],
@@ -1224,7 +1224,7 @@ And it will generate a JSON that looks something like this:
         },
         "cacheHeadersLong": {
           "advice": "",
-          "description": "Setting a cache header is good. Setting a long cache header (at least 30 days) is even better beacause then it will stay long in the browser cache. But what do you do if that asset change? Rename it and the browser will pick up the new version.",
+          "description": "Setting a cache header is good. Setting a long cache header (at least 30 days) is even better because then it will stay long in the browser cache. But what do you do if that asset change? Rename it and the browser will pick up the new version.",
           "id": "cacheHeadersLong",
           "offending": [
           ],
@@ -1238,7 +1238,7 @@ And it will generate a JSON that looks something like this:
         },
         "compressAssets": {
           "advice": "",
-          "description": "In the early days of Internet there where browsers that didn't support compressing (gzipping) text content. They do now. Make sure you compress HTML, JSON, Javacript, CSS and SVG. I will save bytes for the user; making the page load faster and use less bandwith. ",
+          "description": "In the early days of Internet there where browsers that didn't support compressing (gzipping) text content. They do now. Make sure you compress HTML, JSON, Javascript, CSS and SVG. I will save bytes for the user; making the page load faster and use less bandwidth. ",
           "id": "compressAssets",
           "offending": [
           ],
@@ -1376,7 +1376,7 @@ And it will generate a JSON that looks something like this:
         },
         "imageSize": {
           "advice": "",
-          "description": "Avoid having too many large images on page. The images will not affect the first paint of the page but it will eat bandwith for the user.",
+          "description": "Avoid having too many large images on page. The images will not affect the first paint of the page but it will eat bandwidth for the user.",
           "id": "imageSize",
           "offending": [
           ],
@@ -1460,7 +1460,7 @@ And it will generate a JSON that looks something like this:
         },
         "pageSize": {
           "advice": "",
-          "description": "Avoid having pages that have transfer size over the wire of more than 2 MB (desktop) and 1 MB (mobile) because that is really big and will hurt performance and will make the page expensive for the user if she/he pays for the bandwith.",
+          "description": "Avoid having pages that have transfer size over the wire of more than 2 MB (desktop) and 1 MB (mobile) because that is really big and will hurt performance and will make the page expensive for the user if she/he pays for the bandwidth.",
           "id": "pageSize",
           "offending": [
           ],

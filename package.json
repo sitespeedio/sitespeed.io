@@ -1,11 +1,12 @@
 {
   "name": "sitespeed.io",
+  "type": "module",
   "bin": {
     "sitespeed.io": "./bin/sitespeed.js",
     "sitespeed.io-wpr": "./bin/browsertimeWebPageReplay.js"
   },
-  "version": "17.2.0",
-  "description": "Analyze the web performance of your site",
+  "version": "31.0.1",
+  "description": "sitespeed.io is an open-source tool for comprehensive web performance analysis, enabling you to test, monitor, and optimize your website’s speed using real browsers in various environments.",
   "keywords": [
     "performance",
     "web",
@@ -37,56 +38,66 @@
   "bugs": {
     "url": "https://github.com/sitespeedio/sitespeed.io/issues"
   },
+  "ava": {
+    "files": [
+      "test/**/*",
+      "!test/prepostscripts",
+      "!test/runWithoutCli.js",
+      "!test/data"
+    ]
+  },
   "scripts": {
     "lint": "eslint . && npm run pug-lint",
     "lint:fix": "eslint . --fix",
     "eslint-check": "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
     "pug-lint": "pug-lint lib/plugins/html/templates",
-    "test": "mocha",
+    "test": "ava",
     "check-licenses": "tools/check-licenses.js",
-    "build:css": "node-sass lib/plugins/html/src/sass/main.scss > lib/plugins/html/assets/css/index.css && cleancss -o lib/plugins/html/assets/css/index.min.css lib/plugins/html/assets/css/index.css && rm lib/plugins/html/assets/css/index.css",
+    "build:css": "sass lib/plugins/html/src/sass/main.scss > lib/plugins/html/assets/css/index.css && cleancss -o lib/plugins/html/assets/css/index.min.css lib/plugins/html/assets/css/index.css && rm lib/plugins/html/assets/css/index.css",
     "generate:assets": "mkdir -p assets/$npm_package_version && cp -R lib/plugins/html/assets/ assets/$npm_package_version/"
   },
   "engines": {
-    "node": ">=10.13.0"
+    "node": ">=14.19.1"
   },
   "devDependencies": {
-    "bluebird": "3.5.5",
-    "chai": "4.2.0",
-    "chai-as-promised": "7.1.1",
-    "clean-css-cli": "4.3.0",
-    "cz-customizable": "^6.2.0",
-    "eslint": "6.2.2",
-    "eslint-config-prettier": "6.1.0",
-    "eslint-plugin-prettier": "3.1.0",
-    "jsdoc": "^3.6.3",
-    "license-checker": "^16.0.0",
-    "mocha": "^5.0.4",
-    "node-sass": "^4.14.1",
-    "prettier": "^1.11.1",
-    "pug-lint": "^2.6.0",
+    "ava": "5.2.0",
+    "changelog-parser": "3.0.1",
+    "clean-css-cli": "5.6.2",
+    "eslint": "8.35.0",
+    "eslint-config-prettier": "8.6.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "eslint-plugin-unicorn": "45.0.2",
+    "feed": "4.2.2",
+    "jsdoc": "4.0.2",
+    "license-checker": "^25.0.0",
+    "marked": "4.2.12",
+    "sass": "1.58.3",
+    "prettier": "2.8.4",
+    "pug-lint": "^2.7.0",
     "pug-lint-config-clock": "^2.0.0"
   },
-  "main": "./lib/sitespeed.js",
+  "exports": "./lib/sitespeed.js",
   "dependencies": {
-    "@google-cloud/storage": "5.8.3",
-    "@tgwf/co2": "0.6.1",
-    "aws-sdk": "2.882.0",
-    "axe-core": "4.2.0",
-    "browsertime": "12.4.0",
-    "coach-core": "6.3.3",
-    "cli-color": "2.0.0",
+    "@google-cloud/storage": "6.9.5",
+    "@influxdata/influxdb-client": "1.33.2",
+    "@tgwf/co2": "0.13.10",
+    "aws-sdk": "2.1327.0",
+    "axe-core": "4.8.2",
+    "browsertime": "20.0.0",
+    "coach-core": "8.0.2",
+    "cli-color": "2.0.3",
     "concurrent-queue": "7.0.2",
-    "dayjs": "1.10.4",
+    "dayjs": "1.11.9",
     "fast-crc32c": "2.0.0",
     "fast-stats": "0.0.6",
-    "find-up": "5.0.0",
-    "fs-extra": "9.1.0",
+    "find-up": "6.3.0",
+    "fs-extra": "11.1.1",
     "getos": "3.2.1",
-    "influx": "5.6.3",
+    "import-global": "0.1.0",
+    "influx": "5.9.3",
     "intel": "1.2.0",
-    "jstransformer-markdown-it": "2.1.0",
-    "junit-report-builder": "1.3.3",
+    "jstransformer-markdown-it": "3.0.0",
+    "junit-report-builder": "3.0.1",
     "lodash.chunk": "4.2.0",
     "lodash.clonedeep": "4.5.0",
     "lodash.flatten": "4.4.0",
@@ -100,23 +111,18 @@
     "lodash.set": "4.3.2",
     "lodash.union": "4.6.0",
     "markdown": "0.5.0",
+    "node-scp": "0.0.22",
     "node-slack": "0.0.7",
-    "os-name": "4.0.0",
-    "p-limit": "2.2.2",
+    "ora": "7.0.1",
+    "os-name": "5.1.0",
+    "p-limit": "4.0.0",
     "pug": "3.0.2",
-    "recursive-readdir": "2.2.2",
+    "recursive-readdir": "2.2.3",
     "simplecrawler": "1.1.9",
-    "tape": "4.13.0",
+    "@sitespeed.io/plugin": "0.0.6",
+    "tape": "5.6.3",
     "text-table": "0.2.0",
-    "uuid": "8.3.2",
-    "yargs": "16.2.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-customizable"
-    },
-    "cz-customizable": {
-      "config": "./cz-config.js"
-    }
+    "uuid": "9.0.0",
+    "yargs": "17.7.2"
   }
 }

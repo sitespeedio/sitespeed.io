@@ -55,34 +55,27 @@ The big picture looks something like this:
 Here's an example on how to use sitespeed.io directly from NodeJS. This will generate the result to disk but you will not get it as a JSON object (only the budget result). We maybe change that in the future. If you need the JSON you can either read it from disk or use the Browsertime plugin directly.
 
 ~~~javascript
-'use strict';
 
-const sitespeed = require('sitespeed.io');
+import { run as runSitespeedio } from 'sitespeed.io';
 const urls = ['https://www.sitespeed.io/'];
 
 async function run() {
   try {
-    const result = await sitespeed.run({
+    const result = await runSitespeedio({
       urls,
       browsertime: {
         iterations: 1,
-        connectivity: {
-          profile: 'native',
-          downstreamKbps: undefined,
-          upstreamKbps: undefined,
-          latency: undefined,
-          engine: 'external'
-        },
         browser: 'chrome'
       }
     });
     console.log(result);
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error(error);
   }
 }
 
-run();
+await run();
+
 ~~~
 
 ### Use Browsertime from NodeJS
@@ -90,23 +83,23 @@ run();
 In this example you run Browsertime directly from NodeJS, using the default JavaScripts to collect metrics. 
 
 ~~~javascript
-'use strict';
-
-const browsertime = require('browsertime');
+import { BrowsertimeEngine, browserScripts } from 'browsertime';
 
 // The setup is the same configuration as you use in the CLI
 const browsertimeSetupOptions = { iterations: 1, browser: 'chrome' };
-const engine = new browsertime.Engine(browsertimeSetupOptions);
+const engine = new BrowsertimeEngine(browsertimeSetupOptions);
 // You can choose what JavaScript to run, in this example we use the default categories
 // and the default JavaScript
-const scriptsCategories = await browsertime.browserScripts.allScriptCategories;
-const scripts = await browsertime.browserScripts.getScriptsForCategories(scriptsCategories);
+const scriptCategories = await browserScripts.allScriptCategories();
+let scriptsByCategory = await browserScripts.getScriptsForCategories(
+  scriptCategories
+);
 
 async function run() {
   try {
     await engine.start();    
     // Get the result
-    const result = await engine.run('https://www.sitespeed.io/', scripts);
+    const result = await engine.run('https://www.sitespeed.io/',  scriptsByCategory);
     console.log(result);
   } catch (e) {
     console.error(e);
@@ -115,7 +108,7 @@ async function run() {
   }
 }
 
-run();
+await run();
 ~~~
 
 ## Developing sitespeed.io
@@ -125,7 +118,7 @@ On your local machine you need:
 
 - [Install NodeJS](https://nodejs.org/en/download/) latest LTS version.
 - You need Git and fork [sitespeed.io](https://github.com/sitespeedio/sitespeed.io) and clone the forked repository.
-- Install Chrome/Firefox
+- Install Chrome/Firefox/Edge
 - Go to the cloned directory and run <code>npm install</code>
 - You are ready to go! To run locally: <code>bin/sitespeed.js https://www.sitespeed.io -n 1</code>
 - You can change the log level by adding the verbose flag. Verbose mode prints progress messages to the console. Enter up to three times (-vvv) to increase the level of detail: <code>bin/sitespeed.io https://www.sitespeed.io -n 1 -v</code>
@@ -174,9 +167,7 @@ If you are new to pug you can use [https://html2jade.org](https://html2jade.org)
 
  We love pull requests and before you make a big change or add functionality, please open an issue proposing the change to other contributors so you got feedback on the idea before take the time to write precious code!
 
-#### Committing changes
- * Install Commitizen with npm <code>npm install -g commitizen</code>
- * Then simply use command <code>git cz</code> instead of <code>git commit</code> when committing changes
+ When you make your pull request, you can follow the guide from GitHub on [how to make a pull requests from a fork](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork).
 
 #### Before you send the pull request
 
@@ -185,6 +176,13 @@ Before you send the PR make sure you:
  * Make sure your code follow our lint rule by running: <code>npm run lint</code> and use <code>npm run lint:fix</code> if you have any breaking rules
  * Make sure your code don't break any tests: <code>npm test</code>
  * Update the documentation [https://github.com/sitespeedio/sitespeed.io/tree/main/docs](https://github.com/sitespeedio/sitespeed.io/tree/main/docs) in another pull request. When we merge the PR the documentation will automatically be updated so we do that when we push the next release
+
+### Debug metrics 
+Sometimes you want to verify that the metrics are correct, how do you do that?
+#### Visual metrics
+The best to verify that visual metrics are correct are to look at the film strip view and verify that the metrics correlate to the filmstrip. Through the years browsers has changed the URL bar or added some small infoboxes at the bottom of the browser window that affect visual metrics. You can easily see if those are picked up by looking at the filmstrip.
+
+If you don't have the filmstrip you can compare first visual change from visual metrics with first contentful paint, they usually match pretty good.
 
 ### Do a sitespeed.io release
 When you become a member of the sitespeed.io team you can push releases. You do that by running the release bash script in root: <code>./release.sh</code>
@@ -195,7 +193,7 @@ To be able to release a new version you new to have access to our Docker account
 
 To do a release you need to first install np (a better *npm publish*): <code>npm install --global np</code>
 
-Before you do a release, remember to let your latest code change run a couple of hours on our test server before you push the release (the latest code is automatically deployed on the test server). You will find errors from the test server on the [#alert channel on Slack](https://sitespeedio.herokuapp.com/).
+Before you do a release, remember to let your latest code change run a couple of hours on our test server before you push the release (the latest code is automatically deployed on the test server). You will find errors from the test server on the [#alert channel on Slack](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw).
 
 Do the release:
 

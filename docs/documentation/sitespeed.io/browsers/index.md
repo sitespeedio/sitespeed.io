@@ -94,7 +94,7 @@ docker run --shm-size 2g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io
 ~~~
 
 ## Chrome
-The latest version of Chrome should work out of the box. Latest version of stable [ChromeDriver](http://chromedriver.chromium.org) is bundled in sitespeed.io and needs to match your Chrome version.
+The latest version of Chrome should work out of the box. Latest version of stable [ChromeDriver](http://chromedriver.chromium.org) is bundled in sitespeed.io.
 
 ### Chrome setup
 When we start Chrome it is setup with [these](https://github.com/sitespeedio/browsertime/blob/main/lib/chrome/webdriver/chromeOptions.js) command line switches.
@@ -134,13 +134,28 @@ If you use Chrome you can collect everything that is logged to the console. You 
 ### Collect the net log
 Collect Chromes net log with ```--chrome.collectNetLog```. This is useful if you want to debug exact what happens with Chrome and your web page. You will get one log file per run.
 
+### Render blocking information
+If you use Chrome/Chromium you can get render blocking information (which requests blocks rendering). To get that from sitespeed.io  you need to get the Chrome timeline (and we get that by default). But if you wanna make sure to configure it you turn it on with the flag ```--chrome.timeline ``` or  ```--cpu```.
+
+You can see the blocking information in the waterfall. Requests that blocks has different coloring.
+![Blocking information in the waterfall]({{site.baseurl}}/img/potentially-blocking.jpg){:loading="lazy"}
+{: .img-thumbnail}
+
+You can also click on the request and see the exact blocking info from Chrome.
+![See more blocking info in the waterfall]({{site.baseurl}}/img/see-more-blocking.jpg){:loading="lazy"}
+{: .img-thumbnail}
+
+You can also see a summary on the Page Xray tab and see what kind of blocking information Chrome provides.
+![Page Xray information about render blocking]({{site.baseurl}}/img/page-xray-blocking.jpg){:loading="lazy"}
+{: .img-thumbnail}
+
 ### Choosing Chrome version
 You can choose which version of Chrome you want to run by using the ```--chrome.binaryPath``` and the full path to the Chrome binary.
 
 Our Docker container only contains one version of Chrome and [let us know](https://github.com/sitespeedio/sitespeed.io/issues/new) if you need help to add more versions.
 
 ### Use a newer version of ChromeDriver
-ChromeDriver is the driver that handles the communication with Chrome. At the moment the ChromeDriver version needs to match the Chrome version. By default sitespeed.io and Browsertime comes with the ChromeDriver version that matches the Chrome version in the Docker container. If you wanna run tests on Chrome Beta/Canary you probably need to download a later version of ChromeDriver.
+ChromeDriver is the driver that handles the communication with Chrome. By default sitespeed.io and Browsertime comes with the ChromeDriver version that matches the Chrome version in the Docker container. If you want to run tests on other Chromedriver versions, you need to download that version of ChromeDriver.
 
 You download ChromeDriver from [http://chromedriver.chromium.org](http://chromedriver.chromium.org) and then use ```--chrome.chromedriverPath``` to set the path to the new version of the ChromeDriver.
 
@@ -198,18 +213,23 @@ sitespeed.io --chrome.binaryPath "/Applications/Brave Browser.app/Contents/MacOS
 ~~~
 
 ## Choose when to end your test
-By default the browser will collect data until  [window.performance.timing.loadEventEnd happens + approx 5 seconds more](https://github.com/sitespeedio/browsertime/blob/d68261e554470f7b9df28797502f5edac3ace2e3/lib/core/seleniumRunner.js#L15). That is perfectly fine for most sites, but if you do Ajax loading and you mark them with user timings, you probably want to include them in your test. Do that by changing the script that will end the test (```--browsertime.pageCompleteCheck```). When the scripts returns true the browser will close or if the timeout time is reached.
+By default sitespeed.io will use JavaScript to decide when to end the test. The script will run inside the browser and it will stop the test two seconds after the *window.performance.timing.loadEventEnd* has happened. You can also define your own JavaScript that decides when to end the test or use the `--pageCompleteCheckNetworkIdle` switch that stops the tests after 5 seconds of silence on the network.
 
-In this example we wait 10 seconds until the loadEventEnd happens, but you can also choose to trigger it at a specific event.
+Here is an example how you can create your own script, in the example we wait 10 seconds until the loadEventEnd happens, but you can also choose to trigger it at a specific event.
 
 ~~~bash
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} https://www.sitespeed.io --browsertime.pageCompleteCheck 'return (function() {try { return (Date.now() - window.performance.timing.loadEventEnd) > 10000;} catch(e) {} return true;})()'
 ~~~
 
+If loadEventEnd never happens for the page, the test will wait for `--maxLoadTime` until the test stops. By default that time is two minutes (yes that is long).
+
 You can also configure how long time your current check will wait until completing with ```--pageCompleteWaitTime```. By default the pageCompleteCheck waits for 5000 ms after the onLoad event to happen. If you want to increase that to 10 seconds use ```--pageCompleteWaitTime 10000```. This is also useful if you test with *pageCompleteCheckInactivity* and it takes long time for the server to respond, you can use the *pageCompleteWaitTime* to wait longer than the default value.
 
-You can also choose to end the test after 5 seconds of inactivity that happens after loadEventEnd. Do that by adding
-```--browsertime.pageCompleteCheckInactivity``` to your run. The test will then wait for loadEventEnd to happen and no requests in the Resource Timing API the last 5 seconds. Be-aware though that the script will empty the resource timing API data for every check so if you have your own script collecting data using the Resource Timing API it will fail.
+![Navigation timeline]({{site.baseurl}}/img/navigation-timeline.jpg)
+{: .img-thumbnail}
+
+You can also choose to end the test after 5 seconds of inactivity on the newtork. Do that by adding
+```--pageCompleteCheckNetworkIdle``` to your run. The test will then wait for no traffic in the network log for 5 seconds straight and then end the test.
 
 There's is also another alternative: use ```--spa``` to automatically wait for 5 seconds of inactivity in the Resource Timing API (independently if the load event end has fired or not). If you need to wait longer, use ```--pageCompleteWaitTime```.
 
@@ -236,11 +256,11 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 ~~~
 
 You will get a custom script section in the Browsertime tab.
-![Custom scripts individual page]({{site.baseurl}}/img/customscripts.png)
+![Custom scripts individual page]({{site.baseurl}}/img/customscripts.png){:loading="lazy"}
 {: .img-thumbnail}
 
 And in the summary and detailed summary section.
-![Summary page]({{site.baseurl}}/img/summary.png)
+![Summary page]({{site.baseurl}}/img/summary.png){:loading="lazy"}
 {: .img-thumbnail}
 
 Bonus: All custom scripts values will be sent to Graphite, no extra configuration needed!
@@ -284,6 +304,16 @@ You can download the ChromeDriver yourself from the [Google repo](https://chrome
 You can also choose versions for Edge and Firefox with `EDGEDRIVER_VERSION` and `GECKODRIVER_VERSION`.
 
 If you don't want to install the drivers you can skip them with `CHROMEDRIVER_SKIP_DOWNLOAD=true`, `GECKODRIVER_SKIP_DOWNLOAD=true` and `EDGEDRIVER_SKIP_DOWNLOAD=true`.
+
+## Navigation and how we run the test
+
+By default a navigation to a new page happens when Selenium (WebDriver) runs a JavaScript that sets `window.location` to the new URL. You can also choose to use WebDriver navigation (*driver.get*) by adding `--browsertime.webdriverPageload true` to your test.
+
+By default the page load strategy is set to "none" meaning sitespeed.io gets control directly after the page started to navigate from WebDriver. You can choose page load strategy with `--browsertime.pageLoadStrategy`.
+
+Then the JavaScript configured by `--browsertime.pageCompleteCheck` is run to determine when the page is finished loading. By default that script waits for the on load event to happen.  That JavaScript that tries to determine if the page is finished runs after X seconds the first time, that is configured using `--browsertime.pageCompleteCheckStartWait`. The default is to wait 5 seconds before the first check. 
+
+During those seconds the browser needs to navigate (on a slow computer it can take time) and we also want to make sure we do not run that pageCompleteCheck too often because that can infer with metrics. After the first time the complete check has run you can choose how often it runs with `--browsertime.pageCompleteCheckPollTimeout`. Default is 1.5 seconds. When the page complete check tells us that the test is finished, we stop the video and start collect metrics for that page.
 
 ## How can I disable HTTP/2 (I only want to test HTTP/1.x)?
 In Chrome, you just add the switches <code>--browsertime.chrome.args disable-http2</code>.

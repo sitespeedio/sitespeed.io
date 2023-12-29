@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>humble-release-feed</id>
+    <title>humble release feed</title>
+    <updated>2022-02-24T13:43:37.433Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <author>
+        <name>Peter Hedenskog</name>
+        <email>peter@soulgalore.com</email>
+        <uri>https://www.peterhedenskog.com</uri>
+    </author>
+    <link rel="alternate" href="https://www.sitespeed.io"/>
+    <link rel="self" href="https://www.sitespeed.io/feed/humble.atom"/>
+    <subtitle>New releases and changelog feed of humble</subtitle>
+    <icon>http://www.sitespeed.io/favicon.ico</icon>
+    <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[humble 0.2.0]]></title>
+        <id>https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#0.2.0</id>
+        <link href="https://github.com/sitespeedio/humble/blob/main/CHANGELOG.md#0.2.0"/>
+        <updated>2020-01-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated throttle frontend to latest version where you can see throttling profiles set by using the API and with custom throttling support.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+</feed>

@@ -10,45 +10,70 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - name: Use Node.js
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v4
       with:
-        node-version: '12.x'
+        node-version: '20.x'
     - name: Install sitespeed.io
       run: npm ci
+    - name: Install Chrome
+      run: |
+        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+        sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+        sudo apt-get update
+        sudo apt-get --only-upgrade install google-chrome-stable
+        google-chrome --version
     - name: Install dependencies
       run: |
-        sudo apt-get update
-        sudo ACCEPT_EULA=Y apt-get upgrade google-chrome-stable -y
+          python -m pip install --upgrade --user pip
+          python -m pip install --user scipy
+          python -m pip show scipy
+    - name: Install Firefox
+      uses: browser-actions/setup-firefox@latest
+      #with:
+      #  firefox-version: '94.0'
     - name: Setup environment
       run: docker-compose -f test/docker-compose.yml up -d
     - name: Browser versions
       run: |
         google-chrome --version
         firefox --version
+    - name: Install local HTTP server
+      run: npm install serve -g
+    - name: Start local HTTP server
+      run: (serve test/data/html/ -l 3001&)
     - name: Test old budget
-      run: bin/sitespeed.js -b firefox -n 2 --budget.configPath test/oldBudget.json --summary --xvfb https://www.sitespeed.io/
-    - name: Test new budget file  
-      run: bin/sitespeed.js --useHash -n 1 --budget.configPath test/budget.json --xvfb  https://www.sitespeed.io/#heybaberia
+      run: bin/sitespeed.js -b firefox -n 2 --budget.configPath test/oldBudget.json --summary --xvfb http://127.0.0.1:3001/simple/
+    - name: Test new budget file with junit 
+      run: bin/sitespeed.js --useHash -n 1 --budget.configPath test/budget.json --xvfb --budget.output junit http://127.0.0.1:3001/simple/#heybaberia
+    - name: Test new budget file with tap 
+      run: bin/sitespeed.js --useHash -n 1 --budget.configPath test/budget.json --xvfb --budget.output tap http://127.0.0.1:3001/simple/#heybaberia
+    - name: Test new budget file with json 
+      run: bin/sitespeed.js --useHash -n 1 --budget.configPath test/budget.json --xvfb --budget.output json http://127.0.0.1:3001/simple/#heybaberia
     - name: Use AXE
-      run: bin/sitespeed.js --useAlias start --mobile -n 1 --utc --axe.enable --xvfb https://www.sitespeed.io/
+      run: bin/sitespeed.js --useAlias start --mobile -n 1 --utc --axe.enable --xvfb http://127.0.0.1:3001/simple/
     - name: Use Fireefox with --mobile
-      run: bin/sitespeed.js -b firefox  --metrics.list --mobile -n 1 https://www.sitespeed.io/ --sustainable.enable --xvfb
+      run: bin/sitespeed.js -b firefox  --metrics.list --mobile -n 1 http://127.0.0.1:3001/simple/ --sustainable.enable --xvfb
     - name: Test --multi  
-      run: bin/sitespeed.js --multi -b chrome -n 1 test/prepostscripts/preSample.js https://www.sitespeed.io/documentation/ test/prepostscripts/postSample.js --xvfb
+      run: bin/sitespeed.js --multi -b chrome -n 1 test/prepostscripts/preSample.js http://127.0.0.1:3001/simple/ test/prepostscripts/postSample.js --xvfb --browsertime.cjs
     - name: Test --multi and --tcpdump  
-      run: bin/sitespeed.js --multi -n 1 https://www.sitespeed.io/ https://www.sitespeed.io/documentation/ --tcpdump --xvfb
+      run: bin/sitespeed.js --multi -n 1 http://127.0.0.1:3001/simple/ http://127.0.0.1:3001/dimple/ --tcpdump --xvfb --browsertime.cjs
     - name: Test --multi with one file 
-      run: bin/sitespeed.js --multi -n 3 test/prepostscripts/multi.js --xvfb
+      run: bin/sitespeed.js --multi -n 3 test/prepostscripts/multi.js --xvfb --browsertime.cjs
     - name: Test setting HTML output pageSummaries
-      run: bin/sitespeed.js https://www.sitespeed.io/ https://www.google.com -v -n 1 --html.pageSummaryMetrics transferSize.css --html.pageSummaryMetrics requests.httpErrors --html.pageSummaryMetrics score.performance --xvfb
+      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ http://127.0.0.1:3001/dimple/ -v -n 1 --html.pageSummaryMetrics transferSize.css --html.pageSummaryMetrics requests.httpErrors --html.pageSummaryMetrics score.performance --xvfb
     - name: Test setting HTML output summary boxes 
-      run: bin/sitespeed.js https://www.sitespeed.io/ -v -n 1 --html.summaryBoxes score.performance --html.summaryBoxes timings.firstPaint --xvfb
+      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ -v -n 1 --html.summaryBoxes score.performance --html.summaryBoxes timings.firstPaint --xvfb
     - name: Run test with Graphite
-      run: bin/sitespeed.js https://www.sitespeed.io/ -n 1 --graphite.host 127.0.0.1 --xvfb
+      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ -n 1 --graphite.host 127.0.0.1 --xvfb
     - name: Run test without a CLI
       run: xvfb-run node test/runWithoutCli.js
-    - name: Run tests with CruX
-      run: bin/sitespeed.js -b chrome -n 1 --crux.key ${{ secrets.CRUX_KEY }} --xvfb https://www.sitespeed.io
-    
+    - name: Run test with Influx 1.8
+      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ -n 1 --influxdb.host 127.0.0.1 --xvfb --logToFile
+    - name: Run test with Influx 2.6.1
+      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ -n 1 --influxdb.host 127.0.0.1 --influxdb.port 8087 --influxdb.version 2 --influxdb.organisation sitespeed --influxdb.token sitespeed --xvfb
+    - name: Run Chrome test with config
+      run: node bin/sitespeed.js --config test/exampleConfig.json http://127.0.0.1:3001/simple/ --xvfb
+    - name: Run Chrome test using compare plugin
+      run: node bin/sitespeed.js --compare.id compare --compare.saveBaseline --compare.baselinePath test/ http://127.0.0.1:3001/simple/ --xvfb

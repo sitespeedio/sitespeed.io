@@ -23,13 +23,16 @@ block content
           li #{failureMessage}
 
   p
-    .large All runs:&nbsp;
+    .large#pageNavigation All runs:&nbsp;
       each val, index in runPages
         - value = Number(index) + 1
         a(href='./' + value + '.html') #{value}
-        if (value !== Object.keys(runPages).length)
+        if (value === Object.keys(runPages).length)
           | &nbsp;-
-          |
+          a(href='metrics.html') (side by side)
+        else 
+            | &nbsp;-
+            |  
 
   if pageInfo.errors
     .errors
@@ -64,6 +67,9 @@ block content
         if d.browsertime && d.browsertime.har
           a(href='#downloads') Download HAR
           | &nbsp;|&nbsp;
+        if options.browsertime.chrome && options.browsertime.chrome.collectConsoleLog
+          a(href='#downloads') Download Console Logs
+          | &nbsp;|&nbsp;
 
       a#summary
       h2 Summary
@@ -74,6 +80,8 @@ block content
               th Metric
               th Value
             - performanceScore = get(d, 'coach.pageSummary.advice.performance.score')
+            tr
+              th(colspan='2') Page metrics
             if performanceScore
               tr
                 td Performance Score
@@ -83,37 +91,48 @@ block content
               tr
                 td Total Page Transfer Size
                 td #{h.size.format(totalTransferSize)}
+            - memory = get(d, 'browsertime.pageSummary.memory')
+            if memory
+              tr
+                td Memory
+                td #{h.size.format(memory)}
             - requests = get(d, 'pagexray.pageSummary.requests')
             if requests
               tr
                 td Requests
                 td #{requests}
-            - ttfb = get(d, 'browsertime.pageSummary.statistics.timings.pageTimings.backEndTime.median') 
+            - ttfb = get(d, 'browsertime.pageSummary.statistics.timings.pageTimings.backEndTime.median')
+            tr
+              th(colspan='2') Timing metrics
             if ttfb
               tr
                 td TTFB [median]
                 td #{h.time.ms(ttfb)}
+            - firstPaint = get(d, 'browsertime.pageSummary.statistics.timings.firstPaint.median')
+            if firstPaint
+              tr
+                td First Paint [median]
+                td #{h.time.ms(firstPaint)}  
             - fullyLoaded = get(d, 'browsertime.pageSummary.statistics.timings.fullyLoaded.median')
             if fullyLoaded  
               tr
                 td Fully Loaded [median]
                 td #{h.time.ms(fullyLoaded)}
-            - firstVisualChange = get(d, 'browsertime.pageSummary.statistics.visualMetrics.FirstVisualChange.median')
-            - firstPaint = get(d, 'browsertime.pageSummary.statistics.timings.firstPaint.median')
-            if firstVisualChange
-              tr
-                td First Visual Change [median]
-                td #{h.time.ms(firstVisualChange)}
-            else if firstPaint
-              tr
-                td First Paint [median]
-                td #{h.time.ms(firstPaint)}  
             - fcp = get(d, 'browsertime.pageSummary.statistics.timings.paintTiming["first-contentful-paint"].median') 
+            - lcp = get(d, 'browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime.median')
+            - ttfb = get(d, 'browsertime.pageSummary.statistics.timings.pageTimings.backEndTime.median')
+            - inp = get(d, 'browsertime.pageSummary.statistics.timings.interactionToNextPaint.median')
+            if lcp
+              tr
+                th(colspan='2') Google Web Vitals     
+            if ttfb
+              tr
+                td TTFB [median]
+                td #{h.time.ms(ttfb)}
             if fcp
               tr
                 td First Contentful Paint (FCP) [median]
                 td #{h.time.ms(fcp)}         
-            - lcp = get(d, 'browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime.median')
             if lcp
               tr
                 td Largest Contentful Paint (LCP) [median]
@@ -123,6 +142,11 @@ block content
                 tr
                   td Cumulative Layout Shift (CLS) [median]
                   td #{cls.toFixed(2)}
+            - tbt = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime.median')
+            if inp
+                tr
+                  td Interaction To Next Paint (INP) [median]
+                  td #{h.time.ms(inp)}
             - tbt = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime.median')
             if tbt  
               tr
@@ -136,6 +160,8 @@ block content
             - longTasks = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.tasks.median')
             if longTasks
               tr
+                th(colspan='2') CPU metrics
+              tr
                 td CPU long tasks [median]
                 td #{longTasks}
             - maxLongTask= get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.durations.max') 
@@ -143,6 +169,18 @@ block content
               tr
                 td CPU longest task duration
                 td #{h.time.ms(maxLongTask)}
+            - lastLongTask = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.lastLongTask.median') 
+            if lastLongTask 
+              tr
+                td CPU last long task happens at
+                td #{h.time.ms(lastLongTask)}
+            - firstVisualChange = get(d, 'browsertime.pageSummary.statistics.visualMetrics.FirstVisualChange.median')
+            if firstVisualChange
+              tr
+                th(colspan='2') Visual Metrics
+              tr
+                td First Visual Change [median]
+                td #{h.time.ms(firstVisualChange)}
             - speedIndex = get(d, 'browsertime.pageSummary.statistics.visualMetrics.SpeedIndex.median')
             if speedIndex
               tr
@@ -163,7 +201,31 @@ block content
               tr
                 td Last Visual Change [median]
                 td #{h.time.ms(lastVisualChange)}
+            - cruxFCP = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.first_contentful_paint.percentiles.p75');
+            if cruxFCP
+              tr
+                th(colspan='2') Chrome User Experience Report (CRUX)
+              tr
+                td First Contentful Paint [p75]
+                td #{h.time.ms(cruxFCP)}
+            - cruxLCP = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.largest_contentful_paint.percentiles.p75');
+            if cruxLCP
+              tr
+                td Largest Contentful Paint (LCP) [p75]
+                td #{h.time.ms(cruxLCP)}
+            - cruxFID = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.first_input_delay.percentiles.p75');
+            if cruxFID
+              tr
+                td First Input Delay (FID) [p75]
+                td #{h.time.ms(cruxFID)}
+            - cruxCLS = get(d, 'crux.pageSummary.loadingExperience.ALL.data.record.metrics.cumulative_layout_shift.percentiles.p75');
+            if cruxCLS || cruxCLS === 0
+              tr
+                td Cumulative Layout Shift (CLS) [p75]
+                td #{Number(cruxCLS).toFixed(2)}
             if !d.browsertime && d.webpagetest
+              tr
+                th(colspan='2') WebPageTest
               tr
                 td Render (first view)
                 td #{d.webpagetest.pageSummary.data.median.firstView.render}
@@ -233,7 +295,7 @@ block content
       section#pagexray-panel
         include ../pagexray/index.pug
 
-    if options.cpu || options.browsertime && options.browsertime.chrome && options.browsertime.chrome.collectLongTasks || (options.browsertime && options.browsertime.firefox && options.browsertime.firefox.geckoProfiler)
+    if options.cpu || options.browsertime && options.browsertime.chrome && options.browsertime.chrome.collectLongTasks || (options.browsertime && options.browsertime.firefox && options.browsertime.firefox.geckoProfiler || options.browsertime && options.browsertime.enableProfileRun)
       section#cpu-panel
         include ../cpu/index.pug  
 

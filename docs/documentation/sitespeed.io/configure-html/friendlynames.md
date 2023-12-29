@@ -1,3 +1,9 @@
+googleWebVitals.timeToFirstByte
+googleWebVitals.firstContentfulPaint
+googleWebVitals.largestContentfulPaint
+googleWebVitals.interactionToNextPaint
+googleWebVitals.totalBlockingTime
+googleWebVitals.cumulativeLayoutShift
 timings.firstPaint
 timings.firstContentfulPaint
 timings.largestContentfulPaint
@@ -19,7 +25,10 @@ cpu.totalBlockingTime
 cpu.maxPotentialFid
 cpu.longTasks
 cpu.longTasksTotalDuration
+browser.cpuBenchmark
 pageinfo.cumulativeLayoutShift
+pageinfo.domElements
+pageinfo.documentHeight
 requests.total
 requests.html
 requests.javascript

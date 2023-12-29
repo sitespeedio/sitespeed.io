@@ -1,0 +1,151 @@
+- const compare = pageInfo.data.compare.pageSummary;
+- var createGraphLink = function(metricGroup, metricName) {
+-   return '#chart-' + metricGroup.replace(/\./g, '_') + '_' + metricName.replace(/\./g, '_');
+- }
+- var cliffDeltaHelper = function(delta) {
+-   if (delta < 0.3) return `Small effect (${h.decimals(delta)})`;
+-   if (delta < 0.5) return `Medium effect (${h.decimals(delta)})`;
+-   if (delta >= 0.5) return `Large effect (${h.decimals(delta)})`;
+- }
+
+h1 Compare
+
+if compare.meta.iterations < 21
+  p.error
+    | Warning: The number of iterations (#{compare.meta.iterations}) is less than the 
+    a(href='https://en.wikipedia.org/wiki/Mann–Whitney_U_test#Calculations') recommended minimum of 21. 
+    | This may impact the reliability of the statistical comparison.
+   
+p 
+  | In this web performance comparison, statistical tests are employed to analyze the significance of performance changes between baseline and current measurements. The Mann-Whitney U test, ideal for comparing independent samples, is used when analyzing different web pages or different conditions (e.g., comparing load times of a page with and without a new optimization). The Wilcoxon signed-rank test is applied to related or paired samples, such as comparing the response times of the same website before and after applying a specific optimization technique.
+
+h2 Settings
+p 
+  | The test conducted in this comparison is the #{compare.meta.testOptions.testType} test. The alternative hypothesis used for this test is "#{compare.meta.testOptions.alternative}". 
+  if compare.meta.testOptions.alternative === 'less'
+    | This means that we test if the current test is significant less that the baseline tests. 
+  else if compare.meta.testOptions.alternative === 'greater'
+    | This means that we test if the current test is siginficant higher than the baseline tests. 
+  else if compare.meta.testOptions.alternative === 'two-sided'
+    | This means that we test the baseline vs the current tests both ways, if there are any change in both directions. 
+  if compare.meta.testOptions.testType === 'mannwhitneyu'
+    | For more information on the settings of the Mann-Whitney U test, please refer to the 
+    a(href='https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mannwhitneyu.html') official documentation. 
+    | The test was configured to use continuity (set to #{compare.meta.testOptions.mannwhitneyu.useContinuity}) and the method chosen was "#{compare.meta.testOptions.mannwhitneyu.method}". 
+  else if compare.meta.testOptions.testType === 'wilcoxon'
+    | For more information on the settings of the Wilcoxon test, please refer to the 
+    a(href='https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.wilcoxon.html') official documentation
+    | . For this test, a correction parameter (#{compare.meta.testOptions.wilcoxon.correction ? 'enabled' : 'disabled'}) was applied to adjust for small sample sizes.
+
+
+p 
+  | The baseline test 
+  if compare.meta.baseline.alias
+    a(href=compare.meta.baseline.url) #{compare.meta.baseline.alias}
+  else 
+    a(href=compare.meta.baseline.url) #{compare.meta.baseline.url}
+  |  was conducted at #{compare.meta.baseline.timestamp} and the current test 
+  if compare.meta.current.alias
+    a(href=compare.meta.current.url) #{compare.meta.current.alias}
+  else 
+    a(href=compare.meta.current.url) #{compare.meta.current.url}
+  |  was done at #{compare.meta.current.timestamp}.
+
+
+h2 Comparison Data
+
+table
+  thead
+    tr
+      th Metric Name
+      th Score #{compare.meta.testOptions.testType}
+      th Baseline mean
+      th Current mean
+      th Baseline median
+      th Current median
+      th Baseline Std Dev
+      th Current Std Dev
+      th Significant Change?
+
+    tbody
+      each metricGroup, groupName in compare.metrics
+        each values, metricName in metricGroup
+          tr
+            td
+              a(href=createGraphLink(groupName, metricName)) 
+                b #{groupName + '.' + metricName}
+            if values.statisticalTestU === "N/A" || values.statisticalTestU === "Datasets are identical"
+              td #{values.statisticalTestU}
+            else
+              td #{h.decimals(values.statisticalTestU)}
+            td #{h.decimals(values.baseline.mean)}
+            td #{h.decimals(values.current.mean)}
+            td #{h.decimals(values.baseline.median)}
+            td #{h.decimals(values.current.median)}
+            td #{h.decimals(values.baseline.stdev)}
+            td #{h.decimals(values.current.stdev)}
+            if values.statisticalTestU === "N/A" || values.statisticalTestU === "Datasets are identical"
+              td No Test Conducted
+            else
+              td #{values.statisticalTestU < 0.05 ? 'Yes - ' + cliffDeltaHelper(values.cliffsDelta) : 'No'}
+
+
+h2 Graphs
+
+each metricGroup, groupName in compare.metrics
+  each values, metricName in metricGroup
+    - var fullMetricName = groupName + '.' + metricName
+    - var metricId = fullMetricName.replace(/\./g, '_')
+    h3 #{fullMetricName} #{values.statisticalTestU === "N/A" || values.statisticalTestU === "Datasets are identical" ? '' : values.statisticalTestU < 0.05 ? '(significant change)' : ''}
+    .ct-chart(id=`chart-${metricId}`)
+      .ct-legend
+        span.ct-legend-item
+          i(style='background-color: #468847') &nbsp;
+          | Baseline: [#{values.baseline.values.join(', ')}]
+      .ct-legend
+        span.ct-legend-item
+          i(style='background-color: #c09853;') &nbsp;
+          | Current: [#{values.current.values.join(', ')}]
+    script(type='text/javascript').
+      document.addEventListener("DOMContentLoaded", function() {
+          var baselineData = !{JSON.stringify(values.baseline.values)};
+          var currentData = !{JSON.stringify(values.current.values)};
+          var metricId = '#{metricId}';
+          var overlapSeriesName = 'Overlap';
+
+          var chartData = {
+          series: [
+              {
+              name: 'Baseline',
+              data: baselineData.map((value, index) => ({ x: index + 1, y: value })),
+              className: 'baseline-series'
+              },
+              {
+              name: 'Current',
+              data: currentData.map((value, index) => ({ x: index + 1, y: value })),
+              className: 'current-series'
+              },
+              {
+              name: overlapSeriesName,
+              data: baselineData.map((value, index) => ({ x: index + 1, y: currentData[index] === value ? value : null }))
+            }
+          ]
+          };
+          var chartOptions = {
+          showLine: false,
+          axisX: {
+            
+          },
+          axisY: {
+              
+          }
+          };
+          var chart = new Chartist.Line(`#chart-${metricId}`, chartData, chartOptions);
+
+        // Take care of series that has the same value
+        chart.on('draw', function(data) {
+          if(data.type === 'point' && data.series.name === overlapSeriesName && data.value.y !== null) {
+            data.element._node.setAttribute('style', 'stroke: #59922b; stroke-width: 20px;');
+          }
+        });
+      });

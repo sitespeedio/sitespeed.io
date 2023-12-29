@@ -19,28 +19,98 @@ Monitor the performance of your web site using the performance dashboard.
 * Let's place the TOC here
 {:toc}
 
-# What you need
-You need [Docker](https://docs.docker.com/engine/installation/) and [Docker Compose](https://docs.docker.com/compose/install/). If you haven't used Docker before, you can read [Getting started](https://docs.docker.com/engine/getstarted/). And you can also read/learn more about [Docker Compose](https://docs.docker.com/compose/gettingstarted/) to get a better start.
+## Using Docker compose 
+If you don't use Grafana/Graphite already, we have prepared a Docker Compose file that downloads and sets up Graphite/Grafana with a couple of example dashboards. It works perfectly when you want to try it out on localhost, but if you want to run it in production, you should modify it by making sure that the metrics are stored outside of your container/volumes. If you prefer InfluxDB over Graphite, you can use that too, but there's no pre made dashboards.
 
-# Up and running in (almost) 5 minutes
+### Pre-Requirements
 
-1. Download our Docker compose file: <code>curl -O https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/docker-compose.yml</code>
-2. Run: <code>docker-compose up -d</code> (make sure you run the latest [Docker compose](https://docs.docker.com/compose/install/) version)
-3. Run sitespeed to get some metrics: <code> docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --graphite.host=host.docker.internal https://www.sitespeed.io/ --slug yourTestName --graphite.addSlugToKey true</code> (running on Linux? [Check how to access localhost]({{site.baseurl}}/documentation/sitespeed.io/docker/#access-localhost)).
-4. Access the dashboard: http://127.0.0.1:3000
-5. When you are done you can shut down and remove all the Docker containers by running <code>docker-compose stop && docker-compose rm</code>. Container data will be kept.
-6. To start from scratch, also remove the Graphite and Grafana data volumes by running `docker volume rm performancedashboard_graphite performancedashboard_grafana`.
+Before you start, make sure you have the following installed:
+
+- Docker: You can download Docker from the [official Docker website](https://www.docker.com/products/docker-desktop).
+- Docker Compose: Docker Compose is included in the Docker Desktop for Windows and Docker Desktop for Mac. For Linux, you might need to [install it separately](https://docs.docker.com/compose/install/).
+- Git: You can download Git from the [official Git website](https://git-scm.com/downloads).
+- sitespeed.io installed globally.
+- If you haven't used Docker before, you can read [Getting started](https://docs.docker.com/engine/getstarted/). And you can also read/learn more about [Docker Compose](https://docs.docker.com/compose/gettingstarted/) to get a better start.
+
+### Instructions
+
+1. **Clone the Repository**
+
+   Open a terminal window and clone the `sitespeed.io` repository by running the following command:
+
+   ```bash
+   git clone https://github.com/sitespeedio/sitespeed.io.git
+   ```
+
+2. **Navigate to the Docker Directory**
+
+   Navigate to the `docker` directory in the cloned repository:
+
+   ```bash
+   cd sitespeed.io/docker
+   ```
+
+3. **Run Docker Compose**
+
+   In the terminal, run the following command:
+
+   ```bash
+   docker-compose up
+   ```
+
+   This command will download the necessary Docker images and start the Grafana and Graphite.
 
 
-If you want to play with the dashboards, the default login is sitespeedio and password is ...well check out the [docker-compose.yml file](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/docker-compose.yml).
+4. **Add example data**
 
-When you run this in production make sure to checkout [our production guidelines](#production-guidelines).
+   To push data for the page metric dashboard (the most important dashboard) you can run a test like this:
+   ```bash
+   sitespeed.io https://www.sitespeed.io -n 1 --slug myTest --graphite.host 127.0.0.1
+   ```
 
-## Docker compose file
-We have prepared a Docker Compose file that downloads and sets up Graphite/Grafana and sitespeed.io with a couple of example dashboards. It works perfectly when you want to try it out on localhost, but if you want to run it in production, you should modify it by making sure that the metrics are stored outside of your container/volumes. If you prefer InfluxDB over Graphite, you can use that too, but right now we only have [one ready-made dashboard](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/main/dashboards/influxdb/pageSummary.json) for InfluxDB (thank you Olivier Jan for contributing to that dashboard!).
+5. **Access Grafana**
 
-## Pre-made example dashboards
-We insert ready-made dashboards with a Docker container using curl, making it easy for you to get started. You can check out the container with the dashboards here: [https://github.com/sitespeedio/grafana-bootstrap-docker](https://github.com/sitespeedio/grafana-bootstrap-docker)
+   Once the services are up and running, you can access the Grafana dashboard by opening a web browser and navigating to `http://localhost:3000`. If you want to edit the dashboards, the default login is *sitespeedio* and password is ...well check out the [docker-compose.yml file](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/docker-compose.yml).
+
+6. **Stop docker compose**
+
+   When you're done, you can stop the services by pressing `Ctrl+C` in the terminal where you ran `docker-compose up`. To completely remove the services and volumes defined in the `docker-compose.yml` file, you can run `docker-compose down`.
+
+Remember, these are simplified instructions. For a production setup, you would need to make additional configurations, such as setting up persistent storage and securing the Grafana dashboard. 
+
+
+### Pre-made example dashboards
+We insert ready-made dashboards with our docker compose file using provisioning. You can checkout the [compose file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml) and use it as an example.
+
+Some of our dashboards uses Grafana plugins. To make sure the dashboards work you need to install these plugins: 
+* [marcusolsson-json-datasource](https://github.com/grafana/grafana-json-datasource)
+* [marcusolsson-dynamictext-panel](https://github.com/VolkovLabs/volkovlabs-dynamictext-panel)
+
+In our Docker file you can see something like this:
+
+```
+ environment:
+        - GF_INSTALL_PLUGINS=marcusolsson-json-datasource,marcusolsson-dynamictext-panel
+        ...
+
+```
+
+The *Page metrics* dashboard shows meta data like settings/video/screenshots. To get that dashboard to work correctly, you need to [push the result of your test](#how-to-get-the-latest-videoscreenshot-visible-in-grafana) to S3 or a web server and setup the dashboard to point to where you store the sitespeed.io result. 
+
+In our example dashboard we serve our content from https://data.sitespeed.io so we configure the variable *resulturl* for the dashboard to point to that like this. That way we will see screenshots and videos in the dashboard.
+
+![Export URL in page metrics dashboard]({{site.baseurl}}/img/exporturl.jpg){:loading="lazy"}
+{: .img-thumbnail}
+
+We also configure the JSON datasource to point to the same place. That way we can see meta data like how you configured your tests.
+
+![Configure the JSON datasource ]({{site.baseurl}}/img/json-api.jpg){:loading="lazy"}
+{: .img-thumbnail}
+
+If that is setup correctly your dashboard will look something like this:
+
+![Screenshots and other meta data ]({{site.baseurl}}/img/whatyousee.jpg){:loading="lazy"}
+{: .img-thumbnail}
 
 # Example dashboards
 
@@ -49,7 +119,7 @@ The [example dashboards](https://dashboard.sitespeed.io) are generic dashboards 
 The dashboards have a couple of templates/variables (the dropdowns at the top of the page) that make the dashboards interactive and dynamic.
 A dashboard that shows metrics for a specific page has the following templates:
 
-![Page templates]({{site.baseurl}}/img/templates-page-2.png)
+![Page templates]({{site.baseurl}}/img/templates-page-2.png){:loading="lazy"}
 {: .img-thumbnail}
 
 The *path* is the first path after the namespace. Using the default values, the namespace looks like this: *sitespeed_io.default*.
@@ -61,18 +131,18 @@ If you choose one of the values in a template, the rest will be populated. You c
 The default namespace is *sitespeed_io.default* and the example dashboards are built upon a constant template variable called $base that is the first part of the namespace (that default is *sitespeed_io* but feel free to change that, and then change the constant).
 
 ## Page metrics
-There are two pages that show individual metrics for a page (one for desktop and one for mobile). You should use these as example dashboards to inspire you what you can do. We try to squeeze in all data in these dashboards and you can view those by expanding each row.
+You should use these as example dashboards to inspire you what you can do. We try to squeeze in all data in these dashboards and you can view those by expanding each row.
 
-The [desktop page metrics](https://dashboard.sitespeed.io/d/9NDMzFfMk/page-metrics-desktop?orgId=1) shows metrics for a specific URL/page tested on desktop and [mobile page metrics](https://dashboard.sitespeed.io/d/000000064/page-metrics-mobile?orgId=1) for pages tested on mobile/emulated mobile.
+The [page metrics](https://dashboard.sitespeed.io/d/9NDMzFfMk/page-metrics) shows metrics for a specific URL/page.
 
 The dashboards looks something like this:
-![Page metrics]({{site.baseurl}}/img/pagesummary-example.jpg)
-{: .img-thumbnail}
+![Page metrics]({{site.baseurl}}/img/pagesummary-example.jpg){:loading="lazy"}
+{: .img-thumbnail }
 
 And scroll down to see more, do not forget to click on the rows to expand and see all metrics.
 
-![Page metrics example 2]({{site.baseurl}}/img/pagesummary-example-2.jpg)
-{: .img-thumbnail}
+![Page metrics example 2]({{site.baseurl}}/img/pagesummary-example-2.jpg){:loading="lazy"}
+{: .img-thumbnail }
 
 ## User Journeys example dashboards
 
@@ -80,35 +150,23 @@ We have a couple of example dashboards on how to add your own user journeys dash
 
 This is an example dashboard login into Wikipedia. That user journey measure four pages.
 
-![Login User Journey]({{site.baseurl}}/img/user-journey-example.jpg)
+![Login User Journey]({{site.baseurl}}/img/user-journey-example.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 We also have examples that take three pages.
 
 ## The leaderboard
-We are so proud of our [leaderboard dashboard](https://dashboard.sitespeed.io/dashboard/db/leaderboard) that it got its own [documentation page](/documentation/sitespeed.io/leaderboard/). Use the dashboard if you want to compare different sites or URLs.
+We are so proud of our [leaderboard dashboard](https://dashboard.sitespeed.io/d/000000060/leaderboard?orgId=1) that it got its own [documentation page](/documentation/sitespeed.io/leaderboard/). Use the dashboard if you want to compare different sites or URLs.
 
-![Leaderboard]({{site.baseurl}}/img/leaderboard-dashboard.jpg)
+![Leaderboard]({{site.baseurl}}/img/leaderboard-dashboard.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 
 ## Chrome User Experience Report
 
-Using our [Chrome User Experience Report plugin](/documentation/sitespeed.io/crux/) you can get the metrics Chrome collects from real users. We have a [ready made dashboard](https://dashboard.sitespeed.io/dashboard/db/chrome-user-experience-report) where you can look at the data on URL and origin level.
+Using our [Chrome User Experience Report plugin](/documentation/sitespeed.io/crux/) you can get the metrics Chrome collects from real users. We have a [ready made dashboard](https://dashboard.sitespeed.io/d/t_bhsNGMk/chrome-user-experience-report?orgId=1) where you can look at the data on URL and origin level.
 
-![CruX]({{site.baseurl}}/img/crux-example.jpg)
-{: .img-thumbnail}
-
-## WebPageTest dashboards
-We have four optional dashboards for WebPageTest that you can use if you drive WebPageTest using sitespeed.io. They follow the same pattern as the sitespeed.io dashboards with WebPageTest data.
-
-![WebPageTest]({{site.baseurl}}/img/webpagetest-dashboard.jpg)
-{: .img-thumbnail}
-
-## Plus 1
-We also have a dashboard for [showing GPSI/CrUx/Lighthouse metrics](https://dashboard.sitespeed.io/dashboard/db/plus1) if you use those products.
-
-![Plus 1 dashboard]({{site.baseurl}}/img/gpsi-lighthouse-example.jpg)
+![CruX]({{site.baseurl}}/img/crux-example.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 
@@ -119,7 +177,7 @@ If you are new to [Grafana](https://grafana.com) you should checkout the [basic 
 
 You can configure all the thresholds (green/yellow/red) so that they match your needs:
 
-![Configure thresholds in Grafana]({{site.baseurl}}/img/configuring-thresholds-grafana.jpg)
+![Configure thresholds in Grafana]({{site.baseurl}}/img/configuring-thresholds-grafana.jpg){:loading="lazy"}
 {: .img-thumbnail}
 
 ## How to get the latest video/screenshot visible in Grafana
@@ -214,9 +272,9 @@ To run this in production (=not on your local dev machine) you should make some 
 10. Optional: Disable anonymous users access in Grafana.
 
 ## System Requirements / Memory & CPU
-How large will your instances need to be to run the tests? You need to have enough memory for Chrome/Firefox (yep they can really use a lot of memory for some sites). Before, we used a $80 instance on Digital Ocean (8GB memory, 4 Core processors) but we switched to use AWS c5.large for dashboard.sitespeed.io. We have tried out most cloud providers and at the time AWS gave us the most stable metrics.
+To ensure smooth performance while running tests with sitespeed.io, it is important to have sufficient memory for Chrome and Firefox, as they can require a significant amount of memory for certain websites. In the past, we have used an $80 instance on Digital Ocean (8GB memory, 4 Core processors), but currently, we use a bare metal server at Hetzner for our dashboard.sitespeed.io. We have found that bare metal servers provide the most stable metrics.
 
-To summarize, your test should perform well on (physical or virtual) hardware greater than:
+In summary, for optimal performance, your test environment should have the following minimum hardware specifications:
  - 8GB Memory
  - 4 CPUs
 
@@ -227,15 +285,19 @@ docker run -e MAX_OLD_SPACE_SIZE=4096 --rm -v "$(pwd):/sitespeed.io" sitespeedio
 ```
 
 ## Cost
-Sitespeed.io is Open Source and totally free. But what does it cost to have an instance of sitespeed.io up and running?
+Sitespeed.io is an open-source tool that is completely free to use. However, there are some costs associated with running an instance of the tool.
 
-Setting up an [AWS instance](https://aws.amazon.com/) c5.large has an upfront price $515 for a year (it is much cheaper to pay up front). Or you can use an optimized Droplet for $40 a month at [Digital Ocean](https://www.digitalocean.com/) (they have served us well in our testing).
+For optimal performance, we recommend using a bare-metal server from [Hetzner](https://www.hetzner.com). This is what we use for our own instances and it is available for less than $500 per year.
 
-You also need to pay for S3 (to store the videos and HTML). For [https://dashboard.sitespeed.io](https://dashboard.sitespeed.io) we pay $10-15 per month (depending how long you want to store the data).
+Alternatively, you can use an AWS instance c5.large, with an upfront price of $515 per year. Or you can use an optimized Droplet for $40 a month from Digital Ocean.
 
-Does your organisation already use Graphite/InfluxDB and Grafana? Then use what you have. Otherwise you need to have a server hosting Graphite/Grafana. We pay $20 per month at Digital Ocean for that. Depending on how many metrics and for how long you want to store them, you may need an extra disk. As always, you should also backup your data.
+You will also need to pay for S3 storage to store the videos and HTML or choose to host them yourself.
 
-How many runs can you do per month? Many of the paid services, you also pay per run or have a maximum amount of runs. With our one instance at AWS we do 11 runs for 9 different URLs then we run 5 runs for 4 other URLs. That is 119 runs per hour. 2856 per day and 85680 runs per month. We test Wikipedia on our instance so it is possible that your site is a little slower, then you will not be able to make the same amount of runs per month.
+Overall, the cost of running an instance of Sitespeed.io will depend on your specific setup and usage. However, with the flexibility of the cloud hosting providers, you can scale up or down as needed, so you only pay for what you need.
+
+If your organization already uses Graphite/InfluxDB and Grafana, continue using them. If not, you will need to set up a server to host them. Hosting costs can be around $20 per month on platforms such as Digital Ocean. Keep in mind that the amount of storage needed may vary based on the amount of metrics being collected and how long they are being stored for. Remember to always backup your data.
+
+The number of runs that can be done per month can vary depending on the service being used. Some paid services charge per run or have a limit on the number of runs. Our organization uses one instance on AWS and can perform 11 runs for 9 different URLs, followed by 5 runs for 4 other URLs. This results in a total of 119 runs per hour, 2856 runs per day, and 85680 runs per month. Keep in mind that these numbers are based on testing Wikipedia on our instance and your site may be slower, resulting in a lower number of runs per month.
 
 Total cost:
 

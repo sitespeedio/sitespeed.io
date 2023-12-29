@@ -1,8 +1,16 @@
 - const browsertime = medianRun ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1] : pageInfo.data.browsertime.run 
 
 if browsertime
-  - const timings = browsertime.timings;
-  - const visualMetrics = browsertime.visualMetrics;
+  - const timings = medianRun ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1].timings : pageInfo.data.browsertime.run.timings 
+  - const visualMetrics = medianRun ? pageInfo.data.browsertime.pageSummary.visualMetrics[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.visualMetrics 
+  - const googleWebVitals = medianRun ? pageInfo.data.browsertime.pageSummary.googleWebVitals[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.googleWebVitals
+  - const cpu = medianRun ? pageInfo.data.browsertime.pageSummary.cpu[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.cpu
+  - const fullyLoaded = medianRun ? pageInfo.data.browsertime.pageSummary.fullyLoaded[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.fullyLoaded 
+  - const extras = medianRun ? pageInfo.data.browsertime.pageSummary.extras[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.extras 
+  - const custom = medianRun ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1].custom : pageInfo.data.browsertime.run.custom
+  - const cdp = medianRun ? pageInfo.data.browsertime.pageSummary.cdp[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.cdp
+  - const renderBlocking = medianRun ? pageInfo.data.browsertime.pageSummary.renderBlocking[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.renderBlocking
+
   small 
     | | 
     a(href='#browsermetrics') Browser metrics
@@ -16,35 +24,38 @@ if browsertime
     if browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift !== undefined
       a(href='#cumulativeLayoutShift') Cumulative Layout Shift
       | &nbsp;|&nbsp;
-    if browsertime.timings.elementTimings && Object.keys(browsertime.timings.elementTimings).length > 0
+    if timings.interactionToNextPaint
+      a(href='#interactionToNextPaint') Interaction To Next Paint
+      | &nbsp;|&nbsp;
+    if timings.elementTimings && Object.keys(timings.elementTimings).length > 0
       a(href='#elementTimings') Element Timings
       | &nbsp;|&nbsp;
-    if browsertime.custom
+    if custom
       a(href='#custom-scripts') Custom scripts
       | &nbsp;|&nbsp;
-    if browsertime.extras && Object.keys(browsertime.extras).length > 0
+    if extras && Object.keys(extras).length > 0
       a(href='#extra-metrics') Extra metrics
       | &nbsp;|&nbsp;
     if options.browsertime.visualElements
       a(href='#visual-elements') Visual Elements
       | &nbsp;|&nbsp;
-    if options.browsertime.visualElements
-      a(href='#visual-elements') Visual Elements
-      | &nbsp;|&nbsp;
-    if browsertime.timings.firstInput !== undefined
+    if timings.firstInput !== undefined
       a(href='#firstInput') First Input Delay
       | &nbsp;|&nbsp;
-    if browsertime.cdp && browsertime.cdp.performance
+    if cdp
       a(href='#cdp-performance') Metrics from CDP
       | &nbsp;|&nbsp;
     if timings.serverTimings && timings.serverTimings.length > 0
       a(href='#server-timings') Server timings
       | &nbsp;|&nbsp;
 
+  p
+    small #{ medianRun ? 'Data from run ' + medianRun.runIndex : ''}
+
   - baseHelpURL = rootPath + 'help.html#';
 
   - const defaultVisualMetrics = ['SpeedIndex','FirstVisualChange','LastVisualChange','VisualProgress', 'PerceptualSpeedIndexProgress', 'ContentfulSpeedIndexProgress', 'videoRecordingStart', 'PerceptualSpeedIndex', 'ContentfulSpeedIndex', 'LastMeaningfulPaint', 'LargestImage', 'Heading' ,'VisualReadiness','VisualComplete85', 'VisualComplete95','VisualComplete99'];
-  if (options.browsertime.visualMetrics || (options.cpu && options.browsertime.chrome && options.browsertime.chrome.visualMetricsUsingTrace && options.browsertime.chrome.enableTraceScreenshots)) && visualMetrics
+  if (options.browsertime.visualMetrics && visualMetrics)
     a#visualmetrics
     h3 Visual Metrics
     .row
@@ -90,6 +101,11 @@ if browsertime
               td
                 a(href=baseHelpURL + 'LastMeaningfulPaint') Last Meaningful Paint
               td.number #{h.time.ms(visualMetrics.LastMeaningfulPaint.toFixed(0))}
+          if visualMetrics.LargestContentfulPaint
+            tr
+              td
+                a(href=baseHelpURL + 'LargestContentfulPaint') Largest Contentful Paint
+              td.number #{h.time.ms(visualMetrics.LargestContentfulPaint.toFixed(0))}
           tr
             td
               a(href=baseHelpURL + 'VisualComplete85') Visual Complete 85%
@@ -109,7 +125,7 @@ if browsertime
           tr
             td
               a(href=baseHelpURL + 'VisualReadiness') Visual Readiness
-            td.number #{h.time.ms(visualMetrics.VisualReadiness.toFixed(0))}  
+            td.number #{h.time.ms(visualMetrics.VisualReadiness.toFixed(0))} 
       .one-half.column
         .ct-chart.ct-minor-sixth#ct-visualprogress
         include ./visualProgress.pug
@@ -128,45 +144,73 @@ if browsertime
               a(href=url) #{name}
             td.number #{h.time.ms(value)}
     .one-half.column
-      if (timings.largestContentfulPaint)
+      if (googleWebVitals)
         table
           tr
             th(colspan='2') Google Web Vitals
+          if (timings.ttfb)
+            tr
+              td
+                a(href=baseHelpURL + 'ttfb') Time to first byte (TTFB)
+              td.number #{h.time.ms(timings.ttfb.toFixed(0))}
           if (timings.paintTiming && timings.paintTiming['first-contentful-paint'])
             tr
               td
                 a(href=baseHelpURL + 'firstContentfulPaint') First Contentful Paint (FCP)
               td.number #{h.time.ms(timings.paintTiming['first-contentful-paint'])}
-
           if (timings.largestContentfulPaint) 
             tr
               td
                 a(href='#largestContentfulPaint') Largest Contentful Paint (LCP)
               td.number #{h.time.ms(Math.max(timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.renderTime, timings.largestContentfulPaint.loadTime,timings.largestContentfulPaint.loadTime))}
-          tr
-            td
-              a(href='#cumulativeLayoutShift') Cumulative Layout Shift (CLS)
-            td.number #{browsertime.pageinfo.cumulativeLayoutShift.toFixed(2)}
-          if browsertime.timings.firstInput !== undefined
+          if (browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift)
+            tr
+              td
+                a(href='#cumulativeLayoutShift') Cumulative Layout Shift (CLS)
+              td.number #{browsertime.pageinfo.cumulativeLayoutShift.toFixed(2)}
+          if (timings.interactionToNextPaint) 
+           tr
+              td
+                a(href='#interactionToNextPaint') Interaction to next paint (INP)
+              td.number #{h.time.ms(timings.interactionToNextPaint)}
+          if timings.firstInput !== undefined
             tr 
               td
                 a(href=baseHelpURL + 'firstInputDelay')  First Input Delay (FID)
-              td.number #{h.time.ms(browsertime.timings.firstInput.delay)}
-          else 
+              td.number #{h.time.ms(timings.firstInput.delay)}
+          else if (cpu && cpu.longTasks)
             tr 
               td
                 a(href=baseHelpURL + 'totalBlockingTime') Total Blocking Time (TBT)
-              td.number #{h.time.ms(browsertime.cpu.longTasks.totalBlockingTime)}
+              td.number #{h.time.ms(cpu.longTasks.totalBlockingTime)}
+      
+      if renderBlocking && renderBlocking.recalculateStyle.beforeFCP
+        table
+          tr
+            th(colspan='2') First Contentful Paint info
+          tr 
+            td Elements that needed recalculate style before FCP
+                td #{renderBlocking.recalculateStyle.beforeFCP.elements}    
+          tr
+            td Time spent in recalculate style before FCP
+                td #{h.time.ms(renderBlocking.recalculateStyle.beforeFCP.durationInMillis)}  
       table
         tr
           th(colspan='2') Extra timings
+        tr
+          td
+            a(href=baseHelpURL + 'ttfb') TTFB
+          td.number #{h.time.ms(timings.ttfb.toFixed(0))}
         if (timings.paintTiming && Object.keys(timings.paintTiming).length > 0)
           - const paintTimingHelper = { "first-contentful-paint": {"name": 'First Contentful Paint (FCP)', "friendly": "first-contentful-paint"},  "first-paint": {"name": 'First Paint', "friendly": "firstPaint" }};
           each value, name in timings.paintTiming
-            tr
-              td 
-                a(href=baseHelpURL + paintTimingHelper[name].friendly) #{paintTimingHelper[name].name}
-              td.number #{h.time.ms(value.toFixed(0))}
+            if name === 'first-contentful-paint' && googleWebVitals
+              // do nada
+            else 
+              tr
+                td 
+                  a(href=baseHelpURL + paintTimingHelper[name].friendly) #{paintTimingHelper[name].name}
+                td.number #{h.time.ms(value.toFixed(0))}
         else if timings.firstPaint > -1
           tr
             td
@@ -187,7 +231,7 @@ if browsertime
             td
               a(href=baseHelpURL + 'timeToFirstInteractive') Time To First Interactive
             td.number #{h.time.ms(timings.timeToFirstInteractive.toFixed(0))}         
-        if (timings.largestContentfulPaint) 
+        if (!googleWebVitals && timings.largestContentfulPaint) 
            tr
             td
               a(href=baseHelpURL + 'largestContentfulPaint') Largest Contentful Paint (LCP)
@@ -196,16 +240,11 @@ if browsertime
           td
             a(href=baseHelpURL + 'loadEventEnd') Load Event End
           td.number #{h.time.ms(timings.loadEventEnd.toFixed(0))}
-        if (timings.fullyLoaded) 
+        if (fullyLoaded) 
           tr
             td
               a(href=baseHelpURL + 'fullyLoaded') Fully loaded
-            td.number #{h.time.ms(timings.fullyLoaded.toFixed(0))}
-        else if (browsertime.fullyLoaded) 
-          tr
-            td
-              a(href=baseHelpURL + 'fullyLoaded') Fully loaded
-            td.number #{h.time.ms(browsertime.fullyLoaded.toFixed(0))}
+            td.number #{h.time.ms(fullyLoaded.toFixed(0))}
       if (Object.keys(timings.userTimings.marks).length > 0)
         table
           tr
@@ -231,17 +270,18 @@ if browsertime
   include ./lcp.pug
   include ./firstInput.pug
   include ./layoutShift.pug
+  include ./inp.pug
   include ./elementTimings.pug
   include ./serverTimings.pug
 
   a#custom-scripts
   h3 Custom metrics collected through JavaScript
-  if browsertime.custom
+  if custom
     table
       tr
         th name
         th value
-      each value, name in browsertime.custom
+      each value, name in custom
         tr
           td #{name}
           td #{value}
@@ -250,26 +290,26 @@ if browsertime
 
   a#extra-metrics
   h3 Extra metrics collected using scripting
-  if browsertime.extras && Object.keys(browsertime.extras).length > 0
+  if extras && Object.keys(extras).length > 0
     table
       tr
         th name
         th value
-      each value, name in browsertime.extras
+      each value, name in extras
         tr
           td #{name}
           td #{value}
   else
     p There are no custom extra metrics from scripting.
 
-  if browsertime.cdp && browsertime.cdp.performance
+  if cdp && cdp.performance
     a#cdp-performance
     h3 CDP Performance
     table
       tr
         th name
         th value
-      each value, name in browsertime.cdp.performance
+      each value, name in cdp.performance
         tr
           td #{name}
           td #{value.toFixed(0)}
@@ -279,19 +319,26 @@ if browsertime
    h3 Visual Elements
    table
       tr
-       th name
-       th x
-       th y
-       th width
-       th height
+       th Name
+       th Display Time
+       th X 
+       th Y
+       th Width
+       th Height
       each element in browsertime.pageinfo.visualElements.heroes
        tr
         td  #{element.name}
          if (element.filename)
           | (#{element.filename})
+        if element && visualMetrics && visualMetrics[element.name]
+          td #{visualMetrics[element.name] ? h.time.ms(visualMetrics[element.name].toFixed(0)): ''}
+        else 
+          td
         td  #{element.x}
         td  #{element.y}
         td  #{element.width}
         td  #{element.height}
+        tr 
+          td.url.pagesurl(colspan=6) #{element.html}
 else
   p Missing data from Browsertime.

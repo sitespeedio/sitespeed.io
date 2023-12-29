@@ -92,16 +92,9 @@ That will automatically start and stop gnirehtet. If you run with multiple devic
 
 Note: the first time you run gnirehtet you need to accept the vpn connection on your phone.
 
-#### TSProxy
+#### Humble
 
-You can set connectivity by using [TSProxy](https://github.com/WPO-Foundation/tsproxy).
-
-1. Download [TSProxy](https://github.com/WPO-Foundation/tsproxy) and make sure you have at least Python 2.7 installed.
-2. Check the local IP of your machine (in this example the IP is 10.0.1.7 and the default port for TSProxy is 1080).
-3. Start TSProxy and bind it to your IP: <code>python tsproxy.py --bind 10.0.1.7 --rtt=200 --inkbps=1600 --outkbps=768</code>
-4. Run <code>\$ sitespeed.io --android --browsertime.chrome.args proxy-server="socks://10.0.1.7:1080" https://www.sitespeed.io</code>
-
-You could also use [phuedxs](https://github.com/phuedx) [Pi Network Conditioner](https://github.com/phuedx/pinc), but using that requires some additional work but more reliable metrics.
+You can use a throttled WiFi by using [Humble](/documentation/humble/).
 
 ### Video and SpeedIndex
 
@@ -248,7 +241,7 @@ You can run your tests on Safari on iOS.
 
 ### Prerequisites
 
-To be able to test you need latest OS X Catalina on your Mac computer and iOS 13 on your phone (or iPad).
+To be able to test you need latest OS X on your Mac computer and iOS on your phone (or iPad).
 
 #### Desktop
 
@@ -272,24 +265,24 @@ If you have any problems, make sure to read the [WebKit blog post about setting 
 
 ### Run
 
-You are now ready to test using your phone:
+You are now ready to test using your phone (you need to remove the Coach, Safari on iOS has some kind of issue with running large JavaScript blobs, see [#1275](https://github.com/sitespeedio/browsertime/issues/1275)):
 
 ```bash
-sitespeed.io -b safari --safari.ios https://www.sitespeed.io
+sitespeed.io -b safari --safari.ios --plugins.remove coach https://www.sitespeed.io 
 ```
 
 ### Limitations
 At the moment there are a couple of limitations running Safari:
 
 * No HAR file
-* No videos
+* No videos (see the work in [#1598](https://github.com/sitespeedio/browsertime/issues/1598)).
 * No way to set request headers
 * No built in setting connectivity
 
 You can help us [adding support in Browsertime](https://github.com/sitespeedio/browsertime)!
 
 ## Test on iOS simulator
-You can use the iOS simulator to test run tests on different iOS devices. This works good if you use one of the new M1 Macs since it will then have the same CPU as an iPhone. You can read [Catchpoint blog post](https://blog.catchpoint.com/2021/01/28/with-m1-mac-minis-the-future-is-bright-for-mobile-device-testing/).
+You can use the iOS simulator to test run tests on different iOS devices. This works good if you use one of the new M1 Macs since it will then have the same CPU as an iPhone.
 
 To get it running you should have a Mac Mini M1 and Xcode installed. Checkout the [install instructions for Mac](https://www.sitespeed.io/documentation/sitespeed.io/installation/#mac).
 
@@ -297,5 +290,23 @@ To run your test you need to sepcify the Safari deviceUDID = choosing what kind 
 
 Then run your test:
 ```bash
-sitespeed.io https://www.sitespeed.io -b safari --safari.useSimulator --safari.device UDID YOUR_DEVICE_ID --video --visualMetrics -c 4g
+sitespeed.io https://www.sitespeed.io -b safari --safari.useSimulator --safari.deviceUDID YOUR_DEVICE_ID --video --visualMetrics -c 4g
 ```
+
+## Test on emulated mobile
+
+You can use desktop browser and emulate mobile browsers. If you use Chrome you can do that easiest with:
+
+```bash
+sitespeed.io https://www.sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "Moto G4"
+```
+
+You can see the list of different device names in Chrome devtools. You can also slow down your CPU with the CPU throttling command:
+
+```bash
+sitespeed.io https://www.sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "Moto G4" --browsertime.chrome.CPUThrottlingRate 6
+```
+
+To find a good throttling rate you can use our [CPU benchmark guide](https://www.sitespeed.io/documentation/sitespeed.io/cpu-benchmark/).
+
+

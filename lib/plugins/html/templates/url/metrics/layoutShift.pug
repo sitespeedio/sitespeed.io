@@ -4,7 +4,7 @@ if browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift!== undefin
     if (browsertime.pageinfo.cumulativeLayoutShift === 0) 
       p No layout shift detected.
     else
-      p #{browsertime.pageinfo.cumulativeLayoutShift.toFixed(2)} cumulative layout shift collected from the 
+      p #{browsertime.pageinfo.cumulativeLayoutShift.toFixed(5)} cumulative layout shift collected from the 
         a(href='https://web.dev/cls/') Cumulative Layout Shift API
         | .
       .row
@@ -14,13 +14,16 @@ if browsertime.pageinfo && browsertime.pageinfo.cumulativeLayoutShift!== undefin
             tr 
               th Score
               th HTML Element
+            - browsertime.pageinfo.cumulativeLayoutShiftInfo.sort(function(a, b){return b.score-a.score})
             each info in browsertime.pageinfo.cumulativeLayoutShiftInfo
               tr
                 td #{info.score.toFixed(5)}
-                td #{info.html}
+                td.url.pagesurl #{info.tags}
+              tr 
+                td.url.pagesurl(colspan='2') #{info.domPath}
         .one-half.column
           - const screenshotNo = medianRun ? medianRun.runIndex : 1
           - const screenshotName = 'data/screenshots/' + screenshotNo + '/layoutShift.' + screenShotType
           a(href=screenshotName)
             img.screenshot(src=screenshotName, alt='Layout shift', style='max-width:100%; height: auto')
-          p.small The elements that have shifted place is highlighted in the image. If the element shifted outside of the viewport, you will not see it there. It can be hard to understand what content that has shifted, if that's the case, checkout the video or the filmstrip of the run.
+          p.small The elements that have shifted place is highlighted in the image (that have a higher value than 0.01). If the element shifted outside of the viewport, you will not see it there. It can be hard to understand what content that has shifted, if that's the case, checkout the video or the filmstrip of the run.

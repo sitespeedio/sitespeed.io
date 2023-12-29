@@ -1,0 +1,15 @@
+name: New feature or improvement
+description: Suggest a new feature or something that can be improved
+labels: [feature, improvement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Suggest a new feature or something that can be improved
+  - type: textarea
+    id: your-idea
+    attributes:
+      label: Feature/improvement
+      description: You can also disuss new features/improvements in the [sitespeed.io Slack channel](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw).
+    validations:
+      required: true

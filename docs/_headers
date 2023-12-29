@@ -22,4 +22,6 @@
 /js/*
         Cache-Control: public, max-age=3600000
 /css/*
-        Cache-Control: public, max-age=3600000				
+        Cache-Control: public, max-age=3600000	
+/feed/* 
+		Access-Control-Allow-Origin: *			

@@ -1,36 +1,21 @@
-'use strict';
+import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-let aggregator = require('../lib/plugins/domains/aggregator'),
-  fs = require('fs'),
-  path = require('path'),
-  Promise = require('bluebird'),
-  expect = require('chai').expect;
+import test from 'ava';
 
-Promise.promisifyAll(fs);
+import { DomainsAggregator } from '../lib/plugins/domains/aggregator.js';
 
-describe('domains', function() {
-  describe('aggregator', function() {
-    let har;
+const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
-    beforeEach(function() {
-      return fs
-        .readFileAsync(
-          path.resolve(__dirname, 'fixtures', 'www-theverge-com.har'),
-          'utf8'
-        )
-        .then(JSON.parse)
-        .tap(data => {
-          har = data;
-        });
-    });
+const har = JSON.parse(
+  readFileSync(resolve(__dirname, 'fixtures', 'www-theverge-com.har'), 'utf8')
+);
 
-    describe('#addToAggregate', function() {
-      it('should add har to aggregate', function() {
-        aggregator.addToAggregate(har, 'http://www.vox.com');
-        const summary = aggregator.summarize();
-        const voxDomain = summary.groups.total['cdn1.vox-cdn.com'];
-        expect(voxDomain).to.have.nested.property('connect.max', 11);
-      });
-    });
-  });
+test(`Should summarize data per domain`, t => {
+  const aggregator = new DomainsAggregator();
+  aggregator.addToAggregate(har, 'http://www.vox.com');
+  const summary = aggregator.summarize();
+  const voxDomain = summary.groups.total['cdn1.vox-cdn.com'];
+  t.is(voxDomain.connect.max, 11);
 });
