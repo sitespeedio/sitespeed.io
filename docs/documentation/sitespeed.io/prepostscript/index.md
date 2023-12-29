@@ -26,9 +26,9 @@ We use the NodeJS version of Selenium, you can find the [API documentation here]
 Your script needs to follow a specific pattern to be able to run as a pre/post script. The simplest version of a script looks like this:
 
 ~~~javascript
-module.exports = async function(context, commands) {
-  // add your own code here
-}
+export default async function (context, commands) {
+   // add your own code here
+};
 ~~~
 
 Move on to read about the data that is passed in the context object and how you can use it to get hold of the Selenium objects you need to interact with the page.
@@ -58,7 +58,7 @@ The commands object:
 In your script you can get hold of the log object from sitespeed.io. This is super useful when you want to test your script and verify that everything works as it should. We use [intel](https://www.npmjs.com/package/intel) for logging.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   // Simple example to add a log message
   // Remember that you can log message on different levels
   context.log.info('Log message from the task');
@@ -69,7 +69,7 @@ module.exports = async function(context, commands) {
 Create a script where you login the user. The following is an example to login the user at Wikipedia. Start by creating a file login.js with the following.
 
 ~~~javascript
-module.exports = async function(context, commands) {
+export default async function (context, commands) {
   await commands.navigate(
     'https://en.wikipedia.org/w/index.php?title=Special:UserLogin&returnto=Main+Page'
   );
@@ -91,7 +91,7 @@ Make sure to change the username & password if you try this on Wikipedia. And of
 Then run it like this:
 
 ~~~bash
-docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --preScript /sitespeed.io/login.js https://en.wikipedia.org/wiki/Barack_Obama
+docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --preScript /sitespeed.io/login.mjs https://en.wikipedia.org/wiki/Barack_Obama
 ~~~
 
 The script will then login the user and access https://en.wikipedia.org/wiki/Barack_Obama and measure that page.
