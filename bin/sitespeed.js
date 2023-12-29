@@ -157,8 +157,9 @@ async function start() {
       }
 
       if (
-        !budgetFailing ||
-        (parsed.options.budget && parsed.options.budget.suppressExitCode)
+        (!budgetFailing ||
+          (parsed.options.budget && parsed.options.budget.suppressExitCode)) &&
+        process.exitCode === undefined
       ) {
         process.exitCode = 0;
       }
