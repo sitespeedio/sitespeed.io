@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Fri, 22 Dec 2023 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 28 Dec 2023 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,21 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 31.0.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.0.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.0.1</guid>
+            <pubDate>Thu, 28 Dec 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Hopefully removing &quot;rsd&quot; metrics in InfluxDB see <a href="https://github.com/sitespeedio/sitespeed.io/pull/4039">#4039</a>.</li>
+</ul>
+ <ul>
+<li>Fix showing sustainable metrics in pages page <a href="https://github.com/sitespeedio/sitespeed.io/pull/4042">#4042</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 31.0.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.0.0</link>
@@ -207,18 +222,6 @@
             <description><![CDATA[<h3>Added</h3>
  <ul>
 <li>The new compare plugin can now run without an id. The id will then be generated from the URL. If you don&#39;t give it an id, yoiu can only compare pages with the exact same URL <a href="https://github.com/sitespeedio/sitespeed.io/pull/4013">#4013</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 30.4.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.4.1</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.4.1</guid>
-            <pubDate>Tue, 28 Nov 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix for Firefox when generating the result HTML. It was broken since we where missing CPU data.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>

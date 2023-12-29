@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2023-12-22T00:00:00.000Z</updated>
+    <updated>2023-12-28T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,24 @@
     <logo>https://www.sitespeed.io/img/logos/sitespeed.io.png</logo>
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 31.0.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.0.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.0.1"/>
+        <updated>2023-12-28T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Hopefully removing &quot;rsd&quot; metrics in InfluxDB see <a href="https://github.com/sitespeedio/sitespeed.io/pull/4039">#4039</a>.</li>
+</ul>
+ <ul>
+<li>Fix showing sustainable metrics in pages page <a href="https://github.com/sitespeedio/sitespeed.io/pull/4042">#4042</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 31.0.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.0.0</id>
@@ -243,21 +261,6 @@
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>The new compare plugin can now run without an id. The id will then be generated from the URL. If you don&#39;t give it an id, yoiu can only compare pages with the exact same URL <a href="https://github.com/sitespeedio/sitespeed.io/pull/4013">#4013</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 30.4.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.4.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.4.1"/>
-        <updated>2023-11-28T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix for Firefox when generating the result HTML. It was broken since we where missing CPU data.</li>
 </ul>
 ]]></summary>
         <author>

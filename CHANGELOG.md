@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 31.0.1 - 2023-12-28
+### Fixed
+* Hopefully removing "rsd" metrics in InfluxDB see [#4039](https://github.com/sitespeedio/sitespeed.io/pull/4039).
+* Fix showing sustainable metrics in pages page [#4042](https://github.com/sitespeedio/sitespeed.io/pull/4042).
+
 ## 31.0.0 - 2023-12-22
 ### Breaking
 * Updated to [Browsertime 20](https://github.com/sitespeedio/browsertime/releases/tag/v20.0.0). The new version of Browsertime renames `--userTimingWhitelist` to `--userTimingAllowList` so if you use that functionality you need to change the name before you upgrade!

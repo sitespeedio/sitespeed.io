@@ -156,7 +156,7 @@ Grafana
       --grafana.host                  The Grafana host used when sending annotations.
       --grafana.port                  The Grafana port used when sending annotations to Grafana.  [default: 80]
       --grafana.auth                  The Grafana auth/bearer value used when sending annotations to Grafana. If you do not set Bearer/Auth, Bearer is automatically set. See http://docs.grafana.org/http_api/auth/#authentication-api
-      --grafana.annotationTitle
+      --grafana.annotationTitle       Add a title to the annotation sent for a run.
       --grafana.annotationMessage     Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
       --grafana.annotationTag         Add a extra tag to the annotation sent for a run. Repeat the --grafana.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
       --grafana.annotationScreenshot  Include screenshot (from Browsertime/WebPageTest) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
