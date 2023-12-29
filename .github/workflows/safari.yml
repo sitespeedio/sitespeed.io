@@ -10,11 +10,11 @@ jobs:
   build:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Use Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
-        node-version: '18.x'
+        node-version: '20.x'
     - name: Install dependencies 
       run: |
         sudo safaridriver --enable 
@@ -25,3 +25,5 @@ jobs:
       run: (serve test/data/html/ -l 3001&)
     - name: Run test
       run: bin/sitespeed.js -b safari http://127.0.0.1:3001/
+    - name: Run Safari test with config
+      run: node bin/sitespeed.js -b safari --config test/exampleConfig.json http://127.0.0.1:3001/

@@ -4,9 +4,8 @@ if browsertime.timings.elementTimings && Object.keys(browsertime.timings.element
     table
         tr
           th Id
-          if value.url !== ''  
-            th URL
-            th Image
+          th URL
+          th Image
           th Tag 
           th Render time
           th Load time
@@ -21,6 +20,9 @@ if browsertime.timings.elementTimings && Object.keys(browsertime.timings.element
               td 
                 a(href=value.url)
                   img.screenshot(src=value.url, alt='LCP', style='width:200px')
+            else
+              td
+              td
             td  #{value.tagName}
             td  #{h.time.ms(value.renderTime)}
             td  #{h.time.ms(value.loadTime)} 

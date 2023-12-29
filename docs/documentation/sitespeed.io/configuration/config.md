@@ -1,7 +1,7 @@
 sitespeed.js [options] <url>/<file>
 
 Browser
-  -b, --browsertime.browser, --browser                                                              Choose which Browser to use when you test. Safari only works on Mac OS X and iOS 13 (or later). Chrome needs to be the same version as the current installed  ChromeDriver (check the changelog for what version that is currently used). Use --chrome.chromedriverPath to use another ChromeDriver version.  [choices: "chrome", "firefox", "safari", "edge"] [default: "chrome"]
+  -b, --browsertime.browser, --browser                                                              Choose which Browser to use when you test. Safari only works on Mac OS X and iOS 13 (or later).  [choices: "chrome", "firefox", "safari", "edge"] [default: "chrome"]
   -n, --browsertime.iterations                                                                      How many times you want to test each page  [default: 3]
       --browsertime.spa, --spa                                                                      Convenient parameter to use if you test a SPA application: will automatically wait for X seconds after last network activity and use hash in file names. Read https://www.sitespeed.io/documentation/sitespeed.io/spa/  [boolean] [default: false]
       --browsertime.debug, --debug                                                                  Run Browsertime in debug mode. Use commands.breakpoint(name) to set breakpoints in your script. Debug mode works for Firefox/Chrome/Edge on desktop.  [boolean] [default: false]
@@ -19,6 +19,7 @@ Browser
       --browsertime.pageCompleteCheckInactivity, --pageCompleteCheckInactivity                      Alternative way to choose when to end your test. This will wait for 2 seconds of inactivity that happens after loadEventEnd.  [boolean] [default: false]
       --browsertime.pageCompleteCheckPollTimeout, --pageCompleteCheckPollTimeout                    The time in ms to wait for running the page complete check the next time.  [number] [default: 1500]
       --browsertime.pageCompleteCheckStartWait, --pageCompleteCheckStartWait                        The time in ms to wait for running the page complete check for the first time. Use this when you have a pageLoadStrategy set to none  [number] [default: 500]
+      --browsertime.pageCompleteCheckNetworkIdle, --pageCompleteCheckNetworkIdle                    Use the network log instead of running JavaScript to decide when to end the test. This will wait for 5 seconds of no network activity before it ends the test. This can be used with Chrome/Edge and Firefox.  [boolean] [default: false]
       --browsertime.pageLoadStrategy, --pageLoadStrategy                                            Set the strategy to waiting for document readiness after a navigation event. After the strategy is ready, your pageCompleteCheck will start running. This only work for Firefox and Chrome and please check which value each browser implements.  [string] [choices: "eager", "none", "normal"] [default: "none"]
       --browsertime.script, --script                                                                Add custom Javascript that collect metrics and run after the page has finished loading. Note that --script can be passed multiple times if you want to collect multiple metrics. The metrics will automatically be pushed to the summary/detailed summary and each individual page + sent to Graphite/InfluxDB.
       --browsertime.injectJs, --injectJs                                                            Inject JavaScript into the current page at document_start. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
@@ -166,6 +167,7 @@ Graphite
       --graphite.auth                        The Graphite user and password used for authentication. Format: user:password
       --graphite.httpPort                    The Graphite port used to access the user interface and send annotations event  [default: 8080]
       --graphite.webHost                     The graphite-web host. If not specified graphite.host will be used.
+      --graphite.proxyPath                   Extra path to graphite-web when behind a proxy, used when sending annotations.  [default: ""]
       --graphite.namespace                   The namespace key added to all captured metrics.  [default: "sitespeed_io.default"]
       --graphite.includeQueryParams          Whether to include query parameters from the URL in the Graphite keys or not  [boolean] [default: false]
       --graphite.arrayTags                   Send the tags as Array or a String. In Graphite 1.0 the tags is a array. Before a String  [boolean] [default: true]
@@ -178,7 +180,7 @@ Graphite
       --graphite.annotationTag               Add a extra tag to the annotation sent for a run. Repeat the --graphite.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
       --graphite.addSlugToKey                Add the slug (name of the test) as an extra key in the namespace.  [boolean] [default: true]
       --graphite.bulkSize                    Break up number of metrics to send with each request.  [number]
-      --graphite.messages  [default: ["pageSummary","summary"]]
+      --graphite.messages                    Define which messages to send to Graphite. By default we do not send data per run, but you can change that by adding run as one of the options  [default: ["pageSummary","summary"]]
 
 InfluxDB
       --influxdb.protocol              The protocol used to store connect to the InfluxDB host.  [default: "http"]
@@ -233,9 +235,9 @@ Slack
       --slack.hookUrl       WebHook url for the Slack team (check https://<your team>.slack.com/apps/manage/custom-integrations).
       --slack.userName      User name to use when posting status to Slack.  [default: "Sitespeed.io"]
       --slack.channel       The slack channel without the # (if something else than the default channel for your hook).
-      --slack.type          Send summary for a run, metrics from all URLs, only on errors or all to Slack.  [choices: "summary", "url", "error", "all"] [default: "all"]
-      --slack.limitWarning  The limit to get a warning in Slack using the limitMetric  [default: 90]
-      --slack.limitError    The limit to get a error in Slack using the limitMetric  [default: 80]
+      --slack.type          Send summary for a tested URL, metrics from all URLs (summary), only on errors from your tests or all to Slack.  [choices: "summary", "url", "error", "all"] [default: "all"]
+      --slack.limitWarning  The limit to get a warning in Slack using the limitMetric.  [default: 90]
+      --slack.limitError    The limit to get a error in Slack using the limitMetric.  [default: 80]
       --slack.limitMetric   The metric that will be used to set warning/error. You can choose only one at the moment.  [choices: "coachScore", "speedIndex", "firstVisualChange", "firstPaint", "visualComplete85", "lastVisualChange", "fullyLoaded"] [default: "coachScore"]
 
 s3
@@ -299,6 +301,17 @@ API
       --api.label     Add a label to your test.  [string]
       --api.priority  The priority of the test. Highest priority is 1.
       --api.json      Output the result as JSON.
+
+compare
+      --compare.id                          The id of the test. Will be used to find the baseline test, that is using the id as a part of the name. If you do not add an id, an id will be generated using the URL and that will only work if you baseline against the exact same URL.  [string]
+      --compare.baselinePath                Specifies the path to the baseline data file. This file is used as a reference for comparison against the current test data.  [string]
+      --compare.saveBaseline                Determines whether to save the current test data as the new baseline. Set to true to save the current data as baseline for future comparisons.  [boolean] [default: false]
+      --compare.testType                    Selects the statistical test type to be used for comparison. Options are mannwhitneyu for the Mann-Whitney U test and wilcoxon for the Wilcoxon signed-rank test.  [choices: "mannwhitneyu", " wilcoxon"] [default: "mannwhitneyu"]
+      --compare.alternative                 Specifies the alternative hypothesis to be tested. Default is greater than means current data is greater than the baseline. two-sided means we look for different both ways and less means current is less than baseline.  [choices: "less", " greater", "two-sided"] [default: "greater"]
+      --compare.wilcoxon.correction         Enables or disables the continuity correction in the Wilcoxon signed-rank test. Set to true to enable the correction.  [boolean] [default: false]
+      --compare.wilcoxon.zeroMethod         Specifies the method for handling zero differences in the Wilcoxon test. wilcox discards all zero-difference pairs, pratt includes all, and zsplit splits them evenly among positive and negative ranks.  [choices: "wilcox", " pratt", "zsplit"] [default: "zsplit"]
+      --compare.mannwhitneyu.useContinuity  Determines whether to use continuity correction in the Mann-Whitney U test. Set to true to apply the correction.  [boolean] [default: false]
+      --compare.mannwhitneyu.method  [choices: "auto", " exact", "symptotic"] [default: "auto"]
 
 Options:
       --debugMessages                                         Debug mode logs all internal messages in the message queue to the log.  [boolean] [default: false]

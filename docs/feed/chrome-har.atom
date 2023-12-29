@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>chrome-har-release-feed</id>
     <title>chrome-har release feed</title>
-    <updated>2023-02-28T14:56:55.285Z</updated>
+    <updated>2023-07-30T07:05:42.025Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[chrome-har 0.13.2]]></title>
+        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.2</id>
+        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.2"/>
+        <updated>2023-07-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated tough-cookie, thank you <a href="https://github.com/lallenlowe">lallenlowe</a> for PR <a href="https://github.com/sitespeedio/chrome-har/pull/107">#107</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[chrome-har 0.13.1]]></title>
         <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.1</id>
@@ -114,21 +129,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Updated dependencies: dayjs - 1.8.27, debug: 4.1.1, tough-cookie - 4.0.0, uuid - 8.0.0</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[chrome-har 0.11.7]]></title>
-        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.7</id>
-        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.7"/>
-        <updated>2020-03-09T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>And excluded the shrinkwrap file again.</li>
 </ul>
 ]]></summary>
         <author>

@@ -1,4 +1,4 @@
-FROM sitespeedio/webbrowsers:chrome-114.0-firefox-114.0-edge-114.0
+FROM sitespeedio/webbrowsers:chrome-120.0-firefox-121.0-edge-120.0
 
 ARG TARGETPLATFORM=linux/amd64
 
@@ -44,4 +44,6 @@ RUN echo 'ALL ALL=NOPASSWD: /usr/sbin/tc, /usr/sbin/route, /usr/sbin/ip' > /etc/
 
 ENTRYPOINT ["/start.sh"]
 VOLUME /sitespeed.io
+VOLUME /baseline
+
 WORKDIR /sitespeed.io

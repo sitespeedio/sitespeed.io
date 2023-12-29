@@ -1,186 +1,189 @@
 - const browsertime = medianRun ? (pageInfo.data.browsertime ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1]: undefined) : pageInfo.data.browsertime.run 
 
-small 
-    || 
-    if browsertime && browsertime.cpu && browsertime.cpu.longTasks
-      a(href='#long-tasks') CPU Long Tasks
-      | &nbsp;|&nbsp;
-    if browsertime && browsertime.timings && browsertime.timings.firstInput !== undefined
-      a(href='#first-input-delay') First Input Delay
-      | &nbsp;|&nbsp;
-    if browsertime && browsertime.cpu && browsertime.cpu.categories
-      a(href='#cpu-time-spent') CPU Time Spent
-      | &nbsp;|&nbsp;
-    if browsertime && browsertime.cpu && browsertime.cpu.urls && browsertime.cpu.urls.length > 0
-      a(href='#cpu-time-spent-per-request') CPU Time Spent Per Request
-      | &nbsp;|&nbsp;
-    if pageInfo.data.thirdparty
-      a(href='#cpu-time-per-tool') CPU Time Per Tool/Domain
-      | &nbsp;|&nbsp;
+- const cpu = medianRun ? (pageInfo.data.browsertime ? pageInfo.data.browsertime.pageSummary.cpu[medianRun.runIndex - 1]: undefined) : pageInfo.data.browsertime.run.cpu
 
-a#cpu
-h2 CPU
+if cpu
+    small 
+        || 
+        if cpu.longTasks
+        a(href='#long-tasks') CPU Long Tasks
+        | &nbsp;|&nbsp;
+        if browsertime && browsertime.timings && browsertime.timings.firstInput !== undefined
+        a(href='#first-input-delay') First Input Delay
+        | &nbsp;|&nbsp;
+        if cpu.categories
+        a(href='#cpu-time-spent') CPU Time Spent
+        | &nbsp;|&nbsp;
+        if cpu.urls && cpu.urls.length > 0
+        a(href='#cpu-time-spent-per-request') CPU Time Spent Per Request
+        | &nbsp;|&nbsp;
+        if pageInfo.data.thirdparty
+        a(href='#cpu-time-per-tool') CPU Time Per Tool/Domain
+        | &nbsp;|&nbsp;
 
-if browsertime && browsertime.cpu && browsertime.cpu.events && !options.browsertime.enableProfileRun       
-    p Download the Chrome trace log and drag and drop it into Developer Tools / Performance in Chrome.
-    .downloads
-        if options.browsertime.chrome && options.browsertime.chrome.timeline
-        - const tracePath = 'data/trace-' + (runNumber? runNumber : 1) + '.json.gz'
-        a.button.button-download(href=tracePath, download=downloadName + '-timeline.json.gz') Download trace log 
+    a#cpu
+    h2 CPU
 
-if options.browsertime && options.browsertime.firefox && options.browsertime.firefox.geckoProfiler && options.browser === 'firefox' && !options.browsertime.enableProfileRun       
-    p Download the Firefox Geckoprofiler trace and drag and drop it into 
-        a(href='https://profiler.firefox.com') https://profiler.firefox.com 
-    .downloads
-        - const tracePath = 'data/geckoProfile-' + (runNumber? runNumber : 1) + '.json.gz'
-        a.button.button-download(href=tracePath, download=downloadName + '-geckoProfile.json.gz') Download trace
-
-if options.browsertime && options.browsertime.enableProfileRun
-    if options.browser === 'firefox' 
-        p Download the Firefox Geckoprofiler trace and drag and drop it into 
-        a(href='https://profiler.firefox.com') https://profiler.firefox.com 
-        .downloads
-            - const tracePath = 'data/geckoProfile-1-extra.json.gz'
-            a.button.button-download(href=tracePath, download=downloadName + '-geckoProfile.json.gz') Download extra run trace log
-    else if options.browser === 'chrome'
+    if cpu.events && !options.browsertime.enableProfileRun       
         p Download the Chrome trace log and drag and drop it into Developer Tools / Performance in Chrome.
-        - const tracePath = 'data/trace-1-extra-run.json.gz'
-        a.button.button-download(href=tracePath, download=downloadName + '-timeline.json.gz') Download extra run trace log 
+        .downloads
+            if options.browsertime.chrome && options.browsertime.chrome.timeline
+            - const tracePath = 'data/trace-' + (runNumber? runNumber : 1) + '.json.gz'
+            a.button.button-download(href=tracePath, download=downloadName + '-timeline.json.gz') Download trace log 
 
-if browsertime && browsertime.cpu && browsertime.cpu.longTasks
-  a#long-tasks
-  h3 Long Tasks
-  p Collected using the Long Task API. A long task is a task that take 50 milliseconds or more.
-  if browsertime.cpu.longTasks.tasks > 0 
-    table
-        tr
-            th Type
-            th Quantity
-            th Total duration (ms)
-        tr
-            td Total Blocking Time
-            td 
-            td #{browsertime.cpu.longTasks.totalBlockingTime}
-        tr
-            td Max Potential First Input Delay
-            td 
-            td #{browsertime.cpu.longTasks.maxPotentialFid}
+    if options.browsertime && options.browsertime.firefox && options.browsertime.firefox.geckoProfiler && options.browser === 'firefox' && !options.browsertime.enableProfileRun       
+        p Download the Firefox Geckoprofiler trace and drag and drop it into 
+            a(href='https://profiler.firefox.com') https://profiler.firefox.com 
+        .downloads
+            - const tracePath = 'data/geckoProfile-' + (runNumber? runNumber : 1) + '.json.gz'
+            a.button.button-download(href=tracePath, download=downloadName + '-geckoProfile.json.gz') Download trace
 
-        tr
-            td Long Tasks before First Paint
-            td #{browsertime.cpu.longTasks.beforeFirstPaint.tasks}
-            td #{browsertime.cpu.longTasks.beforeFirstPaint.totalDuration.toFixed(0)}
-        tr
-            td Long Tasks before First Contentful Paint
-            td #{browsertime.cpu.longTasks.beforeFirstContentfulPaint.tasks}
-            td #{browsertime.cpu.longTasks.beforeFirstContentfulPaint.totalDuration.toFixed(0)}
-        tr
-            td Long Tasks before Largest Contentful Paint
-            td #{browsertime.cpu.longTasks.beforeLargestContentfulPaint.tasks}
-            td #{browsertime.cpu.longTasks.beforeLargestContentfulPaint.totalDuration.toFixed(0)}
-        tr
-            td Long Tasks after Load Event End
-            td #{browsertime.cpu.longTasks.afterLoadEventEnd.tasks}
-            td #{browsertime.cpu.longTasks.afterLoadEventEnd.totalDuration.toFixed(0)}         
-        tr
-            td Total Long Tasks
-            td #{browsertime.cpu.longTasks.tasks}
-            td #{browsertime.cpu.longTasks.totalDuration.toFixed(0)}
-    p CPU last long task happened at #{h.time.ms(browsertime.cpu.longTasks.lastLongTask)}
-    h4 Individual Long Tasks
-    table
-        tr
-            th name
-            th startTime
-            th duration
-            th containerId
-            th containerName
-            th containerSrc
-            th containerType
-            
-        each task in browsertime.pageinfo.longTask
-            tr
-                td #{task.name}
-                td #{task.startTime.toFixed(0)}
-                td #{task.duration.toFixed(0)}
-                td #{task.attribution[0].containerId}
-                td #{task.attribution[0].containerName}
-                td.url.assetsurl #{task.attribution[0].containerSrc}
-                td #{task.attribution[0].containerType}
-  else 
-    p No long tasks on the page!  
+    if options.browsertime && options.browsertime.enableProfileRun
+        if options.browser === 'firefox' 
+            p Download the Firefox Geckoprofiler trace and drag and drop it into 
+            a(href='https://profiler.firefox.com') https://profiler.firefox.com 
+            .downloads
+                - const tracePath = 'data/geckoProfile-1-extra.json.gz'
+                a.button.button-download(href=tracePath, download=downloadName + '-geckoProfile.json.gz') Download extra run trace log
+        else if options.browser === 'chrome'
+            p Download the Chrome trace log and drag and drop it into Developer Tools / Performance in Chrome.
+            - const tracePath = 'data/trace-1-extra-run.json.gz'
+            a.button.button-download(href=tracePath, download=downloadName + '-timeline.json.gz') Download extra run trace log 
 
-if browsertime && browsertime.timings && browsertime.timings.firstInput !== undefined
-    a#first-input-delay
-    h3 First Input Delay
-    table
-        tr
-            th Name
-            th Delay
-            th Duration
-            th Start Time
-            th Processing Start
-            th Processing End
-        tr
-            td  #{browsertime.timings.firstInput.name}
-            td  #{h.time.ms(browsertime.timings.firstInput.delay)}
-            td  #{h.time.ms(browsertime.timings.firstInput.duration)}
-            td  #{h.time.ms(browsertime.timings.firstInput.startTime)}
-            td  #{h.time.ms(browsertime.timings.firstInput.processingStart)}
-            td  #{h.time.ms(browsertime.timings.firstInput.processingEnd)}
-
-if browsertime && browsertime.cpu && browsertime.cpu.categories
-    a#cpu-time-spent
-    h3 CPU time spent    
-    p Calculated using Tracium.
-
-    .row
-    .one-half.column
-    if browsertime && browsertime.cpu && browsertime.cpu.categories
+    if cpu.longTasks
+    a#long-tasks
+    h3 Long Tasks
+    p Collected using the Long Task API. A long task is a task that take 50 milliseconds or more.
+    if cpu.longTasks.tasks > 0 
         table
             tr
-                th(colspan='2') Categories (ms)
-            each value, name in browsertime.cpu.categories
-                tr
-                    td #{name}
-                    td #{value.toFixed(0)}
-    .one-half.column
-    if browsertime && browsertime.cpu && browsertime.cpu.events
+                th Type
+                th Quantity
+                th Total duration (ms)
+            tr
+                td Total Blocking Time
+                td 
+                td #{cpu.longTasks.totalBlockingTime}
+            tr
+                td Max Potential First Input Delay
+                td 
+                td #{cpu.longTasks.maxPotentialFid}
+
+            tr
+                td Long Tasks before First Paint
+                td #{cpu.longTasks.beforeFirstPaint.tasks}
+                td #{cpu.longTasks.beforeFirstPaint.totalDuration.toFixed(0)}
+            tr
+                td Long Tasks before First Contentful Paint
+                td #{cpu.longTasks.beforeFirstContentfulPaint.tasks}
+                td #{cpu.longTasks.beforeFirstContentfulPaint.totalDuration.toFixed(0)}
+            tr
+                td Long Tasks before Largest Contentful Paint
+                td #{cpu.longTasks.beforeLargestContentfulPaint.tasks}
+                td #{cpu.longTasks.beforeLargestContentfulPaint.totalDuration.toFixed(0)}
+            tr
+                td Long Tasks after Load Event End
+                td #{cpu.longTasks.afterLoadEventEnd.tasks}
+                td #{cpu.longTasks.afterLoadEventEnd.totalDuration.toFixed(0)}         
+            tr
+                td Total Long Tasks
+                td #{cpu.longTasks.tasks}
+                td #{cpu.longTasks.totalDuration.toFixed(0)}
+        p CPU last long task happened at #{h.time.ms(cpu.longTasks.lastLongTask)}
+        h4 Individual Long Tasks
         table
             tr
-                th(colspan='2') Events (ms)
-            - const cpuEvents = [] 
-            - for (let key of Object.keys(browsertime.cpu.events)) {cpuEvents.push({name: key, value: browsertime.cpu.events[key] })}
-            - cpuEvents.sort((a,b)=>{return b.value - a.value})   
-            each event in cpuEvents
+                th name
+                th startTime
+                th duration
+                th containerId
+                th containerName
+                th containerSrc
+                th containerType
+                
+            each task in browsertime.pageinfo.longTask
                 tr
-                    td #{event.name}
-                    td #{event.value.toFixed(0)}
+                    td #{task.name}
+                    td #{task.startTime.toFixed(0)}
+                    td #{task.duration.toFixed(0)}
+                    td #{task.attribution[0].containerId}
+                    td #{task.attribution[0].containerName}
+                    td.url.assetsurl #{task.attribution[0].containerSrc}
+                    td #{task.attribution[0].containerType}
+    else 
+        p No long tasks on the page!  
 
-    if browsertime && browsertime.cpu && browsertime.cpu.urls && browsertime.cpu.urls.length > 0
-        a#cpu-time-spent-per-request
-        h3 Time spent per request
+    if browsertime && browsertime.timings && browsertime.timings.firstInput !== undefined
+        a#first-input-delay
+        h3 First Input Delay
         table
             tr
-                th URL
-                th CPU time (ms)
-            each data in browsertime.cpu.urls
-                tr
-                    td.url.assetsurl
-                        a(href=data.url)= data.url
-                    td #{data.value.toFixed(0)}
+                th Name
+                th Delay
+                th Duration
+                th Start Time
+                th Processing Start
+                th Processing End
+            tr
+                td  #{browsertime.timings.firstInput.name}
+                td  #{h.time.ms(browsertime.timings.firstInput.delay)}
+                td  #{h.time.ms(browsertime.timings.firstInput.duration)}
+                td  #{h.time.ms(browsertime.timings.firstInput.startTime)}
+                td  #{h.time.ms(browsertime.timings.firstInput.processingStart)}
+                td  #{h.time.ms(browsertime.timings.firstInput.processingEnd)}
 
-    if pageInfo.data.thirdparty
-        - const thirdparty = medianRun ? pageInfo.data.thirdparty.pageSummary.runs[medianRun.runIndex - 1] : pageInfo.data.thirdparty.run
+    if cpu.categories
+        a#cpu-time-spent
+        h3 CPU time spent    
+        p Calculated using Tracium.
 
-        if thirdparty && thirdparty.cpuPerTool  && Object.keys(thirdparty.cpuPerTool).length > 0
-            a#cpu-time-per-tool
-            h3 CPU time spent
+        .row
+        .one-half.column
+        if cpu.categories
             table
                 tr
-                    th Tool/domain
-                    th Time (ms)
-                each tool in Object.keys(thirdparty.cpuPerTool)
-                    tr 
-                        td #{tool}
-                        td.number #{thirdparty.cpuPerTool[tool].toFixed(1)}
+                    th(colspan='2') Categories (ms)
+                each value, name in cpu.categories
+                    tr
+                        td #{name}
+                        td #{value.toFixed(0)}
+        .one-half.column
+        if cpu.events
+            table
+                tr
+                    th(colspan='2') Events (ms)
+                - const cpuEvents = [] 
+                - for (let key of Object.keys(cpu.events)) {cpuEvents.push({name: key, value: cpu.events[key] })}
+                - cpuEvents.sort((a,b)=>{return b.value - a.value})   
+                each event in cpuEvents
+                    tr
+                        td #{event.name}
+                        td #{event.value.toFixed(0)}
+
+        if cpu.urls && cpu.urls.length > 0
+            a#cpu-time-spent-per-request
+            h3 Time spent per request
+            table
+                tr
+                    th URL
+                    th CPU time (ms)
+                each data in cpu.urls
+                    tr
+                        td.url.assetsurl
+                            a(href=data.url)= data.url
+                        td #{data.value.toFixed(0)}
+
+        if pageInfo.data.thirdparty
+            - const thirdparty = medianRun ? pageInfo.data.thirdparty.pageSummary.runs[medianRun.runIndex - 1] : pageInfo.data.thirdparty.run
+
+            if thirdparty && thirdparty.cpuPerTool  && Object.keys(thirdparty.cpuPerTool).length > 0
+                a#cpu-time-per-tool
+                h3 CPU time spent
+                table
+                    tr
+                        th Tool/domain
+                        th Time (ms)
+                    each tool in Object.keys(thirdparty.cpuPerTool)
+                        tr 
+                            td #{tool}
+                            td.number #{thirdparty.cpuPerTool[tool].toFixed(1)}

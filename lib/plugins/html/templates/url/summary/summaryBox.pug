@@ -66,15 +66,16 @@ if btStatistics
               +getRow(name, pageInfo, 'data.browsertime.pageSummary.statistics.visualMetrics.' + name, pageInfo.data.browsertime.pageSummary.visualMetrics, name, h.time.ms)
       if btStatistics.timings && btStatistics.timings.pageTimings
         tr 
-          td.extraheader(colspan='5') RUM Metrics
-          +getRow('TTFB', pageInfo, 'data.browsertime.pageSummary.statistics.timings.pageTimings.backEndTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.pageTimings.backEndTime', h.time.ms)
-          +getRow('LCP', pageInfo, 'data.browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.largestContentfulPaint.renderTime', h.time.ms)
-          +getRow('FCP', pageInfo, 'data.browsertime.pageSummary.statistics.timings.paintTiming["first-contentful-paint"]', pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.paintTiming["first-contentful-paint"]', h.time.ms)
+          td.extraheader(colspan='5') Google Web Vitals
+          +getRow('Time To First Byte (TTFB)', pageInfo, 'data.browsertime.pageSummary.statistics.timings.pageTimings.backEndTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.pageTimings.backEndTime', h.time.ms)
+          +getRow('Largest Contentful Paint (LCP)', pageInfo, 'data.browsertime.pageSummary.statistics.timings.largestContentfulPaint.renderTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.largestContentfulPaint.renderTime', h.time.ms)
+          +getRow('First Contentful Paint (FCP)', pageInfo, 'data.browsertime.pageSummary.statistics.timings.paintTiming["first-contentful-paint"]', pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.paintTiming["first-contentful-paint"]', h.time.ms)
+          +getRow('Cumulative Layout Shift (CLS)', pageInfo, 'data.browsertime.pageSummary.statistics.pageinfo.cumulativeLayoutShift' , pageInfo.data.browsertime.pageSummary.browserScripts, 'pageinfo.cumulativeLayoutShift', h.noop)
+        tr 
+          td.extraheader(colspan='5') More metrics
         each timing in timingMetrics
           +getRow(timing, pageInfo, 'data.browsertime.pageSummary.statistics.timings.' + timing , pageInfo.data.browsertime.pageSummary.browserScripts, 'timings.' + timing, h.time.ms)
          
-        +getRow('CLS', pageInfo, 'data.browsertime.pageSummary.statistics.pageinfo.cumulativeLayoutShift' , pageInfo.data.browsertime.pageSummary.browserScripts, 'pageinfo.cumulativeLayoutShift', h.noop)
-
       if btStatistics.timings && btStatistics.timings.userTimings && btStatistics.timings.userTimings.marks
         tr 
           td.extraheader(colspan='5') User Timing 
@@ -88,8 +89,8 @@ if btStatistics
       if btStatistics.cpu && btStatistics.cpu.longTasks
         tr 
           td.extraheader(colspan='5') CPU
-        +getRow('Total Blocking Time', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime' , pageInfo.data.browsertime.pageSummary.browserScripts, 'cpu.longTasks.totalBlockingTime', h.time.ms)
-        +getRow('Max Potential FID', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.maxPotentialFid', pageInfo.data.browsertime.pageSummary.browserScripts, 'cpu.longTasks.maxPotentialFid', h.time.ms)
-        +getRow('CPU long tasks ', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.tasks' , pageInfo.data.browsertime.pageSummary.browserScripts, 'cpu.longTasks.tasks', h.noop)
-        +getRow('CPU longest task duration ', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.durations.max' , pageInfo.data.browsertime.pageSummary.browserScripts, 'cpu.longTasks.durations.max', h.time.ms)
-        +getRow('CPU last long task happens at', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.lastLongTask' , pageInfo.data.browsertime.pageSummary.browserScripts, 'cpu.longTasks.lastLongTask', h.time.ms)
+        +getRow('Total Blocking Time', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime' , pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.totalBlockingTime', h.time.ms)
+        +getRow('Max Potential FID', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.maxPotentialFid', pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.maxPotentialFid', h.time.ms)
+        +getRow('CPU long tasks ', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.tasks' , pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.tasks', h.noop)
+        +getRow('CPU longest task duration ', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.durations.max' , pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.durations.max', h.time.ms)
+        +getRow('CPU last long task happens at', pageInfo, 'data.browsertime.pageSummary.statistics.cpu.longTasks.lastLongTask' , pageInfo.data.browsertime.pageSummary.cpu, 'longTasks.lastLongTask', h.time.ms)

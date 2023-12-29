@@ -88,7 +88,7 @@ docker run -v ${WORKSPACE}:/sitespeed.io sitespeedio/sitespeed.io --outputFolder
 
  The HTML result pages runs JavaScript, so you need to change the [Jenkins Content Security Policy](https://wiki.jenkins-ci.org/display/JENKINS/Configuring+Content+Security+Policy) for them to work with the plugin.
 
- When you start Jenkins make sure to set the environment variable <code>-Dhudson.model.DirectoryBrowserSupport.CSP="sandbox allow-scripts; style-src 'unsafe-inline' *;script-src 'unsafe-inline' *;"</code>.
+ When you start Jenkins make sure to set the environment variable <code>-Dhudson.model.DirectoryBrowserSupport.CSP="default-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self' 'unsafe-inline' data:;"</code>.
 
 * If you want to break your build, you should generate a JUnit XML and use the built-in post task *Publish JUnit test result report*. Make sure to make the budget file available inside the Docker container. In this example we have it inside the Jenkins workspace.
 

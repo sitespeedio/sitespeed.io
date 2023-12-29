@@ -160,4 +160,4 @@ You can do the same with all the metrics you want. On mobile Wikipedia metrics i
 ![First visual change]({{site.baseurl}}/img/alerts/first-visual-change2.png){:loading="lazy"}
 {: .img-thumbnail}
 
-If you have any questions about the alerts, feel free to [create an issue at GitHub](https://github.com/sitespeedio/sitespeed.io/issues/new?title=Alerts) or hit us on [Slack](https://sitespeedio.herokuapp.com).
+If you have any questions about the alerts, feel free to [create an issue at GitHub](https://github.com/sitespeedio/sitespeed.io/issues/new?title=Alerts) or hit us on [Slack](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw).
