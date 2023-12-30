@@ -21,8 +21,8 @@ jobs:
         CHROMEDRIVER_SKIP_DOWNLOAD: true
         GECKODRIVER_SKIP_DOWNLOAD: true
     - run: choco outdated
-    - name: Install dependencies
-      run: choco install microsoft-edge
+    #- name: Install dependencies
+    #  run: choco install microsoft-edge
     - name: Run Edge test
       run: node bin/sitespeed.js -b edge https://www.sitespeed.io/
       shell: cmd
