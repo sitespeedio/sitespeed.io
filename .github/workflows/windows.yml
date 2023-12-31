@@ -24,8 +24,11 @@ jobs:
       run: npm install sitespeed.io -g
       shell: bash
     - run: choco outdated
-    - name: Install dependencies
-      run: choco install microsoft-edge --force
+    - name: Show versions
+      run: powershell "Get-AppxPackage -Name *MicrosoftEdge.* | Foreach Version"
+      shell: cmd
+    #- name: Install dependencies
+    #  run: choco install microsoft-edge
     - name: Run Edge test
       run: node bin/sitespeed.js -b edge https://www.sitespeed.io/
       shell: cmd
