@@ -22,7 +22,7 @@ jobs:
         GECKODRIVER_SKIP_DOWNLOAD: true
     - run: choco outdated
     - name: Show versions
-      run: microsoft-edge --version
+      run: edge --version
       shell: cmd
     #- name: Install dependencies
     #  run: choco install microsoft-edge
