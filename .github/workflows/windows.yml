@@ -22,7 +22,7 @@ jobs:
         GECKODRIVER_SKIP_DOWNLOAD: true
     - run: choco outdated
     - name: Show versions
-      run: edge --version
+      run: powershell "Get-AppxPackage -Name *MicrosoftEdge.* | Foreach Version"
       shell: cmd
     #- name: Install dependencies
     #  run: choco install microsoft-edge
