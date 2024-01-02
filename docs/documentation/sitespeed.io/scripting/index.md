@@ -1332,7 +1332,7 @@ export default async function (context, commands) {
 Scroll the page by the specified lines.  Only supported by Firefox.
 
 ### Add text
-You can add text to input elements. The element needs to visible.
+You can add text to input elements. The element needs to visible. You can also send pressable keys as Unicode PUA([PrivateUser Area](https://en.wikipedia.org/wiki/Private_Use_Areas)) format. 
 
 #### addText.byId(text, id)
 Add the *text* to the element with the *id*. If the id is not found the command will throw an error.
