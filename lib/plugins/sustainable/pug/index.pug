@@ -11,6 +11,10 @@ h1 Sustainable Web
 
 - let sustainable = pageInfo.data.sustainable.run ? pageInfo.data.sustainable.run : pageInfo.data.sustainable.pageSummary
 
+p The sustainable metrics is calculated using 
+    a(href='https://github.com/thegreenwebfoundation/co2.js') @tgwf/co2
+    | &nbsp;version #{sustainable.co2Version}.
+
 p We know that using the internet means using electricity, and because most of that electricity comes from fossil fuels, it means that more data we send, the more fossil fuels we end up burning.
 
 p This is terrible news for the climate, and  
@@ -27,7 +31,8 @@ if !options.sustainable.pageViews
 if (sustainable.hostingInfo)
     p #{sustainable.hostingInfo.url} #{sustainable.hostingInfo.green === true ? 'is hosted green! This means the servers running the site use green energy' : 'does not appear to be running on green energy.'}
 
-    p This information comes from The Green Web Foundation's datasets, which are published as open data. If you have questions, corrections or want to use this data yourself, please visit (href='https://www.thegreenwebfoundation.org') The Green Web Foundation website.
+    p This information comes from The Green Web Foundation's datasets, which are published as open data. If you have questions, corrections or want to use this data yourself, please visit 
+    a(href='https://www.thegreenwebfoundation.org') The Green Web Foundation website.
 
 - const co2FirstParty = sustainable.co2FirstParty.median || sustainable.co2FirstParty
 - const co2ThirdParty = sustainable.co2ThirdParty.median === 0 ? 0 : sustainable.co2ThirdParty.median || sustainable.co2ThirdParty

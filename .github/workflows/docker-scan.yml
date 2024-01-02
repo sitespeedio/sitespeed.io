@@ -2,15 +2,15 @@ name: Docker security scan
 on:
   push:
     branches:
-      - master
+      - main
   pull_request:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       
       - name: Build an image from Dockerfile
         run: |

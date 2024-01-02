@@ -1,12 +1,11 @@
 sitespeed.js [options] <url>/<file>
 
 Browser
-  -b, --browsertime.browser, --browser                                                              Choose which Browser to use when you test. Safari only works on Mac OS X and iOS 13 (or later). Chrome needs to be the same version as the current installed  ChromeDriver (check the changelog for what version that is currently used). Use --chrome.chromedriverPath to use another ChromeDriver version.  [choices: "chrome", "firefox", "safari", "edge"] [default: "chrome"]
+  -b, --browsertime.browser, --browser                                                              Choose which Browser to use when you test. Safari only works on Mac OS X and iOS 13 (or later).  [choices: "chrome", "firefox", "safari", "edge"] [default: "chrome"]
   -n, --browsertime.iterations                                                                      How many times you want to test each page  [default: 3]
       --browsertime.spa, --spa                                                                      Convenient parameter to use if you test a SPA application: will automatically wait for X seconds after last network activity and use hash in file names. Read https://www.sitespeed.io/documentation/sitespeed.io/spa/  [boolean] [default: false]
       --browsertime.debug, --debug                                                                  Run Browsertime in debug mode. Use commands.breakpoint(name) to set breakpoints in your script. Debug mode works for Firefox/Chrome/Edge on desktop.  [boolean] [default: false]
       --browsertime.limitedRunData                                                                  Send only limited metrics from one run to the datasource.  [boolean] [default: true]
-      --browsertime.gnirehtet, --gnirehtet                                                          Start gnirehtet and reverse tethering the traffic from your Android phone.  [boolean] [default: false]
   -c, --browsertime.connectivity.profile                                                            The connectivity profile. To actually set the connectivity you can choose between Docker networks or Throttle, read https://www.sitespeed.io/documentation/sitespeed.io/connectivity/  [string] [choices: "4g", "3g", "3gfast", "3gslow", "3gem", "2g", "cable", "native", "custom"] [default: "native"]
       --browsertime.connectivity.alias                                                              Give your connectivity profile a custom name  [string]
       --browsertime.connectivity.down, --downstreamKbps, --browsertime.connectivity.downstreamKbps  This option requires --connectivity be set to "custom".
@@ -20,6 +19,7 @@ Browser
       --browsertime.pageCompleteCheckInactivity, --pageCompleteCheckInactivity                      Alternative way to choose when to end your test. This will wait for 2 seconds of inactivity that happens after loadEventEnd.  [boolean] [default: false]
       --browsertime.pageCompleteCheckPollTimeout, --pageCompleteCheckPollTimeout                    The time in ms to wait for running the page complete check the next time.  [number] [default: 1500]
       --browsertime.pageCompleteCheckStartWait, --pageCompleteCheckStartWait                        The time in ms to wait for running the page complete check for the first time. Use this when you have a pageLoadStrategy set to none  [number] [default: 500]
+      --browsertime.pageCompleteCheckNetworkIdle, --pageCompleteCheckNetworkIdle                    Use the network log instead of running JavaScript to decide when to end the test. This will wait for 5 seconds of no network activity before it ends the test. This can be used with Chrome/Edge and Firefox.  [boolean] [default: false]
       --browsertime.pageLoadStrategy, --pageLoadStrategy                                            Set the strategy to waiting for document readiness after a navigation event. After the strategy is ready, your pageCompleteCheck will start running. This only work for Firefox and Chrome and please check which value each browser implements.  [string] [choices: "eager", "none", "normal"] [default: "none"]
       --browsertime.script, --script                                                                Add custom Javascript that collect metrics and run after the page has finished loading. Note that --script can be passed multiple times if you want to collect multiple metrics. The metrics will automatically be pushed to the summary/detailed summary and each individual page + sent to Graphite/InfluxDB.
       --browsertime.injectJs, --injectJs                                                            Inject JavaScript into the current page at document_start. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
@@ -51,6 +51,13 @@ Browser
       --browsertime.basicAuth, --basicAuth                                                          Use it if your server is behind Basic Auth. Format: username@password. Only works in Chrome and Firefox.
       --browsertime.flushDNS, --flushDNS                                                            Flush the DNS between runs (works on Mac OS and Linux). The user needs sudo rights to flush the DNS.
       --browsertime.headless, --headless                                                            Run the browser in headless mode. This is the browser internal headless mode, meaning you cannot collect Visual Metrics or in Chrome run any WebExtension (this means you cannot add cookies, requestheaders or use basic auth for headless Chrome). Only works in Chrome and Firefox.  [boolean] [default: false]
+
+Android
+      --browsertime.android.gnirehtet, --gnirehtet, --browsertime.gnirehtet                                                                                              Start gnirehtet and reverse tethering the traffic from your Android phone.  [boolean] [default: false]
+      --browsertime.android.rooted, --androidRooted, --browsertime.androidRooted                                                                                         If your phone is rooted you can use this to set it up following Mozillas best practice for stable metrics.  [boolean] [default: false]
+      --browsertime.android.batteryTemperatureLimit, --androidBatteryTemperatureLimit, --browsertime.androidBatteryTemperatureLimit                                      Do the battery temperature need to be below a specific limit before we start the test?
+      --browsertime.android.batteryTemperatureWaitTimeInSeconds, --androidBatteryTemperatureWaitTimeInSeconds, --browsertime.androidBatteryTemperatureWaitTimeInSeconds  How long time to wait (in seconds) if the androidBatteryTemperatureWaitTimeInSeconds is not met before the next try  [default: 120]
+      --browsertime.android.verifyNetwork, --androidVerifyNetwork, --browsertime.androidVerifyNetwork                                                                    Before a test start, verify that the device has a Internet connection by pinging 8.8.8.8 (or a configurable domain with --androidPingAddress)  [boolean] [default: false]
 
 video
       --browsertime.videoParams.keepOriginalVideo, --videoParams.keepOriginalVideo  Keep the original video. Use it when you have a Visual Metrics bug and want to create an issue at GitHub. Supply the original video in the issue and we can reproduce your issue.  [boolean] [default: false]
@@ -90,7 +97,7 @@ Firefox
 
 Chrome
       --browsertime.chrome.args, --chrome.args                                        Extra command line arguments to pass to the Chrome process. If you use the command line, leave out the starting -- (--no-sandbox will be no-sandbox). If you use a configuration JSON file you should keep the starting --. To add multiple arguments to Chrome, repeat --browsertime.chrome.args once per argument. See https://peter.sh/experiments/chromium-command-line-switches/
-      --browsertime.chrome.timeline, --chrome.timeline                                Collect the timeline data. Drag and drop the JSON in your Chrome detvools timeline panel or check out the CPU metrics.  [boolean] [default: true]
+      --browsertime.chrome.timeline, --chrome.timeline                                Collect the timeline data. Drag and drop the JSON in your Chrome detvools timeline panel or check out the CPU metrics.  [boolean] [default: false]
       --browsertime.chrome.appendToUserAgent, --chrome.appendToUserAgent              Append to the user agent.  [string]
       --browsertime.chrome.android.package, --chrome.android.package                  Run Chrome on your Android device. Set to com.android.chrome for default Chrome version. You need to have adb installed to run on Android.
       --browsertime.chrome.android.activity, --chrome.android.activity                Name of the Activity hosting the WebView.
@@ -160,6 +167,7 @@ Graphite
       --graphite.auth                        The Graphite user and password used for authentication. Format: user:password
       --graphite.httpPort                    The Graphite port used to access the user interface and send annotations event  [default: 8080]
       --graphite.webHost                     The graphite-web host. If not specified graphite.host will be used.
+      --graphite.proxyPath                   Extra path to graphite-web when behind a proxy, used when sending annotations.  [default: ""]
       --graphite.namespace                   The namespace key added to all captured metrics.  [default: "sitespeed_io.default"]
       --graphite.includeQueryParams          Whether to include query parameters from the URL in the Graphite keys or not  [boolean] [default: false]
       --graphite.arrayTags                   Send the tags as Array or a String. In Graphite 1.0 the tags is a array. Before a String  [boolean] [default: true]
@@ -171,8 +179,23 @@ Graphite
       --graphite.statsd                      Uses the StatsD interface  [boolean] [default: false]
       --graphite.annotationTag               Add a extra tag to the annotation sent for a run. Repeat the --graphite.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
       --graphite.addSlugToKey                Add the slug (name of the test) as an extra key in the namespace.  [boolean] [default: true]
-      --graphite.bulkSize                    Break up number of metrics to send with each request.  [number] [default: null]
-      --graphite.messages  [default: ["pageSummary","summary"]]
+      --graphite.bulkSize                    Break up number of metrics to send with each request.  [number]
+      --graphite.messages                    Define which messages to send to Graphite. By default we do not send data per run, but you can change that by adding run as one of the options  [default: ["pageSummary","summary"]]
+
+InfluxDB
+      --influxdb.protocol              The protocol used to store connect to the InfluxDB host.  [default: "http"]
+      --influxdb.host                  The InfluxDB host used to store captured metrics.
+      --influxdb.port                  The InfluxDB port used to store captured metrics.  [default: 8086]
+      --influxdb.username              The InfluxDB username for your InfluxDB instance (only for InfluxDB v1)
+      --influxdb.password              The InfluxDB password for your InfluxDB instance (only for InfluxDB v1).
+      --influxdb.organisation          The InfluxDB organisation for your InfluxDB instance (only for InfluxDB v2)
+      --influxdb.token                 The InfluxDB token for your InfluxDB instance (only for InfluxDB v2)
+      --influxdb.version               The InfluxDB version of your InfluxDB instance.  [default: 1]
+      --influxdb.database              The database name used to store captured metrics.  [default: "sitespeed"]
+      --influxdb.tags                  A comma separated list of tags and values added to each metric  [default: "category=default"]
+      --influxdb.includeQueryParams    Whether to include query parameters from the URL in the InfluxDB keys or not  [boolean] [default: false]
+      --influxdb.groupSeparator        Choose which character that will separate a group/domain. Default is underscore, set it to a dot if you wanna keep the original domain name.  [default: "_"]
+      --influxdb.annotationScreenshot  Include screenshot (from Browsertime) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
 
 Plugins
       --plugins.list    List all configured plugins in the log.  [boolean]
@@ -194,30 +217,27 @@ Screenshot
       --browsertime.screenshotParams.jpg.quality, --screenshot.jpg.quality                    Quality of the JPEG screenshot. 1-100  [default: 80]
       --browsertime.screenshotParams.maxSize, --screenshot.maxSize                            The max size of the screenshot (width and height).  [default: 2000]
 
-InfluxDB
-      --influxdb.protocol              The protocol used to store connect to the InfluxDB host.  [default: "http"]
-      --influxdb.host                  The InfluxDB host used to store captured metrics.
-      --influxdb.port                  The InfluxDB port used to store captured metrics.  [default: 8086]
-      --influxdb.username              The InfluxDB username for your InfluxDB instance.
-      --influxdb.password              The InfluxDB password for your InfluxDB instance.
-      --influxdb.database              The database name used to store captured metrics.  [default: "sitespeed"]
-      --influxdb.tags                  A comma separated list of tags and values added to each metric  [default: "category=default"]
-      --influxdb.includeQueryParams    Whether to include query parameters from the URL in the InfluxDB keys or not  [boolean] [default: false]
-      --influxdb.groupSeparator        Choose which character that will separate a group/domain. Default is underscore, set it to a dot if you wanna keep the original domain name.  [default: "_"]
-      --influxdb.annotationScreenshot  Include screenshot (from Browsertime) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
-
 Metrics
       --metrics.list        List all possible metrics in the data folder (metrics.txt).  [boolean] [default: false]
       --metrics.filterList  List all configured filters for metrics in the data folder (configuredMetrics.txt)  [boolean] [default: false]
       --metrics.filter      Add/change/remove filters for metrics. If you want to send all metrics, use: *+ . If you want to remove all current metrics and send only the coach score: *- coach.summary.score.*  [array]
 
+Matrix
+      --matrix.host         The Matrix host.
+      --matrix.accessToken  The Matrix access token.
+      --matrix.room         The default Matrix room. It is alsways used. You can override the room per message type using --matrix.rooms
+      --matrix.messages     Choose what type of message to send to Matrix. There are two types of messages: Error messages and budget messages. Errors are errors that happens through the tests (failures like strarting a test) and budget is test failing against your budget.  [choices: "error", "budget"] [default: ["error","budget"]]
+      --matrix.rooms        Send messages to different rooms. Current message types are [function messageTypes() {
+                              return ['error', 'budget'];
+                            }]. If you want to send error messages to a specific room use --matrix.rooms.error ROOM
+
 Slack
       --slack.hookUrl       WebHook url for the Slack team (check https://<your team>.slack.com/apps/manage/custom-integrations).
       --slack.userName      User name to use when posting status to Slack.  [default: "Sitespeed.io"]
       --slack.channel       The slack channel without the # (if something else than the default channel for your hook).
-      --slack.type          Send summary for a run, metrics from all URLs, only on errors or all to Slack.  [choices: "summary", "url", "error", "all"] [default: "all"]
-      --slack.limitWarning  The limit to get a warning in Slack using the limitMetric  [default: 90]
-      --slack.limitError    The limit to get a error in Slack using the limitMetric  [default: 80]
+      --slack.type          Send summary for a tested URL, metrics from all URLs (summary), only on errors from your tests or all to Slack.  [choices: "summary", "url", "error", "all"] [default: "all"]
+      --slack.limitWarning  The limit to get a warning in Slack using the limitMetric.  [default: 90]
+      --slack.limitError    The limit to get a error in Slack using the limitMetric.  [default: 80]
       --slack.limitMetric   The metric that will be used to set warning/error. You can choose only one at the moment.  [choices: "coachScore", "speedIndex", "firstVisualChange", "firstPaint", "visualComplete85", "lastVisualChange", "fullyLoaded"] [default: "coachScore"]
 
 s3
@@ -240,6 +260,12 @@ GoogleCloudStorage
       --gcs.gzip               Add content-encoding for gzip to the uploaded files. Read more at https://cloud.google.com/storage/docs/transcoding. If you host your results directly from the bucket, gzip must be set to false  [boolean] [default: false]
       --gcs.path               Override the default folder path in the bucket where the results are uploaded. By default it's "DOMAIN_OR_FILENAME_OR_SLUG/TIMESTAMP", or the name of the folder if --outputFolder is specified.
       --gcs.removeLocalResult  Remove all the local result files after they have been uploaded to Google Cloud storage.  [boolean] [default: false]
+
+CrUx
+      --crux.key         You need to use a key to get data from CrUx. Get the key from https://developers.google.com/web/tools/chrome-user-experience-report/api/guides/getting-started#APIKey
+      --crux.enable      Enable the CrUx plugin. This is on by defauly but you also need the Crux key. If you chose to disable it with this key, set this to false and you can still use the CrUx key in your configuration.  [default: true]
+      --crux.formFactor  A form factor is the type of device on which a user visits a website.  [string] [choices: "ALL", "DESKTOP", "PHONE", "TABLET"] [default: "ALL"]
+      --crux.collect     Choose what data to collect. URL is data for a specific URL, ORIGIN for the domain and ALL for both of them  [string] [choices: "ALL", "URL", "ORIGIN"] [default: "ALL"]
 
 HTML
       --html.showAllWaterfallSummary        Set to true to show all waterfalls on page summary HTML report  [boolean] [default: false]
@@ -264,52 +290,61 @@ Sustainable
       --sustainable.disableHosting         Disable the hosting check. Default we do a check to a local database of domains with green hosting provided by the Green Web Foundation  [boolean] [default: false]
       --sustainable.useGreenWebHostingAPI  Instead of using the local copy of the hosting database, you can use the latest version through the Green Web Foundation API. This means sitespeed.io will make HTTP GET to the the hosting info.  [boolean] [default: false]
 
-CrUx
-      --crux.key         You need to use a key to get data from CrUx. Get the key from https://developers.google.com/web/tools/chrome-user-experience-report/api/guides/getting-started#APIKey
-      --crux.enable      Enable the CrUx plugin. This is on by defauly but you also need the Crux key. If you chose to disable it with this key, set this to false and you can still use the CrUx key in your configuration.  [default: true]
-      --crux.formFactor  A form factor is the type of device on which a user visits a website.  [string] [choices: "ALL", "DESKTOP", "PHONE", "TABLET"] [default: "ALL"]
-      --crux.collect     Choose what data to collect. URL is data for a specific URL, ORIGIN for the domain and ALL for both of them  [string] [choices: "ALL", "URL", "ORIGIN"] [default: "ALL"]
+API
+      --api.key       The API key to use.
+      --api.action    The type of API call you want to do: You get add a test and wait for the result, just add a test or get the result. To get the result, make sure you add the id using --api.id  [choices: "add", "addAndGetResult", "get"] [default: "addAndGetResult"]
+      --api.hostname  The hostname of the API server.
+      --api.location  The location of the worker that run the test.
+      --api.silent    Set to true if you do not want to log anything from the communication  [boolean] [default: false]
+      --api.port      The port for the API
+      --api.id        The id of the test. Use it when you want to get the test result.  [string]
+      --api.label     Add a label to your test.  [string]
+      --api.priority  The priority of the test. Highest priority is 1.
+      --api.json      Output the result as JSON.
 
-Matrix
-      --matrix.host         The Matrix host.
-      --matrix.accessToken  The Matrix access token.
-      --matrix.room         The default Matrix room. It is alsways used. You can override the room per message type using --matrix.rooms
-      --matrix.messages     Choose what type of message to send to Matrix. There are two types of messages: Error messages and budget messages. Errors are errors that happens through the tests (failures like strarting a test) and budget is test failing against your budget.  [choices: "error", "budget"] [default: ["error","budget"]]
-      --matrix.rooms        Send messages to different rooms. Current message types are [error,budget]. If you want to send error messages to a specific room use --matrix.rooms.error ROOM
+compare
+      --compare.id                          The id of the test. Will be used to find the baseline test, that is using the id as a part of the name. If you do not add an id, an id will be generated using the URL and that will only work if you baseline against the exact same URL.  [string]
+      --compare.baselinePath                Specifies the path to the baseline data file. This file is used as a reference for comparison against the current test data.  [string]
+      --compare.saveBaseline                Determines whether to save the current test data as the new baseline. Set to true to save the current data as baseline for future comparisons.  [boolean] [default: false]
+      --compare.testType                    Selects the statistical test type to be used for comparison. Options are mannwhitneyu for the Mann-Whitney U test and wilcoxon for the Wilcoxon signed-rank test.  [choices: "mannwhitneyu", " wilcoxon"] [default: "mannwhitneyu"]
+      --compare.alternative                 Specifies the alternative hypothesis to be tested. Default is greater than means current data is greater than the baseline. two-sided means we look for different both ways and less means current is less than baseline.  [choices: "less", " greater", "two-sided"] [default: "greater"]
+      --compare.wilcoxon.correction         Enables or disables the continuity correction in the Wilcoxon signed-rank test. Set to true to enable the correction.  [boolean] [default: false]
+      --compare.wilcoxon.zeroMethod         Specifies the method for handling zero differences in the Wilcoxon test. wilcox discards all zero-difference pairs, pratt includes all, and zsplit splits them evenly among positive and negative ranks.  [choices: "wilcox", " pratt", "zsplit"] [default: "zsplit"]
+      --compare.mannwhitneyu.useContinuity  Determines whether to use continuity correction in the Mann-Whitney U test. Set to true to apply the correction.  [boolean] [default: false]
+      --compare.mannwhitneyu.method  [choices: "auto", " exact", "symptotic"] [default: "auto"]
 
 Options:
-  -V, --version                                                                                               Show version number  [boolean]
-      --debugMessages                                                                                         Debug mode logs all internal messages in the message queue to the log.  [boolean] [default: false]
-  -v, --verbose                                                                                               Verbose mode prints progress messages to the console. Enter up to three times (-vvv) to increase the level of detail.  [count]
-      --browsertime.xvfb, --xvfb                                                                              Start xvfb before the browser is started  [boolean] [default: false]
-      --browsertime.xvfbParams.display, --xvfbParams.display                                                  The display used for xvfb  [default: 99]
-      --browsertime.tcpdump, --tcpdump                                                                        Collect a tcpdump for each tested URL. The user that runs sitespeed.io should have sudo rights for tcpdump to work.  [boolean] [default: false]
-      --browsertime.android, --android                                                                        Short key to use Android. Will automatically use com.android.chrome for Chrome and stable Firefox. If you want to use another Chrome version, use --chrome.android.package  [boolean] [default: false]
-      --browsertime.androidRooted, --androidRooted                                                            If your phone is rooted you can use this to set it up following Mozillas best practice for stable metrics.  [boolean] [default: false]
-      --browsertime.androidBatteryTemperatureLimit, --androidBatteryTemperatureLimit                          Do the battery temperature need to be below a specific limit before we start the test?
-      --browsertime.androidBatteryTemperatureWaitTimeInSeconds, --androidBatteryTemperatureWaitTimeInSeconds  How long time to wait (in seconds) if the androidBatteryTemperatureWaitTimeInSeconds is not met before the next try  [default: 120]
-      --browsertime.androidVerifyNetwork, --androidVerifyNetwork                                              Before a test start, verify that the device has a Internet connection by pinging 8.8.8.8 (or a configurable domain with --androidPingAddress)  [boolean] [default: false]
-      --browsertime.iqr                                                                                       Use IQR, or Inter Quartile Range filtering filters data based on the spread of the data. See  https://en.wikipedia.org/wiki/Interquartile_range. In some cases, IQR filtering may not filter out anything. This can happen if the acceptable range is wider than the bounds of your dataset.  [boolean] [default: false]
-      --browsertime.preWarmServer, --preWarmServer                                                            Do pre test requests to the URL(s) that you want to test that is not measured. Do that to make sure your web server is ready to serve. The pre test requests is done with another browser instance that is closed after pre testing is done.  [boolean] [default: false]
-      --browsertime.preWarmServerWaitTime                                                                     The wait time before you start the real testing after your pre-cache request.  [number] [default: 5000]
+      --debugMessages                                         Debug mode logs all internal messages in the message queue to the log.  [boolean] [default: false]
+  -v, --verbose                                               Verbose mode prints progress messages to the console. Enter up to three times (-vvv) to increase the level of detail.  [count]
+      --browsertime.xvfb, --xvfb                              Start xvfb before the browser is started  [boolean] [default: false]
+      --browsertime.xvfbParams.display, --xvfbParams.display  The display used for xvfb  [default: 99]
+      --browsertime.visualMetricsPortable                     Use the portable visual-metrics processing script (no ImageMagick dependencies).  [boolean] [default: true]
+      --browsertime.enableProfileRun, --enableProfileRun      Make one extra run that collects the profiling trace log (no other metrics is collected). For Chrome it will collect the timeline trace, for Firefox it will get the Geckoprofiler trace. This means you do not need to get the trace for all runs and can skip the overhead it produces.  [boolean]
+      --browsertime.cjs, --cjs                                Load scripting files that ends with .js as common js. Default (false) loads files as esmodules.  [boolean] [default: false]
+      --browsertime.tcpdump, --tcpdump                        Collect a tcpdump for each tested URL. The user that runs sitespeed.io should have sudo rights for tcpdump to work.  [boolean] [default: false]
+      --browsertime.android, --android                        Short key to use Android. Will automatically use com.android.chrome for Chrome and stable Firefox. If you want to use another Chrome version, use --chrome.android.package  [boolean] [default: false]
+      --browsertime.iqr                                       Use IQR, or Inter Quartile Range filtering filters data based on the spread of the data. See  https://en.wikipedia.org/wiki/Interquartile_range. In some cases, IQR filtering may not filter out anything. This can happen if the acceptable range is wider than the bounds of your dataset.  [boolean] [default: false]
+      --browsertime.preWarmServer, --preWarmServer            Do pre test requests to the URL(s) that you want to test that is not measured. Do that to make sure your web server is ready to serve. The pre test requests is done with another browser instance that is closed after pre testing is done.  [boolean] [default: false]
+      --browsertime.preWarmServerWaitTime                     The wait time before you start the real testing after your pre-cache request.  [number] [default: 5000]
       --plugins.disable  [array]
       --plugins.load  [array]
-      --mobile                                                                                                Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Moto G4.  [boolean] [default: false]
-      --resultBaseURL, --resultBaseUrl                                                                        The base URL to the server serving the HTML result. In the format of https://result.sitespeed.io
-      --gzipHAR                                                                                               Compress the HAR files with GZIP.  [boolean] [default: false]
-      --outputFolder                                                                                          The folder where the result will be stored. If you do not set it, the result will be stored in "DOMAIN_OR_FILENAME_OR_SLUG/TIMESTAMP"  [string]
-      --copyLatestFilesToBase                                                                                 Copy the latest screenshots to the root folder (so you can include it in Grafana). Do not work together it --outputFolder.  [boolean] [default: false]
-      --firstParty                                                                                            A regex running against each request and categorize it as first vs third party URL. (ex: ".*sitespeed.*"). If you do not set a regular expression parts of the domain from the tested URL will be used: ".*domain.*"
-      --urlAlias                                                                                              Use an alias for the URL (if you feed URLs from a file you can instead have the alias in the file). You need to pass on the same amount of alias as URLs. The alias is used as the name of the URL on the HTML report and in Graphite/InfluxDB. Pass on multiple --urlAlias for multiple alias/URLs. This will override alias in a file.  [string]
-      --groupAlias                                                                                            Use an alias for the group/domain. You need to pass on the same amount of alias as URLs. The alias is used as the name of the group in Graphite/InfluxDB. Pass on multiple --groupAlias for multiple alias/groups. This do not work for scripting at the moment.  [string]
-      --utc                                                                                                   Use Coordinated Universal Time for timestamps  [boolean] [default: false]
-      --logToFile                                                                                             Store the log for your run into a file in logs/sitespeed.io.log  [boolean] [default: false]
-      --useHash                                                                                               If your site uses # for URLs and # give you unique URLs you need to turn on useHash. By default is it turned off, meaning URLs with hash and without hash are treated as the same URL  [boolean] [default: false]
-      --multi                                                                                                 Test multiple URLs within the same browser session (same cache etc). Only works with Browsertime. Use this if you want to test multiple pages (use journey) or want to test multiple pages with scripts. You can mix URLs and scripts (the order will matter): login.js https://www.sitespeed.io/ logout.js - More details: https://www.sitespeed.io/documentation/sitespeed.io/scripting/  [boolean] [default: false]
-      --name                                                                                                  Give your test a name.
-  -o, --open, --view                                                                                          Open your test result in your default browser (Mac OS or Linux with xdg-open).
-      --slug                                                                                                  Give your test a slug. The slug is used when you send the metrics to your data storage to identify the test and the folder of the tests. The max length of the slug is 200 characters and it can only contain a-z A-Z 0-9 and -_ characters.
-      --config                                                                                                Path to JSON config file
-  -h, --help                                                                                                  Show help  [boolean]
+      --mobile                                                Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Moto G4.  [boolean] [default: false]
+      --resultBaseURL, --resultBaseUrl                        The base URL to the server serving the HTML result. In the format of https://result.sitespeed.io
+      --gzipHAR                                               Compress the HAR files with GZIP.  [boolean] [default: false]
+      --outputFolder                                          The folder where the result will be stored. If you do not set it, the result will be stored in "DOMAIN_OR_FILENAME_OR_SLUG/TIMESTAMP"  [string]
+      --copyLatestFilesToBase                                 Copy the latest screenshots to the root folder (so you can include it in Grafana). Do not work together it --outputFolder.  [boolean] [default: false]
+      --firstParty                                            A regex running against each request and categorize it as first vs third party URL. (ex: ".*sitespeed.*"). If you do not set a regular expression parts of the domain from the tested URL will be used: ".*domain.*"
+      --urlAlias                                              Use an alias for the URL (if you feed URLs from a file you can instead have the alias in the file). You need to pass on the same amount of alias as URLs. The alias is used as the name of the URL on the HTML report and in Graphite/InfluxDB. Pass on multiple --urlAlias for multiple alias/URLs. This will override alias in a file.  [string]
+      --groupAlias                                            Use an alias for the group/domain. You need to pass on the same amount of alias as URLs. The alias is used as the name of the group in Graphite/InfluxDB. Pass on multiple --groupAlias for multiple alias/groups. This do not work for scripting at the moment.  [string]
+      --utc                                                   Use Coordinated Universal Time for timestamps  [boolean] [default: false]
+      --logToFile                                             Store the log for your run into a file in logs/sitespeed.io.log  [boolean] [default: false]
+      --useHash                                               If your site uses # for URLs and # give you unique URLs you need to turn on useHash. By default is it turned off, meaning URLs with hash and without hash are treated as the same URL  [boolean] [default: false]
+      --multi                                                 Test multiple URLs within the same browser session (same cache etc). Only works with Browsertime. Use this if you want to test multiple pages (use journey) or want to test multiple pages with scripts. You can mix URLs and scripts (the order will matter): login.js https://www.sitespeed.io/ logout.js - More details: https://www.sitespeed.io/documentation/sitespeed.io/scripting/  [boolean] [default: false]
+      --name                                                  Give your test a name.
+  -o, --open, --view                                          Open your test result in your default browser (Mac OS or Linux with xdg-open).
+      --slug                                                  Give your test a slug. The slug is used when you send the metrics to your data storage to identify the test and the folder of the tests. The max length of the slug is 200 characters and it can only contain a-z A-Z 0-9 and -_ characters.
+      --config                                                Path to JSON config file
+      --version                                               Show version number  [boolean]
+  -h, --help                                                  Show help  [boolean]
 
 Read the docs at https://www.sitespeed.io/documentation/sitespeed.io/

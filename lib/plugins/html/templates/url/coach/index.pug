@@ -54,6 +54,7 @@ mixin adviceInfo(name, id, perfectScore, node)
     p #{perfectScore}
 
 - const advice = pageInfo.data.coach.run ? pageInfo.data.coach.run.advice : pageInfo.data.coach.pageSummary.advice;
+- const coachVersion = pageInfo.data.coach.run ? pageInfo.data.coach.run.version : pageInfo.data.coach.pageSummary.version;
 
 small 
     if advice
@@ -73,7 +74,7 @@ small
 h2 Coach
 p.small
   a(href='https://github.com/sitespeedio/coach') The coach
-  | &nbsp;helps you find performance problems on your web page using web performance best practice rules. And gives you advice on privacy and best practices.
+  | &nbsp;helps you find performance problems on your web page using web performance best practice rules. And gives you advice on privacy and best practices. Tested using Coach-core version #{coachVersion}.
 
 script(type='text/javascript').
   function toggleRow(toggleElement) {

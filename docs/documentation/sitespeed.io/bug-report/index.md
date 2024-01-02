@@ -61,21 +61,20 @@ If you make your issue reproducible, the issue is the cream of the crop and will
 
 ## How we prioritise bugs
 
-When we groom issues we will add a tag with the prioritization. We have three prio tags: **prio:1**,  **prio:3** and **prio:5**.
-
-If a issue is bug that breaks functionality for many users or is a feature request that will help many users and its something we can implement, we gonna give it **prio:1**. If the issue is a bug that we plan to fix, it will have **prio:3**. If your bug/issue gets **prio:5** we maybe will fix it sometimes in the future. Also scripting issues related to how you use scripting on your site always gets **prio:5** but we will try to help you the best we can.
+If a issue is bug that breaks functionality for many users and you make a *reproducable* test case/show us exactly how you run, we will try to fix that bug.
 
 If you do not agree with our prioritization you can:
 * Explain the issue better and make sure we can reproduce your issue
 * Do the PR yourself. We can help you test and verify it.
 * Support us at [Open Collective](https://opencollective.com/sitespeedio). We can not promise we will fix your issue but it will increase the chance of getting it fixed.
+s
 ## How to make sure we try fix the bug as soon as possible
 
 Here's dos and don'ts if you want your bug fixed:
 
 Please do:
 * [Provide a reproducible test case](#explain-how-to-reproduce-your-issue).
-* If you don't get a response in a couple of days, write a message in the [general channel in Slack](https://sitespeedio.herokuapp.com/).
+* If you don't get a response in a couple of days, write a message in the [general channel in Slack](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw).
 
 Please don't:
 * Contact us on direct messages on Slack about the bug.

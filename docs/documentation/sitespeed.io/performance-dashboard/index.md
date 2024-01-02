@@ -19,28 +19,98 @@ Monitor the performance of your web site using the performance dashboard.
 * Let's place the TOC here
 {:toc}
 
-# What you need
-You need [Docker](https://docs.docker.com/engine/installation/) and [Docker Compose](https://docs.docker.com/compose/install/). If you haven't used Docker before, you can read [Getting started](https://docs.docker.com/engine/getstarted/). And you can also read/learn more about [Docker Compose](https://docs.docker.com/compose/gettingstarted/) to get a better start.
+## Using Docker compose 
+If you don't use Grafana/Graphite already, we have prepared a Docker Compose file that downloads and sets up Graphite/Grafana with a couple of example dashboards. It works perfectly when you want to try it out on localhost, but if you want to run it in production, you should modify it by making sure that the metrics are stored outside of your container/volumes. If you prefer InfluxDB over Graphite, you can use that too, but there's no pre made dashboards.
 
-# Up and running in (almost) 5 minutes
+### Pre-Requirements
 
-1. Download our Docker compose file: <code>curl -O https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/docker-compose.yml</code>
-2. Run: <code>docker-compose up -d</code> (make sure you run the latest [Docker compose](https://docs.docker.com/compose/install/) version)
-3. Run sitespeed to get some metrics: <code> docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --graphite.host=host.docker.internal https://www.sitespeed.io/ --slug yourTestName --graphite.addSlugToKey true</code> (running on Linux? [Check how to access localhost]({{site.baseurl}}/documentation/sitespeed.io/docker/#access-localhost)).
-4. Access the dashboard: http://127.0.0.1:3000
-5. When you are done you can shut down and remove all the Docker containers by running <code>docker-compose stop && docker-compose rm</code>. Container data will be kept.
-6. To start from scratch, also remove the Graphite and Grafana data volumes by running `docker volume rm performancedashboard_graphite performancedashboard_grafana`.
+Before you start, make sure you have the following installed:
+
+- Docker: You can download Docker from the [official Docker website](https://www.docker.com/products/docker-desktop).
+- Docker Compose: Docker Compose is included in the Docker Desktop for Windows and Docker Desktop for Mac. For Linux, you might need to [install it separately](https://docs.docker.com/compose/install/).
+- Git: You can download Git from the [official Git website](https://git-scm.com/downloads).
+- sitespeed.io installed globally.
+- If you haven't used Docker before, you can read [Getting started](https://docs.docker.com/engine/getstarted/). And you can also read/learn more about [Docker Compose](https://docs.docker.com/compose/gettingstarted/) to get a better start.
+
+### Instructions
+
+1. **Clone the Repository**
+
+   Open a terminal window and clone the `sitespeed.io` repository by running the following command:
+
+   ```bash
+   git clone https://github.com/sitespeedio/sitespeed.io.git
+   ```
+
+2. **Navigate to the Docker Directory**
+
+   Navigate to the `docker` directory in the cloned repository:
+
+   ```bash
+   cd sitespeed.io/docker
+   ```
+
+3. **Run Docker Compose**
+
+   In the terminal, run the following command:
+
+   ```bash
+   docker-compose up
+   ```
+
+   This command will download the necessary Docker images and start the Grafana and Graphite.
 
 
-If you want to play with the dashboards, the default login is sitespeedio and password is ...well check out the [docker-compose.yml file](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/docker-compose.yml).
+4. **Add example data**
 
-When you run this in production make sure to checkout [our production guidelines](#production-guidelines).
+   To push data for the page metric dashboard (the most important dashboard) you can run a test like this:
+   ```bash
+   sitespeed.io https://www.sitespeed.io -n 1 --slug myTest --graphite.host 127.0.0.1
+   ```
 
-## Docker compose file
-We have prepared a Docker Compose file that downloads and sets up Graphite/Grafana and sitespeed.io with a couple of example dashboards. It works perfectly when you want to try it out on localhost, but if you want to run it in production, you should modify it by making sure that the metrics are stored outside of your container/volumes. If you prefer InfluxDB over Graphite, you can use that too, but right now we only have [one ready-made dashboard](https://github.com/sitespeedio/grafana-bootstrap-docker/blob/main/dashboards/influxdb/pageSummary.json) for InfluxDB (thank you Olivier Jan for contributing to that dashboard!).
+5. **Access Grafana**
 
-## Pre-made example dashboards
-We insert ready-made dashboards with a Docker container using curl, making it easy for you to get started. You can check out the container with the dashboards here: [https://github.com/sitespeedio/grafana-bootstrap-docker](https://github.com/sitespeedio/grafana-bootstrap-docker)
+   Once the services are up and running, you can access the Grafana dashboard by opening a web browser and navigating to `http://localhost:3000`. If you want to edit the dashboards, the default login is *sitespeedio* and password is ...well check out the [docker-compose.yml file](https://raw.githubusercontent.com/sitespeedio/sitespeed.io/main/docker/docker-compose.yml).
+
+6. **Stop docker compose**
+
+   When you're done, you can stop the services by pressing `Ctrl+C` in the terminal where you ran `docker-compose up`. To completely remove the services and volumes defined in the `docker-compose.yml` file, you can run `docker-compose down`.
+
+Remember, these are simplified instructions. For a production setup, you would need to make additional configurations, such as setting up persistent storage and securing the Grafana dashboard. 
+
+
+### Pre-made example dashboards
+We insert ready-made dashboards with our docker compose file using provisioning. You can checkout the [compose file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml) and use it as an example.
+
+Some of our dashboards uses Grafana plugins. To make sure the dashboards work you need to install these plugins: 
+* [marcusolsson-json-datasource](https://github.com/grafana/grafana-json-datasource)
+* [marcusolsson-dynamictext-panel](https://github.com/VolkovLabs/volkovlabs-dynamictext-panel)
+
+In our Docker file you can see something like this:
+
+```
+ environment:
+        - GF_INSTALL_PLUGINS=marcusolsson-json-datasource,marcusolsson-dynamictext-panel
+        ...
+
+```
+
+The *Page metrics* dashboard shows meta data like settings/video/screenshots. To get that dashboard to work correctly, you need to [push the result of your test](#how-to-get-the-latest-videoscreenshot-visible-in-grafana) to S3 or a web server and setup the dashboard to point to where you store the sitespeed.io result. 
+
+In our example dashboard we serve our content from https://data.sitespeed.io so we configure the variable *resulturl* for the dashboard to point to that like this. That way we will see screenshots and videos in the dashboard.
+
+![Export URL in page metrics dashboard]({{site.baseurl}}/img/exporturl.jpg){:loading="lazy"}
+{: .img-thumbnail}
+
+We also configure the JSON datasource to point to the same place. That way we can see meta data like how you configured your tests.
+
+![Configure the JSON datasource ]({{site.baseurl}}/img/json-api.jpg){:loading="lazy"}
+{: .img-thumbnail}
+
+If that is setup correctly your dashboard will look something like this:
+
+![Screenshots and other meta data ]({{site.baseurl}}/img/whatyousee.jpg){:loading="lazy"}
+{: .img-thumbnail}
 
 # Example dashboards
 
@@ -49,7 +119,7 @@ The [example dashboards](https://dashboard.sitespeed.io) are generic dashboards 
 The dashboards have a couple of templates/variables (the dropdowns at the top of the page) that make the dashboards interactive and dynamic.
 A dashboard that shows metrics for a specific page has the following templates:
 
-![Page templates]({{site.baseurl}}/img/templates-page-2.png) {:loading="lazy"}
+![Page templates]({{site.baseurl}}/img/templates-page-2.png){:loading="lazy"}
 {: .img-thumbnail}
 
 The *path* is the first path after the namespace. Using the default values, the namespace looks like this: *sitespeed_io.default*.
@@ -61,9 +131,9 @@ If you choose one of the values in a template, the rest will be populated. You c
 The default namespace is *sitespeed_io.default* and the example dashboards are built upon a constant template variable called $base that is the first part of the namespace (that default is *sitespeed_io* but feel free to change that, and then change the constant).
 
 ## Page metrics
-There are two pages that show individual metrics for a page (one for desktop and one for mobile). You should use these as example dashboards to inspire you what you can do. We try to squeeze in all data in these dashboards and you can view those by expanding each row.
+You should use these as example dashboards to inspire you what you can do. We try to squeeze in all data in these dashboards and you can view those by expanding each row.
 
-The [desktop page metrics](https://dashboard.sitespeed.io/d/9NDMzFfMk/page-metrics-desktop?orgId=1) shows metrics for a specific URL/page tested on desktop and [mobile page metrics](https://dashboard.sitespeed.io/d/000000064/page-metrics-mobile?orgId=1) for pages tested on mobile/emulated mobile.
+The [page metrics](https://dashboard.sitespeed.io/d/9NDMzFfMk/page-metrics) shows metrics for a specific URL/page.
 
 The dashboards looks something like this:
 ![Page metrics]({{site.baseurl}}/img/pagesummary-example.jpg){:loading="lazy"}

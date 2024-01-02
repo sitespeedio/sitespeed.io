@@ -9,7 +9,7 @@ jobs:
     name: running sitespeed.io
     steps:
       - name: code checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       # Here we build our own container to make sure we test against our latest code
       # but YOU can just used the latest version by specifying 
       # sitespeedio/sitespeed.io:VERSION

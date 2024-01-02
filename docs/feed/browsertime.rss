@@ -4,7 +4,7 @@
         <title>browsertime release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of browsertime</description>
-        <lastBuildDate>Tue, 27 Sep 2022 08:25:55 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 22 Dec 2023 05:07:02 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,126 +17,174 @@
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/browsertime.rss" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[browsertime 16.17.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.17.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.17.0</guid>
-            <pubDate>Tue, 27 Sep 2022 00:00:00 GMT</pubDate>
+            <title><![CDATA[browsertime 20.0.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#20.0.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#20.0.0</guid>
+            <pubDate>Fri, 22 Dec 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Added</h3>
  <ul>
-<li>Add ability to ignore shutdown failures on android, thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1850">#1850</a>.</li>
-</ul>
- <ul>
-<li>Updated to Firefox 105 and Edge 105 in the Docker container.</li>
+<li>Firefox 121 in the Docker container.g</li>
 </ul>
 <h3>Fixed</h3>
  <ul>
-<li>Fix so we collect battery temperature statistics on Android (again) <a href="https://github.com/sitespeedio/browsertime/pull/1851">#1851</a>.</li>
+<li>Group page load parameters as PageLoad to make them easier to find using <code>--help</code> <a href="https://github.com/sitespeedio/browsertime/pull/2035">#2035</a>.</li>
+</ul>
+ <ul>
+<li>Fix starting Firefox 121 on Mac <a href="https://github.com/sitespeedio/browsertime/pull/2043">#2043</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 16.16.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.16.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.16.0</guid>
-            <pubDate>Tue, 20 Sep 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Chrome 105, Firefox 104 and Chromedriver 105 <a href="https://github.com/sitespeedio/browsertime/pull/1843">#1843</a>.</li>
-</ul>
- <ul>
-<li>Before you start a test on Android you can push the home button using <code>--androidPretestPressHomeButton</code> <a href="https://github.com/sitespeedio/browsertime/pull/1844">#1844</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 16.15.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.15.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.15.1</guid>
-            <pubDate>Tue, 30 Aug 2022 00:00:00 GMT</pubDate>
+            <title><![CDATA[browsertime 19.3.1]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#19.3.1</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#19.3.1</guid>
+            <pubDate>Mon, 18 Dec 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
-<li>Make sure long tasks are collected direct after a test ends. On a slow device it sometimes happened that long tasks was browsertime running scripts to collect metrics <a href="https://github.com/sitespeedio/browsertime/pull/1841">#1841</a>.</li>
+<li>Ensure that visual metrics python script is included in the release.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 16.15.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.15.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.15.0</guid>
-            <pubDate>Tue, 30 Aug 2022 00:00:00 GMT</pubDate>
+            <title><![CDATA[browsertime 19.3.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#19.3.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#19.3.0</guid>
+            <pubDate>Mon, 18 Dec 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Added</h3>
  <ul>
-<li>Always get the wifi name that your Android phone is using and add it to the result <a href="https://github.com/sitespeedio/browsertime/pull/1839">#1839</a>.</li>
+<li>Updated Chromedriver and Edgedriver to 120 <a href="https://github.com/sitespeedio/browsertime/pull/2033">#2033</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 16.14.2]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.14.2</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.14.2</guid>
-            <pubDate>Fri, 26 Aug 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Using <code>--preWarmServer</code> didn&#39;t work on Android/iOS <a href="https://github.com/sitespeedio/browsertime/pull/1837">#1837</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 16.14.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.14.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.14.1</guid>
-            <pubDate>Fri, 26 Aug 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Guard relative standard deviation agains 0 standard deviation <a href="https://github.com/sitespeedio/browsertime/pull/1835">#1835</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 16.14.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.14.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.14.0</guid>
-            <pubDate>Fri, 26 Aug 2022 00:00:00 GMT</pubDate>
+            <title><![CDATA[browsertime 19.2.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#19.2.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#19.2.0</guid>
+            <pubDate>Mon, 11 Dec 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Added</h3>
  <ul>
-<li>Collect relative standard deviation and output that in the cli output <a href="https://github.com/sitespeedio/browsertime/pull/1834">#1834</a>. Before we only showed the actual standard deviation, with this fix we also show it in percentage, that makes it easier if you run tests on different hardware/networks and want to compare them.</li>
-</ul>
- <ul>
-<li>Collect number of processes that runs on the server that do the testing, before a test starts <a href="https://github.com/sitespeedio/browsertime/pull/1833">#1833</a>.</li>
+<li>Updated to Chrome and Edge 120 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2031">#2031</a>.</li>
 </ul>
 <h3>Fixed</h3>
  <ul>
-<li>Updated to Selenium 4.4.0 and Throttle 5.0.0.</li>
+<li>Updated to Selenium 4.16.0 <a href="https://github.com/sitespeedio/browsertime/pull/2026">#2026</a>.</li>
+</ul>
+ <ul>
+<li>Updated dev dependencies and find-up <a href="https://github.com/sitespeedio/browsertime/pull/2029">#2029</a>.</li>
+</ul>
+ <ul>
+<li>Recommend NodeJS 18 or later in the package.json <a href="https://github.com/sitespeedio/browsertime/pull/2030">#2030</a>. Browsertime 16.0.0 removed support for NodeJS 16.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 16.13.3]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.3</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.3</guid>
-            <pubDate>Wed, 17 Aug 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
+            <title><![CDATA[browsertime 19.1.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#19.1.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#19.1.0</guid>
+            <pubDate>Mon, 27 Nov 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
  <ul>
-<li>Make sure set cookies work when navigating in script for Chrome/Edge <a href="https://github.com/sitespeedio/browsertime/pull/1830">#1830</a>.</li>
+<li>Firefox 120 in the Docker container.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>New Geckodriver installer that on Mac ARM uses ARM version of Geckodriver.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 16.13.2]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.2</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#16.13.2</guid>
-            <pubDate>Sun, 14 Aug 2022 00:00:00 GMT</pubDate>
+            <title><![CDATA[browsertime 19.0.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#19.0.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#19.0.0</guid>
+            <pubDate>Wed, 15 Nov 2023 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
-<li>Disable adding lastCPULongTask to the HAR data since it breaks waterfall view on slow mobile phones with late CPU long tasks <a href="https://github.com/sitespeedio/browsertime/pull/1828">#1828</a>.</li>
+<li>Largest contentful paint and First contentful paint in Firefox now also fills the &quot;googleWebitals&quot; fields in the results. Thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2018">#2018</a> and my PR <a href="https://github.com/sitespeedio/browsertime/pull/2020">#2020</a>.</li>
+</ul>
+ <ul>
+<li>Make sure <code>--android.pinCPUSpeed</code> works <a href="https://github.com/sitespeedio/browsertime/pull/2019">#2019</a></li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 18.0.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#18.0.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#18.0.0</guid>
+            <pubDate>Tue, 07 Nov 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated all dev-dependencies to latest versions <a href="https://github.com/sitespeedio/browsertime/pull/2013">#2013</a>.</li>
+</ul>
+ <ul>
+<li>Updated  GitHub Actions to use latest versions of actions and Ubuntu 22.04 <a href="https://github.com/sitespeedio/browsertime/pull/2012">#2012</a>, <a href="https://github.com/sitespeedio/browsertime/pull/2014">#2014</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2016">#2016</a></li>
+</ul>
+ <ul>
+<li>Updated all dependencies to latest versions: ADB kit 3.2.5 <a href="https://github.com/sitespeedio/browsertime/pull/2017">#2017</a>, execa, dayjs, get-port and Chromedriver <a href="https://github.com/sitespeedio/browsertime/pull/2015">#2015</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 17.19.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.19.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.19.0</guid>
+            <pubDate>Fri, 03 Nov 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Chrome, Firefox and Edge 119 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2010">#2010</a>.</li>
+</ul>
+ <ul>
+<li>Updated to Edgedriver 119.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated to Selenium 4.15.0 <a href="https://github.com/sitespeedio/browsertime/pull/2011">#2011</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 17.18.1]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.18.1</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.18.1</guid>
+            <pubDate>Tue, 31 Oct 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>WebDriver 4.14.0</li>
+</ul>
+ <ul>
+<li>Chromedriver 119.0.6045-59</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 17.18.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.18.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.18.0</guid>
+            <pubDate>Mon, 23 Oct 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Chromedriver 119 <a href="https://github.com/sitespeedio/browsertime/pull/2003">#2003</a>. 119 works with both Chrome 118 and 119 so it fixes <a href="https://github.com/sitespeedio/browsertime/issues/1997">#1197</a>.</li>
+</ul>
+ <ul>
+<li>Add support for network idle method to know when to end a test that uses network logs. Uses Bidi for Firefox and CDP for Chrome to listen on network events to know when to end a test. By default 5 seconds idle network time ends a tests (you could have network responses that hasn&#39;t arrived yet) <a href="https://github.com/sitespeedio/browsertime/pull/1960">#1960</a>. Potentially this can help SPA users or users where the page uses iframes. You can try it out by adding <code>--pageCompleteCheckNetworkIdle</code> yo your command line. This is still some work in progress but feel free to try ut out.</li>
+</ul>
+ <ul>
+<li>The resources script now collects number of resources served from the browser cashe for browser that supports that through the resource timing API <a href="https://github.com/sitespeedio/browsertime/pull/1998">#1998</a></li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Make sure timer always is cleared. There was case of where we do a rase beteween a promise and a timeout where the timeout timer wasn&#39;t cleared/removed <a href="https://github.com/sitespeedio/browsertime/pull/2005">#2005</a>.</li>
+</ul>
+ <ul>
+<li>Better way to get the url when you use GeckoProfiler.stop for Firefox, thank you <a href="https://github.com/canova">Nazım Can Altınova</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/1999">#1999</a></li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
