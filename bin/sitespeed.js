@@ -148,6 +148,14 @@ async function start() {
         execSync('xdg-open ' + result.localPath + '/index.html');
       }
 
+      // If one of the URLs is marked as a failure in Browsertime
+      // then set the exit code
+      for (let bt of result.browsertime) {
+        if (bt.markedAsFailure === 1) {
+          process.exitCode = 1;
+        }
+      }
+
       if (
         parsed.options.budget &&
         Object.keys(result.budgetResult.failing).length > 0
