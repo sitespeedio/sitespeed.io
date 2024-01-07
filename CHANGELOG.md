@@ -32,7 +32,7 @@ export default async function (context, commands) {
   * Refactor of commands/context object to prepare for supporting JSDoc and a little TypeScript to add code completion/IntelliSense in editors [#2047](https://github.com/sitespeedio/browsertime/pull/2047).
   * Updated documentation for scripting with better JSDoc [#204](https://github.com/sitespeedio/browsertime/pull/2048).
   * The code for getting Interaction to next paint was broken. This PR fixes it, make the code cleaner and gives more attribution [#2060](https://github.com/sitespeedio/browsertime/pull/2060).
-* If you use `process.exitCode` i your scripting, it will be respected by sitespeed.io and exit with that exit code [#4044](https://github.com/sitespeedio/sitespeed.io/pull/4044).
+* If you use `process.exitCode` in your scripting, it will be respected by sitespeed.io and exit with that exit code [#4044](https://github.com/sitespeedio/sitespeed.io/pull/4044).
 
 ### Fixed
 * If a run is markedAsFailure in your Browsertime script, sitespeed.io exits with an error code [#4047](https://github.com/sitespeedio/sitespeed.io/pull/4047).

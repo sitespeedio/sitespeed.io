@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2023-12-28T15:51:22.965Z</updated>
+    <updated>2024-01-07T17:11:25.105Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,28 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 31.1.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.1.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.1.0"/>
+        <updated>2024-01-07T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Update to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2100---2024-01-07">Browsertime 21.0.0</a>:</li>
+</ul>
+ <ul>
+<li>If you use <code>process.exitCode</code> i your scripting, it will be respected by sitespeed.io and exit with that exit code <a href="https://github.com/sitespeedio/sitespeed.io/pull/4044">#4044</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>If a run is markedAsFailure in your Browsertime script, sitespeed.io exits with an error code <a href="https://github.com/sitespeedio/sitespeed.io/pull/4047">#4047</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 31.0.1]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.0.1</id>
@@ -170,21 +192,6 @@
 <h3>Fixed</h3>
  <ul>
 <li>Fix decimals on Google Web Vitals in baseline <a href="https://github.com/sitespeedio/sitespeed.io/pull/4014">#4014</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 30.5.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.5.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.5.0"/>
-        <updated>2023-11-28T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>The new compare plugin can now run without an id. The id will then be generated from the URL. If you don&#39;t give it an id, yoiu can only compare pages with the exact same URL <a href="https://github.com/sitespeedio/sitespeed.io/pull/4013">#4013</a>.</li>
 </ul>
 ]]></summary>
         <author>
