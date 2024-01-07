@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+
+### Fixed
+* If a run is markedAsFailure in your Browsertime script, sitespeed.io exits with an error code [#4047](https://github.com/sitespeedio/sitespeed.io/pull/4047).
+* If you use `process.exitCode` i your scripting, it will be respected by sitespeed.io and exit with that exit code [#4044](https://github.com/sitespeedio/sitespeed.io/pull/4044).
+
 ## 31.0.1 - 2023-12-28
 ### Fixed
 * Hopefully removing "rsd" metrics in InfluxDB see [#4039](https://github.com/sitespeedio/sitespeed.io/pull/4039).
