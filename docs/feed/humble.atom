@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>humble-release-feed</id>
     <title>humble release feed</title>
-    <updated>2022-02-24T13:43:37.433Z</updated>
+    <updated>2023-12-29T07:30:18.604Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
