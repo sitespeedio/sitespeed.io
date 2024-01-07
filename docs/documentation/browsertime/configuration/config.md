@@ -79,6 +79,7 @@ firefox
       --firefox.perfStats                       Collect gecko performance statistics as measured internally by the firefox browser. See https://searchfox.org/mozilla-central/source/tools/performance/PerfStats.h#24-33  [boolean] [default: false]
       --firefox.perfStatsParams.mask            Mask to decide which features to enable  [number] [default: 4294967295]
       --firefox.collectMozLog                   Collect the MOZ HTTP log (by default). See --firefox.setMozLog if you need to specify the logs you wish to gather.  [boolean]
+      --firefox.powerConsumption                Enable power consumption collection (in Wh). To get the consumption you also need to set firefox.geckoProfilerParams.features to include power.  [boolean] [default: false]
       --firefox.setMozLog                       Use in conjunction with firefox.collectMozLog to set MOZ_LOG to something specific. Without this, the HTTP logs will be collected by default  [default: "timestamp,nsHttp:5,cache2:5,nsSocketTransport:5,nsHostResolver:5"]
       --firefox.disableBrowsertimeExtension     Disable installing the browsertime extension.  [boolean]
       --firefox.noDefaultPrefs                  Prevents browsertime from setting its default preferences.  [boolean] [default: false]
