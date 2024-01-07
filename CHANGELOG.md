@@ -6,7 +6,7 @@ We updated the [scripting documentation](https://www.sitespeed.io/documentation/
 
 The new version of Browsertime is also adding [code completion/IntelliSense](https://www.sitespeed.io/documentation/sitespeed.io/scripting/tutorial-08-Setting-Up-IntelliSense.html) support. Make sure you have latest Browsertime installed and add the following params:
 
-```
+```JavaScript
 /**
  * @param {import('browsertime').BrowsertimeContext} context
  * @param {import('browsertime').BrowsertimeCommands} commands
