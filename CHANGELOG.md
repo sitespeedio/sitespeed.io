@@ -2,9 +2,9 @@
 
 ## 31.1.0 - UNRELEASED
 
-We updated the [scripting documentation](https://www.sitespeed.io/documentation/sitespeed.io/scripting/) to be generated directly from Browsertime (using JSDoc). This makes the documentation so much easier to navigate. It's not 100% perfect yet so please feel free to send PR with updates :)
+We updated the [scripting documentation](https://www.sitespeed.io/documentation/sitespeed.io/scripting/) to be generated directly from Browsertime (using JSDoc). This makes the documentation so much easier to navigate. It's not 100% perfect yet so please feel free to send PRs with updates :)
 
-The new version of Browsertime is also adding [code completion/IntelliSense](https://www.sitespeed.io/documentation/sitespeed.io/scripting/tutorial-08-Setting-Up-IntelliSense.html) support. Make sure you have latest Browsertime installed and add the following params:
+The new version of Browsertime is also adds code completion/IntelliSense support. Read [here](https://www.sitespeed.io/documentation/sitespeed.io/scripting/tutorial-08-Setting-Up-IntelliSense.html) on how to set it up. Make sure you have latest Browsertime installed and add the following params:
 
 ```JavaScript
 /**
@@ -15,7 +15,6 @@ export default async function (context, commands) {
  
 };
 ```
-
 
 ### Fixed
 * If a run is markedAsFailure in your Browsertime script, sitespeed.io exits with an error code [#4047](https://github.com/sitespeedio/sitespeed.io/pull/4047).
