@@ -1,12 +1,41 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 31.1.0 - UNRELEASED
+
+We updated the [scripting documentation](https://www.sitespeed.io/documentation/sitespeed.io/scripting/) to be generated directly from Browsertime (using JSDoc). This makes the documentation so much easier to navigate. It's not 100% perfect yet so please feel free to send PR with updates :)
+
+The new version of Browsertime is also adding [code completion/IntelliSense](https://www.sitespeed.io/documentation/sitespeed.io/scripting/tutorial-08-Setting-Up-IntelliSense.html) support. Make sure you have latest Browsertime installed and add the following params:
+
+```
+/**
+ * @param {import('browsertime').BrowsertimeContext} context
+ * @param {import('browsertime').BrowsertimeCommands} commands
+ */
+export default async function (context, commands) { 
+ 
+};
+```
+
 
 ### Fixed
 * If a run is markedAsFailure in your Browsertime script, sitespeed.io exits with an error code [#4047](https://github.com/sitespeedio/sitespeed.io/pull/4047).
 
 ### Added
-* Update to [Browsertime 21.0.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2100---2024-01-07).
+* Update to [Browsertime 21.0.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2100---2024-01-07):
+  * Upgraded to [Geckodriver 0.34.0](https://github.com/mozilla/geckodriver/releases/tag/v0.34.0) [#2049](https://github.com/sitespeedio/browsertime/pull/2049).
+  * Collect CPU consumption for Firefox. Turn that on with `--firefox.powerConsumption true` and including `power` as a geckoProfilerParams.features [#2046](https://github.com/sitespeedio/browsertime/pull/2046).
+  * Added more commands for mouse click on text [#2054](https://github.com/sitespeedio/browsertime/pull/2054).
+  * Updated AndroidCommand so you can run shell on your Android device as root [#2055](https://github.com/sitespeedio/browsertime/pull/2055).
+  * If you mark a test as failure, the exit code from Browsertime will be 1. If the exitCode is set in scripting, we use that and will not change that [#2057](https://github.com/sitespeedio/browsertime/pull/2057).
+  * Generate documentation for scripting using JSDoc [#2059](https://github.com/sitespeedio/browsertime/pull/2059).
+  * Make it easy to use Seleniums action API. Get access to the new command using commands.action.getActions() and chain the action. [#2061](https://github.com/sitespeedio/browsertime/pull/2061)
+  * Make sure the visual metrics files are inlcuded in the Docker file [#2053](https://github.com/sitespeedio/browsertime/pull/2053).
+  * Removing QVH from the npm package (used for iPhone video recording but not working) [#2051](https://github.com/sitespeedio/browsertime/pull/2051)
+  * Removing visual metrics test images from the npm package [#2050](https://github.com/sitespeedio/browsertime/pull/2050).
+  * Removed the Chromedriver fix that was needed when Chrome for testing broke testing on Chrome :D [#2045](https://github.com/sitespeedio/browsertime/pull/2045).
+  * Refactor of commands/context object to prepare for supporting JSDoc and a little TypeScript to add code completion/IntelliSense in editors [#2047](https://github.com/sitespeedio/browsertime/pull/2047).
+  * Updated documentation for scripting with better JSDoc [#204](https://github.com/sitespeedio/browsertime/pull/2048).
+  * The code for getting Interaction to next paint was broken. This PR fixes it, make the code cleaner and gives more attribution [#2060](https://github.com/sitespeedio/browsertime/pull/2060).
 * If you use `process.exitCode` i your scripting, it will be respected by sitespeed.io and exit with that exit code [#4044](https://github.com/sitespeedio/sitespeed.io/pull/4044).
 
 ## 31.0.1 - 2023-12-28
