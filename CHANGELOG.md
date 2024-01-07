@@ -1,10 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 31.1.0 - UNRELEASED
+## 31.1.0 - 2024-01-07
 
 We updated the [scripting documentation](https://www.sitespeed.io/documentation/sitespeed.io/scripting/) to be generated directly from Browsertime (using JSDoc). This makes the documentation so much easier to navigate. It's not 100% perfect yet so please feel free to send PRs with updates :)
 
-The new version of Browsertime is also adds code completion/IntelliSense support. Read [here](https://www.sitespeed.io/documentation/sitespeed.io/scripting/tutorial-08-Setting-Up-IntelliSense.html) on how to set it up. Make sure you have latest Browsertime installed and add the following params:
+The new version of Browsertime also adds code completion/IntelliSense support. Read [here](https://www.sitespeed.io/documentation/sitespeed.io/scripting/tutorial-08-Setting-Up-IntelliSense.html) on how to set it up. Make sure to start your scripting like this:
 
 ```JavaScript
 /**
@@ -15,9 +15,6 @@ export default async function (context, commands) {
  
 };
 ```
-
-### Fixed
-* If a run is markedAsFailure in your Browsertime script, sitespeed.io exits with an error code [#4047](https://github.com/sitespeedio/sitespeed.io/pull/4047).
 
 ### Added
 * Update to [Browsertime 21.0.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2100---2024-01-07):
@@ -36,6 +33,9 @@ export default async function (context, commands) {
   * Updated documentation for scripting with better JSDoc [#204](https://github.com/sitespeedio/browsertime/pull/2048).
   * The code for getting Interaction to next paint was broken. This PR fixes it, make the code cleaner and gives more attribution [#2060](https://github.com/sitespeedio/browsertime/pull/2060).
 * If you use `process.exitCode` i your scripting, it will be respected by sitespeed.io and exit with that exit code [#4044](https://github.com/sitespeedio/sitespeed.io/pull/4044).
+
+### Fixed
+* If a run is markedAsFailure in your Browsertime script, sitespeed.io exits with an error code [#4047](https://github.com/sitespeedio/sitespeed.io/pull/4047).
 
 ## 31.0.1 - 2023-12-28
 ### Fixed
