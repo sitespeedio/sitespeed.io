@@ -6,6 +6,7 @@ on:
 jobs:
   run-sitespeed:
     runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.head_commit.message, 'docs:') }}
     name: running sitespeed.io
     steps:
       - name: code checkout
