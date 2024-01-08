@@ -8,6 +8,7 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-20.04
+    if: ${{ !contains(github.event.head_commit.message, 'docs:') }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
