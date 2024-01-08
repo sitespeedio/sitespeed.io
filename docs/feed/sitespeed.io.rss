@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Sun, 07 Jan 2024 17:11:25 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 08 Jan 2024 11:38:39 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,6 +17,18 @@
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[sitespeed.io 31.1.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.1.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.1.1</guid>
+            <pubDate>Mon, 08 Jan 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>When displaying interaction to next paint, there where some copy/paste from largest contentful paint that sometimes broke the HTML (my fault). Fixed in <a href="https://github.com/sitespeedio/sitespeed.io/pull/4052">#4042</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 31.1.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.1.0</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.1.0</guid>
@@ -26,7 +38,7 @@
 <li>Update to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2100---2024-01-07">Browsertime 21.0.0</a>:</li>
 </ul>
  <ul>
-<li>If you use <code>process.exitCode</code> i your scripting, it will be respected by sitespeed.io and exit with that exit code <a href="https://github.com/sitespeedio/sitespeed.io/pull/4044">#4044</a>.</li>
+<li>If you use <code>process.exitCode</code> in your scripting, it will be respected by sitespeed.io and exit with that exit code <a href="https://github.com/sitespeedio/sitespeed.io/pull/4044">#4044</a>.</li>
 </ul>
 <h3>Fixed</h3>
  <ul>
@@ -146,25 +158,6 @@
             <description><![CDATA[<h3>Added</h3>
  <ul>
 <li>Show Axe individual issues on the page summary (not only on each individual run) <a href="https://github.com/sitespeedio/sitespeed.io/pull/4019">#4019</a>. Thank you <a href="https://github.com/shaqb">shaqb</a> for pointing that out. The total number of issues is also sent to Graphite under <em>statistics.axe.violationIssues</em>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 30.6.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.6.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.6.0</guid>
-            <pubDate>Wed, 29 Nov 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Make sure browser cpu benchmark is included in the baseline <a href="https://github.com/sitespeedio/sitespeed.io/pull/4015">#4015</a>.</li>
-</ul>
- <ul>
-<li>Fixed so baseline metrics is linked to graphs <a href="https://github.com/sitespeedio/sitespeed.io/pull/4016">#4016</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Fix decimals on Google Web Vitals in baseline <a href="https://github.com/sitespeedio/sitespeed.io/pull/4014">#4014</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
