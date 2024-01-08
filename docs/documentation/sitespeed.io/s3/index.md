@@ -29,6 +29,24 @@ https://docs.aws.amazon.com/AmazonS3/latest/user-guide/static-website-hosting.ht
 * [Add a lifecycle rule](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/create-lifecycle.html) - you want to make sure you remove old result pages/videos/screenshots to save money.
 * If you want to show screenshots/videos/use the meta data from S3 in Grafana, you need to make sure that your Grafana instance can access S3 through your browser by setting up correct [CORS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/cors.html).
 
+Here's an example for setting up CORS to give compare.sitespeed.io access rights to get HARs and other files.
+ 
+```JSON
+[
+    {
+        "AllowedHeaders": [],
+        "AllowedMethods": [
+            "GET"
+        ],
+        "AllowedOrigins": [
+            "https://compare.sitespeed.io"
+        ],
+        "ExposeHeaders": []
+    }
+]
+
+```
+
 Do you need more help? First dive into the [AWS S3 docs](https://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html) then if it doesn't help, [create an issue](https://github.com/sitespeedio/sitespeed.io/issues/new) and we can try to help you.
 
 ## sitespeed.io configuration
