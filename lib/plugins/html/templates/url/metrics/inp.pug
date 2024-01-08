@@ -7,24 +7,23 @@ if browsertime.pageinfo && browsertime.pageinfo.interactionToNextPaintInfo!== un
   .row
     p The measured latency was #{h.time.ms(browsertime.pageinfo.interactionToNextPaintInfo.latency)}.
     table
-      if timings.largestContentfulPaint.tagName 
-        tr 
-          td 
-            b Event type
-          td #{browsertime.pageinfo.interactionToNextPaintInfo.eventType}
-        tr
-          td 
-            b Element type
-          td #{browsertime.pageinfo.interactionToNextPaintInfo.tagName}
-        tr
-          td 
-            b Element class name
-          td #{browsertime.pageinfo.interactionToNextPaintInfo.className}
-        tr
-          td 
-            b Event target
-          td #{browsertime.pageinfo.interactionToNextPaintInfo.eventTarget}
-        tr
-          td 
-            b Load state when the event happened
-          td #{browsertime.pageinfo.interactionToNextPaintInfo.loadState}
+      tr
+        td 
+          b Event type
+        td #{browsertime.pageinfo.interactionToNextPaintInfo.eventType}
+      tr
+        td 
+          b Element type
+        td #{browsertime.pageinfo.interactionToNextPaintInfo.tagName}
+      tr
+        td 
+          b Element class name
+        td #{browsertime.pageinfo.interactionToNextPaintInfo.className}
+      tr
+        td 
+          b Event target
+        td #{browsertime.pageinfo.interactionToNextPaintInfo.eventTarget}
+      tr
+        td 
+          b Load state when the event happened
+        td #{browsertime.pageinfo.interactionToNextPaintInfo.loadState}
