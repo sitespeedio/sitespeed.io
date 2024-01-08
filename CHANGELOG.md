@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 31.1.1 - 2024-01-08
+### Fixed
+* When displaying interaction to next paint, there where some copy/paste from largest contentful paint that sometimes broke the HTML (my fault). Fixed in [#4042](https://github.com/sitespeedio/sitespeed.io/pull/4052).
+
 ## 31.1.0 - 2024-01-07
 
 We updated the [scripting documentation](https://www.sitespeed.io/documentation/sitespeed.io/scripting/) to be generated directly from Browsertime (using JSDoc). This makes the documentation so much easier to navigate. It's not 100% perfect yet so please feel free to send PRs with updates :)
