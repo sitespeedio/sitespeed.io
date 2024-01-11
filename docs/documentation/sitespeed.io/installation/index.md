@@ -41,7 +41,7 @@ That will output the data from the run in the current directory. You can read mo
 
 ## Using Node JS
 
-Requires additional software like FFmpeg, ImageMagick, and Python dependencies.
+Requires additional software like FFmpeg and Python dependencies.
 
 ### Installation steps for Apple Mac M1
 
@@ -51,11 +51,9 @@ Install on a fresh Apple Mac M1:
 2. Install latest NodeJS LTS (and npm). Either download it from [nodejs.org](https://nodejs.org/en/) or install using Homebrew:
     `brew install node@20`
 3. Make sure you can install using *npm* without using sudo. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
-4. Install ImageMagick 6
-    `brew install imagemagick@6`
-5. Install ffmpeg
+4. Install ffmpeg
     `brew install ffmpeg`
-6. Install Python and Python dependencies ([Python best practices](https://opensource.com/article/19/5/python-3-default-mac)) (or make sure you use the pre-installed Python 3):
+5. Install Python and Python dependencies ([Python best practices](https://opensource.com/article/19/5/python-3-default-mac)) (or make sure you use the pre-installed Python 3):
     1. `brew install pyenv` 
     2. `pyenv install 3.9.1`
     3. `pyenv global 3.9.1`
@@ -64,11 +62,11 @@ Install on a fresh Apple Mac M1:
     6. `curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py`
     7. `python get-pip.py --user`
     8. `python -m pip install --user pillow pyssim OpenCV-Python Numpy scipy`
-7. To be able to throttle the connection without adding a sudo password you need to run:
+6. To be able to throttle the connection without adding a sudo password you need to run:
     `echo "${USER} ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/sitespeedio"`
-8. If you plan to run the iOS Simulator, you also need to install Xcode. Either do it from the App store,  follow [Mac Stadiums guide](https://docs.macstadium.com/docs/install-osx-build-tools) or download directly from [https://developer.apple.com/download/more/](https://developer.apple.com/download/more/). Verify that Xcode work by running `xcrun simctl list devices` to list your devices.
-9. If you want to run test on Android devices, you also need ADB. Install it using Homebrew like this: `brew install --cask android-platform-tools`
-10. To be able to record a video you need to give access to **Screen Recording** for the **Terminal** App. You do that under **Privacy** settings.
+7. If you plan to run the iOS Simulator, you also need to install Xcode. Either do it from the App store,  follow [Mac Stadiums guide](https://docs.macstadium.com/docs/install-osx-build-tools) or download directly from [https://developer.apple.com/download/more/](https://developer.apple.com/download/more/). Verify that Xcode work by running `xcrun simctl list devices` to list your devices.
+8. If you want to run test on Android devices, you also need ADB. Install it using Homebrew like this: `brew install --cask android-platform-tools`
+9. To be able to record a video you need to give access to **Screen Recording** for the **Terminal** App. You do that under **Privacy** settings.
 
 Now you are ready to install sitespeed.io:
 ~~~bash
@@ -101,7 +99,7 @@ sitespeed.io https://www.sitespeed.io --xvfb -b chrome --video --visualMetrics
 You can also install everything manually to have more control. This is what's needed on Ubuntu 20.04:
 
 1. [Install NodeJS LTS ](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04)
-    * `curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh`
+    * `curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh`
     * `sudo bash nodesource_setup.sh`
     * `sudo apt install -y nodejs`
 2. Install imagemagick and ffmpeg `sudo apt-get update -y && sudo apt-get install -y imagemagick ffmpeg`
@@ -181,7 +179,7 @@ Independent if you use Raspberry Lite/Desktop you should do the following:
 2. Access your device using ssh.
 3. Install NodeJS. Install [latest LTS](https://nodejs.org/en/), when I write this that version is 16.15.1.
 ~~~
-curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt install nodejs
 ~~~
 4. Install ADB and Chromedriver.
@@ -191,7 +189,7 @@ sudo apt-get install chromium-chromedriver adb -y
 ~~~
 5. Install video and visual metrics dependencies.
 ~~~
-sudo apt-get update && sudo apt-get install -y imagemagick ffmpeg
+sudo apt-get update && sudo apt-get install -y ffmpeg
 python -m pip install pyssim OpenCV-Python Numpy scipy
 ~~~
 6. Follow [the instructions from npm how to install without sudo](https://github.com/sindresorhus/guides/blob/main/npm-global-without-sudo.md).
