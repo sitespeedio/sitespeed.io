@@ -177,7 +177,7 @@ Independent if you use Raspberry Lite/Desktop you should do the following:
 
 1. Write the latest version Raspberry Pi OS Lite/ Raspberry Pi OS Desktop on a SD card. If you use the **Raspberry Pi Imager** make sure to enable ssh and choose username/password in the settings.
 2. Access your device using ssh.
-3. Install NodeJS. Install [latest LTS](https://nodejs.org/en/), when I write this that version is 16.15.1.
+3. Install NodeJS. Install [latest LTS](https://nodejs.org/en/), when I write this that version is 20.
 ~~~
 curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt install nodejs
@@ -190,7 +190,7 @@ sudo apt-get install chromium-chromedriver adb -y
 5. Install video and visual metrics dependencies.
 ~~~
 sudo apt-get update && sudo apt-get install -y ffmpeg
-python -m pip install pyssim OpenCV-Python Numpy scipy
+python -m pip install pyssim OpenCV-Python Numpy scipy --break-system-packages
 ~~~
 6. Follow [the instructions from npm how to install without sudo](https://github.com/sindresorhus/guides/blob/main/npm-global-without-sudo.md).
 7. And then install sitespeed.io.
