@@ -1,5 +1,13 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 31.2.0 - 2024-01-17
+### Fixed
+* There was bug that caused budget.suppressExitCode to fail that I introduced and reported in [#4062](https://github.com/sitespeedio/sitespeed.io/issues/4062). It's fixed in [#4063](https://github.com/sitespeedio/sitespeed.io/pull/4063).
+
+### Added
+* Collect statstics about how the page is built between runs. You can see these metrics on the "side by side"-page [#4061](https://github.com/sitespeedio/sitespeed.io/pull/4061).
+
+
 ## 31.1.1 - 2024-01-08
 ### Fixed
 * When displaying interaction to next paint, there where some copy/paste from largest contentful paint that sometimes broke the HTML (my fault). Fixed in [#4042](https://github.com/sitespeedio/sitespeed.io/pull/4052).
