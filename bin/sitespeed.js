@@ -117,7 +117,6 @@ async function api(options) {
 
 async function start() {
   let parsed = await parseCommandLine();
-  let budgetFailing = false;
   // hack for getting in the unchanged cli options
   parsed.options.explicitOptions = parsed.explicitOptions;
   parsed.options.urls = parsed.urls;
