@@ -228,22 +228,4 @@
             <uri>https://www.sitespeed.io</uri>
         </author>
     </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 17.18.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.18.1</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.18.1"/>
-        <updated>2023-10-31T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>WebDriver 4.14.0</li>
-</ul>
- <ul>
-<li>Chromedriver 119.0.6045-59</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
 </feed>
