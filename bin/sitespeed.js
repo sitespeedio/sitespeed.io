@@ -117,7 +117,6 @@ async function api(options) {
 
 async function start() {
   let parsed = await parseCommandLine();
-  let budgetFailing = false;
   // hack for getting in the unchanged cli options
   parsed.options.explicitOptions = parsed.explicitOptions;
   parsed.options.urls = parsed.urls;
@@ -156,21 +155,27 @@ async function start() {
         }
       }
 
+      // If we have a failing budget, change the exit code
       if (
         parsed.options.budget &&
         Object.keys(result.budgetResult.failing).length > 0
       ) {
         process.exitCode = 1;
-        budgetFailing = true;
       }
-
-      if (
-        (!budgetFailing ||
-          (parsed.options.budget && parsed.options.budget.suppressExitCode)) &&
-        process.exitCode === undefined
+      // If you supress the exit code using budgets, we will always return 0
+      else if (
+        parsed.options.budget &&
+        parsed.options.budget.suppressExitCode
       ) {
         process.exitCode = 0;
       }
+
+      // If the exit code is still not set (it can be set in the scripting also)
+      // Make sure we exit with a 0
+      if (process.exitCode === undefined) {
+        process.exitCode = 0;
+      }
+
       if (result.errors.length > 0) {
         console.log('Errors while running:\n' + result.errors.join('\n'));
         throw new Error('Errors while running:\n' + result.errors.join('\n'));
