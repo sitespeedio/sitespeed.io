@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 31.2.1 - 2024-01-18
+### Fixed
+* Another fix for `--budget.suppressExitCode` hopefully it works better this time [#4065](https://github.com/sitespeedio/sitespeed.io/pull/4065).
+
 ## 31.2.0 - 2024-01-17
 ### Fixed
 * There was bug that caused budget.suppressExitCode to fail that I introduced and reported in [#4062](https://github.com/sitespeedio/sitespeed.io/issues/4062). It's fixed in [#4063](https://github.com/sitespeedio/sitespeed.io/pull/4063).
