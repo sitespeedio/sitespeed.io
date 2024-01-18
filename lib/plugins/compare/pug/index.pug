@@ -65,55 +65,58 @@ table
     td #{compare.meta.current.timestamp} 
   tr 
     td Total
-    td #{compare.meta.baseline.pagexray.statistics.requests.median} (#{h.size.format(compare.meta.baseline.pagexray.statistics.transferSize.median)} / #{h.size.format(compare.meta.baseline.pagexray.statistics.contentSize.median)})
-    td #{compare.meta.current.pagexray.statistics.requests.median} (#{h.size.format(compare.meta.current.pagexray.statistics.transferSize.median)} / #{h.size.format(compare.meta.current.pagexray.statistics.contentSize.median)})
+    td #{compare.raw.baseline.pagexray.statistics.requests.median} (#{h.size.format(compare.raw.baseline.pagexray.statistics.transferSize.median)} / #{h.size.format(compare.raw.baseline.pagexray.statistics.contentSize.median)})
+    td #{compare.raw.current.pagexray.statistics.requests.median} (#{h.size.format(compare.raw.current.pagexray.statistics.transferSize.median)} / #{h.size.format(compare.raw.current.pagexray.statistics.contentSize.median)})
   tr 
     td HTML 
-    td #{compare.meta.baseline.pagexray.statistics.contentTypes.html.requests.median} (#{h.size.format(compare.meta.baseline.pagexray.statistics.contentTypes.html.transferSize.median)} / #{h.size.format(compare.meta.baseline.pagexray.statistics.contentTypes.html.contentSize.median)}) 
-    td #{compare.meta.current.pagexray.statistics.contentTypes.html.requests.median} (#{h.size.format(compare.meta.current.pagexray.statistics.contentTypes.html.transferSize.median)} / #{h.size.format(compare.meta.current.pagexray.statistics.contentTypes.html.contentSize.median)})
+    td #{compare.raw.baseline.pagexray.statistics.contentTypes.html.requests.median} (#{h.size.format(compare.raw.baseline.pagexray.statistics.contentTypes.html.transferSize.median)} / #{h.size.format(compare.raw.baseline.pagexray.statistics.contentTypes.html.contentSize.median)}) 
+    td #{compare.raw.current.pagexray.statistics.contentTypes.html.requests.median} (#{h.size.format(compare.raw.current.pagexray.statistics.contentTypes.html.transferSize.median)} / #{h.size.format(compare.raw.current.pagexray.statistics.contentTypes.html.contentSize.median)})
   tr 
     td JavaScript 
-    td #{compare.meta.baseline.pagexray.statistics.contentTypes.javascript.requests.median} (#{h.size.format(compare.meta.baseline.pagexray.statistics.contentTypes.javascript.transferSize.median)} / #{h.size.format(compare.meta.baseline.pagexray.statistics.contentTypes.javascript.contentSize.median)}) 
-    td #{compare.meta.current.pagexray.statistics.contentTypes.javascript.requests.median} (#{h.size.format(compare.meta.current.pagexray.statistics.contentTypes.javascript.transferSize.median)} / #{h.size.format(compare.meta.current.pagexray.statistics.contentTypes.javascript.contentSize.median)})
+    td #{compare.raw.baseline.pagexray.statistics.contentTypes.javascript.requests.median} (#{h.size.format(compare.raw.baseline.pagexray.statistics.contentTypes.javascript.transferSize.median)} / #{h.size.format(compare.raw.baseline.pagexray.statistics.contentTypes.javascript.contentSize.median)}) 
+    td #{compare.raw.current.pagexray.statistics.contentTypes.javascript.requests.median} (#{h.size.format(compare.raw.current.pagexray.statistics.contentTypes.javascript.transferSize.median)} / #{h.size.format(compare.raw.current.pagexray.statistics.contentTypes.javascript.contentSize.median)})
   tr 
     td CSS requests
-    td #{compare.meta.baseline.pagexray.statistics.contentTypes.css.requests.median} (#{h.size.format(compare.meta.baseline.pagexray.statistics.contentTypes.javascript.transferSize.median)} / #{h.size.format(compare.meta.baseline.pagexray.statistics.contentTypes.javascript.transferSize.median)})
-    td #{compare.meta.current.pagexray.statistics.contentTypes.css.requests.median} (#{h.size.format(compare.meta.current.pagexray.statistics.contentTypes.javascript.transferSize.median)} / #{h.size.format(compare.meta.current.pagexray.statistics.contentTypes.javascript.transferSize.median)})
+    td #{compare.raw.baseline.pagexray.statistics.contentTypes.css.requests.median} (#{h.size.format(compare.raw.baseline.pagexray.statistics.contentTypes.css.transferSize.median)} / #{h.size.format(compare.raw.baseline.pagexray.statistics.contentTypes.css.contentSize.median)})
+    td #{compare.raw.current.pagexray.statistics.contentTypes.css.requests.median} (#{h.size.format(compare.raw.current.pagexray.statistics.contentTypes.css.transferSize.median)} / #{h.size.format(compare.raw.current.pagexray.statistics.contentTypes.css.contentSize.median)})
   tr 
     td Image requests 
-    td #{compare.meta.baseline.pagexray.statistics.contentTypes.image.requests.median} (#{h.size.format(compare.meta.baseline.pagexray.statistics.contentTypes.image.transferSize.median)})
-    td #{compare.meta.current.pagexray.statistics.contentTypes.image.requests.median} (#{h.size.format(compare.meta.current.pagexray.statistics.contentTypes.image.transferSize.median)})
+    td #{compare.raw.baseline.pagexray.statistics.contentTypes.image.requests.median} (#{h.size.format(compare.raw.baseline.pagexray.statistics.contentTypes.image.transferSize.median)})
+    td #{compare.raw.current.pagexray.statistics.contentTypes.image.requests.median} (#{h.size.format(compare.raw.current.pagexray.statistics.contentTypes.image.transferSize.median)})
+  tr 
+    td DOM Elements
+    td #{compare.raw.baseline.browsertime.statistics.pageinfo.domElements.median}
+    td #{compare.raw.current.browsertime.statistics.pageinfo.domElements.median}
 
-
-  if compare.meta.current.pagexray.meta.screenshot
+  if compare.raw.current.pagexray.meta.screenshot
     tr 
       td Screenshot 
       td 
-        a(href=compare.meta.baseline.pagexray.meta.screenshot)
-          img.screenshot(src=compare.meta.baseline.pagexray.meta.screenshot , width=200)
+        a(href=compare.raw.baseline.pagexray.meta.screenshot)
+          img.screenshot(src=compare.raw.baseline.pagexray.meta.screenshot , width=200)
       td 
-        a(href=compare.meta.current.pagexray.meta.screenshot)
-          img.screenshot(src=compare.meta.current.pagexray.meta.screenshot ,  width=200)
+        a(href=compare.raw.current.pagexray.meta.screenshot)
+          img.screenshot(src=compare.raw.current.pagexray.meta.screenshot ,  width=200)
 
-  if compare.meta.current.pagexray.meta.video
+  if compare.raw.current.pagexray.meta.video
     tr 
       td Video
       td 
         .videoWrapper
           video(controls, preload='none', width=200)
-            source(src=compare.meta.baseline.pagexray.meta.video type='video/mp4')
+            source(src=compare.raw.baseline.pagexray.meta.video type='video/mp4')
       td 
         .videoWrapper
           video(controls, preload='none', width=200)
-            source(src=compare.meta.current.pagexray.meta.video type='video/mp4')
+            source(src=compare.raw.current.pagexray.meta.video type='video/mp4')
   
-  if compare.meta.baseline.pagexray.meta.result
+  if compare.raw.baseline.pagexray.meta.result
     tr 
       td Result
       td
-        a(href=compare.meta.baseline.pagexray.meta.result) Result
+        a(href=compare.raw.baseline.pagexray.meta.result) Result
       td 
-        a(href=compare.meta.current.pagexray.meta.result) Result
+        a(href=compare.raw.current.pagexray.meta.result) Result
 
 h2 Comparison Data
 
