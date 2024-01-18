@@ -163,10 +163,7 @@ async function start() {
         process.exitCode = 1;
       }
       // If you supress the exit code using budgets, we will always return 0
-      else if (
-        parsed.options.budget &&
-        parsed.options.budget.suppressExitCode
-      ) {
+      if (parsed.options.budget && parsed.options.budget.suppressExitCode) {
         process.exitCode = 0;
       }
 
