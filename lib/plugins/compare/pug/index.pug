@@ -38,19 +38,85 @@ p
     | . For this test, a correction parameter (#{compare.meta.testOptions.wilcoxon.correction ? 'enabled' : 'disabled'}) was applied to adjust for small sample sizes.
 
 
-p 
-  | The baseline test 
-  if compare.meta.baseline.alias
-    a(href=compare.meta.baseline.url) #{compare.meta.baseline.alias}
-  else 
-    a(href=compare.meta.baseline.url) #{compare.meta.baseline.url}
-  |  was conducted at #{compare.meta.baseline.timestamp} and the current test 
-  if compare.meta.current.alias
-    a(href=compare.meta.current.url) #{compare.meta.current.alias}
-  else 
-    a(href=compare.meta.current.url) #{compare.meta.current.url}
-  |  was done at #{compare.meta.current.timestamp}.
+h2 Setup
+table 
+  tr
+    th 
+      b Metric
+    th 
+      b baseline 
+    th 
+      b current
+  tr 
+    td Test
+    td 
+      if compare.meta.baseline.alias
+        a(href=compare.meta.baseline.url) #{compare.meta.baseline.alias}
+      else 
+        a(href=compare.meta.baseline.url) #{compare.meta.baseline.url}
+    td
+      if compare.meta.current.alias
+        a(href=compare.meta.current.url) #{compare.meta.current.alias}
+      else 
+        a(href=compare.meta.current.url) #{compare.meta.current.url}
+  tr
+    td Run time
+    td #{compare.meta.baseline.timestamp} 
+    td #{compare.meta.current.timestamp} 
+  tr 
+    td Total
+    td #{compare.raw.baseline.pagexray.statistics.requests.median} (#{h.size.format(compare.raw.baseline.pagexray.statistics.transferSize.median)} / #{h.size.format(compare.raw.baseline.pagexray.statistics.contentSize.median)})
+    td #{compare.raw.current.pagexray.statistics.requests.median} (#{h.size.format(compare.raw.current.pagexray.statistics.transferSize.median)} / #{h.size.format(compare.raw.current.pagexray.statistics.contentSize.median)})
+  tr 
+    td HTML 
+    td #{compare.raw.baseline.pagexray.statistics.contentTypes.html.requests.median} (#{h.size.format(compare.raw.baseline.pagexray.statistics.contentTypes.html.transferSize.median)} / #{h.size.format(compare.raw.baseline.pagexray.statistics.contentTypes.html.contentSize.median)}) 
+    td #{compare.raw.current.pagexray.statistics.contentTypes.html.requests.median} (#{h.size.format(compare.raw.current.pagexray.statistics.contentTypes.html.transferSize.median)} / #{h.size.format(compare.raw.current.pagexray.statistics.contentTypes.html.contentSize.median)})
+  tr 
+    td JavaScript 
+    td #{compare.raw.baseline.pagexray.statistics.contentTypes.javascript.requests.median} (#{h.size.format(compare.raw.baseline.pagexray.statistics.contentTypes.javascript.transferSize.median)} / #{h.size.format(compare.raw.baseline.pagexray.statistics.contentTypes.javascript.contentSize.median)}) 
+    td #{compare.raw.current.pagexray.statistics.contentTypes.javascript.requests.median} (#{h.size.format(compare.raw.current.pagexray.statistics.contentTypes.javascript.transferSize.median)} / #{h.size.format(compare.raw.current.pagexray.statistics.contentTypes.javascript.contentSize.median)})
+  tr 
+    td CSS requests
+    td #{compare.raw.baseline.pagexray.statistics.contentTypes.css.requests.median} (#{h.size.format(compare.raw.baseline.pagexray.statistics.contentTypes.css.transferSize.median)} / #{h.size.format(compare.raw.baseline.pagexray.statistics.contentTypes.css.contentSize.median)})
+    td #{compare.raw.current.pagexray.statistics.contentTypes.css.requests.median} (#{h.size.format(compare.raw.current.pagexray.statistics.contentTypes.css.transferSize.median)} / #{h.size.format(compare.raw.current.pagexray.statistics.contentTypes.css.contentSize.median)})
+  tr 
+    td Image requests 
+    td #{compare.raw.baseline.pagexray.statistics.contentTypes.image.requests.median} (#{h.size.format(compare.raw.baseline.pagexray.statistics.contentTypes.image.transferSize.median)})
+    td #{compare.raw.current.pagexray.statistics.contentTypes.image.requests.median} (#{h.size.format(compare.raw.current.pagexray.statistics.contentTypes.image.transferSize.median)})
+  tr 
+    td DOM Elements
+    td #{compare.raw.baseline.browsertime.statistics.pageinfo.domElements.median}
+    td #{compare.raw.current.browsertime.statistics.pageinfo.domElements.median}
 
+  if compare.raw.current.pagexray.meta.screenshot
+    tr 
+      td Screenshot 
+      td 
+        a(href=compare.raw.baseline.pagexray.meta.screenshot)
+          img.screenshot(src=compare.raw.baseline.pagexray.meta.screenshot , width=200)
+      td 
+        a(href=compare.raw.current.pagexray.meta.screenshot)
+          img.screenshot(src=compare.raw.current.pagexray.meta.screenshot ,  width=200)
+
+  if compare.raw.current.pagexray.meta.video
+    tr 
+      td Video
+      td 
+        .videoWrapper
+          video(controls, preload='none', width=200)
+            source(src=compare.raw.baseline.pagexray.meta.video type='video/mp4')
+      td 
+        .videoWrapper
+          video(controls, preload='none', width=200)
+            source(src=compare.raw.current.pagexray.meta.video type='video/mp4')
+  
+  if compare.raw.baseline.pagexray.meta.result
+    tr 
+      td Result
+      td
+        a(href=compare.raw.baseline.pagexray.meta.result) Result
+      td 
+        a(href=compare.raw.current.pagexray.meta.result) Result
 
 h2 Comparison Data
 
@@ -74,7 +140,7 @@ table
             td
               a(href=createGraphLink(groupName, metricName)) 
                 b #{groupName + '.' + metricName}
-            if values.statisticalTestU === "N/A" || values.statisticalTestU === "Datasets are identical"
+            if values.statisticalTestU === "N/A" || values.statisticalTestU === "Datasets are identical" || values.statisticalTestU === "No variability"
               td #{values.statisticalTestU}
             else
               td #{h.decimals(values.statisticalTestU)}
