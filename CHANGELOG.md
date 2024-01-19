@@ -2,7 +2,7 @@
 
 ## 32.0.0 - 2024-01-19
 ### Breaking change
-* If you use the compare plugin (`--compare.saveBaseline`) you need to remove your old baseline when you upgrade. The reason is that the original implementation was very narrow to some Browsertime metrics. The new version will be able to show more information (more metrics) between the baseline and the current test. This version allo disables comparing the CDP performance metrics, making the compare page easier to understand.
+* If you use the compare plugin (`--compare.saveBaseline`) you need to remove your old baseline when you upgrade. The reason is that the original implementation was very narrow to some Browsertime metrics. The new version will be able to show more information (more metrics) between the baseline and the current test. This version allo disables comparing the CDP performance metrics, making the compare page easier to understand [#4064](https://github.com/sitespeedio/sitespeed.io/pull/4064).
 
 
 ## 31.2.1 - 2024-01-18
