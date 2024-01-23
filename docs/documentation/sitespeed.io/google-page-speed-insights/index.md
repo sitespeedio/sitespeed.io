@@ -34,4 +34,4 @@ The plugin also collect metrics for the specific page and the domain from the Ch
 All scores and distributions is automatically sent to Graphite/InfluxDB.
 
 ## Disable Lighthouse
-If you only want to run GPSI and not Lighthouse you can disable it with `--plugins.remove /lighthouse`.
+If you only want to run GPSI and not Lighthouse you can disable it with `--plugins.remove /lighthouse/index.js`.
