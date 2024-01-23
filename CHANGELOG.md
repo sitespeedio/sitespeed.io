@@ -1,8 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 32.1.0 - 2024-01-23
 ### Added
 * Updated the WebPageReplay version in the Docker container [#4067](https://github.com/sitespeedio/sitespeed.io/pull/4067).
+* Firefox 122 in the Docker container [#4068](https://github.com/sitespeedio/sitespeed.io/pull/4068).
 
 ## 32.0.0 - 2024-01-19
 ### Breaking change
