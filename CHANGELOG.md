@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 32.2.0 - 2024-01-24
+### Added
+* Chrome and Chromedriver 121 in the Docker container [#4069](https://github.com/sitespeedio/sitespeed.io/pull/4069).
+* Browsertime 21.1.0 [#4070](https://github.com/sitespeedio/sitespeed.io/pull/4070).
+
+
 ## 32.1.0 - 2024-01-23
 ### Added
 * Updated the WebPageReplay version in the Docker container [#4067](https://github.com/sitespeedio/sitespeed.io/pull/4067).
