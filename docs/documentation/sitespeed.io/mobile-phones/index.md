@@ -295,13 +295,23 @@ sitespeed.io https://www.sitespeed.io -b safari --safari.useSimulator --safari.d
 
 ## Test on emulated mobile
 
-You can use desktop browser and emulate mobile browsers. If you use Chrome you can do that easiest with:
+You can use the desktop browser and emulate mobile browsers. If you use Chrome you can do that easiest with:
 
 ```bash
 sitespeed.io https://www.sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "Moto G4"
 ```
 
-You can see the list of different device names in Chrome devtools. You can also slow down your CPU with the CPU throttling command:
+You can see the list of different device names in Chrome devtools. Click on *Edit*.
+
+![Emulated mobile phones in Chrome devtools]({{site.baseurl}}/img/devtoolsEmulatedMobile.png)
+{: .img-thumbnail-center}
+
+And then you can see the full list.
+
+![Full list]({{site.baseurl}}/img/devtoolsEmulatedMobile2.png)
+{: .img-thumbnail-center}
+
+You can also slow down your CPU with the CPU throttling command to better emulate a mobile phone:
 
 ```bash
 sitespeed.io https://www.sitespeed.io -b chrome --browsertime.chrome.mobileEmulation.deviceName "Moto G4" --browsertime.chrome.CPUThrottlingRate 6
@@ -309,4 +319,6 @@ sitespeed.io https://www.sitespeed.io -b chrome --browsertime.chrome.mobileEmula
 
 To find a good throttling rate you can use our [CPU benchmark guide](https://www.sitespeed.io/documentation/sitespeed.io/cpu-benchmark/).
 
+You probably also want to set the user agent string matching the device you want to emulate using `--browsertime.userAgent`.
 
+However running like this you will use your desktop version of the browser, running on desktop hardware, so it is not the same as running on a real mobile device!
