@@ -78,25 +78,26 @@ After that you can also install the browsers that you need for your testing: [Ch
 
 ### Linux
 
-If you are using Ubuntu you can use our prebuilt script. It will install all dependencies that you need to run sitespeed.io including latest Firefox and Chrome. Use it if you have a new machine or just setup a new cloud instance. It will also create a new user *sitespeedio* that you will use to run sitespeed.io. The script will ask for a new password for that user:
+If you are using Ubuntu you can use our prebuilt script. It will install all dependencies that you need to run sitespeed.io including latest Firefox and Chrome. Use it if you have a new machine or just setup a new cloud instance. It will also create a new user *sitespeedio* that you will use to run sitespeed.io. The script has been tested on Ubuntu 22.04.
 
 ~~~bash
-bash <(curl -sL https://gist.githubusercontent.com/soulgalore/18fbf40670a343fa1cb0606756c90a00/raw/0597438f8e508755dfcbe18271b04b46d8fa389e/install-sitespeed.io-and-dependencies-ubuntu.sh)
+bash <(curl -sL https://gist.githubusercontent.com/soulgalore/18fbf40670a343fa1cb0606756c90a00/raw/7218332445010ee64e3301f2021bcf18a91f0627/install-sitespeed.io-and-dependencies-ubuntu.sh)
 ~~~
 
-If you use Debian you can use (installs Firefox ESR and you might want to upgrade that):
+If you use Debian (the script has been tested on Debian 12) you can use:
 
 ~~~bash
-wget -O - https://gist.githubusercontent.com/soulgalore/2f070b0a150360053f7198a4e9067db1/raw/33fb37e8770103ef535d44d83b6b8cb104ef9142/install-sitespeed.io-and-dependencies-debian.sh | bash
+wget -O - https://gist.githubusercontent.com/soulgalore/2f070b0a150360053f7198a4e9067db1/raw/cc1c56577195832225ddc36460f6fc53510d6de3/install-sitespeed.io-and-dependencies-debian.sh | bash
 ~~~
 
 When it's finished you can try running sitespeed.io:
 
 ~~~bash
+su - sitespeedio
 sitespeed.io https://www.sitespeed.io --xvfb -b chrome --video --visualMetrics
 ~~~
 
-You can also install everything manually to have more control. This is what's needed on Ubuntu 20.04:
+You can also install everything manually to have more control. This is what's needed on Ubuntu 22.04:
 
 1. [Install NodeJS LTS ](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04)
     * `curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh`
