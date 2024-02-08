@@ -1,92 +1,93 @@
 include ../../_tableMixins
 
-- const pagexray = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
-- const thirdparty = medianRun ? pageInfo.data.thirdparty.pageSummary.runs[medianRun.runIndex - 1] : pageInfo.data.thirdparty.run;
+if pageInfo.data.coach
+    - const pagexray = pageInfo.data.pagexray.run || pageInfo.data.pagexray.pageSummary;
+    - const thirdparty = medianRun ? pageInfo.data.thirdparty.pageSummary.runs[medianRun.runIndex - 1] : pageInfo.data.thirdparty.run;
 
-small
-    || 
-    if thirdparty.category && Object.keys(thirdparty.category).length > 0
-        a(href='#third-party-categories') Categories |
-        | &nbsp;|&nbsp;
-    if thirdparty.assets && Object.keys(thirdparty.assets).length > 0
-        a(href='#third-party-tools') Tools |
-        | &nbsp;|&nbsp;
-    if pagexray.cookieNamesThirdParties.length > 0
-        a(href='#third-party-cookies') Cookies |
-        | &nbsp;|&nbsp;
-    if pagexray.firstParty.requests || options.firstParty
-        a(href='#first-vs-third') First vs third
-        | &nbsp;|&nbsp;
-a#third-party
-a#third-party-categories
-h2 Third party
+    small
+        || 
+        if thirdparty.category && Object.keys(thirdparty.category).length > 0
+            a(href='#third-party-categories') Categories |
+            | &nbsp;|&nbsp;
+        if thirdparty.assets && Object.keys(thirdparty.assets).length > 0
+            a(href='#third-party-tools') Tools |
+            | &nbsp;|&nbsp;
+        if pagexray.cookieNamesThirdParties.length > 0
+            a(href='#third-party-cookies') Cookies |
+            | &nbsp;|&nbsp;
+        if pagexray.firstParty.requests || options.firstParty
+            a(href='#first-vs-third') First vs third
+            | &nbsp;|&nbsp;
+    a#third-party
+    a#third-party-categories
+    h2 Third party
 
-- const thirdPartyWebVersion = pageInfo.data.coach.run ? pageInfo.data.coach.run.thirdPartyWebVersion : pageInfo.data.coach.pageSummary.thirdPartyWebVersion; 
-p Third party requests categorised by 
-    a(href='https://github.com/patrickhulce/third-party-web') Third party web
-    | &nbsp;version #{thirdPartyWebVersion}.
-
-if thirdparty.category && Object.keys(thirdparty.category).length > 0
-    .row
-        .one-half.column
-            table(data-sortable, id='thirdPartyCategories')
-                +rowHeading(['Category', 'Requests'])
-                each metric, category in thirdparty.category
-                    if (category !== 'unknown')
-                        tr 
-                            td(data-title='Category') #{category} 
-                            +numberCell('requests', metric.requests ? metric.requests.median : metric)
-        .one-half.column
-            table(data-sortable, id='thirdPartyTools')
-                +rowHeading(['Category', 'Number of tools'])
-                each metric, category in thirdparty.category
-                    if (category !== 'unknown')
-                        tr 
-                            td(data-title='Category') #{category}     
-                            +numberCell('Tools', metric.tools ? metric.tools.median :Object.keys(thirdparty.toolsByCategory[category]).length)
-
-if thirdparty.assets && Object.keys(thirdparty.assets).length > 0
-    a#third-party-tools
-    h3 Third party requests and tools
-    button.hidden-small.button.button--primary(onclick='toggleRow(this);') Show/hide third party URLs
-    table
-        each category in Object.keys(thirdparty.assets)
-            tr
-                td(style='text-transform: uppercase;') 
-                    b #{category} 
-                    | (#{thirdparty.assets[category].length} requests) 
-            - let oldNames = [];    
-            each asset in thirdparty.assets[category]  
-                if (!oldNames.includes(asset.entity.name)) 
-                    - oldNames.push(asset.entity.name)
-                    tr
-                        td
-                            if asset.entity.homepage
-                                a(href=asset.entity.homepage) #{asset.entity.name}  
-                            else 
-                                span #{asset.entity.name}         
-
-            tr.u-hideable
-                td.url.offendingurl
-                    ul
-                        each asset in thirdparty.assets[category]
-                            li 
-                                a(href=asset.url) #{h.shortAsset(asset.url, true)}  
-                                b (#{asset.entity.name})
-
-if  thirdparty.possibileMissedThirdPartyDomains && thirdparty.possibileMissedThirdPartyDomains.length > 0 
-    h3 Unmatched third party domains
-    p Here's a list of domains that didn't match any tool in 
+    - const thirdPartyWebVersion = pageInfo.data.coach.run ? pageInfo.data.coach.run.thirdPartyWebVersion : pageInfo.data.coach.pageSummary.thirdPartyWebVersion; 
+    p Third party requests categorised by 
         a(href='https://github.com/patrickhulce/third-party-web') Third party web
-        | . If you are sure they are third party domains, please do a PR to that project. You can also fine tune the list using 
-        code --firstParty
-        | .
-    table
-            each domain in thirdparty.possibileMissedThirdPartyDomains 
-                tr 
-                    td #{domain}
+        | &nbsp;version #{thirdPartyWebVersion}.
 
-include ./thirdPartyCookies.pug
+    if thirdparty.category && Object.keys(thirdparty.category).length > 0
+        .row
+            .one-half.column
+                table(data-sortable, id='thirdPartyCategories')
+                    +rowHeading(['Category', 'Requests'])
+                    each metric, category in thirdparty.category
+                        if (category !== 'unknown')
+                            tr 
+                                td(data-title='Category') #{category} 
+                                +numberCell('requests', metric.requests ? metric.requests.median : metric)
+            .one-half.column
+                table(data-sortable, id='thirdPartyTools')
+                    +rowHeading(['Category', 'Number of tools'])
+                    each metric, category in thirdparty.category
+                        if (category !== 'unknown')
+                            tr 
+                                td(data-title='Category') #{category}     
+                                +numberCell('Tools', metric.tools ? metric.tools.median :Object.keys(thirdparty.toolsByCategory[category]).length)
 
-if pagexray.firstParty.requests || options.firstParty
-  include ./firstParty.pug
+    if thirdparty.assets && Object.keys(thirdparty.assets).length > 0
+        a#third-party-tools
+        h3 Third party requests and tools
+        button.hidden-small.button.button--primary(onclick='toggleRow(this);') Show/hide third party URLs
+        table
+            each category in Object.keys(thirdparty.assets)
+                tr
+                    td(style='text-transform: uppercase;') 
+                        b #{category} 
+                        | (#{thirdparty.assets[category].length} requests) 
+                - let oldNames = [];    
+                each asset in thirdparty.assets[category]  
+                    if (!oldNames.includes(asset.entity.name)) 
+                        - oldNames.push(asset.entity.name)
+                        tr
+                            td
+                                if asset.entity.homepage
+                                    a(href=asset.entity.homepage) #{asset.entity.name}  
+                                else 
+                                    span #{asset.entity.name}         
+
+                tr.u-hideable
+                    td.url.offendingurl
+                        ul
+                            each asset in thirdparty.assets[category]
+                                li 
+                                    a(href=asset.url) #{h.shortAsset(asset.url, true)}  
+                                    b (#{asset.entity.name})
+
+    if  thirdparty.possibileMissedThirdPartyDomains && thirdparty.possibileMissedThirdPartyDomains.length > 0 
+        h3 Unmatched third party domains
+        p Here's a list of domains that didn't match any tool in 
+            a(href='https://github.com/patrickhulce/third-party-web') Third party web
+            | . If you are sure they are third party domains, please do a PR to that project. You can also fine tune the list using 
+            code --firstParty
+            | .
+        table
+                each domain in thirdparty.possibileMissedThirdPartyDomains 
+                    tr 
+                        td #{domain}
+
+    include ./thirdPartyCookies.pug
+
+    if pagexray.firstParty.requests || options.firstParty
+    include ./firstParty.pug
