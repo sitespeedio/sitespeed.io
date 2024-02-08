@@ -174,12 +174,10 @@ async function start() {
       }
 
       if (result.errors.length > 0) {
-        console.log('Errors while running:\n' + result.errors.join('\n'));
         throw new Error('Errors while running:\n' + result.errors.join('\n'));
       }
-    } catch (error) {
+    } catch {
       process.exitCode = 1;
-      console.log(error);
     } finally {
       process.exit();
     }
