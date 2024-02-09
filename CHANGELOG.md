@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## UNRELEASED
+### Added
+* Use darkmode for result HTML by adding `--html.darkMode`, thank you [petemyron](https://github.com/petemyron) for PR [#4081](https://github.com/sitespeedio/sitespeed.io/pull/4081).
+
 ## 32.2.0 - 2024-01-24
 ### Added
 * Chrome and Chromedriver 121 in the Docker container [#4069](https://github.com/sitespeedio/sitespeed.io/pull/4069).
