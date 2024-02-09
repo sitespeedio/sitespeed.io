@@ -4,6 +4,11 @@
 ### Added
 * Use darkmode for result HTML by adding `--html.darkMode`, thank you [petemyron](https://github.com/petemyron) for PR [#4081](https://github.com/sitespeedio/sitespeed.io/pull/4081).
 
+### Fixed
+* Update co2.js to 0.14.2 [#4074](https://github.com/sitespeedio/sitespeed.io/pull/4074)
+* More solid error handling if one page fail in scripting. This fixes so that the HTML for the rest of pages should be generated [#4079](https://github.com/sitespeedio/sitespeed.io/pull/4079).
+* Remove console.errors of errors (they have already been reported in the log) [#4080](https://github.com/sitespeedio/sitespeed.io/pull/4080).
+
 ## 32.2.0 - 2024-01-24
 ### Added
 * Chrome and Chromedriver 121 in the Docker container [#4069](https://github.com/sitespeedio/sitespeed.io/pull/4069).
