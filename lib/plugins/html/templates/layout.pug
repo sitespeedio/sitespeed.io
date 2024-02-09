@@ -6,7 +6,7 @@ html(lang='en')
         title= pageTitle
         meta(name='description', content=pageDescription)
         meta(name='robots', content='noindex')
-        if options.darkMode
+        if options.html.darkMode
           link(rel='stylesheet', href=assetsPath + 'css/index-dark.min.css')
         else
           link(rel='stylesheet', href=assetsPath + 'css/index-light.min.css')
