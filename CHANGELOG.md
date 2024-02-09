@@ -1,6 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## UNRELEASED
+## 33.0.0 - UNRELEASED
+
+### Breaking
+This is a breaking change if you use the compare plugin and do not set an id (`--compare.id`) for your test.
+* If you auto generate the id for your compare test, this PR add browser, connectivity name and slug to the file name where the compare metrics is stored [#4083](https://github.com/sitespeedio/sitespeed.io/pull/4083).
+
 ### Added
 * Use darkmode for result HTML by adding `--html.darkMode`, thank you [petemyron](https://github.com/petemyron) for PR [#4081](https://github.com/sitespeedio/sitespeed.io/pull/4081).
 
@@ -8,6 +13,7 @@
 * Update co2.js to 0.14.2 [#4074](https://github.com/sitespeedio/sitespeed.io/pull/4074)
 * More solid error handling if one page fail in scripting. This fixes so that the HTML for the rest of pages should be generated [#4079](https://github.com/sitespeedio/sitespeed.io/pull/4079).
 * Remove console.errors of errors (they have already been reported in the log) [#4080](https://github.com/sitespeedio/sitespeed.io/pull/4080).
+* Fix automatically switch to Throttle as engine on Mac and Linux if you add -c THROTTLING[#4082](https://github.com/sitespeedio/sitespeed.io/pull/4082).
 
 ## 32.2.0 - 2024-01-24
 ### Added
