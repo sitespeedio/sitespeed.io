@@ -329,6 +329,7 @@ Options:
       --browsertime.preWarmServerWaitTime                     The wait time before you start the real testing after your pre-cache request.  [number] [default: 5000]
       --plugins.disable  [array]
       --plugins.load  [array]
+      --html.darkMode, --darkMode                             View test results with a dark theme.  [boolean] [default: false]
       --mobile                                                Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Moto G4.  [boolean] [default: false]
       --resultBaseURL, --resultBaseUrl                        The base URL to the server serving the HTML result. In the format of https://result.sitespeed.io
       --gzipHAR                                               Compress the HAR files with GZIP.  [boolean] [default: false]

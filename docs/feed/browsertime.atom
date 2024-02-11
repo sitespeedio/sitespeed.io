@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2024-01-24T05:03:02.527Z</updated>
+    <updated>2024-02-11T10:19:20.889Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,74 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 21.2.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.2.1</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.2.1"/>
+        <updated>2024-02-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix correct JavaScript signaure for stopAsError in types.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 21.2.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.2.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.2.0"/>
+        <updated>2024-02-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Edge 121 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2071">#2071</a>.</li>
+</ul>
+ <ul>
+<li>You can stop a measurement as a failure and make sure no metrics is collected. This is useful if you catch an error in try/catch when trying to measure a page. <code>measure.stopAsError(failureMessage, optionalURL)</code>. Add your message and if you know the URL, add it. <a href="https://github.com/sitespeedio/browsertime/pull/2076">2076</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Set correct viewports for the following emulated mobiles for Chrome: iPhone 14 Pro Max <a href="https://github.com/sitespeedio/browsertime/pull/2070">#2070</a>.</li>
+</ul>
+ <ul>
+<li>Update adbkit to 3.2.6 <a href="https://github.com/sitespeedio/browsertime/pull/2069">#2069</a>.</li>
+</ul>
+ <ul>
+<li>Selenium 4.17.0 <a href="https://github.com/sitespeedio/browsertime/pull/2068">#2068</a>.</li>
+</ul>
+ <ul>
+<li>There was a missing await when getting the tcpdump <a href="https://github.com/sitespeedio/browsertime/pull/2075">#2075</a></li>
+</ul>
+ <ul>
+<li>Remove all trace level logs (and do debug instead) since trace added unnecessary stacktraces to the log <a href="https://github.com/sitespeedio/browsertime/pull/2074">#2074</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 21.1.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.1.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.1.0"/>
+        <updated>2024-01-24T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Firefox 122, Chrome 121 and Chromedriver 121 <a href="https://github.com/sitespeedio/browsertime/pull/2067">#2067</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Set correct viewports for the following emulated mobiles for Chrome: iPad Mini iPad Air, iPhone 14 Pro, Pixel 7 and Samsung Galaxy A51/71 <a href="https://github.com/sitespeedio/browsertime/pull/2065">#2065</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 21.0.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.0.0</id>
@@ -178,49 +246,6 @@
 </ul>
  <ul>
 <li>Make sure <code>--android.pinCPUSpeed</code> works <a href="https://github.com/sitespeedio/browsertime/pull/2019">#2019</a></li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 18.0.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#18.0.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#18.0.0"/>
-        <updated>2023-11-07T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated all dev-dependencies to latest versions <a href="https://github.com/sitespeedio/browsertime/pull/2013">#2013</a>.</li>
-</ul>
- <ul>
-<li>Updated  GitHub Actions to use latest versions of actions and Ubuntu 22.04 <a href="https://github.com/sitespeedio/browsertime/pull/2012">#2012</a>, <a href="https://github.com/sitespeedio/browsertime/pull/2014">#2014</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2016">#2016</a></li>
-</ul>
- <ul>
-<li>Updated all dependencies to latest versions: ADB kit 3.2.5 <a href="https://github.com/sitespeedio/browsertime/pull/2017">#2017</a>, execa, dayjs, get-port and Chromedriver <a href="https://github.com/sitespeedio/browsertime/pull/2015">#2015</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 17.19.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.19.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#17.19.0"/>
-        <updated>2023-11-03T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Chrome, Firefox and Edge 119 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2010">#2010</a>.</li>
-</ul>
- <ul>
-<li>Updated to Edgedriver 119.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Updated to Selenium 4.15.0 <a href="https://github.com/sitespeedio/browsertime/pull/2011">#2011</a>.</li>
 </ul>
 ]]></summary>
         <author>
