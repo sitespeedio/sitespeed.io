@@ -1,12 +1,16 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 33.0.0 - UNRELEASED
+## 33.0.0 - 2024-02-11
+
+*Announcement*: In the next major release we will remove all support for WebPageTest. If you still plan to use WebPageTest you can probaly still use the [plugin](https://github.com/sitespeedio/plugin-webpagetest) for a while if your WebPageTest installation works.
 
 ### Breaking
 This is a breaking change if you use the compare plugin and do not set an id (`--compare.id`) for your test.
 * If you auto generate the id for your compare test, this PR add browser, connectivity name and slug to the file name where the compare metrics is stored [#4083](https://github.com/sitespeedio/sitespeed.io/pull/4083).
 
+
 ### Added
+* Updated to [Browsertime 21.2.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2120---2024-02-11) that adds a new way to stop your measureemnts if your navigation fails `measure.stopAsError(failureMessage, optionalURL)`. Perfect to use in a try/catch.
 * Use darkmode for result HTML by adding `--html.darkMode`, thank you [petemyron](https://github.com/petemyron) for PR [#4081](https://github.com/sitespeedio/sitespeed.io/pull/4081).
 
 ### Fixed
