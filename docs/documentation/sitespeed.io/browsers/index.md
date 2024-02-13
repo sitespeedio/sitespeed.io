@@ -19,7 +19,7 @@ twitterdescription: You can use Firefox, Safari, Chrome, Edge and Chrome/Firefox
 You can fetch timings, run your own JavaScript and record a video of the screen. The following browsers are supported: Firefox, Safari, Edge, Chrome, Chrome and Firefox on Android and Safari on iOS. If you run our Docker containers, we always update them when we tested the latest stable release of Chrome and Firefox. Safari and Safari on iOS needs Mac OS X Catalina. Edge need the corresponding MSEdgeDriver.
 
 ## Firefox
-The latest version of Firefox should work out of the box.
+The latest version of Firefox should work out of the box except if you are on Linux and run Snap installed Firefox, then you need to [follow the workaround](https://github.com/mozilla/geckodriver/releases/tag/v0.31.0) by setting a TMPDIR that Geckodriver and Firefox will use. 
 
 ### Firefox profile setup
 At the moment we setup a new profile for each run the browser do. We set up the profiles preferences like [this](https://github.com/sitespeedio/browsertime/blob/main/lib/firefox/webdriver/firefoxPreferences.js). We use Mozillas [own configuration](https://searchfox.org/mozilla-central/source/testing/talos/talos/config.py) as default with some changes + some extra configuration for performance and privacy.
