@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 33.1.0 - 2024-02-21
+### Added
+* Firefox 123 and Chrome 122 in the Docker container [#4090](https://github.com/sitespeedio/sitespeed.io/pull/4090) and [#4089](https://github.com/sitespeedio/sitespeed.io/pull/4089).
+* Chromedriver 122 and Edgedriver 121 
+* [Browsertime 21.3.0](https://github.com/sitespeedio/sitespeed.io/pull/4091).
+
 ## 33.0.0 - 2024-02-11
 
 *Announcement*: In the next major release we will remove all support for WebPageTest. If you still plan to use WebPageTest you can probaly still use the [plugin](https://github.com/sitespeedio/plugin-webpagetest) for a while if your WebPageTest installation works.
