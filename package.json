@@ -84,7 +84,7 @@
     "@influxdata/influxdb-client": "1.33.2",
     "@tgwf/co2": "0.14.2",
     "aws-sdk": "2.1327.0",
-    "axe-core": "4.8.2",
+    "axe-core": "4.8.4",
     "browsertime": "21.2.1",
     "coach-core": "8.0.2",
     "cli-color": "2.0.3",
