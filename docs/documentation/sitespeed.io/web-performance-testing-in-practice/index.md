@@ -152,7 +152,7 @@ Which DNS server that is used can make a big difference. Keep a look at your DNS
 Number of open files can be quite low on Linux, check it with `ulimit -a`. Increase following [these instructions](https://linuxhint.com/increase-open-file-limit-ubuntu/).
 
 #### Running on Kubernetes
-Do not use Kubernetes for performance tests. The problem running on Kubernetes is to get stable connectivity. On Kubernetes you cannot use [tc](https://tldp.org/HOWTO/Traffic-Control-HOWTO/intro.html) or Docker networks to set the connectivity. 
+If you are gonna use Kubernetes, you should use the [bandwith plugin](https://www.cni.dev/plugins/current/meta/bandwidth/) to set the connectivity. If you Kubernetes user, please share your configiratuon and setup so we can add that to the documentation.
 
 ### Mobile
 
