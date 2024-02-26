@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 33.1.1 - 2024-02-26
+### Fixed
+* Updateds to Browsertime 21.3.1 that has an updated version of the Chromedriver isntaller that fixes the bug installing on Windows [#4096](https://github.com/sitespeedio/sitespeed.io/pull/4096).
+
 ## 33.1.0 - 2024-02-21
 ### Added
 * Firefox 123 and Chrome 122 in the Docker container [#4090](https://github.com/sitespeedio/sitespeed.io/pull/4090) and [#4089](https://github.com/sitespeedio/sitespeed.io/pull/4089).
