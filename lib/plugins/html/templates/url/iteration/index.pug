@@ -66,6 +66,11 @@ block content
               tr
                 td Memory
                 td #{h.size.format(memory)}
+            - cpuPower = get(d, 'browsertime.run.cpuConsumption')
+            if cpuConsumption
+              tr
+                td Firefox CPU power consumption 
+                td #{cpuConsumption}
             - requests = get(d, 'pagexray.run.requests')
             if (requests)
               tr
