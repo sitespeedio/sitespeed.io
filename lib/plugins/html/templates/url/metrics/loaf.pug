@@ -1,0 +1,28 @@
+if loaf
+    a#longAnimationFrames
+    h3 Long Animation Frames
+    p The top 10 longest animation frames
+    table 
+        each oneLoaf in loaf
+            tr
+                th(colspan=2) THIS IS THE ONE
+            tr
+                td 
+                    b blockingDuration
+                td #{oneLoaf.blockingDuration}
+            each theScript in oneLoaf.scripts 
+                tr
+                    td SourceURL
+                    td #{theScript.sourceURL}
+                tr 
+                    td forcedStyleAndLayoutDuration
+                    td #{theScript.forcedStyleAndLayoutDuration}
+                tr 
+                    td invoker 
+                    td #{theScript.invoker}
+                tr
+                    td invokerType 
+                    td #{theScript.invokerType}
+                tr 
+                    td sourceFunctionName
+                    td #{theScript.sourceFunctionName}
