@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Mon, 26 Feb 2024 14:24:21 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 12 Mar 2024 06:30:31 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,18 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 33.2.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#33.2.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#33.2.0</guid>
+            <pubDate>Tue, 12 Mar 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Browsertime 21.5.0 in <a href="https://github.com/sitespeedio/sitespeed.io/pull/4103">#4103</a> also included changes released in 21.4.0.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 33.1.1]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#33.1.1</link>
@@ -147,25 +159,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>When displaying interaction to next paint, there where some copy/paste from largest contentful paint that sometimes broke the HTML (my fault). Fixed in <a href="https://github.com/sitespeedio/sitespeed.io/pull/4052">#4042</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 31.1.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.1.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.1.0</guid>
-            <pubDate>Sun, 07 Jan 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Update to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2100---2024-01-07">Browsertime 21.0.0</a>:</li>
-</ul>
- <ul>
-<li>If you use <code>process.exitCode</code> in your scripting, it will be respected by sitespeed.io and exit with that exit code <a href="https://github.com/sitespeedio/sitespeed.io/pull/4044">#4044</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>If a run is markedAsFailure in your Browsertime script, sitespeed.io exits with an error code <a href="https://github.com/sitespeedio/sitespeed.io/pull/4047">#4047</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
