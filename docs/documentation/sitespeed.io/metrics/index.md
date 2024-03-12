@@ -23,7 +23,7 @@ We collect a lot of metrics in sitespeed.io and all of them isn't super easy to 
 Visual Metrics are metrics calculated from screenshots/video of the browsers screen. We use the library [Visual Metrics](https://github.com/WPO-Foundation/visualmetrics) to do that.
 
 ### Speed Index
-The Speed Index is the average time at which visible parts of the page are displayed. It is expressed in milliseconds and dependent on size of the view port. It was created by Pat Meenan and you can checkout the [full documentation](https://sites.google.com/a/webpagetest.org/docs/using-webpagetest/metrics/speed-index).
+The Speed Index is the average time at which visible parts of the page are displayed. It is expressed in milliseconds and dependent on size of the view port. It was created by Pat Meenan and you can checkout the [full documentation](https://docs.webpagetest.org/metrics/speedindex/).
 
 ### Contentful Speed Index
 This new metric is developed by Bas Schouten at Mozilla which uses edge detection to calculate the amount of "content" that is visible on each frame. It was primarily designed for two main purposes: Have a good metric to measure the amount of text that is visible. Design a metric that is not easily fooled by the pop up splash/login screens that commonly occur at the end of a page load. These can often disturb the speed index numbers since the last frame that is being used as reference is not accurate.
