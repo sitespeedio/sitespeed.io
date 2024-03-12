@@ -1,28 +1,40 @@
 if loaf
     a#longAnimationFrames
     h3 Long Animation Frames
-    p The top 10 longest animation frames
+    p Read more about the Long Animation Frames API here 
+        a(href='https://developer.chrome.com/docs/web-platform/long-animation-frames') here.  
+    p The top 10 longest animation frames entries
     table 
         each oneLoaf in loaf
             tr
-                th(colspan=2) THIS IS THE ONE
-            tr
-                td 
-                    b blockingDuration
-                td #{oneLoaf.blockingDuration}
-            each theScript in oneLoaf.scripts 
-                tr
-                    td SourceURL
-                    td #{theScript.sourceURL}
+                th(colspan=2) Blocking Duration #{h.time.ms(oneLoaf.blockingDuration)}
+            if oneLoaf.scripts.length > 0    
                 tr 
-                    td forcedStyleAndLayoutDuration
-                    td #{theScript.forcedStyleAndLayoutDuration}
+                    th(colspan=2) Scripts contributing to the Long Aninmation frames
+                each theScript in oneLoaf.scripts 
+                    if theScript.sourceURL !== ''
+                        tr
+                            td 
+                                b Source URL
+                            td #{theScript.sourceURL}
+                    if theScript.forcedStyleAndLayoutDuration !== 0
+                        tr 
+                            td 
+                                b Forced Style And Layout Duration
+                            td #{theScript.forcedStyleAndLayoutDuration}
+                    tr 
+                        td 
+                            b Invoker 
+                        td #{theScript.invoker}
+                    tr
+                        td 
+                            b Invoker Type 
+                        td #{theScript.invokerType}
+                    if theScript.sourceFunctionName
+                        tr 
+                            td 
+                                b Source Function Name
+                            td #{theScript.sourceFunctionName}
+            else 
                 tr 
-                    td invoker 
-                    td #{theScript.invoker}
-                tr
-                    td invokerType 
-                    td #{theScript.invokerType}
-                tr 
-                    td sourceFunctionName
-                    td #{theScript.sourceFunctionName}
+                    td(colspan=2) No availible script data
