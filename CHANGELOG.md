@@ -1,5 +1,13 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 33.3.0 - UNRELEASED
+### Added
+* Show Long Animation frames (enabled in Chrome 123) [#4180](https://github.com/sitespeedio/sitespeed.io/pull/4108). Using the timeline/profiling is still best doing your tests but long animation frames can help you if you do not have it turned on or familiar with thart data in RUM. Please create an issue if you have any ideas on how we shoudl display the metrics/information!
+* Show CPU power consumption (when using Firefox) [#4104](https://github.com/sitespeedio/sitespeed.io/pull/4104). You can try it with: `sitespeed.io -b firefox -n 1 --firefox.geckoProfiler --firefox.geckoProfilerParams.features "power" --firefox.powerConsumption https://www.sitespeed.io/`
+
+### Fixed
+*  Updated to [Browsertime 21.5.3](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2153---2024-03-12) containing various bug fixes.
+
 ## 33.2.0 - 2024-03-12
 ### Added
 * Updated to Browsertime 21.5.0 in [#4103](https://github.com/sitespeedio/sitespeed.io/pull/4103) also included changes released in 21.4.0.
