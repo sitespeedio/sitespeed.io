@@ -4,37 +4,40 @@ if loaf
     p Read more about the Long Animation Frames API here 
         a(href='https://developer.chrome.com/docs/web-platform/long-animation-frames') here.  
     p The top 10 longest animation frames entries
-    table 
-        each oneLoaf in loaf
-            tr
-                th(colspan=2) Blocking Duration #{h.time.ms(oneLoaf.blockingDuration)}
-            if oneLoaf.scripts.length > 0    
-                tr 
-                    th(colspan=2) Scripts contributing to the Long Aninmation frames
+    
+    each oneLoaf in loaf
+        table 
+            tr 
+                th Blocking duration 
+                th Work duration
+                th Render duration
+                th PreLayout Duration
+                th Style And Layout Duration
+            tr 
+                td #{h.time.ms(h.decimals(oneLoaf.blockingDuration))}
+                td #{h.time.ms(h.decimals(oneLoaf.workDuration))}
+                td #{h.time.ms(h.decimals(oneLoaf.renderDuration))}
+                td #{h.time.ms(h.decimals(oneLoaf.preLayoutDuration))}
+                td #{h.time.ms(h.decimals(oneLoaf.styleAndLayoutDuration))}
+
+            if oneLoaf.scripts.length > 0  
                 each theScript in oneLoaf.scripts 
                     if theScript.sourceURL !== ''
-                        tr
-                            td 
-                                b Source URL
-                            td #{theScript.sourceURL}
-                    if theScript.forcedStyleAndLayoutDuration !== 0
                         tr 
-                            td 
-                                b Forced Style And Layout Duration
-                            td #{theScript.forcedStyleAndLayoutDuration}
+                            td.url.assetsurl(colspan=5)
+                                 a(href=theScript.sourceURL)= theScript.sourceURL
                     tr 
-                        td 
-                            b Invoker 
-                        td #{theScript.invoker}
-                    tr
-                        td 
-                            b Invoker Type 
-                        td #{theScript.invokerType}
-                    if theScript.sourceFunctionName
-                        tr 
-                            td 
-                                b Source Function Name
-                            td #{theScript.sourceFunctionName}
-            else 
+                        td(colspan=5)
+                            if theScript.forcedStyleAndLayoutDuration !== 0
+                                p Forced Style And Layout Duration:  #{h.time.ms(h.decimals(theScript.forcedStyleAndLayoutDuration))}
+                            p Invoker:  #{theScript.invoker}
+                            p Invoker Type: #{theScript.invokerType}
+                            if theScript.sourceFunctionName
+                                p Source Function Name: #{theScript.sourceFunctionName}
+                            if theScript.windowAttribution
+                                p Window attribution: #{theScript.windowAttribution}
+                            if theScript.sourceCharPosition
+                                p Source char position: #{theScript.sourceCharPosition}
+            else
                 tr 
-                    td(colspan=2) No availible script data
+                    td(colspan=5) No availible script information.
