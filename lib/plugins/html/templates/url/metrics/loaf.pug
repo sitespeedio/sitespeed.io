@@ -30,14 +30,24 @@ if loaf
                         td(colspan=5)
                             if theScript.forcedStyleAndLayoutDuration !== 0
                                 p Forced Style And Layout Duration:  #{h.time.ms(h.decimals(theScript.forcedStyleAndLayoutDuration))}
-                            p Invoker:  #{theScript.invoker}
-                            p Invoker Type: #{theScript.invokerType}
-                            if theScript.sourceFunctionName
-                                p Source Function Name: #{theScript.sourceFunctionName}
-                            if theScript.windowAttribution
-                                p Window attribution: #{theScript.windowAttribution}
-                            if theScript.sourceCharPosition
-                                p Source char position: #{theScript.sourceCharPosition}
+                            p 
+                                b Invoker:
+                                | #{theScript.invoker}
+                                br
+                                b Invoker Type: 
+                                | #{theScript.invokerType}
+                                br
+                                if theScript.sourceFunctionName
+                                    b Source Function Name:
+                                    | #{theScript.sourceFunctionName}
+                                    br
+                                if theScript.windowAttribution
+                                    b Window attribution:
+                                    | #{theScript.windowAttribution}
+                                    br
+                                if theScript.sourceCharPosition
+                                    b Source char position:
+                                    | #{theScript.sourceCharPosition}
             else
                 tr 
                     td(colspan=5) No availible script information.
