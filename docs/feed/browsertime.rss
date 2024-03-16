@@ -4,7 +4,7 @@
         <title>browsertime release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of browsertime</description>
-        <lastBuildDate>Tue, 12 Mar 2024 05:42:35 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 16 Mar 2024 12:47:57 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,57 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/browsertime.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[browsertime 21.5.4]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.5.4</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.5.4</guid>
+            <pubDate>Wed, 13 Mar 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix for <code>--injectJs</code> for Firefox <a href="https://github.com/sitespeedio/browsertime/pull/2103">#2103</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 21.5.3]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.5.3</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.5.3</guid>
+            <pubDate>Tue, 12 Mar 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fixed <code>commands.bidi.*</code> that stopped working <a href="https://github.com/sitespeedio/browsertime/pull/2101">#2101</a>.</li>
+</ul>
+ <ul>
+<li>Fixed missing Loaf data <a href="https://github.com/sitespeedio/browsertime/pull/2100">#2100</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 21.5.2]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.5.2</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.5.2</guid>
+            <pubDate>Tue, 12 Mar 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Another bug fix: Getting Long Animation Frame (loaf) was broken <a href="https://github.com/sitespeedio/browsertime/pull/2099">#2099</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 21.5.1]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.5.1</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.5.1</guid>
+            <pubDate>Tue, 12 Mar 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>There was a bug in how we collect CPU power from Firefox and add it to the statistics. Fixed in <a href="https://github.com/sitespeedio/browsertime/pull/2098">#2098</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[browsertime 21.5.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.5.0</link>
@@ -123,105 +174,6 @@
 </ul>
  <ul>
 <li>Remove all trace level logs (and do debug instead) since trace added unnecessary stacktraces to the log <a href="https://github.com/sitespeedio/browsertime/pull/2074">#2074</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 21.1.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.1.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.1.0</guid>
-            <pubDate>Wed, 24 Jan 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Firefox 122, Chrome 121 and Chromedriver 121 <a href="https://github.com/sitespeedio/browsertime/pull/2067">#2067</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Set correct viewports for the following emulated mobiles for Chrome: iPad Mini iPad Air, iPhone 14 Pro, Pixel 7 and Samsung Galaxy A51/71 <a href="https://github.com/sitespeedio/browsertime/pull/2065">#2065</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 21.0.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.0.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.0.0</guid>
-            <pubDate>Sun, 07 Jan 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgraded to <a href="https://github.com/mozilla/geckodriver/releases/tag/v0.34.0">Geckodriver 0.34.0</a> <a href="https://github.com/sitespeedio/browsertime/pull/2049">#2049</a>.</li>
-</ul>
- <ul>
-<li>Collect CPU consumption for Firefox. Turn that on with <code>--firefox.powerConsumption true</code> and including <code>power</code> as a geckoProfilerParams.features <a href="https://github.com/sitespeedio/browsertime/pull/2046">#2046</a>.</li>
-</ul>
- <ul>
-<li>Added more commands for mouse click on text <a href="https://github.com/sitespeedio/browsertime/pull/2054">#2054</a>.</li>
-</ul>
- <ul>
-<li>Updated AndroidCommand so you can run shell on your Android device as root <a href="https://github.com/sitespeedio/browsertime/pull/2055">#2055</a>.</li>
-</ul>
- <ul>
-<li>If you mark a test as failure, the exit code from Browsertime will be 1. If the exitCode is set in scripting, we use that and will not change that <a href="https://github.com/sitespeedio/browsertime/pull/2057">#2057</a>.</li>
-</ul>
- <ul>
-<li>Generate documentation for scripting using JSDoc <a href="https://github.com/sitespeedio/browsertime/pull/2059">#2059</a>.</li>
-</ul>
- <ul>
-<li>Make it easy to use Seleniums action API. Get access to the new command using commands.action.getActions() and chain the action. <a href="https://github.com/sitespeedio/browsertime/pull/2061">#2061</a></li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Make sure the visual metrics files are inlcuded in the Docker file <a href="https://github.com/sitespeedio/browsertime/pull/2053">#2053</a>.</li>
-</ul>
- <ul>
-<li>Removing QVH from the npm package (used for iPhone video recording but not working) <a href="https://github.com/sitespeedio/browsertime/pull/2051">#2051</a></li>
-</ul>
- <ul>
-<li>Removing visual metrics test images from the npm package <a href="https://github.com/sitespeedio/browsertime/pull/2050">#2050</a>.</li>
-</ul>
- <ul>
-<li>Removed the Chromedriver fix that was needed when Chrome for testing broke testing on Chrome :D <a href="https://github.com/sitespeedio/browsertime/pull/2045">#2045</a>.</li>
-</ul>
- <ul>
-<li>Refactor of commands/context object to prepare for supporting JSDoc and a little TypeScript to add code completion/IntelliSense in editors <a href="https://github.com/sitespeedio/browsertime/pull/2047">#2047</a>.</li>
-</ul>
- <ul>
-<li>Updated documentation for scripting with better JSDoc <a href="https://github.com/sitespeedio/browsertime/pull/2048">#204</a>.</li>
-</ul>
- <ul>
-<li>The code for getting Interaction to next paint was broken. This PR fixes it, make the code cleaner and gives more attribution <a href="https://github.com/sitespeedio/browsertime/pull/2060">#2060</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 20.0.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#20.0.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#20.0.0</guid>
-            <pubDate>Fri, 22 Dec 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Firefox 121 in the Docker container.g</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Group page load parameters as PageLoad to make them easier to find using <code>--help</code> <a href="https://github.com/sitespeedio/browsertime/pull/2035">#2035</a>.</li>
-</ul>
- <ul>
-<li>Fix starting Firefox 121 on Mac <a href="https://github.com/sitespeedio/browsertime/pull/2043">#2043</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 19.3.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#19.3.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#19.3.1</guid>
-            <pubDate>Mon, 18 Dec 2023 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Ensure that visual metrics python script is included in the release.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
