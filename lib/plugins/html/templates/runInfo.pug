@@ -12,6 +12,3 @@ if usingBrowsertime
   
   if options.browsertime.browser === 'safari'
         p At the moment we get limited metrics from Safari. Transfer sizes and number of requests are missing.
-
-else if usingWebPageTest
-  p.small Tested #{timestamp} using WebPageTest #{options.webpagetest.location} using connectivity #{options.webpagetest.connectivity} for #{h.plural(options.webpagetest.runs, 'run')}.
