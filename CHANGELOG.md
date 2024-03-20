@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 33.4.0 - UNRELEASED
+### Added
+* Chrome 123, Firefox 124 and Edge 122 in the Docker container [#4114](https://github.com/sitespeedio/sitespeed.io/pull/4114).
+* Browsertime [21.6.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2160---2024-03-20) with updated Chrome/Edgedriver and a fix for runnin .stopAsError.
+
 ## 33.3.0 - 2024-03-16
 ### Added
 * Show Long Animation frames (enabled in Chrome 123) [#4180](https://github.com/sitespeedio/sitespeed.io/pull/4108). Using the timeline/profiling is still best doing your tests but long animation frames can help you if you do not have it turned on or familiar with thart data in RUM. Please create an issue if you have any ideas on how we shoudl display the metrics/information!
