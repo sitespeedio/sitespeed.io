@@ -83,7 +83,7 @@
     "@google-cloud/storage": "6.9.5",
     "@influxdata/influxdb-client": "1.33.2",
     "@tgwf/co2": "0.14.2",
-    "aws-sdk": "2.1327.0",
+    "@aws-sdk/client-s3": "3.537.0",
     "axe-core": "4.8.2",
     "browsertime": "21.6.0",
     "coach-core": "8.0.2",
