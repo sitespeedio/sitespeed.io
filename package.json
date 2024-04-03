@@ -62,7 +62,7 @@
     "node": ">=14.19.1"
   },
   "devDependencies": {
-    "ava": "5.2.0",
+    "ava": "6.1.2",
     "changelog-parser": "3.0.1",
     "clean-css-cli": "5.6.2",
     "eslint": "8.57.0",
