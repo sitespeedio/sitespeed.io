@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 33.5.0 - UNRELEASED
+## 33.5.0 - 2024-04-04
 ### Added
 * Updated to Edge 123 in the Docker container [#4135](https://github.com/sitespeedio/sitespeed.io/pull/4135).
 * Added missing default green/yellow/red limits for CLS and TTFB on the start page [#4120](https://github.com/sitespeedio/sitespeed.io/pull/4120).
@@ -20,7 +20,7 @@
 ## 33.4.0 - 2024-03-20
 ### Added
 * Chrome 123, Firefox 124 and Edge 122 in the Docker container [#4114](https://github.com/sitespeedio/sitespeed.io/pull/4114).
-* Browsertime [21.6.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2160---2024-03-20) with updated Chrome/Edgedriver and a fix for runnin .stopAsError.
+* Browsertime [21.6.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2160---2024-03-20) with updated Chrome/Edgedriver and a fix for running `.stopAsError`.
 
 ## 33.3.0 - 2024-03-16
 ### Added
