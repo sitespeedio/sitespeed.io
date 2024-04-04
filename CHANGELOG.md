@@ -1,5 +1,55 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 33.5.0 - UNRELEASED
+### Added
+* Updated to Edge 123 in the Docker container [#4135](https://github.com/sitespeedio/sitespeed.io/pull/4135).
+* Added missing default green/yellow/red limits for CLS and TTFB on the start page [#4120](https://github.com/sitespeedio/sitespeed.io/pull/4120).
+* Browsertime 21.7.0 with Edgedriver 123.
+
+### Fixed
+* The summary page alway showed blue color for AXE violations. This PR makes them green/yellow/red [#4123](https://github.com/sitespeedio/sitespeed.io/pull/4123).
+* Updated dependencies:
+ * Axe-core 4.9.0 [#4126](https://github.com/sitespeedio/sitespeed.io/pull/4126)
+ * CO2 0.14.4 [#4127](https://github.com/sitespeedio/sitespeed.io/pull/4127)
+ * import-global 1.1.0 [#4129](https://github.com/sitespeedio/sitespeed.io/pull/4129)
+ * AWS SDK 2.1591.0 [#4130](https://github.com/sitespeedio/sitespeed.io/pull/4130)
+ * dayjs 1.11.10, fs-extra 11.2.0, uuid 9.0.1, junit-report-builder 3.2.1, [#4131](https://github.com/sitespeedio/sitespeed.io/pull/4131).
+ * cli-color 2.0.4, node-scp 0.0.23, ora 8.0.1, os-name 5.0.0 and p-limit 5.0.0 [#4132](https://github.com/sitespeedio/sitespeed.io/pull/4132).
+ * tape 5.7.5, find-up 7.0.0, sass 1.72.0 and clean-css-cli 5.6.3 [#4133](https://github.com/sitespeedio/sitespeed.io/pull/4133)
+
+## 33.4.0 - 2024-03-20
+### Added
+* Chrome 123, Firefox 124 and Edge 122 in the Docker container [#4114](https://github.com/sitespeedio/sitespeed.io/pull/4114).
+* Browsertime [21.6.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2160---2024-03-20) with updated Chrome/Edgedriver and a fix for runnin .stopAsError.
+
+## 33.3.0 - 2024-03-16
+### Added
+* Show Long Animation frames (enabled in Chrome 123) [#4180](https://github.com/sitespeedio/sitespeed.io/pull/4108). Using the timeline/profiling is still best doing your tests but long animation frames can help you if you do not have it turned on or familiar with thart data in RUM. Please create an issue if you have any ideas on how we shoudl display the metrics/information!
+* Show CPU power consumption (when using Firefox) [#4104](https://github.com/sitespeedio/sitespeed.io/pull/4104). You can try it with: `sitespeed.io -b firefox -n 1 --firefox.geckoProfiler --firefox.geckoProfilerParams.features "power" --firefox.powerConsumption https://www.sitespeed.io/`
+
+### Fixed
+*  Updated to [Browsertime 21.5.3](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2153---2024-03-12) containing various bug fixes.
+
+## 33.2.0 - 2024-03-12
+### Added
+* Updated to Browsertime 21.5.0 in [#4103](https://github.com/sitespeedio/sitespeed.io/pull/4103) also included changes released in 21.4.0.
+  * Firefox: 
+    * Move injectJS functionality to Bidi [#2088](https://github.com/sitespeedio/browsertime/pull/2088). This makes it possible to inject JS in Firefox on mobile.
+  * Expose Bidi in commands [#2091](https://github.com/sitespeedio/browsertime/pull/2091). You can now use webdriver bidi direct in your commands.
+  * Fixed command action.clear() that actually didn't clear the command [#2095](https://github.com/sitespeedio/browsertime/pull/2095).
+  * Added the following trace categories for Chrome that now is used by default when you turn on the timeline: 'disabled-by-default-devtools.timeline.frame', 'disabled-by-default-devtools.timeline.invalidationTracking','loading', 'latencyInfo' - done in [#2086](https://github.com/sitespeedio/browsertime/pull/2086).
+  * Added a simple Loaf-script to get the 10 largest loaf. Lets iterate over the script and see how we can get the most useful information from it [#2087](https://github.com/sitespeedio/browsertime/pull/2087).
+
+## 33.1.1 - 2024-02-26
+### Fixed
+* Updateds to Browsertime 21.3.1 that has an updated version of the Chromedriver isntaller that fixes the bug installing on Windows [#4096](https://github.com/sitespeedio/sitespeed.io/pull/4096).
+
+## 33.1.0 - 2024-02-21
+### Added
+* Firefox 123 and Chrome 122 in the Docker container [#4090](https://github.com/sitespeedio/sitespeed.io/pull/4090) and [#4089](https://github.com/sitespeedio/sitespeed.io/pull/4089).
+* Chromedriver 122 and Edgedriver 121 
+* [Browsertime 21.3.0](https://github.com/sitespeedio/sitespeed.io/pull/4091).
+
 ## 33.0.0 - 2024-02-11
 
 *Announcement*: In the next major release we will remove all support for WebPageTest. If you still plan to use WebPageTest you can probaly still use the [plugin](https://github.com/sitespeedio/plugin-webpagetest) for a while if your WebPageTest installation works.

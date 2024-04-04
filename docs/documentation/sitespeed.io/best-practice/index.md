@@ -91,7 +91,7 @@ If you use the <code>--preScript</code> or <code>--multi</code> feature, it is t
 ### My pre/post/scripting script doesn't work?
 We use Selenium pre/post script navigation. You can [read more](/documentation/sitespeed.io/prepostscript/) about of our pre/post script setup and focus on the [debug section](/documentation/sitespeed.io/prepostscript/#debuglog-from-your-script) if you have any problem.
 
-If you have problem with Selenium (getting the right element etc), PLEASE do not create issues in sitespeed.io. Head over to the [Selenium community](https://docs.seleniumhq.org/) and they can help you.
+If you have problem with Selenium (getting the right element etc), PLEASE do not create issues in sitespeed.io. Head over to the [Selenium community](https://www.selenium.dev/support/) and they can help you.
 
 ### How do you pass HTML/JavaScript as a CLI parameter?
 The easiest way to pass HTML to the CLI is to pass on the whole message as a String (use a quotation mark to start and end the String) and then do not use quotation marks inside the HTML.

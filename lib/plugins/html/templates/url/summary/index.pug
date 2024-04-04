@@ -96,6 +96,11 @@ block content
               tr
                 td Memory
                 td #{h.size.format(memory)}
+            - powerConsumption = get(d, 'browsertime.pageSummary.statistics.powerConsumption.median')
+            if powerConsumption 
+              tr
+                td Firefox CPU Power Consumption
+                td #{powerConsumption} µWh
             - requests = get(d, 'pagexray.pageSummary.requests')
             if requests
               tr
@@ -142,7 +147,6 @@ block content
                 tr
                   td Cumulative Layout Shift (CLS) [median]
                   td #{cls.toFixed(2)}
-            - tbt = get(d, 'browsertime.pageSummary.statistics.cpu.longTasks.totalBlockingTime.median')
             if inp
                 tr
                   td Interaction To Next Paint (INP) [median]

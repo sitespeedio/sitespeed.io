@@ -103,7 +103,7 @@ You can also install everything manually to have more control. This is what's ne
     * `curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh`
     * `sudo bash nodesource_setup.sh`
     * `sudo apt install -y nodejs`
-2. Installffmpeg `sudo apt-get update -y && sudo apt-get install -y ffmpeg`
+2. Install ffmpeg `sudo apt-get update -y && sudo apt-get install -y ffmpeg`
 3. Install Python dependencies:
     * `sudo apt-get install -y  python-is-python3 python3-dev python3-pip`  
     * `python -m pip install pyssim OpenCV-Python Numpy scipy`

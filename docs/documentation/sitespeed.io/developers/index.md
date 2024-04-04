@@ -23,7 +23,7 @@ Almost everything we do is written in NodeJS (use [latest LTS](https://nodejs.or
 ### Built upon Open Source
 Sitespeed.io uses a lot of other Open Source tools so massive love to those projects and maintainers:
 
- * [Selenium](http://www.seleniumhq.org/)
+ * [Selenium](http://www.selenium.dev/)
  * [Visual Metrics](https://github.com/WPO-Foundation/visualmetrics)
  * [PerfCascade](https://github.com/micmro/PerfCascade)
  * [Skeleton](http://getskeleton.com)

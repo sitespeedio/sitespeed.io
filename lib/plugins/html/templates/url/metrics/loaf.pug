@@ -1,0 +1,53 @@
+if loaf
+    a#longAnimationFrames
+    h3 Long Animation Frames
+    p Read more about the Long Animation Frames API here 
+        a(href='https://developer.chrome.com/docs/web-platform/long-animation-frames') here.  
+    p The top 10 longest animation frames entries
+    
+    each oneLoaf in loaf
+        table 
+            tr 
+                th Blocking duration 
+                th Work duration
+                th Render duration
+                th PreLayout Duration
+                th Style And Layout Duration
+            tr 
+                td #{h.time.ms(h.decimals(oneLoaf.blockingDuration))}
+                td #{h.time.ms(h.decimals(oneLoaf.workDuration))}
+                td #{h.time.ms(h.decimals(oneLoaf.renderDuration))}
+                td #{h.time.ms(h.decimals(oneLoaf.preLayoutDuration))}
+                td #{h.time.ms(h.decimals(oneLoaf.styleAndLayoutDuration))}
+
+            if oneLoaf.scripts.length > 0  
+                each theScript in oneLoaf.scripts 
+                    if theScript.sourceURL !== ''
+                        tr 
+                            td.url.assetsurl(colspan=5)
+                                 a(href=theScript.sourceURL)= theScript.sourceURL
+                    tr 
+                        td(colspan=5)
+                            if theScript.forcedStyleAndLayoutDuration !== 0
+                                p Forced Style And Layout Duration:  #{h.time.ms(h.decimals(theScript.forcedStyleAndLayoutDuration))}
+                            p 
+                                b Invoker: 
+                                | #{theScript.invoker}
+                                br
+                                b Invoker Type: 
+                                | #{theScript.invokerType}
+                                br
+                                if theScript.sourceFunctionName
+                                    b Source Function Name: 
+                                    | #{theScript.sourceFunctionName}
+                                    br
+                                if theScript.windowAttribution
+                                    b Window attribution: 
+                                    | #{theScript.windowAttribution}
+                                    br
+                                if theScript.sourceCharPosition
+                                    b Source char position: 
+                                    | #{theScript.sourceCharPosition}
+            else
+                tr 
+                    td(colspan=5) No availible script information.
