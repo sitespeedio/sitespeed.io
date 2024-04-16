@@ -14,7 +14,7 @@ export default async function (context, commands) {
  */
 export default async function (context, commands) {
   await commands.measure.start('https://www.sitespeed.io');
-  await commands.breakpoint('');
+  await commands.debug.breakpoint('');
   return commands.measure.start('https://www.sitespeed.io/documentation/');
 };
 </code></pre><h2 id="watch-what's-going-on">Watch what's going on</h2><p>If your script stopped working in your monitoring, try to run the test locally where you can watch the browser window.</p><p>Either you can do it with Docker following these <a href="https://www.sitespeed.io/documentation/sitespeed.io/docker/#visualise-your-test-in-xvfb">instructions</a> or run your test with a locally installed sitespeed.io using <code>npm install sitespeed.io -g</code>.</p><h2 id="better-safe-than-sorry">Better safe than sorry</h2><p>Implement <code>try/catch</code> blocks for robust error handling.</p><pre class="prettyprint source lang-javascript"><code>/**

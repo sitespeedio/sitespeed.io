@@ -14,7 +14,7 @@ export default async function (context, commands) {
   await commands.bidi.send(params);
   await commands.measure.start('https://www.sitespeed.io');
 }
-</code></pre><h3 id="subscribe-and-usubscribe-to-events">Subscribe and usubscribe to events</h3><p>You need to subscribe to the event types that you are interested in with <code>commands.bidi.subscribe('messageType');</code> and unsubscribe when you are done.</p><h3 id="listen-on-events">Listen on events</h3><p>When you subscribe on an event you want to do something when the events happen.</p><pre class="prettyprint source lang-javascript"><code>/**
+</code></pre><h3 id="subscribe-and-unsubscribe-to-events">Subscribe and unsubscribe to events</h3><p>You need to subscribe to the event types that you are interested in with <code>commands.bidi.subscribe('messageType');</code> and unsubscribe when you are done.</p><h3 id="listen-on-events">Listen on events</h3><p>When you subscribe on an event you want to do something when the events happen.</p><pre class="prettyprint source lang-javascript"><code>/**
  * @param {import('browsertime').BrowsertimeContext} context
  * @param {import('browsertime').BrowsertimeCommands} commands
  */
