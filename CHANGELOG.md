@@ -1,5 +1,12 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 33.6.0 - 2024-04-17
+### Added
+* Updated to Chrome 124 and Firefox 125 in the Docker container [#4142](https://github.com/sitespeedio/sitespeed.io/pull/4142) and [#4142](https://github.com/sitespeedio/sitespeed.io/pull/4141).
+
+### Fixed
+* Add new tag: axeType for axe data in InfluxDB [#4139](https://github.com/sitespeedio/sitespeed.io/pull/4139). Before the fix there was no way to query some of the Axe data.
+
 ## 33.5.0 - 2024-04-04
 ### Added
 * Updated to Edge 123 in the Docker container [#4135](https://github.com/sitespeedio/sitespeed.io/pull/4135).
