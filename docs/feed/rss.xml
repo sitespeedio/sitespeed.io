@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Wed, 20 Mar 2024 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 17 Apr 2024 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,78 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[sitespeed.io 33.6.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#33.6.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#33.6.0</guid>
+            <pubDate>Wed, 17 Apr 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Chrome 124 and Firefox 125 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4142">#4142</a> and <a href="https://github.com/sitespeedio/sitespeed.io/pull/4141">#4142</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Add new tag: axeType for axe data in InfluxDB <a href="https://github.com/sitespeedio/sitespeed.io/pull/4139">#4139</a>. Before the fix there was no way to query some of the Axe data.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 33.5.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#33.5.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#33.5.0</guid>
+            <pubDate>Thu, 04 Apr 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Edge 123 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4135">#4135</a>.</li>
+</ul>
+ <ul>
+<li>Added missing default green/yellow/red limits for CLS and TTFB on the start page <a href="https://github.com/sitespeedio/sitespeed.io/pull/4120">#4120</a>.</li>
+</ul>
+ <ul>
+<li>Browsertime 21.7.0 with Edgedriver 123.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>The summary page alway showed blue color for AXE violations. This PR makes them green/yellow/red <a href="https://github.com/sitespeedio/sitespeed.io/pull/4123">#4123</a>.</li>
+</ul>
+ <ul>
+<li>Updated dependencies:</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 21.7.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.7.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.7.0</guid>
+            <pubDate>Wed, 03 Apr 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Edge and Edgedriver 123 <a href="https://github.com/sitespeedio/browsertime/pull/2116">#2116</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated to Selenium 4.19.0 <a href="https://github.com/sitespeedio/browsertime/pull/2117">#2117</a>.</li>
+</ul>
+ <ul>
+<li>Block domains using Bidi instead of the extension server for Firefox <a href="https://github.com/sitespeedio/browsertime/pull/2118">#2118</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 21.6.1]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.6.1</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.6.1</guid>
+            <pubDate>Fri, 22 Mar 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix running Safari TP. Thank you <a href="https://github.com/92kns">KS</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2115">#2115</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 33.4.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#33.4.0</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#33.4.0</guid>
@@ -25,10 +97,35 @@
 <li>Chrome 123, Firefox 124 and Edge 122 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4114">#4114</a>.</li>
 </ul>
  <ul>
-<li>Browsertime <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2160---2024-03-20">21.6.0</a> with updated Chrome/Edgedriver and a fix for runnin .stopAsError.</li>
+<li>Browsertime <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2160---2024-03-20">21.6.0</a> with updated Chrome/Edgedriver and a fix for running <code>.stopAsError</code>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 21.6.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.6.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.6.0</guid>
+            <pubDate>Wed, 20 Mar 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Chrome 123, Firefox 124 and Edge 122 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2110">#2110</a>.</li>
+</ul>
+ <ul>
+<li>Chromedriver 123 and Edgedriver 122 <a href="https://github.com/sitespeedio/browsertime/pull/2111">#2111</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Fix a bug in stopAsError so that you can continue to measure other pages after the stop. Also follow the documentation and mark the run as a failure <a href="https://github.com/sitespeedio/browsertime/pull/2107">#2107</a>.</li>
+</ul>
+ <ul>
+<li>Use bidi for Firefox when using <code>--basicAuth</code> <a href="https://github.com/sitespeedio/browsertime/pull/2093">#2093</a> (needs Firefox 124).</li>
+</ul>
+ <ul>
+<li>Use bidi for Firefox when using <code>--cookie</code> <a href="https://github.com/sitespeedio/browsertime/pull/2090">#2090</a> (needs Firefox 124).</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[sitespeed.io 33.3.0]]></title>
@@ -189,28 +286,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 21.3.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.3.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.3.0</guid>
-            <pubDate>Wed, 21 Feb 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Edgedriver 121 <a href="https://github.com/sitespeedio/browsertime/pull/2078">#2078</a>.</li>
-</ul>
- <ul>
-<li>Chromdriver 122 <a href="https://github.com/sitespeedio/browsertime/pull/2080">#2080</a>.</li>
-</ul>
- <ul>
-<li>Chrome 122 and Firefox 123 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2081">#2081</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Log that Throttle is used inside Docker <a href="https://github.com/sitespeedio/browsertime/pull/2077">#2077</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[sitespeed.io 33.0.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#33.0.0</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#33.0.0</guid>
@@ -239,49 +314,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[browsertime 21.2.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.2.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.2.1</guid>
-            <pubDate>Sun, 11 Feb 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix correct JavaScript signaure for stopAsError in types.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 21.2.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.2.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.2.0</guid>
-            <pubDate>Sun, 11 Feb 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Edge 121 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2071">#2071</a>.</li>
-</ul>
- <ul>
-<li>You can stop a measurement as a failure and make sure no metrics is collected. This is useful if you catch an error in try/catch when trying to measure a page. <code>measure.stopAsError(failureMessage, optionalURL)</code>. Add your message and if you know the URL, add it. <a href="https://github.com/sitespeedio/browsertime/pull/2076">2076</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Set correct viewports for the following emulated mobiles for Chrome: iPhone 14 Pro Max <a href="https://github.com/sitespeedio/browsertime/pull/2070">#2070</a>.</li>
-</ul>
- <ul>
-<li>Update adbkit to 3.2.6 <a href="https://github.com/sitespeedio/browsertime/pull/2069">#2069</a>.</li>
-</ul>
- <ul>
-<li>Selenium 4.17.0 <a href="https://github.com/sitespeedio/browsertime/pull/2068">#2068</a>.</li>
-</ul>
- <ul>
-<li>There was a missing await when getting the tcpdump <a href="https://github.com/sitespeedio/browsertime/pull/2075">#2075</a></li>
-</ul>
- <ul>
-<li>Remove all trace level logs (and do debug instead) since trace added unnecessary stacktraces to the log <a href="https://github.com/sitespeedio/browsertime/pull/2074">#2074</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[sitespeed.io 32.2.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#32.2.0</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#32.2.0</guid>
@@ -307,25 +339,6 @@
 </ul>
  <ul>
 <li>Firefox 122 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4068">#4068</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 32.0.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#32.0.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#32.0.0</guid>
-            <pubDate>Fri, 19 Jan 2024 00:00:00 GMT</pubDate>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 31.2.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.2.1</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.2.1</guid>
-            <pubDate>Thu, 18 Jan 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Another fix for <code>--budget.suppressExitCode</code> hopefully it works better this time <a href="https://github.com/sitespeedio/sitespeed.io/pull/4065">#4065</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
