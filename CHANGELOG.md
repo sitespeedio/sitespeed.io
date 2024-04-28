@@ -1,9 +1,33 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 33.6.0 - 2024-04-17
+### Added
+* Updated to Chrome 124 and Firefox 125 in the Docker container [#4142](https://github.com/sitespeedio/sitespeed.io/pull/4142) and [#4142](https://github.com/sitespeedio/sitespeed.io/pull/4141).
+
+### Fixed
+* Add new tag: axeType for axe data in InfluxDB [#4139](https://github.com/sitespeedio/sitespeed.io/pull/4139). Before the fix there was no way to query some of the Axe data.
+
+## 33.5.0 - 2024-04-04
+### Added
+* Updated to Edge 123 in the Docker container [#4135](https://github.com/sitespeedio/sitespeed.io/pull/4135).
+* Added missing default green/yellow/red limits for CLS and TTFB on the start page [#4120](https://github.com/sitespeedio/sitespeed.io/pull/4120).
+* Browsertime 21.7.0 with Edgedriver 123.
+
+### Fixed
+* The summary page alway showed blue color for AXE violations. This PR makes them green/yellow/red [#4123](https://github.com/sitespeedio/sitespeed.io/pull/4123).
+* Updated dependencies:
+ * Axe-core 4.9.0 [#4126](https://github.com/sitespeedio/sitespeed.io/pull/4126)
+ * CO2 0.14.4 [#4127](https://github.com/sitespeedio/sitespeed.io/pull/4127)
+ * import-global 1.1.0 [#4129](https://github.com/sitespeedio/sitespeed.io/pull/4129)
+ * AWS SDK 2.1591.0 [#4130](https://github.com/sitespeedio/sitespeed.io/pull/4130)
+ * dayjs 1.11.10, fs-extra 11.2.0, uuid 9.0.1, junit-report-builder 3.2.1, [#4131](https://github.com/sitespeedio/sitespeed.io/pull/4131).
+ * cli-color 2.0.4, node-scp 0.0.23, ora 8.0.1, os-name 5.0.0 and p-limit 5.0.0 [#4132](https://github.com/sitespeedio/sitespeed.io/pull/4132).
+ * tape 5.7.5, find-up 7.0.0, sass 1.72.0 and clean-css-cli 5.6.3 [#4133](https://github.com/sitespeedio/sitespeed.io/pull/4133)
+
 ## 33.4.0 - 2024-03-20
 ### Added
 * Chrome 123, Firefox 124 and Edge 122 in the Docker container [#4114](https://github.com/sitespeedio/sitespeed.io/pull/4114).
-* Browsertime [21.6.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2160---2024-03-20) with updated Chrome/Edgedriver and a fix for runnin .stopAsError.
+* Browsertime [21.6.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2160---2024-03-20) with updated Chrome/Edgedriver and a fix for running `.stopAsError`.
 
 ## 33.3.0 - 2024-03-16
 ### Added
