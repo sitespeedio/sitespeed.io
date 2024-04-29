@@ -175,31 +175,9 @@ block content
               tr
                 td Last Visual Change
                 td #{h.time.ms(lastVisualChange)}
-            if !d.browsertime && d.webpagetest
-              tr
-                th(colspan='2') WebPageTest
-              tr
-                td Render (first view)
-                td #{d.webpagetest.run.firstView.render}
-              tr
-                td Speed Index (first view)
-                td #{d.webpagetest.run.firstView.SpeedIndex}
-              tr
-                td Visual Complete 85% (first view)
-                td #{d.webpagetest.run.firstView.visualComplete85}
-              tr
-                td Last Visual Change (first view)
-                td #{d.webpagetest.run.firstView.lastVisualChange}
-              tr
-                td Requests
-                td #{d.webpagetest.run.firstView.requestsFull}
 
         .one-half.column
-            if !d.browsertime && d.webpagetest
-              - screenshotName = 'data/screenshots/wpt-' + iteration + '-firstView.png'
-              a(href=screenshotName)
-                img.screenshot(src=screenshotName, alt='Screenshot')
-            else if hasScreenShots
+            if hasScreenShots
               - screenshotName = 'data/screenshots/' + iteration + '/afterPageCompleteCheck.' + screenShotType
               - const width = options.mobile ? 150 : '100%';
               a(href=screenshotName)
