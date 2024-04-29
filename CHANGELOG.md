@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 34.0.0 - UNRELEASED
+
+### Breaking
+* The S3 plugin has been upgraded to @aws-sdk/client-s3 v3 [#4138](https://github.com/sitespeedio/sitespeed.io/pull/4138). If you are using the S3 plugin and not set region, that will now fail. The v2 version of the aws-sdk used us-east-1 region as default, if you didn't used to set region you can add `--s3.plugin us-east-1` and it will work as before.
+
 ## 33.6.0 - 2024-04-17
 ### Added
 * Updated to Chrome 124 and Firefox 125 in the Docker container [#4142](https://github.com/sitespeedio/sitespeed.io/pull/4142) and [#4142](https://github.com/sitespeedio/sitespeed.io/pull/4141).
