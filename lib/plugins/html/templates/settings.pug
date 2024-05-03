@@ -26,6 +26,10 @@ block content
         tr 
           td Emulated mobile
           td Yes
+      if hostname
+         tr
+          td Hostname
+          td #{hostname}
       if cpuBenchmark
         tr
           td CPU benchmark
