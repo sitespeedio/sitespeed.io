@@ -15,7 +15,7 @@
         "@sitespeed.io/plugin": "0.0.6",
         "@tgwf/co2": "0.14.4",
         "axe-core": "4.9.0",
-        "browsertime": "21.7.0",
+        "browsertime": "21.7.1",
         "cli-color": "2.0.4",
         "coach-core": "8.0.2",
         "concurrent-queue": "7.0.2",
@@ -3327,9 +3327,9 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "21.7.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-21.7.0.tgz",
-      "integrity": "sha512-gXM6IkeYyueGwCK58EvsbziCWhmimLbQpR+hNKv4AccRTJDc+xjCueDu4FeezHhBxfXwS2Ewt3WszLbUxBIKfg==",
+      "version": "21.7.1",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-21.7.1.tgz",
+      "integrity": "sha512-gge8t81jb+Z+12ccCZelTHM1V0NyMmJfwtvrXTyRtbS9VS2eGHB3ThvELMwx4hyPjQxVNRX4A0DwPsFedtBO3Q==",
       "dependencies": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "3.2.6",
@@ -3355,7 +3355,7 @@
         "lodash.merge": "4.6.2",
         "lodash.pick": "4.4.0",
         "lodash.set": "4.3.2",
-        "selenium-webdriver": "4.19.0",
+        "selenium-webdriver": "4.20.0",
         "yargs": "17.7.2"
       },
       "bin": {
@@ -9599,9 +9599,9 @@
       "optional": true
     },
     "node_modules/selenium-webdriver": {
-      "version": "4.19.0",
-      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.19.0.tgz",
-      "integrity": "sha512-8XHW8m9V2XN2/SC1kr4bWzMtGvjmKUEZ6S0UBoDBqonhmwEIzKOLbzhanBd08HCOg1s1O0XrDWCD71NnA8Zt0g==",
+      "version": "4.20.0",
+      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.20.0.tgz",
+      "integrity": "sha512-s/G44lGQ1xB3tmtX6NNPomlkpL6CxLdmAvp/AGWWwi4qv5Te1+qji7tPSyr6gyuoPpdYiof1rKnWe3luy0MrYA==",
       "dependencies": {
         "jszip": "^3.10.1",
         "tmp": "^0.2.3",
