@@ -7,6 +7,10 @@
 
 * Dependency to WebPageTest has been removed [#4085](https://github.com/sitespeedio/sitespeed.io/pull/4085).
 
+## 33.6.1 - 2024-05-13
+### Fixed
+* The plus1 container was updated with the latest version of the gpsi-plugin, since the old version broke when GPSI was updated to Lighthouse 12. 
+
 ## 33.6.0 - 2024-04-17
 ### Added
 * Updated to Chrome 124 and Firefox 125 in the Docker container [#4142](https://github.com/sitespeedio/sitespeed.io/pull/4142) and [#4142](https://github.com/sitespeedio/sitespeed.io/pull/4141).
