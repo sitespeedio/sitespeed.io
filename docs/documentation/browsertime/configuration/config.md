@@ -66,7 +66,6 @@ firefox
       --firefox.includeResponseBodies           Include response bodies in HAR  [choices: "none", "all", "html"] [default: "none"]
       --firefox.appconstants                    Include Firefox AppConstants information in the results  [boolean] [default: false]
       --firefox.acceptInsecureCerts             Accept insecure certs  [boolean]
-      --firefox.bidihar                         Use the new bidi HAR generator  [boolean] [default: false]
       --firefox.windowRecorder                  Use the internal compositor-based Firefox window recorder to emit PNG files for each frame that is a meaningful change.  The PNG output will further be merged into a variable frame rate video for analysis. Use this instead of ffmpeg to record a video (you still need the --video flag).  [boolean] [default: false]
       --firefox.memoryReport                    Measure firefox resident memory after each iteration.  [boolean] [default: false]
       --firefox.memoryReportParams.minizeFirst  Force a collection before dumping and measuring the memory report.  [boolean] [default: false]
@@ -81,7 +80,6 @@ firefox
       --firefox.collectMozLog                   Collect the MOZ HTTP log (by default). See --firefox.setMozLog if you need to specify the logs you wish to gather.  [boolean]
       --firefox.powerConsumption                Enable power consumption collection (in Wh). To get the consumption you also need to set firefox.geckoProfilerParams.features to include power.  [boolean] [default: false]
       --firefox.setMozLog                       Use in conjunction with firefox.collectMozLog to set MOZ_LOG to something specific. Without this, the HTTP logs will be collected by default  [default: "timestamp,nsHttp:5,cache2:5,nsSocketTransport:5,nsHostResolver:5"]
-      --firefox.disableBrowsertimeExtension     Disable installing the browsertime extension.  [boolean]
       --firefox.noDefaultPrefs                  Prevents browsertime from setting its default preferences.  [boolean] [default: false]
       --firefox.disableSafeBrowsing             Disable safebrowsing.  [boolean] [default: true]
       --firefox.disableTrackingProtection       Disable Tracking Protection.  [boolean] [default: true]
@@ -184,8 +182,8 @@ Options:
   -n, --iterations                                 Number of times to test the url (restarting the browser between each test)  [number] [default: 3]
       --prettyPrint                                Enable to print json/har with spaces and indentation. Larger files, but easier on the eye.  [boolean] [default: false]
       --delay                                      Delay between runs, in milliseconds  [number] [default: 0]
-  -r, --requestheader                              Request header that will be added to the request. Add multiple instances to add multiple request headers. Works for Firefox and Chrome. Use the following format key:value
-      --cookie                                     Cookie that will be added to the request. Add multiple instances to add multiple request cookies. Works for Firefox and Chrome. Use the following format cookieName=cookieValue
+  -r, --requestheader                              Request header that will be added to the request. Add multiple instances to add multiple request headers. Works for Edge and Chrome. Use the following format key:value
+      --cookie                                     Cookie that will be added to the request. Add multiple instances to add multiple request cookies. Works for Firefox, Chrome and Edge. Use the following format cookieName=cookieValue
       --injectJs                                   Inject JavaScript into the current page at document_start. Works for Firefox, Chrome and Edge. When injecting to Firefox make sure to wrap the code in a function!
       --block                                      Domain to block or URL or URL pattern to block. If you use Chrome you can also use --blockDomainsExcept (that is more performant). Works in Chrome/Edge. For Firefox you block a URL if you start with http else you will block by setting a domain, like upload.wikimedia.org
       --percentiles                                The percentile values within the data browsertime will calculate and report. This argument uses Yargs arrays and you you to set them correctly it is recommended to use a configuraration file instead.  [array] [default: [0,10,90,99,100]]

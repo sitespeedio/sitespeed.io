@@ -227,24 +227,6 @@ block content
               tr
                 td Cumulative Layout Shift (CLS) [p75]
                 td #{Number(cruxCLS).toFixed(2)}
-            if !d.browsertime && d.webpagetest
-              tr
-                th(colspan='2') WebPageTest
-              tr
-                td Render (first view)
-                td #{d.webpagetest.pageSummary.data.median.firstView.render}
-              tr
-                td Speed Index (first view)
-                td #{d.webpagetest.pageSummary.data.median.firstView.SpeedIndex}
-              tr
-                td Visual Complete 85% (first view)
-                td #{d.webpagetest.pageSummary.data.median.firstView.visualComplete85}
-              tr
-                td Last Visual Change (first view)
-                td #{d.webpagetest.pageSummary.data.median.firstView.lastVisualChange}
-              tr
-                td Requests
-                td #{d.webpagetest.pageSummary.data.median.firstView.requestsFull}
             if d.crux && d.crux.pageSummary && d.crux.pageSummary.loadingExperience && d.crux.pageSummary.loadingExperience.ALL && d.crux.pageSummary.loadingExperience.ALL.data && !d.browsertime
               - const cruxMetrics = {first_contentful_paint:'First Contentful Paint (FCP)', largest_contentful_paint: 'Largest Contentful Paint (LCP)', first_input_delay:'First Input Delay (FID)', cumulative_layout_shift: 'Cumulative Layout Shift'}; 
               each name, key in cruxMetrics
@@ -265,9 +247,6 @@ block content
               - const screenshotName = 'data/screenshots/' + screenshotNo + '/afterPageCompleteCheck.' + screenShotType
               a(href=screenshotName)
                 img.screenshot(src=screenshotName, width=width, alt='Screenshot of run ' + screenshotNo)
-            else if !d.browsertime && d.webpagetest
-              a(href='data/screenshots/wpt-1-firstView.png')
-                img.screenshot(src='data/screenshots/wpt-1-firstView.png', alt='Screenshot of run 1')
       include ./summaryBox.pug
 
       #downloads

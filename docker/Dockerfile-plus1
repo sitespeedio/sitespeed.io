@@ -3,18 +3,14 @@ FROM sitespeedio/sitespeed.io:${version}
 
 ENV SITESPEED_IO_BROWSERTIME__XVFB true
 ENV SITESPEED_IO_BROWSERTIME__DOCKER true
-ENV SITESPEED_IO_PLUGINS__ADD /lighthouse/index.js,/gpsi/lib/index.js
+ENV SITESPEED_IO_PLUGINS__ADD @sitespeed.io/plugin-lighthouse,@sitespeed.io/plugin-gpsi
 
 RUN sudo apt-get update && sudo apt-get install git -y
 RUN node --version
 RUN npm --version
-WORKDIR /gpsi
-RUN git clone https://github.com/sitespeedio/plugin-gpsi.git .
-RUN npm install --production
 
-WORKDIR /lighthouse
-RUN git clone https://github.com/sitespeedio/plugin-lighthouse.git . 
-RUN npm install --production
+RUN npm install @sitespeed.io/plugin-lighthouse -g --production
+RUN npm install @sitespeed.io/plugin-gpsi -g --production
 
 VOLUME /sitespeed.io
 WORKDIR /sitespeed.io

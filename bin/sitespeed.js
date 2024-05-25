@@ -7,6 +7,7 @@ import { execSync } from 'node:child_process';
 import { platform } from 'node:os';
 import { resolve, basename } from 'node:path';
 import { readFileSync } from 'node:fs';
+import { EventEmitter } from 'node:events';
 
 import merge from 'lodash.merge';
 import ora from 'ora';
@@ -14,6 +15,10 @@ import ora from 'ora';
 import { parseCommandLine } from '../lib/cli/cli.js';
 import { run } from '../lib/sitespeed.js';
 import { addTest, waitAndGetResult, get } from '../lib/api/send.js';
+
+// This is due to CDP do no have (or has it) a way to remove listeners
+// and default 10 is quite small number.
+EventEmitter.defaultMaxListeners = 30;
 
 async function api(options) {
   const action = options.api.action ?? 'addAndGetResult';
@@ -91,6 +96,9 @@ async function api(options) {
           }
         } else if (result.status === 'failed') {
           spinner.fail('Test failed');
+          if (options.api.json) {
+            console.log(JSON.stringify(result));
+          }
           process.exitCode = 1;
           process.exit();
         }

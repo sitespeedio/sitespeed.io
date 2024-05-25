@@ -26,11 +26,6 @@ Michael Mrowetz has updated [PerfCascade](https://github.com/micmro/PerfCascade)
 
 The video now uses video.js making it easier to slow the video down.
 
-## Slack and WebPageTest
-If you slack after a run we now default sends firstVisualChange, lastVisualChange and fullyLoaded metrics. You can also choose which metric that will decide if your slack will be a warning or error message (and set the limit).
-
-Finally we support custom metrics for WebPageTest. You will see them on the HTML pages and the metrics will automatically be sent to Graphite. Thank you [jpvincent](https://github.com/jpvincent) for the initial PR!
-
 ## Important bug fixes
 * Running multiple URLs in WebPageTest failed because of a "feature" in the WebPageTest NodeJS API where options in s are change to ms.
 

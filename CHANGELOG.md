@@ -1,6 +1,24 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 33.6.0 - 2024-04-17
+## 34.0.0 - UNRELEASED
+
+### Breaking
+* The S3 plugin has been upgraded to @aws-sdk/client-s3 v3 [#4138](https://github.com/sitespeedio/sitespeed.io/pull/4138). If you are using the S3 plugin and not set region, that will now fail. The v2 version of the aws-sdk used us-east-1 region as default, but v3 has removed the default setting. If you didn't used to set region you can add `--s3.region us-east-1` and it will work as before. If you do not do that, the uploads to S3 will fail.
+
+* Dependency to WebPageTest has been removed [#4085](https://github.com/sitespeedio/sitespeed.io/pull/4085). You are only affected if you used the plugin-webpagetest. This means that the Docker container with the WebPageTest plugin will not be built. If you still want to use WebPageTest with sitespeed.io you can still clone the archived [plugin-webpagetest](https://github.com/sitespeedio/plugin-webpagetest).
+
+* The -plus1 Docker container now has plugin-lighthouse and plugin-gpsi installed from npm instead of the git repository. It will work as before, but if you want to disable one of them, that has changed: TBD
+
+* Updated to [Browsertime 22](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2200---2024-05-16). This version of Browsertime drops the Browsertime extension and start use the kind of new HAR exporter using Bidi as the default HAR exporter! If you add request headers to your Firefox test or clear the cache inside of your scripyt using Firefox, this will stop to work for now.
+
+### Added
+* Updated to Chrome 125, Firefox 126 and Edge 124 in the Docker container [#4156](https://github.com/sitespeedio/sitespeed.io/pull/4156)
+
+## 33.6.1 - 2024-05-13
+### Fixed
+* The plus1 container was updated with the latest version of the gpsi-plugin, since the old version broke when GPSI was updated to Lighthouse 12. 
+
+ will## 33.6.0 - 2024-04-17
 ### Added
 * Updated to Chrome 124 and Firefox 125 in the Docker container [#4142](https://github.com/sitespeedio/sitespeed.io/pull/4142) and [#4142](https://github.com/sitespeedio/sitespeed.io/pull/4141).
 
