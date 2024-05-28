@@ -28,18 +28,21 @@ To get the server and testrunner running you need to install [NodeJS](https://no
 
 #### Install the server
 
+Get the latest release from npm:
+
 ```bash
-npm install @sitespeed.io/server
+npm install @sitespeed.io/server -g
 ```
+
 
 #### Install the test runner
-Run: 
+
+Get the latest release from npm:
 
 ```bash
-npm install @sitespeed.io/testrunner`
+npm install @sitespeed.io/testrunner -g
 ```
 
-If you want to run the pre made docker containers, you can configure that.
 
 ### Install/start the dependencies
 If you don't want to handle the dependencies yourself you can use our docker compose file. You need to have Docker and Docker compose installed to run that.
@@ -57,9 +60,9 @@ At the moment we do not publish any pre-made Docker containers for the server an
 
 
 ## Configuration
-If you start the applications, the default configuration is used. The configutration for the server is here and testrunner here. 
+If you start the applications, the default configuration is used. The configuration for the server is here and testrunner here. 
 
-You can override that configuration by command line parameters or you can replace the configuration by usung your own configuration file.
+You can (and should) override that configuration by command line parameters or you can replace the configuration by using your own configuration file.
 
 ### Yaml / JSON
 You can have your own configuration files using yaml or JSON.
@@ -83,9 +86,19 @@ The configuration for sitespeed.io uses inheritance. On the server you can confi
 
 `server -> testrunner -> cli/gui configurations`
 
-This way you can configure some parts globally (in the server config) and some things locally (per testrunner). For example, you can have your 
+This way you can configure some parts globally (in the server config) and some things locally (per testrunner).
 
 ## The server
+
+### Validate test domains
+
+### Configure your own look and feel
+
+### Wait for test
+
+### Adding Basic Auth
+
+### 
 
 ## The testrunner
 
