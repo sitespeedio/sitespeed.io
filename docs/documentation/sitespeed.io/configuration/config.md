@@ -145,7 +145,7 @@ Crawler
 
 scp
       --scp.host               The host.
-      --scp.destinationPath   The destination path on the remote server where the files will be copied.
+      --scp.destinationPath    The destination path on the remote server where the files will be copied.
       --scp.port               The port for ssh when scp the result to another server.  [default: 22]
       --scp.username           The username. Use username/password or username/privateKey/pem.
       --scp.password           The password if you do not use a pem file.
@@ -160,7 +160,7 @@ Grafana
       --grafana.annotationTitle       Add a title to the annotation sent for a run.
       --grafana.annotationMessage     Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
       --grafana.annotationTag         Add a extra tag to the annotation sent for a run. Repeat the --grafana.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
-      --grafana.annotationScreenshot  Include screenshot (from Browsertime/WebPageTest) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
+      --grafana.annotationScreenshot  Include screenshot (from Browsertime) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
 
 Graphite
       --graphite.host                        The Graphite host used to store captured metrics.
@@ -174,7 +174,7 @@ Graphite
       --graphite.arrayTags                   Send the tags as Array or a String. In Graphite 1.0 the tags is a array. Before a String  [boolean] [default: true]
       --graphite.annotationTitle             Add a title to the annotation sent for a run.
       --graphite.annotationMessage           Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
-      --graphite.annotationScreenshot        Include screenshot (from Browsertime/WebPageTest) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
+      --graphite.annotationScreenshot        Include screenshot (from Browsertime) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
       --graphite.sendAnnotation              Send annotations when a run is finished. You need to specify a --resultBaseURL for this to work. However if you for example use a Prometheus exporter, you may want to make sure annotations are not sent, then set it to false.  [boolean] [default: true]
       --graphite.annotationRetentionMinutes  The retention in minutes, to make annotation match the retention in Graphite.  [number]
       --graphite.statsd                      Uses the StatsD interface  [boolean] [default: false]
@@ -247,7 +247,7 @@ s3
       --s3.secret             The S3 secret.
       --s3.bucketname         Name of the S3 bucket,
       --s3.path               Override the default folder path in the bucket where the results are uploaded. By default it's "DOMAIN_OR_FILENAME_OR_SLUG/TIMESTAMP", or the name of the folder if --outputFolder is specified.
-      --s3.region             The S3 region. Optional depending on your settings.
+      --s3.region             The S3 region.
       --s3.acl                The S3 canned ACL to set. Optional depending on your settings.
       --s3.removeLocalResult  Remove all the local result files after they have been uploaded to S3.  [boolean] [default: false]
       --s3.params             Extra params passed when you do the S3.upload: https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#upload-property - Example: --s3.params.Expires=31536000 to set expire to one year.
@@ -277,8 +277,9 @@ HTML
       --html.assetsBaseURL                  The base URL to the server serving the assets of HTML results. In the format of https://result.sitespeed.io. This can be used to reduce size in large setups. If set, disables writing of assets to the output folder.
       --html.compareURL, --html.compareUrl  Will add a link on the waterfall page, helping you to compare the HAR. The full path to your compare installation. In the format of https://compare.sitespeed.io/
       --html.pageSummaryMetrics             Select from a list of metrics to be displayed for given URL(s).  Pass on multiple --html.pageSummaryMetrics to add more than one column. This is best used as an array in your config.json file.  [default: ["transferSize.total","requests.total","thirdParty.requests","transferSize.javascript","transferSize.css","transferSize.image","score.performance"]]
-      --html.summaryBoxes                   Select required summary information to be displayed on result index page.  [default: ["score.score","score.accessibility","score.bestpractice","score.privacy","score.performance","timings.firstPaint","timings.firstContentfulPaint","timings.fullyLoaded","timings.pageLoadTime","timings.largestContentfulPaint","timings.FirstVisualChange","timings.LastVisualChange","timings.SpeedIndex","timings.PerceptualSpeedIndex","timings.VisualReadiness","timings.VisualComplete","timings.backEndTime","googleWebVitals.cumulativeLayoutShift","requests.total","requests.javascript","requests.css","requests.image","transferSize.total","transferSize.html","transferSize.javascript","contentSize.javascript","transferSize.css","transferSize.image","thirdParty.transferSize","thirdParty.requests","webpagetest.SpeedIndex","webpagetest.lastVisualChange","webpagetest.render","webpagetest.visualComplete","webpagetest.visualComplete95","webpagetest.TTFB","webpagetest.fullyLoaded","axe.critical","axe.serious","axe.minor","axe.moderate","cpu.longTasksTotalDuration","cpu.longTasks","cpu.totalBlockingTime","cpu.maxPotentialFid","sustainable.totalCO2","sustainable.co2PerPageView","sustainable.co2FirstParty","sustainable.co2ThirdParty"]]
+      --html.summaryBoxes                   Select required summary information to be displayed on result index page.  [default: ["score.score","score.accessibility","score.bestpractice","score.privacy","score.performance","timings.firstPaint","timings.firstContentfulPaint","timings.fullyLoaded","timings.pageLoadTime","timings.largestContentfulPaint","timings.FirstVisualChange","timings.LastVisualChange","timings.SpeedIndex","timings.PerceptualSpeedIndex","timings.VisualReadiness","timings.VisualComplete","timings.backEndTime","googleWebVitals.cumulativeLayoutShift","requests.total","requests.javascript","requests.css","requests.image","transferSize.total","transferSize.html","transferSize.javascript","contentSize.javascript","transferSize.css","transferSize.image","thirdParty.transferSize","thirdParty.requests","axe.critical","axe.serious","axe.minor","axe.moderate","cpu.longTasksTotalDuration","cpu.longTasks","cpu.totalBlockingTime","cpu.maxPotentialFid","sustainable.totalCO2","sustainable.co2PerPageView","sustainable.co2FirstParty","sustainable.co2ThirdParty"]]
       --html.summaryBoxesThresholds         Configure the thresholds for red/yellow/green for the summary boxes.
+      --html.homeurl                        The URL for the logo in the result  [default: "https://www.sitespeed.io/"]
 
 Text
       --summary         Show brief text summary to stdout  [boolean] [default: false]
