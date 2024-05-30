@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 34.0.1 - 2024-05-30
+
+### Fixed
+* The +1 container has updated to code to take of if GPSI is missing metrics [GPSI #56](https://github.com/sitespeedio/plugin-gpsi/pull/56).
+
 ## 34.0.0 - 2024-05-29
 
 ### Breaking
