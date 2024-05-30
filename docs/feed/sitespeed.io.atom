@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2024-05-29T11:59:02.380Z</updated>
+    <updated>2024-05-30T04:00:38.215Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 34.0.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.0.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.0.1"/>
+        <updated>2024-05-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>The +1 container has updated to code to take of if GPSI is missing metrics <a href="https://github.com/sitespeedio/plugin-gpsi/pull/56">GPSI #56</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 34.0.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.0.0</id>
@@ -184,37 +199,6 @@
 </ul>
  <ul>
 <li><a href="https://github.com/sitespeedio/sitespeed.io/pull/4091">Browsertime 21.3.0</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 33.0.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#33.0.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#33.0.0"/>
-        <updated>2024-02-11T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2120---2024-02-11">Browsertime 21.2.0</a> that adds a new way to stop your measureemnts if your navigation fails <code>measure.stopAsError(failureMessage, optionalURL)</code>. Perfect to use in a try/catch.</li>
-</ul>
- <ul>
-<li>Use darkmode for result HTML by adding <code>--html.darkMode</code>, thank you <a href="https://github.com/petemyron">petemyron</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4081">#4081</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Update co2.js to 0.14.2 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4074">#4074</a></li>
-</ul>
- <ul>
-<li>More solid error handling if one page fail in scripting. This fixes so that the HTML for the rest of pages should be generated <a href="https://github.com/sitespeedio/sitespeed.io/pull/4079">#4079</a>.</li>
-</ul>
- <ul>
-<li>Remove console.errors of errors (they have already been reported in the log) <a href="https://github.com/sitespeedio/sitespeed.io/pull/4080">#4080</a>.</li>
-</ul>
- <ul>
-<li>Fix automatically switch to Throttle as engine on Mac and Linux if you add -c THROTTLING<a href="https://github.com/sitespeedio/sitespeed.io/pull/4082">#4082</a>.</li>
 </ul>
 ]]></summary>
         <author>
