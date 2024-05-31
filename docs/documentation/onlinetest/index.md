@@ -184,7 +184,7 @@ html:
 
 Set the path to where you host the files on the server. They will then be accessible through */extras/*.
 
-### Waiting on tests to finish
+### Waiting on tests to finish 
 You can choose what the user will see while waiting for the test to finish. By default, the log from sitespeed.io will be streamed on the wait screen so users can follow the progress of the test.
 
 If you are not interested in that, you can choose to show random AI-generated images. You do that with:
@@ -215,16 +215,38 @@ When you have your own configuration, you provide it like this:
 ### Message broker
 Your testrunner needs to be able to connect to your Redis-like broker, so make sure to configure it accordingly in your configuration file.
 
-### Setup what type of tests to run
-What kind of tests do you want to run.
+### Configuring test environments
+You need to configure what kind of tests you want to run.
 
 #### Desktop/emulated mobile 
-In most cases the default configuration will be enough.
+In most cases the default configuration will be enough. It looks like this:
+
+```yaml
+- name: "Desktop Browsers"
+  type: "desktop"
+  browsers: ["chrome", "firefox", "edge"]
+  connectivity: ["native", "3g", "4g", "cable"]
+  useDocker: false
+```
+
+The browsers is the actual browsers that you can use. The default sitespeed.io container have latest version of all three, so if you set *useDocker* to true all three will be availible. If you install browsers yourself on the server, then you can edit the list.
+
+The connectivity array is the different connectivities you will see in the drop down in the gui.
 
 #### Android
 To run tests on an Android phone, you should follow the [sitespeed.io instructions on how to setup the phone and server](https://www.sitespeed.io/documentation/sitespeed.io/mobile-phones/#test-on-android). The server that runs your testrunner needs to have adb tools and sitespeed.io dependencies (so it can analyze the video etc).
 
 Each phone needs to be configured on the test runner with the device id. That's how
+
+```yaml
+- name: "Android"
+  type: "android"
+  browsers: ["chrome", "firefox"]
+  model: "Moto G5"
+  deviceId: "ZY322MMFZ2"
+  useDocker: false
+  connectivity: ["native"]
+```
 
 ### Using sitespeed.io Docker containers
 
