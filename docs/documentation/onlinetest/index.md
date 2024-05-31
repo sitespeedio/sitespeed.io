@@ -16,18 +16,20 @@ twitterdescription:
 {:toc}
 
 ## Introduction
-The online test is the easiest way to deploy your own version of sitespeed.io online. You can add tests through a web gui or using sitespeed.io command line that can pass on the test to your test server.
+The online test is the simplest way to deploy your own version of sitespeed.io. You can add tests through a web GUI or by using the sitespeed.io command line, which can pass the tests to your test server.
 
-This is probably the best way for small/medium/large sized companies and organizations to run performance tests if you need a GUI.
+This method is ideal for small, medium, and large companies and organizations that need a GUI for running performance tests.
 
-To get it up and running you need the sitespeed.io server, at least one sitespeed.io testrunner and the dependencies (Redis like message broker, PostgreSQL and somewhere to store the result pages). 
+To get started, you will need the sitespeed.io server, at least one sitespeed.io test runner, and the necessary dependencies (a message broker like Redis, PostgreSQL, and a place to store the result pages).
 
 ## Installation
 
-If you are a small business and need to test a website or just a few, you can deploy everything on a single server. If you are a large company planning to run numerous tests, you can split and run everything on different servers. If you plan to run tests from various parts of the world, make sure to have the web GUI, database, and Redis/queue manager in the same location.
+For small businesses needing to test one or a few websites, you can deploy everything on a single server. For large companies planning to run numerous tests, you can distribute the components across multiple servers. If you plan to run tests from various locations worldwide, ensure the web GUI, database, and Redis are located together in the same region.
 
 ### Node version
-To get the server and testrunner running you need to install [NodeJS](https://nodejs.org/). Please follow the instruction on [NodeJS](https://nodejs.org/) for your operating system. Install the LTS version (at the moment that is NodeJS 20).
+
+To get the server and test runner running, you need to install [NodeJS](https://nodejs.org/). Please follow the instructions on [NodeJS](https://nodejs.org/) for your operating system. Install the LTS version (currently, that is NodeJS 20).
+
 
 #### Install the server
 
@@ -45,13 +47,13 @@ Get the latest release from npm:
 npm install @sitespeed.io/testrunner -g
 ```
 
-The testrunner can either use our [pre-made sitespeed.io Docker container](https://hub.docker.com/r/sitespeedio/sitespeed.io) (then you need to install Docker) or usa npm installed sitespeeed.io. If you choose not to use Docker, then you can follow [these instructions](https://www.sitespeed.io/documentation/sitespeed.io/installation/#using-node-js) to get sitespeed.io up and running.   
+The test runner can either use our [pre-made sitespeed.io Docker container](https://hub.docker.com/r/sitespeedio/sitespeed.io) (in which case you need to install Docker) or use the npm-installed sitespeed.io. If you choose not to use Docker, follow [these instructions](https://www.sitespeed.io/documentation/sitespeed.io/installation/#using-node-js) to get sitespeed.io up and running.
 
 
 ### Install the dependencies
-You need to have Redis (like), PostgerSQL and somewhere to store the HTML result. If you don't want to handle the dependencies yourself you can use [our docker compose file](https://github.com/sitespeedio/onlinetest/blob/main/docker-compose.yml). You need to have Docker and Docker compose installed to run it.
+You need to have KeyDB (or a similar message broker that follow the Redis APIs), PostgreSQL and somewhere to store the HTML result. If you don't want to handle the dependencies yourself you can use [our docker compose file](https://github.com/sitespeedio/onlinetest/blob/main/docker-compose.yml). You need to have Docker and Docker compose installed to run it.
 
-You need the docker compose file, easiest for testing is to clone the repo.
+To get the Docker Compose file, the easiest way for testing is to clone the repository:
 
 ```bash
 git clone https://github.com/sitespeedio/onlinetest.git
@@ -59,19 +61,19 @@ cd onlinetest
 docker compose up
 ```
 
-In the repository you also have a *.env* file that sends up username/passwords for the different services.
+In the repository you also have a *.env* file that sets up username/passwords for the different services.
 
 ## Configuration
-If you start the applications, the default configuration is used. The configuration for the server is [here](https://github.com/sitespeedio/onlinetest/blob/main/server/config/default.yaml) and testrunner [here](https://github.com/sitespeedio/onlinetest/blob/main/testrunner/config/default.yaml). 
+If you start the applications, the default configuration is used. The configuration for the server is [here](https://github.com/sitespeedio/onlinetest/blob/main/server/config/default.yaml) and for the test runner [here](https://github.com/sitespeedio/onlinetest/blob/main/testrunner/config/default.yaml).
 
-You can (and should) override that configuration by command line parameters or you can replace the configuration by using your own configuration file. Take a copy of the default ones and reconfigure it the way you need it.
+You can (and should) override that configuration with command line parameters, or you can replace the configuration by using your own configuration file. Take a copy of the default ones and reconfigure them the way you need.
 
 ### YAML / JSON
 The configuration files can be YAML or JSON. Using a configuration file should be your first choice.
 
-You can feed a configuration file use the command line: `--config`.
+You can provide a configuration file using the command line: `--config`.
 
-When configuring the testrunner, the configuration will be validated and if the configuration is broken, the testrunner will not start. Look at the log and hopeful you will get a helpful message to fix what's broken.
+When configuring the test runner, the configuration will be validated. If the configuration is broken, the test runner will not start. Check the log for a helpful message to fix what's broken.
 
 ### Command line override
 
@@ -86,30 +88,36 @@ If you just need to change one or two configurations, you can use the command li
 You can override that with `--redis.host MY_HOST`.
 
 ### sitespeed.io configuration
-You can also pre-configure how you will use sitespeed.io. For example checkout the [default configuration](https://github.com/sitespeedio/onlinetest/blob/main/server/config/sitespeed.json) where we setup S3 and how you access the result. 
 
-The configuration for sitespeed.io uses inheritance. On the server you can configure a sitespeed.io configuration. That configuration will be passed on to the testrunner that will be merged together with the sitespeed.io configuration on the testrunner. And then as a final step that configuration will be merged with the config from the cli API or the GUI. It looks like this:
+You can also pre-configure how you will use sitespeed.io. For example, check out the [default configuration](https://github.com/sitespeedio/onlinetest/blob/main/server/config/sitespeed.json) where we set up S3 and how you access the results.
 
-**server -> testrunner -> cli/gui configurations**
+The configuration for sitespeed.io uses inheritance. On the server, you can configure a sitespeed.io configuration. That configuration will be passed on to the test runner and merged with the sitespeed.io configuration on the test runner. Finally, this configuration will be merged with the configuration from the CLI API or the GUI. It looks like this:
 
-This way you can configure some parts globally (in the server config) and some things locally (per testrunner) and some parts for individual parts.
+**server -> test runner -> CLI/GUI configurations**
+
+This way, you can configure some parts globally (in the server config), some things locally (per test runner), and some parts individually per test.
+
 
 ## The server
 
 The server will host the HTML GUI and the API. There's a lot of things you can configure on the server.
 
 ### Start the server
+
 If your server is installed globally, you start it by running `sitespeed.io-server`.
 
-When you have your own configuration, you feed that like this:
-`sitespeed.io-server --config path/to/file`.
+When you have your own configuration, you provide it like this:
+```bash
+sitespeed.io-server --config path/to/file
+```
 
+### Database and message broker
 
-### Database and Redis
-The first thing you need to do is to configure the PostgreSQL and Redis connection to match your setup. The default setup is using localhost and default passwords, change those so they match your setup.
+The first thing you need to do is configure the PostgreSQL and Redis connections to match your setup. The default setup uses localhost and default passwords. Make sure to change these settings to match your specific configuration.
 
 ### HTTPS
-If you want your server behind HTTPS, you can setup a reverse proxy or configure the path to keys and certicates.
+
+If you want your server behind HTTPS, you can set up a reverse proxy or configure the path to keys and certificates.
 
 ```yaml
 server:
@@ -120,47 +128,53 @@ server:
 ```
 
 ### Limit who can run tests
-You probably want to make sure that your instance isn't open for every one to add tests. There's a couple of ways you limit who can use your instance by just using configuration.
+
+You probably want to make sure that your instance isn't open for everyone to add tests. There are a couple of ways to limit who can use your instance by just using configuration.
 
 #### Adding Basic Auth
-The server can be behind basic authentication. You do that with the follwing configuration.
+
+The server can be secured with basic authentication. You can configure it with the following settings:
 
 ```yaml
 basicAuth:
   login:
   password:
 ```
-The basic auth will be added to all URLs except calls to the API and the admin pages (the admin page has other basic auth configuration).
+
+The basic auth will be applied to all URLs except calls to the API and the admin pages (the admin page has a separate basic auth configuration).
 
 #### Key for running tests through the API
 
-You can setup a secret key that needs to be used when you send tests to the API. You configure that under *api.key* or in YAML:
+You can set up a secret key that needs to be used when you send tests to the API. You configure that under *api.key* or in YAML:
 
 ```yaml
 api:
   key: MY_KEY
 ```
 
-Then when you use sitespeed.io and the API make sure to add `--api.key MY_KEY` to your configuration.
+Then when you use sitespeed.io and the API make sure to use`--api.key MY_KEY` to your configuration.
 
 #### Validate test domains
-You probably want to limit which domains you can test through the GUI on the server. You do that with the configuration *validTestDomains*. That needs to be a regular expression that will be matched against the hostname of the URL that you want to test.
 
-By default I've setup Wikipedia domains as what needs to be matched so you want to change that. 
+You probably want to limit which domains can be tested through the GUI on the server. You can do this with the *validTestDomains* configuration. This needs to be a regular expression that will be matched against the hostname of the URL that you want to test.
 
+By default, Wikipedia domains are set as valid, so you will want to change that.
+
+Here are a couple of examples:
+
+* To test all URLs on https://www.sitespeed.io: `validTestDomains: "^www\.sitespeed\.io$"`
+* To allow testing of any URLs: `validTestDomains: ".*"`
 
 #### Disable the GUI
-You can fully disable the GUI. That way you can only add test through the API.
-You do that by setting `disableGUI: true`.
+You can fully disable the GUI so that tests can only be added through the API. You do this by setting: `disableGUI: true`.
 
 #### Disable the search
-You can choose to only disable the search functionality, You do that with 
-`disableSearchGUI: true`.
+You can choose to only disable the search functionality. You do this by setting: `disableSearchGUI: true`.
 
 ### Style the pages
-If you want to style the servers pages, you can do that by adding extra CSS and your own images. In the [default configuration](https://github.com/sitespeedio/onlinetest/blob/main/server/config/default.yaml) look for the *html* key.
+If you want to style the server's pages, you can do so by adding extra CSS and your own images. In the [default configuration](https://github.com/sitespeedio/onlinetest/blob/main/server/config/default.yaml), look for the *html* key.
 
-That is straightforward and to get it to work, you should also configure where you (locally) host your CSS/images. You do that in:
+To get this to work, you should also configure where you locally host your CSS/images. You do that with the following configuration:
 
 ```yaml
 html:
@@ -168,22 +182,23 @@ html:
     path:
 ```
 
-You set the path to where you host the files on the server. They will then we accessible through */extras/*.
+Set the path to where you host the files on the server. They will then be accessible through */extras/*.
 
-### Waiting behavoir
-You can choose what the user will see when she waits for the test to finish. By default the log from sitespeed.io will be streamed on the wait screen so you can follow along how far the test has gone.
+### Waiting on tests to finish
+You can choose what the user will see while waiting for the test to finish. By default, the log from sitespeed.io will be streamed on the wait screen so users can follow the progress of the test.
 
-If you are not interested in that, you can chose to show random AI generated images. You do that with:
+If you are not interested in that, you can choose to show random AI-generated images. You do that with:
 
 ```yaml
 html
     showRandomAIImage: true
 ```
 
-More well curated images will come later :)
+More well-curated images will come later. :)
 
 ### Change the locale
-Do your users not have English as first language? You can then change the language! Use the [default one](https://github.com/sitespeedio/onlinetest/blob/main/server/locales/en.json) and create a new file for your language. 
+
+Do your users not have English as their first language? You can change the language! Use the [default locale file](https://github.com/sitespeedio/onlinetest/blob/main/server/locales/en.json) and create a new file for your language.
 
 ```yaml
 localization:
@@ -194,27 +209,47 @@ localization:
 ## The testrunner
 If your testrunner is installed globally, you start it by running `sitespeed.io-testrunner`.
 
-When you have your own configuration, you feed that like this:
+When you have your own configuration, you provide it like this:
 `sitespeed.io-testrunner --config path/to/file`.
 
-### Redis
-Your testrunner need to be able to connect to your Redis-like queue, so make sure to configure your configuratoon
+### Message broker
+Your testrunner needs to be able to connect to your Redis-like broker, so make sure to configure it accordingly in your configuration file.
 
 ### Setup what type of tests to run
+What kind of tests do you want to run.
 
-#### Desktop/emulated mobile
+#### Desktop/emulated mobile 
+In most cases the default configuration will be enough.
 
 #### Android
+To run tests on an Android phone, you should follow the [sitespeed.io instructions on how to setup the phone and server](https://www.sitespeed.io/documentation/sitespeed.io/mobile-phones/#test-on-android). The server that runs your testrunner needs to have adb tools and sitespeed.io dependencies (so it can analyze the video etc).
+
+Each phone needs to be configured on the test runner with the device id. That's how
 
 ### Using sitespeed.io Docker containers
 
+If you choose to use Docker, set `useDocker` to true in the configuration. Then all you need to do is to make sure to have Docker installed on the server.
+
+You can configure which Docker container to use. Normally when you run sitespeed.io you should configure the exact sitespeed.io version like `sitespeedio/sitespeed.io:36.0.0` to know exact which version you are using. However if you want to deploy your testrunner and then let it auto update, you can use `sitespeedio/sitespeed.io:latest` as the tag and then make sure that you once per day update the container `docker pull sitespeedio/sitespeed.io:latest`.
+
+```yaml
+docker:
+  container: "sitespeedio/sitespeed.io:latest"
+```
+
 ## Dependencies
 
+
 ### Message broker
+The communication between the server and testrunners use a Redis like system. The default setting uses [KeyDb](https://docs.keydb.dev) but you could probaby use anything that follow the Redis "standard". When the server and a testrunner is started, they need to have access to the message broker.
 
 ### Database
+The PostgreSQL needs to have a database and table. That setup happens in the Docker compose file. If you manually want to setup the database, the table structure exists [here](https://github.com/sitespeedio/onlinetest/tree/main/server/database/setup).
 
 ### Result storage
+The default setup uses https://min.io that is an Open Source version of S3 but you can use and sitespeed.io compability result storage. You configure that yourself in the sitespeed.io json, preferable on the server. You can use S3, Google Cloud Storage, scp to your own server or create your own plugin that store the date wherever you want.
+
+If you also use minio, make sure to configure how long the data will be stored. You can see how that is done in [the docker compose file](https://github.com/sitespeedio/onlinetest/blob/main/docker-compose.yml) and it looks something like this ` /usr/bin/mc ilm rule add --expire-days 30 sitespeedio/sitespeedio`.
 
 ## Configuration for production
 Here's a checklist of things that you should think about when you push to production:
@@ -226,7 +261,7 @@ Here's a checklist of things that you should think about when you push to produc
     * A regex that needs to match the domain that you want to test
     * Disable search
     * Disable adding test through the web gui.
-* How long to keep the data
+3. How long time to do you want to keep the data? If you use S3 make sure to configure how long time the data will be kept. And a job to your PostgreSQL database that removes
 
 ## Using the API
 
