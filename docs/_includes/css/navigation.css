@@ -10,7 +10,7 @@ body {
 }
 
 .nav {
-  background: #0095d2;
+  background: #024CAE;
 }
 
 .nav ul {
@@ -18,34 +18,34 @@ body {
   text-align: center;
   padding: 0;
   margin: 0;
-  background-color: #0095d2;
+  background-color: #024CAE;
 }
 .nav li {
   font-size: 1em;
   line-height: 40px;
   height: 40px;
-  border-bottom: 1px solid #0073b0;
+  border-bottom: 1px solid #024CAE;
 }
 
 .nav a {
   text-decoration: none;
-  color: #fff;
+  color: #E1F6FD;
   display: block;
 }
 
 .nav a:hover {
-  background-color: #0073b0;
+  background-color: #020069;
 }
 
 .nav a.active {
-  background-color: #0073b0;
+  background-color: #020069;
   color: #fff;
   cursor: default;
 }
 
 .logo {
   text-align: center;
-  background-color: #0095d2;
+  background-color: #024CAE;
 }
 
 .navbar-brand {
@@ -88,7 +88,7 @@ max-width: 250px;
 
   .nav {
     top: 0;
-    background-color: #0095d2;
+    background-color: #024CAE;
   }
 
   .nav li {
@@ -116,7 +116,7 @@ max-width: 250px;
     text-align: center;
     padding: 0;
     margin: 0;
-    background-color: #0095d2;
+    background-color: #024CAE;
   }
 
   /* Sub Menus */
