@@ -219,7 +219,7 @@ Your testrunner needs to be able to connect to your Redis-like broker, so make s
 You need to configure what kind of tests you want to run.
 
 #### Desktop/emulated mobile 
-In most cases the default configuration will be enough. It looks like this:
+In most cases, the default configuration will be sufficient. It looks like this:
 
 ```yaml
 - name: "Desktop Browsers"
@@ -229,14 +229,21 @@ In most cases the default configuration will be enough. It looks like this:
   useDocker: false
 ```
 
-The browsers is the actual browsers that you can use. The default sitespeed.io container have latest version of all three, so if you set *useDocker* to true all three will be availible. If you install browsers yourself on the server, then you can edit the list.
+The browsers field lists the browsers you can use. The default sitespeed.io container includes the latest versions of all three browsers. If you set *useDocker* to true, all three will be available. If you install the browsers yourself on the server, you can edit the list accordingly.
 
-The connectivity array is the different connectivities you will see in the drop down in the gui.
+When you set useDocker to true, the Docker container configured in:
+```yaml
+docker:
+  container: "sitespeedio/sitespeed.io:latest"
+```
+is used.
+
+The connectivity array lists the different connectivity options you will see in the drop-down menu in the GUI.
 
 #### Android
-To run tests on an Android phone, you should follow the [sitespeed.io instructions on how to setup the phone and server](https://www.sitespeed.io/documentation/sitespeed.io/mobile-phones/#test-on-android). The server that runs your testrunner needs to have adb tools and sitespeed.io dependencies (so it can analyze the video etc).
+To run tests on an Android phone, you should follow the [sitespeed.io instructions on how to set up the phone and server](https://www.sitespeed.io/documentation/sitespeed.io/mobile-phones/#test-on-android). The server that runs your test runner needs to have ADB tools and sitespeed.io dependencies (so it can analyze the video, etc.).
 
-Each phone needs to be configured on the test runner with the device id. That's how
+Each phone needs to be configured on the test runner with the device ID.
 
 ```yaml
 - name: "Android"
@@ -248,11 +255,35 @@ Each phone needs to be configured on the test runner with the device id. That's 
   connectivity: ["native"]
 ```
 
+By default, each phone will have its own queue of work, meaning you need to specify a specific device to pick up a job.
+
+If you want to have multiple phones of the same model work on the same queue (to run multiple tests simultaneously), you can define your own queue name. Here's an example where two phones will take on jobs for all "motog5" tests.
+
+```yaml
+- name: "Android"
+  type: "android"
+  browsers: ["chrome", "firefox"]
+  model: "Moto G5"
+  deviceId: "ZY322MMFZ2"
+  useDocker: false
+  connectivity: ["native"]
+  queue: "motog5"
+
+- name: "Android"
+  type: "android"
+  browsers: ["chrome", "firefox"]
+  model: "Moto G5"
+  deviceId: "HAY562MARW6"
+  useDocker: false
+  connectivity: ["native"]
+  queue: "motog5"
+```
+
 ### Using sitespeed.io Docker containers
 
-If you choose to use Docker, set `useDocker` to true in the configuration. Then all you need to do is to make sure to have Docker installed on the server.
+If you choose to use Docker, set `useDocker` to true in the configuration. Then all you need to do is make sure Docker is installed on the server.
 
-You can configure which Docker container to use. Normally when you run sitespeed.io you should configure the exact sitespeed.io version like `sitespeedio/sitespeed.io:36.0.0` to know exact which version you are using. However if you want to deploy your testrunner and then let it auto update, you can use `sitespeedio/sitespeed.io:latest` as the tag and then make sure that you once per day update the container `docker pull sitespeedio/sitespeed.io:latest`.
+You can configure which Docker container to use. Normally, when you run sitespeed.io, you should specify the exact sitespeed.io version, like `sitespeedio/sitespeed.io:36.0.0`, to know exactly which version you are using. However, if you want to deploy your test runner and let it auto-update, you can use `sitespeedio/sitespeed.io:latest` as the tag. Ensure that you update the container once per day with:
 
 ```yaml
 docker:
@@ -261,29 +292,89 @@ docker:
 
 ## Dependencies
 
+To ensure the smooth operation of your sitespeed.io server and test runners, there are several dependencies you need to configure. These dependencies facilitate communication between components, data storage, and result processing. Here’s a brief overview of why these dependencies are necessary:
+
+1. **Message broker**: Facilitates communication between the server and test runners.
+2. **Database**: Stores configuration, test results, and other data.
+3. **Result storage**: Manages the storage of HTML results and other test artifacts.
+
 
 ### Message broker
-The communication between the server and testrunners use a Redis like system. The default setting uses [KeyDb](https://docs.keydb.dev) but you could probaby use anything that follow the Redis "standard". When the server and a testrunner is started, they need to have access to the message broker.
+
+The communication between the server and test runners uses a Redis-like system. The default setting uses [KeyDb](https://docs.keydb.dev), but you can probably use anything that follows the Redis "standard". When the server and a test runner are started, they need access to the message broker.
 
 ### Database
-The PostgreSQL needs to have a database and table. That setup happens in the Docker compose file. If you manually want to setup the database, the table structure exists [here](https://github.com/sitespeedio/onlinetest/tree/main/server/database/setup).
+
+PostgreSQL needs to have a database and table. This setup is handled in the Docker Compose file. If you want to set up the database manually, the table structure exists [here](https://github.com/sitespeedio/onlinetest/tree/main/server/database/setup).
 
 ### Result storage
-The default setup uses https://min.io that is an Open Source version of S3 but you can use and sitespeed.io compability result storage. You configure that yourself in the sitespeed.io json, preferable on the server. You can use S3, Google Cloud Storage, scp to your own server or create your own plugin that store the date wherever you want.
 
-If you also use minio, make sure to configure how long the data will be stored. You can see how that is done in [the docker compose file](https://github.com/sitespeedio/onlinetest/blob/main/docker-compose.yml) and it looks something like this ` /usr/bin/mc ilm rule add --expire-days 30 sitespeedio/sitespeedio`.
+The default setup uses [MinIO](https://min.io), which is an open-source version of S3, but you can use any sitespeed.io-compatible result storage. You configure this in the sitespeed.io JSON, preferably on the server. You can use S3, Google Cloud Storage, SCP to your own server, or create your own plugin to store the data wherever you want.
+
+If you also use MinIO, make sure to configure how long the data will be stored. You can see how this is done in [the Docker Compose file](https://github.com/sitespeedio/onlinetest/blob/main/docker-compose.yml), and it looks something like this:
+
+```bash
+/usr/bin/mc ilm rule add --expire-days 30 sitespeedio/sitespeedio
+```
 
 ## Configuration for production
-Here's a checklist of things that you should think about when you push to production:
 
-1. Change all the default passwords. Do it for Redis/PostgreSQL/Admin/Basic Auth. :)
-2. Limit your instance:
-    * Basic Auth for adding tests through the web gui
-    * A secret key for adding tests though the API
-    * A regex that needs to match the domain that you want to test
-    * Disable search
-    * Disable adding test through the web gui.
-3. How long time to do you want to keep the data? If you use S3 make sure to configure how long time the data will be kept. And a job to your PostgreSQL database that removes
+Here's a checklist of things to consider when pushing to production:
 
-## Using the API
+1. **Change all the default passwords**:
+   - Do this for Redis, PostgreSQL, Admin, and Basic Auth.
 
+2. **Limit your instance**:
+   - Use Basic Auth for adding tests through the web GUI.
+   - Set a secret key for adding tests through the API.
+   - Use a regular expression that needs to match the domain you want to test.
+   - Disable search.
+   - Disable adding tests through the web GUI.
+
+3. **Data retention**:
+   - If you use S3, make sure to configure how long the data will be kept.
+   - Add a job to your PostgreSQL database to remove data older than X days. You can find an example script [here](https://github.com/sitespeedio/onlinetest/blob/main/server/database/delete/delete.sql).
+
+# Using the API
+
+You can use your normal sitespeed.io installation to pass tests to the server/test runner.
+
+If you run `sitespeed.io --help`, you will see a section about the API. These configurations will be passed on to the test server. Your other configurations will be passed on to the test runner. This means you can configure your tests exactly as before and pass them on to the test server.
+
+There are two parameters that you need to use:
+* `--api.hostname` - The hostname of your server that hosts the sitespeed.io server.
+* `--api.location` - The name of the location where you host your test runner (the `location.name` part in your test runner configuration).
+
+You also have the following options:
+
+- `--api.key`
+  - The API key to use. You configure the key in the server configuration.
+
+- `--api.action`
+  - The type of API call you want to make:
+    - `add`: Add a test.
+    - `addAndGetResult`: Add a test and wait for the result.
+    - `get`: Get the result of a test.
+  - To get the result, make sure you add the ID using `--api.id`.
+  - [choices: "add", "addAndGetResult", "get"] [default: "addAndGetResult"]
+
+- `--api.silent`
+  - Set to `true` if you do not want to log anything from the communication between the API and the server.
+  - [boolean] [default: false]
+
+- `--api.port`
+  - The port for the API.
+
+- `--api.id`
+  - The ID of the test. Use it when you want to get the test result.
+  - [string]
+
+- `--api.label`
+  - Add a label to your test.
+  - [string]
+
+- `--api.priority`
+  - The priority of the test. Highest priority is 1. The default is 10.
+
+- `--api.json`
+  - Output the result as JSON.
