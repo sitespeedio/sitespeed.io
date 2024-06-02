@@ -1,24 +1,37 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 34.0.0 - UNRELEASED
+## 34.0.1 - 2024-05-30
+
+### Fixed
+* The +1 container has updated to code to take care of if GPSI is missing metrics [GPSI #56](https://github.com/sitespeedio/plugin-gpsi/pull/56).
+
+## 34.0.0 - 2024-05-29
 
 ### Breaking
+
+* Woho! There's now a way to deploy your own version of sitespeed.io online for your own testing using [onlinetest)[https://github.com/sitespeedio/onlinetest]! It has a HTML GUI and an API that you can use using sitespeed.io command line. There's one server part (the frontend and the API) and a testrunner part. You can run desktop, emulated mobile and Android test. I do not host a global version but I worked hard to make it easy to host yourself. I still work on the documentation but feel free to start to try it out before all documentation is finished :) If you have quick question and need help, please use the [Slack channel](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw). If you have more complicated problems, please feel free to create issues [here](https://github.com/sitespeedio/onlinetest/issues/new).
+ 
+* With this release we remove all dependencies to WebPageTest [#4085](https://github.com/sitespeedio/sitespeed.io/pull/4085). You are only affected if you used the [plugin-webpagetest](https://github.com/sitespeedio/plugin-webpagetest) or the +webpagetest Docker container. If you still want to use WebPageTest with sitespeed.io you can build something on the archived [plugin-webpagetest](https://github.com/sitespeedio/plugin-webpagetest).
+
 * The S3 plugin has been upgraded to @aws-sdk/client-s3 v3 [#4138](https://github.com/sitespeedio/sitespeed.io/pull/4138). If you are using the S3 plugin and not set region, that will now fail. The v2 version of the aws-sdk used us-east-1 region as default, but v3 has removed the default setting. If you didn't used to set region you can add `--s3.region us-east-1` and it will work as before. If you do not do that, the uploads to S3 will fail.
 
-* Dependency to WebPageTest has been removed [#4085](https://github.com/sitespeedio/sitespeed.io/pull/4085). You are only affected if you used the plugin-webpagetest. This means that the Docker container with the WebPageTest plugin will not be built. If you still want to use WebPageTest with sitespeed.io you can still clone the archived [plugin-webpagetest](https://github.com/sitespeedio/plugin-webpagetest).
+* The -plus1 Docker container now has plugin-lighthouse and plugin-gpsi installed from npm instead of the git repository. It will work as before, but if you want to disable one of them, that has changed. To not run the GPSI plugin add `--plugins.remove @sitespeed.io/plugin-gpsi` and to disble Lighthouse you add `--plugins.remove @sitespeed.io/plugin-lighthouse`.
 
-* The -plus1 Docker container now has plugin-lighthouse and plugin-gpsi installed from npm instead of the git repository. It will work as before, but if you want to disable one of them, that has changed: TBD
-
-* Updated to [Browsertime 22](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2200---2024-05-16). This version of Browsertime drops the Browsertime extension and start use the kind of new HAR exporter using Bidi as the default HAR exporter! If you add request headers to your Firefox test or clear the cache inside of your scripyt using Firefox, this will stop to work for now.
+* Updated to [Browsertime 22](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2200---2024-05-16). This version of Browsertime drops the Browsertime extension and start use the kind of new HAR exporter using Bidi as the default HAR exporter! If you add request headers to your Firefox test or clear the cache inside of your script using Firefox, this will stop to work for now until support is added in Firefox (request headers are coming soon!).
 
 ### Added
-* Updated to Chrome 125, Firefox 126 and Edge 124 in the Docker container [#4156](https://github.com/sitespeedio/sitespeed.io/pull/4156)
+* Updated to Chrome 125, Firefox 126 and Edge 124 in the Docker container [#4156](https://github.com/sitespeedio/sitespeed.io/pull/4156).
+
+### Fixed
+* Fix loading globally installed plugins [#4167](https://github.com/sitespeedio/sitespeed.io/pull/4167).
+* Fix configurations documentation for scp, thank you [Arash Hatam](https://github.com/hatamiarash7) for [#4166](https://github.com/sitespeedio/sitespeed.io/pull/4166).
+
 
 ## 33.6.1 - 2024-05-13
 ### Fixed
 * The plus1 container was updated with the latest version of the gpsi-plugin, since the old version broke when GPSI was updated to Lighthouse 12. 
 
- will## 33.6.0 - 2024-04-17
+## 33.6.0 - 2024-04-17
 ### Added
 * Updated to Chrome 124 and Firefox 125 in the Docker container [#4142](https://github.com/sitespeedio/sitespeed.io/pull/4142) and [#4142](https://github.com/sitespeedio/sitespeed.io/pull/4141).
 

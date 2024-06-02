@@ -96,6 +96,9 @@ async function api(options) {
           }
         } else if (result.status === 'failed') {
           spinner.fail('Test failed');
+          if (options.api.json) {
+            console.log(JSON.stringify(result));
+          }
           process.exitCode = 1;
           process.exit();
         }

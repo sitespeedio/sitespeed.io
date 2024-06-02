@@ -72,13 +72,6 @@ lighthouse.accessibility
 lighthouse.best-practices
 lighthouse.seo
 lighthouse.pwa
-webpagetest.SpeedIndex
-webpagetest.lastVisualChange
-webpagetest.render
-webpagetest.visualComplete
-webpagetest.visualComplete95
-webpagetest.TTFB
-webpagetest.fullyLoaded
 gpsi.performance
 gpsi.accessibility
 gpsi.best-practices
