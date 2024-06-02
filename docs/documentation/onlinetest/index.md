@@ -26,12 +26,10 @@ To get started, you will need the sitespeed.io server, at least one sitespeed.io
 
 For small businesses needing to test one or a few websites, you can deploy everything on a single server. For large companies planning to run numerous tests, you can distribute the components across multiple servers. If you plan to run tests from various locations worldwide, ensure the web GUI, database, and Redis are located together in the same region.
 
-### Node version
-
 To get the server and test runner running, you need to install [NodeJS](https://nodejs.org/). Please follow the instructions on [NodeJS](https://nodejs.org/) for your operating system. Install the LTS version (currently, that is NodeJS 20).
 
 
-#### Install the server
+### Install the server
 
 Get the latest release from npm:
 
@@ -39,7 +37,7 @@ Get the latest release from npm:
 npm install @sitespeed.io/server -g
 ```
 
-#### Install the test runner
+### Install the test runner
 
 Get the latest release from npm:
 
