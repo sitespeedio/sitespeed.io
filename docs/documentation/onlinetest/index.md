@@ -22,6 +22,9 @@ This method is ideal for small, medium, and large companies and organizations th
 
 To get started, you will need the sitespeed.io server, at least one sitespeed.io test runner, and the necessary dependencies (a message broker like Redis, PostgreSQL, and a place to store the result pages).
 
+![The setup]({{site.baseurl}}/img/onlinetestsetup.png)
+{: .img-thumbnail}
+
 ## Installation
 
 For small businesses needing to test one or a few websites, you can deploy everything on a single server. For large companies planning to run numerous tests, you can distribute the components across multiple servers. If you plan to run tests from various locations worldwide, ensure the web GUI, database, and Redis are located together in the same region.
