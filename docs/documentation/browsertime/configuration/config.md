@@ -25,6 +25,7 @@ chrome
       --chrome.enableTraceScreenshots, --enableTraceScreenshots    Include screenshots in the trace log (enabling the trace category disabled-by-default-devtools.screenshot).  [boolean]
       --chrome.enableChromeDriverLog                               Log Chromedriver communication to a log file.  [boolean]
       --chrome.enableVerboseChromeDriverLog                        Log verboose Chromedriver communication to a log file.  [boolean]
+      --chrome.enableVideoAutoplay                                 Allow videos to autoplay.  [boolean]
       --chrome.timeline, --chrome.trace                            Collect the timeline data. Drag and drop the JSON in your Chrome detvools timeline panel or check out the CPU metrics in the Browsertime.json  [boolean]
       --chrome.timelineRecordingType, --chrome.traceRecordingType  Expose the start/stop commands for the chrome trace  [string] [choices: "pageload", "custom"] [default: "pageload"]
       --chrome.collectPerfLog                                      Collect performance log from Chrome with Page and Network events and save to disk.  [boolean]
@@ -42,6 +43,7 @@ chrome
 
 android
       --android.powerTesting, --androidPower                                                       Enables android power testing - charging must be disabled for this.(You have to disable charging yourself for this - it depends on the phone model).  [boolean]
+      --android.usbPowerTesting, --androidUsbPower                                                 Enables android power testing using usb-power-profiling. Assumes that a valid device is attached to the phone. See here for supported devices: https://github.com/fqueze/usb-power-profiling?tab=readme-ov-file#supported-devices  [boolean]
       --android.ignoreShutdownFailures, --ignoreShutdownFailures                                   If set, shutdown failures will be ignored on Android.  [boolean] [default: false]
       --android.rooted, --androidRooted                                                            If your phone is rooted you can use this to set it up following Mozillas best practice for stable metrics.  [boolean] [default: false]
       --android.pinCPUSpeed, --androidPinCPUSpeed                                                  Using a Samsung A51 or Moto G5 you can choose how to pin the CPU to better align the speed with your users. This only works on rooted phones and together with --android.rooted  [choices: "min", "middle", "max"] [default: "min"]
@@ -174,6 +176,7 @@ Options:
       --visualMetricsPerceptual                    Collect Perceptual Speed Index when you run --visualMetrics.  [boolean]
       --visualMetricsContentful                    Collect Contentful Speed Index when you run --visualMetrics.  [boolean]
       --visualMetricsPortable                      Use the portable visual-metrics processing script (no ImageMagick dependencies).  [boolean] [default: true]
+      --visualMetricsKeyColor                      Collect Key Color frame metrics when you run --visualMetrics. Each --visualMetricsKeyColor supplied must have 8 arguments: key name, red channel (0-255) low and high, green channel (0-255) low and high, blue channel (0-255) low and high, fraction (0.0-1.0) of pixels that must match each channel.  [array]
       --scriptInput.visualElements                 Include specific elements in visual elements. Give the element a name and select it with document.body.querySelector. Use like this: --scriptInput.visualElements name:domSelector see https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors. Add multiple instances to measure multiple elements. Visual Metrics will use these elements and calculate when they are visible and fully rendered.
       --scriptInput.longTask, --minLongTaskLength  Set the minimum length of a task to be categorised as a CPU Long Task. It can never be smaller than 50. The value is in ms and only works in Chromium browsers at the moment.  [number] [default: 50]
   -b, --browser                                    Specify browser. Safari only works on OS X/iOS. Edge only work on OS that supports Edge.  [choices: "chrome", "firefox", "edge", "safari"] [default: "chrome"]
