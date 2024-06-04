@@ -39,7 +39,7 @@ It also makes it easy to migrate the tests you run today to the new setup by add
 
 Ok, maybe it's not very nice to be frank, but I'm quite tired of the commercial web performance testing products that show regressions in their graphs, and when they show an example of a regression, it's a several seconds regression. You probably want to be able to see regressions of less than a second :) Why do they do that? Well one of the reasons is that they often run their tests on shared virtual machines that interfere with each other and that makes it hard to see performance regressions.
 
-If you run sitespeed.io and deploy your testrunner on a bare metal server, you've come a long way (you can for example use [Hetzner](https://www.hetzner.com)). Or if you choose to host it yourself, you connect some Android phones to your testrunner. This makes it easy for you to measure accurately under controlled conditions.
+If you run sitespeed.io and deploy your testrunner on a bare metal server, you've come a long way (you can for example use [Hetzner](https://www.hetzner.com) and there are also other providers you can use). Or if you choose to host it yourself, you connect some Android phones to your testrunner. This makes it easy for you to measure accurately under controlled conditions.
 
 But won't it be much more maintenance if you manage everything yourself? There are setups where you can minimize the work you need to do, please join the [sitespeed.io Slack channel](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw) and we can discuss it there. And on the other hand, if you can choose between unstable measurements or taking care of the setup yourself, what do you choose?
 
@@ -49,16 +49,16 @@ Another thing I like is that sitespeed.io configuration can extend and override 
 
 Ok, it may sound a bit complicated, but it makes the whole system very powerful. You can have specific configurations for certain test runners (e.g., send data to your time series database), some generic configurations on the server and then override it per test you set.
 
-## Your instance for your needs
-Jag har försökt göra det enkelt att se till att din testerver används av dig.
 
 ## Your own style, form, and language
 
-Yes, I know many like to be able to style the appearance of the pages, and you can! You can override the CSS and change logos by modifying the configuration. You can also change the language from English to your preferred language (you need to translate the texts yourself, though).
+Yes, I know many like to be able to style the appearance of the pages, and you can! You can brand the pages to match your own company/organisation. You can override the CSS and change logos by modifying the configuration. 
+
+You can also change the language from English to your preferred language (you need to translate the texts yourself, though).
 
 ## Tested using GitHub actions
 One extra thing that I am proud of is that I have set up some GitHub Actions that test the entire flow both through the API and GUI and run tests so that it will be easier to make fixes in the future without breaking anything. In sitespeed.io and Browsertime, we rely heavily on our actions, and it works here too!
 
-Ok, that's all I had to say, happy testing!
+Ok, that's all I had to say for now, happy testing!
 
 Peter
