@@ -118,7 +118,7 @@
     "ora": "8.0.1",
     "os-name": "5.0.0",
     "p-limit": "5.0.0",
-    "pug": "3.0.2",
+    "pug": "3.0.3",
     "recursive-readdir": "2.2.3",
     "simplecrawler": "1.1.9",
     "@sitespeed.io/plugin": "0.0.6",
