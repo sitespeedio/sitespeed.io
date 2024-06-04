@@ -24,7 +24,7 @@ To get started, you will need the sitespeed.io server, at least one sitespeed.io
 
 ![The setup]({{site.baseurl}}/img/onlinetestsetup.png)
 {: .img-thumbnail}
-
+e
 ## Installation
 
 For small businesses needing to test one or a few websites, you can deploy everything on a single server. For large companies planning to run numerous tests, you can distribute the components across multiple servers. If you plan to run tests from various locations worldwide, ensure the web GUI, database, and Redis are located together in the same region.
@@ -290,6 +290,10 @@ You can configure which Docker container to use. Normally, when you run sitespee
 docker:
   container: "sitespeedio/sitespeed.io:latest"
 ```
+
+If you try out teh Docker containers locally on your machine, you need to remember remember that localhost inside the container isn't automatically the same as localhost on the server. You can read about it [here](https://www.sitespeed.io/documentation/sitespeed.io/docker/#access-localhost).
+
+Yhat means if you run everything locally and want to use sitespeed.io docker containers, you need to set `--s3.endpoint` to something else than 127.0.0.1. On Mac you can use `--s3.endpoint http://host.docker.internal:9000` and on Linux you can use your actual IP. You can see how that is used in [one of our GitHUb Actions](https://github.com/sitespeedio/onlinetest/blob/main/.github/workflows/docker.yml#L45).
 
 ## Dependencies
 
