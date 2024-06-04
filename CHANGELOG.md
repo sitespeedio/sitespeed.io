@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 34.0.2 - 2024-06-04
+
+### Fixed
+* Update to Pug 3.0.3 [#4172](https://github.com/sitespeedio/sitespeed.io/pull/4172).
+
 ## 34.0.1 - 2024-05-30
 
 ### Fixed
