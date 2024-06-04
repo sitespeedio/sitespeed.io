@@ -37,7 +37,7 @@ It also makes it easy to migrate the tests you run today to the new setup by add
 
 ## Quality made simple
 
-Ok, maybe it's not very nice to be frank, but I'm quite tired of the commercial web performance testing products that show regressions in their graphs, and when they show an example of a regression, it's a several seconds regression. You probably want to be able to see regressions of less than a second :) Why do they do that? Well one of the reasons is that they often run their tests on shared virtual machines that interfere with each other and that makes it hard to see performance regressions.
+Ok, maybe it's not very nice to be frank, but I'm quite tired of the commercial web performance testing products that show regressions in their graphs, and when they show an example of a regression, the unit in the graph is seconds. You probably want the axis to be in milliseconds or at least in 0.1-second intervals :) Why do they do that? One reason is that they often run their tests on shared virtual machines that interfere with each other, making it hard to see performance regressions accurately.
 
 If you run sitespeed.io and deploy your testrunner on a bare metal server, you've come a long way (you can for example use [Hetzner](https://www.hetzner.com) and there are also other providers you can use). Or if you choose to host it yourself, you connect some Android phones to your testrunner. This makes it easy for you to measure accurately under controlled conditions.
 
@@ -59,6 +59,12 @@ You can also change the language from English to your preferred language (you ne
 ## Tested using GitHub actions
 One extra thing that I am proud of is that I have set up some GitHub Actions that test the entire flow both through the API and GUI and run tests so that it will be easier to make fixes in the future without breaking anything. In sitespeed.io and Browsertime, we rely heavily on our actions, and it works here too!
 
-Ok, that's all I had to say for now, happy testing!
+## License
+
+This time, I used the AGPL-3.0 license. That means you can use, modify, and share the code, as long as you keep any changes under the same license and contribute those changes back to the community. I love open source because it fosters innovation and collaboration, so feel free to contribute and make this project even better!
+
+I'm excited to see how you use this new frontend for your performance testing. Your feedback is invaluable, so please don't hesitate to share your thoughts, report issues, or contribute improvements.
+
+Happy testing, and I look forward to seeing what we can achieve together!
 
 Peter
