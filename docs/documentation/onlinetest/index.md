@@ -291,7 +291,7 @@ docker:
   container: "sitespeedio/sitespeed.io:latest"
 ```
 
-If you try out teh Docker containers locally on your machine, you need to remember remember that localhost inside the container isn't automatically the same as localhost on the server. You can read about it [here](https://www.sitespeed.io/documentation/sitespeed.io/docker/#access-localhost).
+If you try out the Docker containers locally on your machine, you need to remember remember that localhost inside the container isn't automatically the same as localhost on the server. You can read about it [here](https://www.sitespeed.io/documentation/sitespeed.io/docker/#access-localhost).
 
 That means if you run everything locally and want to use sitespeed.io docker containers, you need to set `--s3.endpoint` to something else than 127.0.0.1. By default that is set [here](https://github.com/sitespeedio/onlinetest/blob/main/server/config/sitespeed.json).
 
