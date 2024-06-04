@@ -237,7 +237,7 @@ When you set useDocker to true, the Docker container configured in:
 docker:
   container: "sitespeedio/sitespeed.io:latest"
 ```
-is used. If you try the Docker container on your local machine, remember to change the settings for[how you upload the result](https://github.com/sitespeedio/onlinetest/blob/main/server/config/sitespeed.json) since localhost do not work automatically inside the Docker container. Use your host IP or *host.docker.internal* if you are on a Mac.
+is used. If you try the Docker container on your local machine, remember to change the settings for[how you upload the result](https://github.com/sitespeedio/onlinetest/blob/main/server/config/sitespeed.json) since localhost/127.0.0.1 do not work automatically inside the Docker container. Use your host IP or *host.docker.internal* if you are on a Mac.
 
 The connectivity array lists the different connectivity options you will see in the drop-down menu in the GUI.
 
