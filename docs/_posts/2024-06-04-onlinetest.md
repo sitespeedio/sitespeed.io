@@ -57,13 +57,13 @@ Yes, I know many like to be able to style the appearance of the pages, and you c
 You can also change the language from English to your preferred language (you need to translate the texts yourself, though).
 
 ## Tested using GitHub actions
-One extra thing that I am proud of is that I have set up some GitHub Actions that test the entire flow both through the API and GUI and run tests so that it will be easier to make fixes in the future without breaking anything. In sitespeed.io and Browsertime, we rely heavily on our actions, and it works here too!
+One extra thing that I am proud of is that I have set up [some GitHub Actions](https://github.com/sitespeedio/onlinetest/tree/main/.github/workflows) that test the entire flow both through the API and GUI and run tests so that it will be easier to make fixes in the future without breaking anything. In sitespeed.io and Browsertime, we rely heavily on our actions, and it works here too!
 
 ## License
 
-This time, I used the AGPL-3.0 license. That means you can use, modify, and share the code, as long as you keep any changes under the same license and contribute those changes back to the community. I love open source because it fosters innovation and collaboration, so feel free to contribute and make this project even better!
+This time, I used the AGPL-3.0 license. That means you can use, modify, and share the code, as long as you keep any changes under the same license and contribute those changes back to the community. I love open source, so feel free to contribute and make this project even better!
 
-I'm excited to see how you use this new frontend for your performance testing. Your feedback is invaluable, so please don't hesitate to share your thoughts, report issues, or contribute improvements.
+I'm excited to see how you use this new frontend for your performance testing. Your feedback is invaluable, so please don't hesitate to [share your thoughts](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw), [report issues](https://github.com/sitespeedio/onlinetest/issues/new), or contribute improvements.
 
 Happy testing, and I look forward to seeing what we can achieve together!
 
