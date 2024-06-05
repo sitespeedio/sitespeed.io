@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 34.0.3 - 2024-06-05
+
+### Fixed
+* Make sure extra options are passed on to S3 [#4176](https://github.com/sitespeedio/sitespeed.io/pull/4176).
+
 ## 34.0.2 - 2024-06-04
 
 ### Fixed
