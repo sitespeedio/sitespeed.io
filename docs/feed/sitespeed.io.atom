@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2024-06-06T07:33:37.038Z</updated>
+    <updated>2024-06-07T03:59:38.485Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 34.1.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.1.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.1.1"/>
+        <updated>2024-06-07T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Enabling extra profile run/video run didn&#39;t stop the Browsertime engine in the correct place. PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4179">#4179</a> fixes that.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 34.1.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.1.0</id>
@@ -171,28 +186,6 @@
 </ul>
  <ul>
 <li>Browsertime <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2160---2024-03-20">21.6.0</a> with updated Chrome/Edgedriver and a fix for running <code>.stopAsError</code>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 33.3.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#33.3.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#33.3.0"/>
-        <updated>2024-03-16T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Show Long Animation frames (enabled in Chrome 123) <a href="https://github.com/sitespeedio/sitespeed.io/pull/4108">#4180</a>. Using the timeline/profiling is still best doing your tests but long animation frames can help you if you do not have it turned on or familiar with thart data in RUM. Please create an issue if you have any ideas on how we shoudl display the metrics/information!</li>
-</ul>
- <ul>
-<li>Show CPU power consumption (when using Firefox) <a href="https://github.com/sitespeedio/sitespeed.io/pull/4104">#4104</a>. You can try it with: <code>sitespeed.io -b firefox -n 1 --firefox.geckoProfiler --firefox.geckoProfilerParams.features &quot;power&quot; --firefox.powerConsumption https://www.sitespeed.io/</code></li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2153---2024-03-12">Browsertime 21.5.3</a> containing various bug fixes.</li>
 </ul>
 ]]></summary>
         <author>
