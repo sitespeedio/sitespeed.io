@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 34.1.2 - 2024-06-12
+### Fixed
+* Using `--preWarmServer` resulted in trying to use an  Android phone to prewarm. Fixed in [#4182](https://github.com/sitespeedio/sitespeed.io/pull/4182).
 
 ## 34.1.1 - 2024-06-07
 ### Fixed
