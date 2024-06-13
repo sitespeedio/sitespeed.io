@@ -5,7 +5,7 @@
     "sitespeed.io": "./bin/sitespeed.js",
     "sitespeed.io-wpr": "./bin/browsertimeWebPageReplay.js"
   },
-  "version": "34.0.1",
+  "version": "34.1.2",
   "description": "sitespeed.io is an open-source tool for comprehensive web performance analysis, enabling you to test, monitor, and optimize your website’s speed using real browsers in various environments.",
   "keywords": [
     "performance",
@@ -85,7 +85,7 @@
     "@tgwf/co2": "0.14.4",
     "@aws-sdk/client-s3": "3.564.0",
     "axe-core": "4.9.1",
-    "browsertime": "22.2.0",
+    "browsertime": "22.4.0",
     "coach-core": "8.0.2",
     "cli-color": "2.0.4",
     "concurrent-queue": "7.0.2",
@@ -118,7 +118,7 @@
     "ora": "8.0.1",
     "os-name": "5.0.0",
     "p-limit": "5.0.0",
-    "pug": "3.0.2",
+    "pug": "3.0.3",
     "recursive-readdir": "2.2.3",
     "simplecrawler": "1.1.9",
     "@sitespeed.io/plugin": "0.0.6",

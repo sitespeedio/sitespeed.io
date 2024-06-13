@@ -1,5 +1,27 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 34.1.2 - 2024-06-12
+### Fixed
+* Using `--preWarmServer` resulted in trying to use an  Android phone to prewarm. Fixed in [#4182](https://github.com/sitespeedio/sitespeed.io/pull/4182).
+
+## 34.1.1 - 2024-06-07
+### Fixed
+* Enabling extra profile run/video run didn't stop the Browsertime engine in the correct place. PR [#4179](https://github.com/sitespeedio/sitespeed.io/pull/4179) fixes that.
+
+## 34.1.0 - 2024-06-06
+### Added
+* Add `--enableVideoRun`. You can use it together with `--video false --visualMetrics true` to do one extra run where the video is kept. This is useful for tests against replay proxies [#4177](https://github.com/sitespeedio/sitespeed.io/pull/4177).
+
+## 34.0.3 - 2024-06-05
+
+### Fixed
+* Make sure extra options are passed on to S3 [#4176](https://github.com/sitespeedio/sitespeed.io/pull/4176).
+
+## 34.0.2 - 2024-06-04
+
+### Fixed
+* Update to Pug 3.0.3 [#4172](https://github.com/sitespeedio/sitespeed.io/pull/4172).
+
 ## 34.0.1 - 2024-05-30
 
 ### Fixed
