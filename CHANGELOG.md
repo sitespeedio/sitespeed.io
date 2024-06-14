@@ -1,5 +1,16 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 34.2.0 - UNRELEASED
+
+### Added
+* Updated to Browsertime 22.5.0 [#4187](https://github.com/sitespeedio/sitespeed.io/pull/4187).
+* Updated to Firefox 127 and Chrome/Chromedriver 126 [#4185](https://github.com/sitespeedio/sitespeed.io/pull/4185)
+
+### Fixed
+* Fix for InfluxDBv2 to send annotations. Thank you [pavel bairov](https://github.com/Amerousful) for PR [#4175](https://github.com/sitespeedio/sitespeed.io/pull/4175).
+
+* Fix log output when using `--preWarmServer`, thank you [ThimoCap](https://github.com/ThimoCap) for PR [#4183](https://github.com/sitespeedio/sitespeed.io/pull/4183)
+
 ## 34.1.2 - 2024-06-12
 ### Fixed
 * Using `--preWarmServer` resulted in trying to use an  Android phone to prewarm. Fixed in [#4182](https://github.com/sitespeedio/sitespeed.io/pull/4182).
