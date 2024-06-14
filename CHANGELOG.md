@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 34.2.0 - UNRELEASED
+## 34.2.0 - 2024-06-14
 
 ### Added
 * Updated to Browsertime 22.5.0 [#4187](https://github.com/sitespeedio/sitespeed.io/pull/4187).
