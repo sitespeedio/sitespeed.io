@@ -1,7 +1,7 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
 ## 34.2.1 - 2024-06-17
-### Changelog
+### Fixed
 * API: safer parsing if something fail to get better error messages [#4188](https://github.com/sitespeedio/sitespeed.io/pull/4188).
 
 ## 34.2.0 - 2024-06-14
