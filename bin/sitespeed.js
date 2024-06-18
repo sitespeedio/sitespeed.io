@@ -132,7 +132,7 @@ async function start() {
 
   let options = parsed.options;
 
-  if (options.api && options.api.hostname) {
+  if (options.api && options.api.hostname && !options.disableAPI) {
     api(options);
   } else {
     try {
