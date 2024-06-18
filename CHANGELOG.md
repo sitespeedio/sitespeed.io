@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 34.2.2 - 2024-06-18
+### Fixed
+* Make it possible to disable the API. In some cases where you extends another configuration file, you could end up in a API loop where the API calls the API [#4191](https://github.com/sitespeedio/sitespeed.io/pull/4191).
+
 ## 34.2.1 - 2024-06-17
 ### Fixed
 * API: safer parsing if something fail to get better error messages [#4188](https://github.com/sitespeedio/sitespeed.io/pull/4188).
