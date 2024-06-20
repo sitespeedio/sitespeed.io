@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 34.3.1 - 2024-06-20
+### Fixed
+* The docker hub has had some problem and started to publish old images (as new!). That broke our latest tag to include chrome/edge//firefox 111. This release auto publish the latest one again.
 
 ## 34.3.0 - 2024-06-20
 ### Added
