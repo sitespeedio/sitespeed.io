@@ -66,7 +66,7 @@ async function api(options) {
 
   if (action === 'add' || action === 'addAndGetResult') {
     const spinner = ora({
-      text: `Send test to ${hostname}`,
+      text: `Send test to ${hostname} testing ${options._[0]}`,
       isSilent: options.api.silent
     }).start();
 
@@ -74,10 +74,10 @@ async function api(options) {
       const data = await addTest(hostname, apiOptions);
       const testId = JSON.parse(data).id;
       spinner.color = 'yellow';
-      spinner.text = `Added test with id ${testId}`;
+      spinner.text = `Added test ${options._[0]} with id ${testId}`;
 
       if (action === 'add') {
-        spinner.succeed(`Added test with id ${testId}`);
+        spinner.succeed(`Added test ${options._[0]} with id ${testId}`);
         console.log(testId);
         process.exit();
       } else if (action === 'addAndGetResult') {
