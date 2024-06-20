@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2024-06-18T10:51:59.248Z</updated>
+    <updated>2024-06-20T12:57:33.069Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,24 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 34.3.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.3.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.3.0"/>
+        <updated>2024-06-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>API: Show the URL/script name in the API call <a href="https://github.com/sitespeedio/sitespeed.io/pull/4195">#4195</a></li>
+</ul>
+ <ul>
+<li>Update WebPageReplay binaries <a href="https://github.com/sitespeedio/sitespeed.io/pull/4196">#4196</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 34.2.2]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.2.2</id>
@@ -154,28 +172,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>The +1 container has updated to code to take care of if GPSI is missing metrics <a href="https://github.com/sitespeedio/plugin-gpsi/pull/56">GPSI #56</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 34.0.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.0.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.0.0"/>
-        <updated>2024-05-29T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Chrome 125, Firefox 126 and Edge 124 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4156">#4156</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Fix loading globally installed plugins <a href="https://github.com/sitespeedio/sitespeed.io/pull/4167">#4167</a>.</li>
-</ul>
- <ul>
-<li>Fix configurations documentation for scp, thank you <a href="https://github.com/hatamiarash7">Arash Hatam</a> for <a href="https://github.com/sitespeedio/sitespeed.io/pull/4166">#4166</a>.</li>
 </ul>
 ]]></summary>
         <author>
