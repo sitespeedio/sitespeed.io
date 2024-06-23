@@ -62,6 +62,7 @@ async function api(options) {
     );
     apiOptions = merge(options.explicitOptions, config);
     delete apiOptions.config;
+    delete apiOptions.extends;
   }
 
   if (action === 'add' || action === 'addAndGetResult') {
