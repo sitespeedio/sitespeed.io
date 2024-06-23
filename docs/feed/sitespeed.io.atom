@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2024-06-20T14:49:30.441Z</updated>
+    <updated>2024-06-23T16:41:27.951Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 34.3.2]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.3.2</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.3.2"/>
+        <updated>2024-06-23T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>API: Remove extends from the configuration to make sure that testrunners ddo not try to extend configuration <a href="https://github.com/sitespeedio/sitespeed.io/pull/4198">#4198</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 34.3.1]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.3.1</id>
@@ -157,21 +172,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Make sure extra options are passed on to S3 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4176">#4176</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 34.0.2]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.0.2</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.0.2"/>
-        <updated>2024-06-04T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Update to Pug 3.0.3 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4172">#4172</a>.</li>
 </ul>
 ]]></summary>
         <author>
