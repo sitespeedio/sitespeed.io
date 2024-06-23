@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 34.3.2 - 2024-06-23
+### Fixed
+* API: Remove extends from the configuration to make sure that testrunners ddo not try to extend configuration [#4198](https://github.com/sitespeedio/sitespeed.io/pull/4198).
+
 ## 34.3.1 - 2024-06-20
 ### Fixed
 * The docker hub has had some problem and started to publish old images (as new!). That broke our latest tag to include chrome/edge//firefox 111. This release auto publish the latest one again.
