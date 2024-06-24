@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 34.3.3 - 2024-06-24
+### Fixed
+* Updated to Browsertime 25.5.2 that has updated versions of Selenium WebDriver and correct export for scripting.
+* API: Copy Browsertime setting from the option object to the API. There cases where you use a configuration file, override it with CLI parameters and the cli parameters didn't override the configuration file. That is fixed now for Browsertime configurations [#4200](https://github.com/sitespeedio/sitespeed.io/pull/4200).
+
 ## 34.3.2 - 2024-06-23
 ### Fixed
 * API: Remove extends from the configuration to make sure that testrunners ddo not try to extend configuration [#4198](https://github.com/sitespeedio/sitespeed.io/pull/4198).
