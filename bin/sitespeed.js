@@ -65,6 +65,10 @@ async function api(options) {
     delete apiOptions.extends;
   }
 
+  // We copy all browsertime settings to fix the problem when we use --config
+  // and then try to ovverride some configurations using command line
+  apiOptions.browsertime = options.browsertime;
+
   if (action === 'add' || action === 'addAndGetResult') {
     const spinner = ora({
       text: `Send test to ${hostname} testing ${options._[0]}`,
