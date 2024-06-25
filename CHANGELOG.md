@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 34.3.4 - 2024-06-25
+### Fixed
+* Expose command line parameters to disable CLS and LCP screenshots [#4201](https://github.com/sitespeedio/sitespeed.io/pull/4201).
+
 ## 34.3.3 - 2024-06-24
 ### Fixed
 * Updated to Browsertime 25.5.2 that has updated versions of Selenium WebDriver and correct export for scripting.
