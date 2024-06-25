@@ -310,6 +310,13 @@ To ensure the smooth operation of your sitespeed.io server and test runners, the
 
 The communication between the server and test runners uses a Redis-like system. The default setting uses [KeyDb](https://docs.keydb.dev), but you can probably use anything that follows the Redis "standard". When the server and a test runner are started, they need access to the message broker.
 
+You should make sure to configure your message broker to remove old data. If you use KeyDB you can set the max memory limit (adjust it to the RAM - OS of your server) and a remove strategy.
+
+```bash
+maxmemory 6gb
+maxmemory-policy allkeys-lru
+```
+
 ### Database
 
 PostgreSQL needs to have a database and table. This setup is handled in the Docker Compose file. If you want to set up the database manually, the table structure exists [here](https://github.com/sitespeedio/onlinetest/tree/main/server/database/setup).
