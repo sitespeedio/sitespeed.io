@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2024-06-25T00:00:00.000Z</updated>
+    <updated>2024-07-02T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <entry>
+        <title type="html"><![CDATA[sitespeed.io 34.3.5]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.3.5</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.3.5"/>
+        <updated>2024-07-02T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>The fix for CLS and LCP in 34.3.4 faulty set those to false by default, changing the default behaviour. Fixed in <a href="https://github.com/sitespeedio/sitespeed.io/pull/4205">#4205</a></li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[sitespeed.io 34.3.4]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.3.4</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.3.4"/>
@@ -23,6 +38,21 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Expose command line parameters to disable CLS and LCP screenshots <a href="https://github.com/sitespeedio/sitespeed.io/pull/4201">#4201</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 22.5.3]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.3</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.3"/>
+        <updated>2024-06-25T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Another fix to make IntelliSense/Code completion work again <a href="https://github.com/sitespeedio/browsertime/pull/2147">#2147</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -212,21 +242,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 34.1.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.1.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.1.1"/>
-        <updated>2024-06-07T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Enabling extra profile run/video run didn&#39;t stop the Browsertime engine in the correct place. PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4179">#4179</a> fixes that.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[browsertime 22.4.1]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.4.1</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.4.1"/>
@@ -330,24 +345,6 @@
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Updated the Docker container to use Chrome 125 and Firefox 126 and Edge 124 <a href="https://github.com/sitespeedio/browsertime/pull/2125">#2125</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2128">#2128</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 21.7.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.7.1</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#21.7.1"/>
-        <updated>2024-04-03T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Bug fix: If you test a URL that failed, we got an error that didn&#39;t produce the browsertime.json <a href="https://github.com/sitespeedio/browsertime/pull/2120">#2120</a>.</li>
-</ul>
- <ul>
-<li>Updated to Selenium webdriver 4.20.0 <a href="https://github.com/sitespeedio/browsertime/pull/2121">#2121</a>.</li>
 </ul>
 ]]></summary>
         <author>
