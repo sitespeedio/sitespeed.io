@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 34.3.5 - 2024-07-02
+### Fixed
+* The fix for CLS and LCP in 34.3.4 faulty set those to false by default, changing the default behaviour. Fixed in [#4205](https://github.com/sitespeedio/sitespeed.io/pull/4205)
+
 ## 34.3.4 - 2024-06-25
 ### Fixed
 * Expose command line parameters to disable CLS and LCP screenshots [#4201](https://github.com/sitespeedio/sitespeed.io/pull/4201).
