@@ -82,7 +82,7 @@
   "dependencies": {
     "@google-cloud/storage": "6.9.5",
     "@influxdata/influxdb-client": "1.33.2",
-    "@tgwf/co2": "0.14.4",
+    "@tgwf/co2": "0.16.0",
     "@aws-sdk/client-s3": "3.564.0",
     "axe-core": "4.9.1",
     "browsertime": "22.5.3",
