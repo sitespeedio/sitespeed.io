@@ -13,7 +13,7 @@
         "@google-cloud/storage": "6.9.5",
         "@influxdata/influxdb-client": "1.33.2",
         "@sitespeed.io/plugin": "0.0.6",
-        "@tgwf/co2": "0.14.4",
+        "@tgwf/co2": "0.16.0",
         "axe-core": "4.9.1",
         "browsertime": "22.5.3",
         "cli-color": "2.0.4",
@@ -53,7 +53,7 @@
         "simplecrawler": "1.1.9",
         "tape": "5.7.5",
         "text-table": "0.2.0",
-        "uuid": "9.0.1",
+        "uuid": "10.0.0",
         "yargs": "17.7.2"
       },
       "bin": {
@@ -2475,6 +2475,18 @@
         "node": ">=16.0.0"
       }
     },
+    "node_modules/@smithy/middleware-retry/node_modules/uuid": {
+      "version": "9.0.1",
+      "resolved": "https://registry.npmjs.org/uuid/-/uuid-9.0.1.tgz",
+      "integrity": "sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==",
+      "funding": [
+        "https://github.com/sponsors/broofa",
+        "https://github.com/sponsors/ctavan"
+      ],
+      "bin": {
+        "uuid": "dist/bin/uuid"
+      }
+    },
     "node_modules/@smithy/middleware-serde": {
       "version": "3.0.3",
       "resolved": "https://registry.npmjs.org/@smithy/middleware-serde/-/middleware-serde-3.0.3.tgz",
@@ -2845,9 +2857,9 @@
       }
     },
     "node_modules/@tgwf/co2": {
-      "version": "0.14.4",
-      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.14.4.tgz",
-      "integrity": "sha512-837dH4n6cGt2s3ssR3Yt904WHy/MDmYZmnHCla6e73YjxIWmvLgYLXUYWzXJ2C5096jTR7yT5tNe1+Dq5bjnNw==",
+      "version": "0.16.0",
+      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.16.0.tgz",
+      "integrity": "sha512-XaISEAE2ysQ6yHs4C1ZM/FFPPe04t1rXGVPzKi72dggPcOCaLvqXWSVdhxCih55mW/OLNGhmUax4SjNILSpGxA==",
       "engines": {
         "node": ">=14.0.0"
       }
@@ -10761,6 +10773,18 @@
         "node": ">=12"
       }
     },
+    "node_modules/teeny-request/node_modules/uuid": {
+      "version": "9.0.1",
+      "resolved": "https://registry.npmjs.org/uuid/-/uuid-9.0.1.tgz",
+      "integrity": "sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==",
+      "funding": [
+        "https://github.com/sponsors/broofa",
+        "https://github.com/sponsors/ctavan"
+      ],
+      "bin": {
+        "uuid": "dist/bin/uuid"
+      }
+    },
     "node_modules/temp-dir": {
       "version": "3.0.0",
       "resolved": "https://registry.npmjs.org/temp-dir/-/temp-dir-3.0.0.tgz",
@@ -11191,9 +11215,9 @@
       "dev": true
     },
     "node_modules/uuid": {
-      "version": "9.0.1",
-      "resolved": "https://registry.npmjs.org/uuid/-/uuid-9.0.1.tgz",
-      "integrity": "sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==",
+      "version": "10.0.0",
+      "resolved": "https://registry.npmjs.org/uuid/-/uuid-10.0.0.tgz",
+      "integrity": "sha512-8XkAphELsDnEGrDxUOHB3RGvXz6TeuYSGEZBOjtTtPm2lwhGBjLgOzLHB63IUWfBpNucQjND6d3AOudO+H3RWQ==",
       "funding": [
         "https://github.com/sponsors/broofa",
         "https://github.com/sponsors/ctavan"

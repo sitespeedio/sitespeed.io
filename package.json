@@ -82,7 +82,7 @@
   "dependencies": {
     "@google-cloud/storage": "6.9.5",
     "@influxdata/influxdb-client": "1.33.2",
-    "@tgwf/co2": "0.14.4",
+    "@tgwf/co2": "0.16.0",
     "@aws-sdk/client-s3": "3.609.0",
     "axe-core": "4.9.1",
     "browsertime": "22.5.3",
@@ -124,7 +124,7 @@
     "@sitespeed.io/plugin": "0.0.6",
     "tape": "5.7.5",
     "text-table": "0.2.0",
-    "uuid": "9.0.1",
+    "uuid": "10.0.0",
     "yargs": "17.7.2"
   }
 }
