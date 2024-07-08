@@ -74,7 +74,7 @@
     "license-checker": "^25.0.0",
     "marked": "4.2.12",
     "sass": "1.77.6",
-    "prettier": "3.2.5",
+    "prettier": "3.3.2",
     "pug-lint": "^2.7.0",
     "pug-lint-config-clock": "^2.0.0"
   },
