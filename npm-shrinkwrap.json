@@ -19,7 +19,7 @@
         "cli-color": "2.0.4",
         "coach-core": "8.0.2",
         "concurrent-queue": "7.0.2",
-        "dayjs": "1.11.10",
+        "dayjs": "1.11.11",
         "fast-crc32c": "2.0.0",
         "fast-stats": "0.0.6",
         "find-up": "7.0.0",
@@ -3667,11 +3667,6 @@
         "jimp": "0.22.12"
       }
     },
-    "node_modules/browsertime/node_modules/dayjs": {
-      "version": "1.11.11",
-      "resolved": "https://registry.npmjs.org/dayjs/-/dayjs-1.11.11.tgz",
-      "integrity": "sha512-okzr3f11N6WuqYtZSvm+F776mB41wRZMhKP+hc34YdW+KmtYYK9iqvHSwo2k9FEH3fhGXvOPV6yz2IcSrfRUDg=="
-    },
     "node_modules/btoa": {
       "version": "1.2.1",
       "resolved": "https://registry.npmjs.org/btoa/-/btoa-1.2.1.tgz",
@@ -4497,9 +4492,9 @@
       }
     },
     "node_modules/dayjs": {
-      "version": "1.11.10",
-      "resolved": "https://registry.npmjs.org/dayjs/-/dayjs-1.11.10.tgz",
-      "integrity": "sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ=="
+      "version": "1.11.11",
+      "resolved": "https://registry.npmjs.org/dayjs/-/dayjs-1.11.11.tgz",
+      "integrity": "sha512-okzr3f11N6WuqYtZSvm+F776mB41wRZMhKP+hc34YdW+KmtYYK9iqvHSwo2k9FEH3fhGXvOPV6yz2IcSrfRUDg=="
     },
     "node_modules/dbug": {
       "version": "0.4.2",
