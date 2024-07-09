@@ -59,7 +59,7 @@ if timings.largestContentfulPaint
               td.url.pagesurl(colspan='2')
                 #{timings.largestContentfulPaint.domPath}
     .one-half.column
-      - const screenshotNo = medianRun ? medianRun.runIndex : 1
+      - const screenshotNo = medianRun ? medianRun.runIndex : (Number(runIndex) + 1)
       - const screenshotName = 'data/screenshots/' + screenshotNo + '/largestContentfulPaint.' + screenShotType
       a(href=screenshotName)
         img.screenshot(src=screenshotName, alt='LCP', style='max-width:100%; height: auto')
