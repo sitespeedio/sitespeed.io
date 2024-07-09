@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2024-07-02T00:00:00.000Z</updated>
+    <updated>2024-07-09T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,85 @@
     <logo>https://www.sitespeed.io/img/logos/sitespeed.io.png</logo>
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 34.4.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.4.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.4.0"/>
+        <updated>2024-07-09T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Upgraded to Firefox 128 and Edge 126 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4222">#4222</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Show correct LCP and CLS image in each run page <a href="https://github.com/sitespeedio/sitespeed.io/pull/4221">#4221</a>.</li>
+</ul>
+ <ul>
+<li>Update Browsertime <a href="https://github.com/sitespeedio/sitespeed.io/pull/4210">#4210</a>.</li>
+</ul>
+ <ul>
+<li>Update minor dependencies and developer dependencies: co2.js <a href="https://github.com/sitespeedio/sitespeed.io/pull/4206">#4206</a>, uuid <a href="https://github.com/sitespeedio/sitespeed.io/pull/4207">#4207</a>, s3 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4208">#4208</a>, eslint <a href="https://github.com/sitespeedio/sitespeed.io/pull/4211">#4211</a>, ava, jsdoc, sass <a href="https://github.com/sitespeedio/sitespeed.io/pull/4212">#4212</a>, dayjs <a href="https://github.com/sitespeedio/sitespeed.io/pull/4214">#4214</a>, p-limit <a href="https://github.com/sitespeedio/sitespeed.io/pull/4215">#4215</a>, os-name <a href="https://github.com/sitespeedio/sitespeed.io/pull/4216">#4216</a>, tape <a href="https://github.com/sitespeedio/sitespeed.io/pull/4219">#4219</a> and p-limit <a href="https://github.com/sitespeedio/sitespeed.io/pull/4220">#4220</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 22.5.5]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.5</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.5"/>
+        <updated>2024-07-07T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix stopping --tcpdump <a href="https://github.com/sitespeedio/browsertime/pull/2155">#2155</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 22.5.4]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.4</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.4"/>
+        <updated>2024-07-06T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Update to Chrome-HAR 0.13.3 <a href="https://github.com/sitespeedio/browsertime/pull/2148">#2148</a>.</li>
+</ul>
+ <ul>
+<li>Update Chrome remore interface <a href="https://github.com/sitespeedio/browsertime/pull/2149">#2149</a>.</li>
+</ul>
+ <ul>
+<li>Update execa, dayjs and get-port <a href="https://github.com/sitespeedio/browsertime/pull/2153">#2153</a>.</li>
+</ul>
+ <ul>
+<li>Update developer dependencies <a href="https://github.com/sitespeedio/browsertime/pull/2154">#2154</a>, <a href="https://github.com/sitespeedio/browsertime/pull/2152">#2152</a>, <a href="https://github.com/sitespeedio/browsertime/pull/2151">#2151</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2150">#2150</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[chrome-har 0.13.2]]></title>
+        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.2</id>
+        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.2"/>
+        <updated>2024-07-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Include early hints requests, thank you <a href="https://github.com/benschwarz">Ben Schwarz</a> for PR <a href="https://github.com/sitespeedio/chrome-har/pull/118">#118</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 34.3.5]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.3.5</id>
@@ -227,21 +306,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 34.1.2]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.1.2</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.1.2"/>
-        <updated>2024-06-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Using <code>--preWarmServer</code> resulted in trying to use an  Android phone to prewarm. Fixed in <a href="https://github.com/sitespeedio/sitespeed.io/pull/4182">#4182</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[browsertime 22.4.1]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.4.1</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.4.1"/>
@@ -308,43 +372,6 @@
 <h3>Fixed</h3>
  <ul>
 <li>Make sure errors are correctly logged if you cannot add text to element <a href="https://github.com/sitespeedio/browsertime/pull/2136">#2136</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 22.1.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.1.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.1.0"/>
-        <updated>2024-05-20T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Edge and Edgedriver 125 <a href="https://github.com/sitespeedio/browsertime/pull/2132">#2132</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Updated to Selenium Webdriver 4.21.0 <a href="https://github.com/sitespeedio/browsertime/pull/2131">#2131</a>.</li>
-</ul>
- <ul>
-<li>Trying to remove new Chrome popup <a href="https://github.com/sitespeedio/browsertime/pull/2130">#2130</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 22.0.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.0.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.0.0"/>
-        <updated>2024-05-16T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated the Docker container to use Chrome 125 and Firefox 126 and Edge 124 <a href="https://github.com/sitespeedio/browsertime/pull/2125">#2125</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2128">#2128</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -705,13 +732,13 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[pagexray 4.4.0]]></title>
-        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.0</id>
-        <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.0"/>
+        <title type="html"><![CDATA[chrome-har 0.13.0]]></title>
+        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.0</id>
+        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.0"/>
         <updated>2022-02-04T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
-<li>Fallback if mime types aren&#39;t mapped and use file endings. At the moment we fallback for some of the font types <a href="https://github.com/sitespeedio/pagexray/pull/109">#109</a>.</li>
+<li>Add _isLinkPreload on the request object if it is isLinkPreload <a href="https://github.com/sitespeedio/chrome-har/pull/94">#94</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -720,13 +747,13 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[chrome-har 0.13.0]]></title>
-        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.0</id>
-        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.0"/>
+        <title type="html"><![CDATA[pagexray 4.4.0]]></title>
+        <id>https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.0</id>
+        <link href="https://github.com/sitespeedio/pagexray/blob/main/CHANGELOG.md#4.4.0"/>
         <updated>2022-02-04T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
-<li>Add _isLinkPreload on the request object if it is isLinkPreload <a href="https://github.com/sitespeedio/chrome-har/pull/94">#94</a>.</li>
+<li>Fallback if mime types aren&#39;t mapped and use file endings. At the moment we fallback for some of the font types <a href="https://github.com/sitespeedio/pagexray/pull/109">#109</a>.</li>
 </ul>
 ]]></summary>
         <author>

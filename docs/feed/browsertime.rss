@@ -4,7 +4,7 @@
         <title>browsertime release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of browsertime</description>
-        <lastBuildDate>Tue, 25 Jun 2024 19:34:54 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 07 Jul 2024 04:57:12 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,39 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/browsertime.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[browsertime 22.5.5]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.5</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.5</guid>
+            <pubDate>Sun, 07 Jul 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix stopping --tcpdump <a href="https://github.com/sitespeedio/browsertime/pull/2155">#2155</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 22.5.4]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.4</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.4</guid>
+            <pubDate>Sat, 06 Jul 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Update to Chrome-HAR 0.13.3 <a href="https://github.com/sitespeedio/browsertime/pull/2148">#2148</a>.</li>
+</ul>
+ <ul>
+<li>Update Chrome remore interface <a href="https://github.com/sitespeedio/browsertime/pull/2149">#2149</a>.</li>
+</ul>
+ <ul>
+<li>Update execa, dayjs and get-port <a href="https://github.com/sitespeedio/browsertime/pull/2153">#2153</a>.</li>
+</ul>
+ <ul>
+<li>Update developer dependencies <a href="https://github.com/sitespeedio/browsertime/pull/2154">#2154</a>, <a href="https://github.com/sitespeedio/browsertime/pull/2152">#2152</a>, <a href="https://github.com/sitespeedio/browsertime/pull/2151">#2151</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2150">#2150</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[browsertime 22.5.3]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.3</link>
@@ -122,37 +155,6 @@
 <h3>Fixed</h3>
  <ul>
 <li>Make sure errors are correctly logged if you cannot add text to element <a href="https://github.com/sitespeedio/browsertime/pull/2136">#2136</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 22.1.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.1.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.1.0</guid>
-            <pubDate>Mon, 20 May 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Edge and Edgedriver 125 <a href="https://github.com/sitespeedio/browsertime/pull/2132">#2132</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Updated to Selenium Webdriver 4.21.0 <a href="https://github.com/sitespeedio/browsertime/pull/2131">#2131</a>.</li>
-</ul>
- <ul>
-<li>Trying to remove new Chrome popup <a href="https://github.com/sitespeedio/browsertime/pull/2130">#2130</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 22.0.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.0.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.0.0</guid>
-            <pubDate>Thu, 16 May 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated the Docker container to use Chrome 125 and Firefox 126 and Edge 124 <a href="https://github.com/sitespeedio/browsertime/pull/2125">#2125</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2128">#2128</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
