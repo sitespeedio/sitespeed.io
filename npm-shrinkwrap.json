@@ -47,7 +47,7 @@
         "node-slack": "0.0.7",
         "ora": "8.0.1",
         "os-name": "6.0.0",
-        "p-limit": "6.0.0",
+        "p-limit": "6.1.0",
         "pug": "3.0.3",
         "recursive-readdir": "2.2.3",
         "simplecrawler": "1.1.9",
@@ -8680,9 +8680,9 @@
       }
     },
     "node_modules/p-limit": {
-      "version": "6.0.0",
-      "resolved": "https://registry.npmjs.org/p-limit/-/p-limit-6.0.0.tgz",
-      "integrity": "sha512-Dx+NzOuILWwjJE9OYtEKuQRy0i3c5QVAmDsVrvvRSgyNnPuB27D2DyEjl6QTNyeePaAHjaPk+ya0yA0Frld8RA==",
+      "version": "6.1.0",
+      "resolved": "https://registry.npmjs.org/p-limit/-/p-limit-6.1.0.tgz",
+      "integrity": "sha512-H0jc0q1vOzlEk0TqAKXKZxdl7kX3OFUzCnNVUnq5Pc3DGo0kpeaMuPqxQn235HibwBEb0/pm9dgKTjXy66fBkg==",
       "dependencies": {
         "yocto-queue": "^1.1.1"
       },
