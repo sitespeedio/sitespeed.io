@@ -1,5 +1,13 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 34.4.0 - UNRELASED
+### Added
+
+### Fixed
+* Show correct LCP and CLS image in each run page [#4221](https://github.com/sitespeedio/sitespeed.io/pull/4221).
+* Update Browsertime [#4210](https://github.com/sitespeedio/sitespeed.io/pull/4210).
+* Update minor dependencies and developer dependencies: co2.js [#4206](https://github.com/sitespeedio/sitespeed.io/pull/4206), uuid [#4207](https://github.com/sitespeedio/sitespeed.io/pull/4207), s3 [#4208](https://github.com/sitespeedio/sitespeed.io/pull/4208), eslint [#4211](https://github.com/sitespeedio/sitespeed.io/pull/4211), ava, jsdoc, sass [#4212](https://github.com/sitespeedio/sitespeed.io/pull/4212), dayjs [#4214](https://github.com/sitespeedio/sitespeed.io/pull/4214), p-limit [#4215](https://github.com/sitespeedio/sitespeed.io/pull/4215), os-name [#4216](https://github.com/sitespeedio/sitespeed.io/pull/4216), tape [#4219](https://github.com/sitespeedio/sitespeed.io/pull/4219) and p-limit [#4220](https://github.com/sitespeedio/sitespeed.io/pull/4220).
+
 ## 34.3.5 - 2024-07-02
 ### Fixed
 * The fix for CLS and LCP in 34.3.4 faulty set those to false by default, changing the default behaviour. Fixed in [#4205](https://github.com/sitespeedio/sitespeed.io/pull/4205)
