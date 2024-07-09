@@ -1,7 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 34.4.0 - UNRELASED
+## 34.4.0 - 2024-07-09
 ### Added
+* Upgraded to Firefox 128 and Edge 126 in the Docker container [#4222](https://github.com/sitespeedio/sitespeed.io/pull/4222).
 
 ### Fixed
 * Show correct LCP and CLS image in each run page [#4221](https://github.com/sitespeedio/sitespeed.io/pull/4221).
