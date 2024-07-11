@@ -1,24 +1,113 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 34.0.0 - UNRELEASED
+## 34.4.0 - 2024-07-09
+### Added
+* Upgraded to Firefox 128 and Edge 126 in the Docker container [#4222](https://github.com/sitespeedio/sitespeed.io/pull/4222).
 
-### Breaking
-* The S3 plugin has been upgraded to @aws-sdk/client-s3 v3 [#4138](https://github.com/sitespeedio/sitespeed.io/pull/4138). If you are using the S3 plugin and not set region, that will now fail. The v2 version of the aws-sdk used us-east-1 region as default, but v3 has removed the default setting. If you didn't used to set region you can add `--s3.region us-east-1` and it will work as before. If you do not do that, the uploads to S3 will fail.
+### Fixed
+* Show correct LCP and CLS image in each run page [#4221](https://github.com/sitespeedio/sitespeed.io/pull/4221).
+* Update Browsertime [#4210](https://github.com/sitespeedio/sitespeed.io/pull/4210).
+* Update minor dependencies and developer dependencies: co2.js [#4206](https://github.com/sitespeedio/sitespeed.io/pull/4206), uuid [#4207](https://github.com/sitespeedio/sitespeed.io/pull/4207), s3 [#4208](https://github.com/sitespeedio/sitespeed.io/pull/4208), eslint [#4211](https://github.com/sitespeedio/sitespeed.io/pull/4211), ava, jsdoc, sass [#4212](https://github.com/sitespeedio/sitespeed.io/pull/4212), dayjs [#4214](https://github.com/sitespeedio/sitespeed.io/pull/4214), p-limit [#4215](https://github.com/sitespeedio/sitespeed.io/pull/4215), os-name [#4216](https://github.com/sitespeedio/sitespeed.io/pull/4216), tape [#4219](https://github.com/sitespeedio/sitespeed.io/pull/4219) and p-limit [#4220](https://github.com/sitespeedio/sitespeed.io/pull/4220).
 
-* Dependency to WebPageTest has been removed [#4085](https://github.com/sitespeedio/sitespeed.io/pull/4085). You are only affected if you used the plugin-webpagetest. This means that the Docker container with the WebPageTest plugin will not be built. If you still want to use WebPageTest with sitespeed.io you can still clone the archived [plugin-webpagetest](https://github.com/sitespeedio/plugin-webpagetest).
+## 34.3.5 - 2024-07-02
+### Fixed
+* The fix for CLS and LCP in 34.3.4 faulty set those to false by default, changing the default behaviour. Fixed in [#4205](https://github.com/sitespeedio/sitespeed.io/pull/4205)
 
-* The -plus1 Docker container now has plugin-lighthouse and plugin-gpsi installed from npm instead of the git repository. It will work as before, but if you want to disable one of them, that has changed: TBD
+## 34.3.4 - 2024-06-25
+### Fixed
+* Expose command line parameters to disable CLS and LCP screenshots [#4201](https://github.com/sitespeedio/sitespeed.io/pull/4201).
 
-* Updated to [Browsertime 22](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2200---2024-05-16). This version of Browsertime drops the Browsertime extension and start use the kind of new HAR exporter using Bidi as the default HAR exporter! If you add request headers to your Firefox test or clear the cache inside of your scripyt using Firefox, this will stop to work for now.
+## 34.3.3 - 2024-06-24
+### Fixed
+* Updated to Browsertime 25.5.2 that has updated versions of Selenium WebDriver and correct export for scripting.
+* API: Copy Browsertime setting from the option object to the API. There cases where you use a configuration file, override it with CLI parameters and the cli parameters didn't override the configuration file. That is fixed now for Browsertime configurations [#4200](https://github.com/sitespeedio/sitespeed.io/pull/4200).
+
+## 34.3.2 - 2024-06-23
+### Fixed
+* API: Remove extends from the configuration to make sure that testrunners ddo not try to extend configuration [#4198](https://github.com/sitespeedio/sitespeed.io/pull/4198).
+
+## 34.3.1 - 2024-06-20
+### Fixed
+* The docker hub has had some problem and started to publish old images (as new!). That broke our latest tag to include chrome/edge//firefox 111. This release auto publish the latest one again.
+
+## 34.3.0 - 2024-06-20
+### Added
+* API: Show the URL/script name in the API call [#4195](https://github.com/sitespeedio/sitespeed.io/pull/4195)
+* Update WebPageReplay binaries [#4196](https://github.com/sitespeedio/sitespeed.io/pull/4196).
+
+## 34.2.2 - 2024-06-18
+### Fixed
+* Make it possible to disable the API. In some cases where you extends another configuration file, you could end up in a API loop where the API calls the API [#4191](https://github.com/sitespeedio/sitespeed.io/pull/4191).
+
+## 34.2.1 - 2024-06-17
+### Fixed
+* API: safer parsing if something fail to get better error messages [#4188](https://github.com/sitespeedio/sitespeed.io/pull/4188).
+
+## 34.2.0 - 2024-06-14
 
 ### Added
-* Updated to Chrome 125, Firefox 126 and Edge 124 in the Docker container [#4156](https://github.com/sitespeedio/sitespeed.io/pull/4156)
+* Updated to Browsertime 22.5.0 [#4187](https://github.com/sitespeedio/sitespeed.io/pull/4187).
+* Updated to Firefox 127 and Chrome/Chromedriver 126 [#4185](https://github.com/sitespeedio/sitespeed.io/pull/4185)
+
+### Fixed
+* Fix for InfluxDBv2 to send annotations. Thank you [pavel bairov](https://github.com/Amerousful) for PR [#4175](https://github.com/sitespeedio/sitespeed.io/pull/4175).
+
+* Fix log output when using `--preWarmServer`, thank you [ThimoCap](https://github.com/ThimoCap) for PR [#4183](https://github.com/sitespeedio/sitespeed.io/pull/4183)
+
+## 34.1.2 - 2024-06-12
+### Fixed
+* Using `--preWarmServer` resulted in trying to use an  Android phone to prewarm. Fixed in [#4182](https://github.com/sitespeedio/sitespeed.io/pull/4182).
+
+## 34.1.1 - 2024-06-07
+### Fixed
+* Enabling extra profile run/video run didn't stop the Browsertime engine in the correct place. PR [#4179](https://github.com/sitespeedio/sitespeed.io/pull/4179) fixes that.
+
+## 34.1.0 - 2024-06-06
+### Added
+* Add `--enableVideoRun`. You can use it together with `--video false --visualMetrics true` to do one extra run where the video is kept. This is useful for tests against replay proxies [#4177](https://github.com/sitespeedio/sitespeed.io/pull/4177).
+
+## 34.0.3 - 2024-06-05
+
+### Fixed
+* Make sure extra options are passed on to S3 [#4176](https://github.com/sitespeedio/sitespeed.io/pull/4176).
+
+## 34.0.2 - 2024-06-04
+
+### Fixed
+* Update to Pug 3.0.3 [#4172](https://github.com/sitespeedio/sitespeed.io/pull/4172).
+
+## 34.0.1 - 2024-05-30
+
+### Fixed
+* The +1 container has updated to code to take care of if GPSI is missing metrics [GPSI #56](https://github.com/sitespeedio/plugin-gpsi/pull/56).
+
+## 34.0.0 - 2024-05-29
+
+### Breaking
+
+* Woho! There's now a way to deploy your own version of sitespeed.io online for your own testing using [onlinetest][https://github.com/sitespeedio/onlinetest]! It has a HTML GUI and an API that you can use using sitespeed.io command line. There's one server part (the frontend and the API) and a testrunner part. You can run desktop, emulated mobile and Android test. I do not host a global version but I worked hard to make it easy to host yourself. I still work on the documentation but feel free to start to try it out before all documentation is finished :) If you have quick question and need help, please use the [Slack channel](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw). If you have more complicated problems, please feel free to create issues [here](https://github.com/sitespeedio/onlinetest/issues/new).
+ 
+* With this release we remove all dependencies to WebPageTest [#4085](https://github.com/sitespeedio/sitespeed.io/pull/4085). You are only affected if you used the [plugin-webpagetest](https://github.com/sitespeedio/plugin-webpagetest) or the +webpagetest Docker container. If you still want to use WebPageTest with sitespeed.io you can build something on the archived [plugin-webpagetest](https://github.com/sitespeedio/plugin-webpagetest).
+
+* The S3 plugin has been upgraded to @aws-sdk/client-s3 v3 [#4138](https://github.com/sitespeedio/sitespeed.io/pull/4138). If you are using the S3 plugin and not set region, that will now fail. The v2 version of the aws-sdk used us-east-1 region as default, but v3 has removed the default setting. If you didn't used to set region you can add `--s3.region us-east-1` and it will work as before. If you do not do that, the uploads to S3 will fail. With v3 your `endpoint` need to start with http/https.
+
+* The -plus1 Docker container now has plugin-lighthouse and plugin-gpsi installed from npm instead of the git repository. It will work as before, but if you want to disable one of them, that has changed. To not run the GPSI plugin add `--plugins.remove @sitespeed.io/plugin-gpsi` and to disble Lighthouse you add `--plugins.remove @sitespeed.io/plugin-lighthouse`.
+
+* Updated to [Browsertime 22](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2200---2024-05-16). This version of Browsertime drops the Browsertime extension and start use the kind of new HAR exporter using Bidi as the default HAR exporter! If you add request headers to your Firefox test or clear the cache inside of your script using Firefox, this will stop to work for now until support is added in Firefox (request headers are coming soon!).
+
+### Added
+* Updated to Chrome 125, Firefox 126 and Edge 124 in the Docker container [#4156](https://github.com/sitespeedio/sitespeed.io/pull/4156).
+
+### Fixed
+* Fix loading globally installed plugins [#4167](https://github.com/sitespeedio/sitespeed.io/pull/4167).
+* Fix configurations documentation for scp, thank you [Arash Hatam](https://github.com/hatamiarash7) for [#4166](https://github.com/sitespeedio/sitespeed.io/pull/4166).
+
 
 ## 33.6.1 - 2024-05-13
 ### Fixed
 * The plus1 container was updated with the latest version of the gpsi-plugin, since the old version broke when GPSI was updated to Lighthouse 12. 
 
- will## 33.6.0 - 2024-04-17
+## 33.6.0 - 2024-04-17
 ### Added
 * Updated to Chrome 124 and Firefox 125 in the Docker container [#4142](https://github.com/sitespeedio/sitespeed.io/pull/4142) and [#4142](https://github.com/sitespeedio/sitespeed.io/pull/4141).
 

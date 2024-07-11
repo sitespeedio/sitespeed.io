@@ -5,7 +5,7 @@
 import { writeFileSync } from 'node:fs';
 import { execSync } from 'node:child_process';
 import { platform } from 'node:os';
-import { resolve, basename } from 'node:path';
+import path from 'node:path';
 import { readFileSync } from 'node:fs';
 import { EventEmitter } from 'node:events';
 
@@ -38,10 +38,10 @@ async function api(options) {
   // Add support for running multi tests
   if (options.multi) {
     const scripting = await readFileSync(
-      new URL(resolve(process.cwd(), options._[0]), import.meta.url)
+      new URL(path.resolve(process.cwd(), options._[0]), import.meta.url)
     );
     apiOptions.api.scripting = scripting.toString();
-    apiOptions.api.scriptingName = basename(options._[0]);
+    apiOptions.api.scriptingName = path.basename(options._[0]);
   }
 
   if (apiOptions.mobile) {
@@ -57,16 +57,21 @@ async function api(options) {
   if (options.config) {
     const config = JSON.parse(
       await readFileSync(
-        new URL(resolve(process.cwd(), options.config), import.meta.url)
+        new URL(path.resolve(process.cwd(), options.config), import.meta.url)
       )
     );
     apiOptions = merge(options.explicitOptions, config);
     delete apiOptions.config;
+    delete apiOptions.extends;
   }
+
+  // We copy all browsertime settings to fix the problem when we use --config
+  // and then try to ovverride some configurations using command line
+  apiOptions.browsertime = options.browsertime;
 
   if (action === 'add' || action === 'addAndGetResult') {
     const spinner = ora({
-      text: `Send test to ${hostname}`,
+      text: `Send test to ${hostname} testing ${options._[0]}`,
       isSilent: options.api.silent
     }).start();
 
@@ -74,10 +79,10 @@ async function api(options) {
       const data = await addTest(hostname, apiOptions);
       const testId = JSON.parse(data).id;
       spinner.color = 'yellow';
-      spinner.text = `Added test with id ${testId}`;
+      spinner.text = `Added test ${options._[0]} with id ${testId}`;
 
       if (action === 'add') {
-        spinner.succeed(`Added test with id ${testId}`);
+        spinner.succeed(`Added test ${options._[0]} with id ${testId}`);
         console.log(testId);
         process.exit();
       } else if (action === 'addAndGetResult') {
@@ -132,7 +137,7 @@ async function start() {
 
   let options = parsed.options;
 
-  if (options.api && options.api.hostname) {
+  if (options.api && options.api.hostname && !options.disableAPI) {
     api(options);
   } else {
     try {

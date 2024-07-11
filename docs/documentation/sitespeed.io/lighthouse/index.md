@@ -30,7 +30,7 @@ The Lighthouse tests will run after Browsertime finished and run Chrome headless
 *Note:* If you want to run more plugins with <code>--plugins.add</code> that will override the default settings so you will need to add the Lighthouse plugin again like this:
 
 ```bash
-docker run --shm-size=1g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-plus1 https://www.sitespeed.io/ --plugins.add analysisstorer --plugins.add /lighthouse/index.js
+docker run --shm-size=1g --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-plus1 https://www.sitespeed.io/ --plugins.add analysisstorer --plugins.add @sitespeed.io/plugin-lighthouse
 ``` 
 
 The Lighthouse result is iframed into sitespeed.io:
@@ -58,7 +58,7 @@ You can also add Lighthouse flags by a JSON file ```--lighthouse.flags flag.json
 Read all about configuring Lighthouse at [https://github.com/GoogleChrome/lighthouse/blob/master/docs/configuration.md](https://github.com/GoogleChrome/lighthouse/blob/master/docs/configuration.md).
 
 ## Disable GPSI
-If you only want to run Lighthouse and not GPSI you can disable it with `----plugins.remove /gpsi/lib/index.js`.
+If you only want to run Lighthouse and not GPSI you can disable it with `----plugins.remove @sitespeed.io/plugin-gpsi`.
 
 
 You can read more about sitespeed.io plugins [here](https://www.sitespeed.io/documentation/sitespeed.io/plugins/).

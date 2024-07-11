@@ -7,7 +7,7 @@
   if d.browsertime && d.browsertime.pageSummary
     a(id='metrics', href='#metrics', onclick='return selectTab(this, true);')
       | Metrics
-  if options.browsertime.video
+  if options.browsertime.video || options.enableVideoRun
     a(id='video', href='#video', onclick='return selectTab(this, true);')
       | Video
   if (options.browsertime.visualMetrics && options.videoParams.createFilmstrip) || options.browsertime.chrome && options.browsertime.chrome.enableTraceScreenshots

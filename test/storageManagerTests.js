@@ -1,4 +1,4 @@
-import { resolve, join } from 'node:path';
+import path from 'node:path';
 
 import dayjs from 'dayjs';
 import test from 'ava';
@@ -30,7 +30,7 @@ test(`Create base dir with default output folder`, t => {
   const storageManager = createManager('http://www.foo.bar');
   t.is(
     storageManager.getBaseDir(),
-    resolve('sitespeed-result', 'www.foo.bar', timestampString)
+    path.resolve('sitespeed-result', 'www.foo.bar', timestampString)
   );
 });
 
@@ -44,7 +44,10 @@ test(`Create base dir with custom output folder`, t => {
 
 test(`Create prefix with default output folder`, t => {
   const storageManager = createManager('http://www.foo.bar');
-  t.is(storageManager.getStoragePrefix(), join('www.foo.bar', timestampString));
+  t.is(
+    storageManager.getStoragePrefix(),
+    path.join('www.foo.bar', timestampString)
+  );
 });
 
 test(`Create prefix with custom output folder`, t => {

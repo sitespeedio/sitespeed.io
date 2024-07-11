@@ -1,6 +1,6 @@
 import { Feed } from 'feed';
 import { readdirSync, statSync, readFileSync, writeFileSync } from 'node:fs';
-import { parse, join } from 'node:path';
+import path from 'node:path';
 import parseChangelog from 'changelog-parser';
 import { marked } from 'marked';
 
@@ -25,7 +25,7 @@ const getSortedFiles = dir => {
   return files
     .map(fileName => ({
       fileName: fileName,
-      name: parse(fileName).name,
+      name: path.parse(fileName).name,
       time: statSync(`${dir}/${fileName}`).mtime.getTime(),
       version: readFileSync(`${dir}/${fileName}`, 'utf8').trim()
     }))
@@ -165,9 +165,12 @@ async function generateFeed() {
 
     const documentPath = './docs/';
 
-    writeFileSync(join(documentPath, 'feed', `${tool.name}.rss`), feed.rss2());
     writeFileSync(
-      join(documentPath, 'feed', `${tool.name}.atom`),
+      path.join(documentPath, 'feed', `${tool.name}.rss`),
+      feed.rss2()
+    );
+    writeFileSync(
+      path.join(documentPath, 'feed', `${tool.name}.atom`),
       feed.atom1()
     );
   }
@@ -183,8 +186,8 @@ async function generateFeed() {
 
   const documentPath = './docs/';
 
-  writeFileSync(join(documentPath, 'feed', `rss.xml`), allFeed.rss2());
-  writeFileSync(join(documentPath, 'feed', `atom.xml`), allFeed.atom1());
+  writeFileSync(path.join(documentPath, 'feed', `rss.xml`), allFeed.rss2());
+  writeFileSync(path.join(documentPath, 'feed', `atom.xml`), allFeed.atom1());
 }
 
 await generateFeed();

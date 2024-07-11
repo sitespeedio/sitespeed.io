@@ -89,11 +89,15 @@ And then you should also make sure that all the result files (HTML/videos/screen
 
 As a last thing you should also add `--copyLatestFilesToBase` that will make it possible to view latest screenshot and video in Grafana from S3.
 
+# MinIO
+If you want deploy the storage yourself you can use the Open Source [https://min.io](https://min.io). You can deploy that using Docker. You have an example on how you can set that up in [sitespeed.io online test](https://github.com/sitespeedio/onlinetest/blob/main/docker-compose.yml).
 
 # Digital Ocean Spaces
 [Digital Ocean Spaces](https://developers.digitalocean.com/documentation/spaces/#aws-s3-compatibility)
 
-Digital Ocean is compatible with the S3 api, so all that is required after setting up your space and acquiring a key and secret is to modify the endpoint that the s3 results are passed to as shown below.
+Digital Ocean is compatible with the S3 API, so all that is required after setting up your space and acquiring a key and secret is to modify the endpoint that the s3 results are passed to as shown below.
+
+Make sure that your endpoint starts with http/https.
 
 ## JSON configuration file
  If the endpoint is not passed this will default to AWS's endpoint. You may safely exclude it for AWS integration. If you use a JSON configuration file you should make sure you add this to get S3 to work:
