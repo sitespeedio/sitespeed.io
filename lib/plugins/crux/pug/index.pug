@@ -82,14 +82,15 @@ if experiences
                       showLabel: false,
                       plugins: [
                         Chartist.plugins.legend(
-                          { clickable: false,
+                          { 
+                            clickable: false,
                             position: 'bottom'
                           }
                         )
                     ]
                     });
                   }     
-
+                  
                   drawPie('#chartFCP#{experience + formFactor}', [#{FCPs}], ['Fast: #{FCPs[0]}%', 'Moderate #{FCPs[1]}%', 'Slow: #{FCPs[2]}%']);
                   drawPie('#chartLCP#{experience + formFactor}', [#{LCPs}], ['Fast: #{LCPs[0]}%', 'Moderate #{LCPs[1]}%', 'Slow: #{LCPs[2]}%']);
                   drawPie('#chartFID#{experience + formFactor}', [#{FIDs}], ['Fast: #{FIDs[0]}%', 'Moderate #{FIDs[1]}%', 'Slow: #{FIDs[2]}%']);
@@ -101,27 +102,29 @@ if experiences
             });
           .responsive  
             table
-              tr 
-                th #{metrics['first_contentful_paint']}
-                th #{metrics['largest_contentful_paint']}
-                th #{metrics['first_input_delay']} 
-              tr 
-                td(data-title=metrics['first_contentful_paint'])  
-                  .ct-chart(id='chartFCP' + experience + formFactor)
-                td(data-title=metrics['largest_contentful_paint']) 
-                  .ct-chart(id='chartLCP' + experience + formFactor)
-                td(data-title=metrics['first_input_delay']) 
-                  .ct-chart(id='chartFID' + experience + formFactor)
               tr
-                th #{metrics['cumulative_layout_shift']}
-                th #{metrics['interaction_to_next_paint']}
                 th #{metrics['experimental_time_to_first_byte']}
+                th #{metrics['first_contentful_paint']}
               tr 
-                td(data-title=metrics['cumulative_layout_shift']) 
-                  .ct-chart(id='chartCLS' + experience + formFactor)
-                td(data-title=metrics['interaction_to_next_paint']) 
-                  .ct-chart(id='chartITNP' + experience + formFactor) 
                 td(data-title=metrics['experimental_time_to_first_byte']) 
                   .ct-chart(id='chartTTFB' + experience + formFactor) 
+                td(data-title=metrics['first_contentful_paint'])  
+                  .ct-chart(id='chartFCP' + experience + formFactor)
+              tr
+                th #{metrics['largest_contentful_paint']}            
+                th #{metrics['cumulative_layout_shift']}  
+              tr 
+                td(data-title=metrics['largest_contentful_paint']) 
+                  .ct-chart(id='chartLCP' + experience + formFactor)
+                td(data-title=metrics['cumulative_layout_shift']) 
+                  .ct-chart(id='chartCLS' + experience + formFactor)
+              tr
+                th #{metrics['first_input_delay']} 
+                th #{metrics['interaction_to_next_paint']}
+              tr
+                td(data-title=metrics['first_input_delay']) 
+                  .ct-chart(id='chartFID' + experience + formFactor)
+                td(data-title=metrics['interaction_to_next_paint']) 
+                  .ct-chart(id='chartITNP' + experience + formFactor) 
 else 
   p No data availible in the Chrome User Experience report.

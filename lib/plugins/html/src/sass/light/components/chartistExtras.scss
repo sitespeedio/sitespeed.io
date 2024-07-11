@@ -19,7 +19,7 @@
 }
 
 .ct-series-a .ct-slice-pie, .ct-series-a .ct-slice-donut-solid, .ct-series-a .ct-area {
-  fill: #468847;
+  fill: #6BB863;
 }
 
 
@@ -28,15 +28,15 @@
 }
 
 .ct-series-b .ct-slice-pie, .ct-series-b .ct-slice-donut-solid, .ct-series-b .ct-area {
-  fill: #c09853;
+  fill: #EECA5E;
 }
 
 .ct-series-c .ct-point, .ct-series-c .ct-line, .ct-series-c .ct-bar, .ct-series-c .ct-slice-donut {
-  stroke: #fec584;
+  stroke: #EECA5E;
 }
 
 .ct-series-c .ct-slice-pie, .ct-series-c .ct-slice-donut-solid, .ct-series-c .ct-area {
-  fill: #b94a48;
+  fill: #E55761;
 }
 
 .ct-series-d .ct-point, .ct-series-d .ct-line, .ct-series-d .ct-bar, .ct-series-d .ct-slice-donut {
@@ -48,11 +48,11 @@
 }
 
 .ct-series-e .ct-point, .ct-series-e .ct-line, .ct-series-e .ct-bar, .ct-series-e .ct-slice-donut {
-  stroke: #ff523e;
+  stroke: #E55761;
 }
 
 .ct-series-e .ct-slice-pie, .ct-series-e .ct-slice-donut-solid, .ct-series-e .ct-area {
-  fill: #ff523e;
+  fill: #E55761;
 }
 
 .ct-series-f .ct-point, .ct-series-f .ct-line, .ct-series-f .ct-bar, .ct-series-f .ct-slice-donut {
@@ -80,11 +80,11 @@
 }
 
 .ct-series-i .ct-point, .ct-series-i .ct-line, .ct-series-i .ct-bar, .ct-series-i .ct-slice-donut {
-  stroke: #EAB839;
+  stroke: #EECA5E;
 }
 
 .ct-series-i .ct-slice-pie, .ct-series-i .ct-slice-donut-solid, .ct-series-i .ct-area {
-  fill: #EAB839;
+  fill: #EECA5E;
 }
 
 .ct-chart {  
@@ -116,15 +116,15 @@
           }
 
           &:nth-child(1)::before{
-              background-color: #468847;
+              background-color: #6BB863;
           }    
           
           &:nth-child(2)::before{
-              background-color: #c09853;
+              background-color: #EECA5E;
           }
       
           &:nth-child(3)::before{
-              background-color: #b94a48;
+              background-color: #E55761;
           }
       
       }
@@ -138,17 +138,17 @@
   g:not(.ct-grids):not(.ct-labels) g {
       &:nth-child(1){
           .ct-point,.ct-line {
-              stroke: #468847;        
+              stroke: #6BB863;        
           }
       }
       &:nth-child(2){
           .ct-point,.ct-line {
-              stroke: #c09853;      
+              stroke: #EECA5E;      
           }
       }
       &:nth-child(3){
           .ct-point,.ct-line {
-              stroke: #b94a48;       
+              stroke: #E55761;       
           }
       }
   }
