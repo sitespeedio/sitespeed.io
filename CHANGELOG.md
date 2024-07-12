@@ -1,8 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 34.5.0 - UNRELEASED
+## 34.5.0 - 2024-07-12
 ### Added
 * Crux: Add navigation types, and form factors. Fix colors to align with Grafana colors and fix broken legend colors [#4223](https://github.com/sitespeedio/sitespeed.io/pull/4223).
+* Sustainable: Make it possible to choose sustainable model version (for model swd). To use the latest version for add: `--sustainable.model swd --sustainable.modelVersion 4`
 
 ## 34.4.0 - 2024-07-09
 ### Added
