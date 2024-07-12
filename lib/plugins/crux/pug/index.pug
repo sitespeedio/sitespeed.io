@@ -11,7 +11,7 @@ mixin sizeCell(title, size)
   td.number(data-title=title, data-value= size)= h.size.format(size)
 
 - const crux = pageInfo.data.crux.pageSummary;
-- const metrics = {first_contentful_paint:'First Contentful Paint (FCP)', largest_contentful_paint: 'Largest Contentful Paint (LCP)', first_input_delay:'First Input Delay (FID)', cumulative_layout_shift: 'Cumulative Layout Shift (CLS)', interaction_to_next_paint: 'Interaction to next paint (INP)', experimental_time_to_first_byte: 'Time to first byte (TTFB)'}; 
+- const metrics = {round_trip_time: 'Round trip time', experimental_time_to_first_byte: 'Time to first byte (TTFB)', first_contentful_paint:'First Contentful Paint (FCP)', largest_contentful_paint: 'Largest Contentful Paint (LCP)', first_input_delay:'First Input Delay (FID)', cumulative_layout_shift: 'Cumulative Layout Shift (CLS)', interaction_to_next_paint: 'Interaction to next paint (INP)'}; 
 - const experiences = ['loadingExperience','originLoadingExperience'];
 
 if experiences
