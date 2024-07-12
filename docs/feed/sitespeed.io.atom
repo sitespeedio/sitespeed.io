@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2024-07-09T16:52:03.190Z</updated>
+    <updated>2024-07-12T03:49:36.642Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,24 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 34.5.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.5.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.5.0"/>
+        <updated>2024-07-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Crux: Add navigation types, and form factors. Fix colors to align with Grafana colors and fix broken legend colors <a href="https://github.com/sitespeedio/sitespeed.io/pull/4223">#4223</a>.</li>
+</ul>
+ <ul>
+<li>Sustainable: Make it possible to choose sustainable model version (for model swd). To use the latest version for add: <code>--sustainable.model swd --sustainable.modelVersion 4</code></li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 34.4.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.4.0</id>
@@ -160,31 +178,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>API: safer parsing if something fail to get better error messages <a href="https://github.com/sitespeedio/sitespeed.io/pull/4188">#4188</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 34.2.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.2.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.2.0"/>
-        <updated>2024-06-14T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Browsertime 22.5.0 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4187">#4187</a>.</li>
-</ul>
- <ul>
-<li>Updated to Firefox 127 and Chrome/Chromedriver 126 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4185">#4185</a></li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Fix for InfluxDBv2 to send annotations. Thank you <a href="https://github.com/Amerousful">pavel bairov</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4175">#4175</a>.</li>
-</ul>
- <ul>
-<li>Fix log output when using <code>--preWarmServer</code>, thank you <a href="https://github.com/ThimoCap">ThimoCap</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4183">#4183</a></li>
 </ul>
 ]]></summary>
         <author>
