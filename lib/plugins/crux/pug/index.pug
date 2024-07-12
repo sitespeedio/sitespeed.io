@@ -57,23 +57,23 @@ if experiences
                     td #{name} 75 percentile
                     td #{key.indexOf('cumulative') > -1 ? crux[experience][formFactor].data.record.metrics[key].percentiles.p75 :  h.time.ms(crux[experience][formFactor].data.record.metrics[key].percentiles.p75)} 
           
-          
-          h4 Form factors
-          table
-            thead 
-              tr
-                th Form factor
-                th Value
-            tbody
-              tr 
-                td Desktop
-                td #{Number(crux[experience][formFactor].FORM_FACTORS_FRACTIONS.desktop *100).toFixed(2)}%
-              tr 
-                td Phone
-                td #{Number(crux[experience][formFactor].FORM_FACTORS_FRACTIONS.phone *100).toFixed(2)}%
-              tr 
-                td Tablet
-                td #{Number(crux[experience][formFactor].FORM_FACTORS_FRACTIONS.tablet *100).toFixed(2)}%
+          if crux[experience][formFactor].FORM_FACTORS_FRACTIONS
+            h4 Form factors
+            table
+              thead 
+                tr
+                  th Form factor
+                  th Value
+              tbody
+                tr 
+                  td Desktop
+                  td #{Number(crux[experience][formFactor].FORM_FACTORS_FRACTIONS.desktop *100).toFixed(2)}%
+                tr 
+                  td Phone
+                  td #{Number(crux[experience][formFactor].FORM_FACTORS_FRACTIONS.phone *100).toFixed(2)}%
+                tr 
+                  td Tablet
+                  td #{Number(crux[experience][formFactor].FORM_FACTORS_FRACTIONS.tablet *100).toFixed(2)}%
 
 
           if crux[experience][formFactor].NAVIGATION_TYPES_FRACTIONS
