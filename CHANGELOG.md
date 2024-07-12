@@ -1,5 +1,5 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
-## 34.6.0 - UNRELEASED
+## 34.6.0 - 2024-07-12
 ### Added
 * Crux: Include RTT p75 [#4225](https://github.com/sitespeedio/sitespeed.io/pull/4225).
 
