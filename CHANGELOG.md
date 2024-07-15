@@ -1,4 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
+
+## 34.7.0 - 2024-07-15
+### Added
+* Update to Browsertime [22.6.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2260---2024-07-15) [#4226](https://github.com/sitespeedio/sitespeed.io/pull/4226).
+* Crux: Push navigation types and form factor data by default to TSDB [#4227](https://github.com/sitespeedio/sitespeed.io/pull/4227).
+
 ## 34.6.0 - 2024-07-12
 ### Added
 * Crux: Include RTT p75 [#4225](https://github.com/sitespeedio/sitespeed.io/pull/4225).
