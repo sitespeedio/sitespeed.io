@@ -16,6 +16,18 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[sitespeed.io 34.6.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.6.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.6.0</guid>
+            <pubDate>Fri, 12 Jul 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Crux: Include RTT p75 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4225">#4225</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 34.5.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.5.0</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.5.0</guid>
@@ -25,10 +37,21 @@
 <li>Crux: Add navigation types, and form factors. Fix colors to align with Grafana colors and fix broken legend colors <a href="https://github.com/sitespeedio/sitespeed.io/pull/4223">#4223</a>.</li>
 </ul>
  <ul>
-<li>Sustainable: Make it possible to choose sustainable model version (for model swd). To use the latest version for add: <code>--sustainable.model swd --sustainable.modelVersion 4</code></li>
+<li>Sustainable: Make it possible to choose sustainable model version (for model swd). To use the latest version for add: <code>--sustainable.model swd --sustainable.modelVersion 4</code> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4224">#4224</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[chrome-har 0.13.5]]></title>
+            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.5</link>
+            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.5</guid>
+            <pubDate>Fri, 12 Jul 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Always take care of Network.responseReceivedExtraInfo even if its fired early, thank you <a href="https://github.com/ifduyue">ifduyue</a> for PR <a href="https://github.com/sitespeedio/chrome-har/pull/120">#120</a>.</li>
+</ul>
+]]></description>
         </item>
         <item>
             <title><![CDATA[sitespeed.io 34.4.0]]></title>
@@ -86,9 +109,9 @@
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[chrome-har 0.13.2]]></title>
-            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.2</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.2</guid>
+            <title><![CDATA[chrome-har 0.13.3]]></title>
+            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.3</link>
+            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.3</guid>
             <pubDate>Fri, 05 Jul 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
@@ -218,18 +241,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Make it possible to disable the API. In some cases where you extends another configuration file, you could end up in a API loop where the API calls the API <a href="https://github.com/sitespeedio/sitespeed.io/pull/4191">#4191</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 34.2.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.2.1</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.2.1</guid>
-            <pubDate>Mon, 17 Jun 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>API: safer parsing if something fail to get better error messages <a href="https://github.com/sitespeedio/sitespeed.io/pull/4188">#4188</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
@@ -856,17 +867,6 @@
 </ul>
  <ul>
 <li>Update to day-js 1.8.31.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[chrome-har 0.11.9]]></title>
-            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.9</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.9</guid>
-            <pubDate>Tue, 26 May 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated dependencies: dayjs - 1.8.27, debug: 4.1.1, tough-cookie - 4.0.0, uuid - 8.0.0</li>
 </ul>
 ]]></description>
         </item>

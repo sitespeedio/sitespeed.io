@@ -4,7 +4,7 @@
         <title>chrome-har release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of chrome-har</description>
-        <lastBuildDate>Thu, 11 Jul 2024 05:53:46 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 12 Jul 2024 04:17:40 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -12,9 +12,20 @@
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/chrome-har.rss" rel="self" type="application/rss+xml"/>
         <item>
-            <title><![CDATA[chrome-har 0.13.2]]></title>
-            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.2</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.2</guid>
+            <title><![CDATA[chrome-har 0.13.5]]></title>
+            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.5</link>
+            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.5</guid>
+            <pubDate>Fri, 12 Jul 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Always take care of Network.responseReceivedExtraInfo even if its fired early, thank you <a href="https://github.com/ifduyue">ifduyue</a> for PR <a href="https://github.com/sitespeedio/chrome-har/pull/120">#120</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[chrome-har 0.13.3]]></title>
+            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.3</link>
+            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.3</guid>
             <pubDate>Fri, 05 Jul 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
@@ -97,17 +108,6 @@
 </ul>
  <ul>
 <li>Update to day-js 1.8.31.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[chrome-har 0.11.9]]></title>
-            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.9</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.9</guid>
-            <pubDate>Tue, 26 May 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated dependencies: dayjs - 1.8.27, debug: 4.1.1, tough-cookie - 4.0.0, uuid - 8.0.0</li>
 </ul>
 ]]></description>
         </item>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>chrome-har-release-feed</id>
     <title>chrome-har release feed</title>
-    <updated>2024-07-11T05:53:46.018Z</updated>
+    <updated>2024-07-12T04:17:40.768Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,9 +16,24 @@
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
     <entry>
-        <title type="html"><![CDATA[chrome-har 0.13.2]]></title>
-        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.2</id>
-        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.2"/>
+        <title type="html"><![CDATA[chrome-har 0.13.5]]></title>
+        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.5</id>
+        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.5"/>
+        <updated>2024-07-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Always take care of Network.responseReceivedExtraInfo even if its fired early, thank you <a href="https://github.com/ifduyue">ifduyue</a> for PR <a href="https://github.com/sitespeedio/chrome-har/pull/120">#120</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[chrome-har 0.13.3]]></title>
+        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.3</id>
+        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.3"/>
         <updated>2024-07-05T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
@@ -129,21 +144,6 @@
 </ul>
  <ul>
 <li>Update to day-js 1.8.31.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[chrome-har 0.11.9]]></title>
-        <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.9</id>
-        <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.9"/>
-        <updated>2020-05-26T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated dependencies: dayjs - 1.8.27, debug: 4.1.1, tough-cookie - 4.0.0, uuid - 8.0.0</li>
 </ul>
 ]]></summary>
         <author>
