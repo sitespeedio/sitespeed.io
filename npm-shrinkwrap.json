@@ -15,7 +15,7 @@
         "@sitespeed.io/plugin": "0.0.6",
         "@tgwf/co2": "0.16.0",
         "axe-core": "4.9.1",
-        "browsertime": "22.5.5",
+        "browsertime": "22.6.0",
         "cli-color": "2.0.4",
         "coach-core": "8.0.2",
         "concurrent-queue": "7.0.2",
@@ -3625,9 +3625,9 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "22.5.5",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-22.5.5.tgz",
-      "integrity": "sha512-9+D4J6gz66gGmruksQU6+HAYFKY8h7RK7K9O9gnvvBr/Vt+EsaJ4sjP33KqcJjPGBiklXXrTdhr6b9xPE4eftg==",
+      "version": "22.6.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-22.6.0.tgz",
+      "integrity": "sha512-4hmFO+yMxWbxlQ0aN3Zx4g0oYCCZjGOaQUFNCyEY8SREF3cWDGx4q0F6gRvkk18Sno6Y25gKveDaZj/LaKaMJw==",
       "dependencies": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "3.2.6",
@@ -3637,7 +3637,7 @@
         "@sitespeed.io/throttle": "5.0.0",
         "@sitespeed.io/tracium": "0.3.3",
         "btoa": "1.2.1",
-        "chrome-har": "0.13.3",
+        "chrome-har": "0.13.5",
         "chrome-remote-interface": "0.33.2",
         "dayjs": "1.11.11",
         "execa": "9.3.0",
@@ -3875,9 +3875,9 @@
       }
     },
     "node_modules/chrome-har": {
-      "version": "0.13.3",
-      "resolved": "https://registry.npmjs.org/chrome-har/-/chrome-har-0.13.3.tgz",
-      "integrity": "sha512-qqi1c6tTrPhH9x8nInMGETbdyv23mFk1tpL+09hGdNTunKQtGVqItyXNYi94VjVREejZKsKcFyeOQxMPfPAwmQ==",
+      "version": "0.13.5",
+      "resolved": "https://registry.npmjs.org/chrome-har/-/chrome-har-0.13.5.tgz",
+      "integrity": "sha512-e5RVL19aa0AvlR9//hOu/t96us/iTynAJZFtryExNO+1xta1qb6b/3kZFLFPQ3UrXFG70OqhxxSCbAHKgY8JWw==",
       "dependencies": {
         "dayjs": "1.11.7",
         "debug": "4.3.4",
