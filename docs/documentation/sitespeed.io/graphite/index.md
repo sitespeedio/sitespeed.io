@@ -216,8 +216,6 @@ Copy the JSON and add it to your favourite editor and search and replace all key
 We have [pre-made Grafana dashboards](https://github.com/sitespeedio/sitespeed.io/tree/main/docker/grafana/provisioning/dashboards) that works with Graphite. They are generic and as long as your [namespace](#namespace) consists of three parts (including the slug), they will work. You can import them one by one. You can also checkout our [docker-compose file](https://github.com/sitespeedio/sitespeed.io/blob/main/docker/docker-compose.yml) on how to set it up.
 
 
-
-
 ## Namespace
 The default namespace when you send metrics to Graphite is *sitespeed_io.default*. You can change the namespace with `--graphite.namespace`. All premade dashboards are prepared to work with namespaces that starts with two parts: *first.second* and with adding a slug/test name. To add a slug add `--graphite.addSlugToKey true` and the actual test name/slug to all your test by adding `--slug YOUR_TEST_NAME`.
 
@@ -254,14 +252,15 @@ If you are using statsd you can use it by adding <code>--graphite.statsd</code> 
 If you are a DataDog user you can use [DogStatsD](https://docs.datadoghq.com/developers/dogstatsd/).
 
 ## Secure your instance
-You probably want to make sure that only your sitespeed.io servers can post data to your Graphite instance. If you run on AWS you that with [security groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html). On Digital Ocean you can setup firewalls through the admin or you can [use UFW on Ubuntu](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-18-04) (just make sure to disable iptables for the Docker daemon `--iptables=false` read [Viktors post](https://blog.viktorpetersson.com/2014/11/03/the-dangers-of-ufw-docker.html#update)).
+You probably want to make sure that only your sitespeed.io servers can post data to your Graphite instance. If you run your Graphite instance on your server using Docker, you need to use iptables to block access.
+
+If you run on AWS you that with [security groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html). On Digital Ocean you can setup firewalls through the admin.
 
 Your Graphite server needs to open port 2003 and 8080 for TCP traffic for your servers running sitespeed.io.
 
 If you are using AWS you always gives your servers a security group. The servers running sitespeed.io (collecting metrics) can all have the same group (allows outbound traffic and only allowing inbound for ssh).
 
 The Graphite server can the open 2003 and 8080 only for that group (write the group name in the source/security group field). In this example we also run Grafana on port 3000 and have it open to the world.
-
 
 ![Security group AWS]({{site.baseurl}}/img/security-group-aws.png){:loading="lazy"}
 {: .img-thumbnail}
@@ -275,6 +274,36 @@ If you are using Digital Ocean, you can setup the firewall rule in the admin. He
 
 ![Firewall setup Digital Ocean]({{site.baseurl}}/img/firewall-digitalocean.png){:loading="lazy"}
 {: .img-thumbnail}
+
+If you run your own Ubuntu server you can use iptables something like this. You can read about firewalls for Docker at [Docker](https://docs.docker.com/network/packet-filtering-firewalls/) and [this blog post](https://www.net7.be/blog/article/docker_iptables.html).
+
+~~~
+#!/bin/bash
+
+# Add ip tables rules that is applied before Docker gets the packages
+
+# Insert the rules (-I) at the top if iptables. The order is important.
+# First just drop everything for 8080 and 2003
+sudo iptables -I DOCKER-USER -p tcp -m conntrack --ctorigdstport 8080 -j DROP
+sudo iptables -I DOCKER-USER -p tcp -m conntrack --ctorigdstport 2003 -j DROP
+# Keep the current connection
+sudo iptables -I DOCKER-USER -p tcp -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+# Allow traffic from specific IP addresses to ports 8080 and 2003 in DOCKER-USER chain
+# Change these IPs to match your IPs
+ALLOWED_IPS=("138.111.22.22" "198.101.2.112")
+for ip in "${ALLOWED_IPS[@]}"; do
+  sudo iptables -I DOCKER-USER -s $ip -p tcp -m conntrack --ctorigdstport 8080 -j ACCEPT
+  sudo iptables -I DOCKER-USER -s $ip -p tcp -m conntrack --ctorigdstport 2003 -j ACCEPT
+done
+
+# Save the rules
+sudo iptables-save | sudo tee /etc/iptables/rules.v4
+
+# Ensure iptables-persistent is installed to load rules on boot
+sudo apt-get install -y iptables-persistent
+
+~~~
 
 ## Storing the data
 You probably gonna need to store the metrics in Graphite on another disk. If you are an AWS user, you can use and [setup an EBS volume](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html). If you use Digital Ocean you can follow their [quick start guide](https://www.digitalocean.com/docs/volumes/quickstart/).
@@ -296,6 +325,3 @@ If you use Grafana annotations, you should make sure grafana.db is outside of th
  If you use Grafana annotations, you should make sure grafana.db is outside of the container. Follow the documentation at [grafana.org](http://docs.grafana.org/installation/docker/#grafana-container-using-bind-mounts).
  5. Run the latest version of Graphite and if you are using Docker, make sure you use a tagged version of the container (like graphiteapp/graphite-statsd:1.1.5-12) and never use the **latest** Docker tag.
  6. Secure your instance with a firewall/security groups so only your servers can send data to the instance.
-
-
-
