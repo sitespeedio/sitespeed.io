@@ -348,6 +348,28 @@ If you also use MinIO, make sure to configure how long the data will be stored. 
 /usr/bin/mc ilm rule add --expire-days 30 sitespeedio/sitespeedio
 ```
 
+## Add Lighthouse to your test
+You can enable the possibility to run Lighthouse tests by setting a configuration in the server configuration. Set useLighthouse to true.
+
+```yaml
+html:
+  # Show the Lighthouse box
+  useLighthouse: true
+```
+
+You will then have a checkbox in the extras section.
+
+If your test runner uses NodeJS, then you need to manually install the Lighthouse plugin:
+`npm install @sitespeed.io/plugin-lighthouse -g`
+
+If you use Docker, then you need to update which container to use. In your configuration for your test runner change the container to use the +1 container:
+
+```yaml
+docker:
+  container: "sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-plus1"
+```
+
+
 ## Configuration for production
 
 Here's a checklist of things to consider when pushing to production:
