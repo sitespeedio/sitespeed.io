@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 34.7.1 - 2024-07-20
+### Fixed
+* Fix so the link to the geckoprofiler data works/shows again [#4234](https://github.com/sitespeedio/sitespeed.io/pull/4234).
+
 ## 34.7.0 - 2024-07-15
 ### Added
 * Update to Browsertime [22.6.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2260---2024-07-15) [#4226](https://github.com/sitespeedio/sitespeed.io/pull/4226).
