@@ -40,7 +40,7 @@ if options.browsertime && options.browsertime.firefox && options.browsertime.fir
 if options.browsertime && options.browsertime.enableProfileRun
     if options.browser === 'firefox' 
         p Download the Firefox Geckoprofiler trace and drag and drop it into 
-        a(href='https://profiler.firefox.com') https://profiler.firefox.com 
+            a(href='https://profiler.firefox.com') https://profiler.firefox.com 
         .downloads
             - const tracePath = 'data/geckoProfile-1-extra.json.gz'
             a.button.button-download(href=tracePath, download=downloadName + '-geckoProfile.json.gz') Download extra run trace log
