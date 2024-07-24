@@ -11,7 +11,7 @@ mixin sizeCell(title, size)
   td.number(data-title=title, data-value= size)= h.size.format(size)
 
 - const crux = pageInfo.data.crux.pageSummary;
-- const metrics = {first_contentful_paint:'First Contentful Paint (FCP)', largest_contentful_paint: 'Largest Contentful Paint (LCP)', first_input_delay:'First Input Delay (FID)', cumulative_layout_shift: 'Cumulative Layout Shift (CLS)', interaction_to_next_paint: 'Interaction to next paint (INP)', experimental_time_to_first_byte: 'Time to first byte (TTFB)'}; 
+- const metrics = {round_trip_time: 'Round trip time', experimental_time_to_first_byte: 'Time to first byte (TTFB)', first_contentful_paint:'First Contentful Paint (FCP)', largest_contentful_paint: 'Largest Contentful Paint (LCP)', first_input_delay:'First Input Delay (FID)', cumulative_layout_shift: 'Cumulative Layout Shift (CLS)', interaction_to_next_paint: 'Interaction to next paint (INP)'}; 
 - const experiences = ['loadingExperience','originLoadingExperience'];
 
 if experiences
@@ -57,6 +57,55 @@ if experiences
                     td #{name} 75 percentile
                     td #{key.indexOf('cumulative') > -1 ? crux[experience][formFactor].data.record.metrics[key].percentiles.p75 :  h.time.ms(crux[experience][formFactor].data.record.metrics[key].percentiles.p75)} 
           
+          if crux[experience][formFactor].FORM_FACTORS_FRACTIONS
+            h4 Form factors
+            table
+              thead 
+                tr
+                  th Form factor
+                  th Value
+              tbody
+                tr 
+                  td Desktop
+                  td #{Number(crux[experience][formFactor].FORM_FACTORS_FRACTIONS.desktop *100).toFixed(2)}%
+                tr 
+                  td Phone
+                  td #{Number(crux[experience][formFactor].FORM_FACTORS_FRACTIONS.phone *100).toFixed(2)}%
+                tr 
+                  td Tablet
+                  td #{Number(crux[experience][formFactor].FORM_FACTORS_FRACTIONS.tablet *100).toFixed(2)}%
+
+
+          if crux[experience][formFactor].NAVIGATION_TYPES_FRACTIONS
+            h4 Navigation types
+            table 
+              thead
+                tr
+                  th Navigation type
+                  th Value 
+              tbody
+                tr
+                  td Navigate 
+                  td  #{Number(crux[experience][formFactor].NAVIGATION_TYPES_FRACTIONS.navigate *100).toFixed(2)}%
+                tr
+                  td Navigate cache
+                  td  #{Number(crux[experience][formFactor].NAVIGATION_TYPES_FRACTIONS.navigate_cache *100).toFixed(2)}%
+                tr
+                  td Reload
+                  td  #{Number(crux[experience][formFactor].NAVIGATION_TYPES_FRACTIONS.reload *100).toFixed(2)}%
+                tr
+                  td Restore
+                  td  #{Number(crux[experience][formFactor].NAVIGATION_TYPES_FRACTIONS.restore *100).toFixed(2)}%
+                tr
+                  td Back/Forward
+                  td  #{Number(crux[experience][formFactor].NAVIGATION_TYPES_FRACTIONS.back_forward *100).toFixed(2)}%
+                tr
+                  td Back/Forward cache
+                  td  #{Number(crux[experience][formFactor].NAVIGATION_TYPES_FRACTIONS.back_forward_cache *100).toFixed(2)}%
+                tr
+                  td Prerender
+                  td  #{Number(crux[experience][formFactor].NAVIGATION_TYPES_FRACTIONS.prerender *100).toFixed(2)}%
+
           h4 Distribution
           - let cruxus = `${experience}.${formFactor}.data.record.metrics`;
           - let FCPs = [Number(get(crux, `${cruxus}.first_contentful_paint.histogram[0].density`, 0) * 100).toFixed(2), Number(get(crux, `${cruxus}.first_contentful_paint.histogram[1].density`, 0) * 100).toFixed(2), Number(get(crux, `${cruxus}.first_contentful_paint.histogram[2].density`, 0)*100).toFixed(2)];
@@ -82,14 +131,15 @@ if experiences
                       showLabel: false,
                       plugins: [
                         Chartist.plugins.legend(
-                          { clickable: false,
+                          { 
+                            clickable: false,
                             position: 'bottom'
                           }
                         )
                     ]
                     });
                   }     
-
+                  
                   drawPie('#chartFCP#{experience + formFactor}', [#{FCPs}], ['Fast: #{FCPs[0]}%', 'Moderate #{FCPs[1]}%', 'Slow: #{FCPs[2]}%']);
                   drawPie('#chartLCP#{experience + formFactor}', [#{LCPs}], ['Fast: #{LCPs[0]}%', 'Moderate #{LCPs[1]}%', 'Slow: #{LCPs[2]}%']);
                   drawPie('#chartFID#{experience + formFactor}', [#{FIDs}], ['Fast: #{FIDs[0]}%', 'Moderate #{FIDs[1]}%', 'Slow: #{FIDs[2]}%']);
@@ -101,27 +151,29 @@ if experiences
             });
           .responsive  
             table
-              tr 
-                th #{metrics['first_contentful_paint']}
-                th #{metrics['largest_contentful_paint']}
-                th #{metrics['first_input_delay']} 
-              tr 
-                td(data-title=metrics['first_contentful_paint'])  
-                  .ct-chart(id='chartFCP' + experience + formFactor)
-                td(data-title=metrics['largest_contentful_paint']) 
-                  .ct-chart(id='chartLCP' + experience + formFactor)
-                td(data-title=metrics['first_input_delay']) 
-                  .ct-chart(id='chartFID' + experience + formFactor)
               tr
-                th #{metrics['cumulative_layout_shift']}
-                th #{metrics['interaction_to_next_paint']}
                 th #{metrics['experimental_time_to_first_byte']}
+                th #{metrics['first_contentful_paint']}
               tr 
-                td(data-title=metrics['cumulative_layout_shift']) 
-                  .ct-chart(id='chartCLS' + experience + formFactor)
-                td(data-title=metrics['interaction_to_next_paint']) 
-                  .ct-chart(id='chartITNP' + experience + formFactor) 
                 td(data-title=metrics['experimental_time_to_first_byte']) 
                   .ct-chart(id='chartTTFB' + experience + formFactor) 
+                td(data-title=metrics['first_contentful_paint'])  
+                  .ct-chart(id='chartFCP' + experience + formFactor)
+              tr
+                th #{metrics['largest_contentful_paint']}            
+                th #{metrics['cumulative_layout_shift']}  
+              tr 
+                td(data-title=metrics['largest_contentful_paint']) 
+                  .ct-chart(id='chartLCP' + experience + formFactor)
+                td(data-title=metrics['cumulative_layout_shift']) 
+                  .ct-chart(id='chartCLS' + experience + formFactor)
+              tr
+                th #{metrics['first_input_delay']} 
+                th #{metrics['interaction_to_next_paint']}
+              tr
+                td(data-title=metrics['first_input_delay']) 
+                  .ct-chart(id='chartFID' + experience + formFactor)
+                td(data-title=metrics['interaction_to_next_paint']) 
+                  .ct-chart(id='chartITNP' + experience + formFactor) 
 else 
   p No data availible in the Chrome User Experience report.

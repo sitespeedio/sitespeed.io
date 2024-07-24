@@ -45,7 +45,7 @@ Browser
       --browsertime.cpu, --cpu                                                                      Easy way to enable both chrome.timeline and CPU long tasks for Chrome and geckoProfile for Firefox  [boolean]
       --browsertime.userTimingWhitelist, --userTimingWhitelist                                      This option takes a regex that will whitelist which userTimings to capture in the results. All userTimings are captured by default. T
       --axe.enable                                                                                  Run axe tests. Axe will run after all other metrics is collected and will add some extra time to each test.  [boolean]
-  -r, --browsertime.requestheader, --requestheader                                                  Request header that will be added to the request. Add multiple instances to add multiple request headers. Use the following format key:value. Only works in Chrome and Firefox.
+  -r, --browsertime.requestheader, --requestheader                                                  Request header that will be added to the request. Add multiple instances to add multiple request headers. Use the following format key:value. Only works in Chrome, Firefox and Edge.
       --browsertime.cookie, --cookie                                                                Cookie that will be added to the request. Add multiple instances to add multiple cookies. Use the following format cookieName=cookieValue. Only works in Chrome and Firefox.
       --browsertime.block, --block                                                                  Domain or URL or URL pattern to block. If you use Chrome you can also use --blockDomainsExcept (that is more performant). Works in Chrome/Edge. For Firefox you can only block domains.
       --browsertime.basicAuth, --basicAuth                                                          Use it if your server is behind Basic Auth. Format: username@password. Only works in Chrome and Firefox.
@@ -288,6 +288,7 @@ Text
 Sustainable
       --sustainable.enable                 Test if the web page is sustainable.  [boolean]
       --sustainable.model                  Model used for measure digital carbon emissions.  [choices: "1byte", "swd"] [default: "1byte"]
+      --sustainable.modelVersion           The version used for the model. Only applicable for model swd at the moment.  [choices: 3, 4] [default: 3]
       --sustainable.pageViews              Number of page views used when calculating CO2.
       --sustainable.disableHosting         Disable the hosting check. Default we do a check to a local database of domains with green hosting provided by the Green Web Foundation  [boolean] [default: false]
       --sustainable.useGreenWebHostingAPI  Instead of using the local copy of the hosting database, you can use the latest version through the Green Web Foundation API. This means sitespeed.io will make HTTP GET to the the hosting info.  [boolean] [default: false]

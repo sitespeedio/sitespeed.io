@@ -1,5 +1,5 @@
 import test from 'ava';
-import { join, resolve } from 'node:path';
+import path from 'node:path';
 import { promisify } from 'node:util';
 import { execFile as _execFile } from 'node:child_process';
 const execFile = promisify(_execFile);
@@ -9,7 +9,7 @@ import { fileURLToPath } from 'node:url';
 const __dirname = fileURLToPath(new URL('.', import.meta.url));
 
 function runSitespeed(options = []) {
-  const cli = join(resolve(__dirname), '../bin/sitespeed.js');
+  const cli = path.join(path.resolve(__dirname), '../bin/sitespeed.js');
   return execFile('node', [cli].concat(options));
 }
 

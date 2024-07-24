@@ -62,7 +62,7 @@ cd onlinetest
 docker compose up
 ```
 
-In the repository you also have a *.env* file that sets up username/passwords for the different services.
+In the repository you also have a *.env* file that sets up username/passwords for the different services. For KeyDB there's also a *keydb.conf* file that also holds the password.
 
 ## Configuration
 If you start the applications, the default configuration is used. The configuration for the server is [here](https://github.com/sitespeedio/onlinetest/blob/main/server/config/default.yaml) and for the test runner [here](https://github.com/sitespeedio/onlinetest/blob/main/testrunner/config/default.yaml).
@@ -310,6 +310,30 @@ To ensure the smooth operation of your sitespeed.io server and test runners, the
 
 The communication between the server and test runners uses a Redis-like system. The default setting uses [KeyDb](https://docs.keydb.dev), but you can probably use anything that follows the Redis "standard". When the server and a test runner are started, they need access to the message broker.
 
+You should make sure to configure your message broker to remove old data. If you use KeyDB you can set the max memory limit (adjust it to the RAM - OS of your server) and a remove strategy. 
+
+Checkout the *keydb.conf* file. It looks something like this
+
+```bash
+# You can read more about keydb configuration: https://docs.keydb.dev/docs/config-file/
+# The default port
+port 6379
+# Your password, make sure to change this
+requirepass YOUR_PASSWORD_THAT_YOU_NEED_TO_CHANGE
+
+# Choose max memory, adjust this to the server where you run keydb
+# You can also choose how many objects that should stay in keydb
+# by changing removeOnComplete in the server configuration
+maxmemory 6GB
+maxmemory-policy allkeys-lru
+
+# You can configure to store the the data so that queued tests will survive 
+# a restart
+appendonly yes
+appendfilename appendonly.aof
+appendfsync everysec
+```
+
 ### Database
 
 PostgreSQL needs to have a database and table. This setup is handled in the Docker Compose file. If you want to set up the database manually, the table structure exists [here](https://github.com/sitespeedio/onlinetest/tree/main/server/database/setup).
@@ -324,12 +348,34 @@ If you also use MinIO, make sure to configure how long the data will be stored. 
 /usr/bin/mc ilm rule add --expire-days 30 sitespeedio/sitespeedio
 ```
 
+## Add Lighthouse to your test
+You can enable the possibility to run Lighthouse tests by setting a configuration in the server configuration. Set useLighthouse to true.
+
+```yaml
+html:
+  # Show the Lighthouse box
+  useLighthouse: true
+```
+
+You will then have a checkbox in the extras section.
+
+If your test runner uses NodeJS, then you need to manually install the Lighthouse plugin:
+`npm install @sitespeed.io/plugin-lighthouse -g`
+
+If you use Docker, then you need to update which container to use. In your configuration for your test runner change the container to use the +1 container:
+
+```yaml
+docker:
+  container: "sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-plus1"
+```
+
+
 ## Configuration for production
 
 Here's a checklist of things to consider when pushing to production:
 
 1. **Change all the default passwords**:
-   - Do this for Redis, PostgreSQL, Admin, Minio (or what you use) and Basic Auth.
+   - Do this for KeyDB, PostgreSQL, Admin, Minio (or what you use) and Basic Auth.
 2. **Change settings for where you upload your result**
    - Remember to change the [default settings](https://github.com/sitespeedio/onlinetest/blob/main/server/config/sitespeed.json) on where you upload the data and how you access it.
 3. **Limit your instance**:
