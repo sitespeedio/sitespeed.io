@@ -1,5 +1,12 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 34.8.0 - UNRLEASED
+### Added
+* Chrome 127, Chromedriver 127 and Browsertime 22.7.0 [#4239](https://github.com/sitespeedio/sitespeed.io/pull/4239).
+
+### Fixed
+* InfluxDB 2.x, Annotations. Send tags for filtering, thank you [pavel bairov](https://github.com/Amerousful) for PR [#4197](https://github.com/sitespeedio/sitespeed.io/pull/4197).
+
 ## 34.7.1 - 2024-07-20
 ### Fixed
 * Fix so the link to the geckoprofiler data works/shows again [#4234](https://github.com/sitespeedio/sitespeed.io/pull/4234).
