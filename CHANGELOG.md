@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 34.8.0 - UNRLEASED
+## 34.8.0 - 2024-07-26
 ### Added
 * Chrome 127, Chromedriver 127 and Browsertime 22.7.0 [#4239](https://github.com/sitespeedio/sitespeed.io/pull/4239).
 
