@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2024-07-15T04:23:39.220Z</updated>
+    <updated>2024-07-25T06:03:26.421Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,28 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 22.7.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.7.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.7.0"/>
+        <updated>2024-07-25T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Chrome and Chromedriover 127 <a href="https://github.com/sitespeedio/browsertime/pull/2164">#2164</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated to Selenium 4.23.0 <a href="https://github.com/sitespeedio/browsertime/pull/2161">#2161</a>.</li>
+</ul>
+ <ul>
+<li>Add extra check if the HAR file page misses an URL <a href="https://github.com/sitespeedio/browsertime/pull/2160">#2160</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 22.6.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.6.0</id>
@@ -160,28 +182,6 @@
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Use <code>--enableVideoRun</code> to get one extra run with a video and visual metrics <a href="https://github.com/sitespeedio/browsertime/pull/2139">#2139</a></li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 22.3.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.3.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.3.0"/>
-        <updated>2024-06-04T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Add the ability to gather power usage measurements on Android from USB power meters, thank you <a href="https://github.com/gmierz">Gregory Mierzwinski</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2134">#2134</a>.</li>
-</ul>
- <ul>
-<li>Add support to visualmetrics to identify key frames matching the given colors, thank you <a href="https://github.com/aosmond">aosmond</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2119">#2119</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Removed DOMContentFlushed for Firefox thank you <a href="https://github.com/florinbilt">florinbilt</a> for PR <a href="https://github.com/sitespeedio/browsertime/pull/2138">#2138</a>.</li>
 </ul>
 ]]></summary>
         <author>
