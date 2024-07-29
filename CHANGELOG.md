@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 34.8.2 - 2024-07-29
+### Fixed
+* WebPageReplay: Fix for reading configuration. Reading a saved configuration didn't handle camel case correctly, creating arrays for single values [#4242](https://github.com/sitespeedio/sitespeed.io/pull/4242).
+
 ## 34.8.1 - 2024-07-27
 ### Fixed
 * Add missing slug for influxdb, thank you [pavel bairov](https://github.com/Amerousful) for PR [#4240](https://github.com/sitespeedio/sitespeed.io/pull/4240).
