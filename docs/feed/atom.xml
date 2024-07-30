@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2024-07-29T00:00:00.000Z</updated>
+    <updated>2024-07-30T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,50 @@
     <logo>https://www.sitespeed.io/img/logos/sitespeed.io.png</logo>
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 34.9.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.9.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.9.0"/>
+        <updated>2024-07-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Browsertime 22.8.0 that disables the choose search engine screen on Chrome 127 and updated Edgedriver to 126 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4244">#4244</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Added extra guard when you disables screenshots <a href="https://github.com/sitespeedio/sitespeed.io/pull/4245">#4245</a>.</li>
+</ul>
+ <ul>
+<li>Axe core 4.10.0 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4246">#4246</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 22.8.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.8.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.8.0"/>
+        <updated>2024-07-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Edgedriver 126 <a href="https://github.com/sitespeedio/browsertime/pull/2166">#2166</a></li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Disable search engine choice screen on startup for Chrome 127+ <a href="https://github.com/sitespeedio/browsertime/pull/2168">#2168</a></li>
+</ul>
+ <ul>
+<li>Update dev dependencies <a href="https://github.com/sitespeedio/browsertime/pull/2167">#2167</a></li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 34.8.2]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.8.2</id>
@@ -284,21 +328,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 34.3.4]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.3.4</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.3.4"/>
-        <updated>2024-06-25T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Expose command line parameters to disable CLS and LCP screenshots <a href="https://github.com/sitespeedio/sitespeed.io/pull/4201">#4201</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[browsertime 22.5.3]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.3</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.3"/>
@@ -366,21 +395,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Make sure the engine is stopped before the extra video/profile run <a href="https://github.com/sitespeedio/browsertime/pull/2140">#2140</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 22.4.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.4.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.4.0"/>
-        <updated>2024-06-06T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Use <code>--enableVideoRun</code> to get one extra run with a video and visual metrics <a href="https://github.com/sitespeedio/browsertime/pull/2139">#2139</a></li>
 </ul>
 ]]></summary>
         <author>
