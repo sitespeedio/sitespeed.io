@@ -14,7 +14,7 @@
         "@influxdata/influxdb-client": "1.33.2",
         "@sitespeed.io/plugin": "0.0.6",
         "@tgwf/co2": "0.16.0",
-        "axe-core": "4.9.1",
+        "axe-core": "4.10.0",
         "browsertime": "22.8.0",
         "cli-color": "2.0.4",
         "coach-core": "8.0.2",
@@ -3461,9 +3461,9 @@
       "integrity": "sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA=="
     },
     "node_modules/axe-core": {
-      "version": "4.9.1",
-      "resolved": "https://registry.npmjs.org/axe-core/-/axe-core-4.9.1.tgz",
-      "integrity": "sha512-QbUdXJVTpvUTHU7871ppZkdOLBeGUKBQWHkHrvN2V9IQWGMt61zf3B45BtzjxEJzYuj0JBjBZP/hmYS/R9pmAw==",
+      "version": "4.10.0",
+      "resolved": "https://registry.npmjs.org/axe-core/-/axe-core-4.10.0.tgz",
+      "integrity": "sha512-Mr2ZakwQ7XUAjp7pAwQWRhhK8mQQ6JAaNWSjmjxil0R8BPioMtQsTLOolGYkji1rcL++3dCqZA3zWqpT+9Ew6g==",
       "engines": {
         "node": ">=4"
       }
