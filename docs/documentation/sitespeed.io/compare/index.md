@@ -5,7 +5,7 @@ description: Finding performance regressions is hard. Using Mann Whitney U/Wilco
 keywords: Mann Whitney U, performance, regression,
 nav: documentation
 category: sitespeed.io
-image: https://www.sitespeed.io/img/sitespeed-2.0-twitter.png
+image: htt"p"s://www.sitespeed.io/img/sitespeed-2.0-twitter.png
 twitterdescription: Use Mann Whitney U or Wilcox statistical methods to know if you have a regression.
 ---
 [Documentation]({{site.baseurl}}/documentation/sitespeed.io/) / Compare
@@ -49,10 +49,10 @@ To save a baseline using NodeJS:
 sitespeed.io https://www.sitespeed.io -n 21 --compare.saveBaseline --compare.id start_page
 ~~~
 
-Using Docker there's a new volume that you should use to mount where you want to save the baseline. `-v "$(pwd):/baseline"` will map your current directory to where you will store the baseline files. If you want to store them somewhere else then change what you map inside the container `-v "/somewhere/else:/baseline"`
+Using Docker there's a new volume that you should use to mount where you want to save the baseline. `-v "$(pwd)":/baseline` will map your current directory to where you will store the baseline files. If you want to store them somewhere else then change what you map inside the container `-v "/somewhere/else:/baseline"`
 
 ~~~bash
-docker run -v "$(pwd):/baseline"  sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  https://www.sitespeed.io/ -n 21 --compare.saveBaseline --compare.id start_page --compare.baselinePath /baseline
+docker run -v "$(pwd)":/baseline  sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  https://www.sitespeed.io/ -n 21 --compare.saveBaseline --compare.id start_page --compare.baselinePath /baseline
 ~~~
 
 The baseline file is a JSON file that contains all the raw data from Browsertime. 
@@ -67,13 +67,13 @@ sitespeed.io https://www.sitespeed.io -n 21 --compare.id start_page
 
 In Docker:
 ~~~bash
-docker run -v "$(pwd):/baseline"  sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  https://www.sitespeed.io/ -n 21 --compare.id start_page --compare.baselinePath /baseline
+docker run -v "$(pwd)":/baseline  sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  https://www.sitespeed.io/ -n 21 --compare.id start_page --compare.baselinePath /baseline
 ~~~
 
 You can also save a baseline for each and every test, so you always compare your last run with the run before that. That will automatically happen if you have the `--compare.saveBaseline`.
 
 ~~~bash
-docker run -v "$(pwd):/baseline"  sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  https://www.sitespeed.io/ -n 21 --compare.id start_page --compare.baselinePath /baseline --compare.saveBaseline
+docker run -v "$(pwd)":/baseline  sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}  https://www.sitespeed.io/ -n 21 --compare.id start_page --compare.baselinePath /baseline --compare.saveBaseline
 ~~~
 
 ## Results
