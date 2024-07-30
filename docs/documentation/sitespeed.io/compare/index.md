@@ -62,7 +62,7 @@ The baseline file is a JSON file that contains all the raw data from Browsertime
 For your test to work, assign the same identification (id) to both your current test and the baseline test. This matching id is crucial for the test to correctly locate and compare with the baseline. Additionally, ensure that the number of iterations in your test matches that of the baseline. Remember, using a sufficiently large number of iterations is essential as it leads to more accurate and reliable results.
 
 ~~~bash
-sitespeed.io https://www.sitespeed.io -n 21 ---compare.id start_page
+sitespeed.io https://www.sitespeed.io -n 21 --compare.id start_page
 ~~~
 
 In Docker:
