@@ -1,5 +1,13 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+##  34.9.0 - 2024-07-30
+### Added
+* Browsertime 22.8.0 that disables the choose search engine screen on Chrome 127 and updated Edgedriver to 126 [#4244](https://github.com/sitespeedio/sitespeed.io/pull/4244).
+
+### Fixed
+* Added extra guard when you disables screenshots [#4245](https://github.com/sitespeedio/sitespeed.io/pull/4245).
+* Axe core 4.10.0 [#4246](https://github.com/sitespeedio/sitespeed.io/pull/4246).
+
 ## 34.8.2 - 2024-07-29
 ### Fixed
 * WebPageReplay: Fix for reading configuration. Reading a saved configuration didn't handle camel case correctly, creating arrays for single values [#4242](https://github.com/sitespeedio/sitespeed.io/pull/4242).
