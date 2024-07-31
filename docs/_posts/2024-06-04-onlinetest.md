@@ -15,7 +15,7 @@ Today, I have some exciting news to share! I have built a frontend for sitespeed
 ![The start page]({{site.baseurl}}/img/onlineteststart.png)
 {: .img-thumbnail}
 
-There are many great features I want to share, but I'll start by asking for your help in testing the new project: I've tested it extensively, but there might still be bugs and minor issues that need fixing. You can find the project [here](https://github.com/sitespeedio/onlinetes) and read the documentation [here](https://www.sitespeed.io/documentation/onlinetest/). Please create [an issue](https://github.com/sitespeedio/onlinetest/issues/new) if you find something and feel free to submit a PR to fix the problem :)
+There are many great features I want to share, but I'll start by asking for your help in testing the new project: I've tested it extensively, but there might still be bugs and minor issues that need fixing. You can find the project [here](https://github.com/sitespeedio/onlinetest) and read the documentation [here](https://www.sitespeed.io/documentation/onlinetest/). Please create [an issue](https://github.com/sitespeedio/onlinetest/issues/new) if you find something and feel free to submit a PR to fix the problem :)
 
 You need three components to set it all up:
 * a **sitespeed.io server** with GUI, API, and search functionality. It receives your tests and forwards them.
