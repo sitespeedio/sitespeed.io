@@ -1,5 +1,13 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+##  34.10.0 - 2024-08-27
+### Added
+* Updated Docker container to use Forefox 129 and Edge 127 [#4254](https://github.com/sitespeedio/sitespeed.io/pull/4254).
+* Browsertime [22.9.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2290---2024-08-26) [#4260](https://github.com/sitespeedio/sitespeed.io/pull/4260).
+
+### Fixed
+* Make sure requestheaders and cookies are sent when you use prewarm the server [#4259](https://github.com/sitespeedio/sitespeed.io/pull/4259).
+
 ##  34.9.0 - 2024-07-30
 ### Added
 * Browsertime 22.8.0 that disables the choose search engine screen on Chrome 127 and updated Edgedriver to 126 [#4244](https://github.com/sitespeedio/sitespeed.io/pull/4244).
