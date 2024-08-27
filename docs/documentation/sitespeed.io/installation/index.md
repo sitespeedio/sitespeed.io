@@ -204,36 +204,21 @@ npm install sitespeed.io --location=global
 
 9. (Optional) You need Geckodriver if you want to run tests using Firefox on your phone. The easiest way to get Geckodriver on your Raspberry Pi is to build it on that Pi. You do that by cloning the Geckodriver repo and build the version you want. Checkout how it's done at [https://github.com/jamesmortensen/geckodriver-arm-binaries](https://github.com/jamesmortensen/geckodriver-arm-binaries) and adapt it to your Raspberry.
 
-10. (Optional) If you are using Raspberry Pi OS Desktop you can install scrcpy and vnc. Here's instructions how to use it together with a Mac. First install scrcpy:
+10. (Optional) If you are using Raspberry Pi 5 OS Desktop you can install scrcpy. Here's instructions how to use it together with a Mac. First install scrcpy by building it on the Raspberry Pi following the instructions at [https://github.com/Genymobile/scrcpy/blob/master/doc/linux.md#latest-version](https://github.com/Genymobile/scrcpy/blob/master/doc/linux.md#latest-version).
+
+Then you need  to enable vnc server. Do it by running:
+
 ~~~bash
-sudo apt-get update && sudo apt-get install -y scrcpy
+sudo raspi-config 
 ~~~
-Then you need  to enable vnc server.
-~~~bash
-sudo systemctl enable vncserver-x11-serviced 
-~~~
-Then generate a password that you will use to connect to VNC from your computer
-~~~bash
-sudo vncpasswd -service
-~~~
-Then setup auth by edit the file */etc/vnc/config.d/common.custom*:
-~~~bash
-sudo nano /etc/vnc/config.d/common.custom
-~~~
-Add `Authentication=VncAuth` in the file and save and close.
-Restart the vnc server:
-~~~bash
-sudo systemctl restart vncserver-x11-serviced
-~~~
-As the last step, make sure to export your display number to the environment variable DISPLAY.
-~~~bash
-echo 'export DISPLAY=:0' >> ~/.profile
-~~~
+Choose option 3. and then 3. again (VNC).
+
 Reboot your device:
 ~~~bash
 sudo reboot
 ~~~
-On your Mac, open "Screen Sharing" and then use *raspberrypi.local* as the hostname and the password you set in the previous step. You will then be able to see the Raspberry PI screen on your Mac. Start **scrcpy** and you will see the phone screen too.
+
+On your Mac, use  "VNC Viewer" and then use *raspberrypi.local* as the hostname. You will then be able to see the Raspberry PI screen on your Mac. Start **scrcpy** and you will see the phone screen too.
 
 11. Plugin your phone, "Allow USB debugging" on your phone and run sitespeed.io:
 ~~~bash
