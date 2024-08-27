@@ -1,8 +1,12 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+##  34.11.0 - 2024-08-27
+### Added
+* Updated the Docker container to use Chrome 128 [#4261](https://github.com/sitespeedio/sitespeed.io/pull/4261).
+
 ##  34.10.0 - 2024-08-27
 ### Added
-* Updated Docker container to use Forefox 129 and Edge 127 [#4254](https://github.com/sitespeedio/sitespeed.io/pull/4254).
+* Updated Docker container to use Firefox 129 and Edge 127 [#4254](https://github.com/sitespeedio/sitespeed.io/pull/4254).
 * Browsertime [22.9.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2290---2024-08-26) [#4260](https://github.com/sitespeedio/sitespeed.io/pull/4260).
 
 ### Fixed
