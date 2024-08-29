@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2024-08-27T05:35:42.702Z</updated>
+    <updated>2024-08-27T07:15:18.741Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,13 +17,28 @@
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
     <entry>
+        <title type="html"><![CDATA[sitespeed.io 34.11.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.11.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.11.0"/>
+        <updated>2024-08-27T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated the Docker container to use Chrome 128 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4261">#4261</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[sitespeed.io 34.10.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.10.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.10.0"/>
         <updated>2024-08-27T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
-<li>Updated Docker container to use Forefox 129 and Edge 127 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4254">#4254</a>.</li>
+<li>Updated Docker container to use Firefox 129 and Edge 127 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4254">#4254</a>.</li>
 </ul>
  <ul>
 <li>Browsertime <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2290---2024-08-26">22.9.0</a> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4260">#4260</a>.</li>
@@ -168,31 +183,6 @@
 </ul>
  <ul>
 <li>Sustainable: Make it possible to choose sustainable model version (for model swd). To use the latest version for add: <code>--sustainable.model swd --sustainable.modelVersion 4</code> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4224">#4224</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 34.4.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.4.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.4.0"/>
-        <updated>2024-07-09T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgraded to Firefox 128 and Edge 126 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4222">#4222</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Show correct LCP and CLS image in each run page <a href="https://github.com/sitespeedio/sitespeed.io/pull/4221">#4221</a>.</li>
-</ul>
- <ul>
-<li>Update Browsertime <a href="https://github.com/sitespeedio/sitespeed.io/pull/4210">#4210</a>.</li>
-</ul>
- <ul>
-<li>Update minor dependencies and developer dependencies: co2.js <a href="https://github.com/sitespeedio/sitespeed.io/pull/4206">#4206</a>, uuid <a href="https://github.com/sitespeedio/sitespeed.io/pull/4207">#4207</a>, s3 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4208">#4208</a>, eslint <a href="https://github.com/sitespeedio/sitespeed.io/pull/4211">#4211</a>, ava, jsdoc, sass <a href="https://github.com/sitespeedio/sitespeed.io/pull/4212">#4212</a>, dayjs <a href="https://github.com/sitespeedio/sitespeed.io/pull/4214">#4214</a>, p-limit <a href="https://github.com/sitespeedio/sitespeed.io/pull/4215">#4215</a>, os-name <a href="https://github.com/sitespeedio/sitespeed.io/pull/4216">#4216</a>, tape <a href="https://github.com/sitespeedio/sitespeed.io/pull/4219">#4219</a> and p-limit <a href="https://github.com/sitespeedio/sitespeed.io/pull/4220">#4220</a>.</li>
 </ul>
 ]]></summary>
         <author>
