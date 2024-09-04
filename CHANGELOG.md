@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+##  34.11.1 - 2024-09-04
+### Fixed
+* Updated to Browsertime 22.10.1 that fixes generating HARs for Firefox 130 [#4265](https://github.com/sitespeedio/sitespeed.io/pull/4265).
+
+
 ##  34.11.0 - 2024-08-27
 ### Added
 * Updated the Docker container to use Chrome 128 [#4261](https://github.com/sitespeedio/sitespeed.io/pull/4261).
