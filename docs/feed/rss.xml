@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Tue, 27 Aug 2024 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 04 Sep 2024 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,52 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 34.11.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.11.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.11.1</guid>
+            <pubDate>Wed, 04 Sep 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated to Browsertime 22.10.1 that fixes generating HARs for Firefox 130 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4265">#4265</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 22.10.1]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.10.1</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.10.1</guid>
+            <pubDate>Wed, 04 Sep 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Upgraded Bidi HAR to 0.0.14 that filters out data:text URLs thar is picked up in Firefox 130 <a href="https://github.com/sitespeedio/browsertime/pull/2177">#2177</a>.</li>
+</ul>
+ <ul>
+<li>Call stopSampling on browser stop during android power testing <a href="https://github.com/sitespeedio/browsertime/pull/2176">#2176</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 22.10.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.10.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.10.0</guid>
+            <pubDate>Tue, 03 Sep 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Chromedriver 128 <a href="https://github.com/sitespeedio/browsertime/pull/2175">#2175</a></li>
+</ul>
+ <ul>
+<li>Chrome 128, Firefox 129, Edge 127 <a href="https://github.com/sitespeedio/browsertime/pull/2173">#2173</a></li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated dependencies: usb-profiling, fast-stats, webdriver, execa, dayjs <a href="https://github.com/sitespeedio/browsertime/pull/2174">#2174</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 34.11.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.11.0</link>
@@ -47,17 +93,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[throttle 5.0.1]]></title>
-            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.1</link>
-            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.1</guid>
-            <pubDate>Mon, 26 Aug 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Smarter ifb0 handling on Linux <a href="https://github.com/sitespeedio/throttle/pull/93">#93</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
             <title><![CDATA[browsertime 22.9.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.9.0</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.9.0</guid>
@@ -75,6 +110,17 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[throttle 5.0.1]]></title>
+            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.1</link>
+            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.1</guid>
+            <pubDate>Mon, 26 Aug 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Smarter ifb0 handling on Linux <a href="https://github.com/sitespeedio/throttle/pull/93">#93</a>.</li>
+</ul>
+]]></description>
         </item>
         <item>
             <title><![CDATA[sitespeed.io 34.9.0]]></title>
@@ -232,21 +278,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 34.5.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.5.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.5.0</guid>
-            <pubDate>Fri, 12 Jul 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Crux: Add navigation types, and form factors. Fix colors to align with Grafana colors and fix broken legend colors <a href="https://github.com/sitespeedio/sitespeed.io/pull/4223">#4223</a>.</li>
-</ul>
- <ul>
-<li>Sustainable: Make it possible to choose sustainable model version (for model swd). To use the latest version for add: <code>--sustainable.model swd --sustainable.modelVersion 4</code> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4224">#4224</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[chrome-har 0.13.5]]></title>
             <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.5</link>
             <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.5</guid>
@@ -321,30 +352,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Updated Selenium dependencies <a href="https://github.com/sitespeedio/browsertime/pull/2146">#2146</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 22.5.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.1</guid>
-            <pubDate>Mon, 24 Jun 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fixed exporting to make IntelliSense/Code completion work again <a href="https://github.com/sitespeedio/browsertime/pull/2145">#2145</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 22.5.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.0</guid>
-            <pubDate>Fri, 14 Jun 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated the Docker container to include Chrome 126 and Firefox 127. Chromedriver has been updated to 126 <a href="https://github.com/sitespeedio/browsertime/pull/2141">#2141</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>

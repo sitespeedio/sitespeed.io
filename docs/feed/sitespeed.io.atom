@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2024-08-27T07:15:18.741Z</updated>
+    <updated>2024-09-04T12:44:58.016Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 34.11.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.11.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.11.1"/>
+        <updated>2024-09-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated to Browsertime 22.10.1 that fixes generating HARs for Firefox 130 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4265">#4265</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 34.11.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.11.0</id>
@@ -165,24 +180,6 @@
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Crux: Include RTT p75 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4225">#4225</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 34.5.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.5.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.5.0"/>
-        <updated>2024-07-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Crux: Add navigation types, and form factors. Fix colors to align with Grafana colors and fix broken legend colors <a href="https://github.com/sitespeedio/sitespeed.io/pull/4223">#4223</a>.</li>
-</ul>
- <ul>
-<li>Sustainable: Make it possible to choose sustainable model version (for model swd). To use the latest version for add: <code>--sustainable.model swd --sustainable.modelVersion 4</code> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4224">#4224</a>.</li>
 </ul>
 ]]></summary>
         <author>

@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2024-08-27T00:00:00.000Z</updated>
+    <updated>2024-09-04T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,61 @@
     <logo>https://www.sitespeed.io/img/logos/sitespeed.io.png</logo>
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 34.11.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.11.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.11.1"/>
+        <updated>2024-09-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated to Browsertime 22.10.1 that fixes generating HARs for Firefox 130 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4265">#4265</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 22.10.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.10.1</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.10.1"/>
+        <updated>2024-09-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Upgraded Bidi HAR to 0.0.14 that filters out data:text URLs thar is picked up in Firefox 130 <a href="https://github.com/sitespeedio/browsertime/pull/2177">#2177</a>.</li>
+</ul>
+ <ul>
+<li>Call stopSampling on browser stop during android power testing <a href="https://github.com/sitespeedio/browsertime/pull/2176">#2176</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 22.10.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.10.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.10.0"/>
+        <updated>2024-09-03T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Chromedriver 128 <a href="https://github.com/sitespeedio/browsertime/pull/2175">#2175</a></li>
+</ul>
+ <ul>
+<li>Chrome 128, Firefox 129, Edge 127 <a href="https://github.com/sitespeedio/browsertime/pull/2173">#2173</a></li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated dependencies: usb-profiling, fast-stats, webdriver, execa, dayjs <a href="https://github.com/sitespeedio/browsertime/pull/2174">#2174</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 34.11.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.11.0</id>
@@ -53,21 +108,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[throttle 5.0.1]]></title>
-        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.1</id>
-        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.1"/>
-        <updated>2024-08-26T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Smarter ifb0 handling on Linux <a href="https://github.com/sitespeedio/throttle/pull/93">#93</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[browsertime 22.9.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.9.0</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.9.0"/>
@@ -82,6 +122,21 @@
 </ul>
  <ul>
 <li>Updated to Throttle 5.0.1 that have nicer ifb0 handling <a href="https://github.com/sitespeedio/browsertime/pull/2172">#2172</a></li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[throttle 5.0.1]]></title>
+        <id>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.1</id>
+        <link href="https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.1"/>
+        <updated>2024-08-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Smarter ifb0 handling on Linux <a href="https://github.com/sitespeedio/throttle/pull/93">#93</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -275,24 +330,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 34.5.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.5.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.5.0"/>
-        <updated>2024-07-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Crux: Add navigation types, and form factors. Fix colors to align with Grafana colors and fix broken legend colors <a href="https://github.com/sitespeedio/sitespeed.io/pull/4223">#4223</a>.</li>
-</ul>
- <ul>
-<li>Sustainable: Make it possible to choose sustainable model version (for model swd). To use the latest version for add: <code>--sustainable.model swd --sustainable.modelVersion 4</code> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4224">#4224</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[chrome-har 0.13.5]]></title>
         <id>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.5</id>
         <link href="https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.5"/>
@@ -384,36 +421,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Updated Selenium dependencies <a href="https://github.com/sitespeedio/browsertime/pull/2146">#2146</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 22.5.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.1</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.1"/>
-        <updated>2024-06-24T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fixed exporting to make IntelliSense/Code completion work again <a href="https://github.com/sitespeedio/browsertime/pull/2145">#2145</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 22.5.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.0"/>
-        <updated>2024-06-14T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated the Docker container to include Chrome 126 and Firefox 127. Chromedriver has been updated to 126 <a href="https://github.com/sitespeedio/browsertime/pull/2141">#2141</a>.</li>
 </ul>
 ]]></summary>
         <author>
