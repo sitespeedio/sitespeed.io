@@ -644,3 +644,8 @@
 .current-series .ct-point, .current-series .ct-line {
   stroke: blue;
 }
+
+// Custom override of chartist classes
+.ct-custom-label.ct-horizontal {
+  rotate: -45deg;
+}
