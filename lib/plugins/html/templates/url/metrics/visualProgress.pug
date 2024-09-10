@@ -15,6 +15,9 @@ script(type='text/javascript').
       const visualProgressChart = new Chartist.Line('#ct-visualprogress', {
         series: [!{JSON.stringify(seriesVisualProgress)}],
         }, {
+        classNames: {
+          label: 'ct-label ct-custom-label'
+        },
         showArea: true,
         showPoint: true,
         chartPadding: {
