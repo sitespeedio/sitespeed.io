@@ -1,6 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-##  34.11.2 - 2024-09-11
+##  34.12.0 - 2024-09-11
+### Added
+* Firfox 130 [#4266](https://github.com/sitespeedio/sitespeed.io/pull/4266) and Edge 128 [#4267](https://github.com/sitespeedio/sitespeed.io/pull/4267) in the Docker container.
+
 ### Fixed
 * Removed First input delay (FID) from Crux since Crux already stopped using FID [#4273](https://github.com/sitespeedio/sitespeed.io/pull/4273).
 * Visual change graph is in ms [#4271](https://github.com/sitespeedio/sitespeed.io/pull/4271)
