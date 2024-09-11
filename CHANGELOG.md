@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+##  34.11.2 - 2024-09-11
+### Fixed
+* Removed First input delay (FID) from Crux since Crux already stopped using FID [#4273](https://github.com/sitespeedio/sitespeed.io/pull/4273).
+* Visual change graph is in ms [#4271](https://github.com/sitespeedio/sitespeed.io/pull/4271)
+* Fix x-axis label collision on visual change graph, thank you [Anshuman Tripathi](https://github.com/4nshuman) for PR [#4269](https://github.com/sitespeedio/sitespeed.io/pull/4269).
+
 ##  34.11.1 - 2024-09-04
 ### Fixed
 * Updated to Browsertime 22.10.1 that fixes generating HARs for Firefox 130 [#4265](https://github.com/sitespeedio/sitespeed.io/pull/4265).
