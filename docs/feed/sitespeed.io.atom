@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2024-09-04T12:44:58.016Z</updated>
+    <updated>2024-09-11T12:49:46.420Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,31 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 34.12.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.12.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.12.0"/>
+        <updated>2024-09-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Firfox 130 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4266">#4266</a> and Edge 128 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4267">#4267</a> in the Docker container.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Removed First input delay (FID) from Crux since Crux already stopped using FID <a href="https://github.com/sitespeedio/sitespeed.io/pull/4273">#4273</a>.</li>
+</ul>
+ <ul>
+<li>Visual change graph is in ms <a href="https://github.com/sitespeedio/sitespeed.io/pull/4271">#4271</a></li>
+</ul>
+ <ul>
+<li>Fix x-axis label collision on visual change graph, thank you <a href="https://github.com/4nshuman">Anshuman Tripathi</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4269">#4269</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 34.11.1]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.11.1</id>
@@ -165,21 +190,6 @@
 </ul>
  <ul>
 <li>Crux: Push navigation types and form factor data by default to TSDB <a href="https://github.com/sitespeedio/sitespeed.io/pull/4227">#4227</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 34.6.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.6.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.6.0"/>
-        <updated>2024-07-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Crux: Include RTT p75 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4225">#4225</a>.</li>
 </ul>
 ]]></summary>
         <author>

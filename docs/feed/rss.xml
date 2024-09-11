@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Wed, 04 Sep 2024 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 11 Sep 2024 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,28 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 34.12.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.12.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.12.0</guid>
+            <pubDate>Wed, 11 Sep 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Firfox 130 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4266">#4266</a> and Edge 128 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4267">#4267</a> in the Docker container.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Removed First input delay (FID) from Crux since Crux already stopped using FID <a href="https://github.com/sitespeedio/sitespeed.io/pull/4273">#4273</a>.</li>
+</ul>
+ <ul>
+<li>Visual change graph is in ms <a href="https://github.com/sitespeedio/sitespeed.io/pull/4271">#4271</a></li>
+</ul>
+ <ul>
+<li>Fix x-axis label collision on visual change graph, thank you <a href="https://github.com/4nshuman">Anshuman Tripathi</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4269">#4269</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 34.11.1]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.11.1</link>
@@ -264,18 +286,6 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 34.6.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.6.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.6.0</guid>
-            <pubDate>Fri, 12 Jul 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Crux: Include RTT p75 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4225">#4225</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[chrome-har 0.13.5]]></title>
