@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2024-09-04T12:41:05.240Z</updated>
+    <updated>2024-09-13T05:59:03.745Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 22.10.2]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.10.2</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.10.2"/>
+        <updated>2024-09-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix for wait.byIdAndVisible command <a href="https://github.com/sitespeedio/browsertime/pull/2179">#2179</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 22.10.1]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.10.1</id>
@@ -191,21 +206,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Another fix to make IntelliSense/Code completion work again <a href="https://github.com/sitespeedio/browsertime/pull/2147">#2147</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 22.5.2]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.2</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.2"/>
-        <updated>2024-06-24T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated Selenium dependencies <a href="https://github.com/sitespeedio/browsertime/pull/2146">#2146</a>.</li>
 </ul>
 ]]></summary>
         <author>

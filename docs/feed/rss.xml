@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Wed, 11 Sep 2024 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 13 Sep 2024 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,13 +16,37 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[sitespeed.io 34.12.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.12.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.12.1</guid>
+            <pubDate>Fri, 13 Sep 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22102---2024-09-13">Browsertime 22.10.2</a> that fixes a bug in the wait.byIdAndVisible command.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 22.10.2]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.10.2</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.10.2</guid>
+            <pubDate>Fri, 13 Sep 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix for wait.byIdAndVisible command <a href="https://github.com/sitespeedio/browsertime/pull/2179">#2179</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 34.12.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.12.0</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.12.0</guid>
             <pubDate>Wed, 11 Sep 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Added</h3>
  <ul>
-<li>Firfox 130 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4266">#4266</a> and Edge 128 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4267">#4267</a> in the Docker container.</li>
+<li>Firefox 130 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4266">#4266</a> and Edge 128 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4267">#4267</a> in the Docker container.</li>
 </ul>
 <h3>Fixed</h3>
  <ul>
@@ -254,21 +278,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 34.7.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.7.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.7.0</guid>
-            <pubDate>Mon, 15 Jul 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Update to Browsertime <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2260---2024-07-15">22.6.0</a> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4226">#4226</a>.</li>
-</ul>
- <ul>
-<li>Crux: Push navigation types and form factor data by default to TSDB <a href="https://github.com/sitespeedio/sitespeed.io/pull/4227">#4227</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[browsertime 22.6.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.6.0</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.6.0</guid>
@@ -350,18 +359,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Another fix to make IntelliSense/Code completion work again <a href="https://github.com/sitespeedio/browsertime/pull/2147">#2147</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 22.5.2]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.2</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.2</guid>
-            <pubDate>Mon, 24 Jun 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated Selenium dependencies <a href="https://github.com/sitespeedio/browsertime/pull/2146">#2146</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
