@@ -1,8 +1,12 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+##  34.12.1 - 2024-09-13
+### Fixed
+* Updated to [Browsertime 22.10.2](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22102---2024-09-13) that fixes a bug in the wait.byIdAndVisible command.
+
 ##  34.12.0 - 2024-09-11
 ### Added
-* Firfox 130 [#4266](https://github.com/sitespeedio/sitespeed.io/pull/4266) and Edge 128 [#4267](https://github.com/sitespeedio/sitespeed.io/pull/4267) in the Docker container.
+* Firefox 130 [#4266](https://github.com/sitespeedio/sitespeed.io/pull/4266) and Edge 128 [#4267](https://github.com/sitespeedio/sitespeed.io/pull/4267) in the Docker container.
 
 ### Fixed
 * Removed First input delay (FID) from Crux since Crux already stopped using FID [#4273](https://github.com/sitespeedio/sitespeed.io/pull/4273).
