@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Fri, 13 Sep 2024 06:27:00 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 18 Sep 2024 19:11:35 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,25 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 34.13.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.13.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.13.0</guid>
+            <pubDate>Wed, 18 Sep 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Add support for <code>--ignoreExtends</code> that remove extends from your configuration file. This is useful when you want to test configuration locally on your machine and your test server extends configurations like uploading data to a data storage <a href="https://github.com/sitespeedio/sitespeed.io/pull/4280">#4280</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Fixed support gnirehtet when using <code>--preWarmServer</code> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4277">#4277</a>.</li>
+</ul>
+ <ul>
+<li>Fix broken log message when using the compare plugin, comparing tests with different amount of runs. Thank you <a href="https://github.com/roelvv">Roel Vreuls</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4279">#4279</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 34.12.1]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.12.1</link>
@@ -148,18 +167,6 @@
 <h3>Fixed</h3>
  <ul>
 <li>InfluxDB 2.x, Annotations. Send tags for filtering, thank you <a href="https://github.com/Amerousful">pavel bairov</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4197">#4197</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 34.7.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.7.1</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.7.1</guid>
-            <pubDate>Sat, 20 Jul 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix so the link to the geckoprofiler data works/shows again <a href="https://github.com/sitespeedio/sitespeed.io/pull/4234">#4234</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>

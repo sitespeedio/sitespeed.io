@@ -1,5 +1,13 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+##  34.13.0 - 2024-09-18
+### Added
+* Add support for `--ignoreExtends` that remove extends from your configuration file. This is useful when you want to test configuration locally on your machine and your test server extends configurations like uploading data to a data storage [#4280](https://github.com/sitespeedio/sitespeed.io/pull/4280).
+
+### Fixed
+* Fixed support gnirehtet when using `--preWarmServer` [#4277](https://github.com/sitespeedio/sitespeed.io/pull/4277).
+* Fix broken log message when using the compare plugin, comparing tests with different amount of runs. Thank you [Roel Vreuls](https://github.com/roelvv) for PR [#4279](https://github.com/sitespeedio/sitespeed.io/pull/4279).
+
 ##  34.12.1 - 2024-09-13
 ### Fixed
 * Updated to [Browsertime 22.10.2](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22102---2024-09-13) that fixes a bug in the wait.byIdAndVisible command.
