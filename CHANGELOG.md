@@ -1,5 +1,47 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+##  34.14.0 - 2024-09-19
+### Added
+* Chrome 129 in the Docker container [#4281](https://github.com/sitespeedio/sitespeed.io/pull/4281).
+
+##  34.13.0 - 2024-09-18
+### Added
+* Add support for `--ignoreExtends` that remove extends from your configuration file. This is useful when you want to test configuration locally on your machine and your test server extends configurations like uploading data to a data storage [#4280](https://github.com/sitespeedio/sitespeed.io/pull/4280).
+
+### Fixed
+* Fixed support gnirehtet when using `--preWarmServer` [#4277](https://github.com/sitespeedio/sitespeed.io/pull/4277).
+* Fix broken log message when using the compare plugin, comparing tests with different amount of runs. Thank you [Roel Vreuls](https://github.com/roelvv) for PR [#4279](https://github.com/sitespeedio/sitespeed.io/pull/4279).
+
+##  34.12.1 - 2024-09-13
+### Fixed
+* Updated to [Browsertime 22.10.2](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22102---2024-09-13) that fixes a bug in the wait.byIdAndVisible command.
+
+##  34.12.0 - 2024-09-11
+### Added
+* Firefox 130 [#4266](https://github.com/sitespeedio/sitespeed.io/pull/4266) and Edge 128 [#4267](https://github.com/sitespeedio/sitespeed.io/pull/4267) in the Docker container.
+
+### Fixed
+* Removed First input delay (FID) from Crux since Crux already stopped using FID [#4273](https://github.com/sitespeedio/sitespeed.io/pull/4273).
+* Visual change graph is in ms [#4271](https://github.com/sitespeedio/sitespeed.io/pull/4271)
+* Fix x-axis label collision on visual change graph, thank you [Anshuman Tripathi](https://github.com/4nshuman) for PR [#4269](https://github.com/sitespeedio/sitespeed.io/pull/4269).
+
+##  34.11.1 - 2024-09-04
+### Fixed
+* Updated to Browsertime 22.10.1 that fixes generating HARs for Firefox 130 [#4265](https://github.com/sitespeedio/sitespeed.io/pull/4265).
+
+
+##  34.11.0 - 2024-08-27
+### Added
+* Updated the Docker container to use Chrome 128 [#4261](https://github.com/sitespeedio/sitespeed.io/pull/4261).
+
+##  34.10.0 - 2024-08-27
+### Added
+* Updated Docker container to use Firefox 129 and Edge 127 [#4254](https://github.com/sitespeedio/sitespeed.io/pull/4254).
+* Browsertime [22.9.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2290---2024-08-26) [#4260](https://github.com/sitespeedio/sitespeed.io/pull/4260).
+
+### Fixed
+* Make sure requestheaders and cookies are sent when you use prewarm the server [#4259](https://github.com/sitespeedio/sitespeed.io/pull/4259).
+
 ##  34.9.0 - 2024-07-30
 ### Added
 * Browsertime 22.8.0 that disables the choose search engine screen on Chrome 127 and updated Edgedriver to 126 [#4244](https://github.com/sitespeedio/sitespeed.io/pull/4244).

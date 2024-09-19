@@ -4,13 +4,24 @@
         <title>throttle release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of throttle</description>
-        <lastBuildDate>Fri, 29 Dec 2023 07:30:18 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 26 Aug 2024 17:27:51 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/throttle.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[throttle 5.0.1]]></title>
+            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.1</link>
+            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.1</guid>
+            <pubDate>Mon, 26 Aug 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Smarter ifb0 handling on Linux <a href="https://github.com/sitespeedio/throttle/pull/93">#93</a>.</li>
+</ul>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[throttle 5.0.0]]></title>
             <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#5.0.0</link>
@@ -111,17 +122,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Fix breakage when multiple default routes are declared , thank you <a href="https://github.com/andyrichardson">Andy Richardson</a> for PR <a href="https://github.com/sitespeedio/throttle/pull/62">#62</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[throttle 2.1.1]]></title>
-            <link>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.1</link>
-            <guid>https://github.com/sitespeedio/throttle/blob/main/CHANGELOG.md#2.1.1</guid>
-            <pubDate>Fri, 19 Mar 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>A better check for missing net-tools on Linux, thank you <a href="https://github.com/radum">Radu Micu</a> for the PR <a href="https://github.com/sitespeedio/throttle/pull/56">#56</a>.</li>
 </ul>
 ]]></description>
         </item>

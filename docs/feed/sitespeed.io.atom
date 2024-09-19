@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2024-07-30T05:28:55.979Z</updated>
+    <updated>2024-09-19T05:21:45.751Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,135 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 34.14.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.14.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.14.0"/>
+        <updated>2024-09-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Chrome 129 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4281">#4281</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 34.13.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.13.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.13.0"/>
+        <updated>2024-09-18T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Add support for <code>--ignoreExtends</code> that remove extends from your configuration file. This is useful when you want to test configuration locally on your machine and your test server extends configurations like uploading data to a data storage <a href="https://github.com/sitespeedio/sitespeed.io/pull/4280">#4280</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Fixed support gnirehtet when using <code>--preWarmServer</code> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4277">#4277</a>.</li>
+</ul>
+ <ul>
+<li>Fix broken log message when using the compare plugin, comparing tests with different amount of runs. Thank you <a href="https://github.com/roelvv">Roel Vreuls</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4279">#4279</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 34.12.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.12.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.12.1"/>
+        <updated>2024-09-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22102---2024-09-13">Browsertime 22.10.2</a> that fixes a bug in the wait.byIdAndVisible command.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 34.12.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.12.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.12.0"/>
+        <updated>2024-09-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Firefox 130 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4266">#4266</a> and Edge 128 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4267">#4267</a> in the Docker container.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Removed First input delay (FID) from Crux since Crux already stopped using FID <a href="https://github.com/sitespeedio/sitespeed.io/pull/4273">#4273</a>.</li>
+</ul>
+ <ul>
+<li>Visual change graph is in ms <a href="https://github.com/sitespeedio/sitespeed.io/pull/4271">#4271</a></li>
+</ul>
+ <ul>
+<li>Fix x-axis label collision on visual change graph, thank you <a href="https://github.com/4nshuman">Anshuman Tripathi</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4269">#4269</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 34.11.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.11.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.11.1"/>
+        <updated>2024-09-04T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated to Browsertime 22.10.1 that fixes generating HARs for Firefox 130 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4265">#4265</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 34.11.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.11.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.11.0"/>
+        <updated>2024-08-27T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated the Docker container to use Chrome 128 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4261">#4261</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 34.10.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.10.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.10.0"/>
+        <updated>2024-08-27T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated Docker container to use Firefox 129 and Edge 127 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4254">#4254</a>.</li>
+</ul>
+ <ul>
+<li>Browsertime <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2290---2024-08-26">22.9.0</a> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4260">#4260</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Make sure requestheaders and cookies are sent when you use prewarm the server <a href="https://github.com/sitespeedio/sitespeed.io/pull/4259">#4259</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 34.9.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.9.0</id>
@@ -61,131 +190,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Add missing slug for influxdb, thank you <a href="https://github.com/Amerousful">pavel bairov</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4240">#4240</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 34.8.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.8.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.8.0"/>
-        <updated>2024-07-26T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Chrome 127, Chromedriver 127 and Browsertime 22.7.0 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4239">#4239</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>InfluxDB 2.x, Annotations. Send tags for filtering, thank you <a href="https://github.com/Amerousful">pavel bairov</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4197">#4197</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 34.7.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.7.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.7.1"/>
-        <updated>2024-07-20T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix so the link to the geckoprofiler data works/shows again <a href="https://github.com/sitespeedio/sitespeed.io/pull/4234">#4234</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 34.7.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.7.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.7.0"/>
-        <updated>2024-07-15T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Update to Browsertime <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2260---2024-07-15">22.6.0</a> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4226">#4226</a>.</li>
-</ul>
- <ul>
-<li>Crux: Push navigation types and form factor data by default to TSDB <a href="https://github.com/sitespeedio/sitespeed.io/pull/4227">#4227</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 34.6.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.6.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.6.0"/>
-        <updated>2024-07-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Crux: Include RTT p75 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4225">#4225</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 34.5.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.5.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.5.0"/>
-        <updated>2024-07-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Crux: Add navigation types, and form factors. Fix colors to align with Grafana colors and fix broken legend colors <a href="https://github.com/sitespeedio/sitespeed.io/pull/4223">#4223</a>.</li>
-</ul>
- <ul>
-<li>Sustainable: Make it possible to choose sustainable model version (for model swd). To use the latest version for add: <code>--sustainable.model swd --sustainable.modelVersion 4</code> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4224">#4224</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 34.4.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.4.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.4.0"/>
-        <updated>2024-07-09T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgraded to Firefox 128 and Edge 126 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4222">#4222</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Show correct LCP and CLS image in each run page <a href="https://github.com/sitespeedio/sitespeed.io/pull/4221">#4221</a>.</li>
-</ul>
- <ul>
-<li>Update Browsertime <a href="https://github.com/sitespeedio/sitespeed.io/pull/4210">#4210</a>.</li>
-</ul>
- <ul>
-<li>Update minor dependencies and developer dependencies: co2.js <a href="https://github.com/sitespeedio/sitespeed.io/pull/4206">#4206</a>, uuid <a href="https://github.com/sitespeedio/sitespeed.io/pull/4207">#4207</a>, s3 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4208">#4208</a>, eslint <a href="https://github.com/sitespeedio/sitespeed.io/pull/4211">#4211</a>, ava, jsdoc, sass <a href="https://github.com/sitespeedio/sitespeed.io/pull/4212">#4212</a>, dayjs <a href="https://github.com/sitespeedio/sitespeed.io/pull/4214">#4214</a>, p-limit <a href="https://github.com/sitespeedio/sitespeed.io/pull/4215">#4215</a>, os-name <a href="https://github.com/sitespeedio/sitespeed.io/pull/4216">#4216</a>, tape <a href="https://github.com/sitespeedio/sitespeed.io/pull/4219">#4219</a> and p-limit <a href="https://github.com/sitespeedio/sitespeed.io/pull/4220">#4220</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 34.3.5]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.3.5</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.3.5"/>
-        <updated>2024-07-02T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>The fix for CLS and LCP in 34.3.4 faulty set those to false by default, changing the default behaviour. Fixed in <a href="https://github.com/sitespeedio/sitespeed.io/pull/4205">#4205</a></li>
 </ul>
 ]]></summary>
         <author>

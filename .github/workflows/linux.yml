@@ -35,7 +35,7 @@ jobs:
       #with:
       #  firefox-version: '94.0'
     - name: Setup environment
-      run: docker-compose -f test/docker-compose.yml up -d
+      run: docker compose -f test/docker-compose.yml up -d
     - name: Browser versions
       run: |
         google-chrome --version
