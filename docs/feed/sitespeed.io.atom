@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2024-09-19T05:21:45.751Z</updated>
+    <updated>2024-09-24T17:31:01.712Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,24 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 35.0.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.0.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.0.0"/>
+        <updated>2024-09-24T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2300---2024-09-23">Browsertime 23.0.0</a>.</li>
+</ul>
+ <ul>
+<li>Fixes the internal configuration object for android. The old solution created an array with objects instead of just keys on the object.<a href="https://github.com/sitespeedio/sitespeed.io/pull/4282">#4282</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 34.14.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.14.0</id>
@@ -175,21 +193,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>WebPageReplay: Fix for reading configuration. Reading a saved configuration didn&#39;t handle camel case correctly, creating arrays for single values <a href="https://github.com/sitespeedio/sitespeed.io/pull/4242">#4242</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 34.8.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.8.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.8.1"/>
-        <updated>2024-07-27T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Add missing slug for influxdb, thank you <a href="https://github.com/Amerousful">pavel bairov</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4240">#4240</a>.</li>
 </ul>
 ]]></summary>
         <author>
