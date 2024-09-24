@@ -1,10 +1,18 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-##  34.14.0 - 2024-09-19
+## 35.0.0 - 2024-09-24
+### Breaking
+* Disable camel case configuration that comes automatically with yargs [#4251](https://github.com/sitespeedio/sitespeed.io/pull/4251). This is a breaking change ONLY if you didn't follow our doecumentation/help and used internal YARGS configuration names for our CLI configuration.
+
+### Fixed
+* Updated to [Browsertime 23.0.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2300---2024-09-23).
+* Fixes the internal configuration object for android. The old solution created an array with objects instead of just keys on the object.[#4282](https://github.com/sitespeedio/sitespeed.io/pull/4282).
+
+## 34.14.0 - 2024-09-19
 ### Added
 * Chrome 129 in the Docker container [#4281](https://github.com/sitespeedio/sitespeed.io/pull/4281).
 
-##  34.13.0 - 2024-09-18
+## 34.13.0 - 2024-09-18
 ### Added
 * Add support for `--ignoreExtends` that remove extends from your configuration file. This is useful when you want to test configuration locally on your machine and your test server extends configurations like uploading data to a data storage [#4280](https://github.com/sitespeedio/sitespeed.io/pull/4280).
 
