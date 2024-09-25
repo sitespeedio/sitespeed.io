@@ -11,6 +11,8 @@ const images = {
   browsertime: 'https://www.sitespeed.io/img/logos/browsertime.png',
   'coach-core': 'https://www.sitespeed.io/img/logos/coach.png',
   pagexray: 'https://www.sitespeed.io/img/logos/pagexray.png',
+  server: '',
+  testrunner: '',
   throttle: '',
   coach: 'https://www.sitespeed.io/img/logos/coach.png',
   'chrome-har': '',
@@ -135,8 +137,11 @@ function getResultAsHTML(result) {
 
 const getContent = async tool => {
   const content = [];
-  const changelog =
+  let changelog =
     tool === 'sitespeed.io' ? './CHANGELOG.md' : '../' + tool + '/CHANGELOG.md';
+  if (tool === 'server' || tool === 'testrunner') {
+    changelog = `../../onlinetest/${tool}/CHANGELOG.md`;
+  }
   const result = await parseChangelog({
     filePath: changelog,
     removeMarkdown: false
