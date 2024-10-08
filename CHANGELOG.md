@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+
+## 35.1.1 - 2024-10-08
+### Fixed
+* Updated to [Browsertime 23.1.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2311---2024-10-08) that fixes the Firefox HAR timing problem [#4289](https://github.com/sitespeedio/sitespeed.io/pull/4289).
+
+
 ## 35.1.0 - 2024-10-08
 ### Added
 * Browsertime [23.1.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2310---2024-10-08) [#4287](https://github.com/sitespeedio/sitespeed.io/pull/4287).
