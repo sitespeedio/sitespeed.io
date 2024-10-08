@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>server-release-feed</id>
+    <title>server release feed</title>
+    <updated>2024-09-24T06:38:13.439Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <author>
+        <name>Peter Hedenskog</name>
+        <email>peter@soulgalore.com</email>
+        <uri>https://www.peterhedenskog.com</uri>
+    </author>
+    <link rel="alternate" href="https://www.sitespeed.io"/>
+    <link rel="self" href="https://www.sitespeed.io/feed/server.atom"/>
+    <subtitle>New releases and changelog feed of server</subtitle>
+    <icon>http://www.sitespeed.io/favicon.ico</icon>
+    <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[server 0.3.2]]></title>
+        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.3.2</id>
+        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.3.2"/>
+        <updated>2024-07-15T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Upgrade to Bull 4.15.1 <a href="https://github.com/sitespeedio/onlinetest/pull/57">#57</a>.</li>
+</ul>
+ <ul>
+<li>Default to max 50 finished jobs in the queue <a href="https://github.com/sitespeedio/onlinetest/pull/58">#58</a>.</li>
+</ul>
+ <ul>
+<li>Update dev dependencies like ESLint 9 <a href="https://github.com/sitespeedio/onlinetest/pull/62">#62</a>.</li>
+</ul>
+ <ul>
+<li>Update DayJS 1.11.11 <a href="https://github.com/sitespeedio/onlinetest/pull/63">#63</a></li>
+</ul>
+ <ul>
+<li>Make sure all uncaught errors are caught <a href="https://github.com/sitespeedio/onlinetest/pull/64">#64</a></li>
+</ul>
+ <ul>
+<li>Add a keydb configuration file <a href="https://github.com/sitespeedio/onlinetest/pull/56">#56</a></li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[server 0.3.1]]></title>
+        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.3.1</id>
+        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.3.1"/>
+        <updated>2024-06-29T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>If the queue system is down when you add a new test, make sure the status of the test in the database is failed <a href="https://github.com/sitespeedio/onlinetest/pull/50">#50</a>.</li>
+</ul>
+ <ul>
+<li>If the queue is not up when you access the start page, make sure that at least after X seconds you get a error page <a href="https://github.com/sitespeedio/onlinetest/pull/53">#53</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[server 0.3.0]]></title>
+        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.3.0</id>
+        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.3.0"/>
+        <updated>2024-06-28T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>search: Make label configurable in search result <a href="https://github.com/sitespeedio/onlinetest/pull/46">#46</a>.</li>
+</ul>
+ <ul>
+<li>search: Make run date readable <a href="https://github.com/sitespeedio/onlinetest/pull/45">#45</a>.</li>
+</ul>
+ <ul>
+<li>Show version number in footer and API <a href="https://github.com/sitespeedio/onlinetest/pull/44">#44</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[server 0.2.1]]></title>
+        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.2.1</id>
+        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.2.1"/>
+        <updated>2024-06-27T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Search: Fix for searching for test type <a href="https://github.com/sitespeedio/onlinetest/pull/42">#42</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[server 0.2.0]]></title>
+        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.2.0</id>
+        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.2.0"/>
+        <updated>2024-06-27T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Search: Add a clear search field button and make location and test type linkable in search result <a href="https://github.com/sitespeedio/onlinetest/pull/39">#39</a>.</li>
+</ul>
+ <ul>
+<li>Search: Show 100 search result as default and make it configurable <a href="https://github.com/sitespeedio/onlinetest/pull/38">#38</a>.</li>
+</ul>
+ <ul>
+<li>Search: Add last hour search button <a href="https://github.com/sitespeedio/onlinetest/pull/40">#40</a></li>
+</ul>
+ <ul>
+<li>Search: Make it confirable to see the slug column in search result <a href="https://github.com/sitespeedio/onlinetest/pull/41">#41</a></li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[server 0.1.0]]></title>
+        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.1.0</id>
+        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.1.0"/>
+        <updated>2024-06-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Make removeOnComplete and removeOnFail in the queue configurable. If  you run a large installation with many many tests, you may want to increase the number of tests that will continue to live in the queue after the test has completed (removeOnComplete) <a href="https://github.com/sitespeedio/onlinetest/pull/36">#36</a>.</li>
+</ul>
+ <ul>
+<li>Make attempts (number of tries if a test fail) configurable. By default there is one try <a href="https://github.com/sitespeedio/onlinetest/pull/37">#37</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[server 0.0.8]]></title>
+        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.0.8</id>
+        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.0.8"/>
+        <updated>2024-06-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Update to PG 8.12.0 <a href="https://github.com/sitespeedio/onlinetest/pull/34">#34</a>.</li>
+</ul>
+ <ul>
+<li>Update to Bull 4.14.0 <a href="https://github.com/sitespeedio/onlinetest/pull/32">#32</a></li>
+</ul>
+ <ul>
+<li>Only keep 200 of latest completed job in the queue (make this configurable in the future) <a href="https://github.com/sitespeedio/onlinetest/pull/33">#33</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[server 0.0.7]]></title>
+        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.0.7</id>
+        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.0.7"/>
+        <updated>2024-06-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Only link to the search result when we actually have a result <a href="https://github.com/sitespeedio/onlinetest/pull/26">#26</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+</feed>

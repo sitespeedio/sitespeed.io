@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Tue, 08 Oct 2024 07:57:23 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 08 Oct 2024 18:27:21 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,18 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 35.1.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.1</guid>
+            <pubDate>Tue, 08 Oct 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2311---2024-10-08">Browsertime 23.1.1</a> that fixes the Firefox HAR timing problem <a href="https://github.com/sitespeedio/sitespeed.io/pull/4289">#4289</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 35.1.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.0</link>
@@ -150,25 +162,6 @@
 <h3>Fixed</h3>
  <ul>
 <li>Make sure requestheaders and cookies are sent when you use prewarm the server <a href="https://github.com/sitespeedio/sitespeed.io/pull/4259">#4259</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 34.9.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.9.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.9.0</guid>
-            <pubDate>Tue, 30 Jul 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Browsertime 22.8.0 that disables the choose search engine screen on Chrome 127 and updated Edgedriver to 126 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4244">#4244</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Added extra guard when you disables screenshots <a href="https://github.com/sitespeedio/sitespeed.io/pull/4245">#4245</a>.</li>
-</ul>
- <ul>
-<li>Axe core 4.10.0 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4246">#4246</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>testrunner-release-feed</id>
+    <title>testrunner release feed</title>
+    <updated>2024-09-24T06:28:20.179Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <author>
+        <name>Peter Hedenskog</name>
+        <email>peter@soulgalore.com</email>
+        <uri>https://www.peterhedenskog.com</uri>
+    </author>
+    <link rel="alternate" href="https://www.sitespeed.io"/>
+    <link rel="self" href="https://www.sitespeed.io/feed/testrunner.atom"/>
+    <subtitle>New releases and changelog feed of testrunner</subtitle>
+    <icon>http://www.sitespeed.io/favicon.ico</icon>
+    <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[testrunner 0.4.1]]></title>
+        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.4.1</id>
+        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.4.1"/>
+        <updated>2024-07-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Log testrunner version on startup <a href="https://github.com/sitespeedio/onlinetest/pull/67">#67</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[testrunner 0.4.0]]></title>
+        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.4.0</id>
+        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.4.0"/>
+        <updated>2024-07-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Made it possible to map a baseline directory in Docker so you can run compare plugin tests <a href="https://github.com/sitespeedio/onlinetest/pull/66">#66</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[testrunner 0.3.3]]></title>
+        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.3.3</id>
+        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.3.3"/>
+        <updated>2024-07-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix for running WebPageReplay <a href="https://github.com/sitespeedio/onlinetest/pull/65">#65</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[testrunner 0.2.1]]></title>
+        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.2.1</id>
+        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.2.1"/>
+        <updated>2024-06-30T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Make sure we await adding things to the report queue <a href="https://github.com/sitespeedio/onlinetest/pull/55">#55</a>.</li>
+</ul>
+ <ul>
+<li>Catch errors in all queue <a href="https://github.com/sitespeedio/onlinetest/pull/54">#54</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[testrunner 0.2.0]]></title>
+        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.2.0</id>
+        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.2.0"/>
+        <updated>2024-06-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Make removeOnComplete and removeOnFail in the queue configurable. If  you run a large installation with many many tests, you may want to increase the number of tests that will continue to live in the queue after the test has completed (removeOnComplete) <a href="https://github.com/sitespeedio/onlinetest/pull/35">#35</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[testrunner 0.1.5]]></title>
+        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.5</id>
+        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.5"/>
+        <updated>2024-06-26T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Update to Bull 4.14.0 <a href="https://github.com/sitespeedio/onlinetest/pull/32">#32</a></li>
+</ul>
+ <ul>
+<li>Only keep 200 of latest completed job in the queue (make this configurable in the future) <a href="https://github.com/sitespeedio/onlinetest/pull/33">#33</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[testrunner 0.1.4]]></title>
+        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.4</id>
+        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.4"/>
+        <updated>2024-06-24T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Using common JS script files was broken, fixed in <a href="https://github.com/sitespeedio/onlinetest/pull/30">#30</a>.</li>
+</ul>
+ <ul>
+<li>Log test id in start log.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[testrunner 0.1.3]]></title>
+        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.3</id>
+        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.3"/>
+        <updated>2024-06-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Simplify Docker mapping inside the Docker testrunner <a href="https://github.com/sitespeedio/onlinetest/pull/27">#27</a>. This fixes running script files with the testrunner.</li>
+</ul>
+ <ul>
+<li>A better cleanup in the work directory for Docker <a href="https://github.com/sitespeedio/onlinetest/pull/28">#28</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[testrunner 0.1.2]]></title>
+        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.2</id>
+        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.2"/>
+        <updated>2024-06-19T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Set --cap-add=NET_ADMIN as default for extraparameters (needed for throttling.</li>
+</ul>
+ <ul>
+<li>Fix using an extra configuration file in Docker. Before it added an extra folder (that makes it really hard to use) <a href="https://github.com/sitespeedio/onlinetest/pull/23">#23</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+</feed>

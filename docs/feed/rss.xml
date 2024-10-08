@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Thu, 19 Sep 2024 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 08 Oct 2024 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,118 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 35.1.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.1</guid>
+            <pubDate>Tue, 08 Oct 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2311---2024-10-08">Browsertime 23.1.1</a> that fixes the Firefox HAR timing problem <a href="https://github.com/sitespeedio/sitespeed.io/pull/4289">#4289</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 35.1.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.0</guid>
+            <pubDate>Tue, 08 Oct 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Browsertime <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2310---2024-10-08">23.1.0</a> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4287">#4287</a>.</li>
+</ul>
+ <ul>
+<li>Firefox 131 and Edge 129 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4284">#4284</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 23.1.1]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.1.1</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.1.1</guid>
+            <pubDate>Tue, 08 Oct 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated to har export 0.0.16 for Firefox that fixes the HAR timing problem in <a href="https://github.com/sitespeedio/browsertime/issues/2189">#2189</a> <a href="https://github.com/sitespeedio/browsertime/pull/2190">#2190</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 23.1.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.1.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.1.0</guid>
+            <pubDate>Tue, 08 Oct 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Log if you use a profile template for Firefox <a href="https://github.com/sitespeedio/browsertime/pull/2186">#2186</a>.</li>
+</ul>
+ <ul>
+<li>Update to Firefox 131 and Edge 129 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2188">#2188</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated to Chrome-HAR <a href="https://github.com/sitespeedio/browsertime/pull/2187">#2187</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[chrome-har 1.0.0]]></title>
+            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.0.0</link>
+            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.0.0</guid>
+            <pubDate>Tue, 08 Oct 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Removed dayjs dependency <a href="https://github.com/sitespeedio/chrome-har/pull/128">#128</a>.</li>
+</ul>
+ <ul>
+<li>Removed uuid dependency <a href="https://github.com/sitespeedio/chrome-har/pull/127">#127</a>.</li>
+</ul>
+ <ul>
+<li>Updated to tough cookie 5.0.0 <a href="https://github.com/sitespeedio/chrome-har/pull/126">#126</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 35.0.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.0.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.0.0</guid>
+            <pubDate>Tue, 24 Sep 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2300---2024-09-23">Browsertime 23.0.0</a>.</li>
+</ul>
+ <ul>
+<li>Fixes the internal configuration object for android. The old solution created an array with objects instead of just keys on the object.<a href="https://github.com/sitespeedio/sitespeed.io/pull/4282">#4282</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 23.0.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.0.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.0.0</guid>
+            <pubDate>Mon, 23 Sep 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated Docker container with Chrome 129, Firefox 130. New Chromedriver <a href="https://github.com/sitespeedio/browsertime/pull/2181">#2181</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated to Selenium 4.25.0 <a href="https://github.com/sitespeedio/browsertime/pull/2185">#2185</a>.</li>
+</ul>
+ <ul>
+<li>Use HAR export 0.0.15 for upcoming changes in Firefox <a href="https://github.com/sitespeedio/browsertime/pull/2184">#2184</a>.</li>
+</ul>
+ <ul>
+<li>Fixes the internal configuration object for android. The old solution created an array with objects instead of just keys on the object.<a href="https://github.com/sitespeedio/browsertime/pull/2183">#2183</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 34.14.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.14.0</link>
@@ -200,25 +312,6 @@
 ]]></description>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 34.9.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.9.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.9.0</guid>
-            <pubDate>Tue, 30 Jul 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Browsertime 22.8.0 that disables the choose search engine screen on Chrome 127 and updated Edgedriver to 126 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4244">#4244</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Added extra guard when you disables screenshots <a href="https://github.com/sitespeedio/sitespeed.io/pull/4245">#4245</a>.</li>
-</ul>
- <ul>
-<li>Axe core 4.10.0 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4246">#4246</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[browsertime 22.8.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.8.0</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.8.0</guid>
@@ -238,28 +331,37 @@
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 34.8.2]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.8.2</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.8.2</guid>
-            <pubDate>Mon, 29 Jul 2024 00:00:00 GMT</pubDate>
+            <title><![CDATA[testrunner 0.4.1]]></title>
+            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.4.1</link>
+            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.4.1</guid>
+            <pubDate>Tue, 30 Jul 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
-<li>WebPageReplay: Fix for reading configuration. Reading a saved configuration didn&#39;t handle camel case correctly, creating arrays for single values <a href="https://github.com/sitespeedio/sitespeed.io/pull/4242">#4242</a>.</li>
+<li>Log testrunner version on startup <a href="https://github.com/sitespeedio/onlinetest/pull/67">#67</a>.</li>
 </ul>
 ]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 34.8.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.8.1</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.8.1</guid>
-            <pubDate>Sat, 27 Jul 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
+            <title><![CDATA[testrunner 0.4.0]]></title>
+            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.4.0</link>
+            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.4.0</guid>
+            <pubDate>Tue, 30 Jul 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
  <ul>
-<li>Add missing slug for influxdb, thank you <a href="https://github.com/Amerousful">pavel bairov</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4240">#4240</a>.</li>
+<li>Made it possible to map a baseline directory in Docker so you can run compare plugin tests <a href="https://github.com/sitespeedio/onlinetest/pull/66">#66</a>.</li>
 </ul>
 ]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[testrunner 0.3.3]]></title>
+            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.3.3</link>
+            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.3.3</guid>
+            <pubDate>Tue, 30 Jul 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix for running WebPageReplay <a href="https://github.com/sitespeedio/onlinetest/pull/65">#65</a>.</li>
+</ul>
+]]></description>
         </item>
         <item>
             <title><![CDATA[browsertime 22.7.0]]></title>
@@ -300,6 +402,32 @@
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
+            <title><![CDATA[server 0.3.2]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.3.2</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.3.2</guid>
+            <pubDate>Mon, 15 Jul 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Upgrade to Bull 4.15.1 <a href="https://github.com/sitespeedio/onlinetest/pull/57">#57</a>.</li>
+</ul>
+ <ul>
+<li>Default to max 50 finished jobs in the queue <a href="https://github.com/sitespeedio/onlinetest/pull/58">#58</a>.</li>
+</ul>
+ <ul>
+<li>Update dev dependencies like ESLint 9 <a href="https://github.com/sitespeedio/onlinetest/pull/62">#62</a>.</li>
+</ul>
+ <ul>
+<li>Update DayJS 1.11.11 <a href="https://github.com/sitespeedio/onlinetest/pull/63">#63</a></li>
+</ul>
+ <ul>
+<li>Make sure all uncaught errors are caught <a href="https://github.com/sitespeedio/onlinetest/pull/64">#64</a></li>
+</ul>
+ <ul>
+<li>Add a keydb configuration file <a href="https://github.com/sitespeedio/onlinetest/pull/56">#56</a></li>
+</ul>
+]]></description>
+        </item>
+        <item>
             <title><![CDATA[chrome-har 0.13.5]]></title>
             <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.5</link>
             <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.5</guid>
@@ -309,39 +437,6 @@
 <li>Always take care of Network.responseReceivedExtraInfo even if its fired early, thank you <a href="https://github.com/ifduyue">ifduyue</a> for PR <a href="https://github.com/sitespeedio/chrome-har/pull/120">#120</a>.</li>
 </ul>
 ]]></description>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 22.5.5]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.5</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.5</guid>
-            <pubDate>Sun, 07 Jul 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix stopping --tcpdump <a href="https://github.com/sitespeedio/browsertime/pull/2155">#2155</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 22.5.4]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.4</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.4</guid>
-            <pubDate>Sat, 06 Jul 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Update to Chrome-HAR 0.13.3 <a href="https://github.com/sitespeedio/browsertime/pull/2148">#2148</a>.</li>
-</ul>
- <ul>
-<li>Update Chrome remore interface <a href="https://github.com/sitespeedio/browsertime/pull/2149">#2149</a>.</li>
-</ul>
- <ul>
-<li>Update execa, dayjs and get-port <a href="https://github.com/sitespeedio/browsertime/pull/2153">#2153</a>.</li>
-</ul>
- <ul>
-<li>Update developer dependencies <a href="https://github.com/sitespeedio/browsertime/pull/2154">#2154</a>, <a href="https://github.com/sitespeedio/browsertime/pull/2152">#2152</a>, <a href="https://github.com/sitespeedio/browsertime/pull/2151">#2151</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2150">#2150</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[chrome-har 0.13.3]]></title>
@@ -355,16 +450,189 @@
 ]]></description>
         </item>
         <item>
-            <title><![CDATA[browsertime 22.5.3]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.3</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.5.3</guid>
-            <pubDate>Tue, 25 Jun 2024 00:00:00 GMT</pubDate>
+            <title><![CDATA[testrunner 0.2.1]]></title>
+            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.2.1</link>
+            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.2.1</guid>
+            <pubDate>Sun, 30 Jun 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
-<li>Another fix to make IntelliSense/Code completion work again <a href="https://github.com/sitespeedio/browsertime/pull/2147">#2147</a>.</li>
+<li>Make sure we await adding things to the report queue <a href="https://github.com/sitespeedio/onlinetest/pull/55">#55</a>.</li>
+</ul>
+ <ul>
+<li>Catch errors in all queue <a href="https://github.com/sitespeedio/onlinetest/pull/54">#54</a>.</li>
 </ul>
 ]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[server 0.3.1]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.3.1</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.3.1</guid>
+            <pubDate>Sat, 29 Jun 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>If the queue system is down when you add a new test, make sure the status of the test in the database is failed <a href="https://github.com/sitespeedio/onlinetest/pull/50">#50</a>.</li>
+</ul>
+ <ul>
+<li>If the queue is not up when you access the start page, make sure that at least after X seconds you get a error page <a href="https://github.com/sitespeedio/onlinetest/pull/53">#53</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[server 0.3.0]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.3.0</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.3.0</guid>
+            <pubDate>Fri, 28 Jun 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>search: Make label configurable in search result <a href="https://github.com/sitespeedio/onlinetest/pull/46">#46</a>.</li>
+</ul>
+ <ul>
+<li>search: Make run date readable <a href="https://github.com/sitespeedio/onlinetest/pull/45">#45</a>.</li>
+</ul>
+ <ul>
+<li>Show version number in footer and API <a href="https://github.com/sitespeedio/onlinetest/pull/44">#44</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[server 0.2.1]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.2.1</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.2.1</guid>
+            <pubDate>Thu, 27 Jun 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Search: Fix for searching for test type <a href="https://github.com/sitespeedio/onlinetest/pull/42">#42</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[server 0.2.0]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.2.0</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.2.0</guid>
+            <pubDate>Thu, 27 Jun 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Search: Add a clear search field button and make location and test type linkable in search result <a href="https://github.com/sitespeedio/onlinetest/pull/39">#39</a>.</li>
+</ul>
+ <ul>
+<li>Search: Show 100 search result as default and make it configurable <a href="https://github.com/sitespeedio/onlinetest/pull/38">#38</a>.</li>
+</ul>
+ <ul>
+<li>Search: Add last hour search button <a href="https://github.com/sitespeedio/onlinetest/pull/40">#40</a></li>
+</ul>
+ <ul>
+<li>Search: Make it confirable to see the slug column in search result <a href="https://github.com/sitespeedio/onlinetest/pull/41">#41</a></li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[server 0.1.0]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.1.0</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.1.0</guid>
+            <pubDate>Wed, 26 Jun 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Make removeOnComplete and removeOnFail in the queue configurable. If  you run a large installation with many many tests, you may want to increase the number of tests that will continue to live in the queue after the test has completed (removeOnComplete) <a href="https://github.com/sitespeedio/onlinetest/pull/36">#36</a>.</li>
+</ul>
+ <ul>
+<li>Make attempts (number of tries if a test fail) configurable. By default there is one try <a href="https://github.com/sitespeedio/onlinetest/pull/37">#37</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[server 0.0.8]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.0.8</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.0.8</guid>
+            <pubDate>Wed, 26 Jun 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Update to PG 8.12.0 <a href="https://github.com/sitespeedio/onlinetest/pull/34">#34</a>.</li>
+</ul>
+ <ul>
+<li>Update to Bull 4.14.0 <a href="https://github.com/sitespeedio/onlinetest/pull/32">#32</a></li>
+</ul>
+ <ul>
+<li>Only keep 200 of latest completed job in the queue (make this configurable in the future) <a href="https://github.com/sitespeedio/onlinetest/pull/33">#33</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[testrunner 0.2.0]]></title>
+            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.2.0</link>
+            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.2.0</guid>
+            <pubDate>Wed, 26 Jun 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Make removeOnComplete and removeOnFail in the queue configurable. If  you run a large installation with many many tests, you may want to increase the number of tests that will continue to live in the queue after the test has completed (removeOnComplete) <a href="https://github.com/sitespeedio/onlinetest/pull/35">#35</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[testrunner 0.1.5]]></title>
+            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.5</link>
+            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.5</guid>
+            <pubDate>Wed, 26 Jun 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Update to Bull 4.14.0 <a href="https://github.com/sitespeedio/onlinetest/pull/32">#32</a></li>
+</ul>
+ <ul>
+<li>Only keep 200 of latest completed job in the queue (make this configurable in the future) <a href="https://github.com/sitespeedio/onlinetest/pull/33">#33</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[testrunner 0.1.4]]></title>
+            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.4</link>
+            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.4</guid>
+            <pubDate>Mon, 24 Jun 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Using common JS script files was broken, fixed in <a href="https://github.com/sitespeedio/onlinetest/pull/30">#30</a>.</li>
+</ul>
+ <ul>
+<li>Log test id in start log.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[server 0.0.7]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.0.7</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.0.7</guid>
+            <pubDate>Thu, 20 Jun 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Only link to the search result when we actually have a result <a href="https://github.com/sitespeedio/onlinetest/pull/26">#26</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[testrunner 0.1.3]]></title>
+            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.3</link>
+            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.3</guid>
+            <pubDate>Thu, 20 Jun 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Simplify Docker mapping inside the Docker testrunner <a href="https://github.com/sitespeedio/onlinetest/pull/27">#27</a>. This fixes running script files with the testrunner.</li>
+</ul>
+ <ul>
+<li>A better cleanup in the work directory for Docker <a href="https://github.com/sitespeedio/onlinetest/pull/28">#28</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[testrunner 0.1.2]]></title>
+            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.2</link>
+            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.2</guid>
+            <pubDate>Wed, 19 Jun 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Set --cap-add=NET_ADMIN as default for extraparameters (needed for throttling.</li>
+</ul>
+ <ul>
+<li>Fix using an extra configuration file in Docker. Before it added an extra folder (that makes it really hard to use) <a href="https://github.com/sitespeedio/onlinetest/pull/23">#23</a>.</li>
+</ul>
+]]></description>
         </item>
         <item>
             <title><![CDATA[pagexray 4.4.4]]></title>
@@ -889,20 +1157,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Fix: Optional cookie object, see PR <a href="https://github.com/sitespeedio/chrome-har/pull/73">73</a>. Thank you <a href="https://github.com/mikedijkstra">Michael Dijkstra</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[chrome-har 0.11.10]]></title>
-            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.10</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.10</guid>
-            <pubDate>Wed, 29 Jul 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Parse extra info events (parse extra request data from the Network.requestWillBeSentExtraInfo event and parse extra response data from the Network.responseReceivedExtraInfo event), thank you <a href="https://github.com/mikedijkstra">Michael Dijkstra</a> for the PR <a href="https://github.com/sitespeedio/chrome-har/pull/71">#71</a>.</li>
-</ul>
- <ul>
-<li>Update to day-js 1.8.31.</li>
 </ul>
 ]]></description>
         </item>
