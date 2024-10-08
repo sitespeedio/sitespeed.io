@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Tue, 24 Sep 2024 17:31:01 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 08 Oct 2024 07:57:23 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,21 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 35.1.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.0</guid>
+            <pubDate>Tue, 08 Oct 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Browsertime <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2310---2024-10-08">23.1.0</a> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4287">#4287</a>.</li>
+</ul>
+ <ul>
+<li>Firefox 131 and Edge 129 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4284">#4284</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 35.0.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.0.0</link>
@@ -154,18 +169,6 @@
 </ul>
  <ul>
 <li>Axe core 4.10.0 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4246">#4246</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 34.8.2]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.8.2</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.8.2</guid>
-            <pubDate>Mon, 29 Jul 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>WebPageReplay: Fix for reading configuration. Reading a saved configuration didn&#39;t handle camel case correctly, creating arrays for single values <a href="https://github.com/sitespeedio/sitespeed.io/pull/4242">#4242</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>

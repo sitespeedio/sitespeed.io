@@ -4,13 +4,30 @@
         <title>chrome-har release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of chrome-har</description>
-        <lastBuildDate>Fri, 12 Jul 2024 04:17:40 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 08 Oct 2024 03:27:49 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/chrome-har.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[chrome-har 1.0.0]]></title>
+            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.0.0</link>
+            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.0.0</guid>
+            <pubDate>Tue, 08 Oct 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Removed dayjs dependency <a href="https://github.com/sitespeedio/chrome-har/pull/128">#128</a>.</li>
+</ul>
+ <ul>
+<li>Removed uuid dependency <a href="https://github.com/sitespeedio/chrome-har/pull/127">#127</a>.</li>
+</ul>
+ <ul>
+<li>Updated to tough cookie 5.0.0 <a href="https://github.com/sitespeedio/chrome-har/pull/126">#126</a>.</li>
+</ul>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[chrome-har 0.13.5]]></title>
             <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.13.5</link>
@@ -94,20 +111,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Fix: Optional cookie object, see PR <a href="https://github.com/sitespeedio/chrome-har/pull/73">73</a>. Thank you <a href="https://github.com/mikedijkstra">Michael Dijkstra</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[chrome-har 0.11.10]]></title>
-            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.10</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.10</guid>
-            <pubDate>Wed, 29 Jul 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Parse extra info events (parse extra request data from the Network.requestWillBeSentExtraInfo event and parse extra response data from the Network.responseReceivedExtraInfo event), thank you <a href="https://github.com/mikedijkstra">Michael Dijkstra</a> for the PR <a href="https://github.com/sitespeedio/chrome-har/pull/71">#71</a>.</li>
-</ul>
- <ul>
-<li>Update to day-js 1.8.31.</li>
 </ul>
 ]]></description>
         </item>
