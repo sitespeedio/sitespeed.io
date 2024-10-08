@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 35.1.0 - 2024-10-08
+### Added
+* Browsertime [23.1.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2310---2024-10-08) [#4287](https://github.com/sitespeedio/sitespeed.io/pull/4287).
+* Firefox 131 and Edge 129 in the Docker container [#4284](https://github.com/sitespeedio/sitespeed.io/pull/4284).
+
 ## 35.0.0 - 2024-09-24
 ### Breaking
 * Disable camel case configuration that comes automatically with yargs [#4251](https://github.com/sitespeedio/sitespeed.io/pull/4251). This is a breaking change ONLY if you didn't follow our doecumentation/help and used internal YARGS configuration names for our CLI configuration.
