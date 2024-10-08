@@ -140,7 +140,7 @@ const getContent = async tool => {
   let changelog =
     tool === 'sitespeed.io' ? './CHANGELOG.md' : '../' + tool + '/CHANGELOG.md';
   if (tool === 'server' || tool === 'testrunner') {
-    changelog = `../../onlinetest/${tool}/CHANGELOG.md`;
+    changelog = `../onlinetest/${tool}/CHANGELOG.md`;
   }
   const result = await parseChangelog({
     filePath: changelog,
