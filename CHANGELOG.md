@@ -1,5 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 35.1.2 - 2024-10-09
+### Fixed
+* Make sure crux setup messages are skipt for analysisstorer [4291](https://github.com/sitespeedio/sitespeed.io/pull/4291).
 
 ## 35.1.1 - 2024-10-08
 ### Fixed
