@@ -19,5 +19,10 @@ jobs:
     - name: Install sitespeed.io
       run: npm ci
     - name: Run tests with CruX
+      run: bin/sitespeed.js -b chrome -n 1 --crux.key ${{ secrets.CRUX_KEY }} https://en.wikipedia.org/wiki/Main_Page --plugins.remove browsertime
+    - name: Run tests with CruX via proxy
+      env:
+        http_proxy: http://164.90.212.28:8080
+        https_proxy: http://164.90.212.28:8080
       run: bin/sitespeed.js -b chrome -n 1 --crux.key ${{ secrets.CRUX_KEY }} https://en.wikipedia.org/wiki/Main_Page --plugins.remove browsertime 
     
