@@ -4,7 +4,7 @@
         <title>browsertime release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of browsertime</description>
-        <lastBuildDate>Tue, 08 Oct 2024 18:22:05 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 11 Oct 2024 14:01:27 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,18 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/browsertime.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[browsertime 23.1.2]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.1.2</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.1.2</guid>
+            <pubDate>Fri, 11 Oct 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated Chrome HAR to 1.0.1 <a href="https://github.com/sitespeedio/browsertime/pull/2191">#2191</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[browsertime 23.1.1]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.1.1</link>
@@ -168,25 +180,6 @@
 </ul>
  <ul>
 <li>Add extra check if the HAR file page misses an URL <a href="https://github.com/sitespeedio/browsertime/pull/2160">#2160</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 22.6.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.6.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.6.0</guid>
-            <pubDate>Mon, 15 Jul 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Firefox 128 and Edge 126 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2158">#2158</a>.</li>
-</ul>
- <ul>
-<li>Add request header using Bidi for Firefox (needs Firefox 128 or later) <a href="https://github.com/sitespeedio/browsertime/pull/2108">#2108</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Updated to Chrome HAR 0.13.5 <a href="https://github.com/sitespeedio/browsertime/pull/2157">#2157</a></li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>

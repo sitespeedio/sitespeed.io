@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Tue, 08 Oct 2024 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 11 Oct 2024 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,53 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 35.1.3]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.3</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.3</guid>
+            <pubDate>Fri, 11 Oct 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated to Browsertim 23.1.2 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4294">#4294</a> that includes an update Chrome-HAR that swallows if an timing is broken from the Chrome trace.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 23.1.2]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.1.2</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.1.2</guid>
+            <pubDate>Fri, 11 Oct 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated Chrome HAR to 1.0.1 <a href="https://github.com/sitespeedio/browsertime/pull/2191">#2191</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[chrome-har 1.0.1]]></title>
+            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.0.1</link>
+            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.0.1</guid>
+            <pubDate>Fri, 11 Oct 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Try/catch broken dates <a href="https://github.com/sitespeedio/chrome-har/pull/130">#130</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 35.1.2]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.2</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.2</guid>
+            <pubDate>Wed, 09 Oct 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Make sure crux setup messages are skipt for analysisstorer <a href="https://github.com/sitespeedio/sitespeed.io/pull/4291">4291</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 35.1.1]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.1</link>
@@ -251,37 +298,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 34.11.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.11.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.11.0</guid>
-            <pubDate>Tue, 27 Aug 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated the Docker container to use Chrome 128 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4261">#4261</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 34.10.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.10.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.10.0</guid>
-            <pubDate>Tue, 27 Aug 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated Docker container to use Firefox 129 and Edge 127 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4254">#4254</a>.</li>
-</ul>
- <ul>
-<li>Browsertime <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2290---2024-08-26">22.9.0</a> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4260">#4260</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Make sure requestheaders and cookies are sent when you use prewarm the server <a href="https://github.com/sitespeedio/sitespeed.io/pull/4259">#4259</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[browsertime 22.9.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.9.0</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.9.0</guid>
@@ -378,25 +394,6 @@
 </ul>
  <ul>
 <li>Add extra check if the HAR file page misses an URL <a href="https://github.com/sitespeedio/browsertime/pull/2160">#2160</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 22.6.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.6.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.6.0</guid>
-            <pubDate>Mon, 15 Jul 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Firefox 128 and Edge 126 in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2158">#2158</a>.</li>
-</ul>
- <ul>
-<li>Add request header using Bidi for Firefox (needs Firefox 128 or later) <a href="https://github.com/sitespeedio/browsertime/pull/2108">#2108</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Updated to Chrome HAR 0.13.5 <a href="https://github.com/sitespeedio/browsertime/pull/2157">#2157</a></li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
@@ -1146,17 +1143,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Removed test directory from the release, thank you <a href="https://github.com/yurynix">Yury Michurin</a> for the PR <a href="https://github.com/sitespeedio/chrome-har/pull/75">#75</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[chrome-har 0.11.11]]></title>
-            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.11</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.11</guid>
-            <pubDate>Thu, 06 Aug 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix: Optional cookie object, see PR <a href="https://github.com/sitespeedio/chrome-har/pull/73">73</a>. Thank you <a href="https://github.com/mikedijkstra">Michael Dijkstra</a>.</li>
 </ul>
 ]]></description>
         </item>

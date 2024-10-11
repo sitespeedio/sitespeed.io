@@ -4,13 +4,24 @@
         <title>chrome-har release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of chrome-har</description>
-        <lastBuildDate>Tue, 08 Oct 2024 03:27:49 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 11 Oct 2024 13:50:39 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/chrome-har.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[chrome-har 1.0.1]]></title>
+            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.0.1</link>
+            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.0.1</guid>
+            <pubDate>Fri, 11 Oct 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Try/catch broken dates <a href="https://github.com/sitespeedio/chrome-har/pull/130">#130</a>.</li>
+</ul>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[chrome-har 1.0.0]]></title>
             <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#1.0.0</link>
@@ -100,17 +111,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Removed test directory from the release, thank you <a href="https://github.com/yurynix">Yury Michurin</a> for the PR <a href="https://github.com/sitespeedio/chrome-har/pull/75">#75</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[chrome-har 0.11.11]]></title>
-            <link>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.11</link>
-            <guid>https://github.com/sitespeedio/chrome-har/blob/main/CHANGELOG.md#0.11.11</guid>
-            <pubDate>Thu, 06 Aug 2020 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix: Optional cookie object, see PR <a href="https://github.com/sitespeedio/chrome-har/pull/73">73</a>. Thank you <a href="https://github.com/mikedijkstra">Michael Dijkstra</a>.</li>
 </ul>
 ]]></description>
         </item>
