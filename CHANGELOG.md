@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 35.1.3 - 2024-10-11
+### Fixed
+* Updated to Browsertim 23.1.2 [#4294](https://github.com/sitespeedio/sitespeed.io/pull/4294) that includes an update Chrome-HAR that swallows if an timing is broken from the Chrome trace.
+
 ## 35.1.2 - 2024-10-09
 ### Fixed
 * Make sure crux setup messages are skipt for analysisstorer [4291](https://github.com/sitespeedio/sitespeed.io/pull/4291).
