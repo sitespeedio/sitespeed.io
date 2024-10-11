@@ -41,8 +41,8 @@ jobs:
             echo "Major version: $MAJOR_VERSION"
   
             # Set outputs for use in later steps
-            echo "::set-output name=VERSION::$VERSION"
-            echo "::set-output name=MAJOR_VERSION::$MAJOR_VERSION"
+            echo "SITESPEED_VERSION={VERSION}" >> $GITHUB_OUTPUT
+            echo "SITESPEED_MAJOR_VERSION={MAJOR_VERSION}" >> $GITHUB_OUTPUT
       -
         name: Build and push sitespeed.io
         uses: docker/build-push-action@v5
