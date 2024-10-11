@@ -28,6 +28,21 @@ jobs:
         uses: dawidd6/action-get-tag@v1
         with:
           strip_v: true
+      - name: Extract version (alternative version)
+        id: extract_version
+        run: |
+            VERSION_TAG=${GITHUB_REF#refs/tags/}
+            echo "Git tag: $VERSION_TAG"
+  
+            VERSION=${VERSION_TAG#v}
+            echo "Full version without 'v': $VERSION"
+  
+            MAJOR_VERSION=${VERSION%%.*}
+            echo "Major version: $MAJOR_VERSION"
+  
+            # Set outputs for use in later steps
+            echo "::set-output name=VERSION::$VERSION"
+            echo "::set-output name=MAJOR_VERSION::$MAJOR_VERSION"
       -
         name: Build and push sitespeed.io
         uses: docker/build-push-action@v5
