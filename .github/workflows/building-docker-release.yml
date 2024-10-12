@@ -40,9 +40,15 @@ jobs:
             MAJOR_VERSION=${VERSION%%.*}
             echo "Major version: $MAJOR_VERSION"
   
-            # Set outputs for use in later steps
-            echo "SITESPEED_VERSION={VERSION}" >> $GITHUB_OUTPUT
-            echo "SITESPEED_MAJOR_VERSION={MAJOR_VERSION}" >> $GITHUB_OUTPUT
+            echo "SITESPEED_VERSION=$VERSION" >> $GITHUB_OUTPUT
+            echo "SITESPEED_MAJOR_VERSION=$MAJOR_VERSION" >> $GITHUB_OUTPUT
+      - name: Test versions  
+        run: |
+          echo "Using SITESPEED_VERSION: ${SITESPEED_VERSION}"
+          echo "Using SITESPEED_MAJOR_VERSION: ${SITESPEED_MAJOR_VERSION}"
+        env:
+          SITESPEED_VERSION: ${{ steps.extract_version.outputs.SITESPEED_VERSION }}
+          SITESPEED_MAJOR_VERSION: ${{ steps.extract_version.outputs.SITESPEED_MAJOR_VERSION }}    
       -
         name: Build and push sitespeed.io
         uses: docker/build-push-action@v5
