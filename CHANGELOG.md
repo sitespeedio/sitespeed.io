@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 35.2.0 - UNRELEASED
+### Added
+* From this release we release a new Docker container with the major version tag! This means that there will be a 35.2.0 and a 35 tag from this release. We follow [semantic versioning](https://semver.org) so you can safely stay and update the major version tag.
+
 ## 35.1.4 - 2024-10-13
 ### Fixed
 * Changed `--help` message for `--firefox.includeResponseBodies`. Include response bodies for Firefox stopped to work when we updated how we get the HAR (changed to bidi HAR). See [#4295](https://github.com/sitespeedio/sitespeed.io/issues/4295).
