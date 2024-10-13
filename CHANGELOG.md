@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 35.1.4 - 2024-10-13
+### Fixed
+* Changed `--help` message for `--firefox.includeResponseBodies`. Include response bodies for Firefox stopped to work when we updated how we get the HAR (changed to bidi HAR). See [#4295](https://github.com/sitespeedio/sitespeed.io/issues/4295).
+
 ## 35.1.3 - 2024-10-11
 ### Fixed
 * Updated to Browsertim 23.1.2 [#4294](https://github.com/sitespeedio/sitespeed.io/pull/4294) that includes an update Chrome-HAR that swallows if an timing is broken from the Chrome trace.
