@@ -70,7 +70,7 @@ Filmstrip
       --filmstrip.showAll                                                           Show all screenshots in the filmstrip, independent if they have changed or not.  [boolean] [default: false]
 
 Firefox
-      --browsertime.firefox.includeResponseBodies, --firefox.includeResponseBodies                    Include response bodies in HAR  [choices: "none", "all", "html"] [default: "none"]
+      --browsertime.firefox.includeResponseBodies, --firefox.includeResponseBodies                    Warning: This do not work at the moment, see https://github.com/sitespeedio/sitespeed.io/issues/4295  [choices: "none", "all", "html"] [default: "none"]
       --browsertime.firefox.nightly, --firefox.nightly                                                Use Firefox Nightly. Works on OS X. For Linux you need to set the binary path.  [boolean]
       --browsertime.firefox.beta, --firefox.beta                                                      Use Firefox Beta. Works on OS X. For Linux you need to set the binary path.  [boolean]
       --browsertime.firefox.developer, --firefox.developer                                            Use Firefox Developer. Works on OS X. For Linux you need to set the binary path.  [boolean]

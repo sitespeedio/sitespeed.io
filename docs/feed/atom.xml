@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2024-10-11T00:00:00.000Z</updated>
+    <updated>2024-10-13T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,21 @@
     <logo>https://www.sitespeed.io/img/logos/sitespeed.io.png</logo>
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 35.1.4]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.4</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.4"/>
+        <updated>2024-10-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Changed <code>--help</code> message for <code>--firefox.includeResponseBodies</code>. Include response bodies for Firefox stopped to work when we updated how we get the HAR (changed to bidi HAR). See <a href="https://github.com/sitespeedio/sitespeed.io/issues/4295">#4295</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 35.1.3]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.3</id>
@@ -294,21 +309,6 @@
 </ul>
  <ul>
 <li>Fix x-axis label collision on visual change graph, thank you <a href="https://github.com/4nshuman">Anshuman Tripathi</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4269">#4269</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 34.11.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.11.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.11.1"/>
-        <updated>2024-09-04T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated to Browsertime 22.10.1 that fixes generating HARs for Firefox 130 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4265">#4265</a>.</li>
 </ul>
 ]]></summary>
         <author>
