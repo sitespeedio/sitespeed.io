@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 35.1.5 - 2024-10-14
+## 35.1.6 - 2024-10-14
 ### Fixed
 * This is a test release to test the new updated release flow. No fixes or updates in this release.
 
