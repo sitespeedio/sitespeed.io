@@ -1,8 +1,8 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 35.2.0 - UNRELEASED
-### Added
-* From this release we release a new Docker container with the major version tag! This means that there will be a 35.2.0 and a 35 tag from this release. We follow [semantic versioning](https://semver.org) so you can safely stay and update the major version tag.
+## 35.1.5 - 2024-10-14
+### Fixed
+* This is a test release to test the new updated release flow. No fixes or updates in this release.
 
 ## 35.1.4 - 2024-10-13
 ### Fixed
