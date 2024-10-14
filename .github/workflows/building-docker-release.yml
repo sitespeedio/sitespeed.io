@@ -44,10 +44,7 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           provenance: false
-          tags: sitespeedio/sitespeed.io:${SITESPEED_VERSION},sitespeedio/sitespeed.io:${SITESPEED_MAJOR_VERSION},sitespeedio/sitespeed.io:latest
-        env:
-          SITESPEED_VERSION: ${{ steps.extract_version.outputs.SITESPEED_VERSION }}
-          SITESPEED_MAJOR_VERSION: ${{ steps.extract_version.outputs.SITESPEED_MAJOR_VERSION }}
+          tags: sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_VERSION }},sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_MAJOR_VERSION }},sitespeedio/sitespeed.io:latest
       -
         name: Build and push sitespeed.io+1
         uses: docker/build-push-action@v5
@@ -58,10 +55,7 @@ jobs:
           build-args: version=${SITESPEED_VERSION}
           push: true
           provenance: false
-          tags: sitespeedio/sitespeed.io:${SITESPEED_VERSION}-plus1,sitespeedio/sitespeed.io:${SITESPEED_MAJOR_VERSION}-plus1
-        env:
-          SITESPEED_VERSION: ${{ steps.extract_version.outputs.SITESPEED_VERSION }}
-          SITESPEED_MAJOR_VERSION: ${{ steps.extract_version.outputs.SITESPEED_MAJOR_VERSION }}
+          tags: sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_VERSION }}-plus1,sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_MAJOR_VERSION }}-plus1
       -
         name: Build and push sitespeed.io-slim
         uses: docker/build-push-action@v5
@@ -72,7 +66,4 @@ jobs:
           build-args: version=${SITESPEED_VERSION}
           push: true
           provenance: false
-          tags: sitespeedio/sitespeed.io:${SITESPEED_VERSION}-slim,sitespeedio/sitespeed.io:${SITESPEED_MAJOR_VERSION}-slim
-        env:
-          SITESPEED_VERSION: ${{ steps.extract_version.outputs.SITESPEED_VERSION }}
-          SITESPEED_MAJOR_VERSION: ${{ steps.extract_version.outputs.SITESPEED_MAJOR_VERSION }}
+          tags: sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_VERSION }}-slim,sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_MAJOR_VERSION }}-slim
