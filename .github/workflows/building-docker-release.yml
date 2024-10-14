@@ -52,7 +52,7 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           file: ./docker/Dockerfile-plus1
-          build-args: version=${SITESPEED_VERSION}
+          build-args: version=${{ steps.extract_version.outputs.SITESPEED_VERSION }}
           push: true
           provenance: false
           tags: sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_VERSION }}-plus1,sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_MAJOR_VERSION }}-plus1
@@ -63,7 +63,7 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           file: ./Dockerfile-slim
-          build-args: version=${SITESPEED_VERSION}
+          build-args: version=${{ steps.extract_version.outputs.SITESPEED_VERSION }}
           push: true
           provenance: false
           tags: sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_VERSION }}-slim,sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_MAJOR_VERSION }}-slim
