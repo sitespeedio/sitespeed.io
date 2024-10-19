@@ -15,7 +15,7 @@
         "@sitespeed.io/plugin": "0.0.6",
         "@tgwf/co2": "0.16.0",
         "axe-core": "4.10.0",
-        "browsertime": "23.1.2",
+        "browsertime": "23.2.0",
         "cli-color": "2.0.4",
         "coach-core": "8.0.2",
         "concurrent-queue": "7.0.2",
@@ -2151,24 +2151,13 @@
       }
     },
     "node_modules/@sitespeed.io/chromedriver": {
-      "version": "129.0.6668-58",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-129.0.6668-58.tgz",
-      "integrity": "sha512-9GvJofRbnhFWi61gk6usm+9zjXdwwLcJFGerdQWNqqHgxwMdQOsgXuJWDUdNebUZgfV9ExhChPfGhu1aMwGRPA==",
+      "version": "130.0.6723-58",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-130.0.6723-58.tgz",
+      "integrity": "sha512-seDm0+DyqjSqZoGy0kMUHCxaV4tdXugwrO9I/2ah8V4saPixjqcUprlN9tJ0iCUwnRNYT/3WITq6Cxsvl/wxwQ==",
       "hasInstallScript": true,
       "dependencies": {
         "node-downloader-helper": "2.1.9",
         "node-stream-zip": "1.15.0"
-      }
-    },
-    "node_modules/@sitespeed.io/chromedriver/node_modules/node-downloader-helper": {
-      "version": "2.1.9",
-      "resolved": "https://registry.npmjs.org/node-downloader-helper/-/node-downloader-helper-2.1.9.tgz",
-      "integrity": "sha512-FSvAol2Z8UP191sZtsUZwHIN0eGoGue3uEXGdWIH5228e9KH1YHXT7fN8Oa33UGf+FbqGTQg3sJfrRGzmVCaJA==",
-      "bin": {
-        "ndh": "bin/ndh"
-      },
-      "engines": {
-        "node": ">=14.18"
       }
     },
     "node_modules/@sitespeed.io/edgedriver": {
@@ -2193,14 +2182,25 @@
       }
     },
     "node_modules/@sitespeed.io/geckodriver": {
-      "version": "0.35.0",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/geckodriver/-/geckodriver-0.35.0.tgz",
-      "integrity": "sha512-0fitcY8gaprcxclneN7Sn74FT/uSNSzfTthD2P0j04L0NSuPQUxUZ25jv32PE57/9c3Au9uDm/T6Aa49pRoO7Q==",
+      "version": "0.35.0-1",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/geckodriver/-/geckodriver-0.35.0-1.tgz",
+      "integrity": "sha512-xBgcm75G3CPQScgAgq00BbMx3kMBgyvXy2UoK4/KwnSHgSE27mIyjRvS4vefbpEY40vTHC94sIQbF9s8De5KOQ==",
       "hasInstallScript": true,
       "dependencies": {
         "node-downloader-helper": "2.1.5",
         "node-stream-zip": "1.15.0",
         "tar": "6.1.13"
+      }
+    },
+    "node_modules/@sitespeed.io/geckodriver/node_modules/node-downloader-helper": {
+      "version": "2.1.5",
+      "resolved": "https://registry.npmjs.org/node-downloader-helper/-/node-downloader-helper-2.1.5.tgz",
+      "integrity": "sha512-sLedzfv8C4VMAvTdDQcjLFAl3gydNeBXh2bLcCzvZRmd4EK0rkoTxJ8tkxnriUSJO/n13skJzH7l6CzCdBwYGg==",
+      "bin": {
+        "ndh": "bin/ndh"
+      },
+      "engines": {
+        "node": ">=14.18"
       }
     },
     "node_modules/@sitespeed.io/plugin": {
@@ -3630,15 +3630,15 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "23.1.2",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-23.1.2.tgz",
-      "integrity": "sha512-P2Jl+25FoUWtxNL99vyHamW0CyGXern41G38YygVeV0y84HLuUsniVXVEYOyftrj4z79t2femqRvVx5D0rCYNw==",
+      "version": "23.2.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-23.2.0.tgz",
+      "integrity": "sha512-BqxvrDWePm2mWE2sU0cSHRJGVKCSF0lhnFSYpEjgxA/jUNiLF9SSOrHiiefsRMGpQk+muJZ4fZ/RkhX2rC8Rsg==",
       "dependencies": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "3.2.6",
-        "@sitespeed.io/chromedriver": "129.0.6668-58",
+        "@sitespeed.io/chromedriver": "130.0.6723-58",
         "@sitespeed.io/edgedriver": "126.0.2592-102",
-        "@sitespeed.io/geckodriver": "0.35.0",
+        "@sitespeed.io/geckodriver": "0.35.0-1",
         "@sitespeed.io/throttle": "5.0.1",
         "@sitespeed.io/tracium": "0.3.3",
         "btoa": "1.2.1",
@@ -8286,9 +8286,9 @@
       "optional": true
     },
     "node_modules/node-downloader-helper": {
-      "version": "2.1.5",
-      "resolved": "https://registry.npmjs.org/node-downloader-helper/-/node-downloader-helper-2.1.5.tgz",
-      "integrity": "sha512-sLedzfv8C4VMAvTdDQcjLFAl3gydNeBXh2bLcCzvZRmd4EK0rkoTxJ8tkxnriUSJO/n13skJzH7l6CzCdBwYGg==",
+      "version": "2.1.9",
+      "resolved": "https://registry.npmjs.org/node-downloader-helper/-/node-downloader-helper-2.1.9.tgz",
+      "integrity": "sha512-FSvAol2Z8UP191sZtsUZwHIN0eGoGue3uEXGdWIH5228e9KH1YHXT7fN8Oa33UGf+FbqGTQg3sJfrRGzmVCaJA==",
       "bin": {
         "ndh": "bin/ndh"
       },
