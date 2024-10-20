@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 35.2.0 - 2024-10-20
+## 35.3.0 - 2024-10-20
 ### Added
 * Update to Chrome 130 in the Docker container [#4299](https://github.com/sitespeedio/sitespeed.io/pull/4299). 
 * Updated to Browsertime [23.2.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2320---2024-10-20) that has a fix for installting Geckodriver on ARM containers [#4303](https://github.com/sitespeedio/sitespeed.io/pull/4303).
