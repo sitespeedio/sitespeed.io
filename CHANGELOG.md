@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 35.2.0 - 2024-10-20
+### Added
+* Update to Chrome 130 in the Docker container [#4299](https://github.com/sitespeedio/sitespeed.io/pull/4299). 
+* Updated to Browsertime [23.2.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2320---2024-10-20) that has a fix for installting Geckodriver on ARM containers [#4303](https://github.com/sitespeedio/sitespeed.io/pull/4303).
+* Updated Chromium from 107 to 130 in the ARM Docker container. This was possible by using the Chromium built by Microsoft (M$) in Playwright [#4304](https://github.com/sitespeedio/sitespeed.io/pull/4304).
+
 ## 35.2.0 - 2024-10-14
 ### Added
 From this release we release a new Docker container with the major version tag! This means that there will be a 35.2.0 and a 35 tag from this release. We follow [semantic versioning](https://semver.org) so you can safely stay and update the major version tag.
