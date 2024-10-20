@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2024-10-14T05:58:36.602Z</updated>
+    <updated>2024-10-20T07:14:43.169Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,27 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 35.3.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.3.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.3.0"/>
+        <updated>2024-10-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Update to Chrome 130 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4299">#4299</a>.</li>
+</ul>
+ <ul>
+<li>Updated to Browsertime <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2320---2024-10-20">23.2.0</a> that has a fix for installting Geckodriver on ARM containers <a href="https://github.com/sitespeedio/sitespeed.io/pull/4303">#4303</a>.</li>
+</ul>
+ <ul>
+<li>Updated Chromium from 107 to 130 in the ARM Docker container. This was possible by using the Chromium built by Microsoft (M$) in Playwright <a href="https://github.com/sitespeedio/sitespeed.io/pull/4304">#4304</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 35.2.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.2.0</id>
@@ -154,21 +175,6 @@
 </ul>
  <ul>
 <li>Fix broken log message when using the compare plugin, comparing tests with different amount of runs. Thank you <a href="https://github.com/roelvv">Roel Vreuls</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4279">#4279</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 34.12.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.12.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.12.1"/>
-        <updated>2024-09-13T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22102---2024-09-13">Browsertime 22.10.2</a> that fixes a bug in the wait.byIdAndVisible command.</li>
 </ul>
 ]]></summary>
         <author>
