@@ -68,9 +68,11 @@ Using `-v "$(pwd):/sitespeed.io"` will map the current directory inside Docker a
 
 
 ## Running on Mac M1 ARM
-We have ARM container that will be used by default but it will use an older version of Chromium and a newer version of Firefox. The problem is that the Chrome team (Google, 30000+ engineers) do not build Chrome/Chromium on ARM Linux so we rely on *ppa:saiarcot895/chromium-beta* and use the latest version from there.
+We have ARM container that will use almost latest version of Chromium (using Microsofts Playwright build) and a newer version of Firefox. 
 
-It's probably better to run the AMD containers. If you have a newer version of Docker desktop installed, you can *"Use Rosetta for x86/amd64 emulation"* to run the AMD containers. Go to settings and turn it on (see the screenshot).
+If you plan to run Lighthouse in the +1 container, that will not work. Lighthouse uses its own Chrome installation and at the moment Google do not provide a build that work on ARM Linux.
+
+You can run the AMD containers. If you have a newer version of Docker desktop installed, you can *"Use Rosetta for x86/amd64 emulation"* to run the AMD containers. Go to settings and turn it on (see the screenshot).
 
 ![Turn on Rosetta]({{site.baseurl}}/img/rosetta-docker.jpg)
 {: .img-thumbnail}
