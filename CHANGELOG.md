@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 35.3.1 - 2024-11-04
+### Fixed
+* Fix compare plugin when you run visual metrics contentful and perceptual metrics [#4308](https://github.com/sitespeedio/sitespeed.io/pull/4308).
+
 ## 35.3.0 - 2024-10-20
 ### Added
 * Update to Chrome 130 in the Docker container [#4299](https://github.com/sitespeedio/sitespeed.io/pull/4299). 
