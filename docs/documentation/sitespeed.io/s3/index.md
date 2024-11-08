@@ -50,10 +50,17 @@ Here's an example for setting up CORS to give compare.sitespeed.io access rights
 Do you need more help? First dive into the [AWS S3 docs](https://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html) then if it doesn't help, [create an issue](https://github.com/sitespeedio/sitespeed.io/issues/new) and we can try to help you.
 
 ## sitespeed.io configuration
-To push the metrics to S3 you need the **key**, the **secret** and your **bucketname**. You get the ```--s3.key``` and ```--s3.secret``` from your IAM User. The ```--s3.bucketname``` is the name you picked for your bucket.
+To push the metrics to S3 you need either Explicit Credentials (Key, Secret) or an IAM instance profile if running on EC2. Here are both approaches:
+
+### Using Explicit Credentials (Key, Secret)
+You need the **key**, the **secret** and your **bucketname**. You get the ```--s3.key``` and ```--s3.secret``` from your IAM User. The ```--s3.bucketname``` is the name you picked for your bucket.
 
 Depending on the setup you sometimes want to set the S3 region (```--s3.region``` if you don't use the default one) and the [canned access control](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl)  ```--s3.acl``` of the uploaded files (you can setup the access control when you setup the bucket too).
 
+### Using IAM Instance Profile
+When running sitespeed.io on an EC2 instance, you can use IAM instance profiles for S3 access instead of providing explicit AWS credentials. This is recommended as it's more secure than handling access keys directly.
+
+Your EC2 instance needs an IAM role with S3 permissions (`s3:PutObject` and `s3:ListBucket`). You only need to specify the ```--s3.bucketname``` and optionally the ```--s3.region``` if you don't use the default one. The instance profile credentials will be automatically used without needing to specify ```--s3.key``` or ```--s3.secret```.
 
 ### Extra configuration
 You can also pass on all parameters that the official AWS JavaScript SDK uses.
