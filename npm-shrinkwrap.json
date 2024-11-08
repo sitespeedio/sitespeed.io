@@ -1,12 +1,12 @@
 {
   "name": "sitespeed.io",
-  "version": "35.4.0",
+  "version": "35.4.1",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "sitespeed.io",
-      "version": "35.4.0",
+      "version": "35.4.1",
       "license": "MIT",
       "dependencies": {
         "@aws-sdk/client-s3": "3.609.0",
