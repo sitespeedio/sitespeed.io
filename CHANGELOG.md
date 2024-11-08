@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 35.4.0 - 2024-11-08
+### Added
+* Firefox 132 [#4309](https://github.com/sitespeedio/sitespeed.io/pull/4309).
+
 ## 35.3.1 - 2024-11-04
 ### Fixed
 * Fix compare plugin when you run visual metrics contentful and perceptual metrics [#4308](https://github.com/sitespeedio/sitespeed.io/pull/4308).
