@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 35.4.1 - 2024-11-08
+### Fixed
+* It seems to be a [problem](https://bugzilla.mozilla.org/show_bug.cgi?id=1930110) with Firefox 132 inside of Docker. Lets return to 131 for some time [#4313](https://github.com/sitespeedio/sitespeed.io/pull/4313).
+
 ## 35.4.0 - 2024-11-08
 ### Added
 * Firefox 132 [#4309](https://github.com/sitespeedio/sitespeed.io/pull/4309).
