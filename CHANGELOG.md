@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 35.5.0 - 2024-11-08
+### Added
+* Upgraded Chrome/Chromedriver to 131 (with a [new Browsertime](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2330---2024-11-12)) [#4316](https://github.com/sitespeedio/sitespeed.io/pull/4316).
+
 ## 35.4.1 - 2024-11-08
 ### Fixed
 * It seems to be a [problem](https://bugzilla.mozilla.org/show_bug.cgi?id=1930110) with Firefox 132 inside of Docker. Lets return to 131 for some time [#4313](https://github.com/sitespeedio/sitespeed.io/pull/4313).
