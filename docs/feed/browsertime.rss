@@ -4,7 +4,7 @@
         <title>browsertime release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of browsertime</description>
-        <lastBuildDate>Sat, 19 Oct 2024 22:40:36 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 12 Nov 2024 22:33:53 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,22 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/browsertime.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[browsertime 23.3.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.3.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.3.0</guid>
+            <pubDate>Tue, 12 Nov 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Chrome and Chromedriver 131 <a href="https://github.com/sitespeedio/browsertime/pull/2203">#2209</a></li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated to ff-test-bidi-har-export to 0.0.17<a href="https://github.com/sitespeedio/browsertime/pull/2204">#2204</a></li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[browsertime 23.2.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.2.0</link>
@@ -161,25 +177,6 @@
 </ul>
  <ul>
 <li>Updated to Throttle 5.0.1 that have nicer ifb0 handling <a href="https://github.com/sitespeedio/browsertime/pull/2172">#2172</a></li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 22.8.0]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.8.0</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.8.0</guid>
-            <pubDate>Tue, 30 Jul 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Edgedriver 126 <a href="https://github.com/sitespeedio/browsertime/pull/2166">#2166</a></li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Disable search engine choice screen on startup for Chrome 127+ <a href="https://github.com/sitespeedio/browsertime/pull/2168">#2168</a></li>
-</ul>
- <ul>
-<li>Update dev dependencies <a href="https://github.com/sitespeedio/browsertime/pull/2167">#2167</a></li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>

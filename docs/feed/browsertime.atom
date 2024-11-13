@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2024-10-19T22:40:36.092Z</updated>
+    <updated>2024-11-12T22:33:53.651Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,25 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 23.3.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.3.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.3.0"/>
+        <updated>2024-11-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Chrome and Chromedriver 131 <a href="https://github.com/sitespeedio/browsertime/pull/2203">#2209</a></li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated to ff-test-bidi-har-export to 0.0.17<a href="https://github.com/sitespeedio/browsertime/pull/2204">#2204</a></li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 23.2.0]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.2.0</id>
@@ -185,28 +204,6 @@
 </ul>
  <ul>
 <li>Updated to Throttle 5.0.1 that have nicer ifb0 handling <a href="https://github.com/sitespeedio/browsertime/pull/2172">#2172</a></li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 22.8.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.8.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22.8.0"/>
-        <updated>2024-07-30T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Edgedriver 126 <a href="https://github.com/sitespeedio/browsertime/pull/2166">#2166</a></li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Disable search engine choice screen on startup for Chrome 127+ <a href="https://github.com/sitespeedio/browsertime/pull/2168">#2168</a></li>
-</ul>
- <ul>
-<li>Update dev dependencies <a href="https://github.com/sitespeedio/browsertime/pull/2167">#2167</a></li>
 </ul>
 ]]></summary>
         <author>
