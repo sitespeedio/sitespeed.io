@@ -43,6 +43,17 @@ The [slim container](https://github.com/sitespeedio/sitespeed.io/blob/main/Docke
 We lock down the browsers to specific versions for maximum compatibility and stability with sitespeed.io's current feature set; upgrading once we verify browser compatibility.
 {: .note .note-info}
 
+## Build
+The containers are built in [the release step in GitHub actions](https://github.com/sitespeedio/sitespeed.io/blob/main/.github/workflows/building-docker-release.yml).
+
+If you need to build it yourself, you need to clone the repository and build:
+
+```bash
+git clone https://github.com/sitespeedio/sitespeed.io.git
+cd sitespeed.io
+docker build --load -t sitespeedio/sitespeed.io .
+```
+
 ## Running using Docker
 
 The simplest way to run using Chrome:
