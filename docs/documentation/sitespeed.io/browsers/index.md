@@ -22,7 +22,7 @@ You can fetch timings, run your own JavaScript and record a video of the screen.
 The latest version of Firefox should work out of the box except if you are on Linux and run Snap installed Firefox, then you need to [follow the workaround](https://github.com/mozilla/geckodriver/releases/tag/v0.31.0) by setting a TMPDIR that Geckodriver and Firefox will use. 
 
 ### Firefox profile setup
-At the moment we setup a new profile for each run the browser do. We set up the profiles preferences like [this](https://github.com/sitespeedio/browsertime/blob/main/lib/firefox/webdriver/firefoxPreferences.js). We use Mozillas [own configuration](https://searchfox.org/mozilla-central/source/testing/talos/talos/config.py) as default with some changes + some extra configuration for performance and privacy.
+At the moment we setup a new profile for each run the browser do. We set up the profiles preferences like [this](https://github.com/sitespeedio/browsertime/blob/main/lib/firefox/settings/firefoxPreferences.js). We use Mozillas [own configuration](https://searchfox.org/mozilla-central/source/testing/talos/talos/config.py) as default with some changes + some extra configuration for performance and privacy.
 
 We try to disable all Firefox ping home:
  * We disable [heartbeat](https://wiki.mozilla.org/Firefox/Shield/Heartbeat).
