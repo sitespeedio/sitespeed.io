@@ -27,6 +27,7 @@ chrome
       --chrome.enableVerboseChromeDriverLog                        Log verboose Chromedriver communication to a log file.  [boolean]
       --chrome.enableVideoAutoplay                                 Allow videos to autoplay.  [boolean]
       --chrome.timeline, --chrome.trace                            Collect the timeline data. Drag and drop the JSON in your Chrome detvools timeline panel or check out the CPU metrics in the Browsertime.json  [boolean]
+      --chrome.timelineExtras                                      If you collect the timeline using --chrome.timeline or --enableProfileRun this will add some extra timings and tracks to your timeline.  [boolean] [default: true]
       --chrome.timelineRecordingType, --chrome.traceRecordingType  Expose the start/stop commands for the chrome trace  [string] [choices: "pageload", "custom"] [default: "pageload"]
       --chrome.collectPerfLog                                      Collect performance log from Chrome with Page and Network events and save to disk.  [boolean]
       --chrome.collectNetLog                                       Collect network log from Chrome and save to disk.  [boolean]
