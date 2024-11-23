@@ -16,6 +16,18 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[sitespeed.io 35.6.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.6.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.6.1</guid>
+            <pubDate>Sat, 23 Nov 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Make sure the compare plugin can handle if your run Firefox with CPU options <a href="https://github.com/sitespeedio/sitespeed.io/pull/4324">#4324</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 35.6.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.6.0</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.6.0</guid>
@@ -259,18 +271,6 @@
 <li>Try/catch broken dates <a href="https://github.com/sitespeedio/chrome-har/pull/130">#130</a>.</li>
 </ul>
 ]]></description>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 35.1.2]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.2</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.2</guid>
-            <pubDate>Wed, 09 Oct 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Make sure crux setup messages are skipt for analysisstorer <a href="https://github.com/sitespeedio/sitespeed.io/pull/4291">4291</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[browsertime 23.1.1]]></title>
