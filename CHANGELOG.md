@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 35.6.1 - 2024-11-23
+### Fixed
+* Make sure the compare plugin can handle if your run Firefox with CPU options [#4324](https://github.com/sitespeedio/sitespeed.io/pull/4324).
+
 ## 35.6.0 - 2024-11-23
 ### Added
 * Updated to Firefox 132 and Edge 131 in the Docketr container. The performance regression in Firefox 132 [#2211](https://github.com/sitespeedio/browsertime/issues/2211) has been fixed.
