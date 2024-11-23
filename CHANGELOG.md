@@ -1,5 +1,14 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 35.6.0 - 2024-11-23
+### Added
+* Updated to Firefox 132 and Edge 131 in the Docketr container. The performance regression in Firefox 132 [#2211](https://github.com/sitespeedio/browsertime/issues/2211) has been fixed.
+* Browsertime has been updated to [23.4.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2341----2024-11-23). There's a couple of notable additions:
+  * If you use `--enableProfileRun` for Firefox the trace will include HTTP requests
+  * If you collect the Chrome timeline, we will automatically add some more timings and a custom timeline to devtools,inspired by [
+Andy Davies](https://github.com/andydavies) and the cool [https://github.com/andydavies/perf-timeline-to-devtools-profile](https://github.com/andydavies/perf-timeline-to-devtools-profile).
+
+
 ## 35.5.0 - 2024-11-08
 ### Added
 * Upgraded Chrome/Chromedriver to 131 (with a [new Browsertime](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2330---2024-11-12)) [#4316](https://github.com/sitespeedio/sitespeed.io/pull/4316).
