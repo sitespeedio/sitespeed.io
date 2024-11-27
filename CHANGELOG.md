@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 35.7.0 - UNRELEASED
+### Added 
+* Firefox 133 in the Docker container [#4327](https://github.com/sitespeedio/sitespeed.io/pull/4327).
+
 ## 35.6.1 - 2024-11-23
 ### Fixed
 * Make sure the compare plugin can handle if your run Firefox with CPU options [#4324](https://github.com/sitespeedio/sitespeed.io/pull/4324).
