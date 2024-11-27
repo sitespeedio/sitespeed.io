@@ -12,6 +12,67 @@
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/testrunner.rss" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[testrunner 0.5.6]]></title>
+            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.5.6</link>
+            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.5.6</guid>
+            <pubDate>Tue, 24 Sep 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Bull 4.16.3 <a href="https://github.com/sitespeedio/onlinetest/pull/87">#87</a></li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[testrunner 0.5.3]]></title>
+            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.5.3</link>
+            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.5.3</guid>
+            <pubDate>Fri, 02 Aug 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Correctly set the hostname in the configuration file <a href="https://github.com/sitespeedio/onlinetest/pull/83">#83</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[testrunner 0.5.2]]></title>
+            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.5.2</link>
+            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.5.2</guid>
+            <pubDate>Fri, 02 Aug 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix a bug setting the baseline for compare plugin <a href="https://github.com/sitespeedio/onlinetest/pull/71">#71</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[testrunner 0.5.1]]></title>
+            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.5.1</link>
+            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.5.1</guid>
+            <pubDate>Fri, 02 Aug 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Correct version in package.json</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[testrunner 0.5.0]]></title>
+            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.5.0</link>
+            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.5.0</guid>
+            <pubDate>Fri, 02 Aug 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>When running compare plugin tests using Docker, set the baseline directory automatically <a href="https://github.com/sitespeedio/onlinetest/pull/70">#70</a></li>
+</ul>
+ <ul>
+<li><ul>
+<li>Make it possible to choose container that runs the test, using the API <a href="https://github.com/sitespeedio/onlinetest/pull/69/">#69</a></li>
+</ul>
+</li>
+</ul>
+]]></description>
+        </item>
+        <item>
             <title><![CDATA[testrunner 0.4.1]]></title>
             <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.4.1</link>
             <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.4.1</guid>
@@ -55,73 +116,6 @@
 </ul>
  <ul>
 <li>Catch errors in all queue <a href="https://github.com/sitespeedio/onlinetest/pull/54">#54</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[testrunner 0.2.0]]></title>
-            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.2.0</link>
-            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.2.0</guid>
-            <pubDate>Wed, 26 Jun 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Make removeOnComplete and removeOnFail in the queue configurable. If  you run a large installation with many many tests, you may want to increase the number of tests that will continue to live in the queue after the test has completed (removeOnComplete) <a href="https://github.com/sitespeedio/onlinetest/pull/35">#35</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[testrunner 0.1.5]]></title>
-            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.5</link>
-            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.5</guid>
-            <pubDate>Wed, 26 Jun 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Update to Bull 4.14.0 <a href="https://github.com/sitespeedio/onlinetest/pull/32">#32</a></li>
-</ul>
- <ul>
-<li>Only keep 200 of latest completed job in the queue (make this configurable in the future) <a href="https://github.com/sitespeedio/onlinetest/pull/33">#33</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[testrunner 0.1.4]]></title>
-            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.4</link>
-            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.4</guid>
-            <pubDate>Mon, 24 Jun 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Using common JS script files was broken, fixed in <a href="https://github.com/sitespeedio/onlinetest/pull/30">#30</a>.</li>
-</ul>
- <ul>
-<li>Log test id in start log.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[testrunner 0.1.3]]></title>
-            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.3</link>
-            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.3</guid>
-            <pubDate>Thu, 20 Jun 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Simplify Docker mapping inside the Docker testrunner <a href="https://github.com/sitespeedio/onlinetest/pull/27">#27</a>. This fixes running script files with the testrunner.</li>
-</ul>
- <ul>
-<li>A better cleanup in the work directory for Docker <a href="https://github.com/sitespeedio/onlinetest/pull/28">#28</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[testrunner 0.1.2]]></title>
-            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.2</link>
-            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.1.2</guid>
-            <pubDate>Wed, 19 Jun 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Set --cap-add=NET_ADMIN as default for extraparameters (needed for throttling.</li>
-</ul>
- <ul>
-<li>Fix using an extra configuration file in Docker. Before it added an extra folder (that makes it really hard to use) <a href="https://github.com/sitespeedio/onlinetest/pull/23">#23</a>.</li>
 </ul>
 ]]></description>
         </item>

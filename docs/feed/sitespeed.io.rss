@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Mon, 14 Oct 2024 05:58:36 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 23 Nov 2024 18:54:47 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,99 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 35.6.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.6.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.6.1</guid>
+            <pubDate>Sat, 23 Nov 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Make sure the compare plugin can handle if your run Firefox with CPU options <a href="https://github.com/sitespeedio/sitespeed.io/pull/4324">#4324</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 35.6.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.6.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.6.0</guid>
+            <pubDate>Sat, 23 Nov 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Firefox 132 and Edge 131 in the Docketr container. The performance regression in Firefox 132 <a href="https://github.com/sitespeedio/browsertime/issues/2211">#2211</a> has been fixed.</li>
+</ul>
+ <ul>
+<li>Browsertime has been updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2341----2024-11-23">23.4.1</a>. There&#39;s a couple of notable additions:</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 35.5.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.5.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.5.0</guid>
+            <pubDate>Fri, 08 Nov 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Upgraded Chrome/Chromedriver to 131 (with a <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2330---2024-11-12">new Browsertime</a>) <a href="https://github.com/sitespeedio/sitespeed.io/pull/4316">#4316</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 35.4.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.4.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.4.1</guid>
+            <pubDate>Fri, 08 Nov 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>It seems to be a <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1930110">problem</a> with Firefox 132 inside of Docker. Lets return to 131 for some time <a href="https://github.com/sitespeedio/sitespeed.io/pull/4313">#4313</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 35.4.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.4.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.4.0</guid>
+            <pubDate>Fri, 08 Nov 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Firefox 132 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4309">#4309</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 35.3.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.3.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.3.1</guid>
+            <pubDate>Mon, 04 Nov 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix compare plugin when you run visual metrics contentful and perceptual metrics <a href="https://github.com/sitespeedio/sitespeed.io/pull/4308">#4308</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 35.3.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.3.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.3.0</guid>
+            <pubDate>Sun, 20 Oct 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Update to Chrome 130 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4299">#4299</a>.</li>
+</ul>
+ <ul>
+<li>Updated to Browsertime <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2320---2024-10-20">23.2.0</a> that has a fix for installting Geckodriver on ARM containers <a href="https://github.com/sitespeedio/sitespeed.io/pull/4303">#4303</a>.</li>
+</ul>
+ <ul>
+<li>Updated Chromium from 107 to 130 in the ARM Docker container. This was possible by using the Chromium built by Microsoft (M$) in Playwright <a href="https://github.com/sitespeedio/sitespeed.io/pull/4304">#4304</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 35.2.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.2.0</link>
@@ -45,103 +138,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Updated to Browsertim 23.1.2 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4294">#4294</a> that includes an update Chrome-HAR that swallows if an timing is broken from the Chrome trace.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 35.1.2]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.2</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.2</guid>
-            <pubDate>Wed, 09 Oct 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Make sure crux setup messages are skipt for analysisstorer <a href="https://github.com/sitespeedio/sitespeed.io/pull/4291">4291</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 35.1.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.1</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.1</guid>
-            <pubDate>Tue, 08 Oct 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2311---2024-10-08">Browsertime 23.1.1</a> that fixes the Firefox HAR timing problem <a href="https://github.com/sitespeedio/sitespeed.io/pull/4289">#4289</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 35.1.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.0</guid>
-            <pubDate>Tue, 08 Oct 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Browsertime <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2310---2024-10-08">23.1.0</a> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4287">#4287</a>.</li>
-</ul>
- <ul>
-<li>Firefox 131 and Edge 129 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4284">#4284</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 35.0.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.0.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.0.0</guid>
-            <pubDate>Tue, 24 Sep 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2300---2024-09-23">Browsertime 23.0.0</a>.</li>
-</ul>
- <ul>
-<li>Fixes the internal configuration object for android. The old solution created an array with objects instead of just keys on the object.<a href="https://github.com/sitespeedio/sitespeed.io/pull/4282">#4282</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 34.14.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.14.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.14.0</guid>
-            <pubDate>Thu, 19 Sep 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Chrome 129 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4281">#4281</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 34.13.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.13.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.13.0</guid>
-            <pubDate>Wed, 18 Sep 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Add support for <code>--ignoreExtends</code> that remove extends from your configuration file. This is useful when you want to test configuration locally on your machine and your test server extends configurations like uploading data to a data storage <a href="https://github.com/sitespeedio/sitespeed.io/pull/4280">#4280</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Fixed support gnirehtet when using <code>--preWarmServer</code> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4277">#4277</a>.</li>
-</ul>
- <ul>
-<li>Fix broken log message when using the compare plugin, comparing tests with different amount of runs. Thank you <a href="https://github.com/roelvv">Roel Vreuls</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4279">#4279</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 34.12.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.12.1</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#34.12.1</guid>
-            <pubDate>Fri, 13 Sep 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22102---2024-09-13">Browsertime 22.10.2</a> that fixes a bug in the wait.byIdAndVisible command.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
