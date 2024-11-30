@@ -19,7 +19,7 @@ twitterdescription:
 
 **Throttle lets you *simulate slow network connections* on Linux and Mac OS X.**
 
-Throttle uses *pfctl* on Mac and *tc* on Linux (you also need *ip* and *route* for Throttle to work on Linux) to simulate different network speeds and is inspired by [tylertreat/Comcast](https://github.com/tylertreat/Comcast), the [connectivity setting in the WPTAgent](https://github.com/WPO-Foundation/wptagent/blob/main/internal/traffic_shaping.py) and [sltc](https://github.com/sitespeedio/sltc).
+Throttle uses *pfctl* on Mac and *tc* on Linux (you also need *ip* and *route* for Throttle to work on Linux) to simulate different network speeds and is inspired by [tylertreat/Comcast](https://github.com/tylertreat/Comcast), the [connectivity setting in the WPTAgent](https://github.com/catchpoint/WebPageTest.agent/blob/master/internal/traffic_shaping.py) and [sltc](https://github.com/sitespeedio/sltc).
 
 **What is Throttle good for?**
 
