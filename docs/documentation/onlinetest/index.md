@@ -20,19 +20,46 @@ The online test is the simplest way to deploy your own version of sitespeed.io. 
 
 This method is ideal for small, medium, and large companies and organizations that need a GUI for running performance tests.
 
-To get started, you will need the sitespeed.io server, at least one sitespeed.io test runner, and the necessary dependencies (a message broker like Redis, PostgreSQL, and a place to store the result pages).
+To get started, you will need the sitespeed.io server, at least one sitespeed.io test runner, and the necessary dependencies (a message broker like Redis/keyDB, PostgreSQL, and a place to store the result pages).
 
 ![The setup]({{site.baseurl}}/img/onlinetestsetup.png)
 {: .img-thumbnail}
 e
 ## Installation
 
-For small businesses needing to test one or a few websites, you can deploy everything on a single server. For large companies planning to run numerous tests, you can distribute the components across multiple servers. If you plan to run tests from various locations worldwide, ensure the web GUI, database, and Redis are located together in the same region.
+For small businesses needing to test one or a few websites, you can deploy everything on a single server. For large companies planning to run many many tests, you can distribute the components across multiple servers. If you plan to run tests from various locations worldwide, ensure the web GUI, database, and KeyDB are located together in the same region.
+
+### Using Docker
+
+Follow these steps to set up and run the online version of sitespeed.io on your local Linux or Mac OS machine. Make sure you have [Docker](https://www.docker.com) and [docker compose](https://docs.docker.com/compose/) installed.
+
+1. **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/sitespeedio/onlinetest.git
+    ```
+
+2. **Navigate to the project directory:**
+
+    ```bash
+    cd onlinetest
+    ```
+
+3. **Start the Docker containers (Redis/PostgreSQL/Minio/sitespeed.io server and testrunner):**
+
+    ```bash
+    docker compose -f docker-compose.yml -f docker-compose.app.yml up
+    ```
+
+Now you can open your web browser and navigate to [http://127.0.0.1:3000](http://127.0.0.1:3000) to run your first test.
+
+If you are on Linux you need to run `sudo modprobe ifb numifbs=1` to be able to set different connectivites inside of Docker. On Mac you can only run native connectivity when you run inside of Docker.
+
+### Using NodeJS 
 
 To get the server and test runner running, you need to install [NodeJS](https://nodejs.org/). Please follow the instructions on [NodeJS](https://nodejs.org/) for your operating system. Install the LTS version (currently, that is NodeJS 20).
 
-
-### Install the server
+#### Install the server
 
 Get the latest release from npm:
 
@@ -40,7 +67,7 @@ Get the latest release from npm:
 npm install @sitespeed.io/server -g
 ```
 
-### Install the test runner
+#### Install the test runner
 
 Get the latest release from npm:
 
@@ -51,7 +78,7 @@ npm install @sitespeed.io/testrunner -g
 The test runner can either use our [pre-made sitespeed.io Docker container](https://hub.docker.com/r/sitespeedio/sitespeed.io) (in which case you need to install Docker) or use the npm-installed sitespeed.io. If you choose not to use Docker, follow [these instructions](https://www.sitespeed.io/documentation/sitespeed.io/installation/#using-node-js) to get sitespeed.io up and running.
 
 
-### Install the dependencies
+#### Install the dependencies
 You need to have KeyDB (or a similar message broker that follow the Redis APIs), PostgreSQL and somewhere to store the HTML result. If you don't want to handle the dependencies yourself you can use [our docker compose file](https://github.com/sitespeedio/onlinetest/blob/main/docker-compose.yml). You need to have Docker and Docker compose installed to run it.
 
 To get the Docker Compose file, the easiest way for testing is to clone the repository:
@@ -65,7 +92,8 @@ docker compose up
 In the repository you also have a *.env* file that sets up username/passwords for the different services. For KeyDB there's also a *keydb.conf* file that also holds the password.
 
 ## Configuration
-If you start the applications, the default configuration is used. The configuration for the server is [here](https://github.com/sitespeedio/onlinetest/blob/main/server/config/default.yaml) and for the test runner [here](https://github.com/sitespeedio/onlinetest/blob/main/testrunner/config/default.yaml).
+The [.env](https://github.com/sitespeedio/onlinetest/blob/main/.env).
+The configuration for the server is [here](https://github.com/sitespeedio/onlinetest/blob/main/server/config/default.yaml) and for the test runner [here](https://github.com/sitespeedio/onlinetest/blob/main/testrunner/config/default.yaml).
 
 You can (and should) override that configuration with command line parameters, or you can replace the configuration by using your own configuration file. Take a copy of the default ones and reconfigure them the way you need.
 
@@ -284,11 +312,11 @@ If you want to have multiple phones of the same model work on the same queue (to
 
 If you choose to use Docker, set `useDocker` to true in the configuration. Then all you need to do is make sure Docker is installed on the server.
 
-You can configure which Docker container to use. Normally, when you run sitespeed.io, you should specify the exact sitespeed.io version, like `sitespeedio/sitespeed.io:36.0.0`, to know exactly which version you are using. However, if you want to deploy your test runner and let it auto-update, you can use `sitespeedio/sitespeed.io:latest` as the tag. Ensure that you update the container once per day with:
+You can configure which Docker container to use. Normally, when you run sitespeed.io, you should specify the exact sitespeed.io version, like `sitespeedio/sitespeed.io:35.0.0`, to know exactly which version you are using. However, if you want to deploy your test runner and let it auto-update, you can use `sitespeedio/sitespeed.io:35` as the tag. Ensure that you update the container once per day with:
 
 ```yaml
 docker:
-  container: "sitespeedio/sitespeed.io:latest"
+  container: "sitespeedio/sitespeed.io:35"
 ```
 
 If you try out the Docker containers locally on your machine, you need to remember remember that localhost inside the container isn't automatically the same as localhost on the server. You can read about it [here](https://www.sitespeed.io/documentation/sitespeed.io/docker/#access-localhost).
