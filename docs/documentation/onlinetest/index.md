@@ -118,7 +118,7 @@ You can override that with `--redis.host MY_HOST`.
 
 ### sitespeed.io configuration
 
-You can also pre-configure how you will use sitespeed.io. For example, check out the [default configuration](https://github.com/sitespeedio/onlinetest/blob/main/server/config/sitespeed.json) where we set up S3 and how you access the results.
+You can also pre-configure how you will use sitespeed.io on each testrunner.
 
 The configuration for sitespeed.io uses inheritance. On the server, you can configure a sitespeed.io configuration. That configuration will be passed on to the test runner and merged with the sitespeed.io configuration on the test runner. Finally, this configuration will be merged with the configuration from the CLI API or the GUI. It looks like this:
 
@@ -140,9 +140,14 @@ When you have your own configuration, you provide it like this:
 sitespeed.io-server --config path/to/file
 ```
 
+Or if you use Docker:
+```bash
+--config path/to/file
+```
+
 ### Database and message broker
 
-The first thing you need to do is configure the PostgreSQL and Redis connections to match your setup. The default setup uses localhost and default passwords. Make sure to change these settings to match your specific configuration.
+The first thing you need to do is configure the PostgreSQL and KeyDB connections to match your setup. The default setup uses localhost and default passwords. Make sure to change these settings to match your specific configuration.
 
 ### HTTPS
 
