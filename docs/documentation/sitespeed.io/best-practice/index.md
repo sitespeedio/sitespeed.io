@@ -129,6 +129,18 @@ You can also use the <code>--urlAlias</code> if you want to give the page a frie
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --useHash --urlAlias super --urlAlias duper https://www.sitespeed.io/#/super https://www.sitespeed.io/#/duper
 ~~~
 
+### How do I test single point of failure (SPOF)?
+
+You can use the dommain unreachable.sitespeed.io that you can connect to but it will be really slow.
+
+For example, you have a web site that load assets from cdn1.readspeaker.com inside of the head tag and you want to test what happens if that domain is really slow. You can do that using Chrome and add this argument.
+
+~~~bash
+--chrome.args='--host-resolver-rules=MAP cdn1.readspeaker.com unreachable.sitespeed.io'
+~~~
+
+That will make all requests that uses cdn1.readspeaker.com instead access unreachable.sitespeed.io that will slow down everything.
+
 
 ### Running tests from multiple locations
 Can I test the same URLs from different locations and how do I make sure they don't override each others data in Graphite?
