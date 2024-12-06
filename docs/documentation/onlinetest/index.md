@@ -126,7 +126,6 @@ The configuration for sitespeed.io uses inheritance. On the server, you can conf
 
 This way, you can configure some parts globally (in the server config), some things locally (per test runner), and some parts individually per test.
 
-
 ## The server
 
 The server will host the HTML GUI and the API. There's a lot of things you can configure on the server.
@@ -192,8 +191,6 @@ Then when you use sitespeed.io and the API make sure to use`--api.key MY_KEY` to
 
 You probably want to limit which domains can be tested through the GUI on the server. You can do this with the *validTestDomains* configuration. This needs to be a regular expression that will be matched against the hostname of the URL that you want to test.
 
-By default, Wikipedia domains are set as valid, so you will want to change that.
-
 Here are a couple of examples:
 
 * To test all URLs on https://www.sitespeed.io: `validTestDomains: "^www\.sitespeed\.io$"`
@@ -244,7 +241,17 @@ localization:
 If your testrunner is installed globally, you start it by running `sitespeed.io-testrunner`.
 
 When you have your own configuration, you provide it like this:
-`sitespeed.io-testrunner --config path/to/file`.
+
+```bash
+sitespeed.io-testrunner --config path/to/file
+```
+
+If you use Docker, you can start it like this:
+
+```bash
+docker run -v "$(pwd)":/sitespeed.io --cap-add=NET_ADMIN -v /var/run/docker.sock:/var/run/docker.sock -v /tmp:/tmp sitespeedio/testrunner:latest --config /sitespeed.io/config.json
+```
+
 
 ### Message broker
 Your testrunner needs to be able to connect to your Redis-like broker, so make sure to configure it accordingly in your configuration file.
