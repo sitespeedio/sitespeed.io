@@ -16,22 +16,21 @@ twitterdescription:
 {:toc}
 
 ## Introduction
-The online test is the simplest way to deploy your own version of sitespeed.io. You can add tests through a web GUI or by using the sitespeed.io command line, which can pass the tests to your test server.
+The online test is the simplest way to deploy your own version of sitespeed.io. You can add tests through a web GUI or by using the sitespeed.io command line, which can pass the tests to your test server. This means that you can use your dedicated test machines both for monitoring and one off performance tests.
 
-This method is ideal for small, medium, and large companies and organizations that need a GUI for running performance tests.
+This method is ideal for small, medium, and large companies and organizations that also wants a GUI for running performance tests.
 
-To get started, you will need the sitespeed.io server, at least one sitespeed.io test runner, and the necessary dependencies (a message broker like Redis/keyDB, PostgreSQL, and a place to store the result pages).
+To get started, you will need the sitespeed.io server, at least one sitespeed.io test runner, and the necessary dependencies (a message broker like Redis/KeyDB, PostgreSQL, and a place to store the result pages).
 
 ![The setup]({{site.baseurl}}/img/onlinetestsetup.png)
 {: .img-thumbnail}
-e
+
 ## Installation
 
-For small businesses needing to test one or a few websites, you can deploy everything on a single server. For large companies planning to run many many tests, you can distribute the components across multiple servers. If you plan to run tests from various locations worldwide, ensure the web GUI, database, and KeyDB are located together in the same region.
+For small businesses needing to test one or a few websites, you can deploy everything on a single dedicated server. For large companies planning to run many many tests, you can distribute the components across multiple servers. If you plan to run tests from various locations worldwide, ensure the web GUI, database, and KeyDB are located together in the same region since the web GUI is the one that do the most communication with KeyDB and the database.
 
 ### Using Docker
-
-Follow these steps to set up and run the online version of sitespeed.io on your local Linux or Mac OS machine. Make sure you have [Docker](https://www.docker.com) and [docker compose](https://docs.docker.com/compose/) installed.
+It's easy to get the Docker version running on your local Linux or Mac OS machine. Make sure you have [Docker](https://www.docker.com) and [docker compose](https://docs.docker.com/compose/) installed. 
 
 1. **Clone the repository:**
 
@@ -45,7 +44,7 @@ Follow these steps to set up and run the online version of sitespeed.io on your 
     cd onlinetest
     ```
 
-3. **Start the Docker containers (Redis/PostgreSQL/Minio/sitespeed.io server and testrunner):**
+3. **Start the Docker containers (KeyDB/PostgreSQL/Minio/sitespeed.io server and testrunner):**
 
     ```bash
     docker compose -f docker-compose.yml -f docker-compose.app.yml up
@@ -53,7 +52,7 @@ Follow these steps to set up and run the online version of sitespeed.io on your 
 
 Now you can open your web browser and navigate to [http://127.0.0.1:3000](http://127.0.0.1:3000) to run your first test.
 
-If you are on Linux you need to run `sudo modprobe ifb numifbs=1` to be able to set different connectivites inside of Docker. On Mac you can only run native connectivity when you run inside of Docker.
+If you are on Linux you need to run `sudo modprobe ifb numifbs=1` to be able to set different connectivities inside of Docker. On Mac you can only run native connectivity when you run inside of Docker.
 
 ### Using NodeJS 
 
@@ -92,13 +91,14 @@ docker compose up
 In the repository you also have a *.env* file that sets up username/passwords for the different services. For KeyDB there's also a *keydb.conf* file that also holds the password.
 
 ## Configuration
-The [.env](https://github.com/sitespeedio/onlinetest/blob/main/.env).
-The configuration for the server is [here](https://github.com/sitespeedio/onlinetest/blob/main/server/config/default.yaml) and for the test runner [here](https://github.com/sitespeedio/onlinetest/blob/main/testrunner/config/default.yaml).
+The [.env](https://github.com/sitespeedio/onlinetest/blob/main/.env) is the key for the setup if you use Docker/Docker compose. Most things for your everyday tests can be setup there.
 
-You can (and should) override that configuration with command line parameters, or you can replace the configuration by using your own configuration file. Take a copy of the default ones and reconfigure them the way you need.
+You also have specific [configuration files for the server](https://github.com/sitespeedio/onlinetest/blob/main/server/config/default.yaml) and for the [test runner](https://github.com/sitespeedio/onlinetest/blob/main/testrunner/config/default.yaml). 
+
+You can override that configuration with command line parameters, or you can replace the configuration by using your own configuration file. Take a copy of the default ones and reconfigure them the way you need. When you start the server and the testrunnner you add `--config /path/to/file` to your new files and these will be used.
 
 ### YAML / JSON
-The configuration files can be YAML or JSON. Using a configuration file should be your first choice.
+The configuration files can be YAML or JSON. Using a configuration file should be your first choice because then you are in full control.
 
 You can provide a configuration file using the command line: `--config`.
 
@@ -120,7 +120,7 @@ You can override that with `--redis.host MY_HOST`.
 
 You can also pre-configure how you will use sitespeed.io on each testrunner.
 
-The configuration for sitespeed.io uses inheritance. On the server, you can configure a sitespeed.io configuration. That configuration will be passed on to the test runner and merged with the sitespeed.io configuration on the test runner. Finally, this configuration will be merged with the configuration from the CLI API or the GUI. It looks like this:
+The configuration for sitespeed.io uses inheritance. On the server, you can configure a sitespeed.io configuration in the Docker compose file. That configuration will be passed on to the test runner and merged with the sitespeed.io configuration on the test runner. Finally, this configuration will be merged with the configuration from the CLI API or the GUI. It looks like this:
 
 **server -> test runner -> CLI/GUI configurations**
 
