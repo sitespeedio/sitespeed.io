@@ -1,8 +1,12 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 35.7.0 - UNRELEASED
+## 35.7.0 - 2024-11-30
 ### Added 
 * Firefox 133 in the Docker container [#4327](https://github.com/sitespeedio/sitespeed.io/pull/4327).
+
+### Fixed
+* Axe Core 4.10.2 [#3328](https://github.com/sitespeedio/sitespeed.io/pull/4328)
+* Fix security warnings in the Docker container.
 
 ## 35.6.1 - 2024-11-23
 ### Fixed

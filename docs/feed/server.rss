@@ -155,19 +155,5 @@
 </ul>
 ]]></description>
         </item>
-        <item>
-            <title><![CDATA[server 0.1.0]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.1.0</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.1.0</guid>
-            <pubDate>Wed, 26 Jun 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Make removeOnComplete and removeOnFail in the queue configurable. If  you run a large installation with many many tests, you may want to increase the number of tests that will continue to live in the queue after the test has completed (removeOnComplete) <a href="https://github.com/sitespeedio/onlinetest/pull/36">#36</a>.</li>
-</ul>
- <ul>
-<li>Make attempts (number of tries if a test fail) configurable. By default there is one try <a href="https://github.com/sitespeedio/onlinetest/pull/37">#37</a>.</li>
-</ul>
-]]></description>
-        </item>
     </channel>
 </rss>
