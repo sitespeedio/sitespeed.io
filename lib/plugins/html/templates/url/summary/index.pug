@@ -100,7 +100,7 @@ block content
             if powerConsumption 
               tr
                 td Firefox CPU Power Consumption
-                td #{powerConsumption} µWh
+                td #{powerConsumption * 1000} mWh
             - requests = get(d, 'pagexray.pageSummary.requests')
             if requests
               tr
