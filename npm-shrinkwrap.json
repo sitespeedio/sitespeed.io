@@ -15,7 +15,7 @@
         "@sitespeed.io/plugin": "0.0.6",
         "@tgwf/co2": "0.16.0",
         "axe-core": "4.10.2",
-        "browsertime": "23.4.1",
+        "browsertime": "23.4.2",
         "cli-color": "2.0.4",
         "coach-core": "8.0.2",
         "concurrent-queue": "7.0.2",
@@ -3630,9 +3630,10 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "23.4.1",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-23.4.1.tgz",
-      "integrity": "sha512-CkzfRvjn8m+gqSIHkwvYbNGIBlaAyBY6Rx8qeFEaeGJbvUFxo0uPRPj61wAmQDuWSg1ZhoGzk8QBp9/qRvttrA==",
+      "version": "23.4.2",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-23.4.2.tgz",
+      "integrity": "sha512-jbLuskDwJDq3vIdk3xw4ySCsze/1Hb1J7DZ4ebdimtZEV7KksPRh27Z/tfCJ6jN0LhM0myTKA+OIqucXM6kDQQ==",
+      "license": "MIT",
       "dependencies": {
         "@cypress/xvfb": "1.2.4",
         "@devicefarmer/adbkit": "3.2.6",
