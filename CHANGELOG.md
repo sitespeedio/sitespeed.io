@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 35.7.1 - 2024-12-11
+### Fixed
+* Updated to Browsertime 23.4.3 [#4336](https://github.com/sitespeedio/sitespeed.io/pull/4336).
+* Make sure Firefox displays power consumption in mWH [#4334](https://github.com/sitespeedio/sitespeed.io/pull/4334).
+
 ## 35.7.0 - 2024-11-30
 ### Added 
 * Firefox 133 in the Docker container [#4327](https://github.com/sitespeedio/sitespeed.io/pull/4327).
