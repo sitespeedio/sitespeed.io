@@ -4,13 +4,35 @@
         <title>server release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of server</description>
-        <lastBuildDate>Tue, 24 Sep 2024 06:38:13 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 14 Dec 2024 12:48:06 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/server.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[server 1.0.1]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.1</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.1</guid>
+            <pubDate>Fri, 06 Dec 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fixed the release flow so the Docker containers get the correct tag.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[server 1.0.0]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.0</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.0</guid>
+            <pubDate>Fri, 06 Dec 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>A new Docker setup <a href="https://github.com/sitespeedio/onlinetest/pull/95">#95</a></li>
+</ul>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[server 0.4.5]]></title>
             <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.4.5</link>
@@ -132,26 +154,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Search: Fix for searching for test type <a href="https://github.com/sitespeedio/onlinetest/pull/42">#42</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[server 0.2.0]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.2.0</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.2.0</guid>
-            <pubDate>Thu, 27 Jun 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Search: Add a clear search field button and make location and test type linkable in search result <a href="https://github.com/sitespeedio/onlinetest/pull/39">#39</a>.</li>
-</ul>
- <ul>
-<li>Search: Show 100 search result as default and make it configurable <a href="https://github.com/sitespeedio/onlinetest/pull/38">#38</a>.</li>
-</ul>
- <ul>
-<li>Search: Add last hour search button <a href="https://github.com/sitespeedio/onlinetest/pull/40">#40</a></li>
-</ul>
- <ul>
-<li>Search: Make it confirable to see the slug column in search result <a href="https://github.com/sitespeedio/onlinetest/pull/41">#41</a></li>
 </ul>
 ]]></description>
         </item>

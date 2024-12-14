@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2024-11-30T00:00:00.000Z</updated>
+    <updated>2024-12-14T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,99 @@
     <logo>https://www.sitespeed.io/img/logos/sitespeed.io.png</logo>
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 35.7.2]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.2</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.2"/>
+        <updated>2024-12-14T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Added extra logs if the compare plugin fails when using Python so we easily can see the input parameters.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 35.7.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.1"/>
+        <updated>2024-12-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated to Browsertime 23.4.3 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4336">#4336</a>.</li>
+</ul>
+ <ul>
+<li>Make sure Firefox displays power consumption in mWH <a href="https://github.com/sitespeedio/sitespeed.io/pull/4334">#4334</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[testrunner 1.0.1]]></title>
+        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.1</id>
+        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.1"/>
+        <updated>2024-12-06T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fixed the release flow so the Docker containers get the correct tag.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[testrunner 1.0.0]]></title>
+        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.0</id>
+        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.0"/>
+        <updated>2024-12-06T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>A new Docker setup <a href="https://github.com/sitespeedio/onlinetest/pull/95">#95</a></li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[server 1.0.1]]></title>
+        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.1</id>
+        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.1"/>
+        <updated>2024-12-06T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fixed the release flow so the Docker containers get the correct tag.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[server 1.0.0]]></title>
+        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.0</id>
+        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.0"/>
+        <updated>2024-12-06T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>A new Docker setup <a href="https://github.com/sitespeedio/onlinetest/pull/95">#95</a></li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 35.7.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.0</id>
@@ -281,33 +374,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 35.2.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.2.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.2.0"/>
-        <updated>2024-10-14T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 35.1.4]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.4</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.1.4"/>
-        <updated>2024-10-13T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Changed <code>--help</code> message for <code>--firefox.includeResponseBodies</code>. Include response bodies for Firefox stopped to work when we updated how we get the HAR (changed to bidi HAR). See <a href="https://github.com/sitespeedio/sitespeed.io/issues/4295">#4295</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[browsertime 23.1.2]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.1.2</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.1.2"/>
@@ -396,6 +462,21 @@
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[testrunner 0.5.6]]></title>
+        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.5.6</id>
+        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.5.6"/>
+        <updated>2024-09-24T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Bull 4.16.3 <a href="https://github.com/sitespeedio/onlinetest/pull/87">#87</a></li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[server 0.4.5]]></title>
         <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.4.5</id>
         <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.4.5"/>
@@ -407,21 +488,6 @@
  <ul>
 <li>Update body parser <a href="https://github.com/sitespeedio/onlinetest/pull/88">#88</a>.</li>
 </ul>
- <ul>
-<li>Bull 4.16.3 <a href="https://github.com/sitespeedio/onlinetest/pull/87">#87</a></li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[testrunner 0.5.6]]></title>
-        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.5.6</id>
-        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.5.6"/>
-        <updated>2024-09-24T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Bull 4.16.3 <a href="https://github.com/sitespeedio/onlinetest/pull/87">#87</a></li>
 </ul>
@@ -472,24 +538,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Fix bug so you can choose emulated mobile in GUI <a href="https://github.com/sitespeedio/onlinetest/pull/76">#76</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[server 0.4.0]]></title>
-        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.4.0</id>
-        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.4.0"/>
-        <updated>2024-08-02T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Merged slug/label column in search result <a href="https://github.com/sitespeedio/onlinetest/pull/68">#68</a></li>
-</ul>
- <ul>
-<li>Make it possible to choose container that runs the test, using the API <a href="https://github.com/sitespeedio/onlinetest/pull/69/">#69</a></li>
 </ul>
 ]]></summary>
         <author>
@@ -556,6 +604,24 @@
 <li>Make it possible to choose container that runs the test, using the API <a href="https://github.com/sitespeedio/onlinetest/pull/69/">#69</a></li>
 </ul>
 </li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[server 0.4.0]]></title>
+        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.4.0</id>
+        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.4.0"/>
+        <updated>2024-08-02T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Merged slug/label column in search result <a href="https://github.com/sitespeedio/onlinetest/pull/68">#68</a></li>
+</ul>
+ <ul>
+<li>Make it possible to choose container that runs the test, using the API <a href="https://github.com/sitespeedio/onlinetest/pull/69/">#69</a></li>
 </ul>
 ]]></summary>
         <author>
@@ -669,24 +735,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[testrunner 0.2.1]]></title>
-        <id>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.2.1</id>
-        <link href="https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.2.1"/>
-        <updated>2024-06-30T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Make sure we await adding things to the report queue <a href="https://github.com/sitespeedio/onlinetest/pull/55">#55</a>.</li>
-</ul>
- <ul>
-<li>Catch errors in all queue <a href="https://github.com/sitespeedio/onlinetest/pull/54">#54</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[server 0.3.1]]></title>
         <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.3.1</id>
         <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.3.1"/>
@@ -733,30 +781,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Search: Fix for searching for test type <a href="https://github.com/sitespeedio/onlinetest/pull/42">#42</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[server 0.2.0]]></title>
-        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.2.0</id>
-        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.2.0"/>
-        <updated>2024-06-27T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Search: Add a clear search field button and make location and test type linkable in search result <a href="https://github.com/sitespeedio/onlinetest/pull/39">#39</a>.</li>
-</ul>
- <ul>
-<li>Search: Show 100 search result as default and make it configurable <a href="https://github.com/sitespeedio/onlinetest/pull/38">#38</a>.</li>
-</ul>
- <ul>
-<li>Search: Add last hour search button <a href="https://github.com/sitespeedio/onlinetest/pull/40">#40</a></li>
-</ul>
- <ul>
-<li>Search: Make it confirable to see the slug column in search result <a href="https://github.com/sitespeedio/onlinetest/pull/41">#41</a></li>
 </ul>
 ]]></summary>
         <author>
