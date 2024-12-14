@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 35.7.2 - 2024-12-14
+### Fixed
+* Added extra logs if the compare plugin fails when using Python so we easily can see the input parameters.
+
 ## 35.7.1 - 2024-12-11
 ### Fixed
 * Updated to Browsertime 23.4.3 [#4336](https://github.com/sitespeedio/sitespeed.io/pull/4336).
