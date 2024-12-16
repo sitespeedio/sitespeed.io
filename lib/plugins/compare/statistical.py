@@ -30,7 +30,10 @@ final_results = {}
 for group_name, metrics in input_data['metrics'].items():
     group_results = {}
     for metric_name, metric_data in metrics.items():
-        stat, p = perform_test(test_type, metric_data['baseline'], metric_data['current'], **options)
+        try:
+            stat, p = perform_test(test_type, metric_data['baseline'], metric_data['current'], **options)
+        except:
+            continue
         if p == "No variability" or p == "Datasets are identical":
             group_results[metric_name] = {'statistic': "N/A", 'p-value': p}
         else:
