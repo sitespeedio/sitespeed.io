@@ -21,7 +21,11 @@ p
 
 h2 Settings
 p 
-  | The test conducted in this comparison is the #{compare.meta.testOptions.testType} test. The alternative hypothesis used for this test is "#{compare.meta.testOptions.alternative}". 
+  | The test conducted in this comparison is the 
+  b #{compare.meta.testOptions.testType} 
+  | test. The alternative hypothesis used for this test is 
+  b "#{compare.meta.testOptions.alternative}"
+  | . 
   if compare.meta.testOptions.alternative === 'less'
     | This means that we test if the current test is significant less that the baseline tests. 
   else if compare.meta.testOptions.alternative === 'greater'
