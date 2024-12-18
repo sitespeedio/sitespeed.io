@@ -13,6 +13,8 @@ def perform_test(test_type, baseline, current, **kwargs):
             return None, "Datasets are identical"
         else:
             return None, "No variability"
+    if (len(set(baseline)) != len(set(current))) and test_type == 'wilcoxon':
+        return None, "Datasets have different lengths"
 
     if test_type == 'wilcoxon':
         return wilcoxon(current, baseline, **kwargs)
@@ -31,7 +33,7 @@ for group_name, metrics in input_data['metrics'].items():
     group_results = {}
     for metric_name, metric_data in metrics.items():
         stat, p = perform_test(test_type, metric_data['baseline'], metric_data['current'], **options)
-        if p == "No variability" or p == "Datasets are identical":
+        if p == "No variability" or p == "Datasets are identical" or p == "Datasets have different lengths":
             group_results[metric_name] = {'statistic': "N/A", 'p-value': p}
         else:
             group_results[metric_name] = {'statistic': stat, 'p-value': p}
