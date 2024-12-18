@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 35.7.3 - 2024-12-18
+### Fixed
+* Add validation for dataset lengths for the Wilcoxon test. Thank you [Pavel Bairov](https://github.com/Amerousful) for PR [4341](https://github.com/sitespeedio/sitespeed.io/pull/4341).
+* Updated to Browsertime 23.4.4 that has a more robust check for gnirehtet configuration [#4342](https://github.com/sitespeedio/sitespeed.io/pull/4342).
+
 ## 35.7.2 - 2024-12-14
 ### Fixed
 * Added extra logs if the compare plugin fails when using Python so we easily can see the input parameters.
