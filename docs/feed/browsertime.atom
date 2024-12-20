@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2024-12-18T11:53:05.898Z</updated>
+    <updated>2024-12-20T08:09:01.350Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 23.4.5]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.5</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.5"/>
+        <updated>2024-12-20T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Change bottom margin from 10 to 14 pixel when recoring a video on mobile, se bug <a href="https://github.com/sitespeedio/browsertime/issues/2224">#2224</a> and PR <a href="https://github.com/sitespeedio/browsertime/pull/2225">#2225</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 23.4.4]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.4</id>
@@ -161,28 +176,6 @@
 <h3>Fixed</h3>
  <ul>
 <li>Updated to ff-test-bidi-har-export to 0.0.17 <a href="https://github.com/sitespeedio/browsertime/pull/2204">#2204</a></li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 23.2.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.2.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.2.0"/>
-        <updated>2024-10-20T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Chrome and Chromedriver 130 <a href="https://github.com/sitespeedio/browsertime/pull/2192">#2192</a></li>
-</ul>
- <ul>
-<li>The Chrome in the ARM container is bumped from 107 to 130 <a href="https://github.com/sitespeedio/browsertime/pull/2194">#2194</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>New Geckodriver install that fixes running on ARM in the Docker container <a href="https://github.com/sitespeedio/browsertime/pull/2193">#2193</a>.</li>
 </ul>
 ]]></summary>
         <author>
