@@ -1,4 +1,7 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
+## 35.7.4 - 2024-12-20
+### Fixed
+* Updated to Browsertime 23.4.5 that have a fix for visual metrics running videos from mobile [#4343](https://github.com/sitespeedio/sitespeed.io/pull/4343).
 
 ## 35.7.3 - 2024-12-18
 ### Fixed
