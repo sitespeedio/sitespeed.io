@@ -91,7 +91,7 @@
     "concurrent-queue": "7.0.2",
     "dayjs": "1.11.11",
     "fast-crc32c": "2.0.0",
-    "fast-stats": "0.0.6",
+    "fast-stats": "0.0.7",
     "find-up": "7.0.0",
     "fs-extra": "11.2.0",
     "getos": "3.2.1",
