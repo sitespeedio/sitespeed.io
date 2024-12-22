@@ -21,7 +21,7 @@
         "concurrent-queue": "7.0.2",
         "dayjs": "1.11.11",
         "fast-crc32c": "2.0.0",
-        "fast-stats": "0.0.6",
+        "fast-stats": "0.0.7",
         "find-up": "7.0.0",
         "fs-extra": "11.2.0",
         "getos": "3.2.1",
@@ -3696,14 +3696,6 @@
       "resolved": "https://registry.npmjs.org/dayjs/-/dayjs-1.11.13.tgz",
       "integrity": "sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg=="
     },
-    "node_modules/browsertime/node_modules/fast-stats": {
-      "version": "0.0.7",
-      "resolved": "https://registry.npmjs.org/fast-stats/-/fast-stats-0.0.7.tgz",
-      "integrity": "sha512-AEMvohEfd/pkvRSlJOUh6JlWjlBaIHNuL9hFz0bT/glLHbooj2+fV71TrVB3VebfYg1GLI3PnIcWH+T6gNH8HA==",
-      "engines": {
-        "node": "*"
-      }
-    },
     "node_modules/btoa": {
       "version": "1.2.1",
       "resolved": "https://registry.npmjs.org/btoa/-/btoa-1.2.1.tgz",
@@ -5713,9 +5705,9 @@
       "dev": true
     },
     "node_modules/fast-stats": {
-      "version": "0.0.6",
-      "resolved": "https://registry.npmjs.org/fast-stats/-/fast-stats-0.0.6.tgz",
-      "integrity": "sha512-m0zkwa7Z07Wc4xm1YtcrCHmhzNxiYRrrfUyhkdhSZPzaAH/Ewbocdaq7EPVBFz19GWfIyyPcLfRHjHJYe83jlg==",
+      "version": "0.0.7",
+      "resolved": "https://registry.npmjs.org/fast-stats/-/fast-stats-0.0.7.tgz",
+      "integrity": "sha512-AEMvohEfd/pkvRSlJOUh6JlWjlBaIHNuL9hFz0bT/glLHbooj2+fV71TrVB3VebfYg1GLI3PnIcWH+T6gNH8HA==",
       "engines": {
         "node": "*"
       }
