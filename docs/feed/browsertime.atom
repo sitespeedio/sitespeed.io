@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2024-12-20T08:09:01.350Z</updated>
+    <updated>2024-12-23T21:17:07.404Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,40 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 23.5.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.5.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.5.0"/>
+        <updated>2024-12-23T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Added <code>--userTimingBlockList</code> <a href="https://github.com/sitespeedio/browsertime/pull/2227">#2227</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Updated to webdriver 4.28 <a href="https://github.com/sitespeedio/browsertime/pull/2226">#2226</a>.</li>
+</ul>
+ <ul>
+<li>Updated dev dependencies <a href="https://github.com/sitespeedio/browsertime/pull/2228">#2228</a>.</li>
+</ul>
+ <ul>
+<li>Fix so the check for gnirehtet always use --android.gnirehtet to fix problens setting it in sitespeed.io <a href="https://github.com/sitespeedio/browsertime/pull/2229">#2229</a>.</li>
+</ul>
+ <ul>
+<li>Update to execa 9.5.2 <a href="https://github.com/sitespeedio/browsertime/pull/2231">#2231</a>.</li>
+</ul>
+ <ul>
+<li>Update to adbkit 3.3.8 <a href="https://github.com/sitespeedio/browsertime/pull/2232">#2232</a>.</li>
+</ul>
+ <ul>
+<li>Fix so you cannot use gnirehtet with webpagereplay <a href="https://github.com/sitespeedio/browsertime/pull/2230">#2230</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 23.4.5]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.5</id>
@@ -157,25 +191,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Disable security warning in Firefox 132 <a href="https://github.com/sitespeedio/browsertime/pull/2208">#2208</a> that fixes <a href="https://github.com/sitespeedio/browsertime/issues/2207">#2207</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 23.3.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.3.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.3.0"/>
-        <updated>2024-11-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Chrome and Chromedriver 131 <a href="https://github.com/sitespeedio/browsertime/pull/2203">#2209</a></li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Updated to ff-test-bidi-har-export to 0.0.17 <a href="https://github.com/sitespeedio/browsertime/pull/2204">#2204</a></li>
 </ul>
 ]]></summary>
         <author>
