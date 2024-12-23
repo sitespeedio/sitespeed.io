@@ -1,4 +1,13 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
+
+## 35.7.5 - 2024-12-23
+### Fixed
+* Update to faststat 0.0.7 [#4347](https://github.com/sitespeedio/sitespeed.io/pull/4347).
+* Update dev dependencies [#4345](https://github.com/sitespeedio/sitespeed.io/pull/4345).
+* Let analysisstorer know about webpagereplay so that correct information is displayed [#4349](https://github.com/sitespeedio/sitespeed.io/pull/4349).
+* Pass on webpagereplay flag to browsertime [#4350](https://github.com/sitespeedio/sitespeed.io/pull/4350).
+* Update to Browsertime 23.5.0 [#4351](https://github.com/sitespeedio/sitespeed.io/pull/4351) 
+
 ## 35.7.4 - 2024-12-20
 ### Fixed
 * Updated to Browsertime 23.4.5 that have a fix for visual metrics running videos from mobile [#4343](https://github.com/sitespeedio/sitespeed.io/pull/4343).
