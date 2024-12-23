@@ -15,7 +15,7 @@
         "@sitespeed.io/plugin": "0.0.6",
         "@tgwf/co2": "0.16.0",
         "axe-core": "4.10.2",
-        "browsertime": "23.4.5",
+        "browsertime": "23.5.0",
         "cli-color": "2.0.4",
         "coach-core": "8.0.2",
         "concurrent-queue": "7.0.2",
@@ -1093,9 +1093,9 @@
       "integrity": "sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA=="
     },
     "node_modules/@devicefarmer/adbkit": {
-      "version": "3.2.6",
-      "resolved": "https://registry.npmjs.org/@devicefarmer/adbkit/-/adbkit-3.2.6.tgz",
-      "integrity": "sha512-8lO1hSeTgtxcOHhp4tTWq/JaOysp5KNbbyFoxNEBnwkCDZu/Bji3ZfOaG++Riv9jN6c9bgdLBOZqJTC5VJPRKQ==",
+      "version": "3.3.8",
+      "resolved": "https://registry.npmjs.org/@devicefarmer/adbkit/-/adbkit-3.3.8.tgz",
+      "integrity": "sha512-7rBLLzWQnBwutH2WZ0EWUkQdihqrnLYCUMaB44hSol9e0/cdIhuNFcqZO0xNheAU6qqHVA8sMiLofkYTgb+lmw==",
       "dependencies": {
         "@devicefarmer/adbkit-logcat": "^2.1.2",
         "@devicefarmer/adbkit-monkey": "~1.2.1",
@@ -3649,12 +3649,12 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "23.4.5",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-23.4.5.tgz",
-      "integrity": "sha512-4iwuBdeIzTuKS0DblExZXQ0P2ZYypfw7XnmF4kex1ISMow6UAc8UEwBXj7XYsCMem2FViBHT+yLdT/G2Aa47Rw==",
+      "version": "23.5.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-23.5.0.tgz",
+      "integrity": "sha512-FO+qZ+eHTQ/WD9tC6qcyIRSfAVf3apMfo4d1xGbnYB6TlglxqovXmnyxM/RJgij2kqo0k71lx+SGMaBsYM0uuA==",
       "dependencies": {
         "@cypress/xvfb": "1.2.4",
-        "@devicefarmer/adbkit": "3.2.6",
+        "@devicefarmer/adbkit": "3.3.8",
         "@sitespeed.io/chromedriver": "131.0.6778-69",
         "@sitespeed.io/edgedriver": "126.0.2592-102",
         "@sitespeed.io/geckodriver": "0.35.0-1",
@@ -3664,7 +3664,7 @@
         "chrome-har": "1.0.1",
         "chrome-remote-interface": "0.33.2",
         "dayjs": "1.11.13",
-        "execa": "9.3.1",
+        "execa": "9.5.2",
         "fast-stats": "0.0.7",
         "ff-test-bidi-har-export": "0.0.17",
         "find-up": "7.0.0",
@@ -3677,7 +3677,7 @@
         "lodash.merge": "4.6.2",
         "lodash.pick": "4.4.0",
         "lodash.set": "4.3.2",
-        "selenium-webdriver": "4.26.0",
+        "selenium-webdriver": "4.27.0",
         "usb-power-profiling": "1.5.0",
         "yargs": "17.7.2"
       },
@@ -5543,9 +5543,9 @@
       }
     },
     "node_modules/execa": {
-      "version": "9.3.1",
-      "resolved": "https://registry.npmjs.org/execa/-/execa-9.3.1.tgz",
-      "integrity": "sha512-gdhefCCNy/8tpH/2+ajP9IQc14vXchNdd0weyzSJEFURhRMGncQ+zKFxwjAufIewPEJm9BPOaJnvg2UtlH2gPQ==",
+      "version": "9.5.2",
+      "resolved": "https://registry.npmjs.org/execa/-/execa-9.5.2.tgz",
+      "integrity": "sha512-EHlpxMCpHWSAh1dgS6bVeoLAXGnJNdR93aabr4QCGbzOM73o5XmRfM/e5FUqsw3aagP8S8XEWUWFAxnRBnAF0Q==",
       "dependencies": {
         "@sindresorhus/merge-streams": "^4.0.0",
         "cross-spawn": "^7.0.3",
@@ -5554,7 +5554,7 @@
         "human-signals": "^8.0.0",
         "is-plain-obj": "^4.1.0",
         "is-stream": "^4.0.1",
-        "npm-run-path": "^5.2.0",
+        "npm-run-path": "^6.0.0",
         "pretty-ms": "^9.0.0",
         "signal-exit": "^4.1.0",
         "strip-final-newline": "^4.0.0",
@@ -5604,6 +5604,32 @@
         "url": "https://github.com/sponsors/sindresorhus"
       }
     },
+    "node_modules/execa/node_modules/npm-run-path": {
+      "version": "6.0.0",
+      "resolved": "https://registry.npmjs.org/npm-run-path/-/npm-run-path-6.0.0.tgz",
+      "integrity": "sha512-9qny7Z9DsQU8Ou39ERsPU4OZQlSTP47ShQzuKZ6PRXpYLtIFgl/DEBYEXKlvcEa+9tHVcK8CF81Y2V72qaZhWA==",
+      "dependencies": {
+        "path-key": "^4.0.0",
+        "unicorn-magic": "^0.3.0"
+      },
+      "engines": {
+        "node": ">=18"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
+    "node_modules/execa/node_modules/path-key": {
+      "version": "4.0.0",
+      "resolved": "https://registry.npmjs.org/path-key/-/path-key-4.0.0.tgz",
+      "integrity": "sha512-haREypq7xkM7ErfgIyA0z+Bj4AGKlMSdlQE2jvJo6huWD1EdkKYV+G/T4nq0YEF2vgTT8kqMFKo1uHn950r4SQ==",
+      "engines": {
+        "node": ">=12"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
     "node_modules/execa/node_modules/signal-exit": {
       "version": "4.1.0",
       "resolved": "https://registry.npmjs.org/signal-exit/-/signal-exit-4.1.0.tgz",
@@ -5619,6 +5645,17 @@
       "version": "4.0.0",
       "resolved": "https://registry.npmjs.org/strip-final-newline/-/strip-final-newline-4.0.0.tgz",
       "integrity": "sha512-aulFJcD6YK8V1G7iRB5tigAP4TsHBZZrOV8pjV++zdUwmeV8uzbY7yn6h9MswN62adStNZFuCIx4haBnRuMDaw==",
+      "engines": {
+        "node": ">=18"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/sindresorhus"
+      }
+    },
+    "node_modules/execa/node_modules/unicorn-magic": {
+      "version": "0.3.0",
+      "resolved": "https://registry.npmjs.org/unicorn-magic/-/unicorn-magic-0.3.0.tgz",
+      "integrity": "sha512-+QBBXBCvifc56fsbuxZQ6Sic3wqqc3WWaqxs58gvJrcOuN83HGTCwz3oS5phzU9LthRNE9VrJCFCLUgHeeFnfA==",
       "engines": {
         "node": ">=18"
       },
@@ -10083,9 +10120,19 @@
       "optional": true
     },
     "node_modules/selenium-webdriver": {
-      "version": "4.26.0",
-      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.26.0.tgz",
-      "integrity": "sha512-nA7jMRIPV17mJmAiTDBWN96Sy0Uxrz5CCLb7bLVV6PpL417SyBMPc2Zo/uoREc2EOHlzHwHwAlFtgmSngSY4WQ==",
+      "version": "4.27.0",
+      "resolved": "https://registry.npmjs.org/selenium-webdriver/-/selenium-webdriver-4.27.0.tgz",
+      "integrity": "sha512-LkTJrNz5socxpPnWPODQ2bQ65eYx9JK+DQMYNihpTjMCqHwgWGYQnQTCAAche2W3ZP87alA+1zYPvgS8tHNzMQ==",
+      "funding": [
+        {
+          "type": "github",
+          "url": "https://github.com/sponsors/SeleniumHQ"
+        },
+        {
+          "type": "opencollective",
+          "url": "https://opencollective.com/selenium"
+        }
+      ],
       "dependencies": {
         "@bazel/runfiles": "^6.3.1",
         "jszip": "^3.10.1",
@@ -11008,7 +11055,7 @@
     "node_modules/through": {
       "version": "2.3.8",
       "resolved": "https://registry.npmjs.org/through/-/through-2.3.8.tgz",
-      "integrity": "sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU="
+      "integrity": "sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg=="
     },
     "node_modules/time-zone": {
       "version": "1.0.0",
