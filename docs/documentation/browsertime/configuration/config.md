@@ -217,6 +217,7 @@ Options:
       --preURL, --warmLoad                         A URL that will be accessed first by the browser before the URL that you wanna analyze. Use it to fill the browser cache.
       --preURLDelay, --warmLoadDealy               Delay between preURL and the URL you want to test (in milliseconds)  [default: 1500]
       --userTimingAllowList                        All userTimings are captured by default this option takes a regex that will allow which userTimings to capture in the results.
+      --userTimingBlockList                        All userTimings are captured by default this option takes a regex that will block some usertimings in the results.
       --headless                                   Run the browser in headless mode. Works for Firefox and Chrome.  [boolean] [default: false]
       --extension                                  Path to a WebExtension to be installed in the browser. Note that --extension can be passed multiple times.
       --cjs                                        Load scripting files that ends with .js as common js. Default (false) loads files as esmodules.  [boolean] [default: false]
