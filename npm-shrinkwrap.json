@@ -13,7 +13,7 @@
         "@google-cloud/storage": "6.9.5",
         "@influxdata/influxdb-client": "1.33.2",
         "@sitespeed.io/plugin": "0.0.6",
-        "@tgwf/co2": "0.16.0",
+        "@tgwf/co2": "0.16.4",
         "axe-core": "4.10.2",
         "browsertime": "23.5.0",
         "cli-color": "2.0.4",
@@ -2901,9 +2901,9 @@
       }
     },
     "node_modules/@tgwf/co2": {
-      "version": "0.16.0",
-      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.16.0.tgz",
-      "integrity": "sha512-XaISEAE2ysQ6yHs4C1ZM/FFPPe04t1rXGVPzKi72dggPcOCaLvqXWSVdhxCih55mW/OLNGhmUax4SjNILSpGxA==",
+      "version": "0.16.4",
+      "resolved": "https://registry.npmjs.org/@tgwf/co2/-/co2-0.16.4.tgz",
+      "integrity": "sha512-op5k5s84hzTcqbanoWC3Kh/uz0MW9akaSqyRSdAW0yiHnhZmcw+/Edn+mgjZuZ4q4ZtdOC2dC0jog1lDoDICKQ==",
       "engines": {
         "node": ">=14.0.0"
       }
