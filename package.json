@@ -56,7 +56,8 @@
     "build:css": "npm run build:css-light && npm run build:css-dark",
     "build:css-light": "sass lib/plugins/html/src/sass/main-light.scss > lib/plugins/html/assets/css/index-light.css && cleancss -o lib/plugins/html/assets/css/index-light.min.css lib/plugins/html/assets/css/index-light.css && rm lib/plugins/html/assets/css/index-light.css ",
     "build:css-dark": "sass lib/plugins/html/src/sass/main-dark.scss > lib/plugins/html/assets/css/index-dark.css && cleancss -o lib/plugins/html/assets/css/index-dark.min.css lib/plugins/html/assets/css/index-dark.css && rm lib/plugins/html/assets/css/index-dark.css",
-    "generate:assets": "mkdir -p assets/$npm_package_version && cp -R lib/plugins/html/assets/ assets/$npm_package_version/"
+    "generate:assets": "mkdir -p assets/$npm_package_version && cp -R lib/plugins/html/assets/ assets/$npm_package_version/",
+    "postinstall": "node tools/postinstall.js"
   },
   "engines": {
     "node": ">=14.19.1"

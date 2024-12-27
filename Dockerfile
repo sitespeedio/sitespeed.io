@@ -11,7 +11,6 @@ COPY docker/webpagereplay/wpr_key.pem /webpagereplay/certs/
 COPY docker/webpagereplay/deterministic.js /webpagereplay/scripts/deterministic.js
 COPY docker/webpagereplay/LICENSE /webpagereplay/
 
-
 RUN sudo apt-get update && sudo apt-get install libnss3-tools python2 \
     net-tools \
     build-essential \
@@ -28,6 +27,7 @@ WORKDIR /usr/src/app
 
 COPY package.json /usr/src/app/
 COPY npm-shrinkwrap.json /usr/src/app/
+COPY tools/postinstall.js /usr/src/app/tools/postinstall.js
 RUN npm install --production && npm cache clean --force
 COPY . /usr/src/app
 
