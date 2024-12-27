@@ -21,6 +21,7 @@ RUN echo "deb http://deb.debian.org/debian/ unstable main contrib non-free" >> /
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY . /usr/src/app
+COPY tools/postinstall.js /usr/src/app/tools/postinstall.js
 RUN CHROMEDRIVER_SKIP_DOWNLOAD=true EGDEDRIVER_SKIP_DOWNLOAD=true npm install --production && npm cache clean --force && npm uninstall npm -g
 WORKDIR /usr/src/app
 COPY docker/scripts/start-slim.sh /start.sh
