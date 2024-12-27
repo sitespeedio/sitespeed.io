@@ -84,4 +84,4 @@ jobs:
     - name: Run Chrome test using compare plugin
       run: node bin/sitespeed.js --compare.id compare --compare.saveBaseline --compare.baselinePath test/ http://127.0.0.1:3001/simple/ --xvfb
     - name: Run Chrome test sending data to GCS
-      run: node bin/sitespeed.js http://127.0.0.1:3001/simple/ --xvfb -n 1 --gcs.bucketname sitespeed --gcs.apiEndpoint http://127.0.0.1:4443
+      run: node bin/sitespeed.js http://127.0.0.1:3001/simple/ --xvfb -n 1 --gcs.bucketname sitespeed --gcs.apiEndpoint http://127.0.0.1:4443 --gcs.projectId test
