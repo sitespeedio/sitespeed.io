@@ -27,7 +27,7 @@ We have a four ready made containers:
 * One slim container that contains only Firefox. You run Firefox headless. Use the container `sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-slim`. The container do not have FFMpeg and Imagemagick so you can not get any Visual Metrics using this container.
 * One with [Chrome, Firefox and Edge](https://hub.docker.com/r/sitespeedio/sitespeed.io/). It also contains FFMpeg and Imagemagick, so we can record a video and get metrics like Speed Index using [VisualMetrics](https://github.com/WPO-Foundation/visualmetrics). This is the default container and use it with `sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}` . If you use the *arm64* version of the container, that container will have Firefox and Chromium installed.
 * One container that is based in the default container and includes the [Google Page Speed Insights](https://github.com/sitespeedio/plugin-gpsi) and [Lighthouse plugin](https://github.com/sitespeedio/plugin-lighthouse). Use it with `sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-plus1`.
-* Another container that is based in the default container and includes the [WebPageTest plugin](https://github.com/sitespeedio/plugin-webpagetest). Use it with `sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %}-webpagetest`
+
 
 ### Structure
 
@@ -42,6 +42,17 @@ The [slim container](https://github.com/sitespeedio/sitespeed.io/blob/main/Docke
 
 We lock down the browsers to specific versions for maximum compatibility and stability with sitespeed.io's current feature set; upgrading once we verify browser compatibility.
 {: .note .note-info}
+
+## Build
+The containers are built in [the release step in GitHub actions](https://github.com/sitespeedio/sitespeed.io/blob/main/.github/workflows/building-docker-release.yml).
+
+If you need to build it yourself, you need to clone the repository and build:
+
+```bash
+git clone https://github.com/sitespeedio/sitespeed.io.git
+cd sitespeed.io
+docker build --load -t sitespeedio/sitespeed.io .
+```
 
 ## Running using Docker
 
@@ -68,9 +79,11 @@ Using `-v "$(pwd):/sitespeed.io"` will map the current directory inside Docker a
 
 
 ## Running on Mac M1 ARM
-We have ARM container that will be used by default but it will use an older version of Chromium and a newer version of Firefox. The problem is that the Chrome team (Google, 30000+ engineers) do not build Chrome/Chromium on ARM Linux so we rely on *ppa:saiarcot895/chromium-beta* and use the latest version from there.
+We have ARM container that will use almost latest version of Chromium (using Microsofts Playwright build) and a newer version of Firefox. 
 
-It's probably better to run the AMD containers. If you have a newer version of Docker desktop installed, you can *"Use Rosetta for x86/amd64 emulation"* to run the AMD containers. Go to settings and turn it on (see the screenshot).
+If you plan to run Lighthouse in the +1 container, that will not work. Lighthouse uses its own Chrome installation and at the moment Google do not provide a build that work on ARM Linux.
+
+You can run the AMD containers. If you have a newer version of Docker desktop installed, you can *"Use Rosetta for x86/amd64 emulation"* to run the AMD containers. Go to settings and turn it on (see the screenshot).
 
 ![Turn on Rosetta]({{site.baseurl}}/img/rosetta-docker.jpg)
 {: .img-thumbnail}
@@ -96,6 +109,16 @@ docker pull sitespeedio/sitespeed.io:X.Y.Z
 ```
 
 Then change your start script (or where you start your container) to use the new version number.
+
+You can also pin sitespeed.io to stable versions. Say for example that you want to pin your version to version 35. Then you can use the following version:
+
+```bash
+docker pull sitespeedio/sitespeed.io:35
+```
+
+Then when we continously release new 35 version, you can just run `docker pull sitespeedio/sitespeed.io:35` and you will get the latest released version of 35.
+
+
 
 ## Tags and version
 

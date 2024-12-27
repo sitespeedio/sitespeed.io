@@ -6,7 +6,10 @@ html(lang='en')
         title= pageTitle
         meta(name='description', content=pageDescription)
         meta(name='robots', content='noindex')
-        link(rel='stylesheet', href=assetsPath + 'css/index.min.css')
+        if options.html.darkMode
+          link(rel='stylesheet', href=assetsPath + 'css/index-dark.min.css')
+        else
+          link(rel='stylesheet', href=assetsPath + 'css/index-light.min.css')
         block inlineStyles
         style(type='text/css').
          #{css}

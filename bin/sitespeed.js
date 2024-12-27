@@ -5,8 +5,9 @@
 import { writeFileSync } from 'node:fs';
 import { execSync } from 'node:child_process';
 import { platform } from 'node:os';
-import { resolve, basename } from 'node:path';
+import path from 'node:path';
 import { readFileSync } from 'node:fs';
+import { EventEmitter } from 'node:events';
 
 import merge from 'lodash.merge';
 import ora from 'ora';
@@ -14,6 +15,10 @@ import ora from 'ora';
 import { parseCommandLine } from '../lib/cli/cli.js';
 import { run } from '../lib/sitespeed.js';
 import { addTest, waitAndGetResult, get } from '../lib/api/send.js';
+
+// This is due to CDP do no have (or has it) a way to remove listeners
+// and default 10 is quite small number.
+EventEmitter.defaultMaxListeners = 30;
 
 async function api(options) {
   const action = options.api.action ?? 'addAndGetResult';
@@ -33,10 +38,10 @@ async function api(options) {
   // Add support for running multi tests
   if (options.multi) {
     const scripting = await readFileSync(
-      new URL(resolve(process.cwd(), options._[0]), import.meta.url)
+      new URL(path.resolve(process.cwd(), options._[0]), import.meta.url)
     );
     apiOptions.api.scripting = scripting.toString();
-    apiOptions.api.scriptingName = basename(options._[0]);
+    apiOptions.api.scriptingName = path.basename(options._[0]);
   }
 
   if (apiOptions.mobile) {
@@ -52,16 +57,21 @@ async function api(options) {
   if (options.config) {
     const config = JSON.parse(
       await readFileSync(
-        new URL(resolve(process.cwd(), options.config), import.meta.url)
+        new URL(path.resolve(process.cwd(), options.config), import.meta.url)
       )
     );
     apiOptions = merge(options.explicitOptions, config);
     delete apiOptions.config;
+    delete apiOptions.extends;
   }
+
+  // We copy all browsertime settings to fix the problem when we use --config
+  // and then try to ovverride some configurations using command line
+  apiOptions.browsertime = options.browsertime;
 
   if (action === 'add' || action === 'addAndGetResult') {
     const spinner = ora({
-      text: `Send test to ${hostname}`,
+      text: `Send test to ${hostname} testing ${options._[0]}`,
       isSilent: options.api.silent
     }).start();
 
@@ -69,10 +79,10 @@ async function api(options) {
       const data = await addTest(hostname, apiOptions);
       const testId = JSON.parse(data).id;
       spinner.color = 'yellow';
-      spinner.text = `Added test with id ${testId}`;
+      spinner.text = `Added test ${options._[0]} with id ${testId}`;
 
       if (action === 'add') {
-        spinner.succeed(`Added test with id ${testId}`);
+        spinner.succeed(`Added test ${options._[0]} with id ${testId}`);
         console.log(testId);
         process.exit();
       } else if (action === 'addAndGetResult') {
@@ -91,6 +101,9 @@ async function api(options) {
           }
         } else if (result.status === 'failed') {
           spinner.fail('Test failed');
+          if (options.api.json) {
+            console.log(JSON.stringify(result));
+          }
           process.exitCode = 1;
           process.exit();
         }
@@ -117,7 +130,6 @@ async function api(options) {
 
 async function start() {
   let parsed = await parseCommandLine();
-  let budgetFailing = false;
   // hack for getting in the unchanged cli options
   parsed.options.explicitOptions = parsed.explicitOptions;
   parsed.options.urls = parsed.urls;
@@ -125,7 +137,7 @@ async function start() {
 
   let options = parsed.options;
 
-  if (options.api && options.api.hostname) {
+  if (options.api && options.api.hostname && !options.disableAPI) {
     api(options);
   } else {
     try {
@@ -148,28 +160,37 @@ async function start() {
         execSync('xdg-open ' + result.localPath + '/index.html');
       }
 
+      // If one of the URLs is marked as a failure in Browsertime
+      // then set the exit code
+      for (let bt of result.browsertime) {
+        if (bt.markedAsFailure === 1) {
+          process.exitCode = 1;
+        }
+      }
+
+      // If we have a failing budget, change the exit code
       if (
         parsed.options.budget &&
         Object.keys(result.budgetResult.failing).length > 0
       ) {
         process.exitCode = 1;
-        budgetFailing = true;
       }
-
-      if (
-        (!budgetFailing ||
-          (parsed.options.budget && parsed.options.budget.suppressExitCode)) &&
-        process.exitCode === undefined
-      ) {
+      // If you supress the exit code using budgets, we will always return 0
+      if (parsed.options.budget && parsed.options.budget.suppressExitCode) {
         process.exitCode = 0;
       }
+
+      // If the exit code is still not set (it can be set in the scripting also)
+      // Make sure we exit with a 0
+      if (process.exitCode === undefined) {
+        process.exitCode = 0;
+      }
+
       if (result.errors.length > 0) {
-        console.log('Errors while running:\n' + result.errors.join('\n'));
         throw new Error('Errors while running:\n' + result.errors.join('\n'));
       }
-    } catch (error) {
+    } catch {
       process.exitCode = 1;
-      console.log(error);
     } finally {
       process.exit();
     }

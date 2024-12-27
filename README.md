@@ -12,7 +12,8 @@
 [![Changelog #212][changelog-image]][changelog-url]
 
 
-[Website](https://www.sitespeed.io/) | [Documentation](https://www.sitespeed.io/documentation/sitespeed.io/) | [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md) | [Mastodon](https://fosstodon.org/@sitespeedio)
+[Website](https://www.sitespeed.io/) | [Documentation](https://www.sitespeed.io/documentation/sitespeed.io/) | [Changelog](https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md) | [Bluesky](https://bsky.app/profile/sitespeed.io) | [Mastodon](https://fosstodon.org/@sitespeedio)
+
 
 
 # Table of Contents
@@ -209,7 +210,7 @@ We welcome contributions from the community! Whether you're fixing a bug, adding
 5. **Test**: Run tests to ensure everything works as expected.
 6. **Submit a Pull Request**: Push your changes to your fork and submit a pull request to the main repository.
 
-Before contributing, please read our [CONTRIBUTING.md](.gitub/CONTRIBUTING.md) for more detailed information on how to contribute.
+Before contributing, please read our [CONTRIBUTING.md](.github/CONTRIBUTING.md) for more detailed information on how to contribute.
 
 # Reporting Issues
 Found a bug or have a feature request? Please use the [GitHub Issues](https://github.com/sitespeedio/sitespeed.io/issues) to report them. Be sure to check existing issues to avoid duplicates.

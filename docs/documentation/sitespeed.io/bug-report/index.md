@@ -42,6 +42,7 @@ To help us reproduce your problem there are a couple of things we need:
 * Include the log output from your run. Please do not take a screenshot of the log, instead share the log as text either in the issue or in a [gist](https://gist.github.com/). 
 * Give us the exact version of sitespeed.io you are using (so we know we use the same version when we try to reproduce it).
 * Tell us what OS you are using and if you are using Docker give us the base OS where you run your container. 
+* We can run desktop tests on Mac OS (latest OS), Ubuntu and Debian. We can also reproduce issues on Moto G5, Samsung A51 and iPhone Xs. If you run on other OS, please provide a machine with that OS with access so we can use that machine to reproduce that issue. Thanks!
 * If you don't use Docker: Include the browser version you are using.
 * If you have problems with headers/cookie/auth you can use [https://httpbin.org](https://httpbin.org) to reproduce your issue.
 

@@ -1,0 +1,74 @@
+//
+// MISC STYLES
+// ===============
+// This is styles to be sorted into components
+//
+
+/** Labels */
+
+.label {
+ display: inline;
+ padding: 0.2em 0.6em 0.3em;
+ font-size: 75%;
+ font-weight: bold;
+ line-height: 1;
+ color: #fff;
+ text-align: center;
+ white-space: nowrap;
+ vertical-align: baseline;
+ border-radius: 0.25em;
+}
+
+.normal {
+ font-size: 100%;
+}
+
+.ok {
+ background-color: #468847;
+}
+.warning {
+ background-color: #f0ad4e;
+}
+.error {
+ background-color: #d9534f;
+}
+
+.info {
+ background-color: $color--blue;
+}
+
+ul.menu {
+ list-style: none;
+ font-size: 125%;
+ text-transform: uppercase;
+}
+
+.errors {
+ margin-bottom: 1.333em;
+ background: lightpink;
+ padding-left: 1em;
+}
+
+.subtableheader {
+ background: #ffe3eb;
+}
+
+/* Large */
+
+.large {
+ font-size: 1.333rem;
+ line-height: 1.8rem;
+}
+
+.hidden-small {
+ display: inline;
+}
+
+.url {
+ overflow-wrap: break-word;
+ word-wrap: break-word;
+ -webkit-hyphens: auto;
+ -ms-hyphens: auto;
+ -moz-hyphens: auto;
+ hyphens: auto;
+}

@@ -2,3 +2,11 @@ docker/*
 docs/*
 test/*
 sitespeed-result/*
+release/*
+.netlify
+.spelling
+.github
+Gemfile
+Gemfile.lock
+wpr-record.log
+wpr-replay.log

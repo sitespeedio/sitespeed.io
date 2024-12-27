@@ -1,5 +1,443 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 35.7.5 - 2024-12-23
+### Fixed
+* Update to faststat 0.0.7 [#4347](https://github.com/sitespeedio/sitespeed.io/pull/4347).
+* Update dev dependencies [#4345](https://github.com/sitespeedio/sitespeed.io/pull/4345).
+* Let analysisstorer know about webpagereplay so that correct information is displayed [#4349](https://github.com/sitespeedio/sitespeed.io/pull/4349).
+* Pass on webpagereplay flag to browsertime [#4350](https://github.com/sitespeedio/sitespeed.io/pull/4350).
+* Update to Browsertime 23.5.0 [#4351](https://github.com/sitespeedio/sitespeed.io/pull/4351) 
+
+## 35.7.4 - 2024-12-20
+### Fixed
+* Updated to Browsertime 23.4.5 that have a fix for visual metrics running videos from mobile [#4343](https://github.com/sitespeedio/sitespeed.io/pull/4343).
+
+## 35.7.3 - 2024-12-18
+### Fixed
+* Add validation for dataset lengths for the Wilcoxon test. Thank you [Pavel Bairov](https://github.com/Amerousful) for PR [4341](https://github.com/sitespeedio/sitespeed.io/pull/4341).
+* Updated to Browsertime 23.4.4 that has a more robust check for gnirehtet configuration [#4342](https://github.com/sitespeedio/sitespeed.io/pull/4342).
+
+## 35.7.2 - 2024-12-14
+### Fixed
+* Added extra logs if the compare plugin fails when using Python so we easily can see the input parameters.
+
+## 35.7.1 - 2024-12-11
+### Fixed
+* Updated to Browsertime 23.4.3 [#4336](https://github.com/sitespeedio/sitespeed.io/pull/4336).
+* Make sure Firefox displays power consumption in mWH [#4334](https://github.com/sitespeedio/sitespeed.io/pull/4334).
+
+## 35.7.0 - 2024-11-30
+### Added 
+* Firefox 133 in the Docker container [#4327](https://github.com/sitespeedio/sitespeed.io/pull/4327).
+
+### Fixed
+* Axe Core 4.10.2 [#3328](https://github.com/sitespeedio/sitespeed.io/pull/4328)
+* Fix security warnings in the Docker container.
+
+## 35.6.1 - 2024-11-23
+### Fixed
+* Make sure the compare plugin can handle if your run Firefox with CPU options [#4324](https://github.com/sitespeedio/sitespeed.io/pull/4324).
+
+## 35.6.0 - 2024-11-23
+### Added
+* Updated to Firefox 132 and Edge 131 in the Docketr container. The performance regression in Firefox 132 [#2211](https://github.com/sitespeedio/browsertime/issues/2211) has been fixed.
+* Browsertime has been updated to [23.4.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2341----2024-11-23). There's a couple of notable additions:
+  * If you use `--enableProfileRun` for Firefox the trace will include HTTP requests
+  * If you collect the Chrome timeline, we will automatically add some more timings and a custom timeline to devtools,inspired by [
+Andy Davies](https://github.com/andydavies) and the cool [https://github.com/andydavies/perf-timeline-to-devtools-profile](https://github.com/andydavies/perf-timeline-to-devtools-profile).
+
+
+## 35.5.0 - 2024-11-08
+### Added
+* Upgraded Chrome/Chromedriver to 131 (with a [new Browsertime](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2330---2024-11-12)) [#4316](https://github.com/sitespeedio/sitespeed.io/pull/4316).
+
+## 35.4.1 - 2024-11-08
+### Fixed
+* It seems to be a [problem](https://bugzilla.mozilla.org/show_bug.cgi?id=1930110) with Firefox 132 inside of Docker. Lets return to 131 for some time [#4313](https://github.com/sitespeedio/sitespeed.io/pull/4313).
+
+## 35.4.0 - 2024-11-08
+### Added
+* Firefox 132 [#4309](https://github.com/sitespeedio/sitespeed.io/pull/4309).
+
+## 35.3.1 - 2024-11-04
+### Fixed
+* Fix compare plugin when you run visual metrics contentful and perceptual metrics [#4308](https://github.com/sitespeedio/sitespeed.io/pull/4308).
+
+## 35.3.0 - 2024-10-20
+### Added
+* Update to Chrome 130 in the Docker container [#4299](https://github.com/sitespeedio/sitespeed.io/pull/4299). 
+* Updated to Browsertime [23.2.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2320---2024-10-20) that has a fix for installting Geckodriver on ARM containers [#4303](https://github.com/sitespeedio/sitespeed.io/pull/4303).
+* Updated Chromium from 107 to 130 in the ARM Docker container. This was possible by using the Chromium built by Microsoft (M$) in Playwright [#4304](https://github.com/sitespeedio/sitespeed.io/pull/4304).
+
+## 35.2.0 - 2024-10-14
+### Added
+From this release we release a new Docker container with the major version tag! This means that there will be a 35.2.0 and a 35 tag from this release. We follow [semantic versioning](https://semver.org) so you can safely stay and update the major version tag.
+
+## 35.1.4 - 2024-10-13
+### Fixed
+* Changed `--help` message for `--firefox.includeResponseBodies`. Include response bodies for Firefox stopped to work when we updated how we get the HAR (changed to bidi HAR). See [#4295](https://github.com/sitespeedio/sitespeed.io/issues/4295).
+
+## 35.1.3 - 2024-10-11
+### Fixed
+* Updated to Browsertim 23.1.2 [#4294](https://github.com/sitespeedio/sitespeed.io/pull/4294) that includes an update Chrome-HAR that swallows if an timing is broken from the Chrome trace.
+
+## 35.1.2 - 2024-10-09
+### Fixed
+* Make sure crux setup messages are skipt for analysisstorer [4291](https://github.com/sitespeedio/sitespeed.io/pull/4291).
+
+## 35.1.1 - 2024-10-08
+### Fixed
+* Updated to [Browsertime 23.1.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2311---2024-10-08) that fixes the Firefox HAR timing problem [#4289](https://github.com/sitespeedio/sitespeed.io/pull/4289).
+
+
+## 35.1.0 - 2024-10-08
+### Added
+* Browsertime [23.1.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2310---2024-10-08) [#4287](https://github.com/sitespeedio/sitespeed.io/pull/4287).
+* Firefox 131 and Edge 129 in the Docker container [#4284](https://github.com/sitespeedio/sitespeed.io/pull/4284).
+
+## 35.0.0 - 2024-09-24
+### Breaking
+* Disable camel case configuration that comes automatically with yargs [#4251](https://github.com/sitespeedio/sitespeed.io/pull/4251). This is a breaking change ONLY if you didn't follow our doecumentation/help and used internal YARGS configuration names for our CLI configuration.
+
+### Fixed
+* Updated to [Browsertime 23.0.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2300---2024-09-23).
+* Fixes the internal configuration object for android. The old solution created an array with objects instead of just keys on the object.[#4282](https://github.com/sitespeedio/sitespeed.io/pull/4282).
+
+## 34.14.0 - 2024-09-19
+### Added
+* Chrome 129 in the Docker container [#4281](https://github.com/sitespeedio/sitespeed.io/pull/4281).
+
+## 34.13.0 - 2024-09-18
+### Added
+* Add support for `--ignoreExtends` that remove extends from your configuration file. This is useful when you want to test configuration locally on your machine and your test server extends configurations like uploading data to a data storage [#4280](https://github.com/sitespeedio/sitespeed.io/pull/4280).
+
+### Fixed
+* Fixed support gnirehtet when using `--preWarmServer` [#4277](https://github.com/sitespeedio/sitespeed.io/pull/4277).
+* Fix broken log message when using the compare plugin, comparing tests with different amount of runs. Thank you [Roel Vreuls](https://github.com/roelvv) for PR [#4279](https://github.com/sitespeedio/sitespeed.io/pull/4279).
+
+##  34.12.1 - 2024-09-13
+### Fixed
+* Updated to [Browsertime 22.10.2](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#22102---2024-09-13) that fixes a bug in the wait.byIdAndVisible command.
+
+##  34.12.0 - 2024-09-11
+### Added
+* Firefox 130 [#4266](https://github.com/sitespeedio/sitespeed.io/pull/4266) and Edge 128 [#4267](https://github.com/sitespeedio/sitespeed.io/pull/4267) in the Docker container.
+
+### Fixed
+* Removed First input delay (FID) from Crux since Crux already stopped using FID [#4273](https://github.com/sitespeedio/sitespeed.io/pull/4273).
+* Visual change graph is in ms [#4271](https://github.com/sitespeedio/sitespeed.io/pull/4271)
+* Fix x-axis label collision on visual change graph, thank you [Anshuman Tripathi](https://github.com/4nshuman) for PR [#4269](https://github.com/sitespeedio/sitespeed.io/pull/4269).
+
+##  34.11.1 - 2024-09-04
+### Fixed
+* Updated to Browsertime 22.10.1 that fixes generating HARs for Firefox 130 [#4265](https://github.com/sitespeedio/sitespeed.io/pull/4265).
+
+
+##  34.11.0 - 2024-08-27
+### Added
+* Updated the Docker container to use Chrome 128 [#4261](https://github.com/sitespeedio/sitespeed.io/pull/4261).
+
+##  34.10.0 - 2024-08-27
+### Added
+* Updated Docker container to use Firefox 129 and Edge 127 [#4254](https://github.com/sitespeedio/sitespeed.io/pull/4254).
+* Browsertime [22.9.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2290---2024-08-26) [#4260](https://github.com/sitespeedio/sitespeed.io/pull/4260).
+
+### Fixed
+* Make sure requestheaders and cookies are sent when you use prewarm the server [#4259](https://github.com/sitespeedio/sitespeed.io/pull/4259).
+
+##  34.9.0 - 2024-07-30
+### Added
+* Browsertime 22.8.0 that disables the choose search engine screen on Chrome 127 and updated Edgedriver to 126 [#4244](https://github.com/sitespeedio/sitespeed.io/pull/4244).
+
+### Fixed
+* Added extra guard when you disables screenshots [#4245](https://github.com/sitespeedio/sitespeed.io/pull/4245).
+* Axe core 4.10.0 [#4246](https://github.com/sitespeedio/sitespeed.io/pull/4246).
+
+## 34.8.2 - 2024-07-29
+### Fixed
+* WebPageReplay: Fix for reading configuration. Reading a saved configuration didn't handle camel case correctly, creating arrays for single values [#4242](https://github.com/sitespeedio/sitespeed.io/pull/4242).
+
+## 34.8.1 - 2024-07-27
+### Fixed
+* Add missing slug for influxdb, thank you [pavel bairov](https://github.com/Amerousful) for PR [#4240](https://github.com/sitespeedio/sitespeed.io/pull/4240).
+
+## 34.8.0 - 2024-07-26
+### Added
+* Chrome 127, Chromedriver 127 and Browsertime 22.7.0 [#4239](https://github.com/sitespeedio/sitespeed.io/pull/4239).
+
+### Fixed
+* InfluxDB 2.x, Annotations. Send tags for filtering, thank you [pavel bairov](https://github.com/Amerousful) for PR [#4197](https://github.com/sitespeedio/sitespeed.io/pull/4197).
+
+## 34.7.1 - 2024-07-20
+### Fixed
+* Fix so the link to the geckoprofiler data works/shows again [#4234](https://github.com/sitespeedio/sitespeed.io/pull/4234).
+
+## 34.7.0 - 2024-07-15
+### Added
+* Update to Browsertime [22.6.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2260---2024-07-15) [#4226](https://github.com/sitespeedio/sitespeed.io/pull/4226).
+* Crux: Push navigation types and form factor data by default to TSDB [#4227](https://github.com/sitespeedio/sitespeed.io/pull/4227).
+
+## 34.6.0 - 2024-07-12
+### Added
+* Crux: Include RTT p75 [#4225](https://github.com/sitespeedio/sitespeed.io/pull/4225).
+
+## 34.5.0 - 2024-07-12
+### Added
+* Crux: Add navigation types, and form factors. Fix colors to align with Grafana colors and fix broken legend colors [#4223](https://github.com/sitespeedio/sitespeed.io/pull/4223).
+* Sustainable: Make it possible to choose sustainable model version (for model swd). To use the latest version for add: `--sustainable.model swd --sustainable.modelVersion 4` [#4224](https://github.com/sitespeedio/sitespeed.io/pull/4224).
+
+## 34.4.0 - 2024-07-09
+### Added
+* Upgraded to Firefox 128 and Edge 126 in the Docker container [#4222](https://github.com/sitespeedio/sitespeed.io/pull/4222).
+
+### Fixed
+* Show correct LCP and CLS image in each run page [#4221](https://github.com/sitespeedio/sitespeed.io/pull/4221).
+* Update Browsertime [#4210](https://github.com/sitespeedio/sitespeed.io/pull/4210).
+* Update minor dependencies and developer dependencies: co2.js [#4206](https://github.com/sitespeedio/sitespeed.io/pull/4206), uuid [#4207](https://github.com/sitespeedio/sitespeed.io/pull/4207), s3 [#4208](https://github.com/sitespeedio/sitespeed.io/pull/4208), eslint [#4211](https://github.com/sitespeedio/sitespeed.io/pull/4211), ava, jsdoc, sass [#4212](https://github.com/sitespeedio/sitespeed.io/pull/4212), dayjs [#4214](https://github.com/sitespeedio/sitespeed.io/pull/4214), p-limit [#4215](https://github.com/sitespeedio/sitespeed.io/pull/4215), os-name [#4216](https://github.com/sitespeedio/sitespeed.io/pull/4216), tape [#4219](https://github.com/sitespeedio/sitespeed.io/pull/4219) and p-limit [#4220](https://github.com/sitespeedio/sitespeed.io/pull/4220).
+
+## 34.3.5 - 2024-07-02
+### Fixed
+* The fix for CLS and LCP in 34.3.4 faulty set those to false by default, changing the default behaviour. Fixed in [#4205](https://github.com/sitespeedio/sitespeed.io/pull/4205)
+
+## 34.3.4 - 2024-06-25
+### Fixed
+* Expose command line parameters to disable CLS and LCP screenshots [#4201](https://github.com/sitespeedio/sitespeed.io/pull/4201).
+
+## 34.3.3 - 2024-06-24
+### Fixed
+* Updated to Browsertime 25.5.2 that has updated versions of Selenium WebDriver and correct export for scripting.
+* API: Copy Browsertime setting from the option object to the API. There cases where you use a configuration file, override it with CLI parameters and the cli parameters didn't override the configuration file. That is fixed now for Browsertime configurations [#4200](https://github.com/sitespeedio/sitespeed.io/pull/4200).
+
+## 34.3.2 - 2024-06-23
+### Fixed
+* API: Remove extends from the configuration to make sure that testrunners ddo not try to extend configuration [#4198](https://github.com/sitespeedio/sitespeed.io/pull/4198).
+
+## 34.3.1 - 2024-06-20
+### Fixed
+* The docker hub has had some problem and started to publish old images (as new!). That broke our latest tag to include chrome/edge//firefox 111. This release auto publish the latest one again.
+
+## 34.3.0 - 2024-06-20
+### Added
+* API: Show the URL/script name in the API call [#4195](https://github.com/sitespeedio/sitespeed.io/pull/4195)
+* Update WebPageReplay binaries [#4196](https://github.com/sitespeedio/sitespeed.io/pull/4196).
+
+## 34.2.2 - 2024-06-18
+### Fixed
+* Make it possible to disable the API. In some cases where you extends another configuration file, you could end up in a API loop where the API calls the API [#4191](https://github.com/sitespeedio/sitespeed.io/pull/4191).
+
+## 34.2.1 - 2024-06-17
+### Fixed
+* API: safer parsing if something fail to get better error messages [#4188](https://github.com/sitespeedio/sitespeed.io/pull/4188).
+
+## 34.2.0 - 2024-06-14
+
+### Added
+* Updated to Browsertime 22.5.0 [#4187](https://github.com/sitespeedio/sitespeed.io/pull/4187).
+* Updated to Firefox 127 and Chrome/Chromedriver 126 [#4185](https://github.com/sitespeedio/sitespeed.io/pull/4185)
+
+### Fixed
+* Fix for InfluxDBv2 to send annotations. Thank you [pavel bairov](https://github.com/Amerousful) for PR [#4175](https://github.com/sitespeedio/sitespeed.io/pull/4175).
+
+* Fix log output when using `--preWarmServer`, thank you [ThimoCap](https://github.com/ThimoCap) for PR [#4183](https://github.com/sitespeedio/sitespeed.io/pull/4183)
+
+## 34.1.2 - 2024-06-12
+### Fixed
+* Using `--preWarmServer` resulted in trying to use an  Android phone to prewarm. Fixed in [#4182](https://github.com/sitespeedio/sitespeed.io/pull/4182).
+
+## 34.1.1 - 2024-06-07
+### Fixed
+* Enabling extra profile run/video run didn't stop the Browsertime engine in the correct place. PR [#4179](https://github.com/sitespeedio/sitespeed.io/pull/4179) fixes that.
+
+## 34.1.0 - 2024-06-06
+### Added
+* Add `--enableVideoRun`. You can use it together with `--video false --visualMetrics true` to do one extra run where the video is kept. This is useful for tests against replay proxies [#4177](https://github.com/sitespeedio/sitespeed.io/pull/4177).
+
+## 34.0.3 - 2024-06-05
+
+### Fixed
+* Make sure extra options are passed on to S3 [#4176](https://github.com/sitespeedio/sitespeed.io/pull/4176).
+
+## 34.0.2 - 2024-06-04
+
+### Fixed
+* Update to Pug 3.0.3 [#4172](https://github.com/sitespeedio/sitespeed.io/pull/4172).
+
+## 34.0.1 - 2024-05-30
+
+### Fixed
+* The +1 container has updated to code to take care of if GPSI is missing metrics [GPSI #56](https://github.com/sitespeedio/plugin-gpsi/pull/56).
+
+## 34.0.0 - 2024-05-29
+
+### Breaking
+
+* Woho! There's now a way to deploy your own version of sitespeed.io online for your own testing using [onlinetest][https://github.com/sitespeedio/onlinetest]! It has a HTML GUI and an API that you can use using sitespeed.io command line. There's one server part (the frontend and the API) and a testrunner part. You can run desktop, emulated mobile and Android test. I do not host a global version but I worked hard to make it easy to host yourself. I still work on the documentation but feel free to start to try it out before all documentation is finished :) If you have quick question and need help, please use the [Slack channel](https://join.slack.com/t/sitespeedio/shared_invite/zt-296jzr7qs-d6DId2KpEnMPJSQ8_R~WFw). If you have more complicated problems, please feel free to create issues [here](https://github.com/sitespeedio/onlinetest/issues/new).
+ 
+* With this release we remove all dependencies to WebPageTest [#4085](https://github.com/sitespeedio/sitespeed.io/pull/4085). You are only affected if you used the [plugin-webpagetest](https://github.com/sitespeedio/plugin-webpagetest) or the +webpagetest Docker container. If you still want to use WebPageTest with sitespeed.io you can build something on the archived [plugin-webpagetest](https://github.com/sitespeedio/plugin-webpagetest).
+
+* The S3 plugin has been upgraded to @aws-sdk/client-s3 v3 [#4138](https://github.com/sitespeedio/sitespeed.io/pull/4138). If you are using the S3 plugin and not set region, that will now fail. The v2 version of the aws-sdk used us-east-1 region as default, but v3 has removed the default setting. If you didn't used to set region you can add `--s3.region us-east-1` and it will work as before. If you do not do that, the uploads to S3 will fail. With v3 your `endpoint` need to start with http/https.
+
+* The -plus1 Docker container now has plugin-lighthouse and plugin-gpsi installed from npm instead of the git repository. It will work as before, but if you want to disable one of them, that has changed. To not run the GPSI plugin add `--plugins.remove @sitespeed.io/plugin-gpsi` and to disble Lighthouse you add `--plugins.remove @sitespeed.io/plugin-lighthouse`.
+
+* Updated to [Browsertime 22](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2200---2024-05-16). This version of Browsertime drops the Browsertime extension and start use the kind of new HAR exporter using Bidi as the default HAR exporter! If you add request headers to your Firefox test or clear the cache inside of your script using Firefox, this will stop to work for now until support is added in Firefox (request headers are coming soon!).
+
+### Added
+* Updated to Chrome 125, Firefox 126 and Edge 124 in the Docker container [#4156](https://github.com/sitespeedio/sitespeed.io/pull/4156).
+
+### Fixed
+* Fix loading globally installed plugins [#4167](https://github.com/sitespeedio/sitespeed.io/pull/4167).
+* Fix configurations documentation for scp, thank you [Arash Hatam](https://github.com/hatamiarash7) for [#4166](https://github.com/sitespeedio/sitespeed.io/pull/4166).
+
+
+## 33.6.1 - 2024-05-13
+### Fixed
+* The plus1 container was updated with the latest version of the gpsi-plugin, since the old version broke when GPSI was updated to Lighthouse 12. 
+
+## 33.6.0 - 2024-04-17
+### Added
+* Updated to Chrome 124 and Firefox 125 in the Docker container [#4142](https://github.com/sitespeedio/sitespeed.io/pull/4142) and [#4142](https://github.com/sitespeedio/sitespeed.io/pull/4141).
+
+### Fixed
+* Add new tag: axeType for axe data in InfluxDB [#4139](https://github.com/sitespeedio/sitespeed.io/pull/4139). Before the fix there was no way to query some of the Axe data.
+
+## 33.5.0 - 2024-04-04
+### Added
+* Updated to Edge 123 in the Docker container [#4135](https://github.com/sitespeedio/sitespeed.io/pull/4135).
+* Added missing default green/yellow/red limits for CLS and TTFB on the start page [#4120](https://github.com/sitespeedio/sitespeed.io/pull/4120).
+* Browsertime 21.7.0 with Edgedriver 123.
+
+### Fixed
+* The summary page alway showed blue color for AXE violations. This PR makes them green/yellow/red [#4123](https://github.com/sitespeedio/sitespeed.io/pull/4123).
+* Updated dependencies:
+ * Axe-core 4.9.0 [#4126](https://github.com/sitespeedio/sitespeed.io/pull/4126)
+ * CO2 0.14.4 [#4127](https://github.com/sitespeedio/sitespeed.io/pull/4127)
+ * import-global 1.1.0 [#4129](https://github.com/sitespeedio/sitespeed.io/pull/4129)
+ * AWS SDK 2.1591.0 [#4130](https://github.com/sitespeedio/sitespeed.io/pull/4130)
+ * dayjs 1.11.10, fs-extra 11.2.0, uuid 9.0.1, junit-report-builder 3.2.1, [#4131](https://github.com/sitespeedio/sitespeed.io/pull/4131).
+ * cli-color 2.0.4, node-scp 0.0.23, ora 8.0.1, os-name 5.0.0 and p-limit 5.0.0 [#4132](https://github.com/sitespeedio/sitespeed.io/pull/4132).
+ * tape 5.7.5, find-up 7.0.0, sass 1.72.0 and clean-css-cli 5.6.3 [#4133](https://github.com/sitespeedio/sitespeed.io/pull/4133)
+
+## 33.4.0 - 2024-03-20
+### Added
+* Chrome 123, Firefox 124 and Edge 122 in the Docker container [#4114](https://github.com/sitespeedio/sitespeed.io/pull/4114).
+* Browsertime [21.6.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2160---2024-03-20) with updated Chrome/Edgedriver and a fix for running `.stopAsError`.
+
+## 33.3.0 - 2024-03-16
+### Added
+* Show Long Animation frames (enabled in Chrome 123) [#4180](https://github.com/sitespeedio/sitespeed.io/pull/4108). Using the timeline/profiling is still best doing your tests but long animation frames can help you if you do not have it turned on or familiar with thart data in RUM. Please create an issue if you have any ideas on how we shoudl display the metrics/information!
+* Show CPU power consumption (when using Firefox) [#4104](https://github.com/sitespeedio/sitespeed.io/pull/4104). You can try it with: `sitespeed.io -b firefox -n 1 --firefox.geckoProfiler --firefox.geckoProfilerParams.features "power" --firefox.powerConsumption https://www.sitespeed.io/`
+
+### Fixed
+*  Updated to [Browsertime 21.5.3](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2153---2024-03-12) containing various bug fixes.
+
+## 33.2.0 - 2024-03-12
+### Added
+* Updated to Browsertime 21.5.0 in [#4103](https://github.com/sitespeedio/sitespeed.io/pull/4103) also included changes released in 21.4.0.
+  * Firefox: 
+    * Move injectJS functionality to Bidi [#2088](https://github.com/sitespeedio/browsertime/pull/2088). This makes it possible to inject JS in Firefox on mobile.
+  * Expose Bidi in commands [#2091](https://github.com/sitespeedio/browsertime/pull/2091). You can now use webdriver bidi direct in your commands.
+  * Fixed command action.clear() that actually didn't clear the command [#2095](https://github.com/sitespeedio/browsertime/pull/2095).
+  * Added the following trace categories for Chrome that now is used by default when you turn on the timeline: 'disabled-by-default-devtools.timeline.frame', 'disabled-by-default-devtools.timeline.invalidationTracking','loading', 'latencyInfo' - done in [#2086](https://github.com/sitespeedio/browsertime/pull/2086).
+  * Added a simple Loaf-script to get the 10 largest loaf. Lets iterate over the script and see how we can get the most useful information from it [#2087](https://github.com/sitespeedio/browsertime/pull/2087).
+
+## 33.1.1 - 2024-02-26
+### Fixed
+* Updateds to Browsertime 21.3.1 that has an updated version of the Chromedriver isntaller that fixes the bug installing on Windows [#4096](https://github.com/sitespeedio/sitespeed.io/pull/4096).
+
+## 33.1.0 - 2024-02-21
+### Added
+* Firefox 123 and Chrome 122 in the Docker container [#4090](https://github.com/sitespeedio/sitespeed.io/pull/4090) and [#4089](https://github.com/sitespeedio/sitespeed.io/pull/4089).
+* Chromedriver 122 and Edgedriver 121 
+* [Browsertime 21.3.0](https://github.com/sitespeedio/sitespeed.io/pull/4091).
+
+## 33.0.0 - 2024-02-11
+
+*Announcement*: In the next major release we will remove all support for WebPageTest. If you still plan to use WebPageTest you can probaly still use the [plugin](https://github.com/sitespeedio/plugin-webpagetest) for a while if your WebPageTest installation works.
+
+### Breaking
+This is a breaking change if you use the compare plugin and do not set an id (`--compare.id`) for your test.
+* If you auto generate the id for your compare test, this PR add browser, connectivity name and slug to the file name where the compare metrics is stored [#4083](https://github.com/sitespeedio/sitespeed.io/pull/4083).
+
+
+### Added
+* Updated to [Browsertime 21.2.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2120---2024-02-11) that adds a new way to stop your measureemnts if your navigation fails `measure.stopAsError(failureMessage, optionalURL)`. Perfect to use in a try/catch.
+* Use darkmode for result HTML by adding `--html.darkMode`, thank you [petemyron](https://github.com/petemyron) for PR [#4081](https://github.com/sitespeedio/sitespeed.io/pull/4081).
+
+### Fixed
+* Update co2.js to 0.14.2 [#4074](https://github.com/sitespeedio/sitespeed.io/pull/4074)
+* More solid error handling if one page fail in scripting. This fixes so that the HTML for the rest of pages should be generated [#4079](https://github.com/sitespeedio/sitespeed.io/pull/4079).
+* Remove console.errors of errors (they have already been reported in the log) [#4080](https://github.com/sitespeedio/sitespeed.io/pull/4080).
+* Fix automatically switch to Throttle as engine on Mac and Linux if you add -c THROTTLING[#4082](https://github.com/sitespeedio/sitespeed.io/pull/4082).
+
+## 32.2.0 - 2024-01-24
+### Added
+* Chrome and Chromedriver 121 in the Docker container [#4069](https://github.com/sitespeedio/sitespeed.io/pull/4069).
+* Browsertime 21.1.0 [#4070](https://github.com/sitespeedio/sitespeed.io/pull/4070).
+
+
+## 32.1.0 - 2024-01-23
+### Added
+* Updated the WebPageReplay version in the Docker container [#4067](https://github.com/sitespeedio/sitespeed.io/pull/4067).
+* Firefox 122 in the Docker container [#4068](https://github.com/sitespeedio/sitespeed.io/pull/4068).
+
+## 32.0.0 - 2024-01-19
+### Breaking change
+* If you use the compare plugin (`--compare.saveBaseline`) you need to remove your old baseline when you upgrade. The reason is that the original implementation was very narrow to some Browsertime metrics. The new version will be able to show more information (more metrics) between the baseline and the current test. This version allo disables comparing the CDP performance metrics, making the compare page easier to understand [#4064](https://github.com/sitespeedio/sitespeed.io/pull/4064).
+
+
+## 31.2.1 - 2024-01-18
+### Fixed
+* Another fix for `--budget.suppressExitCode` hopefully it works better this time [#4065](https://github.com/sitespeedio/sitespeed.io/pull/4065).
+
+## 31.2.0 - 2024-01-17
+### Fixed
+* There was bug that caused budget.suppressExitCode to fail that I introduced and reported in [#4062](https://github.com/sitespeedio/sitespeed.io/issues/4062). It's fixed in [#4063](https://github.com/sitespeedio/sitespeed.io/pull/4063).
+
+### Added
+* Collect statstics about how the page is built between runs. You can see these metrics on the "side by side"-page [#4061](https://github.com/sitespeedio/sitespeed.io/pull/4061).
+
+
+## 31.1.1 - 2024-01-08
+### Fixed
+* When displaying interaction to next paint, there where some copy/paste from largest contentful paint that sometimes broke the HTML (my fault). Fixed in [#4042](https://github.com/sitespeedio/sitespeed.io/pull/4052).
+
+## 31.1.0 - 2024-01-07
+
+We updated the [scripting documentation](https://www.sitespeed.io/documentation/sitespeed.io/scripting/) to be generated directly from Browsertime (using JSDoc). This makes the documentation so much easier to navigate. It's not 100% perfect yet so please feel free to send PRs with updates :)
+
+The new version of Browsertime also adds code completion/IntelliSense support. Read [here](https://www.sitespeed.io/documentation/sitespeed.io/scripting/tutorial-08-Setting-Up-IntelliSense.html) on how to set it up. Make sure to start your scripting like this:
+
+```JavaScript
+/**
+ * @param {import('browsertime').BrowsertimeContext} context
+ * @param {import('browsertime').BrowsertimeCommands} commands
+ */
+export default async function (context, commands) { 
+ 
+};
+```
+
+### Added
+* Update to [Browsertime 21.0.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2100---2024-01-07):
+  * Upgraded to [Geckodriver 0.34.0](https://github.com/mozilla/geckodriver/releases/tag/v0.34.0) [#2049](https://github.com/sitespeedio/browsertime/pull/2049).
+  * Collect CPU consumption for Firefox. Turn that on with `--firefox.powerConsumption true` and including `power` as a geckoProfilerParams.features [#2046](https://github.com/sitespeedio/browsertime/pull/2046).
+  * Added more commands for mouse click on text [#2054](https://github.com/sitespeedio/browsertime/pull/2054).
+  * Updated AndroidCommand so you can run shell on your Android device as root [#2055](https://github.com/sitespeedio/browsertime/pull/2055).
+  * If you mark a test as failure, the exit code from Browsertime will be 1. If the exitCode is set in scripting, we use that and will not change that [#2057](https://github.com/sitespeedio/browsertime/pull/2057).
+  * Generate documentation for scripting using JSDoc [#2059](https://github.com/sitespeedio/browsertime/pull/2059).
+  * Make it easy to use Seleniums action API. Get access to the new command using commands.action.getActions() and chain the action. [#2061](https://github.com/sitespeedio/browsertime/pull/2061)
+  * Make sure the visual metrics files are inlcuded in the Docker file [#2053](https://github.com/sitespeedio/browsertime/pull/2053).
+  * Removing QVH from the npm package (used for iPhone video recording but not working) [#2051](https://github.com/sitespeedio/browsertime/pull/2051)
+  * Removing visual metrics test images from the npm package [#2050](https://github.com/sitespeedio/browsertime/pull/2050).
+  * Removed the Chromedriver fix that was needed when Chrome for testing broke testing on Chrome :D [#2045](https://github.com/sitespeedio/browsertime/pull/2045).
+  * Refactor of commands/context object to prepare for supporting JSDoc and a little TypeScript to add code completion/IntelliSense in editors [#2047](https://github.com/sitespeedio/browsertime/pull/2047).
+  * Updated documentation for scripting with better JSDoc [#204](https://github.com/sitespeedio/browsertime/pull/2048).
+  * The code for getting Interaction to next paint was broken. This PR fixes it, make the code cleaner and gives more attribution [#2060](https://github.com/sitespeedio/browsertime/pull/2060).
+* If you use `process.exitCode` in your scripting, it will be respected by sitespeed.io and exit with that exit code [#4044](https://github.com/sitespeedio/sitespeed.io/pull/4044).
+
+### Fixed
+* If a run is markedAsFailure in your Browsertime script, sitespeed.io exits with an error code [#4047](https://github.com/sitespeedio/sitespeed.io/pull/4047).
+
 ## 31.0.1 - 2023-12-28
 ### Fixed
 * Hopefully removing "rsd" metrics in InfluxDB see [#4039](https://github.com/sitespeedio/sitespeed.io/pull/4039).

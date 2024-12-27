@@ -29,13 +29,38 @@ https://docs.aws.amazon.com/AmazonS3/latest/user-guide/static-website-hosting.ht
 * [Add a lifecycle rule](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/create-lifecycle.html) - you want to make sure you remove old result pages/videos/screenshots to save money.
 * If you want to show screenshots/videos/use the meta data from S3 in Grafana, you need to make sure that your Grafana instance can access S3 through your browser by setting up correct [CORS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/cors.html).
 
+Here's an example for setting up CORS to give compare.sitespeed.io access rights to get HARs and other files.
+ 
+```JSON
+[
+    {
+        "AllowedHeaders": [],
+        "AllowedMethods": [
+            "GET"
+        ],
+        "AllowedOrigins": [
+            "https://compare.sitespeed.io"
+        ],
+        "ExposeHeaders": []
+    }
+]
+
+```
+
 Do you need more help? First dive into the [AWS S3 docs](https://docs.aws.amazon.com/AmazonS3/latest/gsg/GetStartedWithS3.html) then if it doesn't help, [create an issue](https://github.com/sitespeedio/sitespeed.io/issues/new) and we can try to help you.
 
 ## sitespeed.io configuration
-To push the metrics to S3 you need the **key**, the **secret** and your **bucketname**. You get the ```--s3.key``` and ```--s3.secret``` from your IAM User. The ```--s3.bucketname``` is the name you picked for your bucket.
+To push the metrics to S3 you need either Explicit Credentials (Key, Secret) or an IAM instance profile if running on EC2. Here are both approaches:
+
+### Using Explicit Credentials (Key, Secret)
+You need the **key**, the **secret** and your **bucketname**. You get the ```--s3.key``` and ```--s3.secret``` from your IAM User. The ```--s3.bucketname``` is the name you picked for your bucket.
 
 Depending on the setup you sometimes want to set the S3 region (```--s3.region``` if you don't use the default one) and the [canned access control](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl)  ```--s3.acl``` of the uploaded files (you can setup the access control when you setup the bucket too).
 
+### Using IAM Instance Profile
+When running sitespeed.io on an EC2 instance, you can use IAM instance profiles for S3 access instead of providing explicit AWS credentials. This is recommended as it's more secure than handling access keys directly.
+
+Your EC2 instance needs an IAM role with S3 permissions (`s3:PutObject` and `s3:ListBucket`). You only need to specify the ```--s3.bucketname``` and optionally the ```--s3.region``` if you don't use the default one. The instance profile credentials will be automatically used without needing to specify ```--s3.key``` or ```--s3.secret```.
 
 ### Extra configuration
 You can also pass on all parameters that the official AWS JavaScript SDK uses.
@@ -71,11 +96,15 @@ And then you should also make sure that all the result files (HTML/videos/screen
 
 As a last thing you should also add `--copyLatestFilesToBase` that will make it possible to view latest screenshot and video in Grafana from S3.
 
+# MinIO
+If you want deploy the storage yourself you can use the Open Source [https://min.io](https://min.io). You can deploy that using Docker. You have an example on how you can set that up in [sitespeed.io online test](https://github.com/sitespeedio/onlinetest/blob/main/docker-compose.yml).
 
 # Digital Ocean Spaces
 [Digital Ocean Spaces](https://developers.digitalocean.com/documentation/spaces/#aws-s3-compatibility)
 
-Digital Ocean is compatible with the S3 api, so all that is required after setting up your space and acquiring a key and secret is to modify the endpoint that the s3 results are passed to as shown below.
+Digital Ocean is compatible with the S3 API, so all that is required after setting up your space and acquiring a key and secret is to modify the endpoint that the s3 results are passed to as shown below.
+
+Make sure that your endpoint starts with http/https.
 
 ## JSON configuration file
  If the endpoint is not passed this will default to AWS's endpoint. You may safely exclude it for AWS integration. If you use a JSON configuration file you should make sure you add this to get S3 to work:

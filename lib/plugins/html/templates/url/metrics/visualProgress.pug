@@ -15,6 +15,9 @@ script(type='text/javascript').
       const visualProgressChart = new Chartist.Line('#ct-visualprogress', {
         series: [!{JSON.stringify(seriesVisualProgress)}],
         }, {
+        classNames: {
+          label: 'ct-label ct-custom-label'
+        },
         showArea: true,
         showPoint: true,
         chartPadding: {
@@ -37,7 +40,7 @@ script(type='text/javascript').
         plugins: [
           Chartist.plugins.ctAxisTitle({
             axisX: {
-              axisTitle: 'Time (seconds)',
+              axisTitle: 'Time (milliseconds)',
               axisClass: 'ct-axis-title',
               offset: {
                 x: 0,

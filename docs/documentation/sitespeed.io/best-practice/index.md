@@ -91,7 +91,7 @@ If you use the <code>--preScript</code> or <code>--multi</code> feature, it is t
 ### My pre/post/scripting script doesn't work?
 We use Selenium pre/post script navigation. You can [read more](/documentation/sitespeed.io/prepostscript/) about of our pre/post script setup and focus on the [debug section](/documentation/sitespeed.io/prepostscript/#debuglog-from-your-script) if you have any problem.
 
-If you have problem with Selenium (getting the right element etc), PLEASE do not create issues in sitespeed.io. Head over to the [Selenium community](https://docs.seleniumhq.org/) and they can help you.
+If you have problem with Selenium (getting the right element etc), PLEASE do not create issues in sitespeed.io. Head over to the [Selenium community](https://www.selenium.dev/support/) and they can help you.
 
 ### How do you pass HTML/JavaScript as a CLI parameter?
 The easiest way to pass HTML to the CLI is to pass on the whole message as a String (use a quotation mark to start and end the String) and then do not use quotation marks inside the HTML.
@@ -128,6 +128,18 @@ You can also use the <code>--urlAlias</code> if you want to give the page a frie
 ~~~bash
 docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include version/sitespeed.io.txt %} --useHash --urlAlias super --urlAlias duper https://www.sitespeed.io/#/super https://www.sitespeed.io/#/duper
 ~~~
+
+### How do I test single point of failure (SPOF)?
+
+You can use the dommain unreachable.sitespeed.io that you can connect to but it will be really slow.
+
+For example, you have a web site that load assets from cdn1.readspeaker.com inside of the head tag and you want to test what happens if that domain is really slow. You can do that using Chrome and add this argument.
+
+~~~bash
+--chrome.args='--host-resolver-rules=MAP cdn1.readspeaker.com unreachable.sitespeed.io'
+~~~
+
+That will make all requests that uses cdn1.readspeaker.com instead access unreachable.sitespeed.io that will slow down everything.
 
 
 ### Running tests from multiple locations

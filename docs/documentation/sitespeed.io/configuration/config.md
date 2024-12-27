@@ -45,7 +45,7 @@ Browser
       --browsertime.cpu, --cpu                                                                      Easy way to enable both chrome.timeline and CPU long tasks for Chrome and geckoProfile for Firefox  [boolean]
       --browsertime.userTimingWhitelist, --userTimingWhitelist                                      This option takes a regex that will whitelist which userTimings to capture in the results. All userTimings are captured by default. T
       --axe.enable                                                                                  Run axe tests. Axe will run after all other metrics is collected and will add some extra time to each test.  [boolean]
-  -r, --browsertime.requestheader, --requestheader                                                  Request header that will be added to the request. Add multiple instances to add multiple request headers. Use the following format key:value. Only works in Chrome and Firefox.
+  -r, --browsertime.requestheader, --requestheader                                                  Request header that will be added to the request. Add multiple instances to add multiple request headers. Use the following format key:value. Only works in Chrome, Firefox and Edge.
       --browsertime.cookie, --cookie                                                                Cookie that will be added to the request. Add multiple instances to add multiple cookies. Use the following format cookieName=cookieValue. Only works in Chrome and Firefox.
       --browsertime.block, --block                                                                  Domain or URL or URL pattern to block. If you use Chrome you can also use --blockDomainsExcept (that is more performant). Works in Chrome/Edge. For Firefox you can only block domains.
       --browsertime.basicAuth, --basicAuth                                                          Use it if your server is behind Basic Auth. Format: username@password. Only works in Chrome and Firefox.
@@ -70,7 +70,7 @@ Filmstrip
       --filmstrip.showAll                                                           Show all screenshots in the filmstrip, independent if they have changed or not.  [boolean] [default: false]
 
 Firefox
-      --browsertime.firefox.includeResponseBodies, --firefox.includeResponseBodies                    Include response bodies in HAR  [choices: "none", "all", "html"] [default: "none"]
+      --browsertime.firefox.includeResponseBodies, --firefox.includeResponseBodies                    Warning: This do not work at the moment, see https://github.com/sitespeedio/sitespeed.io/issues/4295  [choices: "none", "all", "html"] [default: "none"]
       --browsertime.firefox.nightly, --firefox.nightly                                                Use Firefox Nightly. Works on OS X. For Linux you need to set the binary path.  [boolean]
       --browsertime.firefox.beta, --firefox.beta                                                      Use Firefox Beta. Works on OS X. For Linux you need to set the binary path.  [boolean]
       --browsertime.firefox.developer, --firefox.developer                                            Use Firefox Developer. Works on OS X. For Linux you need to set the binary path.  [boolean]
@@ -84,6 +84,7 @@ Firefox
       --browsertime.firefox.geckoProfilerParams.threads, --firefox.geckoProfilerParams.threads        Threads to profile.  [string] [default: "GeckoMain,Compositor,Renderer"]
       --browsertime.firefox.geckoProfilerParams.interval, --firefox.geckoProfilerParams.interval      Sampling interval in ms.  Defaults to 1 on desktop, and 4 on android.  [number]
       --browsertime.firefox.geckoProfilerParams.bufferSize, --firefox.geckoProfilerParams.bufferSize  Buffer size in elements. Default is ~90MB.  [number] [default: 1000000]
+      --browsertime.firefox.powerConsumption, --firefox.powerConsumption                              Enable power consumption collection (in Wh). To get the consumption you also need to set firefox.geckoProfilerParams.features to include power.  [boolean] [default: false]
       --browsertime.firefox.geckodriverArgs, --firefox.geckodriverArgs                                Flags passed to Geckodriver see https://firefox-source-docs.mozilla.org/testing/geckodriver/Flags.html. Use it like --firefox.geckodriverArgs="--marionette-port"  --firefox.geckodriverArgs=1027  [string]
       --browsertime.firefox.windowRecorder, --firefox.windowRecorder                                  Use the internal compositor-based Firefox window recorder to emit PNG files for each frame that is a meaningful change.  The PNG output will further be merged into a variable frame rate video for analysis. Use this instead of ffmpeg to record a video (you still need the --video flag).  [boolean] [default: false]
       --browsertime.firefox.disableSafeBrowsing, --firefox.disableSafeBrowsing                        Disable safebrowsing.  [boolean] [default: true]
@@ -144,7 +145,7 @@ Crawler
 
 scp
       --scp.host               The host.
-      --scp. destinationPath   The destination path on the remote server where the files will be copied.
+      --scp.destinationPath    The destination path on the remote server where the files will be copied.
       --scp.port               The port for ssh when scp the result to another server.  [default: 22]
       --scp.username           The username. Use username/password or username/privateKey/pem.
       --scp.password           The password if you do not use a pem file.
@@ -159,7 +160,7 @@ Grafana
       --grafana.annotationTitle       Add a title to the annotation sent for a run.
       --grafana.annotationMessage     Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
       --grafana.annotationTag         Add a extra tag to the annotation sent for a run. Repeat the --grafana.annotationTag option for multiple tags. Make sure they do not collide with the other tags.
-      --grafana.annotationScreenshot  Include screenshot (from Browsertime/WebPageTest) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
+      --grafana.annotationScreenshot  Include screenshot (from Browsertime) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
 
 Graphite
       --graphite.host                        The Graphite host used to store captured metrics.
@@ -173,7 +174,7 @@ Graphite
       --graphite.arrayTags                   Send the tags as Array or a String. In Graphite 1.0 the tags is a array. Before a String  [boolean] [default: true]
       --graphite.annotationTitle             Add a title to the annotation sent for a run.
       --graphite.annotationMessage           Add an extra message that will be attached to the annotation sent for a run. The message is attached after the default message and can contain HTML.
-      --graphite.annotationScreenshot        Include screenshot (from Browsertime/WebPageTest) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
+      --graphite.annotationScreenshot        Include screenshot (from Browsertime) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
       --graphite.sendAnnotation              Send annotations when a run is finished. You need to specify a --resultBaseURL for this to work. However if you for example use a Prometheus exporter, you may want to make sure annotations are not sent, then set it to false.  [boolean] [default: true]
       --graphite.annotationRetentionMinutes  The retention in minutes, to make annotation match the retention in Graphite.  [number]
       --graphite.statsd                      Uses the StatsD interface  [boolean] [default: false]
@@ -246,7 +247,7 @@ s3
       --s3.secret             The S3 secret.
       --s3.bucketname         Name of the S3 bucket,
       --s3.path               Override the default folder path in the bucket where the results are uploaded. By default it's "DOMAIN_OR_FILENAME_OR_SLUG/TIMESTAMP", or the name of the folder if --outputFolder is specified.
-      --s3.region             The S3 region. Optional depending on your settings.
+      --s3.region             The S3 region.
       --s3.acl                The S3 canned ACL to set. Optional depending on your settings.
       --s3.removeLocalResult  Remove all the local result files after they have been uploaded to S3.  [boolean] [default: false]
       --s3.params             Extra params passed when you do the S3.upload: https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#upload-property - Example: --s3.params.Expires=31536000 to set expire to one year.
@@ -276,8 +277,9 @@ HTML
       --html.assetsBaseURL                  The base URL to the server serving the assets of HTML results. In the format of https://result.sitespeed.io. This can be used to reduce size in large setups. If set, disables writing of assets to the output folder.
       --html.compareURL, --html.compareUrl  Will add a link on the waterfall page, helping you to compare the HAR. The full path to your compare installation. In the format of https://compare.sitespeed.io/
       --html.pageSummaryMetrics             Select from a list of metrics to be displayed for given URL(s).  Pass on multiple --html.pageSummaryMetrics to add more than one column. This is best used as an array in your config.json file.  [default: ["transferSize.total","requests.total","thirdParty.requests","transferSize.javascript","transferSize.css","transferSize.image","score.performance"]]
-      --html.summaryBoxes                   Select required summary information to be displayed on result index page.  [default: ["score.score","score.accessibility","score.bestpractice","score.privacy","score.performance","timings.firstPaint","timings.firstContentfulPaint","timings.fullyLoaded","timings.pageLoadTime","timings.largestContentfulPaint","timings.FirstVisualChange","timings.LastVisualChange","timings.SpeedIndex","timings.PerceptualSpeedIndex","timings.VisualReadiness","timings.VisualComplete","timings.backEndTime","googleWebVitals.cumulativeLayoutShift","requests.total","requests.javascript","requests.css","requests.image","transferSize.total","transferSize.html","transferSize.javascript","contentSize.javascript","transferSize.css","transferSize.image","thirdParty.transferSize","thirdParty.requests","webpagetest.SpeedIndex","webpagetest.lastVisualChange","webpagetest.render","webpagetest.visualComplete","webpagetest.visualComplete95","webpagetest.TTFB","webpagetest.fullyLoaded","axe.critical","axe.serious","axe.minor","axe.moderate","cpu.longTasksTotalDuration","cpu.longTasks","cpu.totalBlockingTime","cpu.maxPotentialFid","sustainable.totalCO2","sustainable.co2PerPageView","sustainable.co2FirstParty","sustainable.co2ThirdParty"]]
+      --html.summaryBoxes                   Select required summary information to be displayed on result index page.  [default: ["score.score","score.accessibility","score.bestpractice","score.privacy","score.performance","timings.firstPaint","timings.firstContentfulPaint","timings.fullyLoaded","timings.pageLoadTime","timings.largestContentfulPaint","timings.FirstVisualChange","timings.LastVisualChange","timings.SpeedIndex","timings.PerceptualSpeedIndex","timings.VisualReadiness","timings.VisualComplete","timings.backEndTime","googleWebVitals.cumulativeLayoutShift","requests.total","requests.javascript","requests.css","requests.image","transferSize.total","transferSize.html","transferSize.javascript","contentSize.javascript","transferSize.css","transferSize.image","thirdParty.transferSize","thirdParty.requests","axe.critical","axe.serious","axe.minor","axe.moderate","cpu.longTasksTotalDuration","cpu.longTasks","cpu.totalBlockingTime","cpu.maxPotentialFid","sustainable.totalCO2","sustainable.co2PerPageView","sustainable.co2FirstParty","sustainable.co2ThirdParty"]]
       --html.summaryBoxesThresholds         Configure the thresholds for red/yellow/green for the summary boxes.
+      --html.homeurl                        The URL for the logo in the result  [default: "https://www.sitespeed.io/"]
 
 Text
       --summary         Show brief text summary to stdout  [boolean] [default: false]
@@ -286,6 +288,7 @@ Text
 Sustainable
       --sustainable.enable                 Test if the web page is sustainable.  [boolean]
       --sustainable.model                  Model used for measure digital carbon emissions.  [choices: "1byte", "swd"] [default: "1byte"]
+      --sustainable.modelVersion           The version used for the model. Only applicable for model swd at the moment.  [choices: 3, 4] [default: 3]
       --sustainable.pageViews              Number of page views used when calculating CO2.
       --sustainable.disableHosting         Disable the hosting check. Default we do a check to a local database of domains with green hosting provided by the Green Web Foundation  [boolean] [default: false]
       --sustainable.useGreenWebHostingAPI  Instead of using the local copy of the hosting database, you can use the latest version through the Green Web Foundation API. This means sitespeed.io will make HTTP GET to the the hosting info.  [boolean] [default: false]
@@ -294,7 +297,7 @@ API
       --api.key       The API key to use.
       --api.action    The type of API call you want to do: You get add a test and wait for the result, just add a test or get the result. To get the result, make sure you add the id using --api.id  [choices: "add", "addAndGetResult", "get"] [default: "addAndGetResult"]
       --api.hostname  The hostname of the API server.
-      --api.location  The location of the worker that run the test.
+      --api.location  The location of the test runner that run the test.
       --api.silent    Set to true if you do not want to log anything from the communication  [boolean] [default: false]
       --api.port      The port for the API
       --api.id        The id of the test. Use it when you want to get the test result.  [string]
@@ -320,6 +323,7 @@ Options:
       --browsertime.xvfbParams.display, --xvfbParams.display  The display used for xvfb  [default: 99]
       --browsertime.visualMetricsPortable                     Use the portable visual-metrics processing script (no ImageMagick dependencies).  [boolean] [default: true]
       --browsertime.enableProfileRun, --enableProfileRun      Make one extra run that collects the profiling trace log (no other metrics is collected). For Chrome it will collect the timeline trace, for Firefox it will get the Geckoprofiler trace. This means you do not need to get the trace for all runs and can skip the overhead it produces.  [boolean]
+      --browsertime.enableVideoRun, --enableVideoRun          Make one extra run that collects video and visual metrics. This means you can do your runs with --visualMetrics true --video false --enableVideoRun true to collect visual metrics from all runs and save a video from the profile/video run. If you run it together with --enableProfileRun it will also collect profiling trace.  [boolean]
       --browsertime.cjs, --cjs                                Load scripting files that ends with .js as common js. Default (false) loads files as esmodules.  [boolean] [default: false]
       --browsertime.tcpdump, --tcpdump                        Collect a tcpdump for each tested URL. The user that runs sitespeed.io should have sudo rights for tcpdump to work.  [boolean] [default: false]
       --browsertime.android, --android                        Short key to use Android. Will automatically use com.android.chrome for Chrome and stable Firefox. If you want to use another Chrome version, use --chrome.android.package  [boolean] [default: false]
@@ -328,6 +332,7 @@ Options:
       --browsertime.preWarmServerWaitTime                     The wait time before you start the real testing after your pre-cache request.  [number] [default: 5000]
       --plugins.disable  [array]
       --plugins.load  [array]
+      --html.darkMode, --darkMode                             View test results with a dark theme.  [boolean] [default: false]
       --mobile                                                Access pages as mobile a fake mobile device. Set UA and width/height. For Chrome it will use device Moto G4.  [boolean] [default: false]
       --resultBaseURL, --resultBaseUrl                        The base URL to the server serving the HTML result. In the format of https://result.sitespeed.io
       --gzipHAR                                               Compress the HAR files with GZIP.  [boolean] [default: false]

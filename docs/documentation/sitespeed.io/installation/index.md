@@ -41,21 +41,19 @@ That will output the data from the run in the current directory. You can read mo
 
 ## Using Node JS
 
-Requires additional software like FFmpeg, ImageMagick, and Python dependencies.
+Requires additional software like FFmpeg and Python dependencies.
 
 ### Installation steps for Apple Mac M1
 
 Install on a fresh Apple Mac M1:
 
 1. Install Homebrew: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-2. Install latest NodeJS LTS (and npm). Either download it from [nodejs.org](https://nodejs.org/en/) or install using Homebrew:
+2. Install latest NodeJS LTS (and npm). Either download it from [nodejs.org](https://nodejs.org/en/) or install using Homebrew (if you install using Homebrew, make sure you follow the instructions and add NodeJS and npm to your PATH):
     `brew install node@20`
 3. Make sure you can install using *npm* without using sudo. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
-4. Install ImageMagick 6
-    `brew install imagemagick@6`
-5. Install ffmpeg
+4. Install ffmpeg
     `brew install ffmpeg`
-6. Install Python and Python dependencies ([Python best practices](https://opensource.com/article/19/5/python-3-default-mac)) (or make sure you use the pre-installed Python 3):
+5. Install Python and Python dependencies ([Python best practices](https://opensource.com/article/19/5/python-3-default-mac)) (or make sure you use the pre-installed Python 3):
     1. `brew install pyenv` 
     2. `pyenv install 3.9.1`
     3. `pyenv global 3.9.1`
@@ -64,11 +62,11 @@ Install on a fresh Apple Mac M1:
     6. `curl https://bootstrap.pypa.io/get-pip.py --output get-pip.py`
     7. `python get-pip.py --user`
     8. `python -m pip install --user pillow pyssim OpenCV-Python Numpy scipy`
-7. To be able to throttle the connection without adding a sudo password you need to run:
+6. To be able to throttle the connection without adding a sudo password you need to run:
     `echo "${USER} ALL=(ALL:ALL) NOPASSWD:ALL" | sudo tee "/etc/sudoers.d/sitespeedio"`
-8. If you plan to run the iOS Simulator, you also need to install Xcode. Either do it from the App store,  follow [Mac Stadiums guide](https://docs.macstadium.com/docs/install-osx-build-tools) or download directly from [https://developer.apple.com/download/more/](https://developer.apple.com/download/more/). Verify that Xcode work by running `xcrun simctl list devices` to list your devices.
-9. If you want to run test on Android devices, you also need ADB. Install it using Homebrew like this: `brew install --cask android-platform-tools`
-10. To be able to record a video you need to give access to **Screen Recording** for the **Terminal** App. You do that under **Privacy** settings.
+7. If you plan to run the iOS Simulator, you also need to install Xcode. Either do it from the App store,  follow [Mac Stadiums guide](https://docs.macstadium.com/docs/install-osx-build-tools) or download directly from [https://developer.apple.com/download/more/](https://developer.apple.com/download/more/). Verify that Xcode work by running `xcrun simctl list devices` to list your devices.
+8. If you want to run test on Android devices, you also need ADB. Install it using Homebrew like this: `brew install --cask android-platform-tools`
+9. To be able to record a video you need to give access to **Screen Recording** for the **Terminal** App. You do that under **Privacy** settings.
 
 Now you are ready to install sitespeed.io:
 ~~~bash
@@ -80,31 +78,32 @@ After that you can also install the browsers that you need for your testing: [Ch
 
 ### Linux
 
-If you are using Ubuntu you can use our prebuilt script. It will install all dependencies that you need to run sitespeed.io including latest Firefox and Chrome. Use it if you have a new machine or just setup a new cloud instance. It will also create a new user *sitespeedio* that you will use to run sitespeed.io. The script will ask for a new password for that user:
+If you are using Ubuntu you can use our prebuilt script. It will install all dependencies that you need to run sitespeed.io including latest Firefox and Chrome. Use it if you have a new machine or just setup a new cloud instance. It will also create a new user *sitespeedio* that you will use to run sitespeed.io. The script has been tested on Ubuntu 22.04.
 
 ~~~bash
-bash <(curl -sL https://gist.githubusercontent.com/soulgalore/18fbf40670a343fa1cb0606756c90a00/raw/0597438f8e508755dfcbe18271b04b46d8fa389e/install-sitespeed.io-and-dependencies-ubuntu.sh)
+bash <(curl -sL https://gist.githubusercontent.com/soulgalore/18fbf40670a343fa1cb0606756c90a00/raw/7218332445010ee64e3301f2021bcf18a91f0627/install-sitespeed.io-and-dependencies-ubuntu.sh)
 ~~~
 
-If you use Debian you can use (installs Firefox ESR and you might want to upgrade that):
+If you use Debian (the script has been tested on Debian 12) you can use:
 
 ~~~bash
-wget -O - https://gist.githubusercontent.com/soulgalore/2f070b0a150360053f7198a4e9067db1/raw/33fb37e8770103ef535d44d83b6b8cb104ef9142/install-sitespeed.io-and-dependencies-debian.sh | bash
+wget -O - https://gist.githubusercontent.com/soulgalore/2f070b0a150360053f7198a4e9067db1/raw/cc1c56577195832225ddc36460f6fc53510d6de3/install-sitespeed.io-and-dependencies-debian.sh | bash
 ~~~
 
 When it's finished you can try running sitespeed.io:
 
 ~~~bash
+su - sitespeedio
 sitespeed.io https://www.sitespeed.io --xvfb -b chrome --video --visualMetrics
 ~~~
 
-You can also install everything manually to have more control. This is what's needed on Ubuntu 20.04:
+You can also install everything manually to have more control. This is what's needed on Ubuntu 22.04:
 
 1. [Install NodeJS LTS ](https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04)
-    * `curl -sL https://deb.nodesource.com/setup_16.x -o nodesource_setup.sh`
+    * `curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh`
     * `sudo bash nodesource_setup.sh`
     * `sudo apt install -y nodejs`
-2. Install imagemagick and ffmpeg `sudo apt-get update -y && sudo apt-get install -y imagemagick ffmpeg`
+2. Install ffmpeg `sudo apt-get update -y && sudo apt-get install -y ffmpeg`
 3. Install Python dependencies:
     * `sudo apt-get install -y  python-is-python3 python3-dev python3-pip`  
     * `python -m pip install pyssim OpenCV-Python Numpy scipy`
@@ -179,9 +178,9 @@ Independent if you use Raspberry Lite/Desktop you should do the following:
 
 1. Write the latest version Raspberry Pi OS Lite/ Raspberry Pi OS Desktop on a SD card. If you use the **Raspberry Pi Imager** make sure to enable ssh and choose username/password in the settings.
 2. Access your device using ssh.
-3. Install NodeJS. Install [latest LTS](https://nodejs.org/en/), when I write this that version is 16.15.1.
+3. Install NodeJS. Install [latest LTS](https://nodejs.org/en/), when I write this that version is 20.
 ~~~
-curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
 sudo apt install nodejs
 ~~~
 4. Install ADB and Chromedriver.
@@ -191,8 +190,8 @@ sudo apt-get install chromium-chromedriver adb -y
 ~~~
 5. Install video and visual metrics dependencies.
 ~~~
-sudo apt-get update && sudo apt-get install -y imagemagick ffmpeg
-python -m pip install pyssim OpenCV-Python Numpy scipy
+sudo apt-get update && sudo apt-get install -y ffmpeg
+python -m pip install pyssim OpenCV-Python Numpy scipy --break-system-packages
 ~~~
 6. Follow [the instructions from npm how to install without sudo](https://github.com/sindresorhus/guides/blob/main/npm-global-without-sudo.md).
 7. And then install sitespeed.io.
@@ -205,36 +204,21 @@ npm install sitespeed.io --location=global
 
 9. (Optional) You need Geckodriver if you want to run tests using Firefox on your phone. The easiest way to get Geckodriver on your Raspberry Pi is to build it on that Pi. You do that by cloning the Geckodriver repo and build the version you want. Checkout how it's done at [https://github.com/jamesmortensen/geckodriver-arm-binaries](https://github.com/jamesmortensen/geckodriver-arm-binaries) and adapt it to your Raspberry.
 
-10. (Optional) If you are using Raspberry Pi OS Desktop you can install scrcpy and vnc. Here's instructions how to use it together with a Mac. First install scrcpy:
+10. (Optional) If you are using Raspberry Pi 5 OS Desktop you can install scrcpy. Here's instructions how to use it together with a Mac. First install scrcpy by building it on the Raspberry Pi following the instructions at [https://github.com/Genymobile/scrcpy/blob/master/doc/linux.md#latest-version](https://github.com/Genymobile/scrcpy/blob/master/doc/linux.md#latest-version).
+
+Then you need  to enable vnc server. Do it by running:
+
 ~~~bash
-sudo apt-get update && sudo apt-get install -y scrcpy
+sudo raspi-config 
 ~~~
-Then you need  to enable vnc server.
-~~~bash
-sudo systemctl enable vncserver-x11-serviced 
-~~~
-Then generate a password that you will use to connect to VNC from your computer
-~~~bash
-sudo vncpasswd -service
-~~~
-Then setup auth by edit the file */etc/vnc/config.d/common.custom*:
-~~~bash
-sudo nano /etc/vnc/config.d/common.custom
-~~~
-Add `Authentication=VncAuth` in the file and save and close.
-Restart the vnc server:
-~~~bash
-sudo systemctl restart vncserver-x11-serviced
-~~~
-As the last step, make sure to export your display number to the environment variable DISPLAY.
-~~~bash
-echo 'export DISPLAY=:0' >> ~/.profile
-~~~
+Choose option 3. and then 3. again (VNC).
+
 Reboot your device:
 ~~~bash
 sudo reboot
 ~~~
-On your Mac, open "Screen Sharing" and then use *raspberrypi.local* as the hostname and the password you set in the previous step. You will then be able to see the Raspberry PI screen on your Mac. Start **scrcpy** and you will see the phone screen too.
+
+On your Mac, use  "VNC Viewer" and then use *raspberrypi.local* as the hostname. You will then be able to see the Raspberry PI screen on your Mac. Start **scrcpy** and you will see the phone screen too.
 
 11. Plugin your phone, "Allow USB debugging" on your phone and run sitespeed.io:
 ~~~bash

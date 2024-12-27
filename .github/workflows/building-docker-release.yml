@@ -22,12 +22,20 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      -
-        name: Get the tag
-        id: tag
-        uses: dawidd6/action-get-tag@v1
-        with:
-          strip_v: true
+      - name: Extract version
+        id: extract_version
+        run: |
+            VERSION_TAG=${GITHUB_REF#refs/tags/}
+            echo "Git tag: $VERSION_TAG"
+  
+            VERSION=${VERSION_TAG#v}
+            echo "Full version without 'v': $VERSION"
+  
+            MAJOR_VERSION=${VERSION%%.*}
+            echo "Major version: $MAJOR_VERSION"
+  
+            echo "SITESPEED_VERSION=$VERSION" >> $GITHUB_OUTPUT
+            echo "SITESPEED_MAJOR_VERSION=$MAJOR_VERSION" >> $GITHUB_OUTPUT
       -
         name: Build and push sitespeed.io
         uses: docker/build-push-action@v5
@@ -36,7 +44,10 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           provenance: false
-          tags: sitespeedio/sitespeed.io:${{steps.tag.outputs.tag}},sitespeedio/sitespeed.io:latest
+          tags: |
+            sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_VERSION }}
+            sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_MAJOR_VERSION }}
+            sitespeedio/sitespeed.io:latest
       -
         name: Build and push sitespeed.io+1
         uses: docker/build-push-action@v5
@@ -44,21 +55,12 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           file: ./docker/Dockerfile-plus1
-          build-args: version=${{steps.tag.outputs.tag}} 
+          build-args: version=${{ steps.extract_version.outputs.SITESPEED_VERSION }}
           push: true
           provenance: false
-          tags: sitespeedio/sitespeed.io:${{steps.tag.outputs.tag}}-plus1
-      -
-        name: Build and push sitespeed.io+wpt
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          platforms: linux/amd64,linux/arm64
-          file: ./docker/Dockerfile-webpagetest
-          build-args: version=${{steps.tag.outputs.tag}} 
-          push: true
-          provenance: false
-          tags: sitespeedio/sitespeed.io:${{steps.tag.outputs.tag}}-webpagetest
+          tags: | 
+            sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_VERSION }}-plus1
+            sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_MAJOR_VERSION }}-plus1
       -
         name: Build and push sitespeed.io-slim
         uses: docker/build-push-action@v5
@@ -66,7 +68,9 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           file: ./Dockerfile-slim
-          build-args: version=${{steps.tag.outputs.tag}} 
+          build-args: version=${{ steps.extract_version.outputs.SITESPEED_VERSION }}
           push: true
           provenance: false
-          tags: sitespeedio/sitespeed.io:${{steps.tag.outputs.tag}}-slim
+          tags: | 
+            sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_VERSION }}-slim
+            sitespeedio/sitespeed.io:${{ steps.extract_version.outputs.SITESPEED_MAJOR_VERSION }}-slim

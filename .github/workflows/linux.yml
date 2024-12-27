@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.head_commit.message, 'docs:') }}
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js
@@ -34,7 +35,7 @@ jobs:
       #with:
       #  firefox-version: '94.0'
     - name: Setup environment
-      run: docker-compose -f test/docker-compose.yml up -d
+      run: docker compose -f test/docker-compose.yml up -d
     - name: Browser versions
       run: |
         google-chrome --version
@@ -70,9 +71,9 @@ jobs:
     - name: Run test without a CLI
       run: xvfb-run node test/runWithoutCli.js
     - name: Run test with Influx 1.8
-      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ -n 1 --influxdb.host 127.0.0.1 --xvfb --logToFile
+      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ -n 1 --influxdb.host 127.0.0.1 --xvfb --logToFile --resultBaseUrl https://result.sitespeed.io --influxdb.annotationScreenshot=true
     - name: Run test with Influx 2.6.1
-      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ -n 1 --influxdb.host 127.0.0.1 --influxdb.port 8087 --influxdb.version 2 --influxdb.organisation sitespeed --influxdb.token sitespeed --xvfb
+      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ -n 1 --influxdb.host 127.0.0.1 --influxdb.port 8087 --influxdb.version 2 --influxdb.organisation sitespeed --influxdb.token sitespeed --xvfb --resultBaseUrl https://result.sitespeed.io --influxdb.annotationScreenshot=true
     - name: Run Chrome test with config
       run: node bin/sitespeed.js --config test/exampleConfig.json http://127.0.0.1:3001/simple/ --xvfb
     - name: Run Chrome test using compare plugin

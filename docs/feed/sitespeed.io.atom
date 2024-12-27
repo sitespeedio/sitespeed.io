@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2023-12-28T15:51:22.965Z</updated>
+    <updated>2024-12-23T21:32:10.840Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -17,16 +17,25 @@
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 31.0.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.0.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.0.1"/>
-        <updated>2023-12-28T00:00:00.000Z</updated>
+        <title type="html"><![CDATA[sitespeed.io 35.7.5]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.5</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.5"/>
+        <updated>2024-12-23T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
-<li>Hopefully removing &quot;rsd&quot; metrics in InfluxDB see <a href="https://github.com/sitespeedio/sitespeed.io/pull/4039">#4039</a>.</li>
+<li>Update to faststat 0.0.7 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4347">#4347</a>.</li>
 </ul>
  <ul>
-<li>Fix showing sustainable metrics in pages page <a href="https://github.com/sitespeedio/sitespeed.io/pull/4042">#4042</a>.</li>
+<li>Update dev dependencies <a href="https://github.com/sitespeedio/sitespeed.io/pull/4345">#4345</a>.</li>
+</ul>
+ <ul>
+<li>Let analysisstorer know about webpagereplay so that correct information is displayed <a href="https://github.com/sitespeedio/sitespeed.io/pull/4349">#4349</a>.</li>
+</ul>
+ <ul>
+<li>Pass on webpagereplay flag to browsertime <a href="https://github.com/sitespeedio/sitespeed.io/pull/4350">#4350</a>.</li>
+</ul>
+ <ul>
+<li>Update to Browsertime 23.5.0 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4351">#4351</a></li>
 </ul>
 ]]></summary>
         <author>
@@ -35,13 +44,13 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 31.0.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.0.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#31.0.0"/>
-        <updated>2023-12-22T00:00:00.000Z</updated>
+        <title type="html"><![CDATA[sitespeed.io 35.7.4]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.4</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.4"/>
+        <updated>2024-12-20T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
-<li>The new version of Browsertime also fix the bug in Firefox 121 on Mac so you can start it.</li>
+<li>Updated to Browsertime 23.4.5 that have a fix for visual metrics running videos from mobile <a href="https://github.com/sitespeedio/sitespeed.io/pull/4343">#4343</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -50,20 +59,71 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 30.11.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.11.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.11.0"/>
-        <updated>2023-12-21T00:00:00.000Z</updated>
+        <title type="html"><![CDATA[sitespeed.io 35.7.3]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.3</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.3"/>
+        <updated>2024-12-18T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Add validation for dataset lengths for the Wilcoxon test. Thank you <a href="https://github.com/Amerousful">Pavel Bairov</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4341">4341</a>.</li>
+</ul>
+ <ul>
+<li>Updated to Browsertime 23.4.4 that has a more robust check for gnirehtet configuration <a href="https://github.com/sitespeedio/sitespeed.io/pull/4342">#4342</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 35.7.2]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.2</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.2"/>
+        <updated>2024-12-14T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Added extra logs if the compare plugin fails when using Python so we easily can see the input parameters.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 35.7.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.1"/>
+        <updated>2024-12-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated to Browsertime 23.4.3 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4336">#4336</a>.</li>
+</ul>
+ <ul>
+<li>Make sure Firefox displays power consumption in mWH <a href="https://github.com/sitespeedio/sitespeed.io/pull/4334">#4334</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 35.7.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.0"/>
+        <updated>2024-11-30T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
-<li>Upgraded the Docker container to use Firefox 121 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4033">#4033</a>.</li>
-</ul>
- <ul>
-<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#1931---2023-12-18">Browsertime 19.3.0</a> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4031">#4031</a>.</li>
+<li>Firefox 133 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4327">#4327</a>.</li>
 </ul>
 <h3>Fixed</h3>
  <ul>
-<li>Moved functionality from co2 to sitespeed.io see <a href="https://github.com/sitespeedio/sitespeed.io/pull/4034">#4034</a>.</li>
+<li>Axe Core 4.10.2 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4328">#3328</a></li>
+</ul>
+ <ul>
+<li>Fix security warnings in the Docker container.</li>
 </ul>
 ]]></summary>
         <author>
@@ -72,67 +132,13 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 30.10.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.10.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.10.0"/>
-        <updated>2023-12-15T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Add isSignificant metric to send to Graphite when using the compare plugin. Will send 0 if there&#39;s no siginificant change, else send the Cliffs delta to know how large the change is <a href="https://github.com/sitespeedio/sitespeed.io/pull/4030">#4030</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 30.9.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.9.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.9.0"/>
-        <updated>2023-12-12T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Chrome and Edge 120 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4027">#4027</a>.</li>
-</ul>
- <ul>
-<li>Updated to Browsertime 19.2.0.</li>
-</ul>
- <ul>
-<li>For users of the +1 container Lighthouse has been upgraded to 11.4.0.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 30.8.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.8.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.8.0"/>
-        <updated>2023-12-07T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Use Cliffs delta to know the size of the significant change <a href="https://github.com/sitespeedio/sitespeed.io/pull/4024">#4024</a>.</li>
-</ul>
- <ul>
-<li>Show if the graph has a siginficant change or not in the compare plugin <a href="https://github.com/sitespeedio/sitespeed.io/pull/4025">#4025</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 30.7.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.7.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.7.1"/>
-        <updated>2023-12-07T00:00:00.000Z</updated>
+        <title type="html"><![CDATA[sitespeed.io 35.6.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.6.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.6.1"/>
+        <updated>2024-11-23T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
-<li>The old settings for MannWhitneyU tests where confusing. We compared the the baseline is less than the current tests. This PR switched so we instead look if the current tests are greater than the baseline. We also added some better explaining text on result page<a href="https://github.com/sitespeedio/sitespeed.io/pull/4023">#4023</a>.</li>
+<li>Make sure the compare plugin can handle if your run Firefox with CPU options <a href="https://github.com/sitespeedio/sitespeed.io/pull/4324">#4324</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -141,13 +147,16 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 30.7.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.7.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.7.0"/>
-        <updated>2023-11-30T00:00:00.000Z</updated>
+        <title type="html"><![CDATA[sitespeed.io 35.6.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.6.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.6.0"/>
+        <updated>2024-11-23T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
-<li>Show Axe individual issues on the page summary (not only on each individual run) <a href="https://github.com/sitespeedio/sitespeed.io/pull/4019">#4019</a>. Thank you <a href="https://github.com/shaqb">shaqb</a> for pointing that out. The total number of issues is also sent to Graphite under <em>statistics.axe.violationIssues</em>.</li>
+<li>Updated to Firefox 132 and Edge 131 in the Docketr container. The performance regression in Firefox 132 <a href="https://github.com/sitespeedio/browsertime/issues/2211">#2211</a> has been fixed.</li>
+</ul>
+ <ul>
+<li>Browsertime has been updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2341----2024-11-23">23.4.1</a>. There&#39;s a couple of notable additions:</li>
 </ul>
 ]]></summary>
         <author>
@@ -156,20 +165,13 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 30.6.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.6.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.6.0"/>
-        <updated>2023-11-29T00:00:00.000Z</updated>
+        <title type="html"><![CDATA[sitespeed.io 35.5.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.5.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.5.0"/>
+        <updated>2024-11-08T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
-<li>Make sure browser cpu benchmark is included in the baseline <a href="https://github.com/sitespeedio/sitespeed.io/pull/4015">#4015</a>.</li>
-</ul>
- <ul>
-<li>Fixed so baseline metrics is linked to graphs <a href="https://github.com/sitespeedio/sitespeed.io/pull/4016">#4016</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Fix decimals on Google Web Vitals in baseline <a href="https://github.com/sitespeedio/sitespeed.io/pull/4014">#4014</a>.</li>
+<li>Upgraded Chrome/Chromedriver to 131 (with a <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2330---2024-11-12">new Browsertime</a>) <a href="https://github.com/sitespeedio/sitespeed.io/pull/4316">#4316</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -178,13 +180,13 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 30.5.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.5.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#30.5.0"/>
-        <updated>2023-11-28T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
+        <title type="html"><![CDATA[sitespeed.io 35.4.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.4.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.4.1"/>
+        <updated>2024-11-08T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
-<li>The new compare plugin can now run without an id. The id will then be generated from the URL. If you don&#39;t give it an id, yoiu can only compare pages with the exact same URL <a href="https://github.com/sitespeedio/sitespeed.io/pull/4013">#4013</a>.</li>
+<li>It seems to be a <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1930110">problem</a> with Firefox 132 inside of Docker. Lets return to 131 for some time <a href="https://github.com/sitespeedio/sitespeed.io/pull/4313">#4313</a>.</li>
 </ul>
 ]]></summary>
         <author>

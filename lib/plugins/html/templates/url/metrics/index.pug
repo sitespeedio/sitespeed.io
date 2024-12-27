@@ -10,6 +10,7 @@ if browsertime
   - const custom = medianRun ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1].custom : pageInfo.data.browsertime.run.custom
   - const cdp = medianRun ? pageInfo.data.browsertime.pageSummary.cdp[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.cdp
   - const renderBlocking = medianRun ? pageInfo.data.browsertime.pageSummary.renderBlocking[medianRun.runIndex - 1] : pageInfo.data.browsertime.run.renderBlocking
+  - const loaf = medianRun ? pageInfo.data.browsertime.pageSummary.browserScripts[medianRun.runIndex - 1].pageinfo.loaf : pageInfo.data.browsertime.run.pageinfo.loaf 
 
   small 
     | | 
@@ -26,6 +27,9 @@ if browsertime
       | &nbsp;|&nbsp;
     if timings.interactionToNextPaint
       a(href='#interactionToNextPaint') Interaction To Next Paint
+      | &nbsp;|&nbsp;
+    if loaf
+      a(href='#longAnimationFrames') Long Aninimation Frames
       | &nbsp;|&nbsp;
     if timings.elementTimings && Object.keys(timings.elementTimings).length > 0
       a(href='#elementTimings') Element Timings
@@ -271,6 +275,7 @@ if browsertime
   include ./firstInput.pug
   include ./layoutShift.pug
   include ./inp.pug
+  include ./loaf.pug
   include ./elementTimings.pug
   include ./serverTimings.pug
 

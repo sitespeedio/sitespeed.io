@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>pagexray-release-feed</id>
     <title>pagexray release feed</title>
-    <updated>2023-08-31T11:40:50.961Z</updated>
+    <updated>2024-03-21T14:14:57.465Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
