@@ -1,0 +1,17 @@
+//
+// SORTABLE
+// ===============
+//
+
+table[data-sortable] th {
+  &[data-sorted="true"] {
+    color: #3a87ad;
+    background: #d9edf7;
+    border-bottom-color: #bce8f1;
+  }
+  &:not([data-sortable="false"]) {
+    cursor: pointer;
+    color: $color--black;
+    text-decoration: underline;
+  }
+}

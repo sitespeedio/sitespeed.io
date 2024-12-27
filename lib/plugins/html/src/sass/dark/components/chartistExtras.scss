@@ -1,0 +1,155 @@
+
+// chartist-plugin-tooltip
+.chartist-tooltip {
+  background: $color--blue;
+  color: white;
+}
+
+.chartist-tooltip:before {
+  border-top-color: $color--blue;
+}
+
+// chartist
+.ct-bar {
+ stroke-width: 16px;
+}
+
+.ct-series-a .ct-point, .ct-series-a .ct-line, .ct-series-a .ct-bar, .ct-series-a .ct-slice-donut {
+  stroke: #82b5fc;
+}
+
+.ct-series-a .ct-slice-pie, .ct-series-a .ct-slice-donut-solid, .ct-series-a .ct-area {
+  fill: #468847;
+}
+
+
+.ct-series-b .ct-point, .ct-series-b .ct-line, .ct-series-b .ct-bar, .ct-series-b .ct-slice-donut {
+  stroke: #b2ea94;
+}
+
+.ct-series-b .ct-slice-pie, .ct-series-b .ct-slice-donut-solid, .ct-series-b .ct-area {
+  fill: #c09853;
+}
+
+.ct-series-c .ct-point, .ct-series-c .ct-line, .ct-series-c .ct-bar, .ct-series-c .ct-slice-donut {
+  stroke: #fec584;
+}
+
+.ct-series-c .ct-slice-pie, .ct-series-c .ct-slice-donut-solid, .ct-series-c .ct-area {
+  fill: #b94a48;
+}
+
+.ct-series-d .ct-point, .ct-series-d .ct-line, .ct-series-d .ct-bar, .ct-series-d .ct-slice-donut {
+  stroke: #c49ae8;
+}
+
+.ct-series-d .ct-slice-pie, .ct-series-d .ct-slice-donut-solid, .ct-series-d .ct-area {
+  fill: #c49ae8;
+}
+
+.ct-series-e .ct-point, .ct-series-e .ct-line, .ct-series-e .ct-bar, .ct-series-e .ct-slice-donut {
+  stroke: #ff523e;
+}
+
+.ct-series-e .ct-slice-pie, .ct-series-e .ct-slice-donut-solid, .ct-series-e .ct-area {
+  fill: #ff523e;
+}
+
+.ct-series-f .ct-point, .ct-series-f .ct-line, .ct-series-f .ct-bar, .ct-series-f .ct-slice-donut {
+  stroke: #c4c4c4;
+}
+
+.ct-series-f .ct-slice-pie, .ct-series-f .ct-slice-donut-solid, .ct-series-f .ct-area {
+  fill: #c4c4c4;
+}
+
+.ct-series-g .ct-point, .ct-series-g .ct-line, .ct-series-g .ct-bar, .ct-series-g .ct-slice-donut {
+  stroke: #c4c4c4;
+}
+
+.ct-series-g .ct-slice-pie, .ct-series-g .ct-slice-donut-solid, .ct-series-g .ct-area {
+  fill: #c4c4c4;
+}
+
+.ct-series-h .ct-point, .ct-series-h .ct-line, .ct-series-h .ct-bar, .ct-series-h .ct-slice-donut {
+  stroke: #c4c4c4;
+}
+
+.ct-series-h .ct-slice-pie, .ct-series-h .ct-slice-donut-solid, .ct-series-h .ct-area {
+  fill: #c4c4c4;
+}
+
+.ct-series-i .ct-point, .ct-series-i .ct-line, .ct-series-i .ct-bar, .ct-series-i .ct-slice-donut {
+  stroke: #EAB839;
+}
+
+.ct-series-i .ct-slice-pie, .ct-series-i .ct-slice-donut-solid, .ct-series-i .ct-area {
+  fill: #EAB839;
+}
+
+.ct-chart {  
+  .ct-legend {      
+      position: relative;
+      z-index: 10;
+      list-style: none;
+      text-align: left;
+      line-height: 0.8;
+      font-size: 0.8em;
+
+      li {
+          padding-left: 23px;
+          margin-right: 10px;
+          margin-bottom: 3px;
+          cursor: pointer;
+
+          &:before {
+              width: 12px;
+              height: 12px;
+              position: absolute;
+              left: 0;
+              content: '';
+              border: 3px solid transparent;
+              border-radius: 2px;
+          }
+          .inactive:before {
+              background: transparent;
+          }
+
+          &:nth-child(1)::before{
+              background-color: #468847;
+          }    
+          
+          &:nth-child(2)::before{
+              background-color: #c09853;
+          }
+      
+          &:nth-child(3)::before{
+              background-color: #b94a48;
+          }
+      
+      }
+
+      .ct-legend-inside {
+          position: absolute;
+          top: 0;
+          right: 0;
+      }
+  }
+  g:not(.ct-grids):not(.ct-labels) g {
+      &:nth-child(1){
+          .ct-point,.ct-line {
+              stroke: #468847;        
+          }
+      }
+      &:nth-child(2){
+          .ct-point,.ct-line {
+              stroke: #c09853;      
+          }
+      }
+      &:nth-child(3){
+          .ct-point,.ct-line {
+              stroke: #b94a48;       
+          }
+      }
+  }
+}

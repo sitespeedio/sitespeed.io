@@ -24,6 +24,7 @@ let config;
 
 try {
   config = configPath ? JSON.parse(readFileSync(configPath)) : {};
+
 } catch (e) {
   if (e instanceof SyntaxError) {
     /* eslint no-console: off */
@@ -150,6 +151,7 @@ async function runBrowsertime() {
         ' to increase the level of detail.',
       type: 'count'
     })
+    .parserConfiguration({ 'camel-case-expansion': false, 'deep-merge-config': true  })
     .config(config);
 
   const defaultConfig = {

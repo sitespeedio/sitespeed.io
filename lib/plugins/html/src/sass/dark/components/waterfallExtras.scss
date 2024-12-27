@@ -1,0 +1,73 @@
+.water-fall-chart .type-firstpaint .line-holder {
+ stroke: #42f46e;
+ stroke-opacity: 1;
+ stroke-width: 3;
+}
+.water-fall-chart .type-firstvisualchange .line-holder {
+ stroke: #42f46e;
+ stroke-opacity: 1;
+ stroke-width: 3;
+}
+.water-fall-chart .type-visualcomplete85 .line-holder {
+ stroke: #ee7777;
+ stroke-opacity: 1;
+ stroke-width: 3;
+}
+.water-fall-chart .type-lastvisualchange .line-holder {
+ stroke: #ee42f4;
+ stroke-opacity: 1;
+ stroke-width: 3;
+}
+.water-fall-chart .type-onload .line-holder {
+ stroke: #9c99e5;
+ stroke-opacity: 1;
+ stroke-width: 3;
+}
+.water-fall-chart .type-oncontentload .line-holder {
+ stroke: #9842f4;
+ stroke-opacity: 1;
+ stroke-width: 3;
+}
+.water-fall-chart .type-dominteractivetime .line-holder {
+ stroke: #1842f4;
+ stroke-opacity: 1;
+ stroke-width: 2;
+}
+.water-fall-chart .type-domcontentloadedtime .line-holder {
+ stroke: #1212f4;
+ stroke-opacity: 1;
+ stroke-width: 2;
+}
+
+.water-fall-chart .type-lastcpulongtask .line-holder {
+    stroke: #f41229;
+    stroke-opacity: 1;
+    stroke-width: 3;
+}
+
+.water-fall-chart .type-largestcontentfulpaint .line-holder {
+    stroke: #c7f412;
+    stroke-opacity: 1;
+    stroke-width: 3;
+}
+
+.water-fall-chart {
+ font-size: 14px;
+}
+
+
+#page-selector {
+ display: none;
+ clear: both;
+ margin: 1em 0;
+}
+
+* {
+ box-sizing: border-box;
+}
+
+@media screen and (max-width: 400px) {
+ select {
+  max-width: 100%;
+ }
+}

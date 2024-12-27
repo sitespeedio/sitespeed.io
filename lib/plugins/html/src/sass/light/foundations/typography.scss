@@ -1,0 +1,108 @@
+//
+// TYPOGRAPHY
+// ===============
+//
+
+//
+// BASE STYLES
+//
+html {
+ font-size: $base--font-size;
+}
+
+body {
+ font-size: 1em;
+ line-height: $base--line-height;
+ font-weight: $base--font-weight;
+ font-family: $base--font-family;
+ color: $color--black;
+}
+
+//
+// HEADINGS
+//
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+ margin-top: 1rem;
+ margin-bottom: 2rem;
+ font-weight: 300;
+}
+
+h1 {
+ font-size: 3rem;
+ line-height: 1.2;
+}
+
+h2 {
+ font-size: 2.8rem;
+ line-height: 1.25;
+}
+
+h3 {
+ font-size: 2.6rem;
+ line-height: 1.3;
+}
+
+h4 {
+ font-size: 2.4rem;
+ line-height: 1.35;
+}
+
+h5 {
+ font-size: 1.8rem;
+ line-height: 1.5;
+}
+
+h6 {
+ font-size: 1.5rem;
+ line-height: 1.6;
+ letter-spacing: 0;
+}
+
+p {
+ margin-top: 0;
+}
+
+//
+// LINKS
+//
+
+a {
+ color: $color--blue;
+}
+
+a:hover {
+ color: darken($color--blue, 10%);
+}
+
+pre,
+blockquote,
+dl,
+p {
+ margin-bottom: 2.5rem;
+}
+
+//
+// PRE-FORMATTED TEXT / CODE BLOCKS
+//
+code {
+ padding: 0.2rem 0.5rem;
+ margin: 0 0.2rem;
+ font-size: 0.9rem;
+ white-space: nowrap;
+ background: darken($color--white, 2);
+ border: 1px solid $color--grey;
+ border-radius: 4px;
+}
+
+pre > code {
+ display: block;
+ padding: 1rem 1.5rem;
+ white-space: pre;
+ overflow: auto;
+}

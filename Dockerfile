@@ -1,4 +1,4 @@
-FROM sitespeedio/webbrowsers:chrome-121.0-firefox-122.0-edge-120.0
+FROM sitespeedio/webbrowsers:chrome-131.0-firefox-133.0-edge-131.0
 
 ARG TARGETPLATFORM=linux/amd64
 
@@ -10,7 +10,6 @@ COPY docker/webpagereplay/wpr_cert.pem /webpagereplay/certs/
 COPY docker/webpagereplay/wpr_key.pem /webpagereplay/certs/
 COPY docker/webpagereplay/deterministic.js /webpagereplay/scripts/deterministic.js
 COPY docker/webpagereplay/LICENSE /webpagereplay/
-
 
 RUN sudo apt-get update && sudo apt-get install libnss3-tools python2 \
     net-tools \
@@ -28,7 +27,8 @@ WORKDIR /usr/src/app
 
 COPY package.json /usr/src/app/
 COPY npm-shrinkwrap.json /usr/src/app/
-RUN npm install --production && npm cache clean --force
+COPY tools/postinstall.js /usr/src/app/tools/postinstall.js
+RUN DOWNLOAD_URL2GREEN=true npm install --production && npm cache clean --force
 COPY . /usr/src/app
 
 COPY docker/scripts/start.sh /start.sh

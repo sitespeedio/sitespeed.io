@@ -16,16 +16,14 @@ async function run() {
     });
 
     if (result.errors.length > 0) {
-      /* eslint-disable no-console */
       console.error(result.errors);
-      /* eslint-enable no-console */
+
       // eslint-disable-next-line unicorn/no-process-exit
       process.exit(1);
     }
   } catch (error) {
-    /* eslint-disable no-console */
     console.error(error);
-    /* eslint-enable no-console */
+
     // eslint-disable-next-line unicorn/no-process-exit
     process.exit(1);
   }

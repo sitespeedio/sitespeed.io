@@ -1,0 +1,57 @@
+.button {
+ display: inline-block;
+ height: 38px;
+ padding: 0 30px;
+ margin-bottom: 1rem;
+ color: $color--black;
+ text-align: center;
+ font-size: 80%;
+ font-weight: 600;
+ line-height: 38px;
+ letter-spacing: 0.1rem;
+ text-transform: uppercase;
+ text-decoration: none;
+ white-space: nowrap;
+ background-color: transparent;
+ border-radius: 4px;
+ border: 1px solid $color--grey;
+ cursor: pointer;
+
+ &:hover,
+ &:focus,
+ &:active {
+  color: $color--black;
+  border-color: darken($color--grey, 20%);
+  outline: 0;
+ }
+}
+
+.button--primary {
+ color: $color--white;
+ background-color: $color--blue;
+ border-color: $color--blue;
+
+ &:hover,
+ &:focus,
+ &:active {
+  color: $color--white;
+  background-color: darken($color--blue, 4%);
+  border-color: darken($color--blue, 4%);
+ }
+}
+
+.button-download {
+ color: $color--white;
+ background-color: #ec971f;
+ border-color: #eb9316;
+ padding: 0 10px;
+ margin-right: 1rem;
+
+ &:hover,
+ &:focus,
+ &:active {
+  color: $color--white;
+  background-color: darken(#ec971f, 4%);
+  border-color: darken(#eb9316, 4%);
+ }
+}

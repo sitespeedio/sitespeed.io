@@ -48,7 +48,7 @@ Requires additional software like FFmpeg and Python dependencies.
 Install on a fresh Apple Mac M1:
 
 1. Install Homebrew: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-2. Install latest NodeJS LTS (and npm). Either download it from [nodejs.org](https://nodejs.org/en/) or install using Homebrew:
+2. Install latest NodeJS LTS (and npm). Either download it from [nodejs.org](https://nodejs.org/en/) or install using Homebrew (if you install using Homebrew, make sure you follow the instructions and add NodeJS and npm to your PATH):
     `brew install node@20`
 3. Make sure you can install using *npm* without using sudo. Checkout [Sindre Sorhus guide](https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md).
 4. Install ffmpeg
@@ -103,7 +103,7 @@ You can also install everything manually to have more control. This is what's ne
     * `curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh`
     * `sudo bash nodesource_setup.sh`
     * `sudo apt install -y nodejs`
-2. Install imagemagick and ffmpeg `sudo apt-get update -y && sudo apt-get install -y imagemagick ffmpeg`
+2. Install ffmpeg `sudo apt-get update -y && sudo apt-get install -y ffmpeg`
 3. Install Python dependencies:
     * `sudo apt-get install -y  python-is-python3 python3-dev python3-pip`  
     * `python -m pip install pyssim OpenCV-Python Numpy scipy`
@@ -204,36 +204,21 @@ npm install sitespeed.io --location=global
 
 9. (Optional) You need Geckodriver if you want to run tests using Firefox on your phone. The easiest way to get Geckodriver on your Raspberry Pi is to build it on that Pi. You do that by cloning the Geckodriver repo and build the version you want. Checkout how it's done at [https://github.com/jamesmortensen/geckodriver-arm-binaries](https://github.com/jamesmortensen/geckodriver-arm-binaries) and adapt it to your Raspberry.
 
-10. (Optional) If you are using Raspberry Pi OS Desktop you can install scrcpy and vnc. Here's instructions how to use it together with a Mac. First install scrcpy:
+10. (Optional) If you are using Raspberry Pi 5 OS Desktop you can install scrcpy. Here's instructions how to use it together with a Mac. First install scrcpy by building it on the Raspberry Pi following the instructions at [https://github.com/Genymobile/scrcpy/blob/master/doc/linux.md#latest-version](https://github.com/Genymobile/scrcpy/blob/master/doc/linux.md#latest-version).
+
+Then you need  to enable vnc server. Do it by running:
+
 ~~~bash
-sudo apt-get update && sudo apt-get install -y scrcpy
+sudo raspi-config 
 ~~~
-Then you need  to enable vnc server.
-~~~bash
-sudo systemctl enable vncserver-x11-serviced 
-~~~
-Then generate a password that you will use to connect to VNC from your computer
-~~~bash
-sudo vncpasswd -service
-~~~
-Then setup auth by edit the file */etc/vnc/config.d/common.custom*:
-~~~bash
-sudo nano /etc/vnc/config.d/common.custom
-~~~
-Add `Authentication=VncAuth` in the file and save and close.
-Restart the vnc server:
-~~~bash
-sudo systemctl restart vncserver-x11-serviced
-~~~
-As the last step, make sure to export your display number to the environment variable DISPLAY.
-~~~bash
-echo 'export DISPLAY=:0' >> ~/.profile
-~~~
+Choose option 3. and then 3. again (VNC).
+
 Reboot your device:
 ~~~bash
 sudo reboot
 ~~~
-On your Mac, open "Screen Sharing" and then use *raspberrypi.local* as the hostname and the password you set in the previous step. You will then be able to see the Raspberry PI screen on your Mac. Start **scrcpy** and you will see the phone screen too.
+
+On your Mac, use  "VNC Viewer" and then use *raspberrypi.local* as the hostname. You will then be able to see the Raspberry PI screen on your Mac. Start **scrcpy** and you will see the phone screen too.
 
 11. Plugin your phone, "Allow USB debugging" on your phone and run sitespeed.io:
 ~~~bash

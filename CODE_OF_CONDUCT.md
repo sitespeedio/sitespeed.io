@@ -28,6 +28,13 @@ We encourage everyone to participate and are committed to building a community f
 Although this list cannot be exhaustive, we explicitly honor diversity in age, gender, gender identity or expression, culture, ethnicity, language, national origin, political beliefs, profession, race, religion, sexual orientation, socioeconomic status, and technical ability. We will not tolerate discrimination based on any of the protected
 characteristics above, including participants with disabilities.
 
+### No Unsolicited Advertising or Job Postings
+We strive to maintain a collaborative and focused community. As such, advertising for companies/products or posting job advertisements without prior approval is strictly prohibited.
+
+If you engage in unsolicited advertising or recruitment activities, your account will be deleted without warning.
+
+If you're unsure whether your content falls under this policy, please reach out to an admin before posting.
+
 ### Reporting Issues
 
 If you experience or witness unacceptable behavior—or have any other concerns—please report it by contacting us via [peter@soulgalore.com)](mailto:peter@soulgalore.com). All reports will be handled with discretion. In your report please include:

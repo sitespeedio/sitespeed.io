@@ -1,5 +1,6 @@
-- const videoIndex = medianRun ? medianRun.runIndex : iteration;
+- let videoIndex = medianRun ? medianRun.runIndex : iteration;
 - const width = options.mobile || options.android || (options.safari && options.safari.useSimulator) ? '400' : '800'
+- videoIndex = options.browsertime.enableVideoRun ? '1' : videoIndex; 
 
 small
     || 
@@ -13,6 +14,11 @@ h3 Video
     video(controls, preload='none', width=width)
       source(src='data/video/' + videoIndex +'.mp4', type='video/mp4')
 
+if options.browsertime.enableVideoRun 
+  p Video from --enableVideoRun
+
 a#download-video
-- const videoPath = 'data/video/' + (iteration ? iteration : medianRun.runIndex ) +'.mp4'
+- let downloadable = iteration ? iteration : medianRun.runIndex;
+- downloadable = options.browsertime.enableVideoRun ? '1' : downloadable;
+- const videoPath = 'data/video/' + downloadable +'.mp4'
 a.button.button-download(href=videoPath, download=downloadName + '-video.mp4') Download video

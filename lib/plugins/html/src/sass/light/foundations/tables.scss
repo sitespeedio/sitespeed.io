@@ -1,0 +1,159 @@
+//
+// TABLES
+// ===============
+//
+
+table {
+  width: 100%;
+  margin-bottom: 2.5rem;
+  border-collapse: separate;
+  border-spacing: 1px;
+  background-color: $color--grey;
+}
+
+th,
+td {
+  padding: 4px 1rem;
+  vertical-align: top;
+  text-align: left;
+}
+
+th:first-child,
+td:first-child {
+  padding-left: 1rem;
+}
+
+th:last-child,
+td:last-child {
+  padding-right: 1rem;
+}
+
+tr {
+  &:nth-child(odd) {
+    background: darken($color--white, 2%);
+  }
+  &:nth-child(even) {
+    background: $color--white;
+  }
+  &.odd {
+    background: darken($color--white, 2%);
+  }
+  &.even {
+    background: $color--white;
+  }
+}
+
+th {
+  background: lighten($color--blue, 56%);
+}
+
+td.number, th.number {
+  text-align: right;
+}
+
+td.right {
+  text-align: right;
+}
+
+/* Hack for long URLs in tables, please help us with a better way to do this! */
+td.url {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+td.assetsurl {
+  max-width: 400px;
+}
+
+td.pagesurl {
+  max-width: 350px;
+}
+
+td.offendingurl {
+  max-width: 900px;
+}
+
+td.break {
+  word-break: break-all;
+}
+
+td.extraheader {
+  font-weight: bold;
+  background: whitesmoke;
+}
+
+/** Responsive tables, wrap them in a div
+* We use Chris Coyiers (old) hide the table
+* solution https://css-tricks.com/responsive-data-tables/
+*/
+@media only screen and (max-width: 800px) {
+  /* Force table to not be like tables anymore */
+  .responsive table,
+  .responsive thead,
+  .responsive tbody,
+  .responsive th,
+  .responsive td,
+  .responsive tr {
+    display: block;
+  }
+
+  /* Hide/show in coach offending */
+  .responsive tr.u-hideable {
+    display: none;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  .responsive thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .responsive tr {
+    border: 2px solid $color--grey;
+  }
+
+  .responsive td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid $color--grey;
+    position: relative;
+    padding-left: 50%;
+    white-space: normal;
+    text-align: left;
+    max-width: none;
+  }
+
+  .responsive td:before {
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    top: 6px;
+    left: 6px;
+    width: 30%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+  }
+
+  /*
+  Label the data
+  */
+  .responsive td:before {
+    content: attr(data-title);
+  }
+
+  .responsive td.url.offendingurl {
+    word-break: break-all;
+    padding-left: 2px;
+  }
+
+  .hidden-small {
+    display: none;
+  }
+}

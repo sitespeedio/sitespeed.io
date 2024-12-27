@@ -1,0 +1,69 @@
+/*
+Thanks Oliver Knoblich
+http://codepen.io/oknoblich/pen/tfjFl
+*/
+
+*,
+*:before,
+*:after {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+
+section {
+ display: block;
+ padding: 20px 0 0;
+ border-top: 1px solid #ddd;
+}
+
+#tabs {
+ a {
+  display: inline-block;
+  margin: 0 0 -1px;
+  padding: 15px 22px;
+  font-weight: 600;
+  text-align: center;
+  color: #bbb;
+  border: 1px solid transparent;
+  text-decoration: none;
+  text-transform: uppercase;
+ }
+
+ a:before {
+  //font-family: fontawesome;
+  font-weight: normal;
+  // margin-right: 10px;
+ }
+
+ a:hover {
+  color: #888;
+  cursor: pointer;
+ }
+
+ a:target:focus {
+  outline: none;
+ }
+
+ a[selected] {
+  color: #555;
+  border: 1px solid #ddd;
+  border-top: 2px solid $color--blue;
+  border-bottom: 1px solid #fff;
+ }
+}
+
+@media screen and (max-width: 650px) {
+ #tabs {
+  a:before {
+   margin: 0;
+   font-size: 18px;
+  }
+ }
+}
+
+@media screen and (max-width: 400px) {
+ #tabs a {
+  padding: 13px;
+ }
+}

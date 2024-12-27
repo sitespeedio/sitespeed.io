@@ -5,3 +5,4 @@
 !LICENSE
 !npm-shrinkwrap.json
 !docker
+!tools/postinstall.js

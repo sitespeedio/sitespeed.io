@@ -25,7 +25,9 @@ chrome
       --chrome.enableTraceScreenshots, --enableTraceScreenshots    Include screenshots in the trace log (enabling the trace category disabled-by-default-devtools.screenshot).  [boolean]
       --chrome.enableChromeDriverLog                               Log Chromedriver communication to a log file.  [boolean]
       --chrome.enableVerboseChromeDriverLog                        Log verboose Chromedriver communication to a log file.  [boolean]
+      --chrome.enableVideoAutoplay                                 Allow videos to autoplay.  [boolean]
       --chrome.timeline, --chrome.trace                            Collect the timeline data. Drag and drop the JSON in your Chrome detvools timeline panel or check out the CPU metrics in the Browsertime.json  [boolean]
+      --chrome.timelineExtras                                      If you collect the timeline using --chrome.timeline or --enableProfileRun this will add some extra timings and tracks to your timeline.  [boolean] [default: true]
       --chrome.timelineRecordingType, --chrome.traceRecordingType  Expose the start/stop commands for the chrome trace  [string] [choices: "pageload", "custom"] [default: "pageload"]
       --chrome.collectPerfLog                                      Collect performance log from Chrome with Page and Network events and save to disk.  [boolean]
       --chrome.collectNetLog                                       Collect network log from Chrome and save to disk.  [boolean]
@@ -42,6 +44,7 @@ chrome
 
 android
       --android.powerTesting, --androidPower                                                       Enables android power testing - charging must be disabled for this.(You have to disable charging yourself for this - it depends on the phone model).  [boolean]
+      --android.usbPowerTesting, --androidUsbPower                                                 Enables android power testing using usb-power-profiling. Assumes that a valid device is attached to the phone. See here for supported devices: https://github.com/fqueze/usb-power-profiling?tab=readme-ov-file#supported-devices  [boolean]
       --android.ignoreShutdownFailures, --ignoreShutdownFailures                                   If set, shutdown failures will be ignored on Android.  [boolean] [default: false]
       --android.rooted, --androidRooted                                                            If your phone is rooted you can use this to set it up following Mozillas best practice for stable metrics.  [boolean] [default: false]
       --android.pinCPUSpeed, --androidPinCPUSpeed                                                  Using a Samsung A51 or Moto G5 you can choose how to pin the CPU to better align the speed with your users. This only works on rooted phones and together with --android.rooted  [choices: "min", "middle", "max"] [default: "min"]
@@ -66,7 +69,6 @@ firefox
       --firefox.includeResponseBodies           Include response bodies in HAR  [choices: "none", "all", "html"] [default: "none"]
       --firefox.appconstants                    Include Firefox AppConstants information in the results  [boolean] [default: false]
       --firefox.acceptInsecureCerts             Accept insecure certs  [boolean]
-      --firefox.bidihar                         Use the new bidi HAR generator  [boolean] [default: false]
       --firefox.windowRecorder                  Use the internal compositor-based Firefox window recorder to emit PNG files for each frame that is a meaningful change.  The PNG output will further be merged into a variable frame rate video for analysis. Use this instead of ffmpeg to record a video (you still need the --video flag).  [boolean] [default: false]
       --firefox.memoryReport                    Measure firefox resident memory after each iteration.  [boolean] [default: false]
       --firefox.memoryReportParams.minizeFirst  Force a collection before dumping and measuring the memory report.  [boolean] [default: false]
@@ -81,7 +83,6 @@ firefox
       --firefox.collectMozLog                   Collect the MOZ HTTP log (by default). See --firefox.setMozLog if you need to specify the logs you wish to gather.  [boolean]
       --firefox.powerConsumption                Enable power consumption collection (in Wh). To get the consumption you also need to set firefox.geckoProfilerParams.features to include power.  [boolean] [default: false]
       --firefox.setMozLog                       Use in conjunction with firefox.collectMozLog to set MOZ_LOG to something specific. Without this, the HTTP logs will be collected by default  [default: "timestamp,nsHttp:5,cache2:5,nsSocketTransport:5,nsHostResolver:5"]
-      --firefox.disableBrowsertimeExtension     Disable installing the browsertime extension.  [boolean]
       --firefox.noDefaultPrefs                  Prevents browsertime from setting its default preferences.  [boolean] [default: false]
       --firefox.disableSafeBrowsing             Disable safebrowsing.  [boolean] [default: true]
       --firefox.disableTrackingProtection       Disable Tracking Protection.  [boolean] [default: true]
@@ -170,12 +171,14 @@ debug
 Options:
       --cpu                                        Easy way to enable both chrome.timeline for Chrome and geckoProfile for Firefox  [boolean]
       --enableProfileRun                           Make one extra run that collects the profiling trace log (no other metrics is collected). For Chrome it will collect the timeline trace, for Firefox it will get the Geckoprofiler trace. This means you do not need to get the trace for all runs and can skip the overhead it produces.  [boolean]
+      --enableVideoRun                             Make one extra run that collects video and visual metrics. This means you can do your runs with --visualMetrics true --video false --enableVideoRun true to collect visual metrics from all runs and save a video from the profile/video run. If you run it together with --enableProfileRun it will also collect profiling trace.  [boolean]
       --video                                      Record a video and store the video. Set it to false to remove the video that is created by turning on visualMetrics. To remove fully turn off video recordings, make sure to set video and visualMetrics to false. Requires FFMpeg to be installed.  [boolean]
       --visualMetrics                              Collect Visual Metrics like First Visual Change, SpeedIndex, Perceptual Speed Index and Last Visual Change. Requires FFMpeg and Python dependencies  [boolean]
       --visualElements, --visuaElements            Collect Visual Metrics from elements. Works only with --visualMetrics turned on. By default you will get visual metrics from the largest image within the view port and the largest h1. You can also configure to pickup your own defined elements with --scriptInput.visualElements  [boolean]
       --visualMetricsPerceptual                    Collect Perceptual Speed Index when you run --visualMetrics.  [boolean]
       --visualMetricsContentful                    Collect Contentful Speed Index when you run --visualMetrics.  [boolean]
       --visualMetricsPortable                      Use the portable visual-metrics processing script (no ImageMagick dependencies).  [boolean] [default: true]
+      --visualMetricsKeyColor                      Collect Key Color frame metrics when you run --visualMetrics. Each --visualMetricsKeyColor supplied must have 8 arguments: key name, red channel (0-255) low and high, green channel (0-255) low and high, blue channel (0-255) low and high, fraction (0.0-1.0) of pixels that must match each channel.  [array]
       --scriptInput.visualElements                 Include specific elements in visual elements. Give the element a name and select it with document.body.querySelector. Use like this: --scriptInput.visualElements name:domSelector see https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors. Add multiple instances to measure multiple elements. Visual Metrics will use these elements and calculate when they are visible and fully rendered.
       --scriptInput.longTask, --minLongTaskLength  Set the minimum length of a task to be categorised as a CPU Long Task. It can never be smaller than 50. The value is in ms and only works in Chromium browsers at the moment.  [number] [default: 50]
   -b, --browser                                    Specify browser. Safari only works on OS X/iOS. Edge only work on OS that supports Edge.  [choices: "chrome", "firefox", "edge", "safari"] [default: "chrome"]
@@ -184,10 +187,10 @@ Options:
   -n, --iterations                                 Number of times to test the url (restarting the browser between each test)  [number] [default: 3]
       --prettyPrint                                Enable to print json/har with spaces and indentation. Larger files, but easier on the eye.  [boolean] [default: false]
       --delay                                      Delay between runs, in milliseconds  [number] [default: 0]
-  -r, --requestheader                              Request header that will be added to the request. Add multiple instances to add multiple request headers. Works for Firefox and Chrome. Use the following format key:value
-      --cookie                                     Cookie that will be added to the request. Add multiple instances to add multiple request cookies. Works for Firefox and Chrome. Use the following format cookieName=cookieValue
-      --injectJs                                   Inject JavaScript into the current page at document_start. Works for Firefox and Chrome. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
-      --block                                      Domain to block or URL or URL pattern to block. If you use Chrome you can also use --blockDomainsExcept (that is more performant). Works in Chrome/Edge. For Firefox you can only block domains.
+  -r, --requestheader                              Request header that will be added to the request. Add multiple instances to add multiple request headers. Works for Edge and Chrome. Use the following format key:value
+      --cookie                                     Cookie that will be added to the request. Add multiple instances to add multiple request cookies. Works for Firefox, Chrome and Edge. Use the following format cookieName=cookieValue
+      --injectJs                                   Inject JavaScript into the current page at document_start. Works for Firefox, Chrome and Edge. When injecting to Firefox make sure to wrap the code in a function!
+      --block                                      Domain to block or URL or URL pattern to block. If you use Chrome you can also use --blockDomainsExcept (that is more performant). Works in Chrome/Edge. For Firefox you block a URL if you start with http else you will block by setting a domain, like upload.wikimedia.org
       --percentiles                                The percentile values within the data browsertime will calculate and report. This argument uses Yargs arrays and you you to set them correctly it is recommended to use a configuraration file instead.  [array] [default: [0,10,90,99,100]]
       --decimals                                   The decimal points browsertime statistics round to.  [number] [default: 0]
       --iqr                                        Use IQR, or Inter Quartile Range filtering filters data based on the spread of the data. See  https://en.wikipedia.org/wiki/Interquartile_range. In some cases, IQR filtering may not filter out anything. This can happen if the acceptable range is wider than the bounds of your dataset.  [boolean] [default: false]
@@ -214,6 +217,7 @@ Options:
       --preURL, --warmLoad                         A URL that will be accessed first by the browser before the URL that you wanna analyze. Use it to fill the browser cache.
       --preURLDelay, --warmLoadDealy               Delay between preURL and the URL you want to test (in milliseconds)  [default: 1500]
       --userTimingAllowList                        All userTimings are captured by default this option takes a regex that will allow which userTimings to capture in the results.
+      --userTimingBlockList                        All userTimings are captured by default this option takes a regex that will block some usertimings in the results.
       --headless                                   Run the browser in headless mode. Works for Firefox and Chrome.  [boolean] [default: false]
       --extension                                  Path to a WebExtension to be installed in the browser. Note that --extension can be passed multiple times.
       --cjs                                        Load scripting files that ends with .js as common js. Default (false) loads files as esmodules.  [boolean] [default: false]
