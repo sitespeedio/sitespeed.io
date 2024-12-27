@@ -10,6 +10,7 @@ services:
       ports: 
        - "4443:4443"
       container_name: fake-gcs
+      command: ["-scheme", "http"]
     influxdb_v1.8:
       image: influxdb:1.8
       ports:
