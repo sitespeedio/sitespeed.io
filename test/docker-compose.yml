@@ -4,7 +4,12 @@ services:
       image: sitespeedio/graphite:1.1.5-12
       ports:
         - "2003:2003"
-        - "8080:80"  
+        - "8080:80" 
+    gcs:
+      image: fsouza/fake-gcs-server:1.50
+      ports: 
+       - "4443:4443"
+      container_name: fake-gcs
     influxdb_v1.8:
       image: influxdb:1.8
       ports:
