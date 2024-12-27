@@ -1,5 +1,4 @@
-import { existsSync, writeFileSync } from 'node:fs';
-import { mkdirSync } from 'node:fs';
+import { existsSync, writeFileSync, mkdirSync, rmSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 import path from 'node:path';
@@ -40,6 +39,24 @@ function downloadFile(url, destinationPath) {
   });
 }
 
+async function removeWebdriverManager() {
+  const binPath = path.join(
+    process.cwd(),
+    'node_modules',
+    'selenium-webdriver',
+    'bin'
+  );
+
+  try {
+    if (existsSync(binPath)) {
+      await rmSync(binPath, { recursive: true, force: true });
+      console.log(`Removed Selenium WebDriver bin folder at: ${binPath}`);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 async function run() {
   if (DOWNLOAD_URL2GREEN === 'true') {
     if (existsSync(URL2GREEN_FILE_PATH)) {
@@ -56,6 +73,8 @@ async function run() {
   } else {
     console.log('Skipping URL2GREEN file download (DOWNLOAD_URL2GREEN=false).');
   }
+
+  return removeWebdriverManager();
 }
 
 await run();
