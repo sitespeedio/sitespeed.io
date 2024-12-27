@@ -5,7 +5,7 @@
     "sitespeed.io": "./bin/sitespeed.js",
     "sitespeed.io-wpr": "./bin/browsertimeWebPageReplay.js"
   },
-  "version": "35.7.4",
+  "version": "35.7.5",
   "description": "sitespeed.io is an open-source tool for comprehensive web performance analysis, enabling you to test, monitor, and optimize your website’s speed using real browsers in various environments.",
   "keywords": [
     "performance",
@@ -56,7 +56,8 @@
     "build:css": "npm run build:css-light && npm run build:css-dark",
     "build:css-light": "sass lib/plugins/html/src/sass/main-light.scss > lib/plugins/html/assets/css/index-light.css && cleancss -o lib/plugins/html/assets/css/index-light.min.css lib/plugins/html/assets/css/index-light.css && rm lib/plugins/html/assets/css/index-light.css ",
     "build:css-dark": "sass lib/plugins/html/src/sass/main-dark.scss > lib/plugins/html/assets/css/index-dark.css && cleancss -o lib/plugins/html/assets/css/index-dark.min.css lib/plugins/html/assets/css/index-dark.css && rm lib/plugins/html/assets/css/index-dark.css",
-    "generate:assets": "mkdir -p assets/$npm_package_version && cp -R lib/plugins/html/assets/ assets/$npm_package_version/"
+    "generate:assets": "mkdir -p assets/$npm_package_version && cp -R lib/plugins/html/assets/ assets/$npm_package_version/",
+    "postinstall": "node tools/postinstall.js"
   },
   "engines": {
     "node": ">=14.19.1"
@@ -82,10 +83,10 @@
   "dependencies": {
     "@google-cloud/storage": "6.9.5",
     "@influxdata/influxdb-client": "1.33.2",
-    "@tgwf/co2": "0.16.0",
+    "@tgwf/co2": "0.16.4",
     "@aws-sdk/client-s3": "3.609.0",
     "axe-core": "4.10.2",
-    "browsertime": "23.4.5",
+    "browsertime": "23.5.0",
     "coach-core": "8.0.2",
     "cli-color": "2.0.4",
     "concurrent-queue": "7.0.2",

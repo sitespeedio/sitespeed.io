@@ -16,7 +16,13 @@ twitterdescription:
 {:toc}
 
 ## Introduction
-The online test is the simplest way to deploy your own version of sitespeed.io. You can add tests through a web GUI or by using the sitespeed.io command line, which can pass the tests to your test server. This means that you can use your dedicated test machines both for monitoring and one off performance tests.
+The online test is the simplest way to deploy your own version of sitespeed.io. You can add tests through a web GUI or by using the sitespeed.io command line, which pass the tests to your test server. This means that you can use your dedicated test machines both for monitoring and one off performance tests.
+
+![Add your tests]({{site.baseurl}}/img/onlinestartscreen.png)
+{: .img-thumbnail}
+
+![Search]({{site.baseurl}}/img/onlinesearch.png)
+{: .img-thumbnail}
 
 This method is ideal for small, medium, and large companies and organizations that also wants a GUI for running performance tests.
 

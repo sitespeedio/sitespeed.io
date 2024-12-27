@@ -110,6 +110,16 @@ docker pull sitespeedio/sitespeed.io:X.Y.Z
 
 Then change your start script (or where you start your container) to use the new version number.
 
+You can also pin sitespeed.io to stable versions. Say for example that you want to pin your version to version 35. Then you can use the following version:
+
+```bash
+docker pull sitespeedio/sitespeed.io:35
+```
+
+Then when we continously release new 35 version, you can just run `docker pull sitespeedio/sitespeed.io:35` and you will get the latest released version of 35.
+
+
+
 ## Tags and version
 
 In the real world you should always specify the exact version (tag) of the Docker container to make sure you use the same version for every run. If you use the latest tag you will download newer version of the container as they become available, meaning you can have major changes between test runs (version upgrades, dependencies updates, browser versions, etc). So you should always specify a tag after the container name(X.Y.Z). This is important for sitespeed.io/browsertime/Graphite/Grafana containers. It's important for all containers you use. Never use the *latest* tag!
