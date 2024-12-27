@@ -1,5 +1,74 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 35.7.5 - 2024-12-23
+### Fixed
+* Update to faststat 0.0.7 [#4347](https://github.com/sitespeedio/sitespeed.io/pull/4347).
+* Update dev dependencies [#4345](https://github.com/sitespeedio/sitespeed.io/pull/4345).
+* Let analysisstorer know about webpagereplay so that correct information is displayed [#4349](https://github.com/sitespeedio/sitespeed.io/pull/4349).
+* Pass on webpagereplay flag to browsertime [#4350](https://github.com/sitespeedio/sitespeed.io/pull/4350).
+* Update to Browsertime 23.5.0 [#4351](https://github.com/sitespeedio/sitespeed.io/pull/4351) 
+
+## 35.7.4 - 2024-12-20
+### Fixed
+* Updated to Browsertime 23.4.5 that have a fix for visual metrics running videos from mobile [#4343](https://github.com/sitespeedio/sitespeed.io/pull/4343).
+
+## 35.7.3 - 2024-12-18
+### Fixed
+* Add validation for dataset lengths for the Wilcoxon test. Thank you [Pavel Bairov](https://github.com/Amerousful) for PR [4341](https://github.com/sitespeedio/sitespeed.io/pull/4341).
+* Updated to Browsertime 23.4.4 that has a more robust check for gnirehtet configuration [#4342](https://github.com/sitespeedio/sitespeed.io/pull/4342).
+
+## 35.7.2 - 2024-12-14
+### Fixed
+* Added extra logs if the compare plugin fails when using Python so we easily can see the input parameters.
+
+## 35.7.1 - 2024-12-11
+### Fixed
+* Updated to Browsertime 23.4.3 [#4336](https://github.com/sitespeedio/sitespeed.io/pull/4336).
+* Make sure Firefox displays power consumption in mWH [#4334](https://github.com/sitespeedio/sitespeed.io/pull/4334).
+
+## 35.7.0 - 2024-11-30
+### Added 
+* Firefox 133 in the Docker container [#4327](https://github.com/sitespeedio/sitespeed.io/pull/4327).
+
+### Fixed
+* Axe Core 4.10.2 [#3328](https://github.com/sitespeedio/sitespeed.io/pull/4328)
+* Fix security warnings in the Docker container.
+
+## 35.6.1 - 2024-11-23
+### Fixed
+* Make sure the compare plugin can handle if your run Firefox with CPU options [#4324](https://github.com/sitespeedio/sitespeed.io/pull/4324).
+
+## 35.6.0 - 2024-11-23
+### Added
+* Updated to Firefox 132 and Edge 131 in the Docketr container. The performance regression in Firefox 132 [#2211](https://github.com/sitespeedio/browsertime/issues/2211) has been fixed.
+* Browsertime has been updated to [23.4.1](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2341----2024-11-23). There's a couple of notable additions:
+  * If you use `--enableProfileRun` for Firefox the trace will include HTTP requests
+  * If you collect the Chrome timeline, we will automatically add some more timings and a custom timeline to devtools,inspired by [
+Andy Davies](https://github.com/andydavies) and the cool [https://github.com/andydavies/perf-timeline-to-devtools-profile](https://github.com/andydavies/perf-timeline-to-devtools-profile).
+
+
+## 35.5.0 - 2024-11-08
+### Added
+* Upgraded Chrome/Chromedriver to 131 (with a [new Browsertime](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2330---2024-11-12)) [#4316](https://github.com/sitespeedio/sitespeed.io/pull/4316).
+
+## 35.4.1 - 2024-11-08
+### Fixed
+* It seems to be a [problem](https://bugzilla.mozilla.org/show_bug.cgi?id=1930110) with Firefox 132 inside of Docker. Lets return to 131 for some time [#4313](https://github.com/sitespeedio/sitespeed.io/pull/4313).
+
+## 35.4.0 - 2024-11-08
+### Added
+* Firefox 132 [#4309](https://github.com/sitespeedio/sitespeed.io/pull/4309).
+
+## 35.3.1 - 2024-11-04
+### Fixed
+* Fix compare plugin when you run visual metrics contentful and perceptual metrics [#4308](https://github.com/sitespeedio/sitespeed.io/pull/4308).
+
+## 35.3.0 - 2024-10-20
+### Added
+* Update to Chrome 130 in the Docker container [#4299](https://github.com/sitespeedio/sitespeed.io/pull/4299). 
+* Updated to Browsertime [23.2.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2320---2024-10-20) that has a fix for installting Geckodriver on ARM containers [#4303](https://github.com/sitespeedio/sitespeed.io/pull/4303).
+* Updated Chromium from 107 to 130 in the ARM Docker container. This was possible by using the Chromium built by Microsoft (M$) in Playwright [#4304](https://github.com/sitespeedio/sitespeed.io/pull/4304).
+
 ## 35.2.0 - 2024-10-14
 ### Added
 From this release we release a new Docker container with the major version tag! This means that there will be a 35.2.0 and a 35 tag from this release. We follow [semantic versioning](https://semver.org) so you can safely stay and update the major version tag.

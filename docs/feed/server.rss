@@ -4,13 +4,91 @@
         <title>server release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of server</description>
-        <lastBuildDate>Tue, 24 Sep 2024 06:38:13 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 14 Dec 2024 12:48:06 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/server.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[server 1.0.1]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.1</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.1</guid>
+            <pubDate>Fri, 06 Dec 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fixed the release flow so the Docker containers get the correct tag.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[server 1.0.0]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.0</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.0</guid>
+            <pubDate>Fri, 06 Dec 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>A new Docker setup <a href="https://github.com/sitespeedio/onlinetest/pull/95">#95</a></li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[server 0.4.5]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.4.5</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.4.5</guid>
+            <pubDate>Tue, 24 Sep 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Express 5.0.0 <a href="https://github.com/sitespeedio/onlinetest/pull/86">#86</a>.</li>
+</ul>
+ <ul>
+<li>Update body parser <a href="https://github.com/sitespeedio/onlinetest/pull/88">#88</a>.</li>
+</ul>
+ <ul>
+<li>Bull 4.16.3 <a href="https://github.com/sitespeedio/onlinetest/pull/87">#87</a></li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[server 0.4.2]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.4.2</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.4.2</guid>
+            <pubDate>Mon, 09 Sep 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Device id was broken in the front end <a href="https://github.com/sitespeedio/onlinetest/pull/80">#80</a> and <a href="https://github.com/sitespeedio/onlinetest/pull/81">#81</a>.</li>
+</ul>
+ <ul>
+<li>The internal configuration was broken in the way that removing/adding testrunners failed removing correct configurations <a href="https://github.com/sitespeedio/onlinetest/pull/84">#84</a>. This fix also needs <a href="https://github.com/sitespeedio/onlinetest/pull/83">#83</a> in the testrunners.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[server 0.4.1]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.4.1</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.4.1</guid>
+            <pubDate>Fri, 23 Aug 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix bug so you can choose emulated mobile in GUI <a href="https://github.com/sitespeedio/onlinetest/pull/76">#76</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[server 0.4.0]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.4.0</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.4.0</guid>
+            <pubDate>Fri, 02 Aug 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Merged slug/label column in search result <a href="https://github.com/sitespeedio/onlinetest/pull/68">#68</a></li>
+</ul>
+ <ul>
+<li>Make it possible to choose container that runs the test, using the API <a href="https://github.com/sitespeedio/onlinetest/pull/69/">#69</a></li>
+</ul>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[server 0.3.2]]></title>
             <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.3.2</link>
@@ -76,68 +154,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Search: Fix for searching for test type <a href="https://github.com/sitespeedio/onlinetest/pull/42">#42</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[server 0.2.0]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.2.0</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.2.0</guid>
-            <pubDate>Thu, 27 Jun 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Search: Add a clear search field button and make location and test type linkable in search result <a href="https://github.com/sitespeedio/onlinetest/pull/39">#39</a>.</li>
-</ul>
- <ul>
-<li>Search: Show 100 search result as default and make it configurable <a href="https://github.com/sitespeedio/onlinetest/pull/38">#38</a>.</li>
-</ul>
- <ul>
-<li>Search: Add last hour search button <a href="https://github.com/sitespeedio/onlinetest/pull/40">#40</a></li>
-</ul>
- <ul>
-<li>Search: Make it confirable to see the slug column in search result <a href="https://github.com/sitespeedio/onlinetest/pull/41">#41</a></li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[server 0.1.0]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.1.0</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.1.0</guid>
-            <pubDate>Wed, 26 Jun 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Make removeOnComplete and removeOnFail in the queue configurable. If  you run a large installation with many many tests, you may want to increase the number of tests that will continue to live in the queue after the test has completed (removeOnComplete) <a href="https://github.com/sitespeedio/onlinetest/pull/36">#36</a>.</li>
-</ul>
- <ul>
-<li>Make attempts (number of tries if a test fail) configurable. By default there is one try <a href="https://github.com/sitespeedio/onlinetest/pull/37">#37</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[server 0.0.8]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.0.8</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.0.8</guid>
-            <pubDate>Wed, 26 Jun 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Update to PG 8.12.0 <a href="https://github.com/sitespeedio/onlinetest/pull/34">#34</a>.</li>
-</ul>
- <ul>
-<li>Update to Bull 4.14.0 <a href="https://github.com/sitespeedio/onlinetest/pull/32">#32</a></li>
-</ul>
- <ul>
-<li>Only keep 200 of latest completed job in the queue (make this configurable in the future) <a href="https://github.com/sitespeedio/onlinetest/pull/33">#33</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[server 0.0.7]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.0.7</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.0.7</guid>
-            <pubDate>Thu, 20 Jun 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Only link to the search result when we actually have a result <a href="https://github.com/sitespeedio/onlinetest/pull/26">#26</a>.</li>
 </ul>
 ]]></description>
         </item>

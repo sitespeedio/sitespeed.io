@@ -27,6 +27,7 @@ chrome
       --chrome.enableVerboseChromeDriverLog                        Log verboose Chromedriver communication to a log file.  [boolean]
       --chrome.enableVideoAutoplay                                 Allow videos to autoplay.  [boolean]
       --chrome.timeline, --chrome.trace                            Collect the timeline data. Drag and drop the JSON in your Chrome detvools timeline panel or check out the CPU metrics in the Browsertime.json  [boolean]
+      --chrome.timelineExtras                                      If you collect the timeline using --chrome.timeline or --enableProfileRun this will add some extra timings and tracks to your timeline.  [boolean] [default: true]
       --chrome.timelineRecordingType, --chrome.traceRecordingType  Expose the start/stop commands for the chrome trace  [string] [choices: "pageload", "custom"] [default: "pageload"]
       --chrome.collectPerfLog                                      Collect performance log from Chrome with Page and Network events and save to disk.  [boolean]
       --chrome.collectNetLog                                       Collect network log from Chrome and save to disk.  [boolean]
@@ -216,6 +217,7 @@ Options:
       --preURL, --warmLoad                         A URL that will be accessed first by the browser before the URL that you wanna analyze. Use it to fill the browser cache.
       --preURLDelay, --warmLoadDealy               Delay between preURL and the URL you want to test (in milliseconds)  [default: 1500]
       --userTimingAllowList                        All userTimings are captured by default this option takes a regex that will allow which userTimings to capture in the results.
+      --userTimingBlockList                        All userTimings are captured by default this option takes a regex that will block some usertimings in the results.
       --headless                                   Run the browser in headless mode. Works for Firefox and Chrome.  [boolean] [default: false]
       --extension                                  Path to a WebExtension to be installed in the browser. Note that --extension can be passed multiple times.
       --cjs                                        Load scripting files that ends with .js as common js. Default (false) loads files as esmodules.  [boolean] [default: false]

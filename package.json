@@ -5,7 +5,7 @@
     "sitespeed.io": "./bin/sitespeed.js",
     "sitespeed.io-wpr": "./bin/browsertimeWebPageReplay.js"
   },
-  "version": "35.2.0",
+  "version": "35.7.5",
   "description": "sitespeed.io is an open-source tool for comprehensive web performance analysis, enabling you to test, monitor, and optimize your website’s speed using real browsers in various environments.",
   "keywords": [
     "performance",
@@ -56,7 +56,8 @@
     "build:css": "npm run build:css-light && npm run build:css-dark",
     "build:css-light": "sass lib/plugins/html/src/sass/main-light.scss > lib/plugins/html/assets/css/index-light.css && cleancss -o lib/plugins/html/assets/css/index-light.min.css lib/plugins/html/assets/css/index-light.css && rm lib/plugins/html/assets/css/index-light.css ",
     "build:css-dark": "sass lib/plugins/html/src/sass/main-dark.scss > lib/plugins/html/assets/css/index-dark.css && cleancss -o lib/plugins/html/assets/css/index-dark.min.css lib/plugins/html/assets/css/index-dark.css && rm lib/plugins/html/assets/css/index-dark.css",
-    "generate:assets": "mkdir -p assets/$npm_package_version && cp -R lib/plugins/html/assets/ assets/$npm_package_version/"
+    "generate:assets": "mkdir -p assets/$npm_package_version && cp -R lib/plugins/html/assets/ assets/$npm_package_version/",
+    "postinstall": "node tools/postinstall.js"
   },
   "engines": {
     "node": ">=14.19.1"
@@ -65,10 +66,10 @@
     "ava": "6.1.3",
     "changelog-parser": "3.0.1",
     "clean-css-cli": "5.6.3",
-    "eslint": "9.6.0",
+    "eslint": "9.7.0",
     "eslint-config-prettier": "9.1.0",
-    "eslint-plugin-prettier": "5.1.3",
-    "eslint-plugin-unicorn": "54.0.0",
+    "eslint-plugin-prettier": "5.2.1",
+    "eslint-plugin-unicorn": "56.0.1",
     "feed": "4.2.2",
     "jsdoc": "4.0.3",
     "license-checker": "^25.0.0",
@@ -82,16 +83,16 @@
   "dependencies": {
     "@google-cloud/storage": "6.9.5",
     "@influxdata/influxdb-client": "1.33.2",
-    "@tgwf/co2": "0.16.0",
+    "@tgwf/co2": "0.16.4",
     "@aws-sdk/client-s3": "3.609.0",
-    "axe-core": "4.10.0",
-    "browsertime": "23.1.2",
+    "axe-core": "4.10.2",
+    "browsertime": "23.5.0",
     "coach-core": "8.0.2",
     "cli-color": "2.0.4",
     "concurrent-queue": "7.0.2",
     "dayjs": "1.11.11",
     "fast-crc32c": "2.0.0",
-    "fast-stats": "0.0.6",
+    "fast-stats": "0.0.7",
     "find-up": "7.0.0",
     "fs-extra": "11.2.0",
     "getos": "3.2.1",
@@ -126,5 +127,8 @@
     "text-table": "0.2.0",
     "uuid": "10.0.0",
     "yargs": "17.7.2"
+  },
+  "overrides": {
+    "minimist": "^1.2.6"
   }
 }
