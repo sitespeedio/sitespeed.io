@@ -8,9 +8,9 @@ services:
     gcs:
       image: fsouza/fake-gcs-server:1.50
       ports: 
-       - "4443:4443"
+       - "8081:8081"
       container_name: fake-gcs
-      command: ["-scheme", "http"]
+      command: ["-scheme", "http", "-port", "8081", "-external-url", "http://localhost:8081", "-backend", "memory"]
     influxdb_v1.8:
       image: influxdb:1.8
       ports:

@@ -40,7 +40,7 @@ jobs:
       run: |
         curl -X POST -H "Content-Type: application/json" \
             -d '{"name": "sitespeed"}' \
-            http://127.0.0.1:4443/storage/v1/b?project=sitespeed
+            http://127.0.0.1:8081/storage/v1/b?project=sitespeed
     - name: Browser versions
       run: |
         google-chrome --version
@@ -84,4 +84,4 @@ jobs:
     - name: Run Chrome test using compare plugin
       run: node bin/sitespeed.js --compare.id compare --compare.saveBaseline --compare.baselinePath test/ http://127.0.0.1:3001/simple/ --xvfb
     - name: Run Chrome test sending data to GCS
-      run: STORAGE_EMULATOR_HOST="http://127.0.0.1:4443" node bin/sitespeed.js http://127.0.0.1:3001/simple/ --xvfb -n 1 --gcs.bucketname sitespeed --gcs.apiEndpoint http://127.0.0.1:4443 --gcs.projectId sitespeed --gcs.key test/fake-gcs.json
+      run: STORAGE_EMULATOR_HOST="http://127.0.0.1:4443" node bin/sitespeed.js http://127.0.0.1:3001/simple/ --xvfb -n 1 --gcs.bucketname sitespeed --gcs.apiEndpoint http://127.0.0.1:8081 --gcs.projectId sitespeed
