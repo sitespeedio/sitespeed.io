@@ -38,7 +38,9 @@ jobs:
       run: docker compose -f test/docker-compose.yml up -d
     - name: Create test bucket
       run: |
-        curl http://0.0.0.0:4443/storage/v1/b {"kind":"storage#buckets","items":[{"kind":"storage#bucket","id":"sitespeed","name":"sitespeed"}],"prefixes":null}
+        curl -X POST -H "Content-Type: application/json" \
+            -d '{"name": "sitespeed"}' \
+            http://127.0.0.1:4443/storage/v1/b?project=sitespeed
     - name: Browser versions
       run: |
         google-chrome --version
