@@ -37,7 +37,10 @@ jobs:
     - name: Setup environment
       run: docker compose -f test/docker-compose.yml up -d
     - name: Create test bucket
-      run: docker exec fake-gcs /bin/fake-gcs-server create-bucket sitespeed
+      run: |
+        curl -X POST -H "Content-Type: application/json" \
+        http://127.0.0.1:4443/storage/v1/b?project=fake-gcs \
+        -d '{"name":"sitespeed"}'
     - name: Browser versions
       run: |
         google-chrome --version
