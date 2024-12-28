@@ -1,6 +1,6 @@
 services:
   minio:
-    image: minio/minio:RELEASE.2024-05-10T01-41-38Zs
+    image: minio/minio:RELEASE.2024-05-10T01-41-38Z
     volumes:
       - minio-data:/data
     ports:
