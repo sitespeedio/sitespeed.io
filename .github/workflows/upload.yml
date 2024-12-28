@@ -10,6 +10,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     if: ${{ !contains(github.event.head_commit.message, 'docs:') }}
+    services:
+      fake-gcs:
+        image: fsouza/fake-gcs-server:1.50
+        ports:
+          - 8081:8081
+        options: >
+          fake-gcs-server -scheme http -port 8081 -external-url http://localhost:8081 -backend memory
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js
@@ -31,7 +38,6 @@ jobs:
           docker run -d -p 2222:22 ssh-server-password
     - name: Setup GCS container
       run: |
-          docker run -d -p 8081:8081 souza/fake-gcs-server:1.50 --name fake-gcs -scheme http -port 8081 -external-url http://localhost:8081 -backend memory
           curl -X POST -H "Content-Type: application/json" \
             -d '{"name": "sitespeed"}' \
             http://127.0.0.1:8081/storage/v1/b?project=sitespeed
