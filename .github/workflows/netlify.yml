@@ -21,14 +21,12 @@ jobs:
             changes=$(git diff --name-only HEAD~1 HEAD | grep '^docs/' || true)
             if [ -z "$changes" ]; then
             echo "No changes in /docs/. Skipping deployment."
-            echo "deploy=false" >> $GITHUB_ENV
+            echo "deploy=false" >> $GITHUB_OUTPUT
             else
             echo "Changes detected in /docs/. Proceeding with deployment."
-            echo "deploy=true" >> $GITHUB_ENV
+            echo "deploy=true" >> $GITHUB_OUTPUT
             fi
           
-      
-
       - name: Deploy to Netlify
         if: steps.check_docs.outputs.deploy == 'true'
         env:
