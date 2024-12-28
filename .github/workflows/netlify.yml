@@ -33,3 +33,4 @@ jobs:
           NETLIFY_BUILD_HOOK_URL: ${{ secrets.NETLIFY_BUILD_HOOK_URL }}
         run: |
           curl -X POST -d {} -H "Content-Type: application/json" $NETLIFY_BUILD_HOOK_URL
+        continue-on-error: true
