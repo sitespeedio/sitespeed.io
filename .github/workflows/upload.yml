@@ -27,7 +27,7 @@ jobs:
         google-chrome --version
     - name: Setup environment
       run: |
-          docker build -t ssh-server-password test/docker --file Dockerfile.scp
+          docker build --load -t ssh-server-password --file test/docker/Dockerfile.scp .
           docker run -d -p 2222:22 ssh-server-password
     - name: Install local HTTP server
       run: npm install serve -g
