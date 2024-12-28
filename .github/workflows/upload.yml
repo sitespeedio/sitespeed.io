@@ -34,4 +34,4 @@ jobs:
     - name: Start local HTTP server
       run: (serve test/data/html/ -l 3001&)
     - name: Run Chrome test sending data using scp
-      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ --xvfb -n 1 --scp.host localhost --scp.port 2222 --scp.username username --scp.password password
+      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ --xvfb -n 1 --scp.host localhost --scp.port 2222 --scp.username username --scp.password password --scp.destinationPath /tmp/
