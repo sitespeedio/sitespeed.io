@@ -40,10 +40,9 @@ jobs:
           docker run -d -p 9000:9000 -p 9001:9001 -e MINIO_ROOT_USER=user -e MINIO_ROOT_PASSWORD=password minio/minio:RELEASE.2024-05-10T01-41-38Z server /data --console-address ":9001"
           docker run --rm --network host minio/mc:RELEASE.2024-10-08T09-37-26Z alias set myminio http://localhost:9000 user password
           docker run --rm --network host minio/mc:RELEASE.2024-10-08T09-37-26Z mb --region=motown myminio/mybucket  || echo "Bucket already exists"
-          until docker run --rm --network host minio/mc:RELEASE.2024-10-08T09-37-26Z ls myminio/mybucket > /dev/null 2>&1; do
-          echo "Waiting for bucket to be available...";
-          sleep 3;
-          done
+          docker run --rm --network host minio/mc:RELEASE.2024-10-08T09-37-26Z alias list
+          docker run --rm --network host minio/mc:RELEASE.2024-10-08T09-37-26Z ls myminio/testbucket
+          docker logs minio
           docker run --rm --network host minio/mc:RELEASE.2024-10-08T09-37-26Z anonymous set public myminio/mybucket 
           docker run --rm --network host minio/mc:RELEASE.2024-10-08T09-37-26Z ls myminio/mybucket 
     - name: Install local HTTP server
