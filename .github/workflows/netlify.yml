@@ -1,4 +1,4 @@
-name: Deploy Docs to Netlify
+name: Deploy documentation to Netlify
 
 on:
   push:
@@ -26,7 +26,7 @@ jobs:
             echo "deploy=true" >> $GITHUB_ENV
 
       - name: Deploy to Netlify
-        if: env.deploy == 'true'
+        if: steps.check_docs.outputs.deploy == 'true'
         env:
           NETLIFY_BUILD_HOOK_URL: ${{ secrets.NETLIFY_BUILD_HOOK_URL }}
         run: |
