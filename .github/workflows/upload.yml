@@ -1,0 +1,37 @@
+name: Test upload functionallity
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: ${{ !contains(github.event.head_commit.message, 'docs:') }}
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+    - name: Install sitespeed.io
+      run: npm ci
+    - name: Install Chrome
+      run: |
+        wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+        sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+        sudo apt-get update
+        sudo apt-get --only-upgrade install google-chrome-stable
+        google-chrome --version
+    - name: Setup environment
+      run: |
+          docker build -t ssh-server-password test/docker --file Dockerfile.scp
+          docker run -d -p 2222:22 ssh-server-password
+    - name: Install local HTTP server
+      run: npm install serve -g
+    - name: Start local HTTP server
+      run: (serve test/data/html/ -l 3001&)
+    - name: Run Chrome test sending data using scp
+      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ --xvfb -n 1 --scp.host localhost --scp.port 2222 --scp.username username --scp.password password
