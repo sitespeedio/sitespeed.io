@@ -19,7 +19,7 @@
         "axe-core": "4.10.2",
         "browsertime": "23.5.0",
         "cli-color": "2.0.4",
-        "coach-core": "8.1.0",
+        "coach-core": "8.1.1",
         "concurrent-queue": "7.0.2",
         "dayjs": "1.11.11",
         "fast-crc32c": "2.0.0",
@@ -4262,9 +4262,9 @@
       }
     },
     "node_modules/coach-core": {
-      "version": "8.1.0",
-      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-8.1.0.tgz",
-      "integrity": "sha512-wyjZfvqGBC7Dq1FfD60Bhe4PJX4D6OHVL8sPKf6MxMFKo1EOHZseivC2OGei3nklO1H4pKHZaxGfOjBUGRBJDA==",
+      "version": "8.1.1",
+      "resolved": "https://registry.npmjs.org/coach-core/-/coach-core-8.1.1.tgz",
+      "integrity": "sha512-bQ+kxlTLbw++d6wAlNTcAxmv4Z/fBCnc65lGK9umlRsgCL+oEC2m15LqKpeXU9PPZkptLVxOIOh3dvyEeOn+qQ==",
       "dependencies": {
         "filter-files": "0.4.0",
         "json-stable-stringify": "1.0.2",
