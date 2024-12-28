@@ -17,12 +17,11 @@ jobs:
       - name: Check if /docs/ has changes
         id: check_docs
         run: |
-          git fetch origin main
-          changes=$(git diff --name-only HEAD~1 HEAD | grep '^docs/')
-          if [ -z "$changes" ]; then
+            changes=$(git diff --name-only HEAD~1 HEAD | grep '^docs/' || true)
+            if [ -z "$changes" ]; then
             echo "No changes in /docs/. Skipping deployment."
             echo "deploy=false" >> $GITHUB_ENV
-          else
+            else
             echo "Changes detected in /docs/. Proceeding with deployment."
             echo "deploy=true" >> $GITHUB_ENV
 
