@@ -3,14 +3,17 @@
 
 a#technology
 h2 Technologies used to build the page.
-p Data collected using 
-    a(href='https://github.com/dochne/wappalyzer') Wappalyzer
-    | version #{wappalyserVersion}.
-    | Use 
-    code --browsertime.firefox.includeResponseBodies html
-    | or 
-    code --browsertime.chrome.includeResponseBodies html
-    | to help Wappalyser find more information about technologies used.
+p
+  | Data collected using 
+  a(href='https://github.com/dochne/wappalyzer') Wappalyzer
+  |  version #{wappalyserVersion}. With updated code from 
+  a(href='https://github.com/enthec/webappanalyzer') Webappanalyzer 
+  | 2024-12-27. Use 
+  code --browsertime.firefox.includeResponseBodies html
+  | or 
+  code --browsertime.chrome.includeResponseBodies html
+  | to help Wappalyzer find more information about technologies used.
+
 
 if advice.info.technology && advice.info.technology.length > 0
     table
