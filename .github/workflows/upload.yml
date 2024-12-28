@@ -35,6 +35,10 @@ jobs:
           curl -X POST -H "Content-Type: application/json" \
             -d '{"name": "sitespeed"}' \
             http://127.0.0.1:8081/storage/v1/b?project=sitespeed
+    - name: Setup minio/S3 container
+      run: |
+       docker run -d -p 9000:9000 -e MINIO_ROOT_USER=user -e MINIO_ROOT_PASSWORD=password minio/minio:RELEASE.2024-05-10T01-41-38Z server /data --console-address ":9001"
+       docker run minio/mc:RELEASE.2024-10-08T09-37-26Z /usr/bin/mc alias set sitespeedio http://minio:9000 user password && /usr/bin/mc mb --region=motown sitespeedio/sitespeedio
     - name: Install local HTTP server
       run: npm install serve -g
     - name: Start local HTTP server
@@ -43,3 +47,5 @@ jobs:
       run: bin/sitespeed.js http://127.0.0.1:3001/simple/ --xvfb -n 1 --scp.host localhost --scp.port 2222 --scp.username scpuser --scp.password password --scp.destinationPath /home/scpuser/
     - name: Run Chrome test sending data to GCS
       run: STORAGE_EMULATOR_HOST="http://localhost:8081" node bin/sitespeed.js http://127.0.0.1:3001/simple/ --xvfb -n 1 --gcs.bucketname sitespeed --gcs.projectId sitespeed
+    - name: Run Chrome test sending data to S3
+      run: node bin/sitespeed.js http://127.0.0.1:3001/simple/ --xvfb -n 1 --s3.endpoint http://127.0.0.1:9000 --s3.bucketname sitespeedio --s3.key user --s3.secret password --s3.region motown
