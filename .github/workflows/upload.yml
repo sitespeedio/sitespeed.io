@@ -16,7 +16,7 @@ jobs:
         ports:
           - 8081:8081
         options: >
-          fake-gcs-server:1.50 -scheme http -port 8081 -external-url http://localhost:8081 -backend memory
+          fsouza/fake-gcs-server:1.50 -scheme http -port 8081 -external-url http://localhost:8081 -backend memory
     steps:
     - uses: actions/checkout@v4
     - name: Use Node.js
