@@ -78,7 +78,7 @@ Using `-v "$(pwd):/sitespeed.io"` will map the current directory inside Docker a
 {: .note .note-info}
 
 
-## Running on Mac M1 ARM
+## Running on Mac MX ARM
 We have ARM container that will use almost latest version of Chromium (using Microsofts Playwright build) and a newer version of Firefox. 
 
 If you plan to run Lighthouse in the +1 container, that will not work. Lighthouse uses its own Chrome installation and at the moment Google do not provide a build that work on ARM Linux.
