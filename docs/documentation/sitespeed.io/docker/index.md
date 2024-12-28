@@ -122,7 +122,7 @@ Then when we continously release new 35 version, you can just run `docker pull s
 
 ## Tags and version
 
-In the real world you should always specify the exact version (tag) of the Docker container to make sure you use the same version for every run. If you use the latest tag you will download newer version of the container as they become available, meaning you can have major changes between test runs (version upgrades, dependencies updates, browser versions, etc). So you should always specify a tag after the container name(X.Y.Z). This is important for sitespeed.io/browsertime/Graphite/Grafana containers. It's important for all containers you use. Never use the *latest* tag!
+In the real world you should specify the version (tag) of the Docker container to make sure you use the same version for every run. If you use the latest tag you will download newer version of the container as they become available, meaning you can have major changes between test runs (version upgrades, dependencies updates, browser versions, etc). So you should always specify a tag after the container name (X.Y.Z) or (X) or (X.Y). This is important for sitespeed.io/browsertime/Graphite/Grafana containers. It's important for all containers you use. Never use the *latest* tag!
 
 ## Synchronise docker machines time with host
 
