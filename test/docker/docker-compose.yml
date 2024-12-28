@@ -5,12 +5,6 @@ services:
       ports:
         - "2003:2003"
         - "8080:80" 
-    gcs:
-      image: fsouza/fake-gcs-server:1.50
-      ports: 
-       - "8081:8081"
-      container_name: fake-gcs
-      command: ["-scheme", "http", "-port", "8081", "-external-url", "http://localhost:8081", "-backend", "memory"]
     influxdb_v1.8:
       image: influxdb:1.8
       ports:
