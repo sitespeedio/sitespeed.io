@@ -1,0 +1,32 @@
+services:
+  minio:
+    image: minio/minio:RELEASE.2024-05-10T01-41-38Z
+    volumes:
+      - minio-data:/data
+    ports:
+      - "9000:9000"
+    environment:
+      - MINIO_ROOT_USER=user
+      - MINIO_ROOT_PASSWORD=password
+    command: server /data --console-address ":9001"
+    networks:
+      - skynet
+  mc:
+    image: minio/mc:RELEASE.2024-10-08T09-37-26Z
+    depends_on:
+      - minio
+    networks:
+      - skynet
+    entrypoint: >
+      /bin/sh -c "
+      /usr/bin/mc alias set sitespeedio http://minio:9000 user password &&
+      (/usr/bin/mc mb --region=motown sitespeedio/sitespeedio || echo 'Bucket already exists') &&
+      /usr/bin/mc ilm rule add --expire-days 30 sitespeedio/sitespeedio &&
+      /usr/bin/mc anonymous set public sitespeedio/sitespeedio &&
+      /usr/bin/mc admin config set sitespeedio compression extensions=\".html,.css,.js\" &&
+      echo 'MinIO and lifecycle policy setup complete.'"
+volumes:
+  minio-data:
+networks:
+  skynet:
+    name: skynet
