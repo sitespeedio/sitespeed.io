@@ -1,4 +1,4 @@
-name: Test upload functionallity
+name: Test upload functionality
 on:
   push:
     branches:
@@ -25,7 +25,7 @@ jobs:
         sudo apt-get update
         sudo apt-get --only-upgrade install google-chrome-stable
         google-chrome --version
-    - name: Setup environment
+    - name: Setup SSH/SCP container
       run: |
           docker build --load -t ssh-server-password --file test/docker/Dockerfile.scp .
           docker run -d -p 2222:22 ssh-server-password
@@ -34,4 +34,4 @@ jobs:
     - name: Start local HTTP server
       run: (serve test/data/html/ -l 3001&)
     - name: Run Chrome test sending data using scp
-      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ --xvfb -n 1 --scp.host localhost --scp.port 2222 --scp.username username --scp.password password --scp.destinationPath /tmp/
+      run: bin/sitespeed.js http://127.0.0.1:3001/simple/ --xvfb -n 1 --scp.host localhost --scp.port 2222 --scp.username scpuser --scp.password password --scp.destinationPath /home/scpuser/
