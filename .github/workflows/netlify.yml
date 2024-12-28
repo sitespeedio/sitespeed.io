@@ -1,0 +1,33 @@
+name: Deploy documentation to Netlify
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-docs-changes:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Check if /docs/ has changes
+        id: check_docs
+        run: |
+          git fetch origin main
+          changes=$(git diff --name-only HEAD~1 HEAD | grep '^docs/')
+          if [ -z "$changes" ]; then
+            echo "No changes in /docs/. Skipping deployment."
+            echo "deploy=false" >> $GITHUB_ENV
+          else
+            echo "Changes detected in /docs/. Proceeding with deployment."
+            echo "deploy=true" >> $GITHUB_ENV
+
+      - name: Deploy to Netlify
+        if: steps.check_docs.outputs.deploy == 'true'
+        env:
+          NETLIFY_BUILD_HOOK_URL: ${{ secrets.NETLIFY_BUILD_HOOK_URL }}
+        run: |
+          curl -X POST -d {} -H "Content-Type: application/json" $NETLIFY_BUILD_HOOK_URL
