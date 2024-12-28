@@ -31,7 +31,7 @@ jobs:
           docker run -d -p 2222:22 ssh-server-password
     - name: Setup GCS container
       run: |
-          docker run -d -p 8081:8081 fsouza/fake-gcs-server:1.5 -scheme http -port 8081 -external-url http://localhost:8081 -backend memory
+          docker run -d -p 8081:8081 fsouza/fake-gcs-server:1.50 -scheme http -port 8081 -external-url http://localhost:8081 -backend memory
           curl -X POST -H "Content-Type: application/json" \
             -d '{"name": "sitespeed"}' \
             http://127.0.0.1:8081/storage/v1/b?project=sitespeed
