@@ -1,0 +1,17 @@
+FROM ubuntu:20.04
+
+# Install OpenSSH server
+RUN apt-get update && apt-get install -y openssh-server && mkdir /var/run/sshd
+
+# Create a user for SSH with password
+RUN useradd -m -s /bin/bash scpuser && echo "scpuser:password" | chpasswd
+
+# Configure SSH server to allow password authentication
+RUN sed -i 's/^#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config && \
+    sed -i 's/^#PermitRootLogin prohibit-password/PermitRootLogin no/' /etc/ssh/sshd_config
+
+# Expose SSH port
+EXPOSE 22
+
+# Start the SSH server
+CMD ["/usr/sbin/sshd", "-D"]

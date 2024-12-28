@@ -35,12 +35,7 @@ jobs:
       #with:
       #  firefox-version: '94.0'
     - name: Setup environment
-      run: docker compose -f test/docker-compose.yml up -d
-    - name: Create test bucket
-      run: |
-        curl -X POST -H "Content-Type: application/json" \
-            -d '{"name": "sitespeed"}' \
-            http://127.0.0.1:8081/storage/v1/b?project=sitespeed
+      run: docker compose -f test/docker/docker-compose.yml up -d
     - name: Browser versions
       run: |
         google-chrome --version
@@ -83,5 +78,3 @@ jobs:
       run: node bin/sitespeed.js --config test/exampleConfig.json http://127.0.0.1:3001/simple/ --xvfb
     - name: Run Chrome test using compare plugin
       run: node bin/sitespeed.js --compare.id compare --compare.saveBaseline --compare.baselinePath test/ http://127.0.0.1:3001/simple/ --xvfb
-    - name: Run Chrome test sending data to GCS
-      run: STORAGE_EMULATOR_HOST="http://localhost:8081" node bin/sitespeed.js http://127.0.0.1:3001/simple/ --xvfb -n 1 --gcs.bucketname sitespeed --gcs.projectId sitespeed
