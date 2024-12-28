@@ -125,7 +125,6 @@
     "@sitespeed.io/plugin": "0.0.6",
     "tape": "5.8.1",
     "text-table": "0.2.0",
-    "uuid": "10.0.0",
     "yargs": "17.7.2"
   },
   "overrides": {
