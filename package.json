@@ -116,7 +116,6 @@
     "os-name": "6.0.0",
     "p-limit": "6.1.0",
     "pug": "3.0.3",
-    "recursive-readdir": "2.2.3",
     "simplecrawler": "1.1.9",
     "@sitespeed.io/plugin": "0.0.6",
     "tape": "5.8.1",
