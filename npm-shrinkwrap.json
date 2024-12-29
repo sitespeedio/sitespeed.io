@@ -31,7 +31,6 @@
         "intel": "1.2.0",
         "jstransformer-markdown-it": "3.0.0",
         "junit-report-builder": "3.2.1",
-        "lodash.chunk": "4.2.0",
         "lodash.clonedeep": "4.5.0",
         "lodash.foreach": "4.5.0",
         "lodash.get": "4.4.2",
@@ -7799,11 +7798,6 @@
       "version": "4.17.21",
       "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz",
       "integrity": "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg=="
-    },
-    "node_modules/lodash.chunk": {
-      "version": "4.2.0",
-      "resolved": "https://registry.npmjs.org/lodash.chunk/-/lodash.chunk-4.2.0.tgz",
-      "integrity": "sha1-ZuXOH3btJ7QwPYxlEujRIW6BBrw="
     },
     "node_modules/lodash.clonedeep": {
       "version": "4.5.0",
