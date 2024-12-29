@@ -50,7 +50,6 @@
         "recursive-readdir": "2.2.3",
         "simplecrawler": "1.1.9",
         "tape": "5.8.1",
-        "text-table": "0.2.0",
         "yargs": "17.7.2"
       },
       "bin": {
@@ -10858,7 +10857,8 @@
     "node_modules/text-table": {
       "version": "0.2.0",
       "resolved": "https://registry.npmjs.org/text-table/-/text-table-0.2.0.tgz",
-      "integrity": "sha1-f17oI66AUgfACvLfSoTsP8+lcLQ="
+      "integrity": "sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=",
+      "dev": true
     },
     "node_modules/third-party-web": {
       "version": "0.26.2",
