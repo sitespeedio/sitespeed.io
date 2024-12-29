@@ -46,7 +46,6 @@
         "os-name": "6.0.0",
         "p-limit": "6.1.0",
         "pug": "3.0.3",
-        "recursive-readdir": "2.2.3",
         "simplecrawler": "1.1.9",
         "tape": "5.8.1",
         "yargs": "17.7.2"
@@ -9526,17 +9525,6 @@
       },
       "engines": {
         "node": ">=8.10.0"
-      }
-    },
-    "node_modules/recursive-readdir": {
-      "version": "2.2.3",
-      "resolved": "https://registry.npmjs.org/recursive-readdir/-/recursive-readdir-2.2.3.tgz",
-      "integrity": "sha512-8HrF5ZsXk5FAH9dgsx3BlUer73nIhuj+9OrQwEbLTPOBzGkL1lsFCR01am+v+0m2Cmbs1nP12hLDl5FA7EszKA==",
-      "dependencies": {
-        "minimatch": "^3.0.5"
-      },
-      "engines": {
-        "node": ">=6.0.0"
       }
     },
     "node_modules/regenerator-runtime": {
