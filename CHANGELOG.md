@@ -1,5 +1,13 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 36.0.0 - UNRELEASED
+
+### Breaking
+
+### Added
+
+### Fixed
+
 ## 35.7.5 - 2024-12-23
 ### Fixed
 * Update to faststat 0.0.7 [#4347](https://github.com/sitespeedio/sitespeed.io/pull/4347).
