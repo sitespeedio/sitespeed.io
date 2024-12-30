@@ -3,13 +3,32 @@
 ## 36.0.0 - UNRELEASED
 
 ### Breaking
+* Only download green2url data when you specifically ask for it [#4354](https://github.com/sitespeedio/sitespeed.io/pull/4354). The Docker container [#4356](https://github.com/sitespeedio/sitespeed.io/pull/4356) will still have the data but installing using npm you need to run `DOWNLOAD_URL2GREEN=true npm install sitespeed.io`. The green2url is also updated to use the latest availible data by late 2024.
 
 ### Added
+* Update to Coach-core 8.1.1 [#4363](https://github.com/sitespeedio/sitespeed.io/pull/4363)
+* Use the offical Slack plugin instead of node-slack [#4360](https://github.com/sitespeedio/sitespeed.io/pull/4360).
 
 ### Fixed
 * Replace dependencies with local code:
   * Replace lodash.forEach [#4378](https://github.com/sitespeedio/sitespeed.io/pull/4378).
   * Replace recursive-readdir [#4377](https://github.com/sitespeedio/sitespeed.io/pull/4377)
+  * Replace cli-color [#4374](https://github.com/sitespeedio/sitespeed.io/pull/4374)
+  * Replace text-table [#4373](https://github.com/sitespeedio/sitespeed.io/pull/4373).
+  * Replace lodash.chunk [#4372](https://github.com/sitespeedio/sitespeed.io/pull/4372)
+  * Replace lodash.flatten [#4371](https://github.com/sitespeedio/sitespeed.io/pull/4371).
+  * Replace fs-extra [#4370](https://github.com/sitespeedio/sitespeed.io/pull/4370)
+  * Replace uuid [#4369](https://github.com/sitespeedio/sitespeed.io/pull/4369)
+* Fix cli command: Use `--summaryDetail` (not summary-detail) [#4376](https://github.com/sitespeedio/sitespeed.io/pull/4376).
+* Remove connectivity output from text since it was broken [#4375](https://github.com/sitespeedio/sitespeed.io/pull/4375).
+* Upgrade to co2.js 0.16.4 [#4353](https://github.com/sitespeedio/sitespeed.io/pull/4353).
+* Make sure co2 data is only read once at startup [#4352](https://github.com/sitespeedio/sitespeed.io/pull/4352).
+* Making the slim container a little smaller [#4355](https://github.com/sitespeedio/sitespeed.io/pull/4355).
+* Ugrade to google-cloud/storage-7.14.0 [#4361](https://github.com/sitespeedio/sitespeed.io/pull/4361).
+* Upgrade to AWS client 3.717.0 [#4368](https://github.com/sitespeedio/sitespeed.io/pull/4368)
+
+### Tech
+* New GitHub actions that test uploading to S3, GCS and SCP.
 
 ## 35.7.5 - 2024-12-23
 ### Fixed
