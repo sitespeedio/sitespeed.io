@@ -7,6 +7,9 @@
 ### Added
 
 ### Fixed
+* Replace dependencies with local code:
+  * Replace lodash.forEach [#4378](https://github.com/sitespeedio/sitespeed.io/pull/4378).
+  * Replace recursive-readdir [#4377](https://github.com/sitespeedio/sitespeed.io/pull/4377)
 
 ## 35.7.5 - 2024-12-23
 ### Fixed
