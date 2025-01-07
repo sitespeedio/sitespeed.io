@@ -100,7 +100,6 @@
     "jstransformer-markdown-it": "3.0.0",
     "junit-report-builder": "3.2.1",
     "lodash.get": "4.4.2",
-    "lodash.isempty": "4.4.0",
     "lodash.merge": "4.6.2",
     "lodash.reduce": "4.6.0",
     "lodash.set": "4.3.2",
