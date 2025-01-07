@@ -23,7 +23,7 @@ const defaultContextFactory = (context = {}) => {
     {
       messageMaker,
       filterRegistry,
-      intel,
+      getLogger,
       statsHelpers,
       resultUrls: resultUrls('', {})
     },

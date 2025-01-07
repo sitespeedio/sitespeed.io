@@ -81,7 +81,7 @@ test(`registerPluginOptions  should not setup options with invalid values`, t =>
       super({ name: 'test', options, context, queue });
     }
   }
-  const plugin = new TestPlugin({}, { messageMaker, intel });
+  const plugin = new TestPlugin({}, { messageMaker, getLogger });
 
   const codeUnderTest = () => registerPluginOptions(mockYargs(), plugin);
 

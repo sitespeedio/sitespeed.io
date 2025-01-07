@@ -92,7 +92,7 @@ test(`Use graphite interface by default`, async t => {
   const { messageMaker } = await import('../lib/support/messageMaker.js');
   const filterRegistry = await import('../lib/support/filterRegistry.js');
   const statsHelpers = await import('../lib/support/statsHelpers.js');
-  const context = { messageMaker, filterRegistry, intel, statsHelpers };
+  const context = { messageMaker, filterRegistry, getLogger, statsHelpers };
   const plugin = new GraphitePlugin(options, context);
   plugin.open(context, options);
   t.is(plugin.sender.facility, 'Graphite');
