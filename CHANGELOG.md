@@ -2,7 +2,7 @@
 
 ## 36.0.0 - UNRELEASED
 
-36.0.0 will be released late Januart 2025.
+36.0.0 will be released late January 2025.
 
 ### Breaking
 * Only download green2url data when you specifically ask for it [#4354](https://github.com/sitespeedio/sitespeed.io/pull/4354). To install you need to run `DOWNLOAD_URL2GREEN=true npm install sitespeed.io`. The green2url is also updated to use the latest availible data by late 2024. This saves 80 mb in default downloading.
@@ -17,13 +17,18 @@
 ### Fixed
 * Replace dependencies with local code:
   * Replace lodash.forEach [#4378](https://github.com/sitespeedio/sitespeed.io/pull/4378).
-  * Replace recursive-readdir [#4377](https://github.com/sitespeedio/sitespeed.io/pull/4377)
-  * Replace cli-color [#4374](https://github.com/sitespeedio/sitespeed.io/pull/4374)
+  * Replace recursive-readdir [#4377](https://github.com/sitespeedio/sitespeed.io/pull/4377).
+  * Replace cli-color [#4374](https://github.com/sitespeedio/sitespeed.io/pull/4374).
   * Replace text-table [#4373](https://github.com/sitespeedio/sitespeed.io/pull/4373).
-  * Replace lodash.chunk [#4372](https://github.com/sitespeedio/sitespeed.io/pull/4372)
+  * Replace lodash.chunk [#4372](https://github.com/sitespeedio/sitespeed.io/pull/4372).
   * Replace lodash.flatten [#4371](https://github.com/sitespeedio/sitespeed.io/pull/4371).
-  * Replace fs-extra [#4370](https://github.com/sitespeedio/sitespeed.io/pull/4370)
-  * Replace uuid [#4369](https://github.com/sitespeedio/sitespeed.io/pull/4369)
+  * Replace fs-extra [#4370](https://github.com/sitespeedio/sitespeed.io/pull/4370.)
+  * Replace uuid [#4369](https://github.com/sitespeedio/sitespeed.io/pull/4369).
+  * Replace lodash.clonedeep [#4388](https://github.com/sitespeedio/sitespeed.io/pull/4388).
+  * Remove unused lodash.pick [#4387](https://github.com/sitespeedio/sitespeed.io/pull/4387).
+  * Replace lodash.pullAll and lodash.union [#4386](https://github.com/sitespeedio/sitespeed.io/pull/4386).
+  * Replace find-up [#4385](https://github.com/sitespeedio/sitespeed.io/pull/4385).
+  * Replace getos and osname [#4384](https://github.com/sitespeedio/sitespeed.io/pull/4384)
 * Fix cli command: Use `--summaryDetail` (not summary-detail) [#4376](https://github.com/sitespeedio/sitespeed.io/pull/4376).
 * Remove connectivity output from text since it was broken [#4375](https://github.com/sitespeedio/sitespeed.io/pull/4375).
 * Upgrade to co2.js 0.16.4 [#4353](https://github.com/sitespeedio/sitespeed.io/pull/4353).
@@ -31,6 +36,7 @@
 * Making the slim container a little smaller [#4355](https://github.com/sitespeedio/sitespeed.io/pull/4355).
 * Ugrade to google-cloud/storage-7.14.0 [#4361](https://github.com/sitespeedio/sitespeed.io/pull/4361).
 * Upgrade to AWS client 3.717.0 [#4368](https://github.com/sitespeedio/sitespeed.io/pull/4368)
+* Removed the webdriver manager in the Docker container [4390](https://github.com/sitespeedio/sitespeed.io/pull/4390). We don't use it but on MacOS Selenium still uses it to find the driver for Safari so we can only remove it in Docker.
 
 ### Tech
 * New GitHub actions that test uploading to S3, GCS and SCP.
