@@ -5,7 +5,7 @@
 36.0.0 will be released late Januart 2025.
 
 ### Breaking
-* Only download green2url data when you specifically ask for it [#4354](https://github.com/sitespeedio/sitespeed.io/pull/4354). The Docker container [#4356](https://github.com/sitespeedio/sitespeed.io/pull/4356) will still have the data but installing using npm you need to run `DOWNLOAD_URL2GREEN=true npm install sitespeed.io`. The green2url is also updated to use the latest availible data by late 2024.
+* Only download green2url data when you specifically ask for it [#4354](https://github.com/sitespeedio/sitespeed.io/pull/4354). To install you need to run `DOWNLOAD_URL2GREEN=true npm install sitespeed.io`. The green2url is also updated to use the latest availible data by late 2024. This saves 80 mb in default downloading.
 * Make sure you can't run with both `--cpu` and `--collectProfileRun` since that do not make any sense [#4298](https://github.com/sitespeedio/sitespeed.io/pull/4298)
 * Use correct name in Browsertime: userTimingAllowList instead of whitelist [#4346](https://github.com/sitespeedio/sitespeed.io/pull/4346).
 * Plugins need to update the plugin dependency to @sitespeed.io/plugin 1.0.0 or higher.
