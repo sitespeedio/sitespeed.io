@@ -28,8 +28,10 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app/
 COPY npm-shrinkwrap.json /usr/src/app/
 COPY tools/postinstall.js /usr/src/app/tools/postinstall.js
-RUN npm install --production && npm cache clean --force
+RUN npm install --production && npm cache clean --force 
+
 COPY . /usr/src/app
+RUN rm -fR /usr/src/app/node_modules/selenium-webdriver/bin
 
 COPY docker/scripts/start.sh /start.sh
 
