@@ -9,6 +9,7 @@
 * Make sure you can't run with both `--cpu` and `--collectProfileRun` since that do not make any sense [#4298](https://github.com/sitespeedio/sitespeed.io/pull/4298)
 * Use correct name in Browsertime: userTimingAllowList instead of whitelist [#4346](https://github.com/sitespeedio/sitespeed.io/pull/4346).
 * Plugins need to update the plugin dependency to @sitespeed.io/plugin 1.0.0 or higher.
+* Replace intel (log) with sitespeed.io/log [#4381](https://github.com/sitespeedio/sitespeed.io/pull/4381). This remove the logToFile option in the cli. Instead of use that option, pipe the output to the file you want.
 
 ### Added
 * Update to Coach-core 8.1.1 [#4363](https://github.com/sitespeedio/sitespeed.io/pull/4363)
