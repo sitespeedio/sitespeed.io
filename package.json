@@ -119,6 +119,7 @@
     "yargs": "17.7.2"
   },
   "overrides": {
-    "minimist": "^1.2.6"
+    "minimist": "^1.2.6",
+    "whatwg-url": "^14.0.0"
   }
 }
