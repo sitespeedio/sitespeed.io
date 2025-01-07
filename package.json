@@ -99,7 +99,6 @@
     "influx": "5.9.3",
     "jstransformer-markdown-it": "3.0.0",
     "junit-report-builder": "3.2.1",
-    "lodash.clonedeep": "4.5.0",
     "lodash.get": "4.4.2",
     "lodash.isempty": "4.4.0",
     "lodash.merge": "4.6.2",
