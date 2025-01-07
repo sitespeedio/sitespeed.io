@@ -283,7 +283,7 @@ In the [open](#opencontext-options) function you can add something like this:
 ~~~javascript
 // Register a logger for this plugin, a unique name so we can filter the log
 // And save the log for later
-this.log = context.intel.getLogger('sitespeedio.plugin.PLUGIN_NAME');
+this.log = context.getLogger('sitespeedio.plugin.PLUGIN_NAME');
 this.log.info('Plugin PLUGIN_NAME started');
 ~~~
 
