@@ -8,10 +8,10 @@ import get from 'lodash.get';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
-import { findUpSync }  from 'find-up';
 import { BrowsertimeEngine, configureLogging } from 'browsertime';
 
 import { getURLs } from '../lib/cli/util.js';
+import { findUpSync } from '../lib/support/fileUtil.js';
 
 import {config as browsertimeConfig} from '../lib/plugins/browsertime/index.js';
 
