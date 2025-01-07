@@ -13,7 +13,7 @@
         "@aws-sdk/client-s3": "3.717.0",
         "@google-cloud/storage": "7.14.0",
         "@influxdata/influxdb-client": "1.33.2",
-        "@sitespeed.io/log": "0.1.0",
+        "@sitespeed.io/log": "0.2.0",
         "@sitespeed.io/plugin": "1.0.0",
         "@slack/webhook": "7.0.4",
         "@tgwf/co2": "0.16.4",
@@ -2240,9 +2240,9 @@
       }
     },
     "node_modules/@sitespeed.io/log": {
-      "version": "0.1.0",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/log/-/log-0.1.0.tgz",
-      "integrity": "sha512-60mZVKmIm4lNRwBCS25ugtx2JmuxW+S2xog7ckU/PkdGHlXy8IRcQ2YMo+fV75a2yYfoepE2J4NZw6//Xi3jiA==",
+      "version": "0.2.0",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/log/-/log-0.2.0.tgz",
+      "integrity": "sha512-sGby9CpSw4ceTbWVOdCox64ZZmygAlN9XxjN+98QznQOa9fRhzxuw5ybWT0NnLX54Qv6SMLoYqJz5pqpRWp8Ew==",
       "license": "Apache-2.0",
       "engines": {
         "node": ">=20.0.0"
