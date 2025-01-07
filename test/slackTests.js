@@ -2,7 +2,7 @@ import path from 'node:path';
 import { readFileSync } from 'node:fs';
 
 import test from 'ava';
-import intel from 'intel';
+import { getLogger } from '@sitespeed.io/log';
 
 import { resultUrls } from '../lib/core/resultsStorage/resultUrls.js';
 import { messageMaker } from '../lib/support/messageMaker.js';

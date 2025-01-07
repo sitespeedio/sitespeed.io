@@ -1,6 +1,6 @@
 import test from 'ava';
 import dayjs from 'dayjs';
-import intel from 'intel';
+import { getLogger } from '@sitespeed.io/log';
 import { default as GraphitePlugin } from '../lib/plugins/graphite/index.js';
 
 import { GraphiteDataGenerator as DataGenerator } from '../lib/plugins/graphite/data-generator.js';

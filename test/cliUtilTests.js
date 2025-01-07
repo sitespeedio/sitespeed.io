@@ -4,7 +4,7 @@ import {
   pluginDefaults,
   registerPluginOptions
 } from '../lib/cli/util.js';
-import intel from 'intel';
+import { getLogger } from '@sitespeed.io/log';
 import { SitespeedioPlugin } from '@sitespeed.io/plugin';
 import { messageMaker } from '../lib/support/messageMaker.js';
 

@@ -13,7 +13,8 @@
         "@aws-sdk/client-s3": "3.717.0",
         "@google-cloud/storage": "7.14.0",
         "@influxdata/influxdb-client": "1.33.2",
-        "@sitespeed.io/plugin": "0.0.6",
+        "@sitespeed.io/log": "0.1.0",
+        "@sitespeed.io/plugin": "1.0.0",
         "@slack/webhook": "7.0.4",
         "@tgwf/co2": "0.16.4",
         "axe-core": "4.10.2",
@@ -27,7 +28,6 @@
         "getos": "3.2.1",
         "import-global": "1.1.1",
         "influx": "5.9.3",
-        "intel": "1.2.0",
         "jstransformer-markdown-it": "3.0.0",
         "junit-report-builder": "3.2.1",
         "lodash.clonedeep": "4.5.0",
@@ -2239,10 +2239,20 @@
         "node": ">=14.18"
       }
     },
+    "node_modules/@sitespeed.io/log": {
+      "version": "0.1.0",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/log/-/log-0.1.0.tgz",
+      "integrity": "sha512-60mZVKmIm4lNRwBCS25ugtx2JmuxW+S2xog7ckU/PkdGHlXy8IRcQ2YMo+fV75a2yYfoepE2J4NZw6//Xi3jiA==",
+      "license": "Apache-2.0",
+      "engines": {
+        "node": ">=20.0.0"
+      }
+    },
     "node_modules/@sitespeed.io/plugin": {
-      "version": "0.0.6",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/plugin/-/plugin-0.0.6.tgz",
-      "integrity": "sha512-LlH46uCTpW+M86JYdUzH5hD9yDj5dVMEi83MTBG/PfnxLAkWmOKqp9mh0zr1wfuyvAuOWxjwmqFKvivd1lRKLg=="
+      "version": "1.0.0",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/plugin/-/plugin-1.0.0.tgz",
+      "integrity": "sha512-IvwXe17ZlF2UK2Asl8KkfhrNnmDS/3aL/mZg1xPhNbLiGhvYu4Uh7bsbz3YkV8cnOxGK7HdR5khbjm/BjZ0wQg==",
+      "license": "MIT"
     },
     "node_modules/@sitespeed.io/throttle": {
       "version": "5.0.1",
