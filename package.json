@@ -91,7 +91,6 @@
     "axe-core": "4.10.2",
     "browsertime": "24.0.0-alpha.1",
     "coach-core": "8.1.1",
-    "concurrent-queue": "7.0.2",
     "dayjs": "1.11.11",
     "fast-crc32c": "2.0.0",
     "fast-stats": "0.0.7",
