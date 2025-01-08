@@ -1,9 +1,10 @@
-FROM sitespeedio/webbrowsers:chrome-131.0-firefox-133.0-edge-131.0
+FROM sitespeedio/webbrowsers:chrome-131.0-firefox-134.0-edge-131.0-b
 
 ARG TARGETPLATFORM=linux/amd64
 
 ENV SITESPEED_IO_BROWSERTIME__XVFB=true
 ENV SITESPEED_IO_BROWSERTIME__DOCKER=true
+ENV PYTHON=python3
 
 COPY docker/webpagereplay/$TARGETPLATFORM/wpr /usr/local/bin/
 COPY docker/webpagereplay/wpr_cert.pem /webpagereplay/certs/
