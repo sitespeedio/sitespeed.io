@@ -14,6 +14,7 @@
 ### Added
 * Update to Coach-core 8.1.1 [#4363](https://github.com/sitespeedio/sitespeed.io/pull/4363)
 * Use the offical Slack plugin instead of node-slack [#4360](https://github.com/sitespeedio/sitespeed.io/pull/4360).
+* Firefox 134 and NodeJS 22 in the Docker container [#4395](https://github.com/sitespeedio/sitespeed.io/pull/4395) and [#4396](https://github.com/sitespeedio/sitespeed.io/pull/4396).
 
 ### Fixed
 * Replace dependencies with local code:
@@ -29,7 +30,12 @@
   * Remove unused lodash.pick [#4387](https://github.com/sitespeedio/sitespeed.io/pull/4387).
   * Replace lodash.pullAll and lodash.union [#4386](https://github.com/sitespeedio/sitespeed.io/pull/4386).
   * Replace find-up [#4385](https://github.com/sitespeedio/sitespeed.io/pull/4385).
-  * Replace getos and osname [#4384](https://github.com/sitespeedio/sitespeed.io/pull/4384)
+  * Replace getos and osname [#4384](https://github.com/sitespeedio/sitespeed.io/pull/4384).
+  * Replace p-limit [#4394](https://github.com/sitespeedio/sitespeed.io/pull/4394).
+  * Replace concurrent-queue [#4393](https://github.com/sitespeedio/sitespeed.io/pull/4393).
+  * Replace lodash.isEmpty [#4391](https://github.com/sitespeedio/sitespeed.io/pull/4391).
+  * Remove unused jstransformer-markdown-it [#4392](https://github.com/sitespeedio/sitespeed.io/pull/4392)
+
 * Fix cli command: Use `--summaryDetail` (not summary-detail) [#4376](https://github.com/sitespeedio/sitespeed.io/pull/4376).
 * Remove connectivity output from text since it was broken [#4375](https://github.com/sitespeedio/sitespeed.io/pull/4375).
 * Upgrade to co2.js 0.16.4 [#4353](https://github.com/sitespeedio/sitespeed.io/pull/4353).
