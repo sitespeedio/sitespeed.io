@@ -31,7 +31,8 @@ COPY npm-shrinkwrap.json /usr/src/app/
 COPY tools/postinstall.js /usr/src/app/tools/postinstall.js
 RUN npm install --production && npm cache clean --force 
 
-COPY . /usr/src/app
+COPY ./bin/ /usr/src/app/bin/
+COPY ./lib/ /usr/src/app/lib/
 RUN rm -fR /usr/src/app/node_modules/selenium-webdriver/bin
 
 COPY docker/scripts/start.sh /start.sh
