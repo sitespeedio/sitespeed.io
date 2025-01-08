@@ -104,7 +104,6 @@
     "markdown": "0.5.0",
     "node-scp": "0.0.23",
     "ora": "8.0.1",
-    "p-limit": "6.1.0",
     "pug": "3.0.3",
     "simplecrawler": "1.1.9",
     "tape": "5.8.1",
