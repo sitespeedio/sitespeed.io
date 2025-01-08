@@ -4,6 +4,7 @@ ARG TARGETPLATFORM=linux/amd64
 
 ENV SITESPEED_IO_BROWSERTIME__XVFB=true
 ENV SITESPEED_IO_BROWSERTIME__DOCKER=true
+ENV PYTHON=python3
 
 COPY docker/webpagereplay/$TARGETPLATFORM/wpr /usr/local/bin/
 COPY docker/webpagereplay/wpr_cert.pem /webpagereplay/certs/
