@@ -4,6 +4,10 @@
 
 36.0.0 will be released late January 2025.
 
+The 36.0.0 release remove a lot of dependencies. Since we implemented sitespeed.io the first time, there are many things that are easy to do in modern NodeJS. Those things have now been implemented directly in sitespeed.io.
+
+This release contains a couple of breaking changes. Please read the breaking section before you upgrade!
+
 ### Breaking
 * Only download green2url data when you specifically ask for it [#4354](https://github.com/sitespeedio/sitespeed.io/pull/4354). To install you need to run `DOWNLOAD_URL2GREEN=true npm install sitespeed.io`. The green2url is also updated to use the latest availible data by late 2024. This saves 80 mb in default downloading.
 * Make sure you can't run with both `--cpu` and `--collectProfileRun` since that do not make any sense [#4298](https://github.com/sitespeedio/sitespeed.io/pull/4298)
