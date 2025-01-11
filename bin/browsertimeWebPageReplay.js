@@ -3,7 +3,6 @@
 import { readFileSync } from 'node:fs';
 
 import merge from 'lodash.merge';
-import set from 'lodash.set';
 import get from 'lodash.get';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
@@ -12,6 +11,7 @@ import { BrowsertimeEngine, configureLogging } from 'browsertime';
 
 import { getURLs } from '../lib/cli/util.js';
 import { findUpSync } from '../lib/support/fileUtil.js';
+import { setProperty } from '/lib/support/util.js';
 
 import {config as browsertimeConfig} from '../lib/plugins/browsertime/index.js';
 
@@ -176,7 +176,7 @@ async function runBrowsertime() {
   const btOptions = merge({}, parsed.argv.browsertime, defaultConfig);
    // hack to keep backward compability to --android
    if (parsed.argv.android[0] === true) {
-    set(btOptions, 'android.enabled', true);
+    setProperty(btOptions, 'android.enabled', true);
   }
   configureLogging(parsed.argv);
 
@@ -201,14 +201,14 @@ async function runBrowsertime() {
   if (parsed.argv.android) {
     if (parsed.argv.browser === 'chrome') {
       // Default to Chrome Android.
-      set(
+      setProperty(
         btOptions,
         'chrome.android.package',
         get(btOptions, 'chrome.android.package', 'com.android.chrome')
       );
     }
     else if (parsed.argv.browser === 'firefox') {
-      set(
+      setProperty(
         btOptions,
         'firefox.android.package',
         get(btOptions, 'firefox.android.package', 'org.mozilla.firefox')
