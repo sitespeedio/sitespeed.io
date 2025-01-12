@@ -18,7 +18,7 @@
         "@slack/webhook": "7.0.4",
         "@tgwf/co2": "0.16.4",
         "axe-core": "4.10.2",
-        "browsertime": "24.0.0-alpha.3",
+        "browsertime": "24.0.0-alpha.4",
         "coach-core": "8.1.1",
         "dayjs": "1.11.11",
         "fast-crc32c": "2.0.0",
@@ -3331,16 +3331,16 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "24.0.0-alpha.3",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-24.0.0-alpha.3.tgz",
-      "integrity": "sha512-F3sSiSe/99iJN0SJk/IGzzlQELTsKDzc73vy7ScriXB59AvRDxRW8/aiMZQ9YAG1DYSJFYbIy3xqe+JC5XkVSg==",
+      "version": "24.0.0-alpha.4",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-24.0.0-alpha.4.tgz",
+      "integrity": "sha512-HkkuttGIl6vUxAKHX6Jlz58cRWBeeOPaGRKsASWp6s2z7Z4YsXJOKSUQJXR/0wmwFSFRv6todjnNX/4bNgGgeA==",
       "license": "MIT",
       "dependencies": {
         "@devicefarmer/adbkit": "3.3.8",
         "@sitespeed.io/chromedriver": "131.0.6778-69",
         "@sitespeed.io/edgedriver": "131.0.2903-112",
         "@sitespeed.io/geckodriver": "0.35.0-1",
-        "@sitespeed.io/log": "0.2.3",
+        "@sitespeed.io/log": "0.2.4",
         "@sitespeed.io/throttle": "5.0.1",
         "@sitespeed.io/tracium": "0.3.3",
         "chrome-har": "1.0.1",
@@ -3348,9 +3348,7 @@
         "execa": "9.5.2",
         "fast-stats": "0.0.7",
         "ff-test-bidi-har-export": "0.0.17",
-        "lodash.get": "4.4.2",
         "lodash.merge": "4.6.2",
-        "lodash.set": "4.3.2",
         "selenium-webdriver": "4.27.0",
         "yargs": "17.7.2"
       },
@@ -3367,15 +3365,6 @@
         "@jimp/plugin-scale": "0.22.12",
         "@jimp/png": "0.22.12",
         "usb-power-profiling": "1.5.0"
-      }
-    },
-    "node_modules/browsertime/node_modules/@sitespeed.io/log": {
-      "version": "0.2.3",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/log/-/log-0.2.3.tgz",
-      "integrity": "sha512-m8uFubqYAbwM/cu0WmXt2w/mMZIr/WL0wGASLZgDZSJm/BvspumNfbqwYvHZvmKr8+EPt9N3ArFVG9vmB49DRg==",
-      "license": "Apache-2.0",
-      "engines": {
-        "node": ">=20.0.0"
       }
     },
     "node_modules/buffer": {
