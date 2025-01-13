@@ -13,7 +13,7 @@ def perform_test(test_type, baseline, current, **kwargs):
             return None, "Datasets are identical"
         else:
             return None, "No variability"
-    if (len(set(baseline)) != len(set(current))) and test_type == 'wilcoxon':
+    if (len(baseline) != len(current)) and test_type == 'wilcoxon':
         return None, "Datasets have different lengths"
 
     if test_type == 'wilcoxon':
