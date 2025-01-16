@@ -15,6 +15,9 @@ if [[ `which microsoft-edge` ]]; then
    microsoft-edge --version
 fi
 
+ARCH="$(uname -m)"
+echo "Architecture: $ARCH"
+
 BROWSERTIME=/usr/src/app/bin/browsertimeWebPageReplay.js
 SITESPEEDIO=/usr/src/app/bin/sitespeed.js
 export DBUS_SESSION_BUS_ADDRESS=/dev/null
