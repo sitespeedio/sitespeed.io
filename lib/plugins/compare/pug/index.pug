@@ -144,7 +144,7 @@ table
             td
               a(href=createGraphLink(groupName, metricName)) 
                 b #{groupName + '.' + metricName}
-            if values.statisticalTestU === "N/A" || values.statisticalTestU === "Datasets are identical" || values.statisticalTestU === "No variability"
+            if values.statisticalTestU === "N/A" || values.statisticalTestU === "Datasets are identical" || values.statisticalTestU === "No variability" || values.statisticalTestU === "Datasets have different lengths"
               td #{values.statisticalTestU}
             else
               td #{h.decimals(values.statisticalTestU)}
