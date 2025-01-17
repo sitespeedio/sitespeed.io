@@ -18,7 +18,8 @@ This release contains a couple of breaking changes. Please read the breaking sec
 ### Added
 * Update to Coach-core 8.1.1 [#4363](https://github.com/sitespeedio/sitespeed.io/pull/4363)
 * Use the offical Slack plugin instead of node-slack [#4360](https://github.com/sitespeedio/sitespeed.io/pull/4360).
-* Firefox 134 and NodeJS 22 in the Docker container [#4395](https://github.com/sitespeedio/sitespeed.io/pull/4395) and [#4396](https://github.com/sitespeedio/sitespeed.io/pull/4396).
+* Firefox 134, Chrome 132 and NodeJS 22 in the Docker container [#4395](https://github.com/sitespeedio/sitespeed.io/pull/4395), [#4396](https://github.com/sitespeedio/sitespeed.io/pull/4396) and [#4405](https://github.com/sitespeedio/sitespeed.io/pull/4405)
+* Let the Docker container output the CPU architecture for easier error reporting [#4404](https://github.com/sitespeedio/sitespeed.io/pull/4404).
 
 ### Fixed
 * Replace dependencies with local code:
@@ -48,6 +49,7 @@ This release contains a couple of breaking changes. Please read the breaking sec
 * Ugrade to google-cloud/storage-7.14.0 [#4361](https://github.com/sitespeedio/sitespeed.io/pull/4361).
 * Upgrade to AWS client 3.717.0 [#4368](https://github.com/sitespeedio/sitespeed.io/pull/4368)
 * Removed the webdriver manager in the Docker container [4390](https://github.com/sitespeedio/sitespeed.io/pull/4390). We don't use it but on MacOS Selenium still uses it to find the driver for Safari so we can only remove it in Docker.
+* Fix Wilcoxon NaN values when running the compare plugin [#4402](https://github.com/sitespeedio/sitespeed.io/pull/4402).
 
 ### Tech
 * New GitHub actions that test uploading to S3, GCS and SCP.
