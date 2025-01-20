@@ -1,10 +1,12 @@
 # sitespeed.io
 
-![Unit tests](https://github.com/sitespeedio/sitespeed.io/workflows/Unit%20tests/badge.svg?branch=main)
-![Linux browsers](https://github.com/sitespeedio/sitespeed.io/workflows/Linux%20browsers/badge.svg?branch=main)
-![Docker](https://github.com/sitespeedio/sitespeed.io/workflows/Docker/badge.svg?branch=main)
-![Windows Edge](https://github.com/sitespeedio/sitespeed.io/workflows/Windows%20Edge/badge.svg?branch=main)
-![OSX Safari](https://github.com/sitespeedio/sitespeed.io/workflows/OSX%20Safari/badge.svg?branch=main)
+[![Unit tests](https://github.com/sitespeedio/sitespeed.io/actions/workflows/unittests.yml/badge.svg)](https://github.com/sitespeedio/sitespeed.io/actions/workflows/unittests.yml)
+[![Linux browsers](https://github.com/sitespeedio/sitespeed.io/actions/workflows/linux.yml/badge.svg)](https://github.com/sitespeedio/sitespeed.io/actions/workflows/linux.yml)
+[![Docker](https://github.com/sitespeedio/sitespeed.io/actions/workflows/docker.yml/badge.svg)](https://github.com/sitespeedio/sitespeed.io/actions/workflows/docker.yml)
+[![Docker security scan](https://github.com/sitespeedio/sitespeed.io/actions/workflows/docker-scan.yml/badge.svg)](https://github.com/sitespeedio/sitespeed.io/actions/workflows/docker-scan.yml)
+[![Windows Edge](https://github.com/sitespeedio/sitespeed.io/actions/workflows/windows.yml/badge.svg)](https://github.com/sitespeedio/sitespeed.io/actions/workflows/windows.yml)
+[![OSX Safari](https://github.com/sitespeedio/sitespeed.io/actions/workflows/safari.yml/badge.svg)](https://github.com/sitespeedio/sitespeed.io/actions/workflows/safari.yml)
+[![Test upload functionality](https://github.com/sitespeedio/sitespeed.io/actions/workflows/upload.yml/badge.svg)](https://github.com/sitespeedio/sitespeed.io/actions/workflows/upload.yml)
 [![Downloads][downloads-image]][downloads-url]
 [![Docker][docker-image]][docker-url]
 [![Stars][stars-image]][stars-url]
