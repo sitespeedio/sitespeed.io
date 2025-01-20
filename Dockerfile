@@ -1,4 +1,4 @@
-FROM sitespeedio/webbrowsers:chrome-131.0-firefox-133.0-edge-131.0
+FROM sitespeedio/webbrowsers:chrome-132.0-firefox-134.0-edge-132.0
 
 ARG TARGETPLATFORM=linux/amd64
 
@@ -12,7 +12,7 @@ COPY docker/webpagereplay/wpr_key.pem /webpagereplay/certs/
 COPY docker/webpagereplay/deterministic.js /webpagereplay/scripts/deterministic.js
 COPY docker/webpagereplay/LICENSE /webpagereplay/
 
-RUN sudo apt-get update && sudo apt-get install libnss3-tools python2 \
+RUN sudo apt-get update && sudo apt-get install libnss3-tools \
     net-tools \
     build-essential \
     iproute2 -y && \
