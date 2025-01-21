@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <entry>
+        <title type="html"><![CDATA[sitespeed.io 36.0.2]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.0.2</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.0.2"/>
+        <updated>2025-01-21T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated Browsertime with a fix if the Jimp dependency is missing.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[sitespeed.io 36.0.1]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.0.1</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.0.1"/>
@@ -78,6 +93,21 @@
 </ul>
  <ul>
 <li>Fix Wilcoxon NaN values when running the compare plugin <a href="https://github.com/sitespeedio/sitespeed.io/pull/4402">#4402</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 24.0.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.0.1</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.0.1"/>
+        <updated>2025-01-21T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>If Jimp is missing when storing an image, log and write the file as PNG <a href="https://github.com/sitespeedio/browsertime/pull/2257">#2257</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -469,24 +499,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 35.6.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.6.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.6.0"/>
-        <updated>2024-11-23T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Firefox 132 and Edge 131 in the Docketr container. The performance regression in Firefox 132 <a href="https://github.com/sitespeedio/browsertime/issues/2211">#2211</a> has been fixed.</li>
-</ul>
- <ul>
-<li>Browsertime has been updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2341----2024-11-23">23.4.1</a>. There&#39;s a couple of notable additions:</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[browsertime 23.4.1]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.1</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.1"/>
@@ -537,21 +549,6 @@
 </ul>
  <ul>
 <li>Fix when running --enableProfileRun and get visual metrics. It used to generate an error log, this fixes that <a href="https://github.com/sitespeedio/browsertime/pull/2213">#2213</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 23.3.2]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.3.2</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.3.2"/>
-        <updated>2024-11-21T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Disable some calls back to home from Firefox <a href="https://github.com/sitespeedio/browsertime/pull/2212">#2212</a>.</li>
 </ul>
 ]]></summary>
         <author>
