@@ -1,19 +1,17 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 36.0.0 - UNRELEASED
-
-36.0.0 will be released late January 2025.
+## 36.0.0 - 2025-01-21
 
 The 36.0.0 release remove a lot of dependencies. Since we implemented sitespeed.io the first time, there are many things that are easy to do in modern NodeJS. Those things have now been implemented directly in sitespeed.io.
 
 This release contains a couple of breaking changes. Please read the breaking section before you upgrade!
 
 ### Breaking
-* Only download green2url data when you specifically ask for it [#4354](https://github.com/sitespeedio/sitespeed.io/pull/4354). To install you need to run `DOWNLOAD_URL2GREEN=true npm install sitespeed.io`. The green2url is also updated to use the latest availible data by late 2024. This saves 80 mb in default downloading.
-* Make sure you can't run with both `--cpu` and `--collectProfileRun` since that do not make any sense [#4298](https://github.com/sitespeedio/sitespeed.io/pull/4298)
-* Use correct name in Browsertime: userTimingAllowList instead of whitelist [#4346](https://github.com/sitespeedio/sitespeed.io/pull/4346).
-* Plugins need to update the plugin dependency to @sitespeed.io/plugin 1.0.0 or higher.
-* Replace intel (log) with sitespeed.io/log [#4381](https://github.com/sitespeedio/sitespeed.io/pull/4381). This remove the logToFile option in the cli. Instead of use that option, pipe the output to the file you want.
+* **Sustainability plugin**: Before when you installed sitespeed.io we automatically installed the green2URL data (mapping servername to green data). With this change you inly download green2url data when you specifically ask for it [#4354](https://github.com/sitespeedio/sitespeed.io/pull/4354). To install you need to run `DOWNLOAD_URL2GREEN=true npm install sitespeed.io`. The green2url is also updated to use the latest availible data by late 2024. This saves 80 mb in default downloading. You can also get the data directly from the green hosting API using `--sustainable.useGreenWebHostingAPI true`, that's the easiest way to make sure you use the current availble data.
+* **CPU**: Make sure you can't run with both `--cpu` and `--collectProfileRun` since that do not make any sense [#4298](https://github.com/sitespeedio/sitespeed.io/pull/4298). If you used to have that configuration, sitespeed.io will not exit with an error.
+* **Block User Timings**: Use correct name in Browsertime: `userTimingAllowList` instead of whitelist [#4346](https://github.com/sitespeedio/sitespeed.io/pull/4346). There was a missmtach bug on how to disable UserTimings, please make sure you use `userTimingAllowList`.
+* **Plugins**: If you created your own plugin for sitespeed.io you need to update the plugin dependency to @sitespeed.io/plugin 1.0.0 or higher.
+* **Log to file**: Replace intel (log) with sitespeed.io/log [#4381](https://github.com/sitespeedio/sitespeed.io/pull/4381). This remove the logToFile option in the cli. Instead of use that option, pipe the output to the file you want.
 
 ### Added
 * Update to Coach-core 8.1.1 [#4363](https://github.com/sitespeedio/sitespeed.io/pull/4363)
