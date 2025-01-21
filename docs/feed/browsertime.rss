@@ -4,7 +4,7 @@
         <title>browsertime release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of browsertime</description>
-        <lastBuildDate>Mon, 23 Dec 2024 21:17:07 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 20 Jan 2025 19:00:56 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,35 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/browsertime.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[browsertime 24.0.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.0.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.0.0</guid>
+            <pubDate>Mon, 20 Jan 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Edgedriver 132 <a href="https://github.com/sitespeedio/browsertime/pull/2254">#2236</a>.</li>
+</ul>
+ <ul>
+<li>Chromedriver 132 <a href="https://github.com/sitespeedio/browsertime/pull/2253">#2236</a>.</li>
+</ul>
+ <ul>
+<li>Chrome and Edge 132, Firefox 134 in the Docker container + NodeJS 22 <a href="https://github.com/sitespeedio/browsertime/pull/2255">#2255</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Replace dependencies with local implementation:</li>
+</ul>
+ <ul>
+<li>Fix Docker file ENV to follow the new standard <a href="https://github.com/sitespeedio/browsertime/pull/2239">#2239</a>.</li>
+</ul>
+<h3>Changed</h3>
+ <ul>
+<li>Moved usb-power-profiling to be an optional package <a href="https://github.com/sitespeedio/browsertime/pull/2249">#2249</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[browsertime 23.5.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.5.0</link>
@@ -33,7 +62,7 @@
 <li>Updated dev dependencies <a href="https://github.com/sitespeedio/browsertime/pull/2228">#2228</a>.</li>
 </ul>
  <ul>
-<li>Fix so the check for gnirehtet always use --android.gnirehtet to fix problens setting it in sitespeed.io <a href="https://github.com/sitespeedio/browsertime/pull/2229">#2229</a>.</li>
+<li>Fix so the check for gnirehtet always use --android.gnirehtet to fix problems setting it in sitespeed.io <a href="https://github.com/sitespeedio/browsertime/pull/2229">#2229</a>.</li>
 </ul>
  <ul>
 <li>Update to execa 9.5.2 <a href="https://github.com/sitespeedio/browsertime/pull/2231">#2231</a>.</li>
@@ -54,7 +83,7 @@
             <pubDate>Fri, 20 Dec 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
-<li>Change bottom margin from 10 to 14 pixel when recoring a video on mobile, se bug <a href="https://github.com/sitespeedio/browsertime/issues/2224">#2224</a> and PR <a href="https://github.com/sitespeedio/browsertime/pull/2225">#2225</a>.</li>
+<li>Change bottom margin from 10 to 14 pixel when recording a video on mobile, se bug <a href="https://github.com/sitespeedio/browsertime/issues/2224">#2224</a> and PR <a href="https://github.com/sitespeedio/browsertime/pull/2225">#2225</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
@@ -152,18 +181,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Disable some calls back to home from Firefox <a href="https://github.com/sitespeedio/browsertime/pull/2212">#2212</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 23.3.1]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.3.1</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.3.1</guid>
-            <pubDate>Wed, 13 Nov 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Disable security warning in Firefox 132 <a href="https://github.com/sitespeedio/browsertime/pull/2208">#2208</a> that fixes <a href="https://github.com/sitespeedio/browsertime/issues/2207">#2207</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>

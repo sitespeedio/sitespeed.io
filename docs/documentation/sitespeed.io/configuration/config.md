@@ -43,7 +43,7 @@ Browser
       --browsertime.videoParams.addTimer, --videoParams.addTimer                                    Add timer and metrics to the video  [boolean] [default: true]
       --browsertime.videoParams.convert, --videoParams.convert                                      Convert the original video to a viewable format (for most video players). Turn that off to make a faster run.  [boolean] [default: true]
       --browsertime.cpu, --cpu                                                                      Easy way to enable both chrome.timeline and CPU long tasks for Chrome and geckoProfile for Firefox  [boolean]
-      --browsertime.userTimingWhitelist, --userTimingWhitelist                                      This option takes a regex that will whitelist which userTimings to capture in the results. All userTimings are captured by default. T
+      --browsertime.userTimingAllowList, --userTimingAllowList                                      This option takes a regex that will whitelist which userTimings to capture in the results. All userTimings are captured by default.
       --axe.enable                                                                                  Run axe tests. Axe will run after all other metrics is collected and will add some extra time to each test.  [boolean]
   -r, --browsertime.requestheader, --requestheader                                                  Request header that will be added to the request. Add multiple instances to add multiple request headers. Use the following format key:value. Only works in Chrome, Firefox and Edge.
       --browsertime.cookie, --cookie                                                                Cookie that will be added to the request. Add multiple instances to add multiple cookies. Use the following format cookieName=cookieValue. Only works in Chrome and Firefox.
@@ -282,8 +282,8 @@ HTML
       --html.homeurl                        The URL for the logo in the result  [default: "https://www.sitespeed.io/"]
 
 Text
-      --summary         Show brief text summary to stdout  [boolean] [default: false]
-      --summary-detail  Show longer text summary to stdout  [boolean] [default: false]
+      --summary        Show brief text summary to stdout  [boolean] [default: false]
+      --summaryDetail  Show longer text summary to stdout  [boolean] [default: false]
 
 Sustainable
       --sustainable.enable                 Test if the web page is sustainable.  [boolean]
@@ -322,8 +322,8 @@ Options:
       --browsertime.xvfb, --xvfb                              Start xvfb before the browser is started  [boolean] [default: false]
       --browsertime.xvfbParams.display, --xvfbParams.display  The display used for xvfb  [default: 99]
       --browsertime.visualMetricsPortable                     Use the portable visual-metrics processing script (no ImageMagick dependencies).  [boolean] [default: true]
-      --browsertime.enableProfileRun, --enableProfileRun      Make one extra run that collects the profiling trace log (no other metrics is collected). For Chrome it will collect the timeline trace, for Firefox it will get the Geckoprofiler trace. This means you do not need to get the trace for all runs and can skip the overhead it produces.  [boolean]
-      --browsertime.enableVideoRun, --enableVideoRun          Make one extra run that collects video and visual metrics. This means you can do your runs with --visualMetrics true --video false --enableVideoRun true to collect visual metrics from all runs and save a video from the profile/video run. If you run it together with --enableProfileRun it will also collect profiling trace.  [boolean]
+      --browsertime.enableProfileRun, --enableProfileRun      Make one extra run that collects the profiling trace log (no other metrics is collected). For Chrome it will collect the timeline trace, for Firefox it will get the Geckoprofiler trace. This means you do not need to get the trace for all runs and can skip the overhead it produces. You should not run this together with --cpu since that will get a trace for every iteration.  [boolean]
+      --browsertime.enableVideoRun, --enableVideoRun          Make one extra run that collects video and visual metrics. This means you can do your runs with --visualMetrics true --video false --enableVideoRun true to collect visual metrics from all runs and save a video from the profile/video run. If you run it together with --enableProfileRun it will also collect profiling race.  [boolean]
       --browsertime.cjs, --cjs                                Load scripting files that ends with .js as common js. Default (false) loads files as esmodules.  [boolean] [default: false]
       --browsertime.tcpdump, --tcpdump                        Collect a tcpdump for each tested URL. The user that runs sitespeed.io should have sudo rights for tcpdump to work.  [boolean] [default: false]
       --browsertime.android, --android                        Short key to use Android. Will automatically use com.android.chrome for Chrome and stable Firefox. If you want to use another Chrome version, use --chrome.android.package  [boolean] [default: false]
@@ -342,7 +342,6 @@ Options:
       --urlAlias                                              Use an alias for the URL (if you feed URLs from a file you can instead have the alias in the file). You need to pass on the same amount of alias as URLs. The alias is used as the name of the URL on the HTML report and in Graphite/InfluxDB. Pass on multiple --urlAlias for multiple alias/URLs. This will override alias in a file.  [string]
       --groupAlias                                            Use an alias for the group/domain. You need to pass on the same amount of alias as URLs. The alias is used as the name of the group in Graphite/InfluxDB. Pass on multiple --groupAlias for multiple alias/groups. This do not work for scripting at the moment.  [string]
       --utc                                                   Use Coordinated Universal Time for timestamps  [boolean] [default: false]
-      --logToFile                                             Store the log for your run into a file in logs/sitespeed.io.log  [boolean] [default: false]
       --useHash                                               If your site uses # for URLs and # give you unique URLs you need to turn on useHash. By default is it turned off, meaning URLs with hash and without hash are treated as the same URL  [boolean] [default: false]
       --multi                                                 Test multiple URLs within the same browser session (same cache etc). Only works with Browsertime. Use this if you want to test multiple pages (use journey) or want to test multiple pages with scripts. You can mix URLs and scripts (the order will matter): login.js https://www.sitespeed.io/ logout.js - More details: https://www.sitespeed.io/documentation/sitespeed.io/scripting/  [boolean] [default: false]
       --name                                                  Give your test a name.

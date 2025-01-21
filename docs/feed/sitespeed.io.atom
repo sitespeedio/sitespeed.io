@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2024-12-23T21:32:10.840Z</updated>
+    <updated>2025-01-21T06:29:31.632Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,61 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 36.0.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.0.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.0.0"/>
+        <updated>2025-01-21T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Update to Coach-core 8.1.1 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4363">#4363</a></li>
+</ul>
+ <ul>
+<li>Use the offical Slack plugin instead of node-slack <a href="https://github.com/sitespeedio/sitespeed.io/pull/4360">#4360</a>.</li>
+</ul>
+ <ul>
+<li>Firefox 134, Chrome 132 and NodeJS 22 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4395">#4395</a>, <a href="https://github.com/sitespeedio/sitespeed.io/pull/4396">#4396</a> and <a href="https://github.com/sitespeedio/sitespeed.io/pull/4405">#4405</a></li>
+</ul>
+ <ul>
+<li>Let the Docker container output the CPU architecture for easier error reporting <a href="https://github.com/sitespeedio/sitespeed.io/pull/4404">#4404</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Replace dependencies with local code:</li>
+</ul>
+ <ul>
+<li>Fix cli command: Use <code>--summaryDetail</code> (not summary-detail) <a href="https://github.com/sitespeedio/sitespeed.io/pull/4376">#4376</a>.</li>
+</ul>
+ <ul>
+<li>Remove connectivity output from text since it was broken <a href="https://github.com/sitespeedio/sitespeed.io/pull/4375">#4375</a>.</li>
+</ul>
+ <ul>
+<li>Upgrade to co2.js 0.16.4 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4353">#4353</a>.</li>
+</ul>
+ <ul>
+<li>Make sure co2 data is only read once at startup <a href="https://github.com/sitespeedio/sitespeed.io/pull/4352">#4352</a>.</li>
+</ul>
+ <ul>
+<li>Making the slim container a little smaller <a href="https://github.com/sitespeedio/sitespeed.io/pull/4355">#4355</a>.</li>
+</ul>
+ <ul>
+<li>Ugrade to google-cloud/storage-7.14.0 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4361">#4361</a>.</li>
+</ul>
+ <ul>
+<li>Upgrade to AWS client 3.717.0 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4368">#4368</a></li>
+</ul>
+ <ul>
+<li>Removed the webdriver manager in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4390">4390</a>. We don&#39;t use it but on MacOS Selenium still uses it to find the driver for Safari so we can only remove it in Docker.</li>
+</ul>
+ <ul>
+<li>Fix Wilcoxon NaN values when running the compare plugin <a href="https://github.com/sitespeedio/sitespeed.io/pull/4402">#4402</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 35.7.5]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.5</id>
@@ -172,21 +227,6 @@
         <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
 <li>Upgraded Chrome/Chromedriver to 131 (with a <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2330---2024-11-12">new Browsertime</a>) <a href="https://github.com/sitespeedio/sitespeed.io/pull/4316">#4316</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 35.4.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.4.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.4.1"/>
-        <updated>2024-11-08T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>It seems to be a <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1930110">problem</a> with Firefox 132 inside of Docker. Lets return to 131 for some time <a href="https://github.com/sitespeedio/sitespeed.io/pull/4313">#4313</a>.</li>
 </ul>
 ]]></summary>
         <author>

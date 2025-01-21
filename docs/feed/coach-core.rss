@@ -4,7 +4,7 @@
         <title>coach-core release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of coach-core</description>
-        <lastBuildDate>Thu, 21 Mar 2024 14:14:57 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 28 Dec 2024 07:23:52 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,37 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/coach-core.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[coach-core 8.1.1]]></title>
+            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.1</link>
+            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.1</guid>
+            <pubDate>Sat, 28 Dec 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix broken minified release.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[coach-core 8.1.0]]></title>
+            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.0</link>
+            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.1.0</guid>
+            <pubDate>Sat, 28 Dec 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Use latest data from <a href="https://github.com/enthec/webappanalyzer">https://github.com/enthec/webappanalyzer</a> <a href="https://github.com/sitespeedio/coach-core/pull/114">#114</a>.</li>
+</ul>
+ <ul>
+<li>Use third part web 0.26.2 <a href="https://github.com/sitespeedio/coach-core/pull/113">#113</a></li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Update dev dependencies  <a href="https://github.com/sitespeedio/coach-core/pull/115">#115</a>,  <a href="https://github.com/sitespeedio/coach-core/pull/116">#116</a> and <a href="https://github.com/sitespeedio/coach-core/pull/117">#117</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[coach-core 8.0.2]]></title>
             <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#8.0.2</link>
@@ -132,86 +163,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Upgraded to PageXray 4.4.1 and Third Party Web 0.15.0.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[coach-core 7.1.0]]></title>
-            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.1.0</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.1.0</guid>
-            <pubDate>Sun, 06 Feb 2022 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgraded to PageXray 4.0.0.</li>
-</ul>
- <ul>
-<li>Upgraded to third party web 0.13.0.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[coach-core 7.0.0]]></title>
-            <link>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.0.0</link>
-            <guid>https://github.com/sitespeedio/coach-core/blob/main/CHANGELOG.md#7.0.0</guid>
-            <pubDate>Wed, 01 Dec 2021 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated third-party-web to 0.12.6.</li>
-</ul>
- <ul>
-<li>Use Chrome(ium) render blocking information to know if a request is render blocking or not <a href="https://github.com/sitespeedio/coach-core/pull/66">#66</a>.</li>
-</ul>
- <ul>
-<li>Report offending JavaScript assets if the JavaScript max limits kicks in <a href="https://github.com/sitespeedio/coach-core/pull/70">#70</a>.</li>
-</ul>
- <ul>
-<li>New largest contentful paint advice <a href="https://github.com/sitespeedio/coach-core/pull/76">#76</a>.</li>
-</ul>
- <ul>
-<li>New first contentful paint advice <a href="https://github.com/sitespeedio/coach-core/pull/77">#77</a>.</li>
-</ul>
- <ul>
-<li>Added TBT in the CPU longtask advice <a href="https://github.com/sitespeedio/coach-core/pull/80">#80</a>.</li>
-</ul>
- <ul>
-<li>Report content and transfer size for offending URLs <a href="https://github.com/sitespeedio/coach-core/pull/81">#81</a>.</li>
-</ul>
- <ul>
-<li>Report offending assets with transfer/content size for page size limit <a href="https://github.com/sitespeedio/coach-core/pull/82">#82</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Fix cases when JQuery is undefined. Thank you <a href="https://github.com/jajo-shubham">shubham jajodia</a> for PR <a href="https://github.com/sitespeedio/coach-core/pull/64">#64</a>.</li>
-</ul>
- <ul>
-<li>A better way to find offending layout shifters. Thank you <a href="https://github.com/jajo-shubham">shubham jajodia</a> for PR <a href="https://github.com/sitespeedio/coach-core/pull/65">#65</a>.</li>
-</ul>
- <ul>
-<li>Removed mentions aboout server push <a href="https://github.com/sitespeedio/coach-core/pull/69">#69</a></li>
-</ul>
- <ul>
-<li>Added more information on how to debug CPU advice <a href="https://github.com/sitespeedio/coach-core/pull/71">#71</a>.</li>
-</ul>
-<h3>Changed</h3>
- <ul>
-<li>Moved AMP advice to best practice instead of privacy <a href="https://github.com/sitespeedio/coach-core/pull/67">#67</a>.</li>
-</ul>
- <ul>
-<li>Increased favicon max size advice from 5 to 10 kb <a href="https://github.com/sitespeedio/coach-core/pull/68">#68</a></li>
-</ul>
- <ul>
-<li>Renamed the fastRender advice to avoidRenderBlocking <a href="https://github.com/sitespeedio/coach-core/pull/73">#73</a></li>
-</ul>
- <ul>
-<li>Remove the third party async advice <a href="https://github.com/sitespeedio/coach-core/pull/74">#74</a></li>
-</ul>
- <ul>
-<li>Updated the layout shift advice to use cumulative layout shift <a href="https://github.com/sitespeedio/coach-core/pull/75">#75</a></li>
-</ul>
- <ul>
-<li>Changed id of the Google Tag Manager advice <a href="https://github.com/sitespeedio/coach-core/pull/79">#79</a></li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/coach.png" length="0" type="image/png"/>
