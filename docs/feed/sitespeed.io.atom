@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2025-01-21T06:29:31.632Z</updated>
+    <updated>2025-01-21T07:55:26.154Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 36.0.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.0.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.0.1"/>
+        <updated>2025-01-21T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Disable the CPU/enableProfileRun check introduced in 36.0.0, that affected too many users <a href="https://github.com/sitespeedio/sitespeed.io/pull/4408">#4408</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 36.0.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.0.0</id>
@@ -212,21 +227,6 @@
 </ul>
  <ul>
 <li>Browsertime has been updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2341----2024-11-23">23.4.1</a>. There&#39;s a couple of notable additions:</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 35.5.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.5.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.5.0"/>
-        <updated>2024-11-08T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgraded Chrome/Chromedriver to 131 (with a <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2330---2024-11-12">new Browsertime</a>) <a href="https://github.com/sitespeedio/sitespeed.io/pull/4316">#4316</a>.</li>
 </ul>
 ]]></summary>
         <author>
