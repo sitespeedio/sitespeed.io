@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 36.0.2 - 2025-01-21
+### Fixed
+* Updated Browsertime with a fix if the Jimp dependency is missing.
+
 ## 36.0.1 - 2025-01-21
 ### Fixed
 * Disable the CPU/enableProfileRun check introduced in 36.0.0, that affected too many users [#4408](https://github.com/sitespeedio/sitespeed.io/pull/4408).
