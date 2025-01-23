@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 36.0.3 - 2025-01-23
+### Fixed
+* Fix for uploading files to GCS/S3 that was partly broken in 36.0.0 [#4410](https://github.com/sitespeedio/sitespeed.io/pull/4410).
+
 ## 36.0.2 - 2025-01-21
 ### Fixed
 * Updated Browsertime with a fix if the Jimp dependency is missing.
