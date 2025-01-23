@@ -16,6 +16,30 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[sitespeed.io 36.0.2]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.0.2</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.0.2</guid>
+            <pubDate>Tue, 21 Jan 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated Browsertime with a fix if the Jimp dependency is missing.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[sitespeed.io 36.0.1]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.0.1</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.0.1</guid>
+            <pubDate>Tue, 21 Jan 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Disable the CPU/enableProfileRun check introduced in 36.0.0, that affected too many users <a href="https://github.com/sitespeedio/sitespeed.io/pull/4408">#4408</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 36.0.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.0.0</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.0.0</guid>
@@ -66,6 +90,18 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 24.0.1]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.0.1</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.0.1</guid>
+            <pubDate>Tue, 21 Jan 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>If Jimp is missing when storing an image, log and write the file as PNG <a href="https://github.com/sitespeedio/browsertime/pull/2257">#2257</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[browsertime 24.0.0]]></title>
@@ -382,21 +418,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[sitespeed.io 35.6.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.6.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.6.0</guid>
-            <pubDate>Sat, 23 Nov 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Updated to Firefox 132 and Edge 131 in the Docketr container. The performance regression in Firefox 132 <a href="https://github.com/sitespeedio/browsertime/issues/2211">#2211</a> has been fixed.</li>
-</ul>
- <ul>
-<li>Browsertime has been updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2341----2024-11-23">23.4.1</a>. There&#39;s a couple of notable additions:</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
             <title><![CDATA[browsertime 23.4.1]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.1</link>
             <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.1</guid>
@@ -444,30 +465,6 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 23.3.2]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.3.2</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.3.2</guid>
-            <pubDate>Thu, 21 Nov 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Disable some calls back to home from Firefox <a href="https://github.com/sitespeedio/browsertime/pull/2212">#2212</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 35.5.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.5.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.5.0</guid>
-            <pubDate>Fri, 08 Nov 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Upgraded Chrome/Chromedriver to 131 (with a <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2330---2024-11-12">new Browsertime</a>) <a href="https://github.com/sitespeedio/sitespeed.io/pull/4316">#4316</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[chrome-har 1.0.1]]></title>

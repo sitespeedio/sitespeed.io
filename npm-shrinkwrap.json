@@ -1,12 +1,12 @@
 {
   "name": "sitespeed.io",
-  "version": "36.0.0",
+  "version": "36.0.2",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "sitespeed.io",
-      "version": "36.0.0",
+      "version": "36.0.2",
       "hasInstallScript": true,
       "license": "MIT",
       "dependencies": {
@@ -18,7 +18,7 @@
         "@slack/webhook": "7.0.4",
         "@tgwf/co2": "0.16.4",
         "axe-core": "4.10.2",
-        "browsertime": "24.0.0",
+        "browsertime": "24.0.1",
         "coach-core": "8.1.1",
         "dayjs": "1.11.11",
         "fast-crc32c": "2.0.0",
@@ -3330,9 +3330,9 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "24.0.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-24.0.0.tgz",
-      "integrity": "sha512-Bc8eV3Uu/U+TnW+nWy1BwZXyvNlPCmRwH7Y5yj98WF91iQ9tpGxHy9PUAc1s9Y4B7h0A2Qzer4UPgC3Iw508aQ==",
+      "version": "24.0.1",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-24.0.1.tgz",
+      "integrity": "sha512-r31pOH/ZdD9NWG4wC0STdurMw1fhlm30X2YYSkFEVPDujqdE7JimCVl7U9U0Up0d4K0Wf1w6VL5V98HguLAAVw==",
       "dependencies": {
         "@devicefarmer/adbkit": "3.3.8",
         "@sitespeed.io/chromedriver": "132.0.6834-83",
