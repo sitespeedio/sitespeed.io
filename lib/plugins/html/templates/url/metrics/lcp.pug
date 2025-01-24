@@ -21,7 +21,22 @@ if timings.largestContentfulPaint
               td 
                 b Render time 
               td #{h.time.ms(timings.largestContentfulPaint.renderTime)}
-
+            tr
+              td 
+                b Element render delay
+              td #{h.time.ms(timings.largestContentfulPaint.elementRenderDelay)}
+            tr
+              td 
+                b TTFB
+              td #{h.time.ms(timings.largestContentfulPaint.ttfb)}
+            tr
+              td 
+                b Resource delay
+              td #{h.time.ms(timings.largestContentfulPaint.resourceLoadDelay)}
+            tr
+              td 
+                b Resource load duration
+              td #{h.time.ms(timings.largestContentfulPaint.resourceLoadDuration)}
             if renderBlocking && renderBlocking.recalculateStyle.beforeLCP
               tr 
                 td
