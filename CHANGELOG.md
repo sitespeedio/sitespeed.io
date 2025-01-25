@@ -1,5 +1,13 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 36.1.0 - 2025-01-25
+### Added
+* Display more LCP information: elementRenderDelay, ttfb, resourceLoadDelay, resourceLoadDuration [#4413](https://github.com/sitespeedio/sitespeed.io/pull/4413).
+* In runtime settings: Show if gnirehtet is used [#4412](https://github.com/sitespeedio/sitespeed.io/pull/4412).
+
+### Fixed
+* Tune image size for result images [#4411](https://github.com/sitespeedio/sitespeed.io/pull/4411).
+
 ## 36.0.3 - 2025-01-23
 ### Fixed
 * Fix for uploading files to GCS/S3 that was partly broken in 36.0.0 [#4410](https://github.com/sitespeedio/sitespeed.io/pull/4410).
