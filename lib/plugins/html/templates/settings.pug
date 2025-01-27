@@ -60,6 +60,22 @@ block content
       tr 
         td Number of runs
         td #{get(options, 'browsertime.iterations')}
+      if get(browser, 'traceCategories') !== undefined
+        tr
+          td Trace categories
+          td #{get(browser, 'traceCategories')}
+      if get(browser, 'preference') !== undefined
+        tr
+          td browser.preference
+          td #{get(browser, 'preference')}
+      if get(browser, 'args') !== undefined
+        tr
+          td browser.args
+          td #{get(browser, 'args')}
+      if get(browser, 'geckoProfilerFeatures') !== undefined
+        tr
+          td Gecko Profiler Features
+          td #{get(browser, 'geckoProfilerFeatures')}
       tr 
         td OS
         td #{android ? 'Android' : (ios ? 'iOS' :  (options.browsertime.docker ? 'Docker using ' + os: os)) }
