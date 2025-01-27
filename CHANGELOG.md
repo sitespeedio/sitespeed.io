@@ -1,5 +1,10 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 36.2.0 - 2025-01-27
+### Added
+* New Browsertime that expose configurations for the runtime settings page [#4414](https://github.com/sitespeedio/sitespeed.io/pull/4414).
+* Show android rooted and gnirehtet in runtime settings [#4415](https://github.com/sitespeedio/sitespeed.io/pull/4415).
+
 ## 36.1.0 - 2025-01-25
 ### Added
 * Display more LCP information: elementRenderDelay, ttfb, resourceLoadDelay, resourceLoadDuration [#4413](https://github.com/sitespeedio/sitespeed.io/pull/4413).
