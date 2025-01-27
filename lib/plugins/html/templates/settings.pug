@@ -96,9 +96,13 @@ block content
           tr 
             td Wifi
             td #{android.wifi}
-        if android.gnirehtet
+        if options.android && options.android.gnirehtet
           tr
             td Using gnirehtet
+            td Yes
+        if options.android && options.android.rooted
+          tr
+            td Rooted phone
             td Yes
         if android.batteryTemperature
           tr 
