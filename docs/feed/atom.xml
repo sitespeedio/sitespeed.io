@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2025-01-27T00:00:00.000Z</updated>
+    <updated>2025-01-28T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <entry>
+        <title type="html"><![CDATA[sitespeed.io 36.2.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.2.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.2.1"/>
+        <updated>2025-01-28T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fixed broken checks on runtime settings <a href="https://github.com/sitespeedio/sitespeed.io/pull/4416">#4416</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[sitespeed.io 36.2.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.2.0</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.2.0"/>
@@ -26,6 +41,21 @@
 </ul>
  <ul>
 <li>Show android rooted and gnirehtet in runtime settings <a href="https://github.com/sitespeedio/sitespeed.io/pull/4415">#4415</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[server 1.1.3]]></title>
+        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.1.3</id>
+        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.1.3"/>
+        <updated>2025-01-27T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix: failed rerun tests could get stuck in waiting state <a href="https://github.com/sitespeedio/onlinetest/pull/123">#123</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -489,21 +519,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 35.7.2]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.2</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.2"/>
-        <updated>2024-12-14T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Added extra logs if the compare plugin fails when using Python so we easily can see the input parameters.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[browsertime 23.4.3]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.3</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.3"/>
@@ -827,36 +842,6 @@
 <li>Make it possible to choose container that runs the test, using the API <a href="https://github.com/sitespeedio/onlinetest/pull/69/">#69</a></li>
 </ul>
 </li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[server 0.3.2]]></title>
-        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.3.2</id>
-        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#0.3.2"/>
-        <updated>2024-07-15T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Upgrade to Bull 4.15.1 <a href="https://github.com/sitespeedio/onlinetest/pull/57">#57</a>.</li>
-</ul>
- <ul>
-<li>Default to max 50 finished jobs in the queue <a href="https://github.com/sitespeedio/onlinetest/pull/58">#58</a>.</li>
-</ul>
- <ul>
-<li>Update dev dependencies like ESLint 9 <a href="https://github.com/sitespeedio/onlinetest/pull/62">#62</a>.</li>
-</ul>
- <ul>
-<li>Update DayJS 1.11.11 <a href="https://github.com/sitespeedio/onlinetest/pull/63">#63</a></li>
-</ul>
- <ul>
-<li>Make sure all uncaught errors are caught <a href="https://github.com/sitespeedio/onlinetest/pull/64">#64</a></li>
-</ul>
- <ul>
-<li>Add a keydb configuration file <a href="https://github.com/sitespeedio/onlinetest/pull/56">#56</a></li>
 </ul>
 ]]></summary>
         <author>
