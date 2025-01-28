@@ -64,6 +64,10 @@ block content
         tr
           td Trace categories
           td #{get(browser, 'traceCategories')}
+      if get(options, 'browsertime.enableProfileRun') !== undefined
+        tr 
+          td Enabled profile run
+          td Yes
       if get(browser, 'preference') !== undefined
         tr
           td browser.preference
@@ -96,11 +100,11 @@ block content
           tr 
             td Wifi
             td #{android.wifi}
-        if options.android && options.android.gnirehtet
+        if get(options, 'browsertime.android.gnirehtet') !== undefined    
           tr
             td Using gnirehtet
             td Yes
-        if options.android && options.android.rooted
+        if get(options, 'browsertime.android.rooted') !== undefined    
           tr
             td Rooted phone
             td Yes
