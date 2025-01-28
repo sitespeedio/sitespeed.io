@@ -1,5 +1,9 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 36.2.1 - 2025-01-28
+### Fixed
+* Fixed broken checks on runtime settings [#4416](https://github.com/sitespeedio/sitespeed.io/pull/4416).
+
 ## 36.2.0 - 2025-01-27
 ### Added
 * New Browsertime that expose configurations for the runtime settings page [#4414](https://github.com/sitespeedio/sitespeed.io/pull/4414).
