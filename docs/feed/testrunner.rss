@@ -4,13 +4,24 @@
         <title>testrunner release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of testrunner</description>
-        <lastBuildDate>Fri, 27 Dec 2024 07:52:02 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 25 Jan 2025 05:34:15 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/testrunner.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[testrunner 1.0.4]]></title>
+            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.4</link>
+            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.4</guid>
+            <pubDate>Sat, 25 Jan 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Replace Intel log with @sitespeed.io/log <a href="https://github.com/sitespeedio/onlinetest/pull/117">#117</a>.</li>
+</ul>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[testrunner 1.0.3]]></title>
             <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.3</link>
@@ -113,17 +124,6 @@
 <li>Make it possible to choose container that runs the test, using the API <a href="https://github.com/sitespeedio/onlinetest/pull/69/">#69</a></li>
 </ul>
 </li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[testrunner 0.4.1]]></title>
-            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.4.1</link>
-            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.4.1</guid>
-            <pubDate>Tue, 30 Jul 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Log testrunner version on startup <a href="https://github.com/sitespeedio/onlinetest/pull/67">#67</a>.</li>
 </ul>
 ]]></description>
         </item>
