@@ -84,7 +84,7 @@
     "@aws-sdk/client-s3": "3.717.0",
     "@google-cloud/storage": "7.14.0",
     "@influxdata/influxdb-client": "1.33.2",
-    "@sitespeed.io/log": "0.2.4",
+    "@sitespeed.io/log": "0.2.5",
     "@sitespeed.io/plugin": "1.0.0",
     "@tgwf/co2": "0.16.4",
     "@slack/webhook": "7.0.4",

@@ -13,7 +13,7 @@
         "@aws-sdk/client-s3": "3.717.0",
         "@google-cloud/storage": "7.14.0",
         "@influxdata/influxdb-client": "1.33.2",
-        "@sitespeed.io/log": "0.2.4",
+        "@sitespeed.io/log": "0.2.5",
         "@sitespeed.io/plugin": "1.0.0",
         "@slack/webhook": "7.0.4",
         "@tgwf/co2": "0.16.4",
@@ -1863,10 +1863,9 @@
       }
     },
     "node_modules/@sitespeed.io/log": {
-      "version": "0.2.4",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/log/-/log-0.2.4.tgz",
-      "integrity": "sha512-rXQhH+RJiMxSZB3+JYhHEzfm8KruFkDOAxAuh4yDo03zeOyD4BvLOtvkpKXFP2V6egJKev0w+SSXa4RkNTuunw==",
-      "license": "Apache-2.0",
+      "version": "0.2.5",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/log/-/log-0.2.5.tgz",
+      "integrity": "sha512-p+TSXCnLWeSZbiKJpu6qjYdWOiZBOVOnFkB+e84rjiVhgFImByr2sC4rRzAr92I1swYTMUmCW3q3amMREXtE2g==",
       "engines": {
         "node": ">=20.0.0"
       }
@@ -3363,6 +3362,14 @@
         "@jimp/plugin-scale": "0.22.12",
         "@jimp/png": "0.22.12",
         "usb-power-profiling": "1.5.0"
+      }
+    },
+    "node_modules/browsertime/node_modules/@sitespeed.io/log": {
+      "version": "0.2.4",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/log/-/log-0.2.4.tgz",
+      "integrity": "sha512-rXQhH+RJiMxSZB3+JYhHEzfm8KruFkDOAxAuh4yDo03zeOyD4BvLOtvkpKXFP2V6egJKev0w+SSXa4RkNTuunw==",
+      "engines": {
+        "node": ">=20.0.0"
       }
     },
     "node_modules/buffer": {
