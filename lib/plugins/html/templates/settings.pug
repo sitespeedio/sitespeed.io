@@ -100,14 +100,12 @@ block content
           tr 
             td Wifi
             td #{android.wifi}
-        if get(options, 'browsertime.android.gnirehtet') !== undefined    
-          tr
-            td Using gnirehtet
-            td Yes
-        if get(options, 'browsertime.android.rooted') !== undefined    
-          tr
-            td Rooted phone
-            td Yes
+        tr
+          td Using gnirehtet
+          td #{get(options, 'browsertime.android.gnirehtet')}
+        tr
+          td Rooted phone
+          td #{get(options, 'browsertime.android.rooted')}
         if android.batteryTemperature
           tr 
             td Battery temperature
