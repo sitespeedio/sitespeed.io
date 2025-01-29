@@ -102,10 +102,10 @@ block content
             td #{android.wifi}
         tr
           td Using gnirehtet
-          td #{get(options, 'browsertime.android.gnirehtet')}
+          td #{get(options, 'browsertime.android.gnirehtet', 'No')}
         tr
           td Rooted phone
-          td #{get(options, 'browsertime.android.rooted')}
+          td #{get(options, 'browsertime.android.rooted', 'No')}
         if android.batteryTemperature
           tr 
             td Battery temperature
