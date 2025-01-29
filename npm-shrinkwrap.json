@@ -18,7 +18,7 @@
         "@slack/webhook": "7.0.4",
         "@tgwf/co2": "0.16.4",
         "axe-core": "4.10.2",
-        "browsertime": "24.1.0",
+        "browsertime": "24.1.1",
         "coach-core": "8.1.1",
         "dayjs": "1.11.11",
         "fast-crc32c": "2.0.0",
@@ -3329,15 +3329,15 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "24.1.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-24.1.0.tgz",
-      "integrity": "sha512-Tzc22y6B/bnv2ez5BbotZ0IuX0aCIGJ70PvQcUrC+dJfrkKExqub9XjPQ3Saf8fGM0f2jUJCHsrq6xF08X7cjg==",
+      "version": "24.1.1",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-24.1.1.tgz",
+      "integrity": "sha512-VD5oeD5mxwqqlw18laZOUn0NKMP7k9kVE0ZMea2whNcyzAAclzaPFPhac5OGDE7ZRGwpLFIFryXPZSx9haXxwg==",
       "dependencies": {
         "@devicefarmer/adbkit": "3.3.8",
         "@sitespeed.io/chromedriver": "132.0.6834-83",
         "@sitespeed.io/edgedriver": "132.0.2957-115",
         "@sitespeed.io/geckodriver": "0.35.0-1",
-        "@sitespeed.io/log": "0.2.4",
+        "@sitespeed.io/log": "0.2.6",
         "@sitespeed.io/throttle": "5.0.1",
         "@sitespeed.io/tracium": "0.3.3",
         "chrome-har": "1.0.1",
@@ -3362,14 +3362,6 @@
         "@jimp/plugin-scale": "0.22.12",
         "@jimp/png": "0.22.12",
         "usb-power-profiling": "1.5.0"
-      }
-    },
-    "node_modules/browsertime/node_modules/@sitespeed.io/log": {
-      "version": "0.2.4",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/log/-/log-0.2.4.tgz",
-      "integrity": "sha512-rXQhH+RJiMxSZB3+JYhHEzfm8KruFkDOAxAuh4yDo03zeOyD4BvLOtvkpKXFP2V6egJKev0w+SSXa4RkNTuunw==",
-      "engines": {
-        "node": ">=20.0.0"
       }
     },
     "node_modules/buffer": {
