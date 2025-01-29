@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Tue, 28 Jan 2025 06:56:19 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 29 Jan 2025 06:32:55 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,21 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 36.2.2]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.2.2</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.2.2</guid>
+            <pubDate>Wed, 29 Jan 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated Browsertime and sitespeedio/log to 0.2.6 that adds the old log.warn <a href="https://github.com/sitespeedio/sitespeed.io/pull/4419">#4419</a> and <a href="https://github.com/sitespeedio/sitespeed.io/pull/4418">#4418</a>.</li>
+</ul>
+ <ul>
+<li>More fixes for the runtime settings <a href="https://github.com/sitespeedio/sitespeed.io/pull/4417">#4417</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 36.2.1]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.2.1</link>
@@ -182,21 +197,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Updated to Browsertime 23.4.5 that have a fix for visual metrics running videos from mobile <a href="https://github.com/sitespeedio/sitespeed.io/pull/4343">#4343</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 35.7.3]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.3</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.3</guid>
-            <pubDate>Wed, 18 Dec 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Add validation for dataset lengths for the Wilcoxon test. Thank you <a href="https://github.com/Amerousful">Pavel Bairov</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4341">4341</a>.</li>
-</ul>
- <ul>
-<li>Updated to Browsertime 23.4.4 that has a more robust check for gnirehtet configuration <a href="https://github.com/sitespeedio/sitespeed.io/pull/4342">#4342</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>

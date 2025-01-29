@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2025-01-28T00:00:00.000Z</updated>
+    <updated>2025-01-29T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,39 @@
     <logo>https://www.sitespeed.io/img/logos/sitespeed.io.png</logo>
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 36.2.2]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.2.2</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.2.2"/>
+        <updated>2025-01-29T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Updated Browsertime and sitespeedio/log to 0.2.6 that adds the old log.warn <a href="https://github.com/sitespeedio/sitespeed.io/pull/4419">#4419</a> and <a href="https://github.com/sitespeedio/sitespeed.io/pull/4418">#4418</a>.</li>
+</ul>
+ <ul>
+<li>More fixes for the runtime settings <a href="https://github.com/sitespeedio/sitespeed.io/pull/4417">#4417</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 24.1.1]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.1.1</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.1.1"/>
+        <updated>2025-01-29T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Update to sitespeedio/log 0.2.6 <a href="https://github.com/sitespeedio/browsertime/pull/2260">#2260</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 36.2.1]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.2.1</id>
@@ -49,6 +82,25 @@
         </author>
     </entry>
     <entry>
+        <title type="html"><![CDATA[browsertime 24.1.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.1.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.1.0"/>
+        <updated>2025-01-27T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Include Chrome/Firefox configuration in the browser section of the result JSON <a href="https://github.com/sitespeedio/browsertime/pull/2259">#2259</a></li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Upgraded to use Webdriver 4.28.1 <a href="https://github.com/sitespeedio/browsertime/pull/2258">#2258</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[server 1.1.3]]></title>
         <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.1.3</id>
         <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.1.3"/>
@@ -71,25 +123,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Fix: rerun for Android picked the wrong queue <a href="https://github.com/sitespeedio/onlinetest/pull/122">#122</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 24.1.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.1.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.1.0"/>
-        <updated>2025-01-27T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Include Chrome/Firefox configuration in the browser section of the result JSON <a href="https://github.com/sitespeedio/browsertime/pull/2259">#2259</a></li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Upgraded to use Webdriver 4.28.1 <a href="https://github.com/sitespeedio/browsertime/pull/2258">#2258</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -456,24 +489,6 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 35.7.3]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.3</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.3"/>
-        <updated>2024-12-18T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Add validation for dataset lengths for the Wilcoxon test. Thank you <a href="https://github.com/Amerousful">Pavel Bairov</a> for PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4341">4341</a>.</li>
-</ul>
- <ul>
-<li>Updated to Browsertime 23.4.4 that has a more robust check for gnirehtet configuration <a href="https://github.com/sitespeedio/sitespeed.io/pull/4342">#4342</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[browsertime 23.4.4]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.4</id>
         <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.4"/>
@@ -616,28 +631,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Cleanup of the extra timings that is added to the timeline for Chrome <a href="https://github.com/sitespeedio/browsertime/pull/2218">#2218</a></li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 23.4.0]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.0</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.0"/>
-        <updated>2024-11-22T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Collect more information about the largest contentful paint <a href="https://github.com/sitespeedio/browsertime/pull/2206">#2206</a></li>
-</ul>
- <ul>
-<li>Add extra timings and new custom timeline to the Chrome timeline <a href="https://github.com/sitespeedio/browsertime/pull/2217">#2217</a>. Inspired by [</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>More configuration tuning for Firefox <a href="https://github.com/sitespeedio/browsertime/pull/2216">#2216</a>.</li>
 </ul>
 ]]></summary>
         <author>
