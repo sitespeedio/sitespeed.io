@@ -1,5 +1,11 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 36.2.2 - 2025-01-29
+### Fixed
+* Updated Browsertime and sitespeedio/log to 0.2.6 that adds the old log.warn [#4419](https://github.com/sitespeedio/sitespeed.io/pull/4419) and [#4418](https://github.com/sitespeedio/sitespeed.io/pull/4418).
+* More fixes for the runtime settings [#4417](https://github.com/sitespeedio/sitespeed.io/pull/4417).
+
+
 ## 36.2.1 - 2025-01-28
 ### Fixed
 * Fixed broken checks on runtime settings [#4416](https://github.com/sitespeedio/sitespeed.io/pull/4416).
