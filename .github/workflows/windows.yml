@@ -8,7 +8,7 @@ on:
     - main
 jobs:
   build:
-    runs-on: windows-2025
+    runs-on: windows-2022
     if: ${{ !contains(github.event.head_commit.message, 'docs:') }}
     steps:
     - uses: actions/checkout@v4
