@@ -4,6 +4,8 @@
 ### Fixed
 * The GitHub actions tests on Windows was broken. I think GitHub changed their setup: Suddenly the path to plugins was broken. Rerunning old test that worked, failed with the same code on our side. It's fixed by [#4426](https://github.com/sitespeedio/sitespeed.io/pull/4426).
 
+* We have had issues with parsing Android configuration because of the `--android`flag to enable Android tests. The problem was that in some cases the configuration object become an Array (instead of an object) and that made some objects do not work. The PR [#4422](https://github.com/sitespeedio/sitespeed.io/pull/4422) removes --android from the cli help, but it will still work. 
+
 ## 36.2.3 - 2025-01-30
 ### Fixed
 * Even better handling of missing runtime settings [#4420](https://github.com/sitespeedio/sitespeed.io/pull/4420).
