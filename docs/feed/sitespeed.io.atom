@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2025-01-30T13:40:48.761Z</updated>
+    <updated>2025-02-02T17:40:23.999Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,27 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 36.2.4]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.2.4</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.2.4"/>
+        <updated>2025-02-02T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>The GitHub actions tests on Windows was broken. I think GitHub changed their setup: Suddenly the path to plugins was broken. Rerunning old test that used to work, failed with the same code on our side. It&#39;s fixed by <a href="https://github.com/sitespeedio/sitespeed.io/pull/4426">#4426</a>.</li>
+</ul>
+ <ul>
+<li>We have had issues with parsing Android configuration because of the <code>--android</code> flag to enable Android tests. The problem was that in some cases the internal configuration object become an Array (instead of an object) and that made some objects to do not work. The PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4422">#4422</a> removes <code>--android</code> from the cli help, however it will still work as before.</li>
+</ul>
+ <ul>
+<li>Fix so API calls also looks for <code>--android.enabled</code> to know if you want to test on Android <a href="https://github.com/sitespeedio/sitespeed.io/pull/4427">#4427</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 36.2.3]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.2.3</id>
@@ -197,33 +218,6 @@
 </ul>
  <ul>
 <li>Fix Wilcoxon NaN values when running the compare plugin <a href="https://github.com/sitespeedio/sitespeed.io/pull/4402">#4402</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 35.7.5]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.5</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.5"/>
-        <updated>2024-12-23T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Update to faststat 0.0.7 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4347">#4347</a>.</li>
-</ul>
- <ul>
-<li>Update dev dependencies <a href="https://github.com/sitespeedio/sitespeed.io/pull/4345">#4345</a>.</li>
-</ul>
- <ul>
-<li>Let analysisstorer know about webpagereplay so that correct information is displayed <a href="https://github.com/sitespeedio/sitespeed.io/pull/4349">#4349</a>.</li>
-</ul>
- <ul>
-<li>Pass on webpagereplay flag to browsertime <a href="https://github.com/sitespeedio/sitespeed.io/pull/4350">#4350</a>.</li>
-</ul>
- <ul>
-<li>Update to Browsertime 23.5.0 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4351">#4351</a></li>
 </ul>
 ]]></summary>
         <author>
