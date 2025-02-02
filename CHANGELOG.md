@@ -1,6 +1,6 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 36.2.4 - UNRELEASED
+## 36.2.4 - 2025-02-02
 ### Fixed
 * The GitHub actions tests on Windows was broken. I think GitHub changed their setup: Suddenly the path to plugins was broken. Rerunning old test that used to work, failed with the same code on our side. It's fixed by [#4426](https://github.com/sitespeedio/sitespeed.io/pull/4426).
 
