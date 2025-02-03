@@ -19,6 +19,10 @@ const iphone6UserAgent =
   'Mozilla/5.0 (iPhone; CPU iPhone OS 6_1_3 like Mac OS X) AppleWebKit/536.26 ' +
   '(KHTML, like Gecko) Version/6.0 Mobile/10B329 Safari/8536.25';
 
+function fixAndroidArgs(args) {
+  return args.map(arg => (arg === '--android' ? '--android.enabled' : arg));
+}
+
 const configPath = findUpSync(['.sitespeed.io.json']);
 let config;
 
@@ -64,7 +68,8 @@ async function testURLs(engine, urls, isMulti) {
 }
 
 async function runBrowsertime() {
-  let yargsInstance = yargs(hideBin(process.argv));
+  const fixedArgs = fixAndroidArgs(hideBin(process.argv));
+  let yargsInstance = yargs(fixedArgs);
   let parsed =  yargsInstance
     .env('SITESPEED_IO')
     .require(1, 'urlOrFile')
@@ -127,12 +132,12 @@ async function runBrowsertime() {
       describe: 'The browser view port size WidthxHeight like 400x300',
       group: 'Browser'
     })
-    .option('browsertime.android', {
-      alias: 'android',
+    .option('browsertime.android.enabled', {
+      alias: ['android.enabled'],
       type: 'boolean',
       default: false,
       describe:
-        'Short key to use Android. Will automatically use com.android.chrome for Chrome and stable Firefox. If you want to use another Chrome version, use --chrome.android.package'
+        'Short key to use Android.'
     })
     .option('chrome.enableChromeDriverLog', {
       describe: 'Log Chromedriver communication to a log file.',
