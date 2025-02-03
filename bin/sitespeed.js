@@ -48,7 +48,7 @@ async function api(options) {
     apiOptions.api.testType = 'emulatedMobile';
   } else if (
     apiOptions.android === true ||
-    apiOptions.android.enabled === true
+    (apiOptions.android && apiOptions.android.enabled === true)
   ) {
     apiOptions.api.testType = 'android';
   } else if (apiOptions.safari && apiOptions.safari.ios) {
