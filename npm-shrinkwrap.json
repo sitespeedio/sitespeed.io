@@ -18,7 +18,7 @@
         "@slack/webhook": "7.0.4",
         "@tgwf/co2": "0.16.4",
         "axe-core": "4.10.2",
-        "browsertime": "24.1.1",
+        "browsertime": "24.2.0",
         "coach-core": "8.1.1",
         "dayjs": "1.11.11",
         "fast-crc32c": "2.0.0",
@@ -1821,9 +1821,9 @@
       }
     },
     "node_modules/@sitespeed.io/chromedriver": {
-      "version": "132.0.6834-83",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-132.0.6834-83.tgz",
-      "integrity": "sha512-JHyO6MHW8t6fZwkpTpSqSk1w18YRJxg0Joym00GHlnB6uH15+//PBYeKuvnjdZTROlp/6FK3Pqo4hTE2Kql45g==",
+      "version": "133.0.6943-53",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/chromedriver/-/chromedriver-133.0.6943-53.tgz",
+      "integrity": "sha512-AnzM2FoKEkdjCFAiC/zIJSjoHZmMxHL1utNyBAggXz+RsazC0v09RIGOS8cF2tmGEwJP9I47z56l98w4pGaS9w==",
       "hasInstallScript": true,
       "dependencies": {
         "node-downloader-helper": "2.1.9",
@@ -3329,12 +3329,12 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "24.1.1",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-24.1.1.tgz",
-      "integrity": "sha512-VD5oeD5mxwqqlw18laZOUn0NKMP7k9kVE0ZMea2whNcyzAAclzaPFPhac5OGDE7ZRGwpLFIFryXPZSx9haXxwg==",
+      "version": "24.2.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-24.2.0.tgz",
+      "integrity": "sha512-qC4sLm1tf18xdc5Hirpd6RRd4mz8T2dv+/7iImHG3U6BC8GoIio0picEBbtdB8dFXp0VgCBQwg1nFeSIf/HXBA==",
       "dependencies": {
         "@devicefarmer/adbkit": "3.3.8",
-        "@sitespeed.io/chromedriver": "132.0.6834-83",
+        "@sitespeed.io/chromedriver": "133.0.6943-53",
         "@sitespeed.io/edgedriver": "132.0.2957-115",
         "@sitespeed.io/geckodriver": "0.35.0-1",
         "@sitespeed.io/log": "0.2.6",
