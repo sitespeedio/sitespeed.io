@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2025-01-30T13:40:48.761Z</updated>
+    <updated>2025-02-03T08:20:01.115Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,42 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 36.2.5]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.2.5</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.2.5"/>
+        <updated>2025-02-03T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>The check for sending Android test through APIs was broken in 36.2.4, fixed in <a href="https://github.com/sitespeedio/sitespeed.io/pull/4428">#4428</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 36.2.4]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.2.4</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.2.4"/>
+        <updated>2025-02-02T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>The GitHub actions tests on Windows was broken. I think GitHub changed tere heir setup: Suddenly the path to plugins was broken. Rerunning old test that used to work, failed with the same code on our side. It&#39;s fixed by <a href="https://github.com/sitespeedio/sitespeed.io/pull/4426">#4426</a>.</li>
+</ul>
+ <ul>
+<li>We have had issues with parsing Android configuration because of the <code>--android</code> flag to enable Android tests. The problem was that in some cases the internal configuration object become an Array (instead of an object) and that made some objects to do not work. The PR <a href="https://github.com/sitespeedio/sitespeed.io/pull/4422">#4422</a> removes <code>--android</code> from the cli help, however it will still work as before.</li>
+</ul>
+ <ul>
+<li>Fix so API calls also looks for <code>--android.enabled</code> to know if you want to test on Android <a href="https://github.com/sitespeedio/sitespeed.io/pull/4427">#4427</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 36.2.3]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.2.3</id>
@@ -142,88 +178,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Disable the CPU/enableProfileRun check introduced in 36.0.0, that affected too many users <a href="https://github.com/sitespeedio/sitespeed.io/pull/4408">#4408</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 36.0.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.0.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.0.0"/>
-        <updated>2025-01-21T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Update to Coach-core 8.1.1 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4363">#4363</a></li>
-</ul>
- <ul>
-<li>Use the offical Slack plugin instead of node-slack <a href="https://github.com/sitespeedio/sitespeed.io/pull/4360">#4360</a>.</li>
-</ul>
- <ul>
-<li>Firefox 134, Chrome 132 and NodeJS 22 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4395">#4395</a>, <a href="https://github.com/sitespeedio/sitespeed.io/pull/4396">#4396</a> and <a href="https://github.com/sitespeedio/sitespeed.io/pull/4405">#4405</a></li>
-</ul>
- <ul>
-<li>Let the Docker container output the CPU architecture for easier error reporting <a href="https://github.com/sitespeedio/sitespeed.io/pull/4404">#4404</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Replace dependencies with local code:</li>
-</ul>
- <ul>
-<li>Fix cli command: Use <code>--summaryDetail</code> (not summary-detail) <a href="https://github.com/sitespeedio/sitespeed.io/pull/4376">#4376</a>.</li>
-</ul>
- <ul>
-<li>Remove connectivity output from text since it was broken <a href="https://github.com/sitespeedio/sitespeed.io/pull/4375">#4375</a>.</li>
-</ul>
- <ul>
-<li>Upgrade to co2.js 0.16.4 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4353">#4353</a>.</li>
-</ul>
- <ul>
-<li>Make sure co2 data is only read once at startup <a href="https://github.com/sitespeedio/sitespeed.io/pull/4352">#4352</a>.</li>
-</ul>
- <ul>
-<li>Making the slim container a little smaller <a href="https://github.com/sitespeedio/sitespeed.io/pull/4355">#4355</a>.</li>
-</ul>
- <ul>
-<li>Ugrade to google-cloud/storage-7.14.0 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4361">#4361</a>.</li>
-</ul>
- <ul>
-<li>Upgrade to AWS client 3.717.0 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4368">#4368</a></li>
-</ul>
- <ul>
-<li>Removed the webdriver manager in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4390">4390</a>. We don&#39;t use it but on MacOS Selenium still uses it to find the driver for Safari so we can only remove it in Docker.</li>
-</ul>
- <ul>
-<li>Fix Wilcoxon NaN values when running the compare plugin <a href="https://github.com/sitespeedio/sitespeed.io/pull/4402">#4402</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 35.7.5]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.5</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#35.7.5"/>
-        <updated>2024-12-23T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Update to faststat 0.0.7 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4347">#4347</a>.</li>
-</ul>
- <ul>
-<li>Update dev dependencies <a href="https://github.com/sitespeedio/sitespeed.io/pull/4345">#4345</a>.</li>
-</ul>
- <ul>
-<li>Let analysisstorer know about webpagereplay so that correct information is displayed <a href="https://github.com/sitespeedio/sitespeed.io/pull/4349">#4349</a>.</li>
-</ul>
- <ul>
-<li>Pass on webpagereplay flag to browsertime <a href="https://github.com/sitespeedio/sitespeed.io/pull/4350">#4350</a>.</li>
-</ul>
- <ul>
-<li>Update to Browsertime 23.5.0 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4351">#4351</a></li>
 </ul>
 ]]></summary>
         <author>
