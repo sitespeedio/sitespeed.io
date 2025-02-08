@@ -1,5 +1,14 @@
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 36.3.0 - 2025-02-08
+### Added
+* Chrome 133 and Firefox 135 in the Docker container [#4431](https://github.com/sitespeedio/sitespeed.io/pull/4431).
+* Browsertime 24.2.0 with Chromedriver 133 [#4432](https://github.com/sitespeedio/sitespeed.io/pull/4432).
+
+### Fixed
+* Extra guard against missing HARs [#4430](https://github.com/sitespeedio/sitespeed.io/pull/4430).
+* Log missing green domain info as info instead of error [#4433](https://github.com/sitespeedio/sitespeed.io/pull/4433).
+
 ## 36.2.5 - 2025-02-03
 ### Fixed
 * The check for sending Android test through APIs was broken in 36.2.4, fixed in [#4428](https://github.com/sitespeedio/sitespeed.io/pull/4428).
