@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>browsertime-release-feed</id>
     <title>browsertime release feed</title>
-    <updated>2025-01-29T07:51:38.590Z</updated>
+    <updated>2025-02-05T14:18:33.613Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[browsertime 24.2.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.2.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.2.0"/>
+        <updated>2025-02-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated Chromedriver and Chromne to 133 and Firefox to 135 <a href="https://github.com/sitespeedio/browsertime/pull/2261">#2261</a> and <a href="https://github.com/sitespeedio/browsertime/pull/2262">#2262</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[browsertime 24.1.1]]></title>
         <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.1.1</id>
@@ -184,21 +199,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Improve how we compute the power consumption numbers from the Firefox Profiler output PR by <a href="https://github.com/canova">Nazım Can Altınova</a> <a href="https://github.com/sitespeedio/browsertime/pull/2220">#2220</a></li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 23.4.1]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.1</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.1"/>
-        <updated>2024-11-23T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Cleanup of the extra timings that is added to the timeline for Chrome <a href="https://github.com/sitespeedio/browsertime/pull/2218">#2218</a></li>
 </ul>
 ]]></summary>
         <author>

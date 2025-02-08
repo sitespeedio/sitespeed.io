@@ -4,13 +4,35 @@
         <title>testrunner release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of testrunner</description>
-        <lastBuildDate>Thu, 30 Jan 2025 15:28:50 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 05 Feb 2025 14:18:33 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/testrunner.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[testrunner 1.0.7]]></title>
+            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.7</link>
+            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.7</guid>
+            <pubDate>Tue, 04 Feb 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Fix to make sure WPR always is killed whatever happens <a href="https://github.com/sitespeedio/onlinetest/pull/131">#131</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[testrunner 1.0.6]]></title>
+            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.6</link>
+            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.6</guid>
+            <pubDate>Fri, 31 Jan 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Disable verbose logging from GUI <a href="https://github.com/sitespeedio/onlinetest/pull/130">#130</a>.</li>
+</ul>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[testrunner 1.0.5]]></title>
             <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.5</link>
@@ -85,39 +107,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Bull 4.16.3 <a href="https://github.com/sitespeedio/onlinetest/pull/87">#87</a></li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[testrunner 0.5.3]]></title>
-            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.5.3</link>
-            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.5.3</guid>
-            <pubDate>Fri, 02 Aug 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Correctly set the hostname in the configuration file <a href="https://github.com/sitespeedio/onlinetest/pull/83">#83</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[testrunner 0.5.2]]></title>
-            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.5.2</link>
-            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.5.2</guid>
-            <pubDate>Fri, 02 Aug 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix a bug setting the baseline for compare plugin <a href="https://github.com/sitespeedio/onlinetest/pull/71">#71</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[testrunner 0.5.1]]></title>
-            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.5.1</link>
-            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#0.5.1</guid>
-            <pubDate>Fri, 02 Aug 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Correct version in package.json</li>
 </ul>
 ]]></description>
         </item>

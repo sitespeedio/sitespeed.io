@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Mon, 03 Feb 2025 08:20:01 GMT</lastBuildDate>
+        <lastBuildDate>Sat, 08 Feb 2025 15:38:17 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,28 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 36.3.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.3.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.3.0</guid>
+            <pubDate>Sat, 08 Feb 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Chrome 133 and Firefox 135 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4431">#4431</a>.</li>
+</ul>
+ <ul>
+<li>Browsertime 24.2.0 with Chromedriver 133 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4432">#4432</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Extra guard against missing HARs <a href="https://github.com/sitespeedio/sitespeed.io/pull/4430">#4430</a>.</li>
+</ul>
+ <ul>
+<li>Log missing green domain info as info instead of error <a href="https://github.com/sitespeedio/sitespeed.io/pull/4433">#4433</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 36.2.5]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.2.5</link>
@@ -139,18 +161,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Updated Browsertime with a fix if the Jimp dependency is missing.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 36.0.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.0.1</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.0.1</guid>
-            <pubDate>Tue, 21 Jan 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Disable the CPU/enableProfileRun check introduced in 36.0.0, that affected too many users <a href="https://github.com/sitespeedio/sitespeed.io/pull/4408">#4408</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
