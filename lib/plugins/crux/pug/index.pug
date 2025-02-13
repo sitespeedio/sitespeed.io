@@ -11,7 +11,7 @@ mixin sizeCell(title, size)
   td.number(data-title=title, data-value= size)= h.size.format(size)
 
 - const crux = pageInfo.data.crux.pageSummary;
-- const metrics = {round_trip_time: 'Round trip time', experimental_time_to_first_byte: 'Time to first byte (TTFB)', first_contentful_paint:'First Contentful Paint (FCP)', largest_contentful_paint: 'Largest Contentful Paint (LCP)', cumulative_layout_shift: 'Cumulative Layout Shift (CLS)', interaction_to_next_paint: 'Interaction to next paint (INP)'}; 
+- const metrics = {round_trip_time: 'Round Trip Time (RTT)', experimental_time_to_first_byte: 'Time To First Byte (TTFB)', first_contentful_paint:'First Contentful Paint (FCP)', largest_contentful_paint: 'Largest Contentful Paint (LCP)', cumulative_layout_shift: 'Cumulative Layout Shift (CLS)', interaction_to_next_paint: 'Interaction to Next Paint (INP)'}; 
 - const experiences = ['loadingExperience','originLoadingExperience'];
 
 if experiences
@@ -118,6 +118,8 @@ if experiences
 
           - let ITNPs = [Number(get(crux, `${cruxus}.interaction_to_next_paint.histogram[0].density`, 0) * 100).toFixed(2), Number(get(crux, `${cruxus}.interaction_to_next_paint.histogram[1].density`, 0) * 100).toFixed(2), Number(get(crux, `${cruxus}.interaction_to_next_paint.histogram[2].density`, 0)*100).toFixed(2)];
 
+          - let RTTs = [Number(get(crux, `${cruxus}.round_trip_time.histogram[0].density`, 0) * 100).toFixed(2), Number(get(crux, `${cruxus}.round_trip_time.histogram[1].density`, 0) * 100).toFixed(2), Number(get(crux, `${cruxus}.round_trip_time.histogram[2].density`, 0)*100).toFixed(2)];
+
           script(type='text/javascript').
             document.addEventListener("DOMContentLoaded", function() {   
 
@@ -143,33 +145,35 @@ if experiences
                   drawPie('#chartCLS#{experience + formFactor}', [#{CLSs}], ['Good: #{CLSs[0]}%', 'Need improvement: #{CLSs[1]}%', 'Poor: #{CLSs[2]}%']);
                   drawPie('#chartTTFB#{experience + formFactor}', [#{TTFBs}], ['Good: #{TTFBs[0]}%', 'Need improvement: #{TTFBs[1]}%', 'Poor: #{TTFBs[2]}%']);
                   drawPie('#chartITNP#{experience + formFactor}', [#{ITNPs}], ['Good: #{ITNPs[0]}%', 'Need improvement: #{ITNPs[1]}%', 'Poor: #{ITNPs[2]}%']);
-
+                  drawPie('#chartRTT#{experience + formFactor}', [#{RTTs}], ['Low: #{RTTs[0]}%', 'Medium: #{RTTs[1]}%', 'High: #{RTTs[2]}%']);
 
             });
           .responsive  
             table
               tr
+                th #{metrics['round_trip_time']}
                 th #{metrics['experimental_time_to_first_byte']}
-                th #{metrics['first_contentful_paint']}
               tr 
+                td(data-title=metrics['round_trip_time'])
+                  .ct-chart(id='chartRTT' + experience + formFactor)
                 td(data-title=metrics['experimental_time_to_first_byte']) 
                   .ct-chart(id='chartTTFB' + experience + formFactor) 
+              tr
+                th #{metrics['first_contentful_paint']}
+                th #{metrics['largest_contentful_paint']}            
+              tr 
                 td(data-title=metrics['first_contentful_paint'])  
                   .ct-chart(id='chartFCP' + experience + formFactor)
-              tr
-                th #{metrics['largest_contentful_paint']}            
-                th #{metrics['cumulative_layout_shift']}  
-              tr 
                 td(data-title=metrics['largest_contentful_paint']) 
                   .ct-chart(id='chartLCP' + experience + formFactor)
-                td(data-title=metrics['cumulative_layout_shift']) 
-                  .ct-chart(id='chartCLS' + experience + formFactor)
               tr
                 th #{metrics['interaction_to_next_paint']}
-                th
+                th #{metrics['cumulative_layout_shift']}
               tr
                 td(data-title=metrics['interaction_to_next_paint']) 
-                  .ct-chart(id='chartITNP' + experience + formFactor) 
-                td
+                  .ct-chart(id='chartITNP' + experience + formFactor)
+                td(data-title=metrics['cumulative_layout_shift']) 
+                  .ct-chart(id='chartCLS' + experience + formFactor)
+                
 else 
   p No data availible in the Chrome User Experience report.
