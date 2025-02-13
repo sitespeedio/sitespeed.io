@@ -106,6 +106,46 @@ if experiences
                   td Prerender
                   td  #{Number(crux[experience][formFactor].NAVIGATION_TYPES_FRACTIONS.prerender *100).toFixed(2)}%
 
+          if crux[experience][formFactor].LCP_RESOURCE_TYPES_FRACTIONS
+              h4 Largest Contentful Paint resource type
+              table
+                thead
+                  tr
+                    th Element type
+                    th Value
+                tbody
+                  tr
+                    td Text
+                    td #{Number(crux[experience][formFactor].LCP_RESOURCE_TYPES_FRACTIONS.text *100).toFixed(2)}%
+                  tr
+                    td Image
+                    td #{Number(crux[experience][formFactor].LCP_RESOURCE_TYPES_FRACTIONS.image *100).toFixed(2)}%
+              h4 Largest Contentful Paint image extra information
+              table
+                thead
+                  tr
+                    th Metric
+                    th 75 p
+                tbody
+                  tr
+                    td Largest Contentful Paint
+                    td #{h.time.ms(crux[experience][formFactor].LARGEST_CONTENTFUL_PAINT_MS.p75)}
+                  if crux[experience][formFactor].LCP_IMAGE_RESOURCE_LOAD_DURATION_MS
+                    tr
+                      td Image load duration
+                      td #{h.time.ms(crux[experience][formFactor].LCP_IMAGE_RESOURCE_LOAD_DURATION_MS.p75)}
+                  if crux[experience][formFactor].LCP_IMAGE_RESOURCE_LOAD_DELAY_MS
+                    tr
+                      td Image load delay
+                      td #{h.time.ms(crux[experience][formFactor].LCP_IMAGE_RESOURCE_LOAD_DELAY_MS.p75)}
+                  if crux[experience][formFactor].LCP_IMAGE_ELEMENT_RENDER_DELAY_MS
+                    tr
+                      td Image render delay
+                      td #{h.time.ms(crux[experience][formFactor].LCP_IMAGE_ELEMENT_RENDER_DELAY_MS.p75)}
+                  if crux[experience][formFactor].LCP_IMAGE_TTFB_MS
+                    tr
+                      td Image TTFB
+                      td #{h.time.ms(crux[experience][formFactor].LCP_IMAGE_TTFB_MS.p75)}
           h4 Distribution
           - let cruxus = `${experience}.${formFactor}.data.record.metrics`;
           - let FCPs = [Number(get(crux, `${cruxus}.first_contentful_paint.histogram[0].density`, 0) * 100).toFixed(2), Number(get(crux, `${cruxus}.first_contentful_paint.histogram[1].density`, 0) * 100).toFixed(2), Number(get(crux, `${cruxus}.first_contentful_paint.histogram[2].density`, 0)*100).toFixed(2)];
