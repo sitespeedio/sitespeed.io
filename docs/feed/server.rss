@@ -4,13 +4,64 @@
         <title>server release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of server</description>
-        <lastBuildDate>Fri, 07 Feb 2025 07:51:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 13 Feb 2025 18:24:10 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/server.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[server 1.6.3]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.3</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.3</guid>
+            <pubDate>Thu, 13 Feb 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>There was a bug that when you tried to change the URL after you edited a test with a script, you couldn&#39;t change the URL <a href="https://github.com/sitespeedio/onlinetest/pull/142">#142</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[server 1.6.2]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.2</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.2</guid>
+            <pubDate>Wed, 12 Feb 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Another label fix.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[server 1.6.1]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.1</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.1</guid>
+            <pubDate>Wed, 12 Feb 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Guard against empty labels when changing labels <a href="https://github.com/sitespeedio/onlinetest/pull/141">#141</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[server 1.6.0]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.0</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.0</guid>
+            <pubDate>Wed, 12 Feb 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Add functionality to: edit/add alias to a finished test, rerun a test with the exact same configuration and change the URL of a test and rerun with the same configuration <a href="https://github.com/sitespeedio/onlinetest/pull/137">#137</a>.</li>
+</ul>
+ <ul>
+<li>You can now configure which favicons that is used <a href="https://github.com/sitespeedio/onlinetest/pull/140">#140</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Update to latest sitespeed.io/log <a href="https://github.com/sitespeedio/onlinetest/pull/138">#138</a>.</li>
+</ul>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[server 1.5.0]]></title>
             <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.5.0</link>
@@ -84,66 +135,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Fix: rerun for Android picked the wrong queue <a href="https://github.com/sitespeedio/onlinetest/pull/122">#122</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[server 1.1.1]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.1.1</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.1.1</guid>
-            <pubDate>Sun, 26 Jan 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix click on location for search <a href="https://github.com/sitespeedio/onlinetest/pull/121">#121</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[server 1.1.0]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.1.0</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.1.0</guid>
-            <pubDate>Sat, 25 Jan 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>You can now re-run a test using the re-run button in the search result. Also hover over the result buttons to see what you can do <a href="https://github.com/sitespeedio/onlinetest/pull/120">#120</a></li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Use the latest version of the log package <a href="https://github.com/sitespeedio/onlinetest/pull/118">#118</a>.</li>
-</ul>
- <ul>
-<li>Better error logging <a href="https://github.com/sitespeedio/onlinetest/pull/119">#119</a>.</li>
-</ul>
- <ul>
-<li>Fix broken compare button <a href="https://github.com/sitespeedio/onlinetest/pull/120">#120</a></li>
-</ul>
- <ul>
-<li>Replace intel log with sitespeed.io log <a href="https://github.com/sitespeedio/onlinetest/pull/117">#117</a></li>
-</ul>
- <ul>
-<li>Update following dependencies: compression 1.7.5, execa 9.5.2, Pg 8.13.1, bull  4.16.5 and  helmet 8.0.0.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[server 1.0.1]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.1</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.1</guid>
-            <pubDate>Fri, 06 Dec 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fixed the release flow so the Docker containers get the correct tag.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[server 1.0.0]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.0</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.0</guid>
-            <pubDate>Fri, 06 Dec 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>A new Docker setup <a href="https://github.com/sitespeedio/onlinetest/pull/95">#95</a></li>
 </ul>
 ]]></description>
         </item>

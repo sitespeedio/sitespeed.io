@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Sat, 08 Feb 2025 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 14 Feb 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,87 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 36.4.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.4.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.4.0</guid>
+            <pubDate>Fri, 14 Feb 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Crux update: Get fractions for RTT <a href="https://github.com/sitespeedio/sitespeed.io/pull/4436">#4436</a>, that extra LCP information <a href="https://github.com/sitespeedio/sitespeed.io/pull/4437">#4437</a> and make sure LCP resource type fraction is sent to TSDB <a href="https://github.com/sitespeedio/sitespeed.io/pull/4438">#4438</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[server 1.6.3]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.3</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.3</guid>
+            <pubDate>Thu, 13 Feb 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>There was a bug that when you tried to change the URL after you edited a test with a script, you couldn&#39;t change the URL <a href="https://github.com/sitespeedio/onlinetest/pull/142">#142</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[server 1.6.2]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.2</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.2</guid>
+            <pubDate>Wed, 12 Feb 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Another label fix.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[server 1.6.1]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.1</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.1</guid>
+            <pubDate>Wed, 12 Feb 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Guard against empty labels when changing labels <a href="https://github.com/sitespeedio/onlinetest/pull/141">#141</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[server 1.6.0]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.0</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.0</guid>
+            <pubDate>Wed, 12 Feb 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Add functionality to: edit/add alias to a finished test, rerun a test with the exact same configuration and change the URL of a test and rerun with the same configuration <a href="https://github.com/sitespeedio/onlinetest/pull/137">#137</a>.</li>
+</ul>
+ <ul>
+<li>You can now configure which favicons that is used <a href="https://github.com/sitespeedio/onlinetest/pull/140">#140</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Update to latest sitespeed.io/log <a href="https://github.com/sitespeedio/onlinetest/pull/138">#138</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[testrunner 1.1.0]]></title>
+            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.1.0</link>
+            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.1.0</guid>
+            <pubDate>Wed, 12 Feb 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to sitespeed.io 36 as default version <a href="https://github.com/sitespeedio/onlinetest/pull/134">#134</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Use latest version of sitespeed.io/logs <a href="https://github.com/sitespeedio/onlinetest/pull/138">#138</a>.</li>
+</ul>
+ <ul>
+<li>Safer trap for WPR processes when running NodeJS Testrunner <a href="https://github.com/sitespeedio/onlinetest/pull/139">#139</a>.</li>
+</ul>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 36.3.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.3.0</link>
@@ -271,17 +352,6 @@
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
         </item>
         <item>
-            <title><![CDATA[server 1.1.1]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.1.1</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.1.1</guid>
-            <pubDate>Sun, 26 Jan 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix click on location for search <a href="https://github.com/sitespeedio/onlinetest/pull/121">#121</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
             <title><![CDATA[sitespeed.io 36.1.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.1.0</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.1.0</guid>
@@ -299,33 +369,6 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[server 1.1.0]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.1.0</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.1.0</guid>
-            <pubDate>Sat, 25 Jan 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>You can now re-run a test using the re-run button in the search result. Also hover over the result buttons to see what you can do <a href="https://github.com/sitespeedio/onlinetest/pull/120">#120</a></li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Use the latest version of the log package <a href="https://github.com/sitespeedio/onlinetest/pull/118">#118</a>.</li>
-</ul>
- <ul>
-<li>Better error logging <a href="https://github.com/sitespeedio/onlinetest/pull/119">#119</a>.</li>
-</ul>
- <ul>
-<li>Fix broken compare button <a href="https://github.com/sitespeedio/onlinetest/pull/120">#120</a></li>
-</ul>
- <ul>
-<li>Replace intel log with sitespeed.io log <a href="https://github.com/sitespeedio/onlinetest/pull/117">#117</a></li>
-</ul>
- <ul>
-<li>Update following dependencies: compression 1.7.5, execa 9.5.2, Pg 8.13.1, bull  4.16.5 and  helmet 8.0.0.</li>
-</ul>
-]]></description>
         </item>
         <item>
             <title><![CDATA[testrunner 1.0.4]]></title>
@@ -346,18 +389,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Fix for uploading files to GCS/S3 that was partly broken in 36.0.0 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4410">#4410</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 36.0.2]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.0.2</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.0.2</guid>
-            <pubDate>Tue, 21 Jan 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Updated Browsertime with a fix if the Jimp dependency is missing.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
@@ -534,28 +565,6 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[server 1.0.1]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.1</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.1</guid>
-            <pubDate>Fri, 06 Dec 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fixed the release flow so the Docker containers get the correct tag.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[server 1.0.0]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.0</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.0</guid>
-            <pubDate>Fri, 06 Dec 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>A new Docker setup <a href="https://github.com/sitespeedio/onlinetest/pull/95">#95</a></li>
-</ul>
-]]></description>
         </item>
         <item>
             <title><![CDATA[testrunner 1.0.1]]></title>

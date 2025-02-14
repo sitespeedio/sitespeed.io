@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>server-release-feed</id>
     <title>server release feed</title>
-    <updated>2025-02-07T07:51:00.443Z</updated>
+    <updated>2025-02-13T18:24:10.083Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -15,6 +15,73 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[server 1.6.3]]></title>
+        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.3</id>
+        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.3"/>
+        <updated>2025-02-13T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>There was a bug that when you tried to change the URL after you edited a test with a script, you couldn&#39;t change the URL <a href="https://github.com/sitespeedio/onlinetest/pull/142">#142</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[server 1.6.2]]></title>
+        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.2</id>
+        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.2"/>
+        <updated>2025-02-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Another label fix.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[server 1.6.1]]></title>
+        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.1</id>
+        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.1"/>
+        <updated>2025-02-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Guard against empty labels when changing labels <a href="https://github.com/sitespeedio/onlinetest/pull/141">#141</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[server 1.6.0]]></title>
+        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.0</id>
+        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.0"/>
+        <updated>2025-02-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Add functionality to: edit/add alias to a finished test, rerun a test with the exact same configuration and change the URL of a test and rerun with the same configuration <a href="https://github.com/sitespeedio/onlinetest/pull/137">#137</a>.</li>
+</ul>
+ <ul>
+<li>You can now configure which favicons that is used <a href="https://github.com/sitespeedio/onlinetest/pull/140">#140</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Update to latest sitespeed.io/log <a href="https://github.com/sitespeedio/onlinetest/pull/138">#138</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[server 1.5.0]]></title>
         <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.5.0</id>
@@ -108,82 +175,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Fix: rerun for Android picked the wrong queue <a href="https://github.com/sitespeedio/onlinetest/pull/122">#122</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[server 1.1.1]]></title>
-        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.1.1</id>
-        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.1.1"/>
-        <updated>2025-01-26T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix click on location for search <a href="https://github.com/sitespeedio/onlinetest/pull/121">#121</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[server 1.1.0]]></title>
-        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.1.0</id>
-        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.1.0"/>
-        <updated>2025-01-25T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>You can now re-run a test using the re-run button in the search result. Also hover over the result buttons to see what you can do <a href="https://github.com/sitespeedio/onlinetest/pull/120">#120</a></li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Use the latest version of the log package <a href="https://github.com/sitespeedio/onlinetest/pull/118">#118</a>.</li>
-</ul>
- <ul>
-<li>Better error logging <a href="https://github.com/sitespeedio/onlinetest/pull/119">#119</a>.</li>
-</ul>
- <ul>
-<li>Fix broken compare button <a href="https://github.com/sitespeedio/onlinetest/pull/120">#120</a></li>
-</ul>
- <ul>
-<li>Replace intel log with sitespeed.io log <a href="https://github.com/sitespeedio/onlinetest/pull/117">#117</a></li>
-</ul>
- <ul>
-<li>Update following dependencies: compression 1.7.5, execa 9.5.2, Pg 8.13.1, bull  4.16.5 and  helmet 8.0.0.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[server 1.0.1]]></title>
-        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.1</id>
-        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.1"/>
-        <updated>2024-12-06T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fixed the release flow so the Docker containers get the correct tag.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[server 1.0.0]]></title>
-        <id>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.0</id>
-        <link href="https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.0.0"/>
-        <updated>2024-12-06T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>A new Docker setup <a href="https://github.com/sitespeedio/onlinetest/pull/95">#95</a></li>
 </ul>
 ]]></summary>
         <author>

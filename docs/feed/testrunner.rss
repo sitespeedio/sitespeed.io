@@ -4,13 +4,31 @@
         <title>testrunner release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of testrunner</description>
-        <lastBuildDate>Wed, 05 Feb 2025 14:18:33 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 12 Feb 2025 12:20:48 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/testrunner.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[testrunner 1.1.0]]></title>
+            <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.1.0</link>
+            <guid>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.1.0</guid>
+            <pubDate>Wed, 12 Feb 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to sitespeed.io 36 as default version <a href="https://github.com/sitespeedio/onlinetest/pull/134">#134</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Use latest version of sitespeed.io/logs <a href="https://github.com/sitespeedio/onlinetest/pull/138">#138</a>.</li>
+</ul>
+ <ul>
+<li>Safer trap for WPR processes when running NodeJS Testrunner <a href="https://github.com/sitespeedio/onlinetest/pull/139">#139</a>.</li>
+</ul>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[testrunner 1.0.7]]></title>
             <link>https://github.com/sitespeedio/testrunner/blob/main/CHANGELOG.md#1.0.7</link>
