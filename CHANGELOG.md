@@ -1,6 +1,10 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 36.4.1 - 2025-02-17
+### Fixed
+* The Docker container for last release was never push. The reason is that our GitHub action that do the release automatically was upgraded to Ubuntu 24 and there its a problem building containers for ARM. With this release we use Ubuntu 22 instead.
+
 ## 36.4.0 - 2025-02-14
 ### Added
 * Crux update: Get fractions for RTT [#4436](https://github.com/sitespeedio/sitespeed.io/pull/4436), that extra LCP information [#4437](https://github.com/sitespeedio/sitespeed.io/pull/4437) and make sure LCP resource type fraction is sent to TSDB [#4438](https://github.com/sitespeedio/sitespeed.io/pull/4438).
