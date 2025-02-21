@@ -2,8 +2,8 @@ name: Linux browsers
 on:
   workflow_dispatch:
   push:
-    branches:
-    - main
+    # branches:
+    # - main
   pull_request:
     branches:
     - main
