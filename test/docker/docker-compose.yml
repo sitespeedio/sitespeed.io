@@ -4,21 +4,4 @@ services:
       image: sitespeedio/graphite:1.1.5-12
       ports:
         - "2003:2003"
-        - "8080:80" 
-    influxdb_v1.8:
-      image: influxdb:1.8
-      ports:
-        - '8086:8086'
-      environment:
-      - INFLUXDB_DB=sitespeed
-    influxdb_v2.6:
-      image: influxdb:2.6.1
-      ports:
-        - '8087:8086'
-      environment:
-      - DOCKER_INFLUXDB_INIT_MODE=setup
-      - DOCKER_INFLUXDB_INIT_USERNAME=sitespeed
-      - DOCKER_INFLUXDB_INIT_PASSWORD=sitespeed
-      - DOCKER_INFLUXDB_INIT_ORG=sitespeed
-      - DOCKER_INFLUXDB_INIT_BUCKET=sitespeed
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=sitespeed
+        - "8080:80"
