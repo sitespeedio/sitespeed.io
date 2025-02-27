@@ -176,24 +176,6 @@ Here is an example of a fully configured budget file.
 }
 ~~~
 
-If you use WebPageTest you can configure:
-
-~~~json
-{
-"budget": {
-  "webpagetest": {
-      "SpeedIndex": 1000,
-      "lastVisualChange": 2000,
-      "render": 800,
-      "visualComplete": 2000,
-      "visualComplete95": 2000,
-      "TTFB": 150,
-      "fullyLoaded": 3000
-    }
-  }
-}
-~~~
-
 If you use Lighthouse you can configure:
 
 ~~~json
