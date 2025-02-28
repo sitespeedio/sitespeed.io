@@ -83,7 +83,6 @@
   "dependencies": {
     "@aws-sdk/client-s3": "3.717.0",
     "@google-cloud/storage": "7.14.0",
-    "@influxdata/influxdb-client": "1.33.2",
     "@sitespeed.io/log": "0.2.6",
     "@sitespeed.io/plugin": "1.0.0",
     "@tgwf/co2": "0.16.4",
@@ -95,7 +94,6 @@
     "fast-crc32c": "2.0.0",
     "fast-stats": "0.0.7",
     "import-global": "1.1.1",
-    "influx": "5.9.3",
     "lodash.get": "4.4.2",
     "lodash.merge": "4.6.2",
     "lodash.set": "4.3.2",
