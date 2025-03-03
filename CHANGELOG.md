@@ -1,6 +1,19 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 37.0.0 - UNRELEASED
+### Breaking change
+* If you are a InfluxDB user the InlfluxDB functionality been moved to a standalone plugin [plugin-influxdb](https://github.com/sitespeedio/plugin-influxdb). This means if that sitespeed.io using NodeJS and the default Docker container will not include the InfluxDB plugin.
+
+### Added
+* Support for getting CLI options from plugins as long as you use `--help --plugings.add`. This is start to separate CLI options from the monsterous CLI file and instead have them in each plugin [#4450](https://github.com/sitespeedio/sitespeed.io/pull/4450), [#4452](https://github.com/sitespeedio/sitespeed.io/pull/4452) [#4455](https://github.com/sitespeedio/sitespeed.io/pull/4455).
+
+### Fixed
+* Replace the junit-report-builder package [#4448](https://github.com/sitespeedio/sitespeed.io/pull/4448).
+* Remove Tape dependencies [#4447](https://github.com/sitespeedio/sitespeed.io/pull/4447).
+
+
+
 ## 36.4.1 - 2025-02-17
 ### Fixed
 * The Docker container for last release was never push. The reason is that our GitHub action that do the release automatically was upgraded to Ubuntu 24 and there its a problem building containers for ARM. With this release we use Ubuntu 22 instead.
