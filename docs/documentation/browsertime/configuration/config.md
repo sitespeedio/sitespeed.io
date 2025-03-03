@@ -200,6 +200,7 @@ Options:
       --script                                     Add custom Javascript to run after the page has finished loading to collect metrics. If a single js file is specified, it will be included in the category named "custom" in the output json. Pass a folder to include all .js scripts in the folder, and have the folder name be the category. Note that --script can be passed multiple times.
       --userAgent                                  Override user agent
       --appendToUserAgent                          Append a String to the user agent. Works in Chrome/Edge and Firefox.
+      --logLevel                                   Manually set the min log level  [string] [choices: "trace", "verbose", "debug", "info", "warning", "error"]
   -q, --silent                                     Only output info in the logs, not to the console. Enter twice to suppress summary line.  [count]
   -o, --output                                     Specify file name for Browsertime data (ex: 'browsertime'). Unless specified, file will be named browsertime.json
       --har                                        Specify file name for .har file (ex: 'browsertime'). Unless specified, file will be named browsertime.har
