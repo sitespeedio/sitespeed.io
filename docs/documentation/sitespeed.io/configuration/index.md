@@ -219,7 +219,7 @@ docker run --rm -v "$(pwd):/sitespeed.io" sitespeedio/sitespeed.io:{% include ve
 
 The CLI will always override the JSON config.
 
-You can also extend another JSON config file. The path needs to be absolute.
+You can also extend another JSON config file. The path needs to be absolute. We recommend that you use a configuration file because that makes things easier.
 
 ~~~json
 {
@@ -239,7 +239,7 @@ You can also extend another JSON config file. The path needs to be absolute.
 }
 ~~~
 
-If you have a parameter that you want to repeat, for example setting multiple request headers, the field needs to be an JSON array.
+If you have a parameter that you want to repeat, for example setting multiple request headers, the field needs to be an JSON array. 
 
 ~~~json
 {
