@@ -3,15 +3,18 @@
 
 ## 37.0.0 - UNRELEASED
 ### Breaking change
-* If you are a InfluxDB user the InlfluxDB functionality been moved to a standalone plugin [plugin-influxdb](https://github.com/sitespeedio/plugin-influxdb). This means if that sitespeed.io using NodeJS and the default Docker container will not include the InfluxDB plugin.
+* If you are a InfluxDB user the InfluxDB functionality been moved to a standalone plugin [plugin-influxdb](https://github.com/sitespeedio/plugin-influxdb). This means if that sitespeed.io using NodeJS and the default Docker container will not include the InfluxDB plugin. The +1 container will still include the plugin but you need to add it with `--plugins.add @sitespeed.io/plugin-influxdb` for it to be able to run.
+
+The InfluxDB plugin has never gotten the love it deserves, moving it out, it means that you easier can do your own modification and get the data the way that you need.
 
 ### Added
-* Support for getting CLI options from plugins as long as you use `--help --plugings.add`. This is start to separate CLI options from the monsterous CLI file and instead have them in each plugin [#4450](https://github.com/sitespeedio/sitespeed.io/pull/4450), [#4452](https://github.com/sitespeedio/sitespeed.io/pull/4452) [#4455](https://github.com/sitespeedio/sitespeed.io/pull/4455).
+* Support for getting CLI options from plugins as long as you use `--help --plugins.add`. This is start to separate CLI options from the monsterous CLI file and instead have them in each plugin [#4450](https://github.com/sitespeedio/sitespeed.io/pull/4450), [#4452](https://github.com/sitespeedio/sitespeed.io/pull/4452) [#4455](https://github.com/sitespeedio/sitespeed.io/pull/4455).
+* You can now set the exact minimum loglevel using `--logLevel`[#4459](https://github.com/sitespeedio/sitespeed.io/pull/4459).
 
 ### Fixed
 * Replace the junit-report-builder package [#4448](https://github.com/sitespeedio/sitespeed.io/pull/4448).
 * Remove Tape dependencies [#4447](https://github.com/sitespeedio/sitespeed.io/pull/4447).
-
+* Catch if the browser fails to open a broken page [#4457](https://github.com/sitespeedio/sitespeed.io/pull/4457).
 
 
 ## 36.4.1 - 2025-02-17
