@@ -11,6 +11,7 @@ RUN npm --version
 
 RUN npm install @sitespeed.io/plugin-lighthouse -g --production
 RUN npm install @sitespeed.io/plugin-gpsi -g --production
+RUN npm install @sitespeed.io/plugin-influxdb -g --production
 
 VOLUME /sitespeed.io
 WORKDIR /sitespeed.io
