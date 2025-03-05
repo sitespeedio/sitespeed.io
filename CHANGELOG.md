@@ -1,10 +1,13 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 37.0.2 - 2025-03-05
+### Fixed
+* Another fix for using --help and load plugins correctly [#4465](https://github.com/sitespeedio/sitespeed.io/pull/4465).
+
 ## 37.0.1 - 2025-03-05
 ### Fixed
 * There was a bug in the InfluxDB plugin and loading the cli parameters failed [#4463](https://github.com/sitespeedio/sitespeed.io/pull/4463).
-
 
 ## 37.0.0 - 2025-03-05
 ### Breaking change
