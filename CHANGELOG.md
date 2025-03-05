@@ -1,7 +1,7 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
-## 37.0.0 - UNRELEASED
+## 37.0.0 - 2025-03-05
 ### Breaking change
 * If you are a InfluxDB user the InfluxDB functionality been moved to a standalone plugin [plugin-influxdb](https://github.com/sitespeedio/plugin-influxdb). This means if that sitespeed.io using NodeJS and the default Docker container will not include the InfluxDB plugin. The +1 container will still include the plugin but you need to add it with `--plugins.add @sitespeed.io/plugin-influxdb` for it to be able to run.
 
@@ -9,7 +9,7 @@ The InfluxDB plugin has never gotten the love it deserves, moving it out, it mea
 
 ### Added
 * Support for getting CLI options from plugins as long as you use `--help --plugins.add`. This is start to separate CLI options from the monsterous CLI file and instead have them in each plugin [#4450](https://github.com/sitespeedio/sitespeed.io/pull/4450), [#4452](https://github.com/sitespeedio/sitespeed.io/pull/4452) [#4455](https://github.com/sitespeedio/sitespeed.io/pull/4455).
-* You can now set the exact minimum loglevel using `--logLevel`[#4459](https://github.com/sitespeedio/sitespeed.io/pull/4459).
+* You can now set the exact minimum log level using `--logLevel`[#4459](https://github.com/sitespeedio/sitespeed.io/pull/4459).
 
 ### Fixed
 * Replace the junit-report-builder package [#4448](https://github.com/sitespeedio/sitespeed.io/pull/4448).
