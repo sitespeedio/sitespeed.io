@@ -1,6 +1,11 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 37.0.1 - 2025-03-05
+### Fixed
+* There was a bug in the InfluxDB plugin and loading the cli parameters failed [#4463](https://github.com/sitespeedio/sitespeed.io/pull/4463).
+
+
 ## 37.0.0 - 2025-03-05
 ### Breaking change
 * If you are a InfluxDB user the InfluxDB functionality been moved to a standalone plugin [plugin-influxdb](https://github.com/sitespeedio/plugin-influxdb). This means if that sitespeed.io using NodeJS and the default Docker container will not include the InfluxDB plugin. The +1 container will still include the plugin but you need to add it with `--plugins.add @sitespeed.io/plugin-influxdb` for it to be able to run.
