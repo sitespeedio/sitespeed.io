@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2025-02-17T21:37:17.215Z</updated>
+    <updated>2025-03-05T15:36:43.394Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,34 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 37.0.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.0.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.0.0"/>
+        <updated>2025-03-05T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Support for getting CLI options from plugins as long as you use <code>--help --plugins.add</code>. This is start to separate CLI options from the monsterous CLI file and instead have them in each plugin <a href="https://github.com/sitespeedio/sitespeed.io/pull/4450">#4450</a>, <a href="https://github.com/sitespeedio/sitespeed.io/pull/4452">#4452</a> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4455">#4455</a>.</li>
+</ul>
+ <ul>
+<li>You can now set the exact minimum log level using <code>--logLevel</code><a href="https://github.com/sitespeedio/sitespeed.io/pull/4459">#4459</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Replace the junit-report-builder package <a href="https://github.com/sitespeedio/sitespeed.io/pull/4448">#4448</a>.</li>
+</ul>
+ <ul>
+<li>Remove Tape dependencies <a href="https://github.com/sitespeedio/sitespeed.io/pull/4447">#4447</a>.</li>
+</ul>
+ <ul>
+<li>Catch if the browser fails to open a broken page <a href="https://github.com/sitespeedio/sitespeed.io/pull/4457">#4457</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 36.4.1]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.4.1</id>
@@ -166,28 +194,6 @@
 </ul>
  <ul>
 <li>Show android rooted and gnirehtet in runtime settings <a href="https://github.com/sitespeedio/sitespeed.io/pull/4415">#4415</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 36.1.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.1.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.1.0"/>
-        <updated>2025-01-25T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
- <ul>
-<li>Display more LCP information: elementRenderDelay, ttfb, resourceLoadDelay, resourceLoadDuration <a href="https://github.com/sitespeedio/sitespeed.io/pull/4413">#4413</a>.</li>
-</ul>
- <ul>
-<li>In runtime settings: Show if gnirehtet is used <a href="https://github.com/sitespeedio/sitespeed.io/pull/4412">#4412</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Tune image size for result images <a href="https://github.com/sitespeedio/sitespeed.io/pull/4411">#4411</a>.</li>
 </ul>
 ]]></summary>
         <author>

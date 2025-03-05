@@ -21,7 +21,7 @@ Browser
       --browsertime.pageCompleteCheckStartWait, --pageCompleteCheckStartWait                        The time in ms to wait for running the page complete check for the first time. Use this when you have a pageLoadStrategy set to none  [number] [default: 500]
       --browsertime.pageCompleteCheckNetworkIdle, --pageCompleteCheckNetworkIdle                    Use the network log instead of running JavaScript to decide when to end the test. This will wait for 5 seconds of no network activity before it ends the test. This can be used with Chrome/Edge and Firefox.  [boolean] [default: false]
       --browsertime.pageLoadStrategy, --pageLoadStrategy                                            Set the strategy to waiting for document readiness after a navigation event. After the strategy is ready, your pageCompleteCheck will start running. This only work for Firefox and Chrome and please check which value each browser implements.  [string] [choices: "eager", "none", "normal"] [default: "none"]
-      --browsertime.script, --script                                                                Add custom Javascript that collect metrics and run after the page has finished loading. Note that --script can be passed multiple times if you want to collect multiple metrics. The metrics will automatically be pushed to the summary/detailed summary and each individual page + sent to Graphite/InfluxDB.
+      --browsertime.script, --script                                                                Add custom Javascript that collect metrics and run after the page has finished loading. Note that --script can be passed multiple times if you want to collect multiple metrics. The metrics will automatically be pushed to the summary/detailed summary and each individual page + sent to Graphite
       --browsertime.injectJs, --injectJs                                                            Inject JavaScript into the current page at document_start. More info: https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/API/contentScripts
       --browsertime.selenium.url                                                                    Configure the path to the Selenium server when fetching timings using browsers. If not configured the supplied NodeJS/Selenium version is used.
       --browsertime.viewPort, --viewPort                                                            The browser view port size WidthxHeight like 400x300  [default: "1366x708"]
@@ -35,7 +35,7 @@ Browser
       --browsertime.visualMetricsPerceptual, --visualMetricsPerceptual                              Collect Perceptual Speed Index when you run --visualMetrics.  [boolean]
       --browsertime.visualMetricsContentful, --visualMetricsContentful                              Collect Contentful Speed Index when you run --visualMetrics.  [boolean]
       --browsertime.visualElements, --visualElements                                                Collect Visual Metrics from elements. Works only with --visualMetrics turned on. By default you will get visual metrics from the largest image within the view port and the largest h1. You can also configure to pickup your own defined elements with --scriptInput.visualElements  [boolean]
-      --browsertime.scriptInput.visualElements, --scriptInput.visualElements                        Include specific elements in visual elements. Give the element a name and select it with document.body.querySelector. Use like this: --scriptInput.visualElements name:domSelector . Add multiple instances to measure multiple elements. Visual Metrics will use these elements and calculate when they are visible and fully rendered.
+      --browsertime.scriptInput.visualElements, --scriptInput.visualElements                        Include specific elements in visual elements. Give the element a name and select it with document.body.querySelector. Use like this: --scriptInput.visualElements name:domSelector . If you want to measure multiple elements, use a configuration file with an array for the input. Visual Metrics will use these elements and calculate when they are visible and fully rendered.
       --browsertime.scriptInput.longTask, --minLongTaskLength                                       Set the minimum length of a task to be categorised as a CPU Long Task. It can never be smaller than 50. The value is in ms and you make Browsertime collect long tasks using --chrome.collectLongTasks or --cpu.  [number] [default: 50]
       --browsertime.video, --video                                                                  Record a video and store the video. Set it to false to remove the video that is created by turning on visualMetrics. To remove fully turn off video recordings, make sure to set video and visualMetrics to false. Requires FFMpeg to be installed.  [boolean]
       --browsertime.videoParams.framerate, --videoParams.framerate, --fps                           Frames per second in the video  [default: 30]
@@ -183,21 +183,6 @@ Graphite
       --graphite.bulkSize                    Break up number of metrics to send with each request.  [number]
       --graphite.messages                    Define which messages to send to Graphite. By default we do not send data per run, but you can change that by adding run as one of the options  [default: ["pageSummary","summary"]]
 
-InfluxDB
-      --influxdb.protocol              The protocol used to store connect to the InfluxDB host.  [default: "http"]
-      --influxdb.host                  The InfluxDB host used to store captured metrics.
-      --influxdb.port                  The InfluxDB port used to store captured metrics.  [default: 8086]
-      --influxdb.username              The InfluxDB username for your InfluxDB instance (only for InfluxDB v1)
-      --influxdb.password              The InfluxDB password for your InfluxDB instance (only for InfluxDB v1).
-      --influxdb.organisation          The InfluxDB organisation for your InfluxDB instance (only for InfluxDB v2)
-      --influxdb.token                 The InfluxDB token for your InfluxDB instance (only for InfluxDB v2)
-      --influxdb.version               The InfluxDB version of your InfluxDB instance.  [default: 1]
-      --influxdb.database              The database name used to store captured metrics.  [default: "sitespeed"]
-      --influxdb.tags                  A comma separated list of tags and values added to each metric  [default: "category=default"]
-      --influxdb.includeQueryParams    Whether to include query parameters from the URL in the InfluxDB keys or not  [boolean] [default: false]
-      --influxdb.groupSeparator        Choose which character that will separate a group/domain. Default is underscore, set it to a dot if you wanna keep the original domain name.  [default: "_"]
-      --influxdb.annotationScreenshot  Include screenshot (from Browsertime) in the annotation. You need to specify a --resultBaseURL for this to work.  [boolean] [default: false]
-
 Plugins
       --plugins.list    List all configured plugins in the log.  [boolean]
       --plugins.add     Extra plugins that you want to run. Relative or absolute path to the plugin. Specify multiple plugin names separated by comma, or repeat the --plugins.add option
@@ -339,12 +324,13 @@ Options:
       --outputFolder                                          The folder where the result will be stored. If you do not set it, the result will be stored in "DOMAIN_OR_FILENAME_OR_SLUG/TIMESTAMP"  [string]
       --copyLatestFilesToBase                                 Copy the latest screenshots to the root folder (so you can include it in Grafana). Do not work together it --outputFolder.  [boolean] [default: false]
       --firstParty                                            A regex running against each request and categorize it as first vs third party URL. (ex: ".*sitespeed.*"). If you do not set a regular expression parts of the domain from the tested URL will be used: ".*domain.*"
-      --urlAlias                                              Use an alias for the URL (if you feed URLs from a file you can instead have the alias in the file). You need to pass on the same amount of alias as URLs. The alias is used as the name of the URL on the HTML report and in Graphite/InfluxDB. Pass on multiple --urlAlias for multiple alias/URLs. This will override alias in a file.  [string]
-      --groupAlias                                            Use an alias for the group/domain. You need to pass on the same amount of alias as URLs. The alias is used as the name of the group in Graphite/InfluxDB. Pass on multiple --groupAlias for multiple alias/groups. This do not work for scripting at the moment.  [string]
+      --urlAlias                                              Use an alias for the URL (if you feed URLs from a file you can instead have the alias in the file). You need to pass on the same amount of alias as URLs. The alias is used as the name of the URL on the HTML report and in Graphite. Pass on multiple --urlAlias for multiple alias/URLs. This will override alias in a file.  [string]
+      --groupAlias                                            Use an alias for the group/domain. You need to pass on the same amount of alias as URLs. The alias is used as the name of the group in Graphite. Pass on multiple --groupAlias for multiple alias/groups. This do not work for scripting at the moment.  [string]
       --utc                                                   Use Coordinated Universal Time for timestamps  [boolean] [default: false]
       --useHash                                               If your site uses # for URLs and # give you unique URLs you need to turn on useHash. By default is it turned off, meaning URLs with hash and without hash are treated as the same URL  [boolean] [default: false]
       --multi                                                 Test multiple URLs within the same browser session (same cache etc). Only works with Browsertime. Use this if you want to test multiple pages (use journey) or want to test multiple pages with scripts. You can mix URLs and scripts (the order will matter): login.js https://www.sitespeed.io/ logout.js - More details: https://www.sitespeed.io/documentation/sitespeed.io/scripting/  [boolean] [default: false]
       --name                                                  Give your test a name.
+      --logLevel                                              Manually set the min log level  [string] [choices: "trace", "verbose", "debug", "info", "warning", "error"]
   -o, --open, --view                                          Open your test result in your default browser (Mac OS or Linux with xdg-open).
       --slug                                                  Give your test a slug. The slug is used when you send the metrics to your data storage to identify the test and the folder of the tests. The max length of the slug is 200 characters and it can only contain a-z A-Z 0-9 and -_ characters.
       --config                                                Path to JSON config file
