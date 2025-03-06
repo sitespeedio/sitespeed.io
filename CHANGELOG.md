@@ -1,6 +1,10 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 37.0.3 - 2025-03-06
+### Fixed
+* Hopefully the last fix for getting --help to work with global plugins [#4466](https://github.com/sitespeedio/sitespeed.io/pull/4466).
+
 ## 37.0.2 - 2025-03-05
 ### Fixed
 * Another fix for using --help and load plugins correctly [#4465](https://github.com/sitespeedio/sitespeed.io/pull/4465).
