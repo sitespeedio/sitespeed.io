@@ -1,6 +1,10 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 37.0.4 - 2025-03-07
+### Fixed
+* Sending annotations to Graphite failed because of InfluxDB check [#4469](https://github.com/sitespeedio/sitespeed.io/pull/4469).
+
 ## 37.0.3 - 2025-03-06
 ### Fixed
 * Hopefully the last fix for getting --help to work with global plugins [#4466](https://github.com/sitespeedio/sitespeed.io/pull/4466).
