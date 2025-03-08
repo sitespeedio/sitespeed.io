@@ -1,6 +1,13 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 37.1.0 - 2025-03-08
+### Fixed
+* Simplified logic for uploading files to S3 since we have reports that it do not work 100% [#4472](https://github.com/sitespeedio/sitespeed.io/pull/4472).
+
+### Added
+* The Docker container now contains Chrome 134.0, Firefox 136 and Edge 134.0.
+
 ## 37.0.4 - 2025-03-07
 ### Fixed
 * Sending annotations to Graphite failed because of InfluxDB check [#4469](https://github.com/sitespeedio/sitespeed.io/pull/4469).
