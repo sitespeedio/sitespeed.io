@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2025-03-08T15:38:01.609Z</updated>
+    <updated>2025-03-10T10:46:00.061Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <category term="Web Performance"/>
+    <entry>
+        <title type="html"><![CDATA[sitespeed.io 37.1.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.1.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.1.1"/>
+        <updated>2025-03-10T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Multiple fixes to better handle if a user journey scriptimng fails <a href="https://github.com/sitespeedio/sitespeed.io/pull/4474">#4474</a> and <a href="https://github.com/sitespeedio/sitespeed.io/pull/4475">#4475</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
     <entry>
         <title type="html"><![CDATA[sitespeed.io 37.1.0]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.1.0</id>
@@ -171,21 +186,6 @@
 </ul>
  <ul>
 <li>Log missing green domain info as info instead of error <a href="https://github.com/sitespeedio/sitespeed.io/pull/4433">#4433</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[sitespeed.io 36.2.5]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.2.5</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.2.5"/>
-        <updated>2025-02-03T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>The check for sending Android test through APIs was broken in 36.2.4, fixed in <a href="https://github.com/sitespeedio/sitespeed.io/pull/4428">#4428</a>.</li>
 </ul>
 ]]></summary>
         <author>
