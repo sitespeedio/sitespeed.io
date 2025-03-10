@@ -1,6 +1,10 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+## 37.1.1 - 2025-03-10
+### Fixed
+* Multiple fixes to better handle if a user journey scriptimng fails [#4474](https://github.com/sitespeedio/sitespeed.io/pull/4474) and [#4475](https://github.com/sitespeedio/sitespeed.io/pull/4475).
+
 ## 37.1.0 - 2025-03-08
 ### Fixed
 * Simplified logic for uploading files to S3 since we have reports that it do not work 100% [#4472](https://github.com/sitespeedio/sitespeed.io/pull/4472).
