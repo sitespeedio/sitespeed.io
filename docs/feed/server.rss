@@ -4,13 +4,46 @@
         <title>server release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of server</description>
-        <lastBuildDate>Thu, 13 Feb 2025 18:24:10 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 11 Mar 2025 12:53:02 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/server.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[server 1.6.5]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.5</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.5</guid>
+            <pubDate>Tue, 11 Mar 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>And another fix for script names <a href="https://github.com/sitespeedio/onlinetest/pull/146">#146</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[server 1.6.4]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.4</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.4</guid>
+            <pubDate>Mon, 10 Mar 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Another fix for showing the script name <a href="https://github.com/sitespeedio/onlinetest/pull/145">#145</a>.</li>
+</ul>
+]]></description>
+        </item>
+        <item>
+            <title><![CDATA[server 1.6.3]]></title>
+            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.3</link>
+            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.3</guid>
+            <pubDate>Mon, 10 Mar 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Show only the script name and not the full path <a href="https://github.com/sitespeedio/onlinetest/pull/144">#144</a>.</li>
+</ul>
+]]></description>
+        </item>
         <item>
             <title><![CDATA[server 1.6.3]]></title>
             <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.6.3</link>
@@ -95,46 +128,6 @@
             <description><![CDATA[<h3>Added</h3>
  <ul>
 <li>Add link to active test in search <a href="https://github.com/sitespeedio/onlinetest/pull/129">#129</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[server 1.2.0]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.2.0</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.2.0</guid>
-            <pubDate>Thu, 30 Jan 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>You can now search by status. <code>status:completed</code>.  <a href="https://github.com/sitespeedio/onlinetest/pull/128">#128</a>.</li>
-</ul>
- <ul>
-<li>Add colors to failure/completes in search results <a href="https://github.com/sitespeedio/onlinetest/pull/127">#127</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Make sure failing tests with a result is accessible <a href="https://github.com/sitespeedio/onlinetest/pull/126">#126</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[server 1.1.3]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.1.3</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.1.3</guid>
-            <pubDate>Mon, 27 Jan 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix: failed rerun tests could get stuck in waiting state <a href="https://github.com/sitespeedio/onlinetest/pull/123">#123</a>.</li>
-</ul>
-]]></description>
-        </item>
-        <item>
-            <title><![CDATA[server 1.1.2]]></title>
-            <link>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.1.2</link>
-            <guid>https://github.com/sitespeedio/server/blob/main/CHANGELOG.md#1.1.2</guid>
-            <pubDate>Mon, 27 Jan 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Fix: rerun for Android picked the wrong queue <a href="https://github.com/sitespeedio/onlinetest/pull/122">#122</a>.</li>
 </ul>
 ]]></description>
         </item>

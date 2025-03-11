@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Mon, 10 Mar 2025 10:46:00 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 11 Mar 2025 12:55:14 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -17,13 +17,25 @@
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
         <item>
+            <title><![CDATA[sitespeed.io 37.1.2]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.1.2</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.1.2</guid>
+            <pubDate>Tue, 11 Mar 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Fixed</h3>
+ <ul>
+<li>Show just the filename instead of the full path to the file in the HTML <a href="https://github.com/sitespeedio/sitespeed.io/pull/4477">#4477</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
             <title><![CDATA[sitespeed.io 37.1.1]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.1.1</link>
             <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.1.1</guid>
             <pubDate>Mon, 10 Mar 2025 00:00:00 GMT</pubDate>
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
-<li>Multiple fixes to better handle if a user journey scriptimng fails <a href="https://github.com/sitespeedio/sitespeed.io/pull/4474">#4474</a> and <a href="https://github.com/sitespeedio/sitespeed.io/pull/4475">#4475</a>.</li>
+<li>Multiple fixes to better handle if a user journey scripting fails <a href="https://github.com/sitespeedio/sitespeed.io/pull/4474">#4474</a> and <a href="https://github.com/sitespeedio/sitespeed.io/pull/4475">#4475</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
@@ -137,28 +149,6 @@
             <description><![CDATA[<h3>Added</h3>
  <ul>
 <li>Crux update: Get fractions for RTT <a href="https://github.com/sitespeedio/sitespeed.io/pull/4436">#4436</a>, that extra LCP information <a href="https://github.com/sitespeedio/sitespeed.io/pull/4437">#4437</a> and make sure LCP resource type fraction is sent to TSDB <a href="https://github.com/sitespeedio/sitespeed.io/pull/4438">#4438</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 36.3.0]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.3.0</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.3.0</guid>
-            <pubDate>Sat, 08 Feb 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Added</h3>
- <ul>
-<li>Chrome 133 and Firefox 135 in the Docker container <a href="https://github.com/sitespeedio/sitespeed.io/pull/4431">#4431</a>.</li>
-</ul>
- <ul>
-<li>Browsertime 24.2.0 with Chromedriver 133 <a href="https://github.com/sitespeedio/sitespeed.io/pull/4432">#4432</a>.</li>
-</ul>
-<h3>Fixed</h3>
- <ul>
-<li>Extra guard against missing HARs <a href="https://github.com/sitespeedio/sitespeed.io/pull/4430">#4430</a>.</li>
-</ul>
- <ul>
-<li>Log missing green domain info as info instead of error <a href="https://github.com/sitespeedio/sitespeed.io/pull/4433">#4433</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
