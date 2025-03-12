@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>sitespeed.io-release-feed</id>
     <title>sitespeed.io release feed</title>
-    <updated>2025-03-11T00:00:00.000Z</updated>
+    <updated>2025-03-12T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <author>
         <name>Peter Hedenskog</name>
@@ -16,6 +16,21 @@
     <icon>http://www.sitespeed.io/favicon.ico</icon>
     <rights>All rights reserved 2022, Peter Hedenskog and team</rights>
     <entry>
+        <title type="html"><![CDATA[sitespeed.io 37.2.0]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.2.0</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.2.0"/>
+        <updated>2025-03-12T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2440---2025-03-11">Browsertime 24.4.0</a> <a href="https://github.com/sitespeedio/sitespeed.io/pull/4478">#4478</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[sitespeed.io 37.1.2]]></title>
         <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.1.2</id>
         <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.1.2"/>
@@ -23,6 +38,28 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Show just the filename instead of the full path to the file in the HTML <a href="https://github.com/sitespeedio/sitespeed.io/pull/4477">#4477</a>.</li>
+</ul>
+]]></summary>
+        <author>
+            <name>Sitespeed.io</name>
+            <uri>https://www.sitespeed.io</uri>
+        </author>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[browsertime 24.4.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.4.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.4.0"/>
+        <updated>2025-03-11T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Edgedriver 134 <a href="https://github.com/sitespeedio/browsertime/pull/2269">#2269</a>.</li>
+</ul>
+ <ul>
+<li>Chromedriver 134, updated chrome-remote-interfaces and webdriver <a href="https://github.com/sitespeedio/browsertime/pull/2266">#2266</a></li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Fix how to get server timings (from main request) as reported on Slack <a href="https://github.com/sitespeedio/browsertime/pull/2268">#2268</a>.</li>
 </ul>
 ]]></summary>
         <author>
@@ -198,13 +235,13 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 36.4.1]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.4.1</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.4.1"/>
-        <updated>2025-02-17T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
+        <title type="html"><![CDATA[browsertime 24.3.0]]></title>
+        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.3.0</id>
+        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.3.0"/>
+        <updated>2025-03-03T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Added</h3>
  <ul>
-<li>The Docker container for last release was never push. The reason is that our GitHub action that do the release automatically was upgraded to Ubuntu 24 and there its a problem building containers for ARM. With this release we use Ubuntu 22 instead.</li>
+<li>Add support for manually setting the log level using <code>--logLevel</code> <a href="https://github.com/sitespeedio/browsertime/pull/2264">#2264</a>.2264</li>
 </ul>
 ]]></summary>
         <author>
@@ -213,13 +250,13 @@
         </author>
     </entry>
     <entry>
-        <title type="html"><![CDATA[sitespeed.io 36.4.0]]></title>
-        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.4.0</id>
-        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.4.0"/>
-        <updated>2025-02-14T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Added</h3>
+        <title type="html"><![CDATA[sitespeed.io 36.4.1]]></title>
+        <id>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.4.1</id>
+        <link href="https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.4.1"/>
+        <updated>2025-02-17T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
-<li>Crux update: Get fractions for RTT <a href="https://github.com/sitespeedio/sitespeed.io/pull/4436">#4436</a>, that extra LCP information <a href="https://github.com/sitespeedio/sitespeed.io/pull/4437">#4437</a> and make sure LCP resource type fraction is sent to TSDB <a href="https://github.com/sitespeedio/sitespeed.io/pull/4438">#4438</a>.</li>
+<li>The Docker container for last release was never push. The reason is that our GitHub action that do the release automatically was upgraded to Ubuntu 24 and there its a problem building containers for ARM. With this release we use Ubuntu 22 instead.</li>
 </ul>
 ]]></summary>
         <author>
@@ -644,36 +681,6 @@
         <summary type="html"><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Fix broken path to the WebPageReplay script when running as npm package and fix so you also can run desktop test using WebPageReplay when you use npm <a href="https://github.com/sitespeedio/onlinetest/pull/107">#107</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 23.4.3]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.3</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.3"/>
-        <updated>2024-12-11T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Update to USB power profiling 1.5.0 <a href="https://github.com/sitespeedio/browsertime/pull/2221">#2221</a>.</li>
-</ul>
-]]></summary>
-        <author>
-            <name>Sitespeed.io</name>
-            <uri>https://www.sitespeed.io</uri>
-        </author>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[browsertime 23.4.2]]></title>
-        <id>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.2</id>
-        <link href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.2"/>
-        <updated>2024-12-10T00:00:00.000Z</updated>
-        <summary type="html"><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Improve how we compute the power consumption numbers from the Firefox Profiler output PR by <a href="https://github.com/canova">Nazım Can Altınova</a> <a href="https://github.com/sitespeedio/browsertime/pull/2220">#2220</a></li>
 </ul>
 ]]></summary>
         <author>

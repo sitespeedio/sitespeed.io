@@ -4,7 +4,7 @@
         <title>browsertime release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of browsertime</description>
-        <lastBuildDate>Mon, 03 Mar 2025 18:01:37 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 11 Mar 2025 18:33:49 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -16,6 +16,37 @@
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <category>Web Performance</category>
         <atom:link href="https://www.sitespeed.io/feed/browsertime.rss" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[browsertime 24.4.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.4.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.4.0</guid>
+            <pubDate>Tue, 11 Mar 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Edgedriver 134 <a href="https://github.com/sitespeedio/browsertime/pull/2269">#2269</a>.</li>
+</ul>
+ <ul>
+<li>Chromedriver 134, updated chrome-remote-interfaces and webdriver <a href="https://github.com/sitespeedio/browsertime/pull/2266">#2266</a></li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Fix how to get server timings (from main request) as reported on Slack <a href="https://github.com/sitespeedio/browsertime/pull/2268">#2268</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 24.3.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.3.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.3.0</guid>
+            <pubDate>Mon, 03 Mar 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Add support for manually setting the log level using <code>--logLevel</code> <a href="https://github.com/sitespeedio/browsertime/pull/2264">#2264</a>.2264</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[browsertime 24.2.0]]></title>
             <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.2.0</link>
@@ -148,30 +179,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>A more robust gnirehtet check when you run your Android test <a href="https://github.com/sitespeedio/browsertime/pull/2223">#2223</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 23.4.3]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.3</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.3</guid>
-            <pubDate>Wed, 11 Dec 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Update to USB power profiling 1.5.0 <a href="https://github.com/sitespeedio/browsertime/pull/2221">#2221</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 23.4.2]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.2</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.2</guid>
-            <pubDate>Tue, 10 Dec 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>Improve how we compute the power consumption numbers from the Firefox Profiler output PR by <a href="https://github.com/canova">Nazım Can Altınova</a> <a href="https://github.com/sitespeedio/browsertime/pull/2220">#2220</a></li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
