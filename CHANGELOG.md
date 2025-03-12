@@ -1,6 +1,10 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+# 37.2.0 - 2025-03-12
+### Added
+* Updated to [Browsertime 24.4.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2440---2025-03-11) [#4478](https://github.com/sitespeedio/sitespeed.io/pull/4478).
+
 # 37.1.2 - 2025-03-11
 ### Fixed
 * Show just the filename instead of the full path to the file in the HTML [#4477](https://github.com/sitespeedio/sitespeed.io/pull/4477).
