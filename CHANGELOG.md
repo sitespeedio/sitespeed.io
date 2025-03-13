@@ -1,6 +1,10 @@
 
 # CHANGELOG - sitespeed.io  (we use [semantic versioning](https://semver.org))
 
+# 37.3.0 - 2025-03-13
+### Added
+* Updated to [Browsertime 24.5.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2450---2025-03-13) that updates to Geckodriver 0.36.0 (for Firefox) and fixes a bug for running test on Safari on iOS (reported in [#4479](https://github.com/sitespeedio/sitespeed.io/issues/4479)) fixed in [#4480](https://github.com/sitespeedio/sitespeed.io/pull/4480).
+
 # 37.2.0 - 2025-03-12
 ### Added
 * Updated to [Browsertime 24.4.0](https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2440---2025-03-11) [#4478](https://github.com/sitespeedio/sitespeed.io/pull/4478).
