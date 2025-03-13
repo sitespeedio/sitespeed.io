@@ -4,7 +4,7 @@
         <title>sitespeed.io release feed</title>
         <link>https://www.sitespeed.io</link>
         <description>New releases and changelog feed of sitespeed.io</description>
-        <lastBuildDate>Wed, 12 Mar 2025 00:00:00 GMT</lastBuildDate>
+        <lastBuildDate>Thu, 13 Mar 2025 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>en</language>
@@ -15,6 +15,34 @@
         </image>
         <copyright>All rights reserved 2022, Peter Hedenskog and team</copyright>
         <atom:link href="https://www.sitespeed.io/feed/rss.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[sitespeed.io 37.3.0]]></title>
+            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.3.0</link>
+            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.3.0</guid>
+            <pubDate>Thu, 13 Mar 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to <a href="https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#2450---2025-03-13">Browsertime 24.5.0</a> that updates to Geckodriver 0.36.0 (for Firefox) and fixes a bug for running test on Safari on iOS (reported in <a href="https://github.com/sitespeedio/sitespeed.io/issues/4479">#4479</a>) fixed in <a href="https://github.com/sitespeedio/sitespeed.io/pull/4480">#4480</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[browsertime 24.5.0]]></title>
+            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.5.0</link>
+            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#24.5.0</guid>
+            <pubDate>Thu, 13 Mar 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[<h3>Added</h3>
+ <ul>
+<li>Updated to Geckodriver 0.36.0 <a href="https://github.com/sitespeedio/browsertime/pull/2270">#2270</a>.</li>
+</ul>
+<h3>Fixed</h3>
+ <ul>
+<li>Fix running tests on Safari on iOS that has been broken by some refactoring <a href="https://github.com/sitespeedio/browsertime/pull/2271">#2271</a>.</li>
+</ul>
+]]></description>
+            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
+        </item>
         <item>
             <title><![CDATA[sitespeed.io 37.2.0]]></title>
             <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#37.2.0</link>
@@ -203,18 +231,6 @@
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[sitespeed.io 36.4.1]]></title>
-            <link>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.4.1</link>
-            <guid>https://github.com/sitespeedio/sitespeed.io/blob/main/CHANGELOG.md#36.4.1</guid>
-            <pubDate>Mon, 17 Feb 2025 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>The Docker container for last release was never push. The reason is that our GitHub action that do the release automatically was upgraded to Ubuntu 24 and there its a problem building containers for ARM. With this release we use Ubuntu 22 instead.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/sitespeed.io.png" length="0" type="image/png"/>
         </item>
         <item>
             <title><![CDATA[server 1.6.3]]></title>
@@ -516,18 +532,6 @@
             <description><![CDATA[<h3>Fixed</h3>
  <ul>
 <li>Change bottom margin from 10 to 14 pixel when recording a video on mobile, se bug <a href="https://github.com/sitespeedio/browsertime/issues/2224">#2224</a> and PR <a href="https://github.com/sitespeedio/browsertime/pull/2225">#2225</a>.</li>
-</ul>
-]]></description>
-            <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
-        </item>
-        <item>
-            <title><![CDATA[browsertime 23.4.4]]></title>
-            <link>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.4</link>
-            <guid>https://github.com/sitespeedio/browsertime/blob/main/CHANGELOG.md#23.4.4</guid>
-            <pubDate>Wed, 18 Dec 2024 00:00:00 GMT</pubDate>
-            <description><![CDATA[<h3>Fixed</h3>
- <ul>
-<li>A more robust gnirehtet check when you run your Android test <a href="https://github.com/sitespeedio/browsertime/pull/2223">#2223</a>.</li>
 </ul>
 ]]></description>
             <enclosure url="https://www.sitespeed.io/img/logos/browsertime.png" length="0" type="image/png"/>
