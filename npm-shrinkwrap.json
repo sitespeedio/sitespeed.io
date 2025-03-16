@@ -1,12 +1,12 @@
 {
   "name": "sitespeed.io",
-  "version": "37.2.0",
+  "version": "37.3.0",
   "lockfileVersion": 3,
   "requires": true,
   "packages": {
     "": {
       "name": "sitespeed.io",
-      "version": "37.2.0",
+      "version": "37.3.0",
       "hasInstallScript": true,
       "license": "MIT",
       "dependencies": {
@@ -17,7 +17,7 @@
         "@slack/webhook": "7.0.4",
         "@tgwf/co2": "0.16.4",
         "axe-core": "4.10.2",
-        "browsertime": "24.4.0",
+        "browsertime": "24.5.0",
         "coach-core": "8.1.1",
         "dayjs": "1.11.11",
         "fast-crc32c": "2.0.0",
@@ -1809,9 +1809,9 @@
       }
     },
     "node_modules/@sitespeed.io/geckodriver": {
-      "version": "0.35.0-1",
-      "resolved": "https://registry.npmjs.org/@sitespeed.io/geckodriver/-/geckodriver-0.35.0-1.tgz",
-      "integrity": "sha512-xBgcm75G3CPQScgAgq00BbMx3kMBgyvXy2UoK4/KwnSHgSE27mIyjRvS4vefbpEY40vTHC94sIQbF9s8De5KOQ==",
+      "version": "0.36.0",
+      "resolved": "https://registry.npmjs.org/@sitespeed.io/geckodriver/-/geckodriver-0.36.0.tgz",
+      "integrity": "sha512-MAPh+kjBxPK1amSSudNeh/eTOE5Zt3tVDyCwkFepNYxfEs9MPe2BRHiDKcgG8SBG8ahvGthX5kyyfitu3SOUfw==",
       "hasInstallScript": true,
       "dependencies": {
         "node-downloader-helper": "2.1.5",
@@ -3231,14 +3231,14 @@
       }
     },
     "node_modules/browsertime": {
-      "version": "24.4.0",
-      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-24.4.0.tgz",
-      "integrity": "sha512-/iioWi7QNtR5AQVO6quwu52V4RAgK7v8yNoylQFYWmUoRgf3VYjAKGCtZnwdJy4EXEHeHjpYorZL0t49H0hQsg==",
+      "version": "24.5.0",
+      "resolved": "https://registry.npmjs.org/browsertime/-/browsertime-24.5.0.tgz",
+      "integrity": "sha512-baO9t7L9Jou2BSHTfLe8zevas/KadVJSBhaB3Dum2lizOfEG8uYB0O8cuZViQw5S3VYcR7AO7kuPsJCjLPKRVg==",
       "dependencies": {
         "@devicefarmer/adbkit": "3.3.8",
         "@sitespeed.io/chromedriver": "134.0.6998-35",
         "@sitespeed.io/edgedriver": "134.0.3124-51",
-        "@sitespeed.io/geckodriver": "0.35.0-1",
+        "@sitespeed.io/geckodriver": "0.36.0",
         "@sitespeed.io/log": "0.2.6",
         "@sitespeed.io/throttle": "5.0.1",
         "@sitespeed.io/tracium": "0.3.3",
